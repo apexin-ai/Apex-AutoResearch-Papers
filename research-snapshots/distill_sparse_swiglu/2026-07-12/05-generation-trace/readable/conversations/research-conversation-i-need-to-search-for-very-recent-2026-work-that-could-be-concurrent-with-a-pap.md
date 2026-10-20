@@ -1,0 +1,3079 @@
+# Research conversation: I need to search for very recent (2026) work that could be concurrent with a paper about "mapping multimodal observabili
+
+**Output-Distribution Distillation for Contextual Sparsity Prediction in SwiGLU LLMs (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 49
+- **Recorded user turns:** 1
+- **Tool calls:** 21
+- **Original source:** `logs/chats/exported-trajectories/account-2/agent-a9ff73f48fc3c56ca.jsonl`
+- **Structured JSON:** [`4ba6ab333391afc54baf.json`](../../sessions/4b/4ba6ab333391afc54baf.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+49 recorded events
+
+### User
+
+_source line 1 · 2026-05-13T19:42:53.390Z_
+
+I need to search for very recent (2026) work that could be concurrent with a paper about "mapping multimodal observability for demonstration curation" in robotics. The paper proposes: (1) a 40+ task observability map measuring VOC/POC across LIBERO tasks, (2) task-level diagnostics predicting when multimodal scoring helps, (3) ranking-theoretic analysis of multimodal noise reduction.
+
+Please search for ALL of the following:
+
+1. "site:arxiv.org observability map robot demonstration curation 2026"
+2. "site:arxiv.org task-level diagnostic modality selection robot 2026"
+3. "site:arxiv.org VOC POC observability LIBERO 2026"
+4. "multimodal scoring demonstration quality prediction when helps 2026"
+5. "site:arxiv.org proprioceptive scoring ranking robot 2026"
+6. "adaptive modality fusion curation robot demonstration 2026"
+7. "site:openreview.net multimodal demonstration curation robot"
+8. "CoRL 2026 accepted papers demonstration curation" OR "CoRL 2026 submissions data quality robot"
+9. "SARM stage-aware reward model robot manipulation arXiv 2509.25358" - verify this exists
+10. "Cross-Modality Attention modality selection robot arXiv 2504.14573" - verify and check relevance
+11. "Learning When to See When to Feel adaptive vision torque fusion arXiv 2604.01414" - verify this
+12. "site:arxiv.org multimodal observability characterization robot benchmark 2025 2026"
+
+For each search, report the most relevant results. I especially want to know:
+- Has anyone published a VOC/POC characterization of LIBERO specifically?
+- Has anyone published task-level diagnostics for modality selection in demonstration curation?
+- Has anyone applied ranking theory (Thurstone/Bradley-Terry) to demonstration scoring?
+
+Report all findings concisely.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": true,
+  "promptId": "0550eaef-cd1f-4c7b-8cd6-2da723f3226e",
+  "agentId": "a9ff73f48fc3c56ca",
+  "type": "user",
+  "uuid": "23599f35-34f4-44e0-a181-b43e175ac026",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-13T19:42:53.393Z_
+
+```json
+{
+  "parentUuid": "23599f35-34f4-44e0-a181-b43e175ac026",
+  "isSidechain": true,
+  "agentId": "a9ff73f48fc3c56ca",
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskStop",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskStop",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "d2fecc89-ed1f-4117-ac1d-accfd3ebb984",
+  "timestamp": "2026-05-13T19:42:53.393Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 3 · 2026-05-13T19:42:56.529Z_
+
+
+
+I'll search for all of these queries systematically. Let me start by loading the WebSearch tool and then run the searches in batches.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d2fecc89-ed1f-4117-ac1d-accfd3ebb984",
+  "isSidechain": true,
+  "agentId": "a9ff73f48fc3c56ca",
+  "requestId": "req_011Cb192n2cxaUxyndvHPY7B",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "e7975314-e94f-4ead-8b38-7633db50f402",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011Pkcxsem4gQXbJt4Dmwe2b",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1012,
+      "cache_read_input_tokens": 8223,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1012,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 6,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-13T19:42:56.576Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01JrK28GpBcbYeA1Kt5gbZEu`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e7975314-e94f-4ead-8b38-7633db50f402",
+  "isSidechain": true,
+  "agentId": "a9ff73f48fc3c56ca",
+  "requestId": "req_011Cb192n2cxaUxyndvHPY7B",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "a96f19f9-92ce-464d-98bd-e334c7af5697",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011Pkcxsem4gQXbJt4Dmwe2b",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1012,
+      "cache_read_input_tokens": 8223,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1012,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 6,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-13T19:42:56.579Z_
+
+<details><summary>↩ Tool result · `toolu_01JrK28GpBcbYeA1Kt5gbZEu`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a96f19f9-92ce-464d-98bd-e334c7af5697",
+  "isSidechain": true,
+  "promptId": "0550eaef-cd1f-4c7b-8cd6-2da723f3226e",
+  "agentId": "a9ff73f48fc3c56ca",
+  "type": "user",
+  "uuid": "d8e139b6-21b5-4bef-bbb4-91a30b501051",
+  "sourceToolAssistantUUID": "a96f19f9-92ce-464d-98bd-e334c7af5697",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 6 · 2026-05-13T19:43:03.370Z_
+
+
+
+Now let me run all 12 searches. I'll batch them into groups of parallel calls.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d8e139b6-21b5-4bef-bbb4-91a30b501051",
+  "isSidechain": true,
+  "agentId": "a9ff73f48fc3c56ca",
+  "requestId": "req_011Cb1931tZKZYZCPNSJUcpF",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "9b81a0e8-b773-4e01-87f4-ffd11e4a6ff8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W6emW6uVgYbKUGfwdw1yBm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1423,
+      "cache_read_input_tokens": 9235,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1423,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-13T19:43:04.377Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UUUGrSGkBa519oNxoRExAG`</summary>
+
+```json
+{
+  "query": "site:arxiv.org observability map robot demonstration curation 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9b81a0e8-b773-4e01-87f4-ffd11e4a6ff8",
+  "isSidechain": true,
+  "agentId": "a9ff73f48fc3c56ca",
+  "requestId": "req_011Cb1931tZKZYZCPNSJUcpF",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "09986efb-a80e-4d2a-ae7a-ef3f40205573",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W6emW6uVgYbKUGfwdw1yBm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1423,
+      "cache_read_input_tokens": 9235,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1423,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-13T19:43:05.448Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019XaoXx6uauP2hTByJo1ouX`</summary>
+
+```json
+{
+  "query": "site:arxiv.org task-level diagnostic modality selection robot 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "09986efb-a80e-4d2a-ae7a-ef3f40205573",
+  "isSidechain": true,
+  "agentId": "a9ff73f48fc3c56ca",
+  "requestId": "req_011Cb1931tZKZYZCPNSJUcpF",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "aa191659-c678-478a-aae0-6be1fd9903d4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W6emW6uVgYbKUGfwdw1yBm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1423,
+      "cache_read_input_tokens": 9235,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1423,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-13T19:43:05.792Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RKLb2WkTXh7yrvAPQgLSnD`</summary>
+
+```json
+{
+  "query": "site:arxiv.org VOC POC observability LIBERO 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "aa191659-c678-478a-aae0-6be1fd9903d4",
+  "isSidechain": true,
+  "agentId": "a9ff73f48fc3c56ca",
+  "requestId": "req_011Cb1931tZKZYZCPNSJUcpF",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "8ab353de-c7cc-4299-b9bd-6be396ca804b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W6emW6uVgYbKUGfwdw1yBm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1423,
+      "cache_read_input_tokens": 9235,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1423,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-13T19:43:06.249Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01LdroDFUrZWozNWaJ2Z1Vqp`</summary>
+
+```json
+{
+  "query": "multimodal scoring demonstration quality prediction when helps 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8ab353de-c7cc-4299-b9bd-6be396ca804b",
+  "isSidechain": true,
+  "agentId": "a9ff73f48fc3c56ca",
+  "requestId": "req_011Cb1931tZKZYZCPNSJUcpF",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "2bd8f275-7254-4c2a-ac7d-2805cddfc3a0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W6emW6uVgYbKUGfwdw1yBm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1423,
+      "cache_read_input_tokens": 9235,
+      "output_tokens": 238,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1423
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 238,
+          "cache_read_input_tokens": 9235,
+          "cache_creation_input_tokens": 1423,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1423,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-13T19:43:11.301Z_
+
+<details><summary>↩ Tool result · `toolu_01UUUGrSGkBa519oNxoRExAG`</summary>
+
+```text
+Web search results for query: "site:arxiv.org observability map robot demonstration curation 2026"
+
+Links: [{"title":"Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning","url":"https://arxiv.org/html/2603.09056"},{"title":"[2603.09056] Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning","url":"https://arxiv.org/abs/2603.09056"},{"title":"Robot Data Curation with Mutual Information Estimators","url":"https://arxiv.org/html/2502.08623"},{"title":"ABot-Claw: A Foundation for Persistent, Cooperative, and Self-Evolving Robotic Agents","url":"https://arxiv.org/html/2604.10096v1"},{"title":"Foundation Models in Robotics: A Comprehensive Review of Methods, Models, Datasets, Challenges and Future Research Directions","url":"https://arxiv.org/html/2604.15395v1"},{"title":"Scizor: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning","url":"https://arxiv.org/html/2505.22626v1"},{"title":"A Survey of Robotic Navigation and Manipulation with Physics Simulators in the Era of Embodied AI","url":"https://arxiv.org/html/2505.01458v1"},{"title":"Partial Observability during DRL for Robot Control","url":"https://arxiv.org/pdf/2209.04999"},{"title":"[2010.05957] Robots State Estimation and Observability Analysis Based on Statistical Motion Models","url":"https://arxiv.org/abs/2010.05957"},{"title":"Agentic Harness Engineering: Observability-Driven Automatic Evolution of Coding-Agent Harnesses","url":"https://arxiv.org/html/2604.25850v3"}]
+
+Based on the search results, I found relevant papers on arXiv from 2026 related to robot demonstration curation. Here are the most relevant findings:
+
+## Top Results
+
+The most directly relevant paper is "Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning," which proposes a systematic approach to identifying high-quality data by defining data quality as the contribution of each training sample to reducing loss on validation demonstrations, leveraging influence functions to quantify the impact of individual training samples on model performance.
+
+The paper uses a Franka Research 3 robot arm operated via teleoperation to collect training datasets for three tasks: banana grasping, multi-object pick-and-place, and cabinet opening.
+
+## Related Papers on Robot Data Curation
+
+Other relevant 2026 papers on robot demonstration curation include:
+
+1. **Scizor** - A self-supervised approach that addresses the challenge of curating individual state-action pairs in robot demonstrations by adopting a self-supervised approach for filtering low-quality state-action pairs, offering a scalable solution for improving data quality in imitation learning.
+
+2. **Robot Data Curation with Mutual Information Estimators** - This work uses mutual information to capture the bits of knowledge gained about one random variable by observing another, in the context of states and actions, encouraging a large diversity of actions but predictable action distribution given a particular state.
+
+These papers address the critical challenge of selecting high-quality demonstration data for robot learning systems.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "09986efb-a80e-4d2a-ae7a-ef3f40205573",
+  "isSidechain": true,
+  "promptId": "0550eaef-cd1f-4c7b-8cd6-2da723f3226e",
+  "agentId": "a9ff73f48fc3c56ca",
+  "type": "user",
+  "uuid": "9a321031-cf3b-4d99-858e-d2052d41ec9a",
+  "sourceToolAssistantUUID": "09986efb-a80e-4d2a-ae7a-ef3f40205573",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-13T19:43:11.817Z_
+
+<details><summary>↩ Tool result · `toolu_01LdroDFUrZWozNWaJ2Z1Vqp`</summary>
+
+```text
+Web search results for query: "multimodal scoring demonstration quality prediction when helps 2026"
+
+Links: [{"title":"Generative Score Inference for Multimodal Data","url":"https://arxiv.org/html/2603.26349"},{"title":"The necessity of multimodal feedback for learning effective pedagogical policies with reinforcement learning - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC12774889/"},{"title":"Multimodal Agent Score: A New Standard for Evaluating AI Agents","url":"https://www.microsoft.com/en-us/dynamics-365/blog/it-professional/2026/02/04/multimodal-agent-score/"},{"title":"The New Frontier of Quality Evaluation for Visual Sensors: A Survey of Large Multimodal Model-Based Methods","url":"https://www.mdpi.com/1424-8220/26/8/2530"},{"title":"What makes a review helpful? A multimodal prediction model in e-commerce - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S1567422326000153"},{"title":"ICLR 2026 Workshop on Multimodal Intelligence: Next Token Prediction & Beyond","url":"https://mmintelligence.github.io/"},{"title":"Prediction of teaching quality in the context of smart education: application of multimodal data fusion and complex network topology structure | Discover Artificial Intelligence | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s44163-025-00240-w"},{"title":"Best Multimodal Models of 2026 Rankings: Test & Compare","url":"https://blog.roboflow.com/best-multimodal-models/"},{"title":"[2603.25924] Good Scores, Bad Data: A Metric for Multimodal Coherence","url":"https://arxiv.org/abs/2603.25924"},{"title":"Good Scores, Bad Data: A Metric for Multimodal Coherence","url":"https://arxiv.org/html/2603.25924"}]
+
+Based on the search results, here are relevant findings about multimodal scoring, demonstration quality prediction, and when it helps (2026):
+
+## Multimodal Coherence Score for Quality Prediction
+
+A Multimodal Coherence Score (MCS) has been introduced as a metric that evaluates fusion quality independent of any downstream model, decomposing coherence into four dimensions: identity, spatial, semantic, and decision, with weights learned via optimization. These dimensions address whether records refer to the same entities, whether spatial relationships agree across modalities, whether content is mutually consistent, and whether the fused representation supports correct downstream answers.
+
+## When Multimodal Scoring Helps
+
+The MCS metric discriminates quality with higher sensitivity than task accuracy alone (Spearman rho = 0.093 vs. 0.071). This matters beyond research benchmarks, as incoherence in structured annotations within a single record propagates directly into production systems that depend on multimodal fusion.
+
+## Practical Applications
+
+Examples include a radiology pipeline where scan metadata disagrees with the accompanying report, an autonomous vehicle where LiDAR annotations and camera labels place the same object at different locations, and an enterprise document processing workflow where extracted tables contradict surrounding text. The MCS is lightweight, requires no human annotation, and tells you not just that something broke, but what broke.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2bd8f275-7254-4c2a-ac7d-2805cddfc3a0",
+  "isSidechain": true,
+  "promptId": "0550eaef-cd1f-4c7b-8cd6-2da723f3226e",
+  "agentId": "a9ff73f48fc3c56ca",
+  "type": "user",
+  "uuid": "c1f64c9d-eb1c-4584-bccd-196b49155545",
+  "sourceToolAssistantUUID": "2bd8f275-7254-4c2a-ac7d-2805cddfc3a0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-13T19:43:12.622Z_
+
+<details><summary>↩ Tool result · `toolu_019XaoXx6uauP2hTByJo1ouX`</summary>
+
+```text
+Web search results for query: "site:arxiv.org task-level diagnostic modality selection robot 2026"
+
+Links: [{"title":"TATIC: Task-Aware Temporal Learning for Human Intent Inference from Physical Corrections in Human-Robot Collaboration","url":"https://arxiv.org/html/2603.11077"},{"title":"Fast-in-Slow: A Dual-System Foundation Model Unifying Fast Manipulation within Slow Reasoning","url":"https://arxiv.org/html/2506.01953v1"},{"title":"Robo-MUTUAL: Robotic Multimodal Task Specification via Unimodal Learning","url":"https://arxiv.org/pdf/2410.01529"},{"title":"World Model for Robot Learning: A Comprehensive Survey","url":"https://arxiv.org/html/2605.00080v1"},{"title":"H-WM: Robotic Task and Motion Planning Guided by Hierarchical World Model","url":"https://arxiv.org/html/2602.11291v1"},{"title":"MOMO: A framework for seamless physical, verbal, and graphical robot skill learning and adaptation","url":"https://arxiv.org/html/2604.20468"},{"title":"Learning to See and Act: Task-Aware Virtual View Exploration for Robotic Manipulation","url":"https://arxiv.org/html/2508.05186v5"},{"title":"RoboSubtaskNet: Temporal Sub-task Segmentation for Human-to-Robot Skill Transfer in Real-World Environments","url":"https://arxiv.org/html/2602.10015"},{"title":": Where Robotic Manipulation Meets Structured and Scalable Evaluation","url":"https://arxiv.org/html/2507.00435"},{"title":"Eye-Tracking-Driven Control in Daily Task Assistance for Assistive Robotic Arms","url":"https://arxiv.org/html/2601.17404"}]
+
+I've completed the web search for your query. The search retrieved 10 arXiv papers related to robotics tasks published in 2026 and late 2025. Here's a summary of what was found:
+
+**Key Results:**
+
+The search returned several robotics papers from arXiv focused on task-level intelligence and multimodal approaches:
+
+1. **TATIC** - A framework for human-robot collaboration that addresses extracting task-level semantic intent from physical interactions
+
+2. **Fast-in-Slow** - A dual-system foundation model that provides System 2 with language and visual observations while System 1 generates executable actions in real time
+
+3. **MOMO** - A framework that enables robot skill adaptation through complementary modalities, where different adaptations benefit from different interaction types: kinesthetic touch for spatial corrections, natural language for semantic modifications, and graphical interfaces for parameter adjustment
+
+4. **TVVE** - A framework that learns to select task-relevant virtual camera viewpoints and introduces a Task-aware Mixture-of-Experts visual encoder that routes visual features to task-specialized experts
+
+5. **RoboSubtaskNet** - Addresses modality fusion with attention mechanisms that adaptively assign importance to different modalities depending on the sub-task
+
+The papers generally focus on task-aware selection mechanisms and multimodal robotics rather than specifically "diagnostic modality selection," but they all address how robots can intelligently select or weight different input modalities based on task requirements.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "aa191659-c678-478a-aae0-6be1fd9903d4",
+  "isSidechain": true,
+  "promptId": "0550eaef-cd1f-4c7b-8cd6-2da723f3226e",
+  "agentId": "a9ff73f48fc3c56ca",
+  "type": "user",
+  "uuid": "4ee0736d-1345-4fd1-b205-f250195093c0",
+  "sourceToolAssistantUUID": "aa191659-c678-478a-aae0-6be1fd9903d4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-13T19:43:13.204Z_
+
+<details><summary>↩ Tool result · `toolu_01RKLb2WkTXh7yrvAPQgLSnD`</summary>
+
+```text
+Web search results for query: "site:arxiv.org VOC POC observability LIBERO 2026"
+
+Links: [{"title":"Opponent State Inference Under Partial Observability: An HMM–POMDP Framework for 2026 Formula 1 Energy Strategy Kalliopi Kleisarchaki Independent Researcher","url":"https://arxiv.org/html/2603.01290"},{"title":"Observing and Controlling Features in Vision-Language-Action Models","url":"https://arxiv.org/html/2603.05487"},{"title":"Recurrent Deep Reinforcement Learning for Chemotherapy Control under Partial Observability","url":"https://arxiv.org/html/2605.02552v1"},{"title":"PokéVLA: Empowering Pocket-Sized Vision-Language-Action Model with Comprehensive World Knowledge Guidance","url":"https://arxiv.org/html/2604.20834v1"},{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2505.15418"},{"title":"OpenMOSS LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-","url":"https://arxiv.org/pdf/2510.13626"},{"title":"Dream-VL & Dream-VLA: Open Vision-Language and ...","url":"https://arxiv.org/pdf/2512.22615"},{"title":"Guided Policy Optimization under Partial Observability","url":"https://arxiv.org/html/2505.15418v2"},{"title":"[2603.01290] Opponent State Inference Under Partial Observability: An HMM-POMDP Framework for 2026 Formula 1 Energy Strategy","url":"https://arxiv.org/abs/2603.01290"},{"title":"LIBERO-PRO: Towards Robust and Fair Evaluation of ...","url":"https://arxiv.org/pdf/2510.03827"}]
+
+I found several relevant papers on arxiv.org matching your search query. Here are the results:
+
+1. **"Opponent State Inference Under Partial Observability: An HMM-POMDP Framework for 2026 Formula 1 Energy Strategy"** (March 9, 2026)
+   - The 2026 Formula 1 technical regulations introduce a fundamental change to energy strategy: under a 50/50 internal combustion engine / battery power split with unlimited regeneration and a driver-controlled Override Mode (abbreviated MOM throughout), the optimal energy deployment policy depends not only on a driver's own state but on the hidden state of rival cars.
+
+2. **"Observing and Controlling Features in Vision-Language-Action Models"** (March 5, 2026)
+   - This work formalizes the concepts of feature-observability and feature-controllability to establish a foundation for interpreting and steering VLA behavior. It demonstrates that behaviorally relevant features such as robot actions and states are linearly encoded in VLA transformer representations and can be reliably extracted using lightweight linear observers. The work includes experiments on two state-of-the-art VLA architectures across multiple robotic manipulation datasets (Libero and BridgeData V2).
+
+3. **"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models"** (referenced in multiple papers)
+   - This benchmark suite is being used to evaluate VLA model robustness across various perturbations.
+
+These papers combine your search terms across different domains - Formula 1 strategy, vision-language-action models, observability, and LIBERO robotics benchmarks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8ab353de-c7cc-4299-b9bd-6be396ca804b",
+  "isSidechain": true,
+  "promptId": "0550eaef-cd1f-4c7b-8cd6-2da723f3226e",
+  "agentId": "a9ff73f48fc3c56ca",
+  "type": "user",
+  "uuid": "d8745f00-97f9-4d29-ae66-52917eaf70c4",
+  "sourceToolAssistantUUID": "8ab353de-c7cc-4299-b9bd-6be396ca804b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-13T19:43:15.824Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WC7FinBeHpA8YMD3c6oaCP`</summary>
+
+```json
+{
+  "query": "site:arxiv.org proprioceptive scoring ranking robot 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d8745f00-97f9-4d29-ae66-52917eaf70c4",
+  "isSidechain": true,
+  "agentId": "a9ff73f48fc3c56ca",
+  "requestId": "req_011Cb194EkFKZTJxXBQXvzF3",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "6c6c2722-9577-4211-bc02-b5307e20c989",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01347CJCiidPZGCVUdxXJrGb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 859,
+      "cache_creation_input_tokens": 2819,
+      "cache_read_input_tokens": 10658,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2819,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 41,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-13T19:43:16.873Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01BvE6stUqCEjDgcn68sKo4V`</summary>
+
+```json
+{
+  "query": "adaptive modality fusion curation robot demonstration 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6c6c2722-9577-4211-bc02-b5307e20c989",
+  "isSidechain": true,
+  "agentId": "a9ff73f48fc3c56ca",
+  "requestId": "req_011Cb194EkFKZTJxXBQXvzF3",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "8f100d12-98ce-4b46-a10a-e442f9758588",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01347CJCiidPZGCVUdxXJrGb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 859,
+      "cache_creation_input_tokens": 2819,
+      "cache_read_input_tokens": 10658,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2819,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 41,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-13T19:43:17.346Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_017HZUiXTcmpDL73jS4vB6X9`</summary>
+
+```json
+{
+  "query": "site:openreview.net multimodal demonstration curation robot"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8f100d12-98ce-4b46-a10a-e442f9758588",
+  "isSidechain": true,
+  "agentId": "a9ff73f48fc3c56ca",
+  "requestId": "req_011Cb194EkFKZTJxXBQXvzF3",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "c4e4bd27-7da4-4f65-b736-57623b6dde5a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01347CJCiidPZGCVUdxXJrGb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 859,
+      "cache_creation_input_tokens": 2819,
+      "cache_read_input_tokens": 10658,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2819,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 41,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-13T19:43:17.862Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016rDgjiLTE4avNyXwY7728i`</summary>
+
+```json
+{
+  "query": "CoRL 2026 accepted papers demonstration curation OR CoRL 2026 submissions data quality robot"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c4e4bd27-7da4-4f65-b736-57623b6dde5a",
+  "isSidechain": true,
+  "agentId": "a9ff73f48fc3c56ca",
+  "requestId": "req_011Cb194EkFKZTJxXBQXvzF3",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "81770616-d8f2-468e-9dd3-cd52b6ae2847",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01347CJCiidPZGCVUdxXJrGb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 859,
+      "cache_creation_input_tokens": 2819,
+      "cache_read_input_tokens": 10658,
+      "output_tokens": 216,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2819
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 859,
+          "output_tokens": 216,
+          "cache_read_input_tokens": 10658,
+          "cache_creation_input_tokens": 2819,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2819,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-13T19:43:23.600Z_
+
+<details><summary>↩ Tool result · `toolu_01WC7FinBeHpA8YMD3c6oaCP`</summary>
+
+```text
+Web search results for query: "site:arxiv.org proprioceptive scoring ranking robot 2026"
+
+Links: [{"title":"Xiaomi-Robotics-0: An Open-Sourced Vision-Language-Action Model with Real-Time Execution","url":"https://arxiv.org/html/2602.12684"},{"title":"Visual Manipulation with Legs","url":"https://arxiv.org/html/2410.11345"},{"title":"Tensegrity Robot Endcap-Ground Contact Estimation with Symmetry-aware Heterogeneous Graph Neural Network","url":"https://arxiv.org/html/2603.02596"},{"title":"TactAlign: Human-to-Robot Policy Transfer via Tactile Alignment","url":"https://arxiv.org/html/2602.13579"},{"title":"ROSER: Few-Shot Robotic Sequence Retrieval for Scalable Robot Learning","url":"https://arxiv.org/html/2603.01474"},{"title":"TeleDex: Accessible Dexterous Teleoperation","url":"https://arxiv.org/html/2603.17065"},{"title":"Learning to Evaluate Autonomous Behaviour in Human-Robot Interaction","url":"https://arxiv.org/pdf/2507.06404"},{"title":"Identifying patterns of proprioception and target matching acuity in healthy humans This work has been submitted to the IEEE for possible publication. Copyright may be transferred without notice, after which this version may no longer be accessible.","url":"https://arxiv.org/html/2411.12664v1"},{"title":"[1712.05881] Morphology dictates a robot’s ability to ground crowd-proposed language","url":"https://ar5iv.labs.arxiv.org/html/1712.05881"},{"title":"Learning to Predict Mobile Robot Stability in Off-Road Environments","url":"https://arxiv.org/html/2507.12731v1"}]
+
+I've performed the web search for "site:arxiv.org proprioceptive scoring ranking robot 2026" and found several relevant arxiv papers from 2026. Here are the key results:
+
+## Most Relevant Results:
+
+**1. Xiaomi-Robotics-0: An Open-Sourced Vision-Language-Action Model (March 2026)**
+This paper describes training a VLM to simultaneously predict N action chunk candidates along with their corresponding scores, with the L₁ distance between each predicted action chunk candidate and ground truth computed as supervision targets for score prediction.
+
+**2. ROSER: Few-Shot Robotic Sequence Retrieval (March 2026)**
+This introduces a lightweight framework that learns task-agnostic metric spaces directly from raw proprioceptive time series, constructing prototype representations from reference examples and retrieving similar segments via learned distances.
+
+**3. Tensegrity Robot Contact Estimation (March 2026)**
+This paper presents a symmetry-aware heterogeneous graph neural network (Sym-HGNN) for proprioceptive contact estimation in a three-bar tensegrity robot, achieving strong sample efficiency and robust generalization without requiring dedicated contact sensors.
+
+**4. Visual Manipulation with Legs (October 2024)**
+This work involves ranking results according to flow distance and Chamfer distance metrics, selecting the registration outcome with the lowest cumulative rank.
+
+**5. Learning to Predict Mobile Robot Stability (July 2025)**
+This paper introduces a C3 score that quantifies platform disturbance based on pose deviation, combining rotational and translational displacement to characterize body-level motion.
+
+These papers cover various aspects of proprioceptive sensing, scoring mechanisms, and ranking systems in robotics applications from 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6c6c2722-9577-4211-bc02-b5307e20c989",
+  "isSidechain": true,
+  "promptId": "0550eaef-cd1f-4c7b-8cd6-2da723f3226e",
+  "agentId": "a9ff73f48fc3c56ca",
+  "type": "user",
+  "uuid": "3a34f860-09fc-479b-a100-97dd8d1e8a66",
+  "sourceToolAssistantUUID": "6c6c2722-9577-4211-bc02-b5307e20c989",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-13T19:43:23.830Z_
+
+<details><summary>↩ Tool result · `toolu_01BvE6stUqCEjDgcn68sKo4V`</summary>
+
+```text
+Web search results for query: "adaptive modality fusion curation robot demonstration 2026"
+
+Links: [{"title":"Adaptive robot guidance through real-time compliance estimation and dual-modal control | Communications Engineering","url":"https://www.nature.com/articles/s44172-026-00632-5"},{"title":"Cross-Modality Alignment Perception and Multi-Head Self-Attention Mechanism for Vision-Language-Action of Humanoid Robot - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC12787822/"},{"title":"Multimodal fusion with vision-language-action models for robotic manipulation: A systematic review - ScienceDirect","url":"https://www.sciencedirect.com/science/article/pii/S1566253525011248"},{"title":"Multi-Modal Data Fusion in Enhancing Human-Machine Interaction for Industry 4.0","url":"https://arxiv.org/pdf/2202.07732"},{"title":"Multimodal Fusion and Vision-Language Models: A Survey for Robot Vision","url":"https://arxiv.org/pdf/2504.02477"},{"title":"Adaptive Visuo-Tactile Fusion with Predictive Force Attention for Dexterous Manipulation","url":"https://arxiv.org/html/2505.13982"},{"title":"AMCIU: An Adaptive Multimodal Complementary Intent Understanding Method: International Journal of Human–Computer Interaction: Vol 42 , No 4 - Get Access","url":"https://www.tandfonline.com/doi/full/10.1080/10447318.2025.2530087"},{"title":"Robotic Fusion Frameworks","url":"https://www.emergentmind.com/topics/robotic-fusion-frameworks"},{"title":"Deep Learning-Based Multi-Modal Fusion for Robust ...","url":"https://arxiv.org/pdf/2504.19002"},{"title":"Multimodal fusion and vision–language models: A survey for robot vision - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S1566253525007249"}]
+
+Based on the search results, here are the key findings related to adaptive modality fusion and robot demonstrations in 2026:
+
+## Key Research Results
+
+### Recent 2026 Publication
+
+A notable 2026 paper presents a robot guidance controller that learns to coordinate physical and verbal guidance, adaptively balancing these modalities based on real-time estimation of human compliance—providing firmer physical corrections with explicit instructions when learners struggle, and transitioning to lighter touch with encouraging phrases as they improve.
+
+### Multimodal Fusion Approaches
+
+Vision Language Action (VLA) models represent a frontier in robotics by unifying perception, reasoning, and control within a single multimodal learning framework, integrating visual, linguistic, and action modalities to enable instruction-driven manipulation.
+
+Cross-attention fusion conditioned on predicted coarse-to-fine task stages enables dynamic modality weighting, boosting both explainability and precision.
+
+### Advanced Techniques
+
+Recent advances include:
+- Force-guided cross-attention fusion modules that adaptively adjust visual and tactile feature weighting using force signals, enabling flexible fusion without task-specific human labeling.
+- Scalable, open-set multimodal datasets with active learning loops driving benchmarking and cross-domain generalization testing.
+
+These developments demonstrate how robots are increasingly using adaptive fusion strategies to combine multiple sensory modalities for improved performance in manipulation and guidance tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8f100d12-98ce-4b46-a10a-e442f9758588",
+  "isSidechain": true,
+  "promptId": "0550eaef-cd1f-4c7b-8cd6-2da723f3226e",
+  "agentId": "a9ff73f48fc3c56ca",
+  "type": "user",
+  "uuid": "c8946f50-95d9-4800-99d6-bf16ce258f8d",
+  "sourceToolAssistantUUID": "8f100d12-98ce-4b46-a10a-e442f9758588",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-13T19:43:24.040Z_
+
+<details><summary>↩ Tool result · `toolu_016rDgjiLTE4avNyXwY7728i`</summary>
+
+```text
+Web search results for query: "CoRL 2026 accepted papers demonstration curation OR CoRL 2026 submissions data quality robot"
+
+Links: [{"title":"CoRL 2026 - Call for Papers","url":"https://www.corl.org/contributions/call-for-papers"},{"title":"CoRL 2026","url":"https://www.corl.org/"},{"title":"CoRL 2026 - Instruction for Authors","url":"https://www.corl.org/contributions/instruction-for-authors"},{"title":"CoRL 2026 - Demos","url":"https://www.corl.org/program/demos"},{"title":"Robot Learning Foundation","url":"https://www.robot-learning.org/"},{"title":"GitHub - YanjieZe/Paper-List: A paper list of my history reading. Robotics, Learning, Vision. · GitHub","url":"https://github.com/YanjieZe/Paper-List"},{"title":"Conference on Robot Learning (@corl_conf) / Posts / X","url":"https://x.com/corl_conf?lang=en"},{"title":"Update CoRL 2026 conference details · huggingface/ai-deadlines at 0ba012a","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/0ba012abbc2f4e96e0072f99fd68649bfc69d9cf"},{"title":"CoRL 2025 Accepted Paper List - Paper Copilot","url":"https://papercopilot.com/paper-list/corl-paper-list/corl-2025-paper-list/"},{"title":"CoRL 2026 - Instruction for Presentations","url":"https://www.corl.org/contributions/instruction-for-presentations"}]
+
+Links: [{"title":"CoRL 2026 - Call for Papers","url":"https://www.corl.org/contributions/call-for-papers"},{"title":"CoRL 2026 - Contributions","url":"https://www.corl.org/contributions"},{"title":"CoRL 2026 - Instruction for Authors","url":"https://www.corl.org/contributions/instruction-for-authors"},{"title":"CoRL 2026","url":"https://www.corl.org/"},{"title":"Update CoRL 2026 conference details · huggingface/ai-deadlines at 0ba012a","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/0ba012abbc2f4e96e0072f99fd68649bfc69d9cf"},{"title":"CoRL 2026 Conference | OpenReview","url":"https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2026%2FConference"},{"title":"CoRL LaTeX Template | Robot Learning Conference Format | Underleaf","url":"https://www.underleaf.ai/templates/corl"},{"title":"Conference on Robot Learning (@corl_conf) / Posts / X","url":"https://x.com/corl_conf?lang=en"},{"title":"CoRL 2026 | OpenReview","url":"https://openreview.net/group?id=robot-learning.org/CoRL/2026"},{"title":"Robot Learning Foundation","url":"https://www.robot-learning.org/"}]
+
+I've completed the web searches for both queries. Here's what I found:
+
+## Search Results Summary
+
+### CoRL 2026 Accepted Papers & Demonstrations
+
+CoRL 2026 has demonstrations listed, including a demo titled "VLAS: Vision-Language-Action Model with Speech Instructions for Customized Robot Manipulation" presented by researchers from Fulcrum Digital Inc.
+
+All accepted papers will be presented in poster sessions, while selected papers will be invited for an oral spotlight presentation.
+
+### Submission Guidelines and Data Quality
+
+Submissions should focus on a core robotics problem and demonstrate the relevance of proposed models, algorithms, datasets, and benchmarks to robotics. Additionally, authors are encouraged to submit video, code and data as supplementary materials.
+
+### Key Conference Information
+
+CoRL 2026 will be held November 9-12, 2026 in Austin, Texas, US. The accepted papers and reviews will be publicly accessible and de-anonymized after decisions are announced.
+
+The search results show general conference information about CoRL 2026's call for papers and demonstration curation, but do not contain specific information about individual accepted papers related to "data quality robot" or detailed demonstration curation processes.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "81770616-d8f2-468e-9dd3-cd52b6ae2847",
+  "isSidechain": true,
+  "promptId": "0550eaef-cd1f-4c7b-8cd6-2da723f3226e",
+  "agentId": "a9ff73f48fc3c56ca",
+  "type": "user",
+  "uuid": "7610e3cb-4cec-487d-8eb3-c495c9ae7714",
+  "sourceToolAssistantUUID": "81770616-d8f2-468e-9dd3-cd52b6ae2847",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-13T19:43:24.646Z_
+
+<details><summary>↩ Tool result · `toolu_017HZUiXTcmpDL73jS4vB6X9`</summary>
+
+```text
+Web search results for query: "site:openreview.net multimodal demonstration curation robot"
+
+Links: [{"title":"Data curation via joint example selection further accelerates multimodal learning | OpenReview","url":"https://openreview.net/forum?id=xqpkzMfmQ5"},{"title":"Robo-DM: Efficient Robot Big Data Management","url":"https://openreview.net/pdf/12e4dc78788943b7085021467371ce75acfab463.pdf"},{"title":"VIMA: General Robot Manipulation with Multimodal Prompts | OpenReview","url":"https://openreview.net/forum?id=hzjQWjPC04A"},{"title":"Data Curation for Large Scale Detection Pretraining | OpenReview","url":"https://openreview.net/forum?id=cj4J7aaKQp"},{"title":"Mastering Robot Manipulation with Multimodal Prompts through Pretraining and Multi-task Fine-tuning | OpenReview","url":"https://openreview.net/forum?id=pRpMAD3udW"},{"title":"VIMA: GENERAL ROBOT MANIPULATION WITH MULTIMODAL PROMPTS","url":"https://openreview.net/pdf/a09d7aab2a5b638c45738b0b906c2450760d23bd.pdf"},{"title":"Manipulate-Anything: Automating Real-World Robots using Vision-Language Models | OpenReview","url":"https://openreview.net/forum?id=2SYFDG4WRA"},{"title":"HoloLLM: Multisensory Foundation Model for Language- ...","url":"https://openreview.net/pdf/dcc7b3c13992fef443e0c27fa66271ab9b475c3d.pdf"},{"title":"Multimodal Diffusion Transformer for Learning from Play","url":"https://openreview.net/pdf?id=nvtxqMGpn1"},{"title":"What Matters in Learning from Offline Human Demonstrations for Robot Manipulation | OpenReview","url":"https://openreview.net/forum?id=JrsfBJtDFdI"}]
+
+I've performed the web search for "site:openreview.net multimodal demonstration curation robot" and retrieved several relevant results. Here's a summary of the key papers found:
+
+1. **Data curation via joint example selection** - This work demonstrates that jointly prioritizing batches of data is more effective for learning than selecting examples independently, with an approach called JEST (multimodal contrastive learning with joint example selection) that surpasses state-of-the-art pretraining methods with up to 13× fewer iterations and 10× less computation.
+
+2. **Robo-DM: Efficient Robot Big Data Management** - This paper proposes Robo-DM, which includes a new format for robot data, and a toolkit for data collection, management, and loading.
+
+3. **VIMA: General Robot Manipulation with Multimodal Prompts** - This work designs a transformer agent, VIMA, that ingests multimodal prompts and solves a wide variety of robot manipulation tasks.
+
+4. **Mastering Robot Manipulation with Multimodal Prompts** - This work introduces an effective framework that learns a policy to perform robot manipulation with multimodal prompts from multi-task expert trajectories.
+
+5. **Manipulate-Anything: Automating Real-World Robots using Vision-Language Models** - This paper proposes Manipulate-Anything, a scalable automated generation method for real-world robotic manipulation that can operate in real-world environments without any privileged state information, hand-designed skills, and can manipulate any static object.
+
+These papers cover various aspects of multimodal learning, demonstration curation, and robot learning on OpenReview.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c4e4bd27-7da4-4f65-b736-57623b6dde5a",
+  "isSidechain": true,
+  "promptId": "0550eaef-cd1f-4c7b-8cd6-2da723f3226e",
+  "agentId": "a9ff73f48fc3c56ca",
+  "type": "user",
+  "uuid": "812d9b37-4a43-4fe8-8414-9211194f55d8",
+  "sourceToolAssistantUUID": "c4e4bd27-7da4-4f65-b736-57623b6dde5a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-13T19:43:30.922Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HzgmrUFYQhEmkimHVSKSm9`</summary>
+
+```json
+{
+  "query": "SARM stage-aware reward model robot manipulation arXiv 2509.25358"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "812d9b37-4a43-4fe8-8414-9211194f55d8",
+  "isSidechain": true,
+  "agentId": "a9ff73f48fc3c56ca",
+  "requestId": "req_011Cb195FnHJ9CcC1jvH6Tqh",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "51417eca-3f18-4304-a1e8-6076be791137",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013m77NQToGBZhBpNxDaxxYy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1117,
+      "cache_creation_input_tokens": 3799,
+      "cache_read_input_tokens": 13477,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3799,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 35,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-13T19:43:31.842Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014KuLnjXzrvnzbHV9sqPx7N`</summary>
+
+```json
+{
+  "query": "Cross-Modality Attention modality selection robot arXiv 2504.14573"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "51417eca-3f18-4304-a1e8-6076be791137",
+  "isSidechain": true,
+  "agentId": "a9ff73f48fc3c56ca",
+  "requestId": "req_011Cb195FnHJ9CcC1jvH6Tqh",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "3efacabc-e700-4595-9def-0437d9dd8bce",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013m77NQToGBZhBpNxDaxxYy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1117,
+      "cache_creation_input_tokens": 3799,
+      "cache_read_input_tokens": 13477,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3799,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 35,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-13T19:43:32.825Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012rjRNEgr49ESYparxcWCTk`</summary>
+
+```json
+{
+  "query": "Learning When to See When to Feel adaptive vision torque fusion arXiv 2604.01414"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3efacabc-e700-4595-9def-0437d9dd8bce",
+  "isSidechain": true,
+  "agentId": "a9ff73f48fc3c56ca",
+  "requestId": "req_011Cb195FnHJ9CcC1jvH6Tqh",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "faf4d3c1-d5c8-4f59-b590-bea1ed13a056",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013m77NQToGBZhBpNxDaxxYy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1117,
+      "cache_creation_input_tokens": 3799,
+      "cache_read_input_tokens": 13477,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3799,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 35,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-13T19:43:33.291Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VGzCSkWxgtW6WdyKhpNWGe`</summary>
+
+```json
+{
+  "query": "site:arxiv.org multimodal observability characterization robot benchmark 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "faf4d3c1-d5c8-4f59-b590-bea1ed13a056",
+  "isSidechain": true,
+  "agentId": "a9ff73f48fc3c56ca",
+  "requestId": "req_011Cb195FnHJ9CcC1jvH6Tqh",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "630feef5-dc42-45c8-a50e-2ee8e33a0b81",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013m77NQToGBZhBpNxDaxxYy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1117,
+      "cache_creation_input_tokens": 3799,
+      "cache_read_input_tokens": 13477,
+      "output_tokens": 234,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 3799
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1117,
+          "output_tokens": 234,
+          "cache_read_input_tokens": 13477,
+          "cache_creation_input_tokens": 3799,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 3799,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-13T19:43:37.198Z_
+
+<details><summary>↩ Tool result · `toolu_01HzgmrUFYQhEmkimHVSKSm9`</summary>
+
+```text
+Web search results for query: "SARM stage-aware reward model robot manipulation arXiv 2509.25358"
+
+Links: [{"title":"[2509.25358] SARM: Stage-Aware Reward Modeling for Long Horizon Robot Manipulation","url":"https://arxiv.org/abs/2509.25358"},{"title":"SARM: Stage-Aware Reward Modeling for Long Horizon Robot Manipulation","url":"https://arxiv.org/html/2509.25358"},{"title":"SARM: Stage-Aware Reward Modeling for Long Horizon Robot Manipulation","url":"https://qianzhong-chen.github.io/sarm.github.io/"},{"title":"(PDF) SARM: Stage-Aware Reward Modeling for Long Horizon Robot Manipulation","url":"https://www.researchgate.net/publication/396048367_SARM_Stage-Aware_Reward_Modeling_for_Long_Horizon_Robot_Manipulation"},{"title":"SARM: Stage-Aware Reward Modeling for Long Horizon Robot Manipulation | alphaXiv","url":"https://www.alphaxiv.org/overview/2509.25358v2"},{"title":"SARM: Stage-Aware Reward Modeling for Long Horizon Robot Manipulation | OpenReview","url":"https://openreview.net/forum?id=aemqAxScl9"},{"title":"SARM: Stage-Aware Reward Modeling","url":"https://huggingface.co/docs/lerobot/en/sarm"},{"title":"ICLR Poster SARM: Stage-Aware Reward Modeling for Long Horizon Robot Manipulation","url":"https://iclr.cc/virtual/2026/poster/10008682"},{"title":"GitHub - xdofai/opensarm · GitHub","url":"https://github.com/xdofai/opensarm"},{"title":"SARM: STAGE-AWARE REWARD MODELING FOR LONG ...","url":"https://openreview.net/pdf/d3939cee6b1a6835707617859cb01b1f85fd30d9.pdf"}]
+
+I found the paper! Here's what SARM is about:
+
+SARM proposes a stage-aware, video-based reward modeling framework that jointly predicts task stage and fine-grained progress, using natural language subtask annotations to derive consistent labels across variable-length demonstrations.
+
+**Key aspects of the work:**
+
+- **Problem addressed:** Large-scale robot learning has made progress on complex manipulation tasks, yet long-horizon, contact-rich problems—especially those involving deformable objects—remain challenging due to inconsistent demonstration quality.
+
+- **Main innovation:** This avoids the brittleness of frame index based labeling and provides stable supervision even in tasks like T-shirt folding.
+
+- **Benefits:** The reward model is robust to demonstration variability, generalizes to out-of-distribution scenarios, and improves downstream policy training.
+
+- **Publication status:** The paper was published as a conference paper at ICLR 2026.
+
+The paper is authored by Qianzhong Chen, Justin Yu, Mac Schwager, Pieter Abbeel, Yide Shentu, and Philipp Wu from Stanford University, UC Berkeley, and xdof.ai. An open-source implementation is also available on GitHub at xdofai/opensarm.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "51417eca-3f18-4304-a1e8-6076be791137",
+  "isSidechain": true,
+  "promptId": "0550eaef-cd1f-4c7b-8cd6-2da723f3226e",
+  "agentId": "a9ff73f48fc3c56ca",
+  "type": "user",
+  "uuid": "53859662-e7eb-48f8-8040-3ae60109d8fa",
+  "sourceToolAssistantUUID": "51417eca-3f18-4304-a1e8-6076be791137",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-13T19:43:38.324Z_
+
+<details><summary>↩ Tool result · `toolu_014KuLnjXzrvnzbHV9sqPx7N`</summary>
+
+```text
+Web search results for query: "Cross-Modality Attention modality selection robot arXiv 2504.14573"
+
+Links: [{"title":"[2504.14573] Modality Selection and Skill Segmentation via Cross-Modality Attention","url":"https://arxiv.org/abs/2504.14573"},{"title":"Modality Selection and Skill Segmentation via Cross-Modality Attention","url":"https://arxiv.org/html/2504.14573"},{"title":"dblp: Modality Selection and Skill Segmentation via Cross-Modality Attention.","url":"https://dblp.org/rec/journals/corr/abs-2504-14573.html"},{"title":"[Literature Review] Modality Selection and Skill Segmentation via Cross-Modality Attention","url":"https://www.themoonlight.io/en/review/modality-selection-and-skill-segmentation-via-cross-modality-attention"},{"title":"Multimodal Fusion and Vision-Language Models: A Survey for Robot Vision","url":"https://arxiv.org/html/2504.02477v1"},{"title":"Cross-Modal Retrieval: A Systematic Review of Methods and Future Directions","url":"https://arxiv.org/html/2308.14263v3"},{"title":"Cross-Modal Attention Mechanisms","url":"https://www.emergentmind.com/topics/cross-modal-attention"},{"title":"PolyTouch: A Robust Multi-Modal Tactile Sensor for Contact-rich Manipulation Using Tactile-Diffusion Policies","url":"https://arxiv.org/html/2504.19341v1"},{"title":"Multimodal Transformer Using Cross-Channel attention for Object Detection in Remote Sensing Images","url":"https://arxiv.org/html/2310.13876v3"},{"title":"CROSS-GAiT: Cross-Attention-Based Multimodal Representation Fusion for Parametric Gait Adaptation in Complex Terrains","url":"https://arxiv.org/html/2409.17262v2"}]
+
+I found the paper you're looking for. Here's what I found:
+
+## Paper Overview
+
+"Modality Selection and Skill Segmentation via Cross-Modality Attention" is an arXiv paper (2504.14573) published in April 2025.
+
+## Main Contribution
+
+The paper addresses the challenge of incorporating additional sensory modalities such as tactile and audio into foundational robotic models, which poses significant challenges due to the curse of dimensionality.
+
+The authors propose a cross-modality attention (CMA) mechanism to identify and selectively utilize the modalities that are most informative for action generation at each timestep.
+
+## Extended Applications
+
+Furthermore, the researchers extend the application of CMA to segment primitive skills from expert demonstrations and leverage this segmentation to train a hierarchical policy capable of solving long-horizon, contact-rich manipulation tasks.
+
+## Experimental Setup
+
+The proposed method is evaluated on the FurnitureSim environment, specifically the one leg assembly task where the robot is tasked to assemble a single leg onto the square table base. They choose FurnitureSim as their simulation environment for its complex and long-horizon nature.
+
+The paper represents recent research in multi-modal robotic learning, addressing how robots can effectively process and prioritize different sensory inputs for manipulation tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3efacabc-e700-4595-9def-0437d9dd8bce",
+  "isSidechain": true,
+  "promptId": "0550eaef-cd1f-4c7b-8cd6-2da723f3226e",
+  "agentId": "a9ff73f48fc3c56ca",
+  "type": "user",
+  "uuid": "2110cdc3-3e5b-43fa-bec7-ffa9bf9d97c5",
+  "sourceToolAssistantUUID": "3efacabc-e700-4595-9def-0437d9dd8bce",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-13T19:43:39.754Z_
+
+<details><summary>↩ Tool result · `toolu_012rjRNEgr49ESYparxcWCTk`</summary>
+
+```text
+Web search results for query: "Learning When to See When to Feel adaptive vision torque fusion arXiv 2604.01414"
+
+Links: [{"title":"Learning When to See and When to Feel: Adaptive Vision-Torque Fusion for Contact-Aware Manipulation","url":"https://arxiv.org/html/2604.01414"},{"title":"[2604.01414] Learning When to See and When to Feel: Adaptive Vision-Torque Fusion for Contact-Aware Manipulation","url":"https://arxiv.org/abs/2604.01414"},{"title":"Adaptive Visuo-Tactile Fusion with Predictive Force Attention for Dexterous Manipulation","url":"https://arxiv.org/html/2505.13982v1"},{"title":"DREAM: Dynamic Retinal Enhancement with Adaptive Multi-modal Fusion for Expert Precision Medical Report Generation","url":"https://arxiv.org/html/2604.17209v1"},{"title":"[2604.17209v1] DREAM: Dynamic Retinal Enhancement with Adaptive Multi-modal Fusion for Expert Precision Medical Report Generation","url":"https://arxiv.org/abs/2604.17209v1"},{"title":"[2604.17209] DREAM: Dynamic Retinal Enhancement with Adaptive Multi-modal Fusion for Expert Precision Medical Report Generation","url":"https://arxiv.org/abs/2604.17209"},{"title":"Frontiers | Adaptive visual–tactile fusion recognition for robotic operation of multi-material system","url":"https://www.frontiersin.org/journals/neurorobotics/articles/10.3389/fnbot.2023.1181383/full"},{"title":"[2604.15622] AdaVFM: Adaptive Vision Foundation Models for Edge Intelligence via LLM-Guided Execution","url":"https://arxiv.org/abs/2604.15622"},{"title":"Multimodal Fusion and Vision-Language Models: A Survey for Robot Vision","url":"https://arxiv.org/html/2504.02477v1"},{"title":"CNN-ViT Fusion with Adaptive Attention Gate for Brain Tumor MRI Classification: A Hybrid Deep Learning Model","url":"https://arxiv.org/html/2604.23137"}]
+
+Based on the search results, I found the paper you're looking for. Here's the information about it:
+
+**Paper Title:** Learning When to See and When to Feel: Adaptive Vision-Torque Fusion for Contact-Aware Manipulation
+
+**arXiv ID:** 2604.01414
+
+**Authors:** Jiuzhou Lei, Chang Liu, Yu She, Xiao Liang, and Minghui Zheng from Texas A&M University, Purdue University, and other institutions
+
+**Key Contribution:** The paper provides a comparison study of different F/T-vision integration strategies within diffusion-based manipulation policies and proposes an adaptive integration strategy that ignores F/T signals during non-contact phases while adaptively leveraging both vision and torque information during contact.
+
+**Problem Addressed:** While vision-based policies have achieved good performance in robotic manipulation due to the accessibility and richness of visual observations, purely visual sensing becomes insufficient in contact-rich and force-sensitive tasks where force/torque (F/T) signals provide critical information about contact dynamics, alignment, and interaction quality.
+
+The paper was submitted on April 1, 2026 and is available on arXiv.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "faf4d3c1-d5c8-4f59-b590-bea1ed13a056",
+  "isSidechain": true,
+  "promptId": "0550eaef-cd1f-4c7b-8cd6-2da723f3226e",
+  "agentId": "a9ff73f48fc3c56ca",
+  "type": "user",
+  "uuid": "0db60d15-a09a-4dd7-93f3-d797419b1ac7",
+  "sourceToolAssistantUUID": "faf4d3c1-d5c8-4f59-b590-bea1ed13a056",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-13T19:43:41.563Z_
+
+<details><summary>↩ Tool result · `toolu_01VGzCSkWxgtW6WdyKhpNWGe`</summary>
+
+```text
+Web search results for query: "site:arxiv.org multimodal observability characterization robot benchmark 2025 2026"
+
+Links: [{"title":"ResponsibleRobotBench: Benchmarking Responsible Robot Manipulation using Multi-modal Large Language Models","url":"https://arxiv.org/html/2512.04308v1"},{"title":"MARS: Multimodal Active Robotic Sensing for Articulated Characterization","url":"https://arxiv.org/html/2407.01191"},{"title":"Robobench: A Comprehensive Evaluation Benchmark for Multimodal Large Language Models as Embodied Brain","url":"https://arxiv.org/html/2510.17801v1"},{"title":"RFM-HRI : A Multimodal Dataset of Medical Robot Failure, User Reaction and Recovery Preferences for Item Retrieval Tasks","url":"https://arxiv.org/html/2603.05641"},{"title":"RoboWM-Bench: A Benchmark for Evaluating World Models in Robotic Manipulation","url":"https://arxiv.org/html/2604.19092v1"},{"title":"[2407.01191] MARS: Multimodal Active Robotic Sensing for Articulated Characterization","url":"https://arxiv.org/abs/2407.01191"},{"title":"Embodied AI with Foundation Models for Mobile Service ...","url":"https://arxiv.org/pdf/2505.20503"},{"title":"Robotics | Cool Papers - Immersive Paper Discovery","url":"https://papers.cool/arxiv/cs.RO"},{"title":"Benchmarking Vision, Language, & Action Models on Robotic Learning Tasks","url":"https://arxiv.org/html/2411.05821v1"},{"title":"GitHub - BaiShuanghao/Awesome-Robotics-Manipulation: A comprehensive list of papers about Robot Manipulation, including papers, codes, and related websites. · GitHub","url":"https://github.com/BaiShuanghao/Awesome-Robotics-Manipulation"}]
+
+I found several relevant papers on arxiv.org related to multimodal observability, characterization, and robot benchmarks from 2025-2026. Here are some key results:
+
+1. **MARS: Multimodal Active Robotic Sensing for Articulated Characterization** (July 2024)
+   MARS is a novel framework for articulated object characterization featuring a multi-modal fusion module utilizing multi-scale RGB features to enhance point cloud features, coupled with reinforcement learning-based active sensing for autonomous optimization of observation viewpoints.
+
+2. **RoboBench: A Comprehensive Evaluation Benchmark for Multimodal Large Language Models as Embodied Brain** (October 2025)
+   RoboBench defines five dimensions—instruction comprehension, perception reasoning, generalized planning, affordance prediction, and failure analysis—spanning 14 capabilities, 25 tasks, and 6092 QA pairs.
+
+3. **ResponsibleRobotBench: Benchmarking Responsible Robot Manipulation using Multi-modal Large Language Models** (December 2025)
+   The benchmark provides plug-and-play interfaces that support both policy training and inference, enabling seamless integration with learning-based methods and evaluation pipelines.
+
+4. **RoboWM-Bench: A Benchmark for Evaluating World Models in Robotic Manipulation** (Recent - approximately 3 weeks ago)
+   RoboWM-Bench is a systematic and reproducible manipulation-centric benchmark for embodiment-grounded evaluation of video world models that operationalizes physical executability as a principled and measurable evaluation criterion.
+
+These papers represent the latest benchmarks and evaluation frameworks for robot systems with multimodal capabilities from 2024-2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "630feef5-dc42-45c8-a50e-2ee8e33a0b81",
+  "isSidechain": true,
+  "promptId": "0550eaef-cd1f-4c7b-8cd6-2da723f3226e",
+  "agentId": "a9ff73f48fc3c56ca",
+  "type": "user",
+  "uuid": "caebb51b-22b8-4828-b3e2-437ca2184546",
+  "sourceToolAssistantUUID": "630feef5-dc42-45c8-a50e-2ee8e33a0b81",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31 · 2026-05-13T19:43:48.863Z_
+
+Now let me run a few more targeted searches to answer the specific questions about VOC/POC, ranking theory, and task-level diagnostics.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "caebb51b-22b8-4828-b3e2-437ca2184546",
+  "isSidechain": true,
+  "agentId": "a9ff73f48fc3c56ca",
+  "requestId": "req_011Cb196KzpCyL2dacNLhXfx",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "0f92c4cf-95ca-40f4-a6d0-e86632fb0463",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LYsuHspUhVXsP8uTrNwrej",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4806,
+      "cache_read_input_tokens": 17276,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4806,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-13T19:43:49.342Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011y8EMzoVDptu86v4BFdzNH`</summary>
+
+```json
+{
+  "query": "site:arxiv.org \"value of communication\" \"value of proprioception\" observability robot demonstration 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0f92c4cf-95ca-40f4-a6d0-e86632fb0463",
+  "isSidechain": true,
+  "agentId": "a9ff73f48fc3c56ca",
+  "requestId": "req_011Cb196KzpCyL2dacNLhXfx",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "9369b35f-c896-40be-bef1-aaf7706e337d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LYsuHspUhVXsP8uTrNwrej",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4806,
+      "cache_read_input_tokens": 17276,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4806,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-13T19:43:50.543Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01BNYxy6p8HjShEsKAsYMpY4`</summary>
+
+```json
+{
+  "query": "site:arxiv.org Thurstone Bradley-Terry ranking demonstration scoring robot imitation learning"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9369b35f-c896-40be-bef1-aaf7706e337d",
+  "isSidechain": true,
+  "agentId": "a9ff73f48fc3c56ca",
+  "requestId": "req_011Cb196KzpCyL2dacNLhXfx",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "f9ba1cfa-0a35-4460-aa51-508fd58e931a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LYsuHspUhVXsP8uTrNwrej",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4806,
+      "cache_read_input_tokens": 17276,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4806,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-13T19:43:51.021Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XJbgyVbFc77DnroJKSPHu6`</summary>
+
+```json
+{
+  "query": "site:arxiv.org \"task-level diagnostic\" OR \"per-task diagnostic\" modality selection demonstration curation robot"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f9ba1cfa-0a35-4460-aa51-508fd58e931a",
+  "isSidechain": true,
+  "agentId": "a9ff73f48fc3c56ca",
+  "requestId": "req_011Cb196KzpCyL2dacNLhXfx",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "47a5df1e-5efe-45d1-a899-fe8ce86a9b3f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LYsuHspUhVXsP8uTrNwrej",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4806,
+      "cache_read_input_tokens": 17276,
+      "output_tokens": 224,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 4806
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 224,
+          "cache_read_input_tokens": 17276,
+          "cache_creation_input_tokens": 4806,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 4806,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-13T19:43:54.073Z_
+
+<details><summary>↩ Tool result · `toolu_011y8EMzoVDptu86v4BFdzNH`</summary>
+
+```text
+Web search results for query: "site:arxiv.org "value of communication" "value of proprioception" observability robot demonstration 2025 2026"
+
+No links found.
+
+The search returned no results. This could be because:
+
+1. The exact phrase combination you're looking for may not exist in publicly indexed web content
+2. The ArXiv-specific search (site:arxiv.org) filter may be excluding relevant results from general web search
+3. The papers matching all these specific terms together may be very recent or not yet widely indexed
+
+I should note that the web_search tool I have available doesn't support special search operators like "site:" that would limit results to specific domains like ArXiv. To find papers on ArXiv with those specific criteria, I'd recommend:
+
+1. **Visiting ArXiv directly**: Go to https://arxiv.org and use their search functionality with filters for recent submissions (2025-2026)
+2. **Using ArXiv's advanced search**: Try searching for key terms like "value of communication" combined with "proprioception" and "robot"
+3. **Checking specific categories**: Look in robot learning, robotics, or control theory categories on ArXiv
+
+Would you like me to try a different search strategy, such as searching for these terms without the site restriction to see if there are relevant papers available elsewhere?
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9369b35f-c896-40be-bef1-aaf7706e337d",
+  "isSidechain": true,
+  "promptId": "0550eaef-cd1f-4c7b-8cd6-2da723f3226e",
+  "agentId": "a9ff73f48fc3c56ca",
+  "type": "user",
+  "uuid": "0b294719-31fc-404a-b708-62dd1fae16e2",
+  "sourceToolAssistantUUID": "9369b35f-c896-40be-bef1-aaf7706e337d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-13T19:43:54.740Z_
+
+<details><summary>↩ Tool result · `toolu_01XJbgyVbFc77DnroJKSPHu6`</summary>
+
+```text
+Web search results for query: "site:arxiv.org "task-level diagnostic" OR "per-task diagnostic" modality selection demonstration curation robot"
+
+No links found.
+
+I've performed the web search with your query. Unfortunately, the search did not return any results. This could mean:
+
+1. There are no papers on arxiv.org that match all of those specific terms together
+2. The exact phrases "task-level diagnostic" or "per-task diagnostic" may not appear in arxiv papers
+3. The combination of all these terms together may be too specific
+
+You might want to try:
+- Searching with fewer or broader terms
+- Removing the `site:arxiv.org` restriction to search more broadly
+- Using alternative terminology related to your topic
+- Searching for just the core concepts (like "modality selection" and "robot" without the diagnostic phrases)
+
+Would you like me to try a modified search?
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "47a5df1e-5efe-45d1-a899-fe8ce86a9b3f",
+  "isSidechain": true,
+  "promptId": "0550eaef-cd1f-4c7b-8cd6-2da723f3226e",
+  "agentId": "a9ff73f48fc3c56ca",
+  "type": "user",
+  "uuid": "ed426a05-fdf2-45ec-b3f6-c10db4fca0d6",
+  "sourceToolAssistantUUID": "47a5df1e-5efe-45d1-a899-fe8ce86a9b3f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-13T19:43:58.143Z_
+
+<details><summary>↩ Tool result · `toolu_01BNYxy6p8HjShEsKAsYMpY4`</summary>
+
+```text
+Web search results for query: "site:arxiv.org Thurstone Bradley-Terry ranking demonstration scoring robot imitation learning"
+
+Links: [{"title":"Terry Model: theory, algorithms, and applications","url":"https://arxiv.org/pdf/2601.14727"},{"title":"A Statistical Framework for Ranking LLM-Based Chatbots","url":"https://arxiv.org/html/2412.18407v1"},{"title":"Recent advances in the Bradley–Terry Model: theory, algorithms, and applications","url":"https://arxiv.org/html/2601.14727v2"},{"title":"IRPO: Scaling the Bradley-Terry Model via Reinforcement Learning","url":"https://arxiv.org/pdf/2601.00677"},{"title":"The many routes to the ubiquitous Bradley-Terry model","url":"https://arxiv.org/pdf/2312.13619"},{"title":"Human-to-Robot Interaction: Learning from Video Demonstration for Robot Imitation","url":"https://arxiv.org/html/2602.19184"},{"title":"Ranking in the generalized Bradley-Terry models when the strong connection","url":"https://arxiv.org/pdf/1411.1168"},{"title":"Rethinking Bradley-Terry Models in Preference-Based Reward Modeling: Foundations, Theory, and Alternatives","url":"https://arxiv.org/html/2411.04991v1"},{"title":"Generalized Bradley-Terry Models for Score Estimation from Paired Comparisons","url":"https://arxiv.org/html/2308.08644v2"},{"title":"A practical guide and software for analysing pairwise comparison experiments","url":"https://arxiv.org/pdf/1712.03686"}]
+
+I found several ArXiv papers related to Thurstone, Bradley-Terry ranking, and scoring models. However, the search results don't show papers that specifically combine all of those terms with "demonstration scoring" and "robot imitation learning" together.
+
+Here are the relevant papers from the search:
+
+1. **"Recent advances in the Bradley–Terry Model: theory, algorithms, and applications"** (arXiv:2601.14727) - A comprehensive paper on Bradley-Terry model theory and applications.
+
+2. **"A Statistical Framework for Ranking LLM-Based Chatbots"** (arXiv:2412.18407) - Discusses extending the Thurstonian discriminal process to the Bradley-Terry model (which uses the logistic distribution).
+
+3. **"Rethinking Bradley-Terry Models in Preference-Based Reward Modeling: Foundations, Theory, and Alternatives"** (arXiv:2411.04991) - Explores the Bradley-Terry (BT) model for converting pairwise comparisons into scores in alignment systems.
+
+4. **"Human-to-Robot Interaction: Learning from Video Demonstration for Robot Imitation"** (arXiv:2602.19184) - A paper on robot imitation learning from demonstrations, though it doesn't appear to use the specific Bradley-Terry/Thurstone ranking methods.
+
+5. **"IRPO: Scaling the Bradley-Terry Model via Reinforcement Learning"** (arXiv:2601.00677) - Discusses how the Bradley-Terry model learns a ranking function by comparing positive and negative samples, and IRPO amplifies this through reinforcement learning.
+
+The search results don't contain a paper that specifically combines all of your query terms together. If you're looking for a paper on using Thurstone/Bradley-Terry ranking models to score robot demonstrations for imitation learning, it may not exist yet or may be phrased differently on ArXiv.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f9ba1cfa-0a35-4460-aa51-508fd58e931a",
+  "isSidechain": true,
+  "promptId": "0550eaef-cd1f-4c7b-8cd6-2da723f3226e",
+  "agentId": "a9ff73f48fc3c56ca",
+  "type": "user",
+  "uuid": "36bce7d0-4828-4c60-a960-b5a5985fd8c0",
+  "sourceToolAssistantUUID": "f9ba1cfa-0a35-4460-aa51-508fd58e931a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-13T19:44:01.344Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GFytGWhMZJ7Je2fwMQTSF5`</summary>
+
+```json
+{
+  "query": "site:arxiv.org \"value of communication\" OR VOC proprioception observability LIBERO robot benchmark"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "36bce7d0-4828-4c60-a960-b5a5985fd8c0",
+  "isSidechain": true,
+  "agentId": "a9ff73f48fc3c56ca",
+  "requestId": "req_011Cb197YuEFQk5AHCZsZEMV",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "09e3a030-e5cf-4afc-86d6-d4feee2d9208",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CFfwshUNMnGgiWMyzw1mgY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 255,
+      "cache_creation_input_tokens": 1457,
+      "cache_read_input_tokens": 22082,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1457,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-13T19:44:02.206Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013ajHwvAmtHPZJqBThfS2KP`</summary>
+
+```json
+{
+  "query": "site:arxiv.org ranking theory noise reduction multimodal demonstration quality robot scoring 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "09e3a030-e5cf-4afc-86d6-d4feee2d9208",
+  "isSidechain": true,
+  "agentId": "a9ff73f48fc3c56ca",
+  "requestId": "req_011Cb197YuEFQk5AHCZsZEMV",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "42890f69-3f69-45a5-9838-e3f705b4fcbb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CFfwshUNMnGgiWMyzw1mgY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 255,
+      "cache_creation_input_tokens": 1457,
+      "cache_read_input_tokens": 22082,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1457,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-13T19:44:03.062Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01X4spvdWLh84LgW3f3AFyqq`</summary>
+
+```json
+{
+  "query": "arxiv 2604.01414 \"when to see\" \"when to feel\" details methods LIBERO"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "42890f69-3f69-45a5-9838-e3f705b4fcbb",
+  "isSidechain": true,
+  "agentId": "a9ff73f48fc3c56ca",
+  "requestId": "req_011Cb197YuEFQk5AHCZsZEMV",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "58881e99-959f-4376-91e8-3d5ab030a310",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CFfwshUNMnGgiWMyzw1mgY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 255,
+      "cache_creation_input_tokens": 1457,
+      "cache_read_input_tokens": 22082,
+      "output_tokens": 190,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1457
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 255,
+          "output_tokens": 190,
+          "cache_read_input_tokens": 22082,
+          "cache_creation_input_tokens": 1457,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1457,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-13T19:44:07.286Z_
+
+<details><summary>↩ Tool result · `toolu_01X4spvdWLh84LgW3f3AFyqq`</summary>
+
+```text
+Web search results for query: "arxiv 2604.01414 "when to see" "when to feel" details methods LIBERO"
+
+Links: [{"title":"Learning When to See and When to Feel: Adaptive Vision-Torque Fusion for Contact-Aware Manipulation","url":"https://arxiv.org/html/2604.01414"}]
+
+Based on the search results, I found the paper arxiv 2604.01414. Here are the key details:
+
+**Title:** Learning When to See and When to Feel: Adaptive Vision-Torque Fusion for Contact-Aware Manipulation
+
+**Authors:** Jiuzhou Lei, Chang Liu, Yu She, Xiao Liang, and Minghui Zheng from Texas A&M University and Purdue University
+
+**Publication Date:** April 1, 2026
+
+**Core Contribution:** The work provides a comparison study of different force/torque-vision integration strategies within diffusion-based manipulation policies. The motivation is that while vision-based policies work well, purely visual sensing becomes insufficient in contact-rich and force-sensitive tasks where force/torque signals provide critical information about contact dynamics, alignment, and interaction quality.
+
+**Methods:** Various strategies for integrating vision and F/T signals have been proposed, including auxiliary prediction objectives, mixture-of-experts architectures, and contact-aware gating mechanisms. The paper proposes an adaptive integration strategy that ignores F/T signals during non-contact phases.
+
+The search results indicate this is a robotics paper focused on adaptive sensor fusion for manipulation tasks, though the specific LIBERO-related details weren't fully captured in the excerpt shown.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "58881e99-959f-4376-91e8-3d5ab030a310",
+  "isSidechain": true,
+  "promptId": "0550eaef-cd1f-4c7b-8cd6-2da723f3226e",
+  "agentId": "a9ff73f48fc3c56ca",
+  "type": "user",
+  "uuid": "8bf1828c-ccda-49e3-b261-c5ce992dcb3c",
+  "sourceToolAssistantUUID": "58881e99-959f-4376-91e8-3d5ab030a310",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-13T19:44:07.831Z_
+
+<details><summary>↩ Tool result · `toolu_01GFytGWhMZJ7Je2fwMQTSF5`</summary>
+
+```text
+Web search results for query: "site:arxiv.org "value of communication" OR VOC proprioception observability LIBERO robot benchmark"
+
+Links: [{"title":"OpenMOSS LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-","url":"https://arxiv.org/pdf/2510.13626"},{"title":"Affordance Field Intervention: Enabling VLAs to Escape Memory Traps in","url":"https://www.arxiv.org/pdf/2512.07472"},{"title":"Bridging Scale Discrepancies in Robotic Control via Language-Based Action","url":"https://arxiv.org/pdf/2512.08548"},{"title":"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://arxiv.org/html/2510.13626v1"},{"title":"Benchmarking Vision, Language, & Action Models in ...","url":"https://arxiv.org/pdf/2505.05540"},{"title":"The Colosseum: A Benchmark for Evaluating Generalization for Robotic Manipulation","url":"https://arxiv.org/html/2402.08191v2"},{"title":"Vision Language Action Models in Robotic Manipulation: A Systematic Review","url":"https://arxiv.org/html/2507.10672v1"},{"title":"Learning to Act Anywhere with Task-centric Latent Actions","url":"https://arxiv.org/pdf/2505.06111"},{"title":"Robot Policy Evaluation for Sim-to-Real Transfer: A Benchmarking Perspective","url":"https://arxiv.org/pdf/2508.11117"},{"title":"arXiv:2506.22355v3 [cs.AI] 7 Jul 2025 Embodied AI Agents: Modeling the World","url":"https://arxiv.org/pdf/2506.22355"}]
+
+I've performed the web search using your specified query on arxiv.org. The search returned results related to robotic benchmarks, vision-language-action (VLA) models, and the LIBERO benchmark, but the results don't appear to contain papers specifically focused on "value of communication" (VOC) or the exact combination of terms you were searching for.
+
+Here's a summary of what was found:
+
+The search returned several papers about:
+
+1. **VLA Models and LIBERO Benchmark**: Multiple papers evaluate models on the LIBERO benchmark with spatial perturbations (LIBERO-Pro), and the LIBERO benchmark comprises four task suites specifically designed to facilitate research on lifelong learning in robotic manipulation.
+
+2. **Proprioception in Robotic Models**: VLA models must process heterogeneous inputs including natural language, image patches, and continuous robot states, with architectures unifying visual, linguistic, and proprioceptive encoder streams.
+
+3. **Observability in Robot Learning**: Recent work addresses memory traps through proprioception and affordance-driven approaches in robotic manipulation.
+
+However, the search results don't contain papers specifically about "value of communication" or "VOC" in the robotics context. If you're looking for a specific paper on this topic, you may want to try alternative search terms or check if the paper uses different terminology.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "09e3a030-e5cf-4afc-86d6-d4feee2d9208",
+  "isSidechain": true,
+  "promptId": "0550eaef-cd1f-4c7b-8cd6-2da723f3226e",
+  "agentId": "a9ff73f48fc3c56ca",
+  "type": "user",
+  "uuid": "d3950fd1-9b3e-4b86-b34f-f3139ba53c70",
+  "sourceToolAssistantUUID": "09e3a030-e5cf-4afc-86d6-d4feee2d9208",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-13T19:44:09.223Z_
+
+<details><summary>↩ Tool result · `toolu_013ajHwvAmtHPZJqBThfS2KP`</summary>
+
+```text
+Web search results for query: "site:arxiv.org ranking theory noise reduction multimodal demonstration quality robot scoring 2025 2026"
+
+Links: [{"title":"World Model for Robot Learning: A Comprehensive Survey","url":"https://arxiv.org/html/2605.00080v1"},{"title":"Machine Learning Jun 2025","url":"https://arxiv.org/list/cs.LG/2025-06?skip=2425&show=2000"},{"title":"Deep Generative Models in Robotics: A Survey on Learning from Multimodal Demonstrations","url":"https://arxiv.org/html/2408.04380v1"},{"title":"Artificial Intelligence Jun 2025","url":"https://arxiv.org/list/cs.AI/2025-06?skip=1800&show=2000"},{"title":"Foundation Models in Robotics: A Comprehensive Review of Methods, Models, Datasets, Challenges and Future Research Directions","url":"https://arxiv.org/html/2604.15395v1"},{"title":"Robotics Mar 2025","url":"https://arxiv.org/list/cs.RO/2025-03?skip=225&show=500"},{"title":"Machine Learning Jul 2025","url":"https://arxiv.org/list/cs.LG/2025-07?skip=25&show=2000"},{"title":"Machine Learning Mar 2025","url":"https://arxiv.org/list/cs.LG/2025-03?skip=2325&show=2000"},{"title":"Machine Learning Feb 2025","url":"https://arxiv.org/list/cs.LG/2025-02?skip=2425&show=2000"},{"title":"Robotics Apr 2025","url":"https://www.arxiv.org/list/cs.RO/2025-04?skip=25&show=2000"}]
+
+I've completed a web search for papers on arXiv related to ranking theory, noise reduction, multimodal demonstration quality, and robot scoring from 2025-2026. Here are the key findings:
+
+The search returned several relevant papers and resources from recent arXiv postings:
+
+1. **World Model for Robot Learning Survey** - Recent visuomotor policies have adopted generative models to address the inherent multi-modality of human demonstrations, using techniques such as Diffusion Policy based on diffusion models and flow matching.
+
+2. **Deep Generative Models in Robotics Survey** - One of the main challenges in robot learning from demonstrations is the inherent variability within demonstrations themselves, where different demonstrators may have different skill levels, preferences, and strategies for accomplishing the same task.
+
+3. **Foundation Models in Robotics** - FM-based robotic solutions support multimodal inputs, including vision, language, touch, force, and proprioception, and generative learning facilitates reducing reliance on extensive real-world datasets by artificially synthesizing diverse and high-quality robot experiences.
+
+4. **Multimodal Robotics Papers** - The search identified several papers on multimodal datasets and frameworks for robot learning submitted to 2025-2026 conferences, including papers on manipulation datasets and trajectory prediction.
+
+The results show active research in multimodal robot learning with focus on handling demonstration diversity and quality, which aligns with your query parameters.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "42890f69-3f69-45a5-9838-e3f705b4fcbb",
+  "isSidechain": true,
+  "promptId": "0550eaef-cd1f-4c7b-8cd6-2da723f3226e",
+  "agentId": "a9ff73f48fc3c56ca",
+  "type": "user",
+  "uuid": "4aa2a461-3a26-4c73-aef8-c7995b576870",
+  "sourceToolAssistantUUID": "42890f69-3f69-45a5-9838-e3f705b4fcbb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44 · 2026-05-13T19:44:11.841Z_
+
+Let me do a few final targeted searches to be thorough on the specific questions.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4aa2a461-3a26-4c73-aef8-c7995b576870",
+  "isSidechain": true,
+  "agentId": "a9ff73f48fc3c56ca",
+  "requestId": "req_011Cb198NJGxDjXSQnnWKoPq",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "9cb317cd-5d1f-4925-86fe-819d113c5654",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CQuTkDYxWJyq6c16zBdwsM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 418,
+      "cache_creation_input_tokens": 2061,
+      "cache_read_input_tokens": 23539,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2061,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-13T19:44:12.943Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01H6YFAyRwLFbvZjUm4sHCfL`</summary>
+
+```json
+{
+  "query": "arxiv 2603.09056 \"Quality over Quantity\" influence functions demonstration curation LIBERO tasks"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9cb317cd-5d1f-4925-86fe-819d113c5654",
+  "isSidechain": true,
+  "agentId": "a9ff73f48fc3c56ca",
+  "requestId": "req_011Cb198NJGxDjXSQnnWKoPq",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "8ac6b7aa-cc47-4b60-a892-c9af16a056fd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CQuTkDYxWJyq6c16zBdwsM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 418,
+      "cache_creation_input_tokens": 2061,
+      "cache_read_input_tokens": 23539,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2061,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-13T19:44:13.600Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01PautXsVD746Bw18o6Mgmy7`</summary>
+
+```json
+{
+  "query": "site:arxiv.org observability map multimodal scoring proprioceptive visual demonstration quality LIBERO 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8ac6b7aa-cc47-4b60-a892-c9af16a056fd",
+  "isSidechain": true,
+  "agentId": "a9ff73f48fc3c56ca",
+  "requestId": "req_011Cb198NJGxDjXSQnnWKoPq",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "fb7cd16f-36d1-45d2-84d8-18413c4cb8ad",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CQuTkDYxWJyq6c16zBdwsM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 418,
+      "cache_creation_input_tokens": 2061,
+      "cache_read_input_tokens": 23539,
+      "output_tokens": 153,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2061
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 418,
+          "output_tokens": 153,
+          "cache_read_input_tokens": 23539,
+          "cache_creation_input_tokens": 2061,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2061,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-13T19:44:19.686Z_
+
+<details><summary>↩ Tool result · `toolu_01H6YFAyRwLFbvZjUm4sHCfL`</summary>
+
+```text
+Web search results for query: "arxiv 2603.09056 "Quality over Quantity" influence functions demonstration curation LIBERO tasks"
+
+Links: [{"title":"[2603.09056] Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning","url":"https://arxiv.org/abs/2603.09056"},{"title":"Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning","url":"https://arxiv.org/html/2603.09056"},{"title":"[2507.00038] Quality over Quantity: An Effective Large-Scale Data Reduction Strategy Based on Pointwise V-Information","url":"https://arxiv.org/abs/2507.00038"},{"title":"[2603.22922v1] Quality Over Clicks: Intrinsic Quality-Driven Iterative Reinforcement Learning for Cold-Start E-Commerce Query Suggestion","url":"https://arxiv.org/abs/2603.22922v1"},{"title":"[2603.04459v1] Benchmark of Benchmarks: Unpacking Influence and Code Repository Quality in LLM Safety Benchmarks","url":"https://arxiv.org/abs/2603.04459v1"},{"title":"[1908.11598] Rewarding High-Quality Data via Influence Functions","url":"https://arxiv.org/abs/1908.11598"},{"title":"Stochastic Trajectory Influence Functions for LQR: Joint Sensitivity Through Dynamics and Noise Covariance","url":"https://arxiv.org/html/2603.21539"},{"title":"Reaching a Consensus in Predictive Loops","url":"https://arxiv.org/html/2603.12137"},{"title":"[2603.22922] Quality Over Clicks: Intrinsic Quality-Driven Iterative Reinforcement Learning for Cold-Start E-Commerce Query Suggestion","url":"https://arxiv.org/abs/2603.22922"},{"title":"[2603.21539] Stochastic Trajectory Influence Functions for LQR: Joint Sensitivity Through Dynamics and Noise Covariance","url":"https://arxiv.org/abs/2603.21539"}]
+
+Based on the search results, I found the paper you're looking for:
+
+**Title:** "Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning"
+
+**Key Details:**
+
+- **Authors:** Haeone Lee, Taywon Min, Junsu Kim, Sinjae Kang, Fangchen Liu, Lerrel Pinto, and Kimin Lee from KAIST, UC Berkeley, and NYU
+- **Submission Date:** March 10, 2026
+
+**Paper Overview:**
+
+The paper proposes Quality over Quantity (QoQ), a systematic approach to identifying high-quality data by defining data quality as the contribution of each training sample to reducing loss on validation demonstrations. To efficiently estimate this contribution, the paper leverages influence functions, which quantify the impact of individual training samples on model performance.
+
+The authors introduce two key techniques to adapt influence functions for robot demonstrations: (i) using maximum influence across validation samples to capture the most relevant state-action pairs, and (ii) aggregating influence scores of state-action pairs within the same trajectory to reduce noise and improve data coverage.
+
+Experiments in both simulated and real-world settings show that QoQ consistently improves policy performances over prior data selection methods.
+
+You can access the full paper at: https://arxiv.org/abs/2603.09056
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8ac6b7aa-cc47-4b60-a892-c9af16a056fd",
+  "isSidechain": true,
+  "promptId": "0550eaef-cd1f-4c7b-8cd6-2da723f3226e",
+  "agentId": "a9ff73f48fc3c56ca",
+  "type": "user",
+  "uuid": "dba398c1-400c-4631-b0f5-54b869550a86",
+  "sourceToolAssistantUUID": "8ac6b7aa-cc47-4b60-a892-c9af16a056fd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-13T19:44:20.038Z_
+
+<details><summary>↩ Tool result · `toolu_01PautXsVD746Bw18o6Mgmy7`</summary>
+
+```text
+Web search results for query: "site:arxiv.org observability map multimodal scoring proprioceptive visual demonstration quality LIBERO 2026"
+
+Links: [{"title":"LIBERO-PRO: Towards Robust and Fair Evaluation of ...","url":"https://arxiv.org/pdf/2510.03827"},{"title":"Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success","url":"https://openvla-oft.github.io/"},{"title":"LIBERO Benchmark: Vision-Language-Action in Robotics","url":"https://www.emergentmind.com/topics/libero"},{"title":"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://arxiv.org/html/2510.13626v1"},{"title":"Robotics: Science and Systems 2024 Delft, Netherlands, July 15-July 19, 2024","url":"https://www.roboticsproceedings.org/rss20/p092.pdf"},{"title":"Multimodal Interactive Continuous Scoring of Subjective 3D Video Quality of Experience | IEEE Journals & Magazine | IEEE Xplore","url":"https://ieeexplore.ieee.org/document/6675073/"},{"title":"GitHub - Lifelong-Robot-Learning/LIBERO: Benchmarking Knowledge Transfer in Lifelong Robot Learning · GitHub","url":"https://github.com/Lifelong-Robot-Learning/LIBERO"},{"title":"How brittle are the VLA models in robotics | by Yanan Chen | Medium","url":"https://medium.com/@yananchen1116/how-brittle-are-the-vla-models-in-robotics-66ab85286ecf"},{"title":"Multimodal Interactive Continuous Scoring of Subjective 3D Video Quality of Experience | Request PDF","url":"https://www.researchgate.net/publication/260721451_Multimodal_Interactive_Continuous_Scoring_of_Subjective_3D_Video_Quality_of_Experience"},{"title":"LIBERO Tasks: Lifelong Robotic Learning","url":"https://www.emergentmind.com/topics/libero-tasks"}]
+
+I found several relevant results related to LIBERO and robotic learning, but the specific combination of terms you searched for ("observability map" combined with "multimodal scoring," "proprioceptive visual demonstration quality") doesn't appear in these results. 
+
+The search returned papers on:
+
+1. LIBERO-PRO, which discusses multimodal approaches for robotic manipulation and the need for standardized evaluation benchmarks
+
+2. OpenVLA-OFT evaluated on LIBERO benchmark tasks with measurements of success rates using wrist camera images and proprioceptive state
+
+3. LIBERO-Plus analysis showing models are most vulnerable to changes in camera viewpoint and robot initial state, which require understanding of spatial geometry and proprioception
+
+4. LIBERO tasks with 50 high-quality human-teleoperated demonstrations including images, robot proprioception, and continuous actions
+
+The specific topic you're looking for—an "observability map" for "multimodal scoring" of "demonstration quality"—doesn't appear to be directly addressed in these 2026 arxiv results. The term "observability map" is not a standard term I found in these robotics papers. If you're looking for a specific paper, you might want to try a more targeted search with different keywords, or provide additional context about what aspect of demonstration quality assessment you're interested in.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fb7cd16f-36d1-45d2-84d8-18413c4cb8ad",
+  "isSidechain": true,
+  "promptId": "0550eaef-cd1f-4c7b-8cd6-2da723f3226e",
+  "agentId": "a9ff73f48fc3c56ca",
+  "type": "user",
+  "uuid": "8c027765-b291-4d95-94a4-7fdd296bc846",
+  "sourceToolAssistantUUID": "fb7cd16f-36d1-45d2-84d8-18413c4cb8ad",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49 · 2026-05-13T19:45:25.933Z_
+
+Here is a comprehensive report of findings across all 12 searches.
+
+---
+
+## Search Results Summary
+
+### Search 1: "observability map robot demonstration curation 2026"
+The most relevant hit is **"Quality over Quantity (QoQ): Demonstration Curation via Influence Functions for Data-Centric Robot Learning"** (arXiv [2603.09056](https://arxiv.org/abs/2603.09056)), by Haeone Lee et al. (KAIST, UC Berkeley, NYU, March 2026). It uses influence functions to score individual training samples by their contribution to reducing validation loss. It introduces trajectory-level aggregation of influence scores. This is a demonstration curation paper, but it does NOT build an observability map, does not use VOC/POC, and does not specifically characterize LIBERO tasks by modality. Also found: **Scizor** (arXiv [2505.22626](https://arxiv.org/html/2505.22626v1)) -- self-supervised filtering of low-quality state-action pairs; and **Robot Data Curation with Mutual Information Estimators** (arXiv [2502.08623](https://arxiv.org/html/2502.08623)).
+
+### Search 2: "task-level diagnostic modality selection robot 2026"
+No direct matches. Related papers include **MOMO** (arXiv [2604.20468](https://arxiv.org/html/2604.20468)) on complementary modality adaptation, and **RoboSubtaskNet** (arXiv [2602.10015](https://arxiv.org/html/2602.10015)) which uses attention mechanisms to weight modalities per sub-task. Neither frames modality selection as a task-level *diagnostic* for curation.
+
+### Search 3: "VOC POC observability LIBERO 2026"
+No papers found using VOC (Value of Communication) or POC (Partial Observability Characterization) terminology in the context of LIBERO. The closest hit is **"Observing and Controlling Features in Vision-Language-Action Models"** (arXiv [2603.05487](https://arxiv.org/html/2603.05487)), which formalizes "feature-observability" and "feature-controllability" in VLA models and includes LIBERO experiments -- but this is about interpreting VLA internal representations, not about characterizing tasks for demonstration curation.
+
+### Search 4: "multimodal scoring demonstration quality prediction when helps 2026"
+Found **"Good Scores, Bad Data: A Metric for Multimodal Coherence"** (arXiv [2603.25924](https://arxiv.org/abs/2603.25924)), which introduces a Multimodal Coherence Score (MCS) decomposed into identity, spatial, semantic, and decision dimensions. This is about general multimodal data quality (radiology, autonomous vehicles, documents), NOT about robot demonstrations specifically.
+
+### Search 5: "proprioceptive scoring ranking robot 2026"
+No direct matches for proprioceptive scoring of demonstrations via ranking theory. Found **ROSER** (arXiv [2603.01474](https://arxiv.org/html/2603.01474)) on few-shot robotic sequence retrieval using proprioceptive time series, and **Xiaomi-Robotics-0** (arXiv [2602.12684](https://arxiv.org/html/2602.12684)) which predicts action chunk scores -- but neither applies ranking theory to demonstration quality.
+
+### Search 6: "adaptive modality fusion curation robot demonstration 2026"
+Found **"Adaptive Visuo-Tactile Fusion with Predictive Force Attention for Dexterous Manipulation"** (arXiv [2505.13982](https://arxiv.org/html/2505.13982v1)) and the Nature paper on adaptive robot guidance with dual-modal control. Also found a comprehensive survey: **"Multimodal fusion with vision-language-action models for robotic manipulation: A systematic review"** (ScienceDirect). None of these address curation specifically.
+
+### Search 7: "site:openreview.net multimodal demonstration curation robot"
+Found **JEST** (joint example selection for multimodal contrastive learning) and **Robo-DM** (robot big data management), plus standard VLA papers (VIMA). No paper on multimodal demonstration curation with observability characterization was found on OpenReview.
+
+### Search 8: "CoRL 2026 accepted papers demonstration curation"
+CoRL 2026 will be held November 9-12, 2026, in Austin, Texas. **Accepted papers are not yet public** -- the call for papers is open and reviews have not been announced. No accepted paper list is available yet.
+
+### Search 9: SARM (arXiv 2509.25358) -- VERIFIED EXISTS
+**"SARM: Stage-Aware Reward Modeling for Long Horizon Robot Manipulation"** (arXiv [2509.25358](https://arxiv.org/abs/2509.25358)) is confirmed to exist. Published as a conference paper at **ICLR 2026**. By Qianzhong Chen et al. (Stanford, UC Berkeley, xdof.ai). It proposes stage-aware, video-based reward modeling using natural language subtask annotations, handling inconsistent demonstration quality. Open-source implementation available ([GitHub](https://github.com/xdofai/opensarm)).
+
+### Search 10: Cross-Modality Attention (arXiv 2504.14573) -- VERIFIED EXISTS, RELEVANT
+**"Modality Selection and Skill Segmentation via Cross-Modality Attention"** (arXiv [2504.14573](https://arxiv.org/abs/2504.14573)) is confirmed to exist (April 2025). It proposes a cross-modality attention (CMA) mechanism to **selectively utilize the most informative modalities at each timestep** for action generation, addressing the curse of dimensionality. It also extends CMA to segment primitive skills. Evaluated on **FurnitureSim** (not LIBERO). This is **directly relevant** to modality selection for robot manipulation, though it focuses on policy execution rather than demonstration curation.
+
+### Search 11: "Learning When to See and When to Feel" (arXiv 2604.01414) -- VERIFIED EXISTS, RELEVANT
+**"Learning When to See and When to Feel: Adaptive Vision-Torque Fusion for Contact-Aware Manipulation"** (arXiv [2604.01414](https://arxiv.org/abs/2604.01414)) is confirmed to exist (April 2026). By Jiuzhou Lei et al. (Texas A&M, Purdue). It compares F/T-vision integration strategies within diffusion-based manipulation policies and proposes an adaptive strategy that ignores F/T signals during non-contact phases. This is **directly relevant** to adaptive modality fusion, though again for policy execution, not demonstration curation.
+
+### Search 12: "multimodal observability characterization robot benchmark 2025 2026"
+No papers found that specifically build an "observability characterization" or "observability map" across robot benchmark tasks. Found several robot benchmarks (RoboBench, RoboWM-Bench, ResponsibleRobotBench) but none that map observability properties across tasks.
+
+---
+
+## Answers to Your Three Specific Questions
+
+**1. Has anyone published a VOC/POC characterization of LIBERO specifically?**
+**No.** No paper was found that uses "Value of Communication" (VOC), "Partial Observability Characterization" (POC), or any equivalent observability mapping across LIBERO tasks. The closest work is the VLA feature-observability paper (2603.05487), but it addresses internal model representations, not task-level observability properties relevant to demonstration curation.
+
+**2. Has anyone published task-level diagnostics for modality selection in demonstration curation?**
+**No.** The concept of per-task diagnostics that predict *when* multimodal scoring helps for curation appears to be novel. Existing work on modality selection (CMA, arXiv 2504.14573; adaptive vision-torque fusion, arXiv 2604.01414) focuses on policy execution, not on diagnosing which tasks benefit from multimodal scoring during demonstration curation.
+
+**3. Has anyone applied ranking theory (Thurstone/Bradley-Terry) to demonstration scoring?**
+**No.** Extensive search for Thurstone or Bradley-Terry models applied to robot demonstration scoring/ranking found no results. Bradley-Terry is actively studied for LLM chatbot ranking (arXiv 2412.18407) and RLHF reward modeling (arXiv 2411.04991, arXiv 2601.00677), but its application to robot demonstration quality scoring appears to be novel.
+
+---
+
+## Summary of Concurrent/Related Work Landscape
+
+The most relevant concurrent papers for a "mapping multimodal observability for demonstration curation" paper are:
+
+| Paper | arXiv | Relation | Overlap |
+|-------|-------|----------|---------|
+| QoQ (Influence Functions) | 2603.09056 | Demo curation, different method (influence functions, not observability) | Low-medium |
+| SARM (Stage-Aware Reward) | 2509.25358 | Demo quality scoring via reward model, ICLR 2026 | Low-medium |
+| CMA (Cross-Modality Attention) | 2504.14573 | Modality selection for policy, not curation | Medium |
+| When to See/Feel | 2604.01414 | Adaptive modality fusion for policy, not curation | Medium |
+| Scizor | 2505.22626 | Self-supervised demo curation, single modality | Low |
+| MI Estimators | 2502.08623 | Demo curation via mutual information | Low |
+| Good Scores Bad Data (MCS) | 2603.25924 | Multimodal coherence metric, not robotics | Low |
+
+The three core contributions you described -- (1) a 40+ task observability map with VOC/POC across LIBERO, (2) task-level diagnostics for when multimodal scoring helps, and (3) ranking-theoretic (Thurstone/Bradley-Terry) analysis of multimodal noise reduction -- all appear to be **novel and without direct precedent** in the published literature as of May 2026.
+
+Sources:
+- [QoQ: Quality over Quantity](https://arxiv.org/abs/2603.09056)
+- [SARM: Stage-Aware Reward Modeling](https://arxiv.org/abs/2509.25358)
+- [Modality Selection and Skill Segmentation via Cross-Modality Attention](https://arxiv.org/abs/2504.14573)
+- [Learning When to See and When to Feel](https://arxiv.org/abs/2604.01414)
+- [Scizor: Self-Supervised Data Curation](https://arxiv.org/html/2505.22626v1)
+- [Robot Data Curation with Mutual Information Estimators](https://arxiv.org/html/2502.08623)
+- [Good Scores, Bad Data: Multimodal Coherence](https://arxiv.org/abs/2603.25924)
+- [Observing and Controlling Features in VLA Models](https://arxiv.org/html/2603.05487)
+- [ROSER: Few-Shot Robotic Sequence Retrieval](https://arxiv.org/html/2603.01474)
+- [Xiaomi-Robotics-0](https://arxiv.org/html/2602.12684)
+- [LIBERO-Plus Robustness Analysis](https://arxiv.org/html/2510.13626v1)
+- [CoRL 2026 Call for Papers](https://www.corl.org/contributions/call-for-papers)
+- [JEST: Joint Example Selection](https://openreview.net/forum?id=xqpkzMfmQ5)
+- [What Matters in Learning from Offline Human Demonstrations](https://openreview.net/forum?id=JrsfBJtDFdI)
+- [Adaptive Visuo-Tactile Fusion](https://arxiv.org/html/2505.13982)
+- [Bradley-Terry Model: Theory, Algorithms, Applications](https://arxiv.org/html/2601.14727v2)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8c027765-b291-4d95-94a4-7fdd296bc846",
+  "isSidechain": true,
+  "agentId": "a9ff73f48fc3c56ca",
+  "requestId": "req_011Cb199AZN6ShcwzzVAtNfK",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "c85cdbad-dbc5-4741-8de2-e0c1c5f1cd2c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013PgB2sgvmwDZcwAUaeDR2J",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2334,
+      "cache_read_input_tokens": 25600,
+      "output_tokens": 2988,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2334
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2988,
+          "cache_read_input_tokens": 25600,
+          "cache_creation_input_tokens": 2334,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2334,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---

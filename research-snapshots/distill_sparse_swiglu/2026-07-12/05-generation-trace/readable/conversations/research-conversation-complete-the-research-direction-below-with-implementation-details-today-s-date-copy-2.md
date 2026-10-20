@@ -1,0 +1,10141 @@
+# Research conversation: Complete the research direction below with implementation details. **Today's date: 2026-05-14 (UTC).** Only recommend ve
+
+**Output-Distribution Distillation for Contextual Sparsity Prediction in SwiGLU LLMs (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 142
+- **Recorded user turns:** 1
+- **Tool calls:** 45
+- **Original source:** `logs/chats/exported-trajectories/account-2/9139e948-5051-46ba-a558-261ac64c9378.jsonl`
+- **Structured JSON:** [`d426580d6243c87c77ff.json`](../../sessions/d4/d426580d6243c87c77ff.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-14T14:57:45.989Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-14T14:57:45.989Z",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "content": "Complete the research direction below with implementation details.\n\n**Today's date: 2026-05-14 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.\n\n{\n  \"title\": \"Step-Type-Conditioned Retrieval Query Formulation for Multi-Hop Reasoning\",\n  \"core_problem\": \"Multi-hop reasoning involves heterogeneous step types — entity grounding, relational bridging, numerical comparison, logical deduction — each requiring different retrieval strategies, but all current methods generate retrieval queries uniformly regardless of what the reasoning step actually needs.\",\n  \"opportunity\": \"The four-axis design framework for multi-hop QA (arxiv 2601.00536) identifies distinct retrieval-reasoning interaction patterns but doesn't operationalize step-type-specific retrieval. Search-R1, R3-RAG, and ReaLM-Retrieve all use a single query formulation strategy. HopRAG (arxiv 2502.12442) uses LLM-generated pseudo-queries for graph traversal but applies the same mechanism to all steps. With diverse retriever backbones now available (ColBERTv2, SPLADE++, BGE, graph-based retrievers), a step-type classifier can route each reasoning step to the most appropriate query formulation: entity lookups need precise named-entity queries to dense retrievers; relational bridges need relation-aware queries to knowledge graphs; numerical comparisons need structured data queries; logical deductions may need no retrieval at all.\",\n  \"landscape\": \"Search-R1 (arxiv 2503.09516) achieves 26% improvement on 7B models by learning retrieval timing via RL, but uses uniform BM25/dense retrieval. ReaLM-Retrieve (SIGIR 2026) optimizes when to retrieve but not how to retrieve differently per step type. HopRAG achieves 76.78% higher answer metrics than conventional RAG via graph-based multi-hop retrieval, but applies graph traversal uniformly. StepChain GraphRAG uses BFS reasoning flow for multi-hop evidence, again uniformly. IndexRAG improves F1 by 4.6 points via single-pass retrieval, but with a single retrieval strategy. The REPAIR paper (arxiv 2601.04618, withdrawn) proposed reasoning-plan-guided adaptive retrieval for bridge documents — the closest work — but was withdrawn and focused only on bridge documents rather than full step-type conditioning. No published work classifies reasoning step types and routes to different retrieval strategies accordingly.\"\n}\n\nADD these fields (keep all existing fields):\n{\n  \"approach\": \"Proposed method or research direction — what you would actually do (3-5 sentences)\",\n  \"resource_estimate\": {\n      \"manual\": {\n          \"gpu_hours\": \"e.g. ~200h A100\",\n          \"gpu_utilization\": \"describe GPU idle rate (human waits cause high idle)\",\n          \"timeline\": \"e.g. 3-6 months\",\n          \"team\": \"e.g. 1-2 researchers\",\n          \"estimated_gpu_cost\": \"GPU rental cost only (do NOT include salary)\"\n      },\n      \"human_in_loop\": {\n          \"gpu_hours\": \"e.g. ~300h A100\",\n          \"gpu_utilization\": \"describe GPU utilization improvement vs manual\",\n          \"timeline\": \"e.g. 1-2 months\",\n          \"team\": \"e.g. 1 researcher, ~30min/day check-in (do NOT include salary)\",\n          \"claude_api_cost\": \"e.g. $100-300\",\n          \"estimated_gpu_cost\": \"GPU rental cost\",\n          \"risk_note\": \"Key bottleneck or risk\"\n      },\n      \"auto_research\": {\n          \"gpu_hours\": \"e.g. ~500h A100 (more exploration, but near-zero idle)\",\n          \"gpu_utilization\": \"describe why GPU idle rate is minimal\",\n          \"timeline\": \"e.g. days to 2 weeks if resources are sufficient\",\n          \"team\": \"0 (only initial setup)\",\n          \"claude_api_cost\": \"e.g. $200-500\",\n          \"estimated_gpu_cost\": \"GPU rental cost\",\n          \"speed_bottleneck\": \"what limits speed (GPU count, API key quota, etc.)\",\n          \"risk_note\": \"Key risk factor\"\n      }\n  },\n  \"target_venues\": [\"Only list venues with deadlines after 2026-05-14; always target the highest-tier venue the contribution level supports — do NOT downgrade venue due to timeline concerns (AI team runs 7x24)\"],\n  \"level\": \"top-tier | solid | incremental\",\n  \"key_references\": [\"Paper title (VENUE YEAR)\", ...],\n  \"description\": \"Executive summary combining all above into 150-200 words\",\n  \"project_name\": \"snake_case_identifier (valid Python id, max 30 chars)\",\n  \"source\": \"web_research\"\n}\n\nFor key_references, verify with WebSearch that cited paper titles and venues are real. Drop any reference you cannot verify.\n\n**Model freshness rule**: When the approach involves pretrained models (LLM, vision model, etc.), use WebSearch to find the current top-performing open-source models for the task (e.g., search \"best open source LLM 2026\", \"SOTA open source language model\"). Use models that represent the current frontier — do NOT default to models from your training data. Entire model families may be outdated (e.g., LLaMA), not just version numbers. Exception: skip this if the idea specifically requires older models (reproduction, model evolution analysis, backward compatibility) or the user explicitly specified a model in the seed topic.\n\n## 竞争论文 & Concurrent Work 搜索\n\n在设计 approach 之前，必须确认没有人正在做同样的事情：\n- 搜索 `{core_problem} 2026` 和 `{approach_keyword} {task} 2026`\n- 在 arXiv 上搜索过去 3 个月的相关提交\n- 在 OpenReview 上搜索即将举行的会议（ICML, NeurIPS, ICLR）的提交\n- 如果发现高度相似的 concurrent work，必须在 landscape 中明确提及，并在 approach 中说明与之的差异化\n\n## 非常仔细地思考和验证\n\n在设计具体 approach 时，你必须深入思考并充分调研：\n\n1. **可行性验证**（不是猜测，而是基于证据）：\n   - 搜索类似方法的已有实现（检查 GitHub）\n   - 查找需要打败的具体 baseline 数字\n   - 了解类似实验的硬件/数据需求\n   - 查找相关工作中已识别的潜在失败模式\n\n2. **成本估算必须基于真实数据**：\n   - 找到类似实验的实际成本（不是拍脑袋）\n   - 考虑不同研究模式下的成本差异\n\n3. **内部一致性自查**：\n   - approach 是否直接解决 Round 1 识别的 core_problem？\n   - resource estimate 与 approach 复杂度是否匹配？\n   - target venues 与贡献级别是否相称？\n\nFor feasibility grounding:\n- Search \"github.com {method_name} {task}\" to check if building blocks or reference implementations exist.\n  If nothing similar exists, note this in resource_estimate but do NOT use it as a reason to target a lower venue.\n- Search \"huggingface.co/datasets {dataset_name}\" or \"paperswithcode.com {task} datasets\" to verify\n  that required datasets are actually accessible. If the dataset is proprietary or hard to obtain, flag it.\n- Timeline estimates should reflect AI Agent team speed (7x24, parallel Workers, near-zero idle), not human pace.\n\nWhen estimating costs for the three research modes (ordered from most to least human involvement):\n\n1. **Manual (纯人工)**: Human writes code, designs experiments, analyzes results. GPU idle rate is HIGH because GPU waits for humans. Do NOT include salary — only estimate GPU cost.\n\n2. **Human-in-Loop (人机协作)**: Agent executes, human approves key decisions. GPU utilization is moderate. Do NOT include salary — only estimate GPU cost + API cost. Team field describes required check-in frequency.\n\n3. **Auto Research (全自动)**: Agent runs 24/7, explores more experiments but GPU idle rate is near ZERO. Speed bottleneck is GPU count and API key quota — with sufficient resources, a paper can be completed in DAYS. Only estimate GPU cost + API cost. Do NOT factor in agent operational overhead.\n\nKey principles:\n- Auto Research uses MORE total GPU hours but has MUCH LOWER GPU idle rate\n- Claude API cost: ~$0.05-0.15 per conversation turn (Opus), estimate total turns needed\n- Auto mode typically runs 3-5x more experiments than manual (exploration + failed attempts)\n- Human-in-Loop reduces auto mode waste by ~40-60% through approval gates\n\nOutput ONLY a single JSON object with ALL fields merged. No markdown fences."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-14T14:57:45.995Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-14T14:57:45.995Z",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378"
+}
+```
+
+---
+
+## Round 1
+
+140 recorded events
+
+### User
+
+_source line 3 · 2026-05-14T14:57:46.025Z_
+
+Complete the research direction below with implementation details.
+
+**Today's date: 2026-05-14 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.
+
+{
+  "title": "Step-Type-Conditioned Retrieval Query Formulation for Multi-Hop Reasoning",
+  "core_problem": "Multi-hop reasoning involves heterogeneous step types — entity grounding, relational bridging, numerical comparison, logical deduction — each requiring different retrieval strategies, but all current methods generate retrieval queries uniformly regardless of what the reasoning step actually needs.",
+  "opportunity": "The four-axis design framework for multi-hop QA (arxiv 2601.00536) identifies distinct retrieval-reasoning interaction patterns but doesn't operationalize step-type-specific retrieval. Search-R1, R3-RAG, and ReaLM-Retrieve all use a single query formulation strategy. HopRAG (arxiv 2502.12442) uses LLM-generated pseudo-queries for graph traversal but applies the same mechanism to all steps. With diverse retriever backbones now available (ColBERTv2, SPLADE++, BGE, graph-based retrievers), a step-type classifier can route each reasoning step to the most appropriate query formulation: entity lookups need precise named-entity queries to dense retrievers; relational bridges need relation-aware queries to knowledge graphs; numerical comparisons need structured data queries; logical deductions may need no retrieval at all.",
+  "landscape": "Search-R1 (arxiv 2503.09516) achieves 26% improvement on 7B models by learning retrieval timing via RL, but uses uniform BM25/dense retrieval. ReaLM-Retrieve (SIGIR 2026) optimizes when to retrieve but not how to retrieve differently per step type. HopRAG achieves 76.78% higher answer metrics than conventional RAG via graph-based multi-hop retrieval, but applies graph traversal uniformly. StepChain GraphRAG uses BFS reasoning flow for multi-hop evidence, again uniformly. IndexRAG improves F1 by 4.6 points via single-pass retrieval, but with a single retrieval strategy. The REPAIR paper (arxiv 2601.04618, withdrawn) proposed reasoning-plan-guided adaptive retrieval for bridge documents — the closest work — but was withdrawn and focused only on bridge documents rather than full step-type conditioning. No published work classifies reasoning step types and routes to different retrieval strategies accordingly."
+}
+
+ADD these fields (keep all existing fields):
+{
+  "approach": "Proposed method or research direction — what you would actually do (3-5 sentences)",
+  "resource_estimate": {
+      "manual": {
+          "gpu_hours": "e.g. ~200h A100",
+          "gpu_utilization": "describe GPU idle rate (human waits cause high idle)",
+          "timeline": "e.g. 3-6 months",
+          "team": "e.g. 1-2 researchers",
+          "estimated_gpu_cost": "GPU rental cost only (do NOT include salary)"
+      },
+      "human_in_loop": {
+          "gpu_hours": "e.g. ~300h A100",
+          "gpu_utilization": "describe GPU utilization improvement vs manual",
+          "timeline": "e.g. 1-2 months",
+          "team": "e.g. 1 researcher, ~30min/day check-in (do NOT include salary)",
+          "claude_api_cost": "e.g. $100-300",
+          "estimated_gpu_cost": "GPU rental cost",
+          "risk_note": "Key bottleneck or risk"
+      },
+      "auto_research": {
+          "gpu_hours": "e.g. ~500h A100 (more exploration, but near-zero idle)",
+          "gpu_utilization": "describe why GPU idle rate is minimal",
+          "timeline": "e.g. days to 2 weeks if resources are sufficient",
+          "team": "0 (only initial setup)",
+          "claude_api_cost": "e.g. $200-500",
+          "estimated_gpu_cost": "GPU rental cost",
+          "speed_bottleneck": "what limits speed (GPU count, API key quota, etc.)",
+          "risk_note": "Key risk factor"
+      }
+  },
+  "target_venues": ["Only list venues with deadlines after 2026-05-14; always target the highest-tier venue the contribution level supports — do NOT downgrade venue due to timeline concerns (AI team runs 7x24)"],
+  "level": "top-tier | solid | incremental",
+  "key_references": ["Paper title (VENUE YEAR)", ...],
+  "description": "Executive summary combining all above into 150-200 words",
+  "project_name": "snake_case_identifier (valid Python id, max 30 chars)",
+  "source": "web_research"
+}
+
+For key_references, verify with WebSearch that cited paper titles and venues are real. Drop any reference you cannot verify.
+
+**Model freshness rule**: When the approach involves pretrained models (LLM, vision model, etc.), use WebSearch to find the current top-performing open-source models for the task (e.g., search "best open source LLM 2026", "SOTA open source language model"). Use models that represent the current frontier — do NOT default to models from your training data. Entire model families may be outdated (e.g., LLaMA), not just version numbers. Exception: skip this if the idea specifically requires older models (reproduction, model evolution analysis, backward compatibility) or the user explicitly specified a model in the seed topic.
+
+## 竞争论文 & Concurrent Work 搜索
+
+在设计 approach 之前，必须确认没有人正在做同样的事情：
+- 搜索 `{core_problem} 2026` 和 `{approach_keyword} {task} 2026`
+- 在 arXiv 上搜索过去 3 个月的相关提交
+- 在 OpenReview 上搜索即将举行的会议（ICML, NeurIPS, ICLR）的提交
+- 如果发现高度相似的 concurrent work，必须在 landscape 中明确提及，并在 approach 中说明与之的差异化
+
+## 非常仔细地思考和验证
+
+在设计具体 approach 时，你必须深入思考并充分调研：
+
+1. **可行性验证**（不是猜测，而是基于证据）：
+   - 搜索类似方法的已有实现（检查 GitHub）
+   - 查找需要打败的具体 baseline 数字
+   - 了解类似实验的硬件/数据需求
+   - 查找相关工作中已识别的潜在失败模式
+
+2. **成本估算必须基于真实数据**：
+   - 找到类似实验的实际成本（不是拍脑袋）
+   - 考虑不同研究模式下的成本差异
+
+3. **内部一致性自查**：
+   - approach 是否直接解决 Round 1 识别的 core_problem？
+   - resource estimate 与 approach 复杂度是否匹配？
+   - target venues 与贡献级别是否相称？
+
+For feasibility grounding:
+- Search "github.com {method_name} {task}" to check if building blocks or reference implementations exist.
+  If nothing similar exists, note this in resource_estimate but do NOT use it as a reason to target a lower venue.
+- Search "huggingface.co/datasets {dataset_name}" or "paperswithcode.com {task} datasets" to verify
+  that required datasets are actually accessible. If the dataset is proprietary or hard to obtain, flag it.
+- Timeline estimates should reflect AI Agent team speed (7x24, parallel Workers, near-zero idle), not human pace.
+
+When estimating costs for the three research modes (ordered from most to least human involvement):
+
+1. **Manual (纯人工)**: Human writes code, designs experiments, analyzes results. GPU idle rate is HIGH because GPU waits for humans. Do NOT include salary — only estimate GPU cost.
+
+2. **Human-in-Loop (人机协作)**: Agent executes, human approves key decisions. GPU utilization is moderate. Do NOT include salary — only estimate GPU cost + API cost. Team field describes required check-in frequency.
+
+3. **Auto Research (全自动)**: Agent runs 24/7, explores more experiments but GPU idle rate is near ZERO. Speed bottleneck is GPU count and API key quota — with sufficient resources, a paper can be completed in DAYS. Only estimate GPU cost + API cost. Do NOT factor in agent operational overhead.
+
+Key principles:
+- Auto Research uses MORE total GPU hours but has MUCH LOWER GPU idle rate
+- Claude API cost: ~$0.05-0.15 per conversation turn (Opus), estimate total turns needed
+- Auto mode typically runs 3-5x more experiments than manual (exploration + failed attempts)
+- Human-in-Loop reduces auto mode waste by ~40-60% through approval gates
+
+Output ONLY a single JSON object with ALL fields merged. No markdown fences.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "0122c317-1b5e-4c60-85ae-e9c4b6853925",
+  "type": "user",
+  "uuid": "ff8faffc-4261-4357-a1e3-b95902a682d3",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-14T14:57:46.024Z_
+
+```json
+{
+  "parentUuid": "ff8faffc-4261-4357-a1e3-b95902a682d3",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "d6b50cef-84c0-4f74-b71c-46598c70ae69",
+  "timestamp": "2026-05-14T14:57:46.024Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-14T14:57:46.024Z_
+
+```json
+{
+  "parentUuid": "d6b50cef-84c0-4f74-b71c-46598c70ae69",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "91dfb99e-cc6f-44c0-bca5-070af916b0fd",
+  "timestamp": "2026-05-14T14:57:46.024Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Step-type-conditioned retrieval routing for multi-hop QA",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378"
+}
+```
+
+---
+
+### Assistant
+
+_source line 7 · 2026-05-14T14:57:51.648Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to complete a research direction with detailed implementation specifics. I need to:
+
+1. Search for concurrent work on step-type-conditioned retrieval for multi-hop reasoning
+2. Verify the current landscape and references
+3. Find current SOTA open-source models
+4. Check feasibility (GitHub implementations, datasets, baselines)
+5. Find venue deadlines
+6. Put together a comprehensive research plan
+
+Let me start by launching several parallel searches to gather the information I need.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "91dfb99e-cc6f-44c0-bca5-070af916b0fd",
+  "isSidechain": false,
+  "requestId": "req_011Cb2f6eSpdeCoYxUtYWQD3",
+  "type": "assistant",
+  "uuid": "bdf9202b-d691-48cf-8157-b01f42ef16ce",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QEbnkaCvhFAgjddxC1Foam",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 7349,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 236,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7349,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 236,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 7349,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7349
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-14T14:57:52.662Z_
+
+I'll research this thoroughly before formulating the approach. Let me launch parallel searches for concurrent work, model landscape, venue deadlines, and feasibility data.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bdf9202b-d691-48cf-8157-b01f42ef16ce",
+  "isSidechain": false,
+  "requestId": "req_011Cb2f6eSpdeCoYxUtYWQD3",
+  "type": "assistant",
+  "uuid": "fd28824a-aef7-4bbc-a294-88d632360ed3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QEbnkaCvhFAgjddxC1Foam",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 7349,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 236,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7349,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 236,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 7349,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7349
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-14T14:57:53.341Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01GkhUKJwrd4q7yCkhVxQz5L`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fd28824a-aef7-4bbc-a294-88d632360ed3",
+  "isSidechain": false,
+  "requestId": "req_011Cb2f6eSpdeCoYxUtYWQD3",
+  "type": "assistant",
+  "uuid": "0a486e31-9456-4a67-8e26-62bd514d9287",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QEbnkaCvhFAgjddxC1Foam",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 7349,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 236,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7349,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 236,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 7349,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7349
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-14T14:57:53.347Z_
+
+<details><summary>↩ Tool result · `toolu_01GkhUKJwrd4q7yCkhVxQz5L`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0a486e31-9456-4a67-8e26-62bd514d9287",
+  "isSidechain": false,
+  "promptId": "0122c317-1b5e-4c60-85ae-e9c4b6853925",
+  "type": "user",
+  "uuid": "72cc37e1-a28a-49f7-9774-54e1b6284738",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "0a486e31-9456-4a67-8e26-62bd514d9287",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11 · 2026-05-14T14:57:59.124Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me launch parallel searches for:
+1. Concurrent work on step-type-conditioned retrieval for multi-hop reasoning
+2. Current SOTA open-source LLMs in 2026
+3. Venue deadlines (EMNLP 2026, NeurIPS 2026, ACL 2026, AAAI 2027, etc.)
+4. Baseline numbers for multi-hop QA benchmarks
+5. Verify key references
+6. Check GitHub for existing implementations
+7. Check datasets availability
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "72cc37e1-a28a-49f7-9774-54e1b6284738",
+  "isSidechain": false,
+  "requestId": "req_011Cb2f7BPuhA7qU2sDt9GZj",
+  "type": "assistant",
+  "uuid": "24c14105-debb-4cce-b362-12d8837ab401",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013oDPvXXXizGQWrGSB2kEDj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1256,
+      "cache_read_input_tokens": 19190,
+      "output_tokens": 211,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1256,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 211,
+          "cache_read_input_tokens": 19190,
+          "cache_creation_input_tokens": 1256,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1256
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-14T14:57:59.601Z_
+
+Let me launch parallel searches across multiple dimensions.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "24c14105-debb-4cce-b362-12d8837ab401",
+  "isSidechain": false,
+  "requestId": "req_011Cb2f7BPuhA7qU2sDt9GZj",
+  "type": "assistant",
+  "uuid": "3ea34364-8871-40a4-8883-abda95fc159e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013oDPvXXXizGQWrGSB2kEDj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1256,
+      "cache_read_input_tokens": 19190,
+      "output_tokens": 211,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1256,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 211,
+          "cache_read_input_tokens": 19190,
+          "cache_creation_input_tokens": 1256,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1256
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-14T14:57:59.857Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Fj7E1HKUpRSCkJvVkgPVg6`</summary>
+
+```json
+{
+  "query": "step-type conditioned retrieval multi-hop reasoning 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3ea34364-8871-40a4-8883-abda95fc159e",
+  "isSidechain": false,
+  "requestId": "req_011Cb2f7BPuhA7qU2sDt9GZj",
+  "type": "assistant",
+  "uuid": "40bfe274-670a-4273-9f2c-01b1ce0eca35",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013oDPvXXXizGQWrGSB2kEDj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1256,
+      "cache_read_input_tokens": 19190,
+      "output_tokens": 211,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1256,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 211,
+          "cache_read_input_tokens": 19190,
+          "cache_creation_input_tokens": 1256,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1256
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-14T14:58:08.067Z_
+
+<details><summary>↩ Tool result · `toolu_01Fj7E1HKUpRSCkJvVkgPVg6`</summary>
+
+```text
+Web search results for query: "step-type conditioned retrieval multi-hop reasoning 2026"
+
+Links: [{"title":"Multi-hop Retrieval — A Controlled Reasoning Process Across Stages of AI-Native Knowledge Graphs | by Fanghua (Joshua) Yu | Apr, 2026 | Medium","url":"https://medium.com/@yu-joshua/multi-hop-retrieval-a-controlled-reasoning-process-across-stages-of-ai-native-knowledge-graphs-1a1b6615f05f"},{"title":"Multi-Step Agentic Retrieval","url":"https://www.emergentmind.com/topics/multi-step-agentic-retrieval"},{"title":"Retrieval–Reasoning Processes for Multi-hop Question Answering: A Four-Axis Design Framework and Empirical Trends","url":"https://arxiv.org/html/2601.00536v1"},{"title":"Improving Retrieval-Augmented Generation for Multi-Hop ...","url":"https://arxiv.org/pdf/2601.11255"},{"title":"Multi-hop Question Answering","url":"https://www.emergentmind.com/topics/multi-hop-question-answering-2c26e002-4601-4f9e-b93f-d1e79cab847f"},{"title":"Reasoning Processes for Multi-hop Question Answering","url":"https://arxiv.org/pdf/2601.00536"},{"title":"Chroma Releases Context-1: A 20B Agentic Search Model for Multi-Hop Retrieval, Context Management, and Scalable Synthetic Task Generation - MarkTechPost","url":"https://www.marktechpost.com/2026/03/29/chroma-releases-context-1-a-20b-agentic-search-model-for-multi-hop-retrieval-context-management-and-scalable-synthetic-task-generation/"},{"title":"Retrieval-Augmented Generation for Multi-Hop Question Answering Based on Structured Planning | ACM Transactions on Knowledge Discovery from Data","url":"https://dl.acm.org/doi/10.1145/3789506"},{"title":"Reasoning in Trees: Improving Retrieval-Augmented Generation for Multi-Hop Question Answering","url":"https://arxiv.org/html/2601.11255v1"},{"title":"[2502.12442] HopRAG: Multi-Hop Reasoning for Logic-Aware Retrieval-Augmented Generation","url":"https://arxiv.org/abs/2502.12442"}]
+
+Based on the search results, here's what I found about step-type conditioned retrieval and multi-hop reasoning in 2026:
+
+## Key Concepts and Approaches
+
+Multi-hop reasoning should be understood as a composition of typed reasoning operators across semantic, structural, factual, and contextual layers. A typical flow in practical systems looks like: Semantic → Structural → Instance → Contextual, where semantic steps reduce ambiguity, structural steps narrow the valid search space, instance steps retrieve the relevant facts, and contextual steps determine significance.
+
+## Recent Frameworks (2026)
+
+Several advanced methods have emerged:
+
+1. **RT-RAG (Reasoning Trees RAG)**: RT-RAG systematically decomposes multi-hop questions into explicit reasoning trees, minimizing inaccurate decomposition through structured entity analysis and consensus-based tree selection that clearly separates core queries, known entities, and unknown entities.
+
+2. **Multi-step Agentic Retrieval**: Multi-step agentic approaches treat the search for information as a sequential decision process, leveraging intermediate reasoning, multi-hop knowledge traversal, and the full agency of the underlying agent.
+
+3. **Context-1 Model**: Context-1 is a highly optimized 'scout' built to do one thing: find the right supporting documents for complex, multi-hop queries and hand them off to a downstream frontier model for the final answer.
+
+## Design Framework
+
+A four-axis framework covers (A) overall execution plan, (B) index structure, (C) next-step control (strategies and triggers), and (D) stop/continue criteria.
+
+The research emphasizes that what matters is not whether the graph is traversed deeper, but whether the retrieval process is controlled well enough to preserve meaning, constrain search, and apply the right decision logic at the right moment.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "40bfe274-670a-4273-9f2c-01b1ce0eca35",
+  "isSidechain": false,
+  "promptId": "0122c317-1b5e-4c60-85ae-e9c4b6853925",
+  "type": "user",
+  "uuid": "c4b02918-6716-4410-b778-0ca8c0ce11ec",
+  "toolUseResult": {
+    "query": "step-type conditioned retrieval multi-hop reasoning 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Qz2PEB6X717m7BB5JymkkL",
+        "content": [
+          {
+            "title": "Multi-hop Retrieval — A Controlled Reasoning Process Across Stages of AI-Native Knowledge Graphs | by Fanghua (Joshua) Yu | Apr, 2026 | Medium",
+            "url": "https://medium.com/@yu-joshua/multi-hop-retrieval-a-controlled-reasoning-process-across-stages-of-ai-native-knowledge-graphs-1a1b6615f05f"
+          },
+          {
+            "title": "Multi-Step Agentic Retrieval",
+            "url": "https://www.emergentmind.com/topics/multi-step-agentic-retrieval"
+          },
+          {
+            "title": "Retrieval–Reasoning Processes for Multi-hop Question Answering: A Four-Axis Design Framework and Empirical Trends",
+            "url": "https://arxiv.org/html/2601.00536v1"
+          },
+          {
+            "title": "Improving Retrieval-Augmented Generation for Multi-Hop ...",
+            "url": "https://arxiv.org/pdf/2601.11255"
+          },
+          {
+            "title": "Multi-hop Question Answering",
+            "url": "https://www.emergentmind.com/topics/multi-hop-question-answering-2c26e002-4601-4f9e-b93f-d1e79cab847f"
+          },
+          {
+            "title": "Reasoning Processes for Multi-hop Question Answering",
+            "url": "https://arxiv.org/pdf/2601.00536"
+          },
+          {
+            "title": "Chroma Releases Context-1: A 20B Agentic Search Model for Multi-Hop Retrieval, Context Management, and Scalable Synthetic Task Generation - MarkTechPost",
+            "url": "https://www.marktechpost.com/2026/03/29/chroma-releases-context-1-a-20b-agentic-search-model-for-multi-hop-retrieval-context-management-and-scalable-synthetic-task-generation/"
+          },
+          {
+            "title": "Retrieval-Augmented Generation for Multi-Hop Question Answering Based on Structured Planning | ACM Transactions on Knowledge Discovery from Data",
+            "url": "https://dl.acm.org/doi/10.1145/3789506"
+          },
+          {
+            "title": "Reasoning in Trees: Improving Retrieval-Augmented Generation for Multi-Hop Question Answering",
+            "url": "https://arxiv.org/html/2601.11255v1"
+          },
+          {
+            "title": "[2502.12442] HopRAG: Multi-Hop Reasoning for Logic-Aware Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/abs/2502.12442"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about step-type conditioned retrieval and multi-hop reasoning in 2026:\n\n## Key Concepts and Approaches\n\nMulti-hop reasoning should be understood as a composition of typed reasoning operators across semantic, structural, factual, and contextual layers. A typical flow in practical systems looks like: Semantic → Structural → Instance → Contextual, where semantic steps reduce ambiguity, structural steps narrow the valid search space, instance steps retrieve the relevant facts, and contextual steps determine significance.\n\n## Recent Frameworks (2026)\n\nSeveral advanced methods have emerged:\n\n1. **RT-RAG (Reasoning Trees RAG)**: RT-RAG systematically decomposes multi-hop questions into explicit reasoning trees, minimizing inaccurate decomposition through structured entity analysis and consensus-based tree selection that clearly separates core queries, known entities, and unknown entities.\n\n2. **Multi-step Agentic Retrieval**: Multi-step agentic approaches treat the search for information as a sequential decision process, leveraging intermediate reasoning, multi-hop knowledge traversal, and the full agency of the underlying agent.\n\n3. **Context-1 Model**: Context-1 is a highly optimized 'scout' built to do one thing: find the right supporting documents for complex, multi-hop queries and hand them off to a downstream frontier model for the final answer.\n\n## Design Framework\n\nA four-axis framework covers (A) overall execution plan, (B) index structure, (C) next-step control (strategies and triggers), and (D) stop/continue criteria.\n\nThe research emphasizes that what matters is not whether the graph is traversed deeper, but whether the retrieval process is controlled well enough to preserve meaning, constrain search, and apply the right decision logic at the right moment."
+    ],
+    "durationSeconds": 8.205192690999999
+  },
+  "sourceToolAssistantUUID": "40bfe274-670a-4273-9f2c-01b1ce0eca35",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 15_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-14 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Step-Type-Con…",
+  "leafUuid": "c4b02918-6716-4410-b778-0ca8c0ce11ec",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 16_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Step-type-conditioned retrieval routing for multi-hop QA",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378"
+}
+```
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-14T14:58:10.648Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RssrTgVxAYfRgqZS7EJ2hz`</summary>
+
+```json
+{
+  "query": "adaptive retrieval strategy routing multi-hop QA step type classification arxiv 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c4b02918-6716-4410-b778-0ca8c0ce11ec",
+  "isSidechain": false,
+  "requestId": "req_011Cb2f8G7x2snYk8Fd62sdK",
+  "type": "assistant",
+  "uuid": "aa43c8dc-dc5c-4393-af24-de5881303ee1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R2Uv2RbLjUGS9p3EwuaU1V",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1267,
+      "cache_read_input_tokens": 20446,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1267,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 20446,
+          "cache_creation_input_tokens": 1267,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1267
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-14T14:58:19.232Z_
+
+<details><summary>↩ Tool result · `toolu_01RssrTgVxAYfRgqZS7EJ2hz`</summary>
+
+```text
+Web search results for query: "adaptive retrieval strategy routing multi-hop QA step type classification arxiv 2026"
+
+Links: [{"title":"Reasoning in Trees: Improving Retrieval-Augmented Generation for Multi-Hop Question Answering","url":"https://arxiv.org/html/2601.11255v1"},{"title":"CREDIBLE PLAN-DRIVEN RAG METHOD FOR MULTI-HOP QUESTION ANSWERING","url":"https://arxiv.org/pdf/2504.16787"},{"title":"Learning to Route Queries across Knowledge Bases for Step-wise Retrieval-Augmented Reasoning","url":"https://arxiv.org/html/2505.22095v1"},{"title":"Improving Retrieval-Augmented Generation for Multi-Hop ...","url":"https://arxiv.org/pdf/2601.11255"},{"title":"Retrieval–Reasoning Processes for Multi-hop Question Answering: A","url":"https://arxiv.org/pdf/2601.00536"},{"title":"MA-RAG: MULTI-AGENT RETRIEVAL-AUGMENTED GENERATION VIA COLLABORATIVE CHAIN-OF-","url":"https://arxiv.org/pdf/2505.20096"},{"title":"Mixture-of-Retrieval Experts for Reasoning-Guided ...","url":"https://arxiv.org/pdf/2505.22095"},{"title":"Preprint PRISM: AGENTIC RETRIEVAL WITH LLMS FOR MULTI-HOP QUESTION ANSWERING","url":"https://www.arxiv.org/pdf/2510.14278"},{"title":"Efficient Neuro-Symbolic Retrieval-Augmented Generation through Adaptive Query Routing","url":"https://arxiv.org/html/2506.12981v1/"},{"title":"Retrieval–Reasoning Processes for Multi-hop Question Answering: A Four-Axis Design Framework and Empirical Trends","url":"https://arxiv.org/html/2601.00536v1"}]
+
+Based on the search results, I found several relevant papers related to adaptive retrieval strategies, routing in multi-hop QA, and step type classification from arxiv in 2026:
+
+## Key Papers Found:
+
+1. **R1-Router: Learning to Route Queries across Knowledge Bases for Step-wise Retrieval-Augmented Reasoning** (arxiv 2505.22095, May 2025)
+   - R1-Router is a novel MRAG framework that learns to decide when and where to retrieve knowledge based on the evolving reasoning state, generating follow-up queries according to the current reasoning step, routing these intermediate queries to the most suitable KB, and integrating external knowledge into a coherent reasoning trajectory to answer the original query
+   - It introduces Step-wise Group Relative Policy Optimization (Step-GRPO), a tailored reinforcement learning algorithm that assigns step-specific rewards to optimize the reasoning behavior of MLLMs
+
+2. **RT-RAG: Reasoning in Trees for Retrieval-Augmented Generation** (arxiv 2601.11255, January 2026)
+   - RT-RAG systematically decomposes multi-hop questions into explicit reasoning trees, minimizing inaccurate decomposition through structured entity analysis and consensus-based tree selection that clearly separates core queries, known entities, and unknown entities
+
+3. **SymRAG: Efficient Neuro-Symbolic Retrieval-Augmented Generation through Adaptive Query Routing** (arxiv 2506.12981, June 2025)
+   - SymRAG introduces adaptive query routing via real-time complexity and load assessment to select symbolic, neural, or hybrid pathways, with a neuro-symbolic approach that adjusts computational pathways based on both query characteristics and system load
+
+4. **Retrieval–Reasoning Processes for Multi-hop Question Answering: A Four-Axis Design Framework** (arxiv 2601.00536, January 2026)
+   - This paper introduces a four-axis design space for describing the retrieval-reasoning process in multi-hop QA and analyzes how axis-level design choices affect effectiveness, efficiency, and faithfulness on standard benchmarks
+
+These papers address the intersection of adaptive retrieval strategies, query routing across different knowledge sources, and step-type classification in multi-hop question answering systems.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "aa43c8dc-dc5c-4393-af24-de5881303ee1",
+  "isSidechain": false,
+  "promptId": "0122c317-1b5e-4c60-85ae-e9c4b6853925",
+  "type": "user",
+  "uuid": "13e1948c-aa1a-43f4-b423-994a2119b49d",
+  "toolUseResult": {
+    "query": "adaptive retrieval strategy routing multi-hop QA step type classification arxiv 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VDFNQKZKMDPo8qzjoYFQvd",
+        "content": [
+          {
+            "title": "Reasoning in Trees: Improving Retrieval-Augmented Generation for Multi-Hop Question Answering",
+            "url": "https://arxiv.org/html/2601.11255v1"
+          },
+          {
+            "title": "CREDIBLE PLAN-DRIVEN RAG METHOD FOR MULTI-HOP QUESTION ANSWERING",
+            "url": "https://arxiv.org/pdf/2504.16787"
+          },
+          {
+            "title": "Learning to Route Queries across Knowledge Bases for Step-wise Retrieval-Augmented Reasoning",
+            "url": "https://arxiv.org/html/2505.22095v1"
+          },
+          {
+            "title": "Improving Retrieval-Augmented Generation for Multi-Hop ...",
+            "url": "https://arxiv.org/pdf/2601.11255"
+          },
+          {
+            "title": "Retrieval–Reasoning Processes for Multi-hop Question Answering: A",
+            "url": "https://arxiv.org/pdf/2601.00536"
+          },
+          {
+            "title": "MA-RAG: MULTI-AGENT RETRIEVAL-AUGMENTED GENERATION VIA COLLABORATIVE CHAIN-OF-",
+            "url": "https://arxiv.org/pdf/2505.20096"
+          },
+          {
+            "title": "Mixture-of-Retrieval Experts for Reasoning-Guided ...",
+            "url": "https://arxiv.org/pdf/2505.22095"
+          },
+          {
+            "title": "Preprint PRISM: AGENTIC RETRIEVAL WITH LLMS FOR MULTI-HOP QUESTION ANSWERING",
+            "url": "https://www.arxiv.org/pdf/2510.14278"
+          },
+          {
+            "title": "Efficient Neuro-Symbolic Retrieval-Augmented Generation through Adaptive Query Routing",
+            "url": "https://arxiv.org/html/2506.12981v1/"
+          },
+          {
+            "title": "Retrieval–Reasoning Processes for Multi-hop Question Answering: A Four-Axis Design Framework and Empirical Trends",
+            "url": "https://arxiv.org/html/2601.00536v1"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant papers related to adaptive retrieval strategies, routing in multi-hop QA, and step type classification from arxiv in 2026:\n\n## Key Papers Found:\n\n1. **R1-Router: Learning to Route Queries across Knowledge Bases for Step-wise Retrieval-Augmented Reasoning** (arxiv 2505.22095, May 2025)\n   - R1-Router is a novel MRAG framework that learns to decide when and where to retrieve knowledge based on the evolving reasoning state, generating follow-up queries according to the current reasoning step, routing these intermediate queries to the most suitable KB, and integrating external knowledge into a coherent reasoning trajectory to answer the original query\n   - It introduces Step-wise Group Relative Policy Optimization (Step-GRPO), a tailored reinforcement learning algorithm that assigns step-specific rewards to optimize the reasoning behavior of MLLMs\n\n2. **RT-RAG: Reasoning in Trees for Retrieval-Augmented Generation** (arxiv 2601.11255, January 2026)\n   - RT-RAG systematically decomposes multi-hop questions into explicit reasoning trees, minimizing inaccurate decomposition through structured entity analysis and consensus-based tree selection that clearly separates core queries, known entities, and unknown entities\n\n3. **SymRAG: Efficient Neuro-Symbolic Retrieval-Augmented Generation through Adaptive Query Routing** (arxiv 2506.12981, June 2025)\n   - SymRAG introduces adaptive query routing via real-time complexity and load assessment to select symbolic, neural, or hybrid pathways, with a neuro-symbolic approach that adjusts computational pathways based on both query characteristics and system load\n\n4. **Retrieval–Reasoning Processes for Multi-hop Question Answering: A Four-Axis Design Framework** (arxiv 2601.00536, January 2026)\n   - This paper introduces a four-axis design space for describing the retrieval-reasoning process in multi-hop QA and analyzes how axis-level design choices affect effectiveness, efficiency, and faithfulness on standard benchmarks\n\nThese papers address the intersection of adaptive retrieval strategies, query routing across different knowledge sources, and step-type classification in multi-hop question answering systems."
+    ],
+    "durationSeconds": 8.581353172999997
+  },
+  "sourceToolAssistantUUID": "aa43c8dc-dc5c-4393-af24-de5881303ee1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19 · 2026-05-14T14:58:23.781Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Important finding: **R1-Router** (arxiv 2505.22095) seems very close to the proposed idea - it routes queries to the most suitable knowledge base based on the reasoning step. Let me search for more details on this and other concurrent work.
+
+Also found **SymRAG** which does adaptive query routing based on query characteristics.
+
+Let me search for more details and also check for other concurrent work.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "13e1948c-aa1a-43f4-b423-994a2119b49d",
+  "isSidechain": false,
+  "requestId": "req_011Cb2f95zn7vPDZ2S8VKYKW",
+  "type": "assistant",
+  "uuid": "db07799b-4264-4f47-af6c-0473887704f4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PQL4YF147UtnAZwRzBq2bx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1099,
+      "cache_read_input_tokens": 21713,
+      "output_tokens": 293,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1099,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 293,
+          "cache_read_input_tokens": 21713,
+          "cache_creation_input_tokens": 1099,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1099
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20 · 2026-05-14T14:58:24.720Z_
+
+Critical finding — R1-Router (arxiv 2505.22095) looks very close to this idea. Let me investigate it and continue other searches in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "db07799b-4264-4f47-af6c-0473887704f4",
+  "isSidechain": false,
+  "requestId": "req_011Cb2f95zn7vPDZ2S8VKYKW",
+  "type": "assistant",
+  "uuid": "f2972e4e-f60a-4af3-b353-f38624cb8f52",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PQL4YF147UtnAZwRzBq2bx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1099,
+      "cache_read_input_tokens": 21713,
+      "output_tokens": 293,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1099,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 293,
+          "cache_read_input_tokens": 21713,
+          "cache_creation_input_tokens": 1099,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1099
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-14T14:58:27.444Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01AURfMcftW4c1MGCe9CU8iw`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2505.22095",
+  "prompt": "Extract the full title, authors, abstract, method details, what knowledge bases it routes across, what step types it classifies, what benchmarks and metrics it reports, and how it differs from step-type-conditioned retrieval query formulation. Does it change the query formulation strategy per step type or only route to different KBs?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f2972e4e-f60a-4af3-b353-f38624cb8f52",
+  "isSidechain": false,
+  "requestId": "req_011Cb2f95zn7vPDZ2S8VKYKW",
+  "type": "assistant",
+  "uuid": "4604cb82-b55e-4ff9-a0b5-eef138729348",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PQL4YF147UtnAZwRzBq2bx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1099,
+      "cache_read_input_tokens": 21713,
+      "output_tokens": 293,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1099,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 293,
+          "cache_read_input_tokens": 21713,
+          "cache_creation_input_tokens": 1099,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1099
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-14T14:58:33.236Z_
+
+<details><summary>↩ Tool result · `toolu_01AURfMcftW4c1MGCe9CU8iw`</summary>
+
+```text
+# Paper Analysis: Mixture-of-Retrieval Experts for Reasoning-Guided Multimodal Knowledge Exploitation
+
+**Full Title:**
+"Mixture-of-Retrieval Experts for Reasoning-Guided Multimodal Knowledge Exploitation"
+
+**Authors:**
+Chunyi Peng, Zhipeng Xu, Zhenghao Liu, Yishan Li, Yukun Yan, Shuo Wang, Yu Gu, Minghe Yu, Ge Yu, Maosong Sun
+
+**Abstract Summary:**
+The work addresses hallucinations in multimodal language models by introducing MoRE, a framework enabling dynamic expert coordination. The key innovation involves "dynamically determine which expert to engage with, conditioned on the evolving reasoning state" paired with a training method called Stepwise Group Relative Policy Optimization (Step-GRPO).
+
+**Method Details:**
+- Enables collaborative interaction with diverse retrieval experts
+- Dynamically selects which expert to use based on evolving reasoning state
+- Uses Step-GRPO training with fine-grained reward synthesis
+- Achieves "average performance gains of over 7%" versus baselines
+
+**Knowledge Bases & Classification:**
+The provided content does not specify the particular knowledge bases targeted or what step types are classified. The framework operates with "heterogeneous experts" but specific KB names and step type taxonomies are not detailed in this excerpt.
+
+**Benchmarks & Metrics:**
+"Diverse open-domain QA benchmarks" are mentioned, though specific benchmark names and metrics aren't listed in the abstract.
+
+**Differentiation from Step-Type-Conditioned Retrieval:**
+The document shows this approach routes to different experts dynamically rather than simply using step-type-specific query formulation adjustments. It emphasizes "dynamic interaction" and "dynamic coordination" of experts rather than static routing strategies.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4604cb82-b55e-4ff9-a0b5-eef138729348",
+  "isSidechain": false,
+  "promptId": "0122c317-1b5e-4c60-85ae-e9c4b6853925",
+  "type": "user",
+  "uuid": "e86d2844-e537-47ce-b5bf-2366d86a244c",
+  "toolUseResult": {
+    "bytes": 48711,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Paper Analysis: Mixture-of-Retrieval Experts for Reasoning-Guided Multimodal Knowledge Exploitation\n\n**Full Title:**\n\"Mixture-of-Retrieval Experts for Reasoning-Guided Multimodal Knowledge Exploitation\"\n\n**Authors:**\nChunyi Peng, Zhipeng Xu, Zhenghao Liu, Yishan Li, Yukun Yan, Shuo Wang, Yu Gu, Minghe Yu, Ge Yu, Maosong Sun\n\n**Abstract Summary:**\nThe work addresses hallucinations in multimodal language models by introducing MoRE, a framework enabling dynamic expert coordination. The key innovation involves \"dynamically determine which expert to engage with, conditioned on the evolving reasoning state\" paired with a training method called Stepwise Group Relative Policy Optimization (Step-GRPO).\n\n**Method Details:**\n- Enables collaborative interaction with diverse retrieval experts\n- Dynamically selects which expert to use based on evolving reasoning state\n- Uses Step-GRPO training with fine-grained reward synthesis\n- Achieves \"average performance gains of over 7%\" versus baselines\n\n**Knowledge Bases & Classification:**\nThe provided content does not specify the particular knowledge bases targeted or what step types are classified. The framework operates with \"heterogeneous experts\" but specific KB names and step type taxonomies are not detailed in this excerpt.\n\n**Benchmarks & Metrics:**\n\"Diverse open-domain QA benchmarks\" are mentioned, though specific benchmark names and metrics aren't listed in the abstract.\n\n**Differentiation from Step-Type-Conditioned Retrieval:**\nThe document shows this approach routes to different experts dynamically rather than simply using step-type-specific query formulation adjustments. It emphasizes \"dynamic interaction\" and \"dynamic coordination\" of experts rather than static routing strategies.",
+    "durationMs": 5789,
+    "url": "https://arxiv.org/abs/2505.22095"
+  },
+  "sourceToolAssistantUUID": "4604cb82-b55e-4ff9-a0b5-eef138729348",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-14T14:58:35.810Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FrMWXCfvDPDnQTYc2y3WFP`</summary>
+
+```json
+{
+  "query": "MoRE \"Mixture-of-Retrieval Experts\" multimodal knowledge 2025 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e86d2844-e537-47ce-b5bf-2366d86a244c",
+  "isSidechain": false,
+  "requestId": "req_011Cb2fA7dn5Qsj3UsHVCaR2",
+  "type": "assistant",
+  "uuid": "0b888f38-8fe3-4e4f-b631-90a9d4ea3015",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KyDHLpKekVBTCnDQSGZN8X",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 720,
+      "cache_read_input_tokens": 22812,
+      "output_tokens": 77,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 720,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 77,
+          "cache_read_input_tokens": 22812,
+          "cache_creation_input_tokens": 720,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 720
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-14T14:58:40.420Z_
+
+<details><summary>↩ Tool result · `toolu_01FrMWXCfvDPDnQTYc2y3WFP`</summary>
+
+```text
+Web search results for query: "MoRE "Mixture-of-Retrieval Experts" multimodal knowledge 2025 arxiv"
+
+Links: [{"title":"Mixture-of-Retrieval Experts for Reasoning-Guided Multimodal Knowledge Exploitation","url":"https://arxiv.org/html/2505.22095"},{"title":"[2505.22095] Mixture-of-Retrieval Experts for Reasoning-Guided Multimodal Knowledge Exploitation","url":"https://arxiv.org/abs/2505.22095"}]
+
+I found the paper you're looking for! Here are the key details:
+
+**Title:** Mixture-of-Retrieval Experts for Reasoning-Guided Multimodal Knowledge Exploitation
+
+**Key Information:**
+- MoRE is a novel framework that enables MLLMs to collaboratively interact with diverse retrieval experts for more effective knowledge exploitation, and learns to dynamically determine which expert to engage with, conditioned on the evolving reasoning state.
+
+- Multimodal Retrieval-Augmented Generation (MRAG) has shown promise in mitigating hallucinations in MLLMs by incorporating external knowledge, but existing methods typically adhere to rigid retrieval paradigms by mimicking fixed retrieval trajectories and fail to fully exploit the knowledge of different retrieval experts through dynamic interaction.
+
+- The paper proposes Stepwise Group Relative Policy Optimization (Step-GRPO), which goes beyond sparse outcome-based supervision by encouraging MLLMs to interact with different experts.
+
+**Authors:** Chunyi Peng, Zhipeng Xu, Zhenghao Liu, Yishan Li, Yukun Yan, Shuo Wang, Yu Gu, Minghe Yu, Ge Yu, and Maosong Sun
+
+**ArXiv ID:** 2505.22095
+
+The paper is available at https://arxiv.org/html/2505.22095 and https://arxiv.org/abs/2505.22095
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0b888f38-8fe3-4e4f-b631-90a9d4ea3015",
+  "isSidechain": false,
+  "promptId": "0122c317-1b5e-4c60-85ae-e9c4b6853925",
+  "type": "user",
+  "uuid": "43ddb678-2bf7-4d1c-beba-a692213caff9",
+  "toolUseResult": {
+    "query": "MoRE \"Mixture-of-Retrieval Experts\" multimodal knowledge 2025 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01XcJmgbttZMjMYnxn5iukk4",
+        "content": [
+          {
+            "title": "Mixture-of-Retrieval Experts for Reasoning-Guided Multimodal Knowledge Exploitation",
+            "url": "https://arxiv.org/html/2505.22095"
+          },
+          {
+            "title": "[2505.22095] Mixture-of-Retrieval Experts for Reasoning-Guided Multimodal Knowledge Exploitation",
+            "url": "https://arxiv.org/abs/2505.22095"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here are the key details:\n\n**Title:** Mixture-of-Retrieval Experts for Reasoning-Guided Multimodal Knowledge Exploitation\n\n**Key Information:**\n- MoRE is a novel framework that enables MLLMs to collaboratively interact with diverse retrieval experts for more effective knowledge exploitation, and learns to dynamically determine which expert to engage with, conditioned on the evolving reasoning state.\n\n- Multimodal Retrieval-Augmented Generation (MRAG) has shown promise in mitigating hallucinations in MLLMs by incorporating external knowledge, but existing methods typically adhere to rigid retrieval paradigms by mimicking fixed retrieval trajectories and fail to fully exploit the knowledge of different retrieval experts through dynamic interaction.\n\n- The paper proposes Stepwise Group Relative Policy Optimization (Step-GRPO), which goes beyond sparse outcome-based supervision by encouraging MLLMs to interact with different experts.\n\n**Authors:** Chunyi Peng, Zhipeng Xu, Zhenghao Liu, Yishan Li, Yukun Yan, Shuo Wang, Yu Gu, Minghe Yu, Ge Yu, and Maosong Sun\n\n**ArXiv ID:** 2505.22095\n\nThe paper is available at https://arxiv.org/html/2505.22095 and https://arxiv.org/abs/2505.22095"
+    ],
+    "durationSeconds": 4.605862898
+  },
+  "sourceToolAssistantUUID": "0b888f38-8fe3-4e4f-b631-90a9d4ea3015",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-14T14:58:43.234Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016B4qjvqLtjGrBHDbwWPZMk`</summary>
+
+```json
+{
+  "query": "Search-R1 arxiv 2503.09516 retrieval augmented reasoning reinforcement learning"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "43ddb678-2bf7-4d1c-beba-a692213caff9",
+  "isSidechain": false,
+  "requestId": "req_011Cb2fAeQTDXZomspsGWb28",
+  "type": "assistant",
+  "uuid": "97000778-be61-41e3-8c70-ebfd953e650d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HqeF9A3cKLePrVhJPoJ1N3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 569,
+      "cache_read_input_tokens": 23532,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 569,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 23532,
+          "cache_creation_input_tokens": 569,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 569
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-14T14:58:50.334Z_
+
+<details><summary>↩ Tool result · `toolu_016B4qjvqLtjGrBHDbwWPZMk`</summary>
+
+```text
+Web search results for query: "Search-R1 arxiv 2503.09516 retrieval augmented reasoning reinforcement learning"
+
+Links: [{"title":"[2503.09516] Search-R1: Training LLMs to Reason and Leverage Search Engines with Reinforcement Learning","url":"https://arxiv.org/abs/2503.09516"},{"title":"Search-R1: Training LLMs to Reason and Leverage ...","url":"https://arxiv.org/pdf/2503.09516"},{"title":"GitHub - PeterGriffinJin/Search-R1: Search-R1: An Efficient, Scalable RL Training Framework for Reasoning & Search Engine Calling interleaved LLM based on veRL · GitHub","url":"https://github.com/PeterGriffinJin/Search-R1"},{"title":"ReSearch: Learning to Reason with Search for LLMs via Reinforcement Learning","url":"https://arxiv.org/html/2503.19470v3"},{"title":"Search-R1: Training LLMs to Reason and Leverage Search Engines with Reinforcement Learning | OpenReview","url":"https://openreview.net/forum?id=Rwhi91ideu"},{"title":"Search-R1: Training LLMs to Reason and Leverage Search Engines with Reinforcement Learning","url":"https://arxiv.org/html/2503.09516"},{"title":"SEARCH-R1: LLMs with RL for Search | PDF | Artificial Intelligence | Intelligence (AI) & Semantics","url":"https://www.scribd.com/document/856027894/2503-09516v2"},{"title":"Paper page - Search-R1: Training LLMs to Reason and Leverage Search Engines with Reinforcement Learning","url":"https://huggingface.co/papers/2503.09516"},{"title":"Search-R1: A Novel approach to reasoning and retrieval | by Rahul | Medium","url":"https://rahul-tawar.medium.com/search-r1-a-novel-approach-to-reasoning-and-retrieval-bcfcc2400351"},{"title":"RARE: Retrieval-Augmented Reasoning Modeling","url":"https://arxiv.org/html/2503.23513v1"}]
+
+Based on the search results, here's what I found about Search-R1 (arxiv 2503.09516):
+
+## Overview
+
+Search-R1 is an extension of reinforcement learning (RL) for reasoning frameworks where the LLM learns to autonomously generate (multiple) search queries during step-by-step reasoning with real-time retrieval.
+
+## Key Features
+
+Search-R1 optimizes LLM reasoning trajectories with multi-turn search interactions, leveraging retrieved token masking for stable RL training and a simple outcome-based reward function.
+
+## Performance
+
+Experiments on seven question-answering datasets show that Search-R1 improves performance by 41% (Qwen2.5-7B) and 20% (Qwen2.5-3B) over various RAG baselines under the same setting.
+
+## Technical Approach
+
+The framework explicitly incorporates retrieval interleaved reasoning via πθ(· | x; R), which denotes interleaved retrieval-and-reasoning. The evaluation was conducted on diverse datasets including HotpotQA, 2WikiMultiHopQA, Musique, and Bamboogle, among others, encompassing a diverse range of search with reasoning challenges.
+
+## Authors and Publication
+
+The paper is authored by Bowen Jin, Hansi Zeng, Zhenrui Yue, Jinsung Yoon, Sercan Arik, Dong Wang, Hamed Zamani, and Jiawei Han, and was published as a conference paper at COLM 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "97000778-be61-41e3-8c70-ebfd953e650d",
+  "isSidechain": false,
+  "promptId": "0122c317-1b5e-4c60-85ae-e9c4b6853925",
+  "type": "user",
+  "uuid": "d5579f51-8b53-4118-bfe8-dfb76ed3c22e",
+  "toolUseResult": {
+    "query": "Search-R1 arxiv 2503.09516 retrieval augmented reasoning reinforcement learning",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VDmXnDtRuTxwFV6Ng2myVw",
+        "content": [
+          {
+            "title": "[2503.09516] Search-R1: Training LLMs to Reason and Leverage Search Engines with Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2503.09516"
+          },
+          {
+            "title": "Search-R1: Training LLMs to Reason and Leverage ...",
+            "url": "https://arxiv.org/pdf/2503.09516"
+          },
+          {
+            "title": "GitHub - PeterGriffinJin/Search-R1: Search-R1: An Efficient, Scalable RL Training Framework for Reasoning & Search Engine Calling interleaved LLM based on veRL · GitHub",
+            "url": "https://github.com/PeterGriffinJin/Search-R1"
+          },
+          {
+            "title": "ReSearch: Learning to Reason with Search for LLMs via Reinforcement Learning",
+            "url": "https://arxiv.org/html/2503.19470v3"
+          },
+          {
+            "title": "Search-R1: Training LLMs to Reason and Leverage Search Engines with Reinforcement Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=Rwhi91ideu"
+          },
+          {
+            "title": "Search-R1: Training LLMs to Reason and Leverage Search Engines with Reinforcement Learning",
+            "url": "https://arxiv.org/html/2503.09516"
+          },
+          {
+            "title": "SEARCH-R1: LLMs with RL for Search | PDF | Artificial Intelligence | Intelligence (AI) & Semantics",
+            "url": "https://www.scribd.com/document/856027894/2503-09516v2"
+          },
+          {
+            "title": "Paper page - Search-R1: Training LLMs to Reason and Leverage Search Engines with Reinforcement Learning",
+            "url": "https://huggingface.co/papers/2503.09516"
+          },
+          {
+            "title": "Search-R1: A Novel approach to reasoning and retrieval | by Rahul | Medium",
+            "url": "https://rahul-tawar.medium.com/search-r1-a-novel-approach-to-reasoning-and-retrieval-bcfcc2400351"
+          },
+          {
+            "title": "RARE: Retrieval-Augmented Reasoning Modeling",
+            "url": "https://arxiv.org/html/2503.23513v1"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about Search-R1 (arxiv 2503.09516):\n\n## Overview\n\nSearch-R1 is an extension of reinforcement learning (RL) for reasoning frameworks where the LLM learns to autonomously generate (multiple) search queries during step-by-step reasoning with real-time retrieval.\n\n## Key Features\n\nSearch-R1 optimizes LLM reasoning trajectories with multi-turn search interactions, leveraging retrieved token masking for stable RL training and a simple outcome-based reward function.\n\n## Performance\n\nExperiments on seven question-answering datasets show that Search-R1 improves performance by 41% (Qwen2.5-7B) and 20% (Qwen2.5-3B) over various RAG baselines under the same setting.\n\n## Technical Approach\n\nThe framework explicitly incorporates retrieval interleaved reasoning via πθ(· | x; R), which denotes interleaved retrieval-and-reasoning. The evaluation was conducted on diverse datasets including HotpotQA, 2WikiMultiHopQA, Musique, and Bamboogle, among others, encompassing a diverse range of search with reasoning challenges.\n\n## Authors and Publication\n\nThe paper is authored by Bowen Jin, Hansi Zeng, Zhenrui Yue, Jinsung Yoon, Sercan Arik, Dong Wang, Hamed Zamani, and Jiawei Han, and was published as a conference paper at COLM 2025."
+    ],
+    "durationSeconds": 7.0962120839999985
+  },
+  "sourceToolAssistantUUID": "97000778-be61-41e3-8c70-ebfd953e650d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-14T14:58:55.416Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012wGM9ypD5DxRyKoGYBkTYS`</summary>
+
+```json
+{
+  "query": "HopRAG arxiv 2502.12442 multi-hop retrieval augmented generation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d5579f51-8b53-4118-bfe8-dfb76ed3c22e",
+  "isSidechain": false,
+  "requestId": "req_011Cb2fBNn8g9ZwZN5LkHVg3",
+  "type": "assistant",
+  "uuid": "7f89398f-c5e5-4d69-ab1e-0ea675cfd477",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FZAriYdF2TgjbSvRLPYc4z",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1008,
+      "cache_read_input_tokens": 24101,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1008,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 24101,
+          "cache_creation_input_tokens": 1008,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1008
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 28_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-14 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Step-Type-Con…",
+  "leafUuid": "7f89398f-c5e5-4d69-ab1e-0ea675cfd477",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 29_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Step-type-conditioned retrieval routing for multi-hop QA",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378"
+}
+```
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-14T14:59:02.318Z_
+
+<details><summary>↩ Tool result · `toolu_012wGM9ypD5DxRyKoGYBkTYS`</summary>
+
+```text
+Web search results for query: "HopRAG arxiv 2502.12442 multi-hop retrieval augmented generation"
+
+Links: [{"title":"[2502.12442] HopRAG: Multi-Hop Reasoning for Logic-Aware Retrieval-Augmented Generation","url":"https://arxiv.org/abs/2502.12442"},{"title":"HopRAG: Multi-Hop Reasoning for Logic-Aware Retrieval-Augmented Generation","url":"https://arxiv.org/html/2502.12442v1"},{"title":"Paper page - HopRAG: Multi-Hop Reasoning for Logic-Aware Retrieval-Augmented Generation","url":"https://huggingface.co/papers/2502.12442"},{"title":"HopRAG: Multi-Hop Reasoning for Logic-Aware Retrieval-Augmented Generation | alphaXiv","url":"https://www.alphaxiv.org/overview/2502.12442/view"},{"title":"HopRAG: Multi-Hop Reasoning for Logic-Aware Retrieval-Augmented Generation","url":"https://lineagesystems.com/assets/HopRAG.pdf"},{"title":"open source AI","url":"https://bytez.com/docs/arxiv/2502.12442/paper"},{"title":"GitHub - LIU-Hao-2002/HopRAG","url":"https://github.com/LIU-Hao-2002/HopRAG"},{"title":"Sumit on X: \"HopRAG: Multi-Hop Reasoning for Logic-Aware Retrieval-Augmented Generation Introduces a RAG framework that connects documents through graph-structured knowledge exploration to improve retrieval accuracy with pseudo-queries. 📝https://t.co/5LBjsN53cF 👨🏽‍💻https://t.co/G3tVxtJGb0\" / X","url":"https://x.com/_reachsumit/status/1892064277386711367"},{"title":"MultiHop-RAG: Benchmarking Retrieval-Augmented Generation for Multi-Hop Queries | OpenReview","url":"https://openreview.net/forum?id=t4eB3zYWBK"},{"title":"[2401.15391] MultiHop-RAG: Benchmarking Retrieval-Augmented Generation for Multi-Hop Queries","url":"https://arxiv.org/abs/2401.15391"}]
+
+Based on the search results, here's what I found about HopRAG (arxiv 2502.12442):
+
+## Overview
+
+HopRAG is a novel RAG framework that augments retrieval with logical reasoning through graph-structured knowledge exploration. It was accepted to ACL Findings 2025.
+
+## Key Components
+
+**Indexing Phase:** During indexing, HopRAG constructs a passage graph, with text chunks as vertices and logical connections established via LLM-generated pseudo-queries as edges.
+
+**Retrieval Mechanism:** During retrieval, it employs a retrieve-reason-prune mechanism: starting with lexically or semantically similar passages, the system explores multi-hop neighbors guided by pseudo-queries and LLM reasoning to identify truly relevant ones.
+
+## Problem it Addresses
+
+Retrieval-Augmented Generation (RAG) systems often struggle with imperfect retrieval, as traditional retrievers focus on lexical or semantic similarity rather than logical relevance.
+
+## Performance Results
+
+Extensive experiments demonstrate HopRAG's superiority, achieving 76.78% higher answer accuracy and 65.07% improved retrieval F1 score compared to conventional methods.
+
+## Implementation
+
+HopRAG is a novel Retrieval-Augmented Generation (RAG) framework that leverages graph databases to enhance multi-hop reasoning. Instead of treating documents as a flat collection, HopRAG models them as a graph of interconnected text chunks (nodes) within a Neo4j database. This structure allows for more sophisticated, logic-aware retrieval paths, enabling Large Language Models (LLMs) to answer complex questions that require synthesizing information from multiple sources.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7f89398f-c5e5-4d69-ab1e-0ea675cfd477",
+  "isSidechain": false,
+  "promptId": "0122c317-1b5e-4c60-85ae-e9c4b6853925",
+  "type": "user",
+  "uuid": "99ee91b3-37e5-459c-858c-42ad47adc6bc",
+  "toolUseResult": {
+    "query": "HopRAG arxiv 2502.12442 multi-hop retrieval augmented generation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_015DG1r7d5jvJM2oMQhkPfoB",
+        "content": [
+          {
+            "title": "[2502.12442] HopRAG: Multi-Hop Reasoning for Logic-Aware Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/abs/2502.12442"
+          },
+          {
+            "title": "HopRAG: Multi-Hop Reasoning for Logic-Aware Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/html/2502.12442v1"
+          },
+          {
+            "title": "Paper page - HopRAG: Multi-Hop Reasoning for Logic-Aware Retrieval-Augmented Generation",
+            "url": "https://huggingface.co/papers/2502.12442"
+          },
+          {
+            "title": "HopRAG: Multi-Hop Reasoning for Logic-Aware Retrieval-Augmented Generation | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2502.12442/view"
+          },
+          {
+            "title": "HopRAG: Multi-Hop Reasoning for Logic-Aware Retrieval-Augmented Generation",
+            "url": "https://lineagesystems.com/assets/HopRAG.pdf"
+          },
+          {
+            "title": "open source AI",
+            "url": "https://bytez.com/docs/arxiv/2502.12442/paper"
+          },
+          {
+            "title": "GitHub - LIU-Hao-2002/HopRAG",
+            "url": "https://github.com/LIU-Hao-2002/HopRAG"
+          },
+          {
+            "title": "Sumit on X: \"HopRAG: Multi-Hop Reasoning for Logic-Aware Retrieval-Augmented Generation Introduces a RAG framework that connects documents through graph-structured knowledge exploration to improve retrieval accuracy with pseudo-queries. 📝https://t.co/5LBjsN53cF 👨🏽‍💻https://t.co/G3tVxtJGb0\" / X",
+            "url": "https://x.com/_reachsumit/status/1892064277386711367"
+          },
+          {
+            "title": "MultiHop-RAG: Benchmarking Retrieval-Augmented Generation for Multi-Hop Queries | OpenReview",
+            "url": "https://openreview.net/forum?id=t4eB3zYWBK"
+          },
+          {
+            "title": "[2401.15391] MultiHop-RAG: Benchmarking Retrieval-Augmented Generation for Multi-Hop Queries",
+            "url": "https://arxiv.org/abs/2401.15391"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about HopRAG (arxiv 2502.12442):\n\n## Overview\n\nHopRAG is a novel RAG framework that augments retrieval with logical reasoning through graph-structured knowledge exploration. It was accepted to ACL Findings 2025.\n\n## Key Components\n\n**Indexing Phase:** During indexing, HopRAG constructs a passage graph, with text chunks as vertices and logical connections established via LLM-generated pseudo-queries as edges.\n\n**Retrieval Mechanism:** During retrieval, it employs a retrieve-reason-prune mechanism: starting with lexically or semantically similar passages, the system explores multi-hop neighbors guided by pseudo-queries and LLM reasoning to identify truly relevant ones.\n\n## Problem it Addresses\n\nRetrieval-Augmented Generation (RAG) systems often struggle with imperfect retrieval, as traditional retrievers focus on lexical or semantic similarity rather than logical relevance.\n\n## Performance Results\n\nExtensive experiments demonstrate HopRAG's superiority, achieving 76.78% higher answer accuracy and 65.07% improved retrieval F1 score compared to conventional methods.\n\n## Implementation\n\nHopRAG is a novel Retrieval-Augmented Generation (RAG) framework that leverages graph databases to enhance multi-hop reasoning. Instead of treating documents as a flat collection, HopRAG models them as a graph of interconnected text chunks (nodes) within a Neo4j database. This structure allows for more sophisticated, logic-aware retrieval paths, enabling Large Language Models (LLMs) to answer complex questions that require synthesizing information from multiple sources."
+    ],
+    "durationSeconds": 6.897657839000007
+  },
+  "sourceToolAssistantUUID": "7f89398f-c5e5-4d69-ab1e-0ea675cfd477",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 31 · 2026-05-14T14:59:02.326Z_
+
+```json
+{
+  "parentUuid": "99ee91b3-37e5-459c-858c-42ad47adc6bc",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "7d377b61-6652-4884-9be4-8036ec0b264b",
+  "timestamp": "2026-05-14T14:59:02.326Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-14T14:59:04.802Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01YWacPi1iCUNDAH6cvTU2Lw`</summary>
+
+```json
+{
+  "query": "best open source LLM 2026 SOTA language model leaderboard"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7d377b61-6652-4884-9be4-8036ec0b264b",
+  "isSidechain": false,
+  "requestId": "req_011Cb2fCG2rQBKoTe4AmNMTx",
+  "type": "assistant",
+  "uuid": "979dbb0b-2e0d-4c21-a69d-48280e200510",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CqXcscwTkaZdcpCz4gFj8B",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1177,
+      "cache_read_input_tokens": 25109,
+      "output_tokens": 68,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1177,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 68,
+          "cache_read_input_tokens": 25109,
+          "cache_creation_input_tokens": 1177,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1177
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-14T14:59:13.181Z_
+
+<details><summary>↩ Tool result · `toolu_01YWacPi1iCUNDAH6cvTU2Lw`</summary>
+
+```text
+Web search results for query: "best open source LLM 2026 SOTA language model leaderboard"
+
+Links: [{"title":"Best Open Source LLM Leaderboard 2026","url":"https://onyx.app/open-llm-leaderboard"},{"title":"Open LLM Leaderboard 2026 - Compare Open Source LLM Rankings","url":"https://llm-stats.com/leaderboards/open-llm-leaderboard"},{"title":"LLM Leaderboard 2026 — Compare Top AI Models - Vellum","url":"https://www.vellum.ai/llm-leaderboard"},{"title":"Open Source LLM Leaderboard 2026 — Compare Open-Weight Models","url":"https://www.vellum.ai/open-llm-leaderboard"},{"title":"LLM Benchmark Leaderboard 2026: Coding, Math, Reasoning and Agents | CodeSOTA | CodeSOTA","url":"https://www.codesota.com/llm"},{"title":"Best Open Source LLM 2026 Ranking + Ollama Guide","url":"https://whatllm.org/best-open-source-llm"},{"title":"Open LLM Leaderboard - a Hugging Face Space by open-llm-leaderboard","url":"https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard"},{"title":"Top Open-Source LLMs 2026: The Best Models & Comparison","url":"https://kairntech.com/blog/articles/top-open-source-llm-models-in-2026/"},{"title":"Open Source LLM Leaderboard 2026: Rankings, Benchmarks & the Best Models Right Now &#045; VERTU® Official Site","url":"https://vertu.com/lifestyle/open-source-llm-leaderboard-2026-rankings-benchmarks-the-best-models-right-now"},{"title":"The Best Open-Source LLMs in 2026","url":"https://www.bentoml.com/blog/navigating-the-world-of-open-source-large-language-models"}]
+
+Based on the latest 2026 open source LLM leaderboard data, here are the key findings:
+
+## Top Open Source LLMs in 2026
+
+**Leading Models:**
+
+S-tier models like GLM-4.7, Kimi K2.5, and MiniMax M2.5 are matching or exceeding proprietary model performance on specific benchmarks.
+
+**Best Overall Performance:**
+
+GLM-4.7 is the highest-ranked model on the leaderboard for most people's practical needs, with a HumanEval score of 94.2 — the best of any model listed — signaling exceptional code generation ability. With a 200K context window and strong instruction-following (IFEval: 88.0), GLM-4.7 is arguably the most well-rounded open-source model available as of early 2026.
+
+**Specialized Leaders:**
+
+- **Coding:** Kimi K2.6 is the strongest coding-oriented open source model. Its HumanEval score of 99.0 is the highest of any model tracked — essentially near-perfect on standard coding evaluation.
+
+- **Cost-Effective:** DeepSeek V4 Flash is the most economical current pick for cheap API access.
+
+## Key Benchmarking Platforms
+
+Several comprehensive leaderboards track open source LLM performance: Vellum's open source LLM leaderboard compares open-weight models like Llama, DeepSeek, Qwen, and Kimi with updated rankings across reasoning, coding, math, and multilingual tasks. Hugging Face's Open LLM Leaderboard lets you explore and compare the performance of open‑source large language models on a range of tests such as IFEval, BBH, MATH, GPQA, MUSR, and MMLU‑PRO.
+
+## Overall Gap with Proprietary Models
+
+According to Epoch AI, open-weight models now trail the SOTA proprietary models by only about three months on average.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "979dbb0b-2e0d-4c21-a69d-48280e200510",
+  "isSidechain": false,
+  "promptId": "0122c317-1b5e-4c60-85ae-e9c4b6853925",
+  "type": "user",
+  "uuid": "3e2cbfd7-41c7-4c50-ba01-24e334c34081",
+  "toolUseResult": {
+    "query": "best open source LLM 2026 SOTA language model leaderboard",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014cZXSu8DxuzMstjZUSZZAX",
+        "content": [
+          {
+            "title": "Best Open Source LLM Leaderboard 2026",
+            "url": "https://onyx.app/open-llm-leaderboard"
+          },
+          {
+            "title": "Open LLM Leaderboard 2026 - Compare Open Source LLM Rankings",
+            "url": "https://llm-stats.com/leaderboards/open-llm-leaderboard"
+          },
+          {
+            "title": "LLM Leaderboard 2026 — Compare Top AI Models - Vellum",
+            "url": "https://www.vellum.ai/llm-leaderboard"
+          },
+          {
+            "title": "Open Source LLM Leaderboard 2026 — Compare Open-Weight Models",
+            "url": "https://www.vellum.ai/open-llm-leaderboard"
+          },
+          {
+            "title": "LLM Benchmark Leaderboard 2026: Coding, Math, Reasoning and Agents | CodeSOTA | CodeSOTA",
+            "url": "https://www.codesota.com/llm"
+          },
+          {
+            "title": "Best Open Source LLM 2026 Ranking + Ollama Guide",
+            "url": "https://whatllm.org/best-open-source-llm"
+          },
+          {
+            "title": "Open LLM Leaderboard - a Hugging Face Space by open-llm-leaderboard",
+            "url": "https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard"
+          },
+          {
+            "title": "Top Open-Source LLMs 2026: The Best Models & Comparison",
+            "url": "https://kairntech.com/blog/articles/top-open-source-llm-models-in-2026/"
+          },
+          {
+            "title": "Open Source LLM Leaderboard 2026: Rankings, Benchmarks & the Best Models Right Now &#045; VERTU® Official Site",
+            "url": "https://vertu.com/lifestyle/open-source-llm-leaderboard-2026-rankings-benchmarks-the-best-models-right-now"
+          },
+          {
+            "title": "The Best Open-Source LLMs in 2026",
+            "url": "https://www.bentoml.com/blog/navigating-the-world-of-open-source-large-language-models"
+          }
+        ]
+      },
+      "Based on the latest 2026 open source LLM leaderboard data, here are the key findings:\n\n## Top Open Source LLMs in 2026\n\n**Leading Models:**\n\nS-tier models like GLM-4.7, Kimi K2.5, and MiniMax M2.5 are matching or exceeding proprietary model performance on specific benchmarks.\n\n**Best Overall Performance:**\n\nGLM-4.7 is the highest-ranked model on the leaderboard for most people's practical needs, with a HumanEval score of 94.2 — the best of any model listed — signaling exceptional code generation ability. With a 200K context window and strong instruction-following (IFEval: 88.0), GLM-4.7 is arguably the most well-rounded open-source model available as of early 2026.\n\n**Specialized Leaders:**\n\n- **Coding:** Kimi K2.6 is the strongest coding-oriented open source model. Its HumanEval score of 99.0 is the highest of any model tracked — essentially near-perfect on standard coding evaluation.\n\n- **Cost-Effective:** DeepSeek V4 Flash is the most economical current pick for cheap API access.\n\n## Key Benchmarking Platforms\n\nSeveral comprehensive leaderboards track open source LLM performance: Vellum's open source LLM leaderboard compares open-weight models like Llama, DeepSeek, Qwen, and Kimi with updated rankings across reasoning, coding, math, and multilingual tasks. Hugging Face's Open LLM Leaderboard lets you explore and compare the performance of open‑source large language models on a range of tests such as IFEval, BBH, MATH, GPQA, MUSR, and MMLU‑PRO.\n\n## Overall Gap with Proprietary Models\n\nAccording to Epoch AI, open-weight models now trail the SOTA proprietary models by only about three months on average."
+    ],
+    "durationSeconds": 8.37441077100001
+  },
+  "sourceToolAssistantUUID": "979dbb0b-2e0d-4c21-a69d-48280e200510",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-14T14:59:16.452Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01G9MAn2XRfHrKF3Ye7GRvUf`</summary>
+
+```json
+{
+  "query": "EMNLP 2026 submission deadline call for papers"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3e2cbfd7-41c7-4c50-ba01-24e334c34081",
+  "isSidechain": false,
+  "requestId": "req_011Cb2fD4hFgAfSjsBPD2uH4",
+  "type": "assistant",
+  "uuid": "3e9297b6-5eaa-4a2f-9ef5-dddb0194b654",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JKw6wjW3VvHRSSE3vmSFeZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1089,
+      "cache_read_input_tokens": 26286,
+      "output_tokens": 65,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1089,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 65,
+          "cache_read_input_tokens": 26286,
+          "cache_creation_input_tokens": 1089,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1089
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-14T14:59:22.153Z_
+
+<details><summary>↩ Tool result · `toolu_01G9MAn2XRfHrKF3Ye7GRvUf`</summary>
+
+```text
+Web search results for query: "EMNLP 2026 submission deadline call for papers"
+
+Links: [{"title":"Call for Main Conference Papers - EMNLP 2026","url":"https://2026.emnlp.org/calls/main_conference_papers/"},{"title":"emnlp 2026 - AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/conference/?id=emnlp26"},{"title":"Update EMNLP 2026 conference dates and deadlines · huggingface/ai-deadlines at 2754f67","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/2754f67c0550847973789522a0a082dd5443b5c0"},{"title":"EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X","url":"https://x.com/emnlpmeeting/status/2029508292637061462"},{"title":"EMNLP 2026 Conference | OpenReview","url":"https://openreview.net/group?id=EMNLP%2F2026%2FConference"},{"title":"EMNLP 2026 : The 2026 Conference on Empirical Methods in N","url":"https://callforpaper.org/call-for-papers-emnlp-2026"},{"title":"EMNLP 2026 (@emnlpmeeting) / Posts / X","url":"https://x.com/emnlpmeeting"},{"title":"EMNLP 2026 Call for Papers — Official Deadlines & Important Dates | PaperPilot","url":"https://www.getpaperpilot.com/deadlines/emnlp-2026.html"},{"title":"2026 *ACL Conference Dates | Computational Linguistics","url":"https://submissions.cljournal.org/index.php/cljournal/announcement/view/14"},{"title":"Call for workshops: EMNLP & AACL","url":"https://groups.google.com/g/ml-news/c/W-fucfhVto4"}]
+
+Based on the search results, here are the key details for the EMNLP 2026 Call for Papers:
+
+## Submission Information
+
+EMNLP 2026 invites the submission of long and short papers featuring substantial, original, and unpublished research on empirical methods for Natural Language Processing.
+
+## Key Deadlines
+
+The ARR submission deadline for long & short papers is May 25, 2026, and the reviewer registration deadline for all authors is May 27, 2026. All deadlines are 11:59PM UTC-12:00 ("anywhere on Earth").
+
+Additional important dates include:
+- Author response and author-reviewer discussion: July 7 - July 13, 2026
+- Meta review released: July 30, 2026
+
+## Conference Details
+
+The conference will be held in Budapest, Hungary, October 24 - 29, 2026.
+
+## Special Theme
+
+The EMNLP 2026 special theme invites papers that articulate, test, and advance visions for NLP in this era, welcoming work that reflects on the mission(s) of NLP research, reframes research goals, proposes new evaluation and scientific methodologies, and builds bridges across multiple disciplines.
+
+The official Call for Papers can be found at https://2026.emnlp.org/calls/main_conference_papers/
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3e9297b6-5eaa-4a2f-9ef5-dddb0194b654",
+  "isSidechain": false,
+  "promptId": "0122c317-1b5e-4c60-85ae-e9c4b6853925",
+  "type": "user",
+  "uuid": "d5ccb60a-8ae8-434a-b536-525b1d977420",
+  "toolUseResult": {
+    "query": "EMNLP 2026 submission deadline call for papers",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DXF7mVAuzqku56ietzdBjv",
+        "content": [
+          {
+            "title": "Call for Main Conference Papers - EMNLP 2026",
+            "url": "https://2026.emnlp.org/calls/main_conference_papers/"
+          },
+          {
+            "title": "emnlp 2026 - AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/conference/?id=emnlp26"
+          },
+          {
+            "title": "Update EMNLP 2026 conference dates and deadlines · huggingface/ai-deadlines at 2754f67",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/2754f67c0550847973789522a0a082dd5443b5c0"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X",
+            "url": "https://x.com/emnlpmeeting/status/2029508292637061462"
+          },
+          {
+            "title": "EMNLP 2026 Conference | OpenReview",
+            "url": "https://openreview.net/group?id=EMNLP%2F2026%2FConference"
+          },
+          {
+            "title": "EMNLP 2026 : The 2026 Conference on Empirical Methods in N",
+            "url": "https://callforpaper.org/call-for-papers-emnlp-2026"
+          },
+          {
+            "title": "EMNLP 2026 (@emnlpmeeting) / Posts / X",
+            "url": "https://x.com/emnlpmeeting"
+          },
+          {
+            "title": "EMNLP 2026 Call for Papers — Official Deadlines & Important Dates | PaperPilot",
+            "url": "https://www.getpaperpilot.com/deadlines/emnlp-2026.html"
+          },
+          {
+            "title": "2026 *ACL Conference Dates | Computational Linguistics",
+            "url": "https://submissions.cljournal.org/index.php/cljournal/announcement/view/14"
+          },
+          {
+            "title": "Call for workshops: EMNLP & AACL",
+            "url": "https://groups.google.com/g/ml-news/c/W-fucfhVto4"
+          }
+        ]
+      },
+      "Based on the search results, here are the key details for the EMNLP 2026 Call for Papers:\n\n## Submission Information\n\nEMNLP 2026 invites the submission of long and short papers featuring substantial, original, and unpublished research on empirical methods for Natural Language Processing.\n\n## Key Deadlines\n\nThe ARR submission deadline for long & short papers is May 25, 2026, and the reviewer registration deadline for all authors is May 27, 2026. All deadlines are 11:59PM UTC-12:00 (\"anywhere on Earth\").\n\nAdditional important dates include:\n- Author response and author-reviewer discussion: July 7 - July 13, 2026\n- Meta review released: July 30, 2026\n\n## Conference Details\n\nThe conference will be held in Budapest, Hungary, October 24 - 29, 2026.\n\n## Special Theme\n\nThe EMNLP 2026 special theme invites papers that articulate, test, and advance visions for NLP in this era, welcoming work that reflects on the mission(s) of NLP research, reframes research goals, proposes new evaluation and scientific methodologies, and builds bridges across multiple disciplines.\n\nThe official Call for Papers can be found at https://2026.emnlp.org/calls/main_conference_papers/"
+    ],
+    "durationSeconds": 5.674436826999997
+  },
+  "sourceToolAssistantUUID": "3e9297b6-5eaa-4a2f-9ef5-dddb0194b654",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-14T14:59:29.447Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01EuWFR846xZJc59SPiZX8wX`</summary>
+
+```json
+{
+  "query": "NeurIPS 2026 submission deadline call for papers"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d5ccb60a-8ae8-434a-b536-525b1d977420",
+  "isSidechain": false,
+  "requestId": "req_011Cb2fDiwPUadTLjWhz8gHU",
+  "type": "assistant",
+  "uuid": "5dc1839e-ba52-4cb9-a992-8de71ce5a378",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NfKPkNd1SGtaYbxFeSqYFz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1030,
+      "cache_read_input_tokens": 27375,
+      "output_tokens": 64,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1030,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 64,
+          "cache_read_input_tokens": 27375,
+          "cache_creation_input_tokens": 1030,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1030
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-14T14:59:36.901Z_
+
+<details><summary>↩ Tool result · `toolu_01EuWFR846xZJc59SPiZX8wX`</summary>
+
+```text
+Web search results for query: "NeurIPS 2026 submission deadline call for papers"
+
+Links: [{"title":"Call for Papers 2026","url":"https://neurips.cc/Conferences/2026/CallForPapers"},{"title":"NeurIPS 2026 Evaluations & Datasets Track Call for Papers","url":"https://neurips.cc/Conferences/2026/CallForEvaluationsDatasets"},{"title":"2026 Dates and Deadlines","url":"https://neurips.cc/Conferences/2026/Dates"},{"title":"NeurIPS Newsletter – April 2026 – NeurIPS Blog","url":"https://blog.neurips.cc/2026/04/22/neurips-newsletter-april-2026/"},{"title":"NeurIPS 2026 Call For Competitions","url":"https://neurips.cc/Conferences/2026/CallForCompetitions"},{"title":"2026 Conference – NeurIPS Blog","url":"https://blog.neurips.cc/category/2026-conference/"},{"title":"Update NeurIPS 2025 and 2026 conference data · huggingface/ai-deadlines at 99f16a7","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/99f16a754ac0ed468034709b8cd393e594791a01"},{"title":"NeurIPS 2026 Call for Position Papers","url":"https://neurips.cc/Conferences/2026/CallForPositionPapers"},{"title":"NeurIPS/ICLR/ICML Journal-to-Conference Track","url":"https://neurips.cc/public/JournalToConference"},{"title":"2026 Conference","url":"https://neurips.cc/"}]
+
+Based on the search results, here's the key information about NeurIPS 2026 submission deadlines:
+
+## Main Track & Other Tracks
+
+NeurIPS 2026 is now accepting submissions as of April 15, 2026. Abstracts are due by May 4th, 2026, with full papers due on May 6th, 2026, Anywhere On Earth (AOE).
+
+## Track Options
+
+The different tracks (main, evaluations and datasets, position papers) have different calls for papers, different submission portals, and possibly different timelines.
+
+- **Main Track**: Main Track submissions can select a Contribution Type, including General, Theory, Use-Inspired, Concept & Feasibility, and Negative Results.
+
+- **Evaluations & Datasets Track**: The deadlines are the same as for the main and Papers for Position tracks (PPT), with abstracts due by May 4th, 2026 (AOE), and full papers due on May 6th, 2026 (AOE).
+
+- **Position Paper Track**: The deadlines are the same as for the main track, with abstracts due by May 4th, 2026 (AOE), and full papers due on May 6th, 2026 (AOE).
+
+## Conference Dates
+
+The Fortieth annual conference is held Sun. Dec 6th through Sat the 12th, 2026 at the International Convention Centre.
+
+## Important Note
+
+All authors must have an OpenReview profile when submitting. We will be unable to make any exception for submissions from accounts initiated less than two weeks prior to the deadline.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5dc1839e-ba52-4cb9-a992-8de71ce5a378",
+  "isSidechain": false,
+  "promptId": "0122c317-1b5e-4c60-85ae-e9c4b6853925",
+  "type": "user",
+  "uuid": "fcf293e8-c667-4f33-8814-4fd6574e62ce",
+  "toolUseResult": {
+    "query": "NeurIPS 2026 submission deadline call for papers",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Bp99snbrdD3NTgmJXoT3rT",
+        "content": [
+          {
+            "title": "Call for Papers 2026",
+            "url": "https://neurips.cc/Conferences/2026/CallForPapers"
+          },
+          {
+            "title": "NeurIPS 2026 Evaluations & Datasets Track Call for Papers",
+            "url": "https://neurips.cc/Conferences/2026/CallForEvaluationsDatasets"
+          },
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://neurips.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "NeurIPS Newsletter – April 2026 – NeurIPS Blog",
+            "url": "https://blog.neurips.cc/2026/04/22/neurips-newsletter-april-2026/"
+          },
+          {
+            "title": "NeurIPS 2026 Call For Competitions",
+            "url": "https://neurips.cc/Conferences/2026/CallForCompetitions"
+          },
+          {
+            "title": "2026 Conference – NeurIPS Blog",
+            "url": "https://blog.neurips.cc/category/2026-conference/"
+          },
+          {
+            "title": "Update NeurIPS 2025 and 2026 conference data · huggingface/ai-deadlines at 99f16a7",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/99f16a754ac0ed468034709b8cd393e594791a01"
+          },
+          {
+            "title": "NeurIPS 2026 Call for Position Papers",
+            "url": "https://neurips.cc/Conferences/2026/CallForPositionPapers"
+          },
+          {
+            "title": "NeurIPS/ICLR/ICML Journal-to-Conference Track",
+            "url": "https://neurips.cc/public/JournalToConference"
+          },
+          {
+            "title": "2026 Conference",
+            "url": "https://neurips.cc/"
+          }
+        ]
+      },
+      "Based on the search results, here's the key information about NeurIPS 2026 submission deadlines:\n\n## Main Track & Other Tracks\n\nNeurIPS 2026 is now accepting submissions as of April 15, 2026. Abstracts are due by May 4th, 2026, with full papers due on May 6th, 2026, Anywhere On Earth (AOE).\n\n## Track Options\n\nThe different tracks (main, evaluations and datasets, position papers) have different calls for papers, different submission portals, and possibly different timelines.\n\n- **Main Track**: Main Track submissions can select a Contribution Type, including General, Theory, Use-Inspired, Concept & Feasibility, and Negative Results.\n\n- **Evaluations & Datasets Track**: The deadlines are the same as for the main and Papers for Position tracks (PPT), with abstracts due by May 4th, 2026 (AOE), and full papers due on May 6th, 2026 (AOE).\n\n- **Position Paper Track**: The deadlines are the same as for the main track, with abstracts due by May 4th, 2026 (AOE), and full papers due on May 6th, 2026 (AOE).\n\n## Conference Dates\n\nThe Fortieth annual conference is held Sun. Dec 6th through Sat the 12th, 2026 at the International Convention Centre.\n\n## Important Note\n\nAll authors must have an OpenReview profile when submitting. We will be unable to make any exception for submissions from accounts initiated less than two weeks prior to the deadline."
+    ],
+    "durationSeconds": 7.4501469300000025
+  },
+  "sourceToolAssistantUUID": "5dc1839e-ba52-4cb9-a992-8de71ce5a378",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38 · 2026-05-14T14:59:41.707Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+NeurIPS 2026 deadline was May 6 - that's already passed (today is May 14, 2026). So NeurIPS 2026 is not eligible.
+
+Let me check more venues - ICLR 2027, ACL 2026, AAAI 2027, COLING 2026, etc.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fcf293e8-c667-4f33-8814-4fd6574e62ce",
+  "isSidechain": false,
+  "requestId": "req_011Cb2fEptM51HHdRhiRALw5",
+  "type": "assistant",
+  "uuid": "fa88d16b-d450-4f70-8a5f-5b41dd66f5d0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CHineHyGNg9QUHbXy8iPHA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 898,
+      "cache_read_input_tokens": 28405,
+      "output_tokens": 184,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 898,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 184,
+          "cache_read_input_tokens": 28405,
+          "cache_creation_input_tokens": 898,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 898
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39 · 2026-05-14T14:59:42.353Z_
+
+NeurIPS 2026 deadline (May 6) has passed. Let me check other venues and continue research.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fa88d16b-d450-4f70-8a5f-5b41dd66f5d0",
+  "isSidechain": false,
+  "requestId": "req_011Cb2fEptM51HHdRhiRALw5",
+  "type": "assistant",
+  "uuid": "9bfbc8ea-d0a9-4b0d-88d9-52ba4bd5653f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CHineHyGNg9QUHbXy8iPHA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 898,
+      "cache_read_input_tokens": 28405,
+      "output_tokens": 184,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 898,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 184,
+          "cache_read_input_tokens": 28405,
+          "cache_creation_input_tokens": 898,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 898
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-14T14:59:42.542Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01SbkPax29FyKVcqzeALJ6kF`</summary>
+
+```json
+{
+  "query": "ACL 2026 submission deadline ARR"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9bfbc8ea-d0a9-4b0d-88d9-52ba4bd5653f",
+  "isSidechain": false,
+  "requestId": "req_011Cb2fEptM51HHdRhiRALw5",
+  "type": "assistant",
+  "uuid": "598fcdb1-51e8-43a5-9ab9-52018796b0fb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CHineHyGNg9QUHbXy8iPHA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 898,
+      "cache_read_input_tokens": 28405,
+      "output_tokens": 184,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 898,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 184,
+          "cache_read_input_tokens": 28405,
+          "cache_creation_input_tokens": 898,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 898
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 41_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-14 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Step-Type-Con…",
+  "leafUuid": "598fcdb1-51e8-43a5-9ab9-52018796b0fb",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 42_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Step-type-conditioned retrieval routing for multi-hop QA",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378"
+}
+```
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-14T14:59:47.763Z_
+
+<details><summary>↩ Tool result · `toolu_01SbkPax29FyKVcqzeALJ6kF`</summary>
+
+```text
+Web search results for query: "ACL 2026 submission deadline ARR"
+
+Links: [{"title":"Dates and Venues – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/dates"},{"title":"Main Conference - ACL 2026","url":"https://2026.aclweb.org/calls/main_conference_papers/"},{"title":"Call for Main Conference Papers -","url":"https://2026.eacl.org/calls/papers/"},{"title":"LINGUIST List 37.181 Confs: 64th Annual Meeting of the Association for Computational Linguistics: Industry Track (USA)","url":"https://linguistlist.org/issues/37/181/"},{"title":"Incentives 2026 – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/incentives2026"},{"title":"Call for Student Research Workshop Papers -","url":"https://2026.eacl.org/calls/srw/"},{"title":"ACL ARR 2026 January | OpenReview","url":"https://openreview.net/group?id=aclweb.org%2FACL%2FARR%2F2026%2FJanuary"},{"title":"ACL 2026","url":"https://conferences-basecamp.informatik.uni-hamburg.de/conference/?id=acl26"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"2026 *ACL Conference Dates | Computational Linguistics","url":"https://submissions.cljournal.org/index.php/cljournal/announcement/view/14"}]
+
+Based on the search results, here's what I found about ACL 2026 submission deadlines through ARR (ACL Rolling Review):
+
+Papers may be submitted to the ARR 2025 October cycle and ARR 2026 January cycle for ACL 2026.
+
+After extensive deliberation and soliciting community feedback, the ACL Peer Review Committee recommended to ACL exec to switch to 10-week cycles, with the new schedule starting in May 2025 cycle.
+
+For timing of the January 2026 ARR cycle: ARR reviews & meta-reviews are available to authors of the January cycle on March 10, 2026, and the commitment deadline is March 14, 2026.
+
+Starting from 2024, all main *ACL conferences used ARR exclusively, including ACL 2026. All deadlines are at 11:59PM UTC-12:00 ("anywhere on Earth").
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "598fcdb1-51e8-43a5-9ab9-52018796b0fb",
+  "isSidechain": false,
+  "promptId": "0122c317-1b5e-4c60-85ae-e9c4b6853925",
+  "type": "user",
+  "uuid": "32cf3037-3caf-4785-b217-f7aa7619f58f",
+  "toolUseResult": {
+    "query": "ACL 2026 submission deadline ARR",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VrF21G8dQxue3JuQmiFdng",
+        "content": [
+          {
+            "title": "Dates and Venues – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "Main Conference - ACL 2026",
+            "url": "https://2026.aclweb.org/calls/main_conference_papers/"
+          },
+          {
+            "title": "Call for Main Conference Papers -",
+            "url": "https://2026.eacl.org/calls/papers/"
+          },
+          {
+            "title": "LINGUIST List 37.181 Confs: 64th Annual Meeting of the Association for Computational Linguistics: Industry Track (USA)",
+            "url": "https://linguistlist.org/issues/37/181/"
+          },
+          {
+            "title": "Incentives 2026 – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/incentives2026"
+          },
+          {
+            "title": "Call for Student Research Workshop Papers -",
+            "url": "https://2026.eacl.org/calls/srw/"
+          },
+          {
+            "title": "ACL ARR 2026 January | OpenReview",
+            "url": "https://openreview.net/group?id=aclweb.org%2FACL%2FARR%2F2026%2FJanuary"
+          },
+          {
+            "title": "ACL 2026",
+            "url": "https://conferences-basecamp.informatik.uni-hamburg.de/conference/?id=acl26"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "2026 *ACL Conference Dates | Computational Linguistics",
+            "url": "https://submissions.cljournal.org/index.php/cljournal/announcement/view/14"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about ACL 2026 submission deadlines through ARR (ACL Rolling Review):\n\nPapers may be submitted to the ARR 2025 October cycle and ARR 2026 January cycle for ACL 2026.\n\nAfter extensive deliberation and soliciting community feedback, the ACL Peer Review Committee recommended to ACL exec to switch to 10-week cycles, with the new schedule starting in May 2025 cycle.\n\nFor timing of the January 2026 ARR cycle: ARR reviews & meta-reviews are available to authors of the January cycle on March 10, 2026, and the commitment deadline is March 14, 2026.\n\nStarting from 2024, all main *ACL conferences used ARR exclusively, including ACL 2026. All deadlines are at 11:59PM UTC-12:00 (\"anywhere on Earth\")."
+    ],
+    "durationSeconds": 5.214500947000007
+  },
+  "sourceToolAssistantUUID": "598fcdb1-51e8-43a5-9ab9-52018796b0fb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-14T14:59:50.574Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018s211PziTZns9yKFfuwAd3`</summary>
+
+```json
+{
+  "query": "ICLR 2027 submission deadline call for papers"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "32cf3037-3caf-4785-b217-f7aa7619f58f",
+  "isSidechain": false,
+  "requestId": "req_011Cb2fFcMZgY1WdSGVdaSRb",
+  "type": "assistant",
+  "uuid": "c03add80-e7ec-418b-8cad-c16ee1ce7793",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S1JCYDXKBePXWuXc5nCtAK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 841,
+      "cache_read_input_tokens": 29303,
+      "output_tokens": 64,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 841,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 64,
+          "cache_read_input_tokens": 29303,
+          "cache_creation_input_tokens": 841,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 841
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-14T14:59:56.357Z_
+
+<details><summary>↩ Tool result · `toolu_018s211PziTZns9yKFfuwAd3`</summary>
+
+```text
+Web search results for query: "ICLR 2027 submission deadline call for papers"
+
+Links: [{"title":"International Conference on Learning Representations ICLR in August 2027 in Sydney","url":"https://waset.org/learning-representations-conference-in-august-2027-in-sydney"},{"title":"2026 Dates and Deadlines","url":"https://iclr.cc/Conferences/2026/Dates"},{"title":"ICLR 2026 Call for Papers","url":"https://iclr.cc/Conferences/2026/CallForPapers"},{"title":"Key deadlines in AI and ML conferences | Yutori","url":"https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"},{"title":"Call for Papers","url":"https://iclr.cc/Conferences/2025/CallForPapers"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"ICLR 2026","url":"https://iclr.cc/"},{"title":"International Conference on Learning Representations - Wikipedia","url":"https://en.wikipedia.org/wiki/International_Conference_on_Learning_Representations"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"ICLR | OpenReview","url":"https://openreview.net/group?id=ICLR.cc"}]
+
+Based on the search results, I found information about ICLR conferences, though detailed information specifically for ICLR 2027 is limited since that conference is still in the future.
+
+Here's what I found:
+
+**Current Information:**
+- The International Conference on Learning Representations (ICLR) is a machine learning conference typically held in late April or early May each year.
+- ICLR 2027 is predicted to be in November 12-15, 2027 based on previous year schedule. However, this prediction is marked as needing verification on the official conference website.
+
+**For the Current ICLR 2026:**
+The official ICLR website has a Call for Papers page (iclr.cc/Conferences/2026/CallForPapers), which invites submissions from all areas of machine learning with details on submission instructions and policies.
+
+**Recommendation:**
+Since ICLR 2027 is still over a year away, the formal call for papers with specific submission deadlines has likely not yet been announced. You may want to:
+1. Check the official ICLR website at iclr.cc for any announcements
+2. Monitor the OpenReview platform (openreview.net) where ICLR submissions are hosted
+3. Check back periodically, as ICLR typically announces submission deadlines approximately 6-8 months before the conference
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c03add80-e7ec-418b-8cad-c16ee1ce7793",
+  "isSidechain": false,
+  "promptId": "0122c317-1b5e-4c60-85ae-e9c4b6853925",
+  "type": "user",
+  "uuid": "5cea21e1-efa1-4e2b-bfee-0c82c43e94ba",
+  "toolUseResult": {
+    "query": "ICLR 2027 submission deadline call for papers",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016AfQmF2ZiqZxeFqgp7FWye",
+        "content": [
+          {
+            "title": "International Conference on Learning Representations ICLR in August 2027 in Sydney",
+            "url": "https://waset.org/learning-representations-conference-in-august-2027-in-sydney"
+          },
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://iclr.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "ICLR 2026 Call for Papers",
+            "url": "https://iclr.cc/Conferences/2026/CallForPapers"
+          },
+          {
+            "title": "Key deadlines in AI and ML conferences | Yutori",
+            "url": "https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"
+          },
+          {
+            "title": "Call for Papers",
+            "url": "https://iclr.cc/Conferences/2025/CallForPapers"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "ICLR 2026",
+            "url": "https://iclr.cc/"
+          },
+          {
+            "title": "International Conference on Learning Representations - Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/International_Conference_on_Learning_Representations"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "ICLR | OpenReview",
+            "url": "https://openreview.net/group?id=ICLR.cc"
+          }
+        ]
+      },
+      "Based on the search results, I found information about ICLR conferences, though detailed information specifically for ICLR 2027 is limited since that conference is still in the future.\n\nHere's what I found:\n\n**Current Information:**\n- The International Conference on Learning Representations (ICLR) is a machine learning conference typically held in late April or early May each year.\n- ICLR 2027 is predicted to be in November 12-15, 2027 based on previous year schedule. However, this prediction is marked as needing verification on the official conference website.\n\n**For the Current ICLR 2026:**\nThe official ICLR website has a Call for Papers page (iclr.cc/Conferences/2026/CallForPapers), which invites submissions from all areas of machine learning with details on submission instructions and policies.\n\n**Recommendation:**\nSince ICLR 2027 is still over a year away, the formal call for papers with specific submission deadlines has likely not yet been announced. You may want to:\n1. Check the official ICLR website at iclr.cc for any announcements\n2. Monitor the OpenReview platform (openreview.net) where ICLR submissions are hosted\n3. Check back periodically, as ICLR typically announces submission deadlines approximately 6-8 months before the conference"
+    ],
+    "durationSeconds": 5.77969412700001
+  },
+  "sourceToolAssistantUUID": "c03add80-e7ec-418b-8cad-c16ee1ce7793",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-14T14:59:58.633Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016giLrj5zroYq1AHXoygD6t`</summary>
+
+```json
+{
+  "query": "AAAI 2027 submission deadline September 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5cea21e1-efa1-4e2b-bfee-0c82c43e94ba",
+  "isSidechain": false,
+  "requestId": "req_011Cb2fGF2C86sFgCzpmyX5E",
+  "type": "assistant",
+  "uuid": "79232a19-12ba-497d-8760-72cb3945a213",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019i3BpYFM6yh8EfMg2Hc6Sw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 787,
+      "cache_read_input_tokens": 30144,
+      "output_tokens": 65,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 787,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 65,
+          "cache_read_input_tokens": 30144,
+          "cache_creation_input_tokens": 787,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 787
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-14T15:00:02.362Z_
+
+<details><summary>↩ Tool result · `toolu_016giLrj5zroYq1AHXoygD6t`</summary>
+
+```text
+Web search results for query: "AAAI 2027 submission deadline September 2026"
+
+Links: [{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"AAAI: National Conference on Artificial Intelligence 2027 2026 2025 ...","url":"http://www.wikicfp.com/cfp/program?id=3"},{"title":"Update aaai conference deadlines · huggingface/ai-deadlines at 8e14540","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/8e145403081be22360311ec9ad9565e14b1f2d32"},{"title":"AI Deadlines – AI Conference Call For Paper Deadlines","url":"http://aideadlines.org/"},{"title":"ICWSM 2026: Submit","url":"https://www.icwsm.org/2026/submit.html"},{"title":"AI/ML Conference Timeline | NIU AI","url":"https://www.niuai.org/resources/conference-timeline/"},{"title":"MPC Deadlines Hub","url":"https://mpc-deadlines.github.io/"},{"title":"AAAI Conference on Artificial Intelligence","url":"http://aideadlines.org/conference/?id=aaai27"},{"title":"AAAI Conference on Artificial Intelligence - AAAI","url":"https://aaai.org/conference/aaai/"},{"title":"The 40th Annual AAAI Conference on Artificial Intelligence","url":"https://aaai.org/conference/aaai/aaai-26/"}]
+
+Based on the search results, I found information about the AAAI 2027 submission deadline:
+
+AAAI 2027 has an abstract deadline of July 25, 2026 and a full paper deadline of August 1, 2026. 
+
+The search results do not show a September 2026 submission deadline for AAAI 2027. The deadlines mentioned are in July and August 2026, which are earlier than September. The Forty-first Conference on Artificial Intelligence will be held in Montréal, Québec, Canada from February 16-23, 2027.
+
+If you're looking for a September 2026 deadline for a different conference or track, please let me know and I can search for more specific information.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "79232a19-12ba-497d-8760-72cb3945a213",
+  "isSidechain": false,
+  "promptId": "0122c317-1b5e-4c60-85ae-e9c4b6853925",
+  "type": "user",
+  "uuid": "03fe7636-a4e1-4566-b850-9f64977ecc15",
+  "toolUseResult": {
+    "query": "AAAI 2027 submission deadline September 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01KVURaYy6PxsVdAYLChSGSC",
+        "content": [
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "AAAI: National Conference on Artificial Intelligence 2027 2026 2025 ...",
+            "url": "http://www.wikicfp.com/cfp/program?id=3"
+          },
+          {
+            "title": "Update aaai conference deadlines · huggingface/ai-deadlines at 8e14540",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/8e145403081be22360311ec9ad9565e14b1f2d32"
+          },
+          {
+            "title": "AI Deadlines – AI Conference Call For Paper Deadlines",
+            "url": "http://aideadlines.org/"
+          },
+          {
+            "title": "ICWSM 2026: Submit",
+            "url": "https://www.icwsm.org/2026/submit.html"
+          },
+          {
+            "title": "AI/ML Conference Timeline | NIU AI",
+            "url": "https://www.niuai.org/resources/conference-timeline/"
+          },
+          {
+            "title": "MPC Deadlines Hub",
+            "url": "https://mpc-deadlines.github.io/"
+          },
+          {
+            "title": "AAAI Conference on Artificial Intelligence",
+            "url": "http://aideadlines.org/conference/?id=aaai27"
+          },
+          {
+            "title": "AAAI Conference on Artificial Intelligence - AAAI",
+            "url": "https://aaai.org/conference/aaai/"
+          },
+          {
+            "title": "The 40th Annual AAAI Conference on Artificial Intelligence",
+            "url": "https://aaai.org/conference/aaai/aaai-26/"
+          }
+        ]
+      },
+      "Based on the search results, I found information about the AAAI 2027 submission deadline:\n\nAAAI 2027 has an abstract deadline of July 25, 2026 and a full paper deadline of August 1, 2026. \n\nThe search results do not show a September 2026 submission deadline for AAAI 2027. The deadlines mentioned are in July and August 2026, which are earlier than September. The Forty-first Conference on Artificial Intelligence will be held in Montréal, Québec, Canada from February 16-23, 2027.\n\nIf you're looking for a September 2026 deadline for a different conference or track, please let me know and I can search for more specific information."
+    ],
+    "durationSeconds": 3.724650342000008
+  },
+  "sourceToolAssistantUUID": "79232a19-12ba-497d-8760-72cb3945a213",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-14T15:00:04.755Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HfbXtWUkp8MEtQH4zzxwDw`</summary>
+
+```json
+{
+  "query": "ICML 2026 submission deadline"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "03fe7636-a4e1-4566-b850-9f64977ecc15",
+  "isSidechain": false,
+  "requestId": "req_011Cb2fGgi2Vcf8BqXtc7GYM",
+  "type": "assistant",
+  "uuid": "491e5527-2362-4e03-a42f-ee2a65bd540c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XhjswyPV68EaYctt6tuAx2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 681,
+      "cache_read_input_tokens": 30931,
+      "output_tokens": 60,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 681,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 60,
+          "cache_read_input_tokens": 30931,
+          "cache_creation_input_tokens": 681,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 681
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-14T15:00:08.173Z_
+
+<details><summary>↩ Tool result · `toolu_01HfbXtWUkp8MEtQH4zzxwDw`</summary>
+
+```text
+Web search results for query: "ICML 2026 submission deadline"
+
+Links: [{"title":"2026 Dates and Deadlines","url":"https://icml.cc/Conferences/2026/Dates"},{"title":"ICML 2026 Call for Papers","url":"https://icml.cc/Conferences/2026/CallForPapers"},{"title":"ICML 2026: Strictest New Rules Ever - LLMs Banned as Authors, Papers with AI Abuse Rejected","url":"https://eu.36kr.com/en/p/3540848514510723"},{"title":"ICML 2026 Call for Post-Conference Workshops","url":"https://icml.cc/Conferences/2026/CallForWorkshops"},{"title":"ICML 2026","url":"https://conferences-basecamp.informatik.uni-hamburg.de/conference/?id=icml26"},{"title":"ICML 2026 Conference | OpenReview","url":"https://openreview.net/group?id=ICML.cc%2F2026%2FConference"},{"title":"ICML 2026","url":"https://icml.cc/"},{"title":"ICML 2026 Author Instructions","url":"https://icml.cc/Conferences/2026/AuthorInstructions"},{"title":"ICML 2026 Call For Position Papers","url":"https://icml.cc/Conferences/2026/CallForPositionPapers"},{"title":"Update ICML 2025 and 2026 conference data · huggingface/ai-deadlines at 55d2124","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/55d21240bacc3ac62397280592b3dd5ded9e5683"}]
+
+Based on the search results, ICML 2026 paper submissions have a deadline of January 28, 2026. 
+
+Additionally, if you're interested in submitting a position paper instead, the position paper submission deadline is January 29, 2026.
+
+The conference itself will be held from July 6th through July 11th, 2026 at the Coex Convention & Exhibition Center.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "491e5527-2362-4e03-a42f-ee2a65bd540c",
+  "isSidechain": false,
+  "promptId": "0122c317-1b5e-4c60-85ae-e9c4b6853925",
+  "type": "user",
+  "uuid": "06aa3c5e-cc12-4dd5-89ff-77f0b23b1fcc",
+  "toolUseResult": {
+    "query": "ICML 2026 submission deadline",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Ve8ahfQkUzskQ8QESvPsHD",
+        "content": [
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://icml.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "ICML 2026 Call for Papers",
+            "url": "https://icml.cc/Conferences/2026/CallForPapers"
+          },
+          {
+            "title": "ICML 2026: Strictest New Rules Ever - LLMs Banned as Authors, Papers with AI Abuse Rejected",
+            "url": "https://eu.36kr.com/en/p/3540848514510723"
+          },
+          {
+            "title": "ICML 2026 Call for Post-Conference Workshops",
+            "url": "https://icml.cc/Conferences/2026/CallForWorkshops"
+          },
+          {
+            "title": "ICML 2026",
+            "url": "https://conferences-basecamp.informatik.uni-hamburg.de/conference/?id=icml26"
+          },
+          {
+            "title": "ICML 2026 Conference | OpenReview",
+            "url": "https://openreview.net/group?id=ICML.cc%2F2026%2FConference"
+          },
+          {
+            "title": "ICML 2026",
+            "url": "https://icml.cc/"
+          },
+          {
+            "title": "ICML 2026 Author Instructions",
+            "url": "https://icml.cc/Conferences/2026/AuthorInstructions"
+          },
+          {
+            "title": "ICML 2026 Call For Position Papers",
+            "url": "https://icml.cc/Conferences/2026/CallForPositionPapers"
+          },
+          {
+            "title": "Update ICML 2025 and 2026 conference data · huggingface/ai-deadlines at 55d2124",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/55d21240bacc3ac62397280592b3dd5ded9e5683"
+          }
+        ]
+      },
+      "Based on the search results, ICML 2026 paper submissions have a deadline of January 28, 2026. \n\nAdditionally, if you're interested in submitting a position paper instead, the position paper submission deadline is January 29, 2026.\n\nThe conference itself will be held from July 6th through July 11th, 2026 at the Coex Convention & Exhibition Center."
+    ],
+    "durationSeconds": 3.415270676999993
+  },
+  "sourceToolAssistantUUID": "491e5527-2362-4e03-a42f-ee2a65bd540c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-14T15:00:11.142Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HZK9QieyuPFAidvMjSoJjF`</summary>
+
+```json
+{
+  "query": "SIGIR 2026 ReaLM-Retrieve retrieval augmented reasoning"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "06aa3c5e-cc12-4dd5-89ff-77f0b23b1fcc",
+  "isSidechain": false,
+  "requestId": "req_011Cb2fH7bVNfk6RSbuL8k5W",
+  "type": "assistant",
+  "uuid": "c4c00a64-9ab7-4ece-b709-bc1f23955a95",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0125mpP4nFMG7WLk333Tkc4v",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 622,
+      "cache_read_input_tokens": 31612,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 622,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 31612,
+          "cache_creation_input_tokens": 622,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 622
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-14T15:00:21.325Z_
+
+<details><summary>↩ Tool result · `toolu_01HZK9QieyuPFAidvMjSoJjF`</summary>
+
+```text
+Web search results for query: "SIGIR 2026 ReaLM-Retrieve retrieval augmented reasoning"
+
+Links: [{"title":"When to Retrieve During Reasoning: Adaptive Retrieval for Large Reasoning Models","url":"https://arxiv.org/html/2604.26649"},{"title":"[2604.26649] When to Retrieve During Reasoning: Adaptive Retrieval for Large Reasoning Models","url":"https://arxiv.org/abs/2604.26649"},{"title":"When to Retrieve During Reasoning: Adaptive Retrieval for Large","url":"https://openreview.net/pdf?id=5kgkrGUp6x"},{"title":"[2603.02688v1] Retrieval-Augmented Robots via Retrieve-Reason-Act","url":"https://arxiv.org/abs/2603.02688v1"},{"title":"A retrieval-augmented framework enabling VLM spatial awareness for object-centric robot manipulation | Science Robotics","url":"https://www.science.org/doi/10.1126/scirobotics.aea2092"},{"title":"Parametric Retrieval Augmented Generation | Proceedings of the 48th International ACM SIGIR Conference on Research and Development in Information Retrieval","url":"https://dl.acm.org/doi/10.1145/3726302.3729957"},{"title":"IRLab at SIGIR 2026 – IRLab","url":"https://irlab.science.uva.nl/2026/04/14/irlab-at-sigir-2026/"},{"title":"SIGIR 2026 Workshop on ER3-Health - Evidence-Grounded Retrieval, Reasoning, and Reporting for Healthcare","url":"https://bionlplab.github.io/SIGIR_2026_ER3_Health/"},{"title":"SIGIR '24: Proceedings of the 47th International ACM SIGIR Conference on Research and Development in Information Retrieval","url":"https://sigir-2024.github.io/proceedings.html"},{"title":"Rowen: Adaptive Retrieval-Augmented Generation for Hallucination Mitigation in LLMs","url":"https://arxiv.org/html/2402.10612v3"}]
+
+Based on the search results, I found comprehensive information about ReaLM-Retrieve and its presentation at SIGIR 2026.
+
+## ReaLM-Retrieve at SIGIR 2026
+
+ReaLM-Retrieve was presented at the 49th International ACM SIGIR Conference on Research and Development in Information Retrieval in Melbourne, Victoria, Australia on July 20-24, 2026.
+
+### Key Contributions
+
+ReaLM-Retrieve addresses the integration of large reasoning models such as DeepSeek-R1 and OpenAI o1 with retrieval-augmented generation (RAG), recognizing that current RAG systems optimize for providing context before reasoning begins, while reasoning models require evidence injection during multi-step inference chains.
+
+### Performance Results
+
+Experiments on MuSiQue, HotpotQA, and 2WikiMultiHopQA demonstrate that ReaLM-Retrieve achieves on average 10.1% absolute improvement in answer F1 over standard RAG while reducing retrieval calls by 47% compared to fixed-interval approaches like IRCoT. This combination yields a mean +10.1% absolute F1 over Single RAG and +4.6% over ReARTeR (Sun et al., 2025), the strongest prior method for retrieval-augmented reasoning.
+
+### Technical Approach
+
+The method's core advantage is step-level uncertainty detection that identifies the specific reasoning step where knowledge gaps occur, enabling precisely-timed retrieval. ReaLM-Retrieve improves retrieval quality itself, achieving 81.3% Recall@5 with consistently higher precision and MRR than fixed-interval baselines on supporting evidence.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c4c00a64-9ab7-4ece-b709-bc1f23955a95",
+  "isSidechain": false,
+  "promptId": "0122c317-1b5e-4c60-85ae-e9c4b6853925",
+  "type": "user",
+  "uuid": "b63a0302-4311-4313-bfec-41d5abd37068",
+  "toolUseResult": {
+    "query": "SIGIR 2026 ReaLM-Retrieve retrieval augmented reasoning",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Fw24vvYqVbbeniv8Tomx25",
+        "content": [
+          {
+            "title": "When to Retrieve During Reasoning: Adaptive Retrieval for Large Reasoning Models",
+            "url": "https://arxiv.org/html/2604.26649"
+          },
+          {
+            "title": "[2604.26649] When to Retrieve During Reasoning: Adaptive Retrieval for Large Reasoning Models",
+            "url": "https://arxiv.org/abs/2604.26649"
+          },
+          {
+            "title": "When to Retrieve During Reasoning: Adaptive Retrieval for Large",
+            "url": "https://openreview.net/pdf?id=5kgkrGUp6x"
+          },
+          {
+            "title": "[2603.02688v1] Retrieval-Augmented Robots via Retrieve-Reason-Act",
+            "url": "https://arxiv.org/abs/2603.02688v1"
+          },
+          {
+            "title": "A retrieval-augmented framework enabling VLM spatial awareness for object-centric robot manipulation | Science Robotics",
+            "url": "https://www.science.org/doi/10.1126/scirobotics.aea2092"
+          },
+          {
+            "title": "Parametric Retrieval Augmented Generation | Proceedings of the 48th International ACM SIGIR Conference on Research and Development in Information Retrieval",
+            "url": "https://dl.acm.org/doi/10.1145/3726302.3729957"
+          },
+          {
+            "title": "IRLab at SIGIR 2026 – IRLab",
+            "url": "https://irlab.science.uva.nl/2026/04/14/irlab-at-sigir-2026/"
+          },
+          {
+            "title": "SIGIR 2026 Workshop on ER3-Health - Evidence-Grounded Retrieval, Reasoning, and Reporting for Healthcare",
+            "url": "https://bionlplab.github.io/SIGIR_2026_ER3_Health/"
+          },
+          {
+            "title": "SIGIR '24: Proceedings of the 47th International ACM SIGIR Conference on Research and Development in Information Retrieval",
+            "url": "https://sigir-2024.github.io/proceedings.html"
+          },
+          {
+            "title": "Rowen: Adaptive Retrieval-Augmented Generation for Hallucination Mitigation in LLMs",
+            "url": "https://arxiv.org/html/2402.10612v3"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about ReaLM-Retrieve and its presentation at SIGIR 2026.\n\n## ReaLM-Retrieve at SIGIR 2026\n\nReaLM-Retrieve was presented at the 49th International ACM SIGIR Conference on Research and Development in Information Retrieval in Melbourne, Victoria, Australia on July 20-24, 2026.\n\n### Key Contributions\n\nReaLM-Retrieve addresses the integration of large reasoning models such as DeepSeek-R1 and OpenAI o1 with retrieval-augmented generation (RAG), recognizing that current RAG systems optimize for providing context before reasoning begins, while reasoning models require evidence injection during multi-step inference chains.\n\n### Performance Results\n\nExperiments on MuSiQue, HotpotQA, and 2WikiMultiHopQA demonstrate that ReaLM-Retrieve achieves on average 10.1% absolute improvement in answer F1 over standard RAG while reducing retrieval calls by 47% compared to fixed-interval approaches like IRCoT. This combination yields a mean +10.1% absolute F1 over Single RAG and +4.6% over ReARTeR (Sun et al., 2025), the strongest prior method for retrieval-augmented reasoning.\n\n### Technical Approach\n\nThe method's core advantage is step-level uncertainty detection that identifies the specific reasoning step where knowledge gaps occur, enabling precisely-timed retrieval. ReaLM-Retrieve improves retrieval quality itself, achieving 81.3% Recall@5 with consistently higher precision and MRR than fixed-interval baselines on supporting evidence."
+    ],
+    "durationSeconds": 10.178764315000008
+  },
+  "sourceToolAssistantUUID": "c4c00a64-9ab7-4ece-b709-bc1f23955a95",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-14T15:00:23.918Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01PibrfYeQkx16oXwNvuNzEh`</summary>
+
+```json
+{
+  "query": "ColBERTv2 SPLADE BGE retriever heterogeneous retrieval routing 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b63a0302-4311-4313-bfec-41d5abd37068",
+  "isSidechain": false,
+  "requestId": "req_011Cb2fJ5os4geWcGXBPhDno",
+  "type": "assistant",
+  "uuid": "b719a219-4149-43df-b602-c7b2a65acccc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015NwM718nuwsQTTKfQMxBRU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1028,
+      "cache_read_input_tokens": 32234,
+      "output_tokens": 77,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1028,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 77,
+          "cache_read_input_tokens": 32234,
+          "cache_creation_input_tokens": 1028,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1028
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 53_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-14 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Step-Type-Con…",
+  "leafUuid": "b719a219-4149-43df-b602-c7b2a65acccc",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 54_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Step-type-conditioned retrieval routing for multi-hop QA",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378"
+}
+```
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-14T15:00:32.155Z_
+
+<details><summary>↩ Tool result · `toolu_01PibrfYeQkx16oXwNvuNzEh`</summary>
+
+```text
+Web search results for query: "ColBERTv2 SPLADE BGE retriever heterogeneous retrieval routing 2025 2026"
+
+Links: [{"title":"ColBERTv2: Effective and Efficient Retrieval via Lightweight Late Interaction | Request PDF","url":"https://www.researchgate.net/publication/362263389_ColBERTv2_Effective_and_Efficient_Retrieval_via_Lightweight_Late_Interaction"},{"title":"Production Retrivers in RAG That Work: Hybrid Search + Re-Ranking (ColBERT, SPLADE, e5/BGE) | Medium","url":"https://machine-mind-ml.medium.com/production-rag-that-works-hybrid-search-re-ranking-colbert-splade-e5-bge-624e9703fa2b"},{"title":"[PDF] ColBERTv2: Effective and Efficient Retrieval via Lightweight Late Interaction | Semantic Scholar","url":"https://www.semanticscholar.org/paper/ColBERTv2:-Effective-and-Efficient-Retrieval-via-Santhanam-Khattab/590432f953b6ce1b4b36bf66a2ac65eeee567515"},{"title":"SPLATE: Sparse Late Interaction Retrieval | Proceedings of the 47th International ACM SIGIR Conference on Research and Development in Information Retrieval","url":"https://dl.acm.org/doi/10.1145/3626772.3657968"},{"title":"(PDF) ColBERTv2: Effective and Efficient Retrieval via Lightweight Late Interaction","url":"https://www.researchgate.net/publication/356746361_ColBERTv2_Effective_and_Efficient_Retrieval_via_Lightweight_Late_Interaction"},{"title":"GitHub - stanford-futuredata/ColBERT: ColBERT: state-of-the-art neural search (SIGIR'20, TACL'21, NeurIPS'21, NAACL'22, CIKM'22, ACL'23, EMNLP'23) · GitHub","url":"https://github.com/stanford-futuredata/ColBERT"},{"title":"(PDF) Jina-ColBERT-v2: A General-Purpose Multilingual Late Interaction Retriever","url":"https://www.researchgate.net/publication/383530656_Jina-ColBERT-v2_A_General-Purpose_Multilingual_Late_Interaction_Retriever"},{"title":"ColBERT and Friends: Re-Ranking That Feels Instant | by Codastra | Medium","url":"https://medium.com/@2nick2patel2/colbert-and-friends-re-ranking-that-feels-instant-6c09102b7526"},{"title":"ColBERTv2 Retriever: Efficient Neural IR","url":"https://www.emergentmind.com/topics/colbertv2-retriever"},{"title":"SPLADE: Sparse Lexical and Expansion Model for First Stage Ranking | Request PDF","url":"https://www.researchgate.net/publication/353192023_SPLADE_Sparse_Lexical_and_Expansion_Model_for_First_Stage_Ranking"}]
+
+I've performed the web search for your query about ColBERTv2, SPLADE, BGE retriever, heterogeneous retrieval routing, and related topics from 2025-2026. Here's a summary of what I found:
+
+## Key Findings:
+
+**ColBERTv2 Overview:**
+ColBERTv2 produces multi-vector representations at the granularity of each token and decomposes relevance modeling into scalable token-level computations. ColBERTv2 couples an aggressive residual compression mechanism with a denoised supervision strategy to simultaneously improve the quality and space footprint of late interaction while reducing the space footprint of late interaction models by 5--8x.
+
+**Hybrid Retrieval & Routing:**
+Hybrid retrieval addresses limitations by fusing dense representations with sparse lexical signals (e.g., BM25), effectively using exact matching to ground semantic associations and filter hallucinations. An adaptive hybrid retrieval framework features query-driven alpha prediction that dynamically calibrates the mixing weights based on query latent representations.
+
+**Recent Developments (2025-2026):**
+SPLATE is a lightweight adaptation of the ColBERTv2 model which maps frozen token embeddings to a sparse vocabulary space with a partially learned SPLADE module, making it particularly appealing for running ColBERT in CPU environments. Jina-ColBERT-v2 demonstrates strong performance across English and multilingual retrieval tasks while cutting storage requirements by up to 50% compared to previous models.
+
+**Practical Architectures:**
+Hybrid recall patterns use SPLADE ∪ BM25 ∪ (optional) dense embeddings with ColBERT, and SPLADE → ColBERT is described as a fantastic default approach.
+
+The search results show active research into heterogeneous retrieval systems combining multiple retrieval paradigms with intelligent routing mechanisms.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b719a219-4149-43df-b602-c7b2a65acccc",
+  "isSidechain": false,
+  "promptId": "0122c317-1b5e-4c60-85ae-e9c4b6853925",
+  "type": "user",
+  "uuid": "0bb1fa6f-59e2-40e7-8948-08d47c10865d",
+  "toolUseResult": {
+    "query": "ColBERTv2 SPLADE BGE retriever heterogeneous retrieval routing 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_015aYuR1ENurE7kmNExvkDFp",
+        "content": [
+          {
+            "title": "ColBERTv2: Effective and Efficient Retrieval via Lightweight Late Interaction | Request PDF",
+            "url": "https://www.researchgate.net/publication/362263389_ColBERTv2_Effective_and_Efficient_Retrieval_via_Lightweight_Late_Interaction"
+          },
+          {
+            "title": "Production Retrivers in RAG That Work: Hybrid Search + Re-Ranking (ColBERT, SPLADE, e5/BGE) | Medium",
+            "url": "https://machine-mind-ml.medium.com/production-rag-that-works-hybrid-search-re-ranking-colbert-splade-e5-bge-624e9703fa2b"
+          },
+          {
+            "title": "[PDF] ColBERTv2: Effective and Efficient Retrieval via Lightweight Late Interaction | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/ColBERTv2:-Effective-and-Efficient-Retrieval-via-Santhanam-Khattab/590432f953b6ce1b4b36bf66a2ac65eeee567515"
+          },
+          {
+            "title": "SPLATE: Sparse Late Interaction Retrieval | Proceedings of the 47th International ACM SIGIR Conference on Research and Development in Information Retrieval",
+            "url": "https://dl.acm.org/doi/10.1145/3626772.3657968"
+          },
+          {
+            "title": "(PDF) ColBERTv2: Effective and Efficient Retrieval via Lightweight Late Interaction",
+            "url": "https://www.researchgate.net/publication/356746361_ColBERTv2_Effective_and_Efficient_Retrieval_via_Lightweight_Late_Interaction"
+          },
+          {
+            "title": "GitHub - stanford-futuredata/ColBERT: ColBERT: state-of-the-art neural search (SIGIR'20, TACL'21, NeurIPS'21, NAACL'22, CIKM'22, ACL'23, EMNLP'23) · GitHub",
+            "url": "https://github.com/stanford-futuredata/ColBERT"
+          },
+          {
+            "title": "(PDF) Jina-ColBERT-v2: A General-Purpose Multilingual Late Interaction Retriever",
+            "url": "https://www.researchgate.net/publication/383530656_Jina-ColBERT-v2_A_General-Purpose_Multilingual_Late_Interaction_Retriever"
+          },
+          {
+            "title": "ColBERT and Friends: Re-Ranking That Feels Instant | by Codastra | Medium",
+            "url": "https://medium.com/@2nick2patel2/colbert-and-friends-re-ranking-that-feels-instant-6c09102b7526"
+          },
+          {
+            "title": "ColBERTv2 Retriever: Efficient Neural IR",
+            "url": "https://www.emergentmind.com/topics/colbertv2-retriever"
+          },
+          {
+            "title": "SPLADE: Sparse Lexical and Expansion Model for First Stage Ranking | Request PDF",
+            "url": "https://www.researchgate.net/publication/353192023_SPLADE_Sparse_Lexical_and_Expansion_Model_for_First_Stage_Ranking"
+          }
+        ]
+      },
+      "I've performed the web search for your query about ColBERTv2, SPLADE, BGE retriever, heterogeneous retrieval routing, and related topics from 2025-2026. Here's a summary of what I found:\n\n## Key Findings:\n\n**ColBERTv2 Overview:**\nColBERTv2 produces multi-vector representations at the granularity of each token and decomposes relevance modeling into scalable token-level computations. ColBERTv2 couples an aggressive residual compression mechanism with a denoised supervision strategy to simultaneously improve the quality and space footprint of late interaction while reducing the space footprint of late interaction models by 5--8x.\n\n**Hybrid Retrieval & Routing:**\nHybrid retrieval addresses limitations by fusing dense representations with sparse lexical signals (e.g., BM25), effectively using exact matching to ground semantic associations and filter hallucinations. An adaptive hybrid retrieval framework features query-driven alpha prediction that dynamically calibrates the mixing weights based on query latent representations.\n\n**Recent Developments (2025-2026):**\nSPLATE is a lightweight adaptation of the ColBERTv2 model which maps frozen token embeddings to a sparse vocabulary space with a partially learned SPLADE module, making it particularly appealing for running ColBERT in CPU environments. Jina-ColBERT-v2 demonstrates strong performance across English and multilingual retrieval tasks while cutting storage requirements by up to 50% compared to previous models.\n\n**Practical Architectures:**\nHybrid recall patterns use SPLADE ∪ BM25 ∪ (optional) dense embeddings with ColBERT, and SPLADE → ColBERT is described as a fantastic default approach.\n\nThe search results show active research into heterogeneous retrieval systems combining multiple retrieval paradigms with intelligent routing mechanisms."
+    ],
+    "durationSeconds": 8.23140037800002
+  },
+  "sourceToolAssistantUUID": "b719a219-4149-43df-b602-c7b2a65acccc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 56 · 2026-05-14T15:00:32.160Z_
+
+```json
+{
+  "parentUuid": "0bb1fa6f-59e2-40e7-8948-08d47c10865d",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "46a1ad18-bcd5-4354-89d0-fd9768d1d45f",
+  "timestamp": "2026-05-14T15:00:32.160Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-14T15:00:35.501Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011PF3paBJ917SvWaJQohaun`</summary>
+
+```json
+{
+  "query": "multi-hop QA benchmark SOTA results 2025 2026 HotpotQA MuSiQue 2WikiMultiHopQA"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "46a1ad18-bcd5-4354-89d0-fd9768d1d45f",
+  "isSidechain": false,
+  "requestId": "req_011Cb2fJtUGEVEMM9DnPHzy1",
+  "type": "assistant",
+  "uuid": "98928866-1b4a-409e-ab6f-3165af4ba569",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RALwd2yQqWwDQKCoUzDM9A",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1446,
+      "cache_read_input_tokens": 33262,
+      "output_tokens": 88,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1446,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 88,
+          "cache_read_input_tokens": 33262,
+          "cache_creation_input_tokens": 1446,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1446
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-14T15:00:45.330Z_
+
+<details><summary>↩ Tool result · `toolu_011PF3paBJ917SvWaJQohaun`</summary>
+
+```text
+Web search results for query: "multi-hop QA benchmark SOTA results 2025 2026 HotpotQA MuSiQue 2WikiMultiHopQA"
+
+Links: [{"title":"MuSiQue: Multihop QA Benchmark","url":"https://www.emergentmind.com/topics/musique"},{"title":"HotpotQA: Multi-Hop QA Benchmark","url":"https://www.emergentmind.com/topics/hotpotqa"},{"title":"PRISM: AGENTIC RETRIEVAL WITH LLMS FOR MULTI- ...","url":"https://openreview.net/pdf/9f494ff1d6e1c58247676f45e0dea16789ddaff8.pdf"},{"title":"MEQA: A Benchmark for Multi-hop Event-centric Question ...","url":"https://proceedings.neurips.cc/paper_files/paper/2024/file/e560a0b22e4432003d0dba63ff8dc457-Paper-Datasets_and_Benchmarks_Track.pdf"},{"title":"End-to-End Beam Retrieval for Multi-Hop Question Answering","url":"https://arxiv.org/html/2308.08973v2"},{"title":"An example of multi-hop QA from HotpotQA benchmark. The illustrated... | Download Scientific Diagram","url":"https://www.researchgate.net/figure/An-example-of-multi-hop-QA-from-HotpotQA-benchmark-The-illustrated-reasoning-process_fig1_360834199"},{"title":"Ablation study on HotpotQA, 2WikiMultihopQA, and MuSiQue showing that... | Download Scientific Diagram","url":"https://www.researchgate.net/figure/Ablation-study-on-HotpotQA-2WikiMultihopQA-and-MuSiQue-showing-that-both-the-Question_tbl2_396541008"},{"title":"Multi-hop QA Benchmarks","url":"https://www.emergentmind.com/topics/multi-hop-question-answering-qa-benchmarks"},{"title":"MuSiQue Condition in Multihop QA","url":"https://www.emergentmind.com/topics/musique-condition"},{"title":"© 2025 William Wang - IDEALS","url":"https://www.ideals.illinois.edu/items/136262/bitstreams/445380/data.pdf"}]
+
+Based on the search results, here's a comprehensive overview of recent SOTA results on multi-hop QA benchmarks:
+
+## HotpotQA
+
+StepChain GraphRAG achieves new SOTA on HotpotQA, reaching 66.70 EM/79.50 F1 (October 2025). Other strong recent results include:
+
+- C-Evolve achieves 70.67% F1 on Qwen3-8B (September 2025)
+- Vendi-RAG provides +4.5 F1 improvement over adaptive RAG (February 2025)
+
+SOTA models now achieve 66–72 EM, 79–84 F1 on answers in distractor settings.
+
+## MuSiQue
+
+Beam Retrieval shows significant improvements, with a +44.6% EM gain (53.5→79.3) and +20.2 Answer F1 points (49.0→69.2) over prior art. 
+
+Short outputs ("shortest 30%") achieve up to 30% EM and 42.8% F1, while verbose outputs ("longest 30%") deteriorate to 3.3% EM and 10.0% F1 (April 2025), highlighting the importance of answer brevity in closed-book settings.
+
+## 2WikiMultiHopQA
+
+Beam Retrieval achieves strong performance across all datasets, notably attaining a nearly 50% EM improvement on MuSiQue-Ans and competitive results on 2WikiMultiHopQA.
+
+## Key Trends (2025-2026)
+
+RAG protocols explicitly test models in both full-context and RAG settings, stratifying results by accuracy across context window sizes, number of hops, and evidence recall. Counterfactual or knowledge-edited settings restore a 15–25 point gap in F1/EM, indicating substantial memorization bias in prior results.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "98928866-1b4a-409e-ab6f-3165af4ba569",
+  "isSidechain": false,
+  "promptId": "0122c317-1b5e-4c60-85ae-e9c4b6853925",
+  "type": "user",
+  "uuid": "32955748-569b-47a5-aa78-099df2422b5b",
+  "toolUseResult": {
+    "query": "multi-hop QA benchmark SOTA results 2025 2026 HotpotQA MuSiQue 2WikiMultiHopQA",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018QbkUdduSbYLYvPtScxVWe",
+        "content": [
+          {
+            "title": "MuSiQue: Multihop QA Benchmark",
+            "url": "https://www.emergentmind.com/topics/musique"
+          },
+          {
+            "title": "HotpotQA: Multi-Hop QA Benchmark",
+            "url": "https://www.emergentmind.com/topics/hotpotqa"
+          },
+          {
+            "title": "PRISM: AGENTIC RETRIEVAL WITH LLMS FOR MULTI- ...",
+            "url": "https://openreview.net/pdf/9f494ff1d6e1c58247676f45e0dea16789ddaff8.pdf"
+          },
+          {
+            "title": "MEQA: A Benchmark for Multi-hop Event-centric Question ...",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2024/file/e560a0b22e4432003d0dba63ff8dc457-Paper-Datasets_and_Benchmarks_Track.pdf"
+          },
+          {
+            "title": "End-to-End Beam Retrieval for Multi-Hop Question Answering",
+            "url": "https://arxiv.org/html/2308.08973v2"
+          },
+          {
+            "title": "An example of multi-hop QA from HotpotQA benchmark. The illustrated... | Download Scientific Diagram",
+            "url": "https://www.researchgate.net/figure/An-example-of-multi-hop-QA-from-HotpotQA-benchmark-The-illustrated-reasoning-process_fig1_360834199"
+          },
+          {
+            "title": "Ablation study on HotpotQA, 2WikiMultihopQA, and MuSiQue showing that... | Download Scientific Diagram",
+            "url": "https://www.researchgate.net/figure/Ablation-study-on-HotpotQA-2WikiMultihopQA-and-MuSiQue-showing-that-both-the-Question_tbl2_396541008"
+          },
+          {
+            "title": "Multi-hop QA Benchmarks",
+            "url": "https://www.emergentmind.com/topics/multi-hop-question-answering-qa-benchmarks"
+          },
+          {
+            "title": "MuSiQue Condition in Multihop QA",
+            "url": "https://www.emergentmind.com/topics/musique-condition"
+          },
+          {
+            "title": "© 2025 William Wang - IDEALS",
+            "url": "https://www.ideals.illinois.edu/items/136262/bitstreams/445380/data.pdf"
+          }
+        ]
+      },
+      "Based on the search results, here's a comprehensive overview of recent SOTA results on multi-hop QA benchmarks:\n\n## HotpotQA\n\nStepChain GraphRAG achieves new SOTA on HotpotQA, reaching 66.70 EM/79.50 F1 (October 2025). Other strong recent results include:\n\n- C-Evolve achieves 70.67% F1 on Qwen3-8B (September 2025)\n- Vendi-RAG provides +4.5 F1 improvement over adaptive RAG (February 2025)\n\nSOTA models now achieve 66–72 EM, 79–84 F1 on answers in distractor settings.\n\n## MuSiQue\n\nBeam Retrieval shows significant improvements, with a +44.6% EM gain (53.5→79.3) and +20.2 Answer F1 points (49.0→69.2) over prior art. \n\nShort outputs (\"shortest 30%\") achieve up to 30% EM and 42.8% F1, while verbose outputs (\"longest 30%\") deteriorate to 3.3% EM and 10.0% F1 (April 2025), highlighting the importance of answer brevity in closed-book settings.\n\n## 2WikiMultiHopQA\n\nBeam Retrieval achieves strong performance across all datasets, notably attaining a nearly 50% EM improvement on MuSiQue-Ans and competitive results on 2WikiMultiHopQA.\n\n## Key Trends (2025-2026)\n\nRAG protocols explicitly test models in both full-context and RAG settings, stratifying results by accuracy across context window sizes, number of hops, and evidence recall. Counterfactual or knowledge-edited settings restore a 15–25 point gap in F1/EM, indicating substantial memorization bias in prior results."
+    ],
+    "durationSeconds": 9.82442519899999
+  },
+  "sourceToolAssistantUUID": "98928866-1b4a-409e-ab6f-3165af4ba569",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-14T15:00:48.202Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HdWfWhobpt96wLDGtUryQW`</summary>
+
+```json
+{
+  "query": "github \"step type\" \"retrieval\" \"multi-hop\" reasoning implementation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "32955748-569b-47a5-aa78-099df2422b5b",
+  "isSidechain": false,
+  "requestId": "req_011Cb2fKsN4iCJaZcHxYLYgH",
+  "type": "assistant",
+  "uuid": "50e180be-4a3a-4502-8d7e-0b7b006b72d6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014TcXVBMdrKmrhXDuHPLTjc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1190,
+      "cache_read_input_tokens": 34708,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1190,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 34708,
+          "cache_creation_input_tokens": 1190,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1190
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-14T15:00:56.866Z_
+
+<details><summary>↩ Tool result · `toolu_01HdWfWhobpt96wLDGtUryQW`</summary>
+
+```text
+Web search results for query: "github "step type" "retrieval" "multi-hop" reasoning implementation"
+
+Links: [{"title":"GitHub - asinghcsu/AgenticRAG-Survey: Agentic-RAG explores advanced Retrieval-Augmented Generation systems enhanced with AI LLM agents. · GitHub","url":"https://github.com/asinghcsu/AgenticRAG-Survey"},{"title":"multi-hop-reasoning · GitHub Topics · GitHub","url":"https://github.com/topics/multi-hop-reasoning?o=desc&s=updated"},{"title":"awesome-generative-ai-guide/research_updates/rag_research_table.md at main · aishwaryanr/awesome-generative-ai-guide","url":"https://github.com/aishwaryanr/awesome-generative-ai-guide/blob/main/research_updates/rag_research_table.md"},{"title":"How to Improve Multi-Hop Reasoning With Knowledge Graphs and LLMs - Graph Database & Analytics","url":"https://neo4j.com/blog/genai/knowledge-graph-llm-multi-hop-reasoning/"},{"title":"Tree- or Chain-of-Thought? Exploring Complex Reasoning in Multi-Hop","url":"https://southnlp.github.io/southnlp2024/papers/southnlp2024-poster-69.pdf"},{"title":"GitHub - DEEP-PolyU/Awesome-GraphRAG: Awesome-GraphRAG: A curated list of resources (surveys, papers, benchmarks, and opensource projects) on graph-based retrieval-augmented generation. · GitHub","url":"https://github.com/DEEP-PolyU/Awesome-GraphRAG"},{"title":"GitHub - yixuantt/MultiHop-RAG: Repository for \"MultiHop-RAG: A Dataset for Evaluating Retrieval-Augmented Generation Across Documents\" (COLM 2024) · GitHub","url":"https://github.com/yixuantt/MultiHop-RAG/"},{"title":"GitHub - liunian-Jay/Awesome-RAG: 💡 Awesome RAG: A resource of Retrieval-Augmented Generation (RAG) for LLMs, focusing on the development of technology.","url":"https://github.com/liunian-Jay/Awesome-RAG"},{"title":"GitHub - DavidZWZ/Awesome-RAG-Reasoning: [EMNLP 2025] Awesome RAG Reasoning Resources · GitHub","url":"https://github.com/DavidZWZ/Awesome-RAG-Reasoning"},{"title":"GitHub - rajarshd/Multi-Step-Reasoning","url":"https://github.com/rajarshd/Multi-Step-Reasoning"}]
+
+I've performed the web search for your query about "step type", "retrieval", "multi-hop" reasoning implementation on GitHub. Here are the key findings:
+
+## Search Results Overview
+
+The search returned several relevant GitHub repositories and resources related to multi-hop reasoning and retrieval implementations:
+
+1. **AgenticRAG-Survey** - This repository explores agentic RAG systems that excel in multi-hop reasoning scenarios and apply business rules through multi-hop reasoning.
+
+2. **Multi-Hop Reasoning Topic** - A repository combining Multi-Hop Chain of Thought (CoT) and Retrieval-Augmented Generation (RAG) using DSPy and Indexify, along with several academic implementations including the official implementation of ICLR 2020, "Learning to Retrieve Reasoning Paths over Wikipedia Graph for Question Answering".
+
+3. **Awesome-GraphRAG** - GraphRAG is a paradigm addressing traditional RAG limitations through graph-structured knowledge representation, graph-aware retrieval mechanisms that enable multi-hop reasoning, and structure-guided knowledge search algorithms.
+
+4. **MultiHop-RAG Dataset** - A QA dataset to evaluate retrieval and reasoning across documents with metadata in RAG pipelines, containing 2556 queries with evidence distributed across 2 to 4 documents.
+
+5. **Awesome-RAG-Reasoning** - A curated collection of resources, papers, tools, and implementations that bridge the gap between RAG and Reasoning in Large Language Models and Agents.
+
+6. **Multi-Step-Reasoning** - Code for the paper "Multi-step Retriever-Reader Interaction for Scalable Open-domain Question Answering".
+
+These repositories contain implementations and frameworks for handling multi-hop retrieval and reasoning tasks with various architectural approaches.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "50e180be-4a3a-4502-8d7e-0b7b006b72d6",
+  "isSidechain": false,
+  "promptId": "0122c317-1b5e-4c60-85ae-e9c4b6853925",
+  "type": "user",
+  "uuid": "bc0f56e5-595e-4162-b9dd-5baf93e38c01",
+  "toolUseResult": {
+    "query": "github \"step type\" \"retrieval\" \"multi-hop\" reasoning implementation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01SDFvFKtJwfraEV8PyJJimS",
+        "content": [
+          {
+            "title": "GitHub - asinghcsu/AgenticRAG-Survey: Agentic-RAG explores advanced Retrieval-Augmented Generation systems enhanced with AI LLM agents. · GitHub",
+            "url": "https://github.com/asinghcsu/AgenticRAG-Survey"
+          },
+          {
+            "title": "multi-hop-reasoning · GitHub Topics · GitHub",
+            "url": "https://github.com/topics/multi-hop-reasoning?o=desc&s=updated"
+          },
+          {
+            "title": "awesome-generative-ai-guide/research_updates/rag_research_table.md at main · aishwaryanr/awesome-generative-ai-guide",
+            "url": "https://github.com/aishwaryanr/awesome-generative-ai-guide/blob/main/research_updates/rag_research_table.md"
+          },
+          {
+            "title": "How to Improve Multi-Hop Reasoning With Knowledge Graphs and LLMs - Graph Database & Analytics",
+            "url": "https://neo4j.com/blog/genai/knowledge-graph-llm-multi-hop-reasoning/"
+          },
+          {
+            "title": "Tree- or Chain-of-Thought? Exploring Complex Reasoning in Multi-Hop",
+            "url": "https://southnlp.github.io/southnlp2024/papers/southnlp2024-poster-69.pdf"
+          },
+          {
+            "title": "GitHub - DEEP-PolyU/Awesome-GraphRAG: Awesome-GraphRAG: A curated list of resources (surveys, papers, benchmarks, and opensource projects) on graph-based retrieval-augmented generation. · GitHub",
+            "url": "https://github.com/DEEP-PolyU/Awesome-GraphRAG"
+          },
+          {
+            "title": "GitHub - yixuantt/MultiHop-RAG: Repository for \"MultiHop-RAG: A Dataset for Evaluating Retrieval-Augmented Generation Across Documents\" (COLM 2024) · GitHub",
+            "url": "https://github.com/yixuantt/MultiHop-RAG/"
+          },
+          {
+            "title": "GitHub - liunian-Jay/Awesome-RAG: 💡 Awesome RAG: A resource of Retrieval-Augmented Generation (RAG) for LLMs, focusing on the development of technology.",
+            "url": "https://github.com/liunian-Jay/Awesome-RAG"
+          },
+          {
+            "title": "GitHub - DavidZWZ/Awesome-RAG-Reasoning: [EMNLP 2025] Awesome RAG Reasoning Resources · GitHub",
+            "url": "https://github.com/DavidZWZ/Awesome-RAG-Reasoning"
+          },
+          {
+            "title": "GitHub - rajarshd/Multi-Step-Reasoning",
+            "url": "https://github.com/rajarshd/Multi-Step-Reasoning"
+          }
+        ]
+      },
+      "I've performed the web search for your query about \"step type\", \"retrieval\", \"multi-hop\" reasoning implementation on GitHub. Here are the key findings:\n\n## Search Results Overview\n\nThe search returned several relevant GitHub repositories and resources related to multi-hop reasoning and retrieval implementations:\n\n1. **AgenticRAG-Survey** - This repository explores agentic RAG systems that excel in multi-hop reasoning scenarios and apply business rules through multi-hop reasoning.\n\n2. **Multi-Hop Reasoning Topic** - A repository combining Multi-Hop Chain of Thought (CoT) and Retrieval-Augmented Generation (RAG) using DSPy and Indexify, along with several academic implementations including the official implementation of ICLR 2020, \"Learning to Retrieve Reasoning Paths over Wikipedia Graph for Question Answering\".\n\n3. **Awesome-GraphRAG** - GraphRAG is a paradigm addressing traditional RAG limitations through graph-structured knowledge representation, graph-aware retrieval mechanisms that enable multi-hop reasoning, and structure-guided knowledge search algorithms.\n\n4. **MultiHop-RAG Dataset** - A QA dataset to evaluate retrieval and reasoning across documents with metadata in RAG pipelines, containing 2556 queries with evidence distributed across 2 to 4 documents.\n\n5. **Awesome-RAG-Reasoning** - A curated collection of resources, papers, tools, and implementations that bridge the gap between RAG and Reasoning in Large Language Models and Agents.\n\n6. **Multi-Step-Reasoning** - Code for the paper \"Multi-step Retriever-Reader Interaction for Scalable Open-domain Question Answering\".\n\nThese repositories contain implementations and frameworks for handling multi-hop retrieval and reasoning tasks with various architectural approaches."
+    ],
+    "durationSeconds": 8.659380784000009
+  },
+  "sourceToolAssistantUUID": "50e180be-4a3a-4502-8d7e-0b7b006b72d6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-14T15:01:00.719Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01618JZbxG9bAYtK3wu5nRyx`</summary>
+
+```json
+{
+  "query": "github Search-R1 PeterGriffinJin implementation code multi-hop retrieval"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bc0f56e5-595e-4162-b9dd-5baf93e38c01",
+  "isSidechain": false,
+  "requestId": "req_011Cb2fLhnt3GUUx8e51Ae6W",
+  "type": "assistant",
+  "uuid": "37f80605-a69b-4b1f-9ae5-0b6a8fb27b58",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UT1ySzjv4KTeMF7LfLsgMX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1165,
+      "cache_read_input_tokens": 35898,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1165,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 35898,
+          "cache_creation_input_tokens": 1165,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1165
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-14T15:01:07.864Z_
+
+<details><summary>↩ Tool result · `toolu_01618JZbxG9bAYtK3wu5nRyx`</summary>
+
+```text
+Web search results for query: "github Search-R1 PeterGriffinJin implementation code multi-hop retrieval"
+
+Links: [{"title":"GitHub - PeterGriffinJin/Search-R1: Search-R1: An Efficient, Scalable RL Training Framework for Reasoning & Search Engine Calling interleaved LLM based on veRL · GitHub","url":"https://github.com/PeterGriffinJin/Search-R1"},{"title":"Releases · PeterGriffinJin/Search-R1","url":"https://github.com/PeterGriffinJin/Search-R1/releases"},{"title":"Paper page - Search-R1: Training LLMs to Reason and Leverage Search Engines with Reinforcement Learning","url":"https://huggingface.co/papers/2503.09516"},{"title":"Activity · PeterGriffinJin/Search-R1","url":"https://github.com/PeterGriffinJin/Search-R1/activity"},{"title":"Issues · PeterGriffinJin/Search-R1","url":"https://github.com/PeterGriffinJin/Search-R1/issues"},{"title":"Search-R1/README.md at main · PeterGriffinJin/Search-R1","url":"https://github.com/PeterGriffinJin/Search-R1/blob/main/README.md"},{"title":"GitHub - RUCAIBox/R1-Searcher: R1-searcher: Incentivizing the Search Capability in LLMs via Reinforcement Learning · GitHub","url":"https://github.com/RUCAIBox/R1-Searcher"},{"title":"Search-R1/docs/retriever.md at main · PeterGriffinJin/Search-R1","url":"https://github.com/PeterGriffinJin/Search-R1/blob/main/docs/retriever.md"},{"title":"Search-R1/setup.py at main · PeterGriffinJin/Search-R1","url":"https://github.com/PeterGriffinJin/Search-R1/blob/main/setup.py"},{"title":"Search-R1/Notice.txt at main · PeterGriffinJin/Search-R1","url":"https://github.com/PeterGriffinJin/Search-R1/blob/main/Notice.txt"}]
+
+## Search Results for Search-R1 Implementation
+
+I found the GitHub repository for Search-R1 by PeterGriffinJin. Here's what the search revealed:
+
+### Overview
+
+Search-R1 is an efficient, scalable RL training framework that enables models to learn multi-turn search engine calling and reasoning. The concept is inspired by Deepseek-R1 and TinyZero, with implementation built upon veRL and RAGEN.
+
+### Key Features for Multi-hop Retrieval
+
+Search-R1 optimizes LLM rollouts with multi-turn search interactions, leveraging retrieved token masking for stable RL training and a simple outcome-based reward function.
+
+### Implementation Details
+
+The framework supports:
+- Local dense retrievers (both flat indexing and ANN indexing)
+- Google search, Bing search, Brave search API and others
+- Different RL methods (e.g., PPO, GRPO, reinforce)
+- Different LLMs (e.g., llama3, Qwen2.5, etc)
+
+### Performance
+
+Experiments on seven question-answering datasets show that Search-R1 improves performance by 26% (Qwen2.5-7B), 21% (Qwen2.5-3B), and 10% (LLaMA3.2-3B) over SOTA baselines.
+
+The complete code and documentation is available at: https://github.com/PeterGriffinJin/Search-R1
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "37f80605-a69b-4b1f-9ae5-0b6a8fb27b58",
+  "isSidechain": false,
+  "promptId": "0122c317-1b5e-4c60-85ae-e9c4b6853925",
+  "type": "user",
+  "uuid": "c34a2d3c-6cb4-44bc-a967-c952b3631946",
+  "toolUseResult": {
+    "query": "github Search-R1 PeterGriffinJin implementation code multi-hop retrieval",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013MxAzKGvMkhovret7YPdGv",
+        "content": [
+          {
+            "title": "GitHub - PeterGriffinJin/Search-R1: Search-R1: An Efficient, Scalable RL Training Framework for Reasoning & Search Engine Calling interleaved LLM based on veRL · GitHub",
+            "url": "https://github.com/PeterGriffinJin/Search-R1"
+          },
+          {
+            "title": "Releases · PeterGriffinJin/Search-R1",
+            "url": "https://github.com/PeterGriffinJin/Search-R1/releases"
+          },
+          {
+            "title": "Paper page - Search-R1: Training LLMs to Reason and Leverage Search Engines with Reinforcement Learning",
+            "url": "https://huggingface.co/papers/2503.09516"
+          },
+          {
+            "title": "Activity · PeterGriffinJin/Search-R1",
+            "url": "https://github.com/PeterGriffinJin/Search-R1/activity"
+          },
+          {
+            "title": "Issues · PeterGriffinJin/Search-R1",
+            "url": "https://github.com/PeterGriffinJin/Search-R1/issues"
+          },
+          {
+            "title": "Search-R1/README.md at main · PeterGriffinJin/Search-R1",
+            "url": "https://github.com/PeterGriffinJin/Search-R1/blob/main/README.md"
+          },
+          {
+            "title": "GitHub - RUCAIBox/R1-Searcher: R1-searcher: Incentivizing the Search Capability in LLMs via Reinforcement Learning · GitHub",
+            "url": "https://github.com/RUCAIBox/R1-Searcher"
+          },
+          {
+            "title": "Search-R1/docs/retriever.md at main · PeterGriffinJin/Search-R1",
+            "url": "https://github.com/PeterGriffinJin/Search-R1/blob/main/docs/retriever.md"
+          },
+          {
+            "title": "Search-R1/setup.py at main · PeterGriffinJin/Search-R1",
+            "url": "https://github.com/PeterGriffinJin/Search-R1/blob/main/setup.py"
+          },
+          {
+            "title": "Search-R1/Notice.txt at main · PeterGriffinJin/Search-R1",
+            "url": "https://github.com/PeterGriffinJin/Search-R1/blob/main/Notice.txt"
+          }
+        ]
+      },
+      "## Search Results for Search-R1 Implementation\n\nI found the GitHub repository for Search-R1 by PeterGriffinJin. Here's what the search revealed:\n\n### Overview\n\nSearch-R1 is an efficient, scalable RL training framework that enables models to learn multi-turn search engine calling and reasoning. The concept is inspired by Deepseek-R1 and TinyZero, with implementation built upon veRL and RAGEN.\n\n### Key Features for Multi-hop Retrieval\n\nSearch-R1 optimizes LLM rollouts with multi-turn search interactions, leveraging retrieved token masking for stable RL training and a simple outcome-based reward function.\n\n### Implementation Details\n\nThe framework supports:\n- Local dense retrievers (both flat indexing and ANN indexing)\n- Google search, Bing search, Brave search API and others\n- Different RL methods (e.g., PPO, GRPO, reinforce)\n- Different LLMs (e.g., llama3, Qwen2.5, etc)\n\n### Performance\n\nExperiments on seven question-answering datasets show that Search-R1 improves performance by 26% (Qwen2.5-7B), 21% (Qwen2.5-3B), and 10% (LLaMA3.2-3B) over SOTA baselines.\n\nThe complete code and documentation is available at: https://github.com/PeterGriffinJin/Search-R1"
+    ],
+    "durationSeconds": 7.141493870000006
+  },
+  "sourceToolAssistantUUID": "37f80605-a69b-4b1f-9ae5-0b6a8fb27b58",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 63_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-14 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Step-Type-Con…",
+  "leafUuid": "c34a2d3c-6cb4-44bc-a967-c952b3631946",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 64_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Step-type-conditioned retrieval routing for multi-hop QA",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378"
+}
+```
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-14T15:01:10.257Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DHp7rh78igajxbcgscPp26`</summary>
+
+```json
+{
+  "query": "IndexRAG multi-hop question answering single pass retrieval 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c34a2d3c-6cb4-44bc-a967-c952b3631946",
+  "isSidechain": false,
+  "requestId": "req_011Cb2fMWmNi3gAPhmdcdH9f",
+  "type": "assistant",
+  "uuid": "7bf6e9f1-5932-4851-ab25-000b52c4f511",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018xdN4yp2aykVd9tXLdhNnU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1023,
+      "cache_read_input_tokens": 37063,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1023,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 37063,
+          "cache_creation_input_tokens": 1023,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1023
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-14T15:01:16.141Z_
+
+<details><summary>↩ Tool result · `toolu_01DHp7rh78igajxbcgscPp26`</summary>
+
+```text
+Web search results for query: "IndexRAG multi-hop question answering single pass retrieval 2025"
+
+Links: [{"title":"Retrieval-Augmented Generation for Multi-Hop Question Answering Based on Structured Planning | ACM Transactions on Knowledge Discovery from Data","url":"https://dl.acm.org/doi/10.1145/3789506"},{"title":"Iterative Multimodal Retrieval-Augmented Generation for Medical Question Answering","url":"https://arxiv.org/html/2604.27724"},{"title":"StepChain GraphRAG: Reasoning Over Knowledge Graphs for Multi-Hop Question Answering","url":"https://arxiv.org/html/2510.02827v1"},{"title":"[2603.16415] IndexRAG: Bridging Facts for Cross-Document Reasoning at Index Time","url":"https://arxiv.org/abs/2603.16415"},{"title":"SG-RAG MOT: SubGraph Retrieval Augmented Generation with Merging and Ordering Triplets for Knowledge Graph Multi-Hop Question Answering","url":"https://www.mdpi.com/2504-4990/7/3/74"},{"title":"awesome-generative-ai-guide/research_updates/rag_research_table.md at main · aishwaryanr/awesome-generative-ai-guide","url":"https://github.com/aishwaryanr/awesome-generative-ai-guide/blob/main/research_updates/rag_research_table.md"},{"title":"[2502.12442] HopRAG: Multi-Hop Reasoning for Logic-Aware Retrieval-Augmented Generation","url":"https://arxiv.org/abs/2502.12442"},{"title":"MultiHop-RAG: Benchmarking Retrieval-Augmented Generation for Multi-Hop Queries | OpenReview","url":"https://openreview.net/forum?id=t4eB3zYWBK"},{"title":"GitHub - DavidZWZ/Awesome-RAG-Reasoning: [EMNLP 2025] Awesome RAG Reasoning Resources · GitHub","url":"https://github.com/DavidZWZ/Awesome-RAG-Reasoning"},{"title":"HopRAG: Multi-Hop Reasoning for Logic-Aware Retrieval-Augmented Generation | Request PDF","url":"https://www.researchgate.net/publication/394272084_HopRAG_Multi-Hop_Reasoning_for_Logic-Aware_Retrieval-Augmented_Generation"}]
+
+Based on the search results, I found information about **IndexRAG**:
+
+## IndexRAG Overview
+
+IndexRAG is a novel approach that shifts cross-document reasoning from online inference to offline indexing. IndexRAG identifies bridge entities shared across documents and generates bridging facts as independently retrievable units, requiring no additional training or fine-tuning.
+
+## Performance on Multi-Hop Question Answering
+
+Experiments on three widely-used multi-hop QA benchmarks (HotpotQA, 2WikiMultiHopQA, MuSiQue) show that IndexRAG improves F1 over Naive RAG by 4.6 points on average, while requiring only single-pass retrieval and a single LLM call at inference time.
+
+## Comparison with Other Methods
+
+When combined with IRCoT, IndexRAG outperforms all graph-based baselines on average, including HippoRAG and FastGraphRAG, while relying solely on flat retrieval.
+
+The key innovation of IndexRAG is that it achieves strong multi-hop question answering performance through single-pass retrieval at inference time, which is more efficient than iterative or graph-based approaches that require additional online processing.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7bf6e9f1-5932-4851-ab25-000b52c4f511",
+  "isSidechain": false,
+  "promptId": "0122c317-1b5e-4c60-85ae-e9c4b6853925",
+  "type": "user",
+  "uuid": "29154a6d-571b-4e86-b44f-97e6cc69e59a",
+  "toolUseResult": {
+    "query": "IndexRAG multi-hop question answering single pass retrieval 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012wjWMTzRjygmQmNX5BoWfm",
+        "content": [
+          {
+            "title": "Retrieval-Augmented Generation for Multi-Hop Question Answering Based on Structured Planning | ACM Transactions on Knowledge Discovery from Data",
+            "url": "https://dl.acm.org/doi/10.1145/3789506"
+          },
+          {
+            "title": "Iterative Multimodal Retrieval-Augmented Generation for Medical Question Answering",
+            "url": "https://arxiv.org/html/2604.27724"
+          },
+          {
+            "title": "StepChain GraphRAG: Reasoning Over Knowledge Graphs for Multi-Hop Question Answering",
+            "url": "https://arxiv.org/html/2510.02827v1"
+          },
+          {
+            "title": "[2603.16415] IndexRAG: Bridging Facts for Cross-Document Reasoning at Index Time",
+            "url": "https://arxiv.org/abs/2603.16415"
+          },
+          {
+            "title": "SG-RAG MOT: SubGraph Retrieval Augmented Generation with Merging and Ordering Triplets for Knowledge Graph Multi-Hop Question Answering",
+            "url": "https://www.mdpi.com/2504-4990/7/3/74"
+          },
+          {
+            "title": "awesome-generative-ai-guide/research_updates/rag_research_table.md at main · aishwaryanr/awesome-generative-ai-guide",
+            "url": "https://github.com/aishwaryanr/awesome-generative-ai-guide/blob/main/research_updates/rag_research_table.md"
+          },
+          {
+            "title": "[2502.12442] HopRAG: Multi-Hop Reasoning for Logic-Aware Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/abs/2502.12442"
+          },
+          {
+            "title": "MultiHop-RAG: Benchmarking Retrieval-Augmented Generation for Multi-Hop Queries | OpenReview",
+            "url": "https://openreview.net/forum?id=t4eB3zYWBK"
+          },
+          {
+            "title": "GitHub - DavidZWZ/Awesome-RAG-Reasoning: [EMNLP 2025] Awesome RAG Reasoning Resources · GitHub",
+            "url": "https://github.com/DavidZWZ/Awesome-RAG-Reasoning"
+          },
+          {
+            "title": "HopRAG: Multi-Hop Reasoning for Logic-Aware Retrieval-Augmented Generation | Request PDF",
+            "url": "https://www.researchgate.net/publication/394272084_HopRAG_Multi-Hop_Reasoning_for_Logic-Aware_Retrieval-Augmented_Generation"
+          }
+        ]
+      },
+      "Based on the search results, I found information about **IndexRAG**:\n\n## IndexRAG Overview\n\nIndexRAG is a novel approach that shifts cross-document reasoning from online inference to offline indexing. IndexRAG identifies bridge entities shared across documents and generates bridging facts as independently retrievable units, requiring no additional training or fine-tuning.\n\n## Performance on Multi-Hop Question Answering\n\nExperiments on three widely-used multi-hop QA benchmarks (HotpotQA, 2WikiMultiHopQA, MuSiQue) show that IndexRAG improves F1 over Naive RAG by 4.6 points on average, while requiring only single-pass retrieval and a single LLM call at inference time.\n\n## Comparison with Other Methods\n\nWhen combined with IRCoT, IndexRAG outperforms all graph-based baselines on average, including HippoRAG and FastGraphRAG, while relying solely on flat retrieval.\n\nThe key innovation of IndexRAG is that it achieves strong multi-hop question answering performance through single-pass retrieval at inference time, which is more efficient than iterative or graph-based approaches that require additional online processing."
+    ],
+    "durationSeconds": 5.879970090999995
+  },
+  "sourceToolAssistantUUID": "7bf6e9f1-5932-4851-ab25-000b52c4f511",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-14T15:01:18.798Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01U6mFoZrANmPTkB158CTbJp`</summary>
+
+```json
+{
+  "query": "R3-RAG retrieval reasoning 2025 2026 arxiv multi-hop"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "29154a6d-571b-4e86-b44f-97e6cc69e59a",
+  "isSidechain": false,
+  "requestId": "req_011Cb2fN8GZgSmeVfgKWq2ig",
+  "type": "assistant",
+  "uuid": "326fbd2e-5601-4b77-b825-9a8eade79e5f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PkMVuJsBzNfMm7rAjNHMNU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 993,
+      "cache_read_input_tokens": 38086,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 993,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 38086,
+          "cache_creation_input_tokens": 993,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 993
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-14T15:01:26.102Z_
+
+<details><summary>↩ Tool result · `toolu_01U6mFoZrANmPTkB158CTbJp`</summary>
+
+```text
+Web search results for query: "R3-RAG retrieval reasoning 2025 2026 arxiv multi-hop"
+
+Links: [{"title":"R3-RAG: Learning Step-by-Step Reasoning and Retrieval for LLMs via Reinforcement Learning","url":"https://arxiv.org/html/2505.23794v2"},{"title":"[2512.20144] Multi-hop Reasoning via Early Knowledge Alignment","url":"https://arxiv.org/abs/2512.20144"},{"title":"[2505.23794] R3-RAG: Learning Step-by-Step Reasoning and Retrieval for LLMs via Reinforcement Learning","url":"https://arxiv.org/abs/2505.23794"},{"title":"GitHub - DavidZWZ/Awesome-RAG-Reasoning: [EMNLP 2025] Awesome RAG Reasoning Resources · GitHub","url":"https://github.com/DavidZWZ/Awesome-RAG-Reasoning"},{"title":"Evaluating Multi-Hop Reasoning in RAG Systems: A Comparison of LLM-Based Retriever Evaluation Strategies Accepted for publication at the SynIRgy Workshop, ECIR 2026 (48th European Conference on Information Retrieval).","url":"https://arxiv.org/html/2604.18234v1"},{"title":"Multi-hop Reasoning via Early Knowledge Alignment","url":"https://arxiv.org/html/2512.20144v1"},{"title":"The 2025 Guide to Retrieval-Augmented Generation (RAG)","url":"https://www.edenai.co/post/the-2025-guide-to-retrieval-augmented-generation-rag"},{"title":"Reasoning in Trees: Improving Retrieval-Augmented Generation for Multi-Hop Question Answering","url":"https://arxiv.org/html/2601.11255v1"},{"title":"[2502.12442] HopRAG: Multi-Hop Reasoning for Logic-Aware Retrieval-Augmented Generation","url":"https://arxiv.org/abs/2502.12442"},{"title":"RAP-RAG: A Retrieval-Augmented Generation Framework with Adaptive Retrieval Task Planning","url":"https://www.mdpi.com/2079-9292/14/21/4269"}]
+
+Based on the search results, here are the key findings about R3-RAG and related multi-hop reasoning retrieval approaches:
+
+## R3-RAG Overview
+
+R3-RAG uses Reinforcement learning to make the LLM learn how to Reason and Retrieve step by step, thus retrieving comprehensive external knowledge and leading to correct answers. R3-RAG is divided into two stages, with the first using cold start to make the model learn the manner of iteratively interleaving reasoning and retrieval.
+
+## Key Features and Performance
+
+R3-RAG proposes two rewards: an answer-correctness outcome reward which judges whether the trajectory leads to a correct answer, and a relevance-based document verification as a process reward, encouraging the model to retrieve documents relevant to the user's question.
+
+R3-RAG uses 22.8% fewer tokens on average while maintaining higher accuracy, with this efficiency attributed to the outcome-plus-process rewards that jointly reward the final answer and each intermediate retrieval decision.
+
+## Multi-Hop Reasoning Context
+
+To handle complex multi-hop questions that are challenging for single-step retrieval, iterative RAG approaches incorporating reinforcement learning have been proposed. Several approaches, such as R1-Searcher, R3-RAG, and DeepRAG, employ a two-stage training process, first using manually curated data for Supervised Fine-Tuning and subsequently applying reinforcement learning to further align the model with available knowledge boundaries.
+
+The research addresses key challenges in multi-hop question answering systems on arxiv platforms from 2025-2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "326fbd2e-5601-4b77-b825-9a8eade79e5f",
+  "isSidechain": false,
+  "promptId": "0122c317-1b5e-4c60-85ae-e9c4b6853925",
+  "type": "user",
+  "uuid": "7aa2dc52-9e42-4047-be06-e13916ae8891",
+  "toolUseResult": {
+    "query": "R3-RAG retrieval reasoning 2025 2026 arxiv multi-hop",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Keo9WGp593m89fTgtuY1yK",
+        "content": [
+          {
+            "title": "R3-RAG: Learning Step-by-Step Reasoning and Retrieval for LLMs via Reinforcement Learning",
+            "url": "https://arxiv.org/html/2505.23794v2"
+          },
+          {
+            "title": "[2512.20144] Multi-hop Reasoning via Early Knowledge Alignment",
+            "url": "https://arxiv.org/abs/2512.20144"
+          },
+          {
+            "title": "[2505.23794] R3-RAG: Learning Step-by-Step Reasoning and Retrieval for LLMs via Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2505.23794"
+          },
+          {
+            "title": "GitHub - DavidZWZ/Awesome-RAG-Reasoning: [EMNLP 2025] Awesome RAG Reasoning Resources · GitHub",
+            "url": "https://github.com/DavidZWZ/Awesome-RAG-Reasoning"
+          },
+          {
+            "title": "Evaluating Multi-Hop Reasoning in RAG Systems: A Comparison of LLM-Based Retriever Evaluation Strategies Accepted for publication at the SynIRgy Workshop, ECIR 2026 (48th European Conference on Information Retrieval).",
+            "url": "https://arxiv.org/html/2604.18234v1"
+          },
+          {
+            "title": "Multi-hop Reasoning via Early Knowledge Alignment",
+            "url": "https://arxiv.org/html/2512.20144v1"
+          },
+          {
+            "title": "The 2025 Guide to Retrieval-Augmented Generation (RAG)",
+            "url": "https://www.edenai.co/post/the-2025-guide-to-retrieval-augmented-generation-rag"
+          },
+          {
+            "title": "Reasoning in Trees: Improving Retrieval-Augmented Generation for Multi-Hop Question Answering",
+            "url": "https://arxiv.org/html/2601.11255v1"
+          },
+          {
+            "title": "[2502.12442] HopRAG: Multi-Hop Reasoning for Logic-Aware Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/abs/2502.12442"
+          },
+          {
+            "title": "RAP-RAG: A Retrieval-Augmented Generation Framework with Adaptive Retrieval Task Planning",
+            "url": "https://www.mdpi.com/2079-9292/14/21/4269"
+          }
+        ]
+      },
+      "Based on the search results, here are the key findings about R3-RAG and related multi-hop reasoning retrieval approaches:\n\n## R3-RAG Overview\n\nR3-RAG uses Reinforcement learning to make the LLM learn how to Reason and Retrieve step by step, thus retrieving comprehensive external knowledge and leading to correct answers. R3-RAG is divided into two stages, with the first using cold start to make the model learn the manner of iteratively interleaving reasoning and retrieval.\n\n## Key Features and Performance\n\nR3-RAG proposes two rewards: an answer-correctness outcome reward which judges whether the trajectory leads to a correct answer, and a relevance-based document verification as a process reward, encouraging the model to retrieve documents relevant to the user's question.\n\nR3-RAG uses 22.8% fewer tokens on average while maintaining higher accuracy, with this efficiency attributed to the outcome-plus-process rewards that jointly reward the final answer and each intermediate retrieval decision.\n\n## Multi-Hop Reasoning Context\n\nTo handle complex multi-hop questions that are challenging for single-step retrieval, iterative RAG approaches incorporating reinforcement learning have been proposed. Several approaches, such as R1-Searcher, R3-RAG, and DeepRAG, employ a two-stage training process, first using manually curated data for Supervised Fine-Tuning and subsequently applying reinforcement learning to further align the model with available knowledge boundaries.\n\nThe research addresses key challenges in multi-hop question answering systems on arxiv platforms from 2025-2026."
+    ],
+    "durationSeconds": 7.2997639199999975
+  },
+  "sourceToolAssistantUUID": "326fbd2e-5601-4b77-b825-9a8eade79e5f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-14T15:01:29.204Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XnmHUBgt6BtNprmDJEnxkB`</summary>
+
+```json
+{
+  "query": "\"retrieval query formulation\" \"step type\" OR \"reasoning type\" conditioned routing arxiv 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7aa2dc52-9e42-4047-be06-e13916ae8891",
+  "isSidechain": false,
+  "requestId": "req_011Cb2fNrkShD8mPxXKMaKjm",
+  "type": "assistant",
+  "uuid": "a8622360-dfc1-486d-bb35-67bba247fcbf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XsUwUbVARne5EsFhAPxXNi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1017,
+      "cache_read_input_tokens": 39079,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1017,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 39079,
+          "cache_creation_input_tokens": 1017,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1017
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-14T15:01:39.877Z_
+
+<details><summary>↩ Tool result · `toolu_01XnmHUBgt6BtNprmDJEnxkB`</summary>
+
+```text
+Web search results for query: ""retrieval query formulation" "step type" OR "reasoning type" conditioned routing arxiv 2026"
+
+Links: [{"title":"Learning to Route Queries across Knowledge Bases for Step-wise Retrieval-Augmented Reasoning","url":"https://arxiv.org/html/2505.22095v1"},{"title":"IG-Search: Step-Level Information Gain Rewards for Search-Augmented Reasoning","url":"https://arxiv.org/html/2604.15148"},{"title":"Mixture-of-Retrieval Experts for Reasoning-Guided ...","url":"https://arxiv.org/pdf/2505.22095"},{"title":"RAISE: Enhancing Scientific Reasoning in LLMs via Step-by-Step Retrieval","url":"https://arxiv.org/html/2506.08625v2"},{"title":"Reasoning in Trees: Improving Retrieval-Augmented Generation for Multi-Hop Question Answering","url":"https://arxiv.org/html/2601.11255v1"},{"title":"R2-ROUTER: A New Paradigm for LLM Routing with Reasoning","url":"https://arxiv.org/pdf/2602.02823"},{"title":"Models Under Scope: Scalable and Controllable Routing via Pre-hoc Reasoning","url":"https://arxiv.org/html/2601.22323"},{"title":"Adaptive Query Routing: A Tier-Based Framework for Hybrid Retrieval Across Financial, Legal, and Medical Documents","url":"https://arxiv.org/html/2604.14222"},{"title":"Retrieval-Conditioned Topology Selection with Provable Budget Conservation for Multi-Agent Code Generation","url":"https://arxiv.org/html/2605.05657"},{"title":"SoK: Agentic Retrieval-Augmented Generation (RAG): Taxonomy, Architectures, Evaluation, and Research Directions","url":"https://arxiv.org/html/2603.07379v1"}]
+
+Based on the search results, I found several highly relevant papers on retrieval query formulation with step-level and reasoning-type conditioned routing from arxiv 2026:
+
+## Key Findings:
+
+**R1-Router (arXiv 2505.22095)**: This paper proposes R1-Router, a method designed to dynamically determine when and where to retrieve relevant knowledge during reasoning, introducing Step-wise Group Relative Policy Optimization (Step-GRPO). This optimization algorithm computes step-specific rewards at intermediate reasoning steps to guide MLLMs to learn how to retrieve information from different knowledge bases during reasoning. Experimental results show that R1-Router can conduct practical retrieval actions across multiple knowledge bases and perform iterative reasoning conditioned on the current problem-solving context.
+
+**IG-Search (arXiv 2604.15148)**: IG-Search introduces a step-level IG reward that measures the informational contribution of each search step, and can be viewed as a retrieval-grounded process reward derived from the policy's own generation probabilities conditioned on the gold answer.
+
+**RAISE (arXiv 2506.08625)**: RAISE is divided into three steps: (1) Problem Decomposition, (2) Logical Query Generation, and (3) Logical Retrieval, where the framework decomposes a scientific reasoning question into multiple subquestions and search queries, generates a logical query that contains logic-enriched contexts, and finally retrieves relevant documents conditioned to assist step-by-step reasoning.
+
+These papers all address query formulation and routing mechanisms that are conditioned on different step types and reasoning processes during retrieval-augmented generation.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a8622360-dfc1-486d-bb35-67bba247fcbf",
+  "isSidechain": false,
+  "promptId": "0122c317-1b5e-4c60-85ae-e9c4b6853925",
+  "type": "user",
+  "uuid": "03639e44-bc3a-4cf1-9d4e-02d85d6faac0",
+  "toolUseResult": {
+    "query": "\"retrieval query formulation\" \"step type\" OR \"reasoning type\" conditioned routing arxiv 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DdxHG42C8tDshn9m8Qc69B",
+        "content": [
+          {
+            "title": "Learning to Route Queries across Knowledge Bases for Step-wise Retrieval-Augmented Reasoning",
+            "url": "https://arxiv.org/html/2505.22095v1"
+          },
+          {
+            "title": "IG-Search: Step-Level Information Gain Rewards for Search-Augmented Reasoning",
+            "url": "https://arxiv.org/html/2604.15148"
+          },
+          {
+            "title": "Mixture-of-Retrieval Experts for Reasoning-Guided ...",
+            "url": "https://arxiv.org/pdf/2505.22095"
+          },
+          {
+            "title": "RAISE: Enhancing Scientific Reasoning in LLMs via Step-by-Step Retrieval",
+            "url": "https://arxiv.org/html/2506.08625v2"
+          },
+          {
+            "title": "Reasoning in Trees: Improving Retrieval-Augmented Generation for Multi-Hop Question Answering",
+            "url": "https://arxiv.org/html/2601.11255v1"
+          },
+          {
+            "title": "R2-ROUTER: A New Paradigm for LLM Routing with Reasoning",
+            "url": "https://arxiv.org/pdf/2602.02823"
+          },
+          {
+            "title": "Models Under Scope: Scalable and Controllable Routing via Pre-hoc Reasoning",
+            "url": "https://arxiv.org/html/2601.22323"
+          },
+          {
+            "title": "Adaptive Query Routing: A Tier-Based Framework for Hybrid Retrieval Across Financial, Legal, and Medical Documents",
+            "url": "https://arxiv.org/html/2604.14222"
+          },
+          {
+            "title": "Retrieval-Conditioned Topology Selection with Provable Budget Conservation for Multi-Agent Code Generation",
+            "url": "https://arxiv.org/html/2605.05657"
+          },
+          {
+            "title": "SoK: Agentic Retrieval-Augmented Generation (RAG): Taxonomy, Architectures, Evaluation, and Research Directions",
+            "url": "https://arxiv.org/html/2603.07379v1"
+          }
+        ]
+      },
+      "Based on the search results, I found several highly relevant papers on retrieval query formulation with step-level and reasoning-type conditioned routing from arxiv 2026:\n\n## Key Findings:\n\n**R1-Router (arXiv 2505.22095)**: This paper proposes R1-Router, a method designed to dynamically determine when and where to retrieve relevant knowledge during reasoning, introducing Step-wise Group Relative Policy Optimization (Step-GRPO). This optimization algorithm computes step-specific rewards at intermediate reasoning steps to guide MLLMs to learn how to retrieve information from different knowledge bases during reasoning. Experimental results show that R1-Router can conduct practical retrieval actions across multiple knowledge bases and perform iterative reasoning conditioned on the current problem-solving context.\n\n**IG-Search (arXiv 2604.15148)**: IG-Search introduces a step-level IG reward that measures the informational contribution of each search step, and can be viewed as a retrieval-grounded process reward derived from the policy's own generation probabilities conditioned on the gold answer.\n\n**RAISE (arXiv 2506.08625)**: RAISE is divided into three steps: (1) Problem Decomposition, (2) Logical Query Generation, and (3) Logical Retrieval, where the framework decomposes a scientific reasoning question into multiple subquestions and search queries, generates a logical query that contains logic-enriched contexts, and finally retrieves relevant documents conditioned to assist step-by-step reasoning.\n\nThese papers all address query formulation and routing mechanisms that are conditioned on different step types and reasoning processes during retrieval-augmented generation."
+    ],
+    "durationSeconds": 10.668625434999994
+  },
+  "sourceToolAssistantUUID": "a8622360-dfc1-486d-bb35-67bba247fcbf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 71 · 2026-05-14T15:01:51.578Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+This is a critical finding. Let me examine MoRE/R1-Router more carefully and also IG-Search and RAISE. These are concurrent/related works. Let me now differentiate the proposed idea from these:
+
+1. **MoRE/R1-Router** (2505.22095): Routes to different retrieval experts based on reasoning state, but it's for *multimodal* knowledge exploitation and routes to KB-level experts (which KB to query), not step-type-specific query formulation strategies. It doesn't classify step types explicitly.
+
+
+2. **IG-Search** (2604.15148): Optimizes *when* to search using information gain rewards, but doesn't adapt *how* queries are formulated across different step types.
+3. **RAISE** (2506.08625): Breaks problems into subquestions with logical query generation, but applies the same strategy uniformly rather than tailoring to step type.
+4. **ReaLM-Retrieve** (2604.26649): Addresses *when* to retrieve during reasoning, not *how* retrieval strategies should differ by step type.
+
+The core distinction here is that this work explicitly classifies reasoning steps and tailors query formulation strategies accordingly—whether that's entity grounding, relational bridging, or numerical reasoning.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "03639e44-bc3a-4cf1-9d4e-02d85d6faac0",
+  "isSidechain": false,
+  "requestId": "req_011Cb2fPsc4Q6fbsUB3GCAWN",
+  "type": "assistant",
+  "uuid": "9f802b71-b863-40c4-aa25-56d5b11230d4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xvt7dF1fTgNZrUavGghv6A",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 959,
+      "cache_read_input_tokens": 40096,
+      "output_tokens": 460,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 959,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 460,
+          "cache_read_input_tokens": 40096,
+          "cache_creation_input_tokens": 959,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 959
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 72 · 2026-05-14T15:01:52.058Z_
+
+Let me search for a few more critical pieces — the ARR cycle deadlines, COLING/NAACL deadlines, and verify remaining references.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9f802b71-b863-40c4-aa25-56d5b11230d4",
+  "isSidechain": false,
+  "requestId": "req_011Cb2fPsc4Q6fbsUB3GCAWN",
+  "type": "assistant",
+  "uuid": "d7a1f93b-50f4-41fb-9910-a85bcdfc5b91",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xvt7dF1fTgNZrUavGghv6A",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 959,
+      "cache_read_input_tokens": 40096,
+      "output_tokens": 460,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 959,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 460,
+          "cache_read_input_tokens": 40096,
+          "cache_creation_input_tokens": 959,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 959
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-14T15:01:52.993Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HsJ9Qh7sf9V8YDCUcwMqi3`</summary>
+
+```json
+{
+  "query": "ACL Rolling Review ARR May 2026 June 2026 July 2026 submission cycle deadlines"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d7a1f93b-50f4-41fb-9910-a85bcdfc5b91",
+  "isSidechain": false,
+  "requestId": "req_011Cb2fPsc4Q6fbsUB3GCAWN",
+  "type": "assistant",
+  "uuid": "4853b802-ae6d-4927-afd3-dc3960e95e38",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xvt7dF1fTgNZrUavGghv6A",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 959,
+      "cache_read_input_tokens": 40096,
+      "output_tokens": 460,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 959,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 460,
+          "cache_read_input_tokens": 40096,
+          "cache_creation_input_tokens": 959,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 959
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-14T15:01:57.621Z_
+
+<details><summary>↩ Tool result · `toolu_01HsJ9Qh7sf9V8YDCUcwMqi3`</summary>
+
+```text
+Web search results for query: "ACL Rolling Review ARR May 2026 June 2026 July 2026 submission cycle deadlines"
+
+Links: [{"title":"Dates and Venues – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/dates"},{"title":"Main Conference - ACL 2026","url":"https://2026.aclweb.org/calls/main_conference_papers/"},{"title":"ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/"},{"title":"CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/cfp"},{"title":"Call for Main Conference Papers -","url":"https://2026.eacl.org/calls/papers/"},{"title":"Incentives 2026 – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/incentives2026"},{"title":"ACL ARR | OpenReview","url":"https://openreview.net/group?id=aclweb.org%2FACL%2FARR"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"aclrollingreview/dates.md at main · acl-org/aclrollingreview","url":"https://github.com/acl-org/aclrollingreview/blob/main/dates.md"},{"title":"ACLRollingReview (@ReviewAcl) / Posts / X","url":"https://x.com/ReviewAcl"}]
+
+Based on the search results, I found information about the ACL Rolling Review (ARR) submission cycle schedules. The ACL Peer Review Committee recommended switching to 10-week cycles, with the new schedule starting in May 2025.
+
+While the search results don't provide a detailed table showing all the specific May, June, and July 2026 deadlines, they indicate that with 10-week cycles, there are generally 5 cycles per year instead of 6. 
+
+For specific May 2026, June 2026, and July 2026 submission cycle deadlines, I recommend checking the official ARR dates page at **aclrollingreview.org/dates**, which the search results reference as containing "a table listing all the key dates by which authors may need to take action for the upcoming cycles." This official source would have the precise submission deadlines you're looking for during that time period.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4853b802-ae6d-4927-afd3-dc3960e95e38",
+  "isSidechain": false,
+  "promptId": "0122c317-1b5e-4c60-85ae-e9c4b6853925",
+  "type": "user",
+  "uuid": "22c813d5-7885-4977-881d-01618925e396",
+  "toolUseResult": {
+    "query": "ACL Rolling Review ARR May 2026 June 2026 July 2026 submission cycle deadlines",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01YCoNKSWqNhxLwgcExVoRec",
+        "content": [
+          {
+            "title": "Dates and Venues – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "Main Conference - ACL 2026",
+            "url": "https://2026.aclweb.org/calls/main_conference_papers/"
+          },
+          {
+            "title": "ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/"
+          },
+          {
+            "title": "CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/cfp"
+          },
+          {
+            "title": "Call for Main Conference Papers -",
+            "url": "https://2026.eacl.org/calls/papers/"
+          },
+          {
+            "title": "Incentives 2026 – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/incentives2026"
+          },
+          {
+            "title": "ACL ARR | OpenReview",
+            "url": "https://openreview.net/group?id=aclweb.org%2FACL%2FARR"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "aclrollingreview/dates.md at main · acl-org/aclrollingreview",
+            "url": "https://github.com/acl-org/aclrollingreview/blob/main/dates.md"
+          },
+          {
+            "title": "ACLRollingReview (@ReviewAcl) / Posts / X",
+            "url": "https://x.com/ReviewAcl"
+          }
+        ]
+      },
+      "Based on the search results, I found information about the ACL Rolling Review (ARR) submission cycle schedules. The ACL Peer Review Committee recommended switching to 10-week cycles, with the new schedule starting in May 2025.\n\nWhile the search results don't provide a detailed table showing all the specific May, June, and July 2026 deadlines, they indicate that with 10-week cycles, there are generally 5 cycles per year instead of 6. \n\nFor specific May 2026, June 2026, and July 2026 submission cycle deadlines, I recommend checking the official ARR dates page at **aclrollingreview.org/dates**, which the search results reference as containing \"a table listing all the key dates by which authors may need to take action for the upcoming cycles.\" This official source would have the precise submission deadlines you're looking for during that time period."
+    ],
+    "durationSeconds": 4.623369403999997
+  },
+  "sourceToolAssistantUUID": "4853b802-ae6d-4927-afd3-dc3960e95e38",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 75_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-14 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Step-Type-Con…",
+  "leafUuid": "22c813d5-7885-4977-881d-01618925e396",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 76_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Step-type-conditioned retrieval routing for multi-hop QA",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378"
+}
+```
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-14T15:02:01.646Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01CXZtqUG8GmjWHDgybZ3NYZ`</summary>
+
+```json
+{
+  "url": "http://aclrollingreview.org/dates",
+  "prompt": "Extract ALL ARR submission cycle deadlines for 2026, especially May 2026, June 2026, July 2026, August 2026. List the exact submission deadlines and which conferences (EMNLP 2026, etc.) each cycle can commit to."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "22c813d5-7885-4977-881d-01618925e396",
+  "isSidechain": false,
+  "requestId": "req_011Cb2fRBVNCgTH9i16A4Jxh",
+  "type": "assistant",
+  "uuid": "395fe628-8daf-4f4f-894a-03d4d574d462",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U8BiSd6o4LhyYjq4SnpT7R",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1117,
+      "cache_read_input_tokens": 41055,
+      "output_tokens": 140,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1117,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 140,
+          "cache_read_input_tokens": 41055,
+          "cache_creation_input_tokens": 1117,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1117
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-14T15:02:05.195Z_
+
+<details><summary>↩ Tool result · `toolu_01CXZtqUG8GmjWHDgybZ3NYZ`</summary>
+
+```text
+# ARR 2026 Submission Deadlines and Conference Commitments
+
+Based on the scheduling table provided, here are the 2026 ARR cycles:
+
+## May 2026 Cycle
+- **Submission deadline:** May 25, 2026
+- **Commitment deadline:** August 2, 2026
+- **Participating conferences:**
+  - EMNLP 2026
+  - AACL 2026
+
+## August 2026 Cycle
+- **Submission deadline:** August 3, 2026
+- **Commitment deadline:** October 11, 2026
+- **Participating conference:**
+  - EACL 2027
+
+## Key Notes
+
+The document states: "This means that instead of 6 cycles a year there will generally be 5, but with more reasonable timelines for the review tasks and author response."
+
+The transition to 10-week cycles (rather than the previous 8-week cycles) means there are no June or July 2026 submission deadlines. The May 2026 cycle is the next available deadline, followed by the August 2026 cycle.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "395fe628-8daf-4f4f-894a-03d4d574d462",
+  "isSidechain": false,
+  "promptId": "0122c317-1b5e-4c60-85ae-e9c4b6853925",
+  "type": "user",
+  "uuid": "1407d29d-9cc0-45ad-939d-2b1cdd2b7968",
+  "toolUseResult": {
+    "bytes": 25438,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# ARR 2026 Submission Deadlines and Conference Commitments\n\nBased on the scheduling table provided, here are the 2026 ARR cycles:\n\n## May 2026 Cycle\n- **Submission deadline:** May 25, 2026\n- **Commitment deadline:** August 2, 2026\n- **Participating conferences:**\n  - EMNLP 2026\n  - AACL 2026\n\n## August 2026 Cycle\n- **Submission deadline:** August 3, 2026\n- **Commitment deadline:** October 11, 2026\n- **Participating conference:**\n  - EACL 2027\n\n## Key Notes\n\nThe document states: \"This means that instead of 6 cycles a year there will generally be 5, but with more reasonable timelines for the review tasks and author response.\"\n\nThe transition to 10-week cycles (rather than the previous 8-week cycles) means there are no June or July 2026 submission deadlines. The May 2026 cycle is the next available deadline, followed by the August 2026 cycle.",
+    "durationMs": 3547,
+    "url": "http://aclrollingreview.org/dates"
+  },
+  "sourceToolAssistantUUID": "395fe628-8daf-4f4f-894a-03d4d574d462",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-14T15:02:07.848Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012UqSmKLzAmZqWo6jt3Wo1B`</summary>
+
+```json
+{
+  "query": "COLING 2026 submission deadline call for papers"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1407d29d-9cc0-45ad-939d-2b1cdd2b7968",
+  "isSidechain": false,
+  "requestId": "req_011Cb2fRjuGMQLTPX5yMTArY",
+  "type": "assistant",
+  "uuid": "d047035b-35d2-40e4-b9c5-f16a16db91b8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Lx4jststqzjoLJ7vUonXUG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 405,
+      "cache_read_input_tokens": 42172,
+      "output_tokens": 63,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 405,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 63,
+          "cache_read_input_tokens": 42172,
+          "cache_creation_input_tokens": 405,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 405
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-14T15:02:14.590Z_
+
+<details><summary>↩ Tool result · `toolu_012UqSmKLzAmZqWo6jt3Wo1B`</summary>
+
+```text
+Web search results for query: "COLING 2026 submission deadline call for papers"
+
+Links: [{"title":"COLING: International Conference on Computational Linguistics 2027 2026 2025 ...","url":"http://www.wikicfp.com/cfp/program?id=533"},{"title":"Call for Main Conference Papers - COLING 2025","url":"https://coling2025.org/calls/main_conference_papers/"},{"title":"COLING 2026 - International Conference on Computational Linguistics Deadline | ConferenceDeadlines.com","url":"https://www.conferencedeadlines.com/venue/coling"},{"title":"Computer Science conferences timeline","url":"https://lucjaulmes.github.io/cfp-timeline/"},{"title":"Call for Main Conference Papers -","url":"https://2026.eacl.org/calls/papers/"},{"title":"COLM 2026: Key Dates","url":"https://colmweb.org/dates.html"},{"title":"AI Deadlines – AI Conference Call For Paper Deadlines","url":"http://aideadlines.org/"},{"title":"AbjadNLP 2026 – The 2nd Workshop on NLP for Languages Using Arabic Script","url":"https://wp.lancs.ac.uk/abjad/"},{"title":"COLING 2025 : [CFP] International Conference on Computational Linguistics - Last Call for Papers - Corpora - ELRA lists","url":"https://list.elra.info/mailman3/hyperkitty/list/corpora@list.elra.info/thread/K2WGRQA22TI434YZHIM7QO5MXOC7RUAP/"},{"title":"CoNLL 2026: 3rd and Final Call for Papers - Corpora - ELRA lists","url":"https://list.elra.info/mailman3/hyperkitty/list/corpora@list.elra.info/thread/BDW4FPXENUKPTACOYMT5PXZSDZHJ5LB4/"}]
+
+Based on the search results, I found information about COLING 2026, though the official call for papers with specific submission deadlines doesn't appear to be fully published yet.
+
+From the search results, I found that COLING 2026 will be held in Abu Dhabi, UAE. However, the detailed submission deadline and full call for papers for COLING 2026 do not appear to be available in the current search results.
+
+For reference, the most recent COLING conference was COLING 2025, which took place in Abu Dhabi, UAE, January 19-24 2025. The official COLING website (coling2025.org) may be updated with COLING 2026 information in the future.
+
+For the most up-to-date information on COLING 2026's call for papers and submission deadlines, I would recommend:
+- Checking the official COLING website
+- Looking at the Conference Deadlines website (conferencedeadlines.com) and WikiCFP (wikicfp.com), which track calls for papers for major conferences
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d047035b-35d2-40e4-b9c5-f16a16db91b8",
+  "isSidechain": false,
+  "promptId": "0122c317-1b5e-4c60-85ae-e9c4b6853925",
+  "type": "user",
+  "uuid": "7b62e2ef-448a-451b-83ad-26114261f35c",
+  "toolUseResult": {
+    "query": "COLING 2026 submission deadline call for papers",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01RUApmeA86AijgveTY5HxpJ",
+        "content": [
+          {
+            "title": "COLING: International Conference on Computational Linguistics 2027 2026 2025 ...",
+            "url": "http://www.wikicfp.com/cfp/program?id=533"
+          },
+          {
+            "title": "Call for Main Conference Papers - COLING 2025",
+            "url": "https://coling2025.org/calls/main_conference_papers/"
+          },
+          {
+            "title": "COLING 2026 - International Conference on Computational Linguistics Deadline | ConferenceDeadlines.com",
+            "url": "https://www.conferencedeadlines.com/venue/coling"
+          },
+          {
+            "title": "Computer Science conferences timeline",
+            "url": "https://lucjaulmes.github.io/cfp-timeline/"
+          },
+          {
+            "title": "Call for Main Conference Papers -",
+            "url": "https://2026.eacl.org/calls/papers/"
+          },
+          {
+            "title": "COLM 2026: Key Dates",
+            "url": "https://colmweb.org/dates.html"
+          },
+          {
+            "title": "AI Deadlines – AI Conference Call For Paper Deadlines",
+            "url": "http://aideadlines.org/"
+          },
+          {
+            "title": "AbjadNLP 2026 – The 2nd Workshop on NLP for Languages Using Arabic Script",
+            "url": "https://wp.lancs.ac.uk/abjad/"
+          },
+          {
+            "title": "COLING 2025 : [CFP] International Conference on Computational Linguistics - Last Call for Papers - Corpora - ELRA lists",
+            "url": "https://list.elra.info/mailman3/hyperkitty/list/corpora@list.elra.info/thread/K2WGRQA22TI434YZHIM7QO5MXOC7RUAP/"
+          },
+          {
+            "title": "CoNLL 2026: 3rd and Final Call for Papers - Corpora - ELRA lists",
+            "url": "https://list.elra.info/mailman3/hyperkitty/list/corpora@list.elra.info/thread/BDW4FPXENUKPTACOYMT5PXZSDZHJ5LB4/"
+          }
+        ]
+      },
+      "Based on the search results, I found information about COLING 2026, though the official call for papers with specific submission deadlines doesn't appear to be fully published yet.\n\nFrom the search results, I found that COLING 2026 will be held in Abu Dhabi, UAE. However, the detailed submission deadline and full call for papers for COLING 2026 do not appear to be available in the current search results.\n\nFor reference, the most recent COLING conference was COLING 2025, which took place in Abu Dhabi, UAE, January 19-24 2025. The official COLING website (coling2025.org) may be updated with COLING 2026 information in the future.\n\nFor the most up-to-date information on COLING 2026's call for papers and submission deadlines, I would recommend:\n- Checking the official COLING website\n- Looking at the Conference Deadlines website (conferencedeadlines.com) and WikiCFP (wikicfp.com), which track calls for papers for major conferences"
+    ],
+    "durationSeconds": 6.739249338000024
+  },
+  "sourceToolAssistantUUID": "d047035b-35d2-40e4-b9c5-f16a16db91b8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 81 · 2026-05-14T15:02:14.593Z_
+
+```json
+{
+  "parentUuid": "7b62e2ef-448a-451b-83ad-26114261f35c",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "d8478992-47ed-43c0-909b-cd7630848b74",
+  "timestamp": "2026-05-14T15:02:14.593Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 82 · 2026-05-14T15:02:17.070Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HfowcHnSvMwUA7rFCTq1YZ`</summary>
+
+```json
+{
+  "query": "COLM 2026 submission deadline key dates"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d8478992-47ed-43c0-909b-cd7630848b74",
+  "isSidechain": false,
+  "requestId": "req_011Cb2fSS4k1xL4LZTZVaQbq",
+  "type": "assistant",
+  "uuid": "d213039c-233f-420a-9fe2-6f23e273e4df",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VB9GxLmY8sWQWi7BsaXmVH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 949,
+      "cache_read_input_tokens": 42577,
+      "output_tokens": 62,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 949,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 62,
+          "cache_read_input_tokens": 42577,
+          "cache_creation_input_tokens": 949,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 949
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 83 · 2026-05-14T15:02:21.456Z_
+
+<details><summary>↩ Tool result · `toolu_01HfowcHnSvMwUA7rFCTq1YZ`</summary>
+
+```text
+Web search results for query: "COLM 2026 submission deadline key dates"
+
+Links: [{"title":"COLM 2026: Key Dates","url":"https://colmweb.org/dates.html"},{"title":"COLM 2026: Submission Instructions","url":"https://colmweb.org/submission-instructions.html"},{"title":"Conference on Language Modeling on X: \"COLM 2026 is just around the corner! Mark your calendars for: 💡Abstract deadline: Thursday, March 26, 2026 📄Full paper submission deadline: Tuesday, March 31, 2026 Call for papers in thread (website coming soon). https://t.co/YfjLxzCqxO\" / X","url":"https://x.com/COLM_conf/status/2000952051212415394"},{"title":"COLM 2026: Author Guide","url":"https://colmweb.org/AuthorGuide.html"},{"title":"When is COLM 2026? Dates, Deadline & Location | ConferenceDeadlines.com","url":"https://www.conferencedeadlines.com/conference/colm"},{"title":"COLM 2026: Call for Papers","url":"https://colmweb.org/cfp.html"},{"title":"Update COLM 2026 conference data · huggingface/ai-deadlines at 24c5765","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/24c57653b9088a356b4b2d88e6a64cb4db5fbba5"},{"title":"COLM 2026 Conference | OpenReview","url":"https://openreview.net/group?id=colmweb.org%2FCOLM%2F2026%2FConference"},{"title":"COLM 2026: Call for Workshops","url":"https://colmweb.org/cfw.html"},{"title":"COLM 2026","url":"https://colmweb.org/"}]
+
+Based on the search results, here are the key dates for COLM 2026 submissions:
+
+**Main Conference Paper Submissions:**
+- Abstract deadline: Thursday, March 26, 2026
+- Full paper submission deadline: Tuesday, March 31, 2026
+- Rebuttal period: May 22 - June 8, 2026
+- Notification deadline: July 8, 2026
+
+**Workshop Submissions:**
+- Suggested submission deadline for workshop contributions: June 23, 2026
+- Mandatory accept/reject notification for workshop contributions: July 24, 2026
+
+**Conference Dates:**
+- COLM 2026 will take place at the Hilton Union Square in San Francisco, USA from October 6-9, 2026
+- Workshops day at COLM: October 9, 2026
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d213039c-233f-420a-9fe2-6f23e273e4df",
+  "isSidechain": false,
+  "promptId": "0122c317-1b5e-4c60-85ae-e9c4b6853925",
+  "type": "user",
+  "uuid": "2198d345-9d9e-4537-8dac-f714b95615ec",
+  "toolUseResult": {
+    "query": "COLM 2026 submission deadline key dates",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01CYJXLx38sBPouszSN7e3Ss",
+        "content": [
+          {
+            "title": "COLM 2026: Key Dates",
+            "url": "https://colmweb.org/dates.html"
+          },
+          {
+            "title": "COLM 2026: Submission Instructions",
+            "url": "https://colmweb.org/submission-instructions.html"
+          },
+          {
+            "title": "Conference on Language Modeling on X: \"COLM 2026 is just around the corner! Mark your calendars for: 💡Abstract deadline: Thursday, March 26, 2026 📄Full paper submission deadline: Tuesday, March 31, 2026 Call for papers in thread (website coming soon). https://t.co/YfjLxzCqxO\" / X",
+            "url": "https://x.com/COLM_conf/status/2000952051212415394"
+          },
+          {
+            "title": "COLM 2026: Author Guide",
+            "url": "https://colmweb.org/AuthorGuide.html"
+          },
+          {
+            "title": "When is COLM 2026? Dates, Deadline & Location | ConferenceDeadlines.com",
+            "url": "https://www.conferencedeadlines.com/conference/colm"
+          },
+          {
+            "title": "COLM 2026: Call for Papers",
+            "url": "https://colmweb.org/cfp.html"
+          },
+          {
+            "title": "Update COLM 2026 conference data · huggingface/ai-deadlines at 24c5765",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/24c57653b9088a356b4b2d88e6a64cb4db5fbba5"
+          },
+          {
+            "title": "COLM 2026 Conference | OpenReview",
+            "url": "https://openreview.net/group?id=colmweb.org%2FCOLM%2F2026%2FConference"
+          },
+          {
+            "title": "COLM 2026: Call for Workshops",
+            "url": "https://colmweb.org/cfw.html"
+          },
+          {
+            "title": "COLM 2026",
+            "url": "https://colmweb.org/"
+          }
+        ]
+      },
+      "Based on the search results, here are the key dates for COLM 2026 submissions:\n\n**Main Conference Paper Submissions:**\n- Abstract deadline: Thursday, March 26, 2026\n- Full paper submission deadline: Tuesday, March 31, 2026\n- Rebuttal period: May 22 - June 8, 2026\n- Notification deadline: July 8, 2026\n\n**Workshop Submissions:**\n- Suggested submission deadline for workshop contributions: June 23, 2026\n- Mandatory accept/reject notification for workshop contributions: July 24, 2026\n\n**Conference Dates:**\n- COLM 2026 will take place at the Hilton Union Square in San Francisco, USA from October 6-9, 2026\n- Workshops day at COLM: October 9, 2026"
+    ],
+    "durationSeconds": 4.382917050999997
+  },
+  "sourceToolAssistantUUID": "d213039c-233f-420a-9fe2-6f23e273e4df",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 84 · 2026-05-14T15:02:30.309Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+COLM 2026 deadline has also passed (March 31). Let me check what venues are still open after May 14, 2026:
+
+1. **EMNLP 2026**: ARR submission deadline May 25, 2026 — STILL OPEN (11 days away)
+2. **AAAI 2027**: Abstract deadline July 25, 2026 — STILL OPEN
+3. **AACL 2026**: Can commit from May 2026 ARR cycle — STILL OPEN
+
+
+4. **EACL 2027**: ARR August 2026 cycle (August 3, 2026) — STILL OPEN
+
+Several other major venues have already passed their deadlines—NeurIPS, ICML, and COLM are all behind us. ICLR 2027 hasn't announced its timeline yet but should be coming in October. I should also look into NAACL 2026, KDD 2026, and SIGIR 2026 to see where else I might be able to submit.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2198d345-9d9e-4537-8dac-f714b95615ec",
+  "isSidechain": false,
+  "requestId": "req_011Cb2fSwUK5Cwwh8NnuuAh3",
+  "type": "assistant",
+  "uuid": "f525901f-cee7-4f03-9078-a6ad475087bf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016U5RqMWWLk762EmyJXCTf2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 785,
+      "cache_read_input_tokens": 43526,
+      "output_tokens": 350,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 785,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 350,
+          "cache_read_input_tokens": 43526,
+          "cache_creation_input_tokens": 785,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 785
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-14T15:02:30.312Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01W3Zmbf7LgWDLKUGKtgAiJo`</summary>
+
+```json
+{
+  "query": "NAACL 2026 submission deadline"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f525901f-cee7-4f03-9078-a6ad475087bf",
+  "isSidechain": false,
+  "requestId": "req_011Cb2fSwUK5Cwwh8NnuuAh3",
+  "type": "assistant",
+  "uuid": "6b80289f-67c8-49bd-a81b-e14183f07946",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016U5RqMWWLk762EmyJXCTf2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 785,
+      "cache_read_input_tokens": 43526,
+      "output_tokens": 350,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 785,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 350,
+          "cache_read_input_tokens": 43526,
+          "cache_creation_input_tokens": 785,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 785
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-14T15:02:34.365Z_
+
+<details><summary>↩ Tool result · `toolu_01W3Zmbf7LgWDLKUGKtgAiJo`</summary>
+
+```text
+Web search results for query: "NAACL 2026 submission deadline"
+
+Links: [{"title":"Dates and Venues","url":"http://aclrollingreview.org/dates"},{"title":"NAACL: Nations of the Americas Chapter of the ACL (Association for Computational Linguistics)","url":"https://naacl.org/"},{"title":"Year-Round Deadlines - Imranur Rahman","url":"https://imranur-rahman.github.io/deadlines/"},{"title":"NAACL 2026 - Annual Conference of the Nations of the Americas Chapter of the Association for Computational Linguistics Deadline | ConferenceDeadlines.com","url":"https://www.conferencedeadlines.com/venue/naacl"},{"title":"Announcements | Computational Linguistics","url":"https://submissions.cljournal.org/index.php/cljournal/announcement"},{"title":"Links - Human Language Intelligence Lab","url":"https://hli.skku.edu/links"},{"title":"NAACL: North American Chapter of the Association for Computational Linguistics 2027 2026 2025 ...","url":"http://www.wikicfp.com/cfp/program?id=2170"},{"title":"Upcoming ACL-Sponsored Events | ACL Member Portal","url":"https://www.aclweb.org/portal/acl_sponsored_events?order=field_event_country&sort=desc"},{"title":"Second Call for Main Conference Papers - NAACL-HLT 2025","url":"https://2025.naacl.org/calls/papers/"},{"title":"The 64th Annual Meeting of the Association for Computational Linguistics - ACL 2026","url":"https://2026.aclweb.org/"}]
+
+Based on my search results, I found information about NAACL 2026 submissions:
+
+NAACL 2026 uses the ACL Rolling Review (ARR) system exclusively for submissions, which is the same system used by major *ACL conferences. However, the search results primarily provided details about NAACL 2025 rather than NAACL 2026.
+
+According to the information available, starting in May 2025, ARR switched to 10-week review cycles instead of the previous 8-week cycles. However, I was unable to find the specific submission deadline date for NAACL 2026 in these results.
+
+For the most current and specific NAACL 2026 submission deadline, I recommend:
+1. Checking the official ACL Rolling Review (ARR) website at aclrollingreview.org for the current submission dates
+2. Visiting the NAACL 2026 conference website directly for any conference-specific information
+
+Since NAACL 2026 uses ARR, the submission deadlines would align with the ARR cycle schedule rather than a separate NAACL-specific deadline.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6b80289f-67c8-49bd-a81b-e14183f07946",
+  "isSidechain": false,
+  "promptId": "0122c317-1b5e-4c60-85ae-e9c4b6853925",
+  "type": "user",
+  "uuid": "4a3baae3-2e77-4144-a99c-a7a933a5e497",
+  "toolUseResult": {
+    "query": "NAACL 2026 submission deadline",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01MZz4aJdXN44KeXjX8iAkcH",
+        "content": [
+          {
+            "title": "Dates and Venues",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "NAACL: Nations of the Americas Chapter of the ACL (Association for Computational Linguistics)",
+            "url": "https://naacl.org/"
+          },
+          {
+            "title": "Year-Round Deadlines - Imranur Rahman",
+            "url": "https://imranur-rahman.github.io/deadlines/"
+          },
+          {
+            "title": "NAACL 2026 - Annual Conference of the Nations of the Americas Chapter of the Association for Computational Linguistics Deadline | ConferenceDeadlines.com",
+            "url": "https://www.conferencedeadlines.com/venue/naacl"
+          },
+          {
+            "title": "Announcements | Computational Linguistics",
+            "url": "https://submissions.cljournal.org/index.php/cljournal/announcement"
+          },
+          {
+            "title": "Links - Human Language Intelligence Lab",
+            "url": "https://hli.skku.edu/links"
+          },
+          {
+            "title": "NAACL: North American Chapter of the Association for Computational Linguistics 2027 2026 2025 ...",
+            "url": "http://www.wikicfp.com/cfp/program?id=2170"
+          },
+          {
+            "title": "Upcoming ACL-Sponsored Events | ACL Member Portal",
+            "url": "https://www.aclweb.org/portal/acl_sponsored_events?order=field_event_country&sort=desc"
+          },
+          {
+            "title": "Second Call for Main Conference Papers - NAACL-HLT 2025",
+            "url": "https://2025.naacl.org/calls/papers/"
+          },
+          {
+            "title": "The 64th Annual Meeting of the Association for Computational Linguistics - ACL 2026",
+            "url": "https://2026.aclweb.org/"
+          }
+        ]
+      },
+      "Based on my search results, I found information about NAACL 2026 submissions:\n\nNAACL 2026 uses the ACL Rolling Review (ARR) system exclusively for submissions, which is the same system used by major *ACL conferences. However, the search results primarily provided details about NAACL 2025 rather than NAACL 2026.\n\nAccording to the information available, starting in May 2025, ARR switched to 10-week review cycles instead of the previous 8-week cycles. However, I was unable to find the specific submission deadline date for NAACL 2026 in these results.\n\nFor the most current and specific NAACL 2026 submission deadline, I recommend:\n1. Checking the official ACL Rolling Review (ARR) website at aclrollingreview.org for the current submission dates\n2. Visiting the NAACL 2026 conference website directly for any conference-specific information\n\nSince NAACL 2026 uses ARR, the submission deadlines would align with the ARR cycle schedule rather than a separate NAACL-specific deadline."
+    ],
+    "durationSeconds": 4.048887492000009
+  },
+  "sourceToolAssistantUUID": "6b80289f-67c8-49bd-a81b-e14183f07946",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-14T15:02:37.211Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MQCNNDxSPLo6sHZ1pbGzt1`</summary>
+
+```json
+{
+  "query": "Qwen3 open source model 2026 parameters reasoning"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4a3baae3-2e77-4144-a99c-a7a933a5e497",
+  "isSidechain": false,
+  "requestId": "req_011Cb2fTtdBxAzHJRustc2K7",
+  "type": "assistant",
+  "uuid": "aa5dd162-4c5a-4d72-ba32-a797fb59d696",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018xbdp3cX5uMmmrU6M2npT9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1059,
+      "cache_read_input_tokens": 44311,
+      "output_tokens": 65,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1059,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 65,
+          "cache_read_input_tokens": 44311,
+          "cache_creation_input_tokens": 1059,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1059
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-14T15:02:44.155Z_
+
+<details><summary>↩ Tool result · `toolu_01MQCNNDxSPLo6sHZ1pbGzt1`</summary>
+
+```text
+Web search results for query: "Qwen3 open source model 2026 parameters reasoning"
+
+Links: [{"title":"Qwen/Qwen3-8B · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3-8B"},{"title":"Qwen/Qwen3.6-27B · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3.6-27B"},{"title":"GitHub - QwenLM/Qwen3: Qwen3 is the large language model series developed by Qwen team, Alibaba Cloud. · GitHub","url":"https://github.com/QwenLM/qwen3"},{"title":"Qwen API and Models | OpenRouter","url":"https://openrouter.ai/qwen"},{"title":"qwen3","url":"https://ollama.com/library/qwen3"},{"title":"Qwen/Qwen3.6-35B-A3B · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3.6-35B-A3B"},{"title":"Model Providers | Qwen Code Docs","url":"https://qwenlm.github.io/qwen-code-docs/en/users/configuration/model-providers/"},{"title":"Qwen Studio","url":"https://qwen.ai/"},{"title":"Qwen3.5","url":"https://qwen.ai/research"},{"title":"Qwen - Wikipedia","url":"https://en.wikipedia.org/wiki/Qwen"}]
+
+Based on the web search results, here's what I found about Qwen3 open-source models in 2026 with focus on parameters and reasoning:
+
+## Model Sizes and Parameters
+
+Qwen3 offers dense and Mixture-of-Experts (MoE) models of various sizes, available in 0.6B, 1.7B, 4B, 8B, 14B, 32B and 30B-A3B, 235B-A22B.
+
+More recent releases include:
+- Qwen3.6 27B, a dense 27-billion-parameter language model released in April 2026
+- Qwen3.6-35B-A3B with 35 billion total parameters and 3 billion active parameters per token
+- Qwen3-Coder-Next with 80B total parameters and only 3B activated per token
+
+## Reasoning Capabilities
+
+Qwen3 offers a comprehensive suite of dense and mixture-of-experts (MoE) models, with support for seamless switching between thinking mode (for complex logical reasoning, math, and coding) and non-thinking mode (for efficient, general-purpose dialogue).
+
+Qwen3-Thinking-2507 represents the continuation of the Qwen3 thinking model with improved quality and depth of reasoning, featuring significantly improved performance on reasoning tasks.
+
+Additionally, models include a built-in thinking mode for extended reasoning and preserve thinking context across conversation history.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "aa5dd162-4c5a-4d72-ba32-a797fb59d696",
+  "isSidechain": false,
+  "promptId": "0122c317-1b5e-4c60-85ae-e9c4b6853925",
+  "type": "user",
+  "uuid": "d2bc06d5-1b6e-4e61-94a5-dfe7fa59da01",
+  "toolUseResult": {
+    "query": "Qwen3 open source model 2026 parameters reasoning",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01V6oojpccuAusfmLiuXj3uQ",
+        "content": [
+          {
+            "title": "Qwen/Qwen3-8B · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3-8B"
+          },
+          {
+            "title": "Qwen/Qwen3.6-27B · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3.6-27B"
+          },
+          {
+            "title": "GitHub - QwenLM/Qwen3: Qwen3 is the large language model series developed by Qwen team, Alibaba Cloud. · GitHub",
+            "url": "https://github.com/QwenLM/qwen3"
+          },
+          {
+            "title": "Qwen API and Models | OpenRouter",
+            "url": "https://openrouter.ai/qwen"
+          },
+          {
+            "title": "qwen3",
+            "url": "https://ollama.com/library/qwen3"
+          },
+          {
+            "title": "Qwen/Qwen3.6-35B-A3B · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B"
+          },
+          {
+            "title": "Model Providers | Qwen Code Docs",
+            "url": "https://qwenlm.github.io/qwen-code-docs/en/users/configuration/model-providers/"
+          },
+          {
+            "title": "Qwen Studio",
+            "url": "https://qwen.ai/"
+          },
+          {
+            "title": "Qwen3.5",
+            "url": "https://qwen.ai/research"
+          },
+          {
+            "title": "Qwen - Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/Qwen"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found about Qwen3 open-source models in 2026 with focus on parameters and reasoning:\n\n## Model Sizes and Parameters\n\nQwen3 offers dense and Mixture-of-Experts (MoE) models of various sizes, available in 0.6B, 1.7B, 4B, 8B, 14B, 32B and 30B-A3B, 235B-A22B.\n\nMore recent releases include:\n- Qwen3.6 27B, a dense 27-billion-parameter language model released in April 2026\n- Qwen3.6-35B-A3B with 35 billion total parameters and 3 billion active parameters per token\n- Qwen3-Coder-Next with 80B total parameters and only 3B activated per token\n\n## Reasoning Capabilities\n\nQwen3 offers a comprehensive suite of dense and mixture-of-experts (MoE) models, with support for seamless switching between thinking mode (for complex logical reasoning, math, and coding) and non-thinking mode (for efficient, general-purpose dialogue).\n\nQwen3-Thinking-2507 represents the continuation of the Qwen3 thinking model with improved quality and depth of reasoning, featuring significantly improved performance on reasoning tasks.\n\nAdditionally, models include a built-in thinking mode for extended reasoning and preserve thinking context across conversation history."
+    ],
+    "durationSeconds": 6.940248384999984
+  },
+  "sourceToolAssistantUUID": "aa5dd162-4c5a-4d72-ba32-a797fb59d696",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 89_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-14 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Step-Type-Con…",
+  "leafUuid": "d2bc06d5-1b6e-4e61-94a5-dfe7fa59da01",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 90_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Step-type-conditioned retrieval routing for multi-hop QA",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378"
+}
+```
+
+---
+
+### Tool call
+
+_source line 91 · 2026-05-14T15:02:47.694Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QTGTrT6j1j7ERwR4Twvq15`</summary>
+
+```json
+{
+  "query": "StepChain GraphRAG multi-hop reasoning BFS 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d2bc06d5-1b6e-4e61-94a5-dfe7fa59da01",
+  "isSidechain": false,
+  "requestId": "req_011Cb2fUcY6MCZHp9eY1Utie",
+  "type": "assistant",
+  "uuid": "f2a1c85f-a958-4d2f-873f-4755ac2c03a3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017JATHyo8uXiTdvC67UmmdA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 819,
+      "cache_read_input_tokens": 45370,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 819,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 45370,
+          "cache_creation_input_tokens": 819,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 819
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-14T15:02:55.686Z_
+
+<details><summary>↩ Tool result · `toolu_01QTGTrT6j1j7ERwR4Twvq15`</summary>
+
+```text
+Web search results for query: "StepChain GraphRAG multi-hop reasoning BFS 2025"
+
+Links: [{"title":"StepChain GraphRAG: Reasoning Over Knowledge Graphs for Multi-Hop Question Answering","url":"https://arxiv.org/html/2510.02827v1"},{"title":"StepChain GraphRAG: Reasoning Over Knowledge Graphs for Multi-Hop Question","url":"https://arxiv.org/pdf/2510.02827"},{"title":"[2510.02827] StepChain GraphRAG: Reasoning Over Knowledge Graphs for Multi-Hop Question Answering","url":"https://arxiv.org/abs/2510.02827"},{"title":"StepChain GraphRAG: Multi-Hop Reasoning","url":"https://www.emergentmind.com/topics/stepchain-graphrag"},{"title":"HopRAG: Multi-Hop Reasoning for Logic-Aware Retrieval-Augmented Generation | Request PDF","url":"https://www.researchgate.net/publication/394272084_HopRAG_Multi-Hop_Reasoning_for_Logic-Aware_Retrieval-Augmented_Generation"},{"title":"StepChain GraphRAG: Reasoning Over Knowledge Graphs for Multi-Hop Question Answering | alphaXiv","url":"https://www.alphaxiv.org/overview/2510.02827"},{"title":"(PDF) StepChain GraphRAG: Reasoning Over Knowledge Graphs for Multi-Hop Question Answering","url":"https://www.researchgate.net/publication/396223342_StepChain_GraphRAG_Reasoning_Over_Knowledge_Graphs_for_Multi-Hop_Question_Answering"},{"title":"JC-AI Newsletter #9 - NLJUG - Nederlandse Java User Group","url":"https://nljug.org/foojay/jc-ai-newsletter-9/"},{"title":"Multi-Hop Retrieval Paths","url":"https://www.emergentmind.com/topics/multi-hop-retrieval-paths"},{"title":"Manufacturing GraphRAG Bot with multi-hop traversal | by Amitava Manna | Medium","url":"https://medium.com/@amitavamanna/manufacturing-graphrag-bot-with-multi-hop-traversal-0992e0bec455"}]
+
+Based on the search results, here's what I found about StepChain GraphRAG and its approach to multi-hop reasoning using BFS:
+
+## Overview
+
+StepChain GraphRAG is a framework that unites question decomposition with a Breadth-First Search (BFS) Reasoning Flow for enhanced multi-hop QA. The framework was introduced in October 2025 and represents a recent advancement in retrieval-augmented generation.
+
+## Key Approach
+
+The approach builds a global index over the corpus; at inference time, only retrieved passages are parsed on-the-fly into a knowledge graph, and the complex query is split into sub-questions. For each sub-question, a BFS-based traversal dynamically expands along relevant edges, assembling explicit evidence chains without overwhelming the language model with superfluous context.
+
+## Performance Results
+
+Experiments on MuSiQue, 2WikiMultiHopQA, and HotpotQA show that StepChain GraphRAG achieves state-of-the-art Exact Match and F1 scores. More specifically, StepChain GraphRAG lifts average EM by 2.57% and F1 by 2.13% over the SOTA method, achieving the largest gain on HotpotQA (+4.70% EM, +3.44% F1).
+
+## Key Benefits
+
+By systematically capturing and reusing these intermediate insights, StepChain GraphRAG alleviates information overload, delivers enhanced transparency in complex reasoning, and offers a debuggable pipeline for multi-hop QA. The BFS-RF decomposition yields well-defined evidence paths at each step, allowing users and downstream modules to trace how partial inferences are built up from distinct pieces of retrieved information.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f2a1c85f-a958-4d2f-873f-4755ac2c03a3",
+  "isSidechain": false,
+  "promptId": "0122c317-1b5e-4c60-85ae-e9c4b6853925",
+  "type": "user",
+  "uuid": "5edd15ea-b4ff-411c-a2f4-51d695561fb4",
+  "toolUseResult": {
+    "query": "StepChain GraphRAG multi-hop reasoning BFS 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01TTrws6fb1ED6ZdAUQe2yKC",
+        "content": [
+          {
+            "title": "StepChain GraphRAG: Reasoning Over Knowledge Graphs for Multi-Hop Question Answering",
+            "url": "https://arxiv.org/html/2510.02827v1"
+          },
+          {
+            "title": "StepChain GraphRAG: Reasoning Over Knowledge Graphs for Multi-Hop Question",
+            "url": "https://arxiv.org/pdf/2510.02827"
+          },
+          {
+            "title": "[2510.02827] StepChain GraphRAG: Reasoning Over Knowledge Graphs for Multi-Hop Question Answering",
+            "url": "https://arxiv.org/abs/2510.02827"
+          },
+          {
+            "title": "StepChain GraphRAG: Multi-Hop Reasoning",
+            "url": "https://www.emergentmind.com/topics/stepchain-graphrag"
+          },
+          {
+            "title": "HopRAG: Multi-Hop Reasoning for Logic-Aware Retrieval-Augmented Generation | Request PDF",
+            "url": "https://www.researchgate.net/publication/394272084_HopRAG_Multi-Hop_Reasoning_for_Logic-Aware_Retrieval-Augmented_Generation"
+          },
+          {
+            "title": "StepChain GraphRAG: Reasoning Over Knowledge Graphs for Multi-Hop Question Answering | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2510.02827"
+          },
+          {
+            "title": "(PDF) StepChain GraphRAG: Reasoning Over Knowledge Graphs for Multi-Hop Question Answering",
+            "url": "https://www.researchgate.net/publication/396223342_StepChain_GraphRAG_Reasoning_Over_Knowledge_Graphs_for_Multi-Hop_Question_Answering"
+          },
+          {
+            "title": "JC-AI Newsletter #9 - NLJUG - Nederlandse Java User Group",
+            "url": "https://nljug.org/foojay/jc-ai-newsletter-9/"
+          },
+          {
+            "title": "Multi-Hop Retrieval Paths",
+            "url": "https://www.emergentmind.com/topics/multi-hop-retrieval-paths"
+          },
+          {
+            "title": "Manufacturing GraphRAG Bot with multi-hop traversal | by Amitava Manna | Medium",
+            "url": "https://medium.com/@amitavamanna/manufacturing-graphrag-bot-with-multi-hop-traversal-0992e0bec455"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about StepChain GraphRAG and its approach to multi-hop reasoning using BFS:\n\n## Overview\n\nStepChain GraphRAG is a framework that unites question decomposition with a Breadth-First Search (BFS) Reasoning Flow for enhanced multi-hop QA. The framework was introduced in October 2025 and represents a recent advancement in retrieval-augmented generation.\n\n## Key Approach\n\nThe approach builds a global index over the corpus; at inference time, only retrieved passages are parsed on-the-fly into a knowledge graph, and the complex query is split into sub-questions. For each sub-question, a BFS-based traversal dynamically expands along relevant edges, assembling explicit evidence chains without overwhelming the language model with superfluous context.\n\n## Performance Results\n\nExperiments on MuSiQue, 2WikiMultiHopQA, and HotpotQA show that StepChain GraphRAG achieves state-of-the-art Exact Match and F1 scores. More specifically, StepChain GraphRAG lifts average EM by 2.57% and F1 by 2.13% over the SOTA method, achieving the largest gain on HotpotQA (+4.70% EM, +3.44% F1).\n\n## Key Benefits\n\nBy systematically capturing and reusing these intermediate insights, StepChain GraphRAG alleviates information overload, delivers enhanced transparency in complex reasoning, and offers a debuggable pipeline for multi-hop QA. The BFS-RF decomposition yields well-defined evidence paths at each step, allowing users and downstream modules to trace how partial inferences are built up from distinct pieces of retrieved information."
+    ],
+    "durationSeconds": 7.98802095700003
+  },
+  "sourceToolAssistantUUID": "f2a1c85f-a958-4d2f-873f-4755ac2c03a3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93 · 2026-05-14T15:02:59.553Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016gfcqBGYrhAseiYcBzYjFK`</summary>
+
+```json
+{
+  "query": "REPAIR arxiv 2601.04618 reasoning plan guided adaptive retrieval withdrawn"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5edd15ea-b4ff-411c-a2f4-51d695561fb4",
+  "isSidechain": false,
+  "requestId": "req_011Cb2fVTwSTtj7dWw2BhcgW",
+  "type": "assistant",
+  "uuid": "7c493bf2-bb15-4bd6-85e1-ce8535cb30a1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VFXiKgnwvmdqaUtnFXCP5X",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1057,
+      "cache_read_input_tokens": 46189,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1057,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 46189,
+          "cache_creation_input_tokens": 1057,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1057
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-14T15:03:04.748Z_
+
+<details><summary>↩ Tool result · `toolu_016gfcqBGYrhAseiYcBzYjFK`</summary>
+
+```text
+Web search results for query: "REPAIR arxiv 2601.04618 reasoning plan guided adaptive retrieval withdrawn"
+
+Links: [{"title":"[2601.04618] Adaptive Retrieval for Reasoning-Intensive Retrieval","url":"https://arxiv.org/abs/2601.04618"},{"title":"Adaptive Retrieval for Reasoning-Intensive Retrieval","url":"https://arxiv.org/html/2601.04618"},{"title":"[2601.18044] RGFL: Reasoning Guided Fault Localization for Automated Program Repair Using Large Language Models","url":"https://arxiv.org/abs/2601.18044"},{"title":"A2RAG: Adaptive Agentic Graph Retrieval for Cost-Aware and Reliable Reasoning","url":"https://arxiv.org/html/2601.21162"},{"title":"Reasoning in Trees: Improving Retrieval-Augmented Generation for Multi-Hop Question Answering","url":"https://arxiv.org/html/2601.11255v1"},{"title":"[2601.18116] FABLE: Forest-Based Adaptive Bi-Path LLM-Enhanced Retrieval for Multi-Document Reasoning","url":"https://arxiv.org/abs/2601.18116"},{"title":"Agentic Conversational Search with Contextualized Reasoning via Reinforcement Learning","url":"https://arxiv.org/html/2601.13115"},{"title":"[2601.21162] A2RAG: Adaptive Agentic Graph Retrieval for Cost-Aware and Reliable Reasoning","url":"https://arxiv.org/abs/2601.21162"},{"title":"Learning Adaptive Parallel Reasoning with Language Models","url":"https://arxiv.org/html/2504.15466v1"},{"title":"[2601.00536] Retrieval--Reasoning Processes for Multi-hop Question Answering: A Four-Axis Design Framework and Empirical Trends","url":"https://arxiv.org/abs/2601.00536"}]
+
+Based on the search results, I found information about arXiv paper 2601.04618:
+
+REPAIR is a framework that bridges the gap between reasoning and retrieval by repurposing reasoning plans as dense feedback signals for adaptive retrieval. The work studies leveraging adaptive retrieval to ensure sufficient "bridge" documents are retrieved for reasoning-intensive retrieval, where bridge documents contribute to the reasoning process yet are not directly relevant to the initial query.
+
+A key distinction of REPAIR is enabling mid-course correction during reranking through selective adaptive retrieval, retrieving documents that support the pivotal plan. Experimental results on reasoning-intensive retrieval and complex QA tasks demonstrate that the method outperforms existing baselines by 5.6%pt.
+
+The paper was published on January 8, 2026. However, I should note that the search results do not indicate that this paper has been withdrawn—it appears to be an active publication on arXiv.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7c493bf2-bb15-4bd6-85e1-ce8535cb30a1",
+  "isSidechain": false,
+  "promptId": "0122c317-1b5e-4c60-85ae-e9c4b6853925",
+  "type": "user",
+  "uuid": "785398db-881a-43ac-9f1e-078b9c43f665",
+  "toolUseResult": {
+    "query": "REPAIR arxiv 2601.04618 reasoning plan guided adaptive retrieval withdrawn",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018f189mnitK4RyrskaJ51aD",
+        "content": [
+          {
+            "title": "[2601.04618] Adaptive Retrieval for Reasoning-Intensive Retrieval",
+            "url": "https://arxiv.org/abs/2601.04618"
+          },
+          {
+            "title": "Adaptive Retrieval for Reasoning-Intensive Retrieval",
+            "url": "https://arxiv.org/html/2601.04618"
+          },
+          {
+            "title": "[2601.18044] RGFL: Reasoning Guided Fault Localization for Automated Program Repair Using Large Language Models",
+            "url": "https://arxiv.org/abs/2601.18044"
+          },
+          {
+            "title": "A2RAG: Adaptive Agentic Graph Retrieval for Cost-Aware and Reliable Reasoning",
+            "url": "https://arxiv.org/html/2601.21162"
+          },
+          {
+            "title": "Reasoning in Trees: Improving Retrieval-Augmented Generation for Multi-Hop Question Answering",
+            "url": "https://arxiv.org/html/2601.11255v1"
+          },
+          {
+            "title": "[2601.18116] FABLE: Forest-Based Adaptive Bi-Path LLM-Enhanced Retrieval for Multi-Document Reasoning",
+            "url": "https://arxiv.org/abs/2601.18116"
+          },
+          {
+            "title": "Agentic Conversational Search with Contextualized Reasoning via Reinforcement Learning",
+            "url": "https://arxiv.org/html/2601.13115"
+          },
+          {
+            "title": "[2601.21162] A2RAG: Adaptive Agentic Graph Retrieval for Cost-Aware and Reliable Reasoning",
+            "url": "https://arxiv.org/abs/2601.21162"
+          },
+          {
+            "title": "Learning Adaptive Parallel Reasoning with Language Models",
+            "url": "https://arxiv.org/html/2504.15466v1"
+          },
+          {
+            "title": "[2601.00536] Retrieval--Reasoning Processes for Multi-hop Question Answering: A Four-Axis Design Framework and Empirical Trends",
+            "url": "https://arxiv.org/abs/2601.00536"
+          }
+        ]
+      },
+      "Based on the search results, I found information about arXiv paper 2601.04618:\n\nREPAIR is a framework that bridges the gap between reasoning and retrieval by repurposing reasoning plans as dense feedback signals for adaptive retrieval. The work studies leveraging adaptive retrieval to ensure sufficient \"bridge\" documents are retrieved for reasoning-intensive retrieval, where bridge documents contribute to the reasoning process yet are not directly relevant to the initial query.\n\nA key distinction of REPAIR is enabling mid-course correction during reranking through selective adaptive retrieval, retrieving documents that support the pivotal plan. Experimental results on reasoning-intensive retrieval and complex QA tasks demonstrate that the method outperforms existing baselines by 5.6%pt.\n\nThe paper was published on January 8, 2026. However, I should note that the search results do not indicate that this paper has been withdrawn—it appears to be an active publication on arXiv."
+    ],
+    "durationSeconds": 5.190304660000024
+  },
+  "sourceToolAssistantUUID": "7c493bf2-bb15-4bd6-85e1-ce8535cb30a1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95 · 2026-05-14T15:03:08.142Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_0192RMJWdur7sEzpyBRiCRe3`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2601.04618",
+  "prompt": "Is this paper withdrawn? What is the exact title? What are the authors? What venue was it published at? Check for any withdrawal notices."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "785398db-881a-43ac-9f1e-078b9c43f665",
+  "isSidechain": false,
+  "requestId": "req_011Cb2fW8XQpDgtPpY3PKQNZ",
+  "type": "assistant",
+  "uuid": "48b991dc-4536-4857-aade-12d0ed68bbe5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GJuyogmcDWtR5rWu8UXCX6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 799,
+      "cache_read_input_tokens": 47246,
+      "output_tokens": 110,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 799,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 110,
+          "cache_read_input_tokens": 47246,
+          "cache_creation_input_tokens": 799,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 799
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-14T15:03:11.303Z_
+
+<details><summary>↩ Tool result · `toolu_0192RMJWdur7sEzpyBRiCRe3`</summary>
+
+```text
+# Paper Status Summary
+
+**Withdrawal Status:** Yes, this paper has been withdrawn.
+
+**Exact Title:** "Adaptive Retrieval for Reasoning-Intensive Retrieval"
+
+**Authors:** Jongho Kim, Jaeyoung Kim, Seung-won Hwang, Jihyuk Kim, Yu Jin Kim, and Moontae Lee
+
+**Publication Venue:** Not published at a traditional venue. This is an arXiv preprint (arXiv:2601.04618).
+
+**Withdrawal Notice:** The authors state: "This document was submitted without obtaining all necessary permissions from our institutions and therefore needs to be withdrawn. We require additional internal review and approval prior to public release."
+
+The paper was originally submitted January 8, 2026, and withdrawn on April 14, 2026. No PDF is currently available due to the withdrawal.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "48b991dc-4536-4857-aade-12d0ed68bbe5",
+  "isSidechain": false,
+  "promptId": "0122c317-1b5e-4c60-85ae-e9c4b6853925",
+  "type": "user",
+  "uuid": "5cf086d0-efda-4bbb-8ed7-6b39d1eddd65",
+  "toolUseResult": {
+    "bytes": 45699,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Paper Status Summary\n\n**Withdrawal Status:** Yes, this paper has been withdrawn.\n\n**Exact Title:** \"Adaptive Retrieval for Reasoning-Intensive Retrieval\"\n\n**Authors:** Jongho Kim, Jaeyoung Kim, Seung-won Hwang, Jihyuk Kim, Yu Jin Kim, and Moontae Lee\n\n**Publication Venue:** Not published at a traditional venue. This is an arXiv preprint (arXiv:2601.04618).\n\n**Withdrawal Notice:** The authors state: \"This document was submitted without obtaining all necessary permissions from our institutions and therefore needs to be withdrawn. We require additional internal review and approval prior to public release.\"\n\nThe paper was originally submitted January 8, 2026, and withdrawn on April 14, 2026. No PDF is currently available due to the withdrawal.",
+    "durationMs": 3159,
+    "url": "https://arxiv.org/abs/2601.04618"
+  },
+  "sourceToolAssistantUUID": "48b991dc-4536-4857-aade-12d0ed68bbe5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97 · 2026-05-14T15:03:14.265Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FVUfngPVfNGF1BHtUmqTEL`</summary>
+
+```json
+{
+  "query": "GPU rental cost A100 per hour 2026 cloud pricing"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5cf086d0-efda-4bbb-8ed7-6b39d1eddd65",
+  "isSidechain": false,
+  "requestId": "req_011Cb2fWcVfQwgyvm12ib5qz",
+  "type": "assistant",
+  "uuid": "fd2507cd-ae8c-47e9-9da2-fbabf4688702",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NkBLiEh1efGjdRpTERKSxU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 311,
+      "cache_read_input_tokens": 48045,
+      "output_tokens": 65,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 311,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 65,
+          "cache_read_input_tokens": 48045,
+          "cache_creation_input_tokens": 311,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 311
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-14T15:03:21.195Z_
+
+<details><summary>↩ Tool result · `toolu_01FVUfngPVfNGF1BHtUmqTEL`</summary>
+
+```text
+Web search results for query: "GPU rental cost A100 per hour 2026 cloud pricing"
+
+Links: [{"title":"H100 Rental Prices Compared: $1.49-$6.98/hr Across 15+ Cloud Providers (2026) | IntuitionLabs","url":"https://intuitionlabs.ai/articles/h100-rental-prices-cloud-comparison"},{"title":"GPU pricing | Google Cloud","url":"https://cloud.google.com/compute/gpus-pricing"},{"title":"2026 Cost of Renting or Buying NVIDIA H100 GPUs for Data Centers","url":"https://www.gmicloud.ai/en/blog/2026-cost-of-renting-or-uying-nvidia-h100-gpus-for-data-centers"},{"title":"GPU Cloud Pricing Comparison 2026: Every Major Provider Side by Side | Spheron Blog","url":"https://www.spheron.network/blog/gpu-cloud-pricing-comparison-2026/"},{"title":"NVIDIA A100 GPU Price in 2026: Cost Per Hour, Cloud ...","url":"https://jarvislabs.ai/blog/a100-price"},{"title":"AI Cloud Pricing | GPU Compute & AI Infrastructure | Lambda","url":"https://lambda.ai/pricing"},{"title":"A100 Cloud Pricing: Compare 38+ Providers (2026)","url":"https://getdeploying.com/gpus/nvidia-a100"},{"title":"H100 Cloud Pricing: Compare 42+ Providers (2026)","url":"https://getdeploying.com/gpus/nvidia-h100"},{"title":"Cloud GPU Pricing - Compare 61 Providers (2026)","url":"https://getdeploying.com/gpus"},{"title":"Cloud GPU Pricing (2026): RTX 4090 $0.29, A100 $1.29, H100 $2.49 | SynpixCloud","url":"https://www.synpixcloud.com/blog/cloud-gpu-pricing-comparison-2026"}]
+
+Based on the current cloud pricing data for 2026, here's what I found regarding A100 GPU rental costs:
+
+## A100 Hourly Rental Costs
+
+Cloud rental ranges from $1.49 to $3.43 per GPU hour (March 2026). More broadly, A100 pricing currently ranges from $0.13/hr to $5.04/hr per GPU, depending on the provider, instance type, and billing model.
+
+## Provider-Specific Pricing
+
+Some of the most competitive providers offer:
+- Jarvislabs offers on-demand A100 80GB access at $1.49/hr with per-minute billing
+- RunPod ($1.49/hr), and Lambda Labs ($2.06/hr)
+- AWS and Azure offer A100s only in 8-GPU instances ($3.40-$3.43/GPU/hr)
+
+## Monthly Cost Estimate
+
+At 720 hours per month, one A100 can cost between $94.36 to $3,628.80 per month, depending on the provider.
+
+## Market Context
+
+By mid-2026 that older GPUs (A100/A6000) become nearly free (<$1), though current prices suggest this projection may not have fully materialized. The wide price range reflects differences in provider overhead, region, instance bundling requirements, and whether you're using spot/reserved pricing versus on-demand.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fd2507cd-ae8c-47e9-9da2-fbabf4688702",
+  "isSidechain": false,
+  "promptId": "0122c317-1b5e-4c60-85ae-e9c4b6853925",
+  "type": "user",
+  "uuid": "609c444d-833e-4677-8c39-95920839cfb2",
+  "toolUseResult": {
+    "query": "GPU rental cost A100 per hour 2026 cloud pricing",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01MqpGQfipPzkuXpLMLZBrb6",
+        "content": [
+          {
+            "title": "H100 Rental Prices Compared: $1.49-$6.98/hr Across 15+ Cloud Providers (2026) | IntuitionLabs",
+            "url": "https://intuitionlabs.ai/articles/h100-rental-prices-cloud-comparison"
+          },
+          {
+            "title": "GPU pricing | Google Cloud",
+            "url": "https://cloud.google.com/compute/gpus-pricing"
+          },
+          {
+            "title": "2026 Cost of Renting or Buying NVIDIA H100 GPUs for Data Centers",
+            "url": "https://www.gmicloud.ai/en/blog/2026-cost-of-renting-or-uying-nvidia-h100-gpus-for-data-centers"
+          },
+          {
+            "title": "GPU Cloud Pricing Comparison 2026: Every Major Provider Side by Side | Spheron Blog",
+            "url": "https://www.spheron.network/blog/gpu-cloud-pricing-comparison-2026/"
+          },
+          {
+            "title": "NVIDIA A100 GPU Price in 2026: Cost Per Hour, Cloud ...",
+            "url": "https://jarvislabs.ai/blog/a100-price"
+          },
+          {
+            "title": "AI Cloud Pricing | GPU Compute & AI Infrastructure | Lambda",
+            "url": "https://lambda.ai/pricing"
+          },
+          {
+            "title": "A100 Cloud Pricing: Compare 38+ Providers (2026)",
+            "url": "https://getdeploying.com/gpus/nvidia-a100"
+          },
+          {
+            "title": "H100 Cloud Pricing: Compare 42+ Providers (2026)",
+            "url": "https://getdeploying.com/gpus/nvidia-h100"
+          },
+          {
+            "title": "Cloud GPU Pricing - Compare 61 Providers (2026)",
+            "url": "https://getdeploying.com/gpus"
+          },
+          {
+            "title": "Cloud GPU Pricing (2026): RTX 4090 $0.29, A100 $1.29, H100 $2.49 | SynpixCloud",
+            "url": "https://www.synpixcloud.com/blog/cloud-gpu-pricing-comparison-2026"
+          }
+        ]
+      },
+      "Based on the current cloud pricing data for 2026, here's what I found regarding A100 GPU rental costs:\n\n## A100 Hourly Rental Costs\n\nCloud rental ranges from $1.49 to $3.43 per GPU hour (March 2026). More broadly, A100 pricing currently ranges from $0.13/hr to $5.04/hr per GPU, depending on the provider, instance type, and billing model.\n\n## Provider-Specific Pricing\n\nSome of the most competitive providers offer:\n- Jarvislabs offers on-demand A100 80GB access at $1.49/hr with per-minute billing\n- RunPod ($1.49/hr), and Lambda Labs ($2.06/hr)\n- AWS and Azure offer A100s only in 8-GPU instances ($3.40-$3.43/GPU/hr)\n\n## Monthly Cost Estimate\n\nAt 720 hours per month, one A100 can cost between $94.36 to $3,628.80 per month, depending on the provider.\n\n## Market Context\n\nBy mid-2026 that older GPUs (A100/A6000) become nearly free (<$1), though current prices suggest this projection may not have fully materialized. The wide price range reflects differences in provider overhead, region, instance bundling requirements, and whether you're using spot/reserved pricing versus on-demand."
+    ],
+    "durationSeconds": 6.928024327000021
+  },
+  "sourceToolAssistantUUID": "fd2507cd-ae8c-47e9-9da2-fbabf4688702",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 99 · 2026-05-14T15:03:24.728Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016FUPKnawbgarBaznKwxfjn`</summary>
+
+```json
+{
+  "query": "arxiv 2601.00536 \"four-axis design framework\" multi-hop question answering venue publication"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "609c444d-833e-4677-8c39-95920839cfb2",
+  "isSidechain": false,
+  "requestId": "req_011Cb2fXMfxx4fFd9TVCG5eq",
+  "type": "assistant",
+  "uuid": "c61f096d-3624-4583-af71-d5d87296aaba",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FAovVo7n5r9KdvbJr1LSKA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 905,
+      "cache_read_input_tokens": 48356,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 905,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 48356,
+          "cache_creation_input_tokens": 905,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 905
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-14T15:03:30.686Z_
+
+<details><summary>↩ Tool result · `toolu_016FUPKnawbgarBaznKwxfjn`</summary>
+
+```text
+Web search results for query: "arxiv 2601.00536 "four-axis design framework" multi-hop question answering venue publication"
+
+Links: [{"title":"[2601.00536] Retrieval--Reasoning Processes for Multi-hop Question Answering: A Four-Axis Design Framework and Empirical Trends","url":"https://arxiv.org/abs/2601.00536"},{"title":"Retrieval–Reasoning Processes for Multi-hop Question Answering: A Four-Axis Design Framework and Empirical Trends","url":"https://arxiv.org/html/2601.00536"},{"title":"Retrieval–Reasoning Processes for Multi-hop Question Answering: A","url":"https://arxiv.org/pdf/2601.00536"},{"title":"Multi-hop Question Answering","url":"https://arxiv.org/html/2204.09140v2"},{"title":"Exploring the Meta-level Reasoning of Large Language Models via a Tool-based Multi-hop Tabular Question Answering Task","url":"https://arxiv.org/html/2601.07696"},{"title":"Explainable Multi-hop Question Generation: An End-to-End Approach without Intermediate Question Labeling","url":"https://arxiv.org/html/2404.00571"},{"title":"[2601.11255] Reasoning in Trees: Improving Retrieval-Augmented Generation for Multi-Hop Question Answering","url":"https://arxiv.org/abs/2601.11255"},{"title":"Explainable Multi-hop Question Generation:","url":"https://arxiv.org/pdf/2404.00571"},{"title":"LLM-Based Multi-Hop Question Answering with Knowledge Graph Integration in Evolving Environments","url":"https://arxiv.org/html/2408.15903v2"},{"title":"MultiCube-RAG for Multi-hop Question Answering","url":"https://arxiv.org/html/2602.15898"}]
+
+Based on the search results, here is the information about arxiv 2601.00536:
+
+**Paper Title:** Retrieval--Reasoning Processes for Multi-hop Question Answering: A Four-Axis Design Framework and Empirical Trends
+
+**Authors:** Yuelyu Ji, Zhuochun Li, Rui Meng, Daqing He
+
+**Submission Date:** January 2, 2026
+
+**Overview:** The paper introduces a four-axis framework covering (A) overall execution plan, (B) index structure, (C) next-step control (strategies and triggers), and (D) stop/continue criteria for analyzing multi-hop question answering systems.
+
+**Scope:** The paper maps representative multi-hop QA systems and synthesizes reported ablations and tendencies on standard benchmarks (e.g., HotpotQA, 2WikiMultiHopQA, MuSiQue), highlighting recurring trade-offs among effectiveness, efficiency, and evidence faithfulness.
+
+**Note on Venue/Publication:** The search results show this is an arXiv paper (a preprint server) submitted on January 2, 2026. There is no information in the search results indicating whether this paper has been published at a formal conference or journal venue.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c61f096d-3624-4583-af71-d5d87296aaba",
+  "isSidechain": false,
+  "promptId": "0122c317-1b5e-4c60-85ae-e9c4b6853925",
+  "type": "user",
+  "uuid": "ec55cd2d-eb1b-4ca7-9267-2fdac2d8fb4d",
+  "toolUseResult": {
+    "query": "arxiv 2601.00536 \"four-axis design framework\" multi-hop question answering venue publication",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Evwhxvd1P8nrf9JuDFMC5B",
+        "content": [
+          {
+            "title": "[2601.00536] Retrieval--Reasoning Processes for Multi-hop Question Answering: A Four-Axis Design Framework and Empirical Trends",
+            "url": "https://arxiv.org/abs/2601.00536"
+          },
+          {
+            "title": "Retrieval–Reasoning Processes for Multi-hop Question Answering: A Four-Axis Design Framework and Empirical Trends",
+            "url": "https://arxiv.org/html/2601.00536"
+          },
+          {
+            "title": "Retrieval–Reasoning Processes for Multi-hop Question Answering: A",
+            "url": "https://arxiv.org/pdf/2601.00536"
+          },
+          {
+            "title": "Multi-hop Question Answering",
+            "url": "https://arxiv.org/html/2204.09140v2"
+          },
+          {
+            "title": "Exploring the Meta-level Reasoning of Large Language Models via a Tool-based Multi-hop Tabular Question Answering Task",
+            "url": "https://arxiv.org/html/2601.07696"
+          },
+          {
+            "title": "Explainable Multi-hop Question Generation: An End-to-End Approach without Intermediate Question Labeling",
+            "url": "https://arxiv.org/html/2404.00571"
+          },
+          {
+            "title": "[2601.11255] Reasoning in Trees: Improving Retrieval-Augmented Generation for Multi-Hop Question Answering",
+            "url": "https://arxiv.org/abs/2601.11255"
+          },
+          {
+            "title": "Explainable Multi-hop Question Generation:",
+            "url": "https://arxiv.org/pdf/2404.00571"
+          },
+          {
+            "title": "LLM-Based Multi-Hop Question Answering with Knowledge Graph Integration in Evolving Environments",
+            "url": "https://arxiv.org/html/2408.15903v2"
+          },
+          {
+            "title": "MultiCube-RAG for Multi-hop Question Answering",
+            "url": "https://arxiv.org/html/2602.15898"
+          }
+        ]
+      },
+      "Based on the search results, here is the information about arxiv 2601.00536:\n\n**Paper Title:** Retrieval--Reasoning Processes for Multi-hop Question Answering: A Four-Axis Design Framework and Empirical Trends\n\n**Authors:** Yuelyu Ji, Zhuochun Li, Rui Meng, Daqing He\n\n**Submission Date:** January 2, 2026\n\n**Overview:** The paper introduces a four-axis framework covering (A) overall execution plan, (B) index structure, (C) next-step control (strategies and triggers), and (D) stop/continue criteria for analyzing multi-hop question answering systems.\n\n**Scope:** The paper maps representative multi-hop QA systems and synthesizes reported ablations and tendencies on standard benchmarks (e.g., HotpotQA, 2WikiMultiHopQA, MuSiQue), highlighting recurring trade-offs among effectiveness, efficiency, and evidence faithfulness.\n\n**Note on Venue/Publication:** The search results show this is an arXiv paper (a preprint server) submitted on January 2, 2026. There is no information in the search results indicating whether this paper has been published at a formal conference or journal venue."
+    ],
+    "durationSeconds": 5.954517518999986
+  },
+  "sourceToolAssistantUUID": "c61f096d-3624-4583-af71-d5d87296aaba",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 101_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-14 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Step-Type-Con…",
+  "leafUuid": "ec55cd2d-eb1b-4ca7-9267-2fdac2d8fb4d",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 102_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Step-type-conditioned retrieval routing for multi-hop QA",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378"
+}
+```
+
+---
+
+### Tool call
+
+_source line 103 · 2026-05-14T15:03:34.048Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CoXChaCGZQMHs641d4zGwH`</summary>
+
+```json
+{
+  "query": "OpenReview ICML NeurIPS ICLR 2026 \"step type\" OR \"retrieval routing\" multi-hop reasoning"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ec55cd2d-eb1b-4ca7-9267-2fdac2d8fb4d",
+  "isSidechain": false,
+  "requestId": "req_011Cb2fY3XqTGWybHyLarYPU",
+  "type": "assistant",
+  "uuid": "305c6cae-adff-4bd8-97c8-26ca3aee3f46",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014jPS52ieTdwhLYCob6vFYM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 867,
+      "cache_read_input_tokens": 49261,
+      "output_tokens": 83,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 867,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 83,
+          "cache_read_input_tokens": 49261,
+          "cache_creation_input_tokens": 867,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 867
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 104 · 2026-05-14T15:03:38.638Z_
+
+<details><summary>↩ Tool result · `toolu_01CoXChaCGZQMHs641d4zGwH`</summary>
+
+```text
+Web search results for query: "OpenReview ICML NeurIPS ICLR 2026 "step type" OR "retrieval routing" multi-hop reasoning"
+
+Links: [{"title":"ICML 2026 | OpenReview","url":"https://openreview.net/group?id=ICML.cc%2F2026"},{"title":"ICLR 2026 Conference | OpenReview","url":"https://openreview.net/group?id=ICLR.cc%2F2026%2FConference"},{"title":"ICLR 2026 Conference Submissions","url":"https://openreview.net/submissions?page=424&venue=ICLR.cc/2026/Conference"},{"title":"ICLR 2026","url":"https://iclr.cc/"},{"title":"Workshop proposal for ICLR 2026","url":"https://openreview.net/pdf?id=zos64EBGgS"},{"title":"ICLR 2026 Workshop Proposal MemAgents: Memory for LLM-Based Agentic Systems","url":"https://openreview.net/pdf?id=U51WxL382H"},{"title":"ICML | OpenReview","url":"https://openreview.net/group?id=ICML.cc"},{"title":"ICLR | OpenReview","url":"https://openreview.net/group?id=ICLR.cc"},{"title":"ICLR 2026 Call for Papers","url":"https://iclr.cc/Conferences/2026/CallForPapers"},{"title":"GitHub - DavidZWZ/Awesome-RAG-Reasoning: [EMNLP 2025] Awesome RAG Reasoning Resources · GitHub","url":"https://github.com/DavidZWZ/Awesome-RAG-Reasoning"}]
+
+The search results show general information about OpenReview conferences (ICML 2026, ICLR 2026, NeurIPS) and some related research on RAG and multi-hop reasoning. However, the results don't contain specific papers or submissions that match your exact query terms "step type" and "retrieval routing" from the 2026 conference submissions on OpenReview.
+
+The search did return some relevant resources about retrieval-augmented generation and multi-hop reasoning research, including references to papers on multi-hop question answering and retrieval-based approaches, but no specific submissions matching both your search criteria from the 2026 conferences.
+
+To find specific papers with those exact terms, you may want to:
+1. Visit OpenReview directly and use their advanced search filters for ICML 2026, ICLR 2026, or NeurIPS 2026
+2. Try a more specific search with exact phrase matching if you have additional context about the paper title or authors
+3. Check if these papers might be on arXiv or other preprint servers with your specific query terms
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "305c6cae-adff-4bd8-97c8-26ca3aee3f46",
+  "isSidechain": false,
+  "promptId": "0122c317-1b5e-4c60-85ae-e9c4b6853925",
+  "type": "user",
+  "uuid": "e8131bf3-0302-4821-893a-6d360c830126",
+  "toolUseResult": {
+    "query": "OpenReview ICML NeurIPS ICLR 2026 \"step type\" OR \"retrieval routing\" multi-hop reasoning",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Qh8LBM5Fymxmnjtfn2mt7C",
+        "content": [
+          {
+            "title": "ICML 2026 | OpenReview",
+            "url": "https://openreview.net/group?id=ICML.cc%2F2026"
+          },
+          {
+            "title": "ICLR 2026 Conference | OpenReview",
+            "url": "https://openreview.net/group?id=ICLR.cc%2F2026%2FConference"
+          },
+          {
+            "title": "ICLR 2026 Conference Submissions",
+            "url": "https://openreview.net/submissions?page=424&venue=ICLR.cc/2026/Conference"
+          },
+          {
+            "title": "ICLR 2026",
+            "url": "https://iclr.cc/"
+          },
+          {
+            "title": "Workshop proposal for ICLR 2026",
+            "url": "https://openreview.net/pdf?id=zos64EBGgS"
+          },
+          {
+            "title": "ICLR 2026 Workshop Proposal MemAgents: Memory for LLM-Based Agentic Systems",
+            "url": "https://openreview.net/pdf?id=U51WxL382H"
+          },
+          {
+            "title": "ICML | OpenReview",
+            "url": "https://openreview.net/group?id=ICML.cc"
+          },
+          {
+            "title": "ICLR | OpenReview",
+            "url": "https://openreview.net/group?id=ICLR.cc"
+          },
+          {
+            "title": "ICLR 2026 Call for Papers",
+            "url": "https://iclr.cc/Conferences/2026/CallForPapers"
+          },
+          {
+            "title": "GitHub - DavidZWZ/Awesome-RAG-Reasoning: [EMNLP 2025] Awesome RAG Reasoning Resources · GitHub",
+            "url": "https://github.com/DavidZWZ/Awesome-RAG-Reasoning"
+          }
+        ]
+      },
+      "The search results show general information about OpenReview conferences (ICML 2026, ICLR 2026, NeurIPS) and some related research on RAG and multi-hop reasoning. However, the results don't contain specific papers or submissions that match your exact query terms \"step type\" and \"retrieval routing\" from the 2026 conference submissions on OpenReview.\n\nThe search did return some relevant resources about retrieval-augmented generation and multi-hop reasoning research, including references to papers on multi-hop question answering and retrieval-based approaches, but no specific submissions matching both your search criteria from the 2026 conferences.\n\nTo find specific papers with those exact terms, you may want to:\n1. Visit OpenReview directly and use their advanced search filters for ICML 2026, ICLR 2026, or NeurIPS 2026\n2. Try a more specific search with exact phrase matching if you have additional context about the paper title or authors\n3. Check if these papers might be on arXiv or other preprint servers with your specific query terms"
+    ],
+    "durationSeconds": 4.583605248000007
+  },
+  "sourceToolAssistantUUID": "305c6cae-adff-4bd8-97c8-26ca3aee3f46",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 105 · 2026-05-14T15:03:41.183Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01PD8swEZmL4tjNEjq2jjLsp`</summary>
+
+```json
+{
+  "query": "\"heterogeneous retrieval\" \"step classification\" OR \"step-type\" multi-hop QA 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e8131bf3-0302-4821-893a-6d360c830126",
+  "isSidechain": false,
+  "requestId": "req_011Cb2fYdPo6rhRnymGQpFc7",
+  "type": "assistant",
+  "uuid": "1f19bf04-5c2c-48e6-965c-d5f0b8a44794",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H1zTdE2EXbx8RE8t6rX44V",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 815,
+      "cache_read_input_tokens": 50128,
+      "output_tokens": 79,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 815,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 79,
+          "cache_read_input_tokens": 50128,
+          "cache_creation_input_tokens": 815,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 815
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 106 · 2026-05-14T15:03:48.511Z_
+
+<details><summary>↩ Tool result · `toolu_01PD8swEZmL4tjNEjq2jjLsp`</summary>
+
+```text
+Web search results for query: ""heterogeneous retrieval" "step classification" OR "step-type" multi-hop QA 2025 2026"
+
+Links: [{"title":"Retrieval–Reasoning Processes for Multi-hop Question Answering: A","url":"https://arxiv.org/pdf/2601.00536"},{"title":"GitHub - machuangtao/LLM-KG4QA: LLM-KG4QA: Large Language Models and Knowledge Graphs for Question Answering · GitHub","url":"https://github.com/machuangtao/llm-kg4qa"},{"title":"Multi-Step Agentic Retrieval","url":"https://www.emergentmind.com/topics/multi-step-agentic-retrieval"},{"title":"HopRAG: Multi-Hop Reasoning for Logic-Aware Retrieval-Augmented Generation | Request PDF","url":"https://www.researchgate.net/publication/394272084_HopRAG_Multi-Hop_Reasoning_for_Logic-Aware_Retrieval-Augmented_Generation"},{"title":"GitHub - DavidZWZ/Awesome-RAG-Reasoning: [EMNLP 2025] Awesome RAG Reasoning Resources · GitHub","url":"https://github.com/DavidZWZ/Awesome-RAG-Reasoning"},{"title":"Accepted Main Conference Papers - ACL 2025","url":"https://2025.aclweb.org/program/main_papers/"},{"title":"Generating multi-hop QA and fine-gRAined Difficulty matrix ...","url":"https://aclanthology.org/2025.findings-emnlp.236.pdf"},{"title":"How to Improve Multi-Hop Reasoning With Knowledge Graphs and LLMs - Graph Database & Analytics","url":"https://neo4j.com/blog/genai/knowledge-graph-llm-multi-hop-reasoning/"},{"title":"Retrieval–Reasoning Processes for Multi-hop Question Answering: A Four-Axis Design Framework and Empirical Trends","url":"https://arxiv.org/html/2601.00536v1"},{"title":"MultiHop-RAG: Benchmarking Retrieval-Augmented Generation for Multi-Hop Queries | OpenReview","url":"https://openreview.net/forum?id=t4eB3zYWBK"}]
+
+I've completed the web search for your query about heterogeneous retrieval, step classification, and multi-hop QA research from 2025-2026. Here are the key findings:
+
+## Recent Research on Multi-Hop QA and Retrieval
+
+**Multi-Hop QA Frameworks:**
+A four-axis design framework describes retrieval-reasoning processes in multi-hop QA through overall execution plan, index structure, next step execution plan, and stop/continue criteria.
+
+**Heterogeneous Sources and Diverse Approaches:**
+Multi-step agentic approaches treat the search for information as a sequential decision process, leveraging intermediate reasoning, multi-hop knowledge traversal, and agent agency. Evidence must be found across heterogeneous sources and discovered incrementally, often conditioned on partial hypotheses or earlier reasoning steps.
+
+**Step-Based Reasoning and Classification:**
+Recent work generates multi-hop QA pairs with difficulty labels based on reasoning depth and retrieval difficulty, assessing RAG systems' performance across a 2D difficulty matrix considering both generator-side and retriever-side complexity.
+
+**Recent 2025-2026 Publications:**
+Multiple papers from 2025-2026 focus on step-by-step reasoning, including "Step-by-Step Fact Verification System for Medical Claims with Explainable Reasoning" (NAACL 2025) and "TreePS-RAG: Tree-based Process Supervision for Retrieval-Augmented Generation".
+
+The search results show active research combining heterogeneous retrieval strategies with reasoning path classification for complex multi-hop question answering tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1f19bf04-5c2c-48e6-965c-d5f0b8a44794",
+  "isSidechain": false,
+  "promptId": "0122c317-1b5e-4c60-85ae-e9c4b6853925",
+  "type": "user",
+  "uuid": "8aaf4933-c74a-4e5b-a135-13d366a01577",
+  "toolUseResult": {
+    "query": "\"heterogeneous retrieval\" \"step classification\" OR \"step-type\" multi-hop QA 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Q8sZW4mtv2yZBQ6FUoeoEk",
+        "content": [
+          {
+            "title": "Retrieval–Reasoning Processes for Multi-hop Question Answering: A",
+            "url": "https://arxiv.org/pdf/2601.00536"
+          },
+          {
+            "title": "GitHub - machuangtao/LLM-KG4QA: LLM-KG4QA: Large Language Models and Knowledge Graphs for Question Answering · GitHub",
+            "url": "https://github.com/machuangtao/llm-kg4qa"
+          },
+          {
+            "title": "Multi-Step Agentic Retrieval",
+            "url": "https://www.emergentmind.com/topics/multi-step-agentic-retrieval"
+          },
+          {
+            "title": "HopRAG: Multi-Hop Reasoning for Logic-Aware Retrieval-Augmented Generation | Request PDF",
+            "url": "https://www.researchgate.net/publication/394272084_HopRAG_Multi-Hop_Reasoning_for_Logic-Aware_Retrieval-Augmented_Generation"
+          },
+          {
+            "title": "GitHub - DavidZWZ/Awesome-RAG-Reasoning: [EMNLP 2025] Awesome RAG Reasoning Resources · GitHub",
+            "url": "https://github.com/DavidZWZ/Awesome-RAG-Reasoning"
+          },
+          {
+            "title": "Accepted Main Conference Papers - ACL 2025",
+            "url": "https://2025.aclweb.org/program/main_papers/"
+          },
+          {
+            "title": "Generating multi-hop QA and fine-gRAined Difficulty matrix ...",
+            "url": "https://aclanthology.org/2025.findings-emnlp.236.pdf"
+          },
+          {
+            "title": "How to Improve Multi-Hop Reasoning With Knowledge Graphs and LLMs - Graph Database & Analytics",
+            "url": "https://neo4j.com/blog/genai/knowledge-graph-llm-multi-hop-reasoning/"
+          },
+          {
+            "title": "Retrieval–Reasoning Processes for Multi-hop Question Answering: A Four-Axis Design Framework and Empirical Trends",
+            "url": "https://arxiv.org/html/2601.00536v1"
+          },
+          {
+            "title": "MultiHop-RAG: Benchmarking Retrieval-Augmented Generation for Multi-Hop Queries | OpenReview",
+            "url": "https://openreview.net/forum?id=t4eB3zYWBK"
+          }
+        ]
+      },
+      "I've completed the web search for your query about heterogeneous retrieval, step classification, and multi-hop QA research from 2025-2026. Here are the key findings:\n\n## Recent Research on Multi-Hop QA and Retrieval\n\n**Multi-Hop QA Frameworks:**\nA four-axis design framework describes retrieval-reasoning processes in multi-hop QA through overall execution plan, index structure, next step execution plan, and stop/continue criteria.\n\n**Heterogeneous Sources and Diverse Approaches:**\nMulti-step agentic approaches treat the search for information as a sequential decision process, leveraging intermediate reasoning, multi-hop knowledge traversal, and agent agency. Evidence must be found across heterogeneous sources and discovered incrementally, often conditioned on partial hypotheses or earlier reasoning steps.\n\n**Step-Based Reasoning and Classification:**\nRecent work generates multi-hop QA pairs with difficulty labels based on reasoning depth and retrieval difficulty, assessing RAG systems' performance across a 2D difficulty matrix considering both generator-side and retriever-side complexity.\n\n**Recent 2025-2026 Publications:**\nMultiple papers from 2025-2026 focus on step-by-step reasoning, including \"Step-by-Step Fact Verification System for Medical Claims with Explainable Reasoning\" (NAACL 2025) and \"TreePS-RAG: Tree-based Process Supervision for Retrieval-Augmented Generation\".\n\nThe search results show active research combining heterogeneous retrieval strategies with reasoning path classification for complex multi-hop question answering tasks."
+    ],
+    "durationSeconds": 7.32428583399998
+  },
+  "sourceToolAssistantUUID": "1f19bf04-5c2c-48e6-965c-d5f0b8a44794",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 107 · 2026-05-14T15:03:48.513Z_
+
+```json
+{
+  "parentUuid": "8aaf4933-c74a-4e5b-a135-13d366a01577",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "fd3e4644-bda1-4dc4-8307-5ef2d0523bed",
+  "timestamp": "2026-05-14T15:03:48.513Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 108 · 2026-05-14T15:03:51.440Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014WAi7phACEkACpnnSoHofC`</summary>
+
+```json
+{
+  "query": "AAAI 2027 call for papers submission deadline abstract deadline July August 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fd3e4644-bda1-4dc4-8307-5ef2d0523bed",
+  "isSidechain": false,
+  "requestId": "req_011Cb2fZMiW7CMCQ2x8mdPnv",
+  "type": "assistant",
+  "uuid": "66eb29df-af31-4c23-997f-c05cdc405093",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BE6LL9V4tEBhkFrJetwRuw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1149,
+      "cache_read_input_tokens": 50943,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1149,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 50943,
+          "cache_creation_input_tokens": 1149,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1149
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 109 · 2026-05-14T15:03:55.799Z_
+
+<details><summary>↩ Tool result · `toolu_014WAi7phACEkACpnnSoHofC`</summary>
+
+```text
+Web search results for query: "AAAI 2027 call for papers submission deadline abstract deadline July August 2026"
+
+Links: [{"title":"AAAI Conference on Artificial Intelligence - AAAI","url":"https://aaai.org/conference/aaai/"},{"title":"AAAI 2027 Call for Papers — Official Deadlines & Important Dates | PaperPilot","url":"https://www.getpaperpilot.com/deadlines/aaai-2027.html"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"AI Deadlines – AI Conference Call For Paper Deadlines","url":"http://aideadlines.org/conference/?id=aaai27"},{"title":"AAAI: National Conference on Artificial Intelligence 2027 2026 2025 ...","url":"http://www.wikicfp.com/cfp/program?id=3"},{"title":"Update aaai conference deadlines · huggingface/ai-deadlines at 8e14540","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/8e145403081be22360311ec9ad9565e14b1f2d32"},{"title":"AAAI 2027 Conference | OpenReview","url":"https://openreview.net/group?id=AAAI.org%2F2027%2FConference"},{"title":"AAAI 2027 LaTeX Template | Author Kit & Overleaf | Underleaf","url":"https://www.underleaf.ai/templates/aaai"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"🚨AAAI-26 Call for Papers🚨 AAAI-26 will in Singapore from ...","url":"https://www.facebook.com/AAAIOrg/posts/aaai-26-call-for-papersaaai-26-will-in-singapore-from-january-20-to-january-27-2/751564707547430/"}]
+
+Based on the search results, here's what I found about AAAI 2027:
+
+**Conference Details:**
+The Forty-first Conference on Artificial Intelligence will be held in Montréal, Québec, Canada from February 16-23, 2027.
+
+**Submission Deadlines:**
+Unfortunately, the AAAI 2027 paper submission deadline is TBD (not yet announced). However, submission deadlines for AAAI 2027 are expected around July–August 2026 based on historical patterns.
+
+The official call for papers has not yet been fully released with specific deadline dates. For the most up-to-date information, you can check the official AAAI 2027 conference page at https://aaai.org/conference/aaai/aaai-27/ or monitor OpenReview at https://openreview.net/group?id=AAAI.org%2F2027%2FConference.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "66eb29df-af31-4c23-997f-c05cdc405093",
+  "isSidechain": false,
+  "promptId": "0122c317-1b5e-4c60-85ae-e9c4b6853925",
+  "type": "user",
+  "uuid": "1643be7b-0395-4767-9dfe-5add68a56422",
+  "toolUseResult": {
+    "query": "AAAI 2027 call for papers submission deadline abstract deadline July August 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019R8r6nrwf8zPEyA5QeXTVE",
+        "content": [
+          {
+            "title": "AAAI Conference on Artificial Intelligence - AAAI",
+            "url": "https://aaai.org/conference/aaai/"
+          },
+          {
+            "title": "AAAI 2027 Call for Papers — Official Deadlines & Important Dates | PaperPilot",
+            "url": "https://www.getpaperpilot.com/deadlines/aaai-2027.html"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "AI Deadlines – AI Conference Call For Paper Deadlines",
+            "url": "http://aideadlines.org/conference/?id=aaai27"
+          },
+          {
+            "title": "AAAI: National Conference on Artificial Intelligence 2027 2026 2025 ...",
+            "url": "http://www.wikicfp.com/cfp/program?id=3"
+          },
+          {
+            "title": "Update aaai conference deadlines · huggingface/ai-deadlines at 8e14540",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/8e145403081be22360311ec9ad9565e14b1f2d32"
+          },
+          {
+            "title": "AAAI 2027 Conference | OpenReview",
+            "url": "https://openreview.net/group?id=AAAI.org%2F2027%2FConference"
+          },
+          {
+            "title": "AAAI 2027 LaTeX Template | Author Kit & Overleaf | Underleaf",
+            "url": "https://www.underleaf.ai/templates/aaai"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "🚨AAAI-26 Call for Papers🚨 AAAI-26 will in Singapore from ...",
+            "url": "https://www.facebook.com/AAAIOrg/posts/aaai-26-call-for-papersaaai-26-will-in-singapore-from-january-20-to-january-27-2/751564707547430/"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about AAAI 2027:\n\n**Conference Details:**\nThe Forty-first Conference on Artificial Intelligence will be held in Montréal, Québec, Canada from February 16-23, 2027.\n\n**Submission Deadlines:**\nUnfortunately, the AAAI 2027 paper submission deadline is TBD (not yet announced). However, submission deadlines for AAAI 2027 are expected around July–August 2026 based on historical patterns.\n\nThe official call for papers has not yet been fully released with specific deadline dates. For the most up-to-date information, you can check the official AAAI 2027 conference page at https://aaai.org/conference/aaai/aaai-27/ or monitor OpenReview at https://openreview.net/group?id=AAAI.org%2F2027%2FConference."
+    ],
+    "durationSeconds": 4.356634497000021
+  },
+  "sourceToolAssistantUUID": "66eb29df-af31-4c23-997f-c05cdc405093",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 110 · 2026-05-14T15:03:59.299Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01Je4dFYJC7NqULTr8QJtepW`</summary>
+
+```json
+{
+  "url": "https://www.getpaperpilot.com/deadlines/aaai-2027.html",
+  "prompt": "Extract the exact submission deadlines for AAAI 2027 including abstract deadline, full paper deadline, and any other important dates."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1643be7b-0395-4767-9dfe-5add68a56422",
+  "isSidechain": false,
+  "requestId": "req_011Cb2fZtnHhD28Cyps1EZgn",
+  "type": "assistant",
+  "uuid": "e1351b4c-bc1c-493a-93e9-ba555fbf8ede",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JpSxQ7YHv3CsZ59CGHf6Km",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 858,
+      "cache_read_input_tokens": 52092,
+      "output_tokens": 120,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 858,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 120,
+          "cache_read_input_tokens": 52092,
+          "cache_creation_input_tokens": 858,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 858
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 111 · 2026-05-14T15:04:01.747Z_
+
+<details><summary>↩ Tool result · `toolu_01Je4dFYJC7NqULTr8QJtepW`</summary>
+
+```text
+# AAAI 2027 Submission Deadlines
+
+Based on the provided content, the specific submission deadlines for AAAI 2027 have not yet been announced.
+
+**Currently Available Information:**
+- Paper deadline: "TBD (UTC-12)"
+- Abstract deadline: "TBD (UTC-12)"
+- Conference dates: "February 16-23, 2027"
+- Location: Montréal, Québec, Canada
+
+The page indicates these deadlines are to be determined and offers a live countdown feature once they are officially published. For the most current information, the official call for papers can be found at the AAAI conference website.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e1351b4c-bc1c-493a-93e9-ba555fbf8ede",
+  "isSidechain": false,
+  "promptId": "0122c317-1b5e-4c60-85ae-e9c4b6853925",
+  "type": "user",
+  "uuid": "86d18d5b-6cc3-425e-8b29-b6b734a7ca0c",
+  "toolUseResult": {
+    "bytes": 28933,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# AAAI 2027 Submission Deadlines\n\nBased on the provided content, the specific submission deadlines for AAAI 2027 have not yet been announced.\n\n**Currently Available Information:**\n- Paper deadline: \"TBD (UTC-12)\"\n- Abstract deadline: \"TBD (UTC-12)\"\n- Conference dates: \"February 16-23, 2027\"\n- Location: Montréal, Québec, Canada\n\nThe page indicates these deadlines are to be determined and offers a live countdown feature once they are officially published. For the most current information, the official call for papers can be found at the AAAI conference website.",
+    "durationMs": 2442,
+    "url": "https://www.getpaperpilot.com/deadlines/aaai-2027.html"
+  },
+  "sourceToolAssistantUUID": "e1351b4c-bc1c-493a-93e9-ba555fbf8ede",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 112 · 2026-05-14T15:04:04.155Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WTA3GkV8R42TJ7DzkwA2F3`</summary>
+
+```json
+{
+  "query": "AACL 2026 submission deadline dates venue"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "86d18d5b-6cc3-425e-8b29-b6b734a7ca0c",
+  "isSidechain": false,
+  "requestId": "req_011Cb2faLMAzmgJmhx9Ja6Kk",
+  "type": "assistant",
+  "uuid": "881fdcd7-0aa4-4e13-ae26-27557104ce78",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VoeodxgE19fx5TZaMb12c3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 281,
+      "cache_read_input_tokens": 52950,
+      "output_tokens": 63,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 281,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 63,
+          "cache_read_input_tokens": 52950,
+          "cache_creation_input_tokens": 281,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 281
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 113 · 2026-05-14T15:04:08.354Z_
+
+<details><summary>↩ Tool result · `toolu_01WTA3GkV8R42TJ7DzkwA2F3`</summary>
+
+```text
+Web search results for query: "AACL 2026 submission deadline dates venue"
+
+Links: [{"title":"Dates and Venues","url":"http://aclrollingreview.org/dates"},{"title":"The 64th Annual Meeting of the Association for Computational Linguistics - ACL 2026","url":"https://2026.aclweb.org/"},{"title":"AACL 2026 - Department of Linguistics","url":"https://lin.ufl.edu/aacl-2026/"},{"title":"AACL 2026 on X: \"🚨AACL-IJCNLP 2026 will be held in Hengqin, China from November 6-10, 2026. The CFP is now out! ARR submission deadline (long &amp; short papers): May 25, 2026! #NLProc #NLP Dates and full CFP here: https://t.co/4ON2H5M7zQ @aadi_joshi @kta84912 https://t.co/9ZKWmY7Jvv\" / X","url":"https://x.com/aaclmeeting/status/2041832211599733075"},{"title":"2026 *ACL Conference Dates | Computational Linguistics","url":"https://submissions.cljournal.org/index.php/cljournal/announcement/view/14"},{"title":"AACL 2026 (@aaclmeeting) / Posts / X","url":"https://x.com/aaclmeeting"},{"title":"ACL 2026 in California: Dates, Deadline, Fees & Registration Steps - Conference Inc.","url":"https://conferenceinc.net/post/acl/"},{"title":"aclrollingreview/dates.md at main · acl-org/aclrollingreview","url":"https://github.com/acl-org/aclrollingreview/blob/main/dates.md"},{"title":"The 19th Conference of the European Chapter of the Association for Computational LinguisticsRabat, MoroccoMarch 24-29, 2026 -","url":"https://2026.eacl.org/"},{"title":"Final call for EACL and ACL 2026 workshops","url":"https://groups.google.com/g/ML-news/c/3rH5gRoL_8k"}]
+
+Based on the search results, here's information about AACL 2026:
+
+**Venue:** AACL-IJCNLP 2026 will be held in Hengqin, China from November 6-10, 2026.
+
+**Submission Deadline:** The Final ARR Submission Date for AACL 2026 is May 25, 2026, which is when papers through the ACL Rolling Review system must be submitted.
+
+**Commitment Deadline:** The Commitment Date for AACL 2026 is August 26, 2026, which is when authors must commit their papers with reviews to the conference.
+
+Note: Starting from 2024, all main *ACL conferences used ARR (ACL Rolling Review) exclusively, so AACL 2026 uses the ARR submission system rather than direct submissions.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "881fdcd7-0aa4-4e13-ae26-27557104ce78",
+  "isSidechain": false,
+  "promptId": "0122c317-1b5e-4c60-85ae-e9c4b6853925",
+  "type": "user",
+  "uuid": "e2010f77-df71-4460-bfaa-56b0985b6e22",
+  "toolUseResult": {
+    "query": "AACL 2026 submission deadline dates venue",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017v7PggeNhkn3HsahmRVEkD",
+        "content": [
+          {
+            "title": "Dates and Venues",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "The 64th Annual Meeting of the Association for Computational Linguistics - ACL 2026",
+            "url": "https://2026.aclweb.org/"
+          },
+          {
+            "title": "AACL 2026 - Department of Linguistics",
+            "url": "https://lin.ufl.edu/aacl-2026/"
+          },
+          {
+            "title": "AACL 2026 on X: \"🚨AACL-IJCNLP 2026 will be held in Hengqin, China from November 6-10, 2026. The CFP is now out! ARR submission deadline (long &amp; short papers): May 25, 2026! #NLProc #NLP Dates and full CFP here: https://t.co/4ON2H5M7zQ @aadi_joshi @kta84912 https://t.co/9ZKWmY7Jvv\" / X",
+            "url": "https://x.com/aaclmeeting/status/2041832211599733075"
+          },
+          {
+            "title": "2026 *ACL Conference Dates | Computational Linguistics",
+            "url": "https://submissions.cljournal.org/index.php/cljournal/announcement/view/14"
+          },
+          {
+            "title": "AACL 2026 (@aaclmeeting) / Posts / X",
+            "url": "https://x.com/aaclmeeting"
+          },
+          {
+            "title": "ACL 2026 in California: Dates, Deadline, Fees & Registration Steps - Conference Inc.",
+            "url": "https://conferenceinc.net/post/acl/"
+          },
+          {
+            "title": "aclrollingreview/dates.md at main · acl-org/aclrollingreview",
+            "url": "https://github.com/acl-org/aclrollingreview/blob/main/dates.md"
+          },
+          {
+            "title": "The 19th Conference of the European Chapter of the Association for Computational LinguisticsRabat, MoroccoMarch 24-29, 2026 -",
+            "url": "https://2026.eacl.org/"
+          },
+          {
+            "title": "Final call for EACL and ACL 2026 workshops",
+            "url": "https://groups.google.com/g/ML-news/c/3rH5gRoL_8k"
+          }
+        ]
+      },
+      "Based on the search results, here's information about AACL 2026:\n\n**Venue:** AACL-IJCNLP 2026 will be held in Hengqin, China from November 6-10, 2026.\n\n**Submission Deadline:** The Final ARR Submission Date for AACL 2026 is May 25, 2026, which is when papers through the ACL Rolling Review system must be submitted.\n\n**Commitment Deadline:** The Commitment Date for AACL 2026 is August 26, 2026, which is when authors must commit their papers with reviews to the conference.\n\nNote: Starting from 2024, all main *ACL conferences used ARR (ACL Rolling Review) exclusively, so AACL 2026 uses the ARR submission system rather than direct submissions."
+    ],
+    "durationSeconds": 4.194314623000042
+  },
+  "sourceToolAssistantUUID": "881fdcd7-0aa4-4e13-ae26-27557104ce78",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 114 · 2026-05-14T15:04:10.968Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014B6JKusSUgCJuaScp2QhvL`</summary>
+
+```json
+{
+  "query": "GLM-4.7 open source model sizes 7B 8B available huggingface 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e2010f77-df71-4460-bfaa-56b0985b6e22",
+  "isSidechain": false,
+  "requestId": "req_011Cb2fapT7gM4M6fc6NAeUp",
+  "type": "assistant",
+  "uuid": "d43d18c2-d654-4aac-b487-d64846c9df89",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LTmbEgJDr8QW2PYHhFEW73",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 875,
+      "cache_read_input_tokens": 53231,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 875,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 53231,
+          "cache_creation_input_tokens": 875,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 875
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 115_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-14 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Step-Type-Con…",
+  "leafUuid": "d43d18c2-d654-4aac-b487-d64846c9df89",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 116_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Step-type-conditioned retrieval routing for multi-hop QA",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378"
+}
+```
+
+---
+
+### Tool result
+
+_source line 117 · 2026-05-14T15:04:17.370Z_
+
+<details><summary>↩ Tool result · `toolu_014B6JKusSUgCJuaScp2QhvL`</summary>
+
+```text
+Web search results for query: "GLM-4.7 open source model sizes 7B 8B available huggingface 2026"
+
+Links: [{"title":"zai-org/GLM-4.7 · Hugging Face","url":"https://huggingface.co/zai-org/GLM-4.7"},{"title":"zai-org/GLM-4.7-Flash · Hugging Face","url":"https://huggingface.co/zai-org/GLM-4.7-Flash"},{"title":"AaryanK/GLM-4.7-GGUF · Hugging Face","url":"https://huggingface.co/AaryanK/GLM-4.7-GGUF"},{"title":"unsloth/GLM-4.7-Flash-GGUF · Hugging Face","url":"https://huggingface.co/unsloth/GLM-4.7-Flash-GGUF"},{"title":"mratsim/GLM-4.7-EXL3 · Hugging Face","url":"https://huggingface.co/mratsim/GLM-4.7-EXL3"},{"title":"DavidAU/GLM-4.7-Flash-Uncensored-Heretic-NEO-CODE-Imatrix-MAX-GGUF · Hugging Face","url":"https://huggingface.co/DavidAU/GLM-4.7-Flash-Uncensored-Heretic-NEO-CODE-Imatrix-MAX-GGUF"},{"title":"nvidia/GLM-4.7-NVFP4 · Hugging Face","url":"https://huggingface.co/nvidia/GLM-4.7-NVFP4"},{"title":"GLM-4.7 Benchmarks, Pricing & Context Window","url":"https://llm-stats.com/models/glm-4.7"},{"title":"zai-org/GLM-4.7 at main","url":"https://huggingface.co/zai-org/GLM-4.7/tree/main"},{"title":"ubergarm/GLM-4.7-GGUF · Hugging Face","url":"https://huggingface.co/ubergarm/GLM-4.7-GGUF"}]
+
+Based on the search results, here's what I found regarding GLM-4.7 open-source model sizes available on Hugging Face:
+
+## Main Models
+
+GLM-4.7 was released on December 22, 2025 by ZAI and has 358.0 billion parameters. The primary open-source versions available on Hugging Face are:
+
+1. **GLM-4.7** - Released under the MIT license, which is an open-source/open-weight license.
+
+2. **GLM-4.7-Flash** - A 30B-A3B MoE model that serves as the strongest model in the 30B class, offering a new option for lightweight deployment that balances performance and efficiency.
+
+## Important Note About Model Sizes
+
+Based on my search, I did not find specific 7B or 8B variants of GLM-4.7. The publicly available open-source models appear to be the full 358B parameter version and the GLM-4.7-Flash variant (30B-A3B MoE). There are also quantized versions available in various formats (GGUF, NVFP4, EXL3) to make the larger model more accessible for local deployment.
+
+All these models are available on Hugging Face under the zai-org organization and community contributors who have created quantized versions.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d43d18c2-d654-4aac-b487-d64846c9df89",
+  "isSidechain": false,
+  "promptId": "0122c317-1b5e-4c60-85ae-e9c4b6853925",
+  "type": "user",
+  "uuid": "56c3ccf0-4105-4960-a4e9-05221f1180eb",
+  "toolUseResult": {
+    "query": "GLM-4.7 open source model sizes 7B 8B available huggingface 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01H9vM8tVtwwg8axPx33Jph3",
+        "content": [
+          {
+            "title": "zai-org/GLM-4.7 · Hugging Face",
+            "url": "https://huggingface.co/zai-org/GLM-4.7"
+          },
+          {
+            "title": "zai-org/GLM-4.7-Flash · Hugging Face",
+            "url": "https://huggingface.co/zai-org/GLM-4.7-Flash"
+          },
+          {
+            "title": "AaryanK/GLM-4.7-GGUF · Hugging Face",
+            "url": "https://huggingface.co/AaryanK/GLM-4.7-GGUF"
+          },
+          {
+            "title": "unsloth/GLM-4.7-Flash-GGUF · Hugging Face",
+            "url": "https://huggingface.co/unsloth/GLM-4.7-Flash-GGUF"
+          },
+          {
+            "title": "mratsim/GLM-4.7-EXL3 · Hugging Face",
+            "url": "https://huggingface.co/mratsim/GLM-4.7-EXL3"
+          },
+          {
+            "title": "DavidAU/GLM-4.7-Flash-Uncensored-Heretic-NEO-CODE-Imatrix-MAX-GGUF · Hugging Face",
+            "url": "https://huggingface.co/DavidAU/GLM-4.7-Flash-Uncensored-Heretic-NEO-CODE-Imatrix-MAX-GGUF"
+          },
+          {
+            "title": "nvidia/GLM-4.7-NVFP4 · Hugging Face",
+            "url": "https://huggingface.co/nvidia/GLM-4.7-NVFP4"
+          },
+          {
+            "title": "GLM-4.7 Benchmarks, Pricing & Context Window",
+            "url": "https://llm-stats.com/models/glm-4.7"
+          },
+          {
+            "title": "zai-org/GLM-4.7 at main",
+            "url": "https://huggingface.co/zai-org/GLM-4.7/tree/main"
+          },
+          {
+            "title": "ubergarm/GLM-4.7-GGUF · Hugging Face",
+            "url": "https://huggingface.co/ubergarm/GLM-4.7-GGUF"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found regarding GLM-4.7 open-source model sizes available on Hugging Face:\n\n## Main Models\n\nGLM-4.7 was released on December 22, 2025 by ZAI and has 358.0 billion parameters. The primary open-source versions available on Hugging Face are:\n\n1. **GLM-4.7** - Released under the MIT license, which is an open-source/open-weight license.\n\n2. **GLM-4.7-Flash** - A 30B-A3B MoE model that serves as the strongest model in the 30B class, offering a new option for lightweight deployment that balances performance and efficiency.\n\n## Important Note About Model Sizes\n\nBased on my search, I did not find specific 7B or 8B variants of GLM-4.7. The publicly available open-source models appear to be the full 358B parameter version and the GLM-4.7-Flash variant (30B-A3B MoE). There are also quantized versions available in various formats (GGUF, NVFP4, EXL3) to make the larger model more accessible for local deployment.\n\nAll these models are available on Hugging Face under the zai-org organization and community contributors who have created quantized versions."
+    ],
+    "durationSeconds": 6.397878527000023
+  },
+  "sourceToolAssistantUUID": "d43d18c2-d654-4aac-b487-d64846c9df89",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 118 · 2026-05-14T15:04:20.473Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QWZje22LqX2c2L12HSuVKB`</summary>
+
+```json
+{
+  "query": "Qwen3-8B Qwen3-14B training RL reinforcement learning retrieval augmented 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "56c3ccf0-4105-4960-a4e9-05221f1180eb",
+  "isSidechain": false,
+  "requestId": "req_011Cb2fbV1MUnDzNkNsRp2i8",
+  "type": "assistant",
+  "uuid": "965875dc-a516-4df7-90c1-6a18fceb1a81",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J38tB2KS3nokTSeRjsmkVe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 991,
+      "cache_read_input_tokens": 54106,
+      "output_tokens": 78,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 991,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 78,
+          "cache_read_input_tokens": 54106,
+          "cache_creation_input_tokens": 991,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 991
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 119 · 2026-05-14T15:04:27.464Z_
+
+<details><summary>↩ Tool result · `toolu_01QWZje22LqX2c2L12HSuVKB`</summary>
+
+```text
+Web search results for query: "Qwen3-8B Qwen3-14B training RL reinforcement learning retrieval augmented 2026"
+
+Links: [{"title":"Qwen3: Think Deeper, Act Faster | Qwen","url":"https://qwenlm.github.io/blog/qwen3/"},{"title":"2025-05-15 Qwen3 Technical Report Qwen Team https://huggingface.co/Qwen","url":"https://arxiv.org/pdf/2505.09388"},{"title":"UniReason-Qwen3-14B RL: Scalable Reasoning via RL","url":"https://www.emergentmind.com/topics/unireason-qwen3-14b-rl"},{"title":"GitHub - QwenLM/Qwen3.6: Qwen3.6 is the large language model series developed by Qwen team, Alibaba Group. · GitHub","url":"https://github.com/QwenLM/Qwen3.6"},{"title":"qwen3.5","url":"https://ollama.com/library/qwen3.5:latest"},{"title":"Qwen3.5","url":"https://qwen.ai/research"},{"title":"Qwen","url":"https://qwenlm.github.io/"},{"title":"Enhancing queries for code generation with reinforcement learning | Scientific Reports","url":"https://www.nature.com/articles/s41598-025-21271-4"},{"title":"Eliciting Medical Reasoning with Knowledge-enhanced Data Synthesis: A Semi-Supervised Reinforcement Learning Approach","url":"https://arxiv.org/html/2604.11547"},{"title":"Qwen/Qwen3.5-9B-Base · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3.5-9B-Base"}]
+
+Based on the search results, here's what I found about Qwen3-8B and Qwen3-14B training with reinforcement learning and retrieval-augmented approaches in 2026:
+
+## Qwen3 Models and Training Approaches
+
+Qwen3-8B and Qwen3-14B are among six dense models released open-source under Apache 2.0 license.
+
+### Reinforcement Learning Training
+
+The training pipeline includes: (1) long chain-of-thought (CoT) cold start, (2) reasoning-based reinforcement learning (RL), (3) thinking mode fusion, and (4) general RL.
+
+Regarding training efficiency, distillation achieves significantly better performance than reinforcement learning while requiring approximately only 1/10 of the GPU hours.
+
+### Performance and Capabilities
+
+Qwen3-1.7B/4B/8B/14B/32B-Base performs as well as Qwen2.5-3B/7B/14B/32B/72B-Base, respectively, demonstrating significant improvements in model efficiency.
+
+### Retrieval-Augmented Generation
+
+Future development of UniReason-Qwen3-14B RL and its derivatives will focus on extending automatic reasoning incentives to other modalities (vision, retrieval-augmented generation), optimizing RL for long-context processing, and further efficiency in curriculum and reward design.
+
+The search results also show that newer versions have been released in 2026, with Qwen3.5-9B, Qwen3.5-4B, Qwen3.5-2B, and Qwen3.5-0.8B now available as of March 2, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "965875dc-a516-4df7-90c1-6a18fceb1a81",
+  "isSidechain": false,
+  "promptId": "0122c317-1b5e-4c60-85ae-e9c4b6853925",
+  "type": "user",
+  "uuid": "f129493c-1833-457e-9f6e-1388ac1c5baa",
+  "toolUseResult": {
+    "query": "Qwen3-8B Qwen3-14B training RL reinforcement learning retrieval augmented 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01UMa1JdYrtXNJSiryJYLECp",
+        "content": [
+          {
+            "title": "Qwen3: Think Deeper, Act Faster | Qwen",
+            "url": "https://qwenlm.github.io/blog/qwen3/"
+          },
+          {
+            "title": "2025-05-15 Qwen3 Technical Report Qwen Team https://huggingface.co/Qwen",
+            "url": "https://arxiv.org/pdf/2505.09388"
+          },
+          {
+            "title": "UniReason-Qwen3-14B RL: Scalable Reasoning via RL",
+            "url": "https://www.emergentmind.com/topics/unireason-qwen3-14b-rl"
+          },
+          {
+            "title": "GitHub - QwenLM/Qwen3.6: Qwen3.6 is the large language model series developed by Qwen team, Alibaba Group. · GitHub",
+            "url": "https://github.com/QwenLM/Qwen3.6"
+          },
+          {
+            "title": "qwen3.5",
+            "url": "https://ollama.com/library/qwen3.5:latest"
+          },
+          {
+            "title": "Qwen3.5",
+            "url": "https://qwen.ai/research"
+          },
+          {
+            "title": "Qwen",
+            "url": "https://qwenlm.github.io/"
+          },
+          {
+            "title": "Enhancing queries for code generation with reinforcement learning | Scientific Reports",
+            "url": "https://www.nature.com/articles/s41598-025-21271-4"
+          },
+          {
+            "title": "Eliciting Medical Reasoning with Knowledge-enhanced Data Synthesis: A Semi-Supervised Reinforcement Learning Approach",
+            "url": "https://arxiv.org/html/2604.11547"
+          },
+          {
+            "title": "Qwen/Qwen3.5-9B-Base · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3.5-9B-Base"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about Qwen3-8B and Qwen3-14B training with reinforcement learning and retrieval-augmented approaches in 2026:\n\n## Qwen3 Models and Training Approaches\n\nQwen3-8B and Qwen3-14B are among six dense models released open-source under Apache 2.0 license.\n\n### Reinforcement Learning Training\n\nThe training pipeline includes: (1) long chain-of-thought (CoT) cold start, (2) reasoning-based reinforcement learning (RL), (3) thinking mode fusion, and (4) general RL.\n\nRegarding training efficiency, distillation achieves significantly better performance than reinforcement learning while requiring approximately only 1/10 of the GPU hours.\n\n### Performance and Capabilities\n\nQwen3-1.7B/4B/8B/14B/32B-Base performs as well as Qwen2.5-3B/7B/14B/32B/72B-Base, respectively, demonstrating significant improvements in model efficiency.\n\n### Retrieval-Augmented Generation\n\nFuture development of UniReason-Qwen3-14B RL and its derivatives will focus on extending automatic reasoning incentives to other modalities (vision, retrieval-augmented generation), optimizing RL for long-context processing, and further efficiency in curriculum and reward design.\n\nThe search results also show that newer versions have been released in 2026, with Qwen3.5-9B, Qwen3.5-4B, Qwen3.5-2B, and Qwen3.5-0.8B now available as of March 2, 2026."
+    ],
+    "durationSeconds": 6.986977491999976
+  },
+  "sourceToolAssistantUUID": "965875dc-a516-4df7-90c1-6a18fceb1a81",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 120 · 2026-05-14T15:05:38.788Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have enough information to formulate a comprehensive research plan. Let me compile everything:
+
+## Key Findings
+
+### Concurrent Work Analysis
+1. **MoRE/R1-Router** (arxiv 2505.22095) - Routes to different retrieval experts based on reasoning state for *multimodal* QA. Uses Step-GRPO. BUT: routes to KB-level experts (which KB to use), doesn't explicitly classify reasoning step types, and focuses on multimodal (not text-only multi-hop QA). Also doesn't change query formulation per step type.
+
+
+2. **IG-Search** (arxiv 2604.15148) - Uses step-level information gain rewards to determine *when* to search, but doesn't adapt how queries are formulated. **RAISE** (arxiv 2506.08625) decomposes into subquestions and logical queries but applies the same retrieval mechanism uniformly. **ReaLM-Retrieve** (SIGIR 2026, arxiv 2604.26649) optimizes *when* to retrieve during reasoning through step-level uncertainty detection, but doesn't vary the retrieval strategy itself. **Search-R1** (COLM 2025, arxiv 2503.09516) is still being reviewed.
+
+5. **Search-R1** uses reinforcement learning to learn retrieval timing while relying on uniform BM25 and dense retrieval approaches. **R3-RAG** similarly applies RL for step-by-step reasoning and retrieval decisions but doesn't differentiate the retrieval strategy across steps.
+
+The key distinction here is that my approach explicitly classifies reasoning step types—entity grounding, relational bridging, numerical comparison, logical deduction—and then routes to different retriever backbones while formulating queries differently for each type. No existing work combines both step-type classification with heterogeneous query formulation and retriever selection. MoRE comes closest by routing to different experts, but it doesn't explicitly classify step types and focuses on multimodal QA instead.
+
+For the base model, I'm considering **Qwen3-8B** or **Qwen3-14B**, both available under Apache 2.0 licensing.  They have strong reasoning capabilities and are well-suited for RL training based on what Search-R1 and R3-RAG demonstrated. GLM-4.7 is too large at 358B parameters for practical research training.
+
+Looking at venue timelines, EMNLP and AACL both have May 25 ARR deadlines—too tight with only 11 days. AAAI 2027 with a July-August 2026 deadline is feasible, EACL 2027 with August 3 is workable, and ICLR 2027 around October 2026 gives the most breathing room.
+
+The guidance is clear: target the highest-tier venue the contribution supports without downgrading due to timeline constraints, especially since the AI team operates continuously. This is solid work, so EMNLP 2026, AAAI 2027, and ICLR 2027 are all legitimate targets. The May 25 deadline is technically feasible for an ARR submission with round-the-clock work, though implementing the step-type classifier, building multiple retriever pipelines, and running comprehensive experiments across benchmarks in 11 days would be extremely demanding. tight even for auto research.
+
+Let me think about what's achievable:
+- EMNLP 2026 via ARR May 25: Very tight but the directive says don't downgrade due to timeline
+- AAAI 2027: ~July-August 2026 — very feasible
+- ICLR 2027: ~October 2026 — very feasible
+
+I should target the highest-tier venue. EMNLP is top-tier for NLP. ICLR is top-tier for ML. Let me list both EMNLP 2026 (via ARR May 25, tight but possible) and ICLR 2027 as fallback.
+
+Actually, wait. The ARR May 25 deadline is for *submission* to the ARR system. This would need to be a full paper ready for review. 11 days is essentially impossible even with auto research for a novel method + full experiments. But the instruction explicitly says not to downgrade venues based on timeline concerns, so I should still consider it if the contribution warrants it.
+
+Let me check the deadline constraint again: venues need deadlines after May 14, 2026. The ARR May 25 submission qualifies, as does AAAI 2027 with its expected July-August 2026 deadline. Given that this is a solid systems and methods contribution—step-type classification plus heterogeneous retrieval routing is novel but not groundbreaking—I'll target EMNLP 2026 and AAAI 2027 as my primary options.
+
+Now I need to design the actual approach.
+
+I'm building a step-type-conditioned retrieval system that classifies each reasoning step into one of four categories—entity grounding, relational bridging, numerical comparison, or logical deduction—then applies tailored retrieval strategies for each type. Entity grounding uses dense retrievers for precise matches, relational bridging leverages knowledge graph or graph-aware retrievers, numerical comparison extracts structured data, and logical deduction either skips retrieval or focuses on premises.
+
+I'll train this classifier and query formulator jointly using reinforcement learning on the Search-R1 framework, then evaluate against standard multi-hop benchmarks like HotpotQA and MuSiQue to see if I can beat the existing baselines—Search-R1's 41% improvement and ReaLM-Retrieve's 10.1% F1 gain.
+
+Looking at the resource requirements, I'm estimating around 150-200 GPU hours for manual experiments or 300-400 for more extensive exploration, which translates to roughly $300-600 in A100 costs and a 3-5 month timeline with 1-2 researchers handling the bottlenecks.
+
+Human-in-the-loop approaches could compress this to 3-5 weeks with just one researcher checking in daily, though Claude API costs would add $150-300 on top of the $375 GPU expense. For fully automated research, I could run 400 GPU hours in 1-2 weeks with minimal team involvement, but that would require $300-600 in API costs and sufficient GPU quota to avoid becoming the limiting factor.
+
+I'm also compiling the key references I've verified so far—these papers cover search-augmented reasoning, multi-hop retrieval strategies, mixture-of-experts approaches, adaptive retrieval timing, reinforcement learning for RAG systems, knowledge graph reasoning, and fact-bridging techniques.
+
+Now I need to finalize the project structure. I'm considering names like step_type_cond_retrieval, step_retriever, or stcr_multihop, and I'd characterize this as a solid contribution—it's a well-motivated extension with clear differentiation from existing work, though not a fundamental paradigm shift. Let me double-check the venue information for one of the papers before I lock in the JSON output.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f129493c-1833-457e-9f6e-1388ac1c5baa",
+  "isSidechain": false,
+  "requestId": "req_011Cb2fcEB9kVT9vy4GrVkWr",
+  "type": "assistant",
+  "uuid": "89c3c567-66af-4c4a-a352-af80efee2c68",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013K9Sxxv9iG1z2ujZtbwp3N",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 964,
+      "cache_read_input_tokens": 55097,
+      "output_tokens": 2902,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 964,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2902,
+          "cache_read_input_tokens": 55097,
+          "cache_creation_input_tokens": 964,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 964
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 121 · 2026-05-14T15:05:38.790Z_
+
+Let me verify a few more references and get the final pieces.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "89c3c567-66af-4c4a-a352-af80efee2c68",
+  "isSidechain": false,
+  "requestId": "req_011Cb2fcEB9kVT9vy4GrVkWr",
+  "type": "assistant",
+  "uuid": "e380c521-5b40-41fe-8efa-5f6d5eb0129f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013K9Sxxv9iG1z2ujZtbwp3N",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 964,
+      "cache_read_input_tokens": 55097,
+      "output_tokens": 2902,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 964,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2902,
+          "cache_read_input_tokens": 55097,
+          "cache_creation_input_tokens": 964,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 964
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 122 · 2026-05-14T15:05:38.792Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HBANbAmkTPK9GceWCQup2x`</summary>
+
+```json
+{
+  "query": "StepChain GraphRAG arxiv 2510.02827 venue publication accepted conference"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e380c521-5b40-41fe-8efa-5f6d5eb0129f",
+  "isSidechain": false,
+  "requestId": "req_011Cb2fcEB9kVT9vy4GrVkWr",
+  "type": "assistant",
+  "uuid": "67d31398-fec1-496c-a2a9-bf392699aa2a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013K9Sxxv9iG1z2ujZtbwp3N",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 964,
+      "cache_read_input_tokens": 55097,
+      "output_tokens": 2902,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 964,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2902,
+          "cache_read_input_tokens": 55097,
+          "cache_creation_input_tokens": 964,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 964
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 123_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-14 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Step-Type-Con…",
+  "leafUuid": "67d31398-fec1-496c-a2a9-bf392699aa2a",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 124_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Step-type-conditioned retrieval routing for multi-hop QA",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378"
+}
+```
+
+---
+
+### Tool result
+
+_source line 125 · 2026-05-14T15:05:44.646Z_
+
+<details><summary>↩ Tool result · `toolu_01HBANbAmkTPK9GceWCQup2x`</summary>
+
+```text
+Web search results for query: "StepChain GraphRAG arxiv 2510.02827 venue publication accepted conference"
+
+Links: [{"title":"[2510.02827] StepChain GraphRAG: Reasoning Over Knowledge Graphs for Multi-Hop Question Answering","url":"https://arxiv.org/abs/2510.02827"},{"title":"StepChain GraphRAG: Reasoning Over Knowledge Graphs for Multi-Hop Question","url":"https://arxiv.org/pdf/2510.02827"},{"title":"StepChain GraphRAG: Reasoning Over Knowledge Graphs for Multi-Hop Question Answering","url":"https://arxiv.org/html/2510.02827"},{"title":"(PDF) StepChain GraphRAG: Reasoning Over Knowledge Graphs for Multi-Hop Question Answering","url":"https://www.researchgate.net/publication/396223342_StepChain_GraphRAG_Reasoning_Over_Knowledge_Graphs_for_Multi-Hop_Question_Answering"},{"title":"StepChain GraphRAG: Multi-Hop Reasoning","url":"https://www.emergentmind.com/topics/stepchain-graphrag"},{"title":"GitHub - bansky-cl/graphrag-arxiv-daily-paper · GitHub","url":"https://github.com/bansky-cl/graphrag-arxiv-daily-paper"},{"title":"GitHub - microsoft/graphrag: A modular graph-based Retrieval-Augmented Generation (RAG) system · GitHub","url":"https://github.com/microsoft/graphrag"},{"title":"GitHub - DEEP-PolyU/Awesome-GraphRAG: Awesome-GraphRAG: A curated list of resources (surveys, papers, benchmarks, and opensource projects) on graph-based retrieval-augmented generation. · GitHub","url":"https://github.com/DEEP-PolyU/Awesome-GraphRAG"},{"title":"Welcome - GraphRAG","url":"https://microsoft.github.io/graphrag/"},{"title":"GitHub - JayLZhou/GraphRAG: In-depth study of the graphrag · GitHub","url":"https://github.com/JayLZhou/GraphRAG"}]
+
+Based on the search results, I found information about the StepChain GraphRAG paper with arxiv ID 2510.02827:
+
+## Paper Details
+
+StepChain GraphRAG is a framework that unites question decomposition with a Breadth-First Search (BFS) Reasoning Flow for enhanced multi-hop QA.
+
+## Publication Status
+
+The paper appears to be a **preprint on arXiv**. It was submitted on Friday, October 3, 2025, with the version designation 2510.02827v1. Based on the search results, this is currently an arXiv preprint and **I could not find evidence that it has been accepted to or published at a conference venue**. The results indicate it is available on arXiv but there is no mention of acceptance to a specific conference or publication at a conference in the search results.
+
+## Performance
+
+Experiments on MuSiQue, 2WikiMultiHopQA, and HotpotQA show that StepChain GraphRAG achieves state-of-the-art Exact Match and F1 scores.
+
+If you're looking for specific information about whether this paper has been accepted to a particular conference, that information is not available in the current search results.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "67d31398-fec1-496c-a2a9-bf392699aa2a",
+  "isSidechain": false,
+  "promptId": "0122c317-1b5e-4c60-85ae-e9c4b6853925",
+  "type": "user",
+  "uuid": "d82ab186-2fa0-453f-9753-75019866c1bb",
+  "toolUseResult": {
+    "query": "StepChain GraphRAG arxiv 2510.02827 venue publication accepted conference",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0127k8vc25K3BSTrsPYAAbyb",
+        "content": [
+          {
+            "title": "[2510.02827] StepChain GraphRAG: Reasoning Over Knowledge Graphs for Multi-Hop Question Answering",
+            "url": "https://arxiv.org/abs/2510.02827"
+          },
+          {
+            "title": "StepChain GraphRAG: Reasoning Over Knowledge Graphs for Multi-Hop Question",
+            "url": "https://arxiv.org/pdf/2510.02827"
+          },
+          {
+            "title": "StepChain GraphRAG: Reasoning Over Knowledge Graphs for Multi-Hop Question Answering",
+            "url": "https://arxiv.org/html/2510.02827"
+          },
+          {
+            "title": "(PDF) StepChain GraphRAG: Reasoning Over Knowledge Graphs for Multi-Hop Question Answering",
+            "url": "https://www.researchgate.net/publication/396223342_StepChain_GraphRAG_Reasoning_Over_Knowledge_Graphs_for_Multi-Hop_Question_Answering"
+          },
+          {
+            "title": "StepChain GraphRAG: Multi-Hop Reasoning",
+            "url": "https://www.emergentmind.com/topics/stepchain-graphrag"
+          },
+          {
+            "title": "GitHub - bansky-cl/graphrag-arxiv-daily-paper · GitHub",
+            "url": "https://github.com/bansky-cl/graphrag-arxiv-daily-paper"
+          },
+          {
+            "title": "GitHub - microsoft/graphrag: A modular graph-based Retrieval-Augmented Generation (RAG) system · GitHub",
+            "url": "https://github.com/microsoft/graphrag"
+          },
+          {
+            "title": "GitHub - DEEP-PolyU/Awesome-GraphRAG: Awesome-GraphRAG: A curated list of resources (surveys, papers, benchmarks, and opensource projects) on graph-based retrieval-augmented generation. · GitHub",
+            "url": "https://github.com/DEEP-PolyU/Awesome-GraphRAG"
+          },
+          {
+            "title": "Welcome - GraphRAG",
+            "url": "https://microsoft.github.io/graphrag/"
+          },
+          {
+            "title": "GitHub - JayLZhou/GraphRAG: In-depth study of the graphrag · GitHub",
+            "url": "https://github.com/JayLZhou/GraphRAG"
+          }
+        ]
+      },
+      "Based on the search results, I found information about the StepChain GraphRAG paper with arxiv ID 2510.02827:\n\n## Paper Details\n\nStepChain GraphRAG is a framework that unites question decomposition with a Breadth-First Search (BFS) Reasoning Flow for enhanced multi-hop QA.\n\n## Publication Status\n\nThe paper appears to be a **preprint on arXiv**. It was submitted on Friday, October 3, 2025, with the version designation 2510.02827v1. Based on the search results, this is currently an arXiv preprint and **I could not find evidence that it has been accepted to or published at a conference venue**. The results indicate it is available on arXiv but there is no mention of acceptance to a specific conference or publication at a conference in the search results.\n\n## Performance\n\nExperiments on MuSiQue, 2WikiMultiHopQA, and HotpotQA show that StepChain GraphRAG achieves state-of-the-art Exact Match and F1 scores.\n\nIf you're looking for specific information about whether this paper has been accepted to a particular conference, that information is not available in the current search results."
+    ],
+    "durationSeconds": 5.845989690000017
+  },
+  "sourceToolAssistantUUID": "67d31398-fec1-496c-a2a9-bf392699aa2a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 126 · 2026-05-14T15:05:48.419Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0179HJeDWqYAb1ZkSYdJka92`</summary>
+
+```json
+{
+  "query": "R3-RAG arxiv 2505.23794 venue publication accepted conference 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d82ab186-2fa0-453f-9753-75019866c1bb",
+  "isSidechain": false,
+  "requestId": "req_011Cb2fhvG4MC6gWBDJZbCV3",
+  "type": "assistant",
+  "uuid": "1bca95b4-a9f5-4a00-92da-f63755ed5cf2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VN67AU5SmZxQPhAKXiDuUP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3734,
+      "cache_read_input_tokens": 56061,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3734,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 56061,
+          "cache_creation_input_tokens": 3734,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3734
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 127 · 2026-05-14T15:05:53.041Z_
+
+<details><summary>↩ Tool result · `toolu_0179HJeDWqYAb1ZkSYdJka92`</summary>
+
+```text
+Web search results for query: "R3-RAG arxiv 2505.23794 venue publication accepted conference 2025"
+
+Links: [{"title":"[2505.23794] R3-RAG: Learning Step-by-Step Reasoning and Retrieval for LLMs via Reinforcement Learning","url":"https://arxiv.org/abs/2505.23794"},{"title":"R3-RAG: Learning Step-by-Step Reasoning and Retrieval for LLMs via Reinforcement Learning","url":"https://arxiv.org/html/2505.23794"},{"title":"GitHub - DavidZWZ/Awesome-RAG-Reasoning: [EMNLP 2025] Awesome RAG Reasoning Resources · GitHub","url":"https://github.com/DavidZWZ/Awesome-RAG-Reasoning"},{"title":"R3AG: First Workshop on Refined and Reliable Retrieval Augmented Generation","url":"https://arxiv.org/html/2410.20598v1"},{"title":"A Systematic Review of Key Retrieval-Augmented Generation (RAG) Systems: Progress, Gaps, and Future Directions","url":"https://arxiv.org/html/2507.18910v1"},{"title":"[2505.20096] MA-RAG: Multi-Agent Retrieval-Augmented Generation via Collaborative Chain-of-Thought Reasoning","url":"https://arxiv.org/abs/2505.20096"},{"title":"[2501.09136] Agentic Retrieval-Augmented Generation: A Survey on Agentic RAG","url":"https://arxiv.org/abs/2501.09136"},{"title":"[2508.06401] A Systematic Literature Review of Retrieval-Augmented Generation: Techniques, Metrics, and Challenges","url":"https://arxiv.org/abs/2508.06401"},{"title":"Accepted for publication at ASPLOS 2025","url":"https://arg.csl.cornell.edu/papers/iks-asplos2025.pdf"},{"title":"A Survey on Retrieval And Structuring Augmented Generation with Large Language Models","url":"https://arxiv.org/html/2509.10697v1"}]
+
+Based on the search results, I found information about the R3-RAG paper with arxiv identifier 2505.23794:
+
+**Paper Details:**
+R3-RAG: Learning Step-by-Step Reasoning and Retrieval for LLMs via Reinforcement Learning was submitted on 26 May 2025 (v1), with a last revision on 24 Oct 2025 (v2).
+
+**Venue/Conference Status:**
+According to a GitHub repository listing RAG-related papers, R3-RAG was accepted to NeurIPS 2025.
+
+**Paper Summary:**
+R3-RAG uses Reinforcement learning to make the LLM learn how to Reason and Retrieve step by step, thus retrieving comprehensive external knowledge and leading to correct answers.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1bca95b4-a9f5-4a00-92da-f63755ed5cf2",
+  "isSidechain": false,
+  "promptId": "0122c317-1b5e-4c60-85ae-e9c4b6853925",
+  "type": "user",
+  "uuid": "fd40e767-747e-49d9-b9ca-3baeda3e0db3",
+  "toolUseResult": {
+    "query": "R3-RAG arxiv 2505.23794 venue publication accepted conference 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01RUFkdF9AANDGCAdGvrkTzF",
+        "content": [
+          {
+            "title": "[2505.23794] R3-RAG: Learning Step-by-Step Reasoning and Retrieval for LLMs via Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2505.23794"
+          },
+          {
+            "title": "R3-RAG: Learning Step-by-Step Reasoning and Retrieval for LLMs via Reinforcement Learning",
+            "url": "https://arxiv.org/html/2505.23794"
+          },
+          {
+            "title": "GitHub - DavidZWZ/Awesome-RAG-Reasoning: [EMNLP 2025] Awesome RAG Reasoning Resources · GitHub",
+            "url": "https://github.com/DavidZWZ/Awesome-RAG-Reasoning"
+          },
+          {
+            "title": "R3AG: First Workshop on Refined and Reliable Retrieval Augmented Generation",
+            "url": "https://arxiv.org/html/2410.20598v1"
+          },
+          {
+            "title": "A Systematic Review of Key Retrieval-Augmented Generation (RAG) Systems: Progress, Gaps, and Future Directions",
+            "url": "https://arxiv.org/html/2507.18910v1"
+          },
+          {
+            "title": "[2505.20096] MA-RAG: Multi-Agent Retrieval-Augmented Generation via Collaborative Chain-of-Thought Reasoning",
+            "url": "https://arxiv.org/abs/2505.20096"
+          },
+          {
+            "title": "[2501.09136] Agentic Retrieval-Augmented Generation: A Survey on Agentic RAG",
+            "url": "https://arxiv.org/abs/2501.09136"
+          },
+          {
+            "title": "[2508.06401] A Systematic Literature Review of Retrieval-Augmented Generation: Techniques, Metrics, and Challenges",
+            "url": "https://arxiv.org/abs/2508.06401"
+          },
+          {
+            "title": "Accepted for publication at ASPLOS 2025",
+            "url": "https://arg.csl.cornell.edu/papers/iks-asplos2025.pdf"
+          },
+          {
+            "title": "A Survey on Retrieval And Structuring Augmented Generation with Large Language Models",
+            "url": "https://arxiv.org/html/2509.10697v1"
+          }
+        ]
+      },
+      "Based on the search results, I found information about the R3-RAG paper with arxiv identifier 2505.23794:\n\n**Paper Details:**\nR3-RAG: Learning Step-by-Step Reasoning and Retrieval for LLMs via Reinforcement Learning was submitted on 26 May 2025 (v1), with a last revision on 24 Oct 2025 (v2).\n\n**Venue/Conference Status:**\nAccording to a GitHub repository listing RAG-related papers, R3-RAG was accepted to NeurIPS 2025.\n\n**Paper Summary:**\nR3-RAG uses Reinforcement learning to make the LLM learn how to Reason and Retrieve step by step, thus retrieving comprehensive external knowledge and leading to correct answers."
+    ],
+    "durationSeconds": 4.617646063000022
+  },
+  "sourceToolAssistantUUID": "1bca95b4-a9f5-4a00-92da-f63755ed5cf2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 128 · 2026-05-14T15:05:57.350Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01LJ7RT3cXCfwbPt57AD6c6s`</summary>
+
+```json
+{
+  "query": "IndexRAG arxiv 2603.16415 venue conference accepted publication"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fd40e767-747e-49d9-b9ca-3baeda3e0db3",
+  "isSidechain": false,
+  "requestId": "req_011Cb2fiY37YpNY2mirFQrHg",
+  "type": "assistant",
+  "uuid": "3f8d5158-4ed6-4a0b-b3bb-593470486ad0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TTP4Sm2yoUMq1DLznCLTMY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 816,
+      "cache_read_input_tokens": 59795,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 816,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 59795,
+          "cache_creation_input_tokens": 816,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 816
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 129 · 2026-05-14T15:06:03.645Z_
+
+<details><summary>↩ Tool result · `toolu_01LJ7RT3cXCfwbPt57AD6c6s`</summary>
+
+```text
+Web search results for query: "IndexRAG arxiv 2603.16415 venue conference accepted publication"
+
+Links: [{"title":"[2603.16415] IndexRAG: Bridging Facts for Cross-Document Reasoning at Index Time","url":"https://arxiv.org/abs/2603.16415"},{"title":"IndexRAG: Bridging Facts for Cross-Document Reasoning at Index Time","url":"https://arxiv.org/html/2603.16415"},{"title":"Paper page - IndexRAG: Bridging Facts for Cross-Document Reasoning at Index Time","url":"https://huggingface.co/papers/2603.16415"},{"title":"Implement IndexRAG: Bridging Facts for Cross-Document Reasoning at Index Time pipeline (2026) · Issue #326 · NomaDamas/AutoRAG-Research","url":"https://github.com/NomaDamas/AutoRAG-Research/issues/326"},{"title":"Attributing Response to Context: A Jensen–Shannon Divergence Driven Mechanistic Study of Context Attribution in Retrieval-Augmented Generation","url":"https://arxiv.org/html/2505.16415"},{"title":"[2503.16415] Apparent $w<-1$ and a Lower $S_8$ from Dark Axion and Dark Baryons Interactions","url":"https://arxiv.org/abs/2503.16415"},{"title":"Apparent w < −1 and a Lower S8 from Dark Axion and Dark Baryons Interactions","url":"https://arxiv.org/pdf/2503.16415"},{"title":"ArchRAG: Attributed Community-based Hierarchical Retrieval-Augmented Generation","url":"https://arxiv.org/html/2502.09891v1"},{"title":"[2306.16415] On Practical Aspects of Aggregation Defenses against Data Poisoning Attacks","url":"https://arxiv.org/abs/2306.16415"},{"title":"[2501.15915] Parametric Retrieval Augmented Generation","url":"https://arxiv.org/abs/2501.15915"}]
+
+Based on the search results, here's what I found about IndexRAG (arxiv 2603.16415):
+
+**Paper Information:**
+- IndexRAG is a novel approach that shifts cross-document reasoning from online inference to offline indexing
+- Authors: Zhenghua Bao and Yi Shi
+- Published on March 17, 2026
+
+**Conference/Publication Status:**
+The search results show that this paper is currently available on arXiv (arxiv:2603.16415), but regarding conference venue and acceptance status, the authors note "Our code will be released upon acceptance," which suggests the paper was under review at the time of posting. The search results do not contain information about whether the paper has been accepted to a specific conference venue yet.
+
+**What the paper does:**
+IndexRAG identifies bridge entities shared across documents and generates bridging facts as independently retrievable units, requiring no additional training or fine-tuning. Experiments on three widely-used multi-hop QA benchmarks (HotpotQA, 2WikiMultiHopQA, MuSiQue) show that IndexRAG improves F1 over Naive RAG by 4.6 points on average, while requiring only single-pass retrieval and a single LLM call at inference time.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3f8d5158-4ed6-4a0b-b3bb-593470486ad0",
+  "isSidechain": false,
+  "promptId": "0122c317-1b5e-4c60-85ae-e9c4b6853925",
+  "type": "user",
+  "uuid": "5ce5d131-3cb7-430b-84e7-63695d99f77b",
+  "toolUseResult": {
+    "query": "IndexRAG arxiv 2603.16415 venue conference accepted publication",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01XWMJJdDFxv2rnPniEX33Qp",
+        "content": [
+          {
+            "title": "[2603.16415] IndexRAG: Bridging Facts for Cross-Document Reasoning at Index Time",
+            "url": "https://arxiv.org/abs/2603.16415"
+          },
+          {
+            "title": "IndexRAG: Bridging Facts for Cross-Document Reasoning at Index Time",
+            "url": "https://arxiv.org/html/2603.16415"
+          },
+          {
+            "title": "Paper page - IndexRAG: Bridging Facts for Cross-Document Reasoning at Index Time",
+            "url": "https://huggingface.co/papers/2603.16415"
+          },
+          {
+            "title": "Implement IndexRAG: Bridging Facts for Cross-Document Reasoning at Index Time pipeline (2026) · Issue #326 · NomaDamas/AutoRAG-Research",
+            "url": "https://github.com/NomaDamas/AutoRAG-Research/issues/326"
+          },
+          {
+            "title": "Attributing Response to Context: A Jensen–Shannon Divergence Driven Mechanistic Study of Context Attribution in Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/html/2505.16415"
+          },
+          {
+            "title": "[2503.16415] Apparent $w<-1$ and a Lower $S_8$ from Dark Axion and Dark Baryons Interactions",
+            "url": "https://arxiv.org/abs/2503.16415"
+          },
+          {
+            "title": "Apparent w < −1 and a Lower S8 from Dark Axion and Dark Baryons Interactions",
+            "url": "https://arxiv.org/pdf/2503.16415"
+          },
+          {
+            "title": "ArchRAG: Attributed Community-based Hierarchical Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/html/2502.09891v1"
+          },
+          {
+            "title": "[2306.16415] On Practical Aspects of Aggregation Defenses against Data Poisoning Attacks",
+            "url": "https://arxiv.org/abs/2306.16415"
+          },
+          {
+            "title": "[2501.15915] Parametric Retrieval Augmented Generation",
+            "url": "https://arxiv.org/abs/2501.15915"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about IndexRAG (arxiv 2603.16415):\n\n**Paper Information:**\n- IndexRAG is a novel approach that shifts cross-document reasoning from online inference to offline indexing\n- Authors: Zhenghua Bao and Yi Shi\n- Published on March 17, 2026\n\n**Conference/Publication Status:**\nThe search results show that this paper is currently available on arXiv (arxiv:2603.16415), but regarding conference venue and acceptance status, the authors note \"Our code will be released upon acceptance,\" which suggests the paper was under review at the time of posting. The search results do not contain information about whether the paper has been accepted to a specific conference venue yet.\n\n**What the paper does:**\nIndexRAG identifies bridge entities shared across documents and generates bridging facts as independently retrievable units, requiring no additional training or fine-tuning. Experiments on three widely-used multi-hop QA benchmarks (HotpotQA, 2WikiMultiHopQA, MuSiQue) show that IndexRAG improves F1 over Naive RAG by 4.6 points on average, while requiring only single-pass retrieval and a single LLM call at inference time."
+    ],
+    "durationSeconds": 6.290971328000015
+  },
+  "sourceToolAssistantUUID": "3f8d5158-4ed6-4a0b-b3bb-593470486ad0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 130 · 2026-05-14T15:06:07.016Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Cy7xoN4omdmFjmW6tKgwWu`</summary>
+
+```json
+{
+  "query": "EACL 2027 submission deadline ARR August 2026 dates venue"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5ce5d131-3cb7-430b-84e7-63695d99f77b",
+  "isSidechain": false,
+  "requestId": "req_011Cb2fjKkhuMX7d1B9NvgUY",
+  "type": "assistant",
+  "uuid": "115f4212-093c-415d-a8c6-4c71b474150e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019DSHVcRmEWfzP1CoajaQp8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 894,
+      "cache_read_input_tokens": 60611,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 894,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 60611,
+          "cache_creation_input_tokens": 894,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 894
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 131 · 2026-05-14T15:06:11.166Z_
+
+<details><summary>↩ Tool result · `toolu_01Cy7xoN4omdmFjmW6tKgwWu`</summary>
+
+```text
+Web search results for query: "EACL 2027 submission deadline ARR August 2026 dates venue"
+
+Links: [{"title":"The 20th Conference of the European Chapter of the Association for Computational LinguisticsAthens, GreeceMarch 9-14, 2027 -","url":"https://2027.eacl.org/"},{"title":"Dates and Venues","url":"http://aclrollingreview.org/dates"},{"title":"EACL 2027 Call for Main Conference Papers","url":"https://2027.eacl.org/calls/papers/"},{"title":"eaclmeeting on X: \"📢⚠️ IMPORTANT DATE CORRECTION: the ARR deadline for EACL 2027 is Aug 3, 2026 (not Aug 6 as previously announced). EACL is earlier than usual in '27, so this is the only viable ARR cycle! 📚 All areas of CL/NLP + related fields welcome. Full CfP coming soon. #NLProc #EACL2027\" / X","url":"https://x.com/eaclmeeting/status/2051971432171688436"},{"title":"Call for Main Conference Papers -","url":"https://2026.eacl.org/calls/papers/"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"aclrollingreview/dates.md at main · acl-org/aclrollingreview","url":"https://github.com/acl-org/aclrollingreview/blob/main/dates.md"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"The 19th Conference of the European Chapter of the Association for Computational LinguisticsRabat, MoroccoMarch 24-29, 2026 -","url":"https://2026.eacl.org/"},{"title":"eaclmeeting (@eaclmeeting) / X","url":"https://x.com/eaclmeeting?lang=en"}]
+
+Based on the search results, here's the information about EACL 2027:
+
+## EACL 2027 Key Details
+
+**Venue and Dates:**
+EACL 2027 will be held in Athens, Greece, from March 9–14, 2027.
+
+**ARR Submission Deadline:**
+The ARR submission deadline for long and short papers is August 3, 2026, at 11:59PM UTC-12:00 ("anywhere on Earth"). EACL is earlier than usual in '27, so this is the only viable ARR cycle.
+
+**Commitment Deadline:**
+The commitment date for EACL 2027 is October 11, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "115f4212-093c-415d-a8c6-4c71b474150e",
+  "isSidechain": false,
+  "promptId": "0122c317-1b5e-4c60-85ae-e9c4b6853925",
+  "type": "user",
+  "uuid": "a758582a-9450-4d7f-b091-1333bebf438e",
+  "toolUseResult": {
+    "query": "EACL 2027 submission deadline ARR August 2026 dates venue",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FcQqo5V9Mqd8AkvE3xdxxT",
+        "content": [
+          {
+            "title": "The 20th Conference of the European Chapter of the Association for Computational LinguisticsAthens, GreeceMarch 9-14, 2027 -",
+            "url": "https://2027.eacl.org/"
+          },
+          {
+            "title": "Dates and Venues",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "EACL 2027 Call for Main Conference Papers",
+            "url": "https://2027.eacl.org/calls/papers/"
+          },
+          {
+            "title": "eaclmeeting on X: \"📢⚠️ IMPORTANT DATE CORRECTION: the ARR deadline for EACL 2027 is Aug 3, 2026 (not Aug 6 as previously announced). EACL is earlier than usual in '27, so this is the only viable ARR cycle! 📚 All areas of CL/NLP + related fields welcome. Full CfP coming soon. #NLProc #EACL2027\" / X",
+            "url": "https://x.com/eaclmeeting/status/2051971432171688436"
+          },
+          {
+            "title": "Call for Main Conference Papers -",
+            "url": "https://2026.eacl.org/calls/papers/"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "aclrollingreview/dates.md at main · acl-org/aclrollingreview",
+            "url": "https://github.com/acl-org/aclrollingreview/blob/main/dates.md"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "The 19th Conference of the European Chapter of the Association for Computational LinguisticsRabat, MoroccoMarch 24-29, 2026 -",
+            "url": "https://2026.eacl.org/"
+          },
+          {
+            "title": "eaclmeeting (@eaclmeeting) / X",
+            "url": "https://x.com/eaclmeeting?lang=en"
+          }
+        ]
+      },
+      "Based on the search results, here's the information about EACL 2027:\n\n## EACL 2027 Key Details\n\n**Venue and Dates:**\nEACL 2027 will be held in Athens, Greece, from March 9–14, 2027.\n\n**ARR Submission Deadline:**\nThe ARR submission deadline for long and short papers is August 3, 2026, at 11:59PM UTC-12:00 (\"anywhere on Earth\"). EACL is earlier than usual in '27, so this is the only viable ARR cycle.\n\n**Commitment Deadline:**\nThe commitment date for EACL 2027 is October 11, 2026."
+    ],
+    "durationSeconds": 4.145567951000005
+  },
+  "sourceToolAssistantUUID": "115f4212-093c-415d-a8c6-4c71b474150e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 132 · 2026-05-14T15:06:11.168Z_
+
+```json
+{
+  "parentUuid": "a758582a-9450-4d7f-b091-1333bebf438e",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "ebb38958-053d-4c7a-bf15-2df7f043873b",
+  "timestamp": "2026-05-14T15:06:11.168Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 133 · 2026-05-14T15:06:13.941Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01N6jMSfymNBauxZhfgPcZvj`</summary>
+
+```json
+{
+  "query": "huggingface datasets HotpotQA MuSiQue 2WikiMultiHopQA available download"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ebb38958-053d-4c7a-bf15-2df7f043873b",
+  "isSidechain": false,
+  "requestId": "req_011Cb2fjsXf3grfTwMsDQnGt",
+  "type": "assistant",
+  "uuid": "694f40b3-4645-4439-a510-27d9ebbaa099",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V1WN1eT7VLLdf8tVc39rcM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 897,
+      "cache_read_input_tokens": 61505,
+      "output_tokens": 79,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 897,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 79,
+          "cache_read_input_tokens": 61505,
+          "cache_creation_input_tokens": 897,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 897
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 134 · 2026-05-14T15:06:20.102Z_
+
+<details><summary>↩ Tool result · `toolu_01N6jMSfymNBauxZhfgPcZvj`</summary>
+
+```text
+Web search results for query: "huggingface datasets HotpotQA MuSiQue 2WikiMultiHopQA available download"
+
+Links: [{"title":"hotpotqa/hotpot_qa · Datasets at Hugging Face","url":"https://huggingface.co/datasets/hotpotqa/hotpot_qa"},{"title":"xanhho/2WikiMultihopQA · Datasets at Hugging Face","url":"https://huggingface.co/datasets/xanhho/2WikiMultihopQA"},{"title":"alabnii/morehopqa · Datasets at Hugging Face","url":"https://huggingface.co/datasets/alabnii/morehopqa"},{"title":"README.md · framolfese/2WikiMultihopQA at main","url":"https://huggingface.co/datasets/framolfese/2WikiMultihopQA/blob/main/README.md"},{"title":"framolfese/2WikiMultihopQA · Datasets at Hugging Face","url":"https://huggingface.co/datasets/framolfese/2WikiMultihopQA"},{"title":"Daily Papers - Hugging Face","url":"https://huggingface.co/papers?q=MoreHopQA"},{"title":"https://huggingface.co/datasets/Salesforce/Context...","url":"https://huggingface.co/datasets/Salesforce/ContextualBench/raw/0d57ba00864a13731204c133cdacfb659034277e/README.md"},{"title":"BeIR/hotpotqa · Datasets at Hugging Face","url":"https://huggingface.co/datasets/BeIR/hotpotqa"},{"title":"GitHub - Alab-NII/multi-hop-analysis · GitHub","url":"https://github.com/Alab-NII/multi-hop-analysis"},{"title":"mteb/hotpotqa · Datasets at Hugging Face","url":"https://huggingface.co/datasets/mteb/hotpotqa"}]
+
+Based on the search results, here's information about these datasets available on Hugging Face:
+
+## HotpotQA
+
+HotpotQA is a dataset with 113k Wikipedia-based question-answer pairs where questions require finding and reasoning over multiple supporting documents to answer. It is distributed under a CC BY-SA 4.0 License. The dataset is available at: https://huggingface.co/datasets/hotpotqa/hotpot_qa
+
+## 2WikiMultihopQA
+
+2WikiMultihopQA is available on Hugging Face with a reformatted schema following HotpotQA's layout, containing multi-hop question-answer pairs with supporting evidence chains drawn from Wikipedia. The dataset includes train (167,454 examples), validation (12,576 examples), and test (12,576 examples) splits. The original 2WikiMultihopQA is released under the Apache License 2.0. Available at: https://huggingface.co/datasets/framolfese/2WikiMultihopQA
+
+## MuSiQue
+
+MuSiQue is a multihop question answering task that requires 2-4 hops in every question. This dataset is also available on Hugging Face and can be accessed through the Salesforce/ContextualBench dataset repository.
+
+All three datasets are available for download directly from Hugging Face using the `datasets` library with commands like `load_dataset()`.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "694f40b3-4645-4439-a510-27d9ebbaa099",
+  "isSidechain": false,
+  "promptId": "0122c317-1b5e-4c60-85ae-e9c4b6853925",
+  "type": "user",
+  "uuid": "8d5fcb0a-cbbe-4b80-b6fe-166d928eba79",
+  "toolUseResult": {
+    "query": "huggingface datasets HotpotQA MuSiQue 2WikiMultiHopQA available download",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QtyFMZMF1LeQg4m3i3iZVd",
+        "content": [
+          {
+            "title": "hotpotqa/hotpot_qa · Datasets at Hugging Face",
+            "url": "https://huggingface.co/datasets/hotpotqa/hotpot_qa"
+          },
+          {
+            "title": "xanhho/2WikiMultihopQA · Datasets at Hugging Face",
+            "url": "https://huggingface.co/datasets/xanhho/2WikiMultihopQA"
+          },
+          {
+            "title": "alabnii/morehopqa · Datasets at Hugging Face",
+            "url": "https://huggingface.co/datasets/alabnii/morehopqa"
+          },
+          {
+            "title": "README.md · framolfese/2WikiMultihopQA at main",
+            "url": "https://huggingface.co/datasets/framolfese/2WikiMultihopQA/blob/main/README.md"
+          },
+          {
+            "title": "framolfese/2WikiMultihopQA · Datasets at Hugging Face",
+            "url": "https://huggingface.co/datasets/framolfese/2WikiMultihopQA"
+          },
+          {
+            "title": "Daily Papers - Hugging Face",
+            "url": "https://huggingface.co/papers?q=MoreHopQA"
+          },
+          {
+            "title": "https://huggingface.co/datasets/Salesforce/Context...",
+            "url": "https://huggingface.co/datasets/Salesforce/ContextualBench/raw/0d57ba00864a13731204c133cdacfb659034277e/README.md"
+          },
+          {
+            "title": "BeIR/hotpotqa · Datasets at Hugging Face",
+            "url": "https://huggingface.co/datasets/BeIR/hotpotqa"
+          },
+          {
+            "title": "GitHub - Alab-NII/multi-hop-analysis · GitHub",
+            "url": "https://github.com/Alab-NII/multi-hop-analysis"
+          },
+          {
+            "title": "mteb/hotpotqa · Datasets at Hugging Face",
+            "url": "https://huggingface.co/datasets/mteb/hotpotqa"
+          }
+        ]
+      },
+      "Based on the search results, here's information about these datasets available on Hugging Face:\n\n## HotpotQA\n\nHotpotQA is a dataset with 113k Wikipedia-based question-answer pairs where questions require finding and reasoning over multiple supporting documents to answer. It is distributed under a CC BY-SA 4.0 License. The dataset is available at: https://huggingface.co/datasets/hotpotqa/hotpot_qa\n\n## 2WikiMultihopQA\n\n2WikiMultihopQA is available on Hugging Face with a reformatted schema following HotpotQA's layout, containing multi-hop question-answer pairs with supporting evidence chains drawn from Wikipedia. The dataset includes train (167,454 examples), validation (12,576 examples), and test (12,576 examples) splits. The original 2WikiMultihopQA is released under the Apache License 2.0. Available at: https://huggingface.co/datasets/framolfese/2WikiMultihopQA\n\n## MuSiQue\n\nMuSiQue is a multihop question answering task that requires 2-4 hops in every question. This dataset is also available on Hugging Face and can be accessed through the Salesforce/ContextualBench dataset repository.\n\nAll three datasets are available for download directly from Hugging Face using the `datasets` library with commands like `load_dataset()`."
+    ],
+    "durationSeconds": 6.156945898999984
+  },
+  "sourceToolAssistantUUID": "694f40b3-4645-4439-a510-27d9ebbaa099",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 135_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-14 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Step-Type-Con…",
+  "leafUuid": "8d5fcb0a-cbbe-4b80-b6fe-166d928eba79",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 136_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Step-type-conditioned retrieval routing for multi-hop QA",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378"
+}
+```
+
+---
+
+### Assistant
+
+_source line 137 · 2026-05-14T15:08:15.334Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the information I need. Let me construct the final JSON output.
+
+Let me also think about the approach more carefully and verify the ICLR 2027 deadline situation.
+
+Actually, ICLR 2027 hasn't been announced yet. Based on historical patterns, ICLR typically has October deadlines. So ICLR 2027 would likely have a deadline around October 2026.
+
+Let me finalize:
+
+**Venues with deadlines after May 14, 2026:**
+1. EMNLP 2026 — ARR May 25, 2026 (very tight, 11 days)
+
+
+2. AACL 2026 — ARR May 25, 2026 (same cycle)
+3. AAAI 2027 — Expected ~July-August 2026 (TBD)
+4. EACL 2027 — ARR August 3, 2026
+5. ICLR 2027 — Expected ~October 2026 (TBD)
+
+The highest-tier venues are EMNLP 2026, AAAI 2027, and ICLR 2027, all A* equivalent conferences. Given the contribution level, I need to prioritize these top-tier options.
+
+EMNLP 2026 is the strongest fit since retrieval is a core EMNLP topic and it's the top NLP venue, with AAAI 2027 and ICLR 2027 as backups. The May 25 deadline is tight—only 11 days away—but I'm not downgrading based on timeline constraints.
+
+The key differentiators are the explicit step-type taxonomy for multi-hop reasoning, query formulation that adapts per step type rather than just routing, and a heterogeneous retriever pool combining dense, sparse, and graph-based approaches.
+
+This sets us apart from MoRE (which routes to experts for multimodal QA without step classification), ReaLM-Retrieve (which only decides when to retrieve), and Search-R1/R3-RAG (which use uniform retrieval). Now I'm drafting the approach: StepRetriever introduces explicit step-type classification into retrieval-augmented multi-hop QA by defining a four-type taxonomy of reasoning steps—entity grounding, relational bridging, numerical comparison, and logical deduction—derived from multi-hop benchmark analysis. A lightweight classifier predicts the step type at each reasoning step and generates type-specific retrieval queries, routing entity steps to dense retrievers and other step types to appropriate retriever variants. Now I'm looking at the performance benchmarks across different baselines—Search-R1, ReaLM-Retrieve, HopRAG, and StepChain GraphRAG—but they're measured under different settings so they're not directly comparable. The realistic targets to beat on the standard distractor setting are around 66-72 EM and 79-84 F1 on HotpotQA. For the novelty level, this approach introduces step-type conditioning as a new dimension for retrieval in multi-hop QA, which is a solid architectural contribution with clear differentiation, though it doesn't fundamentally reshape the paradigm—but if the results outperform StepChain GraphRAG and Search-R1, it could push into top-tier territory.
+
+Actually, reconsidering this: the four-axis framework paper already maps out different retrieval-reasoning interaction patterns, and what we're doing is operationalizing that insight with specialized retrieval for each step type. If we can demonstrate significant improvements across all three benchmarks with solid ablations showing each step type benefits from its own retrieval strategy, that strengthens the case considerably. I'm settling on "solid" as the rating—it's a meaningful contribution but the empirical results need to be strong to justify top-tier status.
+
+Now I need to finalize the JSON output and double-check the venue deadlines, making sure they're all confirmed after May 14. EMNLP 2026 via ARR on May 25 is confirmed, AAAI 2027 is expected July-August 2026 but not yet confirmed, and I need to verify EACL as well.
+
+For the target venues, I should prioritize confirmed deadlines and follow the instruction to aim for the highest-tier venues first: EMNLP 2026 as the primary target, then AAAI 2027 as a strong secondary option despite the TBD deadline, with EACL 2027 as a fallback.
+
+Now I'm working through the cost breakdown more carefully. The GPU hours add up significantly—RL training with multiple ablation runs, building the retriever indices, and evaluation across benchmarks come to roughly 300-470 hours on A100s. But there's a key inefficiency in manual mode: researchers spend a lot of time thinking and debugging while the GPU sits idle, so the actual compute utilization is much lower than wall-clock time, maybe only 20-30% efficiency.
+
+For human-in-loop, the agent can run more experiments while humans gate the process to prevent waste, keeping GPU utilization moderate and the timeline tighter at 4-6 weeks. The auto research approach pushes GPU hours higher as the agent explores many more hyperparameter and retriever combinations with near-constant utilization.
+
+Now I'm checking the numbers one more time and drafting the executive summary for the description—it needs to be around 150-200 words and capture how StepRetriever differs from existing methods by adapting retrieval strategies to what each reasoning step actually needs. The key insight is that different reasoning step types—entity grounding, relational bridging, numerical comparison, and logical deduction—each demand distinct retrieval strategies, yet existing approaches treat all retrieval queries uniformly. This four-axis design framework operationalizes that heterogeneity by routing each step type to its optimal retriever, distinguishing StepRetriever from concurrent work like MoRE, which routes to multimodal experts without conditioning on the specific reasoning step being performed. Looking at the landscape of existing approaches, I see that while Search-R1 learns when to retrieve through reinforcement learning and HopRAG achieves strong results with graph-based multi-hop retrieval, they all apply the same retrieval mechanism uniformly across reasoning steps. ReaLM-Retrieve, StepChain GraphRAG, and IndexRAG similarly optimize either timing or strategy but don't adapt the retrieval approach based on what each step actually needs. R3-RAG learns step-by-step reasoning but appears to follow the same pattern.
+
+MoRE routes across different retrieval experts for multimodal content, but it's routing by knowledge base type rather than reasoning step type, and IG-Search focuses on retrieval timing rather than strategy differentiation. Even REPAIR, which proposed reasoning-plan-guided adaptive retrieval, was withdrawn and only addressed bridge documents rather than conditioning the full pipeline on step types.
+
+So the gap is clear: no existing work explicitly classifies what type of reasoning step is happening and then routes to different query formulation strategies and retriever backbones accordingly. This is where StepRetriever comes in.
+
+I'm proposing a framework that does exactly this—it classifies reasoning steps into four types (entity grounding, relational bridging, numerical comparison, logical deduction) based on patterns I've observed across HotpotQA, MuSiQue, and 2WikiMultiHopQA. For each step, a Qwen3-8B model predicts the step type and generates a query tailored to that type: entity steps get precise named-entity queries sent to a dense retriever, relational steps get relation-aware queries routed to a graph-based retriever, numerical steps get structured extraction queries to a sparse retriever, and logical deduction steps skip retrieval altogether. The whole thing—step classification, query generation, and retriever selection—gets optimized together using GRPO with step-level rewards, building on top of the open-source Search-R1 framework.
+
+Now I'm estimating the resources needed. For a manual approach, I'm looking at roughly 300 GPU hours on A100s, but the utilization is pretty low—around 25-30%—because most of the time is spent on human work like designing the taxonomy, integrating retrievers, debugging the RL training, and analyzing failures. The actual compute is just a small part of a 3-5 month project that'd need 1-2 researchers with NLP and RL background, costing maybe $400-500 in GPU expenses. With a human-in-the-loop setup, I'd need about 350 GPU hours with better utilization around 55-65%, since the agent keeps the GPU busy during work sessions while researchers approve design decisions and wait for results overnight. The auto_research approach keeps GPUs running nearly constantly with continuous job scheduling and parallel evaluation pipelines, completing 5 full training runs in about 10 days across 2-4 A100s, though the sequential nature of RL training itself becomes the limiting factor since distributed training isn't set up.
+
+There's a real risk here though — the agent might discover a step taxonomy that looks mathematically clean but doesn't actually map to how reasoning unfolds in the benchmarks, which could undermine the paper's interpretability value even if the empirical results are strong.
+
+I'm targeting EMNLP 2026, AAAI 2027, and EACL 2027 as the main venues, with submission windows spanning May through August 2026.
+
+Now I'm reviewing the key papers in this space — there's strong recent work on training LLMs to reason with retrieval, multi-hop reasoning for RAG systems, reinforcement learning approaches for step-by-step reasoning, and adaptive retrieval strategies that all inform this direction.
+
+The core insight of StepRetriever is that existing methods treat all reasoning steps the same way, but different types of steps actually need different retrieval strategies. So I'm classifying each intermediate step — whether it's grounding an entity, bridging relations, comparing numbers, or doing logical deduction — then routing it to the most appropriate retriever. Entity steps get precise named-entity queries to dense retrievers, while relational steps use relation-aware queries to graph-based systems.
+
+I'm building this on Qwen3-8B with end-to-end GRPO reinforcement learning, jointly optimizing step classification, query generation, and retriever routing using step-level rewards. The approach is validated across HotpotQA, MuSiQue, and 2WikiMultiHopQA, and it's distinct from concurrent work like MoRE because those methods route to experts for multimodal QA without actually classifying the reasoning step types or conditioning the queries accordingly. I'm verifying the word count across all the description sections—looks like I'm hitting around 180 words total, which fits the target range. I should also make sure the landscape field is consistent with the concurrent work I've added, like MoRE and IG-Search. Let me double-check the variable naming conventions too.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8d5fcb0a-cbbe-4b80-b6fe-166d928eba79",
+  "isSidechain": false,
+  "requestId": "req_011Cb2fkXkJfyeV79Eo1L1gK",
+  "type": "assistant",
+  "uuid": "99dc7758-a634-45d9-ba0a-45c85b250506",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EfVntUZJTLwrmJRQxwQSQo",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 950,
+      "cache_read_input_tokens": 62402,
+      "output_tokens": 8325,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 950,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 8325,
+          "cache_read_input_tokens": 62402,
+          "cache_creation_input_tokens": 950,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 950
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 138 · 2026-05-14T15:08:42.495Z_
+
+Now I have all the data I need. Let me compile the final output.
+
+Key findings from research:
+- **MoRE** (arxiv 2505.22095) is the closest concurrent work — routes to different retrieval experts but for multimodal QA, doesn't classify step types explicitly
+- **R1-Router** is actually MoRE (same paper, different title variants)
+- **IG-Search** (arxiv 2604.15148) focuses on step-level rewards for retrieval timing, not strategy
+- No published work does explicit step-type classification + heterogeneous query formulation + retriever routing
+- **Venues**: EMNLP 2026 (ARR May 25), AAAI 2027 (~Jul-Aug 2026), EACL 2027 (ARR Aug 3) all have deadlines after today
+- **Model**: Qwen3-8B is the current best 8B-class open-source model for RL training
+- All three benchmark datasets (HotpotQA, MuSiQue, 2WikiMultiHopQA) are freely available on HuggingFace
+- A100 GPU spot pricing is ~$1.50/hr in 2026
+
+{
+  "title": "Step-Type-Conditioned Retrieval Query Formulation for Multi-Hop Reasoning",
+  "core_problem": "Multi-hop reasoning involves heterogeneous step types — entity grounding, relational bridging, numerical comparison, logical deduction — each requiring different retrieval strategies, but all current methods generate retrieval queries uniformly regardless of what the reasoning step actually needs.",
+  "opportunity": "The four-axis design framework for multi-hop QA (arxiv 2601.00536) identifies distinct retrieval-reasoning interaction patterns but doesn't operationalize step-type-specific retrieval. Search-R1, R3-RAG, and ReaLM-Retrieve all use a single query formulation strategy. HopRAG (arxiv 2502.12442) uses LLM-generated pseudo-queries for graph traversal but applies the same mechanism to all steps. With diverse retriever backbones now available (ColBERTv2, SPLADE++, BGE, graph-based retrievers), a step-type classifier can route each reasoning step to the most appropriate query formulation: entity lookups need precise named-entity queries to dense retrievers; relational bridges need relation-aware queries to knowledge graphs; numerical comparisons need structured data queries; logical deductions may need no retrieval at all.",
+  "landscape": "Search-R1 (arxiv 2503.09516, COLM 2025) achieves 41% improvement on 7B models by learning retrieval timing via RL, but uses uniform BM25/dense retrieval. ReaLM-Retrieve (SIGIR 2026) optimizes when to retrieve but not how to retrieve differently per step type. HopRAG (arxiv 2502.12442, ACL Findings 2025) achieves 76.78% higher answer metrics than conventional RAG via graph-based multi-hop retrieval, but applies graph traversal uniformly. StepChain GraphRAG (arxiv 2510.02827) uses BFS reasoning flow for multi-hop evidence, again uniformly. IndexRAG (arxiv 2603.16415) improves F1 by 4.6 points via single-pass retrieval, but with a single retrieval strategy. R3-RAG (arxiv 2505.23794, NeurIPS 2025) learns step-by-step reasoning and retrieval via RL but with uniform retrieval. MoRE (arxiv 2505.22095) is the closest concurrent work: it routes to different retrieval experts for multimodal QA via Step-GRPO, but operates at the knowledge-base level (which KB to query) rather than classifying reasoning step types or conditioning query formulation strategy per step type. IG-Search (arxiv 2604.15148) introduces step-level information gain rewards for search but focuses on retrieval timing, not strategy differentiation. The REPAIR paper (arxiv 2601.04618, withdrawn April 2026) proposed reasoning-plan-guided adaptive retrieval for bridge documents but was withdrawn and focused only on bridge documents rather than full step-type conditioning. No published work explicitly classifies reasoning step types and routes to both different query formulation strategies and retriever backbones accordingly.",
+  "approach": "We propose StepRetriever, a framework that introduces explicit reasoning step-type classification into retrieval-augmented multi-hop QA. We define a four-type taxonomy of reasoning steps (entity grounding, relational bridging, numerical comparison, logical deduction) grounded in empirical analysis of HotpotQA, MuSiQue, and 2WikiMultiHopQA. At each reasoning step, a Qwen3-8B backbone predicts the step type and generates a type-conditioned retrieval query: entity steps produce precise named-entity queries routed to a dense retriever (BGE-M3), relational steps produce relation-aware queries routed to a graph-based passage retriever, numerical steps produce structured extraction queries to a sparse retriever (SPLADE++), and logical deduction steps skip retrieval entirely. The entire pipeline—step-type prediction, query formulation, and retriever routing—is jointly optimized via GRPO reinforcement learning with step-level type-correctness rewards, extending the open-source Search-R1 framework.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~300h A100",
+      "gpu_utilization": "Low (~25-30%). GPU sits idle while researchers design step-type taxonomy, implement retriever integrations, debug RL training loops, and analyze error cases. Most wall-clock time is human thinking and coding, not compute.",
+      "timeline": "3-5 months",
+      "team": "1-2 researchers with NLP and RL experience",
+      "estimated_gpu_cost": "$400-500 (at ~$1.50/hr A100 spot pricing)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~350h A100",
+      "gpu_utilization": "Moderate (~55-65%). Agent keeps GPU busy during work sessions running experiments, building retriever indices, and training. Idle overnight and weekends waiting for human approval on taxonomy design, reward function changes, and ablation priorities.",
+      "timeline": "4-6 weeks",
+      "team": "1 researcher, ~1h/day reviewing agent proposals for step-type definitions, reward shaping, and experiment selection",
+      "claude_api_cost": "$150-400 (1500-4000 agent turns at ~$0.10/turn for code generation, debugging, experiment design, and analysis)",
+      "estimated_gpu_cost": "$500-550",
+      "risk_note": "Step-type taxonomy requires careful human judgment — poorly defined type boundaries collapse the routing advantage. Agent may overfit reward shaping without human sanity checks on type distributions across benchmarks."
+    },
+    "auto_research": {
+      "gpu_hours": "~500h A100 (explores 3-5x more retriever combinations, RL hyperparameters, taxonomy variants, and ablation configs than manual)",
+      "gpu_utilization": "Near-zero idle (~90-95% utilization). Agent schedules GPU jobs continuously 24/7, pipelines evaluation immediately after training, parallelizes retriever index building, and runs ablations concurrently.",
+      "timeline": "8-14 days with 2-4 concurrent A100s",
+      "team": "0 (only initial setup: dataset download, retriever index pre-building, Search-R1 fork configuration)",
+      "claude_api_cost": "$300-700 (3000-7000 agent turns across experiment design, code generation, debugging, result analysis, and paper drafting)",
+      "estimated_gpu_cost": "$700-800",
+      "speed_bottleneck": "GPU count — each RL training run on Qwen3-8B takes 50-80h on a single A100 and cannot be trivially parallelized without distributed training setup. With 2 A100s, 5 full training runs (main + 4 ablations) require ~10 days.",
+      "risk_note": "Agent may discover a step-type taxonomy that maximizes benchmark metrics but lacks human-interpretable semantic coherence, weakening the paper's explanatory contribution. Auto-generated taxonomy needs post-hoc validation against linguistic analysis."
+    }
+  },
+  "target_venues": [
+    "EMNLP 2026 (ARR submission deadline: May 25, 2026; commitment deadline: August 2, 2026; Budapest, October 24-29, 2026)",
+    "AAAI 2027 (submission deadline: expected July-August 2026 TBD; Montréal, February 16-23, 2027)",
+    "EACL 2027 (ARR submission deadline: August 3, 2026; commitment deadline: October 11, 2026; Athens, March 9-14, 2027)"
+  ],
+  "level": "solid",
+  "key_references": [
+    "Search-R1: Training LLMs to Reason and Leverage Search Engines with Reinforcement Learning (COLM 2025)",
+    "HopRAG: Multi-Hop Reasoning for Logic-Aware Retrieval-Augmented Generation (ACL Findings 2025)",
+    "R3-RAG: Learning Step-by-Step Reasoning and Retrieval for LLMs via Reinforcement Learning (NeurIPS 2025)",
+    "When to Retrieve During Reasoning: Adaptive Retrieval for Large Reasoning Models (SIGIR 2026)",
+    "Retrieval-Reasoning Processes for Multi-hop Question Answering: A Four-Axis Design Framework and Empirical Trends (arXiv 2601.00536)",
+    "Mixture-of-Retrieval Experts for Reasoning-Guided Multimodal Knowledge Exploitation (arXiv 2505.22095)",
+    "StepChain GraphRAG: Reasoning Over Knowledge Graphs for Multi-Hop Question Answering (arXiv 2510.02827)",
+    "IndexRAG: Bridging Facts for Cross-Document Reasoning at Index Time (arXiv 2603.16415)"
+  ],
+  "description": "StepRetriever addresses a fundamental gap in retrieval-augmented multi-hop QA: all existing methods—Search-R1, R3-RAG, ReaLM-Retrieve, HopRAG—apply uniform retrieval strategies regardless of what each reasoning step actually requires. We introduce step-type-conditioned retrieval, where a classifier categorizes each intermediate reasoning step as entity grounding, relational bridging, numerical comparison, or logical deduction, then generates a type-specific query routed to the most appropriate retriever backbone. Entity steps use precise named-entity queries to dense retrievers (BGE-M3); relational steps use relation-aware queries to graph-based retrievers; numerical steps use structured extraction queries to sparse retrievers (SPLADE++); deduction steps skip retrieval entirely. Built on Qwen3-8B and trained end-to-end with GRPO reinforcement learning extending the Search-R1 framework, StepRetriever jointly optimizes step-type prediction, query formulation, and retriever routing with step-level rewards. Evaluated on HotpotQA, MuSiQue, and 2WikiMultiHopQA, this work operationalizes the insight from the four-axis design framework that different retrieval-reasoning interaction patterns require fundamentally different strategies. The closest concurrent work, MoRE, routes to retrieval experts for multimodal QA but does not classify reasoning step types or condition query formulation accordingly.",
+  "project_name": "step_type_cond_retrieval",
+  "source": "web_research"
+}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "99dc7758-a634-45d9-ba0a-45c85b250506",
+  "isSidechain": false,
+  "requestId": "req_011Cb2fkXkJfyeV79Eo1L1gK",
+  "type": "assistant",
+  "uuid": "fd09cbcf-a1ef-4872-a492-90b7fe6e7aaf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EfVntUZJTLwrmJRQxwQSQo",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 950,
+      "cache_read_input_tokens": 62402,
+      "output_tokens": 8325,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 950,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 8325,
+          "cache_read_input_tokens": 62402,
+          "cache_creation_input_tokens": 950,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 950
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 139_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-14 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Step-Type-Con…",
+  "leafUuid": "fd09cbcf-a1ef-4872-a492-90b7fe6e7aaf",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 140_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Step-type-conditioned retrieval routing for multi-hop QA",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 141_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-14 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Step-Type-Con…",
+  "leafUuid": "fd09cbcf-a1ef-4872-a492-90b7fe6e7aaf",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 142_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Step-type-conditioned retrieval routing for multi-hop QA",
+  "sessionId": "9139e948-5051-46ba-a558-261ac64c9378"
+}
+```
+
+---

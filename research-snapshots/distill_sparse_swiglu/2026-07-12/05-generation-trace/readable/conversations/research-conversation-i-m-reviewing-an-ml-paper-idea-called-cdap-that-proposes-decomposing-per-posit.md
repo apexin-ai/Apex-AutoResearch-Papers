@@ -1,0 +1,2740 @@
+# Research conversation: I'm reviewing an ML paper idea called "CDAP" that proposes decomposing per-position losses within action chunks during V
+
+**Output-Distribution Distillation for Contextual Sparsity Prediction in SwiGLU LLMs (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 41
+- **Recorded user turns:** 1
+- **Tool calls:** 17
+- **Original source:** `logs/chats/exported-trajectories/account-2/agent-ac55b26a2269eeafd.jsonl`
+- **Structured JSON:** [`bd1bd0c632aac74ecdbc.json`](../../sessions/bd/bd1bd0c632aac74ecdbc.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+41 recorded events
+
+### User
+
+_source line 1 · 2026-05-13T17:39:48.245Z_
+
+I'm reviewing an ML paper idea called "CDAP" that proposes decomposing per-position losses within action chunks during VLA (Vision-Language-Action) model training. The key claim is that no prior work exploits the *intra-chunk temporal loss profile* as a priority signal for VLA training.
+
+Search for competing/related work that might invalidate this novelty claim. Use WebSearch for each of these queries:
+
+1. "action chunk loss decomposition VLA training 2025 2026" 
+2. "per-position loss action chunking robot learning"
+3. "temporal loss profile robot imitation learning"
+4. "action chunk prediction quality degradation VLA"
+5. "sub-chunk loss analysis robot manipulation"
+6. "intra-chunk loss weighting VLA fine-tuning"
+7. Search for "DAM-VLA dual action model" to verify what exactly DAM-VLA does with chunk-level weighting
+8. Search for "VLA Knows Its Limits action sinks arXiv:2602.21445" to verify the claim about temporal prediction quality degradation within chunks
+
+For each search, report what you find — especially any paper that decomposes action chunk losses at a per-position level during training (not inference). I need to know if the novelty claim holds up.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": true,
+  "promptId": "8f591815-615c-4239-a161-f479c58f1dd2",
+  "agentId": "ac55b26a2269eeafd",
+  "type": "user",
+  "uuid": "a973a8ea-80d8-424f-ad14-2d5dfe744c81",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79b7d0a3-cb81-4607-9e85-3b5600200248",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-13T17:39:48.250Z_
+
+```json
+{
+  "parentUuid": "a973a8ea-80d8-424f-ad14-2d5dfe744c81",
+  "isSidechain": true,
+  "agentId": "ac55b26a2269eeafd",
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskStop",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskStop",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "e8813e2d-c22f-4773-9c3f-4bc41b277793",
+  "timestamp": "2026-05-13T17:39:48.250Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79b7d0a3-cb81-4607-9e85-3b5600200248",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 3 · 2026-05-13T17:39:51.357Z_
+
+
+
+I'll search for all these queries in parallel to check the novelty claim.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e8813e2d-c22f-4773-9c3f-4bc41b277793",
+  "isSidechain": true,
+  "agentId": "ac55b26a2269eeafd",
+  "requestId": "req_011CazyePQRdZFtEdoBWcAzn",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "dc0fa5dc-ebb8-4fd1-92ad-3cdebaca0e76",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79b7d0a3-cb81-4607-9e85-3b5600200248",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TZJr3mVnGvCL52SSVZvuXm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 837,
+      "cache_read_input_tokens": 8223,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 837,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 6,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-13T17:39:51.507Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01D59KCjL2vvsEB788Mk7oLd`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dc0fa5dc-ebb8-4fd1-92ad-3cdebaca0e76",
+  "isSidechain": true,
+  "agentId": "ac55b26a2269eeafd",
+  "requestId": "req_011CazyePQRdZFtEdoBWcAzn",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "72a87ebe-a69a-4942-8756-81dab3cb2f8e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79b7d0a3-cb81-4607-9e85-3b5600200248",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TZJr3mVnGvCL52SSVZvuXm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 837,
+      "cache_read_input_tokens": 8223,
+      "output_tokens": 93,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 837
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 93,
+          "cache_read_input_tokens": 8223,
+          "cache_creation_input_tokens": 837,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 837,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-13T17:39:51.513Z_
+
+<details><summary>↩ Tool result · `toolu_01D59KCjL2vvsEB788Mk7oLd`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "72a87ebe-a69a-4942-8756-81dab3cb2f8e",
+  "isSidechain": true,
+  "promptId": "8f591815-615c-4239-a161-f479c58f1dd2",
+  "agentId": "ac55b26a2269eeafd",
+  "type": "user",
+  "uuid": "22ac0824-7321-4c40-b4ea-542111734300",
+  "sourceToolAssistantUUID": "72a87ebe-a69a-4942-8756-81dab3cb2f8e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79b7d0a3-cb81-4607-9e85-3b5600200248",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 6 · 2026-05-13T17:39:56.083Z_
+
+
+
+Now let me run all 8 searches in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "22ac0824-7321-4c40-b4ea-542111734300",
+  "isSidechain": true,
+  "agentId": "ac55b26a2269eeafd",
+  "requestId": "req_011CazyedaTyxB3s3xcU7jMo",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "7ea3f7a2-5533-450a-a5fd-aec526aea21d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79b7d0a3-cb81-4607-9e85-3b5600200248",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WDgwNKWxQzFZqwUTeCPpDz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1410,
+      "cache_read_input_tokens": 9060,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1410,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-13T17:39:56.331Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01B4VpAduRdDbZgxX6raD7zh`</summary>
+
+```json
+{
+  "query": "action chunk loss decomposition VLA training 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7ea3f7a2-5533-450a-a5fd-aec526aea21d",
+  "isSidechain": true,
+  "agentId": "ac55b26a2269eeafd",
+  "requestId": "req_011CazyedaTyxB3s3xcU7jMo",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "65f2ddc0-0354-4112-b436-c59e8cd2ab36",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79b7d0a3-cb81-4607-9e85-3b5600200248",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WDgwNKWxQzFZqwUTeCPpDz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1410,
+      "cache_read_input_tokens": 9060,
+      "output_tokens": 79,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1410
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 79,
+          "cache_read_input_tokens": 9060,
+          "cache_creation_input_tokens": 1410,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1410,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-13T17:40:03.959Z_
+
+<details><summary>↩ Tool result · `toolu_01B4VpAduRdDbZgxX6raD7zh`</summary>
+
+```text
+Web search results for query: "action chunk loss decomposition VLA training 2025 2026"
+
+Links: [{"title":"LangForce: Bayesian Decomposition of Vision Language Action Models via Latent Action Queries","url":"https://arxiv.org/html/2601.15197"},{"title":"What Can RL Bring to VLA Generalization? An Empirical Study","url":"https://arxiv.org/html/2505.19789v4"},{"title":"LangForce: Bayesian Decomposition of Vision Language ...","url":"https://arxiv.org/pdf/2601.15197"},{"title":"VLA Model Post-Training via Action-Chunked PPO and Self Behavior Cloning","url":"https://arxiv.org/html/2509.25718"},{"title":"[2509.25718] VLA Model Post-Training via Action-Chunked PPO and Self Behavior Cloning","url":"https://arxiv.org/abs/2509.25718"},{"title":"Leave No Observation Behind: Real-time Correction for VLA Action Chunks","url":"https://arxiv.org/html/2509.23224v1"},{"title":"GitHub - jonyzhang2023/awesome-embodied-vla-va-vln: A curated list of state-of-the-art research in embodied AI, focusing on vision-language-action (VLA) models, vision-language navigation (VLN), and related multimodal learning approaches. · GitHub","url":"https://github.com/jonyzhang2023/awesome-embodied-vla-va-vln"},{"title":"Leave No Observation Behind: Real-time Correction for VLA Action Chunks | OpenReview","url":"https://openreview.net/forum?id=y5SGBsndWv"},{"title":"VLA models","url":"https://rwr.ethz.ch/slides/2025/Unit_09_Focus_Talk_VLA_models.pdf"},{"title":"Real-Time Execution of Action Chunking Flow Policies Kevin Black1,2,","url":"https://www.pi.website/download/real_time_chunking.pdf"}]
+
+I found several relevant papers and research on action chunk loss decomposition in VLA (Vision-Language-Action) training from 2025-2026. Here are the key findings:
+
+## Recent VLA Training Research with Action Chunks
+
+One approach introduces action chunk-based proximal policy optimization (PPO) with behavior cloning using self-collected demonstrations, where aggregating consecutive actions into chunks improves the temporal consistency of the policy and the density of informative feedback.
+
+An auxiliary behavior cloning loss is applied with a dynamically updated demonstration buffer that continually collects high-quality task trials during training, with the relative weight between the action-chunked PPO objective and the self behavior clone auxiliary loss adapted online to stabilize the post-training process.
+
+## Action Chunk Correction Methods
+
+Asynchronous Action Chunk Correction (A2C2) introduces a lightweight action correction head by augmenting a large base policy, such as VLAs, to address the challenge of preserving reactivity under inference delays and long execution horizons of action chunking policies.
+
+## Bayesian Decomposition Approaches
+
+A prevalent concern in the field is that fine-tuning VLMs for robotic action generation (VLA training) often compromises the model's foundational reasoning and multimodal understanding, leading to a degradation of general conversational abilities. To efficiently instantiate the proposed Bayesian decomposition within a unified VLM architecture, researchers introduce Latent Action Queries.
+
+These recent works from 2025-2026 show active research into decomposing loss functions and improving action chunking strategies for VLA training.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "65f2ddc0-0354-4112-b436-c59e8cd2ab36",
+  "isSidechain": true,
+  "promptId": "8f591815-615c-4239-a161-f479c58f1dd2",
+  "agentId": "ac55b26a2269eeafd",
+  "type": "user",
+  "uuid": "d69fb6ac-f2f3-4a96-af33-bdcae64907c5",
+  "sourceToolAssistantUUID": "65f2ddc0-0354-4112-b436-c59e8cd2ab36",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79b7d0a3-cb81-4607-9e85-3b5600200248",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-13T17:40:06.959Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01AhZMZhqCiVkwTMpZ8MnJmE`</summary>
+
+```json
+{
+  "query": "per-position loss action chunking robot learning"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d69fb6ac-f2f3-4a96-af33-bdcae64907c5",
+  "isSidechain": true,
+  "agentId": "ac55b26a2269eeafd",
+  "requestId": "req_011CazyfYb6yiibaTsKCkuf3",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "3e1747f8-06a2-4730-aa6f-ca4dbf5d71dd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79b7d0a3-cb81-4607-9e85-3b5600200248",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GzyYKqQb7he3nRteU8fTn3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 978,
+      "cache_read_input_tokens": 10470,
+      "output_tokens": 60,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 978
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 60,
+          "cache_read_input_tokens": 10470,
+          "cache_creation_input_tokens": 978,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 978,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-13T17:40:13.641Z_
+
+<details><summary>↩ Tool result · `toolu_01AhZMZhqCiVkwTMpZ8MnJmE`</summary>
+
+```text
+Web search results for query: "per-position loss action chunking robot learning"
+
+Links: [{"title":"ACT Policy Explained (2026): Action Chunking with Transformers | Silicon Valley Robotics Center","url":"https://www.roboticscenter.ai/blog/act-policy-explained"},{"title":"Dissecting Action Chunking with Transformers (ACT): Precision Imitation Learning for Robotic Manipulation","url":"https://blog.phospho.ai/dissecting-action-chunking-with-transformers-act-precision-imitation-learning-for-robotic-manipulation/"},{"title":"Action chunking with Transformers (ACT) robot policy | by Deepthi Karkada | Medium","url":"https://medium.com/@deepkarkada/action-chunking-with-transformers-act-robot-policy-80519fc024bc"},{"title":"Bidirectional Decoding","url":"https://bid-robot.github.io/"},{"title":"Adaptive Action Chunking for Robotic Imitation Learning","url":"https://www.mdpi.com/2313-7673/11/5/316"},{"title":"Reinforcement Learning with Action Chunking","url":"https://arxiv.org/html/2507.07969v1"},{"title":"Reinforcement Learning with Action Chunking | OpenReview","url":"https://openreview.net/forum?id=XUks1Y96NR"},{"title":"Bidirectional Decoding: Improving Action Chunking via Guided Test-Time Sampling | OpenReview","url":"https://openreview.net/forum?id=qZmn2hkuzw"},{"title":"The importance of action chunking in imitation learning | Haonan's blog","url":"https://www.haonanyu.blog/post/action_chunking/"},{"title":"ACT (Action Chunking with Transformers) · Hugging Face","url":"https://huggingface.co/docs/lerobot/act"}]
+
+Based on the search results, here's what I found about per-position loss, action chunking, and robot learning:
+
+## Action Chunking in Robot Learning
+
+Action Chunking with Transformers (ACT) is an imitation learning algorithm designed for fine-grained manipulation tasks where the robot takes a sequence of images and current joint state, and outputs a chunk of future actions — a short sequence of joint position targets — rather than a single next action.
+
+## Loss Functions in ACT
+
+The training approach uses multiple loss components:
+
+The CVAE is trained to maximize the log-likelihood of demonstration action chunks, using an L1 reconstruction loss for precise action modeling and a KL-divergence term weighted by a hyperparameter (β) to regularize the encoder.
+
+However, some implementations vary: The reconstruction loss (action prediction loss) is computed as the Mean Squared Error (MSE) loss between the predicted chunk of actions and the ground-truth joint positions from human demonstrations, since the predicted action outputs are continuous-valued joint positions.
+
+## Benefits of Action Chunking
+
+Action chunking allows the learner to better capture the temporal dependencies in demonstrations but at the cost of reduced reactivity in stochastic environments.
+
+The use of L1 loss over L2 loss ensures precise action modeling, and absolute joint positions (rather than deltas) improve performance for fine manipulation.
+
+The research shows that action chunking has become a fundamental technique in robot imitation learning, with applications extending beyond the original ACT algorithm to various learning paradigms.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3e1747f8-06a2-4730-aa6f-ca4dbf5d71dd",
+  "isSidechain": true,
+  "promptId": "8f591815-615c-4239-a161-f479c58f1dd2",
+  "agentId": "ac55b26a2269eeafd",
+  "type": "user",
+  "uuid": "046e049d-ae23-4472-b5b0-60b5aaf68985",
+  "sourceToolAssistantUUID": "3e1747f8-06a2-4730-aa6f-ca4dbf5d71dd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79b7d0a3-cb81-4607-9e85-3b5600200248",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-13T17:40:15.890Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01P5EkGtfqH4TxM7sLnPdivy`</summary>
+
+```json
+{
+  "query": "temporal loss profile robot imitation learning"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "046e049d-ae23-4472-b5b0-60b5aaf68985",
+  "isSidechain": true,
+  "agentId": "ac55b26a2269eeafd",
+  "requestId": "req_011CazygFyW5mbKtZAvaoDrP",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "d5520473-2b7b-475f-ac9f-1a200fc0351a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79b7d0a3-cb81-4607-9e85-3b5600200248",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EZ6VeyDH79wgAhnBmJA26P",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 902,
+      "cache_read_input_tokens": 11448,
+      "output_tokens": 58,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 902
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 58,
+          "cache_read_input_tokens": 11448,
+          "cache_creation_input_tokens": 902,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 902,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-13T17:40:23.361Z_
+
+<details><summary>↩ Tool result · `toolu_01P5EkGtfqH4TxM7sLnPdivy`</summary>
+
+```text
+Web search results for query: "temporal loss profile robot imitation learning"
+
+Links: [{"title":"A Structured Prediction Approach for Robot Imitation Learning","url":"https://arxiv.org/html/2309.14829"},{"title":"MTIL: Encoding Full History with Mamba for Temporal Imitation Learning","url":"https://arxiv.org/html/2505.12410v1"},{"title":"Sequential robot imitation learning from observations - Ajay Kumar Tanwani, Andy Yan, Jonathan Lee, Sylvain Calinon, Ken Goldberg, 2021","url":"https://journals.sagepub.com/doi/abs/10.1177/02783649211032721"},{"title":"Sequence-based imitation learning for surgical robot operations","url":"https://www.oaepublish.com/articles/ais.2024.32"},{"title":"Temporal Logic Imitation: Learning Plan-Satisficing Motion Policies from Demonstrations | OpenReview","url":"https://openreview.net/forum?id=ndYsaoyzCWv"},{"title":"Robot Policy Learning with Temporal Optimal Transport Reward","url":"https://arxiv.org/html/2410.21795v2"},{"title":"BPP: Long-Context Robot Imitation Learning by Focusing on Key History Frames","url":"https://arxiv.org/html/2602.15010v2"},{"title":"RoboSubtaskNet: Temporal Sub-task Segmentation for Human-to-Robot Skill Transfer in Real-World Environments","url":"https://arxiv.org/html/2602.10015v1"},{"title":"Google Scholar","url":"https://scholar.google.com/scholar_lookup?doi=10.1109/ICRA.2018.8462891"},{"title":"Robot Imitation Learning","url":"https://www.emergentmind.com/topics/robot-imitation-learning"}]
+
+I found several relevant research papers and articles on temporal loss profiles in robot imitation learning. Here are the key findings:
+
+## Temporal Loss in Imitation Learning
+
+When carrying out probabilistic trajectory imitation, it is necessary to specify a suitable loss function that measures the discrepancy between the demonstrated and reproduced probabilistic trajectories.
+
+## Temporal Aspects in Robot Learning
+
+Robot imitation learning approaches enable the incorporation of spatial and temporal trajectory modulation, which is necessary for robots to be adaptive to the change in working conditions. Additionally, learning temporal trajectories is an important issue that needs to be explicitly addressed, particularly for dynamic tasks.
+
+## Loss Functions for Trajectory Learning
+
+Different approaches minimize different divergences - for example, behavior cloning minimizes the Kullback-Leibler (KL) divergence, KMP minimizes the reverse KL divergence, and GAIL minimizes the Jensen-Shannon (JS) divergence. By using different divergences as loss functions, it is possible to obtain different imitation strategies, that we call imitation modes.
+
+## Recent Temporal Context Approaches
+
+More recent work has emphasized the importance of temporal context. Mamba Temporal Imitation Learning (MTIL) leverages the recurrent state dynamics inherent in State Space Models, specifically the Mamba architecture, and encodes the entire trajectory history into a compressed hidden state, conditioning action predictions on this comprehensive temporal context alongside current multi-modal observations.
+
+## Loss Functions for Sub-Task Segmentation
+
+In temporal segmentation tasks, contributions include a Fibonacci-based dilation schedule and a transition-aware loss that discourages invalid label switches.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d5520473-2b7b-475f-ac9f-1a200fc0351a",
+  "isSidechain": true,
+  "promptId": "8f591815-615c-4239-a161-f479c58f1dd2",
+  "agentId": "ac55b26a2269eeafd",
+  "type": "user",
+  "uuid": "3c10b98f-d7be-4b1e-bb74-8c93127cbb5a",
+  "sourceToolAssistantUUID": "d5520473-2b7b-475f-ac9f-1a200fc0351a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79b7d0a3-cb81-4607-9e85-3b5600200248",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-13T17:40:25.865Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01T3v9shkJGgN8fVx9C5uwkq`</summary>
+
+```json
+{
+  "query": "action chunk prediction quality degradation VLA"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3c10b98f-d7be-4b1e-bb74-8c93127cbb5a",
+  "isSidechain": true,
+  "agentId": "ac55b26a2269eeafd",
+  "requestId": "req_011CazygysQiqrMt1QCJp7YB",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "5d0a5078-751c-4bfe-948e-dbd7a798d851",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79b7d0a3-cb81-4607-9e85-3b5600200248",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PqUQ9nZwFdj1PwcFFDanHN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 900,
+      "cache_read_input_tokens": 12350,
+      "output_tokens": 59,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 900
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 59,
+          "cache_read_input_tokens": 12350,
+          "cache_creation_input_tokens": 900,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 900,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-13T17:40:37.435Z_
+
+<details><summary>↩ Tool result · `toolu_01T3v9shkJGgN8fVx9C5uwkq`</summary>
+
+```text
+Web search results for query: "action chunk prediction quality degradation VLA"
+
+Links: [{"title":"Leave No Observation Behind: Real-time Correction for VLA Action Chunks","url":"https://arxiv.org/html/2509.23224v1"},{"title":"VLA Knows Its Limits","url":"https://arxiv.org/html/2602.21445v1"},{"title":"GitHub - Ed1sonChen/DailyArxiv · GitHub","url":"https://github.com/Ed1sonChen/DailyArxiv"},{"title":"Real-Time Robot Execution with Masked Action Chunking","url":"https://arxiv.org/html/2601.20130"},{"title":"Mixture of Horizons in Action Chunking","url":"https://arxiv.org/html/2511.19433v1"},{"title":"Leave No Observation Behind: Real-time Correction for VLA Action Chunks | OpenReview","url":"https://openreview.net/forum?id=y5SGBsndWv"},{"title":"Knowledge Insulating Vision-Language-Action Models","url":"https://www.physicalintelligence.company/download/pi05_KI.pdf"},{"title":"WorldVLA: Towards Autoregressive Action World Model","url":"https://arxiv.org/html/2506.21539v1"},{"title":"PD-VLA: Accelerating Vision-Language-Action Model Integrated with Action Chunking via Parallel Decoding","url":"https://arxiv.org/html/2503.02310v2"},{"title":"SilentDrift: Exploiting Action Chunking for Stealthy Backdoor Attacks on Vision-Language-Action Models","url":"https://arxiv.org/html/2601.14323"}]
+
+Based on the search results, I found several relevant papers and research on action chunk prediction quality degradation in Vision-Language-Action (VLA) models. Here are the key findings:
+
+## Key Issues with Action Chunk Prediction Quality
+
+Vision-Language-Action (VLA) models often predict action chunks to improve efficiency and temporal coherence; however, this action chunking harms reactivity under inference delay and long horizons.
+
+Varying the execution horizon leads to substantial performance deviations, with performance initially improving and then declining as the horizon increases, and analysis reveals two key phenomena: intra-chunk actions attend invariantly to vision–language tokens, limiting adaptability to environmental changes, and the initial and terminal action tokens serve as stable anchors, forming latent centers around which intermediate actions are organized.
+
+## Why Quality Degrades Over Longer Chunks
+
+As attention weights decline toward later actions in a chunk, the model increasingly conditions on its own previously generated actions rather than grounded sensory inputs, which amplifies compounding errors and ultimately degrades reactivity and performance during extended rollouts.
+
+Additionally, errors originating from earlier actions propagate to subsequent actions under the default attention mask, resulting in performance degradation.
+
+## Solutions Being Explored
+
+Researchers are developing several approaches to address this issue:
+
+1. Asynchronous Action Chunk Correction (A2C2) introduces a lightweight action correction head by augmenting a large base policy, addressing the challenge of preserving reactivity under inference delays and long execution horizons of action chunking policies.
+
+2. A mixture of horizons (MoH) strategy mitigates the trade-off between longer horizons that degrade fine-grained accuracy and shorter ones that struggle on long-term tasks, by rearranging the action chunk into several segments with different horizons.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5d0a5078-751c-4bfe-948e-dbd7a798d851",
+  "isSidechain": true,
+  "promptId": "8f591815-615c-4239-a161-f479c58f1dd2",
+  "agentId": "ac55b26a2269eeafd",
+  "type": "user",
+  "uuid": "edd7594f-6baa-40ff-a554-18f57e81f066",
+  "sourceToolAssistantUUID": "5d0a5078-751c-4bfe-948e-dbd7a798d851",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79b7d0a3-cb81-4607-9e85-3b5600200248",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-13T17:40:39.943Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019JUfthQziEgwyxA2NzwsDe`</summary>
+
+```json
+{
+  "query": "sub-chunk loss analysis robot manipulation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "edd7594f-6baa-40ff-a554-18f57e81f066",
+  "isSidechain": true,
+  "agentId": "ac55b26a2269eeafd",
+  "requestId": "req_011Cazyi1gaUshH8spgjpx1N",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "fca7b431-1926-4167-b023-fc5e0ae4990a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79b7d0a3-cb81-4607-9e85-3b5600200248",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CofyFcKGVyg4Z2GDfNU2kx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 906,
+      "cache_read_input_tokens": 13250,
+      "output_tokens": 58,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 906
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 58,
+          "cache_read_input_tokens": 13250,
+          "cache_creation_input_tokens": 906,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 906,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-13T17:40:47.132Z_
+
+<details><summary>↩ Tool result · `toolu_019JUfthQziEgwyxA2NzwsDe`</summary>
+
+```text
+Web search results for query: "sub-chunk loss analysis robot manipulation"
+
+Links: [{"title":"RoboAgent: Towards Sample Efficient Robot Manipulation with Semantic Augmentations and Action Chunking","url":"https://robopen.github.io/"},{"title":"ACT (Action Chunking with Transformers) · Hugging Face","url":"https://huggingface.co/docs/lerobot/act"},{"title":"ACT Policy Explained (2026): Action Chunking with Transformers | Silicon Valley Robotics Center","url":"https://www.roboticscenter.ai/blog/act-policy-explained"},{"title":"Generalization and Efficiency in Robot Manipulation via ...","url":"https://robopen.github.io/media/roboagent.pdf"},{"title":"Dissecting Action Chunking with Transformers (ACT): Precision Imitation Learning for Robotic Manipulation","url":"https://blog.phospho.ai/dissecting-action-chunking-with-transformers-act-precision-imitation-learning-for-robotic-manipulation/"},{"title":"Mixture of Action Expert Embeddings: Multi-Task ACT","url":"https://aair-lab.github.io/genplan25/papers/43.pdf"},{"title":"Action chunking with Transformers (ACT) robot policy | by Deepthi Karkada | Medium","url":"https://medium.com/@deepkarkada/action-chunking-with-transformers-act-robot-policy-80519fc024bc"},{"title":"Autoregressive Action Sequence Learning for Robotic Manipulation | OpenReview","url":"https://openreview.net/forum?id=Lr8IIc1rB8"},{"title":"(PDF) RoboAgent: Generalization and Efficiency in Robot Manipulation via Semantic Augmentations and Action Chunking","url":"https://www.researchgate.net/publication/373685918_RoboAgent_Generalization_and_Efficiency_in_Robot_Manipulation_via_Semantic_Augmentations_and_Action_Chunking"},{"title":"An Introduction to the Action Chunking Transformer","url":"https://radekosmulski.com/how-to-train-your-robot-with-a-transformer/"}]
+
+Based on the search results, I found information about sub-chunk loss analysis and robot manipulation. Here's what the search revealed:
+
+## Sub-Chunk Loss in Robot Manipulation
+
+In Action Chunking with Transformers (ACT), the model is trained using reconstruction loss, where the loss is calculated as the L1 distance between ground truth action sequences and predicted actions (Lreconstruct = ∥at:t+c −ˆat:t+c∥1).
+
+The use of L1 loss over L2 loss ensures precise action modeling, and absolute joint positions (rather than deltas) improve performance for fine manipulation.
+
+## Action Chunking for Manipulation Tasks
+
+Ablation studies demonstrate the importance of action chunking, with success rates improving from 1% at chunk size k=1 (no chunking) to 44% at k=100, with a slight drop at higher k values due to reduced reactivity.
+
+Instead of predicting a single action at each timestep, the policy is trained to output a chunk of the next k actions — typically represented as a sequence of target joint positions over k future steps. The effective horizon of the task reduces by k-fold helping diminish the compounding errors.
+
+The search results indicate that ACT uses L1 loss to train models that predict action chunks, and temporal ensembling is applied during inference, where overlapping action chunks that predict values for the same timestep are averaged using an exponential weighting scheme, which helps smooth the rollout and mitigate jitter.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fca7b431-1926-4167-b023-fc5e0ae4990a",
+  "isSidechain": true,
+  "promptId": "8f591815-615c-4239-a161-f479c58f1dd2",
+  "agentId": "ac55b26a2269eeafd",
+  "type": "user",
+  "uuid": "5b2d0618-e7f8-48ed-a157-eb4298abe039",
+  "sourceToolAssistantUUID": "fca7b431-1926-4167-b023-fc5e0ae4990a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79b7d0a3-cb81-4607-9e85-3b5600200248",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-13T17:40:49.969Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QPbujgnQ6cabJMEoz4qXcy`</summary>
+
+```json
+{
+  "query": "intra-chunk loss weighting VLA fine-tuning"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5b2d0618-e7f8-48ed-a157-eb4298abe039",
+  "isSidechain": true,
+  "agentId": "ac55b26a2269eeafd",
+  "requestId": "req_011Cazyij8h3pvWDueVps5T9",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "52e7833a-37bc-4fc5-a032-6149562d8b27",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79b7d0a3-cb81-4607-9e85-3b5600200248",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UQPrM1T293cAPEXkuGTAiS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 970,
+      "cache_read_input_tokens": 14156,
+      "output_tokens": 64,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 970
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 64,
+          "cache_read_input_tokens": 14156,
+          "cache_creation_input_tokens": 970,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 970,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-13T17:40:56.263Z_
+
+<details><summary>↩ Tool result · `toolu_01QPbujgnQ6cabJMEoz4qXcy`</summary>
+
+```text
+Web search results for query: "intra-chunk loss weighting VLA fine-tuning"
+
+Links: [{"title":"VLA-GSE: Boosting Parameter-Efficient Fine-Tuning in VLA with Generalized and Specialized Experts","url":"https://arxiv.org/html/2605.06175v1"},{"title":"Fine-Tuning Vision-Language-Action Models | DigitalOcean","url":"https://www.digitalocean.com/community/tutorials/vision-language-action-finetuning-robotics"},{"title":"RLinf-VLA: A unified and efficient framework for VLA+RL training","url":"https://arxiv.org/html/2510.06710v1"},{"title":"𝜋_\"RL\": Online RL Fine-tuning for Flow-based Vision-Language-Action Models","url":"https://arxiv.org/html/2510.25889v1"},{"title":"GitHub - moojink/openvla-oft: Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success · GitHub","url":"https://github.com/moojink/openvla-oft"},{"title":"(PDF) Towards Accessible Physical AI: LoRA-Based Fine-Tuning of VLA Models for Real-World Robot Control","url":"https://www.researchgate.net/publication/398721162_Towards_Accessible_Physical_AI_LoRA-Based_Fine-Tuning_of_VLA_Models_for_Real-World_Robot_Control"},{"title":"Towards Accessible Physical AI: LoRA-Based Fine-Tuning of VLA Models for Real-World Robot Control","url":"https://arxiv.org/html/2512.11921v1"},{"title":"ConRFT: A Reinforced Fine-tuning Method for VLA Models via Consistency Policy","url":"https://arxiv.org/html/2502.05450v1"},{"title":"[2502.19645] Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success","url":"https://arxiv.org/abs/2502.19645"},{"title":"Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success","url":"https://arxiv.org/html/2502.19645v2"}]
+
+Based on the search results, I found information related to VLA (Vision-Language-Action) fine-tuning, though the specific phrase "intra-chunk loss weighting" doesn't appear explicitly in these results. However, I can provide relevant context about loss weighting and VLA fine-tuning approaches:
+
+## VLA Fine-Tuning and Loss Mechanisms
+
+Key VLA adaptation design choices include different action decoding schemes, action representations, and learning objectives for fine-tuning, with an Optimized Fine-Tuning (OFT) recipe that integrates parallel decoding, action chunking, a continuous action representation, and a simple L1 regression-based learning objective.
+
+Research examines three key design choices: action decoding scheme (autoregressive vs. parallel generation), action representation (discrete vs. continuous), and learning objective (next-token prediction vs. L1 regression vs. diffusion), revealing that parallel decoding with action chunking boosts inference efficiency and improves success rates on downstream tasks.
+
+## Action Chunking in VLA Models
+
+OpenVLA-OFT represents actions in a continuous space and optimizes them using a simple L1 regression loss, reducing training overhead and accelerating convergence, while incorporating parallel decoding together with action chunking to significantly improve inference throughput and enable real-time control.
+
+While these results cover loss functions and action chunking in VLA fine-tuning, they don't specifically detail "intra-chunk loss weighting" techniques. If you're looking for more specific information about this particular technique, you may want to check recent research papers or technical documentation that specifically focuses on loss weighting strategies within action chunks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "52e7833a-37bc-4fc5-a032-6149562d8b27",
+  "isSidechain": true,
+  "promptId": "8f591815-615c-4239-a161-f479c58f1dd2",
+  "agentId": "ac55b26a2269eeafd",
+  "type": "user",
+  "uuid": "81cf47eb-acfb-4165-8103-61e683b99744",
+  "sourceToolAssistantUUID": "52e7833a-37bc-4fc5-a032-6149562d8b27",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79b7d0a3-cb81-4607-9e85-3b5600200248",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-13T17:40:59.389Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01LvJY4AkuyThkcfydihjTym`</summary>
+
+```json
+{
+  "query": "DAM-VLA dual action model chunk-level weighting"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "81cf47eb-acfb-4165-8103-61e683b99744",
+  "isSidechain": true,
+  "agentId": "ac55b26a2269eeafd",
+  "requestId": "req_011CazyjQATfrnpZ98bD1oWc",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "0b6dcae4-b355-400d-aeec-af979ba23c99",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79b7d0a3-cb81-4607-9e85-3b5600200248",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MGi6sQfSGibrPgGcSSYwt7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1008,
+      "cache_read_input_tokens": 15126,
+      "output_tokens": 64,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1008
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 64,
+          "cache_read_input_tokens": 15126,
+          "cache_creation_input_tokens": 1008,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1008,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-13T17:41:05.186Z_
+
+<details><summary>↩ Tool result · `toolu_01LvJY4AkuyThkcfydihjTym`</summary>
+
+```text
+Web search results for query: "DAM-VLA dual action model chunk-level weighting"
+
+Links: [{"title":"[Blog] DAM-VLA: A Dynamic Action Model-Based Vision ...","url":"https://research.samsung.com/blog/DAM-VLA-A-Dynamic-Action-Model-Based-Vision-Language-Action-Framework-for-Robot-Manipulation"},{"title":"DAM-VLA: A Dynamic Action Model-Based Vision-Language-Action Framework for Robot Manipulation","url":"https://arxiv.org/html/2603.00926"},{"title":"DAM-VLA: A Dynamic Action Model-Based Vision-Language-Action","url":"https://arxiv.org/pdf/2603.00926"},{"title":"[2603.00926] DAM-VLA: A Dynamic Action Model-Based Vision-Language-Action Framework for Robot Manipulation","url":"https://arxiv.org/abs/2603.00926"},{"title":"VLA-Touch: Enhancing Vision-Language-Action Models ...","url":"https://arxiv.org/pdf/2507.17294"},{"title":"Rohit Bandaru | Foundation Models for Robotics: Vision-Language-Action (VLA)","url":"https://rohitbandaru.github.io/blog/Foundation-Models-for-Robotics-VLA/"},{"title":"Latent Bridge: Feature Delta Prediction for Efficient Dual-System Vision-Language-Action Model Inference","url":"https://arxiv.org/html/2605.02739v1"},{"title":"Leave No Observation Behind: Real-time Correction for VLA Action Chunks","url":"https://arxiv.org/html/2509.23224"},{"title":"Daily Papers - Hugging Face","url":"https://huggingface.co/papers?q=Vision-Language-Action+(VLA)+model"},{"title":"π0: A Vision-Language-Action Flow Model for General Robot Control","url":"https://www.pi.website/download/pi0.pdf"}]
+
+Based on the search results, here's information about DAM-VLA's dual-scale action weighting mechanism, specifically the chunk-level component:
+
+## Dual-Scale Action Weighting in DAM-VLA
+
+A two-scale weighting mechanism (trajectory-level and action-chunk-level) enables dynamic coordination between the arm-movement and gripper-manipulation models.
+
+### Chunk-Level Weighting Details
+
+Within each predicted chunk, the action chunk weight applies exponential decay to prioritize immediate temporal accuracy. The final weight integrates both scales to guide model supervision.
+
+### Purpose and Components
+
+The trajectory weight highlights critical manipulation phases via asymmetrical Gaussian distributions. Within each predicted chunk, the action chunk weight applies exponential decay to prioritize immediate temporal accuracy.
+
+The chunk-level weighting is part of DAM-VLA's approach to address the challenge of coordinating between two specialized action models—one for arm movement and another for gripper manipulation. The action-chunk weights are used to supervise DAM-VLA. This dual-scale mechanism proves critical for the framework's performance, as removing the dual-scale action weighting mechanism results in a substantial performance drop.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0b6dcae4-b355-400d-aeec-af979ba23c99",
+  "isSidechain": true,
+  "promptId": "8f591815-615c-4239-a161-f479c58f1dd2",
+  "agentId": "ac55b26a2269eeafd",
+  "type": "user",
+  "uuid": "5a8f935a-fba2-4c80-b06e-8589fac94aff",
+  "sourceToolAssistantUUID": "0b6dcae4-b355-400d-aeec-af979ba23c99",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79b7d0a3-cb81-4607-9e85-3b5600200248",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-13T17:41:07.997Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016bA715v4g3p5vY8AFrWMcD`</summary>
+
+```json
+{
+  "query": "VLA Knows Its Limits action sinks arXiv:2602.21445"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5a8f935a-fba2-4c80-b06e-8589fac94aff",
+  "isSidechain": true,
+  "agentId": "ac55b26a2269eeafd",
+  "requestId": "req_011Cazyk4N7GZngZsdi1toPE",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "f6b5bffa-b64b-42f4-981c-76ed0ec156ad",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79b7d0a3-cb81-4607-9e85-3b5600200248",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VD5cur5t23iX6YNDcvHAef",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 822,
+      "cache_read_input_tokens": 16134,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 822,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 39,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-13T17:41:15.665Z_
+
+<details><summary>↩ Tool result · `toolu_016bA715v4g3p5vY8AFrWMcD`</summary>
+
+```text
+Web search results for query: "VLA Knows Its Limits action sinks arXiv:2602.21445"
+
+Links: [{"title":"VLA Knows Its Limits","url":"https://arxiv.org/html/2602.21445"},{"title":"[2602.21445] VLA Knows Its Limits","url":"https://arxiv.org/abs/2602.21445"},{"title":"CRL-VLA: Continual Vision–Language–Action Learning","url":"https://arxiv.org/html/2602.03445"},{"title":"[2602.21633] Self-Correcting VLA: Online Action Refinement via Sparse World Imagination","url":"https://arxiv.org/abs/2602.21633"},{"title":"[2602.07845] Recurrent-Depth VLA: Implicit Test-Time Compute Scaling of Vision-Language-Action Models via Latent Iterative Reasoning","url":"https://arxiv.org/abs/2602.07845"},{"title":"Rethinking the Practicality of Vision-language-action Model: A Comprehensive Benchmark and An Improved Baseline","url":"https://arxiv.org/html/2602.22663"},{"title":"Rethinking Visual-Language-Action Model Scaling: Alignment, Mixture, and Regularization","url":"https://arxiv.org/html/2602.09722"},{"title":"AugVLA-3D: Depth-Driven Feature Augmentation for Vision-Language-Action Models","url":"https://arxiv.org/html/2602.10698v1"},{"title":"Recurrent-Depth VLA: Implicit Test-Time Compute Scaling of Vision–Language–Action Models via Latent Iterative Reasoning","url":"https://arxiv.org/html/2602.07845"},{"title":"Exploring the Limits of Vision-Language-Action Manipulations in Cross-task Generalization","url":"https://arxiv.org/html/2505.15660v1"}]
+
+I found the paper! Here's information about "VLA Knows Its Limits" (arXiv:2602.21445):
+
+## Overview
+
+Action chunking has recently emerged as a standard practice in flow-based Vision-Language-Action (VLA) models. However, the effect and choice of the execution horizon - the number of actions to be executed from each predicted chunk - remains underexplored.
+
+## Key Findings
+
+The research shows that varying the execution horizon leads to substantial performance deviations, with performance initially improving and then declining as the horizon increases.
+
+The analysis of cross- and self-attention weights in flow-based VLAs reveals two key phenomena: (i) intra-chunk actions attend invariantly to vision-language tokens, limiting adaptability to environmental changes; and (ii) the initial and terminal action tokens serve as stable anchors, forming latent centers around which intermediate actions are organized.
+
+## Radial Action Sinks
+
+Strong attention is concentrated on both the initial and terminal action tokens, with correspondence strength remaining high for a short span, then rapidly decaying over a few actions before stabilizing into a low-attention plateau. These highly attended boundary tokens are referred to as radial action sinks.
+
+## Proposed Method
+
+The paper proposes AutoHorizon, a dynamic execution horizon estimation strategy for flow-based VLAs trained with action chunking, which interprets action self-attention weights as implicit indicators of the model's prediction confidence.
+
+The paper was submitted on February 24, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f6b5bffa-b64b-42f4-981c-76ed0ec156ad",
+  "isSidechain": true,
+  "promptId": "8f591815-615c-4239-a161-f479c58f1dd2",
+  "agentId": "ac55b26a2269eeafd",
+  "type": "user",
+  "uuid": "498e921f-919f-4a8d-9c75-7ea499a83377",
+  "sourceToolAssistantUUID": "f6b5bffa-b64b-42f4-981c-76ed0ec156ad",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79b7d0a3-cb81-4607-9e85-3b5600200248",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23 · 2026-05-13T17:41:19.301Z_
+
+Now let me do a few more targeted searches to dig deeper into DAM-VLA's chunk-level weighting mechanism and check if there are any other papers that specifically decompose per-position losses during training.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "498e921f-919f-4a8d-9c75-7ea499a83377",
+  "isSidechain": true,
+  "agentId": "ac55b26a2269eeafd",
+  "requestId": "req_011Cazykq8fBrMG3mr57ZYL2",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "b7b39f5f-d76a-4a19-a525-45c80c6bf90e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79b7d0a3-cb81-4607-9e85-3b5600200248",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BXcTai2wMZcstiM1eWaMkW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 910,
+      "cache_read_input_tokens": 16956,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 910,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-13T17:41:20.339Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HMBn1NHFjj6snZdUkX4TUq`</summary>
+
+```json
+{
+  "query": "DAM-VLA exponential decay action chunk weight training loss per-position"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b7b39f5f-d76a-4a19-a525-45c80c6bf90e",
+  "isSidechain": true,
+  "agentId": "ac55b26a2269eeafd",
+  "requestId": "req_011Cazykq8fBrMG3mr57ZYL2",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "8cbf3097-b1cf-4162-8f06-14a2d1af926b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79b7d0a3-cb81-4607-9e85-3b5600200248",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BXcTai2wMZcstiM1eWaMkW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 910,
+      "cache_read_input_tokens": 16956,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 910,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-13T17:41:27.665Z_
+
+<details><summary>↩ Tool result · `toolu_01HMBn1NHFjj6snZdUkX4TUq`</summary>
+
+```text
+Web search results for query: "DAM-VLA exponential decay action chunk weight training loss per-position"
+
+Links: [{"title":"DAM-VLA: A Dynamic Action Model-Based Vision-Language-Action","url":"https://arxiv.org/pdf/2603.00926"},{"title":"DAM-VLA: A Dynamic Action Model-Based Vision-Language-Action Framework for Robot Manipulation","url":"https://arxiv.org/html/2603.00926"},{"title":"How to set AdamW’s weight decay as you scale model and dataset size","url":"https://arxiv.org/html/2405.13698v1"},{"title":"Why Do We Need Weight Decay in Modern Deep Learning?","url":"https://arxiv.org/html/2310.04415v2"},{"title":"[Blog] DAM-VLA: A Dynamic Action Model-Based Vision ...","url":"https://research.samsung.com/blog/DAM-VLA-A-Dynamic-Action-Model-Based-Vision-Language-Action-Framework-for-Robot-Manipulation"},{"title":"VLA Model Post-Training via Action-Chunked PPO and Self Behavior Cloning","url":"https://arxiv.org/html/2509.25718"},{"title":"AdamW: Decoupled Weight Decay for Neural Networks - Interactive | Michael Brenndoerfer | Michael Brenndoerfer","url":"https://mbrenndoerfer.com/writing/adamw-optimizer-decoupled-weight-decay"},{"title":"Weight Decay may matter more than µP for LR Transfer in ...","url":"https://opt-ml.org/papers/2025/paper41.pdf"},{"title":"Weight Decay may matter more than 𝝁P for Learning Rate Transfer in Practice","url":"https://arxiv.org/html/2510.19093v1"},{"title":"How to Use Weight Decay to Reduce Overfitting of Neural Network in Keras - MachineLearningMastery.com","url":"https://machinelearningmastery.com/how-to-reduce-overfitting-in-deep-learning-with-weight-regularization/"}]
+
+I found relevant information about DAM-VLA and its exponential decay action chunk weight mechanism. Here are the key results:
+
+## DAM-VLA: Exponential Decay Action Chunk Weight
+
+Within each predicted chunk, the action chunk weight applies exponential decay to prioritize immediate temporal accuracy. This is part of DAM-VLA's dual-scale action weighting mechanism for training.
+
+### Context: Dual-Scale Action Weighting
+
+The trajectory weight highlights critical manipulation phases via asymmetrical Gaussian distributions. Within each predicted chunk, the action chunk weight applies exponential decay to prioritize immediate temporal accuracy. The final weight integrates both scales to guide model supervision.
+
+### Purpose
+
+The dual-scale action weighting mechanism is proposed to enhance robustness in distinguishing between arm movement and gripper manipulation. The core objective is to adaptively supervise the learning process by modulating the importance of different action types from both global (trajectory-level) and local (action-chunk-level) perspectives.
+
+### Framework Overview
+
+DAM-VLA integrates VLM reasoning with diffusion-based action models specialized for arm and gripper control. Specifically, it introduces an action routing mechanism, a dynamic action model that fuses high-level VLM cognition with low-level visual features to predict actions, and a dual-scale action weighting mechanism that enables dynamic coordination between the arm-movement and gripper-manipulation models.
+
+The research paper is available on arXiv as "DAM-VLA: A Dynamic Action Model-Based Vision-Language-Action Framework for Robot Manipulation."
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8cbf3097-b1cf-4162-8f06-14a2d1af926b",
+  "isSidechain": true,
+  "promptId": "8f591815-615c-4239-a161-f479c58f1dd2",
+  "agentId": "ac55b26a2269eeafd",
+  "type": "user",
+  "uuid": "989bef7a-9730-4d37-b705-c5d371430485",
+  "sourceToolAssistantUUID": "8cbf3097-b1cf-4162-8f06-14a2d1af926b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79b7d0a3-cb81-4607-9e85-3b5600200248",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-13T17:41:30.775Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Frae5xGwVmajVuL1faDyoS`</summary>
+
+```json
+{
+  "query": "\"mixture of horizons\" action chunking intra-chunk loss position weighting 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "989bef7a-9730-4d37-b705-c5d371430485",
+  "isSidechain": true,
+  "agentId": "ac55b26a2269eeafd",
+  "requestId": "req_011CazymiS7J7P9A8qDMkiTX",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "3bb0bc8a-7a40-4b0a-8052-a8d9d74105e2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79b7d0a3-cb81-4607-9e85-3b5600200248",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011BLjMMDF1xxizaaTtYXnj9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 992,
+      "cache_read_input_tokens": 17866,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 992
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 17866,
+          "cache_creation_input_tokens": 992,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 992,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-13T17:41:39.944Z_
+
+<details><summary>↩ Tool result · `toolu_01Frae5xGwVmajVuL1faDyoS`</summary>
+
+```text
+Web search results for query: ""mixture of horizons" action chunking intra-chunk loss position weighting 2025 2026"
+
+Links: [{"title":"Mixture of Horizons in Action Chunking","url":"https://arxiv.org/html/2511.19433v1"},{"title":"Mixture of Horizons in Action Chunking","url":"https://timsty1.github.io/moh/"},{"title":"Paper page - Mixture of Horizons in Action Chunking","url":"https://huggingface.co/papers/2511.19433"},{"title":"Mixture of Horizons in Action Chunking | Request PDF","url":"https://www.researchgate.net/publication/397935119_Mixture_of_Horizons_in_Action_Chunking"},{"title":"Timsty/mixture_of_horizons · Hugging Face","url":"https://huggingface.co/Timsty/mixture_of_horizons"},{"title":"GitHub - Timsty1/MixtureOfHorizons: Official Release of \"Mixture of Horizons in Action Chunking\"","url":"https://github.com/Timsty1/MixtureOfHorizons"},{"title":"Action-Chunking Transformer (ACT)","url":"https://www.emergentmind.com/topics/action-chunking-transformer-act"},{"title":"Learning Fine-Grained Bimanual Manipulation with Low- ...","url":"https://www.roboticsproceedings.org/rss19/p016.pdf"},{"title":"VLA Knows Its Limits","url":"https://arxiv.org/html/2602.21445"},{"title":"Action chunking with Transformers (ACT) robot policy | by Deepthi Karkada | Medium","url":"https://medium.com/@deepkarkada/action-chunking-with-transformers-act-robot-policy-80519fc024bc"}]
+
+I found comprehensive information about "Mixture of Horizons" in Action Chunking. Here's what the research reveals:
+
+## Overview
+
+Mixture of Horizons (MoH) is a plug-and-play strategy that fuses multiple horizons within a single policy to inherit the strengths of both with minimal training or inference overhead. Vision-language-action (VLA) models for robotic manipulation are highly sensitive to the chosen action chunk length, termed horizon in this work. A fixed horizon presents an inherent trade-off: longer horizons offer superior global foresight but compromise fine-grained accuracy, while shorter ones provide precise local control but struggle with long-term tasks.
+
+## Key Mechanism
+
+MoH rearranges the action chunk into several segments with different horizons, processes them in parallel with a shared action transformer, and fuses outputs with a lightweight linear gate. A linear layer is added on top of the shared action transformer as a gating head, which produces logits. This simplest gating leaves the backbone unchanged and applies to any full-attention action transformer, seamlessly integrating with both flow-matching and one-step policies.
+
+## Position Weighting and Loss
+
+Without the balance loss, the gate head tends to assign higher weights to action chunks with longer horizons, because longer horizons participate in more steps during action mixture. This introduces statistical and gradient bias during training and manifests as an imbalance in gating learning. A balance loss is introduced to encourage all horizons are effectively utilized.
+
+## Results
+
+Under mixed-task setting, π_{0.5} with MoH reaches a new state-of-the-art with 99% average success rate on LIBERO after only 30k training iterations. MoH enables dynamic inference with adaptive horizons, which selects stable actions through cross-horizon consensus, achieving 2.5 times higher throughput than baselines while preserving superior performance.
+
+The paper was published in November 2025 (arXiv:2511.19433).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3bb0bc8a-7a40-4b0a-8052-a8d9d74105e2",
+  "isSidechain": true,
+  "promptId": "8f591815-615c-4239-a161-f479c58f1dd2",
+  "agentId": "ac55b26a2269eeafd",
+  "type": "user",
+  "uuid": "757264e9-791f-4bad-b682-749f14da0e65",
+  "sourceToolAssistantUUID": "3bb0bc8a-7a40-4b0a-8052-a8d9d74105e2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79b7d0a3-cb81-4607-9e85-3b5600200248",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-13T17:41:43.605Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01KCpV3MAkB1xXpxWLkvKdye`</summary>
+
+```json
+{
+  "query": "action chunk position-wise loss decomposition priority training data curriculum VLA robot"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "757264e9-791f-4bad-b682-749f14da0e65",
+  "isSidechain": true,
+  "agentId": "ac55b26a2269eeafd",
+  "requestId": "req_011Cazynd5BFdmgQDWPrEw9Z",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "6266a551-9df7-4b94-b3bd-be70b0f4df71",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79b7d0a3-cb81-4607-9e85-3b5600200248",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GSNhUqiut413wwBAZpxgUb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1012,
+      "cache_read_input_tokens": 18858,
+      "output_tokens": 66,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1012
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 66,
+          "cache_read_input_tokens": 18858,
+          "cache_creation_input_tokens": 1012,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1012,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-13T17:41:51.207Z_
+
+<details><summary>↩ Tool result · `toolu_01KCpV3MAkB1xXpxWLkvKdye`</summary>
+
+```text
+Web search results for query: "action chunk position-wise loss decomposition priority training data curriculum VLA robot"
+
+Links: [{"title":"Real-Time Execution of Action Chunking Flow Policies Kevin Black1,2,","url":"https://www.pi.website/download/real_time_chunking.pdf"},{"title":"GigaBrain-0: VLA Model for Robotic Autonomy","url":"https://www.emergentmind.com/topics/gigabrain-0"},{"title":"Latent Reasoning VLA: Latent Thinking and Prediction for Vision-Language-Action Models","url":"https://arxiv.org/html/2602.01166v2"},{"title":"Rohit Bandaru | Foundation Models for Robotics: Vision-Language-Action (VLA)","url":"https://rohitbandaru.github.io/blog/Foundation-Models-for-Robotics-VLA/"},{"title":"Vision Language Action Models (VLA) & Policies for Robots","url":"https://learnopencv.com/vision-language-action-models-lerobot-policy/"},{"title":"A VLA with Open-World Generalization","url":"https://www.pi.website/blog/pi05"},{"title":"Dissecting Action Chunking with Transformers (ACT): Precision Imitation Learning for Robotic Manipulation","url":"https://blog.phospho.ai/dissecting-action-chunking-with-transformers-act-precision-imitation-learning-for-robotic-manipulation/"},{"title":"Preprint WHOLEBODYVLA: TOWARDS UNIFIED LATENT VLA","url":"https://opendrivelab.com/WholeBodyVLA/static/pdf/WholeBodyVLA.pdf"},{"title":"π0: A Vision-Language-Action Flow Model for General Robot Control","url":"https://www.pi.website/download/pi0.pdf"},{"title":"VLA-RL: Towards Masterful and General Robotic Manipulation with Scalable Reinforcement Learning","url":"https://arxiv.org/html/2505.18719v1"}]
+
+I found several relevant results about Vision-Language-Action (VLA) models for robotics with concepts related to your query. Here's what the search revealed:
+
+## Action Chunking in VLA Models
+
+VLA architectures like π0 predict multiple tokens at the same time through action chunking, which was introduced by Zhao et al. 2023, and π0 implements this by running flow matching on multiple action tokens in parallel. At inference time, the robot is continuously executing actions at 50 Hz, with the model operating at 50 Hz with action chunks of size 50 to predict a full second of action.
+
+## Curriculum-Based Training for VLAs
+
+Just like a person needs an appropriate curriculum to teach them the conceptual and practical aspects of a new job, VLAs need a "curriculum" provided by the mixture of co-training tasks to enable generalization at all of the necessary levels of abstraction.
+
+LaRA-VLA proposes a curriculum-based training strategy that progressively transitions from explicit multi-modal chain-of-thought supervision to latent embodied reasoning, guided by predictive visual latent objectives and stabilized with EMA-based visual encoders.
+
+## RL Training with Curriculum Selection
+
+Systematic techniques such as GPU-balanced vectorized environment, batch decoding, curriculum selection strategy, and critic warmup contribute to the training efficiency and stability of VLA-RL systems.
+
+The search results show active research in these areas, including curriculum learning strategies and action chunking approaches for robotic VLA models, though I didn't find specific papers explicitly discussing "position-wise loss decomposition" or "priority training data" in the results returned.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6266a551-9df7-4b94-b3bd-be70b0f4df71",
+  "isSidechain": true,
+  "promptId": "8f591815-615c-4239-a161-f479c58f1dd2",
+  "agentId": "ac55b26a2269eeafd",
+  "type": "user",
+  "uuid": "9bc37567-9377-4ea2-8708-73b4c2101344",
+  "sourceToolAssistantUUID": "6266a551-9df7-4b94-b3bd-be70b0f4df71",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79b7d0a3-cb81-4607-9e85-3b5600200248",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-13T17:41:54.688Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DgrWvZ8NAL9FCD7GFAdMcv`</summary>
+
+```json
+{
+  "query": "\"per-timestep\" OR \"per-position\" action prediction loss weight robot policy training"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9bc37567-9377-4ea2-8708-73b4c2101344",
+  "isSidechain": true,
+  "agentId": "ac55b26a2269eeafd",
+  "requestId": "req_011CazyoTYDoQrSkWn2QPJzY",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "5f82b27a-77bd-4292-ab94-38b2f45c7776",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79b7d0a3-cb81-4607-9e85-3b5600200248",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UPbkeC3e5qBUcZGZoxu9FT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 960,
+      "cache_read_input_tokens": 19870,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 960
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 19870,
+          "cache_creation_input_tokens": 960,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 960,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-13T17:42:01.560Z_
+
+<details><summary>↩ Tool result · `toolu_01DgrWvZ8NAL9FCD7GFAdMcv`</summary>
+
+```text
+Web search results for query: ""per-timestep" OR "per-position" action prediction loss weight robot policy training"
+
+Links: [{"title":"Flow Policy Gradients for Robot Control","url":"https://arxiv.org/html/2602.02481v1"},{"title":"Causal World Modeling for Robot Control","url":"https://arxiv.org/html/2601.21998v1"},{"title":"ReWiND: Language-Guided Rewards Teach Robot Policies without New Demonstrations","url":"https://liralab.usc.edu/pdfs/publications/zhang2025rewind.pdf"},{"title":"Policy Gradient Algorithms | Lil'Log","url":"https://lilianweng.github.io/posts/2018-04-08-policy-gradient/"},{"title":"Policy Gradient Theorem Explained: A Hands-On Introduction | DataCamp","url":"https://www.datacamp.com/tutorial/policy-gradient-theorem"},{"title":"[1903.02219] Training in Task Space to Speed Up and Guide Reinforcement Learning","url":"https://ar5iv.labs.arxiv.org/html/1903.02219"},{"title":"Robotic Policy Learning via Human-assisted Action Preference Optimization","url":"https://arxiv.org/html/2506.07127v1"},{"title":"Vision Language Action Models (VLA) & Policies for Robots","url":"https://learnopencv.com/vision-language-action-models-lerobot-policy/"},{"title":"Proximal policy optimization (PPO) algorithm's role in autonomous decision-making for autism - ScienceDirect","url":"https://www.sciencedirect.com/science/article/pii/S2590123025037363"},{"title":"Intelligent decision for joint operations based on improved proximal policy optimization | Scientific Reports","url":"https://www.nature.com/articles/s41598-025-86229-y"}]
+
+Based on the search results, I found some relevant information about loss weighting in robot policy training:
+
+In flow policy training, chunk-level ratios are computed by summing CFM losses across all chunk timesteps, which relates to how losses are aggregated across time during training.
+
+A normalized weighting scheme for action prediction adjusts sample weights by: 1) increasing the weight of samples with high action prediction errors for desirable data, and 2) increasing the weight of samples whose actions are proximate to the failure actions for undesirable data. This approach provides fine-grained control over the relative influence of each sample during training.
+
+Additionally, reward functions in some robot policies condition on frame sequences and instructions to output per-timestep estimated rewards, indicating that timestep-level supervision is used in modern robot learning approaches.
+
+However, the search results don't contain extensive specific documentation about the exact terminology "per-timestep" or "per-position" action prediction loss weight as a standardized training technique in the robotics literature. The results suggest that timestep-level loss computation and weighting are used in practice, but may not be well-documented as a named technique in the available sources.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5f82b27a-77bd-4292-ab94-38b2f45c7776",
+  "isSidechain": true,
+  "promptId": "8f591815-615c-4239-a161-f479c58f1dd2",
+  "agentId": "ac55b26a2269eeafd",
+  "type": "user",
+  "uuid": "b870e4eb-a85e-4bd4-b0c6-5d93d8852f21",
+  "sourceToolAssistantUUID": "5f82b27a-77bd-4292-ab94-38b2f45c7776",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79b7d0a3-cb81-4607-9e85-3b5600200248",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-13T17:42:05.093Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01LKTbRswBhk9D75Qzoqu5LJ`</summary>
+
+```json
+{
+  "query": "action chunk loss curve per step degradation later actions robot learning 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b870e4eb-a85e-4bd4-b0c6-5d93d8852f21",
+  "isSidechain": true,
+  "agentId": "ac55b26a2269eeafd",
+  "requestId": "req_011CazypENjJhEW5qFx4VKa4",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "cec29430-dac0-4e4a-828b-7e03fad100a4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79b7d0a3-cb81-4607-9e85-3b5600200248",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018k9X7mNswr4KGEBRJdcURr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 810,
+      "cache_read_input_tokens": 20830,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 810
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 20830,
+          "cache_creation_input_tokens": 810,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 810,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-13T17:42:12.612Z_
+
+<details><summary>↩ Tool result · `toolu_01LKTbRswBhk9D75Qzoqu5LJ`</summary>
+
+```text
+Web search results for query: "action chunk loss curve per step degradation later actions robot learning 2024 2025"
+
+Links: [{"title":"Action Chunking with Transformer (ACT)","url":"https://www.emergentmind.com/topics/action-chunking-with-transformer-act"},{"title":"Actor-Critic for Continuous Action Chunks: A Reinforcement Learning Framework for Long-Horizon Robotic Manipulation with Sparse Reward","url":"https://arxiv.org/html/2508.11143"},{"title":"Mixture of Action Expert Embeddings: Multi-Task ACT","url":"https://aair-lab.github.io/genplan25/papers/43.pdf"},{"title":"Actor-Critic for Continuous Action Chunks: A Reinforcement Learning Framework","url":"https://arxiv.org/pdf/2508.11143"},{"title":"ICML Sample-Efficient Reinforcement Learning with Action Chunking","url":"https://icml.cc/virtual/2025/51519"},{"title":"Baku: An Efficient Transformer for Multi-Task Policy Learning","url":"https://arxiv.org/html/2406.07539v2"},{"title":"Real-Time Robot Execution with Masked Action Chunking","url":"https://arxiv.org/html/2601.20130"},{"title":"Reinforcement Learning with Action Chunking","url":"https://arxiv.org/html/2507.07969v1"},{"title":"IMPROVING ACTION CHUNKING VIA GUIDED TEST-TIME ...","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/0d78dd998f7b9ac79604d47a2d79bb0d-Paper-Conference.pdf"},{"title":"The importance of action chunking in imitation learning | Haonan's blog","url":"https://www.haonanyu.blog/post/action_chunking/"}]
+
+Based on the search results, I found relevant information about action chunking in robot learning from 2024-2025. Here are some key findings related to your query about loss curves, degradation, and later actions:
+
+## Loss and Degradation in Action Chunking
+
+Research shows a consistent decline in performance as inference delay increases across all methods, with this degradation stemming from the growing mismatch between actions and observations, which amplifies intra-chunk inconsistency.
+
+## Performance Degradation for Later Actions
+
+The issue of degradation particularly affects later steps in action sequences. Excessive chunk size can induce excessive smoothing (overly low reaction frequency), while short chunks may forfeit many of action chunking robustness gains. This indicates a fundamental trade-off in how chunk sizes affect different parts of the prediction sequence.
+
+## Recent Research Developments (2024-2025)
+
+Multiple recent works have addressed these challenges:
+
+- Q-chunking presents a simple yet effective recipe for improving reinforcement learning algorithms for long-horizon, sparse-reward tasks, designed for the offline-to-online RL setting
+
+- To better address long-horizon tasks, the IL paradigm has evolved towards action chunking, with state-of-the-art methods such as ACT
+
+- Action chunking inherently reduces system reactivity to sudden state changes and introduces discontinuities at chunk boundaries
+
+The search results indicate active research into understanding and mitigating the loss degradation and performance decline that occurs later in action prediction sequences.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cec29430-dac0-4e4a-828b-7e03fad100a4",
+  "isSidechain": true,
+  "promptId": "8f591815-615c-4239-a161-f479c58f1dd2",
+  "agentId": "ac55b26a2269eeafd",
+  "type": "user",
+  "uuid": "8a4dbd7c-836a-40c5-8a5f-bd900fb78b34",
+  "sourceToolAssistantUUID": "cec29430-dac0-4e4a-828b-7e03fad100a4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79b7d0a3-cb81-4607-9e85-3b5600200248",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34 · 2026-05-13T17:42:15.604Z_
+
+Now let me read the DAM-VLA paper more closely to understand exactly what their chunk-level weighting does.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8a4dbd7c-836a-40c5-8a5f-bd900fb78b34",
+  "isSidechain": true,
+  "agentId": "ac55b26a2269eeafd",
+  "requestId": "req_011Cazyq2i3GELSGU1iHbrjh",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "f04b383a-ec44-4002-8d0c-b6aac630b839",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79b7d0a3-cb81-4607-9e85-3b5600200248",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018ByRCmhwgJ1WstwsJ2yTo3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 881,
+      "cache_read_input_tokens": 21640,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 881,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-13T17:42:16.645Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NnrM7KPToBhcsp12L8Cd3u`</summary>
+
+```json
+{
+  "query": "DAM-VLA arXiv 2603.00926 dual-scale action weighting formula training supervision"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f04b383a-ec44-4002-8d0c-b6aac630b839",
+  "isSidechain": true,
+  "agentId": "ac55b26a2269eeafd",
+  "requestId": "req_011Cazyq2i3GELSGU1iHbrjh",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "1041a9ad-e97e-4ff7-bc05-ebbbf0c6ffdc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79b7d0a3-cb81-4607-9e85-3b5600200248",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018ByRCmhwgJ1WstwsJ2yTo3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 881,
+      "cache_read_input_tokens": 21640,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 881,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-13T17:42:21.395Z_
+
+<details><summary>↩ Tool result · `toolu_01NnrM7KPToBhcsp12L8Cd3u`</summary>
+
+```text
+Web search results for query: "DAM-VLA arXiv 2603.00926 dual-scale action weighting formula training supervision"
+
+Links: [{"title":"[2603.00926] DAM-VLA: A Dynamic Action Model-Based Vision-Language-Action Framework for Robot Manipulation","url":"https://arxiv.org/abs/2603.00926"},{"title":"DAM-VLA: A Dynamic Action Model-Based Vision-Language-Action Framework for Robot Manipulation","url":"https://arxiv.org/html/2603.00926"},{"title":"DAM-VLA: A Dynamic Action Model-Based Vision-Language-Action","url":"https://arxiv.org/pdf/2603.00926"},{"title":"[2603.02271] Characterizing VLA Models: Identifying the Action Generation Bottleneck for Edge AI Architectures","url":"https://arxiv.org/abs/2603.02271"},{"title":"VLA-Adapter: An Effective Paradigm for Tiny-Scale Vision-Language-Action Model","url":"https://arxiv.org/html/2509.09372v2"},{"title":"[2603.13966] vla-eval: A Unified Evaluation Harness for Vision-Language-Action Models","url":"https://arxiv.org/abs/2603.13966"},{"title":"GitHub - iszhanjiawei/flow_matching_arxiv_daily · GitHub","url":"https://github.com/iszhanjiawei/flow_matching_arxiv_daily"},{"title":"[2603.11041] DynVLA: Learning World Dynamics for Action Reasoning in Autonomous Driving","url":"https://arxiv.org/abs/2603.11041"},{"title":"DriveVLA-W0: World Models Amplify Data Scaling Law in Autonomous Driving | OpenReview","url":"https://openreview.net/forum?id=plrGn3RdzN"},{"title":"SG-VLA: Learning Spatially-Grounded Vision-Language-Action Models for Mobile Manipulation","url":"https://arxiv.org/html/2603.22760"}]
+
+Based on the search results, I found information about the paper you're looking for:
+
+DAM-VLA is a dynamic action model-based VLA framework that integrates VLM reasoning with diffusion-based action models specialized for arm and gripper control. 
+
+The framework introduces three key components: (i) an action routing mechanism using task-specific visual and linguistic cues to select appropriate action models, (ii) a dynamic action model that fuses high-level VLM cognition with low-level visual features to predict actions, and (iii) a dual-scale action weighting mechanism that enables dynamic coordination.
+
+The paper (arXiv 2603.00926) was published on March 1, 2026, and addresses the challenge of balancing general task adaptability with the specialized precision required for complex robot manipulation tasks in dynamic environments like warehouses, hospitals, and homes.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1041a9ad-e97e-4ff7-bc05-ebbbf0c6ffdc",
+  "isSidechain": true,
+  "promptId": "8f591815-615c-4239-a161-f479c58f1dd2",
+  "agentId": "ac55b26a2269eeafd",
+  "type": "user",
+  "uuid": "8a131ef6-d740-4277-9d1e-55d4c852267c",
+  "sourceToolAssistantUUID": "1041a9ad-e97e-4ff7-bc05-ebbbf0c6ffdc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79b7d0a3-cb81-4607-9e85-3b5600200248",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-13T17:42:24.452Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0134FLA1hhSH6LotxxycJoav`</summary>
+
+```json
+{
+  "query": "site:arxiv.org \"action chunk\" \"loss\" \"per-position\" OR \"position-wise\" OR \"timestep-wise\" OR \"step-wise\" training weighting"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8a131ef6-d740-4277-9d1e-55d4c852267c",
+  "isSidechain": true,
+  "agentId": "ac55b26a2269eeafd",
+  "requestId": "req_011Cazyqg9Jo58FBzTewnLn2",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "d2a53d47-d277-4a68-977a-15dd71891adc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79b7d0a3-cb81-4607-9e85-3b5600200248",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SwRi2wAzgEeFGU3k7wtWKU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 826,
+      "cache_read_input_tokens": 22521,
+      "output_tokens": 91,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 826
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 91,
+          "cache_read_input_tokens": 22521,
+          "cache_creation_input_tokens": 826,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 826,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-13T17:42:33.319Z_
+
+<details><summary>↩ Tool result · `toolu_0134FLA1hhSH6LotxxycJoav`</summary>
+
+```text
+Web search results for query: "site:arxiv.org "action chunk" "loss" "per-position" OR "position-wise" OR "timestep-wise" OR "step-wise" training weighting"
+
+Links: [{"title":"Leave No Observation Behind: Real-time Correction for VLA Action Chunks","url":"https://arxiv.org/html/2509.23224v1"},{"title":"Actor-Critic for Continuous Action Chunks: A Reinforcement Learning Framework for Long-Horizon Robotic Manipulation with Sparse Reward","url":"https://arxiv.org/html/2508.11143v1"},{"title":"LEAVE NO OBSERVATION BEHIND: REAL-TIME COR- RECTION FOR VLA ACTION CHUNKS","url":"https://www.arxiv.org/pdf/2509.23224"},{"title":"Chain-of-Action: Trajectory Autoregressive Modeling for Robotic Manipulation","url":"https://arxiv.org/html/2506.09990v1"},{"title":"[2207.04659] Speaker consistency loss and step-wise optimization for semi-supervised joint training of TTS and ASR using unpaired text data","url":"https://arxiv.org/abs/2207.04659"}]
+
+I found several relevant results from arxiv.org related to action chunks and loss training. Here are the key papers:
+
+1. **"Leave No Observation Behind: Real-time Correction for VLA Action Chunks"** (2509.23224) - This paper proposes Asynchronous Action Chunk Correction (A2C2), which enables step-wise online correction without retraining the base policy. The work discusses temporal position features for action chunks.
+
+2. **"Actor-Critic for Continuous Action Chunks: A Reinforcement Learning Framework for Long-Horizon Robotic Manipulation with Sparse Reward"** (2508.11143) - This paper presents AC3, a framework for learning with action chunks. It mentions that temporal abstraction mitigates local sub-optimalities that arise from step-wise decision-making.
+
+3. **"Chain-of-Action: Trajectory Autoregressive Modeling for Robotic Manipulation"** (2506.09990) - This paper applies two loss terms: a regression loss in the action space and a consistency loss in the latent space, both computed with MTP regularization where the model predicts a chunk of actions. The paper masks out predictions beyond the trajectory horizon so they don't contribute to the loss.
+
+These papers discuss action chunking with various loss weighting and training strategies, though the specific combination of "per-position" or "position-wise" loss weighting you're searching for may require more targeted investigation within these papers.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d2a53d47-d277-4a68-977a-15dd71891adc",
+  "isSidechain": true,
+  "promptId": "8f591815-615c-4239-a161-f479c58f1dd2",
+  "agentId": "ac55b26a2269eeafd",
+  "type": "user",
+  "uuid": "3da6107d-8ea6-4319-a5b3-350d10ef29b4",
+  "sourceToolAssistantUUID": "d2a53d47-d277-4a68-977a-15dd71891adc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79b7d0a3-cb81-4607-9e85-3b5600200248",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-13T17:42:35.776Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VFyUSGJLXSqFcyGhDotHaM`</summary>
+
+```json
+{
+  "query": "\"CDAP\" action chunk decomposition VLA priority signal training"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3da6107d-8ea6-4319-a5b3-350d10ef29b4",
+  "isSidechain": true,
+  "agentId": "ac55b26a2269eeafd",
+  "requestId": "req_011CazyrZ9QDHrGM9Bidh3Az",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "00647d94-4746-44cc-9c22-3692b298918b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79b7d0a3-cb81-4607-9e85-3b5600200248",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JQryq2kmY9zY374tGtkffC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 743,
+      "cache_read_input_tokens": 23347,
+      "output_tokens": 65,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 743
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 65,
+          "cache_read_input_tokens": 23347,
+          "cache_creation_input_tokens": 743,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 743,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-13T17:42:43.999Z_
+
+<details><summary>↩ Tool result · `toolu_01VFyUSGJLXSqFcyGhDotHaM`</summary>
+
+```text
+Web search results for query: ""CDAP" action chunk decomposition VLA priority signal training"
+
+Links: [{"title":"LangForce: Bayesian Decomposition of Vision Language Action Models via Latent Action Queries","url":"https://arxiv.org/html/2601.15197"},{"title":"Real-Time Execution of Action Chunking Flow Policies Kevin Black1,2,","url":"https://www.pi.website/download/real_time_chunking.pdf"},{"title":"BayesianVLA: Bayesian Decomposition of Vision Language Action Models via Latent Action Queries","url":"https://arxiv.org/html/2601.15197v1"},{"title":"VLA Model Post-Training via Action-Chunked PPO and Self Behavior Cloning","url":"https://arxiv.org/html/2509.25718"},{"title":"Rohit Bandaru | Foundation Models for Robotics: Vision-Language-Action (VLA)","url":"https://rohitbandaru.github.io/blog/Foundation-Models-for-Robotics-VLA/"},{"title":"VGAS: Value-Guided Action-Chunk Selection for Few-Shot Vision-Language-Action Adaptation","url":"https://arxiv.org/html/2602.07399"},{"title":"[2601.15197v1] BayesianVLA: Bayesian Decomposition of Vision Language Action Models via Latent Action Queries","url":"https://arxiv.org/abs/2601.15197v1"},{"title":"Action Chunking for Robotics and AV | Igl's Blog","url":"https://www.maximilianigl.com/blog/action-chunking"},{"title":"LEAVE NO OBSERVATION BEHIND: REAL-TIME COR- RECTION FOR VLA ACTION CHUNKS","url":"https://www.arxiv.org/pdf/2509.23224"},{"title":"Leave No Observation Behind: Real-time Correction for VLA Action Chunks","url":"https://arxiv.org/html/2509.23224v1"}]
+
+Based on the search results, I found relevant information about action chunking, VLA (Vision-Language-Action) models, and related concepts, though the specific acronym "CDAP" doesn't appear in the results. Here's what I found:
+
+## Action Chunking in VLA Models
+
+Action chunking is where a model outputs and executes a sequence of multiple actions for each inference call. This provides a natural solution: predict a chunk, start executing it, and compute the next chunk in parallel, and when the new prediction is ready, switch over.
+
+## VLA Training and Priority Signals
+
+Several recent papers address VLA training challenges:
+
+1. **Vision Shortcut Problem**: Standard VLA models often ignore language in favor of dataset-specific visual correlations. BayesianVLA proposes a novel framework that enforces instruction following via Bayesian decomposition by introducing learnable Latent Action Queries and constructing a dual-branch architecture.
+
+2. **Action Chunk-Based Training**: One approach introduces action chunk based on proximal policy optimization (PPO) with behavior cloning using self-collected demonstrations, where aggregating consecutive actions into chunks improves the temporal consistency of the policy and the density of informative feedback.
+
+3. **Value-Guided Selection**: Modern VLAs often execute action chunks (temporally extended sequences) rather than atomic actions, which shifts both credit assignment and value estimation from the single-step regime to the chunk level.
+
+The search results don't contain specific information about "CDAP" as an acronym. If you're looking for information about a specific paper or method with that acronym, you may want to provide additional context or search terms.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "00647d94-4746-44cc-9c22-3692b298918b",
+  "isSidechain": true,
+  "promptId": "8f591815-615c-4239-a161-f479c58f1dd2",
+  "agentId": "ac55b26a2269eeafd",
+  "type": "user",
+  "uuid": "b39769c9-33ae-44b3-bc23-fa8e6179b97a",
+  "sourceToolAssistantUUID": "00647d94-4746-44cc-9c22-3692b298918b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79b7d0a3-cb81-4607-9e85-3b5600200248",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41 · 2026-05-13T17:43:27.617Z_
+
+Here is my comprehensive analysis of the novelty claim for "CDAP" -- the idea of decomposing per-position losses within action chunks as a priority signal during VLA training.
+
+---
+
+## Summary of Findings
+
+### The Core Novelty Claim
+
+CDAP proposes using the **intra-chunk temporal loss profile** (i.e., how prediction loss varies across positions within an action chunk) as a **priority signal for training** (e.g., data curriculum, sample weighting, etc.). The question is whether any prior work already does this.
+
+### Most Threatening Prior Work
+
+**1. DAM-VLA (arXiv:2603.00926, March 2026)** -- This is the closest competitor and partially overlaps.
+
+DAM-VLA introduces a **dual-scale action weighting mechanism** that operates at both trajectory-level and action-chunk-level. The chunk-level component applies **exponential decay** within each predicted chunk to **prioritize immediate temporal accuracy** during training supervision. This means DAM-VLA **does** decompose the training loss at a per-position level within chunks and applies position-dependent weights. However, the key distinction is:
+
+- DAM-VLA uses a **fixed, predetermined exponential decay** scheme. The weighting is a design choice (a prior), not derived from observed loss profiles.
+- CDAP (as described) proposes **observing the actual per-position loss profile** and using that empirical signal to drive training priorities -- a data-driven approach rather than a fixed heuristic.
+
+This is a meaningful but **narrow** distinction. A reviewer could argue DAM-VLA's exponential decay is an instance of intra-chunk loss weighting, even if not data-driven.
+
+**2. VLA Knows Its Limits / AutoHorizon (arXiv:2602.21445, February 2026)** -- This paper provides strong **analysis** of temporal prediction quality degradation within chunks, identifying "radial action sinks" (attention concentrates on initial and terminal tokens, with rapid decay in between). It proposes **AutoHorizon**, which dynamically adjusts the execution horizon at **inference time** based on attention-weight confidence signals. Crucially:
+
+- This paper **does not** decompose per-position losses during **training** -- it operates at inference time only.
+- However, it does establish and characterize the very phenomenon (intra-chunk temporal quality degradation) that CDAP claims to exploit. If CDAP cites this as motivation, that is fine, but the analysis of the phenomenon itself is not novel.
+
+**3. Mixture of Horizons / MoH (arXiv:2511.19433, November 2025)** -- MoH rearranges action chunks into segments with different horizons and processes them with a shared transformer. It includes a **balance loss** to prevent the gating mechanism from biasing toward longer horizons. This is about multi-horizon fusion rather than per-position loss decomposition, so it is less directly competing, but it does address the symptom (later positions in chunks are less accurate) from a structural angle.
+
+**4. ACT / Action Chunking with Transformers (Zhao et al., 2023)** -- The foundational work uses L1 reconstruction loss across the entire chunk uniformly. It does **not** decompose or weight per-position losses differently. Standard practice in the field is uniform loss across chunk positions.
+
+**5. Leave No Observation Behind / A2C2 (arXiv:2509.23224)** -- Addresses chunk degradation via a lightweight correction head at inference time. Does not modify training loss decomposition.
+
+**6. Chain-of-Action (arXiv:2506.09990)** -- Uses MTP (multi-token prediction) regularization and masks out predictions beyond trajectory horizon, but does not weight per-position losses within chunks differently.
+
+### Papers That Do NOT Threaten the Claim
+
+- **LangForce/BayesianVLA** -- Bayesian decomposition of the VLA architecture, not the action chunk loss.
+- **OpenVLA-OFT** -- Uses L1 regression for continuous actions with action chunking but uniform loss.
+- **pi0** -- Flow matching on parallel action tokens, no per-position loss differentiation reported.
+- **VLA-RL, ConRFT, etc.** -- RL-based fine-tuning methods that don't address intra-chunk loss structure.
+
+---
+
+## Verdict on Novelty
+
+The novelty claim **partially holds but needs careful positioning**:
+
+1. **DAM-VLA is a direct threat.** It applies position-dependent weighting (exponential decay) within action chunks during training. CDAP must clearly differentiate itself by emphasizing that it uses the **empirical loss profile** as a signal (data-driven) rather than a fixed decay prior. If CDAP does not use the loss profile in a data-driven way and instead just proposes fixed weighting, the novelty over DAM-VLA becomes very thin.
+
+2. **The phenomenon is not novel.** "VLA Knows Its Limits" already characterizes the temporal quality degradation within chunks. CDAP cannot claim discovery of the phenomenon, only a novel exploitation of it for training.
+
+3. **Using loss decomposition as a training priority signal** (e.g., for curriculum learning or sample weighting) appears to be genuinely novel if it means: "compute per-position losses, observe which positions/samples have unusual loss profiles, and use that to prioritize which training examples get more weight or are revisited." No paper I found does exactly this.
+
+4. **The claim that "no prior work exploits the intra-chunk temporal loss profile as a priority signal"** is **too strong** given DAM-VLA. A more defensible claim would be: "no prior work uses the *observed/empirical* intra-chunk loss profile as a *data-driven* priority signal for training sample selection or curriculum design."
+
+---
+
+Sources:
+- [DAM-VLA: A Dynamic Action Model-Based Vision-Language-Action Framework](https://arxiv.org/html/2603.00926)
+- [DAM-VLA (Samsung Research Blog)](https://research.samsung.com/blog/DAM-VLA-A-Dynamic-Action-Model-Based-Vision-Language-Action-Framework-for-Robot-Manipulation)
+- [VLA Knows Its Limits (arXiv:2602.21445)](https://arxiv.org/html/2602.21445)
+- [Mixture of Horizons in Action Chunking (arXiv:2511.19433)](https://arxiv.org/html/2511.19433v1)
+- [Leave No Observation Behind: Real-time Correction for VLA Action Chunks](https://arxiv.org/html/2509.23224v1)
+- [VLA Model Post-Training via Action-Chunked PPO and Self Behavior Cloning](https://arxiv.org/html/2509.25718)
+- [Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success](https://arxiv.org/html/2502.19645v2)
+- [Chain-of-Action: Trajectory Autoregressive Modeling](https://arxiv.org/html/2506.09990v1)
+- [LangForce: Bayesian Decomposition of VLA Models](https://arxiv.org/html/2601.15197)
+- [ACT Policy Explained](https://www.roboticscenter.ai/blog/act-policy-explained)
+- [Reinforcement Learning with Action Chunking](https://arxiv.org/html/2507.07969v1)
+- [Real-Time Robot Execution with Masked Action Chunking](https://arxiv.org/html/2601.20130)
+- [pi0: A Vision-Language-Action Flow Model](https://www.pi.website/download/pi0.pdf)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b39769c9-33ae-44b3-bc23-fa8e6179b97a",
+  "isSidechain": true,
+  "agentId": "ac55b26a2269eeafd",
+  "requestId": "req_011CazysLnn1QVXyjzaWP28U",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "fb2530dc-6725-4401-96bb-4190b6ea7881",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79b7d0a3-cb81-4607-9e85-3b5600200248",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WZzyTEMV9dFgSB1nQ8mG1M",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 950,
+      "cache_read_input_tokens": 24090,
+      "output_tokens": 1830,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 950
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1830,
+          "cache_read_input_tokens": 24090,
+          "cache_creation_input_tokens": 950,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 950,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---

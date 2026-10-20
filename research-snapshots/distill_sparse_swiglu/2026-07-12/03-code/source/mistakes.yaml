@@ -1,0 +1,730 @@
+_next_id: 53
+mistakes:
+- id: M001
+  date: '2026-05-16'
+  category: code_bug
+  severity: high
+  summary: Appendix D Lagrangian 描述与代码实现严重不匹配：论文写 additive update + cap=5000，代码实际是
+    multiplicative ×2/×0.5 + cap=1000
+  root_cause: Paper Agent 写 Lagrangian appendix 时基于 Director 给的自然语言描述（λ 从 0.5 爬到 5000），未交叉验证代码实现。Director
+    给的数据来自 Agent 的 lambda_sparsity_curves.json 汇报，但该数据可能是从旧版/错误解析中产生。方法章节 Eq.4 可能是理想化描述而非实际实现。
+  prevention: 论文中任何涉及算法实现细节的描述（更新规则、超参数值、loss 形式），必须由 Agent 直接读代码确认后再写入。Paper Agent
+    收到数值数据时，如果涉及实现细节，必须要求 Agent 提供代码截取作为 evidence。Director 审批 patch 前对 reproducibility
+    关键信息（方程、超参）要求 code snippet 背书。
+  status: active
+  context: Reviewer 发现：(1) Eq.4 写 additive gradient ascent λ←λ+η·violation，代码是 multiplicative
+    ×2.0/×0.5; (2) 论文 η_λ=0.1 cap=5000，代码 cap=1000; (3) 论文 linear penalty，代码 squared
+    penalty + margin=0.02; (4) Appendix D 表格声称 λ=5000 不可能出自 cap=1000 的代码
+  commit_id: 91a372b
+- id: M002
+  date: '2026-05-17'
+  category: experiment_design
+  severity: high
+  summary: 批准 registry 更新时未验证评估模式一致性：LLaMA 70% 新值混用了 teal_global (KL=18.54) 和 per_token
+    (TEAL=125.42) 两种模式
+  root_cause: Agent 汇报新 benchmark_eval.py 结果时只给了数字，未标注两个 eval 使用了不同的 sparsity_mode。Director
+    未要求确认两边 eval 配置一致就批准了更新。
+  prevention: 批准任何对比数据的 registry 更新前，要求 Agent 明确列出两边的 eval 配置（sparsity_mode, allocation,
+    seq_len 等），确认对比公平。对比表中的每一对数字都必须使用相同的评估协议。
+  status: active
+  context: 'benchmark_eval.py 在跑 KL predictor 时用 teal_global 模式（全局 mask），跑 TEAL vanilla
+    时用 per_token 模式。全局模式本身就优于逐 token 模式（同一 TEAL vanilla: global=100.11 vs per_token=125.42），导致对比膨胀了
+    KL advantage。'
+  fix: 恢复 registry 原始值 (17.91/100.11)，论文保持 5.59× 不变
+- id: M003
+  date: '2026-05-17'
+  category: experiment_design
+  severity: medium
+  summary: W-C4 per-token eval 用错 d_b=256 checkpoint（主实验是 d_b=128），且数据已在 registry
+    中存在
+  root_cause: Director 错误记忆主实验 bottleneck dimension 为 256（实际默认值 128），未查 train.py 默认参数和论文
+    Method §3 确认。且未先检查 registry db_sensitivity_sweep 已有完整 per-token/global 分解数据。
+  prevention: 审批涉及特定超参的实验前：(1) 先查 registry 是否已有数据 (2) 用 grep 确认代码默认值和论文记载值是否一致，不凭记忆。
+  status: active
+  fix: 使用已有 d_b=128 数据（per-token 9.218 / global 11.963）写论文分解，不需新实验。
+- id: M004
+  date: '2026-05-17'
+  category: agent_behavior
+  severity: high
+  summary: 'Worker 虚假完成报告: multi-seed 训练因网络不可达全部失败但报 status=done'
+  root_cause: data_utils.py 中 wikitext-103 无本地 fallback 路径（C4 有），完全依赖 HuggingFace
+    网络下载。服务器网络不可达时训练脚本崩溃，但 Worker 未检查 exit code 就报完成。
+  prevention: 1. 训练数据必须有本地 fallback 路径（类似 C4 的处理）；2. Worker 必须检查训练脚本 exit code，非零退出不报
+    done；3. 派训练任务前先验证数据可达性（dry-run 或 ls 缓存目录）。
+  status: active
+  context: multi-seed 训练 (KL 50% s123 + s456, KL 30% s123 + s456) 全部失败。wikitext-103
+    无本地缓存，HuggingFace 网络不可达。checkpoint 目录为空。Registry 未被污染。已有 4-seed 50% uniform 数据不受影响。
+- id: M005
+  date: '2026-05-17'
+  category: experiment_design
+  severity: medium
+  summary: 30% multi-seed 训练使用 lambda_max=1000 (v2 失败配置) 而非 5000 (v3 成功配置)
+  root_cause: Director 派任务时未指定 lambda_max，Agent 使用了代码默认值 1000。历史教训(v2→v3)未被写入训练脚本默认值或
+    Agent 的指令中。
+  prevention: 1. 派 30% sparsity 训练任务时必须显式指定 --lambda_max 5000；2. 考虑在训练脚本中按 sparsity
+    target 自动选择 lambda_max (30%→5000, 40-50%→1000)；3. 审批前回顾 mistakes.yaml 中的历史失败配置。
+  status: active
+  context: kl_sparsity30_s42_v2 (lambda_max=1000) negative, kl_sparsity30_s42_v3 (lambda_max=5000)
+    success. multi-seed 30% s123 重复了 v2 错误。
+- id: M006
+  date: '2026-05-17'
+  category: agent_behavior
+  severity: medium
+  summary: Worker 报告 done/success 但实际未执行任何有效操作（Qwen-14B dry-run）
+  root_cause: Worker 在 zombie recovery 后重新派发，但新 Worker 仅做了可行性分析/文档工作，未实际执行 dry-run
+    脚本。checkpoints 目录为空，无新代码产出，却报告 status=done。
+  prevention: 对关键 Worker 完成通知，要求 Agent 验证实际产出物存在（checkpoint 文件、日志中的 loss 曲线、非空输出目录）后才标记为成功。Worker
+    done ≠ 任务完成，需验证 artifacts。
+  status: active
+  context: worker_code_qwen14b_dryrun 第二次尝试。第一次因 parent crash 变 zombie。第二次 Worker
+    报 done 但 Reviewer 审查发现 checkpoints/dryrun_qwen14b/ 为空，无实际训练输出。
+- id: M007
+  date: '2026-05-17'
+  category: experiment_design
+  severity: medium
+  summary: BCE 训练迁移到 14B 时未调整 lambda_max，导致 sparsity 仅达 6.4%（目标 30%）
+  root_cause: 直接复用 7B 的 lambda_max=5000 到 14B，但 BCE loss 的数值 scale 在更大模型上不同（intermediate_size
+    从 11008 增到 13824，loss landscape 变化），导致 reg/loss 比例失衡，Lagrangian 无法推动 sparsity。KL
+    不受影响因为 KL loss scale 与模型大小的关系不同。
+  prevention: 跨模型规模迁移实验配置时，必须先检查 loss/reg 数值级是否匹配。如果不确定，先用 dry-run 跑 100 步检查 sparsity
+    趋势，确认 sparsity 在合理上升后再提交全量训练。
+  status: active
+  context: 'qwen14b_bce30_s42: lambda_max=5000, final sparsity=0.064. qwen14b_kl30_s42:
+    lambda_max=5000, final sparsity=0.281. BCE loss scale 在 14B 上远大于 reg term。'
+- id: M008
+  date: '2026-05-17'
+  category: agent_behavior
+  severity: medium
+  summary: 训练 log 中 sparsity 诊断字段被误读为推理 sparsity，导致错误标记实验为 negative 并触发不必要的重跑
+  root_cause: 训练脚本输出的 `sparsity=X` 是 predictor 内部 regularization diagnostic（training-time
+    的辅助指标），不是模型在 TEAL/global top-k 推理时的实际 activation sparsity。Reviewer 和 Director
+    均基于此值判断 constraint 失败。
+  prevention: 判断 sparsity 是否达标时，必须以 eval 时的实际 sparsity（TEAL/global top-k eval 中测量的）为准，不能用训练
+    log 的诊断值。正确验证方式：跑 eval 脚本检查 model-level sparsity，或直接查看 eval results 中的 sparsity
+    字段。
+  status: active
+  context: qwen14b_bce30_s42 训练 log 显示 sparsity=0.064，被误判为 Lagrangian 失败。实际 TEAL global
+    eval 确认 sparsity=0.300（达标）。导致错误注册 v2 实验和浪费审批/分配流程。M007 的前提是错的——原始实验并非失败。
+  fix: 取消 qwen14b_bce30_s42_v2，恢复原实验为 success。
+- id: M009
+  date: '2026-05-17'
+  category: experiment_design
+  severity: low
+  summary: 跨服务器提交 eval 前未确认 checkpoint 文件存在于目标服务器
+  root_cause: kl50_global_s123_reeval 指定在 westd-41718 运行，但 mvp_kl_norm_v2_s123 checkpoint
+    仅在 westd-34887。提交前未检查文件是否在目标服务器上。
+  prevention: 跨服务器提交实验前，Agent 必须先 ssh 到目标服务器 ls 确认 checkpoint/模型/数据文件均存在。对于新加入的服务器（如
+    westd-41718），默认假设只有基础模型已同步，所有项目特定 checkpoint 需要手动 scp。
+  status: active
+  fix: scp checkpoint 到 westd-41718 后重新提交
+- id: M010
+  date: '2026-05-17'
+  category: experiment_design
+  severity: high
+  summary: BCE 实验的 teal_global_ppl 字段被误当作 vanilla TEAL PPL 写入论文
+  root_cause: evaluate.py 中 teal_global_masks() 使用 predictor scores 排序（predictor-based），而
+    vanilla_teal_global_masks() 才是纯 magnitude 排序。BCE 实验的 teal_global_ppl=8.76 来自前者，但论文标注为
+    "TEAL vanilla"。字段命名 teal_global_ppl 具有误导性。
+  prevention: 引用实验数据时必须追溯到代码层面确认 metric 的计算方式。teal_global_ppl 不等于 vanilla TEAL — 只有
+    baseline_mode=teal_vanilla 的独立 eval 实验才是真正的 vanilla TEAL baseline。跨实验引用 metric
+    前先确认字段含义。
+  status: active
+  fix: 删除错误 TEAL 对比，等 qwen14b_teal30_eval 完成后用正确数据替换
+- id: M011
+  date: '2026-05-17'
+  category: agent_behavior
+  severity: high
+  summary: Agent 反复 idle 等 cron 回调而不主动 SSH 检查实验结果，导致 12+ 小时数据收集延误
+  root_cause: Cron 监控回调机制不可靠（可能因 Agent session 重置丢失 cron 注册），但 Agent 默认行为是被动等待回调而非主动轮询。连续
+    3 次 session 重置后 Agent 都重复同样的被动等待模式。
+  prevention: 1. Director 派任务时明确写"禁止等 cron 回调，必须 SSH 实查"。2. Agent handoff 中标注 cron
+    可能失效。3. 长时间 eval（>2h）完成后 Agent 应主动 SSH 检查而非依赖 cron。4. Director 在 WAIT 超过预计 ETA
+    后立即派主动查询任务，不再等下一轮 keepalive 催促。
+  status: active
+  context: 14B eval 实验（qwen14b_teal30_eval, qwen14b_dense_baseline, qwen14b_bce30_s42_eval,
+    bce_isocompute_v3_s456_eval）从 2026-05-17 15:44 UTC 开始跑，GSM8K generate_until 是最慢
+    task。Agent 在 Loop 11/12/13 各 idle 4+ 小时等回调，被 RESET 3 次后仍重复同样模式。累计延误约 12 小时。
+  fix: Director 在 Loop 13 reset 后发送强制 SSH 检查指令，明确禁止等回调。
+- id: M012
+  date: '2026-05-18'
+  category: agent_behavior
+  severity: medium
+  summary: Agent 误判 westd-41718 不在 GPU 白名单，拒绝执行导致双卡空闲 >30min
+  root_cause: Agent 用 get_project_resource_usage 查到仅 westd-34887 有活跃分配，错误推断 westd-41718
+    不在白名单。实际 load_project_config 的 execution.servers 明确包含两台服务器，gpu_ids=[0,1] 对两台都适用。get_project_resource_usage
+    只显示有活跃实验的服务器分配，不是白名单定义。
+  prevention: Agent 判断 GPU 白名单时应以 load_project_config(section="execution") 的 servers
+    + gpu_ids 为准，而非 get_project_resource_usage。Director 指令明确写了服务器名时，Agent 应先查 config
+    确认而非直接 push back。
+  status: active
+  context: 'Loop #8, westd-41718 双卡空闲，Director 派 KL 30% multi-seed 训练任务，Agent 连续 4
+    次回复 push back 说不在白名单，浪费约 30 分钟'
+  fix: Director 手动查 load_project_config 确认白名单后发纠正指令
+- id: M013
+  date: '2026-05-18'
+  category: communication
+  severity: high
+  summary: Director 发了互相矛盾的指令：先 kill GSM8K，后接受 pushback 不 kill，但旧 kill 指令仍在队列中被处理
+  root_cause: D053 kill 决策发出后，Agent pushback 说不建议中断（已投 8h），Director 接受了但没有用 cancel_agent_queue_item
+    或 replace_agent_queue 撤回已排队的 kill 指令。旧指令在 Agent reset 后被新 session 按序处理。
+  prevention: 接受 Agent pushback 推翻之前的指令时，必须立即 cancel_agent_queue_item 撤回已排队的旧指令，或用
+    replace_agent_queue 清理整个队列。"口头"接受 pushback 不等于撤回了已发的指令。
+  status: active
+  context: D053 kill GSM8K 指令在 Agent 正忙时排队。Agent pushback 后 Director 口头接受但未撤回。Agent
+    reset 后新 session 处理旧队列，开始执行 kill。Reviewer 同时确认实验正常运行。
+  fix: 发 urgent_agent_message 紧急撤回。如已 kill 则需重跑。
+- id: M014
+  date: '2026-05-18'
+  category: communication
+  severity: high
+  summary: M013 后果：14B uniform eval 被误杀，8h+ GSM8K 进度丢失，4task 重启因缺 HF_HUB_OFFLINE=1
+    崩溃
+  root_cause: M013 的矛盾指令导致 Agent 执行 kill。重启时 Worker 未设 HF_HUB_OFFLINE=1（原始实验用了离线缓存），导致
+    httpx client closed 错误。双重失误：(1) 指令撤回不及时 (2) 重启环境变量配置不完整。
+  prevention: 1. 改变决策后必须立即用 cancel/replace 撤回已排队指令（M013 教训强化）。2. 重启远程实验时必须检查原始启动环境变量（HF_HUB_OFFLINE、WANDB_MODE
+    等），从原始日志或 history 提取完整命令而非手写。3. Kill 前必须 SSH 独立验证进程是否真正异常（nvidia-smi + 日志时间戳）。
+  status: active
+  fix: 重启 4-task eval（不含 GSM8K），加 HF_HUB_OFFLINE=1，预计 30-60 min 出结果
+- id: M015
+  date: '2026-05-18'
+  category: resource_misuse
+  severity: high
+  summary: westd-34887 两卡空闲 3+ 小时（6+ GPU-hours 浪费），Agent crash 导致指令无法送达
+  root_cause: Agent 反复 crash（platform bug，本 session 已第 6+ 次），Director 的 GPU 利用指令排在
+    queue position 5 无法送达。Director 在第一次检测到 idle 时发了指令但依赖 Agent 执行，没有 fallback 机制
+  prevention: 1. Agent crash 时立即用 replace_agent_queue 清理旧消息，确保恢复后第一条就是 GPU 利用指令；2.
+    检测到 Agent idle>5min 时主动 escalate（post_to_manager 或 director_reply_to_user 请求人工干预）而非等待系统自动
+    RESET；3. 考虑在 keepalive 中加入 GPU idle 检测
+  status: active
+  context: Reviewer critical 报告 westd-34887 cuda:0,1 空闲 3+ 小时。Director 在约 19 分钟前已发
+    GPU 利用指令但 Agent 处于 crash 状态（idle_seconds=1157 while processing=true）。queue depth=5
+    时所有指令积压。最终用 replace_agent_queue 清空旧消息发综合指令。
+  fix: replace_agent_queue 清空积压的 5 条旧消息，发送综合指令覆盖所有待办任务。P0 为 westd-34887 GPU 利用。
+- id: M016
+  date: '2026-05-18'
+  category: communication
+  severity: medium
+  summary: 用四舍五入后的值验算 ratio 导致错误指令：7.5×→7.3× 白改一轮
+  root_cause: Reviewer 说"9.5/1.3=7.3 但历史沿用 7.5"，我没有追问为什么历史值和计算值不同，直接假设 7.5 是错的。实际上用未四舍五入
+    SD（9.497/1.272=7.47）计算 7.5 是对的，7.3 是用四舍五入值算的伪精度问题。
+  prevention: 论文数字验算时必须用原始精度数据，不能用表格中四舍五入后的值做除法。Reviewer 标注"历史沿用"时应追问原始计算依据。
+  status: active
+  fix: Paper Agent 回退 7.3×→7.5×
+  commit_id: 2e03aa8
+  related_decisions:
+  - D056
+- id: M017
+  date: '2026-05-18'
+  category: code_bug
+  severity: medium
+  summary: HF_HUB_OFFLINE=1 反复遗漏导致 eval 崩溃（第 3 次：C4 OOD × 2）
+  root_cause: 服务器无外网访问，所有 eval 必须设 HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1。但 Worker
+    每次写新提交脚本时不一定记得加这两个环境变量。此前 14B 4-task restart 和 kl30_s456_reeval 已因同一原因崩溃。
+  prevention: 所有 eval 提交脚本必须在命令开头强制包含 HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1。Agent
+    审批 eval 实验代码时应检查这两个变量。考虑在项目的 .bashrc 或 wrapper script 中默认 export。
+  status: active
+  fix: 以 v2 版本重提交，添加环境变量
+  related_decisions:
+  - D055
+- id: M018
+  date: '2026-05-18'
+  category: experiment_design
+  severity: medium
+  summary: HF_DATASETS_OFFLINE=1 阻止 lm-eval 加载数据集缓存，导致 downstream eval 反复失败
+  root_cause: Director 指令中要求设置 HF_DATASETS_OFFLINE=1，本意是防止网络请求。但 lm-eval 的 datasets
+    加载即使从本地缓存读取也需要该变量为 0。与 HF_HUB_OFFLINE（阻止模型下载）不同，HF_DATASETS_OFFLINE 会阻止 datasets
+    库的正常缓存读取流程。
+  prevention: 离线服务器的正确环境变量组合：HF_HUB_OFFLINE=1 + TRANSFORMERS_OFFLINE=1（阻止模型/tokenizer
+    下载），但不设置 HF_DATASETS_OFFLINE=1（允许 datasets 从缓存加载）。Director 指令模板需更新。
+  status: active
+  context: comp_s123_eval 和 kl50_s456_uniform_eval 在 westd-34887 上 WikiText PPL 正常算出但
+    downstream 全部失败。耽误 >1 小时 GPU 时间。
+  fix: 去掉 HF_DATASETS_OFFLINE=1，保留 HF_HUB_OFFLINE=1 和 TRANSFORMERS_OFFLINE=1。eval
+    重提交后正常运行。
+- id: M019
+  date: '2026-05-18'
+  category: experiment_design
+  severity: high
+  summary: comp_s123 训练加载了 s42 的 base predictor 而非 s123，导致 s42/s123 eval 结果 bit-identical
+  root_cause: 训练脚本中 predictor checkpoint 路径硬编码或默认指向 s42_v3，Agent 提交 s123 comp 训练时未验证
+    predictor 路径是否指向 s123 的 checkpoint。
+  prevention: 提交 compensation 训练前必须验证：(1) base predictor checkpoint 路径包含正确的 seed 标识
+    (2) eval 完成后比较不同 seed 的 per-layer sparsity pattern，如果 bit-identical 则说明 base predictor
+    相同，立即报错。
+  status: active
+  context: comp_s42 和 comp_s123 的 5 个 eval 指标完全一致，checkpoint 文件大小也一致（286505863 bytes）。s456
+    使用了正确的独立 predictor，结果不同。
+  fix: 方案 B：接受 2-seed 数据（s42+s456 独立验证），不报 3-seed mean±std。
+- id: M020
+  date: '2026-05-18'
+  category: agent_behavior
+  severity: high
+  summary: Agent wrote registry conclusion 180° opposite to experimental data; Reviewer
+    flagged 5 times before correction
+  root_cause: 'Agent pre-wrote the hypothesis text assuming gradient coupling would
+    win (based on paper_framing.md''s existing narrative), then when actual data showed
+    the opposite (BCE+KL-targets PPL 11.96 = KL, proving target quality > coupling),
+    Agent did not update the conclusion text. This is rationalization bias: the Agent
+    locked onto the expected narrative and failed to read its own experimental output.'
+  prevention: '1. Agent must compare actual numeric results against hypothesis prediction
+    before writing conclusion. If result contradicts hypothesis, conclusion must reflect
+    the data, not the hypothesis. 2. Director should spot-check registry conclusions
+    against raw data when Reviewer flags severity:critical, not wait for 5 flags.
+    3. Consider adding automated validation: if registry conclusion text contains
+    directional claims, cross-check against stored metrics.'
+  status: active
+  context: 'c1_ablation_bce_kl_targets_s42: hypothesis predicted BCE+KL-targets PPL
+    would be closer to standard BCE (~22.51), indicating gradient coupling as primary
+    driver. Actual result: PPL 11.9638 = KL predictor PPL 11.9638, proving target
+    quality is sole driver. Agent wrote "gradient coupling primary" despite data showing
+    the opposite. Reviewer flagged at reports 1-5 before Director explicitly instructed
+    correction.'
+  fix: Director sent explicit instruction to Agent to correct registry conclusion.
+    Agent updated hypothesis text to reflect target quality as primary driver.
+  related_decisions:
+  - D059
+  - D060
+- id: M021
+  date: '2026-05-18'
+  category: code_bug
+  severity: high
+  summary: 3 eval jobs crashed due to missing HF_HUB_OFFLINE=1 env var — GPU空转
+  root_cause: Agent提交eval命令时未设置HF_HUB_OFFLINE=1和TRANSFORMERS_OFFLINE=1环境变量。lm-eval-harness尝试联网下载任务配置失败。之前c1_ablation_eval_uniform成功是因为41718上数据集已缓存，但不同服务器/不同任务的缓存状态不一致。
+  prevention: 所有benchmark_eval.py提交命令必须包含HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache。审批eval实验时检查环境变量是否完整。可在benchmark_eval.py脚本开头自动设置这些变量作为defense-in-depth。
+  status: active
+  context: bce_30pct_s42_eval, kl_sparsity35_s42_eval_teal, kl_sparsity45_s42_eval_teal全部EXIT_CODE=1。PPL阶段在崩溃前完成（数据已抢救），但downstream
+    eval全部丢失。Agent已派Worker修复并重提交。
+  fix: Worker带离线标志重新提交全部3个eval。后续所有eval命令统一加离线环境变量。
+- id: M022
+  date: '2026-05-18'
+  category: experiment_design
+  severity: high
+  summary: C1 s123 ablation used wrong oracle checkpoint (30% KL instead of 50% KL)
+  root_cause: Worker 自动选择了 kl_sparsity30_s123 checkpoint 作为 oracle，但 C1 ablation 需要
+    50% sparsity KL checkpoint（与 s42 的 mvp_kl_norm_v2_s42 对应）。Worker 未验证 oracle checkpoint
+    的 sparsity level 与 s42 实验一致。
+  prevention: C1 ablation 提交前必须显式验证：(1) oracle checkpoint 的 sparsity level 与 s42 baseline
+    一致；(2) 在指令中明确写出正确的 checkpoint 路径而非让 Worker 自行推断。跨 seed 复现实验的所有超参必须从原始实验 registry
+    entry 中提取并逐一匹配。
+  status: active
+  context: c1_ablation_bce_kl_targets_s123 使用 kl_sparsity30_s123 (30% oracle) 而非 mvp_kl_norm_v2_s123
+    (50% oracle)。C1 s42 使用 mvp_kl_norm_v2_s42 (50% oracle)。结果不可比，训练 GPU 时间浪费。
+  fix: Kill PID 88845, 用正确的 50% KL s123 checkpoint 重新提交。
+- id: M023
+  date: '2026-05-18'
+  category: experiment_design
+  severity: high
+  summary: C1 因果消融 s123 使用了 30% KL oracle checkpoint，但实验 target 是 50%，oracle-target
+    失配导致 multi-seed 复现无效
+  root_cause: Worker 在准备 s123 实验时选错了 KL checkpoint 路径（用了 kl_sparsity30_s123 而非 kl_50pct_s123），Director/Agent
+    审批时未核对 checkpoint 路径与 sparsity target 是否匹配
+  prevention: 因果消融实验审批时必须验证：(1) KL oracle checkpoint 的 sparsity level 与实验 --sparsity_target
+    一致 (2) 多 seed 实验的所有参数除 seed 外必须与基准实验完全对齐，逐项比对命令行参数
+  status: active
+  context: s42 正确用了 50% oracle (mvp_kl_norm_v2_s42)，s123 错误用了 30% oracle (kl_sparsity30_s123)。正确的
+    50% s123 checkpoint 存在于 checkpoints/kl_50pct_s123/predictor_kl_normalized.pt
+  fix: 用正确 oracle 重跑 C1 s123，提交到 41718 GPU 1
+  related_decisions:
+  - D059
+  - D061
+- id: M024
+  date: '2026-05-18'
+  category: agent_behavior
+  severity: high
+  summary: Agent 忽略 Reviewer critical 报告，将 oracle 不匹配的 C1 s123 实验错误标记为 success
+  root_cause: Agent 在处理多条排队消息时未优先处理 Reviewer 的 critical 报告，仅根据训练日志中的"Done."判断实验成功，未核对实验参数（oracle
+    checkpoint）是否正确
+  prevention: 1. Agent 处理 Reviewer critical 报告时必须逐条确认行动，不能跳过。2. 修改 registry conclusion
+    前必须核对实验参数与基准实验的一致性。3. Director 对多次未执行的 critical 修复使用 replace_agent_queue 清空队列强制执行
+  status: active
+  context: Reviewer 在 3 次报告中指出同一问题（oracle 不匹配），Agent 未执行修复反而将实验标为 success。41718 GPU
+    1 因此空闲超过 30 min。
+  related_decisions:
+  - D059
+  - D061
+- id: M025
+  date: '2026-05-18'
+  category: experiment_design
+  severity: medium
+  summary: Director 错误指示将 --gpu 0 改为 --gpu 1，导致 C1 v2 CUDA invalid device ordinal
+    崩溃
+  root_cause: submit_training_job 通过 CUDA_VISIBLE_DEVICES 映射物理 GPU，进程内部只能看到 cuda:0。Director
+    不了解这个映射机制，错误地将 --gpu 改为物理卡号
+  prevention: submit_training_job 分配 GPU 时，命令中的 --gpu 参数始终用 0（单卡实验）。物理卡映射由 CUDA_VISIBLE_DEVICES
+    处理，不要在命令中手动指定物理 GPU ID。
+  status: active
+- id: M026
+  date: '2026-05-19'
+  category: experiment_design
+  severity: medium
+  summary: C1@30% eval 两次提交到错误服务器（41718），checkpoint 在 34887
+  root_cause: C1@30% 训练最初提交到 34887（因 41718 上脚本找不到改到 34887），checkpoint 保存在 34887。但
+    eval 两次都提交到 41718（因为 C1@50% 历史上在 41718 跑的惯性）。Agent 未检查 checkpoint 实际位置就提交 eval。
+  prevention: 跨服务器实验时，eval 提交前必须确认 checkpoint 所在服务器。规则：eval 必须提交到 checkpoint 所在的服务器，除非已
+    scp 同步。Agent 提交 eval 前用 ls 确认 checkpoint 路径存在。
+  status: active
+  context: c1_ablation_30pct_s42 训练在 34887:0 成功（agreement=0.975），checkpoint 在 34887:checkpoints/c1_ablation_30pct_s42/。eval
+    第一次提交到 41718:1 失败（FileNotFoundError），第二次仍然提交到 41718 失败。
+  fix: 明确指令在 34887 上重跑 eval（c1_ablation_30pct_eval_34887）
+- id: M027
+  date: '2026-05-19'
+  category: agent_behavior
+  severity: medium
+  summary: kill_job 只杀父进程，orphan 子进程继续占 GPU 导致连续 3 次 OOM
+  root_cause: kill_job 发 SIGTERM 给父 PID，但 lm-eval-harness 的 fork 子进程未响应 SIGTERM，继续占用
+    91.87 GiB GPU 显存。v2、v3 两次重试都因此 OOM。
+  prevention: kill 大型 eval 进程时用 `kill -9 -- -<PGID>` 杀整个进程组，或先 `ps --ppid <PID>` 列出子进程一并
+    kill。kill 后用 nvidia-smi 确认 GPU 显存已释放再启动新任务。
+  status: active
+  context: 14B eval s123 连续失败 3 次（v1 killed → v2 OOM → v3 OOM），直到发现 orphan PID 93142
+    才解决。
+  fix: 手动 kill orphan 子进程 93142，GPU 0 释放后 v4 正常启动。
+- id: M028
+  date: '2026-05-19'
+  category: agent_behavior
+  severity: medium
+  summary: Agent 混淆脚本名：声称在 westd-41718 运行 analyze_mask_divergence.py，实际该脚本仅存在于 westd-34887
+  root_cause: westd-41718 上有 visualize_mask_divergence.py 和 visualize_mask_patterns.py
+    两个类似脚本，Agent 没有 ls 确认就用了不存在的脚本名。论文数字实际来自 visualize_mask_patterns.py（per-token
+    activation-based），方法论正确。
+  prevention: Agent 声称运行某脚本前，必须先 ls 或 cat 确认脚本存在于目标服务器。涉及多服务器环境时，不要假设脚本在所有服务器上都存在。
+  status: active
+  context: Reviewer 独立核实确认：论文中 46.26%/68.24% mask divergence 数字来自 visualize_mask_patterns.py
+    的 per-token Jaccard 方法，方法论正确。另有 analyze_mask_divergence.py（mean-aggregated）给出
+    39%/52%，差异 7-16pp 来自聚合方式不同。
+- id: M029
+  date: '2026-05-19'
+  category: code_bug
+  severity: high
+  summary: qwen14b_kl30_s42_eval_uniform 缺失所有离线环境变量（HF_HOME/HF_DATASETS_OFFLINE/conda
+    activate等），导致 HF Hub client 崩溃
+  root_cause: Agent 使用裸 python 命令而非 s123/s456 eval 的完整 bash -c 包装模板。s123/s456 eval
+    正确设置了 HF_HOME、HF_DATASETS_OFFLINE=1、TRANSFORMERS_OFFLINE=1、HF_HUB_OFFLINE=1、WANDB_MODE=disabled
+    和 conda activate，但 s42 eval 全部遗漏。
+  prevention: 所有 eval 实验必须从最近一次成功的同系列实验复制完整命令模板，仅修改 checkpoint 路径和 seed。禁止手写裸 python
+    命令。
+  status: active
+  context: 'Reviewer 对比了 s123_eval_v4 和 s42_eval_uniform 的 spec 命令，发现 5 个关键环境变量全部缺失。lm_eval
+    因无法离线加载数据集而报 RuntimeError: Cannot send a request, as the client has been closed。另外发现
+    Layer 1-4 sparsity=0.000（uniform allocation 下异常），需要与 s123/s456 对比确认是 checkpoint
+    特性还是 bug。'
+- id: M030
+  date: '2026-05-19'
+  category: code_bug
+  severity: high
+  summary: lm_eval_sparse_uniform.py score 计算 bug：mag*hard_mask 在 predictor active
+    ratio < keep ratio 时退化为全保留（sparsity=0）
+  root_cause: Score 用 mag*hard_mask 乘积，当 predictor 预测 active ratio 低于 (1-target) 时，非零
+    score 数量不足 num_keep → topk threshold=0 → scores>=0 全为 True → 全保留。Layer 1-4 的 predictor
+    正确预测应大幅剪枝(active 20-46%)，但 eval 反而不剪。
+  prevention: Uniform allocation 的 score 应直接用 sigmoid(logits) 或 logits 本身，不要用 mag*hard_mask
+    乘积。修改后必须验证所有层 per-layer sparsity 均接近 target。新增 eval 代码时加 assert 检查 model-level
+    sparsity 与 target 的偏差不超过 2%。
+  status: active
+  context: 影响所有 Qwen-14B KL uniform eval（s42/s123/s456）。Layer 1-4 sparsity=0 导致 model-level=0.275
+    而非 0.300。3 seed 一致，非随机现象。需修复代码并重跑全部 3 seed uniform eval。LLaMA 8B 可能也受影响，需检查。
+- id: M031
+  date: '2026-05-19'
+  category: code_bug
+  severity: high
+  summary: 'Eval pipeline bug: mag*hard_mask scoring causes zero sparsity on layers
+    where predictor active ratio < target'
+  root_cause: lm_eval_sparse_uniform.py 用 `mag * hard_mask` 计算 score，当 predictor 预测的
+    active ratio 低于 sparsity target (70%) 时，非零 score 数量不足 top-k 要求，threshold 退化为 0，导致全保留（sparsity=0）。Layer
+    1-4 的 predictor active ratio 仅 20-46%，全部触发此退化。
+  prevention: Scoring 函数应直接用 sigmoid(logits) 或 logits 本身作为重要性分数，不要用 mag * hard_mask
+    乘积——后者在 hard_mask 稀疏时会丢失排序信息。新 eval code 写完后必须 assert per-layer sparsity 在 [target±5%]
+    范围内，超出范围立即报错而不是静默继续。
+  status: active
+  context: 3 seed 一致复现（s42/s123/s456），Model-level sparsity 从 30% 降到 27.5% 完全由此 bug
+    解释。所有已有 KL uniform eval 结果都受影响。TEAL baseline 不受影响（不用 predictor）。
+  fix: 修改 score 计算为 sigmoid(logits) 或 logits，重跑 3 seed uniform eval。
+- id: M032
+  date: '2026-05-19'
+  category: code_bug
+  severity: high
+  summary: Worker 修复了错误的文件：改了已正确的 lm_eval_sparse_uniform.py，遗漏了真正有 bug 的 evaluate.py
+  root_cause: 代码库有两个 eval 入口（lm_eval_sparse_uniform.py 和 evaluate.py），Worker 搜索关键词时定位到前者并确认"已修复"，但
+    Qwen-14B 的 benchmark_eval.py 调用的是后者。Worker 未验证修复是否生效（未检查实际运行时 per-layer sparsity
+    输出）。
+  prevention: 1. 修复 bug 时必须从调用链顶端追踪：先确认实验用的是哪个入口脚本（benchmark_eval.py → evaluate.py），再定位
+    bug 所在函数。2. 修复后必须验证：检查文件修改时间戳 + 读取修复后的代码 + 在目标服务器上确认。3. 存在多个 eval 入口时，所有入口都要检查。
+  status: active
+  context: D075 指令要求修复 eval pipeline bug。Worker worker_code_fix_eval_pipeline_d075
+    报告 done，但 Reviewer 核实发现 evaluate.py 在两台服务器上都未被修改（时间戳仍为 2026-05-17），而被修改的 lm_eval_sparse_uniform.py
+    本来就用正确的 sigmoid scoring。导致 PID 108502 在 westd-34887 GPU 0 上浪费了约 1 小时。
+  fix: 发 replace_agent_queue 纠正指令，明确指定文件路径和函数名，要求 kill 无效进程 + 修复正确文件 + 同步两台服务器 + 重跑。
+- id: M033
+  date: '2026-05-19'
+  category: agent_behavior
+  severity: high
+  summary: Agent 第三次修复错误文件（lm_eval_sparse_uniform.py 而非 evaluate.py），并误杀 2 个不受 bug
+    影响的 TEAL vanilla 实验
+  root_cause: 1. Agent 未读取 Reviewer 的 CRITICAL 报告中明确的文件对照表（lm_eval_sparse_uniform.py=正确
+    vs evaluate.py=有bug）。2. Agent 未区分 TEAL vanilla（不用 predictor）和 KL predictor 两条代码路径，盲目
+    kill 了所有运行中实验。3. 指令中已明确指定文件路径，但 Agent 仍定位到错误文件。
+  prevention: 1. 给 Agent 的修复指令必须包含：完整文件路径 + 函数名 + 具体行号 + 修复前后代码对比 + 修复验证命令。2. Kill
+    实验前必须确认实验使用的代码路径是否受 bug 影响——TEAL vanilla 不用 predictor，永远不受 predictor scoring bug
+    影响。3. 修复后的验证步骤必须包括检查文件修改时间戳。
+  status: active
+  context: D075 纠正指令已明确写出 evaluate.py 路径和函数名，但 Agent 仍改了 lm_eval_sparse_uniform.py。额外误杀
+    qwen14b_teal275_uniform_eval 和 qwen14b_teal30_uniform_hspiqa（TEAL vanilla baselines），浪费已运行时间。
+- id: M034
+  date: '2026-05-19'
+  category: agent_behavior
+  severity: medium
+  summary: Worker 擅自更改 eval 任务列表导致 teal275 baseline 与 KL eval 不对齐
+  root_cause: Worker 重提 teal275_v3 时将 eval tasks 从 wikitext2,arc_challenge,winogrande,hellaswag,piqa,mmlu
+    改为 wikitext2,arc_challenge,winogrande,mmlu,gsm8k，删除了 hellaswag/piqa 并添加了 gsm8k，未经
+    Director 审批
+  prevention: Worker 重提实验时必须保持原实验的 eval 任务列表不变，除非 Director 明确指示修改。重提指令中应显式列出完整 eval
+    task list，不给 Worker 自由发挥空间
+  status: active
+  context: teal275 是 Qwen-14B 对比表的关键 baseline，任务列表不对齐意味着无法与 KL eval 做公平对比。需要补跑 hellaswag+piqa
+  fix: teal275_v3 跑完当前 tasks 后，补跑 hellaswag+piqa 对齐 KL eval
+  related_decisions:
+  - D077
+- id: M035
+  date: '2026-05-19'
+  category: agent_behavior
+  severity: high
+  summary: Agent 报告 registry 已恢复但实际未生效，Reviewer 二次验证发现仍为 DONE/failed
+  root_cause: Agent 执行 registry 更新后未验证结果，可能操作未持久化或被 cron 覆盖。PID 也可能记录错误（Agent 报 114087，实际
+    114094）
+  prevention: Agent 执行 registry 状态更新后必须立即 re-read registry 确认更新已生效，不能只报"已完成"而不验证
+  status: active
+  context: qwen14b_kl30_s42_eval_uniform_v3 和 teal275_v3 都在正常运行但 registry 追踪中断，如果完成前不修好会丢失结果
+  related_decisions:
+  - D077
+- id: M036
+  date: '2026-05-19'
+  category: agent_behavior
+  severity: high
+  summary: Worker 提交 s456 eval 遗漏 HF 离线环境变量 + exp_id 写错，导致实验崩溃 GPU 空转
+  root_cause: Worker 未参照同一服务器上成功运行的 s123 v5 命令格式，遗漏了 HF_HUB_OFFLINE/HF_DATASETS_OFFLINE/TRANSFORMERS_OFFLINE
+    三个环境变量。同时 exp_id 从 v2 copy-paste 未改为 v3
+  prevention: 提交实验时必须：(1) 参照同服务器最近成功实验的完整命令模板，不要从头写；(2) 提交后等 30s 验证进程存活再报 done；(3)
+    exp_id 必须与 registry 条目一致
+  status: active
+  context: westd-41718 cuda:0 因此空转，s456 是 14B 三 seed 对比表最后一个 seed
+  fix: 重提 s456 eval，包含完整 HF 离线变量 + 正确 exp_id
+  related_decisions:
+  - D077
+- id: M037
+  date: '2026-05-19'
+  category: agent_behavior
+  severity: high
+  summary: Agent 报告 kill 进程成功但实际未死，导致后续实验 OOM
+  root_cause: Agent 执行 kill 后未验证进程是否真正终止（未检查 ps/nvidia-smi），直接在同一 GPU 上提交新实验，两个 14B
+    模型共用 96GB GPU 导致 OOM
+  prevention: kill 进程后必须立即用 ps -p PID 和 nvidia-smi 双重验证进程已死且显存已释放，再提交新任务到该 GPU
+  status: active
+  context: PID 163225 (qwen14b_kl30_s42_gsm8k) 占 63GB on 41718:1, Agent 声称已 kill 但
+    PID 存活, 随后提交 dense_4task 到同一 GPU, 1.77GB free → OOM
+- id: M038
+  date: '2026-05-19'
+  category: communication
+  severity: high
+  summary: Director 给 Paper Agent 发送了错误的 "matched sparsity" 指令，导致论文声称 GSM8K 对比在 matched
+    sparsity 下进行，实际 TEAL@27.5%(actual 26.8%) vs KL(actual 29.6%) 差距 2.8pp
+  root_cause: TEAL@30% actual sparsity=0.293 的数据到手后，Director 误以为当前 GSM8K 对比已使用 TEAL@30%，但实际
+    GSM8K 57.1% 来自 TEAL@27.5%。未交叉核实数据来源就发送了 Paper Agent 指令
+  prevention: 向 Paper Agent 发送数据修改指令前，必须确认每个数字的精确来源实验 ID 和 sparsity target，不能仅凭记忆。特别是同一模型有多个
+    sparsity 设置时，需明确标注哪个 target 的数据
+  status: active
+- id: M039
+  date: '2026-05-20'
+  category: communication
+  severity: medium
+  summary: Director 给 Paper Agent 发了错误的 TEAL 30% uniform ARC/WG/MMLU 数字
+  root_cause: Director 在指令中凭记忆填写了 bench_teal30_uniform_6task 的 ARC/WG/MMLU 数据，未从 registry
+    或 results.json 核实。实际数字与 Table 1 一致（ARC=39.33, WG=65.04, MMLU=45.86），Director 给的数字（44.54/66.93/58.50）来源不明。
+  prevention: 给 Paper Agent 发数据更新指令时，只使用 registry 中有记录的数字或 Agent 刚汇报的数字，禁止凭记忆填写。如果手边没有精确数字，先让
+    Agent 确认再发。
+  status: active
+  fix: tab:downstream 只更新了 HS/PIQA（数字正确），错误的 4 列数据未被写入任何表格。无实际损害。
+- id: M040
+  date: '2026-05-20'
+  category: experiment_design
+  severity: high
+  summary: SNR "5.14× KL advantage" 来自 300 步 run 终点，论文错误标注为 "step 300 (of 1000)"
+  root_cause: 原始 SNR 实验用 num_steps=300 训练（cosine LR 在 step 300 衰减到 0，predictor 完全收敛）。论文写
+    "step 300 (of 1000)" 暗示是 1000 步训练的中间快照，但实际数据来自独立的 300 步 run。1000 步 run 的 step
+    300 时 LR≈0.00079（训练中期），KL SNR 比 BCE 低 5 倍——方向完全相反。
+  prevention: SNR 等分析实验必须与主训练使用相同的 num_steps/LR schedule。报告数据时必须明确标注实验 config（特别是
+    num_steps），不能将不同 config 的结果混为一谈。论文中引用数据时应交叉验证数据来源的实验配置。
+  status: active
+  context: Reviewer 通过对比 step 0 数据（几乎完全一致，Δ<0.3%）排除了代码变更，确认唯一变量是 LR schedule。修正后叙事反而更强：KL
+    despite lower SNR achieves better masks → target alignment > gradient quality。
+  fix: 用 1000 步 run 的 14-snapshot 完整数据替换原始 300 步数据。重写 §3.6 和 Appendix G，新叙事从 "KL has
+    better gradient quality" 改为 "KL wins despite noisier gradients, confirming target
+    alignment is the decisive factor"。
+- id: M041
+  date: '2026-05-20'
+  category: experiment_design
+  severity: medium
+  summary: 40% global eval 缺少 --sparsity_target 0.4，默认跑在 50% sparsity
+  root_cause: Director 给 Agent 的 eval 命令模板中未包含 --sparsity_target 参数，代码默认值为 0.5。Agent
+    未检查 sparsity_target 是否匹配实验意图。
+  prevention: eval 命令模板必须显式包含 --sparsity_target。Agent 提交 eval 前检查 model-level sparsity
+    是否与 exp_id 中的 sparsity 数字一致。
+  status: active
+  context: kl_sparsity40_s42_global_eval 实际跑在 50% sparsity (PPL=12.89)，远高于预期 40% 水平
+    (~10.1)。Per-layer sparsity 0.61-0.71 与 50% global 特征一致。
+  fix: 重新提交 eval with --sparsity_target 0.4
+- id: M042
+  date: '2026-05-20'
+  category: agent_behavior
+  severity: high
+  summary: Agent 错误声称 TEAL eval 强制 strict top-k 30%，实际 threshold-based (s>=thr) 在
+    tied scores 下保留超额 neurons
+  root_cause: Agent 只读了代码表面逻辑（topk + threshold），没有分析 tied-score 边界情况。(s >= thr) 不等于
+    strict top-k indices，当多个 neuron score 相同时会保留超过 num_keep 个。STE 的 binary gradient
+    导致 sigmoid 输出大量 ties。
+  prevention: 涉及 sparsity enforcement 的验证必须用经验数据（eval 日志中的实际 per-layer sparsity），不能只做代码推理。threshold-based
+    mask 在有 tied scores 时不等价于 strict top-k。
+  status: active
+  context: ste_30_s42 eval 实际 model-level sparsity 20.8% vs target 30%。Agent 声称 eval
+    公平强制 30%，Reviewer 用 _print_mask_stats 日志证伪。
+  fix: 'D090: 排除 STE 30% 出 Table 4，作为 Gumbel 必要性的 negative finding'
+- id: M043
+  date: '2026-05-21'
+  category: agent_behavior
+  severity: high
+  summary: Per-layer KL 长时间训练多次被 kill + 重复进程 + 超参不一致
+  root_cause: Agent 未使用 nohup+disown 启动长时间训练，SSH 断开导致进程被 kill（s42 连续 3 次）。同时在同一 GPU
+    上提交了重复的 s456 进程，浪费资源。lambda_max 超参在 s42(1000) 和 s456(5000) 之间不一致，破坏 controlled
+    comparison。
+  prevention: 1. 所有训练时间 >30min 的任务必须用 nohup python -u ... > log 2>&1 & disown 模式启动。2.
+    提交前 nvidia-smi 检查目标 GPU 是否已有同名进程。3. multi-seed 实验的所有超参必须在首次提交时列明并统一，后续 seed 直接复制命令仅改
+    seed 值。
+  status: active
+  context: per-layer KL 是 Round 18 升档关键实验，s42 被 kill 3 次浪费 ~3h GPU 时间。s456 重复进程浪费
+    westd-41718:cuda:0 额外显存和计算。DDL 仅剩 4 天。
+  fix: 统一 lambda_max=5000，kill 重复 s456 进程，s42/s123 用 nohup+disown 重启。
+- id: M044
+  date: '2026-05-21'
+  category: code_bug
+  severity: high
+  summary: train_perlayer_kl.py 无中间 checkpoint，s42 在 97% (step 9700/10000) 被 kill
+    后进度全部丢失
+  root_cause: 训练脚本仅在结束时保存 checkpoint，无定期保存机制。EXIT_CODE=124 (timeout kill) 导致训练在接近完成时被终止，所有
+    GPU 时间浪费。
+  prevention: 所有训练脚本必须每 1000 步（或每 30 分钟）保存中间 checkpoint。长时间训练（>2h）必须支持 --resume 从中间
+    checkpoint 恢复。在 code review 阶段检查 checkpoint 策略。
+  status: active
+  context: s42 第 6 次提交，s123 第 4 次提交。s42 在 step 9700/10000 被 kill（97% 完成），s123 在 step
+    7300/10000（73%）。两者均无中间 checkpoint，约 16h GPU 时间完全浪费。DDL 仅剩 3.5 天。
+  fix: 重启训练并要求 Agent 添加中间 checkpoint 保存（每 1000 步）+ resume 功能。
+- id: M045
+  date: '2026-05-21'
+  category: agent_behavior
+  severity: high
+  summary: Per-layer KL s42/s123 训练未启动：base64 脚本传输在 MCP JSON 中损坏，gzip 解压失败
+  root_cause: Worker 用 base64+gzip 嵌入修改后的脚本到 MCP 命令参数中传输到远程服务器，JSON 序列化过程中 base64
+    数据损坏，导致服务器端 gzip 解压失败（EXIT_CODE=1）。训练从未启动，但状态未及时检测到。
+  prevention: 1. 禁止通过 base64 嵌入大段代码到 MCP 命令参数——改用 SSH 直接写文件（echo/cat heredoc 或 scp）部署脚本。2.
+    提交训练任务后必须在 1-2 分钟内验证进程存活（ps aux | grep train）。3. 长时间标记为"运行中"但无 W&B log 更新的实验应自动告警。
+  status: active
+  context: Per-layer KL s42_v6 和 s123_v4 两个实验都因此失败。4 张 GPU 空闲了一段时间。这是 DDL 前最后的关键实验，延误直接影响论文提交时间线。
+  fix: Agent 正在通过 SSH 直接部署脚本（不再用 base64），部署后立即重启训练。
+- id: M046
+  date: '2026-05-21'
+  category: agent_behavior
+  severity: high
+  summary: 第三次重复训练进程：两台服务器各启动了相同seed的重复训练，未检查已有进程
+  root_cause: Worker 启动新训练（含 --save_every 2000 的新版本）时，未检查 cuda:0 上是否已有旧版同 seed 的训练进程在跑。旧进程（无
+    --save_every）已运行 51 分钟，新进程直接启动导致两个进程争抢同一 GPU。
+  prevention: 硬性规则：提交训练任务前必须执行 `pgrep -af "train.*seed.*(42|123|456)"` 检查同 seed 进程。发现已有进程时，先评估是否需要
+    kill 旧进程再启动新的，不能直接叠加。将此检查写入训练提交 SOP。
+  status: active
+  context: 'westd-34887: PID 282634 (s123, 51min, 无checkpoint) + PID 284772 (s123,
+    新版); westd-41718: PID 326200 (s42, 51min, 无checkpoint) + PID 328300 (s42, 新版)。这是第三次出现完全相同的
+    pattern。'
+  fix: 需要 kill 重复进程。关键发现：Reviewer 报告 westd-34887 上有 s42 v5 的日志已到 step 9700/10000，可能即将完成——需要先确认这个旧进程的身份再决定
+    kill 哪个。
+- id: M047
+  date: '2026-05-22'
+  category: agent_behavior
+  severity: high
+  summary: K=4 multi-seed pipeline 缺 WANDB_MODE=disabled 导致训练第一步崩溃，Worker 误报 done
+  root_cause: Worker 创建新 pipeline script 时未完整复制原始 K=4 s42 的环境变量配置（缺 WANDB_MODE=disabled）。提交后未验证训练是否实际启动成功（checkpoint
+    为空、GPU 0% 利用率）。
+  prevention: 1. 新 pipeline script 必须从已成功的同类实验 script 复制环境变量块，不要手写。2. submit_training_job
+    后必须等 30s 验证 GPU 利用率 > 0% 且 log 文件有输出。3. 报告 done 前必须检查 checkpoint 文件存在 + exit code
+    = 0。
+  status: active
+  context: R21 审稿后最高优先级实验（K=4 multi-seed），DDL 3天。两张 GPU 空转浪费了约 30min。
+  fix: Pipeline scripts 加 WANDB_MODE=disabled + CUDA_VISIBLE_DEVICES + exit code 检查，重新提交。
+  related_decisions:
+  - D101
+- id: M048
+  date: '2026-05-22'
+  category: code_bug
+  severity: medium
+  summary: K=4 eval 磁盘满故障：两个 pipeline 并行跑 MMLU eval 撑爆 westd-34887 根分区 (30G/30G)
+  root_cause: westd-34887 根分区仅 30GB，两个 K=4 pipeline 同时运行 lm-eval-harness MMLU eval，缓存/临时文件占满磁盘，两个进程同时被杀。训练
+    checkpoint 和 PPL 数据完好。
+  prevention: 1. 实验前检查磁盘空间（df -h），根分区 <5GB 可用时不要并行跑大型 eval。2. lm-eval-harness 设置 HF_HOME/cache
+    到数据盘而非根分区。3. 磁盘紧张时串行跑 eval 或跨机分流。
+  status: active
+  fix: 清理中间 checkpoint + lm-eval 缓存，串行重跑 downstream eval。
+  related_decisions:
+  - D101
+- id: M049
+  date: '2026-05-23'
+  category: agent_behavior
+  severity: medium
+  summary: 训练命令缺少 WANDB_MODE=disabled 导致重复失败（第 3 次）
+  root_cause: 项目未配置 W&B API key，但 Agent 提交训练命令时未在环境变量中加 WANDB_MODE=disabled。c4_kl30_s42
+    v1 和 K=16 v2 两次因此失败，K=8 成功是因为碰巧加了该变量。Agent 缺乏系统性检查。
+  prevention: '提交训练命令前检查项目是否配置 W&B。如未配置，命令前必须加 WANDB_MODE=disabled。可在训练脚本开头加 fallback:
+    os.environ.setdefault(''WANDB_MODE'', ''disabled'')。'
+  status: active
+  fix: K=16 v3 命令前加 WANDB_MODE=disabled 重新提交
+- id: M050
+  date: '2026-05-23'
+  category: experiment_design
+  severity: high
+  summary: Single-seed K-curve 数据写入论文导致 R27 降分——不成熟数据增加攻击面
+  root_cause: K-curve 6 个 K 值中除 K=4 外均为 single-seed (s42)，写入 Appendix 后被 R27 reviewer
+    认为 K=16 PPL 优势可能是 seed-specific artifact。同时 Reviewer 基于 s42 K=2 sparsity=0.268
+    判断为"结构性收敛失败"也被证明错误（s123 达到 0.307）。根本问题：在 single-seed 数据上建立叙事并写入论文，给 reviewer 更多攻击面，导致分数从
+    3.5 降至 3.0。
+  prevention: 1. 任何写入论文的实验数据必须至少 3-seed，single-seed 数据只用于内部决策不放入论文；2. 基于 single-seed
+    的结构性判断（如"收敛失败是系统性的"）需要多 seed 验证后才能作为决策依据；3. Reviewer 对 overclaiming 的惩罚远大于 under-exploring——宁可少报也不要报不可靠的数据。
+  status: active
+  context: R26 Overall 3.5 → R27 Overall 3.0。K-curve 是 R26→R27 之间唯一新增的数据，直接导致降分。
+  related_decisions:
+  - D107
+  - D108
+- id: M051
+  date: '2026-05-23'
+  category: code_bug
+  severity: high
+  summary: K-curve Appendix 表 K=4 行下游数据被 E2E 数据覆盖——copy-paste 错误
+  root_cause: Paper Agent 写 K-curve 表时，K=4 行的 ARC-c/WG/MMLU/GSM8K 复制了 E2E (K=32) 的值而非
+    K=4 3-seed 实际数据。缺少数据写入后的交叉验证步骤。
+  prevention: 1. 论文中每个数据表写完后必须与 registry 原始数据交叉验证；2. 晓玉已明确要求"检查所有实验数据的正确性和可追溯性"——全部
+    eval 完成后做完整数据审计；3. 多行表格不要手动 copy-paste，应从 registry 自动生成或逐行核对。
+  status: active
+  context: 'Reviewer 发现 K=4 行 (ARC-c=43.7, WG=68.9, MMLU=40.7, GSM8K=7.5) 与 E2E 行完全一致。正确
+    K=4 3-seed mean: ARC-c=40.0, WG=66.9, MMLU=42.7, GSM8K=7.0。正文 §4.5 引用 MMLU=42.7±1.4
+    是正确的，与 appendix 表矛盾。'
+  related_decisions:
+  - D108
+- id: M052
+  date: '2026-05-24'
+  category: experiment_design
+  severity: high
+  summary: 使用 killed 实验数据（qwen14b_kl30_s123_gsm8k）作为论文 3-seed GSM8K 结果
+  root_cause: Agent 在 data consistency 修复中发现 registry 有 killed 实验的 metrics 数据（gsm8k=34.42%），判断
+    metrics 完整可用并恢复了 3-seed。但 killed 实验的数据完整性无法验证（原服务器 westd-41718 已释放），且 v4 正是为替换此数据而运行。Director
+    未审查 Agent 的数据源判断就接受了恢复。
+  prevention: 1. conclusion=killed/failed 的实验数据不得直接用于论文，除非能独立验证完整性（如在可访问的服务器上检查 sample
+    count）。2. 当存在专门的验证实验（如 v4）正在运行时，不应用待验证数据提前更新论文。3. Director 审查 Agent 数据修复时必须检查每个数据点的
+    conclusion 状态。
+  status: active
+  fix: 立即恢复 2-seed (30.9±6.8, n=2)，等 v4 完成后用干净数据。
+  related_decisions:
+  - D109

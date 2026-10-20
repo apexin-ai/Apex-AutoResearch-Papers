@@ -1,0 +1,419 @@
+# Research conversation: [HANDOFF] 你是 Main Agent，这是 Loop #3。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - GPU 白名单：westd-34887 cuda:0 和 cuda:1，不可用其
+
+**Output-Distribution Distillation for Contextual Sparsity Prediction in SwiGLU LLMs (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 7
+- **Recorded user turns:** 1
+- **Tool calls:** 0
+- **Original source:** `logs/chats/exported-trajectories/account-2/554e72ae-f608-4d29-a4fa-2b86638328e5.jsonl`
+- **Structured JSON:** [`c18e8d0a76bb768fe704.json`](../../sessions/c1/c18e8d0a76bb768fe704.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-15T22:29:34.649Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-15T22:29:34.649Z",
+  "sessionId": "554e72ae-f608-4d29-a4fa-2b86638328e5",
+  "content": "[HANDOFF] 你是 Main Agent，这是 Loop #3。\n\n## 上一轮交接 (task_context)\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-34887 cuda:0 和 cuda:1，不可用其他设备\n- submit_training_job 命令必须 `bash -c \"...\"` 包裹（tmux 用 sh 不是 bash）\n- 所有训练必须加 `--gradient_checkpointing`（不加则 OOM >96GB，零日志死亡）\n- 必须设 `TRANSFORMERS_OFFLINE=1`（服务器无 HF 网络）\n- output_dir 必须从 exp_id 派生，不要复用旧实验路径（已出过两次 bug）\n- GPU 编号脚本内始终 `--gpu 0`（框架注入 CUDA_VISIBLE_DEVICES 映射物理卡）\n- BCE 论文叙事用 \"objective mismatch\" 非 \"anti-learning\"\n- KL PPL 对比统一用 4-seed mean 12.00±0.07，不用单 seed 11.91\n- SPON framing 用 \"marginal complement\" 非 \"subsumption\"\n- lambda_max 已参数化（train.py --lambda_max），低 sparsity target 需 ≥5000\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-34887，项目路径 `/root/distill_sparse_swiglu/`\n- Python：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`（conda 环境，无 venv）\n- 模型：Llama-3.1-8B `/root/autodl-tmp/models/llama-3.1-8b`，Mistral-7B `/root/autodl-tmp/models/mistral-7b/`\n- 数据集：wikitext-103（HF cached），WikiText-2（eval cached）\n- W&B：offline mode（`WANDB_MODE=offline`）\n- 活跃进程：\n  - mistral_kl_s42 (PID 147627, tmux=mistral_kl_s42, cuda:1) — plan_009 Mistral KL 训练\n  - kl_sparsity30_s42_v3 可能已完成或需重提交到 cuda:0 — Worker 正在检查\n- 活跃 Workers：\n  - `worker_ops_check_sparsity30_v3_and_resubmit_20260515T221247` — 检查 v3 状态 + 处理 cuda:0\n  - `worker_code_fix_teal_greedy_alignment_20260515T220706` — evaluate.py TEAL per-layer normalization bug fix\n  - `worker_ops_lm_eval_dataset_precache_20260515T220904` — lm-eval 数据集预缓存\n- 脚本产出：`src/eval_benchmark.py`（plan_007 lm-eval 脚本，640行，已验证），`scripts/run_plan007_benchmark.sh`\n\n### 3. 📊 当前状态\n刚完成：plan_006 training-free baseline CRITICAL bug fix（per-layer mean normalization），sparsity70 eval（hard_mask=13.84），bce_isocompute_v2 eval（TEAL=54.84），Mistral 提交。\n\nRegistry RUNNING/PREPARING 关键实验：\n- `mistral_kl_s42` PREPARING — plan_009 Mistral KL 50% sparsity 训练，刚提交\n- `kl_sparsity30_s42_v3` PREPARING — lambda_max=5000 重跑，约 1 小时前提交到 cuda:1，状态不明（Worker 正在诊断）\n\n等待中：\n- 3 个 Worker 回调（sparsity30 检查、TEAL fix、dataset precache）\n- Director 决策：是否需要修 predictor TEAL path 的 normalization bug（sparsity70 TEAL PPL=136K 异常，hard_mask=13.84 正常）\n- plan_007 full benchmark 等 TEAL fix + dataset precache 完成后启动\n\n### 4. 📋 待办（条件触发式）\n- TEAL fix Worker 完成 → 立即重跑 kl_sparsity70 TEAL eval（用修复后的 evaluate.py）\n- sparsity30_v3 检查 Worker 回调 → 如已完成则跑 eval，如失败则已重提交到 cuda:0\n- dataset precache Worker 完成 → 启动 plan_007 第一批 benchmark（KL-only + training-free，先用空闲 GPU）\n- mistral_kl_s42 完成 → 跑 eval，如果 Mistral PPL 趋势与 Llama 一致则跨架构验证 success\n- sparsity30_v3 eval + sparsity70 eval 齐备 → 汇总 30/50/70 三点 sparsity sweep，画 KL-BCE delta vs sparsity 趋势\n- plan_007 KL-only benchmark 完成 → 继续 training-free → BCE/STE/SPON conditions\n- plan_001 剩余：BCE+comp 补 2 seeds (s123, s0)，KL+comp 跳过（Director 决策）\n\n### 5. 🎯 战略上下文\n- **目标**：EMNLP 2026 ARR May（DDL 2026-05-25，剩 10 天）\n- **核心结论链**：\n  - Claim 1: KL >> BCE（iso-compute TEAL PPL 12.00 vs 54.84，4.6x gap）；BCE 甚至比 training-free 差（objective mismatch）\n  - Claim 2: SPON corrections are orthogonal and negligibly small（cos_sim=0.196, magnitude ratio=16%, recovery 7.3%）\n  - Claim 3: sparsity sweep 数据收集中（50%=12.00, 70% hard_mask=13.84 但 TEAL 有 bug, 30% 待 v3）\n- **TEAL normalization bug 是 critical path**：影响所有 TEAL PPL 数字（plan_006 已修 training-free 路径，predictor 路径待修）。50% KL TEAL=12.00 之前没爆可能只是因为 50% sparsity 层间压力小。修复后所有 TEAL PPL 可能需要重新评估\n- **易错点**：\n  - 不要假设旧的 TEAL PPL 数字（如 KL 4-seed mean 12.00±0.07）在 fix 后仍然有效——修完 bug 后必须重跑\n  - evaluate.py 和 baselines.py 是两套代码，bug fix 要同步到两边\n  - sparsity30 的 lambda_max 问题：1000 不够，5000 是否够需要看 v3 结果\n  - Mistral vocab_size=32768 vs Llama 128256，KL loss 计算无问题但显存 pattern 不同\n\n## 可查的历史\n前 17 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。\n完整聊天归档可用 `recall_session_history(\"关键词\")` 搜索。\n\n## 第一个动作要求\n1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）\n2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-15T22:29:34.653Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-15T22:29:34.653Z",
+  "sessionId": "554e72ae-f608-4d29-a4fa-2b86638328e5"
+}
+```
+
+---
+
+## Round 1
+
+5 recorded events
+
+### User
+
+_source line 3 · 2026-05-15T22:29:34.694Z_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #3。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：westd-34887 cuda:0 和 cuda:1，不可用其他设备
+- submit_training_job 命令必须 `bash -c "..."` 包裹（tmux 用 sh 不是 bash）
+- 所有训练必须加 `--gradient_checkpointing`（不加则 OOM >96GB，零日志死亡）
+- 必须设 `TRANSFORMERS_OFFLINE=1`（服务器无 HF 网络）
+- output_dir 必须从 exp_id 派生，不要复用旧实验路径（已出过两次 bug）
+- GPU 编号脚本内始终 `--gpu 0`（框架注入 CUDA_VISIBLE_DEVICES 映射物理卡）
+- BCE 论文叙事用 "objective mismatch" 非 "anti-learning"
+- KL PPL 对比统一用 4-seed mean 12.00±0.07，不用单 seed 11.91
+- SPON framing 用 "marginal complement" 非 "subsumption"
+- lambda_max 已参数化（train.py --lambda_max），低 sparsity target 需 ≥5000
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-34887，项目路径 `/root/distill_sparse_swiglu/`
+- Python：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`（conda 环境，无 venv）
+- 模型：Llama-3.1-8B `/root/autodl-tmp/models/llama-3.1-8b`，Mistral-7B `/root/autodl-tmp/models/mistral-7b/`
+- 数据集：wikitext-103（HF cached），WikiText-2（eval cached）
+- W&B：offline mode（`WANDB_MODE=offline`）
+- 活跃进程：
+  - mistral_kl_s42 (PID 147627, tmux=mistral_kl_s42, cuda:1) — plan_009 Mistral KL 训练
+  - kl_sparsity30_s42_v3 可能已完成或需重提交到 cuda:0 — Worker 正在检查
+- 活跃 Workers：
+  - `worker_ops_check_sparsity30_v3_and_resubmit_20260515T221247` — 检查 v3 状态 + 处理 cuda:0
+  - `worker_code_fix_teal_greedy_alignment_20260515T220706` — evaluate.py TEAL per-layer normalization bug fix
+  - `worker_ops_lm_eval_dataset_precache_20260515T220904` — lm-eval 数据集预缓存
+- 脚本产出：`src/eval_benchmark.py`（plan_007 lm-eval 脚本，640行，已验证），`scripts/run_plan007_benchmark.sh`
+
+### 3. 📊 当前状态
+刚完成：plan_006 training-free baseline CRITICAL bug fix（per-layer mean normalization），sparsity70 eval（hard_mask=13.84），bce_isocompute_v2 eval（TEAL=54.84），Mistral 提交。
+
+Registry RUNNING/PREPARING 关键实验：
+- `mistral_kl_s42` PREPARING — plan_009 Mistral KL 50% sparsity 训练，刚提交
+- `kl_sparsity30_s42_v3` PREPARING — lambda_max=5000 重跑，约 1 小时前提交到 cuda:1，状态不明（Worker 正在诊断）
+
+等待中：
+- 3 个 Worker 回调（sparsity30 检查、TEAL fix、dataset precache）
+- Director 决策：是否需要修 predictor TEAL path 的 normalization bug（sparsity70 TEAL PPL=136K 异常，hard_mask=13.84 正常）
+- plan_007 full benchmark 等 TEAL fix + dataset precache 完成后启动
+
+### 4. 📋 待办（条件触发式）
+- TEAL fix Worker 完成 → 立即重跑 kl_sparsity70 TEAL eval（用修复后的 evaluate.py）
+- sparsity30_v3 检查 Worker 回调 → 如已完成则跑 eval，如失败则已重提交到 cuda:0
+- dataset precache Worker 完成 → 启动 plan_007 第一批 benchmark（KL-only + training-free，先用空闲 GPU）
+- mistral_kl_s42 完成 → 跑 eval，如果 Mistral PPL 趋势与 Llama 一致则跨架构验证 success
+- sparsity30_v3 eval + sparsity70 eval 齐备 → 汇总 30/50/70 三点 sparsity sweep，画 KL-BCE delta vs sparsity 趋势
+- plan_007 KL-only benchmark 完成 → 继续 training-free → BCE/STE/SPON conditions
+- plan_001 剩余：BCE+comp 补 2 seeds (s123, s0)，KL+comp 跳过（Director 决策）
+
+### 5. 🎯 战略上下文
+- **目标**：EMNLP 2026 ARR May（DDL 2026-05-25，剩 10 天）
+- **核心结论链**：
+  - Claim 1: KL >> BCE（iso-compute TEAL PPL 12.00 vs 54.84，4.6x gap）；BCE 甚至比 training-free 差（objective mismatch）
+  - Claim 2: SPON corrections are orthogonal and negligibly small（cos_sim=0.196, magnitude ratio=16%, recovery 7.3%）
+  - Claim 3: sparsity sweep 数据收集中（50%=12.00, 70% hard_mask=13.84 但 TEAL 有 bug, 30% 待 v3）
+- **TEAL normalization bug 是 critical path**：影响所有 TEAL PPL 数字（plan_006 已修 training-free 路径，predictor 路径待修）。50% KL TEAL=12.00 之前没爆可能只是因为 50% sparsity 层间压力小。修复后所有 TEAL PPL 可能需要重新评估
+- **易错点**：
+  - 不要假设旧的 TEAL PPL 数字（如 KL 4-seed mean 12.00±0.07）在 fix 后仍然有效——修完 bug 后必须重跑
+  - evaluate.py 和 baselines.py 是两套代码，bug fix 要同步到两边
+  - sparsity30 的 lambda_max 问题：1000 不够，5000 是否够需要看 v3 结果
+  - Mistral vocab_size=32768 vs Llama 128256，KL loss 计算无问题但显存 pattern 不同
+
+## 可查的历史
+前 17 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "bb981e45-8a74-4046-9f6d-354c6c6feb88",
+  "type": "user",
+  "uuid": "9113bca7-7315-424d-8bc6-d21d2e2d5bd3",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/agent_1709b81f",
+  "sessionId": "554e72ae-f608-4d29-a4fa-2b86638328e5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-15T22:29:34.693Z_
+
+```json
+{
+  "parentUuid": "9113bca7-7315-424d-8bc6-d21d2e2d5bd3",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__allocate_and_submit",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__approve_worker",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__backup_project_to_s3",
+      "mcp__agent-ml-research__cancel_worker",
+      "mcp__agent-ml-research__check_job_status",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__edit_paper_section",
+      "mcp__agent-ml-research__feishu_read_tum_pending_key",
+      "mcp__agent-ml-research__feishu_send_alert",
+      "mcp__agent-ml-research__feishu_send_approval_card",
+      "mcp__agent-ml-research__feishu_send_result_card",
+      "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_baseline_metrics",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_matrix_value",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__get_tum_config",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__impact_analysis",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__list_artifacts",
+      "mcp__agent-ml-research__list_available_gpus",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__list_s3_backups",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__matrix_gap_analysis",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__poll_cron",
+      "mcp__agent-ml-research__poll_secret_request",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__register_cron",
+      "mcp__agent-ml-research__request_secret",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__send_progress",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__submit_on_allocated",
+      "mcp__agent-ml-research__submit_training_job",
+      "mcp__agent-ml-research__sync_matrix_status",
+      "mcp__agent-ml-research__tail_training_logs",
+      "mcp__agent-ml-research__update_baseline",
+      "mcp__agent-ml-research__update_matrix",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__verify_references",
+      "mcp__agent-ml-research__write_paper_section"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__allocate_and_submit",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__approve_worker",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__backup_project_to_s3",
+      "mcp__agent-ml-research__cancel_worker",
+      "mcp__agent-ml-research__check_job_status",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__edit_paper_section",
+      "mcp__agent-ml-research__feishu_read_tum_pending_key",
+      "mcp__agent-ml-research__feishu_send_alert",
+      "mcp__agent-ml-research__feishu_send_approval_card",
+      "mcp__agent-ml-research__feishu_send_result_card",
+      "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_baseline_metrics",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_matrix_value",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__get_tum_config",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__impact_analysis",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__list_artifacts",
+      "mcp__agent-ml-research__list_available_gpus",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__list_s3_backups",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__matrix_gap_analysis",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__poll_cron",
+      "mcp__agent-ml-research__poll_secret_request",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__register_cron",
+      "mcp__agent-ml-research__request_secret",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__send_progress",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__submit_on_allocated",
+      "mcp__agent-ml-research__submit_training_job",
+      "mcp__agent-ml-research__sync_matrix_status",
+      "mcp__agent-ml-research__tail_training_logs",
+      "mcp__agent-ml-research__update_baseline",
+      "mcp__agent-ml-research__update_matrix",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__verify_references",
+      "mcp__agent-ml-research__write_paper_section"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "795bc575-f152-4e95-8420-c8d083e56bc0",
+  "timestamp": "2026-05-15T22:29:34.693Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/agent_1709b81f",
+  "sessionId": "554e72ae-f608-4d29-a4fa-2b86638328e5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-15T22:29:34.693Z_
+
+```json
+{
+  "parentUuid": "795bc575-f152-4e95-8420-c8d083e56bc0",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "8d5902c1-895b-46ab-b348-42ef559897c5",
+  "timestamp": "2026-05-15T22:29:34.693Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/agent_1709b81f",
+  "sessionId": "554e72ae-f608-4d29-a4fa-2b86638328e5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-15T22:29:34.693Z_
+
+```json
+{
+  "parentUuid": "8d5902c1-895b-46ab-b348-42ef559897c5",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "fe713d48-1aaa-4169-85f4-5022b468dd21",
+  "timestamp": "2026-05-15T22:29:34.693Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/agent_1709b81f",
+  "sessionId": "554e72ae-f608-4d29-a4fa-2b86638328e5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Main Agent Loop 3 registry check and worker callback processing",
+  "sessionId": "554e72ae-f608-4d29-a4fa-2b86638328e5"
+}
+```
+
+---

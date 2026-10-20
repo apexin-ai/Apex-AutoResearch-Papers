@@ -1,0 +1,7895 @@
+# Research conversation: [HANDOFF] 你是 Research Reviewer，这是 Loop #14。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - GPU 白名单：westd-34887 cuda:0, cuda — Part 2 of 4
+
+**Output-Distribution Distillation for Contextual Sparsity Prediction in SwiGLU LLMs (July export snapshot)** · Conversation logs
+
+[← Part 1](part-001.md) · [Transcript overview](../research-conversation-handoff-research-reviewer-loop-14-task-context-1-gpu-westd-34887-cuda-0-cuda.md) · [Part 3 →](part-003.md) · [Structured JSON](../../../sessions/b4/b40b5ff0c12f339bcac9.json)
+
+## Round 19
+
+### Tool call
+
+_source line 261 · 2026-05-24T03:18:23.891Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01ULDcvwpdkaPLK22inRtBm9`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/conclusion.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d21f5dba-5a2d-47c0-85ce-240f6146b9ac",
+  "isSidechain": false,
+  "requestId": "req_011CbLfr6dw99drmcQNLfp7U",
+  "type": "assistant",
+  "uuid": "5624601a-fd70-4f3d-8152-5d4b0f4368ba",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L4UEe9hd3i5Q89eMvgktEY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3952,
+      "cache_read_input_tokens": 104051,
+      "output_tokens": 335,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3952,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 335,
+          "cache_read_input_tokens": 104051,
+          "cache_creation_input_tokens": 3952,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3952
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 262 · 2026-05-24T03:18:24.653Z_
+
+<details><summary>↩ Tool result · `toolu_01WV2QhgjMtHFKGymyiSccCT`</summary>
+
+```text
+1	\section*{Limitations}
+2	
+3	Our findings are bounded by three limitations.
+4	\textbf{Sparsity sweet spot.} 30\% is the lowest-degradation level; at 50\%, all methods collapse to near-random on reasoning tasks, and a separate predictor must be retrained per target.
+5	\textbf{Knowledge-intensive regression.} KL consistently underperforms on MMLU and GSM8K across scales (8B: $-$5.2pp MMLU; 14B: $-$20pp GSM8K), suggesting output-distribution objectives systematically sacrifice reasoning-critical pathways.
+6	\textbf{Evaluation scope.} All predictors train on WikiText-103; C4 evaluation shows preserved KL advantage but $31\times$ higher cross-seed variance. Open-ended generation (e.g., MT-Bench) and contexts beyond 2048 tokens remain untested.
+7	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "356a5380-ab2a-4073-8b85-4f016cfbcad4",
+  "isSidechain": false,
+  "promptId": "2592e8e0-a6d0-474e-b4ec-8e113926083a",
+  "type": "user",
+  "uuid": "5efdc2af-f372-4db5-848a-b8ea424c7cde",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/limitations.tex",
+      "content": "\\section*{Limitations}\n\nOur findings are bounded by three limitations.\n\\textbf{Sparsity sweet spot.} 30\\% is the lowest-degradation level; at 50\\%, all methods collapse to near-random on reasoning tasks, and a separate predictor must be retrained per target.\n\\textbf{Knowledge-intensive regression.} KL consistently underperforms on MMLU and GSM8K across scales (8B: $-$5.2pp MMLU; 14B: $-$20pp GSM8K), suggesting output-distribution objectives systematically sacrifice reasoning-critical pathways.\n\\textbf{Evaluation scope.} All predictors train on WikiText-103; C4 evaluation shows preserved KL advantage but $31\\times$ higher cross-seed variance. Open-ended generation (e.g., MT-Bench) and contexts beyond 2048 tokens remain untested.\n",
+      "numLines": 7,
+      "startLine": 1,
+      "totalLines": 7
+    }
+  },
+  "sourceToolAssistantUUID": "356a5380-ab2a-4073-8b85-4f016cfbcad4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 263 · 2026-05-24T03:18:23.896Z_
+
+<details><summary>↩ Tool result · `toolu_01ULDcvwpdkaPLK22inRtBm9`</summary>
+
+```text
+1	\section{Conclusion}
+2	\label{sec:conclusion}
+3	
+4	At moderate sparsity (30\%), output-distribution alignment is the primary design dimension: signal type may account for most of the PPL gap (upper bound; Appendices~\ref{app:k4_downstream},~\ref{app:constraint}).
+5	A $<$1\% predictor reduces TEAL's PPL by 14.5\% via divergent masks; directional downstream gains but knowledge regression persist across scales.
+6	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5624601a-fd70-4f3d-8152-5d4b0f4368ba",
+  "isSidechain": false,
+  "promptId": "2592e8e0-a6d0-474e-b4ec-8e113926083a",
+  "type": "user",
+  "uuid": "bbb0bcf0-6435-4055-ad9d-340bdaa27269",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/conclusion.tex",
+      "content": "\\section{Conclusion}\n\\label{sec:conclusion}\n\nAt moderate sparsity (30\\%), output-distribution alignment is the primary design dimension: signal type may account for most of the PPL gap (upper bound; Appendices~\\ref{app:k4_downstream},~\\ref{app:constraint}).\nA $<$1\\% predictor reduces TEAL's PPL by 14.5\\% via divergent masks; directional downstream gains but knowledge regression persist across scales.\n",
+      "numLines": 6,
+      "startLine": 1,
+      "totalLines": 6
+    }
+  },
+  "sourceToolAssistantUUID": "5624601a-fd70-4f3d-8152-5d4b0f4368ba",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 264 · 2026-05-24T03:18:24.574Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_011kbz2E2AJPwBENb6HAtdie`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/abstract.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bbb0bcf0-6435-4055-ad9d-340bdaa27269",
+  "isSidechain": false,
+  "requestId": "req_011CbLfr6dw99drmcQNLfp7U",
+  "type": "assistant",
+  "uuid": "5a277aa8-6d17-4903-b7ce-11c8c5c10bff",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L4UEe9hd3i5Q89eMvgktEY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3952,
+      "cache_read_input_tokens": 104051,
+      "output_tokens": 335,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3952,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 335,
+          "cache_read_input_tokens": 104051,
+          "cache_creation_input_tokens": 3952,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3952
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 265 · 2026-05-24T03:18:24.579Z_
+
+<details><summary>↩ Tool result · `toolu_011kbz2E2AJPwBENb6HAtdie`</summary>
+
+```text
+1	Learned sparsity predictors for SwiGLU LLMs predominantly use binary cross-entropy (BCE), training each neuron independently, yet inference allocates budgets globally via top-$k$ ranking.
+2	We train lightweight predictors ($<$1\% of base parameters) with forward KL divergence, coupling all mask decisions through the output distribution.
+3	On LLaMA-3.1-8B at 30\% sparsity, the KL predictor reduces perplexity by 14.5\% over TEAL at matched sparsity, with directional commonsense gains ($n{=}3$) but knowledge-intensive regression (MMLU $-$5.2pp on 8B; GSM8K $-$20.1pp on 14B); post-hoc compensation (+67.2M params) becomes redundant.
+4	Output-distribution optimization yields masks that diverge 46--68\% from magnitude-based targets; a target-swap ablation suggests these discovered patterns carry most of the quality information: BCE trained on KL-derived targets approaches KL-level PPL (PPL gap $\leq$0.65pp; 3-seed, 30\%).
+5	Signal type (output-distribution vs.\ intermediate loss) may account for a substantial portion of the PPL gap at moderate sparsity (30\%) (upper bound; \S\ref{sec:perlayer}).
+6	On downstream tasks, cross-layer coupling contributes substantially for commonsense reasoning but minimally for mathematical reasoning (3-seed $K{=}4$-corrected decomposition).
+7	Cross-architecture evaluation on Mistral-7B-v0.3 and Qwen-2.5-14B confirms PPL generalization with scale-dependent downstream effects.
+8	This is primarily an empirical study; wall-clock speedup requires sparse kernel support not addressed here.
+9	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5a277aa8-6d17-4903-b7ce-11c8c5c10bff",
+  "isSidechain": false,
+  "promptId": "2592e8e0-a6d0-474e-b4ec-8e113926083a",
+  "type": "user",
+  "uuid": "792e5370-0da3-410c-b21d-003c7b77bfe2",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/abstract.tex",
+      "content": "Learned sparsity predictors for SwiGLU LLMs predominantly use binary cross-entropy (BCE), training each neuron independently, yet inference allocates budgets globally via top-$k$ ranking.\nWe train lightweight predictors ($<$1\\% of base parameters) with forward KL divergence, coupling all mask decisions through the output distribution.\nOn LLaMA-3.1-8B at 30\\% sparsity, the KL predictor reduces perplexity by 14.5\\% over TEAL at matched sparsity, with directional commonsense gains ($n{=}3$) but knowledge-intensive regression (MMLU $-$5.2pp on 8B; GSM8K $-$20.1pp on 14B); post-hoc compensation (+67.2M params) becomes redundant.\nOutput-distribution optimization yields masks that diverge 46--68\\% from magnitude-based targets; a target-swap ablation suggests these discovered patterns carry most of the quality information: BCE trained on KL-derived targets approaches KL-level PPL (PPL gap $\\leq$0.65pp; 3-seed, 30\\%).\nSignal type (output-distribution vs.\\ intermediate loss) may account for a substantial portion of the PPL gap at moderate sparsity (30\\%) (upper bound; \\S\\ref{sec:perlayer}).\nOn downstream tasks, cross-layer coupling contributes substantially for commonsense reasoning but minimally for mathematical reasoning (3-seed $K{=}4$-corrected decomposition).\nCross-architecture evaluation on Mistral-7B-v0.3 and Qwen-2.5-14B confirms PPL generalization with scale-dependent downstream effects.\nThis is primarily an empirical study; wall-clock speedup requires sparse kernel support not addressed here.\n",
+      "numLines": 9,
+      "startLine": 1,
+      "totalLines": 9
+    }
+  },
+  "sourceToolAssistantUUID": "5a277aa8-6d17-4903-b7ce-11c8c5c10bff",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 266 · 2026-05-24T03:18:24.649Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01WV2QhgjMtHFKGymyiSccCT`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/limitations.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "792e5370-0da3-410c-b21d-003c7b77bfe2",
+  "isSidechain": false,
+  "requestId": "req_011CbLfr6dw99drmcQNLfp7U",
+  "type": "assistant",
+  "uuid": "356a5380-ab2a-4073-8b85-4f016cfbcad4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L4UEe9hd3i5Q89eMvgktEY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3952,
+      "cache_read_input_tokens": 104051,
+      "output_tokens": 335,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3952,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 335,
+          "cache_read_input_tokens": 104051,
+          "cache_creation_input_tokens": 3952,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3952
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 267 · 2026-05-24T03:18:27.082Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me read the introduction to understand the contribution framing and check consistency.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5efdc2af-f372-4db5-848a-b8ea424c7cde",
+  "isSidechain": false,
+  "requestId": "req_011CbLfreKgJpKLtYjwo7Dcg",
+  "type": "assistant",
+  "uuid": "5ce68bbe-cf51-4ef2-aaab-e4d399103be4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wvo1s9cyE6xcugWALypUuo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3308,
+      "cache_read_input_tokens": 108003,
+      "output_tokens": 190,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3308,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 190,
+          "cache_read_input_tokens": 108003,
+          "cache_creation_input_tokens": 3308,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3308
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 268 · 2026-05-24T03:18:29.342Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01MmHAz9AqdRQxuDZkGm7Syh`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/introduction.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5ce68bbe-cf51-4ef2-aaab-e4d399103be4",
+  "isSidechain": false,
+  "requestId": "req_011CbLfreKgJpKLtYjwo7Dcg",
+  "type": "assistant",
+  "uuid": "9c633345-43a9-4099-91e0-df6cba91e618",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wvo1s9cyE6xcugWALypUuo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3308,
+      "cache_read_input_tokens": 108003,
+      "output_tokens": 190,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3308,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 190,
+          "cache_read_input_tokens": 108003,
+          "cache_creation_input_tokens": 3308,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3308
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 269 · 2026-05-24T03:18:29.348Z_
+
+<details><summary>↩ Tool result · `toolu_01MmHAz9AqdRQxuDZkGm7Syh`</summary>
+
+```text
+1	\section{Introduction}
+2	
+3	How the training objective shapes learned sparsity prediction quality is an open question for SwiGLU LLMs~\cite{shazeer2020glu}. SwiGLU FFN blocks exhibit high contextual sparsity, but their gated activation makes importance prediction challenging: neuron importance depends on both gate and up-projection values, a target that magnitude-based methods handle suboptimally.
+4	Learned sparsity predictors~\cite{liu2023dejavu,gautam2026fastforward} exploit this property by training small networks to anticipate which neurons are important, but they predominantly rely on binary cross-entropy (BCE) loss, treating each neuron as an independent classification target.
+5	Yet at inference, sparsity budgets are allocated globally: the TEAL (training-free activation sparsity;~\citealp{liu2025teal}) top-$k$ mechanism ranks all neurons across all layers and retains only those above a model-wide threshold.
+6	This mismatch between per-neuron training and global inference allocation has not been formally analyzed.
+7	Unlike MaskLLM~\cite{fang2024maskllm}, which applies KL to static N:M weight masks, we address contextual activation sparsity where masks must generalize to unseen inputs, vary per token, and coordinate across layers through global allocation.
+8	
+9	Gradient analysis reveals a structural asymmetry: BCE's gradient $\partial \mathcal{L}_{\text{BCE}} / \partial s_j = \sigma(s_j) - m_j^*$ depends only on neuron $j$, while under KL divergence, the gradient couples each neuron to all others through the downstream Jacobian (\S\ref{sec:method:gradient}).
+10	KL's coupled gradients discover neuron importance patterns that diverge 68\% from magnitude-based masks (mean per-layer Jaccard distance).
+11	A target-swap ablation shows KL-discovered mask targets carry most of the quality information: BCE retrained on KL-derived targets approaches KL PPL ($\leq$0.65pp gap, 3-seed), while magnitude-trained BCE yields 28.13$\pm$0.20. Coupling contributes marginally to PPL but meaningfully to downstream fidelity (\S\ref{sec:perlayer}).
+12	
+13	We instantiate a lightweight predictor (75.9M params, $<$1\% of base) trained with forward KL and Gumbel-Sigmoid relaxation~\cite{jang2017gumbel} on LLaMA-3.1-8B~\cite{grattafiori2024llama3}.
+14	At 30\% sparsity under uniform allocation, the predictor reduces TEAL's perplexity by 14.5\% at matched sparsity (8.81 vs.\ 10.30, both at 28.5\%) with downstream (MMLU 40.7$\pm$1.3\% vs.\ 65.3\% dense, 3-seed); global top-$k$ amplifies cross-seed variance ($7.3\times$).
+15	At 50\%, the perplexity advantage widens (50\% over TEAL), but downstream reasoning collapses regardless of method.
+16	
+17	Cross-architecture evaluation on Mistral-7B-v0.3~\cite{jiang2023mistral} (3-seed) confirms the PPL advantage ($-$17.3\%) with directional commonsense gains but tied MMLU; preliminary evaluation on Qwen-2.5-14B~\cite{qwen2024qwen25} shows consistent PPL improvement but reasoning decline (GSM8K $-$20.1pp, $\sigma$=5.2pp; MMLU $-$2.8pp).
+18	This paper is primarily an empirical study characterizing how the training objective shapes sparsity prediction quality across allocation strategies, sparsity levels, and model scales. The central finding---that output-distribution alignment consistently and substantially outperforms per-neuron classification for learned sparsity---is the paper's contribution. Without sparse kernel support, the predictor adds 6.4\% latency overhead; wall-clock speedup is not addressed (Appendix~\ref{app:latency}).
+19	While individual components (KL divergence, Gumbel-Sigmoid relaxation) are established techniques, their application to contextual activation sparsity prediction has not been explored, and the resulting empirical behaviors are non-obvious.
+20	
+21	Our contributions are:
+22	\begin{itemize}[nosep,leftmargin=*]
+23	\item \emph{Empirical:} Output-distribution alignment ranking across five losses, with exploratory per-layer KL decomposition into signal type (may account for most of the PPL gap; upper bound) and coupling scope (task-dependent; $K{=}4$-corrected; \S\ref{sec:perlayer});
+24	\item \emph{Empirical:} Cross-scale evidence at 7--14B confirming output-distribution losses outperform intermediate losses regardless of coupling scope (\S\ref{sec:experiments}).
+25	\item \emph{Practical:} Target-swap ablation suggests KL-discovered mask targets transfer to BCE; coupling refines downstream fidelity beyond PPL (\S\ref{sec:perlayer}).
+26	\item \emph{Practical:} These mask patterns render post-hoc compensation (+67.2M params) redundant at both tested sparsity levels (\S\ref{sec:compensation}).
+27	\end{itemize}
+28	
+29	\begin{figure}[t]
+30	\centering
+31	\includegraphics[width=\columnwidth]{fig1_overview.pdf}
+32	\caption{Method overview: a lightweight per-layer predictor produces importance scores trained via KL divergence with Gumbel-Sigmoid relaxation. At inference, scores feed TEAL's global top-$k$ allocation without compensation networks.}
+33	\label{fig:overview}
+34	\end{figure}
+35	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9c633345-43a9-4099-91e0-df6cba91e618",
+  "isSidechain": false,
+  "promptId": "2592e8e0-a6d0-474e-b4ec-8e113926083a",
+  "type": "user",
+  "uuid": "1b76b0d4-3c00-4f9a-a8e9-f927eb61c3a3",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/introduction.tex",
+      "content": "\\section{Introduction}\n\nHow the training objective shapes learned sparsity prediction quality is an open question for SwiGLU LLMs~\\cite{shazeer2020glu}. SwiGLU FFN blocks exhibit high contextual sparsity, but their gated activation makes importance prediction challenging: neuron importance depends on both gate and up-projection values, a target that magnitude-based methods handle suboptimally.\nLearned sparsity predictors~\\cite{liu2023dejavu,gautam2026fastforward} exploit this property by training small networks to anticipate which neurons are important, but they predominantly rely on binary cross-entropy (BCE) loss, treating each neuron as an independent classification target.\nYet at inference, sparsity budgets are allocated globally: the TEAL (training-free activation sparsity;~\\citealp{liu2025teal}) top-$k$ mechanism ranks all neurons across all layers and retains only those above a model-wide threshold.\nThis mismatch between per-neuron training and global inference allocation has not been formally analyzed.\nUnlike MaskLLM~\\cite{fang2024maskllm}, which applies KL to static N:M weight masks, we address contextual activation sparsity where masks must generalize to unseen inputs, vary per token, and coordinate across layers through global allocation.\n\nGradient analysis reveals a structural asymmetry: BCE's gradient $\\partial \\mathcal{L}_{\\text{BCE}} / \\partial s_j = \\sigma(s_j) - m_j^*$ depends only on neuron $j$, while under KL divergence, the gradient couples each neuron to all others through the downstream Jacobian (\\S\\ref{sec:method:gradient}).\nKL's coupled gradients discover neuron importance patterns that diverge 68\\% from magnitude-based masks (mean per-layer Jaccard distance).\nA target-swap ablation shows KL-discovered mask targets carry most of the quality information: BCE retrained on KL-derived targets approaches KL PPL ($\\leq$0.65pp gap, 3-seed), while magnitude-trained BCE yields 28.13$\\pm$0.20. Coupling contributes marginally to PPL but meaningfully to downstream fidelity (\\S\\ref{sec:perlayer}).\n\nWe instantiate a lightweight predictor (75.9M params, $<$1\\% of base) trained with forward KL and Gumbel-Sigmoid relaxation~\\cite{jang2017gumbel} on LLaMA-3.1-8B~\\cite{grattafiori2024llama3}.\nAt 30\\% sparsity under uniform allocation, the predictor reduces TEAL's perplexity by 14.5\\% at matched sparsity (8.81 vs.\\ 10.30, both at 28.5\\%) with downstream (MMLU 40.7$\\pm$1.3\\% vs.\\ 65.3\\% dense, 3-seed); global top-$k$ amplifies cross-seed variance ($7.3\\times$).\nAt 50\\%, the perplexity advantage widens (50\\% over TEAL), but downstream reasoning collapses regardless of method.\n\nCross-architecture evaluation on Mistral-7B-v0.3~\\cite{jiang2023mistral} (3-seed) confirms the PPL advantage ($-$17.3\\%) with directional commonsense gains but tied MMLU; preliminary evaluation on Qwen-2.5-14B~\\cite{qwen2024qwen25} shows consistent PPL improvement but reasoning decline (GSM8K $-$20.1pp, $\\sigma$=5.2pp; MMLU $-$2.8pp).\nThis paper is primarily an empirical study characterizing how the training objective shapes sparsity prediction quality across allocation strategies, sparsity levels, and model scales. The central finding---that output-distribution alignment consistently and substantially outperforms per-neuron classification for learned sparsity---is the paper's contribution. Without sparse kernel support, the predictor adds 6.4\\% latency overhead; wall-clock speedup is not addressed (Appendix~\\ref{app:latency}).\nWhile individual components (KL divergence, Gumbel-Sigmoid relaxation) are established techniques, their application to contextual activation sparsity prediction has not been explored, and the resulting empirical behaviors are non-obvious.\n\nOur contributions are:\n\\begin{itemize}[nosep,leftmargin=*]\n\\item \\emph{Empirical:} Output-distribution alignment ranking across five losses, with exploratory per-layer KL decomposition into signal type (may account for most of the PPL gap; upper bound) and coupling scope (task-dependent; $K{=}4$-corrected; \\S\\ref{sec:perlayer});\n\\item \\emph{Empirical:} Cross-scale evidence at 7--14B confirming output-distribution losses outperform intermediate losses regardless of coupling scope (\\S\\ref{sec:experiments}).\n\\item \\emph{Practical:} Target-swap ablation suggests KL-discovered mask targets transfer to BCE; coupling refines downstream fidelity beyond PPL (\\S\\ref{sec:perlayer}).\n\\item \\emph{Practical:} These mask patterns render post-hoc compensation (+67.2M params) redundant at both tested sparsity levels (\\S\\ref{sec:compensation}).\n\\end{itemize}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig1_overview.pdf}\n\\caption{Method overview: a lightweight per-layer predictor produces importance scores trained via KL divergence with Gumbel-Sigmoid relaxation. At inference, scores feed TEAL's global top-$k$ allocation without compensation networks.}\n\\label{fig:overview}\n\\end{figure}\n",
+      "numLines": 35,
+      "startLine": 1,
+      "totalLines": 35
+    }
+  },
+  "sourceToolAssistantUUID": "9c633345-43a9-4099-91e0-df6cba91e618",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 270 · 2026-05-24T03:18:29.422Z_
+
+<details><summary>↩ Tool result · `toolu_01YBtFk2xqG8Xm1Suqi7pcgt`</summary>
+
+```text
+1	\documentclass[11pt]{article}
+2	\usepackage[review]{acl}
+3	\usepackage{times}
+4	\usepackage{latexsym}
+5	\usepackage[T1]{fontenc}
+6	\usepackage[utf8]{inputenc}
+7	\usepackage{microtype}
+8	% \usepackage{inconsolata} % not available on this system
+9	\usepackage{graphicx}
+10	\graphicspath{{../figures/paper/}}
+11	\usepackage{amsmath}
+12	\usepackage{amssymb}
+13	\usepackage{booktabs}
+14	\usepackage{multirow}
+15	\usepackage{enumitem}
+16	\usepackage{subcaption}
+17	
+18	\setlength{\textfloatsep}{8pt plus 2pt minus 2pt}
+19	\setlength{\floatsep}{8pt plus 2pt minus 2pt}
+20	\setlength{\intextsep}{8pt plus 2pt minus 2pt}
+21	
+22	\title{Output-Distribution Distillation for Contextual Sparsity Prediction in SwiGLU LLMs}
+23	
+24	\author{Anonymous}
+25	
+26	\begin{document}
+27	\maketitle
+28	
+29	\begin{abstract}
+30	\input{abstract}
+31	\end{abstract}
+32	
+33	\input{introduction}
+34	\input{related_work}
+35	\input{method}
+36	\input{experiments}
+37	\input{conclusion}
+38	\input{limitations}
+39	% \input{ethics}  % removed per submission guidelines
+40	
+41	\bibliography{references}
+42	
+43	\input{appendix}
+44	
+45	\end{document}
+46	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ac0f9210-1ed0-45fb-a2cf-d0e3490f3b39",
+  "isSidechain": false,
+  "promptId": "2592e8e0-a6d0-474e-b4ec-8e113926083a",
+  "type": "user",
+  "uuid": "13660903-cb2f-4488-b283-bd932872afb3",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/main.tex",
+      "content": "\\documentclass[11pt]{article}\n\\usepackage[review]{acl}\n\\usepackage{times}\n\\usepackage{latexsym}\n\\usepackage[T1]{fontenc}\n\\usepackage[utf8]{inputenc}\n\\usepackage{microtype}\n% \\usepackage{inconsolata} % not available on this system\n\\usepackage{graphicx}\n\\graphicspath{{../figures/paper/}}\n\\usepackage{amsmath}\n\\usepackage{amssymb}\n\\usepackage{booktabs}\n\\usepackage{multirow}\n\\usepackage{enumitem}\n\\usepackage{subcaption}\n\n\\setlength{\\textfloatsep}{8pt plus 2pt minus 2pt}\n\\setlength{\\floatsep}{8pt plus 2pt minus 2pt}\n\\setlength{\\intextsep}{8pt plus 2pt minus 2pt}\n\n\\title{Output-Distribution Distillation for Contextual Sparsity Prediction in SwiGLU LLMs}\n\n\\author{Anonymous}\n\n\\begin{document}\n\\maketitle\n\n\\begin{abstract}\n\\input{abstract}\n\\end{abstract}\n\n\\input{introduction}\n\\input{related_work}\n\\input{method}\n\\input{experiments}\n\\input{conclusion}\n\\input{limitations}\n% \\input{ethics}  % removed per submission guidelines\n\n\\bibliography{references}\n\n\\input{appendix}\n\n\\end{document}\n",
+      "numLines": 46,
+      "startLine": 1,
+      "totalLines": 46
+    }
+  },
+  "sourceToolAssistantUUID": "ac0f9210-1ed0-45fb-a2cf-d0e3490f3b39",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 271 · 2026-05-24T03:18:29.419Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01YBtFk2xqG8Xm1Suqi7pcgt`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/main.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1b76b0d4-3c00-4f9a-a8e9-f927eb61c3a3",
+  "isSidechain": false,
+  "requestId": "req_011CbLfreKgJpKLtYjwo7Dcg",
+  "type": "assistant",
+  "uuid": "ac0f9210-1ed0-45fb-a2cf-d0e3490f3b39",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wvo1s9cyE6xcugWALypUuo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3308,
+      "cache_read_input_tokens": 108003,
+      "output_tokens": 190,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3308,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 190,
+          "cache_read_input_tokens": 108003,
+          "cache_creation_input_tokens": 3308,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3308
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 272 · 2026-05-24T03:18:29.471Z_
+
+```json
+{
+  "parentUuid": "13660903-cb2f-4488-b283-bd932872afb3",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "84b0f174-9e3b-416d-90f9-5d9a95c06080",
+  "timestamp": "2026-05-24T03:18:29.471Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 273_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[System 触发审查]: R28 审稿报告 + Action Matrix 审核请求  **背景**：R28 Overall 3.0 (Findings)，与 R27 持平。三个 critical 全部是长期复发的 evidence 问题（C1 ×9轮, C2 ×11轮, C3 ×5轮），写作降级多轮后仍被标记。DDL 明天 05-25，无法补实验。  **请审核以下 Action Matri…",
+  "leafUuid": "84b0f174-9e3b-416d-90f9-5d9a95c06080",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 274_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Research review and data consistency validation",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 275 · 2026-05-24T03:19:43.739Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me check the page count and also verify the Qwen 14B numbers. I noticed a discrepancy in the cross-architecture section: experiments.tex line 195 says "14B GSM8K 32.0±5.2 vs. 52.1" but the abstract says "GSM8K −20.1pp" and Introduction says "GSM8K −20.1pp, σ=5.2pp". Let me verify: 52.1 - 32.0 = 20.1pp. But wait, earlier the ROADMAP said "GSM8K 30.9±6.8" and the registry data I verified showed 30.89±6.81. Now experiments.tex says "32.0±5.2". This is a discrepancy!
+
+
+Looking more carefully at the sources: the ROADMAP has 30.9±6.8, the registry shows 30.89±6.81 when I calculate the mean, but experiments.tex is reporting 32.0±5.2 instead. These numbers don't align, so I need to trace back to the raw registry values to figure out where the 32.0 figure is coming from. I'm noticing a discrepancy between what the registry shows (30.9±6.8) and what experiments.tex reports (32.0±5.2) for the 14B GSM8K results. The introduction and limitations sections seem to reference the 32.0±5.2 values with a -20.1pp difference, but these don't align with the registry data I just calculated. I'm noticing there are multiple GSM8K variants for the same experiment—including a "uniform" version alongside the standard one. The discrepancy between the ROADMAP (30.9±6.8) and experiments.tex (32.0±5.2) for the same comparison is concerning, so I need to check whether the recent data fixes commit modified this line and which version is actually correct. I'm noticing a discrepancy between what the paper reports (32.0±5.2) and what the registry shows (30.9±6.8) for the 14B GSM8K results. Even when I try different experiment variants, the numbers don't quite align—the average keeps coming out closer to 30.8 rather than 32.0.
+
+Let me consider whether there's a different metric being used, or if the experiments.tex file was updated based on data from the r28_data_fixes worker that I should investigate further.
+
+Looking at the registry data more carefully, none of the experiment combinations—s42 at 35.71%, s456 at 26.08%, or their mean around 30.9%—actually match the 32.0 figure in experiments.tex. But across the abstract, introduction, and limitations sections, there's consistent reporting of a -20.1pp decline on GSM8K for the 14B model, which doesn't align with what experiments.tex is showing either.
+
+The registry mean of 30.9% would imply a -21.2pp drop from the 52.1% baseline, creating a 1.1pp discrepancy with the claimed 32.0%, plus a mismatch in the standard deviation (5.2 vs 6.8). This inconsistency needs investigation, and I should check whether there are additional Qwen GSM8K experiments beyond the two specific ones the agent verified.
+
+If there's a third seed result, the math works out: with values of 35.71, 26.08, and 34.21, the mean would be exactly 32.0%. The agent found that the killed s123 run actually retained metrics showing 34.42%, which is close enough to suggest this might be the missing third data point.
+
+Let me verify this by calculating the mean and standard deviation with all three values—35.71, 34.42, and 26.08. The mean comes to about 32.07, and working through the variance calculation gives a standard deviation around 5.23, which matches the reported 32.0±5.2 almost perfectly. So the paper appears to have used the killed s123 result in their reported metrics, even though this was the experiment the handoff warned about.
+
+But here's the critical issue: the handoff explicitly flagged this s123 GSM8K result on Qwen14B as having integrity concerns—the run time was suspiciously short, it was marked as killed, and it's missing key metadata like sample length. The data can't even be verified anymore since the file is inaccessible. Yet the paper incorporated this unverified killed data without any disclosure, shifting their reported results from n=2 (30.9±6.8) to n=3 (32.0±5.2), and a v4 experiment is currently running to revalidate this exact data point. I'm realizing this is a serious integrity issue—the killed s123 run that was incomplete and unverifiable got incorporated into the results without the n=2 label, making it look like a proper 3-seed result when it shouldn't be counted that way. The old version explicitly marked it as n=2 with different numbers (30.9±6.8), but now it's been silently updated to 32.0±5.2 and presented without qualification, which misrepresents the data quality. This directly contradicts what v4 is trying to accomplish by getting a clean, completed s123 result, and the Abstract's 20.1pp improvement calculation depends on this questionable number.
+
+Now I need to verify whether Table 5 actually includes the s123 data to understand the full scope of what's been changed.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "84b0f174-9e3b-416d-90f9-5d9a95c06080",
+  "isSidechain": false,
+  "requestId": "req_011CbLfrzeJDiBhoG45eavTk",
+  "type": "assistant",
+  "uuid": "b983f28e-5bb0-4acf-a8bd-ab4e9129262c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E3D9eBimW76q6oySzKMoc3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2288,
+      "cache_read_input_tokens": 111311,
+      "output_tokens": 3845,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2288,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3845,
+          "cache_read_input_tokens": 111311,
+          "cache_creation_input_tokens": 2288,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2288
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 276 · 2026-05-24T03:19:45.116Z_
+
+注意到一个潜在的关键数据不一致。experiments.tex line 195 显示 Qwen 14B GSM8K 为 `32.0±5.2`，但之前验证的 registry 数据显示 `30.9±6.8 (n=2)`。这个差异可能意味着 Agent 使用了 killed s123 数据。立即核实。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b983f28e-5bb0-4acf-a8bd-ab4e9129262c",
+  "isSidechain": false,
+  "requestId": "req_011CbLfrzeJDiBhoG45eavTk",
+  "type": "assistant",
+  "uuid": "8624af5e-8ee8-4dda-8e48-da663a5a30fb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E3D9eBimW76q6oySzKMoc3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2288,
+      "cache_read_input_tokens": 111311,
+      "output_tokens": 3845,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2288,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3845,
+          "cache_read_input_tokens": 111311,
+          "cache_creation_input_tokens": 2288,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2288
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 277 · 2026-05-24T03:19:47.999Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01MQ6S3QQy4SkYM9sy9J2AAN`</summary>
+
+```json
+{
+  "pattern": "qwen14b.*gsm8k",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper",
+  "output_mode": "content",
+  "-n": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8624af5e-8ee8-4dda-8e48-da663a5a30fb",
+  "isSidechain": false,
+  "requestId": "req_011CbLfrzeJDiBhoG45eavTk",
+  "type": "assistant",
+  "uuid": "3ede06ae-e238-455a-8b65-74f67c3fc454",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E3D9eBimW76q6oySzKMoc3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2288,
+      "cache_read_input_tokens": 111311,
+      "output_tokens": 3845,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2288,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3845,
+          "cache_read_input_tokens": 111311,
+          "cache_creation_input_tokens": 2288,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2288
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 278 · 2026-05-24T03:19:48.021Z_
+
+<details><summary>↩ Tool result · `toolu_01MQ6S3QQy4SkYM9sy9J2AAN`</summary>
+
+```text
+No matches found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3ede06ae-e238-455a-8b65-74f67c3fc454",
+  "isSidechain": false,
+  "promptId": "2592e8e0-a6d0-474e-b4ec-8e113926083a",
+  "type": "user",
+  "uuid": "ae00dee5-a49a-44df-be6b-83bb9c419d50",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "",
+    "numLines": 0
+  },
+  "sourceToolAssistantUUID": "3ede06ae-e238-455a-8b65-74f67c3fc454",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 279 · 2026-05-24T03:19:48.985Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01M2D5wVCVbmvYq7BRVmkDAq`</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu && git diff -- paper/experiments.tex | grep -A2 -B2 \"32.0\"",
+  "description": "Check if 32.0 was introduced by recent changes"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ae00dee5-a49a-44df-be6b-83bb9c419d50",
+  "isSidechain": false,
+  "requestId": "req_011CbLfrzeJDiBhoG45eavTk",
+  "type": "assistant",
+  "uuid": "04148537-6a96-460b-a5b8-2ad661891a29",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E3D9eBimW76q6oySzKMoc3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2288,
+      "cache_read_input_tokens": 111311,
+      "output_tokens": 3845,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2288,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3845,
+          "cache_read_input_tokens": 111311,
+          "cache_creation_input_tokens": 2288,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2288
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 280 · 2026-05-24T03:19:49.138Z_
+
+<details><summary>↩ Tool result · `toolu_01M2D5wVCVbmvYq7BRVmkDAq`</summary>
+
+```text
+-The pipeline adds 6.4\% overhead while removing the compensation network ($-$2.7\% latency, $-$67.2M params; Appendix~\ref{app:latency}).
++On Mistral-7B-v0.3~\cite{jiang2023mistral}, PPL generalizes ($-$17.3\%, 3-seed; Table~\ref{tab:mistral_downstream}); on Qwen-2.5-14B~\cite{qwen2024qwen25}, PPL generalizes but MMLU/GSM8K decline (Table~\ref{tab:14b}).
++The consistent regression across scales (8B MMLU $-$5.2pp, 14B GSM8K 32.0$\pm$5.2 vs.\ 52.1) suggests a systematic property of output-distribution KL; Qwen's stronger reasoning baseline (GSM8K 87.6\% vs.\ 48.8\% dense) may amplify sensitivity to distribution-based pruning. The pipeline adds 6.4\% latency overhead absent sparse kernels (Appendix~\ref{app:latency}). % exp_id: mistral_kl30_s42, mistral_kl30_s123, mistral_kl30_s456, mistral_teal30_downstream, qwen14b_kl30_uniform_4task, qwen14b_teal30_uniform, latency_profiling
+Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "04148537-6a96-460b-a5b8-2ad661891a29",
+  "isSidechain": false,
+  "promptId": "2592e8e0-a6d0-474e-b4ec-8e113926083a",
+  "type": "user",
+  "uuid": "8ea456e7-8f75-4ed1-a9c2-cdc4fc57e49f",
+  "toolUseResult": {
+    "stdout": "-The pipeline adds 6.4\\% overhead while removing the compensation network ($-$2.7\\% latency, $-$67.2M params; Appendix~\\ref{app:latency}).\n+On Mistral-7B-v0.3~\\cite{jiang2023mistral}, PPL generalizes ($-$17.3\\%, 3-seed; Table~\\ref{tab:mistral_downstream}); on Qwen-2.5-14B~\\cite{qwen2024qwen25}, PPL generalizes but MMLU/GSM8K decline (Table~\\ref{tab:14b}).\n+The consistent regression across scales (8B MMLU $-$5.2pp, 14B GSM8K 32.0$\\pm$5.2 vs.\\ 52.1) suggests a systematic property of output-distribution KL; Qwen's stronger reasoning baseline (GSM8K 87.6\\% vs.\\ 48.8\\% dense) may amplify sensitivity to distribution-based pruning. The pipeline adds 6.4\\% latency overhead absent sparse kernels (Appendix~\\ref{app:latency}). % exp_id: mistral_kl30_s42, mistral_kl30_s123, mistral_kl30_s456, mistral_teal30_downstream, qwen14b_kl30_uniform_4task, qwen14b_teal30_uniform, latency_profiling",
+    "stderr": "\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "04148537-6a96-460b-a5b8-2ad661891a29",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 281 · 2026-05-24T03:19:53.320Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+So the "32.0±5.2" was introduced in the uncommitted changes (the diff shows it's a new line replacing old content). Now let me verify my hypothesis that this comes from including the killed s123 data.
+
+Let me check the registry for the Qwen 14B GSM8K experiments.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8ea456e7-8f75-4ed1-a9c2-cdc4fc57e49f",
+  "isSidechain": false,
+  "requestId": "req_011CbLfxsJCbrv3Kc1KdMjjH",
+  "type": "assistant",
+  "uuid": "8d3ec68d-774a-44cf-985a-ed3b141ea7df",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01URApDuxEPmvJXkepVwEP3P",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4306,
+      "cache_read_input_tokens": 113599,
+      "output_tokens": 218,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4306,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 218,
+          "cache_read_input_tokens": 113599,
+          "cache_creation_input_tokens": 4306,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4306
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 282 · 2026-05-24T03:19:54.869Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01R933QgCnUS7aKVoPYhcZkw`</summary>
+
+```json
+{
+  "project": "distill_sparse_swiglu",
+  "filters": {
+    "status": "DONE"
+  },
+  "fields": [
+    "metrics",
+    "conclusion",
+    "spec"
+  ],
+  "limit": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8d3ec68d-774a-44cf-985a-ed3b141ea7df",
+  "isSidechain": false,
+  "requestId": "req_011CbLfxsJCbrv3Kc1KdMjjH",
+  "type": "assistant",
+  "uuid": "bf7cac2a-70e7-4a27-87fd-0fe02f3b1ad0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01URApDuxEPmvJXkepVwEP3P",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4306,
+      "cache_read_input_tokens": 113599,
+      "output_tokens": 218,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4306,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 218,
+          "cache_read_input_tokens": 113599,
+          "cache_creation_input_tokens": 4306,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4306
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 283 · 2026-05-24T03:19:56.210Z_
+
+<details><summary>↩ Tool result · `toolu_01R933QgCnUS7aKVoPYhcZkw`</summary>
+
+```text
+Error: result (419,447 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu--claude-sessions-reviewer-ab8e9749/d51aa5af-61bf-4531-b8ca-381ad00f2371/tool-results/mcp-agent-ml-research-read_registry-1779592796195.txt.
+Format: JSON with schema: {result: string}
+Use offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.
+REQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:
+- You MUST read the content from the file at /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu--claude-sessions-reviewer-ab8e9749/d51aa5af-61bf-4531-b8ca-381ad00f2371/tool-results/mcp-agent-ml-research-read_registry-1779592796195.txt in sequential chunks until 100% of the content has been read.
+- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.
+- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bf7cac2a-70e7-4a27-87fd-0fe02f3b1ad0",
+  "isSidechain": false,
+  "promptId": "2592e8e0-a6d0-474e-b4ec-8e113926083a",
+  "type": "user",
+  "uuid": "6bd40671-bef0-48c4-8f8f-f3738fbdddb9",
+  "toolUseResult": "Error: result (419,447 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu--claude-sessions-reviewer-ab8e9749/d51aa5af-61bf-4531-b8ca-381ad00f2371/tool-results/mcp-agent-ml-research-read_registry-1779592796195.txt.\nFormat: JSON with schema: {result: string}\nUse offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.\nREQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:\n- You MUST read the content from the file at /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu--claude-sessions-reviewer-ab8e9749/d51aa5af-61bf-4531-b8ca-381ad00f2371/tool-results/mcp-agent-ml-research-read_registry-1779592796195.txt in sequential chunks until 100% of the content has been read.\n- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.\n- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***\n",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"perlayer_kl_k4_s42\": {\"spec\": {\"checkpoint_path\": \"/root/distill_sparse_swiglu/checkpoints/perlayer_kl_k4_s42/predictor_perlayer_kl_k4.pt\", \"log_path\": \"/root/distill_sparse_swiglu/logs/perlayer_kl_k4_s42.log\", \"metrics\": {\"final_kl\": 0.0547, \"avg_kl\": 0.0447, \"final_sparsity\": 0.282, \"final_loss\": 0.0913, \"constraint_loss\": 0.0366, \"total_steps\": 2700, \"num_active_layers\": 4, \"final_tau\": 0.1, \"wall_time_sec\": 5015}, \"command\": \"python train_perlayer_kl.py --k 4 --seed 42\", \"server\": \"westd-34887\", \"data_path\": \"/root/distill_sparse_swiglu/data/\", \"data_count\": 2700, \"model_name\": \"predictor_perlayer_kl_k4\", \"seed\": 42}, \"conclusion\": \"killed\"}, \"mse30_s123_downstream\": {\"metrics\": {\"arc_challenge_acc\": 0.3285, \"arc_challenge_acc_norm\": 0.3737, \"winogrande_acc\": 0.5699, \"mmlu_acc\": 0.2781, \"gsm8k_exact_match\": 0.0174, \"hellaswag_acc\": 0.4009, \"hellaswag_acc_norm\": 0.5358, \"piqa_acc\": 0.7106, \"piqa_acc_norm\": 0.7067, \"boolq_acc\": 0.6324}, \"conclusion\": \"success\", \"spec\": {\"command\": \"python run_lm_eval.py --model_path checkpoints/mse30_s123/predictor_mse.pt --sparsity 0.30 --tasks arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa,boolq\", \"server\": \"westd-41718\", \"data_path\": \"lm-eval-harness benchmarks\", \"data_count\": 0, \"model_name\": \"Qwen2.5-1.5B + MSE30 s123 predictor\", \"seed\": 123, \"checkpoint_source\": \"checkpoints/mse30_s123/predictor_mse.pt\", \"eval_data\": \"arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa,boolq\"}}, \"perlayer_kl_k16_s456_eval\": {\"spec\": {\"command\": \"bash -c \\\"cd /root/distill_sparse_swiglu && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && WANDB_MODE=disabled HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache python -u src/benchmark_eval.py --exp_id perlayer_kl_k16_s456_eval --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint /root/distill_sparse_swiglu/checkpoints/perlayer_kl_k16_s456/predictor_perlayer_kl_k4.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa --seq_len 2048 --gpu 0\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"141430\", \"log_path\": \"~/runs/distill_sparse_swiglu/perlayer_kl_k16_s456_eval.log\", \"submitted_at\": \"2026-05-23T12:40:34.636Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"wikitext-103\", \"data_count\": \"auto\", \"model_name\": \"llama-3.1-8b\", \"seed\": 456, \"checkpoint_source\": \"perlayer_kl_k16_s456_v2\", \"eval_data\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa\", \"wall_clock_seconds\": 4533.9, \"gpu_hours\": 1.26}, \"metrics\": {\"ppl_wikitext2\": 8.655, \"arc_challenge_acc_norm\": 0.4155, \"winogrande_acc\": 0.6946, \"mmlu_acc\": 0.3873, \"gsm8k_exact_match\": 0.0766, \"hellaswag_acc_norm\": 0.7015, \"piqa_acc_norm\": 0.7437}, \"conclusion\": \"success\"}, \"perlayer_kl_k16_s123_eval\": {\"spec\": {\"command\": \"bash -c \\\"cd /root/distill_sparse_swiglu && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && WANDB_MODE=disabled HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache python -u src/benchmark_eval.py --exp_id perlayer_kl_k16_s123_eval --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint /root/distill_sparse_swiglu/checkpoints/perlayer_kl_k16_s123/predictor_perlayer_kl_k4.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa --seq_len 2048 --gpu 0\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"141289\", \"log_path\": \"~/runs/distill_sparse_swiglu/perlayer_kl_k16_s123_eval.log\", \"submitted_at\": \"2026-05-23T12:40:31.382Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"wikitext-103\", \"data_count\": \"auto\", \"model_name\": \"llama-3.1-8b\", \"seed\": 123, \"checkpoint_source\": \"perlayer_kl_k16_s123\", \"eval_data\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa\", \"wall_clock_seconds\": 4506.4, \"gpu_hours\": 1.25}, \"metrics\": {\"wikitext2_ppl\": 8.6939, \"arc_challenge_acc_norm\": 0.4317, \"winogrande_acc\": 0.6772, \"mmlu_acc\": 0.3996, \"gsm8k_exact_match\": 0.0986, \"hellaswag_acc_norm\": 0.705, \"piqa_acc_norm\": 0.7481}, \"conclusion\": \"success\"}, \"perlayer_kl_k8_s456_eval\": {\"spec\": {\"command\": \"python -u src/benchmark_eval.py ... --checkpoint .../perlayer_kl_k8_s456/predictor_perlayer_kl_k4.pt\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"137205\", \"log_path\": \"/root/runs/distill_sparse_swiglu/perlayer_kl_k8_s456_eval.log\", \"submitted_at\": \"2026-05-23T11:24:02.040Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"gpu_ids\": [\"cuda:1\"], \"data_path\": \"wikitext-103\", \"data_count\": \"auto\", \"model_name\": \"llama-3.1-8b\", \"seed\": 456, \"checkpoint_source\": \"perlayer_kl_k8_s456\", \"eval_data\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa\", \"checkpoint_path\": \"/root/distill_sparse_swiglu/results/benchmark/perlayer_kl_k8_s456_eval/results.json\", \"wall_clock_seconds\": 4698.7, \"gpu_hours\": 1.31}, \"metrics\": {\"wikitext2_ppl\": 8.9515, \"arc_challenge_acc_norm\": 0.3951, \"winogrande_acc\": 0.6875, \"mmlu_acc\": 0.4105, \"gsm8k_exact_match\": 0.0811, \"hellaswag_acc_norm\": 0.6783, \"piqa_acc_norm\": 0.7399, \"sparsity\": 0.298}, \"conclusion\": \"success\"}, \"perlayer_kl_k8_s123_eval\": {\"spec\": {\"command\": \"python -u src/benchmark_eval.py ... --checkpoint .../perlayer_kl_k8_s123/predictor_perlayer_kl_k4.pt\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"136226\", \"log_path\": \"/root/runs/distill_sparse_swiglu/perlayer_kl_k8_s123_eval.log\", \"submitted_at\": \"2026-05-23T11:15:08.112Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"gpu_ids\": [\"cuda:0\"], \"data_path\": \"wikitext-103\", \"data_count\": \"auto\", \"model_name\": \"llama-3.1-8b\", \"seed\": 123, \"checkpoint_source\": \"perlayer_kl_k8_s123\", \"eval_data\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa\", \"checkpoint_path\": \"/root/distill_sparse_swiglu/results/benchmark/perlayer_kl_k8_s123_eval/results.json\", \"wall_clock_seconds\": 4056.0, \"gpu_hours\": 1.13}, \"metrics\": {\"wikitext2_ppl\": 9.0648, \"arc_challenge_acc_norm\": 0.4155, \"winogrande_acc\": 0.6993, \"mmlu_acc\": 0.4042, \"gsm8k_exact_match\": 0.0682, \"hellaswag_acc_norm\": 0.6997, \"piqa_acc_norm\": 0.7508}, \"conclusion\": \"success\"}, \"perlayer_kl_k2_s456_eval\": {\"spec\": {\"command\": \"python -u src/benchmark_eval.py ... --checkpoint .../perlayer_kl_k2_s456/predictor_perlayer_kl_k4.pt --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"132622\", \"log_path\": \"/root/runs/distill_sparse_swiglu/perlayer_kl_k2_s456_eval.log\", \"submitted_at\": \"2026-05-23T10:09:02.172Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"gpu_ids\": [\"cuda:1\"], \"data_path\": \"wikitext-103\", \"data_count\": \"auto\", \"model_name\": \"llama-3.1-8b\", \"seed\": 456, \"checkpoint_source\": \"perlayer_kl_k2_s456\", \"eval_data\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa\", \"checkpoint_path\": \"/root/distill_sparse_swiglu/results/benchmark/perlayer_kl_k2_s456_eval/results.json\", \"wall_clock_seconds\": 4459.2, \"gpu_hours\": 1.24}, \"metrics\": {\"wikitext2_ppl\": 10.5826, \"arc_challenge_acc_norm\": 0.384, \"winogrande_acc\": 0.6488, \"mmlu_acc\": 0.3542, \"gsm8k_exact_match\": 0.0205, \"hellaswag_acc_norm\": 0.659, \"piqa_acc_norm\": 0.728}, \"conclusion\": \"success\"}, \"perlayer_kl_k2_s123_eval\": {\"spec\": {\"command\": \"python -u src/benchmark_eval.py --exp_id perlayer_kl_k2_s123_eval --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint /root/distill_sparse_swiglu/checkpoints/perlayer_kl_k2_s123/predictor_perlayer_kl_k4.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k,hellaswas,piqa --seq_len 2048 --gpu 0\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"131827\", \"log_path\": \"/root/runs/distill_sparse_swiglu/perlayer_kl_k2_s123_eval.log\", \"submitted_at\": \"2026-05-23T10:03:08.269Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"gpu_ids\": [\"cuda:0\"], \"data_path\": \"wikitext-103\", \"data_count\": \"auto\", \"model_name\": \"llama-3.1-8b\", \"seed\": 123, \"checkpoint_source\": \"perlayer_kl_k2_s123\", \"eval_data\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa\", \"checkpoint_path\": \"/root/distill_sparse_swiglu/results/benchmark/perlayer_kl_k2_s123_eval/results.json\", \"wall_clock_seconds\": 4260.7, \"gpu_hours\": 1.18}, \"metrics\": {\"wikitext2_ppl\": 10.8835, \"arc_challenge_acc_norm\": 0.4078, \"winogrande_acc\": 0.614, \"mmlu_acc\": 0.3789, \"gsm8k_exact_match\": 0.0326, \"hellaswag_acc_norm\": 0.6605, \"piqa_acc_norm\": 0.741}, \"conclusion\": \"success\"}, \"perlayer_kl_k16_s456_v2\": {\"spec\": {\"command\": \"python -u src/train_perlayer_kl_k4.py --num_masked_layers 16 --seed 456 --num_steps 1000 --save_every 500 --gradient_checkpointing --output_dir /root/distill_sparse_swiglu/checkpoints/perlayer_kl_k16_s456 --gpu 0\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"130056\", \"log_path\": \"/root/runs/distill_sparse_swiglu/perlayer_kl_k16_s456_v2.log\", \"submitted_at\": \"2026-05-23T09:28:29.902Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"gpu_ids\": [\"cuda:1\"], \"data_path\": \"wikitext-103\", \"data_count\": \"auto\", \"model_name\": \"llama-3.1-8b\", \"seed\": 456, \"num_steps\": 1000, \"sparsity_target\": 0.3, \"num_masked_layers\": 16, \"checkpoint_path\": \"/root/distill_sparse_swiglu/checkpoints/perlayer_kl_k16_s456/predictor_perlayer_kl_k4.pt\", \"wall_clock_seconds\": 2387.1, \"gpu_hours\": 0.66}, \"metrics\": {\"avg_kl\": 0.1565, \"avg_sparsity\": 0.287, \"final_kl\": 0.1611, \"wall_time_s\": 1977.9}, \"conclusion\": \"success\"}, \"perlayer_kl_k2_s42_train\": {\"spec\": {\"command\": \"WANDB_MODE=disabled python -u src/train_perlayer_kl_k4.py --num_masked_layers 2 --seed 42 --num_steps 1000 --save_every 500 --gradient_checkpointing --output_dir /root/distill_sparse_swiglu/checkpoints/perlayer_kl_k2_s42 --gpu 0\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": 112468, \"log_path\": \"~/runs/distill_sparse_swiglu/perlayer_kl_k2_s42_train.log\", \"submitted_at\": \"2026-05-23T04:50:19.880Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"gpu_ids\": [\"cuda:1\"], \"data_path\": \"redpajama\", \"data_count\": 0, \"model_name\": \"llama-3.1-8b\", \"seed\": 42, \"checkpoint_path\": \"/root/distill_sparse_swiglu/checkpoints/perlayer_kl_k2_s42\", \"wall_clock_seconds\": 18825.4, \"gpu_hours\": 5.23}, \"metrics\": {\"wikitext2_ppl\": 10.7958, \"wikitext2_ppl_pertoken\": 11.0812, \"final_avg_kl\": 0.0358, \"final_avg_sparsity\": 0.268, \"wall_time_s\": 3843, \"eval_mode\": \"teal_global_uniform_30pct\"}, \"conclusion\": \"success\"}, \"perlayer_kl_k16_s123\": {\"spec\": {\"checkpoint_path\": \"/root/distill_sparse_swiglu/checkpoints/perlayer_kl_k16_s123\", \"log_path\": \"~/runs/distill_sparse_swiglu/perlayer_kl_k16_s123.log\"}, \"conclusion\": \"success\", \"metrics\": {\"avg_kl\": 0.1617, \"avg_sparsity\": 0.287, \"final_kl\": 0.1436, \"wall_time_s\": 1982.8}}, \"perlayer_kl_k16_s456\": {\"spec\": {\"command\": \"python -u src/train_perlayer_kl_k4.py --num_masked_layers 16 --seed 456 --num_steps 1000 --save_every 500 --gradient_checkpointing --output_dir /root/distill_sparse_swiglu/checkpoints/perlayer_kl_k16_s456 --gpu 0\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"128567\", \"log_path\": \"/root/runs/distill_sparse_swiglu/perlayer_kl_k16_s456.log\", \"submitted_at\": \"2026-05-23T09:06:20.557Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"gpu_ids\": [\"cuda:1\"], \"data_path\": \"wikitext-103\", \"data_count\": \"auto\", \"model_name\": \"llama-3.1-8b\", \"seed\": 456, \"num_steps\": 1000, \"sparsity_target\": 0.3, \"num_masked_layers\": 16, \"checkpoint_path\": \"/root/distill_sparse_swiglu/checkpoints/perlayer_kl_k16_s456/predictor_perlayer_kl_k4_step_500.pt\", \"error\": \"Crashed at step 500/1000: disk full (root 30G 100%), torch.save RuntimeError: PytorchStreamWriter failed writing file. Checkpoint likely corrupted.\", \"wall_clock_seconds\": 1134.5, \"gpu_hours\": 0.32}, \"conclusion\": \"failed\"}, \"perlayer_kl_k8_s456\": {\"spec\": {\"command\": \"python -u src/train_perlayer_kl_k4.py --num_masked_layers 8 --seed 456 --num_steps 1000 --save_every 500 --gradient_checkpointing --output_dir /root/distill_sparse_swiglu/checkpoints/perlayer_kl_k8_s456 --gpu 0\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"126261\", \"log_path\": \"/root/runs/distill_sparse_swiglu/perlayer_kl_k8_s456.log\", \"submitted_at\": \"2026-05-23T08:28:57.707Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"gpu_ids\": [\"cuda:1\"], \"data_path\": \"wikitext-103\", \"data_count\": \"auto\", \"model_name\": \"llama-3.1-8b\", \"seed\": 456, \"num_steps\": 1000, \"sparsity_target\": 0.3, \"num_masked_layers\": 8, \"checkpoint_path\": \"/root/distill_sparse_swiglu/checkpoints/perlayer_kl_k8_s456/predictor_perlayer_kl_k4.pt\", \"wall_clock_seconds\": 2175.7, \"gpu_hours\": 0.6}, \"conclusion\": \"success\", \"metrics\": {\"avg_kl\": 0.0982, \"avg_sparsity\": 0.285, \"final_kl\": 0.1079, \"avg_lambda\": 2244.28, \"steps\": 1000}}, \"perlayer_kl_k8_s123\": {\"spec\": {\"command\": \"python -u src/train_perlayer_kl_k4.py --num_masked_layers 8 --seed 123 --num_steps 1000 --save_every 500 --gradient_checkpointing --output_dir /root/distill_sparse_swiglu/checkpoints/perlayer_kl_k8_s123 --gpu 0\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"126182\", \"log_path\": \"/root/runs/distill_sparse_swiglu/perlayer_kl_k8_s123.log\", \"submitted_at\": \"2026-05-23T08:28:54.506Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"gpu_ids\": [\"cuda:0\"], \"data_path\": \"wikitext-103\", \"data_count\": \"auto\", \"model_name\": \"llama-3.1-8b\", \"seed\": 123, \"num_steps\": 1000, \"sparsity_target\": 0.3, \"num_masked_layers\": 8, \"checkpoint_path\": \"/root/distill_sparse_swiglu/checkpoints/perlayer_kl_k8_s123/predictor_perlayer_kl_k4.pt\", \"wall_clock_seconds\": 2176.2, \"gpu_hours\": 0.6}, \"conclusion\": \"success\", \"metrics\": {\"avg_kl\": 0.0997, \"avg_sparsity\": 0.286, \"final_kl\": 0.0825, \"avg_lambda\": 2182.2, \"steps\": 1000}}, \"perlayer_kl_k2_s456\": {\"spec\": {\"command\": \"python -u src/train_perlayer_kl_k4.py --num_masked_layers 2 --seed 456 --num_steps 1000 --save_every 500 --gradient_checkpointing --output_dir /root/distill_sparse_swiglu/checkpoints/perlayer_kl_k2_s456 --gpu 0\", \"server\": \"westd-34887\", \"gpu_ids\": [\"cuda:1\"], \"pid\": \"124297\", \"data_path\": \"wikitext-103\", \"data_count\": \"auto\", \"model_name\": \"llama-3.1-8b\", \"seed\": 456, \"num_steps\": 1000, \"sparsity_target\": 0.3, \"num_masked_layers\": 2, \"checkpoint_path\": \"/root/distill_sparse_swiglu/checkpoints/perlayer_kl_k2_s456/predictor_perlayer_kl_k4.pt\", \"log_path\": \"/root/runs/distill_sparse_swiglu/perlayer_kl_k2_s456.log\"}, \"conclusion\": \"success\"}, \"perlayer_kl_k2_s123\": {\"spec\": {\"command\": \"python -u src/train_perlayer_kl_k4.py --num_masked_layers 2 --seed 123 --num_steps 1000 --save_every 500 --gradient_checkpointing --output_dir /root/distill_sparse_swiglu/checkpoints/perlayer_kl_k2_s123 --gpu 0\", \"server\": \"westd-34887\", \"gpu_ids\": [\"cuda:0\"], \"pid\": \"123969\", \"data_path\": \"wikitext-103\", \"data_count\": \"auto\", \"model_name\": \"llama-3.1-8b\", \"seed\": 123, \"num_steps\": 1000, \"sparsity_target\": 0.3, \"num_masked_layers\": 2, \"checkpoint_path\": \"/root/distill_sparse_swiglu/checkpoints/perlayer_kl_k2_s123/predictor_perlayer_kl_k4.pt\", \"log_path\": \"/root/runs/distill_sparse_swiglu/perlayer_kl_k2_s123.log\"}, \"conclusion\": \"success\"}, \"perlayer_kl_k2_s42_eval\": {\"spec\": {\"command\": \"cd /root/distill_sparse_swiglu && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=1 WANDB_MODE=disabled HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache nohup python -u src/benchmark_eval.py --exp_id perlayer_kl_k2_s42_eval --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint /root/distill_sparse_swiglu/checkpoints/perlayer_kl_k2_s42/predictor_perlayer_kl_k4.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa --seq_len 2048 --gpu 0 > /root/runs/distill_sparse_swiglu/perlayer_kl_k2_s42_eval.log 2>&1 &\", \"server\": \"westd-34887\", \"gpu_ids\": [\"cuda:1\"], \"pid\": \"118963\", \"data_path\": \"7 eval tasks\", \"data_count\": 0, \"model_name\": \"llama-3.1-8b\", \"seed\": 42, \"checkpoint_source\": \"/root/distill_sparse_swiglu/checkpoints/perlayer_kl_k2_s42/predictor_perlayer_kl_k4.pt\", \"eval_data\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa\"}, \"metrics\": {\"wikitext2_ppl\": 10.7958, \"arc_challenge_acc_norm\": 0.3985, \"winogrande_acc\": 0.6322, \"mmlu_acc\": 0.4172, \"gsm8k_exact_match\": 0.0296, \"hellaswag_acc_norm\": 0.6773, \"piqa_acc_norm\": 0.7356}, \"conclusion\": \"success\"}, \"perlayer_kl_k16_eval_final2\": {\"spec\": {\"command\": \"cd /root/distill_sparse_swiglu && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 WANDB_MODE=disabled HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache nohup python -u src/benchmark_eval.py --exp_id perlayer_kl_k16_eval_final2 --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint /root/distill_sparse_swiglu/checkpoints/perlayer_kl_k16_s42_v3/predictor_perlayer_kl_k4.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa --seq_len 2048 --gpu 0 > /root/runs/distill_sparse_swiglu/perlayer_kl_k16_eval_final2.log 2>&1 &\", \"server\": \"westd-34887\", \"gpu_ids\": [\"cuda:0\"], \"pid\": 114997, \"data_path\": \"7 eval tasks\", \"data_count\": 0, \"model_name\": \"llama-3.1-8b\", \"seed\": 42, \"checkpoint_source\": \"/root/distill_sparse_swiglu/checkpoints/perlayer_kl_k16_s42_v3/predictor_perlayer_kl_k4.pt\", \"eval_data\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa\"}, \"metrics\": {\"wikitext2_ppl\": 8.6737, \"arc_challenge_acc_norm\": 0.4104, \"winogrande_acc\": 0.6843, \"mmlu_acc\": 0.4403, \"gsm8k_exact_match\": 0.0811, \"hellaswag_acc_norm\": 0.6963, \"piqa_acc_norm\": 0.759}, \"conclusion\": \"success\"}, \"perlayer_kl_k2_s42\": {\"spec\": {\"command\": \"WANDB_MODE=disabled python -u src/train_perlayer_kl_k4.py --num_masked_layers 2 --seed 42 --num_steps 1000 --save_every 500 --gradient_checkpointing --output_dir /root/distill_sparse_swiglu/checkpoints/perlayer_kl_k2_s42 --gpu 0\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": 112035, \"log_path\": \"~/runs/distill_sparse_swiglu/perlayer_kl_k2_s42.log\", \"submitted_at\": \"2026-05-23T04:49:02.415Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"gpu_ids\": [\"cuda:1\"], \"data_path\": \"wikitext-103\", \"data_count\": \"auto\", \"model_name\": \"llama-3.1-8b\", \"seed\": 42, \"num_steps\": 1000, \"sparsity_target\": 0.3, \"num_masked_layers\": 2, \"wall_clock_seconds\": 4237.7, \"gpu_hours\": 1.18}, \"metrics\": {\"final_avg_kl\": 0.0358, \"final_avg_sparsity\": 0.268, \"wall_time_s\": 3841.2, \"training_steps\": 1000, \"note\": \"training only, PPL eval not yet run\"}, \"conclusion\": \"success\"}, \"perlayer_kl_k16_s42_eval_final\": {\"spec\": {\"command\": \"bash -c \\\"cd /root/distill_sparse_swiglu && CUDA_VISIBLE_DEVICES=0 WANDB_MODE=disabled HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache python -u src/benchmark_eval.py --exp_id perlayer_kl_k16_s42_eval_final --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint /root/distill_sparse_swiglu/checkpoints/perlayer_kl_k16_s42_v3/predictor_perlayer_kl_k4.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa --seq_len 2048 --gpu 0\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"unknown\", \"log_path\": \"~/runs/distill_sparse_swiglu/perlayer_kl_k16_s42_eval_final.log\", \"submitted_at\": \"2026-05-23T05:14:08.010Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_source\": \"/root/distill_sparse_swiglu/checkpoints/perlayer_kl_k16_s42_v3/predictor_perlayer_kl_k4.pt\", \"eval_data\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa\", \"model_name\": \"llama-3.1-8b\", \"seed\": 42, \"data_path\": \"lm-eval-harness benchmarks\", \"data_count\": 0, \"wall_clock_seconds\": 55.9, \"gpu_hours\": 0.02, \"failure_reason\": \"EXIT_CODE=127 (command not found) — bash -c wrapping or env activation issue. 3rd consecutive K=16 eval failure. PPL=8.6737 already collected from v3_eval. Downstream tasks still missing.\"}, \"conclusion\": \"failed\"}, \"perlayer_kl_k16_eval_v2\": {\"spec\": {\"command\": \"HF_DATASETS_OFFLINE=1 WANDB_MODE=disabled python -u src/benchmark_eval.py --exp_id perlayer_kl_k16_eval_v2 --checkpoint checkpoints/perlayer_kl_k16_s42_v3/predictor_perlayer_kl_k4.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa --seq_len 2048 --gpu 0\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": 114264, \"log_path\": \"~/runs/distill_sparse_swiglu/perlayer_kl_k16_eval_v2.log\", \"submitted_at\": \"2026-05-23T05:10:45.429Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"gpu_ids\": [\"cuda:0\"], \"data_path\": \"wikitext2+6 downstream\", \"data_count\": 0, \"model_name\": \"llama-3.1-8b\", \"seed\": 42, \"checkpoint_source\": \"/root/distill_sparse_swiglu/checkpoints/perlayer_kl_k16_s42_v3/predictor_perlayer_kl_k4.pt\", \"eval_data\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa\", \"wall_clock_seconds\": 54.2, \"gpu_hours\": 0.02}, \"conclusion\": \"failed\"}, \"perlayer_kl_k16_s42_v3_eval\": {\"spec\": {\"command\": \"WANDB_MODE=disabled python -u src/benchmark_eval.py --exp_id perlayer_kl_k16_s42_v3_eval --checkpoint checkpoints/perlayer_kl_k16_s42_v3/predictor_perlayer_kl_k4.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa --seq_len 2048 --gpu 0\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": 111553, \"log_path\": \"~/runs/distill_sparse_swiglu/perlayer_kl_k16_s42_v3_eval.log\", \"submitted_at\": \"2026-05-23T04:47:08.582Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"gpu_ids\": [\"cuda:0\"], \"data_path\": \"wikitext2+6 downstream tasks\", \"data_count\": 0, \"model_name\": \"llama-3.1-8b\", \"seed\": 42, \"checkpoint_source\": \"/root/distill_sparse_swiglu/checkpoints/perlayer_kl_k16_s42_v3/predictor_perlayer_kl_k4.pt\", \"eval_data\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa\", \"wall_clock_seconds\": 158.7, \"gpu_hours\": 0.04}, \"conclusion\": \"failed\", \"metrics\": {\"wikitext2_ppl\": 8.6737, \"sparsity\": 0.297, \"note\": \"downstream tasks failed due to network - rerunning with HF_DATASETS_OFFLINE=1\"}}, \"perlayer_kl_k8_s42_eval\": {\"spec\": {\"command\": \"python -u src/benchmark_eval.py --exp_id perlayer_kl_k8_s42_eval --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/perlayer_kl_k8_s42/predictor_perlayer_kl_k4.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa --seq_len 2048 --gpu 0\", \"server\": \"westd-34887\", \"gpu_ids\": [\"cuda:1\"], \"data_path\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa\", \"data_count\": 0, \"model_name\": \"llama-3.1-8b\", \"seed\": 42, \"checkpoint_source\": \"checkpoints/perlayer_kl_k8_s42/predictor_perlayer_kl_k4.pt\", \"eval_data\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa\", \"pid\": 104348}, \"metrics\": {\"wikitext2_ppl\": 8.9704, \"arc_challenge_acc_norm\": 0.4104, \"winogrande_acc\": 0.674, \"mmlu_acc\": 0.398, \"gsm8k_exact_match\": 0.0561, \"hellaswag_acc_norm\": 0.6919, \"piqa_acc_norm\": 0.7612}, \"conclusion\": \"success\"}, \"perlayer_kl_k16_s42_v3\": {\"spec\": {\"checkpoint_path\": \"/root/distill_sparse_swiglu/checkpoints/perlayer_kl_k16_s42_v3/predictor_perlayer_kl_k4.pt\", \"log_path\": \"~/runs/distill_sparse_swiglu/perlayer_kl_k16_s42_v3.log\"}, \"metrics\": {\"final_kl\": 0.1406, \"final_avg_kl\": 0.1582, \"final_avg_sparsity\": 0.286, \"wall_time_s\": 1982.9}, \"conclusion\": \"success\"}, \"perlayer_kl_k16_s42_v2\": {\"spec\": {\"command\": \"python -u src/train_perlayer_kl_k4.py --num_masked_layers 16 --seed 42 --num_steps 1000 --save_every 500 --gradient_checkpointing --output_dir /root/distill_sparse_swiglu/checkpoints/perlayer_kl_k16_s42_v2 --gpu 0\", \"server\": \"westd-34887\", \"gpu_ids\": [\"cuda:0\"], \"pid\": 107444, \"data_path\": \"wikitext-103\", \"data_count\": \"auto\", \"model_name\": \"llama-3.1-8b\", \"seed\": 42, \"num_steps\": 1000, \"sparsity_target\": 0.3, \"num_masked_layers\": 16, \"checkpoint_source\": \"N/A (training from scratch, parent is failed v1 retry)\", \"eval_data\": \"N/A (training experiment)\"}, \"conclusion\": \"failed\"}, \"perlayer_kl_k16_s42\": {\"spec\": {\"command\": \"python -u src/train_perlayer_kl_k4.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --loss_type kl_normalized --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 42 --sparsity_target 0.3 --num_masked_layers 16 --gpu 0 --output_dir checkpoints/perlayer_kl_k16_s42 --gradient_checkpointing --save_every 500\", \"server\": \"westd-34887\", \"data_path\": \"wikitext-103\", \"data_count\": 1000, \"model_name\": \"llama-3.1-8b\", \"seed\": 42}, \"conclusion\": \"failed\", \"metrics\": {\"error\": \"argparse failure: unrecognized arguments --loss_type kl_normalized\", \"training_loss\": null}}, \"c4_kl30_s42_eval\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && WANDB_MODE=disabled HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache python -u src/benchmark_eval.py --exp_id c4_kl30_s42_eval --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/c4_kl30_s42/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa --seq_len 2048 --gpu 0 2>&1\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"98032\", \"log_path\": \"~/runs/distill_sparse_swiglu/c4_kl30_s42_eval.log\", \"submitted_at\": \"2026-05-23T01:52:37.593Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 4614.3, \"gpu_hours\": 1.28}, \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 11.554, \"arc_challenge_acc_norm\": 0.4309, \"winogrande_acc\": 0.6867, \"mmlu_acc\": 0.3995, \"gsm8k_exact_match\": 0.0409, \"hellaswag_acc_norm\": 0.6924, \"piqa_acc_norm\": 0.7503, \"sparsity\": 0.295}}, \"perlayer_kl_k8_s42\": {\"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python -u src/train_perlayer_kl_k4.py --num_masked_layers 8 --seed 42 --num_steps 1000 --save_every 500 --gradient_checkpointing --output_dir /root/distill_sparse_swiglu/checkpoints/perlayer_kl_k8_s42 --gpu 0\", \"server\": \"westd-34887\", \"gpu_ids\": [\"cuda:1\"], \"pid\": 98975, \"data_path\": \"wikitext-103\", \"data_count\": \"auto\", \"model_name\": \"llama-3.1-8b\", \"seed\": 42, \"num_steps\": 1000, \"sparsity_target\": 0.3, \"num_masked_layers\": 8, \"checkpoint_path\": \"/root/distill_sparse_swiglu/checkpoints/perlayer_kl_k8_s42/predictor_perlayer_kl_k4.pt\", \"log_path\": \"/root/distill_sparse_swiglu/logs/perlayer_kl_k8_s42.log\"}, \"metrics\": {\"wikitext2_ppl\": 8.97, \"final_avg_kl\": 0.0983, \"final_avg_sparsity\": 0.281, \"wall_time_s\": 1894.1}, \"conclusion\": \"success\"}, \"c4_kl30_s42\": {\"conclusion\": \"success\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && WANDB_MODE=disabled python -u src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --loss_type kl_normalized --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 42 --sparsity_target 0.3 --gpu 0 --output_dir checkpoints/c4_kl30_s42 --dataset c4 --gradient_checkpointing --save_every 500\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"95824\", \"log_path\": \"~/runs/distill_sparse_swiglu/c4_kl30_s42.log\", \"submitted_at\": \"2026-05-23T01:05:58.232Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"spon_2048_s42\": {\"spec\": {\"command\": \"bash -c \\\"source /root/distill_sparse_swiglu/setup_env.sh && cd /root/distill_sparse_swiglu && PYTHONUNBUFFERED=1 WANDB_MODE=disabled python src/train_spon.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --predictor_checkpoint checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-5 --seed 42 --sparsity_target 0.5 --gpu 0 --output_dir checkpoints/spon_2048_s42 --warmup_steps 100 --log_every 100 --dataset wikitext-103 --gradient_checkpointing\\\"\", \"server\": \"westd-34887\", \"data_path\": \"wikitext-103 (HF cached)\", \"data_count\": null, \"model_name\": \"llama-3.1-8b\", \"seed\": 42, \"checkpoint_source\": \"mvp_kl_norm_v2_s42 predictor\", \"eval_data\": \"wikitext-2\"}, \"conclusion\": \"killed\", \"metrics\": {\"true_dense_ppl\": 6.1173, \"predictor_hard_mask_ppl\": 9.2165, \"spon_sparse_ppl\": 8.991, \"spon_recovery_pct\": 7.3, \"ppl_improvement_from_spon\": 0.2255, \"mean_bias_norm\": 0.05312, \"max_bias_norm\": 0.065918, \"model_level_sparsity\": 0.498, \"eval_seq_len\": 2048, \"training_seq_len\": 2048, \"eval_samples\": 141, \"trainable_params\": 458752, \"trainable_pct\": 0.0057, \"training_steps\": 1000, \"final_loss\": 0.377, \"dense_with_spon_ppl\": 6.1823, \"dense_ppl_degradation\": 0.0651, \"teal_sparse_no_spon_ppl\": 12.0776, \"teal_sparse_with_spon_ppl\": 11.7907, \"spon_recovery_teal_pct\": 4.8, \"teal_sparsity\": 0.4979}}, \"bce_isocompute_v2_s42\": {\"spec\": {\"command\": \"bash -c \\\"source /root/distill_sparse_swiglu/setup_env.sh && cd /root/distill_sparse_swiglu && TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 WANDB_MODE=disabled python src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --loss_type bce --num_steps 1000 --warmup_steps 100 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 42 --sparsity_target 0.5 --sparsity_reg_weight 2.0 --gpu 0 --output_dir /root/distill_sparse_swiglu/checkpoints/bce_isocompute_v2_s42 --gradient_checkpointing --log_every 100 --save_every 250 --wandb_run_name bce_isocompute_v2_s42\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"129182\", \"log_path\": \"~/runs/distill_sparse_swiglu/bce_isocompute_v2_s42.log\", \"submitted_at\": \"2026-05-15T20:16:10.918Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 1727.3, \"gpu_hours\": 0.48}, \"conclusion\": \"killed\", \"metrics\": {\"final_loss\": 0.6637, \"final_bce_loss\": 0.6586, \"final_reg_loss\": 0.0051, \"final_sparsity\": 0.502, \"training_steps\": 1000, \"training_time_sec\": 1047.8, \"reg_weight\": 2, \"true_dense_ppl\": 6.12, \"predictor_hard_mask_ppl\": 26.76, \"teal_sparse_ppl\": 54.84, \"eval_seq_len\": 2048, \"eval_dataset\": \"wikitext-2\"}}, \"kl_sparsity70_s42_v2\": {\"spec\": {\"command\": \"bash -c 'source setup_env.sh && python src/train.py --loss_type kl_normalized --sparsity_target 0.7 --num_steps 1000 --gradient_checkpointing'\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"132988\", \"log_path\": \"~/runs/distill_sparse_swiglu/kl_sparsity70_s42_v2.log\", \"submitted_at\": \"2026-05-15T20:34:18.724Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"wikitext-103\", \"data_count\": 1000, \"model_name\": \"llama-3.1-8b\", \"seed\": 42, \"wall_clock_seconds\": 2456.7, \"gpu_hours\": 0.68}, \"metrics\": {\"true_dense_ppl\": 6.12, \"predictor_hard_mask_ppl\": 13.84, \"predictor_teal_sparse_ppl\": 17.91, \"vanilla_teal_sparse_ppl\": 100.11, \"teal_sparse_ppl\": 17.91, \"teal_sparse_ppl_static_baseline\": 17.91, \"model_level_sparsity\": 0.7, \"teal_sparse_note\": \"17.91 = predictor-based TEAL (teal_global_masks: predictor-gated magnitude scoring + global topk @70%). vanilla TEAL @70% = 100.11. 代码来源: quick_sp70.py L10 imports teal_global_masks, L60 调用. plan_007_all_ppl_fixed.json 的 mode=static_mask_70pct metadata 有误导性.\", \"eval_dataset\": \"wikitext-2\", \"eval_seq_len\": 2048, \"calibration_samples\": 32, \"per_layer_sparsity_range\": [0.508, 0.876]}, \"conclusion\": \"killed\"}, \"jsd_50pct_s42\": {\"spec\": {\"command\": \"PYTHONUNBUFFERED=1 WANDB_MODE=disabled CUDA_VISIBLE_DEVICES=1 python src/train.py --loss_type jsd --sparsity_target 0.5 --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 42 --kl_temperature 1.0 --tau_start 1.0 --tau_end 0.1 --warmup_steps 100 --gradient_checkpointing --dataset wikitext-103 --log_every 10 --output_dir checkpoints/jsd_50pct_s42 --wandb_run_name jsd_50pct_s42\", \"server\": \"westd-34887\", \"data_path\": \"wikitext-103\", \"data_count\": \"~4M tokens\", \"model_name\": \"llama-3.1-8b\", \"seed\": 42, \"checkpoint_source\": \"random_init\", \"log_path\": \"/root/distill_sparse_swiglu/logs/jsd_50pct_s42.log\", \"checkpoint_path\": \"/root/distill_sparse_swiglu/checkpoints/jsd_50pct_s42/\"}, \"conclusion\": \"killed\", \"metrics\": {\"ppl_wikitext2\": 12.54, \"vs_forward_kl\": \"+0.75 (+6.4%)\", \"sparsity\": 0.5}}, \"reverse_kl_50pct_s42\": {\"spec\": {\"command\": \"PYTHONUNBUFFERED=1 WANDB_MODE=disabled CUDA_VISIBLE_DEVICES=0 python src/train.py --loss_type reverse_kl --sparsity_target 0.5 --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 42 --kl_temperature 1.0 --tau_start 1.0 --tau_end 0.1 --warmup_steps 100 --gradient_checkpointing --dataset wikitext-103 --log_every 10 --output_dir checkpoints/reverse_kl_50pct_s42 --wandb_run_name reverse_kl_50pct_s42\", \"server\": \"westd-34887\", \"data_path\": \"wikitext-103\", \"data_count\": \"~4M tokens\", \"model_name\": \"llama-3.1-8b\", \"seed\": 42, \"checkpoint_source\": \"random_init\", \"log_path\": \"/root/distill_sparse_swiglu/logs/reverse_kl_50pct_s42.log\", \"checkpoint_path\": \"/root/distill_sparse_swiglu/checkpoints/reverse_kl_50pct_s42/\"}, \"conclusion\": \"killed\", \"metrics\": {\"ppl_wikitext2\": 12.8, \"vs_forward_kl\": \"+1.01 (+8.6%)\", \"sparsity\": 0.5}}, \"qwen14b_kl30_uniform_eval_4task\": {\"spec\": {\"command\": \"bash -c \\\"cd /root/distill_sparse_swiglu && HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache /root/miniconda3/bin/python -u src/benchmark_eval.py --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --checkpoint checkpoints/qwen14b_kl30_s42/predictor_kl_normalized.pt --sparsity_mode teal_global --allocation uniform --sparsity_target 0.3 --tasks wikitext2,arc_challenge,winogrande,mmlu --exp_id qwen14b_kl30_uniform_4task --gpu 0\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"87144\", \"log_path\": \"~/runs/distill_sparse_swiglu/qwen14b_kl30_uniform_eval_4task.log\", \"submitted_at\": \"2026-05-18T00:52:59.360Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"qwen2.5-14b\", \"data_path\": \"wikitext2,arc_challenge,winogrande,mmlu\", \"data_count\": 0, \"seed\": 42, \"checkpoint_source\": \"qwen14b_kl30_s42\", \"eval_data\": \"wikitext2,arc_challenge,winogrande,mmlu\", \"wall_clock_seconds\": 3914.6, \"gpu_hours\": 1.09}, \"metrics\": {\"wikitext2_ppl\": 7.63, \"mmlu_acc\": 0.6449, \"arc_challenge_acc_norm\": 0.5444, \"winogrande_acc\": 0.7245}, \"conclusion\": \"killed\"}, \"qwen14b_teal30_uniform_eval_4task\": {\"spec\": {\"command\": \"bash -c \\\"cd /root/distill_sparse_swiglu && HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache /root/miniconda3/bin/python -u src/benchmark_eval.py --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --baseline_mode teal_vanilla --allocation uniform --sparsity_target 0.3 --tasks wikitext2,arc_challenge,winogrande,mmlu --exp_id qwen14b_teal30_uniform_4task --gpu 0\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"87283\", \"log_path\": \"~/runs/distill_sparse_swiglu/qwen14b_teal30_uniform_eval_4task.log\", \"submitted_at\": \"2026-05-18T00:53:02.718Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"qwen2.5-14b\", \"data_path\": \"wikitext2,arc_challenge,winogrande,mmlu\", \"data_count\": 0, \"seed\": 42, \"checkpoint_source\": \"N/A (TEAL vanilla)\", \"eval_data\": \"wikitext2,arc_challenge,winogrande,mmlu\", \"wall_clock_seconds\": 3912.8, \"gpu_hours\": 1.09}, \"metrics\": {\"wikitext2_ppl\": 8.01, \"mmlu_acc\": 0.6634, \"arc_challenge_acc_norm\": 0.5529, \"winogrande_acc\": 0.6985}, \"conclusion\": \"killed\"}, \"qwen14b_kl30_s123_gsm8k\": {\"conclusion\": \"killed\", \"metrics\": {\"gsm8k_exact_match\": 0.3442, \"gsm8k_exact_match_strict\": 0.3434, \"actual_sparsity\": 0.297}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache python -u src/benchmark_eval.py --exp_id qwen14b_kl30_s123_gsm8k --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --checkpoint checkpoints/qwen14b_kl30_s123/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks gsm8k --seq_len 2048 --gpu 0\\\"\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:1\"], \"pid\": \"166646\", \"log_path\": \"~/runs/distill_sparse_swiglu/qwen14b_kl30_s123_gsm8k.log\", \"submitted_at\": \"2026-05-19T18:23:21.115Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"bench_teal30_uniform_gsm8k\": {\"conclusion\": \"killed\", \"metrics\": {\"gsm8k_exact_match\": 0.0879, \"actual_sparsity\": 0.3}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache python -u src/benchmark_eval.py --exp_id bench_teal30_uniform_gsm8k --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --baseline_mode teal_vanilla --allocation uniform --sparsity_target 0.3 --tasks gsm8k --seq_len 2048 --gpu 0\\\"\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:1\"], \"pid\": \"176588\", \"log_path\": \"~/runs/distill_sparse_swiglu/bench_teal30_uniform_gsm8k.log\", \"submitted_at\": \"2026-05-19T21:59:55.252Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"LLaMA-3.1-8B\", \"data_path\": \"gsm8k\", \"data_count\": 1319, \"seed\": 42, \"checkpoint_source\": \"N/A (TEAL vanilla)\", \"eval_data\": \"gsm8k\", \"checkpoint_path\": \"results/benchmark/bench_teal30_uniform_gsm8k/results.json\", \"wall_clock_seconds\": 1251.3}}, \"bench_teal30_uniform_6task\": {\"conclusion\": \"killed\", \"metrics\": {\"wikitext2_ppl\": 10.8173, \"arc_challenge_acc_norm\": 0.3933, \"winogrande_acc\": 0.6504, \"mmlu_acc\": 0.4586, \"hellaswag_acc_norm\": 0.6331, \"piqa_acc_norm\": 0.728, \"actual_sparsity\": 0.3}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache python -u src/benchmark_eval.py --exp_id bench_teal30_uniform_6task --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --baseline_mode teal_vanilla --allocation uniform --sparsity_target 0.3 --tasks wikitext2,arc_challenge,winogrande,mmlu,hellaswag,piqa --seq_len 2048 --gpu 0\\\"\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:1\"], \"pid\": \"178274\", \"log_path\": \"~/runs/distill_sparse_swiglu/bench_teal30_uniform_6task.log\", \"submitted_at\": \"2026-05-19T22:37:09.657Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"c1_eval_30pct_s456\": {\"conclusion\": \"killed\", \"metrics\": {\"wikitext2_ppl\": 8.9773, \"arc_challenge_acc_norm\": 0.4718, \"winogrande_acc\": 0.6882, \"mmlu_acc\": 0.3656, \"gsm8k_exact_match\": 0.0842}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache python -u src/benchmark_eval.py --exp_id c1_eval_30pct_s456 --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/c1_ablation_30pct_s456/predictor_bce_kl_targets.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --seq_len 2048 --gpu 0\\\"\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:0\"], \"pid\": \"179834\", \"log_path\": \"~/runs/distill_sparse_swiglu/c1_eval_30pct_s456.log\", \"submitted_at\": \"2026-05-19T22:57:03.609Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"bench_teal50_uniform_6task\": {\"conclusion\": \"killed\", \"metrics\": {\"wikitext2_ppl\": 23.9, \"arc_challenge_acc_norm\": 0.2747, \"winogrande_acc\": 0.5438, \"mmlu_acc\": 0.2926, \"hellaswag_acc_norm\": 0.3935, \"piqa_acc_norm\": 0.6366}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache python -u src/benchmark_eval.py --exp_id bench_teal50_uniform_6task --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --baseline_mode teal_vanilla --allocation uniform --sparsity_target 0.5 --tasks wikitext2,arc_challenge,winogrande,mmlu,hellaswag,piqa --seq_len 2048 --gpu 0\\\"\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:0\"], \"pid\": \"182919\", \"log_path\": \"~/runs/distill_sparse_swiglu/bench_teal50_uniform_6task.log\", \"submitted_at\": \"2026-05-19T23:59:07.433Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"kl30_uniform_hspiqa_s123\": {\"conclusion\": \"killed\", \"metrics\": {\"hellaswag_acc_norm\": 0.7067, \"piqa_acc_norm\": 0.7481}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache python -u src/benchmark_eval.py --exp_id kl30_uniform_hspiqa_s123 --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/kl_sparsity30_s123/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks hellaswag,piqa --seq_len 2048 --gpu 0\\\"\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:1\"], \"pid\": \"183059\", \"log_path\": \"~/runs/distill_sparse_swiglu/kl30_uniform_hspiqa_s123.log\", \"submitted_at\": \"2026-05-19T23:59:10.109Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"kl30_uniform_hspiqa_s456\": {\"conclusion\": \"killed\", \"metrics\": {\"hellaswag_acc_norm\": 0.7168, \"piqa_acc_norm\": 0.7524}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache python -u src/benchmark_eval.py --exp_id kl30_uniform_hspiqa_s456 --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/kl_sparsity30_s456/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks hellaswag,piqa --seq_len 2048 --gpu 0\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"142999\", \"log_path\": \"~/runs/distill_sparse_swiglu/kl30_uniform_hspiqa_s456.log\", \"submitted_at\": \"2026-05-20T00:06:10.700Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"kl50_global_s456_eval\": {\"spec\": {\"command\": \"python -u src/benchmark_eval.py --exp_id kl50_global_s456_eval --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/mvp_kl_norm_v2_s456/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.5 --allocation global_topk --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa --seq_len 2048 --gpu 0\", \"server\": \"westd-41718\", \"gpu\": \"cuda:1\", \"pid\": \"272684\", \"log_path\": \"~/runs/distill_sparse_swiglu/kl50_global_s456_eval.log\", \"submitted_at\": \"2026-05-20T17:34:18.902Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"llama-3.1-8b\", \"seed\": 456, \"checkpoint_source\": \"mvp_kl_norm_v2_s456\", \"eval_data\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa\", \"data_path\": \"lm-eval-harness benchmarks\", \"data_count\": 0}, \"conclusion\": \"killed\", \"metrics\": {\"wikitext2_ppl\": 12.01, \"arc_challenge_acc_norm\": 0.369, \"winogrande_acc\": 0.64, \"mmlu_acc\": 0.28, \"gsm8k_exact_match\": 0.035, \"hellaswag_acc_norm\": 0.595, \"piqa_acc_norm\": 0.68}}, \"revkl_30_s42_uniform_eval\": {\"conclusion\": \"killed\", \"metrics\": {\"ppl\": 9.3081, \"arc_challenge\": 0.4283, \"winogrande\": 0.7009, \"mmlu\": 0.3749, \"gsm8k\": 0.0697, \"hellaswag\": 0.6969, \"piqa\": 0.7459}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && CKPT=\\\\$(ls checkpoints/reverse_kl_30_s42/predictor_*.pt 2>/dev/null | head -1) && if [ -z \\\\\\\"\\\\$CKPT\\\\\\\" ]; then echo 'ERROR: No predictor checkpoint found in checkpoints/reverse_kl_30_s42/'; ls -la checkpoints/reverse_kl_30_s42/ 2>/dev/null; exit 1; fi && echo \\\\\\\"Using checkpoint: \\\\$CKPT\\\\\\\" && HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache python -u src/benchmark_eval.py --exp_id revkl_30_s42_uniform_eval --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint \\\\$CKPT --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa --seq_len 2048 --gpu 0\\\"\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:1\"], \"pid\": \"280143\", \"log_path\": \"~/runs/distill_sparse_swiglu/revkl_30_s42_uniform_eval.log\", \"submitted_at\": \"2026-05-20T19:51:25.944Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"perlayer_kl_s456_boolq\": {\"spec\": {\"command\": \"python -u src/benchmark_eval.py --tasks boolq --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"286953\", \"log_path\": \"~/runs/distill_sparse_swiglu/perlayer_kl_s456_boolq.log\", \"submitted_at\": \"2026-05-21T14:44:04.165Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"lm-eval-harness built-in\", \"data_count\": \"1 task (boolq)\", \"model_name\": \"llama-3.1-8b\", \"seed\": \"456\", \"checkpoint_source\": \"perlayer_kl_30_s456\", \"eval_data\": \"boolq\", \"checkpoint_path\": \"N/A (SCP hang, eval failed)\", \"wall_clock_seconds\": 9658.3, \"gpu_hours\": 2.68}, \"conclusion\": \"killed\"}, \"perlayer_kl_k4_s123\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/distill_sparse_swiglu/run_k4_s123_pipeline.sh\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"65980\", \"log_path\": \"~/runs/distill_sparse_swiglu/perlayer_kl_k4_s123.log\", \"submitted_at\": \"2026-05-22T13:40:39.779Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"seed\": 123, \"model_name\": \"LLaMA-3.1-8B\", \"data_path\": \"wikitext-103\", \"wall_clock_seconds\": 9108.4, \"gpu_hours\": 2.53}, \"metrics\": {\"wikitext2_ppl\": 8.8897, \"arc_challenge_acc_norm\": 0.4053, \"winogrande_acc\": 0.6701, \"mmlu_acc\": 0.4118, \"gsm8k_exact_match\": 0.0781, \"hellaswag_acc_norm\": 0.6668, \"piqa_acc_norm\": 0.7448, \"boolq_acc\": 0.5914}, \"conclusion\": \"killed\"}, \"perlayer_kl_k4_s456\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/distill_sparse_swiglu/run_k4_s456_pipeline.sh\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"66278\", \"log_path\": \"~/runs/distill_sparse_swiglu/perlayer_kl_k4_s456.log\", \"submitted_at\": \"2026-05-22T13:40:59.049Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"seed\": 456, \"model_name\": \"LLaMA-3.1-8B\", \"data_path\": \"wikitext-103\", \"wall_clock_seconds\": 9359.9, \"gpu_hours\": 2.6}, \"metrics\": {\"wikitext2_ppl\": 8.8828, \"arc_challenge_acc_norm\": 0.3857, \"winogrande_acc\": 0.6701, \"mmlu_acc\": 0.4351, \"gsm8k_exact_match\": 0.0788, \"hellaswag_acc_norm\": 0.6821, \"piqa_acc_norm\": 0.7503, \"boolq_acc\": 0.7092}, \"conclusion\": \"killed\"}, \"constraint_protect_late_kl30_s42\": {\"metrics\": {\"wikitext2_ppl\": 9.2638, \"arc_challenge_acc_norm\": 0.4241, \"mmlu_acc\": 0.4066, \"gsm8k_exact_match\": 0.0652}, \"conclusion\": \"killed\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HUB_OFFLINE=1 && python -u src/eval_constrained_sparsity.py --constraint_type protect_late --checkpoint checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --sparsity_target 0.3 --cap_start 22 --cap_end 28 --cap 0.30 --tasks wikitext2,arc_challenge,mmlu,gsm8k --seq_len 2048 --gpu 0 --exp_id constraint_protect_late_kl30_s42\\\"\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:0\"], \"pid\": \"419715\", \"log_path\": \"~/runs/distill_sparse_swiglu/constraint_protect_late_kl30_s42.log\", \"submitted_at\": \"2026-05-22T13:50:01.678Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"constraint_remove_valley_kl30_s42\": {\"metrics\": {\"wikitext2_ppl\": 8.7592, \"arc_challenge_acc_norm\": 0.3933, \"mmlu_acc\": 0.4397, \"gsm8k_exact_match\": 0.0895, \"actual_sparsity\": 0.2955}, \"conclusion\": \"killed\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HUB_OFFLINE=1 && python -u src/eval_constrained_sparsity_b.py --constraint_type remove_valley --checkpoint checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --sparsity_target 0.3 --tasks wikitext2,arc_challenge,mmlu,gsm8k --seq_len 2048 --gpu 0 --exp_id constraint_remove_valley_kl30_s42\\\"\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:1\"], \"pid\": \"419566\", \"log_path\": \"~/runs/distill_sparse_swiglu/constraint_remove_valley_kl30_s42.log\", \"submitted_at\": \"2026-05-22T13:49:56.732Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"perlayer_kl_50_s42\": {\"spec\": {\"command\": \"python -u src/train_perlayer_kl.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --num_steps 10000 --sparsity_target 0.5 --seed 42 --gpu 0 --gradient_checkpointing --dataset wikitext-103 --output_dir checkpoints/perlayer_kl_50_s42 --kl_temperature 1.0 --tau_start 1.0 --tau_end 0.1 --warmup_steps 100 --lambda_max 5000 --save_every 2000\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:0\"], \"pid\": \"359439\", \"log_path\": \"~/runs/distill_sparse_swiglu/perlayer_kl_50_s42.log\", \"submitted_at\": \"2026-05-22T01:48:10.026Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"wikitext-103\", \"data_count\": \"~10000 steps × 4 batch × 2048 seq_len\", \"model_name\": \"llama-3.1-8b\", \"seed\": \"42\", \"checkpoint_path\": \"checkpoints/perlayer_kl_50_s42/predictor_perlayer_kl.pt\", \"wall_clock_seconds\": 61782.4, \"gpu_hours\": 17.16}, \"metrics\": {\"avg_kl\": 0.0282, \"sparsity_mean\": 0.496, \"wikitext2_ppl\": 34.85, \"training_steps\": 10000, \"training_duration_s\": 18216}, \"conclusion\": \"negative\"}, \"perlayer_kl_s123_downstream_v2\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export PYTHONUNBUFFERED=1 && export WANDB_MODE=disabled && python -u src/benchmark_eval.py --exp_id perlayer_kl_s123_downstream_v2 --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/perlayer_kl_30_s123/predictor_perlayer_kl.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa --seq_len 2048 --gpu 0 2>&1\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"304323\", \"log_path\": \"~/runs/distill_sparse_swiglu/perlayer_kl_s123_downstream_v2.log\", \"submitted_at\": \"2026-05-21T21:29:25.576Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"checkpoints/perlayer_kl_30_s123/predictor_perlayer_kl.pt\", \"wall_clock_seconds\": 77333.9, \"gpu_hours\": 21.48}, \"metrics\": {\"arc_challenge_acc_norm\": 0.4206, \"winogrande_acc\": 0.6622, \"mmlu_acc\": 0.3895, \"gsm8k_exact_match\": 0.0569, \"hellaswag_acc_norm\": 0.6478, \"piqa_acc_norm\": 0.7514}, \"conclusion\": \"success\"}, \"perlayer_kl_k4_50_s42_ppl_v2\": {\"spec\": {\"command\": \"python -u src/benchmark_eval.py --exp_id perlayer_kl_k4_50_s42_ppl_v2 --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/perlayer_kl_k4_50_s42/predictor_perlayer_kl_k4.pt --sparsity_mode teal_global --sparsity_target 0.5 --allocation uniform --tasks wikitext2 --seq_len 2048 --gpu 0\", \"server\": \"westd-34887\", \"data_path\": \"wikitext2\", \"data_count\": 141, \"model_name\": \"llama-3.1-8b\", \"seed\": 42, \"checkpoint_source\": \"checkpoints/perlayer_kl_k4_50_s42/predictor_perlayer_kl_k4.pt\", \"eval_data\": \"wikitext2\"}, \"metrics\": {\"wikitext2_ppl\": 44.2321, \"sparsity_actual\": 0.495, \"seq_len\": 2048, \"num_sequences\": 141}, \"conclusion\": \"negative\"}, \"perlayer_kl_k4_50_s42_ppl\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && python -u src/benchmark_eval.py --checkpoint checkpoints/perlayer_kl_k4_50_s42/predictor_perlayer_kl_k4.pt --tasks wikitext2 --sparsity 0.5 --eval_mode perlayer_kl_k4\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"80982\", \"log_path\": \"~/runs/distill_sparse_swiglu/perlayer_kl_k4_50_s42_ppl.log\", \"submitted_at\": \"2026-05-22T18:42:23.646Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"conclusion\": \"failed\"}, \"perlayer_kl_k4_50_s42\": {\"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python -u src/train_perlayer_kl_k4.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --dataset wikitext-103 --seq_len 2048 --num_steps 1000 --lr 1e-3 --seed 42 --sparsity_target 0.5 --num_masked_layers 4 --output_dir checkpoints/perlayer_kl_k4_50_s42 --gpu 0 --gradient_checkpointing --save_every 500 --kl_temperature 1.0 --tau_start 1.0 --tau_end 0.1 --warmup_steps 100 --lambda_max 5000\", \"server\": \"westd-34887\", \"data_path\": \"wikitext-103\", \"data_count\": 1000, \"model_name\": \"llama-3.1-8b\", \"seed\": 42, \"checkpoint_source\": \"fresh_train_from_pretrained_predictor_wrapper\", \"eval_data\": \"training_run_not_eval_K4_distill_at_50pct_sparsity\", \"checkpoint_path\": \"/root/distill_sparse_swiglu/checkpoints/perlayer_kl_k4_50_s42/predictor_perlayer_kl_k4.pt\", \"log_path\": \"/root/distill_sparse_swiglu/logs/perlayer_kl_k4_50_s42.log\"}, \"conclusion\": \"success\"}, \"kl50_global_s123_downstream_v2\": {\"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python -u src/benchmark_eval.py --exp_id kl50_global_s123_downstream_v2 --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/mvp_kl_norm_v2_s123/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.5 --tasks arc_challenge,winogrande,mmlu,gsm8k --seq_len 2048 --gpu 0\", \"server\": \"westd-34887\", \"data_path\": \"/root/distill_sparse_swiglu/checkpoints/mvp_kl_norm_v2_s123/predictor_kl_normalized.pt\", \"data_count\": 0, \"model_name\": \"llama-3.1-8b\", \"seed\": 123, \"checkpoint_source\": \"mvp_kl_norm_v2_s123/predictor_kl_normalized.pt\", \"eval_data\": \"arc_challenge,winogrande,mmlu,gsm8k\", \"log_path\": \"/root/distill_sparse_swiglu/logs/kl50_global_s123_downstream_v2.log\", \"pid\": \"77882\"}, \"conclusion\": \"success\", \"metrics\": {\"arc_challenge_acc_norm\": 0.3916, \"winogrande_acc\": 0.6401, \"mmlu_acc\": 0.2908, \"gsm8k_exact_match\": 0.0341}}, \"qwen14b_kl30_s42_gsm8k_uniform\": {\"spec\": {\"command\": \"bash -c \\\"cd /root/distill_sparse_swiglu && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HUB_OFFLINE=1 && CUDA_VISIBLE_DEVICES=0 python -u src/benchmark_eval.py --exp_id qwen14b_kl30_s42_gsm8k_uniform --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --checkpoint checkpoints/qwen14b_kl30_s42/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks gsm8k --seq_len 2048 --gpu 0\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"14258\", \"log_path\": \"~/runs/distill_sparse_swiglu/qwen14b_kl30_s42_gsm8k_uniform.log\", \"submitted_at\": \"2026-05-22T06:44:50.081Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_source\": \"checkpoints/qwen14b_kl30_s42/predictor_kl_normalized.pt\", \"eval_data\": \"gsm8k\", \"data_path\": \"gsm8k\", \"data_count\": 1319, \"model_name\": \"Qwen2.5-14B\", \"seed\": 42}, \"metrics\": {\"gsm8k_exact_match\": 0.3548}, \"conclusion\": \"success\"}, \"perlayer_kl_k4_s42_downstream\": {\"spec\": {\"command\": \"python -u src/benchmark_eval.py --exp_id perlayer_kl_k4_s42_downstream --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/perlayer_kl_k4_s42/predictor_perlayer_kl_k4.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa,boolq --seq_len 2048 --gpu 0\", \"server\": \"westd-34887\", \"data_path\": \"lm-eval-harness datasets (offline)\", \"data_count\": \"7 tasks\", \"model_name\": \"llama-3.1-8b + perlayer_kl_k4 predictor\", \"seed\": 42, \"checkpoint_source\": \"checkpoints/perlayer_kl_k4_s42/predictor_perlayer_kl_k4.pt\", \"eval_data\": \"arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa,boolq\", \"log_path\": \"/root/runs/distill_sparse_swiglu/perlayer_kl_k4_s42_downstream.log\", \"checkpoint_path\": \"/root/distill_sparse_swiglu/checkpoints/perlayer_kl_k4_s42/predictor_perlayer_kl_k4.pt\", \"pid\": 51247, \"gpu\": \"cuda:1\"}, \"metrics\": {\"arc_challenge_acc_norm\": 0.4096, \"winogrande_acc\": 0.6669, \"mmlu_acc\": 0.4353, \"gsm8k_exact_match\": 0.0516, \"hellaswag_acc_norm\": 0.6849, \"piqa_acc_norm\": 0.7399, \"boolq_acc\": 0.7318}, \"conclusion\": \"success\"}, \"perlayer_kl_k4_s42_ppl\": {\"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 HF_HOME=/root/autodl-tmp/.hf_cache HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -u src/benchmark_eval.py --exp_id perlayer_kl_k4_s42_ppl --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/perlayer_kl_k4_s42/predictor_perlayer_kl_k4.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2 --seq_len 2048 --gpu 0\", \"server\": \"westd-34887\", \"data_path\": \"wikitext2\", \"data_count\": 1, \"model_name\": \"llama-3.1-8b\", \"seed\": 42, \"checkpoint_source\": \"checkpoints/perlayer_kl_k4_s42/predictor_perlayer_kl_k4.pt\", \"eval_data\": \"wikitext2\", \"log_path\": \"/root/runs/distill_sparse_swiglu/perlayer_kl_k4_s42_ppl.log\", \"pid\": 51577, \"checkpoint_path\": \"/root/distill_sparse_swiglu/checkpoints/perlayer_kl_k4_s42/predictor_perlayer_kl_k4.pt\"}, \"metrics\": {\"wikitext2_ppl\": 8.8932, \"sparsity_mean\": 0.296, \"ppl_k1_baseline\": 9.05, \"ppl_e2e_kl_baseline\": 8.81, \"delta_vs_k1\": -0.16, \"delta_vs_e2e_kl\": 0.08}, \"conclusion\": \"negative\"}, \"mse30_s456_downstream\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache python -u src/benchmark_eval.py --exp_id mse30_s456_downstream --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/mse30_s456/predictor_mse.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa,boolq --seq_len 2048 --gpu 0\\\"\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:1\"], \"data_path\": \"lm-eval cached datasets at /root/autodl-tmp/.hf_cache/datasets\", \"data_count\": \"ARC-c 1172 / WG 1267 / MMLU 14042 / GSM8K 1319 / HS 10042 / PIQA 1838 / BoolQ 3270\", \"model_name\": \"meta-llama/Llama-3.1-8B\", \"seed\": 456, \"checkpoint_source\": \"checkpoints/mse30_s456/predictor_mse.pt\", \"eval_data\": \"arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa,boolq (TEAL global 30% uniform allocation)\", \"pid\": \"402809\", \"log_path\": \"/root/runs/distill_sparse_swiglu/mse30_s456_downstream.log\", \"submitted_at\": \"2026-05-22T09:47:30Z\", \"submitted_via\": \"ssh_execute_nohup\", \"backend\": \"nohup\", \"account\": \"root\", \"wall_clock_seconds\": 4230.5, \"gpu_hours\": 1.18}, \"metrics\": {\"arc_challenge_acc_norm\": 0.3882, \"winogrande_acc\": 0.6196, \"mmlu_acc\": 0.3264, \"gsm8k_exact_match\": 0.0311, \"hellaswag_acc_norm\": 0.6129, \"piqa_acc_norm\": 0.7383, \"boolq_acc\": 0.7034}, \"conclusion\": \"success\"}, \"mse30_s42_boolq\": {\"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache python -u src/benchmark_eval.py --exp_id mse30_s42_boolq --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/mse30_s42/predictor_mse.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks boolq --seq_len 2048 --gpu 0\", \"server\": \"westd-41718\", \"data_path\": \"/root/autodl-tmp/.hf_cache/datasets/aps___super_glue/boolq\", \"data_count\": 3270, \"model_name\": \"llama-3.1-8b\", \"seed\": 42, \"checkpoint_source\": \"checkpoints/mse30_s42/predictor_mse.pt\", \"eval_data\": \"boolq\", \"log_path\": \"/root/runs/distill_sparse_swiglu/mse30_s42_boolq.log\"}, \"metrics\": {\"boolq_acc\": 0.5997, \"boolq_acc_stderr\": 0.008569, \"boolq_sample_len\": 3270}, \"conclusion\": \"success\"}, \"perlayer_kl_50_s42_downstream\": {\"spec\": {\"command\": \"python -u src/benchmark_eval.py --exp_id perlayer_kl_50_s42_downstream --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/perlayer_kl_50_s42/predictor_perlayer_kl.pt --sparsity_mode teal_global --sparsity_target 0.5 --allocation uniform --tasks arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:1\"], \"pid\": \"374284\", \"log_path\": \"~/runs/distill_sparse_swiglu/perlayer_kl_50_s42_downstream.log\", \"submitted_at\": \"2026-05-22T06:53:19.892Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"lm-eval-harness benchmarks\", \"data_count\": 0, \"model_name\": \"llama-3.1-8b\", \"seed\": 42, \"checkpoint_source\": \"perlayer_kl_50_s42\", \"eval_data\": \"arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa\", \"wall_clock_seconds\": 4867.2, \"gpu_hours\": 1.35}, \"conclusion\": \"negative\", \"metrics\": {\"arc_challenge_acc_norm\": 0.2705, \"winogrande_acc\": 0.5154, \"mmlu_acc\": 0.2658, \"gsm8k_exact_match\": 0.0174, \"hellaswag_acc_norm\": 0.3818, \"piqa_acc_norm\": 0.6279}}, \"perlayer_kl_50_s42_boolq\": {\"conclusion\": \"killed\", \"spec\": {\"command\": \"bash -c \\\"cd /root/distill_sparse_swiglu && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HUB_OFFLINE=1 && CUDA_VISIBLE_DEVICES=1 python -u src/benchmark_eval.py --exp_id perlayer_kl_50_s42_boolq --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/perlayer_kl_50_s42/predictor_perlayer_kl.pt --sparsity_mode teal_global --sparsity_target 0.5 --allocation uniform --tasks boolq --seq_len 2048 --gpu 0\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"18485\", \"log_path\": \"~/runs/distill_sparse_swiglu/perlayer_kl_50_s42_boolq.log\", \"submitted_at\": \"2026-05-22T07:10:14.212Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"perlayer_kl_50_s42_ppl\": {\"conclusion\": \"killed\", \"spec\": {\"command\": \"bash -c \\\"cd /root/distill_sparse_swiglu && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HUB_OFFLINE=1 && CUDA_VISIBLE_DEVICES=0 python -u src/benchmark_eval.py --exp_id perlayer_kl_50_s42_ppl --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/perlayer_kl_50_s42/predictor_perlayer_kl.pt --sparsity_mode teal_global --sparsity_target 0.5 --allocation uniform --tasks wikitext2 --seq_len 2048 --gpu 0\\\"\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:0\"], \"pid\": \"374127\", \"log_path\": \"~/runs/distill_sparse_swiglu/perlayer_kl_50_s42_ppl.log\", \"submitted_at\": \"2026-05-22T06:53:13.589Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"revkl_30_s42_boolq_uniform\": {\"conclusion\": \"failed\", \"spec\": {\"command\": \"bash -c \\\"cd /root/distill_sparse_swiglu && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HUB_OFFLINE=1 && CUDA_VISIBLE_DEVICES=1 python -u src/benchmark_eval.py --exp_id revkl_30_s42_boolq_uniform --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/reverse_kl_30_s42/predictor_reverse_kl.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks boolq --seq_len 2048 --gpu 0\\\"\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:1\"], \"pid\": \"363768\", \"log_path\": \"~/runs/distill_sparse_swiglu/revkl_30_s42_boolq_uniform.log\", \"submitted_at\": \"2026-05-22T03:19:10.325Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"cross_seed_jaccard_r18w7\": {\"spec\": {\"command\": \"python -u src/cross_seed_jaccard_r18w7.py --gpu 0 --num_seqs 64 --sparsity 0.30\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:0\"], \"pid\": \"355995\", \"log_path\": \"~/runs/distill_sparse_swiglu/cross_seed_jaccard_r18w7.log\", \"submitted_at\": \"2026-05-22T00:18:39.093Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"wikitext-2 validation\", \"data_count\": \"64 sequences\", \"model_name\": \"llama-3.1-8b\", \"seed\": \"42,123,456\", \"checkpoint_source\": \"kl_sparsity30_s42_v3, kl_sparsity30_s123, kl_sparsity30_s456\", \"eval_data\": \"wikitext-2 validation (mask Jaccard analysis)\", \"checkpoint_path\": \"N/A (analysis only)\", \"wall_clock_seconds\": 1718.9, \"gpu_hours\": 0.48}, \"metrics\": {\"cross_seed_jaccard_mean\": 0.3633, \"cross_seed_s42_s123\": 0.364, \"cross_seed_s42_s456\": 0.3617, \"cross_seed_s123_s456\": 0.3642, \"kl_vs_mag_jaccard_mean\": 0.4276, \"kl_vs_mag_s42\": 0.4276, \"kl_vs_mag_s123\": 0.4274, \"kl_vs_mag_s456\": 0.4278, \"ratio\": 1.2, \"early_cross_seed\": 0.361, \"early_kl_vs_mag\": 0.4378, \"middle_cross_seed\": 0.3521, \"middle_kl_vs_mag\": 0.4153, \"late_cross_seed\": 0.377, \"late_kl_vs_mag\": 0.4294}, \"conclusion\": \"negative\"}, \"perlayer_kl_s123_boolq\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /etc/network_turbo 2>/dev/null; echo 'Downloading BoolQ cache...' && python -c \\\\\\\"from datasets import load_dataset; load_dataset('aps/super_glue', 'boolq', cache_dir='/root/autodl-tmp/.hf_cache/datasets'); print('BoolQ cache ready')\\\\\\\" && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export PYTHONUNBUFFERED=1 && export WANDB_MODE=disabled && python -u src/benchmark_eval.py --exp_id perlayer_kl_s123_boolq --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/perlayer_kl_30_s123/predictor_perlayer_kl.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks boolq --seq_len 2048 --gpu 0 2>&1\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"309843\", \"log_path\": \"~/runs/distill_sparse_swiglu/perlayer_kl_s123_boolq.log\", \"submitted_at\": \"2026-05-21T23:38:24.646Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"boolq (aps/super_glue)\", \"data_count\": \"3270\", \"model_name\": \"llama-3.1-8b\", \"seed\": \"123\", \"checkpoint_source\": \"perlayer_kl_30_s123_v4\", \"eval_data\": \"boolq\", \"checkpoint_path\": \"checkpoints/perlayer_kl_30_s123/predictor_perlayer_kl.pt\", \"wall_clock_seconds\": 526.3, \"gpu_hours\": 0.15}, \"metrics\": {\"boolq_acc\": 0.7046}, \"conclusion\": \"success\"}, \"kl30_uniform_boolq_s456\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /etc/network_turbo 2>/dev/null; echo 'Downloading BoolQ cache...' && python -c \\\\\\\"from datasets import load_dataset; load_dataset('aps/super_glue', 'boolq', cache_dir='/root/autodl-tmp/.hf_cache/datasets'); print('BoolQ cache ready')\\\\\\\" && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export PYTHONUNBUFFERED=1 && export WANDB_MODE=disabled && python -u src/benchmark_eval.py --exp_id kl30_uniform_boolq_s456 --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/kl_sparsity30_s456/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks boolq --seq_len 2048 --gpu 0 2>&1\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"309935\", \"log_path\": \"~/runs/distill_sparse_swiglu/kl30_uniform_boolq_s456.log\", \"submitted_at\": \"2026-05-21T23:38:28.366Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"boolq (aps/super_glue)\", \"data_count\": \"3270\", \"model_name\": \"llama-3.1-8b\", \"seed\": \"456\", \"checkpoint_source\": \"kl_sparsity30_s456\", \"eval_data\": \"boolq\", \"checkpoint_path\": \"checkpoints/kl_sparsity30_s456/predictor_kl_normalized.pt\", \"wall_clock_seconds\": 520.2, \"gpu_hours\": 0.14}, \"metrics\": {\"boolq_acc\": 0.7554}, \"conclusion\": \"success\"}, \"kl30_uniform_boolq_s123\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export PYTHONUNBUFFERED=1 && export WANDB_MODE=disabled && python -u src/benchmark_eval.py --exp_id kl30_uniform_boolq_s123 --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/kl_sparsity30_s123/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks boolq --seq_len 2048 --gpu 0 2>&1\\\"\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:1\"], \"pid\": \"353142\", \"log_path\": \"~/runs/distill_sparse_swiglu/kl30_uniform_boolq_s123.log\", \"submitted_at\": \"2026-05-21T23:34:08.751Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"boolq (aps/super_glue)\", \"data_count\": \"3270\", \"model_name\": \"llama-3.1-8b\", \"seed\": \"123\", \"checkpoint_source\": \"kl_sparsity30_s123\", \"eval_data\": \"boolq\", \"checkpoint_path\": \"checkpoints/kl_sparsity30_s123/predictor_kl_normalized.pt\", \"wall_clock_seconds\": 777.4, \"gpu_hours\": 0.22}, \"metrics\": {\"boolq_acc\": 0.7006}, \"conclusion\": \"success\"}, \"kl30_uniform_boolq_s42\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export PYTHONUNBUFFERED=1 && export WANDB_MODE=disabled && python -u src/benchmark_eval.py --exp_id kl30_uniform_boolq_s42 --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks boolq --seq_len 2048 --gpu 0 2>&1\\\"\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:0\"], \"pid\": \"353000\", \"log_path\": \"~/runs/distill_sparse_swiglu/kl30_uniform_boolq_s42.log\", \"submitted_at\": \"2026-05-21T23:34:05.735Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"boolq (aps/super_glue)\", \"data_count\": \"3270\", \"model_name\": \"llama-3.1-8b\", \"seed\": \"42\", \"checkpoint_source\": \"kl_sparsity30_s42_v3\", \"eval_data\": \"boolq\", \"checkpoint_path\": \"checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt\", \"wall_clock_seconds\": 778.0, \"gpu_hours\": 0.22}, \"metrics\": {\"boolq_acc\": 0.756}, \"conclusion\": \"success\"}, \"perlayer_kl_s123_convergence\": {\"spec\": {\"command\": \"convergence curve eval (step 2000/4000/6000/8000)\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"298417\", \"log_path\": \"~/runs/distill_sparse_swiglu/perlayer_kl_s123_convergence.log\", \"submitted_at\": \"2026-05-21T19:17:06.390Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"wikitext2\", \"data_count\": \"4 checkpoints\", \"model_name\": \"llama-3.1-8b\", \"seed\": \"123\", \"checkpoint_source\": \"perlayer_kl_30_s123_v4\", \"eval_data\": \"wikitext2\", \"checkpoint_path\": \"N/A (eval only)\", \"wall_clock_seconds\": 8115.2, \"gpu_hours\": 2.25}, \"conclusion\": \"success\", \"metrics\": {\"step_2000_ppl\": 9.9795, \"step_4000_ppl\": 9.4108, \"step_6000_ppl\": 9.1051, \"step_8000_ppl\": 9.1567, \"step_10000_ppl\": 9.0598}}, \"perlayer_kl_s42_convergence\": {\"spec\": {\"command\": \"convergence curve eval (step 2000/4000/6000/8000)\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:0\"], \"pid\": \"342666\", \"log_path\": \"~/runs/distill_sparse_swiglu/perlayer_kl_s42_convergence.log\", \"submitted_at\": \"2026-05-21T19:17:03.432Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"wikitext2\", \"data_count\": \"4 checkpoints\", \"model_name\": \"llama-3.1-8b\", \"seed\": \"42\", \"checkpoint_source\": \"perlayer_kl_30_s42_v6\", \"eval_data\": \"wikitext2\", \"checkpoint_path\": \"N/A (eval only)\", \"wall_clock_seconds\": 8115.8, \"gpu_hours\": 2.25}, \"conclusion\": \"success\", \"metrics\": {\"step_2000_ppl\": 9.8515, \"step_4000_ppl\": 9.251, \"step_6000_ppl\": 9.1071, \"step_8000_ppl\": 9.0558, \"step_10000_ppl\": 9.0568}}, \"perlayer_kl_s456_boolq_v2\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export PYTHONUNBUFFERED=1 && export WANDB_MODE=disabled && python -u src/benchmark_eval.py --exp_id perlayer_kl_s456_boolq_v2 --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/perlayer_kl_30_s456/predictor_perlayer_kl.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks boolq --gpu 0 2>&1\\\"\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:1\"], \"pid\": \"332395\", \"log_path\": \"~/runs/distill_sparse_swiglu/perlayer_kl_s456_boolq_v2.log\", \"submitted_at\": \"2026-05-21T15:18:34.971Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"lm-eval-harness built-in\", \"data_count\": \"1 task (boolq)\", \"model_name\": \"llama-3.1-8b\", \"seed\": \"456\", \"checkpoint_source\": \"perlayer_kl_30_s456\", \"eval_data\": \"boolq\", \"checkpoint_path\": \"N/A (eval only)\", \"wall_clock_seconds\": 22203.1, \"gpu_hours\": 6.17}, \"conclusion\": \"success\", \"metrics\": {\"boolq_acc\": 0.5125}}, \"perlayer_kl_s123_downstream\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export PYTHONUNBUFFERED=1 && export WANDB_MODE=disabled && python -u src/benchmark_eval.py --exp_id perlayer_kl_s123_downstream --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/perlayer_kl_30_s123/predictor_perlayer_kl.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa,boolq --gpu 0 2>&1\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"297149\", \"log_path\": \"~/runs/distill_sparse_swiglu/perlayer_kl_s123_downstream.log\", \"submitted_at\": \"2026-05-21T19:10:22.704Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"lm-eval-harness built-in\", \"data_count\": \"7 tasks\", \"model_name\": \"llama-3.1-8b\", \"seed\": \"123\", \"checkpoint_source\": \"perlayer_kl_30_s123\", \"eval_data\": \"arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa,boolq\", \"wall_clock_seconds\": 8251.2, \"gpu_hours\": 2.29}, \"conclusion\": \"failed\"}, \"perlayer_kl_s42_downstream\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export PYTHONUNBUFFERED=1 && export WANDB_MODE=disabled && python -u src/benchmark_eval.py --exp_id perlayer_kl_s42_downstream --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/perlayer_kl_30_s42/predictor_perlayer_kl.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa,boolq --gpu 0 2>&1\\\"\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:1\"], \"pid\": \"341683\", \"log_path\": \"~/runs/distill_sparse_swiglu/perlayer_kl_s42_downstream.log\", \"submitted_at\": \"2026-05-21T19:10:16.251Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"lm-eval-harness built-in\", \"data_count\": \"7 tasks\", \"model_name\": \"llama-3.1-8b\", \"seed\": \"42\", \"checkpoint_source\": \"perlayer_kl_30_s42\", \"eval_data\": \"arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa,boolq\", \"checkpoint_path\": \"checkpoints/perlayer_kl_30_s42/predictor_perlayer_kl.pt\", \"wall_clock_seconds\": 8059.9, \"gpu_hours\": 2.24}, \"conclusion\": \"success\", \"metrics\": {\"arc_challenge_acc\": 0.3601, \"arc_challenge_acc_norm\": 0.3916, \"winogrande_acc\": 0.6527, \"mmlu_acc\": 0.3786, \"gsm8k_exact_match\": 0.0531, \"hellaswag_acc\": 0.4853, \"hellaswag_acc_norm\": 0.6763, \"piqa_acc\": 0.7361, \"piqa_acc_norm\": 0.7546, \"boolq_acc\": 0.7177}}, \"perlayer_kl_30_s42_v6\": {\"spec\": {\"command\": \"python -u src/train_perlayer_kl.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --num_steps 10000 --sparsity_target 0.3 --seed 42 --gpu 0 --gradient_checkpointing --dataset wikitext-103 --log_every 100 --output_dir checkpoints/perlayer_kl_30_s42 --kl_temperature 1.0 --tau_start 1.0 --tau_end 0.1 --warmup_steps 100 --lambda_max 5000 --save_every 2000\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:0\"], \"pid\": \"328295\", \"log_path\": \"~/runs/distill_sparse_swiglu/perlayer_kl_30_s42_v6.log\", \"submitted_at\": \"2026-05-21T13:53:25.054Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"wikitext-103\", \"data_count\": \"10000 steps\", \"model_name\": \"meta-llama/Llama-3.1-8B\", \"seed\": \"42\", \"checkpoint_path\": \"checkpoints/perlayer_kl_30_s42/predictor_perlayer_kl.pt\", \"wall_clock_seconds\": 19306.6, \"gpu_hours\": 5.36}, \"conclusion\": \"success\", \"metrics\": {\"steps\": 10000}}, \"perlayer_kl_30_s123_v4\": {\"spec\": {\"command\": \"python -u src/train_perlayer_kl.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --num_steps 10000 --sparsity_target 0.3 --seed 123 --gpu 0 --gradient_checkpointing --dataset wikitext-103 --log_every 100 --output_dir checkpoints/perlayer_kl_30_s123 --kl_temperature 1.0 --tau_start 1.0 --tau_end 0.1 --warmup_steps 100 --lambda_max 5000 --save_every 2000\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"284767\", \"log_path\": \"~/runs/distill_sparse_swiglu/perlayer_kl_30_s123_v4.log\", \"submitted_at\": \"2026-05-21T13:54:18.468Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"wikitext-103\", \"data_count\": \"10000 steps\", \"model_name\": \"meta-llama/Llama-3.1-8B\", \"seed\": \"123\", \"checkpoint_path\": \"checkpoints/perlayer_kl_30_s123/predictor_perlayer_kl.pt\", \"wall_clock_seconds\": 19250.9, \"gpu_hours\": 5.35}, \"conclusion\": \"success\", \"metrics\": {\"final_avg_kl\": 0.0114, \"final_tau\": 0.1, \"steps\": 10000}}, \"perlayer_kl_s123_ppl\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export PYTHONUNBUFFERED=1 && export WANDB_MODE=disabled && python -u src/benchmark_eval.py --exp_id perlayer_kl_s123_ppl --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/perlayer_kl_30_s123/predictor_perlayer_kl.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2 --seq_len 2048 --gpu 0 2>&1\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"297006\", \"log_path\": \"~/runs/distill_sparse_swiglu/perlayer_kl_s123_ppl.log\", \"submitted_at\": \"2026-05-21T19:10:19.726Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"wikitext2 (lm-eval-harness built-in)\", \"data_count\": \"141 sequences, seq_len=2048\", \"model_name\": \"llama-3.1-8b\", \"seed\": \"123\", \"checkpoint_source\": \"perlayer_kl_30_s123\", \"eval_data\": \"wikitext2\", \"checkpoint_path\": \"checkpoints/perlayer_kl_30_s123/predictor_perlayer_kl.pt\", \"wall_clock_seconds\": 208.4, \"gpu_hours\": 0.06}, \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 9.0598}}, \"perlayer_kl_s42_ppl\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export PYTHONUNBUFFERED=1 && export WANDB_MODE=disabled && python -u src/benchmark_eval.py --exp_id perlayer_kl_s42_ppl --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/perlayer_kl_30_s42/predictor_perlayer_kl.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2 --seq_len 2048 --gpu 0 2>&1\\\"\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:0\"], \"pid\": \"341537\", \"log_path\": \"~/runs/distill_sparse_swiglu/perlayer_kl_s42_ppl.log\", \"submitted_at\": \"2026-05-21T19:10:12.402Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"wikitext2 (lm-eval-harness built-in)\", \"data_count\": \"141 sequences, seq_len=2048\", \"model_name\": \"llama-3.1-8b\", \"seed\": \"42\", \"checkpoint_source\": \"perlayer_kl_30_s42\", \"eval_data\": \"wikitext2\", \"checkpoint_path\": \"checkpoints/perlayer_kl_30_s42/predictor_perlayer_kl.pt\", \"wall_clock_seconds\": 213.3, \"gpu_hours\": 0.06}, \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 9.0568}}, \"diag_eval_env_34887\": {\"conclusion\": \"killed\", \"spec\": {\"command\": \"bash -c \\\"echo '=== EVAL SCRIPT ===' && ls -la /root/distill_sparse_swiglu/src/benchmark_eval.py && echo '=== BASE MODEL ===' && ls -la /root/autodl-tmp/models/llama-3.1-8b/config.json 2>/dev/null && echo '=== LM-EVAL ===' && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -c 'import lm_eval; print(lm_eval.__version__)' 2>/dev/null || echo 'NO LM-EVAL' && echo '=== HF CACHE ===' && ls /root/autodl-tmp/.hf_cache/ 2>/dev/null | head -5 && echo '=== QUICK DRY-RUN ===' && cd /root/distill_sparse_swiglu && HF_HOME=/root/autodl-tmp/.hf_cache HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HUB_OFFLINE=1 WANDB_MODE=disabled python -c \\\\\\\"\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\nimport torch\\nm = AutoModelForCausalLM.from_pretrained('/root/autodl-tmp/models/llama-3.1-8b', torch_dtype=torch.bfloat16, device_map='cpu')\\nprint(f'Model loaded OK: {type(m).__name__}')\\ndel m\\nprint('DRY_RUN_OK')\\n\\\\\\\" 2>&1 | tail -5 && echo DONE\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"288533\", \"log_path\": \"~/runs/distill_sparse_swiglu/diag_eval_env_34887.log\", \"submitted_at\": \"2026-05-21T15:26:21.971Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"perlayer_kl_s456_ppl_repro\": {\"conclusion\": \"success\", \"spec\": {\"command\": \"bash -c \\\"echo '=== PRE-CHECK ===' && ls -la /root/distill_sparse_swiglu/checkpoints/perlayer_kl_30_s456/predictor_perlayer_kl.pt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export PYTHONUNBUFFERED=1 && export WANDB_MODE=disabled && python -u src/benchmark_eval.py --exp_id perlayer_kl_s456_ppl_repro --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/perlayer_kl_30_s456/predictor_perlayer_kl.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2 --seq_len 2048 --gpu 0 2>&1\\\"\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:1\"], \"pid\": \"330816\", \"log_path\": \"~/runs/distill_sparse_swiglu/perlayer_kl_s456_ppl_repro.log\", \"submitted_at\": \"2026-05-21T14:42:47.729Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"metrics\": {\"wikitext2_ppl\": 9.0282}}, \"diag_status_34887\": {\"conclusion\": \"killed\", \"spec\": {\"command\": \"bash -c \\\"echo '=== CHECKPOINT s123 ===' && ls -la /root/distill_sparse_swiglu/checkpoints/perlayer_kl_30_s123/predictor_perlayer_kl_step_*.pt 2>/dev/null || echo 'NO STEP CKPTS in checkpoints/' && ls -la /root/distill_sparse_swiglu/outputs/perlayer_kl_30_s123/predictor_perlayer_kl_step_*.pt 2>/dev/null || echo 'NO STEP CKPTS in outputs/' && echo '=== ALL IN CKPT DIR ===' && ls -la /root/distill_sparse_swiglu/checkpoints/perlayer_kl_30_s123/ 2>/dev/null && echo '=== TRAINING PROGRESS ===' && grep -E '^\\\\[Step' ~/runs/distill_sparse_swiglu/perlayer_kl_30_s123_v4.log 2>/dev/null | tail -5 && echo '=== BOOLQ s456 RESULT ===' && cat /root/distill_sparse_swiglu/results/benchmark/perlayer_kl_s456_boolq/results.json 2>/dev/null || echo 'NO RESULT FILE' && echo '=== BOOLQ LOG ===' && tail -10 ~/runs/distill_sparse_swiglu/perlayer_kl_s456_boolq.log && echo DONE\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"unknown\", \"log_path\": \"~/runs/distill_sparse_swiglu/diag_status_34887.log\", \"submitted_at\": \"2026-05-21T15:17:19.014Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"diag_status_41718\": {\"conclusion\": \"killed\", \"spec\": {\"command\": \"bash -c \\\"echo '=== CHECKPOINT s42 ===' && ls -la /root/distill_sparse_swiglu/checkpoints/perlayer_kl_30_s42/predictor_perlayer_kl_step_*.pt 2>/dev/null || echo 'NO STEP CKPTS in checkpoints/' && ls -la /root/distill_sparse_swiglu/outputs/perlayer_kl_30_s42/predictor_perlayer_kl_step_*.pt 2>/dev/null || echo 'NO STEP CKPTS in outputs/' && echo '=== ALL IN CKPT DIR ===' && ls -la /root/distill_sparse_swiglu/checkpoints/perlayer_kl_30_s42/ 2>/dev/null && echo '=== TRAINING PROGRESS ===' && grep -E '^\\\\[Step' ~/runs/distill_sparse_swiglu/perlayer_kl_30_s42_v6.log 2>/dev/null | tail -5 && echo '=== PPL REPRO RESULT ===' && cat /root/distill_sparse_swiglu/results/benchmark/perlayer_kl_s456_ppl_repro/results.json 2>/dev/null || echo 'NO RESULT FILE' && echo '=== PPL REPRO LOG ===' && tail -10 ~/runs/distill_sparse_swiglu/perlayer_kl_s456_ppl_repro.log && echo DONE\\\"\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:1\"], \"pid\": \"unknown\", \"log_path\": \"~/runs/distill_sparse_swiglu/diag_status_41718.log\", \"submitted_at\": \"2026-05-21T15:17:14.443Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"revkl_30_s42_boolq\": {\"spec\": {\"command\": \"python -u src/benchmark_eval.py --tasks boolq --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:1\"], \"pid\": \"329199\", \"log_path\": \"~/runs/distill_sparse_swiglu/revkl_30_s42_boolq.log\", \"submitted_at\": \"2026-05-21T14:06:53.738Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"lm-eval-harness built-in\", \"data_count\": \"1 task (boolq)\", \"model_name\": \"llama-3.1-8b\", \"seed\": \"42\", \"checkpoint_source\": \"reverse_kl_30_s42\", \"eval_data\": \"boolq\", \"checkpoint_path\": \"N/A (eval only)\", \"wall_clock_seconds\": 2125.4, \"gpu_hours\": 0.59}, \"metrics\": {\"boolq_acc\": 0.6529}, \"conclusion\": \"success\"}, \"read_boolq_results\": {\"conclusion\": \"killed\", \"spec\": {\"command\": \"bash -c \\\"cat /root/distill_sparse_swiglu/results/benchmark/revkl_30_s42_boolq/results.json && echo DONE\\\"\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:1\"], \"pid\": \"unknown\", \"log_path\": \"~/runs/distill_sparse_swiglu/read_boolq_results.log\", \"submitted_at\": \"2026-05-21T14:41:35.339Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"diag_ckpt_34887\": {\"conclusion\": \"killed\", \"spec\": {\"command\": \"bash -c \\\"echo '=== CHECKPOINT CHECK ===' && ls -la /root/distill_sparse_swiglu/checkpoints/perlayer_kl_30_s123/predictor_perlayer_kl_step_*.pt 2>/dev/null || echo 'NO STEP CHECKPOINTS in checkpoints/' && ls -la /root/distill_sparse_swiglu/outputs/perlayer_kl_30_s123/predictor_perlayer_kl_step_*.pt 2>/dev/null || echo 'NO STEP CHECKPOINTS in outputs/' && find /root/distill_sparse_swiglu -name '*step_2000*' 2>/dev/null || echo 'NO step_2000 ANYWHERE' && echo '=== ALL FILES IN CKPT DIR ===' && ls -la /root/distill_sparse_swiglu/checkpoints/perlayer_kl_30_s123/ 2>/dev/null && echo '=== TRAINING PROGRESS ===' && tail -5 ~/runs/distill_sparse_swiglu/perlayer_kl_30_s123_v4.log && echo DONE\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"unknown\", \"log_path\": \"~/runs/distill_sparse_swiglu/diag_ckpt_34887.log\", \"submitted_at\": \"2026-05-21T14:40:47.609Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"diag_ckpt_41718\": {\"conclusion\": \"killed\", \"spec\": {\"command\": \"bash -c \\\"echo '=== CHECKPOINT CHECK ===' && ls -la /root/distill_sparse_swiglu/checkpoints/perlayer_kl_30_s42/predictor_perlayer_kl_step_*.pt 2>/dev/null || echo 'NO STEP CHECKPOINTS in checkpoints/' && ls -la /root/distill_sparse_swiglu/outputs/perlayer_kl_30_s42/predictor_perlayer_kl_step_*.pt 2>/dev/null || echo 'NO STEP CHECKPOINTS in outputs/' && find /root/distill_sparse_swiglu -name '*step_2000*' 2>/dev/null || echo 'NO step_2000 ANYWHERE' && echo '=== ALL FILES IN CKPT DIR ===' && ls -la /root/distill_sparse_swiglu/checkpoints/perlayer_kl_30_s42/ 2>/dev/null && echo '=== TRAINING PROGRESS ===' && tail -5 ~/runs/distill_sparse_swiglu/perlayer_kl_30_s42_v6.log && echo '=== BOOLQ STATUS ===' && tail -3 ~/runs/distill_sparse_swiglu/revkl_30_s42_boolq.log && echo DONE\\\"\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:1\"], \"pid\": \"unknown\", \"log_path\": \"~/runs/distill_sparse_swiglu/diag_ckpt_41718.log\", \"submitted_at\": \"2026-05-21T14:40:43.799Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"kill_old_34887\": {\"conclusion\": \"killed\", \"spec\": {\"command\": \"bash -c \\\"echo '=== KILL OLD 282634 ===' && kill 282634 && kill 282633 && sleep 2 && ps -p 282634 -o pid= 2>/dev/null && echo 'STILL_ALIVE' || echo 'KILLED_OK' && echo '=== CHECK s42 v5 ===' && pgrep -af 'seed 42.*train_perlayer' || echo 'NO s42 PROCESS on 34887' && echo '=== VERIFY ===' && ps aux | grep train_perlayer | grep -v grep && echo '=== NVIDIA ===' && nvidia-smi --query-compute-apps=pid,used_memory,name --format=csv,noheader && echo '=== NEW PROCESS LOG ===' && tail -20 ~/runs/distill_sparse_swiglu/perlayer_kl_30_s123_v4.log && echo DONE\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"285531\", \"log_path\": \"~/runs/distill_sparse_swiglu/kill_old_34887.log\", \"submitted_at\": \"2026-05-21T14:05:02.240Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"kill_old_41718\": {\"conclusion\": \"killed\", \"spec\": {\"command\": \"bash -c \\\"echo '=== KILL OLD 326200 ===' && kill 326200 && kill 326199 && sleep 2 && ps -p 326200 -o pid= 2>/dev/null && echo 'STILL_ALIVE' || echo 'KILLED_OK' && echo '=== VERIFY ===' && ps aux | grep train_perlayer | grep -v grep && echo '=== NVIDIA ===' && nvidia-smi --query-compute-apps=pid,used_memory,name --format=csv,noheader && echo '=== NEW PROCESS LOG ===' && tail -20 ~/runs/distill_sparse_swiglu/perlayer_kl_30_s42_v6.log && echo DONE\\\"\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:1\"], \"pid\": \"329095\", \"log_path\": \"~/runs/distill_sparse_swiglu/kill_old_41718.log\", \"submitted_at\": \"2026-05-21T14:04:58.944Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"diag_34887_processes\": {\"conclusion\": \"killed\", \"spec\": {\"command\": \"bash -c \\\"echo '=== PS perlayer ===' && ps aux | grep -E 'train_perlayer|perlayer_kl' | grep -v grep && echo '=== PID 282634 ===' && ps -p 282634 -o pid,etime,args --no-headers 2>/dev/null || echo 'PID 282634 NOT RUNNING' && echo '=== PID 284772 ===' && ps -p 284772 -o pid,etime,args --no-headers 2>/dev/null || echo 'PID 284772 NOT RUNNING' && echo '=== PID 284767 ===' && ps -p 284767 -o pid,etime,args --no-headers 2>/dev/null || echo 'PID 284767 NOT RUNNING' && echo '=== s42 v5 log ===' && tail -10 /root/distill_sparse_swiglu/logs/perlayer_kl_30_s42_v5.log 2>/dev/null || echo 'no s42 v5 log' && echo '=== LOG s123 outputs ===' && tail -10 /root/distill_sparse_swiglu/outputs/perlayer_kl_30_s123/*.log 2>/dev/null || echo 'no log in outputs' && echo '=== LOG runs ===' && find /root -maxdepth 4 -name '*perlayer_kl*s123*' -o -name '*perlayer_kl*s42_v5*' 2>/dev/null | head -20 && echo '=== TMUX ===' && tmux ls 2>/dev/null && echo '=== NVIDIA ===' && nvidia-smi --query-compute-apps=pid,used_memory,name --format=csv,noheader && echo DONE\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"unknown\", \"log_path\": \"~/runs/distill_sparse_swiglu/diag_34887_processes.log\", \"submitted_at\": \"2026-05-21T14:03:37.458Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"diag_41718_processes\": {\"conclusion\": \"killed\", \"spec\": {\"command\": \"bash -c \\\"echo '=== PS perlayer ===' && ps aux | grep -E 'train_perlayer|perlayer_kl' | grep -v grep && echo '=== PID 326200 ===' && ps -p 326200 -o pid,etime,args --no-headers 2>/dev/null || echo 'PID 326200 NOT RUNNING' && echo '=== PID 328300 ===' && ps -p 328300 -o pid,etime,args --no-headers 2>/dev/null || echo 'PID 328300 NOT RUNNING' && echo '=== PID 328295 ===' && ps -p 328295 -o pid,etime,args --no-headers 2>/dev/null || echo 'PID 328295 NOT RUNNING' && echo '=== LOG s42 v6 ===' && tail -10 /root/distill_sparse_swiglu/checkpoints/perlayer_kl_30_s42/*.log 2>/dev/null || echo 'no log in checkpoints' && echo '=== LOG outputs ===' && tail -10 /root/distill_sparse_swiglu/outputs/perlayer_kl_30_s42/*.log 2>/dev/null || echo 'no log in outputs' && echo '=== LOG runs ===' && find /root -maxdepth 4 -name '*perlayer_kl*s42*' -o -name '*perlayer_kl_30_s42*' 2>/dev/null | head -20 && echo '=== TMUX ===' && tmux ls 2>/dev/null && echo '=== NVIDIA ===' && nvidia-smi --query-compute-apps=pid,used_memory,name --format=csv,noheader && echo DONE\\\"\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:1\"], \"pid\": \"unknown\", \"log_path\": \"~/runs/distill_sparse_swiglu/diag_41718_processes.log\", \"submitted_at\": \"2026-05-21T14:03:33.407Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"revkl_30_s456_downstream_v2\": {\"spec\": {\"command\": \"benchmark_eval.py --tasks arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa,boolq\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:1\"], \"pid\": \"307059\", \"log_path\": \"~/runs/distill_sparse_swiglu/revkl_30_s456_downstream_v2.log\", \"submitted_at\": \"2026-05-21T04:55:33.518Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"lm-eval-harness built-in\", \"data_count\": \"7 tasks\", \"model_name\": \"llama-3.1-8b\", \"seed\": \"456\", \"checkpoint_source\": \"revkl_30_s456\", \"eval_data\": \"arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa,boolq\", \"checkpoint_path\": \"N/A (eval only)\", \"wall_clock_seconds\": 32811.0, \"gpu_hours\": 9.11}, \"metrics\": {\"arc_challenge_acc_norm\": 0.4258, \"winogrande_acc\": 0.6788, \"mmlu_acc\": 0.42, \"gsm8k_exact_match\": 0.0614, \"hellaswag_acc_norm\": 0.704, \"piqa_acc_norm\": 0.7508, \"boolq_acc\": 0.5966}, \"conclusion\": \"success\"}, \"revkl_30_s123_downstream\": {\"spec\": {\"command\": \"benchmark_eval.py --tasks arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa,boolq\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:1\"], \"pid\": \"301738\", \"log_path\": \"~/runs/distill_sparse_swiglu/revkl_30_s123_downstream.log\", \"submitted_at\": \"2026-05-21T02:59:46.479Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"lm-eval-harness built-in\", \"data_count\": \"7 tasks\", \"model_name\": \"llama-3.1-8b\", \"seed\": \"123\", \"checkpoint_source\": \"revkl_30_s123\", \"eval_data\": \"arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa,boolq\", \"checkpoint_path\": \"N/A (eval only)\", \"wall_clock_seconds\": 39748.9, \"gpu_hours\": 11.04}, \"metrics\": {\"arc_challenge_acc_norm\": 0.4556, \"winogrande_acc\": 0.689, \"mmlu_acc\": 0.38, \"gsm8k_exact_match\": 0.072, \"hellaswag_acc_norm\": 0.7092, \"piqa_acc_norm\": 0.7524, \"boolq_acc\": 0.7199}, \"conclusion\": \"success\"}, \"perlayer_kl_30_s456_downstream\": {\"spec\": {\"command\": \"lm_eval downstream 6 tasks at 30% uniform\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:1\"], \"pid\": \"317858\", \"log_path\": \"~/runs/distill_sparse_swiglu/perlayer_kl_30_s456_downstream.log\", \"submitted_at\": \"2026-05-21T09:23:08.463Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_source\": \"perlayer_kl_30_s456\", \"eval_data\": \"arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa\", \"data_count\": \"6 tasks\", \"data_path\": \"lm-eval-harness built-in\", \"model_name\": \"llama-3.1-8b\", \"seed\": \"456\", \"checkpoint_path\": \"N/A (eval only)\", \"wall_clock_seconds\": 14102.1, \"gpu_hours\": 3.92}, \"metrics\": {\"arc_challenge_acc_norm\": 0.3848, \"winogrande_acc\": 0.663, \"mmlu_acc\": 0.3904, \"gsm8k_exact_match\": 0.0644, \"hellaswag_acc_norm\": 0.6616, \"piqa_acc_norm\": 0.7356}, \"conclusion\": \"success\"}, \"perlayer_kl_30_s456_ppl\": {\"spec\": {\"command\": \"python -u src/benchmark_eval.py --exp_id perlayer_kl_30_s456_ppl --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/perlayer_kl_30_s456/predictor_perlayer_kl.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2 --seq_len 2048 --gpu 0\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:1\"], \"pid\": \"313701\", \"log_path\": \"/root/runs/distill_sparse_swiglu/perlayer_kl_30_s456_ppl.log\", \"submitted_at\": \"2026-05-21T07:36:38.022Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"wikitext2\", \"data_count\": \"141 sequences\", \"model_name\": \"meta-llama/Llama-3.1-8B\", \"seed\": 456, \"checkpoint_source\": \"checkpoints/perlayer_kl_30_s456/predictor_perlayer_kl.pt\", \"eval_data\": \"wikitext2\", \"checkpoint_path\": \"/root/distill_sparse_swiglu/checkpoints/perlayer_kl_30_s456/predictor_perlayer_kl.pt\", \"wall_clock_seconds\": 6266.5, \"gpu_hours\": 1.74}, \"metrics\": {\"wikitext2_ppl\": 9.0282, \"model_level_sparsity\": 0.297}, \"conclusion\": \"success\"}, \"bce_iso_v3_s42_30pct_uniform_eval\": {\"conclusion\": \"success\", \"metrics\": {\"ppl\": 14.947, \"arc_challenge\": 0.3294, \"winogrande\": 0.6062, \"mmlu\": 0.4291, \"gsm8k\": 0.0379, \"hellaswag\": 0.6165, \"piqa\": 0.7356}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && source /etc/network_turbo 2>/dev/null; HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache python -u src/benchmark_eval.py --exp_id bce_iso_v3_s42_30pct_uniform_eval --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/bce_isocompute_v3_s42/predictor_bce.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa --seq_len 2048 --gpu 0\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"249865\", \"log_path\": \"~/runs/distill_sparse_swiglu/bce_iso_v3_s42_30pct_uniform_eval.log\", \"submitted_at\": \"2026-05-21T00:07:32.993Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"mse30_s123\": {\"conclusion\": \"success\", \"metrics\": {\"ppl\": 17.7313, \"sparsity\": 0.273, \"allocation\": \"uniform\"}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && source /etc/network_turbo 2>/dev/null; HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache WANDB_MODE=disabled python -u src/train_perlayer_mse.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 123 --sparsity_target 0.3 --output_dir checkpoints/mse30_s123 --gpu 0 && python -u src/benchmark_eval.py --exp_id mse30_s123_ppl --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/mse30_s123/predictor_mse.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2 --seq_len 2048 --gpu 0\\\"\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:0\"], \"pid\": \"295545\", \"log_path\": \"~/runs/distill_sparse_swiglu/mse30_s123.log\", \"submitted_at\": \"2026-05-21T01:20:46.333Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"mse30_s456\": {\"conclusion\": \"success\", \"metrics\": {\"ppl\": 17.3888, \"sparsity\": 0.28, \"allocation\": \"uniform\"}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && source /etc/network_turbo 2>/dev/null; HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache WANDB_MODE=disabled python -u src/train_perlayer_mse.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 456 --sparsity_target 0.3 --output_dir checkpoints/mse30_s456 --gpu 0 && python -u src/benchmark_eval.py --exp_id mse30_s456_ppl --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/mse30_s456/predictor_mse.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2 --seq_len 2048 --gpu 0\\\"\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:1\"], \"pid\": \"295687\", \"log_path\": \"~/runs/distill_sparse_swiglu/mse30_s456.log\", \"submitted_at\": \"2026-05-21T01:20:50.015Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"reverse_kl_30_s42_uniform_eval\": {\"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python -u src/benchmark_eval.py --exp_id reverse_kl_30_s42_uniform_eval --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/reverse_kl_30_s42/predictor_reverse_kl.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa --seq_len 2048 --gpu 0\", \"server\": \"westd-41718\", \"data_path\": \"wikitext2 + lm-eval tasks\", \"data_count\": \"0\", \"model_name\": \"meta-llama/Llama-3.1-8B\", \"seed\": 42, \"checkpoint_source\": \"checkpoints/reverse_kl_30_s42/predictor_reverse_kl.pt\", \"eval_data\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa\", \"checkpoint_path\": \"/root/distill_sparse_swiglu/checkpoints/reverse_kl_30_s42/predictor_reverse_kl.pt\", \"log_path\": \"/root/distill_sparse_swiglu/logs/reverse_kl_30_s42_uniform_eval.log\"}, \"conclusion\": \"success\", \"metrics\": {\"arc_challenge_acc_norm\": 0.4283, \"winogrande_acc\": 0.7009, \"mmlu_acc\": 0.3749, \"gsm8k_exact_match\": 0.0697, \"hellaswag_acc_norm\": 0.6969, \"piqa_acc_norm\": 0.7459}}, \"bce_iso_v3_s123_30pct_uniform_eval\": {\"conclusion\": \"success\", \"metrics\": {\"ppl\": 15.2051, \"arc_challenge\": 0.3396, \"winogrande\": 0.6046, \"mmlu\": 0.4363, \"gsm8k\": 0.0455, \"hellaswag\": 0.614, \"piqa\": 0.7356}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && source /etc/network_turbo 2>/dev/null; HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache python -u src/benchmark_eval.py --exp_id bce_iso_v3_s123_30pct_uniform_eval --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/bce_isocompute_v3_s123/predictor_bce.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa --seq_len 2048 --gpu 0\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"245762\", \"log_path\": \"~/runs/distill_sparse_swiglu/bce_iso_v3_s123_30pct_uniform_eval.log\", \"submitted_at\": \"2026-05-20T22:48:42.271Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"bce_iso_v3_s456_30pct_uniform_eval\": {\"conclusion\": \"success\", \"metrics\": {\"ppl\": 15.1102, \"arc_challenge\": 0.3345, \"winogrande\": 0.6219, \"mmlu\": 0.4261, \"gsm8k\": 0.0356, \"hellaswag\": 0.6158, \"piqa\": 0.7323}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && source /etc/network_turbo 2>/dev/null; HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache python -u src/benchmark_eval.py --exp_id bce_iso_v3_s456_30pct_uniform_eval --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/bce_isocompute_v3_s456/predictor_bce.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa --seq_len 2048 --gpu 0\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"245905\", \"log_path\": \"~/runs/distill_sparse_swiglu/bce_iso_v3_s456_30pct_uniform_eval.log\", \"submitted_at\": \"2026-05-20T22:48:45.628Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"teal_30pct_uniform_multiseed_eval\": {\"conclusion\": \"success\", \"metrics\": {\"ppl\": 10.8173, \"arc_challenge\": 0.3771, \"winogrande\": 0.6504, \"mmlu\": 0.4586, \"gsm8k\": 0.0879, \"hellaswag\": 0.6331, \"piqa\": 0.7198}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && source /etc/network_turbo 2>/dev/null; HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache python -u src/benchmark_eval.py --exp_id teal_30pct_uniform_multiseed_eval --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --baseline_mode teal_vanilla --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa --seq_len 2048 --gpu 0\\\"\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:1\"], \"pid\": \"288388\", \"log_path\": \"~/runs/distill_sparse_swiglu/teal_30pct_uniform_multiseed_eval.log\", \"checkpoint_path\": \"N/A\", \"submitted_at\": \"2026-05-20T22:49:18.909Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"perlayer_kl_30_s42_v5\": {\"conclusion\": \"killed\", \"spec\": {\"command\": \"bash -c \\\"cd /root/distill_sparse_swiglu && mkdir -p logs && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache WANDB_MODE=disabled nohup python -u src/train_perlayer_kl.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --num_steps 10000 --sparsity_target 0.3 --seed 42 --gpu 0 --gradient_checkpointing --dataset wikitext-103 --log_every 100 --output_dir checkpoints/perlayer_kl_30_s42 --kl_temperature 1.0 --tau_start 1.0 --tau_end 0.1 --warmup_steps 100 --lambda_max 5000 > logs/perlayer_kl_30_s42_v5.log 2>&1 & PID=\\\\$!; echo Started_PID=\\\\$PID; wait \\\\$PID; echo Finished_exit_code=\\\\$?\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"265276\", \"log_path\": \"~/runs/distill_sparse_swiglu/perlayer_kl_30_s42_v5.log\", \"submitted_at\": \"2026-05-21T04:59:08.128Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"revkl_30_s456_downstream\": {\"conclusion\": \"killed\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && mkdir -p checkpoints/reverse_kl_30_s456 && scp -o StrictHostKeyChecking=no root@westd-34887:/root/distill_sparse_swiglu/checkpoints/reverse_kl_30_s456/predictor_reverse_kl.pt checkpoints/reverse_kl_30_s456/ && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export PYTHONUNBUFFERED=1 && export WANDB_MODE=disabled && python -u src/benchmark_eval.py --exp_id revkl_30_s456_downstream --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/reverse_kl_30_s456/predictor_reverse_kl.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa,boolq --gpu 0 2>&1\\\"\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:1\"], \"pid\": \"unknown\", \"log_path\": \"~/runs/distill_sparse_swiglu/revkl_30_s456_downstream.log\", \"submitted_at\": \"2026-05-21T04:34:28.257Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"perlayer_kl_30_s42_v4\": {\"conclusion\": \"killed\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache WANDB_MODE=disabled python -u src/train_perlayer_kl.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --num_steps 10000 --sparsity_target 0.3 --seed 42 --gpu 0 --gradient_checkpointing --dataset wikitext-103 --log_every 100 --output_dir checkpoints/perlayer_kl_30_s42 --kl_temperature 1.0 --tau_start 1.0 --tau_end 0.1 --warmup_steps 100 --lambda_max 5000\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"259820\", \"log_path\": \"~/runs/distill_sparse_swiglu/perlayer_kl_30_s42_v4.log\", \"submitted_at\": \"2026-05-21T02:40:09.948Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"perlayer_kl_30_s456_v3\": {\"conclusion\": \"killed\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache WANDB_MODE=disabled python -u src/train_perlayer_kl.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --num_steps 10000 --sparsity_target 0.3 --seed 456 --gpu 0 --gradient_checkpointing --dataset wikitext-103 --log_every 100 --output_dir checkpoints/perlayer_kl_30_s456 --kl_temperature 1.0 --tau_start 1.0 --tau_end 0.1 --warmup_steps 100 --lambda_max 5000\\\"\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:0\"], \"pid\": \"300417\", \"log_path\": \"~/runs/distill_sparse_swiglu/perlayer_kl_30_s456_v3.log\", \"submitted_at\": \"2026-05-21T02:38:55.477Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"perlayer_kl_30_s123_v3\": {\"conclusion\": \"killed\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache WANDB_MODE=disabled python -u src/train_perlayer_kl.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --num_steps 10000 --sparsity_target 0.3 --seed 123 --gpu 0 --gradient_checkpointing --dataset wikitext-103 --log_every 100 --output_dir checkpoints/perlayer_kl_30_s123 --kl_temperature 1.0 --tau_start 1.0 --tau_end 0.1 --warmup_steps 100 --lambda_max 5000\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"259228\", \"log_path\": \"~/runs/distill_sparse_swiglu/perlayer_kl_30_s123_v3.log\", \"submitted_at\": \"2026-05-21T02:38:52.465Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"perlayer_kl_30_s42_v3\": {\"conclusion\": \"killed\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache WANDB_MODE=disabled python -u src/train_perlayer_kl.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --num_steps 10000 --sparsity_target 0.3 --seed 42 --gpu 0 --gradient_checkpointing --dataset wikitext-103 --log_every 100 --output_dir checkpoints/perlayer_kl_30_s42 --kl_temperature 1.0 --tau_start 1.0 --tau_end 0.1 --warmup_steps 100 --lambda_max 5000\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"259138\", \"log_path\": \"~/runs/distill_sparse_swiglu/perlayer_kl_30_s42_v3.log\", \"submitted_at\": \"2026-05-21T02:38:49.629Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"perlayer_kl_30_s456_v2\": {\"conclusion\": \"killed\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache python -u src/train_perlayer_kl.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --num_steps 10000 --sparsity_target 0.3 --seed 456 --gpu 0 --gradient_checkpointing --dataset wikitext-103 --log_every 100 --output_dir checkpoints/perlayer_kl_30_s456 --kl_temperature 1.0 --tau_start 1.0 --tau_end 0.1 --warmup_steps 100 --lambda_max 5000\\\"\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:0\"], \"pid\": \"300209\", \"log_path\": \"~/runs/distill_sparse_swiglu/perlayer_kl_30_s456_v2.log\", \"submitted_at\": \"2026-05-21T02:37:44.068Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"perlayer_kl_30_s123_v2\": {\"conclusion\": \"killed\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache python -u src/train_perlayer_kl.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --num_steps 10000 --sparsity_target 0.3 --seed 123 --gpu 0 --gradient_checkpointing --dataset wikitext-103 --log_every 100 --output_dir checkpoints/perlayer_kl_30_s123 --kl_temperature 1.0 --tau_start 1.0 --tau_end 0.1 --warmup_steps 100 --lambda_max 5000\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"258933\", \"log_path\": \"~/runs/distill_sparse_swiglu/perlayer_kl_30_s123_v2.log\", \"submitted_at\": \"2026-05-21T02:37:41.007Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"perlayer_kl_30_s42_v2\": {\"conclusion\": \"killed\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache python -u src/train_perlayer_kl.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --num_steps 10000 --sparsity_target 0.3 --seed 42 --gpu 0 --gradient_checkpointing --dataset wikitext-103 --log_every 100 --output_dir checkpoints/perlayer_kl_30_s42 --kl_temperature 1.0 --tau_start 1.0 --tau_end 0.1 --warmup_steps 100 --lambda_max 5000\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"258791\", \"log_path\": \"~/runs/distill_sparse_swiglu/perlayer_kl_30_s42_v2.log\", \"submitted_at\": \"2026-05-21T02:37:37.642Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"perlayer_kl_30_s456\": {\"conclusion\": \"killed\", \"spec\": {\"command\": \"bash -c \\\"echo 'H4sICAxoDmoAA3RyYWluX3BlcmxheWVyX2tsLnB5ALVb224jNxJ911dwexBsa0Zqyx5nEWjTAXJHEE92kJkgDxOjQakpqeO+pZttWxEE7EfsF+6XbBXv7IvjeVgDY0tksapYrCqeIjkvyFvWLHN6ZA358YbwhmZlVu7XhNHtgbSc1aSg7V1LqjI/kkvS0DKtCiIGLEjFD6xpgYweScrKlkWzF+QbVlRlC5w4awkr0yWvlvCHbKuuzoE3uad5x8h///0fI07ya0lWpqwGWlZykHbfkt+rDD8i2/cHBizKXdUBr1CMJC2MzdlSaZOVO5gFzXPZMCcZcuTALKtKmq+BSbYjtZnv27c3SFJ0MNOHqmkZ4Qdauir/eANcOamb6h7msm2qtlVjzWQKyjmoDhoC+x/KuuNrQnZN9ScryU1OC0qKKmU5eUW2NM82YBVQhqSUUxI+ZHcZZ498ebl6PYfh/+q4GF83LM22vGoSUFbIS+7yqOYkbGnByK5qQCqhLeh38dXX35LtgW3vajRVi51kw8rtoaDNXcLA1lF9nAvtfmnpnqEVCKmP/ABqCCv6Qo5kuSy7IsGlb8nlCn6gpa1p02b8mHDa7Bknq+g1tjKWkusr+LSvO7KazbKirhrQrNkjPdPf5R+YfdTxLNetMIeD/ly1+pN0MP2tPZoOnhXMSADbbA/el6gso11XbuVao3G+0/0PwHIzgzUpcMJli/YT3ia7v+x49QbX6Luq+Zp2Lc1v3ixE6/vqjpXZn6yZzUCRqAaFowy8vOHhCpxftaRZU8KyhPo73bT4N0ySXZazJJnP51I4LnqCFjCiwZSJ4xZJXtEUPRnbpSFUk2SQg/8xM/jHm2+yFrjlN9AsCYzjaJq3uuHXhtY1TmSWMogBXJ0ElqkN5+sZQYcgsVm26Mtm3xUQNm/xWxMKAvxJWbttshpVjYNn5g0/ZQSC11yKjGiaohJCVhgslyJSEjRmgr4PRgwWhB9rFkM6WRg13B+YDe1yHgcXTVXxCwqrluZLXtQXgll7kWMMLl9Hl8vPNsGUYOPwWh6E0sLwFkEwNXRD+faQtOAlo2Ovp8a17I8kZ+XooKvV9WdT4/JGD9mBa7hasuXraWEsHVfvanKIH/ETQiEPTDGAlDAqctKSlch+CYTTx656KuMgaaVftw/ZPu8unKw4ufAiNSSQ339nW+6KtSJGmf8Fw6YrhRuPcvypKtnUcE47cETaTNn7Mpo0Hw6FPWtyoS6nVW6Krn7a/ye9sdrDHsOa48cO7MCUKsNhWoThdCvzSgvZiiW86cB6o4t/YHkdB7/Adq0yC8c0jVs9TIGmpNqRhsEWIPdY3A/T5riEJZlPrhqStmzCAdxdekKl7aHKtqyNP/SISbC9Dm4nI6ShaQafE7rddkWXyz3giXWYzEEV55BLwN0heorxsVefPWVNs08Qy4sAL7ArwpUwTTbT1oMMu0lpUtDHCef7FPJntHpK/hv6qGAhrhdNKWwy94zcULBRuc8AlYF9eAaQC/aQKT3u8oSzAnY5yruGfXwEtfSePeHNT07gHYx1cBgRbMhPRMKocBVDGqGbnKXTZjTuYNnAjjoeGZJHw2CiJbBy93O1xScb1oJncV4mgAVyvc8DAPbRWLQD0A3JjW3DYJfT9iDGBIrckWJ7JaBOrgJXiaBNaxoo4dsKkDnkSphJ2gEGesj4IZF5JqxgaQsEVQviZh6weMVpLr8o6cgqbxLpXyH2OGrBTATM+Nxjs/bWSOkm6C4AkDyGl77UuSGHPWDfsLYFHCQkkaVPaMc7evaJ+jZbRZ+SlyQEnwP8j3g3AsuE4kOdQY8WOvfWU+JZYacIpq+t2EQ3whA3P7s2NPaZG2yHgMRgekRh4EbhgwSAyoBBEPzMloKUvLl5CyVcJSs8RRYl6HQQDhLhQRtEXisg3T/Hqj7B9NcD1Dz+QCivcLsjIRYiohKaL7BC0wUfMj4qpNhmGOO0ZFXXYsmn9BR/x9WKBXMpHPOGnHGWPi6IEo/VHAQY1qLaApEAhuq3VMPxqiJHJCyaI/hs2vfAQeAE6IX2yHw3FOAETr/6ZqFz9VC6/ea7oYCZJbtSdcsvjnPq9BwbU5i29oOZ9+3MweqQAwp6xxKxyiwN82whGEF5US9AXchs8I/uyrkfNMaJWJqAVcHB0/CxR6NNglXDrgz3NVDMBxRgBAB1QNNh/6Aba3OoxNJMMhL8XqpBswF1e6i6PBX+jDE6mou1bRRWwzUmgBFGacNxn9Iei+6UkTged73hZEamt3N1HtoPfwA/ZRxzDi7MmI3wR01ZKwI7xgbKJGwN5fjxYUZxmwjAVbJbdDH4PDpGZaC0Dr3FeSlGDMWMk8/HcnDPo2ZuxEWqETTzXdZj5ES38f2FDcyFjsCFDbYF6QWSTpKiXtUesBBQUdfeuIvipn8PiM5my9Fql+C+5hwoOXBFl094ZNUKeq6y5Le6QF6TlsLOzLwCmeQLud4iG/MD5fqsbVsVUB4xlA+IbNfluTpZknWTBCddneJ6icGK399ba67IVVFuG5CDG+YevOF8VAL0UjDWyCprW1+UWRSP5bJ9hBSHLAUmilCMA1Qm0pp3XBE6QC1Gi0c+eJtLW4ERaYHychgaDjNfJAgYHsCFKv+YrRFGuRvplyktfg0lQ9w1pdQcUQjL9geoO9mWHqFOWimYbbZdYPRMPCNY+qBGNJnjBTWtkYlIh1T9kDnEuHFEaDOJvwqaxXjvOC+oGBGV+oE2QXr3gErFp0DUbgwIwJN4sCbf0bxlZyfG9Ke6yRDafq/4EY8fkaLTQE36hXMSPYr7pTtpr43JB4BVt5CarGMKAnlekZgAjKUte+cZgrSAjxn6Jqz6ldbifUOh9rFBDTCHa9HykDRpuwLlr0blSyoj7hm026oruSDqkUgQjKeGUFOiH+Kf0CYraek91XN8oqCUpllhUEBVF+Ev7W1ylXZTB3on34XPRHn2ySp6VnAO6l3HkXZBbyniU6/hvCC2doylINtw1p6B0A6iTMhHSIeuwRCJ+5oBxL50YMoL8rObV1uWM1FHGYIcjCFTb4R/0AirhZvmluRyGE19BJrPHInf59UGcC6nnUkfphcb1TqZUx5QOTQteOGw7BHMsXwwc78YpJO+dg42iKRA+G01FH6R4DGydPpex10+2my3sF43FIReoGGf6cRVS+xy7WkPQvLmOMRE4jQVOJXskYfG831AwR63rObkHa/qHziTJ+dDTn8ZNs8R6xFmeLkD+ANtJwZ8CExTcBvxKlSgwR+GF2JQIxGNccKyUgUPLY8PUEn18JKoqBIDDPXKquGJ6A6N4HkkKaOUcQAW4UD4OwGFrXQXGgg9WOrLV9h5UgHZP9TAFwxZsqEPMFxs/6E7qYUvYlxjHzrZ6g7izaXuQWMX6kaQacLcnxtsrGIEgPyy4gLoDz0HAryjuevXWL8vxcioYNTdYz2jYbpnTSOqtLDPZdnfmOZ4UTTCys5aB6ra8j7kuD1ITLOFtjrsSV2qDQ0QZFYikoHs8ZJcDST0w7anagS+X/QUY7DDDy01VFVqx2G1qybEMz8FpOPR0FCDQuUsr/oM8dBlTwdDog3s0KIs7fFz0turWJKOzMXkulexclNFNZQ2yH+v4r6O3lib7PWVpLjug+XK6gR356SsmiIxMNQcRuKPAZIRJndHaXsA1OuwI+BfJQS4JplAVLJGsEygQJUe5rmae87mO8znA4ilHc/3ENdtY3Ll7BssHzD9YsD01TOYrqJPZyM9sTiqQygvQiG0XQozWJAx9+w1jf2kBIv/UMyr2PhSj8ZFf4rSm26PXABARXdp9cHLFawPYD4nzwgBOh4Ab+vvgLzuctNyl/tH1UHPZw2hbQcGWjno9ZTt8QJAARTwG4bkDXy07onrJ4bmTTgHNNsbKa0u2Nv1CFw8hX12kC0pxK0a7jOhtslCwNBYQyNnFcG1DGD6RC23vqXC85wVceEkNFz2jr+4D5Ixc6/8rHC/l1AJVjd0ncI5JLZdYnF7h2MScg/y6S748A6VOmn1zhd99H0rXSY+5WdIXoCZ1YKvo+vd2YPfmqVF396qrqPXu7NaCezSK7KOriYYwZIjgu/USNBheuWBCxvnIo0Hiou/Uu2Ux6eUr6PL3bn1xwy2bydb/c1NV8PNSZc1hHyQ5+bkBox2C8Y1LORcl1+Q/vwD359kAWluhyBZrfBY0UHmnwxoxjyth959naEy5uLNAziWfkqCz59kgWAvxxdgxNEHQoJrYn0nqnng2w/Y4vEaMGmHXNljButX3cXvm64HSeVuhpMLT1Y2ppGRkwzMmUzEaDjH8AY5QHhPlcw5FH1mqmNRsRN3aal7mYYrZMacnQMDHOCm666APePoVLXBb+VyuRT74I0gea+P7t5JWgLdykqIMTNbsNhC0L90clN2dou+sB7JDkmmrxH0hgG0F73Bg3Ft7YzzNpG/Gm29Xc7zlK2v0vOaCGKMb3fk+jo9Ez8Qk2wqg+igtXlEayoTwS4rATz2E0lmA0kcuBbibEpaCt0Aj7zdS0vrZgUtBRplLJVOip/U/Zis1se6JL40CFR+BXtsOwhzmUT3dXdWS/0xgSAlqwcduoL3n3lgnENQuqF4Gjt0OotZnYzqZ3W5JXY3cEseqpcosSNENS0ISoq1yAWRh66xDazecc4N1LrigaI4JBbPw6Tk4SurM4miKNCLoN68wVS9N3ARsgBtmAAMegWGzOb6CNNwglyWJuKbvl2xETNGFDutrGplq5ycnEw8+mZvoKA9xhjXdOFoAU6TpOLOXzrQRjwbuPyHpZEuBZixjk8BZDT5/WwJzF07wxt9cSwRD27hJfncTibCm1H/KC74AVwho3n2J66fvftTydZZLN0SDx76hYL5wnnOId6oScfy34t4rLwzaX2ioao3KOZGLGSysX+hjNnUZmZ1C60O9Z+8oHYN8bbPQF8jqXMM7ywOAkzeUIsbDIEKA9+u7xgXJ89dLR8HyeMgx556r++9TrLuel9t6UZY0vNS22zdxRw34dVm/z1naEeoksS+I1QN6oGg+eae0+gY/wUfQOv7I/neyTKOT/bzWT878Qv5gZLDx6g+SjVTfr7W6qN6YmW4mZVhaWKueRA114iQGISEdCHckJ918WOOsU28SLZrcnKErBdnEroN5CW5gq31cnV1/fLllcCg5M1XZLMDz9bu89zbQh0J4jGQ2BcdFCP6ng/yxjGexXT/Z0zmY7H+XCYRGUSYF5TisaN806Wf5RPxFMSFak8+7pjITSprOsH9W/mtfmOydp+YyDPO3usSEor/LMDKLVMbqVlsuRvDjLNWHKfOICkkct9IEMQHSYJgJkkCGUcS2cz+By3pN2hJMQAA' | base64 -d | gunzip > /root/distill_sparse_swiglu/src/train_perlayer_kl.py && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache WANDB_MODE=disabled python -u src/train_perlayer_kl.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --num_steps 10000 --sparsity_target 0.3 --seed 456 --gpu 0 --gradient_checkpointing --dataset wikitext-103 --log_every 100 --output_dir checkpoints/perlayer_kl_30_s456 --kl_temperature 1.0 --tau_start 1.0 --tau_end 0.1 --warmup_steps 100 --lambda_max 5000\\\"\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:0\"], \"pid\": \"299665\", \"log_path\": \"~/runs/distill_sparse_swiglu/perlayer_kl_30_s456.log\", \"submitted_at\": \"2026-05-21T02:31:38.702Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"perlayer_kl_30_s123\": {\"conclusion\": \"killed\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache WANDB_MODE=disabled python -u src/train_perlayer_kl.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --num_steps 10000 --sparsity_target 0.3 --seed 123 --gpu 0 --gradient_checkpointing --dataset wikitext-103 --log_every 100 --output_dir checkpoints/perlayer_kl_30_s123 --kl_temperature 1.0 --tau_start 1.0 --tau_end 0.1 --warmup_steps 100 --lambda_max 5000\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"258084\", \"log_path\": \"~/runs/distill_sparse_swiglu/perlayer_kl_30_s123.log\", \"submitted_at\": \"2026-05-21T02:27:09.853Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"perlayer_kl_30_s42\": {\"conclusion\": \"killed\", \"spec\": {\"command\": \"bash -c \\\"echo 'H4sICAxoDmoAA3RyYWluX3BlcmxheWVyX2tsLnB5ALVb224jNxJ911dwexBsa0Zqyx5nEWjTAXJHEE92kJkgDxOjQakpqeO+pZttWxEE7EfsF+6XbBXv7IvjeVgDY0tksapYrCqeIjkvyFvWLHN6ZA358YbwhmZlVu7XhNHtgbSc1aSg7V1LqjI/kkvS0DKtCiIGLEjFD6xpgYweScrKlkWzF+QbVlRlC5w4awkr0yWvlvCHbKuuzoE3uad5x8h///0fI07ya0lWpqwGWlZykHbfkt+rDD8i2/cHBizKXdUBr1CMJC2MzdlSaZOVO5gFzXPZMCcZcuTALKtKmq+BSbYjtZnv27c3SFJ0MNOHqmkZ4Qdauir/eANcOamb6h7msm2qtlVjzWQKyjmoDhoC+x/KuuNrQnZN9ScryU1OC0qKKmU5eUW2NM82YBVQhqSUUxI+ZHcZZ498ebl6PYfh/+q4GF83LM22vGoSUFbIS+7yqOYkbGnByK5qQCqhLeh38dXX35LtgW3vajRVi51kw8rtoaDNXcLA1lF9nAvtfmnpnqEVCKmP/ABqCCv6Qo5kuSy7IsGlb8nlCn6gpa1p02b8mHDa7Bknq+g1tjKWkusr+LSvO7KazbKirhrQrNkjPdPf5R+YfdTxLNetMIeD/ly1+pN0MP2tPZoOnhXMSADbbA/el6gso11XbuVao3G+0/0PwHIzgzUpcMJli/YT3ia7v+x49QbX6Luq+Zp2Lc1v3ixE6/vqjpXZn6yZzUCRqAaFowy8vOHhCpxftaRZU8KyhPo73bT4N0ySXZazJJnP51I4LnqCFjCiwZSJ4xZJXtEUPRnbpSFUk2SQg/8xM/jHm2+yFrjlN9AsCYzjaJq3uuHXhtY1TmSWMogBXJ0ElqkN5+sZQYcgsVm26Mtm3xUQNm/xWxMKAvxJWbttshpVjYNn5g0/ZQSC11yKjGiaohJCVhgslyJSEjRmgr4PRgwWhB9rFkM6WRg13B+YDe1yHgcXTVXxCwqrluZLXtQXgll7kWMMLl9Hl8vPNsGUYOPwWh6E0sLwFkEwNXRD+faQtOAlo2Ovp8a17I8kZ+XooKvV9WdT4/JGD9mBa7hasuXraWEsHVfvanKIH/ETQiEPTDGAlDAqctKSlch+CYTTx656KuMgaaVftw/ZPu8unKw4ufAiNSSQ339nW+6KtSJGmf8Fw6YrhRuPcvypKtnUcE47cETaTNn7Mpo0Hw6FPWtyoS6nVW6Krn7a/ye9sdrDHsOa48cO7MCUKsNhWoThdCvzSgvZiiW86cB6o4t/YHkdB7/Adq0yC8c0jVs9TIGmpNqRhsEWIPdY3A/T5riEJZlPrhqStmzCAdxdekKl7aHKtqyNP/SISbC9Dm4nI6ShaQafE7rddkWXyz3giXWYzEEV55BLwN0heorxsVefPWVNs08Qy4sAL7ArwpUwTTbT1oMMu0lpUtDHCef7FPJntHpK/hv6qGAhrhdNKWwy94zcULBRuc8AlYF9eAaQC/aQKT3u8oSzAnY5yruGfXwEtfSePeHNT07gHYx1cBgRbMhPRMKocBVDGqGbnKXTZjTuYNnAjjoeGZJHw2CiJbBy93O1xScb1oJncV4mgAVyvc8DAPbRWLQD0A3JjW3DYJfT9iDGBIrckWJ7JaBOrgJXiaBNaxoo4dsKkDnkSphJ2gEGesj4IZF5JqxgaQsEVQviZh6weMVpLr8o6cgqbxLpXyH2OGrBTATM+Nxjs/bWSOkm6C4AkDyGl77UuSGHPWDfsLYFHCQkkaVPaMc7evaJ+jZbRZ+SlyQEnwP8j3g3AsuE4kOdQY8WOvfWU+JZYacIpq+t2EQ3whA3P7s2NPaZG2yHgMRgekRh4EbhgwSAyoBBEPzMloKUvLl5CyVcJSs8RRYl6HQQDhLhQRtEXisg3T/Hqj7B9NcD1Dz+QCivcLsjIRYiohKaL7BC0wUfMj4qpNhmGOO0ZFXXYsmn9BR/x9WKBXMpHPOGnHGWPi6IEo/VHAQY1qLaApEAhuq3VMPxqiJHJCyaI/hs2vfAQeAE6IX2yHw3FOAETr/6ZqFz9VC6/ea7oYCZJbtSdcsvjnPq9BwbU5i29oOZ9+3MweqQAwp6xxKxyiwN82whGEF5US9AXchs8I/uyrkfNMaJWJqAVcHB0/CxR6NNglXDrgz3NVDMBxRgBAB1QNNh/6Aba3OoxNJMMhL8XqpBswF1e6i6PBX+jDE6mou1bRRWwzUmgBFGacNxn9Iei+6UkTged73hZEamt3N1HtoPfwA/ZRxzDi7MmI3wR01ZKwI7xgbKJGwN5fjxYUZxmwjAVbJbdDH4PDpGZaC0Dr3FeSlGDMWMk8/HcnDPo2ZuxEWqETTzXdZj5ES38f2FDcyFjsCFDbYF6QWSTpKiXtUesBBQUdfeuIvipn8PiM5my9Fql+C+5hwoOXBFl094ZNUKeq6y5Le6QF6TlsLOzLwCmeQLud4iG/MD5fqsbVsVUB4xlA+IbNfluTpZknWTBCddneJ6icGK399ba67IVVFuG5CDG+YevOF8VAL0UjDWyCprW1+UWRSP5bJ9hBSHLAUmilCMA1Qm0pp3XBE6QC1Gi0c+eJtLW4ERaYHychgaDjNfJAgYHsCFKv+YrRFGuRvplyktfg0lQ9w1pdQcUQjL9geoO9mWHqFOWimYbbZdYPRMPCNY+qBGNJnjBTWtkYlIh1T9kDnEuHFEaDOJvwqaxXjvOC+oGBGV+oE2QXr3gErFp0DUbgwIwJN4sCbf0bxlZyfG9Ke6yRDafq/4EY8fkaLTQE36hXMSPYr7pTtpr43JB4BVt5CarGMKAnlekZgAjKUte+cZgrSAjxn6Jqz6ldbifUOh9rFBDTCHa9HykDRpuwLlr0blSyoj7hm026oruSDqkUgQjKeGUFOiH+Kf0CYraek91XN8oqCUpllhUEBVF+Ev7W1ylXZTB3on34XPRHn2ySp6VnAO6l3HkXZBbyniU6/hvCC2doylINtw1p6B0A6iTMhHSIeuwRCJ+5oBxL50YMoL8rObV1uWM1FHGYIcjCFTb4R/0AirhZvmluRyGE19BJrPHInf59UGcC6nnUkfphcb1TqZUx5QOTQteOGw7BHMsXwwc78YpJO+dg42iKRA+G01FH6R4DGydPpex10+2my3sF43FIReoGGf6cRVS+xy7WkPQvLmOMRE4jQVOJXskYfG831AwR63rObkHa/qHziTJ+dDTn8ZNs8R6xFmeLkD+ANtJwZ8CExTcBvxKlSgwR+GF2JQIxGNccKyUgUPLY8PUEn18JKoqBIDDPXKquGJ6A6N4HkkKaOUcQAW4UD4OwGFrXQXGgg9WOrLV9h5UgHZP9TAFwxZsqEPMFxs/6E7qYUvYlxjHzrZ6g7izaXuQWMX6kaQacLcnxtsrGIEgPyy4gLoDz0HAryjuevXWL8vxcioYNTdYz2jYbpnTSOqtLDPZdnfmOZ4UTTCys5aB6ra8j7kuD1ITLOFtjrsSV2qDQ0QZFYikoHs8ZJcDST0w7anagS+X/QUY7DDDy01VFVqx2G1qybEMz8FpOPR0FCDQuUsr/oM8dBlTwdDog3s0KIs7fFz0turWJKOzMXkulexclNFNZQ2yH+v4r6O3lib7PWVpLjug+XK6gR356SsmiIxMNQcRuKPAZIRJndHaXsA1OuwI+BfJQS4JplAVLJGsEygQJUe5rmae87mO8znA4ilHc/3ENdtY3Ll7BssHzD9YsD01TOYrqJPZyM9sTiqQygvQiG0XQozWJAx9+w1jf2kBIv/UMyr2PhSj8ZFf4rSm26PXABARXdp9cHLFawPYD4nzwgBOh4Ab+vvgLzuctNyl/tH1UHPZw2hbQcGWjno9ZTt8QJAARTwG4bkDXy07onrJ4bmTTgHNNsbKa0u2Nv1CFw8hX12kC0pxK0a7jOhtslCwNBYQyNnFcG1DGD6RC23vqXC85wVceEkNFz2jr+4D5Ixc6/8rHC/l1AJVjd0ncI5JLZdYnF7h2MScg/y6S748A6VOmn1zhd99H0rXSY+5WdIXoCZ1YKvo+vd2YPfmqVF396qrqPXu7NaCezSK7KOriYYwZIjgu/USNBheuWBCxvnIo0Hiou/Uu2Ux6eUr6PL3bn1xwy2bydb/c1NV8PNSZc1hHyQ5+bkBox2C8Y1LORcl1+Q/vwD359kAWluhyBZrfBY0UHmnwxoxjyth959naEy5uLNAziWfkqCz59kgWAvxxdgxNEHQoJrYn0nqnng2w/Y4vEaMGmHXNljButX3cXvm64HSeVuhpMLT1Y2ppGRkwzMmUzEaDjH8AY5QHhPlcw5FH1mqmNRsRN3aal7mYYrZMacnQMDHOCm666APePoVLXBb+VyuRT74I0gea+P7t5JWgLdykqIMTNbsNhC0L90clN2dou+sB7JDkmmrxH0hgG0F73Bg3Ft7YzzNpG/Gm29Xc7zlK2v0vOaCGKMb3fk+jo9Ez8Qk2wqg+igtXlEayoTwS4rATz2E0lmA0kcuBbibEpaCt0Aj7zdS0vrZgUtBRplLJVOip/U/Zis1se6JL40CFR+BXtsOwhzmUT3dXdWS/0xgSAlqwcduoL3n3lgnENQuqF4Gjt0OotZnYzqZ3W5JXY3cEseqpcosSNENS0ISoq1yAWRh66xDazecc4N1LrigaI4JBbPw6Tk4SurM4miKNCLoN68wVS9N3ARsgBtmAAMegWGzOb6CNNwglyWJuKbvl2xETNGFDutrGplq5ycnEw8+mZvoKA9xhjXdOFoAU6TpOLOXzrQRjwbuPyHpZEuBZixjk8BZDT5/WwJzF07wxt9cSwRD27hJfncTibCm1H/KC74AVwho3n2J66fvftTydZZLN0SDx76hYL5wnnOId6oScfy34t4rLwzaX2ioao3KOZGLGSysX+hjNnUZmZ1C60O9Z+8oHYN8bbPQF8jqXMM7ywOAkzeUIsbDIEKA9+u7xgXJ89dLR8HyeMgx556r++9TrLuel9t6UZY0vNS22zdxRw34dVm/z1naEeoksS+I1QN6oGg+eae0+gY/wUfQOv7I/neyTKOT/bzWT878Qv5gZLDx6g+SjVTfr7W6qN6YmW4mZVhaWKueRA114iQGISEdCHckJ918WOOsU28SLZrcnKErBdnEroN5CW5gq31cnV1/fLllcCg5M1XZLMDz9bu89zbQh0J4jGQ2BcdFCP6ng/yxjGexXT/Z0zmY7H+XCYRGUSYF5TisaN806Wf5RPxFMSFak8+7pjITSprOsH9W/mtfmOydp+YyDPO3usSEor/LMDKLVMbqVlsuRvDjLNWHKfOICkkct9IEMQHSYJgJkkCGUcS2cz+By3pN2hJMQAA' | base64 -d | gunzip > /root/distill_sparse_swiglu/src/train_perlayer_kl.py && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache WANDB_MODE=disabled python -u src/train_perlayer_kl.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --num_steps 10000 --sparsity_target 0.3 --seed 42 --gpu 0 --gradient_checkpointing --dataset wikitext-103 --log_every 100 --output_dir checkpoints/perlayer_kl_30_s42 --kl_temperature 1.0 --tau_start 1.0 --tau_end 0.1 --warmup_steps 100 --lambda_max 5000\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"257667\", \"log_path\": \"~/runs/distill_sparse_swiglu/perlayer_kl_30_s42.log\", \"submitted_at\": \"2026-05-21T02:23:53.202Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"revkl_30_s456\": {\"conclusion\": \"success\", \"metrics\": {\"ppl\": 9.1841}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && source /etc/network_turbo 2>/dev/null; HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache WANDB_MODE=disabled python -u src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --loss_type reverse_kl --sparsity_target 0.3 --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 456 --kl_temperature 1.0 --tau_start 1.0 --tau_end 0.1 --warmup_steps 100 --gradient_checkpointing --dataset wikitext-103 --log_every 100 --output_dir checkpoints/reverse_kl_30_s456 --lambda_max 5000 --gpu 0 && python -u src/benchmark_eval.py --exp_id revkl_30_s456_ppl --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/reverse_kl_30_s456/predictor_reverse_kl.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2 --seq_len 2048 --gpu 0\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"253546\", \"log_path\": \"~/runs/distill_sparse_swiglu/revkl_30_s456.log\", \"submitted_at\": \"2026-05-21T01:19:30.157Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"jsd_30_s123\": {\"conclusion\": \"success\", \"metrics\": {\"ppl\": 8.9144, \"sparsity\": 0.296, \"allocation\": \"uniform\"}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && source /etc/network_turbo 2>/dev/null; HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache WANDB_MODE=disabled python -u src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --loss_type jsd --sparsity_target 0.3 --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 123 --kl_temperature 1.0 --tau_start 1.0 --tau_end 0.1 --warmup_steps 100 --gradient_checkpointing --dataset wikitext-103 --log_every 100 --output_dir checkpoints/jsd_30_s123 --gpu 0 && python -u src/benchmark_eval.py --exp_id jsd_30_s123_ppl --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/jsd_30_s123/predictor_jsd.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2 --seq_len 2048 --gpu 0\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"250592\", \"log_path\": \"~/runs/distill_sparse_swiglu/jsd_30_s123.log\", \"submitted_at\": \"2026-05-21T00:13:44.035Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"jsd_30_s456\": {\"conclusion\": \"success\", \"metrics\": {\"ppl\": 8.9099, \"sparsity\": 0.296, \"allocation\": \"uniform\"}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && source /etc/network_turbo 2>/dev/null; HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache WANDB_MODE=disabled python -u src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --loss_type jsd --sparsity_target 0.3 --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 456 --kl_temperature 1.0 --tau_start 1.0 --tau_end 0.1 --warmup_steps 100 --gradient_checkpointing --dataset wikitext-103 --log_every 100 --output_dir checkpoints/jsd_30_s456 --gpu 0 && python -u src/benchmark_eval.py --exp_id jsd_30_s456_ppl --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/jsd_30_s456/predictor_jsd.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2 --seq_len 2048 --gpu 0\\\"\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:0\"], \"pid\": \"292012\", \"log_path\": \"~/runs/distill_sparse_swiglu/jsd_30_s456.log\", \"submitted_at\": \"2026-05-21T00:13:47.723Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"revkl_30_s123\": {\"conclusion\": \"success\", \"metrics\": {\"ppl\": 9.2859, \"sparsity\": 0.296, \"allocation\": \"uniform\"}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && source /etc/network_turbo 2>/dev/null; HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache WANDB_MODE=disabled python -u src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --loss_type reverse_kl --sparsity_target 0.3 --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 123 --kl_temperature 1.0 --tau_start 1.0 --tau_end 0.1 --warmup_steps 100 --gradient_checkpointing --dataset wikitext-103 --log_every 100 --output_dir checkpoints/reverse_kl_30_s123 --lambda_max 5000 --gpu 0 && python -u src/benchmark_eval.py --exp_id revkl_30_s123_ppl --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/reverse_kl_30_s123/predictor_reverse_kl.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2 --seq_len 2048 --gpu 0\\\"\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:1\"], \"pid\": \"292156\", \"log_path\": \"~/runs/distill_sparse_swiglu/revkl_30_s123.log\", \"submitted_at\": \"2026-05-21T00:13:51.665Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"bce_30_s42_uniform_eval\": {\"conclusion\": \"success\", \"metrics\": {\"ppl\": 15.7069, \"arc_challenge\": 0.3319, \"winogrande\": 0.618, \"mmlu\": 0.4237, \"gsm8k\": 0.0394, \"hellaswag\": 0.6156, \"piqa\": 0.741}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && ls -la checkpoints/bce_30pct_s42/predictor_bce.pt && source /etc/network_turbo 2>/dev/null; HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache python -u src/benchmark_eval.py --exp_id bce_30_s42_uniform_eval --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/bce_30pct_s42/predictor_bce.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa --seq_len 2048 --gpu 0\\\"\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:0\"], \"pid\": \"285532\", \"log_path\": \"~/runs/distill_sparse_swiglu/bce_30_s42_uniform_eval.log\", \"submitted_at\": \"2026-05-20T21:50:58.415Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"debug_check_bce_iso_ckpts\": {\"conclusion\": \"killed\", \"spec\": {\"command\": \"bash -c \\\"ls -la /root/distill_sparse_swiglu/checkpoints/bce_isocompute_v3_s123/*.pt /root/distill_sparse_swiglu/checkpoints/bce_isocompute_v3_s456/*.pt 2>/dev/null && echo DONE\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"unknown\", \"log_path\": \"~/runs/distill_sparse_swiglu/debug_check_bce_iso_ckpts.log\", \"submitted_at\": \"2026-05-20T22:48:09.384Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"debug_list_ckpts_34887\": {\"conclusion\": \"killed\", \"spec\": {\"command\": \"bash -c \\\"echo '=== westd-34887 checkpoints ===' && ls -d /root/distill_sparse_swiglu/checkpoints/*/ 2>/dev/null | sort && echo DONE\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"unknown\", \"log_path\": \"~/runs/distill_sparse_swiglu/debug_list_ckpts_34887.log\", \"submitted_at\": \"2026-05-20T22:45:29.920Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"debug_list_ckpts_41718\": {\"conclusion\": \"killed\", \"spec\": {\"command\": \"bash -c \\\"echo '=== westd-41718 checkpoints ===' && ls -d /root/distill_sparse_swiglu/checkpoints/*/ 2>/dev/null | sort && echo DONE\\\"\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:1\"], \"pid\": \"unknown\", \"log_path\": \"~/runs/distill_sparse_swiglu/debug_list_ckpts_41718.log\", \"submitted_at\": \"2026-05-20T22:45:26.679Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"debug_grep_bce_ppl\": {\"conclusion\": \"killed\", \"spec\": {\"command\": \"bash -c \\\"grep -i 'ppl\\\\|perplexity\\\\|wikitext2\\\\|word_perplexity' ~/runs/distill_sparse_swiglu/bce_30_s42_uniform_eval.log 2>/dev/null | head -20; echo '---SPARSITY---'; grep -i 'sparsity\\\\|actual.*spars\\\\|model.*spars\\\\|layer.*spars\\\\|average.*spars' ~/runs/distill_sparse_swiglu/bce_30_s42_uniform_eval.log 2>/dev/null | head -10\\\"\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:1\"], \"pid\": \"unknown\", \"log_path\": \"~/runs/distill_sparse_swiglu/debug_grep_bce_ppl.log\", \"submitted_at\": \"2026-05-20T22:03:00.110Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"debug_find_bce_ckpt_34887\": {\"conclusion\": \"killed\", \"spec\": {\"command\": \"bash -c \\\"cd /root/distill_sparse_swiglu && echo '=== BCE checkpoints ===' && find checkpoints -name '*bce*30*' -type f 2>/dev/null && echo '=== All BCE checkpoints ===' && find checkpoints -name '*bce*' -type f 2>/dev/null && echo '=== DONE ==='\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"unknown\", \"log_path\": \"~/runs/distill_sparse_swiglu/debug_find_bce_ckpt_34887.log\", \"submitted_at\": \"2026-05-20T22:00:38.393Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"debug_read_revkl_results\": {\"conclusion\": \"killed\", \"spec\": {\"command\": \"bash -c \\\"cat /root/distill_sparse_swiglu/results/benchmark/reverse_kl_30_s42_uniform_eval/results.json && echo '=== GPU ===' && nvidia-smi --query-gpu=index,utilization.gpu,memory.used --format=csv,noheader && echo '=== PS ===' && ps aux | grep python | grep -v grep | head -10\\\"\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:1\"], \"pid\": \"unknown\", \"log_path\": \"~/runs/distill_sparse_swiglu/debug_read_revkl_results.log\", \"submitted_at\": \"2026-05-20T21:45:29.768Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"debug_find_revkl_logs\": {\"conclusion\": \"killed\", \"spec\": {\"command\": \"bash -c \\\"echo '=== Find RevKL nohup logs ===' && find /root/distill_sparse_swiglu/ -name '*reverse_kl_30*' -o -name '*revkl_30*' 2>/dev/null | head -30 && echo '=== Check result dirs ===' && ls -la /root/distill_sparse_swiglu/reverse_kl_30_s42_uniform_eval/ 2>/dev/null && ls -la /root/distill_sparse_swiglu/revkl_30_s42_uniform_eval/ 2>/dev/null && echo '=== nohup output ===' && ls -la /root/distill_sparse_swiglu/nohup*.out 2>/dev/null && echo '=== Check all running python ===' && ps aux | grep python | grep -v grep && echo '=== GPU status ===' && nvidia-smi --query-gpu=index,utilization.gpu,memory.used --format=csv,noheader && echo '=== westd-34887 placeholder - ignore ===' && echo DONE\\\"\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:1\"], \"pid\": \"unknown\", \"log_path\": \"~/runs/distill_sparse_swiglu/debug_find_revkl_logs.log\", \"submitted_at\": \"2026-05-20T21:45:03.308Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"jsd_30_s42_uniform_eval\": {\"conclusion\": \"success\", \"metrics\": {\"ppl\": 8.8848, \"arc_challenge\": 0.4437, \"winogrande\": 0.6977, \"mmlu\": 0.3857, \"gsm8k\": 0.0857, \"hellaswag\": 0.7063, \"piqa\": 0.7519}, \"spec\": {\"command\": \"python -u src/benchmark_eval.py --exp_id jsd_30_s42_uniform_eval --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/jsd_30_s42/predictor_jsd.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa --seq_len 2048 --gpu 0\", \"server\": \"westd-41718\", \"data_path\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa\", \"data_count\": 7, \"model_name\": \"llama-3.1-8b\", \"seed\": 42, \"checkpoint_source\": \"checkpoints/jsd_30_s42/predictor_jsd.pt\", \"eval_data\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa\"}}, \"mse50_s123_eval_retry\": {\"conclusion\": \"killed\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && source /etc/network_turbo 2>/dev/null; HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache python -u src/benchmark_eval.py --exp_id mse50_s123_eval_retry --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/mse50_s123/predictor_mse.pt --sparsity_mode teal_global --sparsity_target 0.5 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa --seq_len 2048 --gpu 0\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"240870\", \"log_path\": \"~/runs/distill_sparse_swiglu/mse50_s123_eval_retry.log\", \"submitted_at\": \"2026-05-20T20:55:01.775Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"mse50_s123\": {\"conclusion\": \"negative\", \"metrics\": {\"final_loss\": 185.0, \"final_sparsity\": 0.051, \"note\": \"Native sparsity collapsed to 5.1% (target 50%). Eval PPL=15789 under forced 50% mask.\"}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache WANDB_MODE=disabled python -u src/train_perlayer_mse.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 123 --sparsity_target 0.5 --output_dir checkpoints/mse50_s123 --gpu 0 && python -u src/benchmark_eval.py --exp_id mse50_s123_eval --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/mse50_s123/predictor_mse.pt --sparsity_mode teal_global --sparsity_target 0.5 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa --seq_len 2048 --gpu 0\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"235945\", \"log_path\": \"~/runs/distill_sparse_swiglu/mse50_s123.log\", \"submitted_at\": \"2026-05-20T18:56:39.903Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"llama-3.1-8b\", \"seed\": 123, \"data_path\": \"wikitext-103\", \"data_count\": \"1000 steps\", \"loss_type\": \"mse\", \"sparsity_target\": 0.5, \"checkpoint_source\": \"self-trained mse50_s123 (train+eval combined)\", \"eval_data\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa\"}}, \"ste_30_s42\": {\"spec\": {\"command\": \"python -u src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --relaxation ste --loss_type kl_normalized --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 42 --sparsity_target 0.3 --gpu 0 --output_dir checkpoints/ste_30_s42 --dataset wikitext-103 --gradient_checkpointing --lambda_max 5000 --log_every 100 && python -u src/benchmark_eval.py ... --sparsity_target 0.3\", \"server\": \"westd-41718\", \"gpu\": \"cuda:0\", \"pid\": \"268288\", \"log_path\": \"~/runs/distill_sparse_swiglu/ste_30_s42.log\", \"submitted_at\": \"2026-05-20T16:31:52.163Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"llama-3.1-8b\", \"seed\": 42, \"data_path\": \"wikitext-103\", \"data_count\": \"1000 steps\"}, \"metrics\": {\"wikitext2_ppl\": 8.4138, \"arc_challenge_acc_norm\": 0.4846, \"winogrande_acc\": 0.7277, \"mmlu_acc\": 0.4395, \"gsm8k_exact_match\": 0.1676, \"hellaswag_acc_norm\": 0.7511, \"piqa_acc_norm\": 0.7726, \"model_level_sparsity\": 0.3}, \"conclusion\": \"success\"}, \"reverse_kl_30_s42\": {\"spec\": {\"command\": \"python -u src/train.py --loss_type reverse_kl --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 42 --sparsity_target 0.3 --output_dir checkpoints/reverse_kl_30_s42 --dataset wikitext-103 --gradient_checkpointing --lambda_max 5000 --kl_temperature 1.0 --tau_start 1.0 --tau_end 0.1 --warmup_steps 100 && python -u src/benchmark_eval.py (7 tasks)\", \"server\": \"westd-34887\", \"gpu\": \"cuda:1\", \"pid\": \"226776\", \"log_path\": \"~/runs/distill_sparse_swiglu/reverse_kl_30_s42.log\", \"submitted_at\": \"2026-05-20T15:52:07.848Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"llama-3.1-8b\", \"seed\": 42, \"data_path\": \"wikitext-103\", \"data_count\": \"1000 steps\"}, \"metrics\": {\"wikitext2_ppl\": 9.31, \"arc_challenge_acc_norm\": 0.4317, \"winogrande_acc\": 0.6938, \"mmlu_acc\": 0.3744, \"gsm8k_exact_match\": 0.0697, \"hellaswag_acc_norm\": 0.6972, \"piqa_acc_norm\": 0.7459}, \"conclusion\": \"success\"}, \"jsd_30_s42\": {\"spec\": {\"command\": \"python -u src/train.py --loss_type jsd --num_steps 1000 --sparsity_target 0.3 --seed 42 && python -u src/benchmark_eval.py\", \"server\": \"westd-34887\", \"gpu\": \"cuda:0\", \"pid\": \"226464\", \"log_path\": \"~/runs/distill_sparse_swiglu/jsd_30_s42.log\", \"submitted_at\": \"2026-05-20T15:51:53.236Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"llama-3.1-8b\", \"seed\": 42, \"data_path\": \"wikitext-103\", \"data_count\": \"1000 steps\"}, \"metrics\": {\"wikitext2_ppl\": 8.884, \"arc_challenge_acc_norm\": 0.4445, \"winogrande_acc\": 0.7072, \"mmlu_acc\": 0.3825, \"gsm8k_exact_match\": 0.0925, \"hellaswag_acc_norm\": 0.7073, \"piqa_acc_norm\": 0.7508, \"model_level_sparsity\": 0.285}, \"conclusion\": \"success\"}, \"mistral_kl30_s456\": {\"spec\": {\"command\": \"python -u src/train.py --model_name_or_path /root/autodl-tmp/models/mistral-7b --loss_type kl_normalized --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 456 --sparsity_target 0.3 --gpu 0 --output_dir checkpoints/mistral_kl30_s456 --dataset wikitext-103 --gradient_checkpointing --lambda_max 5000 --log_every 100\", \"server\": \"westd-34887\", \"gpu\": \"cuda:1\", \"pid\": \"215419\", \"log_path\": \"~/runs/distill_sparse_swiglu/mistral_kl30_s456.log\", \"submitted_at\": \"2026-05-20T12:49:28.500Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"mistral-7b\", \"seed\": 456, \"data_path\": \"wikitext-103\", \"data_count\": 1000, \"checkpoint_path\": \"checkpoints/mistral_kl30_s456/predictor_kl_normalized.pt\", \"wall_clock_seconds\": 9695.9, \"gpu_hours\": 2.69}, \"metrics\": {\"training_final_loss\": 0.105, \"training_final_sparsity\": 0.281, \"wikitext2_ppl\": 6.8752, \"arc_challenge_acc_norm\": 0.4684, \"winogrande_acc\": 0.7143, \"mmlu_acc\": 0.4161, \"gsm8k_exact_match\": 0.0697, \"hellaswag_acc_norm\": 0.705, \"piqa_acc_norm\": 0.7448}, \"conclusion\": \"success\"}, \"mistral_kl30_s123\": {\"metrics\": {\"training_final_loss\": 0.0996, \"training_final_sparsity\": 0.281, \"wikitext2_ppl\": 7.1491, \"arc_challenge_acc_norm\": 0.378, \"winogrande_acc\": 0.7017, \"mmlu_acc\": 0.4423, \"gsm8k_exact_match\": 0.0773, \"hellaswag_acc_norm\": 0.6961, \"piqa_acc_norm\": 0.7459}, \"conclusion\": \"success\"}, \"c4_ood_downstream_kl30\": {\"spec\": {\"server\": \"westd-41718\", \"gpu\": [\"cuda:1\"], \"pid\": \"254228\", \"model_name\": \"llama-3.1-8b\", \"checkpoint_source\": \"checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt\", \"data_path\": \"c4_val (calibration) + downstream benchmarks\", \"seed\": 42, \"log_path\": \"/root/distill_sparse_swiglu/logs/c4_ood_downstream_kl30.log\"}, \"metrics\": {\"arc_challenge_acc_norm\": 0.4036, \"winogrande_acc\": 0.693, \"mmlu_acc\": 0.4137, \"gsm8k_exact_match\": 0.0629, \"hellaswag_acc_norm\": 0.7074, \"piqa_acc_norm\": 0.7399, \"model_level_sparsity\": 0.295}, \"conclusion\": \"success\"}, \"bce_ste_s42\": {\"metrics\": {\"training_final_loss\": 0.641, \"training_final_bce\": 0.6398, \"training_final_sparsity\": 0.512, \"wikitext2_ppl\": 60.54, \"arc_challenge_acc_norm\": 0.2321, \"winogrande_acc\": 0.5185, \"mmlu_acc\": 0.2898, \"gsm8k_exact_match\": 0.0182, \"hellaswag_acc_norm\": 0.3446, \"piqa_acc_norm\": 0.6273, \"model_level_sparsity\": 0.495}, \"spec\": {\"server\": \"westd-41718\", \"gpu\": [\"cuda:0\"], \"checkpoint_path\": \"checkpoints/bce_ste_s42/predictor_bce.pt\", \"model_name\": \"llama-3.1-8b\", \"seed\": 42, \"data_path\": \"wikitext-103\"}, \"conclusion\": \"negative\"}, \"kl_sparsity40_s42_global_eval_v2\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HUB_OFFLINE=1 && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HOME=/root/autodl-tmp/.hf_cache && export WANDB_MODE=disabled && python -u src/benchmark_eval.py --exp_id kl_sparsity40_s42_global_eval_v2 --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/kl_sparsity40_s42/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.4 --allocation global_topk --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa --seq_len 2048 --gpu 0\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"205789\", \"log_path\": \"~/runs/distill_sparse_swiglu/kl_sparsity40_s42_global_eval_v2.log\", \"submitted_at\": \"2026-05-20T10:53:17.013Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"checkpoints/kl_sparsity40_s42/predictor_kl_normalized.pt\"}, \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 10.14, \"arc_challenge_acc_norm\": 0.3951, \"winogrande_acc\": 0.6748, \"mmlu_acc\": 0.3947, \"gsm8k_exact_match\": 0.066, \"hellaswag_acc_norm\": 0.6779, \"piqa_acc_norm\": 0.7269}}, \"kl_sparsity40_s42_uniform_hspiqa\": {\"conclusion\": \"success\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HUB_OFFLINE=1 && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HOME=/root/autodl-tmp/.hf_cache && export WANDB_MODE=disabled && python -u src/benchmark_eval.py --exp_id kl_sparsity40_s42_uniform_hspiqa --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/kl_sparsity40_s42/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.4 --allocation uniform --tasks hellaswag,piqa --seq_len 2048 --gpu 0\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"201401\", \"log_path\": \"~/runs/distill_sparse_swiglu/kl_sparsity40_s42_uniform_hspiqa.log\", \"submitted_at\": \"2026-05-20T09:29:00.534Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"checkpoints/kl_sparsity40_s42/predictor_kl_normalized.pt\"}, \"metrics\": {\"hellaswag_acc_norm\": 0.6497, \"piqa_acc_norm\": 0.7236, \"model_level_sparsity\": 0.397}}, \"kl_sparsity40_s42_global_eval\": {\"conclusion\": \"failed\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HUB_OFFLINE=1 && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HOME=/root/autodl-tmp/.hf_cache && export WANDB_MODE=disabled && python -u src/benchmark_eval.py --exp_id kl_sparsity40_s42_global_eval --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/kl_sparsity40_s42/predictor_kl_normalized.pt --sparsity_mode teal_global --allocation global_topk --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa --seq_len 2048 --gpu 0\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"197972\", \"log_path\": \"~/runs/distill_sparse_swiglu/kl_sparsity40_s42_global_eval.log\", \"submitted_at\": \"2026-05-20T08:19:22.993Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"kl_sparsity40_s42_retrain_uniform\": {\"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 10.76, \"arc_challenge_acc_norm\": 0.3959, \"winogrande_acc\": 0.6306, \"mmlu_acc\": 0.355, \"gsm8k_acc\": 0.0356, \"training_final_loss\": 0.2598, \"training_final_sparsity\": 0.387}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HUB_OFFLINE=1 && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HOME=/root/autodl-tmp/.hf_cache && export WANDB_MODE=disabled && echo '=== Phase 1: Train 40% KL predictor ===' && python -u src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --loss_type kl_normalized --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 42 --sparsity_target 0.4 --gpu 0 --output_dir checkpoints/kl_sparsity40_s42 --dataset wikitext-103 --gradient_checkpointing --lambda_max 5000 --log_every 100 && echo '=== Phase 2: Uniform allocation eval ===' && python -u src/benchmark_eval.py --exp_id kl_sparsity40_s42_retrain_uniform --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/kl_sparsity40_s42/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.4 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --seq_len 2048 --gpu 0\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"188305\", \"log_path\": \"~/runs/distill_sparse_swiglu/kl_sparsity40_s42_retrain_uniform.log\", \"submitted_at\": \"2026-05-20T05:36:13.085Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"mse30_s42_eval_7task\": {\"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 20.43, \"arc_challenge_acc_norm\": 0.3123, \"winogrande_acc\": 0.6038, \"mmlu_acc\": 0.3179, \"gsm8k_exact_match\": 0.0197, \"hellaswag_acc_norm\": 0.5248, \"piqa_acc_norm\": 0.6937}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache python -u src/benchmark_eval.py --exp_id mse30_s42_eval_7task --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/mse30_s42/predictor_mse.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa --seq_len 2048 --gpu 0\\\"\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:0\"], \"pid\": \"207736\", \"log_path\": \"~/runs/distill_sparse_swiglu/mse30_s42_eval_7task.log\", \"submitted_at\": \"2026-05-20T03:49:55.646Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"mse50_s42_eval_7task\": {\"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 229.26, \"arc_challenge_acc_norm\": 0.25, \"winogrande_acc\": 0.5059, \"mmlu_acc\": 0.2379, \"gsm8k_exact_match\": 0.0159, \"hellaswag_acc_norm\": 0.2722, \"piqa_acc_norm\": 0.5577}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache python -u src/benchmark_eval.py --exp_id mse50_s42_eval_7task --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/mse50_s42/predictor_mse.pt --sparsity_mode teal_global --sparsity_target 0.5 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa --seq_len 2048 --gpu 0\\\"\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:1\"], \"pid\": \"208642\", \"log_path\": \"~/runs/distill_sparse_swiglu/mse50_s42_eval_7task.log\", \"submitted_at\": \"2026-05-20T03:52:29.230Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"snr_full_curve_1000steps\": {\"conclusion\": \"success\", \"metrics\": {\"kl_snr_step0\": 1.3e-05, \"kl_snr_step300\": 0.0003465, \"kl_snr_step1000\": 0.0008777, \"bce_snr_step0\": 6.99e-05, \"bce_snr_step300\": 0.0017422, \"bce_snr_step1000\": 0.0020263, \"kl_bce_ratio_step1000\": 0.4332}, \"spec\": {\"command\": \"python -u scripts/gradient_snr_extended.py (num_steps=1000, 14 snapshots)\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"175225\", \"log_path\": \"~/runs/distill_sparse_swiglu/snr_full_curve_1000steps.log\", \"output_path\": \"artifacts/snr_full_1000steps_results.json\"}}, \"qwen14b_teal30_global_hspiqa\": {\"conclusion\": \"success\", \"metrics\": {\"hellaswag_acc_norm\": 0.7051, \"piqa_acc_norm\": 0.747}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache python -u src/benchmark_eval.py --exp_id qwen14b_teal30_global_hspiqa --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --baseline_mode teal_vanilla --sparsity_target 0.3 --tasks hellaswag,piqa --seq_len 2048 --gpu 0\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"157764\", \"log_path\": \"~/runs/distill_sparse_swiglu/qwen14b_teal30_global_hspiqa.log\", \"submitted_at\": \"2026-05-20T02:32:51.520Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"qwen14b_bce30_global_hspiqa\": {\"conclusion\": \"success\", \"metrics\": {\"hellaswag_acc_norm\": 0.5343, \"piqa_acc_norm\": 0.6828}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache python -u src/benchmark_eval.py --exp_id qwen14b_bce30_global_hspiqa --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --checkpoint checkpoints/qwen14b_bce30_s42/predictor_bce.pt --sparsity_mode teal_global --sparsity_target 0.3 --tasks hellaswag,piqa --seq_len 2048 --gpu 0\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"157845\", \"log_path\": \"~/runs/distill_sparse_swiglu/qwen14b_bce30_global_hspiqa.log\", \"submitted_at\": \"2026-05-20T02:32:54.043Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"mse50_s42_train\": {\"conclusion\": \"success\", \"metrics\": {\"final_loss\": 0.0083, \"final_sparsity\": 0.539, \"steps\": 1000}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache WANDB_MODE=disabled python -u src/train_perlayer_mse.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 42 --sparsity_target 0.5 --output_dir checkpoints/mse50_s42 --gpu 0\\\"\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:1\"], \"pid\": \"202489\", \"log_path\": \"~/runs/distill_sparse_swiglu/mse50_s42_train.log\", \"submitted_at\": \"2026-05-20T03:27:27.973Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"mse30_s42_train\": {\"conclusion\": \"success\", \"metrics\": {\"final_mse_loss\": 0.005735, \"final_constraint_loss\": 0.007294, \"final_total_loss\": 0.013, \"final_sparsity\": 0.277, \"final_tau\": 0.1, \"final_lambda\": 1000, \"steps\": 1000}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache WANDB_MODE=disabled python -u src/train_perlayer_mse.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 42 --sparsity_target 0.3 --output_dir checkpoints/mse30_s42 --gpu 0\\\"\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:0\"], \"pid\": \"196791\", \"log_path\": \"~/runs/distill_sparse_swiglu/mse30_s42_train.log\", \"submitted_at\": \"2026-05-20T03:00:15.431Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"c4_ood_kl30_uniform_s42\": {\"conclusion\": \"success\", \"metrics\": {\"c4_ppl\": 18.2211, \"allocation\": \"uniform\", \"sparsity\": 0.296, \"seed\": 42}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache python -u src/benchmark_eval.py --exp_id c4_ood_kl30_uniform_s42 --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks c4 --gpu 0\\\"\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:1\"], \"pid\": \"199770\", \"log_path\": \"~/runs/distill_sparse_swiglu/c4_ood_kl30_uniform_s42.log\", \"submitted_at\": \"2026-05-20T03:13:00.660Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"c4_ood_kl30_uniform_s456\": {\"conclusion\": \"success\", \"metrics\": {\"c4_ppl\": 16.3551, \"allocation\": \"uniform\", \"sparsity\": 0.3, \"seed\": 456}}, \"c4_ood_kl30_uniform_s123\": {\"conclusion\": \"success\", \"metrics\": {\"c4_ppl\": 16.3686, \"allocation\": \"uniform\", \"sparsity\": 0.3, \"seed\": 123}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache python -u src/benchmark_eval.py --exp_id c4_ood_kl30_uniform_s123 --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/kl_sparsity30_s123/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks c4 --gpu 0\\\"\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:1\"], \"pid\": \"198295\", \"log_path\": \"~/runs/distill_sparse_swiglu/c4_ood_kl30_uniform_s123.log\", \"submitted_at\": \"2026-05-20T03:07:31.582Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"qwen14b_kl30_global_hspiqa\": {\"conclusion\": \"success\", \"metrics\": {\"hellaswag_acc_norm\": 0.7501, \"piqa_acc_norm\": 0.7737}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache python -u src/benchmark_eval.py --exp_id qwen14b_kl30_global_hspiqa --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --checkpoint checkpoints/qwen14b_kl30_s42/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --tasks hellaswag,piqa --seq_len 2048 --gpu 0\\\"\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:1\"], \"pid\": \"187964\", \"log_path\": \"~/runs/distill_sparse_swiglu/qwen14b_kl30_global_hspiqa.log\", \"submitted_at\": \"2026-05-20T01:39:41.186Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"qwen14b_teal30_uniform_hspiqa\": {\"conclusion\": \"success\", \"metrics\": {\"hellaswag_acc_norm\": 0.6772, \"piqa_acc_norm\": 0.747}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache python -u src/benchmark_eval.py --exp_id qwen14b_teal30_uniform_hspiqa --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --baseline_mode teal_vanilla --sparsity_target 0.3 --allocation uniform --tasks hellaswag,piqa --seq_len 2048 --gpu 0\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"145310\", \"log_path\": \"~/runs/distill_sparse_swiglu/qwen14b_teal30_uniform_hspiqa.log\", \"submitted_at\": \"2026-05-20T00:55:54.581Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"qwen14b_kl30_uniform_hspiqa\": {\"conclusion\": \"success\", \"metrics\": {\"hellaswag_acc_norm\": 0.7266, \"piqa_acc_norm\": 0.7514}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache python -u src/benchmark_eval.py --exp_id qwen14b_kl30_uniform_hspiqa --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --checkpoint checkpoints/qwen14b_kl30_s42/predictor_kl_normalized.pt --sparsity_mode teal_global --allocation uniform --sparsity_target 0.3 --tasks hellaswag,piqa --seq_len 2048 --gpu 0\\\"\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:0\"], \"pid\": \"186031\", \"log_path\": \"~/runs/distill_sparse_swiglu/qwen14b_kl30_uniform_hspiqa.log\", \"submitted_at\": \"2026-05-20T00:54:42.396Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"qwen14b_teal30_uniform_gsm8k\": {\"spec\": {\"log_path\": \"~/runs/distill_sparse_swiglu/qwen14b_teal30_uniform_gsm8k.log\", \"checkpoint_path\": \"N/A (eval-only, uses dense model with runtime masking)\", \"results_path\": \"/root/distill_sparse_swiglu/results/benchmark/qwen14b_teal30_uniform_gsm8k/results.json\"}, \"metrics\": {\"gsm8k_exact_match\": 0.5208, \"gsm8k_exact_match_strict\": 0.5208, \"gsm8k_exact_match_flexible\": 0.5208, \"gsm8k_exact_match_stderr\": 0.01376, \"actual_sparsity\": 0.293, \"sample_len\": 1319}, \"conclusion\": \"success\"}, \"bench_teal50_uniform_gsm8k\": {\"conclusion\": \"success\", \"metrics\": {\"gsm8k_exact_match_flexible\": 0.0174}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache python -u src/benchmark_eval.py --exp_id bench_teal50_uniform_gsm8k --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --baseline_mode teal_vanilla --allocation uniform --sparsity_target 0.5 --tasks gsm8k --seq_len 2048 --gpu 0\\\"\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:1\"], \"pid\": \"185471\", \"log_path\": \"~/runs/distill_sparse_swiglu/bench_teal50_uniform_gsm8k.log\", \"submitted_at\": \"2026-05-20T00:47:26.559Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"qwen14b_kl30_s456_gsm8k\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache python -u src/benchmark_eval.py --exp_id qwen14b_kl30_s456_gsm8k --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --checkpoint checkpoints/qwen14b_kl30_s456/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks gsm8k --seq_len 2048 --gpu 0\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"129220\", \"log_path\": \"~/runs/distill_sparse_swiglu/qwen14b_kl30_s456_gsm8k.log\", \"submitted_at\": \"2026-05-19T18:55:03.795Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 18459.9, \"gpu_hours\": 5.13}, \"metrics\": {\"gsm8k_exact_match\": 0.2608, \"gsm8k_exact_match_stderr\": 0.01209, \"gsm8k_exact_match_strict\": 0.2547, \"gsm8k_exact_match_strict_stderr\": 0.012, \"actual_sparsity\": 0.297}, \"conclusion\": \"success\"}, \"qwen14b_kl30_s42_gsm8k_v2\": {\"conclusion\": \"success\", \"metrics\": {\"gsm8k_exact_match\": 0.3571, \"gsm8k_exact_match_strict\": 0.3541, \"gsm8k_exact_match_stderr\": 0.0132, \"actual_sparsity\": 0.296, \"sample_len\": 1319}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache python -u src/benchmark_eval.py --exp_id qwen14b_kl30_s42_gsm8k_v2 --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --checkpoint checkpoints/qwen14b_kl30_s42/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks gsm8k --seq_len 2048 --gpu 0\\\"\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:0\"], \"pid\": \"166099\", \"log_path\": \"~/runs/distill_sparse_swiglu/qwen14b_kl30_s42_gsm8k_v2.log\", \"submitted_at\": \"2026-05-19T18:18:18.206Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"bench_kl30_uniform_gsm8k_d075\": {\"conclusion\": \"killed\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache python -u src/benchmark_eval.py --exp_id bench_kl30_uniform_gsm8k_d075 --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks gsm8k --seq_len 2048 --gpu 0\\\"\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:1\"], \"pid\": \"173856\", \"log_path\": \"~/runs/distill_sparse_swiglu/bench_kl30_uniform_gsm8k_d075.log\", \"submitted_at\": \"2026-05-19T21:02:45.128Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"qwen14b_kl30_s456_eval_v3\": {\"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python -u src/benchmark_eval.py --exp_id qwen14b_kl30_s456_eval_v3 --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --checkpoint checkpoints/qwen14b_kl30_s456/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,hellaswag,piqa,mmlu --seq_len 2048 --gpu 0\", \"server\": \"westd-41718\", \"gpu\": \"cuda:0\", \"pid\": 156636, \"log_path\": \"~/runs/distill_sparse_swiglu/qwen14b_kl30_s456_eval_v3.log\", \"account\": \"root\", \"checkpoint_source\": \"checkpoints/qwen14b_kl30_s456/predictor_kl_normalized.pt\", \"eval_data\": \"wikitext2,arc_challenge,winogrande,hellaswag,piqa,mmlu\", \"data_path\": \"wikitext2,arc_challenge,winogrande,hellaswag,piqa,mmlu\", \"data_count\": 6, \"model_name\": \"qwen2.5-14b\", \"seed\": 456, \"tasks\": [\"wikitext2\", \"arc_challenge\", \"winogrande\", \"hellaswag\", \"piqa\", \"mmlu\"], \"sparsity_target\": 0.3, \"allocation\": \"uniform\"}, \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 7.8992, \"arc_challenge_acc_norm\": 0.5145, \"winogrande_acc\": 0.7316, \"hellaswag_acc_norm\": 0.7249, \"piqa_acc_norm\": 0.7677, \"mmlu_acc\": 0.6351, \"actual_sparsity\": 0.297}}, \"qwen14b_kl30_s123_eval_v5\": {\"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python -u src/benchmark_eval.py --exp_id qwen14b_kl30_s123_eval_v5 --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --checkpoint checkpoints/qwen14b_kl30_s123/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,hellaswag,piqa,mmlu --seq_len 2048 --gpu 0\", \"server\": \"westd-41718\", \"gpu_ids\": [1], \"pid\": \"154366\", \"log_path\": \"~/runs/distill_sparse_swiglu/qwen14b_kl30_s123_eval_v5.log\", \"model_name\": \"qwen2.5-14b\", \"data_path\": \"wikitext2,arc_challenge,winogrande,hellaswag,piqa,mmlu\", \"data_count\": 6, \"seed\": 123, \"checkpoint_source\": \"qwen14b_kl30_s123\", \"eval_data\": \"wikitext2,arc_challenge,winogrande,hellaswag,piqa,mmlu\"}, \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 7.9367, \"arc_challenge_acc_norm\": 0.541, \"winogrande_acc\": 0.7403, \"hellaswag_acc_norm\": 0.7287, \"piqa_acc_norm\": 0.765, \"mmlu_acc\": 0.6234, \"actual_sparsity\": 0.296}}, \"qwen14b_kl30_s42_eval_uniform_v3\": {\"spec\": {\"command\": \"python -u src/benchmark_eval.py --exp_id qwen14b_kl30_s42_eval_uniform_v3 --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --checkpoint checkpoints/qwen14b_kl30_s42/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,hellaswag,piqa,mmlu --seq_len 2048 --gpu 0\", \"server\": \"westd-34887\", \"gpu\": \"cuda:0\", \"pid\": 114094, \"data_path\": \"wikitext2,arc_challenge,winogrande,hellaswag,piqa,mmlu\", \"data_count\": 145, \"model_name\": \"qwen2.5-14b\", \"seed\": 42, \"checkpoint_source\": \"checkpoints/qwen14b_kl30_s42/predictor_kl_normalized.pt\", \"eval_data\": \"wikitext2,arc_challenge,winogrande,hellaswag,piqa,mmlu\", \"log_path\": \"~/runs/distill_sparse_swiglu/qwen14b_kl30_s42_eval_uniform_v3.log\"}, \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 7.8715, \"arc_challenge_acc\": 0.5051, \"arc_challenge_acc_norm\": 0.5495, \"winogrande_acc\": 0.7127, \"mmlu_acc\": 0.648, \"hellaswag_acc_norm\": 0.7268, \"piqa_acc_norm\": 0.7476, \"actual_sparsity\": 0.296}}, \"qwen14b_dense_4task_v2\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache python -u src/benchmark_eval.py --exp_id qwen14b_dense_4task_v2 --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --dense --tasks wikitext2,arc_challenge,winogrande,mmlu --seq_len 2048 --gpu 0\\\"\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:1\"], \"pid\": \"164330\", \"log_path\": \"~/runs/distill_sparse_swiglu/qwen14b_dense_4task_v2.log\", \"submitted_at\": \"2026-05-19T17:49:35.043Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 10038.0, \"gpu_hours\": 2.79}, \"metrics\": {\"wikitext2_ppl\": 5.1854, \"arc_challenge_acc_norm\": 0.6758, \"winogrande_acc\": 0.8106, \"mmlu_acc\": 0.7977}, \"conclusion\": \"success\"}, \"qwen14b_teal275_uniform_eval_v3\": {\"spec\": {\"pid\": 115174, \"server\": \"westd-34887\", \"gpu\": \"cuda:1\", \"command\": \"python -u src/benchmark_eval.py --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --baseline_mode teal_vanilla --allocation uniform --sparsity_target 0.275 --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --exp_id qwen14b_teal275_uniform_eval_v3 --seq_len 2048 --gpu 0\", \"data_path\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\", \"data_count\": 0, \"model_name\": \"qwen2.5-14b\", \"seed\": 42, \"checkpoint_source\": \"N/A (TEAL vanilla)\", \"eval_data\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\"}, \"metrics\": {\"wikitext2_ppl\": 7.7087, \"arc_challenge_acc_norm\": 0.57, \"winogrande_acc\": 0.7167, \"mmlu_acc\": 0.6738, \"gsm8k_exact_match\": 0.5709}, \"conclusion\": \"success\"}, \"qwen14b_teal275_hspiqa\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache python -u src/benchmark_eval.py --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --baseline_mode teal_vanilla --allocation uniform --sparsity_target 0.275 --tasks hellaswag,piqa --exp_id qwen14b_teal275_hspiqa --seq_len 2048 --gpu 0\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"126076\", \"log_path\": \"~/runs/distill_sparse_swiglu/qwen14b_teal275_hspiqa.log\", \"submitted_at\": \"2026-05-19T17:49:28.650Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 3830.3, \"gpu_hours\": 1.06}, \"conclusion\": \"success\", \"metrics\": {\"hellaswag_acc\": 0.5092, \"hellaswag_acc_norm\": 0.6993, \"piqa_acc\": 0.753, \"piqa_acc_norm\": 0.7476, \"model_sparsity\": 0.268, \"runtime_seconds\": 3551.3}}, \"qwen14b_dense_hspiqa\": {\"spec\": {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache python -u src/benchmark_eval.py --exp_id qwen14b_dense_hspiqa --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --dense --tasks hellaswag,piqa --seq_len 2048 --gpu 0\", \"server\": \"westd-41718\", \"gpu\": 0, \"pid\": 162200, \"model_name\": \"qwen2.5-14b\", \"data_path\": \"hellaswag,piqa (lm_eval builtin)\", \"data_count\": null, \"seed\": null, \"eval_data\": \"hellaswag,piqa\", \"checkpoint_source\": \"dense (no checkpoint)\"}, \"conclusion\": \"success\", \"metrics\": {\"hellaswag_acc\": 0.6444, \"hellaswag_acc_norm\": 0.8421, \"piqa_acc\": 0.809, \"piqa_acc_norm\": 0.8194}}, \"qwen14b_kl30_s42_gsm8k\": {\"spec\": {\"command\": \"cd /root/distill_sparse_swiglu && CUDA_VISIBLE_DEVICES=1 python -u src/benchmark_eval.py --exp_id qwen14b_kl30_s42_gsm8k --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --checkpoint checkpoints/qwen14b_kl30_s42/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks gsm8k --seq_len 2048 --gpu 0\", \"server\": \"westd-41718\", \"data_path\": \"openai/gsm8k (cached)\", \"data_count\": 1319, \"model_name\": \"Qwen2.5-14B\", \"seed\": 42, \"checkpoint_source\": \"checkpoints/qwen14b_kl30_s42/predictor_kl_normalized.pt\", \"eval_data\": \"gsm8k\"}, \"conclusion\": \"killed\"}, \"qwen14b_dense_4task\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache python -u src/benchmark_eval.py --exp_id qwen14b_dense_4task --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --dense --tasks wikitext2,arc_challenge,winogrande,mmlu --seq_len 2048 --gpu 0\\\"\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:1\"], \"pid\": \"163891\", \"log_path\": \"~/runs/distill_sparse_swiglu/qwen14b_dense_4task.log\", \"submitted_at\": \"2026-05-19T17:44:42.250Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 162.1, \"gpu_hours\": 0.05}, \"conclusion\": \"failed\"}, \"flashinfer_benchmark_llama8b_v2\": {\"conclusion\": \"killed\"}, \"flashinfer_benchmark_llama8b\": {\"spec\": {\"command\": \"python src/benchmark_flashinfer.py --output results/benchmark_flashinfer.json\", \"server\": \"westd-34887\", \"gpu\": \"cuda:0\", \"pid\": 123470, \"model_name\": \"LLaMA-3.1-8B\", \"data_path\": \"N/A\", \"data_count\": 0, \"seed\": 42, \"log_path\": \"logs/flashinfer_benchmark.log\", \"checkpoint_source\": \"checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt\"}, \"conclusion\": \"failed\"}, \"qwen14b_teal275_uniform_hspiqa\": {\"spec\": {\"hypothesis\": \"TEAL@27.5% uniform hellaswag+piqa supplement for Qwen-14B. Completing 6-task alignment for 14B comparison table.\", \"parent\": \"qwen14b_teal275_uniform_eval_v3\", \"command\": \"HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache CUDA_VISIBLE_DEVICES=0 python -u src/benchmark_eval.py --exp_id qwen14b_teal275_uniform_hspiqa --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --baseline_mode teal_vanilla --sparsity_target 0.275 --allocation uniform --tasks hellaswag,piqa --seq_len 2048 --gpu 0\", \"server\": \"westd-34887\", \"gpu\": \"cuda:0\", \"pid\": 119473, \"data_path\": \"/root/autodl-tmp/.hf_cache/datasets/\", \"data_count\": 0, \"model_name\": \"Qwen2.5-14B\", \"seed\": 42, \"checkpoint_source\": \"N/A (TEAL vanilla)\", \"eval_data\": \"hellaswag,piqa\", \"log_path\": \"/root/distill_sparse_swiglu/logs/qwen14b_teal275_uniform_hspiqa.log\"}, \"conclusion\": \"success\", \"metrics\": {\"hellaswag_acc\": 0.5092, \"hellaswag_acc_norm\": 0.6993, \"piqa_acc\": 0.753, \"piqa_acc_norm\": 0.7476}}, \"qwen14b_kl30_s456_eval_v2\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export WANDB_MODE=disabled && export PYTHONUNBUFFERED=1 && python -u src/benchmark_eval.py --exp_id qwen14b_kl30_s456_eval_v2 --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --checkpoint checkpoints/qwen14b_kl30_s456/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,hellaswag,piqa,mmlu --seq_len 2048 --gpu 0 2>&1\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"100060\", \"log_path\": \"~/runs/distill_sparse_swiglu/qwen14b_kl30_s456_eval_v2.log\", \"submitted_at\": \"2026-05-19T11:21:16.055Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"results/benchmark/qwen14b_kl30_s456_eval_v2/results.json\", \"wall_clock_seconds\": 5418.2, \"gpu_hours\": 1.51}, \"metrics\": {\"wikitext2_ppl\": 7.6933, \"arc_challenge_acc\": 0.5051, \"arc_challenge_acc_norm\": 0.5324, \"winogrande_acc\": 0.723, \"mmlu_acc\": 0.6411, \"hellaswag_acc\": 0.5197, \"hellaswag_acc_norm\": 0.7113, \"piqa_acc\": 0.7421, \"piqa_acc_norm\": 0.7552, \"model_sparsity\": 0.275}, \"conclusion\": \"success\"}, \"qwen14b_teal30_uniform_hspiqa_v2\": {\"spec\": {\"command\": \"python -u src/benchmark_eval.py --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --baseline_mode teal_vanilla --allocation uniform --sparsity_target 0.3 --tasks hellaswag,piqa --exp_id qwen14b_teal30_uniform_hspiqa_v2 --gpu 0\", \"server\": \"westd-41718\", \"gpu_ids\": [0], \"pid\": 152255, \"model_name\": \"qwen2.5-14b\", \"data_path\": \"hellaswag,piqa\", \"data_count\": 0, \"seed\": 42, \"log_path\": \"/root/distill_sparse_swiglu/logs/qwen14b_teal30_uniform_hspiqa.log\", \"checkpoint_source\": \"/root/autodl-tmp/models/qwen2.5-14b/\", \"eval_data\": \"hellaswag,piqa\", \"checkpoint_path\": \"N/A\", \"result_path\": \"/root/distill_sparse_swiglu/results/benchmark/qwen14b_teal30_uniform_hspiqa_v2/results.json\"}, \"conclusion\": \"success\", \"metrics\": {\"hellaswag_acc\": 0.4936, \"hellaswag_acc_norm\": 0.6756, \"piqa_acc\": 0.7443, \"piqa_acc_norm\": 0.7427}}, \"qwen14b_teal275_uniform_eval_v2\": {\"spec\": {\"command\": \"python -u src/benchmark_eval.py --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --baseline_mode teal_vanilla --allocation uniform --sparsity_target 0.275 --tasks wikitext2,arc_challenge,winogrande,hellaswag,piqa,mmlu --exp_id qwen14b_teal275_uniform_eval_v2 --seq_len 2048 --gpu 0\", \"server\": \"westd-34887\", \"gpu_ids\": [1], \"pid\": 113842, \"model_name\": \"qwen2.5-14b\", \"data_path\": \"wikitext2,arc_challenge,winogrande,hellaswag,piqa,mmlu\", \"data_count\": 0, \"seed\": 42, \"log_path\": \"~/runs/distill_sparse_swiglu/qwen14b_teal275_uniform_eval_v2.log\", \"checkpoint_source\": \"/root/autodl-tmp/models/qwen2.5-14b/\", \"eval_data\": \"wikitext2,arc_challenge,winogrande,hellaswag,piqa,mmlu\"}, \"conclusion\": \"failed\"}, \"qwen14b_teal275_uniform_eval\": {\"spec\": {\"command\": \"python -u src/benchmark_eval.py --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --baseline_mode teal_vanilla --allocation uniform --sparsity_target 0.275 --tasks wikitext2,arc_challenge,winogrande,hellaswag,piqa,mmlu --exp_id qwen14b_teal275_uniform_eval --seq_len 2048 --gpu 0\", \"server\": \"westd-34887\", \"data_path\": \"wikitext2,arc_challenge,winogrande,hellaswag,piqa,mmlu\", \"data_count\": 0, \"model_name\": \"qwen2.5-14b\", \"seed\": \"N/A\", \"checkpoint_source\": \"N/A (TEAL vanilla baseline)\", \"eval_data\": \"wikitext2,arc_challenge,winogrande,hellaswag,piqa,mmlu\"}, \"conclusion\": \"killed\"}, \"qwen14b_kl30_s42_eval_uniform_v2\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export WANDB_MODE=disabled && export PYTHONUNBUFFERED=1 && python -u src/benchmark_eval.py --exp_id qwen14b_kl30_s42_eval_uniform_v2 --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --checkpoint checkpoints/qwen14b_kl30_s42/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,hellaswag,piqa,mmlu --seq_len 2048 --gpu 0 2>&1\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"108969\", \"log_path\": \"~/runs/distill_sparse_swiglu/qwen14b_kl30_s42_eval_uniform_v2.log\", \"submitted_at\": \"2026-05-19T13:28:52.653Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 2850.1, \"gpu_hours\": 0.79}, \"conclusion\": \"killed\"}, \"qwen14b_kl30_s42_eval_uniform\": {\"spec\": {\"command\": \"python -u src/benchmark_eval.py --exp_id qwen14b_kl30_s42_eval_uniform --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --checkpoint checkpoints/qwen14b_kl30_s42/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,hellaswag,piqa,mmlu --seq_len 2048 --gpu 0\", \"server\": \"westd-34887\", \"gpu\": \"cuda:1\", \"checkpoint_source\": \"qwen14b_kl30_s42\", \"eval_data\": \"wikitext2,arc_challenge,winogrande,hellaswag,piqa,mmlu\", \"model_name\": \"qwen2.5-14b\", \"seed\": 42, \"data_path\": \"wikitext-103\", \"data_count\": \"N/A\"}, \"conclusion\": \"failed\"}, \"qwen14b_kl30_s123\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export WANDB_MODE=disabled && export PYTHONUNBUFFERED=1 && python -u src/train.py --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --loss_type kl_normalized --num_steps 1000 --batch_size 1 --seq_len 2048 --lr 1e-3 --seed 123 --sparsity_target 0.3 --lambda_max 5000 --gradient_checkpointing --dataset wikitext-103 --log_every 10 --output_dir checkpoints/qwen14b_kl30_s123 --gpu 0 2>&1\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"91294\", \"log_path\": \"~/runs/distill_sparse_swiglu/qwen14b_kl30_s123.log\", \"submitted_at\": \"2026-05-19T08:21:40.612Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 19332.8, \"gpu_hours\": 5.37}, \"metrics\": {\"final_loss_kl_norm\": 0.326, \"final_kl_raw\": 0.326, \"final_sparsity\": 0.277, \"final_constraint\": 0.037, \"final_lambda\": 5000, \"final_tau\": 0.1, \"steps\": 1000, \"trainable_params\": \"117M (0.793%)\"}, \"conclusion\": \"success\"}, \"qwen14b_kl30_s123_eval_v4\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export WANDB_MODE=disabled && export PYTHONUNBUFFERED=1 && python -u src/benchmark_eval.py --exp_id qwen14b_kl30_s123_eval_v4 --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --checkpoint checkpoints/qwen14b_kl30_s123/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,hellaswag,piqa,mmlu --seq_len 2048 --gpu 0 2>&1\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"100832\", \"log_path\": \"~/runs/distill_sparse_swiglu/qwen14b_kl30_s123_eval_v4.log\", \"submitted_at\": \"2026-05-19T11:25:43.987Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"results/benchmark/qwen14b_kl30_s123_eval_v4/results.json\", \"wall_clock_seconds\": 6008.7, \"gpu_hours\": 1.67}, \"metrics\": {\"wikitext2_ppl\": 7.6607, \"arc_challenge_acc\": 0.5222, \"arc_challenge_acc_norm\": 0.5606, \"winogrande_acc\": 0.7293, \"hellaswag_acc\": 0.5179, \"hellaswag_acc_norm\": 0.7132, \"piqa_acc\": 0.7388, \"piqa_acc_norm\": 0.7535, \"mmlu_acc\": 0.6449}, \"conclusion\": \"success\"}, \"qwen14b_kl30_s456\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export WANDB_MODE=disabled && export PYTHONUNBUFFERED=1 && python -u src/train.py --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --loss_type kl_normalized --num_steps 1000 --batch_size 1 --seq_len 2048 --lr 1e-3 --seed 456 --sparsity_target 0.3 --lambda_max 5000 --gradient_checkpointing --dataset wikitext-103 --log_every 10 --output_dir checkpoints/qwen14b_kl30_s456 --gpu 0 2>&1\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"91451\", \"log_path\": \"~/runs/distill_sparse_swiglu/qwen14b_kl30_s456.log\", \"submitted_at\": \"2026-05-19T08:21:47.704Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 16267.8, \"gpu_hours\": 4.52}, \"metrics\": {\"final_loss\": 0.3086, \"final_kl_norm\": 0.2715, \"final_sparsity\": 0.277, \"final_constraint\": 0.0366, \"final_lambda\": 5000, \"final_tau\": 0.1, \"training_steps\": 1000}, \"conclusion\": \"success\"}, \"qwen14b_kl30_s456_eval\": {\"spec\": {\"command\": \"python -u src/benchmark_eval.py --exp_id qwen14b_kl30_s456_eval --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --checkpoint checkpoints/qwen14b_kl30_s456/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,hellaswag,piqa,mmlu,gsm8k --seq_len 2048 --gpu 0\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"93278\", \"log_path\": \"~/runs/distill_sparse_swiglu/qwen14b_kl30_s456_eval.log\", \"account\": \"root\", \"data_path\": \"wikitext2,arc_challenge,winogrande,hellaswag,piqa,mmlu,gsm8k\", \"data_count\": 7, \"model_name\": \"qwen2.5-14b\", \"seed\": 456, \"checkpoint_source\": \"qwen14b_kl30_s456\", \"eval_data\": \"wikitext2,arc_challenge,winogrande,hellaswag,piqa,mmlu,gsm8k\", \"checkpoint_path\": \"checkpoints/qwen14b_kl30_s456/predictor_kl_normalized.pt\"}, \"conclusion\": \"killed\"}, \"qwen14b_kl30_s123_eval\": {\"spec\": {\"command\": \"python -u src/benchmark_eval.py --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --checkpoint checkpoints/qwen14b_kl30_s123/predictor_kl_normalized.pt --sparsity_target 0.3 --tasks wikitext2,arc_challenge,winogrande,hellaswag,piqa,mmlu,gsm8k --sparsity_mode teal_global --allocation uniform --seq_len 2048 --gpu 0 --exp_id qwen14b_kl30_s123_eval\", \"server\": \"westd-34887\", \"data_path\": \"wikitext2,arc_challenge,winogrande,hellaswag,piqa,mmlu,gsm8k\", \"data_count\": 7, \"model_name\": \"qwen2.5-14b\", \"seed\": 123, \"checkpoint_source\": \"checkpoints/qwen14b_kl30_s123/predictor_kl_normalized.pt\", \"eval_data\": \"wikitext2,arc_challenge,winogrande,hellaswag,piqa,mmlu,gsm8k\", \"log_path\": \"~/runs/distill_sparse_swiglu/qwen14b_kl30_s123_eval.log\", \"pid\": \"93137\"}, \"conclusion\": \"killed\"}, \"qwen14b_kl30_s123_eval_v3\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export WANDB_MODE=disabled && export PYTHONUNBUFFERED=1 && python -u src/benchmark_eval.py --exp_id qwen14b_kl30_s123_eval_v3 --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --checkpoint checkpoints/qwen14b_kl30_s123/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,hellaswag,piqa,mmlu --seq_len 2048 --gpu 0 2>&1\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"100585\", \"log_path\": \"~/runs/distill_sparse_swiglu/qwen14b_kl30_s123_eval_v3.log\", \"submitted_at\": \"2026-05-19T11:24:26.070Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 28.0, \"gpu_hours\": 0.01}, \"conclusion\": \"failed\"}, \"qwen14b_kl30_s123_eval_v2\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export WANDB_MODE=disabled && export PYTHONUNBUFFERED=1 && python -u src/benchmark_eval.py --exp_id qwen14b_kl30_s123_eval_v2 --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --checkpoint checkpoints/qwen14b_kl30_s123/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,hellaswag,piqa,mmlu --seq_len 2048 --gpu 0 2>&1\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"99904\", \"log_path\": \"~/runs/distill_sparse_swiglu/qwen14b_kl30_s123_eval_v2.log\", \"submitted_at\": \"2026-05-19T11:21:08.256Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 27.6, \"gpu_hours\": 0.01}, \"conclusion\": \"failed\"}, \"teal_28.5pct_sanity\": {\"spec\": {\"checkpoint_path\": \"N/A (training-free)\", \"log_path\": \"/root/distill_sparse_swiglu/logs/teal_28.5pct_sanity.log\"}, \"metrics\": {\"wikitext2_ppl\": 10.3}, \"conclusion\": \"success\"}, \"mistral_dense_hellaswag_piqa\": {\"spec\": {\"checkpoint_path\": \"N/A (dense)\", \"log_path\": \"/root/distill_sparse_swiglu/logs/mistral_dense_hellaswag_piqa.log\"}, \"metrics\": {\"hellaswag_acc_norm\": 0.832, \"piqa_acc_norm\": 0.8188}, \"conclusion\": \"success\"}, \"bce_gumbel_no_penalty_s42\": {\"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python -u src/train_bce_gumbel_no_penalty.py --lr 3e-3 --num_steps 1000 --sparsity_target 0.5 --seed 42 --output_dir checkpoints/bce_gumbel_no_penalty_s42 --gpu 0\", \"server\": \"westd-34887\", \"gpu\": \"cuda:1\", \"model_name\": \"llama-3.1-8b\", \"data_path\": \"wikitext-103\", \"data_count\": 1, \"seed\": 42, \"checkpoint_path\": \"checkpoints/bce_gumbel_no_penalty_s42/predictor_bce_gumbel_no_penalty.pt\", \"log_path\": \"~/runs/distill_sparse_swiglu/bce_gumbel_no_penalty_s42.log\", \"checkpoint_source\": \"train from scratch (no penalty variant)\", \"eval_data\": \"wikitext-103\"}, \"metrics\": {\"training_bce_loss\": 0.6307, \"training_sparsity\": 0.383, \"wikitext2_ppl\": 32.22, \"training_time_seconds\": 977.6}, \"conclusion\": \"success\"}, \"qwen14b_mask_divergence_analysis\": {\"spec\": {\"command\": \"bash run_mask_divergence.sh\", \"server\": \"westd-34887\", \"data_path\": \"/root/autodl-tmp/data/wikitext2/test\", \"data_count\": 32, \"model_name\": \"qwen2.5-14b + llama-3.1-8b\", \"seed\": 42, \"checkpoint_source\": \"checkpoints/qwen14b_kl30_s42 + checkpoints/kl_sparsity30_s42_v3\", \"log_path\": \"logs/mask_divergence_analysis.log\", \"checkpoint_path\": \"results/qwen14b_mask_divergence_30pct.json\"}, \"metrics\": {\"qwen14b_mean_jaccard\": 0.4016, \"qwen14b_std_jaccard\": 0.0756, \"qwen14b_max_jaccard\": 0.446, \"qwen14b_max_layer\": 11, \"qwen14b_min_jaccard\": 0.0627, \"qwen14b_min_layer\": 4, \"llama8b_mean_jaccard\": 0.3939, \"llama8b_std_jaccard\": 0.0314, \"llama8b_max_jaccard\": 0.4818, \"llama8b_max_layer\": 0, \"llama8b_min_jaccard\": 0.3528, \"llama8b_min_layer\": 14}, \"conclusion\": \"success\"}, \"mistral_kl30_hellaswag_piqa\": {\"spec\": {\"checkpoint_path\": \"checkpoints/mistral_kl30_s42/predictor_kl_normalized.pt\", \"log_path\": \"~/runs/distill_sparse_swiglu/mistral_kl30_hellaswag_piqa.log\"}, \"conclusion\": \"success\", \"metrics\": {\"hellaswag_acc_norm\": 0.6892, \"piqa_acc_norm\": 0.7519}}, \"eval_c1_retrain_30pct_s456\": {\"spec\": {\"command\": \"benchmark_eval.py C1 retrain eval\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:1\"], \"pid\": \"122794\", \"log_path\": \"~/runs/distill_sparse_swiglu/eval_c1_retrain_30pct_s456.log\", \"submitted_at\": \"2026-05-19T03:38:44.173Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"downstream tasks\", \"data_count\": 5, \"model_name\": \"llama-3.1-8b\", \"seed\": 456, \"checkpoint_path\": \"checkpoints/c1_retrain_30pct_s456/predictor_bce_kl_targets.pt\", \"wall_clock_seconds\": 5283.3, \"gpu_hours\": 1.47}, \"metrics\": {\"wikitext2_ppl\": 8.82, \"arc_challenge_acc_norm\": 0.4471, \"winogrande_acc\": 0.6993, \"mmlu_acc\": 0.4104, \"gsm8k_exact_match\": 0.066}, \"conclusion\": \"success\"}, \"eval_c1_retrain_30pct_s123\": {\"spec\": {\"command\": \"benchmark_eval.py C1 retrain eval\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:0\"], \"pid\": \"122653\", \"log_path\": \"~/runs/distill_sparse_swiglu/eval_c1_retrain_30pct_s123.log\", \"submitted_at\": \"2026-05-19T03:38:41.245Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"downstream tasks\", \"data_count\": 5, \"model_name\": \"llama-3.1-8b\", \"seed\": 123, \"checkpoint_path\": \"checkpoints/c1_retrain_30pct_s123/predictor_bce_kl_targets.pt\", \"wall_clock_seconds\": 5284.2, \"gpu_hours\": 1.47}, \"metrics\": {\"wikitext2_ppl\": 8.84, \"arc_challenge_acc_norm\": 0.4471, \"winogrande_acc\": 0.6977, \"mmlu_acc\": 0.3992, \"gsm8k_exact_match\": 0.0682}, \"conclusion\": \"success\"}, \"c1_retrain_30pct_s456\": {\"spec\": {\"command\": \"train_bce_kl_targets.py C1 retrain\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:1\"], \"pid\": \"121232\", \"log_path\": \"~/runs/distill_sparse_swiglu/c1_retrain_30pct_s456.log\", \"submitted_at\": \"2026-05-19T03:23:23.125Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"wikitext-103\", \"data_count\": 1, \"model_name\": \"llama-3.1-8b\", \"seed\": 456, \"checkpoint_path\": \"checkpoints/c1_retrain_30pct_s456/predictor_bce_kl_targets.pt\", \"wall_clock_seconds\": 6200.2, \"gpu_hours\": 1.72}, \"metrics\": {\"training_agreement\": 0.977, \"training_sparsity\": 0.312, \"wikitext2_ppl\": 7.38, \"actual_sparsity\": 0.346}, \"conclusion\": \"success\"}, \"c1_retrain_30pct_s123\": {\"spec\": {\"command\": \"train_bce_kl_targets.py C1 retrain\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:0\"], \"pid\": \"120745\", \"log_path\": \"~/runs/distill_sparse_swiglu/c1_retrain_30pct_s123.log\", \"submitted_at\": \"2026-05-19T03:22:32.813Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"wikitext-103\", \"data_count\": 1, \"model_name\": \"llama-3.1-8b\", \"seed\": 123, \"checkpoint_path\": \"checkpoints/c1_retrain_30pct_s123/predictor_bce_kl_targets.pt\", \"wall_clock_seconds\": 6248.5, \"gpu_hours\": 1.74}, \"metrics\": {\"training_agreement\": 0.977, \"training_sparsity\": 0.31, \"wikitext2_ppl\": 7.54, \"actual_sparsity\": 0.332}, \"conclusion\": \"success\"}, \"mistral_teal50_downstream\": {\"spec\": {\"command\": \"benchmark_eval.py Mistral TEAL\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"74915\", \"log_path\": \"~/runs/distill_sparse_swiglu/mistral_teal50_downstream.log\", \"submitted_at\": \"2026-05-19T03:16:11.426Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"downstream tasks\", \"data_count\": 7, \"model_name\": \"Mistral-7B-v0.1\", \"seed\": 42, \"checkpoint_path\": \"N/A (training-free)\", \"wall_clock_seconds\": 6627.7, \"gpu_hours\": 1.84}, \"metrics\": {\"wikitext2_ppl\": 18.3061, \"arc_challenge_acc_norm\": 0.2457, \"winogrande_acc\": 0.5091, \"mmlu_acc\": 0.2635, \"gsm8k_exact_match\": 0.0341, \"hellaswag_acc_norm\": 0.3603, \"piqa_acc_norm\": 0.6045}, \"conclusion\": \"success\"}, \"mistral_teal30_downstream\": {\"spec\": {\"command\": \"benchmark_eval.py Mistral TEAL\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"74835\", \"log_path\": \"~/runs/distill_sparse_swiglu/mistral_teal30_downstream.log\", \"submitted_at\": \"2026-05-19T03:16:09.014Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"downstream tasks\", \"data_count\": 7, \"model_name\": \"Mistral-7B-v0.1\", \"seed\": 42, \"checkpoint_path\": \"N/A (training-free)\", \"wall_clock_seconds\": 6628.1, \"gpu_hours\": 1.84}, \"metrics\": {\"wikitext2_ppl\": 8.3807, \"arc_challenge_acc_norm\": 0.4113, \"winogrande_acc\": 0.6354, \"mmlu_acc\": 0.4348, \"gsm8k_exact_match\": 0.1592, \"hellaswag_acc_norm\": 0.6011, \"piqa_acc_norm\": 0.7214}, \"conclusion\": \"success\"}, \"c1_ablation_30pct_s456\": {\"spec\": {\"command\": \"benchmark_eval.py C1@30% s456\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:1\"], \"pid\": \"115020\", \"log_path\": \"~/runs/distill_sparse_swiglu/c1_ablation_30pct_s456.log\", \"submitted_at\": \"2026-05-19T02:08:45.984Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\", \"data_count\": 5, \"model_name\": \"llama-3.1-8b\", \"seed\": 456, \"checkpoint_source\": \"c1_ablation_30pct_s456 (train)\", \"eval_data\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\", \"checkpoint_path\": \"checkpoints/c1_ablation_30pct_s456/predictor_bce_kl_targets.pt\", \"wall_clock_seconds\": 3995.5, \"gpu_hours\": 1.11}, \"metrics\": {\"wikitext2_ppl\": 8.84, \"mmlu_acc\": 0.367, \"winogrande_acc\": 0.6938}, \"conclusion\": \"success\"}, \"c1_ablation_30pct_s123\": {\"spec\": {\"command\": \"benchmark_eval.py C1@30% s123\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:0\"], \"pid\": \"117411\", \"log_path\": \"~/runs/distill_sparse_swiglu/c1_ablation_30pct_s123.log\", \"submitted_at\": \"2026-05-19T02:26:49.892Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\", \"data_count\": 5, \"model_name\": \"llama-3.1-8b\", \"seed\": 123, \"checkpoint_source\": \"c1_ablation_30pct_s123 (train)\", \"eval_data\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\", \"checkpoint_path\": \"checkpoints/c1_ablation_30pct_s123/predictor_bce_kl_targets.pt\", \"wall_clock_seconds\": 2909.4, \"gpu_hours\": 0.81}, \"metrics\": {\"wikitext2_ppl\": 8.83, \"mmlu_acc\": 0.3833, \"winogrande_acc\": 0.7119}, \"conclusion\": \"success\"}, \"mistral_kl30_downstream\": {\"spec\": {\"command\": \"python -u src/benchmark_eval.py --model_name_or_path /root/autodl-tmp/models/mistral-7b --checkpoint checkpoints/mistral_kl30_s42/predictor_kl_normalized.pt --sparsity_target 0.30 --allocation uniform --tasks arc_challenge,winogrande,mmlu,gsm8k\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"71614\", \"log_path\": \"~/runs/distill_sparse_swiglu/mistral_kl30_downstream.log\", \"submitted_at\": \"2026-05-19T02:11:32.172Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"arc_challenge,winogrande,mmlu,gsm8k\", \"data_count\": 4, \"model_name\": \"Mistral-7B-v0.1\", \"seed\": 42, \"checkpoint_source\": \"mistral_kl30_s42\", \"eval_data\": \"arc_challenge,winogrande,mmlu,gsm8k\", \"checkpoint_path\": \"checkpoints/mistral_kl30_s42/predictor_kl_normalized.pt\", \"wall_clock_seconds\": 3775.0, \"gpu_hours\": 1.05}, \"metrics\": {\"arc_challenge_acc_norm\": 0.5017, \"winogrande_acc\": 0.6914, \"mmlu_acc\": 0.4404, \"gsm8k_exact_match\": 0.1114}, \"conclusion\": \"success\"}, \"bce_50pct_teal_global_unified\": {\"spec\": {\"command\": \"python -u src/benchmark_eval.py --checkpoint checkpoints/bce_isocompute_v3_s42/predictor_bce.pt --sparsity_target 0.50 --allocation global_topk --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"71114\", \"log_path\": \"~/runs/distill_sparse_swiglu/bce_50pct_teal_global_unified.log\", \"submitted_at\": \"2026-05-19T02:09:18.141Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\", \"data_count\": 5, \"model_name\": \"llama-3.1-8b\", \"seed\": 42, \"checkpoint_source\": \"bce_isocompute_v3_s42\", \"eval_data\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\", \"checkpoint_path\": \"checkpoints/bce_isocompute_v3_s42/predictor_bce.pt\", \"wall_clock_seconds\": 3907.2, \"gpu_hours\": 1.09}, \"metrics\": {\"wikitext2_ppl\": 27.97, \"arc_challenge_acc_norm\": 0.2765, \"winogrande_acc\": 0.5162, \"mmlu_acc\": 0.2614, \"gsm8k_exact_match\": 0.019}, \"conclusion\": \"success\"}, \"bce_isocompute_hellaswag_piqa_v2\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export PYTHONUNBUFFERED=1 && python -u src/benchmark_eval.py --exp_id bce_isocompute_hellaswag_piqa_v2 --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/bce_isocompute_v3_s42/predictor_bce.pt --sparsity_mode teal_global --sparsity_target 0.30 --allocation uniform --tasks hellaswag,piqa --gpu 0 2>&1\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"69598\", \"log_path\": \"~/runs/distill_sparse_swiglu/bce_isocompute_hellaswag_piqa_v2.log\", \"submitted_at\": \"2026-05-19T01:38:00.231Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"checkpoints/bce_isocompute_v3_s42/predictor_bce.pt\", \"wall_clock_seconds\": 3297.6, \"gpu_hours\": 0.92}, \"metrics\": {\"hellaswag_acc_norm\": 0.6281, \"piqa_acc_norm\": 0.7421}, \"conclusion\": \"success\"}, \"c1_ablation_30pct_eval_34887\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export PYTHONUNBUFFERED=1 && python -u src/benchmark_eval.py --exp_id c1_ablation_30pct_eval_34887 --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/c1_ablation_30pct_s42/predictor_bce_kl_targets.pt --sparsity_mode teal_global --sparsity_target 0.30 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0 2>&1\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"68680\", \"log_path\": \"~/runs/distill_sparse_swiglu/c1_ablation_30pct_eval_34887.log\", \"submitted_at\": \"2026-05-19T01:28:27.235Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"checkpoints/c1_ablation_30pct_s42/predictor_bce_kl_targets.pt\", \"notes\": \"Duplicate of c1_ablation_30pct_s42_eval_v2 (same checkpoint, same params). Registry未及时更新导致Worker误判为未提交。\", \"wall_clock_seconds\": 630.2, \"gpu_hours\": 0.18}, \"conclusion\": \"killed\"}, \"kl30_uniform_hellaswag_piqa\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export PYTHONUNBUFFERED=1 && python -u src/benchmark_eval.py --exp_id kl30_uniform_hellaswag_piqa --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks hellaswag,piqa --gpu 0 2>&1\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"60749\", \"log_path\": \"~/runs/distill_sparse_swiglu/kl30_uniform_hellaswag_piqa.log\", \"submitted_at\": \"2026-05-18T23:12:36.402Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt\", \"wall_clock_seconds\": 8392.0, \"gpu_hours\": 2.33}, \"conclusion\": \"success\", \"metrics\": {\"hellaswag_acc_norm\": 0.7085, \"piqa_acc_norm\": 0.7481, \"note\": \"from v2 retry\"}}, \"kl50_global_hellaswag_piqa\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export PYTHONUNBUFFERED=1 && python -u src/benchmark_eval.py --exp_id kl50_global_hellaswag_piqa --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.5 --allocation global_topk --tasks hellaswag,piqa --gpu 0 2>&1\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"60890\", \"log_path\": \"~/runs/distill_sparse_swiglu/kl50_global_hellaswag_piqa.log\", \"submitted_at\": \"2026-05-18T23:12:39.174Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt\", \"wall_clock_seconds\": 8387.4, \"gpu_hours\": 2.33}, \"conclusion\": \"success\", \"metrics\": {\"hellaswag_acc_norm\": 0.5895, \"piqa_acc_norm\": 0.6948, \"note\": \"from v2 retry\"}}, \"kl50_uniform_hellaswag_piqa\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_ENDPOINT=https://hf-mirror.com && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export PYTHONUNBUFFERED=1 && python -u src/benchmark_eval.py --exp_id kl50_uniform_hellaswag_piqa --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.5 --allocation uniform --tasks hellaswag,piqa --gpu 0 2>&1\\\"\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:0\"], \"pid\": \"110903\", \"log_path\": \"~/runs/distill_sparse_swiglu/kl50_uniform_hellaswag_piqa.log\", \"submitted_at\": \"2026-05-19T00:31:36.025Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt\", \"wall_clock_seconds\": 3647.1, \"gpu_hours\": 1.01}, \"metrics\": {\"hellaswag_acc_norm\": 0.5666, \"piqa_acc_norm\": 0.691}, \"conclusion\": \"success\"}, \"c1_ablation_30pct_s42_eval_v2\": {\"spec\": {\"server\": \"westd-34887\", \"gpu\": \"cuda:1\", \"command\": \"nohup python -u src/benchmark_eval.py --checkpoint checkpoints/c1_ablation_30pct_s42/predictor_bce_kl_targets.pt --sparsity_target 0.30 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k\", \"checkpoint_source\": \"checkpoints/c1_ablation_30pct_s42/predictor_bce_kl_targets.pt\", \"model_name\": \"llama-3.1-8b\", \"seed\": 42, \"data_path\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\", \"data_count\": 5, \"eval_data\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\", \"log_path\": \"/root/distill_sparse_swiglu/results/benchmark/c1_ablation_30pct_s42_eval/results.json\", \"checkpoint_path\": \"checkpoints/c1_ablation_30pct_s42/predictor_bce_kl_targets.pt\"}, \"metrics\": {\"wikitext2_ppl\": 9.4463, \"arc_challenge_acc_norm\": 0.4027, \"winogrande_acc\": 0.674, \"mmlu_acc\": 0.4229, \"gsm8k_exact_match\": 0.0758}, \"conclusion\": \"success\"}, \"c1_ablation_30pct_s42_v2\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export PYTHONUNBUFFERED=1 && python -u src/train_bce_kl_targets.py --kl_checkpoint checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt --output_dir checkpoints/c1_ablation_30pct_s42 --gpu 0 --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 42 --sparsity_target 0.30 2>&1\\\"\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:1\"], \"pid\": \"110240\", \"log_path\": \"~/runs/distill_sparse_swiglu/c1_ablation_30pct_s42_v2.log\", \"submitted_at\": \"2026-05-19T00:24:26.474Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"checkpoints/c1_ablation_30pct_s42/predictor_bce_kl_targets.pt\", \"wall_clock_seconds\": 4078.4, \"gpu_hours\": 1.13}, \"metrics\": {\"agreement\": 0.975}, \"conclusion\": \"success\"}, \"dense_baseline_hellaswag_piqa\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export PYTHONUNBUFFERED=1 && python -u src/benchmark_eval.py --exp_id dense_baseline_hellaswag_piqa --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --dense --tasks hellaswag,piqa --gpu 0 2>&1\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"65370\", \"log_path\": \"~/runs/distill_sparse_swiglu/dense_baseline_hellaswag_piqa.log\", \"submitted_at\": \"2026-05-19T00:24:29.304Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"N/A (dense baseline)\", \"wall_clock_seconds\": 4071.4, \"gpu_hours\": 1.13}, \"metrics\": {\"hellaswag_acc_norm\": 0.8235, \"piqa_acc_norm\": 0.809}, \"conclusion\": \"success\"}, \"bce_isocompute_hellaswag_piqa\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_ENDPOINT=https://hf-mirror.com && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export PYTHONUNBUFFERED=1 && python -u src/benchmark_eval.py --exp_id bce_isocompute_hellaswag_piqa --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/bce_isocompute_v3_s42/predictor_bce.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks hellaswag,piqa --gpu 0 2>&1\\\"\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:1\"], \"pid\": \"111367\", \"log_path\": \"~/runs/distill_sparse_swiglu/bce_isocompute_hellaswag_piqa.log\", \"submitted_at\": \"2026-05-19T00:35:32.526Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"N/A\", \"failure_reason\": \"checkpoint bce_isocompute_v3_s42/predictor_bce.pt not on 41718\", \"wall_clock_seconds\": 1956.7, \"gpu_hours\": 0.54}, \"conclusion\": \"failed\"}, \"c1_ablation_30pct_s42_eval\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export PYTHONUNBUFFERED=1 && python -u src/benchmark_eval.py --exp_id c1_ablation_30pct_s42_eval --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/c1_ablation_30pct_s42/predictor_bce_kl_targets.pt --sparsity_mode teal_global --sparsity_target 0.30 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0 2>&1\\\"\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:1\"], \"pid\": \"110557\", \"log_path\": \"~/runs/distill_sparse_swiglu/c1_ablation_30pct_s42_eval.log\", \"submitted_at\": \"2026-05-19T00:28:25.644Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"N/A\", \"failure_reason\": \"checkpoint not on 41718, only on 34887\", \"wall_clock_seconds\": 232.9, \"gpu_hours\": 0.06}, \"conclusion\": \"failed\"}, \"kl50_global_hellaswag_piqa_v2\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_ENDPOINT=https://hf-mirror.com && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export PYTHONUNBUFFERED=1 && python -u src/benchmark_eval.py --exp_id kl50_global_hellaswag_piqa_v2 --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.5 --allocation global_topk --tasks hellaswag,piqa --gpu 0 2>&1\\\"\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:0\"], \"pid\": \"107873\", \"log_path\": \"~/runs/distill_sparse_swiglu/kl50_global_hellaswag_piqa_v2.log\", \"submitted_at\": \"2026-05-18T23:30:36.539Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"N/A (eval only)\", \"wall_clock_seconds\": 3559.6, \"gpu_hours\": 0.99}, \"metrics\": {\"hellaswag_acc_norm\": 0.5895, \"piqa_acc_norm\": 0.6948}, \"conclusion\": \"success\"}, \"kl30_uniform_hellaswag_piqa_v2\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export PYTHONUNBUFFERED=1 && python -u src/benchmark_eval.py --exp_id kl30_uniform_hellaswag_piqa_v2 --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks hellaswag,piqa --gpu 0 2>&1\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"62608\", \"log_path\": \"~/runs/distill_sparse_swiglu/kl30_uniform_hellaswag_piqa_v2.log\", \"submitted_at\": \"2026-05-18T23:29:59.115Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"N/A (eval only)\", \"wall_clock_seconds\": 3595.0, \"gpu_hours\": 1.0}, \"metrics\": {\"hellaswag_acc_norm\": 0.7085, \"piqa_acc_norm\": 0.7481}, \"conclusion\": \"success\"}, \"kl30_s42_global_mmlu_recheck\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export PYTHONUNBUFFERED=1 && python -u src/benchmark_eval.py --exp_id kl30_s42_global_mmlu_recheck --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.30 --allocation global_topk --tasks mmlu --gpu 0 2>&1\\\"\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:1\"], \"pid\": \"107214\", \"log_path\": \"~/runs/distill_sparse_swiglu/kl30_s42_global_mmlu_recheck.log\", \"submitted_at\": \"2026-05-18T23:26:42.040Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"N/A\", \"results_path\": \"/root/distill_sparse_swiglu/results/benchmark/kl30_s42_global_mmlu_recheck/results.json\", \"wall_clock_seconds\": 2231.0, \"gpu_hours\": 0.62}, \"metrics\": {\"mmlu_acc\": 0.2527, \"mmlu_stderr\": 0.00364}, \"conclusion\": \"success\"}, \"c1_ablation_30pct_s42\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export PYTHONUNBUFFERED=1 && python -u src/train_bce_kl_targets.py --kl_checkpoint checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt --output_dir checkpoints/c1_ablation_30pct_s42 --gpu 0 --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 42 --sparsity_target 0.30 2>&1\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"unknown\", \"log_path\": \"~/runs/distill_sparse_swiglu/c1_ablation_30pct_s42.log\", \"submitted_at\": \"2026-05-18T23:26:38.159Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"N/A\", \"failure_reason\": \"train_bce_kl_targets.py not found on 34887\", \"wall_clock_seconds\": 2228.2, \"gpu_hours\": 0.62}, \"conclusion\": \"failed\"}, \"kl30_s456_global_v3\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_DATASETS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export PYTHONUNBUFFERED=1 && python -u src/benchmark_eval.py --exp_id kl30_s456_global_v3 --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/kl_sparsity30_s456/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation global_topk --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0 2>&1\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"57573\", \"log_path\": \"~/runs/distill_sparse_swiglu/kl30_s456_global_v3.log\", \"submitted_at\": \"2026-05-18T22:13:39.098Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"N/A (eval only)\", \"wall_clock_seconds\": 3479.8, \"gpu_hours\": 0.97}, \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 8.9332, \"arc_challenge_acc_norm\": 0.4633, \"winogrande_acc\": 0.7111, \"mmlu_acc\": 0.4382, \"gsm8k_exact_match\": 0.0758, \"actual_sparsity\": 0.3, \"allocation\": \"global_topk\"}}, \"kl30_s123_global_v3\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_DATASETS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export PYTHONUNBUFFERED=1 && python -u src/benchmark_eval.py --exp_id kl30_s123_global_v3 --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/kl_sparsity30_s123/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation global_topk --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0 2>&1\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"57495\", \"log_path\": \"~/runs/distill_sparse_swiglu/kl30_s123_global_v3.log\", \"submitted_at\": \"2026-05-18T22:13:36.958Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"N/A (eval only)\", \"wall_clock_seconds\": 3480.3, \"gpu_hours\": 0.97}, \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 8.9748, \"arc_challenge_acc_norm\": 0.4531, \"winogrande_acc\": 0.693, \"mmlu_acc\": 0.3807, \"gsm8k_exact_match\": 0.0758, \"actual_sparsity\": 0.3, \"allocation\": \"global_topk\"}}, \"kl30_s456_uniform_v3\": {\"conclusion\": \"success\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export PYTHONUNBUFFERED=1 && python -u src/benchmark_eval.py --exp_id kl30_s456_uniform_v3 --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/kl_sparsity30_s456/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0 2>&1\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"52781\", \"log_path\": \"~/runs/distill_sparse_swiglu/kl30_s456_uniform_v3.log\", \"submitted_at\": \"2026-05-18T20:29:52.286Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"N/A (eval only)\", \"wall_clock_seconds\": 3971.6, \"gpu_hours\": 1.1}, \"metrics\": {\"wikitext2_ppl\": 8.7947, \"arc_challenge_acc_norm\": 0.4505, \"winogrande_acc\": 0.6875, \"mmlu_acc\": 0.4198, \"gsm8k_exact_match\": 0.0758, \"actual_sparsity\": 0.3, \"allocation\": \"uniform\", \"eval_wall_time_sec\": 2325.3}}, \"kl30_s123_uniform_v3\": {\"conclusion\": \"success\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export PYTHONUNBUFFERED=1 && python -u src/benchmark_eval.py --exp_id kl30_s123_uniform_v3 --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/kl_sparsity30_s123/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0 2>&1\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"52701\", \"log_path\": \"~/runs/distill_sparse_swiglu/kl30_s123_uniform_v3.log\", \"submitted_at\": \"2026-05-18T20:29:50.182Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"N/A (eval only)\", \"wall_clock_seconds\": 3972.1, \"gpu_hours\": 1.1}, \"metrics\": {\"wikitext2_ppl\": 8.8308, \"arc_challenge_acc_norm\": 0.4531, \"winogrande_acc\": 0.6938, \"mmlu_acc\": 0.3944, \"gsm8k_exact_match\": 0.0751, \"actual_sparsity\": 0.3, \"allocation\": \"uniform\", \"eval_wall_time_sec\": 2157.6}}, \"wallclock_speedup_30_50\": {\"conclusion\": \"success\", \"metrics\": {\"dense_tok_s_bs1\": 17308.5, \"dense_tok_s_bs8\": 15636.6, \"kl30_tok_s_bs1\": 16089.2, \"kl30_tok_s_bs8\": 14697.4, \"kl50_tok_s_bs1\": 16056.8, \"kl50_tok_s_bs8\": 14756.8, \"overhead_bs1_30pct\": \"7%\", \"overhead_bs1_50pct\": \"7%\", \"overhead_bs8_30pct\": \"6%\", \"overhead_bs8_50pct\": \"6%\", \"predictor_latency_bs1_ms\": 3.2, \"predictor_latency_bs8_ms\": 14.4, \"note\": \"mask-and-multiply only, no sparse kernel. Memory identical across conditions.\"}, \"spec\": {\"command\": \"bash -c \\\"source /root/.bashrc && cd /root/distill_sparse_swiglu && export HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets && /root/miniconda3/bin/python -u src/benchmark_latency.py --device cuda:0\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"49534\", \"log_path\": \"~/runs/distill_sparse_swiglu/wallclock_speedup_30_50.log\", \"submitted_at\": \"2026-05-18T19:22:13.822Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"N/A (benchmark)\", \"model_name\": \"llama-3.1-8b\", \"seed\": 42, \"data_path\": \"wikitext2 (inference benchmark)\", \"data_count\": 100, \"eval_data\": \"N/A (latency benchmark)\", \"wall_clock_seconds\": 2129.9, \"gpu_hours\": 0.59}}, \"kl_sparsity35_s42_eval_teal_uniform\": {\"spec\": {\"command\": \"bash -c \\\"source /root/.bashrc && cd /root/distill_sparse_swiglu && export HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets && /root/miniconda3/bin/python -u src/benchmark_eval.py --exp_id kl_sparsity35_s42_eval_teal_uniform --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/kl_sparsity35_s42/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.35 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"47628\", \"log_path\": \"~/runs/distill_sparse_swiglu/kl_sparsity35_s42_eval_teal_uniform.log\", \"submitted_at\": \"2026-05-18T18:49:18.007Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"N/A (eval only)\", \"checkpoint_source\": \"checkpoints/kl_sparsity35_s42/predictor_kl_normalized.pt\", \"model_name\": \"llama-3.1-8b\", \"seed\": 42, \"data_path\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\", \"data_count\": 5, \"eval_data\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\", \"wall_clock_seconds\": 4104.1, \"gpu_hours\": 1.14}, \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 9.4416, \"arc_challenge_acc_norm\": 0.3874, \"winogrande_acc\": 0.6654, \"mmlu_acc\": 0.3783, \"gsm8k_exact_match\": 0.0432, \"actual_sparsity\": 0.35, \"allocation\": \"uniform\"}}, \"kl_sparsity25_s42_eval_teal_uniform\": {\"spec\": {\"command\": \"bash -c \\\"source /root/.bashrc && cd /root/distill_sparse_swiglu && export HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets && /root/miniconda3/bin/python -u src/benchmark_eval.py --exp_id kl_sparsity25_s42_eval_teal_uniform --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/kl_sparsity25_s42/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.25 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0\\\"\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:1\"], \"pid\": \"96039\", \"log_path\": \"~/runs/distill_sparse_swiglu/kl_sparsity25_s42_eval_teal_uniform.log\", \"submitted_at\": \"2026-05-18T19:00:31.451Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"N/A (eval only)\", \"checkpoint_source\": \"checkpoints/kl_sparsity25_s42/predictor_kl_normalized.pt\", \"model_name\": \"llama-3.1-8b\", \"seed\": 42, \"data_path\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\", \"data_count\": 5, \"eval_data\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\", \"wall_clock_seconds\": 3428.5, \"gpu_hours\": 0.95}, \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 8.2344, \"arc_challenge_acc_norm\": 0.465, \"winogrande_acc\": 0.7182, \"mmlu_acc\": 0.4395, \"gsm8k_exact_match\": 0.1099, \"actual_sparsity\": 0.25, \"allocation\": \"uniform\"}}, \"kl_sparsity25_s42_eval_teal\": {\"spec\": {\"command\": \"bash -c \\\"source /root/.bashrc && cd /root/distill_sparse_swiglu && export HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets && /root/miniconda3/bin/python -u src/benchmark_eval.py --exp_id kl_sparsity25_s42_eval_teal --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/kl_sparsity25_s42/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.230 --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0\\\"\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:0\"], \"pid\": \"95246\", \"log_path\": \"~/runs/distill_sparse_swiglu/kl_sparsity25_s42_eval_teal.log\", \"submitted_at\": \"2026-05-18T18:54:06.133Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"N/A (eval only)\", \"checkpoint_source\": \"checkpoints/kl_sparsity25_s42/predictor_kl_normalized.pt\", \"model_name\": \"llama-3.1-8b\", \"seed\": 42, \"data_path\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\", \"data_count\": 5, \"eval_data\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\", \"wall_clock_seconds\": 3811.5, \"gpu_hours\": 1.06}, \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 8.169, \"arc_challenge_acc_norm\": 0.4539, \"winogrande_acc\": 0.7056, \"mmlu_acc\": 0.466, \"gsm8k_exact_match\": 0.1145, \"actual_sparsity\": 0.23, \"allocation\": \"global_topk\"}}, \"kl_sparsity40_s42_eval_teal_uniform\": {\"conclusion\": \"killed\"}, \"c1_ablation_bce_kl_targets_s123_v2\": {\"spec\": {\"command\": \"python -u src/train_bce_kl_targets.py --kl_checkpoint checkpoints/mvp_kl_norm_v2_s123/predictor_kl_normalized.pt --output_dir checkpoints/c1_ablation_bce_kl_targets_s123_v2 --gpu 0 --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 123 --sparsity_target 0.50\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:1\"], \"pid\": \"93700\", \"log_path\": \"~/runs/distill_sparse_swiglu/c1_ablation_bce_kl_targets_s123_v2.log\", \"submitted_at\": \"2026-05-18T18:24:05Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/wikitext103/\", \"data_count\": 1000, \"model_name\": \"llama-3.1-8b\", \"seed\": 123, \"checkpoint_source\": \"checkpoints/mvp_kl_norm_v2_s123/predictor_kl_normalized.pt\", \"eval_data\": \"N/A (training experiment)\", \"checkpoint_path\": \"checkpoints/c1_ablation_bce_kl_targets_s123_v2/predictor_bce_kl_targets.pt\", \"wall_clock_seconds\": 2106.7, \"gpu_hours\": 0.59}, \"conclusion\": \"success\", \"metrics\": {\"final_loss\": 0.0537, \"ppl\": 9.32, \"sparsity\": 0.615, \"agreement\": 0.979, \"note\": \"Consistent with s42 (PPL=9.29, sparsity=0.609, agreement=0.978). Both seeds converge to ~61% eval sparsity. C1 confirmed multi-seed robust.\"}}, \"kl_sparsity45_s42_eval_teal_uniform\": {\"spec\": {\"command\": \"benchmark_eval.py --checkpoint checkpoints/kl_sparsity45_s42/predictor_kl_normalized.pt --sparsity_target 0.45 --allocation uniform\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"42823\", \"log_path\": \"~/runs/distill_sparse_swiglu/kl_sparsity45_s42_eval_teal_uniform.log\", \"submitted_at\": \"2026-05-18T18:02:00Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_source\": \"checkpoints/kl_sparsity45_s42/predictor_kl_normalized.pt\", \"model_name\": \"llama-3.1-8b\", \"seed\": 42, \"data_path\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\", \"data_count\": 5, \"eval_data\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\", \"checkpoint_path\": \"N/A (eval only)\", \"wall_clock_seconds\": 3433.2, \"gpu_hours\": 0.95}, \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 10.9488, \"arc_challenge_acc_norm\": 0.3763, \"winogrande_acc\": 0.6361, \"mmlu_acc\": 0.3063, \"gsm8k_exact_match\": 0.0273, \"actual_sparsity\": 0.45, \"allocation\": \"uniform\"}}, \"kl_sparsity45_s42_eval_teal\": {\"spec\": {\"command\": \"python -u src/benchmark_eval.py --exp_id kl_sparsity45_s42_eval_teal --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/kl_sparsity45_s42/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.449 --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"39543\", \"log_path\": \"~/runs/distill_sparse_swiglu/kl_sparsity45_s42_eval_teal.log\", \"submitted_at\": \"2026-05-18T17:12:50.194Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\", \"data_count\": 0, \"model_name\": \"llama-3.1-8b\", \"seed\": 42, \"checkpoint_source\": \"checkpoints/kl_sparsity45_s42/predictor_kl_normalized.pt\", \"eval_data\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\", \"wall_clock_seconds\": 2697.4, \"gpu_hours\": 0.75}, \"metrics\": {\"ppl_wikitext2\": 10.803, \"arc_challenge_acc\": 0.3498, \"arc_challenge_acc_norm\": 0.3916, \"winogrande_acc\": 0.6464, \"mmlu_acc\": 0.3037, \"gsm8k_exact_match\": 0.0296, \"actual_sparsity\": 0.449}, \"conclusion\": \"success\"}, \"kl_sparsity35_s42_eval_teal\": {\"spec\": {\"command\": \"python -u src/benchmark_eval.py --exp_id kl_sparsity35_s42_eval_teal --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/kl_sparsity35_s42/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.336 --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"39463\", \"log_path\": \"~/runs/distill_sparse_swiglu/kl_sparsity35_s42_eval_teal.log\", \"submitted_at\": \"2026-05-18T17:12:47.611Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\", \"data_count\": 0, \"model_name\": \"llama-3.1-8b\", \"seed\": 42, \"checkpoint_source\": \"checkpoints/kl_sparsity35_s42/predictor_kl_normalized.pt\", \"eval_data\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\", \"wall_clock_seconds\": 2739.8, \"gpu_hours\": 0.76}, \"metrics\": {\"ppl_wikitext2\": 9.3133, \"arc_challenge_acc\": 0.3643, \"arc_challenge_acc_norm\": 0.3891, \"winogrande_acc\": 0.6764, \"mmlu_acc\": 0.4041, \"gsm8k_exact_match\": 0.0773, \"actual_sparsity\": 0.336}, \"conclusion\": \"success\"}, \"bce_30pct_s42_eval\": {\"spec\": {\"command\": \"bash run_benchmark.sh --exp_id bce_30pct_s42_eval\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:0\"], \"pid\": \"89396\", \"log_path\": \"~/runs/distill_sparse_swiglu/bce_30pct_s42_eval.log\", \"submitted_at\": \"2026-05-18T17:12:44.182Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"wikitext2+arc_challenge+winogrande+mmlu+gsm8k\", \"data_count\": 0, \"model_name\": \"llama-3.1-8b\", \"seed\": 42, \"checkpoint_source\": \"bce_30pct_s42\", \"eval_data\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\", \"wall_clock_seconds\": 3269.1, \"gpu_hours\": 0.91}, \"metrics\": {\"wikitext2_ppl\": 11.2445, \"arc_challenge_acc\": 0.3848, \"arc_challenge_acc_norm\": 0.4121, \"winogrande_acc\": 0.6598, \"mmlu_acc\": 0.3633, \"gsm8k_exact_match\": 0.0599, \"gsm8k_exact_match_strict\": 0.0538, \"sparsity_target\": 0.3, \"allocation\": \"global_topk\", \"training_sparsity_native\": 0.042, \"eval_wall_time_sec\": 2275.8}, \"conclusion\": \"negative\"}, \"c1_ablation_bce_kl_targets_s123\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/bin/activate base && cd /root/distill_sparse_swiglu && PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True WANDB_MODE=offline python -u src/train_bce_kl_targets.py --kl_checkpoint checkpoints/kl_sparsity30_s123/predictor_kl_normalized.pt --seed 123 --num_steps 1000 --sparsity_target 0.50 --output_dir checkpoints/c1_ablation_bce_kl_targets_s123 --gpu 0\\\"\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:1\"], \"pid\": \"88845\", \"log_path\": \"~/runs/distill_sparse_swiglu/c1_ablation_bce_kl_targets_s123.log\", \"submitted_at\": \"2026-05-18T17:09:08.310Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 858.3, \"gpu_hours\": 0.24}, \"conclusion\": \"negative\", \"metrics\": {\"ppl\": 11.71, \"sparsity\": 0.5, \"agreement\": 0.834, \"bce_loss\": 0.448, \"note\": \"BCE+KL-targets PPL=11.71 ≈ KL PPL=11.79 at matched 50% sparsity, confirming target quality as primary driver\"}}, \"kl_sparsity25_s123\": {\"spec\": {\"checkpoint_path\": \"checkpoints/kl_sparsity25_s123/predictor_kl_normalized.pt\", \"log_path\": \"~/runs/distill_sparse_swiglu/kl_sparsity25_s123.log\", \"command\": \"python -u src/train.py --loss_type kl_normalized --num_steps 1000 --seed 123 --sparsity_target 0.25\", \"server\": \"westd-41718\", \"data_path\": \"wikitext-103\", \"data_count\": 0, \"model_name\": \"llama-3.1-8b\", \"seed\": 123}, \"conclusion\": \"success\", \"metrics\": {\"final_loss\": 0.153, \"final_sparsity\": 0.23, \"steps\": 1000}}, \"kl_sparsity35_s42\": {\"spec\": {\"checkpoint_path\": \"checkpoints/kl_sparsity35_s42/predictor_kl_normalized.pt\", \"log_path\": \"~/runs/distill_sparse_swiglu/kl_sparsity35_s42.log\"}, \"conclusion\": \"success\", \"metrics\": {\"final_loss\": 0.203, \"final_sparsity\": 0.336, \"steps\": 1000}}, \"kl_sparsity45_s42\": {\"spec\": {\"checkpoint_path\": \"checkpoints/kl_sparsity45_s42/predictor_kl_normalized.pt\", \"log_path\": \"~/runs/distill_sparse_swiglu/kl_sparsity45_s42.log\"}, \"conclusion\": \"success\", \"metrics\": {\"final_loss\": 0.33, \"final_sparsity\": 0.449, \"steps\": 1000}}, \"c1_ablation_eval_uniform\": {\"spec\": {\"checkpoint_path\": \"N/A (eval only)\", \"log_path\": \"N/A (stdout)\"}, \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 11.9638, \"arc_challenge_acc_norm\": 0.3217, \"winogrande_acc\": 0.6314, \"mmlu_acc\": 0.2779, \"gsm8k_exact_match\": 0.0205, \"sparsity_target\": 0.5, \"allocation\": \"uniform\"}}, \"c1_ablation_bce_kl_targets_s42\": {\"spec\": {\"command\": \"python -u src/train_bce_kl_targets.py --kl_checkpoint checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt --output_dir checkpoints/c1_ablation_bce_kl_targets_s42 --gpu 0 --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 42\", \"server\": \"westd-41718\", \"data_path\": \"/root/autodl-tmp/data/wikitext103/\", \"data_count\": 1000, \"model_name\": \"llama-3.1-8b\", \"seed\": 42, \"checkpoint_source\": \"checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt\", \"checkpoint_path\": \"checkpoints/c1_ablation_bce_kl_targets_s42/predictor_bce_kl_targets.pt\", \"log_path\": \"/root/distill_sparse_swiglu/logs/c1_ablation_bce_kl_targets_s42.log\"}, \"metrics\": {\"wt2_ppl\": 9.29, \"eval_sparsity\": 0.609, \"oracle_agreement\": 0.978, \"final_bce_loss\": 0.0545, \"train_steps\": 1000, \"train_time_sec\": 877.1, \"reference_kl_ppl\": 11.79, \"reference_bce_ppl\": 22.51}, \"conclusion\": \"success\"}, \"kl_sparsity25_s42\": {\"spec\": {\"command\": \"python -u src/train.py --loss_type kl_normalized --num_steps 1000 --sparsity_target 0.25 --seed 42\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:1\"], \"pid\": \"83319\", \"log_path\": \"~/runs/distill_sparse_swiglu/kl_sparsity25_s42.log\", \"submitted_at\": \"2026-05-18T15:53:07.224Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"wikitext-103\", \"data_count\": 0, \"model_name\": \"llama-3.1-8b\", \"seed\": 42, \"checkpoint_path\": \"checkpoints/kl_sparsity25_s42/predictor_kl_normalized.pt\", \"wall_clock_seconds\": 2282.1, \"gpu_hours\": 0.63}, \"conclusion\": \"success\", \"metrics\": {\"train_loss_final\": 0.1582, \"kl_normalized_final\": 0.1582, \"sparsity_actual\": 0.23, \"sparsity_target\": 0.25, \"lambda_final\": 5000, \"tau_final\": 0.1, \"steps\": 1000}}, \"bce_30pct_s42\": {\"spec\": {\"command\": \"WANDB_MODE=offline PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True python -u src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --loss_type bce --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 42 --sparsity_target 0.3 --gpu 0 --output_dir checkpoints/bce_30pct_s42 --wandb_run_name bce_30pct_s42 --dataset wikitext-103 --gradient_checkpointing\", \"server\": \"westd-41718\", \"data_path\": \"wikitext-103\", \"data_count\": 1000, \"model_name\": \"llama-3.1-8b\", \"seed\": 42, \"checkpoint_path\": \"checkpoints/bce_30pct_s42/predictor_bce.pt\", \"log_path\": \"logs/bce_30pct_s42.log\"}, \"conclusion\": \"success\"}, \"kl30_s456_uniform_v2\": {\"spec\": {\"command\": \"benchmark_eval.py --checkpoint checkpoints/kl_sparsity30_s456/predictor_kl_normalized.pt --sparsity_target 0.3 --allocation uniform\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:1\"], \"pid\": \"72798\", \"log_path\": \"/root/runs/distill_sparse_swiglu/kl30_s456_uniform_v2.log\", \"submitted_at\": \"2026-05-18T12:56:02.610Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_source\": \"checkpoints/kl_sparsity30_s456/predictor_kl_normalized.pt\", \"model_name\": \"llama-3.1-8b\", \"seed\": 456, \"data_path\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\", \"data_count\": 5, \"eval_data\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\", \"checkpoint_path\": \"checkpoints/kl_sparsity30_s456/predictor_kl_normalized.pt\", \"wall_clock_seconds\": 3173.0, \"gpu_hours\": 0.88}, \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 8.8284, \"arc_challenge_acc_norm\": 0.4505, \"winogrande_acc\": 0.6953, \"mmlu_acc\": 0.3727, \"gsm8k_exact_match\": 0.0705}}, \"kl30_s123_uniform_v2\": {\"spec\": {\"command\": \"benchmark_eval.py --checkpoint checkpoints/kl_sparsity30_s123/predictor_kl_normalized.pt --sparsity_target 0.3 --allocation uniform\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:0\"], \"pid\": \"72660\", \"log_path\": \"/root/runs/distill_sparse_swiglu/kl30_s123_uniform_v2.log\", \"submitted_at\": \"2026-05-18T12:55:59.810Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_source\": \"checkpoints/kl_sparsity30_s123/predictor_kl_normalized.pt\", \"model_name\": \"llama-3.1-8b\", \"seed\": 123, \"data_path\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\", \"data_count\": 5, \"eval_data\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\", \"checkpoint_path\": \"checkpoints/kl_sparsity30_s123/predictor_kl_normalized.pt\", \"wall_clock_seconds\": 3174.5, \"gpu_hours\": 0.88}, \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 8.8186, \"arc_challenge_acc_norm\": 0.471, \"winogrande_acc\": 0.6961, \"mmlu_acc\": 0.3763, \"gsm8k_exact_match\": 0.0705}}, \"kl50_s42_global_eval\": {\"spec\": {\"command\": \"benchmark_eval.py kl50_s42_global_eval\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"25221\", \"log_path\": \"~/runs/distill_sparse_swiglu/kl50_s42_global_eval.log\", \"submitted_at\": \"2026-05-18T12:06:08.197Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/distill_sparse_swiglu\", \"data_count\": 5, \"model_name\": \"llama-3.1-8b\", \"seed\": 42, \"checkpoint_source\": \"checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt\", \"eval_data\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\", \"wall_clock_seconds\": 3038.5, \"gpu_hours\": 0.84}, \"metrics\": {\"wikitext2_ppl\": 11.8038, \"arc_challenge_acc_norm\": 0.3336, \"winogrande_acc\": 0.6338, \"mmlu_acc\": 0.2819, \"gsm8k_exact_match\": 0.0167}, \"conclusion\": \"success\"}, \"kl_comp_50pct_s42_eval\": {\"spec\": {\"command\": \"benchmark_eval.py --checkpoint checkpoints/kl_comp_50pct_s42/predictor_with_comp.pt --sparsity_mode teal_global --sparsity_target 0.5\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:1\"], \"pid\": \"67521\", \"log_path\": \"~/runs/distill_sparse_swiglu/kl_comp_50pct_s42_eval.log\", \"submitted_at\": \"2026-05-18T11:02:09.751Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"wikitext2+lm_eval\", \"data_count\": 0, \"model_name\": \"llama-3.1-8b\", \"seed\": 42, \"checkpoint_source\": \"checkpoints/kl_comp_50pct_s42/predictor_with_comp.pt\", \"eval_data\": \"arc_challenge,winogrande,mmlu,gsm8k,wikitext2\", \"checkpoint_path\": \"checkpoints/kl_comp_50pct_s42/predictor_with_comp.pt\", \"wall_clock_seconds\": 2943.6, \"gpu_hours\": 0.82}, \"metrics\": {\"wikitext2_ppl\": 11.7933, \"arc_challenge_acc_norm\": 0.3285, \"winogrande_acc\": 0.6346, \"mmlu_acc\": 0.2789, \"gsm8k_exact_match\": 0.0129}, \"conclusion\": \"success\"}, \"kl_comp_30pct_s456_eval\": {\"spec\": {\"command\": \"benchmark_eval.py --checkpoint checkpoints/kl_comp_30pct_s456/predictor_with_comp.pt --sparsity_mode teal_global --sparsity_target 0.3\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:0\"], \"pid\": \"67364\", \"log_path\": \"~/runs/distill_sparse_swiglu/kl_comp_30pct_s456_eval.log\", \"submitted_at\": \"2026-05-18T11:02:04.387Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"wikitext2+lm_eval\", \"data_count\": 0, \"model_name\": \"llama-3.1-8b\", \"seed\": 456, \"checkpoint_source\": \"checkpoints/kl_comp_30pct_s456/predictor_with_comp.pt\", \"eval_data\": \"arc_challenge,winogrande,mmlu,gsm8k,wikitext2\", \"checkpoint_path\": \"checkpoints/kl_comp_30pct_s456/predictor_with_comp.pt\", \"wall_clock_seconds\": 2947.4, \"gpu_hours\": 0.82}, \"metrics\": {\"wikitext2_ppl\": 8.9614, \"arc_challenge_acc_norm\": 0.4462, \"winogrande_acc\": 0.7143, \"mmlu_acc\": 0.2714, \"gsm8k_exact_match\": 0.0887}, \"conclusion\": \"success\"}, \"kl50_s456_uniform_eval\": {\"spec\": {\"command\": \"bash -c \\\"source /root/.bashrc && cd /root/distill_sparse_swiglu && export HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets && CUDA_VISIBLE_DEVICES=1 /root/miniconda3/bin/python -u src/benchmark_eval.py --exp_id kl50_s456_uniform_eval --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/kl_50pct_s456/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.5 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"21832\", \"log_path\": \"~/runs/distill_sparse_swiglu/kl50_s456_uniform_eval.log\", \"submitted_at\": \"2026-05-18T11:00:47.975Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"checkpoints/kl_50pct_s456/predictor_kl_normalized.pt\", \"wall_clock_seconds\": 3022.4, \"gpu_hours\": 0.84}, \"metrics\": {\"wikitext2_ppl\": 11.9538, \"arc_challenge_acc_norm\": 0.3831, \"winogrande_acc\": 0.6196, \"mmlu_acc\": 0.275, \"gsm8k_exact_match\": 0.0288}, \"conclusion\": \"success\"}, \"kl_comp_30pct_s123_eval\": {\"spec\": {\"command\": \"bash -c \\\"source /root/.bashrc && cd /root/distill_sparse_swiglu && export HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets && CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python -u src/benchmark_eval.py --exp_id kl_comp_30pct_s123_eval --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/kl_comp_30pct_s123/predictor_with_comp.pt --sparsity_mode teal_global --sparsity_target 0.3 --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"21693\", \"log_path\": \"~/runs/distill_sparse_swiglu/kl_comp_30pct_s123_eval.log\", \"submitted_at\": \"2026-05-18T11:00:44.711Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"checkpoints/kl_comp_30pct_s123/predictor_with_comp.pt\", \"wall_clock_seconds\": 3024.0, \"gpu_hours\": 0.84}, \"metrics\": {\"wikitext2_ppl\": 8.9788, \"arc_challenge_acc_norm\": 0.3993, \"winogrande_acc\": 0.6898, \"mmlu_acc\": 0.2531, \"gsm8k_exact_match\": 0.0842}, \"conclusion\": \"success\"}, \"kl_comp_50pct_s42\": {\"spec\": {\"command\": \"nohup bash -c 'source /root/.bashrc && cd /root/distill_sparse_swiglu && WANDB_MODE=offline CUDA_VISIBLE_DEVICES=1 python -u src/train_compensation.py --predictor_checkpoint checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt --sparsity_target 0.5 --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-4 --seed 42 --dataset wikitext-103 --log_every 100 --output_dir checkpoints/kl_comp_50pct_s42 --gpu 0' > ~/runs/distill_sparse_swiglu/kl_comp_50pct_s42.log 2>&1 &\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:1\"], \"log_path\": \"/root/runs/distill_sparse_swiglu/kl_comp_50pct_s42.log\", \"backend\": \"nohup\", \"account\": \"root\", \"data_path\": \"wikitext-103\", \"data_count\": 0, \"model_name\": \"llama-3.1-8b\", \"seed\": 42, \"checkpoint_source\": \"checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt\", \"eval_data\": \"N/A\", \"checkpoint_path\": \"checkpoints/kl_comp_50pct_s42/compensation.pt\"}, \"conclusion\": \"success\"}, \"kl_comp_30pct_s456\": {\"spec\": {\"command\": \"nohup bash -c 'source /root/.bashrc && cd /root/distill_sparse_swiglu && WANDB_MODE=offline CUDA_VISIBLE_DEVICES=0 python -u src/train_compensation.py --predictor_checkpoint checkpoints/kl_sparsity30_s456/predictor_kl_normalized.pt --sparsity_target 0.3 --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-4 --seed 456 --dataset wikitext-103 --log_every 100 --output_dir checkpoints/kl_comp_30pct_s456 --gpu 0' > ~/runs/distill_sparse_swiglu/kl_comp_30pct_s456.log 2>&1 &\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:0\"], \"log_path\": \"/root/runs/distill_sparse_swiglu/kl_comp_30pct_s456.log\", \"backend\": \"nohup\", \"account\": \"root\", \"data_path\": \"wikitext-103\", \"data_count\": 0, \"model_name\": \"llama-3.1-8b\", \"seed\": 456, \"checkpoint_source\": \"checkpoints/kl_sparsity30_s456/predictor_kl_normalized.pt\", \"eval_data\": \"N/A\", \"checkpoint_path\": \"checkpoints/kl_comp_30pct_s456/compensation.pt\"}, \"conclusion\": \"success\"}, \"kl50_s42_uniform_eval\": {\"spec\": {\"command\": \"nohup bash -c '... CUDA_VISIBLE_DEVICES=1 python -u src/benchmark_eval.py --exp_id kl50_s42_uniform_eval ...' > ~/runs/distill_sparse_swiglu/kl50_s42_uniform_eval.log 2>&1 &\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"15367\", \"log_path\": \"~/runs/distill_sparse_swiglu/kl50_s42_uniform_eval.log\", \"submitted_at\": \"2026-05-18T17:06:00Z\", \"backend\": \"nohup\", \"account\": \"root\", \"data_path\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\", \"data_count\": 0, \"model_name\": \"llama-3.1-8b\", \"seed\": 42, \"checkpoint_source\": \"checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt\", \"eval_data\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\", \"checkpoint_path\": \"/root/distill_sparse_swiglu/checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt\"}, \"metrics\": {\"wikitext2_ppl\": 11.9638, \"arc_challenge_acc_norm\": 0.3259, \"winogrande_acc\": 0.6235, \"mmlu_acc\": 0.2792, \"gsm8k_exact_match\": 0.0197}, \"conclusion\": \"success\"}, \"kl_comp_30pct_s42_eval\": {\"spec\": {\"command\": \"nohup bash -c '... CUDA_VISIBLE_DEVICES=0 python -u src/benchmark_eval.py --exp_id kl_comp_30pct_s42_eval ...' > ~/runs/distill_sparse_swiglu/kl_comp_30pct_s42_eval.log 2>&1 &\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"15055\", \"log_path\": \"~/runs/distill_sparse_swiglu/kl_comp_30pct_s42_eval.log\", \"submitted_at\": \"2026-05-18T17:06:00Z\", \"backend\": \"nohup\", \"account\": \"root\", \"data_path\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\", \"data_count\": 0, \"model_name\": \"llama-3.1-8b\", \"seed\": 42, \"checkpoint_source\": \"checkpoints/kl_comp_30pct_s42/predictor_with_comp.pt\", \"eval_data\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\", \"checkpoint_path\": \"/root/distill_sparse_swiglu/checkpoints/kl_comp_30pct_s42/predictor_with_comp.pt\"}, \"metrics\": {\"wikitext2_ppl\": 8.9788, \"arc_challenge_acc_norm\": 0.3993, \"winogrande_acc\": 0.6898, \"mmlu_acc\": 0.2531, \"gsm8k_exact_match\": 0.0842}, \"conclusion\": \"success\"}, \"kl_comp_30pct_s123_ppl\": {\"spec\": {\"checkpoint_path\": \"checkpoints/kl_comp_30pct_s123/predictor_with_comp.pt\", \"log_path\": \"~/runs/distill_sparse_swiglu/kl_comp_30pct_s123_ppl.log\"}, \"metrics\": {\"wikitext2_ppl\": 8.9768, \"c4_ppl\": 16.0401, \"sparsity\": 0.3, \"allocation\": \"global_topk\", \"model\": \"llama-3.1-8b\", \"seed\": 123}, \"conclusion\": \"success\"}, \"kl_comp_30pct_s123\": {\"spec\": {\"checkpoint_path\": \"checkpoints/kl_comp_30pct_s123/predictor_with_comp.pt\", \"log_path\": \"~/runs/distill_sparse_swiglu/kl_comp_30pct_s123.log\"}, \"metrics\": {\"final_loss\": 0.7617, \"steps\": 1000, \"compensation_params\": 67248128, \"compensation_pct\": 0.837, \"mean_head_norm_final\": 9.2012, \"loss_trajectory\": [2.0469, 1.3828, 1.0703, 0.9609, 0.8711, 0.7305, 0.6875, 0.7773, 0.7969, 0.7617]}, \"conclusion\": \"success\"}, \"kl_comp_30pct_s42_ppl\": {\"spec\": {\"command\": \"nohup bash -c 'CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 python -u src/benchmark_eval.py --exp_id kl_comp_30pct_s42_ppl --checkpoint checkpoints/kl_comp_30pct_s42/predictor_with_comp.pt --sparsity_mode teal_global --sparsity_target 0.3 --tasks wikitext2,c4 --gpu 0'\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:0\"], \"pid\": \"61490\", \"log_path\": \"~/runs/distill_sparse_swiglu/kl_comp_30pct_s42_ppl.log\", \"submitted_at\": \"2026-05-18T09:00:00Z\", \"backend\": \"nohup\", \"account\": \"root\", \"data_path\": \"wikitext2,c4\", \"data_count\": 0, \"model_name\": \"llama-3.1-8b\", \"seed\": 42, \"checkpoint_source\": \"checkpoints/kl_comp_30pct_s42/predictor_with_comp.pt\", \"eval_data\": \"wikitext2,c4\", \"checkpoint_path\": \"checkpoints/kl_comp_30pct_s42/predictor_with_comp.pt\", \"wall_clock_seconds\": 1531.0, \"gpu_hours\": 0.43}, \"metrics\": {\"wikitext2_ppl\": 8.9768, \"c4_ppl\": 16.0401, \"sparsity\": 0.3, \"allocation\": \"global_topk\", \"model\": \"llama-3.1-8b\", \"seed\": 42}, \"conclusion\": \"success\"}, \"kl_comp_30pct_s42\": {\"spec\": {\"command\": \"WANDB_MODE=offline python src/train_compensation.py --predictor_checkpoint checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt --sparsity_target 0.3 --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-4 --seed 42 --dataset wikitext-103 --log_every 100 --output_dir checkpoints/kl_comp_30pct_s42 --gpu 0\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:0\"], \"log_path\": \"~/runs/distill_sparse_swiglu/kl_comp_30pct_s42.log\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"wikitext-103\", \"data_count\": 1000, \"model_name\": \"llama-3.1-8b\", \"seed\": 42, \"checkpoint_path\": \"checkpoints/kl_comp_30pct_s42/predictor_with_comp.pt\"}, \"metrics\": {\"final_loss\": 0.6992, \"steps\": 1000, \"compensation_params\": 67248128, \"compensation_pct\": 0.837, \"mean_head_norm_final\": 9.2012, \"loss_trajectory\": [2.3594, 1.3516, 1.0859, 0.9219, 0.8789, 0.8281, 0.7461, 0.7344, 0.6953, 0.6992]}, \"conclusion\": \"success\"}, \"c4_ood_kl50_s456\": {\"spec\": {\"command\": \"nohup bash -c 'source /root/miniconda3/bin/activate base && cd /root/distill_sparse_swiglu && HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 python -u src/benchmark_eval.py --exp_id c4_ood_kl50_s456 --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/kl_50pct_s456/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.5 --tasks c4 --gpu 1'\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"12424\", \"log_path\": \"~/runs/distill_sparse_swiglu/c4_ood_kl50_s456.log\", \"submitted_at\": \"2026-05-18T16:45:00Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"nohup\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/c4_val\", \"data_count\": 0, \"model_name\": \"llama-3.1-8b\", \"seed\": 456, \"checkpoint_source\": \"checkpoints/kl_50pct_s456/predictor_kl_normalized.pt\", \"eval_data\": \"c4\", \"checkpoint_path\": \"checkpoints/kl_50pct_s456/predictor_kl_normalized.pt\"}, \"conclusion\": \"success\", \"metrics\": {\"c4_ppl\": 23.9867, \"sparsity\": 0.5, \"allocation\": \"global_topk\", \"seed\": 456}}, \"c4_ood_kl50_s42\": {\"spec\": {\"command\": \"nohup bash -c 'source /root/miniconda3/bin/activate base && cd /root/distill_sparse_swiglu && HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 python -u src/benchmark_eval.py --exp_id c4_ood_kl50_s42 --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.5 --tasks c4 --gpu 0'\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"12354\", \"log_path\": \"~/runs/distill_sparse_swiglu/c4_ood_kl50_s42.log\", \"submitted_at\": \"2026-05-18T16:45:00Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"nohup\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/c4_val\", \"data_count\": 0, \"model_name\": \"llama-3.1-8b\", \"seed\": 42, \"checkpoint_source\": \"checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt\", \"eval_data\": \"c4\", \"checkpoint_path\": \"checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt\"}, \"metrics\": {\"c4_ppl\": 23.5297, \"sparsity\": 0.5, \"allocation\": \"global_topk\", \"seed\": 42}, \"conclusion\": \"success\"}, \"kl50_s456_eval\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/bin/activate base && cd /root/autodl-tmp/distill_sparse_swiglu && HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 python -u src/benchmark_eval.py --exp_id kl50_s456_eval --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/kl_50pct_s456/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.5 --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"unknown\", \"log_path\": \"~/runs/distill_sparse_swiglu/kl50_s456_eval.log\", \"submitted_at\": \"2026-05-18T08:10:52.211Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\", \"data_count\": 0, \"model_name\": \"llama-3.1-8b\", \"seed\": 456, \"checkpoint_source\": \"checkpoints/kl_50pct_s456/predictor_kl_normalized.pt\", \"eval_data\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\", \"checkpoint_path\": \"checkpoints/kl_50pct_s456/predictor_kl_normalized.pt\", \"wall_clock_seconds\": 1948.5, \"gpu_hours\": 0.54}, \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 11.8614, \"arc_challenge_acc_norm\": 0.3754, \"winogrande_acc\": 0.6417, \"mmlu_acc\": 0.2784, \"gsm8k_exact_match\": 0.0212}}, \"c4_ood_kl30_s456\": {\"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python src/eval_c4_predictor.py --ckpt checkpoints/kl_sparsity30_s456/predictor_kl_normalized.pt --name kl_30pct_s456 --max_samples 200\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:1\"], \"pid\": \"58551\", \"log_path\": \"~/runs/distill_sparse_swiglu/c4_ood_kl30_s456.log\", \"submitted_at\": \"2026-05-18T08:18:51.218Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"c4_val\", \"data_count\": 132, \"model_name\": \"llama-3.1-8b\", \"seed\": 456, \"checkpoint_source\": \"checkpoints/kl_sparsity30_s456/predictor_kl_normalized.pt\", \"eval_data\": \"c4_val\", \"checkpoint_path\": \"checkpoints/kl_sparsity30_s456/predictor_kl_normalized.pt\", \"wall_clock_seconds\": 89.9, \"gpu_hours\": 0.02}, \"conclusion\": \"success\"}, \"c4_ood_kl30_s42_v2\": {\"spec\": {\"command\": \"bash -c \\\"source /root/.bashrc && cd /root/distill_sparse_swiglu && /root/miniconda3/bin/python -u src/benchmark_eval.py --exp_id c4_ood_kl30_s42_v2 --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --tasks c4 --gpu 0\\\"\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:0\"], \"pid\": \"57018\", \"log_path\": \"~/runs/distill_sparse_swiglu/c4_ood_kl30_s42_v2.log\", \"submitted_at\": \"2026-05-18T08:11:02.499Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/c4_val\", \"data_count\": 364608, \"model_name\": \"llama-3.1-8b\", \"seed\": 42, \"checkpoint_source\": \"checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt\", \"eval_data\": \"c4_validation\", \"checkpoint_path\": \"checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt\", \"wall_clock_seconds\": 156.9, \"gpu_hours\": 0.04}, \"metrics\": {\"c4_ppl\": 16.0401, \"allocation\": \"global_topk\", \"sparsity\": 0.3, \"model\": \"llama-3.1-8b\", \"seed\": 42}, \"conclusion\": \"success\"}, \"c4_ood_kl50_s123\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/bin/activate base && cd /root/distill_sparse_swiglu && HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 python -u src/benchmark_eval.py --exp_id c4_ood_kl50_s123 --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/kl_50pct_s123/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.5 --tasks c4 --gpu 0\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"6082\", \"log_path\": \"~/runs/distill_sparse_swiglu/c4_ood_kl50_s123.log\", \"submitted_at\": \"2026-05-18T06:50:53.125Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/c4_val\", \"data_count\": 364608, \"model_name\": \"llama-3.1-8b\", \"seed\": 123, \"checkpoint_source\": \"checkpoints/kl_50pct_s123/predictor_kl_normalized.pt\", \"eval_data\": \"c4_validation\", \"checkpoint_path\": \"checkpoints/kl_50pct_s123/predictor_kl_normalized.pt\", \"wall_clock_seconds\": 1181.1, \"gpu_hours\": 0.33}, \"metrics\": {\"c4_ppl\": 23.6064, \"allocation\": \"global_topk\", \"sparsity\": 0.5, \"model\": \"llama-3.1-8b\"}, \"conclusion\": \"success\"}, \"downstream_ext_kl50_uniform_s42\": {\"spec\": {\"command\": \"python src/benchmark_eval.py --exp_id downstream_ext_kl50_uniform_s42 --checkpoint checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt --sparsity_mode teal_global --allocation uniform --sparsity_target 0.5 --tasks hellaswag,piqa,boolq --gpu 0\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:0\"], \"pid\": \"53382\", \"log_path\": \"~/runs/distill_sparse_swiglu/downstream_ext_kl50_uniform_s42.log\", \"submitted_at\": \"2026-05-18T06:53:51.338Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"lm-eval cached\", \"data_count\": 0, \"model_name\": \"llama-3.1-8b\", \"seed\": 42, \"checkpoint_source\": \"checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt\", \"eval_data\": \"hellaswag,piqa,boolq\", \"wall_clock_seconds\": 938.3, \"gpu_hours\": 0.26}, \"conclusion\": \"failed\"}, \"downstream_ext_kl30_uniform_s123\": {\"spec\": {\"command\": \"python src/benchmark_eval.py --exp_id downstream_ext_kl30_uniform_s123 --checkpoint checkpoints/kl_sparsity30_s123/predictor_kl_normalized.pt --sparsity_mode teal_global --allocation uniform --sparsity_target 0.3 --tasks hellaswag,piqa,boolq --gpu 0\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:1\"], \"pid\": \"53848\", \"log_path\": \"~/runs/distill_sparse_swiglu/downstream_ext_kl30_uniform_s123.log\", \"submitted_at\": \"2026-05-18T06:54:24.696Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"lm-eval cached\", \"data_count\": 0, \"model_name\": \"llama-3.1-8b\", \"seed\": 123, \"checkpoint_source\": \"checkpoints/kl_sparsity30_s123/predictor_kl_normalized.pt\", \"eval_data\": \"hellaswag,piqa,boolq\", \"wall_clock_seconds\": 903.5, \"gpu_hours\": 0.25}, \"conclusion\": \"failed\"}, \"c4_ood_dense_baseline_v2\": {\"spec\": {\"command\": \"bash -c \\\"cd /root/distill_sparse_swiglu && HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 /root/miniconda3/bin/python -u src/benchmark_eval.py --exp_id c4_ood_dense_baseline_v2 --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --dense --tasks c4 --gpu 0\\\"\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:1\"], \"pid\": \"51568\", \"log_path\": \"/root/runs/distill_sparse_swiglu/c4_ood_dense_baseline_v2.log\", \"submitted_at\": \"2026-05-18T06:18:22.513Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/c4_val\", \"data_count\": 364608, \"model_name\": \"llama-3.1-8b\", \"seed\": 0, \"checkpoint_source\": \"none\", \"eval_data\": \"c4_validation\", \"checkpoint_path\": \"N/A\", \"wall_clock_seconds\": 1825.0, \"gpu_hours\": 0.51}, \"conclusion\": \"success\", \"metrics\": {\"c4_ppl\": 9.2075, \"model\": \"llama-3.1-8b\", \"eval_sequences\": 132, \"seq_len\": 2048}}, \"c4_ood_kl30_s123_v2\": {\"spec\": {\"command\": \"bash -c \\\"cd /root/distill_sparse_swiglu && HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 /root/miniconda3/bin/python -u src/benchmark_eval.py --exp_id c4_ood_kl30_s123_v2 --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/kl_sparsity30_s123/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --tasks c4 --gpu 0\\\"\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:0\"], \"pid\": \"51495\", \"log_path\": \"/root/runs/distill_sparse_swiglu/c4_ood_kl30_s123_v2.log\", \"submitted_at\": \"2026-05-18T06:18:20.711Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/c4_val\", \"data_count\": 364608, \"model_name\": \"llama-3.1-8b\", \"seed\": 123, \"checkpoint_source\": \"checkpoints/kl_sparsity30_s123/predictor_kl_normalized.pt\", \"eval_data\": \"c4_validation\", \"checkpoint_path\": \"/root/distill_sparse_swiglu/checkpoints/kl_sparsity30_s123/predictor_kl_normalized.pt\", \"wall_clock_seconds\": 1825.4, \"gpu_hours\": 0.51}, \"conclusion\": \"success\", \"metrics\": {\"c4_ppl\": 16.0259, \"allocation\": \"global_topk\", \"sparsity\": 0.3, \"model\": \"llama-3.1-8b\", \"eval_sequences\": 132, \"seq_len\": 2048}}, \"kl50_s456_train\": {\"spec\": {\"checkpoint_path\": \"/root/distill_sparse_swiglu/checkpoints/kl_50pct_s456/predictor_kl_normalized.pt\", \"log_path\": \"/root/runs/distill_sparse_swiglu/kl50_s456_train.log\"}, \"metrics\": {\"final_loss\": 0.397, \"final_kl_normalized\": 0.397, \"final_sparsity\": 0.492, \"final_lambda\": 5000, \"final_tau\": 0.1, \"steps_completed\": 1000}, \"conclusion\": \"success\"}, \"kl50_s123_uniform_eval\": {\"spec\": {\"command\": \"python -u src/benchmark_eval.py --exp_id kl50_s123_uniform_eval --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/kl_50pct_s123/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.5 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0\", \"server\": \"westd-34887\", \"data_path\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\", \"data_count\": 17800, \"model_name\": \"llama-3.1-8b\", \"seed\": 123, \"checkpoint_source\": \"checkpoints/kl_50pct_s123/predictor_kl_normalized.pt\", \"eval_data\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\", \"checkpoint_path\": \"checkpoints/kl_50pct_s123/predictor_kl_normalized.pt\", \"log_path\": \"/root/runs/distill_sparse_swiglu/kl50_s123_uniform_eval.log\"}, \"metrics\": {\"wikitext2_ppl\": 11.89, \"arc_challenge_acc_norm\": 37.88, \"winogrande_acc\": 62.19, \"mmlu_acc\": 27.75, \"gsm8k_exact_match\": 2.35, \"comparison_vs_global_topk\": {\"ppl_delta\": -0.94, \"arc_c_delta\": -5.55, \"wg_delta\": -6.71, \"mmlu_delta\": -8.2, \"gsm8k_delta\": -5}, \"note\": \"Uniform allocation: better PPL but catastrophic downstream degradation vs global_topk. Confirms global_topk allocation is critical for downstream quality.\"}, \"conclusion\": \"success\"}, \"c4_ood_dense_baseline\": {\"spec\": {\"command\": \"python -u src/benchmark_eval.py --exp_id c4_ood_dense_baseline --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --dense --tasks c4 --gpu 1\", \"server\": \"westd-41718\", \"data_path\": \"/root/autodl-tmp/.hf_cache/hub/datasets--allenai--c4/\", \"data_count\": 256, \"model_name\": \"llama-3.1-8b\", \"seed\": 0, \"checkpoint_source\": \"none\", \"eval_data\": \"c4_validation\"}, \"conclusion\": \"failed\"}, \"kl50_s123_eval\": {\"spec\": {\"command\": \"python -u src/benchmark_eval.py --exp_id kl50_s123_eval --checkpoint checkpoints/kl_50pct_s123/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.5 --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"99952\", \"log_path\": \"/root/runs/distill_sparse_swiglu/kl50_s123_eval.log\", \"submitted_at\": \"2026-05-17T11:02:35.356Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_source\": \"checkpoints/kl_50pct_s123/predictor_kl_normalized.pt\", \"eval_data\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\", \"model_name\": \"llama-3.1-8b\", \"seed\": 123, \"data_path\": \"N/A\", \"data_count\": 0, \"checkpoint_path\": \"checkpoints/kl_50pct_s123/predictor_kl_normalized.pt\", \"wall_clock_seconds\": 67728.1, \"gpu_hours\": 18.81}, \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 11.745, \"arc_challenge\": 0.3814, \"winogrande\": 0.6125, \"mmlu\": 0.2752, \"gsm8k\": 0.0281}}, \"snr_extended_r6w3\": {\"conclusion\": \"success\", \"metrics\": {\"kl_snr_step300\": 0.0058773, \"bce_snr_step300\": 0.00114449, \"snr_ratio_step300\": 5.14, \"kl_train_time_s\": 641, \"bce_train_time_s\": 320, \"num_checkpoints\": 7, \"steps_range\": \"0-300\"}, \"spec\": {\"checkpoint_path\": \"N/A (analysis only)\", \"log_path\": \"westd-34887:/root/distill_sparse_swiglu/artifacts/snr_extended/\"}}, \"kl30_8b_s456_eval\": {\"spec\": {\"command\": \"benchmark_eval.py 5-task on kl_sparsity30_s456 checkpoint\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:1\"], \"pid\": \"37480\", \"data_path\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\", \"data_count\": 0, \"model_name\": \"llama-3.1-8b\", \"seed\": 456, \"checkpoint_source\": \"kl30_8b_s456_train\", \"eval_data\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\", \"checkpoint_path\": \"N/A (eval only)\", \"log_path\": \"westd-41718:/root/distill_sparse_swiglu/artifacts/kl30_8b_s456_eval/\"}, \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 8.9614, \"arc_challenge_acc\": 0.436, \"arc_challenge_acc_norm\": 0.4462, \"winogrande_acc\": 0.7143, \"mmlu_acc\": 0.2714, \"gsm8k_exact_match\": 0.0887}}, \"kl30_8b_s123_eval\": {\"spec\": {\"command\": \"benchmark_eval.py 5-task on kl_sparsity30_s123 checkpoint\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:0\"], \"pid\": \"37184\", \"data_path\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\", \"data_count\": 0, \"model_name\": \"llama-3.1-8b\", \"seed\": 123, \"checkpoint_source\": \"kl30_8b_s123_train\", \"eval_data\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\", \"checkpoint_path\": \"N/A (eval only)\", \"log_path\": \"westd-41718:/root/distill_sparse_swiglu/artifacts/kl30_8b_s123_eval/\"}, \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 8.9267, \"arc_challenge_acc\": 0.4462, \"arc_challenge_acc_norm\": 0.4744, \"winogrande_acc\": 0.7024, \"mmlu_acc\": 0.3836, \"gsm8k_exact_match\": 0.0917}}, \"bce_isocompute_v3_s42_eval\": {\"spec\": {\"command\": \"bash -c \\\"cd /root/distill_sparse_swiglu && HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache CUDA_VISIBLE_DEVICES=1 /root/miniconda3/bin/python -u src/benchmark_eval.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b/ --checkpoint checkpoints/bce_isocompute_v3_s42/predictor_bce.pt --sparsity_mode teal_global --sparsity_target 0.5 --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --exp_id bce_isocompute_v3_s42_eval --gpu 0\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"91355\", \"data_path\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\", \"data_count\": 0, \"model_name\": \"llama-3.1-8b\", \"seed\": 42, \"checkpoint_source\": \"bce_isocompute_v3_s42\", \"eval_data\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\", \"checkpoint_path\": \"N/A (eval only)\", \"log_path\": \"westd-34887:/root/distill_sparse_swiglu/artifacts/bce_isocompute_v3_s42_eval/\"}, \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 27.9696, \"arc_challenge_acc\": 0.2346, \"arc_challenge_acc_norm\": 0.2765, \"winogrande_acc\": 0.5162, \"mmlu_acc\": 0.2614, \"gsm8k_exact_match\": 0.019}}, \"kl30_8b_s456_train\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/bin/activate base && cd /root/distill_sparse_swiglu && python -u src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --loss_type kl_normalized --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 456 --sparsity_target 0.3 --gpu 0 --output_dir checkpoints/kl_sparsity30_s456 --dataset wikitext-103 --gradient_checkpointing --lambda_max 5000\\\"\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:1\"], \"pid\": \"35045\", \"log_path\": \"~/runs/distill_sparse_swiglu/kl30_8b_s456_train.log\", \"submitted_at\": \"2026-05-18T00:21:33.744Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"wikitext-103\", \"data_count\": 1000, \"model_name\": \"llama-3.1-8b\", \"seed\": 456, \"wall_clock_seconds\": 2825.2, \"gpu_hours\": 0.78}, \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 8.9614, \"sparsity\": 0.3, \"training_loss\": 0.148}}, \"kl30_8b_s123_train\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/bin/activate base && cd /root/distill_sparse_swiglu && python -u src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --loss_type kl_normalized --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 123 --sparsity_target 0.3 --gpu 0 --output_dir checkpoints/kl_sparsity30_s123 --dataset wikitext-103 --gradient_checkpointing --lambda_max 5000\\\"\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:0\"], \"pid\": \"34700\", \"log_path\": \"~/runs/distill_sparse_swiglu/kl30_8b_s123_train.log\", \"submitted_at\": \"2026-05-18T00:21:30.726Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"wikitext-103\", \"data_count\": 1000, \"model_name\": \"llama-3.1-8b\", \"seed\": 123, \"wall_clock_seconds\": 2785.8, \"gpu_hours\": 0.77}, \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 8.9267, \"sparsity\": 0.3, \"training_loss\": 0.147}}, \"qwen14b_teal30_uniform_eval\": {\"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 /root/miniconda3/bin/python -u src/benchmark_eval.py --exp_id qwen14b_teal30_uniform --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --baseline_mode teal_vanilla --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"81296\", \"log_path\": \"~/runs/distill_sparse_swiglu/qwen14b_teal30_uniform_eval.log\", \"submitted_at\": \"2026-05-17T23:10:16.678Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/models/qwen2.5-14b/\", \"data_count\": 0, \"model_name\": \"qwen2.5-14b\", \"seed\": 42, \"checkpoint_source\": \"N/A (TEAL vanilla)\", \"eval_data\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\", \"wall_clock_seconds\": 5001.2, \"gpu_hours\": 1.39}, \"conclusion\": \"failed\"}, \"qwen14b_kl30_uniform_eval\": {\"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python -u src/benchmark_eval.py --exp_id qwen14b_kl30_uniform --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --checkpoint checkpoints/qwen14b_kl30_s42/predictor_kl_normalized.pt --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"81217\", \"log_path\": \"~/runs/distill_sparse_swiglu/qwen14b_kl30_uniform_eval.log\", \"submitted_at\": \"2026-05-17T23:10:14.740Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/models/qwen2.5-14b/\", \"data_count\": 0, \"model_name\": \"qwen2.5-14b\", \"seed\": 42, \"checkpoint_source\": \"checkpoints/qwen14b_kl30_s42/predictor_kl_normalized.pt\", \"eval_data\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\", \"wall_clock_seconds\": 4984.9, \"gpu_hours\": 1.38}, \"conclusion\": \"failed\"}, \"c4_ood_kl30_s42\": {\"spec\": {\"command\": \"bash -c \\\"cd /root/distill_sparse_swiglu && python -u src/benchmark_eval.py --exp_id c4_ood_kl30_s42 --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b/ --checkpoint checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --tasks c4 --gpu 0\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"78732\", \"log_path\": \"~/runs/distill_sparse_swiglu/c4_ood_kl30_s42.log\", \"submitted_at\": \"2026-05-17T22:38:54.320Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/c4_val/\", \"data_count\": 132, \"model_name\": \"llama-3.1-8b\", \"seed\": 42, \"checkpoint_source\": \"kl_sparsity30_s42_v3\", \"eval_data\": \"c4_val\", \"wall_clock_seconds\": 3088.6, \"gpu_hours\": 0.86}, \"conclusion\": \"success\", \"metrics\": {\"c4_ppl\": 16.0458, \"allocation\": \"global_topk\", \"sparsity\": 0.3, \"model\": \"llama-3.1-8b\", \"eval_sequences\": 132, \"seq_len\": 2048}}, \"qwen14b_teal30_eval\": {\"spec\": {\"command\": \"cd /root/distill_sparse_swiglu && /root/miniconda3/bin/python -u src/benchmark_eval.py --exp_id qwen14b_teal30 --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --baseline_mode teal_vanilla --sparsity_target 0.3 --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:1\"], \"account\": \"root\", \"model_name\": \"qwen2.5-14b\", \"data_path\": \"lm-eval-harness datasets\", \"data_count\": 0, \"seed\": 42, \"pid\": \"6896\"}, \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 8.7332, \"arc_challenge_acc_norm\": 0.5683, \"winogrande_acc\": 0.7269, \"mmlu_acc\": 0.7183, \"gsm8k_exact_match\": 0.4951}}, \"qwen14b_bce30_s42_eval\": {\"spec\": {\"command\": \"cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export HF_DATASETS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets && /root/miniconda3/bin/python -u src/benchmark_eval.py --exp_id qwen14b_bce30_s42_eval --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --checkpoint checkpoints/qwen14b_bce30_s42/predictor_bce.pt --sparsity_mode teal_global --sparsity_target 0.3 --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"59122\", \"log_path\": \"~/runs/distill_sparse_swiglu/qwen14b_bce30_s42_eval.log\", \"submitted_at\": \"2026-05-17T16:47:51.067Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 21751.5, \"gpu_hours\": 6.04}, \"metrics\": {\"wikitext2_ppl\": 8.7634, \"arc_challenge_acc_norm\": 0.5759, \"winogrande_acc\": 0.7261, \"mmlu_acc\": 0.7167, \"gsm8k_exact_match\": 0.5307}, \"conclusion\": \"negative\"}, \"qwen14b_dense_baseline\": {\"spec\": {\"command\": \"cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export HF_DATASETS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets && CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python -u src/benchmark_eval.py --exp_id qwen14b_dense_baseline --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:0\"], \"pid\": \"18845\", \"log_path\": \"~/runs/distill_sparse_swiglu/qwen14b_dense_baseline.log\", \"submitted_at\": \"2026-05-17T18:47:34.739Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"qwen2.5-14b\", \"data_path\": \"lm-eval-harness datasets\", \"data_count\": 0, \"seed\": 42, \"wall_clock_seconds\": 13034.6, \"gpu_hours\": 3.62}, \"conclusion\": \"success\", \"metrics\": {\"ppl\": 5.1854, \"arc_challenge\": 0.6758, \"winogrande\": 0.8106, \"mmlu\": 0.7977, \"gsm8k\": 0.8757}}, \"bce_isocompute_v3_s123_eval\": {\"spec\": {\"command\": \"cd /root/distill_sparse_swiglu && CUDA_VISIBLE_DEVICES=1 /root/miniconda3/bin/python -u src/benchmark_eval.py --exp_id bce_isocompute_v3_s123 --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/bce_isocompute_v3_s123/predictor_bce.pt --sparsity_mode teal_global --sparsity_target 0.5 --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0\", \"server\": \"westd-34887\", \"gpu\": \"cuda:1\", \"data_path\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\", \"data_count\": 5, \"model_name\": \"llama-3.1-8b\", \"seed\": 123, \"checkpoint_source\": \"bce_isocompute_v3_s123\", \"eval_data\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\"}, \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 28.0627, \"arc_challenge_acc_norm\": 0.2696, \"winogrande_acc\": 0.513, \"mmlu_acc\": 0.2655, \"gsm8k_exact_match\": 0.022}}, \"bce_isocompute_v3_s123\": {\"spec\": {\"command\": \"cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && CUDA_VISIBLE_DEVICES=1 /root/miniconda3/bin/python -u src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --loss_type bce --num_steps 2700 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 123 --sparsity_target 0.5 --gpu 0 --output_dir checkpoints/bce_isocompute_v3_s123 --wandb_run_name bce_isocompute_v3_s123 --dataset wikitext-103 --gradient_checkpointing --log_every 100\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"72392\", \"log_path\": \"/root/runs/distill_sparse_swiglu/bce_isocompute_v3_s123.log\", \"model_name\": \"llama-3.1-8b\", \"data_path\": \"wikitext-103\", \"data_count\": 0, \"seed\": 123, \"checkpoint_source\": \"N/A (training from scratch)\", \"eval_data\": \"N/A (training experiment)\", \"checkpoint_path\": \"checkpoints/bce_isocompute_v3_s123/predictor_bce.pt\"}, \"conclusion\": \"success\"}, \"bce_isocompute_v3_s456_eval\": {\"spec\": {\"command\": \"cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export HF_DATASETS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets && CUDA_VISIBLE_DEVICES=1 /root/miniconda3/bin/python -u src/benchmark_eval.py --exp_id bce_isocompute_v3_s456 --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/bce_isocompute_v3_s456/predictor_bce.pt --sparsity_mode teal_global --sparsity_target 0.5 --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"69504\", \"log_path\": \"~/runs/distill_sparse_swiglu/bce_isocompute_v3_s456_eval.log\", \"submitted_at\": \"2026-05-17T20:02:52.758Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"llama-3.1-8b + bce_isocompute_v3 predictor\", \"data_path\": \"wikitext2 + arc_challenge + winogrande + mmlu + gsm8k\", \"data_count\": 200, \"seed\": 456, \"checkpoint_source\": \"bce_isocompute_v3_s456\", \"eval_data\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\", \"checkpoint_path\": \"checkpoints/bce_isocompute_v3_s456/predictor_bce.pt\", \"wall_clock_seconds\": 2729.1, \"gpu_hours\": 0.76}, \"conclusion\": \"success\", \"metrics\": {\"teal_sparse_ppl\": 28.3503, \"model_level_sparsity\": 0.5, \"arc_challenge_acc\": 0.2312, \"arc_challenge_acc_stderr\": 0.01232, \"arc_challenge_acc_norm\": 0.2807, \"arc_challenge_acc_norm_stderr\": 0.01313, \"winogrande_acc\": 0.5241, \"winogrande_acc_stderr\": 0.01404, \"mmlu_acc\": 0.2567, \"mmlu_acc_stderr\": 0.00367, \"gsm8k_exact_match\": 0.022, \"gsm8k_exact_match_stderr\": 0.00404, \"gsm8k_exact_match_strict\": 0.00834, \"gsm8k_exact_match_strict_stderr\": 0.0025}}, \"bce_isocompute_v3_s456\": {\"spec\": {\"command\": \"cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && CUDA_VISIBLE_DEVICES=1 /root/miniconda3/bin/python -u src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --loss_type bce --num_steps 2700 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 456 --sparsity_target 0.5 --gpu 0 --output_dir checkpoints/bce_isocompute_v3_s456 --wandb_run_name bce_isocompute_v3_s456 --dataset wikitext-103 --gradient_checkpointing --log_every 100\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"67029\", \"log_path\": \"~/runs/distill_sparse_swiglu/bce_isocompute_v3_s456.log\", \"submitted_at\": \"2026-05-17T19:13:30.954Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"llama-3.1-8b\", \"data_path\": \"wikitext-103\", \"data_count\": 0, \"seed\": 456, \"checkpoint_source\": \"N/A (training from scratch)\", \"eval_data\": \"wikitext-103 (training data)\", \"checkpoint_path\": \"checkpoints/bce_isocompute_v3_s456/predictor_bce.pt\", \"wall_clock_seconds\": 2957.0, \"gpu_hours\": 0.82}, \"metrics\": {\"final_loss\": 0.6368, \"final_sparsity\": 0.51, \"training_steps\": 2700}, \"conclusion\": \"success\"}, \"qwen14b_kl30_s42_eval\": {\"spec\": {\"command\": \"cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export HF_DATASETS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets && /root/miniconda3/bin/python -u src/benchmark_eval.py --exp_id qwen14b_kl30_s42 --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --checkpoint checkpoints/qwen14b_kl30_s42/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"52224\", \"log_path\": \"~/runs/distill_sparse_swiglu/qwen14b_kl30_s42_eval.log\", \"submitted_at\": \"2026-05-17T14:52:07.328Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 15737.7, \"gpu_hours\": 4.37}, \"metrics\": {\"wikitext2_ppl\": 7.6232, \"arc_challenge_acc_norm\": 0.5717, \"winogrande_acc\": 0.7206, \"mmlu_acc\": 0.6372, \"gsm8k_exact_match\": 0.4882}, \"conclusion\": \"success\"}, \"c4_download\": {\"conclusion\": \"killed\", \"spec\": {\"command\": \"bash -c \\\"export HF_ENDPOINT=https://hf-mirror.com && export HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets && /root/miniconda3/bin/python -u /tmp/download_c4.py\\\"\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:0\"], \"pid\": \"18522\", \"log_path\": \"~/runs/distill_sparse_swiglu/c4_download.log\", \"submitted_at\": \"2026-05-17T18:45:36.676Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"kl50_global_s123_reeval\": {\"spec\": {\"pid\": \"14578\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:0\"], \"account\": \"root\", \"log_path\": \"logs/kl50_global_s123_reeval.log\", \"command\": \"CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python -u src/benchmark_eval.py --exp_id kl50_global_s123 --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b/ --predictor_path checkpoints/mvp_kl_norm_v2_s123/predictor_kl_normalized.pt --sparsity_target 0.5 --allocation global --tasks wikitext2,arc_challenge,winogrande,mmlu --gpu 0\", \"model_name\": \"llama-3.1-8b\", \"data_path\": \"N/A\", \"data_count\": 0, \"seed\": 123, \"checkpoint_source\": \"checkpoints/mvp_kl_norm_v2_s123/predictor_kl_normalized.pt\", \"eval_data\": \"wikitext2,arc_challenge,winogrande,mmlu\"}, \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 11.7184, \"arc_challenge_acc_norm\": 0.3635, \"winogrande_acc\": 0.6109, \"mmlu_acc\": 0.2834, \"gsm8k_exact_match\": 0.0258}}, \"downstream_teal30_baseline\": {\"spec\": {\"command\": \"cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export HF_DATASETS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets && /root/miniconda3/bin/python -u src/benchmark_eval.py --exp_id downstream_teal30_baseline --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --baseline_mode teal_vanilla --sparsity_target 0.3 --tasks hellaswag,piqa,boolq --gpu 0\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:0\"], \"pid\": \"12150\", \"log_path\": \"~/runs/distill_sparse_swiglu/downstream_teal30_baseline.log\", \"submitted_at\": \"2026-05-17T17:09:09.433Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 2196.7, \"gpu_hours\": 0.61}, \"metrics\": {\"hellaswag_acc\": 0.4878, \"hellaswag_acc_norm\": 0.667, \"piqa_acc\": 0.7258, \"piqa_acc_norm\": 0.7361, \"boolq_acc\": 0.685}, \"conclusion\": \"success\"}, \"kl30_s456_uniform_eval\": {\"spec\": {\"command\": \"cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export HF_DATASETS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets && /root/miniconda3/bin/python -u src/benchmark_eval.py --exp_id kl30_s456_uniform --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/kl_30pct_s456/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"49864\", \"log_path\": \"~/runs/distill_sparse_swiglu/kl30_s456_uniform_eval.log\", \"submitted_at\": \"2026-05-17T14:24:33.044Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 7397.6, \"gpu_hours\": 2.05}, \"conclusion\": \"success\", \"metrics\": {\"mmlu\": 0.4198, \"ppl_uniform\": 8.7947, \"arc_challenge\": 0.4505, \"winogrande\": 0.6875, \"gsm8k\": 0.0758}}, \"downstream_dense_baseline\": {\"spec\": {\"command\": \"cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export HF_DATASETS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets && /root/miniconda3/bin/python -u src/benchmark_eval.py --exp_id downstream_dense_baseline --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --tasks hellaswag,piqa,boolq --gpu 0\", \"server\": \"westd-41718\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"model_name\": \"llama-3.1-8b\", \"seed\": 42, \"data_path\": \"hellaswag,piqa,boolq\", \"data_count\": 0}, \"metrics\": {\"hellaswag_acc_norm\": 0.8233, \"hellaswag_acc_norm_stderr\": 0.0038, \"piqa_acc_norm\": 0.8074, \"piqa_acc_norm_stderr\": 0.0092, \"boolq_acc\": 0.8294, \"boolq_acc_stderr\": 0.0066}, \"conclusion\": \"success\"}, \"qwen14b_bce30_s42_v2\": {\"spec\": {\"command\": \"cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export HF_HUB_OFFLINE=1 && export HF_DATASETS_OFFLINE=1 && export HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets && /root/miniconda3/bin/python -u src/train.py --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --loss_type bce --num_steps 1000 --batch_size 1 --seq_len 2048 --lr 1e-3 --seed 42 --sparsity_target 0.3 --lambda_max 50000 --gradient_checkpointing --dataset wikitext-103 --log_every 10 --output_dir checkpoints/qwen14b_bce30_s42_v2 --wandb_run_name qwen14b_bce30_s42_v2 --gpu 0\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"57864\", \"log_path\": \"~/runs/distill_sparse_swiglu/qwen14b_bce30_s42_v2.log\", \"submitted_at\": \"2026-05-17T16:26:53.579Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 1453.7, \"gpu_hours\": 0.4}, \"conclusion\": \"negative\", \"metrics\": {\"predictor_native_sparsity\": 0.064, \"lambda_max\": 50000, \"final_bce_loss\": 0.5324, \"steps\": 1000, \"constraint_satisfied\": false, \"sparsity_trajectory\": \"49%→5% collapse in 50 steps, no recovery over 950 steps\", \"note\": \"10x stronger Lagrangian produces identical sparsity as v1 (lambda=5000). Confirms BCE gradient insufficiency is fundamental, not constraint strength.\"}}, \"qwen14b_bce30_s42\": {\"spec\": {\"command\": \"cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export HF_HUB_OFFLINE=1 && export HF_DATASETS_OFFLINE=1 && export HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets && /root/miniconda3/bin/python -u src/train.py --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --loss_type bce --num_steps 1000 --batch_size 1 --seq_len 2048 --lr 1e-3 --seed 42 --sparsity_target 0.3 --lambda_max 5000 --gradient_checkpointing --dataset wikitext-103 --log_every 10 --output_dir checkpoints/qwen14b_bce30_s42 --wandb_run_name qwen14b_bce30_s42 --gpu 0\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"55026\", \"log_path\": \"~/runs/distill_sparse_swiglu/qwen14b_bce30_s42.log\", \"submitted_at\": \"2026-05-17T15:45:38.131Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 2533.6, \"gpu_hours\": 0.7}, \"conclusion\": \"success\", \"metrics\": {\"dense_ppl\": 5.18, \"predictor_hard_mask_ppl\": 5.57, \"teal_global_ppl\": 8.76, \"ppl_ratio_hard_mask\": 1.075, \"ppl_ratio_hard_mask_note\": \"at predictor native 6.4% sparsity, not comparable to KL's 28.1%\", \"ppl_ratio_teal\": 1.69, \"actual_sparsity_teal\": 0.3, \"predictor_native_sparsity\": 0.064, \"training_log_sparsity_note\": \"Training Lagrangian failed (predictor sparsity=6.4%). Inference via TEAL forces 30% externally. TEAL PPL 8.76 is valid for method comparison.\", \"final_loss\": 0.5561, \"final_bce_loss\": 0.5324, \"steps\": 1000, \"constraint_satisfied\": false}}, \"downstream_extended_kl30_s42\": {\"spec\": {\"command\": \"cd /root/distill_sparse_swiglu && /root/miniconda3/bin/python -u src/benchmark_eval.py --exp_id downstream_extended_kl30_s42 --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --tasks hellaswag,piqa,boolq --gpu 0\", \"server\": \"westd-41718\", \"gpu\": [\"cuda:0\"], \"account\": \"root\", \"model_name\": \"llama-3.1-8b\", \"data_path\": \"lm-eval-harness datasets\", \"data_count\": 0, \"seed\": 42, \"checkpoint_source\": \"kl_sparsity30_s42_v3\"}, \"metrics\": {\"hellaswag_acc_norm\": 0.727, \"hellaswag_acc\": 0.527, \"piqa_acc_norm\": 0.7595, \"piqa_acc\": 0.747, \"boolq_acc\": 0.7685}, \"conclusion\": \"success\"}, \"kl30_s123_eval\": {\"spec\": {\"command\": \"cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export HF_DATASETS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets && /root/miniconda3/bin/python -u src/benchmark_eval.py --exp_id kl30_s123_uniform --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/kl_30pct_s123/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"42014\", \"log_path\": \"~/runs/distill_sparse_swiglu/kl30_s123_eval.log\", \"submitted_at\": \"2026-05-17T12:53:02.294Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"wikitext-2 + lm-eval cached\", \"data_count\": \"full\", \"model_name\": \"LLaMA-3.1-8B\", \"seed\": 123, \"checkpoint_source\": \"checkpoints/kl_30pct_s123/predictor_kl_normalized.pt\", \"eval_data\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\", \"checkpoint_path\": \"checkpoints/kl_30pct_s123/predictor_kl_normalized.pt\", \"wall_clock_seconds\": 11021.6, \"gpu_hours\": 3.06}, \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 8.8308, \"arc_challenge_acc_norm\": 0.4531, \"winogrande_acc\": 0.6938, \"mmlu_acc\": 0.3944, \"gsm8k_exact_match\": 0.0751, \"actual_sparsity\": 0.3, \"allocation\": \"uniform\"}}, \"kl30_s456_train\": {\"spec\": {\"command\": \"cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export HF_HUB_OFFLINE=1 && export HF_DATASETS_OFFLINE=1 && /root/miniconda3/bin/python -u src/train.py --loss_type kl_normalized --sparsity_target 0.3 --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 456 --lambda_max 5000 --gradient_checkpointing --dataset wikitext-103 --log_every 10 --output_dir checkpoints/kl_30pct_s456 --wandb_run_name kl_30pct_s456\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"42087\", \"log_path\": \"~/runs/distill_sparse_swiglu/kl30_s456_train.log\", \"submitted_at\": \"2026-05-17T12:53:04.086Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"wikitext-103 local\", \"data_count\": \"full\", \"model_name\": \"LLaMA-3.1-8B\", \"seed\": 456, \"checkpoint_path\": \"checkpoints/kl_30pct_s456/predictor_kl_normalized.pt\", \"wall_clock_seconds\": 11018.6, \"gpu_hours\": 3.06}, \"conclusion\": \"success\", \"metrics\": {\"final_loss\": 0.2021, \"actual_sparsity\": 0.289, \"constraint_satisfied\": true, \"training_steps\": 1000}}, \"qwen14b_kl30_s42\": {\"spec\": {\"command\": \"cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export HF_HUB_OFFLINE=1 && export HF_DATASETS_OFFLINE=1 && export HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets && /root/miniconda3/bin/python -u src/train.py --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --loss_type kl_normalized --num_steps 1000 --batch_size 1 --seq_len 2048 --lr 1e-3 --seed 42 --sparsity_target 0.3 --lambda_max 5000 --gradient_checkpointing --dataset wikitext-103 --log_every 10 --output_dir checkpoints/qwen14b_kl30_s42 --wandb_run_name qwen14b_kl30_s42 --gpu 0\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"50349\", \"log_path\": \"~/runs/distill_sparse_swiglu/qwen14b_kl30_s42.log\", \"submitted_at\": \"2026-05-17T14:28:58.095Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 1278.3, \"gpu_hours\": 0.36}, \"metrics\": {\"dense_ppl\": 5.18, \"predictor_hard_mask_ppl\": 6.8, \"teal_global_ppl\": 7.62, \"ppl_ratio_hard_mask\": 1.31, \"ppl_ratio_teal\": 1.47, \"final_loss\": 0.3398, \"training_sparsity\": 0.281, \"teal_sparsity\": 0.3, \"lambda\": 5000, \"steps\": 1000}, \"conclusion\": \"success\"}, \"kl50_s456_global_eval\": {\"spec\": {\"command\": \"cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export HF_DATASETS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets && /root/miniconda3/bin/python -u src/benchmark_eval.py --exp_id kl50_s456_global --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/mvp_kl_norm_v2_s456/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.5 --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"44798\", \"log_path\": \"~/runs/distill_sparse_swiglu/kl50_s456_global_eval.log\", \"submitted_at\": \"2026-05-17T13:33:43.512Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"wikitext-2 + lm-eval cached\", \"data_count\": \"full\", \"model_name\": \"LLaMA-3.1-8B\", \"seed\": 456, \"checkpoint_source\": \"checkpoints/mvp_kl_norm_v2_s456/predictor_kl_normalized.pt\", \"eval_data\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\", \"wall_clock_seconds\": 3039.3, \"gpu_hours\": 0.84}, \"metrics\": {\"ppl_wikitext2\": 11.8057, \"arc_challenge\": 0.3319, \"winogrande\": 0.6488, \"mmlu\": 0.2794, \"gsm8k\": 0.0212}, \"conclusion\": \"success\"}, \"kl30_s456_global_eval\": {\"spec\": {\"command\": \"cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export HF_DATASETS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets && /root/miniconda3/bin/python -u src/benchmark_eval.py --exp_id kl30_s456_global --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/kl_30pct_s456/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"44873\", \"log_path\": \"~/runs/distill_sparse_swiglu/kl30_s456_global_eval.log\", \"submitted_at\": \"2026-05-17T13:33:45.790Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"wikitext-2 + lm-eval cached\", \"data_count\": \"full\", \"model_name\": \"LLaMA-3.1-8B\", \"seed\": 456, \"checkpoint_source\": \"checkpoints/kl_30pct_s456/predictor_kl_normalized.pt\", \"eval_data\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\", \"wall_clock_seconds\": 3038.2, \"gpu_hours\": 0.84}, \"metrics\": {\"ppl_wikitext2\": 8.9332, \"arc_challenge\": 0.4633, \"winogrande\": 0.7111, \"mmlu\": 0.4382, \"gsm8k\": 0.0758}, \"conclusion\": \"success\"}, \"kl_30pct_s123\": {\"spec\": {\"command\": \"python src/benchmark_eval.py --exp_id kl_30pct_s123 --checkpoint checkpoints/kl_30pct_s123/predictor_kl_normalized.pt --sparsity_target 0.3 --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k\", \"server\": \"westd-34887\", \"data_path\": \"wikitext-2 local + lm-eval cached\", \"data_count\": \"full\", \"model_name\": \"LLaMA-3.1-8B\", \"seed\": 123, \"checkpoint_path\": \"checkpoints/kl_30pct_s123/predictor_kl_normalized.pt\", \"log_path\": \"results/benchmark/kl_30pct_s123_global/results.json\"}, \"metrics\": {\"ppl_wikitext2\": 8.9748, \"arc_challenge_acc_norm\": 0.4531, \"winogrande_acc\": 0.693, \"mmlu_acc\": 0.3807, \"gsm8k_exact_match\": 0.0758, \"sparsity\": 0.3, \"allocation\": \"global\"}, \"conclusion\": \"success\"}, \"mistral_teal70_baseline\": {\"metrics\": {\"wikitext2_ppl\": 61.716, \"model\": \"Mistral-7B-v0.3\", \"condition\": \"teal_vanilla_70pct\", \"sparsity\": 0.7, \"allocation\": \"uniform\", \"ppl_increase_vs_dense\": 56.1922}, \"conclusion\": \"success\", \"spec\": {\"command\": \"python src/benchmark_eval.py --baseline_mode teal_vanilla --sparsity 0.7 --allocation uniform\", \"server\": \"westd-34887\", \"data_path\": \"WikiText-2 test\", \"data_count\": 0, \"model_name\": \"Mistral-7B-v0.3\", \"seed\": 42, \"checkpoint_path\": \"N/A (baseline eval)\", \"log_path\": \"/root/distill_sparse_swiglu/results/benchmark/mistral_teal70_baseline/results.json\"}}, \"mistral_teal30_baseline\": {\"metrics\": {\"wikitext2_ppl\": 8.3807, \"model\": \"Mistral-7B-v0.3\", \"condition\": \"teal_vanilla_30pct\", \"sparsity\": 0.3, \"allocation\": \"uniform\", \"ppl_increase_vs_dense\": 2.8569}, \"conclusion\": \"success\", \"spec\": {\"command\": \"python src/benchmark_eval.py --baseline_mode teal_vanilla --sparsity 0.3 --allocation uniform\", \"server\": \"westd-34887\", \"data_path\": \"WikiText-2 test\", \"data_count\": 0, \"model_name\": \"Mistral-7B-v0.3\", \"seed\": 42, \"checkpoint_path\": \"N/A (baseline eval)\", \"log_path\": \"/root/distill_sparse_swiglu/results/benchmark/mistral_teal30_baseline/results.json\"}}, \"mistral_kl70_teal_global\": {\"metrics\": {\"wikitext2_ppl\": 13.3254, \"model\": \"Mistral-7B-v0.3\", \"condition\": \"kl_teal_global_70pct\", \"sparsity\": 0.7, \"allocation\": \"uniform\", \"ppl_increase_vs_dense\": 7.8016}, \"conclusion\": \"success\", \"spec\": {\"command\": \"python src/benchmark_eval.py --checkpoint checkpoints/mistral_kl70_s42/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity 0.7\", \"server\": \"westd-34887\", \"data_path\": \"WikiText-2 test\", \"data_count\": 0, \"model_name\": \"Mistral-7B-v0.3\", \"seed\": 42, \"checkpoint_path\": \"checkpoints/mistral_kl70_s42/predictor_kl_normalized.pt\", \"log_path\": \"/root/distill_sparse_swiglu/results/benchmark/mistral_kl70_teal_global/results.json\"}}, \"mistral_kl50_teal_global\": {\"metrics\": {\"wikitext2_ppl\": 8.6489, \"model\": \"Mistral-7B-v0.3\", \"condition\": \"kl_teal_global_50pct\", \"sparsity\": 0.5, \"allocation\": \"uniform\", \"ppl_increase_vs_dense\": 3.1251}, \"conclusion\": \"success\", \"spec\": {\"command\": \"python src/benchmark_eval.py --checkpoint checkpoints/mistral_kl_s42/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity 0.5\", \"server\": \"westd-34887\", \"data_path\": \"WikiText-2 test\", \"data_count\": 0, \"model_name\": \"Mistral-7B-v0.3\", \"seed\": 42, \"checkpoint_path\": \"checkpoints/mistral_kl_s42/predictor_kl_normalized.pt\", \"log_path\": \"/root/distill_sparse_swiglu/results/benchmark/mistral_kl50_teal_global/results.json\"}}, \"mistral_kl30_teal_global\": {\"metrics\": {\"wikitext2_ppl\": 6.7733, \"model\": \"Mistral-7B-v0.3\", \"condition\": \"kl_teal_global_30pct\", \"sparsity\": 0.3, \"allocation\": \"uniform\", \"ppl_increase_vs_dense\": 1.2495}, \"conclusion\": \"success\", \"spec\": {\"command\": \"python src/benchmark_eval.py --checkpoint checkpoints/mistral_kl30_s42/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity 0.3\", \"server\": \"westd-34887\", \"data_path\": \"WikiText-2 test\", \"data_count\": 0, \"model_name\": \"Mistral-7B-v0.3\", \"seed\": 42, \"checkpoint_path\": \"checkpoints/mistral_kl30_s42/predictor_kl_normalized.pt\", \"log_path\": \"/root/distill_sparse_swiglu/results/benchmark/mistral_kl30_teal_global/results.json\"}}, \"mistral_kl70_pertoken\": {\"metrics\": {\"wikitext2_ppl\": 9.1086, \"model\": \"Mistral-7B-v0.3\", \"condition\": \"kl_pertoken_70pct\", \"sparsity\": 0.7, \"allocation\": \"uniform\", \"ppl_increase_vs_dense\": 3.5848}, \"conclusion\": \"success\", \"spec\": {\"command\": \"python src/benchmark_eval.py --checkpoint checkpoints/mistral_kl70_s42/predictor_kl_normalized.pt --sparsity_mode per_token --sparsity 0.7\", \"server\": \"westd-34887\", \"data_path\": \"WikiText-2 test\", \"data_count\": 0, \"model_name\": \"Mistral-7B-v0.3\", \"seed\": 42, \"checkpoint_path\": \"checkpoints/mistral_kl70_s42/predictor_kl_normalized.pt\", \"log_path\": \"/root/distill_sparse_swiglu/results/benchmark/mistral_kl70_pertoken/results.json\"}}, \"mistral_kl50_pertoken\": {\"metrics\": {\"wikitext2_ppl\": 7.2931, \"model\": \"Mistral-7B-v0.3\", \"condition\": \"kl_pertoken_50pct\", \"sparsity\": 0.5, \"allocation\": \"uniform\", \"ppl_increase_vs_dense\": 1.7693}, \"conclusion\": \"success\", \"spec\": {\"command\": \"python src/benchmark_eval.py --checkpoint checkpoints/mistral_kl_s42/predictor_kl_normalized.pt --sparsity_mode per_token --sparsity 0.5\", \"server\": \"westd-34887\", \"data_path\": \"WikiText-2 test\", \"data_count\": 0, \"model_name\": \"Mistral-7B-v0.3\", \"seed\": 42, \"checkpoint_path\": \"checkpoints/mistral_kl_s42/predictor_kl_normalized.pt\", \"log_path\": \"/root/distill_sparse_swiglu/results/benchmark/mistral_kl50_pertoken/results.json\"}}, \"mistral_kl30_pertoken\": {\"metrics\": {\"wikitext2_ppl\": 6.048, \"model\": \"Mistral-7B-v0.3\", \"condition\": \"kl_pertoken_30pct\", \"sparsity\": 0.3, \"allocation\": \"uniform\", \"ppl_increase_vs_dense\": 0.5242}, \"conclusion\": \"success\", \"spec\": {\"command\": \"python src/benchmark_eval.py --checkpoint checkpoints/mistral_kl30_s42/predictor_kl_normalized.pt --sparsity_mode per_token --sparsity 0.3\", \"server\": \"westd-34887\", \"data_path\": \"WikiText-2 test\", \"data_count\": 0, \"model_name\": \"Mistral-7B-v0.3\", \"seed\": 42, \"checkpoint_path\": \"checkpoints/mistral_kl30_s42/predictor_kl_normalized.pt\", \"log_path\": \"/root/distill_sparse_swiglu/results/benchmark/mistral_kl30_pertoken/results.json\"}}, \"mistral_dense_ppl\": {\"metrics\": {\"wikitext2_ppl\": 5.5238, \"model\": \"Mistral-7B-v0.3\", \"condition\": \"dense\", \"sparsity\": 0}, \"conclusion\": \"success\", \"spec\": {\"command\": \"python src/benchmark_eval.py --model /root/autodl-tmp/models/mistral-7b/ --dense --tasks wikitext2\", \"server\": \"westd-34887\", \"data_path\": \"WikiText-2 test\", \"data_count\": 0, \"model_name\": \"Mistral-7B-v0.3\", \"seed\": 42, \"checkpoint_path\": \"N/A (dense eval)\", \"log_path\": \"/root/distill_sparse_swiglu/results/benchmark/mistral_dense_ppl/results.json\"}}, \"kl_50pct_s123\": {\"spec\": {\"command\": \"python src/train_kl.py --seed 123 --sparsity_target 0.5 + benchmark_eval.py\", \"server\": \"westd-34887\", \"data_path\": \"wikitext-103 local\", \"data_count\": \"full\", \"model_name\": \"LLaMA-3.1-8B\", \"seed\": 123, \"checkpoint_path\": \"checkpoints/kl_50pct_s123/predictor_kl_normalized.pt\", \"log_path\": \"results/benchmark/kl_50pct_s123_global/results.json\"}, \"conclusion\": \"success\", \"metrics\": {\"ppl_wikitext2\": 11.745, \"arc_challenge_acc_norm\": 0.3814, \"winogrande_acc\": 0.6125, \"mmlu_acc\": 0.2752, \"gsm8k_exact_match\": 0.0281, \"sparsity\": 0.5, \"allocation\": \"global\"}}, \"lm_eval_mistral_dense\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export TRANSFORMERS_OFFLINE=1 && export HF_DATASETS_OFFLINE=1 && python -u src/eval_benchmark.py --condition mistral_dense --tasks lm_eval --skip_ppl --gpu 0 --batch_size 4 --output_dir results/plan_009_mistral 2>&1 | tee logs/eval_mistral_dense_downstream.log\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"181111\", \"log_path\": \"~/runs/distill_sparse_swiglu/lm_eval_mistral_dense.log\", \"submitted_at\": \"2026-05-16T00:04:50.125Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"N/A (eval only)\", \"wall_clock_seconds\": 8243.6, \"gpu_hours\": 2.29}, \"conclusion\": \"success\", \"metrics\": {\"arc_challenge_acc_norm\": 0.6024, \"winogrande_acc\": 0.7869, \"mmlu_acc\": 0.6244, \"gsm8k_exact_match\": 0.3654, \"model\": \"Mistral-7B-v0.3\", \"condition\": \"dense\", \"server\": \"westd-34887\"}}, \"lm_eval_mistral_kl_50pct\": {\"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python -u src/lm_eval_sparse.py --model_name_or_path /root/autodl-tmp/models/mistral-7b/ --predictor_path checkpoints/mistral_kl_s42/predictor_kl_normalized.pt --sparsity_target 0.5 --tasks arc_challenge,winogrande,mmlu,gsm8k --output_path results/lm_eval_mistral_kl_50pct\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"195242\", \"log_path\": \"logs/lm_eval_mistral_kl_50pct.log\", \"submitted_at\": \"2026-05-16T10:56:32Z\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"arc_challenge,winogrande,mmlu,gsm8k\", \"data_count\": 0, \"model_name\": \"Mistral-7B-v0.3\", \"seed\": 42, \"checkpoint_path\": \"checkpoints/mistral_kl_s42/predictor_kl_normalized.pt\"}, \"conclusion\": \"negative\", \"metrics\": {\"arc_challenge_acc\": 0.2927, \"arc_challenge_acc_norm\": 0.3183, \"arc_challenge_acc_norm_stderr\": 0.0136, \"winogrande_acc\": 0.629, \"winogrande_acc_stderr\": 0.0136, \"mmlu_acc\": 0.2295, \"mmlu_acc_stderr\": 0.0035, \"mmlu_stem_acc\": 0.2125, \"mmlu_humanities_acc\": 0.2421, \"mmlu_social_sciences_acc\": 0.2171, \"mmlu_other_acc\": 0.2398, \"gsm8k_exact_match_strict\": 0.0045, \"gsm8k_exact_match_flexible\": 0.0212, \"model\": \"Mistral-7B-v0.3\", \"condition\": \"kl_distill_50pct_sparsity_s42\", \"arc_challenge_retention_vs_dense\": 0.528, \"winogrande_retention_vs_dense\": 0.799, \"mmlu_retention_vs_dense\": 0.368, \"gsm8k_retention_vs_dense\": 0.012}}, \"mistral_teal50_baseline\": {\"metrics\": {\"teal_baseline_ppl\": 18.3061, \"dense_ppl\": 5.5238, \"teal_vs_dense_ratio\": 3.31}, \"conclusion\": \"success\", \"spec\": {\"command\": \"benchmark_eval.py --model_path /root/autodl-tmp/models/mistral-7b/ --sparsity_mode teal_global --sparsity 0.5\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"model_name\": \"mistral-7b-v0.3\", \"data_path\": \"WikiText-2 test\", \"data_count\": 0, \"seed\": 42, \"checkpoint_path\": \"N/A (eval-only)\", \"log_path\": \"/root/distill_sparse_swiglu/logs/mistral_teal50_baseline.log\"}}, \"kl50_s456_train_eval\": {\"conclusion\": \"killed\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/bin/activate base && bash /root/distill_sparse_swiglu/scripts/run_kl50_s456.sh\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"31394\", \"log_path\": \"~/runs/distill_sparse_swiglu/kl50_s456_train_eval.log\", \"submitted_at\": \"2026-05-17T11:22:27.196Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"kl_bce_f1_oracle\": {\"spec\": {\"command\": \"python /root/distill_sparse_swiglu/scripts/kl_bce_f1_oracle.py\", \"server\": \"westd-34887\", \"data_path\": \"C4 calibration\", \"data_count\": 50, \"model_name\": \"LLaMA-3.1-8B\", \"seed\": 42, \"checkpoint_source\": \"mvp_kl_norm_v2_s42 + bce_isocompute_v3_s42\", \"eval_data\": \"F1/precision/recall vs oracle magnitude top-50% mask\"}, \"conclusion\": \"success\", \"metrics\": {\"bce_f1\": 0.6128, \"bce_precision\": 0.6132, \"bce_recall\": 0.6124, \"kl_f1\": 0.5397, \"kl_precision\": 0.5112, \"kl_recall\": 0.5715, \"random_f1\": 0.5, \"kl_ppl\": 11.79, \"bce_ppl\": 22.51}}, \"global_30pct_retention\": {\"spec\": {\"command\": \"python global_30pct_retention_analysis_script.py\", \"server\": \"westd-34887\", \"data_path\": \"C4 calibration\", \"data_count\": 50, \"model_name\": \"LLaMA-3.1-8B\", \"seed\": 42, \"checkpoint_source\": \"kl_sparsity30_s42_v3\", \"eval_data\": \"C4 50 samples seq_len=2048 global top-k retention per layer\", \"checkpoint_path\": \"N/A (analysis)\", \"log_path\": \"/root/distill_sparse_swiglu/artifacts/global_30pct_retention_analysis.json\"}, \"conclusion\": \"negative\", \"metrics\": {\"early_retention\": 0.771, \"middle_retention\": 0.764, \"knowledge_L12_20_retention\": 0.797, \"late_L24_31_retention\": 0.501, \"L31_retention\": 0.284, \"L30_retention\": 0.366, \"starved_layers\": \"L27-L31\"}}, \"mag_preservation_reg\": {\"conclusion\": \"failed\"}, \"teal_kl_overlap_corrected\": {\"spec\": {\"command\": \"python /root/distill_sparse_swiglu/scripts/teal_kl_overlap_corrected.py\", \"server\": \"westd-34887\", \"data_path\": \"cached activations from teal_kl_overlap.py\", \"data_count\": 27, \"model_name\": \"LLaMA-3.1-8B\", \"seed\": 42, \"checkpoint_source\": \"teal_kl_overlap_analysis\", \"eval_data\": \"permutation test 1000 iterations on cached activations\", \"checkpoint_path\": \"N/A (analysis)\", \"log_path\": \"/root/distill_sparse_swiglu/artifacts/teal_kl_overlap_corrected.json\"}, \"conclusion\": \"success\", \"metrics\": {\"z_score\": 7260.3, \"p_value\": 0, \"median_percentile_rank\": 78.6, \"iqr_q1\": 64.4, \"iqr_q3\": 89.1, \"layers_significant\": \"31/32\", \"exception_layer\": 31}}, \"sparsity_floor_extended\": {\"spec\": {\"command\": \"python /root/distill_sparse_swiglu/scripts/sparsity_floor_extended.py\", \"server\": \"westd-34887\", \"data_path\": \"C4 calibration seq_len=2048\", \"data_count\": 50, \"model_name\": \"LLaMA-3.1-8B\", \"seed\": 42, \"checkpoint_source\": \"kl_30pct_s42_v3, mvp_kl_norm_v2_s42, kl_sparsity70_s42\", \"eval_data\": \"C4 calibration 50 samples seq_len=2048\", \"checkpoint_path\": \"N/A (analysis)\", \"log_path\": \"/root/distill_sparse_swiglu/artifacts/sparsity_floor_extended.json\"}, \"conclusion\": \"success\", \"metrics\": {\"floor_30pct\": 0.0499, \"floor_50pct\": 0.0726, \"floor_70pct\": 0.1936, \"late_layer_max_30\": 0.4604, \"late_layer_max_50\": 1.2347, \"late_layer_max_70\": 4.3666, \"threshold\": 0.1, \"seq_len\": 2048, \"num_samples\": 50}}, \"gradient_snr_constrained_v2\": {\"spec\": {\"command\": \"python /root/distill_sparse_swiglu/scripts/gradient_snr_constrained.py\", \"server\": \"westd-34887\", \"data_path\": \"C4 calibration\", \"data_count\": 200, \"model_name\": \"LLaMA-3.1-8B\", \"seed\": 42, \"checkpoint_source\": \"gradient_snr_kl_vs_bce\", \"eval_data\": \"C4 calibration 200 steps gradient recording\", \"checkpoint_path\": \"N/A (analysis)\", \"log_path\": \"/root/distill_sparse_swiglu/artifacts/gradient_snr_constrained_results.json\"}, \"conclusion\": \"success\", \"metrics\": {\"kl_avg_snr\": 0.000545, \"bce_avg_snr\": 5.28e-06, \"snr_ratio\": 103.2, \"kl_final_sparsity\": 0.508, \"bce_final_sparsity\": 0.591, \"steps\": 200}}, \"teal_kl_overlap_analysis\": {\"spec\": {\"command\": \"python /root/distill_sparse_swiglu/scripts/teal_kl_overlap.py\", \"server\": \"westd-34887\", \"data_path\": \"C4 calibration\", \"data_count\": 27, \"model_name\": \"LLaMA-3.1-8B\", \"seed\": 42, \"checkpoint_path\": \"N/A (analysis)\", \"log_path\": \"/root/distill_sparse_swiglu/artifacts/teal_kl_overlap_analysis.json\"}, \"conclusion\": \"success\", \"metrics\": {\"overall_jaccard\": 0.396, \"divergence_ratio\": 0.433, \"kl_only_pruned_magnitude_ratio\": 1.48, \"teal_only_pruned_mean_gate_prob\": 0.614, \"min_jaccard_layer\": \"L17-L18 (0.19)\", \"max_jaccard_layer\": \"L26-L28 (0.55)\"}}, \"natural_sparsity_floor_30pct\": {\"spec\": {\"command\": \"python /root/distill_sparse_swiglu/scripts/natural_sparsity_floor.py\", \"server\": \"westd-34887\", \"data_path\": \"C4 calibration\", \"data_count\": 100, \"model_name\": \"LLaMA-3.1-8B\", \"seed\": 42, \"checkpoint_path\": \"N/A (analysis)\", \"log_path\": \"/root/distill_sparse_swiglu/artifacts/natural_sparsity_floor_analysis.json\"}, \"conclusion\": \"success\", \"metrics\": {\"always_pruned_ratio\": 0.0006, \"always_pruned_count\": 278, \"total_neurons\": 458752, \"late_layer_max_ratio\": 0.0051, \"threshold\": 0.1}}, \"gradient_snr_kl_vs_bce\": {\"spec\": {\"command\": \"python /root/distill_sparse_swiglu/scripts/gradient_snr_analysis.py\", \"server\": \"westd-34887\", \"data_path\": \"C4 calibration\", \"data_count\": 80, \"model_name\": \"LLaMA-3.1-8B\", \"seed\": 42, \"checkpoint_path\": \"N/A (analysis only)\", \"log_path\": \"/root/distill_sparse_swiglu/artifacts/gradient_snr_results.json\"}, \"conclusion\": \"success\", \"metrics\": {\"kl_avg_snr\": 5.77e-05, \"bce_avg_snr\": 1e-05, \"snr_ratio\": 5.76, \"early_layer_ratio_range\": \"34-156x\", \"late_layer_ratio_range\": \"2-4x\"}}, \"training_free_wina_greedy\": {\"spec\": {\"command\": \"python src/evaluate.py --baseline_mode wina_greedy --sparsity_target 0.5 --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --gpu 0\", \"server\": \"westd-34887\", \"data_path\": \"wikitext-2 (HF)\", \"data_count\": 141, \"model_name\": \"LLaMA-3.1-8B\", \"seed\": \"default\", \"checkpoint_source\": \"N/A (training-free baseline)\", \"eval_data\": \"WikiText-2\", \"checkpoint_path\": \"N/A\", \"log_path\": \"/tmp/wina_greedy_eval.log\"}, \"conclusion\": \"negative\", \"metrics\": {\"wina_greedy_ppl\": 2126.03, \"dense_ppl\": 6.12, \"model_level_sparsity\": 0.5, \"eval_dataset\": \"WikiText-2\", \"eval_seq_len\": 2048, \"greedy_allocation_summary\": \"layers 0-11: 0.90, layer 12: 0.85, layer 13: 0.80, layer 14: 0.70, layers 15-16: 0.50-0.55, layers 17-20: 0.30-0.35, layers 21-24: 0.05-0.15, layers 25-31: 0.00\"}}, \"bench_teal70\": {\"metrics\": {\"wikitext2_ppl\": 100.11, \"dense_ppl\": 6.12, \"actual_sparsity\": 0.7, \"source\": \"training_free_baselines experiment (vanilla teal global)\"}, \"conclusion\": \"success\", \"spec\": {\"command\": \"benchmark_eval.py (data sourced from training_free_baselines)\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"model_name\": \"llama-3.1-8b\", \"data_path\": \"WikiText-2 test\", \"data_count\": 0, \"seed\": 42, \"checkpoint_path\": \"N/A (no predictor, vanilla TEAL)\", \"log_path\": \"N/A (existing data)\"}}, \"bench_kl70_global\": {\"metrics\": {\"wikitext2_ppl\": 17.91, \"dense_ppl\": 6.12, \"actual_sparsity\": 0.7, \"source\": \"kl_sparsity70_s42_v2 (teal_global_masks protocol)\", \"vanilla_teal_ppl\": 100.11}, \"conclusion\": \"success\", \"spec\": {\"command\": \"benchmark_eval.py (data sourced from kl_sparsity70_s42_v2)\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"model_name\": \"llama-3.1-8b\", \"data_path\": \"WikiText-2 test\", \"data_count\": 0, \"seed\": 42, \"checkpoint_path\": \"/root/distill_sparse_swiglu/checkpoints/kl_sparsity70_s42/predictor_kl_normalized.pt\", \"log_path\": \"N/A (existing data)\"}}, \"bench_kl50_global\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_DATASETS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export PYTHONUNBUFFERED=1 && export WANDB_MODE=offline && python -u src/benchmark_eval.py --exp_id bench_kl50_global --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.5 --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0 2>&1\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"222648\", \"log_path\": \"~/runs/distill_sparse_swiglu/bench_kl50_global.log\", \"submitted_at\": \"2026-05-16T09:37:16.642Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"llama-3.1-8b\", \"checkpoint_source\": \"checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt\", \"eval_data\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\", \"data_path\": \"wikitext2+lm_eval\", \"data_count\": 0, \"seed\": 42, \"wall_clock_seconds\": 7362.3, \"gpu_hours\": 2.05}, \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 11.7933, \"arc_challenge_acc_norm\": 0.3285, \"winogrande_acc\": 0.6346, \"mmlu_acc\": 0.2789, \"gsm8k_exact_match\": 0.0129, \"actual_sparsity\": 0.5}}, \"bench_kl30_uniform\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export PYTHONUNBUFFERED=1 && python -u src/benchmark_eval.py --exp_id bench_kl30_uniform --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0 2>&1\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"219007\", \"log_path\": \"~/runs/distill_sparse_swiglu/bench_kl30_uniform.log\", \"submitted_at\": \"2026-05-16T08:01:09.960Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"N/A (eval only)\", \"wall_clock_seconds\": 4530.9, \"gpu_hours\": 1.26}, \"metrics\": {\"wikitext2_ppl\": 8.8157, \"arc_challenge_acc_norm\": 0.4078, \"winogrande_acc\": 0.6859, \"mmlu_acc\": 0.4061, \"gsm8k_exact_match\": 0.0735, \"actual_sparsity\": 0.3}, \"conclusion\": \"success\"}, \"eval_kl30_teal_30pct\": {\"spec\": {\"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"command\": \"CUDA_VISIBLE_DEVICES=0 nohup python -u src/evaluate.py --checkpoint checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt --sparsity_target 0.3 --gpu 0\", \"pid\": 213573, \"log_path\": \"~/runs/distill_sparse_swiglu/eval_kl30_teal_30pct.log\", \"backend\": \"nohup\", \"account\": \"root\", \"data_path\": \"wikitext-2 + c4\", \"data_count\": 200, \"model_name\": \"llama-3.1-8b\", \"seed\": 42, \"checkpoint_source\": \"checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt\", \"eval_data\": \"wikitext-2, c4\", \"parent\": \"kl_sparsity30_s42_v3\", \"checkpoint_path\": \"N/A (eval only)\"}, \"conclusion\": \"success\", \"metrics\": {\"dense_ppl\": 6.12, \"predictor_hard_mask_ppl\": 7.3, \"teal_sparse_ppl\": 8.98, \"sparsity_target\": 0.3, \"actual_sparsity\": 0.3}}, \"bench_dense\": {\"spec\": {\"command\": \"benchmark_eval.py --dense --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"209887\", \"log_path\": \"~/runs/distill_sparse_swiglu/bench_dense.log\", \"submitted_at\": \"2026-05-16T05:24:03.581Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"wikitext2 + arc_challenge + winogrande + mmlu + gsm8k\", \"data_count\": 0, \"model_name\": \"llama-3.1-8b (dense baseline)\", \"seed\": 42, \"wall_clock_seconds\": 3056.0, \"gpu_hours\": 0.85, \"checkpoint_path\": \"N/A (eval only)\"}, \"metrics\": {\"wikitext2_ppl\": 6.1173, \"arc_challenge_acc\": 0.5478, \"arc_challenge_acc_norm\": 0.5828, \"winogrande_acc\": 0.7806, \"mmlu_acc\": 0.6527, \"gsm8k_exact_match\": 0.4875}, \"conclusion\": \"success\"}, \"kl_sparsity30_s42_v2\": {\"spec\": {\"command\": \"bash -c 'source setup_env.sh && python src/train.py --loss_type kl_normalized --sparsity_target 0.3 --num_steps 1000 --gradient_checkpointing'\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"132397\", \"log_path\": \"~/runs/distill_sparse_swiglu/kl_sparsity30_s42_v2.log\", \"submitted_at\": \"2026-05-15T20:30:30.429Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"wikitext-103\", \"data_count\": 1000, \"model_name\": \"llama-3.1-8b\", \"seed\": 42, \"wall_clock_seconds\": 2662.6, \"gpu_hours\": 0.74}, \"conclusion\": \"negative\", \"metrics\": {\"final_loss\": 0.1465, \"kl_normalized\": 0.1465, \"kl_raw\": 0.1465, \"model_level_sparsity\": 0.281, \"sparsity_target\": 0.3, \"lambda_sparse_final\": 1000, \"lambda_max_cap\": 1000, \"tau_final\": 0.1, \"constraint_loss_final\": 0, \"training_steps\": 1000, \"wall_clock_seconds\": 2662.6, \"gpu_hours\": 0.74, \"note\": \"No PPL evaluation in training script. Sparsity stuck at 0.281 (same as v1). Lambda hit cap=1000 by step 220 and could not push sparsity further. W&B run was offline (not synced).\"}}, \"bce_gumbel_lagrangian_isolation\": {\"spec\": {\"command\": \"train_bce_gumbel.py --lr {1e-4,1e-3,3e-3} --num_steps 1000 --sparsity_target 0.5\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"model_name\": \"llama-3.1-8b\", \"data_path\": \"WikiText-103 train\", \"data_count\": null, \"seed\": 42, \"hypothesis\": \"BCE loss with identical framework (Gumbel+Lagrangian) still fails vs KL, proving loss function is the key factor\", \"checkpoint_path\": \"checkpoints/bce_framework_lr{1e4,1e3,3e3}/predictor_bce_gumbel.pt\", \"log_path\": \"/root/runs/bce_iso_framework.log\"}, \"metrics\": {\"lr_1e4_ppl\": 42.99, \"lr_1e3_ppl\": 48.4, \"lr_3e3_ppl\": 38.02, \"lr_1e4_bce_loss\": 0.7158, \"lr_1e3_bce_loss\": 0.6781, \"lr_3e3_bce_loss\": 0.6632, \"lr_1e4_sparsity\": 0.514, \"lr_1e3_sparsity\": 0.506, \"lr_3e3_sparsity\": 0.504, \"best_ppl\": 38.02, \"best_lr\": \"3e-3\", \"kl_baseline_ppl\": 11.79, \"gap_vs_kl\": 26.23}, \"conclusion\": \"success\"}, \"eval_c4_ood_kl50\": {\"spec\": {\"command\": \"python src/eval_c4_ood.py\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"model_name\": \"llama-3.1-8b\", \"data_path\": \"allenai/c4 validation (200 samples)\", \"data_count\": 200, \"seed\": 42, \"checkpoint_source\": \"mvp_kl_norm_v2_s42\", \"hypothesis\": \"KL predictor trained on WikiText-103 generalizes to OOD C4 data, maintaining advantage over TEAL\", \"checkpoint_path\": \"checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt\", \"log_path\": \"/root/distill_sparse_swiglu/results/c4_ood_ppl.json\"}, \"metrics\": {\"dense_ppl\": 9.2075, \"kl_50_global_ppl\": 18.401, \"teal_50_ppl\": 38.7503, \"kl_vs_dense_ratio\": 2, \"teal_vs_dense_ratio\": 4.21}, \"conclusion\": \"success\"}, \"longbench_kl30_uniform_v6\": {\"spec\": {\"command\": \"python -u src/benchmark_eval.py --exp_id longbench_kl30_uniform_v6 --checkpoint checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --multi_gpu --batch_size 1 --tasks longbench_narrativeqa,longbench_qasper,longbench_gov_report,longbench_multi_news --gpu 0\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": \"251051\", \"log_path\": \"~/runs/distill_sparse_swiglu/longbench_kl30_uniform_v6.log\", \"submitted_at\": \"2026-05-16T16:58:48.412Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"llama-3.1-8b\", \"data_path\": \"Xnhyacinth/LongBench\", \"data_count\": 800, \"seed\": 42, \"checkpoint_source\": \"kl_sparsity30_s42_v3\", \"checkpoint_path\": \"checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt\", \"wall_clock_seconds\": 6412.6, \"gpu_hours\": 3.56}, \"metrics\": {\"longbench_narrativeqa\": 4.12, \"longbench_qasper\": 6.23, \"longbench_gov_report\": 16.97, \"longbench_multi_news\": 18.01, \"runtime_seconds\": 6156.6}, \"conclusion\": \"negative\"}, \"longbench_dense_v6\": {\"spec\": {\"command\": \"python -u src/benchmark_eval.py --exp_id longbench_dense_v6 --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --dense --multi_gpu --batch_size 1 --tasks longbench_narrativeqa,longbench_qasper,longbench_gov_report,longbench_multi_news --gpu 0\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": \"247777\", \"log_path\": \"~/runs/distill_sparse_swiglu/longbench_dense_v6.log\", \"submitted_at\": \"2026-05-16T15:37:54.676Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"llama-3.1-8b\", \"data_path\": \"Xnhyacinth/LongBench\", \"data_count\": 800, \"seed\": 42, \"checkpoint_path\": \"N/A (dense baseline)\", \"wall_clock_seconds\": 4643.5, \"gpu_hours\": 2.58}, \"conclusion\": \"success\", \"metrics\": {\"longbench_narrativeqa\": 7.3, \"longbench_qasper\": 13.4, \"longbench_gov_report\": 30.5, \"longbench_multi_news\": 2.5}}, \"bench_kl50_uniform_s456\": {\"spec\": {\"command\": \"python -u src/benchmark_eval.py --exp_id bench_kl50_uniform_s456 --checkpoint checkpoints/mvp_kl_norm_v2_s456/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.5 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 1\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"245022\", \"log_path\": \"~/runs/distill_sparse_swiglu/bench_kl50_uniform_s456.log\", \"submitted_at\": \"2026-05-16T14:50:27.834Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"llama-3.1-8b\", \"data_path\": \"wikitext-2 + downstream\", \"data_count\": 159, \"seed\": 456, \"checkpoint_source\": \"mvp_kl_norm_v2_s456\", \"checkpoint_path\": \"checkpoints/mvp_kl_norm_v2_s456/predictor_kl_normalized.pt\", \"wall_clock_seconds\": 2707.2, \"gpu_hours\": 0.75}, \"metrics\": {\"wikitext2_ppl\": 11.9604, \"arc_challenge_acc_norm\": 0.3345, \"winogrande_acc\": 0.6275, \"mmlu_acc\": 0.2874, \"gsm8k_exact_match\": 0.0212, \"actual_sparsity\": 0.5}, \"conclusion\": \"success\"}, \"bench_kl50_uniform_s123\": {\"spec\": {\"command\": \"python -u src/benchmark_eval.py --exp_id bench_kl50_uniform_s123 --checkpoint checkpoints/mvp_kl_norm_v2_s123/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.5 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"244544\", \"log_path\": \"~/runs/distill_sparse_swiglu/bench_kl50_uniform_s123.log\", \"submitted_at\": \"2026-05-16T14:49:46.268Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"llama-3.1-8b\", \"data_path\": \"wikitext-2 + downstream\", \"data_count\": 159, \"seed\": 123, \"checkpoint_source\": \"mvp_kl_norm_v2_s123\", \"checkpoint_path\": \"checkpoints/mvp_kl_norm_v2_s123/predictor_kl_normalized.pt\", \"wall_clock_seconds\": 2566.4, \"gpu_hours\": 0.71}, \"metrics\": {\"wikitext2_ppl\": 11.83, \"arc_challenge_acc_norm\": 0.3515, \"winogrande_acc\": 0.6298, \"mmlu_acc\": 0.2751, \"gsm8k_exact_match\": 0.0235, \"actual_sparsity\": 0.5}, \"conclusion\": \"success\"}, \"latency_benchmark\": {\"spec\": {\"command\": \"python src/latency_benchmark.py\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"model_name\": \"llama-3.1-8b\", \"data_path\": \"N/A (synthetic input)\", \"data_count\": 100, \"seed\": 42, \"checkpoint_path\": \"N/A (benchmark)\", \"log_path\": \"/root/distill_sparse_swiglu/src/latency_benchmark.py\"}, \"conclusion\": \"success\", \"metrics\": {\"gpu_model\": \"NVIDIA RTX PRO 6000 Blackwell Server Edition\", \"dtype\": \"float16\", \"attn\": \"flash_attention_2\", \"batch\": 1, \"seq_len\": 2048, \"warmup\": 10, \"iters\": 100, \"dense_ms\": 119.11, \"dense_std\": 0.57, \"dense_tokens_per_s\": 17194.5, \"kl_30pct_ms\": 126.64, \"kl_30pct_std\": 0.7, \"kl_30pct_tokens_per_s\": 16171.8, \"kl_30pct_speedup\": 0.941, \"kl_50pct_ms\": 126.78, \"kl_50pct_std\": 0.31, \"kl_50pct_tokens_per_s\": 16154.2, \"kl_50pct_speedup\": 0.939, \"comp_30pct_ms\": 129.94, \"comp_30pct_std\": 0.75, \"comp_30pct_tokens_per_s\": 15761.4, \"comp_30pct_speedup\": 0.917, \"comp_50pct_ms\": 129.71, \"comp_50pct_std\": 0.53, \"comp_50pct_tokens_per_s\": 15788.8, \"comp_50pct_speedup\": 0.918, \"predictor_overhead_ms\": 3.17, \"predictor_overhead_pct\": 2.7, \"per_layer_predictor_ms\": 0.099, \"dense_ffn_per_layer_ms\": 2.427, \"sparse_ffn_pred_per_layer_ms\": 2.686, \"compensation_overhead_ms\": 3.3}}, \"bench_kl40_global\": {\"spec\": {\"command\": \"python -u src/benchmark_eval.py --exp_id bench_kl40_global --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/kl_sparsity40_s42/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.4 --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"230101\", \"log_path\": \"~/runs/distill_sparse_swiglu/bench_kl40_global.log\", \"submitted_at\": \"2026-05-16T12:20:36.763Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"llama-3.1-8b\", \"data_path\": \"wikitext2+lm_eval\", \"data_count\": 0, \"seed\": 42, \"eval_data\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\", \"wall_clock_seconds\": 2204.5, \"gpu_hours\": 0.61}, \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 10.117, \"arc_challenge_acc_norm\": 0.4096, \"winogrande_acc\": 0.6535, \"mmlu_acc\": 0.3806, \"gsm8k_exact_match\": 0.05, \"actual_sparsity\": 0.4}}, \"bench_kl50_uniform\": {\"spec\": {\"command\": \"python -u src/benchmark_eval.py --exp_id bench_kl50_uniform --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.5 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"229957\", \"log_path\": \"~/runs/distill_sparse_swiglu/bench_kl50_uniform.log\", \"submitted_at\": \"2026-05-16T12:20:33.499Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"llama-3.1-8b\", \"data_path\": \"wikitext2+lm_eval\", \"data_count\": 0, \"seed\": 42, \"eval_data\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\", \"wall_clock_seconds\": 2207.1, \"gpu_hours\": 0.61}, \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 11.963, \"arc_challenge_acc_norm\": 0.3276, \"winogrande_acc\": 0.629, \"mmlu_acc\": 0.2777, \"gsm8k_exact_match\": 0.0212, \"actual_sparsity\": 0.5}}, \"bench_teal50\": {\"spec\": {\"command\": \"python -u src/benchmark_eval.py --exp_id bench_teal50 --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --baseline_mode teal_vanilla --sparsity_target 0.5 --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"227770\", \"log_path\": \"~/runs/distill_sparse_swiglu/bench_teal50.log\", \"submitted_at\": \"2026-05-16T11:40:14.784Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"llama-3.1-8b\", \"data_path\": \"wikitext2+lm_eval\", \"data_count\": 0, \"seed\": 42, \"eval_data\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\", \"checkpoint_path\": \"N/A (eval only)\", \"wall_clock_seconds\": 2388.9, \"gpu_hours\": 0.66}, \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 23.31, \"arc_challenge_acc_norm\": 0.2841, \"winogrande_acc\": 0.5304, \"mmlu_acc\": 0.2832, \"gsm8k_exact_match\": 0.0197, \"actual_sparsity\": 0.5}}, \"bench_teal30\": {\"spec\": {\"command\": \"python -u src/benchmark_eval.py --exp_id bench_teal30 --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --baseline_mode teal_vanilla --sparsity_target 0.3 --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"227692\", \"log_path\": \"~/runs/distill_sparse_swiglu/bench_teal30.log\", \"submitted_at\": \"2026-05-16T11:40:12.233Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"llama-3.1-8b\", \"data_path\": \"wikitext2+lm_eval\", \"data_count\": 0, \"seed\": 42, \"eval_data\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\", \"checkpoint_path\": \"N/A (eval only)\", \"wall_clock_seconds\": 2376.5, \"gpu_hours\": 0.66}, \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 10.97, \"arc_challenge_acc_norm\": 0.4232, \"winogrande_acc\": 0.6606, \"mmlu_acc\": 0.3861, \"gsm8k_exact_match\": 0.0788, \"actual_sparsity\": 0.3}}, \"bench_kl30_global\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_DATASETS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export PYTHONUNBUFFERED=1 && export WANDB_MODE=offline && python -u src/benchmark_eval.py --exp_id bench_kl30_global --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0 2>&1\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"222726\", \"log_path\": \"~/runs/distill_sparse_swiglu/bench_kl30_global.log\", \"submitted_at\": \"2026-05-16T09:37:18.471Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"llama-3.1-8b\", \"checkpoint_source\": \"checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt\", \"eval_data\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\", \"data_path\": \"wikitext2+lm_eval\", \"data_count\": 0, \"seed\": 42, \"wall_clock_seconds\": 7359.9, \"gpu_hours\": 2.04}, \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 8.9768, \"arc_challenge_acc_norm\": 0.3968, \"winogrande_acc\": 0.7017, \"mmlu_acc\": 0.2527, \"gsm8k_exact_match\": 0.0879, \"actual_sparsity\": 0.3}}, \"lm_eval_dense\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 lm_eval --model hf --model_args pretrained=meta-llama/Llama-3.1-8B,dtype=float16 --tasks arc_challenge,winogrande,mmlu,gsm8k --batch_size auto --output_path /root/distill_sparse_swiglu/results/lm_eval_dense/\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"177099\", \"log_path\": \"~/runs/distill_sparse_swiglu/lm_eval_dense.log\", \"submitted_at\": \"2026-05-15T23:46:22.064Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"metrics\": {\"arc_challenge_acc_norm\": 0.5819, \"winogrande_acc\": 0.7814, \"mmlu_acc\": 0.6532, \"gsm8k_exact_match\": 0.5004, \"eval_tasks\": [\"arc_challenge\", \"winogrande\", \"mmlu\", \"gsm8k\"], \"model\": \"llama-3.1-8b\", \"condition\": \"dense\", \"server\": \"westd-34887\"}, \"conclusion\": \"success\"}, \"lm_eval_kl_s42\": {\"spec\": {\"checkpoint_path\": \"/root/distill_sparse_swiglu/checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt\", \"log_path\": \"/root/distill_sparse_swiglu/plan_007/\"}, \"metrics\": {\"arc_challenge_acc_norm\": 0.3771, \"winogrande_acc\": 0.6156, \"mmlu_acc\": 0.2591, \"gsm8k_exact_match\": 0.0121, \"eval_tasks\": [\"arc_challenge\", \"winogrande\", \"mmlu\", \"gsm8k\"], \"model\": \"llama-3.1-8b\", \"condition\": \"kl_sparse_50pct\", \"server\": \"westd-34887\", \"exit_code\": 129, \"wall_time_sec\": 3010, \"flag\": \"SUSPECT — gsm8k 0.50→0.01 catastrophic drop; PID 179918 rerunning with lm_eval_sparse.py\"}, \"conclusion\": \"negative\"}, \"training_free_baselines\": {\"spec\": {\"hypothesis\": \"Training-free baselines (TEAL Greedy, Vanilla TEAL, R-Sparse, WINA) at 50% sparsity establish lower bound\", \"model_name\": \"llama-3.1-8b\", \"server\": \"westd-34887\", \"data_path\": \"wikitext-2\", \"seed\": 42, \"command\": \"evaluate.py with various baseline methods\"}, \"conclusion\": \"success\", \"metrics\": {\"dense_ppl\": 6.12, \"vanilla_teal_global_ppl_30pct\": 10.97, \"vanilla_teal_global_ppl_50pct\": 23.31, \"vanilla_teal_global_ppl_70pct\": 100.11, \"wina_global_ppl_30pct\": 11.45, \"wina_global_ppl_50pct\": 27.93, \"wina_global_ppl_70pct\": 137.24, \"uniform_50pct_ppl\": 23.9, \"teal_greedy_ppl\": 33.47, \"vanilla_teal_global_ppl\": 23.31, \"wina_global_ppl\": 27.93, \"rsparse_global_ppl\": 151.2}}, \"bce_comp_staged_s42\": {\"spec\": {\"command\": \"bash -c \\\"source /root/distill_sparse_swiglu/setup_env.sh && cd /root/distill_sparse_swiglu && PYTHONUNBUFFERED=1 WANDB_MODE=disabled python src/train_bce_comp.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --num_steps 1000 --batch_size 4 --seq_len 2048 --predictor_lr 1e-3 --comp_lr 1e-3 --seed 42 --sparsity_target 0.5 --comp_warmup_steps 200 --comp_bottleneck 256 --gpu 0 --output_dir /root/distill_sparse_swiglu/checkpoints/bce_comp_staged_s42 --wandb_run_name bce_comp_staged_s42 --dataset wikitext-103\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"100045\", \"log_path\": \"~/runs/distill_sparse_swiglu/bce_comp_staged_s42.log\", \"submitted_at\": \"2026-05-15T18:02:08.405Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 1585.7, \"gpu_hours\": 0.44}, \"conclusion\": \"negative\", \"metrics\": {\"true_dense_ppl\": 6.12, \"predictor_hard_mask_ppl\": 25.44, \"predictor_hard_mask_ppl_no_comp\": 27.96, \"teal_sparse_ppl\": 44.54, \"model_level_sparsity\": 0.558, \"ppl_increase_vs_true_dense_pct\": 315.7, \"comp_loss_final\": 0.0033, \"bce_loss_final\": 0.6379, \"eval_seq_len\": 2048, \"calibration_samples\": 32}}, \"spon_training\": {\"spec\": {\"command\": \"bash -c \\\"source /root/distill_sparse_swiglu/setup_env.sh && cd /root/distill_sparse_swiglu && PYTHONUNBUFFERED=1 WANDB_MODE=disabled python src/train_spon.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --predictor_checkpoint /root/distill_sparse_swiglu/checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt --num_steps 1000 --batch_size 8 --seq_len 128 --lr 1e-5 --seed 42 --sparsity_target 0.5 --gpu 0 --output_dir /root/distill_sparse_swiglu/checkpoints/spon_kl_s42 --warmup_steps 100 --log_every 100 --dataset wikitext-103 --gradient_checkpointing\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"100400\", \"log_path\": \"~/runs/distill_sparse_swiglu/spon_training.log\", \"submitted_at\": \"2026-05-15T18:02:21.626Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 1567.7, \"gpu_hours\": 0.44}, \"conclusion\": \"negative\", \"metrics\": {\"true_dense_ppl\": 6.1193, \"predictor_hard_mask_ppl\": 9.2165, \"spon_sparse_ppl\": 9.0977, \"spon_recovery_pct\": 3.8, \"ppl_improvement_from_spon\": 0.1188, \"ppl_increase_vs_true_dense_pct\": 48.7, \"ppl_increase_no_spon_vs_true_dense_pct\": 50.6, \"mean_bias_norm\": 0.040596, \"max_bias_norm\": 0.054199, \"teal_sparse_ppl\": 12.08, \"teal_with_spon_ppl\": 11.93, \"spon_dense_ppl_degradation\": 6.19, \"model_level_sparsity\": 0.5, \"eval_seq_len\": 2048, \"eval_samples\": 141, \"trainable_params\": 458752, \"trainable_pct\": 0.0057}}, \"kl_only_s1\": {\"spec\": {\"hypothesis\": \"KL normalized v3 seed robustness: seed=1 应与 s42/s123/s456 一致，扩展到 5-seed headline\", \"loss_type\": \"kl_normalized_v3\", \"kl_normalization\": \"÷seq_len only (v3 fix)\", \"lagrangian\": \"lambda_init=1.0, ×2.0/×0.5 every 25 steps, clamp [0.1, 1000]\", \"model_name\": \"llama-3.1-8b\", \"seed\": 1, \"data_path\": \"wikitext-103 (HF cached)\", \"parent\": \"mvp_kl_norm_v2_s42\", \"command\": \"bash -c \\\"source /root/distill_sparse_swiglu/setup_env.sh && cd /root/distill_sparse_swiglu && PYTHONUNBUFFERED=1 WANDB_MODE=disabled python src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --loss_type kl_normalized --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 1 --sparsity_target 0.5 --gpu 0 --output_dir /root/distill_sparse_swiglu/checkpoints/kl_only_s1 --wandb_run_name kl_only_s1 --dataset wikitext-103\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"88843\", \"data_count\": null}, \"conclusion\": \"success\", \"metrics\": {\"true_dense_ppl\": 6.12, \"predictor_hard_mask_ppl\": 9.15, \"teal_sparse_ppl\": 11.99, \"model_level_sparsity\": 0.498, \"ppl_increase_vs_true_dense_pct\": 96}}, \"kl_only_s0\": {\"spec\": {\"hypothesis\": \"KL normalized v3 seed robustness: seed=0 应与 s42/s123/s456 一致，扩展到 5-seed headline\", \"loss_type\": \"kl_normalized_v3\", \"kl_normalization\": \"÷seq_len only (v3 fix)\", \"lagrangian\": \"lambda_init=1.0, ×2.0/×0.5 every 25 steps, clamp [0.1, 1000]\", \"model_name\": \"llama-3.1-8b\", \"seed\": 0, \"data_path\": \"wikitext-103 (HF cached)\", \"parent\": \"mvp_kl_norm_v2_s42\", \"command\": \"bash -c \\\"source /root/distill_sparse_swiglu/setup_env.sh && cd /root/distill_sparse_swiglu && PYTHONUNBUFFERED=1 WANDB_MODE=disabled python src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --loss_type kl_normalized --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 0 --sparsity_target 0.5 --gpu 0 --output_dir /root/distill_sparse_swiglu/checkpoints/kl_only_s0 --wandb_run_name kl_only_s0 --dataset wikitext-103\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"88764\", \"data_count\": null}, \"conclusion\": \"success\", \"metrics\": {\"true_dense_ppl\": 6.12, \"predictor_hard_mask_ppl\": 9.19, \"teal_sparse_ppl\": 12.03, \"model_level_sparsity\": 0.499, \"ppl_increase_vs_true_dense_pct\": 96.57, \"eval_seq_len\": 2048, \"calibration_samples\": 32}}, \"mvp_kl_norm_v2_s456\": {\"spec\": {\"command\": \"bash -c \\\"source /root/distill_sparse_swiglu/setup_env.sh && cd /root/distill_sparse_swiglu && PYTHONUNBUFFERED=1 WANDB_MODE=disabled python src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --loss_type kl_normalized --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 456 --sparsity_target 0.5 --gpu 0 --output_dir /root/distill_sparse_swiglu/checkpoints/mvp_kl_norm_v2_s456 --wandb_run_name mvp_kl_norm_v2_s456 --dataset wikitext-103\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"74987\", \"log_path\": \"~/runs/distill_sparse_swiglu/mvp_kl_norm_v2_s456.log\", \"submitted_at\": \"2026-05-15T15:57:22.577Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"wikitext-103 (HF cached)\", \"data_count\": null, \"model_name\": \"llama-3.1-8b\", \"seed\": 456, \"loss_type\": \"kl_normalized_v3\", \"kl_normalization\": \"÷seq_len only (v3 fix)\", \"lagrangian\": \"lambda_init=1.0, ×2.0/×0.5 every 25 steps, clamp [0.1, 1000]\", \"hypothesis\": \"Fixed KL normalization (÷seq_len only, no ÷vocab_size) + Lagrangian produces better sparsity predictor than BCE at 50% sparsity\", \"wall_clock_seconds\": 2653.4, \"gpu_hours\": 0.74}, \"metrics\": {\"true_dense_ppl\": 6.1173, \"predictor_hard_mask_ppl\": 9.14, \"teal_sparse_ppl\": 13.58, \"model_level_sparsity\": 0.498, \"ppl_increase_vs_true_dense_pct\": 121.9, \"eval_md5\": \"f4086818bb55dc354ea4c6fe8ed8899a\", \"calibration_samples\": 32, \"vanilla_teal_sparse_ppl_INVALID\": 66036.4062}, \"conclusion\": \"success\"}, \"mvp_kl_norm_v2_s123\": {\"spec\": {\"command\": \"bash -c \\\"source /root/distill_sparse_swiglu/setup_env.sh && cd /root/distill_sparse_swiglu && PYTHONUNBUFFERED=1 WANDB_MODE=disabled python src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --loss_type kl_normalized --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 123 --sparsity_target 0.5 --gpu 0 --output_dir /root/distill_sparse_swiglu/checkpoints/mvp_kl_norm_v2_s123 --wandb_run_name mvp_kl_norm_v2_s123 --dataset wikitext-103\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"72811\", \"log_path\": \"~/runs/distill_sparse_swiglu/mvp_kl_norm_v2_s123.log\", \"submitted_at\": \"2026-05-15T15:19:03.209Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"hypothesis\": \"Fixed KL normalization (÷seq_len only, no ÷vocab_size) + Lagrangian produces better sparsity predictor than BCE at 50% sparsity\", \"data_path\": \"wikitext-103 (HF cached)\", \"data_count\": null, \"model_name\": \"llama-3.1-8b\", \"seed\": 123, \"loss_type\": \"kl_normalized_v3\", \"kl_normalization\": \"÷seq_len only (v3 fix)\", \"lagrangian\": \"lambda_init=1.0, ×2.0/×0.5 every 25 steps, clamp [0.1, 1000]\", \"wall_clock_seconds\": 3568.6, \"gpu_hours\": 0.99}, \"metrics\": {\"true_dense_ppl\": 6.1173, \"predictor_hard_mask_ppl\": 9.2474, \"teal_sparse_ppl\": 11.9128, \"model_level_sparsity\": 0.4979, \"ppl_increase_vs_true_dense_pct\": 94.7, \"eval_md5\": \"f4086818bb55dc354ea4c6fe8ed8899a\", \"calibration_samples\": 32, \"vanilla_teal_sparse_ppl_INVALID\": 66036.4062}, \"conclusion\": \"success\"}, \"mvp_kl_norm_v2_s42\": {\"spec\": {\"command\": \"python src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --loss_type kl_normalized --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 42 --sparsity_target 0.5 --gpu 0 --output_dir /root/distill_sparse_swiglu/checkpoints/mvp_kl_norm_v2_s42 --dataset wikitext-103\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"72734\", \"log_path\": \"~/runs/distill_sparse_swiglu/mvp_kl_norm_v2_s42.log\", \"submitted_at\": \"2026-05-15T15:19:01.533Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"hypothesis\": \"Fixed KL normalization (÷seq_len only, no ÷vocab_size) + Lagrangian produces better sparsity predictor than BCE at 50% sparsity\", \"data_path\": \"wikitext-103\", \"data_count\": 1000, \"model_name\": \"llama-3.1-8b\", \"seed\": 42, \"loss_type\": \"kl_normalized_v3\", \"kl_normalization\": \"÷seq_len only (v3 fix)\", \"lagrangian\": \"lambda_init=1.0, ×2.0/×0.5 every 25 steps, clamp [0.1, 1000]\", \"wall_clock_seconds\": 3093.4, \"gpu_hours\": 0.86}, \"metrics\": {\"true_dense_ppl\": 6.1173, \"predictor_hard_mask_ppl\": 9.2142, \"teal_sparse_ppl\": 12.0776, \"model_level_sparsity\": 0.4979, \"ppl_increase_vs_true_dense_pct\": 97.4, \"eval_md5\": \"f4086818bb55dc354ea4c6fe8ed8899a\", \"calibration_samples\": 32, \"vanilla_teal_sparse_ppl_INVALID\": 66036.4062}, \"conclusion\": \"success\"}, \"kl_lagrangian_quicktest\": {\"spec\": {\"hypothesis\": \"Lagrangian multiplier 自适应约束替代固定 reg_weight，防止 KL 训练稀疏性坍塌\", \"loss_type\": \"kl_lagrangian\", \"seed\": 42, \"model\": \"Llama-3.1-8B\", \"sparsity\": 0.5, \"steps\": 200, \"batch_size\": 4, \"seq_len\": 2048, \"gpu\": \"cuda:0\", \"server\": \"westd-34887\", \"parent\": \"mvp_kl_s42\"}, \"conclusion\": \"negative\", \"metrics\": {\"final_kl_loss\": 418, \"final_constraint_loss\": 1.211, \"final_sparsity\": 0.141, \"final_lambda\": 5.06, \"steps\": 200, \"sparsity_trajectory\": [0.406, 0.387, 0.289, 0.168, 0.141]}}, \"mvp_bce_s456\": {\"spec\": {\"command\": \"bash -c \\\"source /root/distill_sparse_swiglu/setup_env.sh && cd /root/distill_sparse_swiglu && PYTHONUNBUFFERED=1 WANDB_MODE=disabled python src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --loss_type bce --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 456 --sparsity_target 0.5 --gpu 0 --output_dir /root/distill_sparse_swiglu/checkpoints/mvp_bce_s456 --wandb_run_name mvp_bce_s456 --dataset wikitext-103\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"61162\", \"log_path\": \"~/runs/distill_sparse_swiglu/mvp_bce_s456.log\", \"submitted_at\": \"2026-05-15T13:34:54.067Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 988.6, \"gpu_hours\": 0.27}, \"conclusion\": \"success\", \"metrics\": {\"true_dense_ppl\": 6.1173, \"predictor_hard_mask_ppl\": 28.1437, \"teal_sparse_ppl\": 43.033, \"model_level_sparsity\": 0.4957, \"ppl_increase_vs_true_dense_pct\": 603.3, \"eval_md5\": \"f4086818bb55dc354ea4c6fe8ed8899a\", \"calibration_samples\": 32, \"vanilla_teal_sparse_ppl_INVALID\": 66036.4062}}, \"mvp_bce_s123\": {\"spec\": {\"command\": \"bash -c \\\"source /root/distill_sparse_swiglu/setup_env.sh && cd /root/distill_sparse_swiglu && WANDB_MODE=disabled python src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --loss_type bce --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 123 --sparsity_target 0.5 --gpu 0 --output_dir /root/distill_sparse_swiglu/checkpoints/mvp_bce_s123 --wandb_run_name mvp_bce_s123 --dataset wikitext-103\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"56744\", \"log_path\": \"~/runs/distill_sparse_swiglu/mvp_bce_s123.log\", \"submitted_at\": \"2026-05-15T13:08:25.578Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 1352.4, \"gpu_hours\": 0.38}, \"metrics\": {\"true_dense_ppl\": 6.1173, \"predictor_hard_mask_ppl\": 28.3817, \"teal_sparse_ppl\": 44.5864, \"model_level_sparsity\": 0.4957, \"ppl_increase_vs_true_dense_pct\": 629, \"eval_md5\": \"f4086818bb55dc354ea4c6fe8ed8899a\", \"calibration_samples\": 32, \"vanilla_teal_sparse_ppl_INVALID\": 66036.4062}, \"conclusion\": \"success\"}, \"mvp_bce_s42\": {\"spec\": {\"command\": \"bash -c \\\"source /root/distill_sparse_swiglu/setup_env.sh && cd /root/distill_sparse_swiglu && WANDB_MODE=disabled python src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --loss_type bce --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 42 --sparsity_target 0.5 --gpu 0 --output_dir /root/distill_sparse_swiglu/checkpoints/mvp_bce_s42 --wandb_run_name mvp_bce_s42 --dataset wikitext-103\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"50143\", \"log_path\": \"~/runs/distill_sparse_swiglu/mvp_bce_s42.log\", \"submitted_at\": \"2026-05-15T12:08:23.512Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 1677.7, \"gpu_hours\": 0.47}, \"conclusion\": \"success\", \"metrics\": {\"true_dense_ppl\": 6.1173, \"predictor_hard_mask_ppl\": 27.9603, \"teal_sparse_ppl\": 44.537, \"model_level_sparsity\": 0.4957, \"ppl_increase_vs_true_dense_pct\": 628, \"eval_md5\": \"f4086818bb55dc354ea4c6fe8ed8899a\", \"calibration_samples\": 32, \"vanilla_teal_sparse_ppl_INVALID\": 66036.4062}}, \"mvp_kl_s42\": {\"conclusion\": \"negative\", \"spec\": {\"command\": \"bash -c \\\"source /root/distill_sparse_swiglu/setup_env.sh && cd /root/distill_sparse_swiglu && WANDB_MODE=disabled python src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --loss_type kl --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 42 --sparsity_target 0.5 --gpu 0 --output_dir /root/distill_sparse_swiglu/checkpoints/mvp_kl_s42 --wandb_run_name mvp_kl_s42 --dataset wikitext-103\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"53754\", \"log_path\": \"~/runs/distill_sparse_swiglu/mvp_kl_s42.log\", \"submitted_at\": \"2026-05-15T12:37:15.045Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 2424.9, \"gpu_hours\": 0.67}, \"metrics\": {\"final_total_loss\": 3.3438, \"final_kl_loss\": 3.2969, \"final_reg_loss\": 0.05, \"final_sparsity\": 0, \"steps\": 1000, \"tau_final\": 0.1, \"wikitext2_ppl_dense\": 6.12, \"wikitext2_ppl_sparse\": 455.93, \"wikitext2_ppl_increase_pct\": 7349, \"model_level_sparsity\": 0.372, \"checkpoint_path\": \"/root/distill_sparse_swiglu/checkpoints/mvp_kl_s42/predictor_kl.pt\"}}, \"mistral_kl70_s42\": {\"spec\": {\"command\": \"train.py --loss_type kl_normalized --model_path /root/autodl-tmp/models/mistral-7b/ --target_sparsity 0.7 --num_steps 1000 --seed 42 --gpu 1\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"model_name\": \"mistral-7b-v0.3\", \"data_path\": \"WikiText-103 train\", \"data_count\": 0, \"seed\": 42, \"checkpoint_path\": \"/root/distill_sparse_swiglu/checkpoints/mistral_kl70_s42/predictor_kl_normalized.pt\", \"log_path\": \"/root/distill_sparse_swiglu/logs/mistral_kl70_s42.log\"}, \"metrics\": {\"kl_per_token_ppl\": 9.1086, \"kl_teal_global_ppl\": 13.3254, \"teal_baseline_ppl\": 61.716, \"dense_ppl\": 5.5238, \"kl_advantage_ratio\": 6.77, \"final_loss\": 0.3945, \"actual_sparsity\": 0.682}, \"conclusion\": \"success\"}, \"mistral_kl30_s42\": {\"spec\": {\"command\": \"train.py --loss_type kl_normalized --model_path /root/autodl-tmp/models/mistral-7b/ --target_sparsity 0.3 --num_steps 1000 --seed 42 --gpu 0\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"model_name\": \"mistral-7b-v0.3\", \"data_path\": \"WikiText-103 train\", \"data_count\": 0, \"seed\": 42, \"checkpoint_path\": \"/root/distill_sparse_swiglu/checkpoints/mistral_kl30_s42/predictor_kl_normalized.pt\", \"log_path\": \"/root/distill_sparse_swiglu/logs/mistral_kl30_s42.log\"}, \"metrics\": {\"kl_per_token_ppl\": 6.048, \"kl_teal_global_ppl\": 6.7733, \"teal_baseline_ppl\": 8.3807, \"dense_ppl\": 5.5238, \"kl_advantage_ratio\": 1.386, \"ppl_vs_dense_pct\": 9.5}, \"conclusion\": \"success\"}, \"plan_005_subsumption_s42\": {\"spec\": {\"command\": \"python src/subsumption_test.py --num_samples 50 --seq_len 2048\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"129873\", \"log_path\": \"~/runs/distill_sparse_swiglu/plan_005_subsumption_s42.log\", \"submitted_at\": \"2026-05-15T20:20:21.197Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"wikitext-103\", \"data_count\": 50, \"model_name\": \"llama-3.1-8b\", \"seed\": 42, \"checkpoint_path\": \"results/subsumption_test/subsumption_results.json\", \"wall_clock_seconds\": 566.8, \"gpu_hours\": 0.16}, \"metrics\": {\"linearity_ratio\": 0.2644, \"linearity_ratio_std\": 0.0073, \"magnitude_ratio\": 0.1578, \"magnitude_ratio_std\": 0.0088, \"cosine_similarity\": 0.1962, \"cosine_similarity_std\": 0.0268, \"predictor_effect_norm\": 482.65, \"spon_correction_norm\": 76.2, \"interaction_norm\": 147.74, \"num_samples\": 50, \"seq_len\": 2048, \"conclusion_type\": \"weak_subsumption\"}, \"conclusion\": \"success\"}, \"eval_bce_v3_s42\": {\"spec\": {\"command\": \"evaluate.py PPL + benchmark_eval.py downstream\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"211431\", \"log_path\": \"~/runs/distill_sparse_swiglu/eval_bce_v3_s42.log\", \"submitted_at\": \"2026-05-16T05:55:21.920Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"wikitext2 + arc_challenge + winogrande + mmlu + gsm8k\", \"data_count\": 200, \"model_name\": \"llama-3.1-8b + bce_isocompute_v3 predictor\", \"seed\": 42, \"checkpoint_source\": \"bce_isocompute_v3_s42\", \"eval_data\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\", \"checkpoint_path\": \"/root/distill_sparse_swiglu/results/benchmark/bce_isocompute_v3_s42/results.json\", \"wall_clock_seconds\": 7528.4, \"gpu_hours\": 2.09}, \"metrics\": {\"dense_ppl\": 6.12, \"predictor_hard_mask_ppl\": 22.51, \"teal_sparse_ppl\": 27.97, \"model_level_sparsity\": 0.5, \"arc_challenge_acc\": 0.2048, \"arc_challenge_acc_norm\": 0.2398, \"arc_challenge_acc_norm_stderr\": 0.0125, \"winogrande_acc\": 0.5059, \"winogrande_acc_stderr\": 0.0141, \"mmlu_acc\": 0.3002, \"mmlu_acc_stderr\": 0.0038, \"gsm8k_exact_match\": 0.0485, \"gsm8k_exact_match_strict\": 0.0425, \"gsm8k_exact_match_stderr\": 0.0059}, \"conclusion\": \"success\"}, \"lm_eval_teal_30pct\": {\"spec\": {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 CUDA_VISIBLE_DEVICES=0 python -u src/lm_eval_teal.py --sparsity_target 0.3 --tasks arc_challenge,winogrande,mmlu,gsm8k --gpu 0 --output_path results/lm_eval_teal_30pct\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"194814\", \"log_path\": \"~/runs/distill_sparse_swiglu/lm_eval_teal_30pct.log\", \"submitted_at\": \"2026-05-16T10:55:00.000Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"arc_challenge,winogrande,mmlu,gsm8k\", \"data_count\": 0, \"model_name\": \"meta-llama/Llama-3.1-8B\", \"seed\": 42, \"checkpoint_path\": \"N/A (training-free)\"}, \"metrics\": {\"arc_challenge\": {\"acc\": 0.3933, \"acc_norm\": 0.4155, \"acc_stderr\": 0.0143, \"acc_norm_stderr\": 0.0144}, \"winogrande\": {\"acc\": 0.6559, \"acc_stderr\": 0.0134}, \"mmlu\": {\"acc\": 0.3598, \"acc_stderr\": 0.004}, \"mmlu_stem\": {\"acc\": 0.313}, \"mmlu_humanities\": {\"acc\": 0.3305}, \"mmlu_social_sciences\": {\"acc\": 0.4108}, \"mmlu_other\": {\"acc\": 0.401}, \"gsm8k\": {\"exact_match_strict\": 0.0849, \"exact_match_flexible\": 0.0925, \"strict_stderr\": 0.0077, \"flexible_stderr\": 0.008}, \"actual_sparsity\": 0.3}, \"conclusion\": \"negative\"}, \"lm_eval_kl_30pct_s42\": {\"spec\": {\"command\": \"python -u src/lm_eval_sparse.py --tasks arc_challenge,winogrande,mmlu,gsm8k --sparsity_target 0.3\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"191335\", \"log_path\": \"~/runs/distill_sparse_swiglu/lm_eval_kl_30pct_s42.log\", \"submitted_at\": \"2026-05-16T01:58:48.081Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"arc_challenge,winogrande,mmlu,gsm8k\", \"data_count\": 0, \"model_name\": \"meta-llama/Llama-3.1-8B\", \"seed\": 42, \"wall_clock_seconds\": 3037.2, \"gpu_hours\": 0.84}, \"metrics\": {\"arc_challenge_acc\": 0.3575, \"arc_challenge_acc_norm\": 0.3737, \"winogrande_acc\": 0.6756, \"mmlu_acc\": 0.2874, \"gsm8k_exact_match_strict\": 0.0743, \"gsm8k_exact_match_flexible\": 0.0781, \"actual_sparsity\": 0.3, \"model\": \"llama-3.1-8b\", \"condition\": \"kl_distill_30pct_sparsity_s42\", \"mmlu_stem_acc\": 0.2499, \"mmlu_social_sciences_acc\": 0.2896, \"mmlu_humanities_acc\": 0.2786, \"mmlu_other_acc\": 0.3363}, \"conclusion\": \"negative\"}, \"gsm8k_gen_compare\": {\"spec\": {\"command\": \"python src/gsm8k_gen_compare.py\", \"server\": \"westd-34887\", \"model_name\": \"Llama-3.1-8B\", \"data_path\": \"openai/gsm8k test split\", \"data_count\": 10, \"seed\": 42, \"description\": \"GSM8K generation quality comparison: dense vs KL sparse 50%\"}, \"conclusion\": \"negative\"}, \"d030_kl40_uniform\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_DATASETS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export PYTHONUNBUFFERED=1 && export WANDB_MODE=offline && echo '=== Phase 1: Train 40% KL predictor (1000 steps) ===' && python -u src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --loss_type kl_normalized --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 42 --sparsity_target 0.4 --gpu 0 --output_dir checkpoints/kl_sparsity40_s42 --wandb_run_name d030_kl40_uniform --dataset wikitext-103 --gradient_checkpointing --lambda_max 5000 --log_every 100 2>&1 && echo '=== Phase 2: Evaluate with uniform allocation ===' && python -u src/benchmark_eval.py --exp_id d030_kl40_uniform --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/kl_sparsity40_s42/predictor_kl_normalized.pt --sparsity_mode per_token --sparsity_target 0.4 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0 2>&1\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"215866\", \"log_path\": \"~/runs/distill_sparse_swiglu/d030_kl40_uniform.log\", \"submitted_at\": \"2026-05-16T07:01:57.183Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"checkpoints/kl_sparsity40_s42/predictor_kl_normalized.pt\", \"wall_clock_seconds\": 8082.5, \"gpu_hours\": 2.25}, \"metrics\": {\"wikitext2_ppl\": 8.3627, \"arc_challenge_acc_norm\": 0.4181, \"winogrande_acc\": 0.6717, \"mmlu_acc\": 0.3068, \"gsm8k_exact_match\": 0.0394, \"actual_sparsity\": 0.398}, \"conclusion\": \"success\"}, \"d030_kl50_uniform\": {\"spec\": {\"command\": \"python -u src/benchmark_eval.py --exp_id d030_kl50_uniform --checkpoint checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.5 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"203702\", \"log_path\": \"~/runs/distill_sparse_swiglu/d030_kl50_uniform.log\", \"submitted_at\": \"2026-05-16T04:30:55.806Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"wikitext-2,arc_challenge,winogrande,mmlu,gsm8k\", \"data_count\": 5, \"model_name\": \"llama-3.1-8b\", \"seed\": 42, \"checkpoint_source\": \"checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt\", \"eval_data\": \"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\", \"wall_clock_seconds\": 2309.5, \"gpu_hours\": 0.64}, \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 11.96, \"arc_challenge_acc_norm\": 0.3276, \"winogrande_acc\": 0.629, \"mmlu_acc\": 0.2777, \"gsm8k_exact_match\": 0.0212, \"actual_sparsity\": 0.5, \"allocation\": \"uniform\", \"per_layer_sparsity\": \"uniform 0.500 across all 32 layers\", \"mmlu_change_vs_global\": \"+1.86pp (0.2591 → 0.2777, not significant)\", \"gsm8k_change_vs_global\": \"+0.91pp (0.0121 → 0.0212, not significant)\", \"conclusion_note\": \"50% uniform 未能修复 MMLU/GSM8K collapse. Uniform allocation 的修复效应在 50% sparsity 下消失。\"}}, \"bce_isocompute_v3_s42\": {\"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 nohup python -u src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --loss_type bce --num_steps 2700 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 42 --sparsity_target 0.5 --gpu 0 --output_dir checkpoints/bce_isocompute_v3_s42 --wandb_run_name bce_isocompute_v3_s42 --dataset wikitext-103 --gradient_checkpointing --log_every 100\", \"server\": \"westd-34887\", \"gpu\": \"cuda:1\", \"pid\": 205598, \"log_path\": \"/root/distill_sparse_swiglu/logs/bce_isocompute_v3_s42.log\", \"data_path\": \"wikitext-103\", \"data_count\": null, \"model_name\": \"llama-3.1-8b\", \"seed\": 42, \"backend\": \"nohup\", \"wrapper_pid\": 205597}, \"conclusion\": \"success\", \"metrics\": {\"steps\": 2700, \"loss\": 0.6382, \"bce_loss\": 0.6371, \"reg_loss\": 0.001, \"sparsity\": 0.51, \"training_time_seconds\": 2828, \"note\": \"BCE saturation confirmed: step 500→2700 only 0.006 improvement\"}}, \"kl_sparsity30_s42_v3\": {\"spec\": {\"command\": \"bash -c \\\"source /root/distill_sparse_swiglu/setup_env.sh && cd /root/distill_sparse_swiglu && TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 WANDB_MODE=offline python src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --loss_type kl_normalized --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 42 --sparsity_target 0.3 --gpu 0 --output_dir /root/distill_sparse_swiglu/checkpoints/kl_sparsity30_s42_v3 --wandb_run_name kl_sparsity30_s42_v3 --dataset wikitext-103 --gradient_checkpointing --lambda_max 5000 --log_every 100\\\"\", \"server\": \"westd-34887\", \"data_path\": \"wikitext-103\", \"data_count\": 1000, \"model_name\": \"llama-3.1-8b\", \"seed\": 42, \"plan_id\": \"plan_008\", \"lambda_max\": 5000, \"checkpoint_path\": \"/root/distill_sparse_swiglu/checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt\", \"log_path\": \"/root/runs/distill_sparse_swiglu/kl_sparsity30_s42_v3.log\"}, \"metrics\": {\"loss\": 0.165, \"kl_normalized\": 0.165, \"kl_raw\": 0.165, \"sparsity\": 0.285, \"lambda_sparse\": 5000, \"tau\": 0.1, \"constraint_loss\": 0, \"steps\": 1000, \"true_dense_ppl\": 6.12, \"predictor_hard_mask_ppl\": 7.3, \"teal_sparse_ppl\": 8.98, \"teal_sparse_ppl_note\": \"已通过 eval_kl30_teal_30pct 独立验证 (sparsity_target=0.3, D034)\", \"model_level_sparsity\": 0.3, \"eval_dataset\": \"wikitext-2\", \"eval_seq_len\": 2048}, \"conclusion\": \"success\"}, \"steps_curve_v2\": {\"spec\": {\"command\": \"train.py --loss_type kl_normalized --num_steps 1000 --save_every 200\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"model_name\": \"llama-3.1-8b\", \"data_path\": \"WikiText-103 train\", \"data_count\": 0, \"seed\": 42, \"hypothesis\": \"KL predictor training converges within 600-800 steps, 1000 steps is sufficient and near-saturated\", \"checkpoint_path\": \"checkpoints/steps_curve_s42/\", \"log_path\": \"/root/runs/steps_curve_s42_v3.log\"}, \"metrics\": {\"step200_ppl\": 15.158, \"step400_ppl\": 12.538, \"step600_ppl\": 12.046, \"step800_ppl\": 11.907, \"step1000_ppl\": 11.906, \"convergence_step\": 800, \"ppl_800_vs_1000_delta\": 0.001}, \"conclusion\": \"success\"}, \"tau_schedule_ablation\": {\"spec\": {\"command\": \"train.py --loss_type kl_normalized --tau_start {0.5/0.1} --tau_end {0.5/0.1} --num_steps 1000\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"model_name\": \"llama-3.1-8b\", \"data_path\": \"WikiText-103 train\", \"data_count\": 0, \"seed\": 42, \"hypothesis\": \"Temperature schedule has minor impact on final PPL - method is robust to tau choice within reasonable range\", \"checkpoint_path\": \"checkpoints/tau_ablation_fixed{05,01}/predictor_kl_normalized.pt\", \"log_path\": \"/root/distill_sparse_swiglu/logs/tau_ablation.log\"}, \"metrics\": {\"tau_linear_baseline_ppl\": 11.963, \"tau_fixed05_ppl\": 11.861, \"tau_fixed01_ppl\": 12.072, \"tau_fixed05_loss\": 0.248, \"tau_fixed01_loss\": 0.43, \"best_tau\": \"fixed_0.5\", \"ppl_range\": 0.211}, \"conclusion\": \"success\"}, \"steps_curve_s42_v3\": {\"conclusion\": \"success\", \"spec\": {\"command\": \"bash -c \\\"cd /root/distill_sparse_swiglu && export HF_DATASETS_OFFLINE=1 && export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export WANDB_MODE=disabled && CUDA_VISIBLE_DEVICES=1 /root/miniconda3/bin/python -u src/train.py --loss_type kl_normalized --num_steps 1000 --sparsity_target 0.5 --lr 1e-3 --seed 42 --gradient_checkpointing --gpu 0 --output_dir checkpoints/steps_curve_s42 --save_every 200\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"276223\", \"log_path\": \"~/runs/distill_sparse_swiglu/steps_curve_s42_v3.log\", \"submitted_at\": \"2026-05-16T22:15:18.899Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"steps_curve_s42_v2\": {\"conclusion\": \"killed\", \"spec\": {\"command\": \"bash -c \\\"cd /root/distill_sparse_swiglu && export HF_DATASETS_OFFLINE=1 && export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && CUDA_VISIBLE_DEVICES=1 /root/miniconda3/bin/python -u src/train.py --loss_type kl_normalized --num_steps 1000 --sparsity_target 0.5 --lr 1e-3 --seed 42 --gradient_checkpointing --gpu 0 --output_dir checkpoints/steps_curve_s42 --save_every 200\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"276024\", \"log_path\": \"~/runs/distill_sparse_swiglu/steps_curve_s42_v2.log\", \"submitted_at\": \"2026-05-16T22:14:37.474Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"steps_curve_s42\": {\"conclusion\": \"killed\", \"spec\": {\"command\": \"bash -c \\\"cd /root/distill_sparse_swiglu && export HF_DATASETS_OFFLINE=1 && export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && CUDA_VISIBLE_DEVICES=1 python -u src/train.py --loss_type kl_normalized --num_steps 1000 --sparsity_target 0.5 --lr 1e-3 --seed 42 --gradient_checkpointing --gpu 0 --output_dir checkpoints/steps_curve_s42 --save_every 200\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"unknown\", \"log_path\": \"~/runs/distill_sparse_swiglu/steps_curve_s42.log\", \"submitted_at\": \"2026-05-16T22:13:36.670Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"db_sensitivity_sweep\": {\"spec\": {\"command\": \"bash /root/distill_sparse_swiglu/src/run_db_sweep.sh 0\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"model_name\": \"llama-3.1-8b\", \"data_path\": \"WikiText-103 train\", \"data_count\": 0, \"seed\": 42, \"hypothesis\": \"Predictor bottleneck dimension d_b has low sensitivity to final PPL, justifying default d_b=128 choice\", \"checkpoint_path\": \"checkpoints/db_sweep_{64,256,512}/predictor_kl_normalized.pt\", \"log_path\": \"/root/distill_sparse_swiglu/logs/db_sweep.log\"}, \"metrics\": {\"db64_per_token_ppl\": 10.158, \"db64_teal_global_ppl\": 12.076, \"db64_sparsity\": 0.5, \"db64_loss\": 0.361, \"db128_teal_global_ppl\": 11.963, \"db128_per_token_ppl\": 9.218, \"db256_per_token_ppl\": 8.586, \"db256_teal_global_ppl\": 12.105, \"db256_sparsity\": 0.5, \"db256_loss\": 0.27, \"db512_per_token_ppl\": 7.933, \"db512_teal_global_ppl\": 12.315, \"db512_sparsity\": 0.5, \"db512_loss\": 0.224, \"best_teal_global_db\": 128, \"best_teal_global_ppl\": 11.963}, \"conclusion\": \"success\"}, \"longbench_kl30_uniform_v2\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export PYTHONUNBUFFERED=1 && export WANDB_MODE=offline && python -u src/benchmark_eval.py --exp_id longbench_kl30_uniform_v2 --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks longbench_narrativeqa,longbench_qasper,longbench_gov_report,longbench_multi_news --gpu 0 2>&1\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"234888\", \"log_path\": \"~/runs/distill_sparse_swiglu/longbench_kl30_uniform_v2.log\", \"submitted_at\": \"2026-05-16T13:23:06.466Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 13039.5, \"gpu_hours\": 3.62}, \"conclusion\": \"failed\"}, \"longbench_dense_v2\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export PYTHONUNBUFFERED=1 && export WANDB_MODE=offline && python -u src/benchmark_eval.py --exp_id longbench_dense_v2 --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --dense --tasks longbench_narrativeqa,longbench_qasper,longbench_gov_report,longbench_multi_news --gpu 0 2>&1\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"235029\", \"log_path\": \"~/runs/distill_sparse_swiglu/longbench_dense_v2.log\", \"submitted_at\": \"2026-05-16T13:23:09.454Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 13035.8, \"gpu_hours\": 3.62}, \"conclusion\": \"failed\"}, \"longbench_kl30_uniform_v3\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export PYTHONUNBUFFERED=1 && export WANDB_MODE=offline && python -u src/benchmark_eval.py --exp_id longbench_kl30_uniform_v3 --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks longbench_narrativeqa,longbench_qasper,longbench_gov_report,longbench_multi_news --gpu 0 2>&1\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"236025\", \"log_path\": \"~/runs/distill_sparse_swiglu/longbench_kl30_uniform_v3.log\", \"submitted_at\": \"2026-05-16T13:33:10.304Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 12434.0, \"gpu_hours\": 3.45}, \"conclusion\": \"failed\"}, \"longbench_dense_v3\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export PYTHONUNBUFFERED=1 && export WANDB_MODE=offline && python -u src/benchmark_eval.py --exp_id longbench_dense_v3 --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --dense --tasks longbench_narrativeqa,longbench_qasper,longbench_gov_report,longbench_multi_news --gpu 0 2>&1\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"236168\", \"log_path\": \"~/runs/distill_sparse_swiglu/longbench_dense_v3.log\", \"submitted_at\": \"2026-05-16T13:33:13.165Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 12430.2, \"gpu_hours\": 3.45}, \"conclusion\": \"failed\"}, \"longbench_dense_v5\": {\"conclusion\": \"killed\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export PYTHONUNBUFFERED=1 && export WANDB_MODE=offline && export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True && python -u src/benchmark_eval.py --exp_id longbench_dense_v5 --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --dense --multi_gpu --tasks longbench_narrativeqa,longbench_qasper,longbench_gov_report,longbench_multi_news --gpu 0 2>&1\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": \"237289\", \"log_path\": \"~/runs/distill_sparse_swiglu/longbench_dense_v5.log\", \"submitted_at\": \"2026-05-16T13:45:43.972Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"longbench_dense_v4\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export PYTHONUNBUFFERED=1 && export WANDB_MODE=offline && python -u src/benchmark_eval.py --exp_id longbench_dense_v4 --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --dense --multi_gpu --tasks longbench_narrativeqa,longbench_qasper,longbench_gov_report,longbench_multi_news --gpu 0 2>&1\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": \"236858\", \"log_path\": \"~/runs/distill_sparse_swiglu/longbench_dense_v4.log\", \"submitted_at\": \"2026-05-16T13:40:47.623Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 222.0, \"gpu_hours\": 0.12}, \"conclusion\": \"failed\"}, \"longbench_dense\": {\"spec\": {\"command\": \"python -u src/benchmark_eval.py --exp_id longbench_dense --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --dense --tasks longbench_narrativeqa,longbench_qasper,longbench_gov_report,longbench_multi_news --gpu 0\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"233330\", \"log_path\": \"~/runs/distill_sparse_swiglu/longbench_dense.log\", \"submitted_at\": \"2026-05-16T13:01:46.958Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"llama-3.1-8b\", \"data_path\": \"longbench\", \"data_count\": 0, \"seed\": 42, \"eval_data\": \"longbench_narrativeqa,longbench_qasper,longbench_gov_report,longbench_multi_news\", \"wall_clock_seconds\": 1160.1, \"gpu_hours\": 0.32}, \"conclusion\": \"failed\"}, \"longbench_kl30_uniform\": {\"spec\": {\"command\": \"python -u src/benchmark_eval.py --exp_id longbench_kl30_uniform --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks longbench_narrativeqa,longbench_qasper,longbench_gov_report,longbench_multi_news --gpu 0\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"233187\", \"log_path\": \"~/runs/distill_sparse_swiglu/longbench_kl30_uniform.log\", \"submitted_at\": \"2026-05-16T13:01:44.138Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"llama-3.1-8b\", \"data_path\": \"longbench\", \"data_count\": 0, \"seed\": 42, \"checkpoint_source\": \"checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt\", \"eval_data\": \"longbench_narrativeqa,longbench_qasper,longbench_gov_report,longbench_multi_news\", \"wall_clock_seconds\": 1162.3, \"gpu_hours\": 0.32}, \"conclusion\": \"failed\"}, \"bench_mistral_kl50_s42\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_OFFLINE=1 && export HF_DATASETS_OFFLINE=1 && export PYTHONUNBUFFERED=1 && python -u src/benchmark_eval.py --exp_id bench_mistral_kl50_s42 --model_name_or_path /root/autodl-tmp/models/mistral-7b --checkpoint checkpoints/mistral_kl_s42/predictor_kl_normalized.pt --sparsity_mode per_token --sparsity_target 0.5 --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"207957\", \"log_path\": \"~/runs/distill_sparse_swiglu/bench_mistral_kl50_s42.log\", \"submitted_at\": \"2026-05-16T05:11:11.758Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 192.5, \"gpu_hours\": 0.05}, \"conclusion\": \"killed\"}, \"lm_eval_teal_50pct\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 python -u src/lm_eval_teal.py --sparsity_target 0.5 --tasks arc_challenge,winogrande,mmlu,gsm8k --output_path results/lm_eval_teal_50pct\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"190830\", \"log_path\": \"~/runs/distill_sparse_swiglu/lm_eval_teal_50pct.log\", \"submitted_at\": \"2026-05-16T01:58:07.000Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 2215.3, \"gpu_hours\": 0.62}, \"metrics\": {\"method\": \"vanilla_teal\", \"sparsity\": 0.5, \"actual_sparsity\": 0.5, \"arc_challenge_acc_norm\": 0.291, \"winogrande_acc\": 0.5556, \"mmlu_acc\": 0.2856, \"gsm8k_exact_match_flexible\": 0.019, \"gsm8k_exact_match_strict\": 0.0114, \"arc_challenge_drop_vs_dense\": -0.5, \"winogrande_drop_vs_dense\": -0.289, \"mmlu_drop_vs_dense\": -0.563, \"gsm8k_drop_vs_dense\": -0.962, \"model\": \"Llama-3.1-8B\", \"condition\": \"TEAL 50% training-free sparsity\"}, \"conclusion\": \"success\"}, \"d030_kl30_uniform\": {\"spec\": {\"checkpoint_path\": \"checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt\", \"log_path\": \"~/runs/distill_sparse_swiglu/d030_kl30_uniform.log\"}, \"metrics\": {\"wikitext2_ppl\": 8.8157, \"arc_challenge_acc_norm\": 0.4078, \"winogrande_acc\": 0.6859, \"mmlu_acc\": 0.4061, \"gsm8k_exact_match\": 0.0735, \"actual_sparsity\": 0.3, \"allocation\": \"uniform\", \"per_layer_sparsity\": \"uniform 0.301 across all 32 layers\", \"mmlu_improvement_vs_global\": \"+11.87pp (0.2874 → 0.4061)\", \"gsm8k_change_vs_global\": \"no change (0.0743 → 0.0735, within noise)\"}, \"conclusion\": \"success\"}, \"mistral_kl_s42\": {\"spec\": {\"command\": \"bash -c \\\"source /root/distill_sparse_swiglu/setup_env.sh && cd /root/distill_sparse_swiglu && TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 WANDB_MODE=offline python src/train.py --model_name_or_path /root/autodl-tmp/models/mistral-7b --loss_type kl_normalized --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 42 --sparsity_target 0.5 --gpu 0 --output_dir /root/distill_sparse_swiglu/checkpoints/mistral_kl_s42 --wandb_run_name mistral_kl_s42 --dataset wikitext-103 --gradient_checkpointing --log_every 100 2>&1 | tee ~/runs/distill_sparse_swiglu/mistral_kl_s42.log\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"147627\", \"log_path\": \"~/runs/distill_sparse_swiglu/mistral_kl_s42.log\", \"submitted_at\": \"2026-05-15T22:12:32.930Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"wikitext-103\", \"data_count\": null, \"model_name\": \"Mistral-7B-v0.3\", \"seed\": 42, \"checkpoint_path\": \"/root/distill_sparse_swiglu/checkpoints/mistral_kl_s42/predictor_kl_normalized.pt\", \"wall_clock_seconds\": 2579.6, \"gpu_hours\": 0.72}, \"metrics\": {\"train_final_loss\": 0.2188, \"train_final_kl_raw\": 0.2188, \"train_final_kl_norm\": 0.2188, \"train_final_constraint\": 0, \"train_final_sparsity\": 0.48, \"train_final_lambda\": 1000, \"train_final_tau\": 0.1, \"train_steps_completed\": 1000, \"true_dense_ppl\": 5.52, \"predictor_hard_mask_ppl\": 7.3, \"teal_sparse_ppl\": 8.98, \"model_level_sparsity\": 0.5, \"eval_dataset\": \"wikitext-2\", \"eval_seq_len\": 2048, \"calibration_samples\": 32, \"eval_samples\": 159}, \"conclusion\": \"success\"}, \"kl_lagrangian_v2\": {\"conclusion\": \"killed\", \"spec\": {\"hypothesis\": \"Lagrangian v2: lambda_init=50 + 2x update rate, 解决 KL/constraint 3 个数量级尺度差\", \"loss_type\": \"kl_lagrangian_v2\", \"seed\": 42, \"model\": \"Llama-3.1-8B\", \"sparsity\": 0.5, \"steps\": 200, \"batch_size\": 4, \"seq_len\": 2048, \"gpu\": \"cuda:0\", \"server\": \"westd-34887\", \"parent\": \"kl_lagrangian_quicktest\"}}, \"kl_norm_v3_quicktest\": {\"conclusion\": \"killed\", \"spec\": {\"hypothesis\": \"修复 ÷vocab_size bug 后, KL 归一化仅 ÷seq_len, kl_raw 应下降且 sparsity 收敛\", \"loss_type\": \"kl_normalized_v3\", \"seed\": 42, \"model\": \"Llama-3.1-8B\", \"model_name\": \"llama-3.1-8b\", \"sparsity\": 0.5, \"steps\": 200, \"batch_size\": 4, \"seq_len\": 2048, \"gpu\": \"cuda:0\", \"server\": \"westd-34887\", \"parent\": \"kl_normalized_quicktest\", \"data_path\": \"wikitext-103 (HF cached)\", \"command\": \"PYTHONUNBUFFERED=1 WANDB_MODE=disabled python src/train.py --loss_type kl_normalized --num_steps 200 --batch_size 4 --seed 42 --sparsity_target 0.5 --gpu 0 --output_dir checkpoints/kl_norm_v3_quicktest\", \"kl_normalization\": \"÷seq_len only (fixed: removed ÷vocab_size from train.py)\", \"lagrangian\": \"lambda_init=1.0, ×2.0/×0.5 every 25 steps, clamp [0.1, 1000]\"}, \"metrics\": {\"step1_kl_raw\": 1.1797, \"step1_kl_norm\": 1.1797, \"step1_sparsity\": 0.406, \"step1_lambda\": 2, \"step50_kl_raw\": 0.7344, \"step50_kl_norm\": 0.7344, \"step50_sparsity\": 0.514, \"step50_lambda\": 1.95, \"step100_kl_raw\": 0.625, \"step100_kl_norm\": 0.625, \"step100_sparsity\": 0.496, \"step100_lambda\": 1000, \"step150_kl_raw\": 0.5703, \"step150_kl_norm\": 0.5703, \"step150_sparsity\": 0.48, \"step150_lambda\": 1000, \"step200_kl_raw\": 0.6836, \"step200_kl_norm\": 0.6836, \"step200_sparsity\": 0.477, \"step200_lambda\": 1000, \"step200_constraint\": 0.01178, \"kl_trend\": \"decreasing (1.18→0.57 min, uptick to 0.68 at end)\", \"sparsity_range\": \"0.477-0.514 after step 50\", \"checkpoint_path\": \"/root/distill_sparse_swiglu/checkpoints/kl_norm_v3_quicktest/predictor_kl_normalized.pt\"}}, \"mvp_kl_norm_s456\": {\"conclusion\": \"killed\", \"spec\": {\"hypothesis\": \"Normalized KL (÷seq_len) + Lagrangian 约束在 1000 步完整训练下产生优于 BCE 的稀疏预测器\", \"loss_type\": \"kl_normalized\", \"seed\": 456, \"model\": \"Llama-3.1-8B\", \"model_name\": \"llama-3.1-8b\", \"sparsity\": 0.5, \"steps\": 1000, \"batch_size\": 4, \"seq_len\": 2048, \"server\": \"westd-34887\", \"parent\": \"kl_normalized_quicktest\", \"data_path\": \"wikitext-103 (HF cached)\", \"kl_normalization\": \"÷seq_len only\", \"lagrangian\": \"lambda_init=1.0, ×2.0/×0.5 every 25 steps, clamp [0.1, 1000]\"}}, \"spon_kl_s42\": {\"conclusion\": \"killed\", \"spec\": {\"hypothesis\": \"SPON learnable bias vectors + KL loss 在 50% sparsity 下补偿稀疏化误差，复现论文效果并为 plan_005 组合实验铺路\", \"loss_type\": \"kl_spon\", \"seed\": 42, \"model_name\": \"llama-3.1-8b\", \"sparsity\": 0.5, \"server\": \"westd-34887\", \"parent\": \"mvp_kl_norm_v2_s42\", \"data_path\": \"wikitext-103 (HF cached)\"}}, \"diag_30pct_downstream\": {\"conclusion\": \"killed\", \"spec\": {\"hypothesis\": \"50% sparsity 导致 downstream 崩溃是梯度断崖还是渐进退化？30% sparse model 如果保持合理 downstream → 确认 50% 是断崖点；如果也崩 → 问题更根本\", \"model_name\": \"meta-llama/Llama-3.1-8B + KL predictor 30% sparse\", \"checkpoint_source\": \"/root/distill_sparse_swiglu/checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt\", \"eval_data\": \"arc_challenge, winogrande, mmlu, gsm8k\", \"server\": \"westd-34887\", \"seed\": 42, \"parent\": \"kl_sparsity30_s42_v3\"}}, \"diag_gsm8k_gencomp\": {\"conclusion\": \"killed\", \"spec\": {\"hypothesis\": \"稀疏模型 GSM8K 退化是推理能力丧失（输出无意义/重复）还是仅格式错误（推理正确但答案格式不匹配）？\", \"model_name\": \"meta-llama/Llama-3.1-8B dense vs KL sparse 50%\", \"eval_data\": \"GSM8K 5-10 samples, greedy generation\", \"server\": \"westd-34887\", \"seed\": 42, \"parent\": \"lm_eval_kl_s42\"}}, \"diag_teal_downstream\": {\"conclusion\": \"killed\", \"spec\": {\"hypothesis\": \"TEAL 50% sparse 是否也出现同样的 downstream 崩溃？如果是 → 50% sparsity 固有限制，KL 的 PPL 优势仍有论文价值；如果否 → KL predictor 引入了额外退化\", \"model_name\": \"meta-llama/Llama-3.1-8B + TEAL 50% sparse (training-free)\", \"eval_data\": \"arc_challenge, winogrande, mmlu, gsm8k\", \"server\": \"westd-34887\", \"seed\": 42, \"parent\": \"training_free_baselines\"}}, \"bce_isocompute_s42_v2\": {\"spec\": {\"command\": \"python src/train.py --loss_type bce --num_steps 2700 --sparsity_target 0.5\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"123984\", \"log_path\": \"~/runs/distill_sparse_swiglu/bce_isocompute_s42_v2.log\", \"submitted_at\": \"2026-05-15T19:47:01.988Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"wikitext-103\", \"data_count\": 0, \"model_name\": \"meta-llama/Llama-3.1-8B\", \"seed\": 42, \"checkpoint_path\": \"N/A\", \"wall_clock_seconds\": 23874.7, \"gpu_hours\": 6.63}, \"conclusion\": \"killed\"}, \"eval_spon_supp_retry\": {\"spec\": {\"command\": \"python src/eval_spon_supplementary.py --gpu 0 --seq_len 2048\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"123231\", \"log_path\": \"~/runs/distill_sparse_swiglu/eval_spon_supp_retry.log\", \"submitted_at\": \"2026-05-15T19:44:22.577Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"spon eval\", \"data_count\": 0, \"model_name\": \"meta-llama/Llama-3.1-8B\", \"seed\": 42, \"checkpoint_path\": \"N/A\", \"wall_clock_seconds\": 24033.1, \"gpu_hours\": 6.68}, \"conclusion\": \"failed\"}, \"lm_eval_dense_test\": {\"spec\": {\"command\": \"python src/benchmark_eval.py --dense --tasks arc_challenge\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"153249\", \"log_path\": \"~/runs/distill_sparse_swiglu/lm_eval_dense_test.log\", \"submitted_at\": \"2026-05-15T22:30:54.294Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"arc_challenge\", \"data_count\": 0, \"model_name\": \"meta-llama/Llama-3.1-8B\", \"seed\": 42, \"checkpoint_path\": \"N/A\", \"wall_clock_seconds\": 14040.0, \"gpu_hours\": 3.9}, \"conclusion\": \"failed\"}, \"lm_eval_mistral_downstream\": {\"spec\": {\"command\": \"python -u src/eval_benchmark.py --condition mistral_kl_s42 --tasks lm_eval\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"174840\", \"log_path\": \"~/runs/distill_sparse_swiglu/lm_eval_mistral_downstream.log\", \"submitted_at\": \"2026-05-15T23:34:22.413Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"lm_eval benchmarks\", \"data_count\": 0, \"model_name\": \"mistralai/Mistral-7B\", \"seed\": 42, \"checkpoint_path\": \"N/A\", \"wall_clock_seconds\": 10230.9, \"gpu_hours\": 2.84}, \"conclusion\": \"failed\"}, \"mvp_kl_s123\": {\"spec\": {\"hypothesis\": \"KL-trained predictor captures joint neuron interactions via end-to-end gradient flow, outperforming BCE at 50% sparsity\", \"loss_type\": \"kl\", \"seed\": 123, \"model\": \"Llama-3.1-8B\", \"sparsity\": 0.5, \"steps\": 1000, \"batch_size\": 4, \"seq_len\": 2048, \"gpu\": \"cuda:0\", \"server\": \"westd-34887\", \"eval\": \"WikiText-2 + C4 perplexity\", \"checkpoint_path\": \"N/A (killed)\", \"log_path\": \"N/A\"}, \"conclusion\": \"killed\"}, \"mvp_kl_s456\": {\"spec\": {\"hypothesis\": \"KL-trained predictor captures joint neuron interactions via end-to-end gradient flow, outperforming BCE at 50% sparsity\", \"loss_type\": \"kl\", \"seed\": 456, \"model\": \"Llama-3.1-8B\", \"sparsity\": 0.5, \"steps\": 1000, \"batch_size\": 4, \"seq_len\": 2048, \"gpu\": \"cuda:0\", \"server\": \"westd-34887\", \"eval\": \"WikiText-2 + C4 perplexity\", \"checkpoint_path\": \"N/A (killed)\", \"log_path\": \"N/A\"}, \"conclusion\": \"killed\"}, \"kl_sparsity70_s42\": {\"spec\": {\"hypothesis\": \"KL distillation @ 70% sparsity (aggressive pruning). Part of plan_008 3-level sparsity sweep (30/50/70%). Expect larger PPL increase than 50% but KL should maintain advantage over BCE. Paired with kl_sparsity30_s42.\", \"command\": \"CUDA_VISIBLE_DEVICES=1 bash -c 'source /root/distill_sparse_swiglu/setup_env.sh && cd /root/distill_sparse_swiglu && PYTHONUNBUFFERED=1 WANDB_MODE=offline python src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --loss_type kl_normalized --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 42 --sparsity_target 0.7 --gpu 0 --output_dir /root/distill_sparse_swiglu/checkpoints/kl_sparsity70_s42 --wandb_run_name kl_sparsity70_s42 --dataset wikitext-103'\", \"server\": \"westd-34887\", \"data_path\": \"wikitext-103\", \"data_count\": -1, \"model_name\": \"llama-3.1-8b\", \"seed\": 42, \"plan_id\": \"plan_008\"}, \"conclusion\": \"killed\"}, \"kl_sparsity30_s42\": {\"spec\": {\"hypothesis\": \"KL distillation @ 30% sparsity (mild pruning). Part of plan_008 3-level sparsity sweep (30/50/70%). Expect small PPL increase vs dense. Paired with kl_sparsity70_s42 and existing 50% data.\", \"plan_id\": \"plan_008\", \"command\": \"python src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --loss_type kl_normalized --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 42 --sparsity_target 0.3 --gpu 1 --output_dir /root/distill_sparse_swiglu/checkpoints/kl_sparsity30_s42 --wandb_run_name kl_sparsity30_s42 --dataset wikitext-103 --gradient_checkpointing\", \"server\": \"westd-34887\", \"data_path\": \"wikitext-103\", \"data_count\": 1000, \"model_name\": \"llama-3.1-8b\", \"seed\": 42}, \"conclusion\": \"killed\"}, \"ste_baseline_s42\": {\"spec\": {\"command\": \"bash -c \\\"source /root/distill_sparse_swiglu/setup_env.sh && cd /root/distill_sparse_swiglu && PYTHONUNBUFFERED=1 WANDB_MODE=offline python src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --relaxation ste --loss_type kl_normalized --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 42 --sparsity_target 0.5 --gpu 0 --output_dir /root/distill_sparse_swiglu/checkpoints/ste_baseline_s42 --wandb_run_name ste_baseline_s42 --dataset wikitext-103\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"116142\", \"log_path\": \"~/runs/distill_sparse_swiglu/ste_baseline_s42.log\", \"submitted_at\": \"2026-05-15T19:17:21.463Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"wikitext-103\", \"data_count\": null, \"model_name\": \"llama-3.1-8b\", \"seed\": 42, \"wall_clock_seconds\": 2794.1, \"gpu_hours\": 0.78}, \"metrics\": {\"true_dense_ppl\": 6.12, \"predictor_hard_mask_ppl\": 8.18, \"teal_sparse_ppl\": 15.77, \"model_level_sparsity\": 0.47, \"ppl_increase_vs_true_dense_pct\": 157.7, \"eval_seq_len\": 2048, \"calibration_samples\": 32, \"eval_dataset\": \"wikitext-2\", \"per_token_sparsity\": 0.47, \"lambda_stats\": {\"steps_70_130_mean\": 66.4, \"steps_70_130_std\": 94.87, \"first_500_mean\": 688.07, \"first_500_std\": 440.57, \"last_500_mean\": 965.69, \"last_500_std\": 141.59, \"overall_mean\": 826.88, \"overall_std\": 354.23}}, \"conclusion\": \"success\"}, \"spon_supp_eval_retry\": {\"spec\": {\"command\": \"TRANSFORMERS_OFFLINE=1 HF_DATASETS_OFFLINE=1 python src/eval_spon_supplementary.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --spon_checkpoint checkpoints/spon_2048_s42/spon_biases.pt --gpu 0 --seq_len 2048\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"123231\", \"log_path\": \"~/runs/distill_sparse_swiglu/eval_spon_supp_retry.log\", \"model_name\": \"llama-3.1-8b\", \"checkpoint_source\": \"spon_2048_s42\", \"eval_data\": \"wikitext-2\", \"data_path\": \"wikitext-2\", \"data_count\": 141, \"seed\": 42}, \"conclusion\": \"failed\"}, \"bce_isocompute_s42\": {\"spec\": {\"command\": \"bash -c \\\"source /root/distill_sparse_swiglu/setup_env.sh && cd /root/distill_sparse_swiglu && PYTHONUNBUFFERED=1 WANDB_MODE=offline python src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --loss_type bce --num_steps 2700 --warmup_steps 100 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 42 --sparsity_target 0.5 --dataset wikitext-103 --gpu 0 --output_dir /root/distill_sparse_swiglu/checkpoints/bce_isocompute_s42 --wandb_run_name bce_isocompute_2700steps_s42 --gradient_checkpointing\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:0\"], \"pid\": \"120879\", \"log_path\": \"~/runs/distill_sparse_swiglu/bce_isocompute_s42.log\", \"submitted_at\": \"2026-05-15T19:29:28.887Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"wikitext-103\", \"data_count\": null, \"model_name\": \"llama-3.1-8b\", \"seed\": 42, \"wall_clock_seconds\": 656.1, \"gpu_hours\": 0.18}, \"conclusion\": \"failed\"}, \"ste_kl_s42\": {\"spec\": {\"command\": \"bash -c \\\"source /root/distill_sparse_swiglu/setup_env.sh && cd /root/distill_sparse_swiglu && WANDB_MODE=offline PYTHONUNBUFFERED=1 python src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --loss_type kl_ste --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 42 --sparsity_target 0.5 --gpu 0 --output_dir /root/distill_sparse_swiglu/checkpoints/ste_kl_s42 --wandb_run_name ste_kl_s42 --dataset wikitext-103\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"112197\", \"log_path\": \"~/runs/distill_sparse_swiglu/ste_kl_s42.log\", \"submitted_at\": \"2026-05-15T18:50:37.022Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"wikitext-103 (HF cached)\", \"data_count\": null, \"model_name\": \"llama-3.1-8b\", \"seed\": 42, \"checkpoint_source\": \"N/A (training from scratch with STE mask)\", \"eval_data\": \"wikitext-2 (post-training eval)\", \"checkpoint_path\": \"N/A\", \"wall_clock_seconds\": 335.7, \"gpu_hours\": 0.09}, \"conclusion\": \"killed\"}, \"spon_training_seq2048\": {\"spec\": {\"hypothesis\": \"SPON seq_len=2048 重训消除 train/eval seq_len mismatch confound (原 128 vs eval 2048)，决定 Claim 2 是否有救\", \"model_name\": \"llama-3.1-8b\", \"seed\": 42, \"server\": \"westd-34887\", \"parent\": \"spon_training\", \"data_path\": \"wikitext-103 (HF cached)\", \"loss_type\": \"kl_spon\", \"sparsity\": 0.5, \"steps\": 1000, \"seq_len\": 2048, \"batch_size\": 4, \"gpu\": \"cuda:0\"}, \"conclusion\": \"killed\"}, \"mvp_kl_norm_s123\": {\"spec\": {\"command\": \"bash -c \\\"source /root/distill_sparse_swiglu/setup_env.sh && cd /root/distill_sparse_swiglu && PYTHONUNBUFFERED=1 WANDB_MODE=disabled python src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --loss_type kl_normalized --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 123 --sparsity_target 0.5 --gpu 0 --output_dir /root/distill_sparse_swiglu/checkpoints/mvp_kl_norm_s123 --wandb_run_name mvp_kl_norm_s123 --dataset wikitext-103\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"69608\", \"log_path\": \"~/runs/distill_sparse_swiglu/mvp_kl_norm_s123.log\", \"submitted_at\": \"2026-05-15T14:30:49.142Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"wikitext-103 (HF cached)\", \"data_count\": null, \"model_name\": \"llama-3.1-8b\", \"seed\": 123, \"wall_clock_seconds\": 1548.1, \"gpu_hours\": 0.43}, \"conclusion\": \"failed\"}, \"mvp_kl_norm_s42\": {\"spec\": {\"hypothesis\": \"Normalized KL (÷seq_len) + Lagrangian 约束在 1000 步完整训练下产生优于 BCE 的稀疏预测器 (PPL increase < 58%)\", \"loss_type\": \"kl_normalized\", \"seed\": 42, \"model\": \"Llama-3.1-8B\", \"model_name\": \"llama-3.1-8b\", \"sparsity\": 0.5, \"steps\": 1000, \"batch_size\": 4, \"seq_len\": 2048, \"gpu\": \"cuda:0\", \"server\": \"westd-34887\", \"parent\": \"kl_normalized_quicktest\", \"data_path\": \"wikitext-103 (HF cached)\", \"data_count\": null, \"kl_normalization\": \"÷seq_len only\", \"lagrangian\": \"lambda_init=1.0, ×2.0/×0.5 every 25 steps, clamp [0.1, 1000]\", \"command\": \"bash -c \\\"source /root/distill_sparse_swiglu/setup_env.sh && cd /root/distill_sparse_swiglu && PYTHONUNBUFFERED=1 WANDB_MODE=disabled python src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --loss_type kl_normalized --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 42 --sparsity_target 0.5 --gpu 0 --output_dir /root/distill_sparse_swiglu/checkpoints/mvp_kl_norm_s42 --wandb_run_name mvp_kl_norm_s42 --dataset wikitext-103\\\"\"}, \"conclusion\": \"failed\"}, \"kl_normalized_quicktest\": {\"spec\": {\"hypothesis\": \"KL loss per-token-per-dim 归一化后 (~0.003 量级) + Lagrangian 约束可维持 50% sparsity\", \"loss_type\": \"kl_normalized\", \"seed\": 42, \"model\": \"Llama-3.1-8B\", \"sparsity\": 0.5, \"steps\": 200, \"batch_size\": 4, \"seq_len\": 2048, \"gpu\": \"cuda:0\", \"server\": \"westd-34887\", \"parent\": \"kl_lagrangian_quicktest\", \"command\": \"bash -c \\\"source /root/distill_sparse_swiglu/setup_env.sh && cd /root/distill_sparse_swiglu && PYTHONUNBUFFERED=1 WANDB_MODE=disabled python src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --loss_type kl_normalized --num_steps 200 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 42 --sparsity_target 0.5 --gpu 0 --output_dir /root/distill_sparse_swiglu/checkpoints/kl_normalized_quicktest --wandb_run_name kl_normalized_quicktest --dataset wikitext-103\\\"\", \"data_path\": \"wikitext-103 (HF cached)\", \"data_count\": null, \"model_name\": \"llama-3.1-8b\", \"checkpoint_path\": \"/root/distill_sparse_swiglu/checkpoints/kl_normalized_quicktest/predictor_kl_normalized.pt\", \"log_path\": \"/root/distill_sparse_swiglu/logs/kl_normalized_quicktest.log\"}, \"conclusion\": \"failed\", \"metrics\": {\"step1_kl\": 1.18, \"step200_kl\": 0.641, \"step200_sparsity\": 0.504, \"final_lambda\": 8, \"sparsity_converged_step\": 80, \"sparsity_trajectory\": [0.406, 0.398, 0.398, 0.457, 0.52, 0.506, 0.504, 0.504], \"lambda_trajectory\": [1, 2, 4, 8, 8, 8, 8, 8]}}}, \"count\": 404, \"total\": 404, \"baseline\": \"bench_dense\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9258}}"
+    }
+  },
+  "sourceToolAssistantUUID": "bf7cac2a-70e7-4a27-87fd-0fe02f3b1ad0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 284_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[System 触发审查]: R28 审稿报告 + Action Matrix 审核请求  **背景**：R28 Overall 3.0 (Findings)，与 R27 持平。三个 critical 全部是长期复发的 evidence 问题（C1 ×9轮, C2 ×11轮, C3 ×5轮），写作降级多轮后仍被标记。DDL 明天 05-25，无法补实验。  **请审核以下 Action Matri…",
+  "leafUuid": "6bd40671-bef0-48c4-8f8f-f3738fbdddb9",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 285_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Research review and data consistency validation",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 286 · 2026-05-24T03:20:05.030Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01WSXv4ck3MAoqdwAYhQyvaR`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu--claude-sessions-reviewer-ab8e9749/d51aa5af-61bf-4531-b8ca-381ad00f2371/tool-results/mcp-agent-ml-research-read_registry-1779592796195.txt | python3 -c \"\nimport json, sys\ndata = json.loads(json.loads(sys.stdin.read())['result'])['data']['experiments']\nfor k, v in data.items():\n    if 'qwen14b' in k and 'gsm8k' in k.lower():\n        m = v.get('metrics', {})\n        print(f\\\"{k}: status={v.get('conclusion','?')}, gsm8k={m.get('gsm8k_exact_match', m.get('gsm8k_acc', 'N/A'))}\\\")\n    elif 'qwen14b' in k and any('gsm' in str(mk).lower() for mk in v.get('metrics', {}).keys()):\n        m = v.get('metrics', {})\n        gsm = {kk:vv for kk,vv in m.items() if 'gsm' in kk.lower()}\n        print(f\\\"{k}: status={v.get('conclusion','?')}, gsm_metrics={gsm}\\\")\n\" 2>&1 | head -20",
+  "description": "Extract Qwen14B GSM8K experiments from registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6bd40671-bef0-48c4-8f8f-f3738fbdddb9",
+  "isSidechain": false,
+  "requestId": "req_011CbLfyPWPJq2zV1PnE1N7K",
+  "type": "assistant",
+  "uuid": "e02d9f97-a90c-4076-b01b-d74184e86546",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VocFa2oTNETfWFasnmUr8i",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 610,
+      "cache_read_input_tokens": 117905,
+      "output_tokens": 449,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 610,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 449,
+          "cache_read_input_tokens": 117905,
+          "cache_creation_input_tokens": 610,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 610
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 287 · 2026-05-24T03:20:05.146Z_
+
+<details><summary>↩ Tool result · `toolu_01WSXv4ck3MAoqdwAYhQyvaR`</summary>
+
+```text
+qwen14b_kl30_s123_gsm8k: status=killed, gsm8k=0.3442
+qwen14b_kl30_s42_gsm8k_uniform: status=success, gsm8k=0.3548
+qwen14b_teal30_uniform_gsm8k: status=success, gsm8k=0.5208
+qwen14b_kl30_s456_gsm8k: status=success, gsm8k=0.2608
+qwen14b_kl30_s42_gsm8k_v2: status=success, gsm8k=0.3571
+qwen14b_teal275_uniform_eval_v3: status=success, gsm_metrics={'gsm8k_exact_match': 0.5709}
+qwen14b_kl30_s42_gsm8k: status=killed, gsm8k=N/A
+qwen14b_teal30_eval: status=success, gsm_metrics={'gsm8k_exact_match': 0.4951}
+qwen14b_bce30_s42_eval: status=negative, gsm_metrics={'gsm8k_exact_match': 0.5307}
+qwen14b_dense_baseline: status=success, gsm_metrics={'gsm8k': 0.8757}
+qwen14b_kl30_s42_eval: status=success, gsm_metrics={'gsm8k_exact_match': 0.4882}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e02d9f97-a90c-4076-b01b-d74184e86546",
+  "isSidechain": false,
+  "promptId": "2592e8e0-a6d0-474e-b4ec-8e113926083a",
+  "type": "user",
+  "uuid": "f4f5d685-87be-4e95-9cc6-50518cd8b78d",
+  "toolUseResult": {
+    "stdout": "qwen14b_kl30_s123_gsm8k: status=killed, gsm8k=0.3442\nqwen14b_kl30_s42_gsm8k_uniform: status=success, gsm8k=0.3548\nqwen14b_teal30_uniform_gsm8k: status=success, gsm8k=0.5208\nqwen14b_kl30_s456_gsm8k: status=success, gsm8k=0.2608\nqwen14b_kl30_s42_gsm8k_v2: status=success, gsm8k=0.3571\nqwen14b_teal275_uniform_eval_v3: status=success, gsm_metrics={'gsm8k_exact_match': 0.5709}\nqwen14b_kl30_s42_gsm8k: status=killed, gsm8k=N/A\nqwen14b_teal30_eval: status=success, gsm_metrics={'gsm8k_exact_match': 0.4951}\nqwen14b_bce30_s42_eval: status=negative, gsm_metrics={'gsm8k_exact_match': 0.5307}\nqwen14b_dense_baseline: status=success, gsm_metrics={'gsm8k': 0.8757}\nqwen14b_kl30_s42_eval: status=success, gsm_metrics={'gsm8k_exact_match': 0.4882}",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "e02d9f97-a90c-4076-b01b-d74184e86546",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 288 · 2026-05-24T03:20:47.435Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I can see the full picture. Let me analyze:
+
+**Qwen14B KL GSM8K experiments (uniform allocation):**
+- `qwen14b_kl30_s42_gsm8k_v2`: success, gsm8k=0.3571 (35.71%) — westd-41718
+- `qwen14b_kl30_s42_gsm8k_uniform`: success, gsm8k=0.3548 (35.48%) — westd-34887
+
+
+- `qwen14b_kl30_s456_gsm8k`: success, gsm8k=0.2608 (26.08%)
+- `qwen14b_kl30_s123_gsm8k`: killed but achieved 34.42%, while `qwen14b_kl30_s123_gsm8k_v4` is currently running
+
+The dense baseline shows 87.57% on GSM8K, which is notably higher than the 52.1% reported in the paper, so there's a discrepancy I need to investigate.
+
+Actually, looking more carefully at the paper's comparison—the 52.1% refers to TEAL results, not the dense baseline. The paper is contrasting KL at 32.0% against TEAL at 52.1%, not against dense. So the dense model's 87.57% is separate from that comparison. Recalculating across the three seeds with the killed run included: s42 gives around 35.71%, s123 is 34.42%, and s456 is 26.08%.
+
+Computing the mean and standard deviation across all three seeds yields approximately 32.0±5.2, which matches the paper exactly—confirming they included the killed seed data in their reported numbers.
+
+The critical issue is that the paper removed the "n=2" qualifier from the new version while shifting to n=3 by incorporating the inaccessible killed data, effectively obscuring this methodological change.
+
+Now I'm checking whether the worker applied the TEAL baseline differently. The 52.1 figure matches the qwen14b_teal30_uniform_gsm8k result, and the -20.1pp gap (52.1 - 32.0) represents the performance drop from TEAL to KL. But I'm noticing inconsistencies across the paper—the Introduction, Limitations, and Abstract all cite slightly different GSM8K degradation values, which suggests either rounding variations or potential data inconsistencies I need to track down. The delta is consistently measured against TEAL, so the 32.0±5.2 figure represents a −20.1pp drop from TEAL's 52.1%. The core problem is that this new value includes data from a killed experiment whose integrity hasn't been verified, whereas the previous version used only the two successful runs (30.9±6.8). The shift from 30.9 to 32.0 slightly reduces the reported regression magnitude, but the fundamental issue of including unverified data remains. look slightly smaller (-20.1 vs -21.2) and more precise (σ=5.2 vs 6.8). This is concerning because it uses unverified data to make the negative result look less bad.
+
+But there's also another possibility: maybe the worker decided that the killed s123 result is reliable enough to use because it has metrics, the v4 re-run would confirm it, and using n=3 reduces uncertainty. However, the handoff explicitly warned about this data's integrity issues—the runtime was only half of comparable experiments, it was marked as killed, and there's no sample_len. This is a direct violation of that warning. The data fixes worker incorporated killed data without any disclosure.
+
+Now I need to check how this is actually presented in the paper's Table 5 for the 14B results.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f4f5d685-87be-4e95-9cc6-50518cd8b78d",
+  "isSidechain": false,
+  "requestId": "req_011CbLfz3inXMFAXTKvCG2Ux",
+  "type": "assistant",
+  "uuid": "50ad1671-13c6-492e-83b0-0a6b4b08b251",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017rW6fWVbVyTxo3nWQfq9jB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 833,
+      "cache_read_input_tokens": 118515,
+      "output_tokens": 2080,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 833,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2080,
+          "cache_read_input_tokens": 118515,
+          "cache_creation_input_tokens": 833,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 833
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 289 · 2026-05-24T03:20:47.651Z_
+
+确认了关键问题。论文 Qwen 14B GSM8K 数据从 `30.9±6.8 (n=2)` 变为 `32.0±5.2`，这要求使用 killed s123 实验数据。查看 14B 表格确认。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "50ad1671-13c6-492e-83b0-0a6b4b08b251",
+  "isSidechain": false,
+  "requestId": "req_011CbLfz3inXMFAXTKvCG2Ux",
+  "type": "assistant",
+  "uuid": "d374bdc6-98e6-471c-ae53-7c9888761b13",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017rW6fWVbVyTxo3nWQfq9jB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 833,
+      "cache_read_input_tokens": 118515,
+      "output_tokens": 2080,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 833,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2080,
+          "cache_read_input_tokens": 118515,
+          "cache_creation_input_tokens": 833,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 833
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 290 · 2026-05-24T03:20:49.435Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_011fn3iRnNZE42diymkxnaKQ`</summary>
+
+```json
+{
+  "pattern": "tab:14b|14b|qwen.*14",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper",
+  "output_mode": "content",
+  "-n": true,
+  "-i": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d374bdc6-98e6-471c-ae53-7c9888761b13",
+  "isSidechain": false,
+  "requestId": "req_011CbLfz3inXMFAXTKvCG2Ux",
+  "type": "assistant",
+  "uuid": "406f415d-ac0e-4dab-9adb-86337f8d07f7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017rW6fWVbVyTxo3nWQfq9jB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 833,
+      "cache_read_input_tokens": 118515,
+      "output_tokens": 2080,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 833,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2080,
+          "cache_read_input_tokens": 118515,
+          "cache_creation_input_tokens": 833,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 833
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 291 · 2026-05-24T03:20:49.456Z_
+
+<details><summary>↩ Tool result · `toolu_011fn3iRnNZE42diymkxnaKQ`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/experiments.tex:194:On Mistral-7B-v0.3~\cite{jiang2023mistral}, PPL generalizes ($-$17.3\%, 3-seed; Table~\ref{tab:mistral_downstream}); on Qwen-2.5-14B~\cite{qwen2024qwen25}, PPL generalizes but MMLU/GSM8K decline (Table~\ref{tab:14b}).
+/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/experiments.tex:195:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/limitations.tex:5:\textbf{Knowledge-intensive regression.} KL consistently underperforms on MMLU and GSM8K across scales (8B: $-$5.2pp MMLU; 14B: $-$20pp GSM8K), suggesting output-distribution objectives systematically sacrifice reasoning-critical pathways.
+/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/main.fdb_latexmk:148:  "/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def" 1752350709 14249 e14b403fb70abdf1f6742598a63b0e2a ""
+/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/main.fdb_latexmk:168:  "/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty" 1750533675 9684 a33a14b82ce60d6e77cb9be689d79ee6 ""
+/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/abstract.tex:3:On LLaMA-3.1-8B at 30\% sparsity, the KL predictor reduces perplexity by 14.5\% over TEAL at matched sparsity, with directional commonsense gains ($n{=}3$) but knowledge-intensive regression (MMLU $-$5.2pp on 8B; GSM8K $-$20.1pp on 14B); post-hoc compensation (+67.2M params) becomes redundant.
+/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/abstract.tex:7:Cross-architecture evaluation on Mistral-7B-v0.3 and Qwen-2.5-14B confirms PPL generalization with scale-dependent downstream effects.
+/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/appendix.tex:304:\section{Qwen-2.5-14B Detailed Results}
+/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/appendix.tex:305:\label{app:14b}
+/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/appendix.tex:309:\caption{Qwen-2.5-14B at 30\% nominal sparsity. Actual sparsity differs: KL 29.6\% (3-seed), TEAL 29.3\% (target 30\%). \textbf{Bold}: best sparse per column per group. BCE collapses to 6.4\% native sparsity (\S\ref{sec:method:gradient}), so forced global top-$k$ is used.}
+/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/appendix.tex:310:\label{tab:14b}
+/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/appendix.tex:320:KL (Ours) & \textbf{7.62} & 57.17 & 72.06 & 63.72 & 48.82 & \textbf{75.01} & \textbf{77.37} \\ % exp_id: qwen14b_kl30_s42
+/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/appendix.tex:321:TEAL & 8.73 & 56.83 & \textbf{72.69} & \textbf{71.83} & 49.51 & 70.51 & 74.70 \\ % exp_id: qwen14b_teal30_eval
+/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/appendix.tex:322:BCE & 8.76 & \textbf{57.59} & 72.61 & 71.67 & \textbf{53.07} & 53.43 & 68.28 \\ % exp_id: qwen14b_bce30_s42_eval
+/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/appendix.tex:325:KL (Ours) & \textbf{7.90} & 53.50 & \textbf{72.82} & 63.55 & 32.0$\pm$5.2 & \textbf{72.68$\pm$0.2} & \textbf{76.01$\pm$1.1} \\ % exp_id: qwen14b_kl30_uniform (3-seed s42/s123/s456)
+/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/appendix.tex:326:TEAL & 8.01 & \textbf{55.29} & 69.85 & \textbf{66.34} & \textbf{52.1} & 67.72 & 74.70 \\ % exp_id: qwen14b_teal30_uniform
+/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/appendix.tex:331:Under global allocation, BCE's HellaSwag drops to 53.43\% ($-$17pp vs.\ TEAL), indicating that the magnitude-based predictor's mask quality degrades severely when combined with non-uniform budget distribution at 14B scale. % exp_id: qwen14b_bce30_s42_eval, qwen14b_teal30_eval
+/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/appendix.tex:654:Qwen-2.5-14B is released under the Apache 2.0 License.
+/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/introduction.tex:17:Cross-architecture evaluation on Mistral-7B-v0.3~\cite{jiang2023mistral} (3-seed) confirms the PPL advantage ($-$17.3\%) with directional commonsense gains but tied MMLU; preliminary evaluation on Qwen-2.5-14B~\cite{qwen2024qwen25} shows consistent PPL improvement but reasoning decline (GSM8K $-$20.1pp, $\sigma$=5.2pp; MMLU $-$2.8pp).
+/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/introduction.tex:24:\item \emph{Empirical:} Cross-scale evidence at 7--14B confirming output-distribution losses outperform intermediate losses regardless of coupling scope (\S\ref{sec:experiments}).
+/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/main.aux:1514:\@writefile{toc}{\contentsline {section}{\numberline {K}Qwen-2.5-14B Detailed Results}{15}{appendix.K}\protected@file@percent }
+/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/main.aux:1515:\newlabel{app:14b}{{K}{15}{Qwen-2.5-14B Detailed Results}{appendix.K}{}}
+/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/main.aux:1516:\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Qwen-2.5-14B at 30\% nominal sparsity. Actual sparsity differs: KL 29.6\% (3-seed), TEAL 29.3\% (target 30\%). \textbf  {Bold}: best sparse per column per group. BCE collapses to 6.4\% native sparsity (\S  \ref {sec:method:gradient}), so forced global top-$k$ is used.}}{15}{table.caption.43}\protected@file@percent }
+/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/main.aux:1517:\newlabel{tab:14b}{{13}{15}{Qwen-2.5-14B at 30\% nominal sparsity. Actual sparsity differs: KL 29.6\% (3-seed), TEAL 29.3\% (target 30\%). \textbf {Bold}: best sparse per column per group. BCE collapses to 6.4\% native sparsity (\S \ref {sec:method:gradient}), so forced global top-$k$ is used}{table.caption.43}{}}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "406f415d-ac0e-4dab-9adb-86337f8d07f7",
+  "isSidechain": false,
+  "promptId": "2592e8e0-a6d0-474e-b4ec-8e113926083a",
+  "type": "user",
+  "uuid": "b2be4040-ac49-450f-99fb-ecc1e1d77114",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/experiments.tex:194:On Mistral-7B-v0.3~\\cite{jiang2023mistral}, PPL generalizes ($-$17.3\\%, 3-seed; Table~\\ref{tab:mistral_downstream}); on Qwen-2.5-14B~\\cite{qwen2024qwen25}, PPL generalizes but MMLU/GSM8K decline (Table~\\ref{tab:14b}).\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/experiments.tex:195:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/limitations.tex:5:\\textbf{Knowledge-intensive regression.} KL consistently underperforms on MMLU and GSM8K across scales (8B: $-$5.2pp MMLU; 14B: $-$20pp GSM8K), suggesting output-distribution objectives systematically sacrifice reasoning-critical pathways.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/main.fdb_latexmk:148:  \"/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def\" 1752350709 14249 e14b403fb70abdf1f6742598a63b0e2a \"\"\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/main.fdb_latexmk:168:  \"/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty\" 1750533675 9684 a33a14b82ce60d6e77cb9be689d79ee6 \"\"\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/abstract.tex:3:On LLaMA-3.1-8B at 30\\% sparsity, the KL predictor reduces perplexity by 14.5\\% over TEAL at matched sparsity, with directional commonsense gains ($n{=}3$) but knowledge-intensive regression (MMLU $-$5.2pp on 8B; GSM8K $-$20.1pp on 14B); post-hoc compensation (+67.2M params) becomes redundant.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/abstract.tex:7:Cross-architecture evaluation on Mistral-7B-v0.3 and Qwen-2.5-14B confirms PPL generalization with scale-dependent downstream effects.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/appendix.tex:304:\\section{Qwen-2.5-14B Detailed Results}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/appendix.tex:305:\\label{app:14b}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/appendix.tex:309:\\caption{Qwen-2.5-14B at 30\\% nominal sparsity. Actual sparsity differs: KL 29.6\\% (3-seed), TEAL 29.3\\% (target 30\\%). \\textbf{Bold}: best sparse per column per group. BCE collapses to 6.4\\% native sparsity (\\S\\ref{sec:method:gradient}), so forced global top-$k$ is used.}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/appendix.tex:310:\\label{tab:14b}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/appendix.tex:320:KL (Ours) & \\textbf{7.62} & 57.17 & 72.06 & 63.72 & 48.82 & \\textbf{75.01} & \\textbf{77.37} \\\\ % exp_id: qwen14b_kl30_s42\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/appendix.tex:321:TEAL & 8.73 & 56.83 & \\textbf{72.69} & \\textbf{71.83} & 49.51 & 70.51 & 74.70 \\\\ % exp_id: qwen14b_teal30_eval\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/appendix.tex:322:BCE & 8.76 & \\textbf{57.59} & 72.61 & 71.67 & \\textbf{53.07} & 53.43 & 68.28 \\\\ % exp_id: qwen14b_bce30_s42_eval\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/appendix.tex:325:KL (Ours) & \\textbf{7.90} & 53.50 & \\textbf{72.82} & 63.55 & 32.0$\\pm$5.2 & \\textbf{72.68$\\pm$0.2} & \\textbf{76.01$\\pm$1.1} \\\\ % exp_id: qwen14b_kl30_uniform (3-seed s42/s123/s456)\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/appendix.tex:326:TEAL & 8.01 & \\textbf{55.29} & 69.85 & \\textbf{66.34} & \\textbf{52.1} & 67.72 & 74.70 \\\\ % exp_id: qwen14b_teal30_uniform\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/appendix.tex:331:Under global allocation, BCE's HellaSwag drops to 53.43\\% ($-$17pp vs.\\ TEAL), indicating that the magnitude-based predictor's mask quality degrades severely when combined with non-uniform budget distribution at 14B scale. % exp_id: qwen14b_bce30_s42_eval, qwen14b_teal30_eval\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/appendix.tex:654:Qwen-2.5-14B is released under the Apache 2.0 License.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/introduction.tex:17:Cross-architecture evaluation on Mistral-7B-v0.3~\\cite{jiang2023mistral} (3-seed) confirms the PPL advantage ($-$17.3\\%) with directional commonsense gains but tied MMLU; preliminary evaluation on Qwen-2.5-14B~\\cite{qwen2024qwen25} shows consistent PPL improvement but reasoning decline (GSM8K $-$20.1pp, $\\sigma$=5.2pp; MMLU $-$2.8pp).\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/introduction.tex:24:\\item \\emph{Empirical:} Cross-scale evidence at 7--14B confirming output-distribution losses outperform intermediate losses regardless of coupling scope (\\S\\ref{sec:experiments}).\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/main.aux:1514:\\@writefile{toc}{\\contentsline {section}{\\numberline {K}Qwen-2.5-14B Detailed Results}{15}{appendix.K}\\protected@file@percent }\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/main.aux:1515:\\newlabel{app:14b}{{K}{15}{Qwen-2.5-14B Detailed Results}{appendix.K}{}}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/main.aux:1516:\\@writefile{lot}{\\contentsline {table}{\\numberline {13}{\\ignorespaces Qwen-2.5-14B at 30\\% nominal sparsity. Actual sparsity differs: KL 29.6\\% (3-seed), TEAL 29.3\\% (target 30\\%). \\textbf  {Bold}: best sparse per column per group. BCE collapses to 6.4\\% native sparsity (\\S  \\ref {sec:method:gradient}), so forced global top-$k$ is used.}}{15}{table.caption.43}\\protected@file@percent }\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/main.aux:1517:\\newlabel{tab:14b}{{13}{15}{Qwen-2.5-14B at 30\\% nominal sparsity. Actual sparsity differs: KL 29.6\\% (3-seed), TEAL 29.3\\% (target 30\\%). \\textbf {Bold}: best sparse per column per group. BCE collapses to 6.4\\% native sparsity (\\S \\ref {sec:method:gradient}), so forced global top-$k$ is used}{table.caption.43}{}}",
+    "numLines": 24
+  },
+  "sourceToolAssistantUUID": "406f415d-ac0e-4dab-9adb-86337f8d07f7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 292 · 2026-05-24T03:21:17.571Z_
+
+<details><summary>Logged reasoning block</summary>
+
+````text
+Now I can see clearly. The appendix Table 13 (tab:14b) line 325 shows:
+
+```
+KL (Ours) & \textbf{7.90} & 53.50 & \textbf{72.82} & 63.55 & 32.0$\pm$5.2 & \textbf{72.68$\pm$0.2} & \textbf{76.01$\pm$1.1} \\ % exp_id: qwen14b_kl30_uniform (3-seed s42/s123/s456)
+
+
+```
+
+But wait—the comment references s123 for GSM8K, which was actually a killed experiment. The caption claims "KL 29.6% (3-seed)" suggesting all three seeds completed successfully, yet the handoff notes flagged this data's integrity as questionable. The killed experiment ran on westd-41718, which is now inaccessible, and the data was never disclosed as incomplete in the paper.
+
+Looking at the table more carefully, I notice the metrics don't all have error bars—PPL, ARC-c, WG, and MMLU show single values with no ± notation, while GSM8K appears to have uncertainty values. This suggests the table might be mixing single-seed and multi-seed results without clear distinction.
+
+```
+GSM8K: 32.0±5.2 (3-seed!)
+- HellaSwag: 72.68±0.2
+- PIQA: 76.01±1.1
+```
+
+The 32.0±5.2 for GSM8K can only come from averaging all three seeds including the killed s123 run, since the successful seeds alone (s42 at 35.71% and s456 at 26.08%) don't produce that mean. Now I need to check whether HellaSwag and PIQA are also pulling in killed data or if they're genuinely 3-seed results.
+
+Looking at the experiment metadata, the comment mentions "qwen14b_kl30_uniform (3-seed s42/s123/s456)" which should apply across all metrics. But the killed experiment was specifically for GSM8K only, so the downstream metrics like HellaSwag and PIQA for s123 must come from a separate experiment. Let me look more carefully at what the uniform allocation row actually shows in the table.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b2be4040-ac49-450f-99fb-ecc1e1d77114",
+  "isSidechain": false,
+  "requestId": "req_011CbLg3KRByZXBbfyhSAK1B",
+  "type": "assistant",
+  "uuid": "006bda71-c033-41fd-b1cf-e9056c6b20c1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X9q4vfjkuYBJPhv2yyi5cV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4723,
+      "cache_read_input_tokens": 119348,
+      "output_tokens": 1478,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4723,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1478,
+          "cache_read_input_tokens": 119348,
+          "cache_creation_input_tokens": 4723,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4723
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 293 · 2026-05-24T03:21:23.618Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01PRT79iSZHyGBinY1FMYuLg`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu--claude-sessions-reviewer-ab8e9749/d51aa5af-61bf-4531-b8ca-381ad00f2371/tool-results/mcp-agent-ml-research-read_registry-1779592796195.txt | python3 -c \"\nimport json, sys\ndata = json.loads(json.loads(sys.stdin.read())['result'])['data']['experiments']\nfor k, v in data.items():\n    if 'qwen14b' in k and ('uniform' in k or 'gsm8k' in k):\n        m = v.get('metrics', {})\n        gsm = m.get('gsm8k_exact_match', m.get('gsm8k_acc', 'N/A'))\n        c = v.get('conclusion', '?')\n        s = v.get('status', '?')\n        print(f'{k}: status={s}, conclusion={c}, gsm8k={gsm}')\n\" 2>&1",
+  "description": "List all Qwen14B uniform/GSM8K experiments"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "006bda71-c033-41fd-b1cf-e9056c6b20c1",
+  "isSidechain": false,
+  "requestId": "req_011CbLg3KRByZXBbfyhSAK1B",
+  "type": "assistant",
+  "uuid": "e7237ff3-3e65-4284-b2b3-32e2f353f7b6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X9q4vfjkuYBJPhv2yyi5cV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4723,
+      "cache_read_input_tokens": 119348,
+      "output_tokens": 1478,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4723,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1478,
+          "cache_read_input_tokens": 119348,
+          "cache_creation_input_tokens": 4723,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4723
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 294 · 2026-05-24T03:21:23.723Z_
+
+<details><summary>↩ Tool result · `toolu_01PRT79iSZHyGBinY1FMYuLg`</summary>
+
+```text
+qwen14b_kl30_uniform_eval_4task: status=?, conclusion=killed, gsm8k=N/A
+qwen14b_teal30_uniform_eval_4task: status=?, conclusion=killed, gsm8k=N/A
+qwen14b_kl30_s123_gsm8k: status=?, conclusion=killed, gsm8k=0.3442
+qwen14b_kl30_s42_gsm8k_uniform: status=?, conclusion=success, gsm8k=0.3548
+qwen14b_teal30_uniform_hspiqa: status=?, conclusion=success, gsm8k=N/A
+qwen14b_kl30_uniform_hspiqa: status=?, conclusion=success, gsm8k=N/A
+qwen14b_teal30_uniform_gsm8k: status=?, conclusion=success, gsm8k=0.5208
+qwen14b_kl30_s456_gsm8k: status=?, conclusion=success, gsm8k=0.2608
+qwen14b_kl30_s42_gsm8k_v2: status=?, conclusion=success, gsm8k=0.3571
+qwen14b_kl30_s42_eval_uniform_v3: status=?, conclusion=success, gsm8k=N/A
+qwen14b_teal275_uniform_eval_v3: status=?, conclusion=success, gsm8k=0.5709
+qwen14b_kl30_s42_gsm8k: status=?, conclusion=killed, gsm8k=N/A
+qwen14b_teal275_uniform_hspiqa: status=?, conclusion=success, gsm8k=N/A
+qwen14b_teal30_uniform_hspiqa_v2: status=?, conclusion=success, gsm8k=N/A
+qwen14b_teal275_uniform_eval_v2: status=?, conclusion=failed, gsm8k=N/A
+qwen14b_teal275_uniform_eval: status=?, conclusion=killed, gsm8k=N/A
+qwen14b_kl30_s42_eval_uniform_v2: status=?, conclusion=killed, gsm8k=N/A
+qwen14b_kl30_s42_eval_uniform: status=?, conclusion=failed, gsm8k=N/A
+qwen14b_teal30_uniform_eval: status=?, conclusion=failed, gsm8k=N/A
+qwen14b_kl30_uniform_eval: status=?, conclusion=failed, gsm8k=N/A
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e7237ff3-3e65-4284-b2b3-32e2f353f7b6",
+  "isSidechain": false,
+  "promptId": "2592e8e0-a6d0-474e-b4ec-8e113926083a",
+  "type": "user",
+  "uuid": "690a3dcc-86b6-4a90-a7f4-1c13be7e5b9e",
+  "toolUseResult": {
+    "stdout": "qwen14b_kl30_uniform_eval_4task: status=?, conclusion=killed, gsm8k=N/A\nqwen14b_teal30_uniform_eval_4task: status=?, conclusion=killed, gsm8k=N/A\nqwen14b_kl30_s123_gsm8k: status=?, conclusion=killed, gsm8k=0.3442\nqwen14b_kl30_s42_gsm8k_uniform: status=?, conclusion=success, gsm8k=0.3548\nqwen14b_teal30_uniform_hspiqa: status=?, conclusion=success, gsm8k=N/A\nqwen14b_kl30_uniform_hspiqa: status=?, conclusion=success, gsm8k=N/A\nqwen14b_teal30_uniform_gsm8k: status=?, conclusion=success, gsm8k=0.5208\nqwen14b_kl30_s456_gsm8k: status=?, conclusion=success, gsm8k=0.2608\nqwen14b_kl30_s42_gsm8k_v2: status=?, conclusion=success, gsm8k=0.3571\nqwen14b_kl30_s42_eval_uniform_v3: status=?, conclusion=success, gsm8k=N/A\nqwen14b_teal275_uniform_eval_v3: status=?, conclusion=success, gsm8k=0.5709\nqwen14b_kl30_s42_gsm8k: status=?, conclusion=killed, gsm8k=N/A\nqwen14b_teal275_uniform_hspiqa: status=?, conclusion=success, gsm8k=N/A\nqwen14b_teal30_uniform_hspiqa_v2: status=?, conclusion=success, gsm8k=N/A\nqwen14b_teal275_uniform_eval_v2: status=?, conclusion=failed, gsm8k=N/A\nqwen14b_teal275_uniform_eval: status=?, conclusion=killed, gsm8k=N/A\nqwen14b_kl30_s42_eval_uniform_v2: status=?, conclusion=killed, gsm8k=N/A\nqwen14b_kl30_s42_eval_uniform: status=?, conclusion=failed, gsm8k=N/A\nqwen14b_teal30_uniform_eval: status=?, conclusion=failed, gsm8k=N/A\nqwen14b_kl30_uniform_eval: status=?, conclusion=failed, gsm8k=N/A",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "e7237ff3-3e65-4284-b2b3-32e2f353f7b6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 295_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[System 触发审查]: R28 审稿报告 + Action Matrix 审核请求  **背景**：R28 Overall 3.0 (Findings)，与 R27 持平。三个 critical 全部是长期复发的 evidence 问题（C1 ×9轮, C2 ×11轮, C3 ×5轮），写作降级多轮后仍被标记。DDL 明天 05-25，无法补实验。  **请审核以下 Action Matri…",
+  "leafUuid": "690a3dcc-86b6-4a90-a7f4-1c13be7e5b9e",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 296_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Research review and data consistency validation",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 297 · 2026-05-24T03:21:43.016Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I can clearly see:
+
+For Qwen 14B KL uniform GSM8K, there are only these experiments:
+- `qwen14b_kl30_s42_gsm8k_uniform`: success, gsm8k=0.3548 (35.48%)
+- `qwen14b_kl30_s42_gsm8k_v2`: success, gsm8k=0.3571 (35.71%) — on westd-41718
+
+
+- `qwen14b_kl30_s123_gsm8k`: killed, gsm8k=0.3442 (34.42%)
+- `qwen14b_kl30_s456_gsm8k`: success, gsm8k=0.2608 (26.08%)
+
+The paper reports "32.0±5.2" which requires all three seeds, but with only the two successful runs (s42_v2 and s456), I get a mean of about 30.9%, which falls short of the reported value.
+
+Neither of the successful-only combinations produces the 32.0 figure—the only way to reach it is by including the killed s123 data. This confirms a critical data integrity issue that I need to escalate to the Director.
+
+Before reporting, I should verify whether the "r28_data_fixes" worker explicitly documented this change and whether the n=2 to n=3 shift was already present in the diff or introduced later.
+
+Looking back at the diff, the old version showed 30.9±6.8 with n=2, while the new version changed it to 32.0±5.2 without the n qualifier—this was part of the uncommitted changes. The abstract and introduction both reference the 20.1pp regression (52.1-32.0), which is internally consistent with the modified numbers.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "690a3dcc-86b6-4a90-a7f4-1c13be7e5b9e",
+  "isSidechain": false,
+  "requestId": "req_011CbLg5qm7snxXCshxQzCYX",
+  "type": "assistant",
+  "uuid": "8c55a34c-97c2-4749-b0d9-4518fd1351d6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S9XkiAtvxthodQSPextL5Q",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2138,
+      "cache_read_input_tokens": 124071,
+      "output_tokens": 1650,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2138,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1650,
+          "cache_read_input_tokens": 124071,
+          "cache_creation_input_tokens": 2138,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2138
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 298 · 2026-05-24T03:21:44.448Z_
+
+数据不一致已确认。论文使用了 killed s123 实验数据（34.42%）来计算 Qwen 14B GSM8K 32.0±5.2，而该数据完整性存疑且 v4 正在重跑。立即报告 Director。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8c55a34c-97c2-4749-b0d9-4518fd1351d6",
+  "isSidechain": false,
+  "requestId": "req_011CbLg5qm7snxXCshxQzCYX",
+  "type": "assistant",
+  "uuid": "62b0101a-ddf4-44de-b6a3-024cdd4f7ade",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S9XkiAtvxthodQSPextL5Q",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2138,
+      "cache_read_input_tokens": 124071,
+      "output_tokens": 1650,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2138,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1650,
+          "cache_read_input_tokens": 124071,
+          "cache_creation_input_tokens": 2138,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2138
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 299 · 2026-05-24T03:22:01.099Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reviewer_post_to_director · `toolu_013KhQNZrqn4HN5om31wYLfS`</summary>
+
+```json
+{
+  "text": "[severity: critical] Qwen 14B GSM8K 数据完整性问题：论文使用了 killed 实验数据\n\n**发现**：\nR28 论文中 Qwen-2.5-14B GSM8K 数据从 `30.9±6.8 (n=2)` 变为 `32.0±5.2`（无 n 标注），涉及以下位置：\n- experiments.tex L195: \"14B GSM8K 32.0±5.2 vs. 52.1\"\n- abstract.tex L3: \"GSM8K −20.1pp on 14B\"\n- introduction.tex L17: \"GSM8K −20.1pp, σ=5.2pp\"\n- appendix.tex L325 (Table 13): \"32.0±5.2\" 标注 \"3-seed s42/s123/s456\"\n\n**问题根源**：\n32.0±5.2 只能通过包含 `qwen14b_kl30_s123_gsm8k`（conclusion=killed, gsm8k=34.42%）计算得到：\n- s42: 35.71% (success)\n- s123: 34.42% (**killed**, westd-41718 已不可访问)\n- s456: 26.08% (success)\n- Mean = (35.71+34.42+26.08)/3 = 32.07 ≈ 32.0, std = 5.23 ≈ 5.2 ✓\n\n仅用成功实验 (n=2): mean = 30.9±6.8\n\n**违反事项**：\n1. 交接明确警告：\"该数据完整性存疑（运行时间仅同类实验一半，conclusion=killed，无 sample_len）。如论文引用此数据需标注或改为 2-seed。\"\n2. `qwen14b_kl30_s123_gsm8k_v4` 正在 westd-34887 上重跑（当前 70%），正是为了获取干净的 s123 数据\n3. 移除 n=2 标注使其看起来像标准 3-seed 结果\n4. 使用 killed 数据使 regression 看起来更小（-20.1pp vs -21.2pp）\n\n**建议**：\n1. **立即**：将 GSM8K 恢复为 30.9±6.8 (n=2) 并恢复 n=2 标注\n2. **待 v4 完成后**：如果 v4 结果正常，用 v4 结果替换 killed 数据重新计算 3-seed\n3. 同步更新 abstract (-20.1pp→-21.2pp)、introduction、limitations 中的对应数字\n4. paper_provenance.yaml 标注数据源变更",
+  "project": "distill_sparse_swiglu"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "62b0101a-ddf4-44de-b6a3-024cdd4f7ade",
+  "isSidechain": false,
+  "requestId": "req_011CbLg5qm7snxXCshxQzCYX",
+  "type": "assistant",
+  "uuid": "7e7407d7-caed-47e8-9519-3f5debb03127",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S9XkiAtvxthodQSPextL5Q",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2138,
+      "cache_read_input_tokens": 124071,
+      "output_tokens": 1650,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2138,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1650,
+          "cache_read_input_tokens": 124071,
+          "cache_creation_input_tokens": 2138,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2138
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 300 · 2026-05-24T03:22:04.520Z_
+
+<details><summary>↩ Tool result · `toolu_013KhQNZrqn4HN5om31wYLfS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_dbbf8d2c695f1e79e11713aebc107790:director\"}, \"error\": \"\"}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7e7407d7-caed-47e8-9519-3f5debb03127",
+  "isSidechain": false,
+  "promptId": "2592e8e0-a6d0-474e-b4ec-8e113926083a",
+  "type": "user",
+  "uuid": "f80504fc-9d45-48fc-88cc-d63a4ba57919",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_dbbf8d2c695f1e79e11713aebc107790:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_dbbf8d2c695f1e79e11713aebc107790:director\"}, \"error\": \"\"}"
+    }
+  },
+  "sourceToolAssistantUUID": "7e7407d7-caed-47e8-9519-3f5debb03127",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 301 · 2026-05-24T03:22:04.524Z_
+
+```json
+{
+  "parentUuid": "f80504fc-9d45-48fc-88cc-d63a4ba57919",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "6d45288e-ea71-4f95-8a3d-536a6e97e09e",
+  "timestamp": "2026-05-24T03:22:04.524Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 302 · 2026-05-24T03:22:58.732Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me address the original Action Matrix review request from Director. I need to provide independent judgment on:
+
+1. The three CRITICAL issues (C1, C2, C3)
+2. The key questions about §4.5, Conclusion expansion, and 3.0 rating ceiling
+3. The SHOULD-FIX items
+
+Let me think through each one systematically.
+
+**C1 (per-layer decomposition mismatch)**:
+The paper's §4.5 (sec:perlayer) tries to decompose the KL advantage into "signal type" and "coupling scope." The issue is that K=1 per-layer KL conflates coupling removal with train-inference mismatch (training sees 1 layer masked, inference sees all layers masked). 
+
+The reviewers keep flagging this despite the paper's acknowledgment that it's an upper bound. The current language says the decomposition "may account for a substantial portion of the gap," but that feels too strong given the confounding. The K-curve data across different masking depths is new for this revision and does provide additional support, though the fundamental issue remains that the decomposition can't cleanly separate these two effects. The real question is whether §4.5 is rigorous enough to justify keeping it as a main contribution, or if it should move to appendix with more caveated language.
+
+I'm weighing both sides: keeping it preserves a novel empirical finding and listed contribution, but moving it reduces the paper's vulnerability to criticism about the confounding. The core result—that output distribution matters more than intermediate loss—doesn't actually depend on nailing this decomposition. My instinct is to keep §4.5 but reframe it substantially: lead with the K-curve as an empirical pattern, treat the decomposition as exploratory rather than conclusive, surface the confounds explicitly upfront, and use much weaker language like "exploratory decomposition warranting cautious interpretation" instead of even "suggestive but not definitive."
+
+Wait, I'm second-guessing myself on how much to soften this.
+
+The real issue is that "exploratory" appears in the section title already, but then the text pivots to quantitative claims about signal type accounting for substantial portions and labeling regimes as coupling-dominated versus mismatch-dominated. Those specific attributions are what draw reviewer fire. The better move is to strip out the percentage-attribution framing entirely and just present the K-curve as raw empirical observation—what actually happens when you vary K—without attempting to decompose causal shares.
+
+On the C2 regression, reviewers have flagged it repeatedly, and the paper has exhausted the experimental toolkit: C4 controls rule out training data effects, constraint analysis shows allocation contributes, multi-scale replication confirms it's systematic. The regression is genuinely a limitation, not an artifact. The question becomes what I can do at the writing level to address the persistent concern.
+
+The core problem is that the paper still positions KL as superior while TEAL dominates on knowledge tasks, and reviewers see this as an unresolved contradiction that weakens the main argument. The fix is to make the task-type split the primary narrative rather than a secondary observation—frame it as "KL excels at perplexity and commonsense reasoning; TEAL excels at knowledge tasks" as an empirical finding, not a hierarchy. I should add explicit use-case recommendations: KL for latency-sensitive applications, TEAL for knowledge-critical ones. Then in the conclusion, position this task-type split as the most important open question rather than burying it as a minor caveat. The real move is shifting from claiming universal superiority to presenting the task-dependent tradeoff as the interesting discovery.
+
+On the statistical power issue with n=3 seeds, I'm weighing whether to keep specific numbers like "-5.2pp" in the abstract or qualify them heavily. Keeping the numbers matters for clarity, but I need to acknowledge the low statistical power—something like "MMLU −5.2pp (n=3, CIs overlap)" for the 8B model and "GSM8K −21.2pp (n=2, high variance)" for 14B makes the uncertainty explicit without removing the empirical findings entirely.
+
+For section 4.5 on the K-curve, I shouldn't move it to the appendix—the empirical data is valuable. The real issue is stripping out the causal language like "may account for X%" and presenting it as an exploratory observation instead of a mechanistic explanation.
+
+The Conclusion is currently just 2 sentences, which is too sparse. Expanding it to around 6-8 sentences should fit within the page budget, especially since the diff shows the conclusion is only 6 lines right now. Even doubling that length shouldn't push us over the 8-page limit.
+
+On whether the 3.0 findings ceiling is a problem—the core contribution about output-distribution outperforming intermediate loss for sparsity prediction is solid enough that it doesn't need to be framed as a ceiling or limitation. The per-layer decomposition is confounded, and the MMLU/GSM8K regression remains unresolved—these are the core issues holding the work back. With n=3 and a single architecture family as the primary focus, I'm settling on 3.0 (Findings) as realistic; reaching 3.5 would require either fixing the knowledge regression or providing much cleaner decomposition, neither of which is feasible by the deadline. Writing improvements might nudge it toward 3.0-3.5, but 3.5 feels optimistic.
+
+I'm noticing the missing references—ActTail and WiSparse from early 2026—are flagged by the reviewer. These are recent papers I can't verify directly, but adding them is straightforward and removes an easy criticism. I should incorporate them into the related work.
+
+Now I need to tackle the Action Matrix feasibility, answer the three key questions, and address the Qwen 14B data issue I just caught before responding to the Director's review.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6d45288e-ea71-4f95-8a3d-536a6e97e09e",
+  "isSidechain": false,
+  "requestId": "req_011CbLg8r6JNnA5NXyrh13Jt",
+  "type": "assistant",
+  "uuid": "1d8bd0e8-4234-4051-ab3c-387daa93c4d8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HU65bdE4pJuge48kqkaEWf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1826,
+      "cache_read_input_tokens": 126209,
+      "output_tokens": 2108,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1826,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2108,
+          "cache_read_input_tokens": 126209,
+          "cache_creation_input_tokens": 1826,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1826
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 303 · 2026-05-24T03:22:58.734Z_
+
+现在回到 Action Matrix 审核。先验证页数情况。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1d8bd0e8-4234-4051-ab3c-387daa93c4d8",
+  "isSidechain": false,
+  "requestId": "req_011CbLg8r6JNnA5NXyrh13Jt",
+  "type": "assistant",
+  "uuid": "4b46e1c7-b6a7-43c4-ad17-5ff9633bb275",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HU65bdE4pJuge48kqkaEWf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1826,
+      "cache_read_input_tokens": 126209,
+      "output_tokens": 2108,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1826,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2108,
+          "cache_read_input_tokens": 126209,
+          "cache_creation_input_tokens": 1826,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1826
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 304 · 2026-05-24T03:22:58.958Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01G4KNdECwthiGAyNMzjrBTx`</summary>
+
+```json
+{
+  "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/main.pdf 2>/dev/null && wc -l /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/main.log 2>/dev/null",
+  "description": "Check PDF existence and log size"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4b46e1c7-b6a7-43c4-ad17-5ff9633bb275",
+  "isSidechain": false,
+  "requestId": "req_011CbLg8r6JNnA5NXyrh13Jt",
+  "type": "assistant",
+  "uuid": "01c83eb9-0c51-407e-858a-9b8d0679abb0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HU65bdE4pJuge48kqkaEWf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1826,
+      "cache_read_input_tokens": 126209,
+      "output_tokens": 2108,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1826,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2108,
+          "cache_read_input_tokens": 126209,
+          "cache_creation_input_tokens": 1826,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1826
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 305 · 2026-05-24T03:23:00.065Z_
+
+<details><summary>↩ Tool result · `toolu_01AteU6KMbBuoKZ82uRfWRBG`</summary>
+
+```text
+1	\section{Related Work}
+2	
+3	\paragraph{Training-Free Activation Sparsity.}
+4	TEAL~\cite{liu2025teal} applies global top-$k$ selection by activation magnitude and achieves 40--50\% sparsity with no training cost.
+5	CATS~\cite{lee2024cats} adapts per-layer thresholds for SiLU/SwiGLU activations; R-Sparse~\cite{zhang2025rsparse} predicts sparsity from rank-aware SVD projections; DIP~\cite{federici2025dip} combines dynamic input pruning with cache-aware masking; SparseInfer~\cite{shin2025sparseinfer} and GRASP~\cite{shin2025grasp} predict activation sparsity patterns without additional training.
+6	LaRoSA~\cite{huang2025larosa} applies layerwise orthogonal rotations for structured activation sparsity with wall-clock speedup on SiLU models.
+7	Wang et al.~\cite{wang2025dynamicsparse}, AWQ~\cite{lin2024awq}, and Outlier Suppression+~\cite{wei2023outlier} address sparsity--quantization interactions and activation-aware quantization.
+8	Dhar et al.~\cite{dhar2024activation} characterize activation sparsity opportunities across architectures, showing that SwiGLU models exhibit lower natural sparsity than ReLU counterparts.
+9	OWL~\cite{yin2024owl} determines per-layer sparsity ratios from outlier distributions for weight pruning.
+10	All training-free methods determine masks from fixed statistics or input-independent criteria, while our predictor generates \emph{input-dependent} masks trained to minimize output-distribution divergence.
+11	
+12	\paragraph{Predictor-Based Contextual Sparsity.}
+13	DejaVu~\cite{liu2023dejavu} introduced learned sparsity predictors trained via BCE to classify each neuron independently.
+14	ShadowLLM~\cite{akhauri2024shadowllm} uses attention-based routing with per-layer MSE supervision for intermediate coupling within each layer but without end-to-end gradient signal.
+15	FastForward~\cite{gautam2026fastforward} adds a 67.2M-parameter compensation network using BCE for mask prediction, adding inference latency.
+16	SVD-CSP~\cite{serbin2026svdcsp} compresses sparsity predictors via SVD decomposition for reduced predictor overhead.
+17	Dhar et al.~\cite{dhar2025clustering} compress activation patterns via clustering for efficient neuron-level prediction.
+18	LazyLLM~\cite{fu2024lazyllm} dynamically prunes tokens across layers for long-context efficiency; COTS~\cite{zhang2025cots} exploits connected activation patterns for structured sparse inference.
+19	PowerInfer~\cite{song2024powerinfer} and PowerInfer-2~\cite{xue2024powerinfer2} exploit power-law activation frequencies for GPU--CPU/NPU scheduling.
+20	MaskLLM~\cite{fang2024maskllm} shares the recipe-level principle of frozen weights + learnable masks + KL training.
+21	The methods differ in three respects: (a) MaskLLM's mask parameters are fixed per input (static N:M weight sparsity via Gumbel-Softmax), while our predictor generates \emph{per-token} masks that must generalize to unseen inputs; (b) static N:M patterns have no cross-layer allocation interaction, whereas our masks coordinate through TEAL's global top-$k$; (c) activation masks must be robust to distribution shift at inference, while weight masks are input-independent.
+22	Our contribution beyond the shared recipe is analytical: a systematic decomposition of signal type vs.\ coupling scope for sparsity prediction training, via target-swap ablation and per-layer KL controls (\S\ref{sec:perlayer}).
+23	All prior predictor-based methods for activation sparsity use decomposed (BCE) or intermediate (MSE) objectives where each neuron's gradient is independent of other mask states.
+24	We empirically observe that an output-distribution-coupled objective propagates gradients through all downstream layers and quantify when this matters for global allocation quality.
+25	
+26	\paragraph{Static Bias Correction.}
+27	SPON (Spontaneous Neurons;~\citealp{xu2025spon}) learns input-independent bias vectors via closed-form KL minimization per layer, absorbed into weights at deployment.
+28	Our method is fundamentally different: a per-token contextual predictor trained end-to-end across all layers that produces input-dependent masks.
+29	SPON solves a static per-layer problem; we solve a global dynamic prediction problem. The two are weakly correlated (cosine similarity 0.196, $R^2$=0.038; \S\ref{sec:experiments}).
+30	
+31	\paragraph{Activation Function Engineering.}
+32	ReLU Strikes Back~\cite{mirzadeh2024relu} replaces SiLU with ReLU for $>$90\% natural sparsity; TurboSparse~\cite{song2024turbosparse} and ProSparse~\cite{song2025prosparse} engineer extreme sparsity through activation modifications; the Sparsing Law~\cite{luo2024sparsinglaw} formalizes how activation density increases with training compute.
+33	MiniTron~\cite{muralidharan2024minitron} combines structured pruning with distillation but modifies architecture permanently.
+34	Haziza et al.~\cite{haziza2025accelerating} demonstrate 2:4 semi-structured activation sparsity with hardware-native acceleration, complementing our unstructured approach.
+35	MoC~\cite{wu2025moc} selectively activates Top-$K$ FFN channels using SwiGLU's native gating during pretraining.
+36	All require retraining or weight modification; our method is a plug-in predictor on \emph{unmodified} SwiGLU models.
+37	
+38	\paragraph{Weight Pruning, Distillation, and Routing.}
+39	Wanda~\cite{sun2024wanda}, SparseGPT~\cite{frantar2023sparsegpt}, and SliceGPT~\cite{ashkboos2024slicegpt} produce static weight masks via one-shot or structured pruning; Polar Sparsity~\cite{shrestha2025polar} scales contextual sparsity to batched inference by shifting focus from MLP to attention head sparsity; Alizadeh et al.~\cite{alizadeh2024llmflash} leverage activation sparsity for memory-efficient inference via selective flash loading.
+40	Switch Transformers~\cite{fedus2022switch} and Mixture-of-Depths~\cite{raposo2024mod} achieve conditional computation through learned routing.
+41	KL-based distillation~\cite{kim2016sequencekd,sanh2019distilbert,gu2024minillm,agarwal2024gkd,ko2024distillm} trains compact students; SparseLoRA~\cite{khaki2025sparselora} exploits contextual sparsity for fine-tuning.
+42	We apply the KL principle to train a sparsity predictor on unmodified dense models, using Gumbel-Sigmoid sampling~\cite{maddison2017concrete,louizos2018l0} for differentiable discrete mask optimization.
+43	
+44	\paragraph{MoE Routing and Gated Sparsity.}
+45	Expert Choice routing~\cite{zhou2022expertchoice} lets each expert select its top-$k$ tokens under a fixed capacity budget, a global allocation perspective that parallels TEAL's neuron-level global top-$k$.
+46	D2D-MoE~\cite{szatkowski2024d2dmoe} converts dense SwiGLU layers into dynamic-$k$ MoE by exploiting the same activation sparsity we target, but restructures the network into discrete experts rather than predicting masks on the original architecture.
+47	MoNE~\cite{cheng2025mone} applies neuron-granular top-$k$ selection within each MoE expert during pretraining for fine-grained conditional computation without additional routing parameters.
+48	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "baaf20a4-2f42-498f-ad8f-369731780900",
+  "isSidechain": false,
+  "promptId": "2592e8e0-a6d0-474e-b4ec-8e113926083a",
+  "type": "user",
+  "uuid": "b3163116-7cde-426a-ac1f-a665fc6eacac",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/related_work.tex",
+      "content": "\\section{Related Work}\n\n\\paragraph{Training-Free Activation Sparsity.}\nTEAL~\\cite{liu2025teal} applies global top-$k$ selection by activation magnitude and achieves 40--50\\% sparsity with no training cost.\nCATS~\\cite{lee2024cats} adapts per-layer thresholds for SiLU/SwiGLU activations; R-Sparse~\\cite{zhang2025rsparse} predicts sparsity from rank-aware SVD projections; DIP~\\cite{federici2025dip} combines dynamic input pruning with cache-aware masking; SparseInfer~\\cite{shin2025sparseinfer} and GRASP~\\cite{shin2025grasp} predict activation sparsity patterns without additional training.\nLaRoSA~\\cite{huang2025larosa} applies layerwise orthogonal rotations for structured activation sparsity with wall-clock speedup on SiLU models.\nWang et al.~\\cite{wang2025dynamicsparse}, AWQ~\\cite{lin2024awq}, and Outlier Suppression+~\\cite{wei2023outlier} address sparsity--quantization interactions and activation-aware quantization.\nDhar et al.~\\cite{dhar2024activation} characterize activation sparsity opportunities across architectures, showing that SwiGLU models exhibit lower natural sparsity than ReLU counterparts.\nOWL~\\cite{yin2024owl} determines per-layer sparsity ratios from outlier distributions for weight pruning.\nAll training-free methods determine masks from fixed statistics or input-independent criteria, while our predictor generates \\emph{input-dependent} masks trained to minimize output-distribution divergence.\n\n\\paragraph{Predictor-Based Contextual Sparsity.}\nDejaVu~\\cite{liu2023dejavu} introduced learned sparsity predictors trained via BCE to classify each neuron independently.\nShadowLLM~\\cite{akhauri2024shadowllm} uses attention-based routing with per-layer MSE supervision for intermediate coupling within each layer but without end-to-end gradient signal.\nFastForward~\\cite{gautam2026fastforward} adds a 67.2M-parameter compensation network using BCE for mask prediction, adding inference latency.\nSVD-CSP~\\cite{serbin2026svdcsp} compresses sparsity predictors via SVD decomposition for reduced predictor overhead.\nDhar et al.~\\cite{dhar2025clustering} compress activation patterns via clustering for efficient neuron-level prediction.\nLazyLLM~\\cite{fu2024lazyllm} dynamically prunes tokens across layers for long-context efficiency; COTS~\\cite{zhang2025cots} exploits connected activation patterns for structured sparse inference.\nPowerInfer~\\cite{song2024powerinfer} and PowerInfer-2~\\cite{xue2024powerinfer2} exploit power-law activation frequencies for GPU--CPU/NPU scheduling.\nMaskLLM~\\cite{fang2024maskllm} shares the recipe-level principle of frozen weights + learnable masks + KL training.\nThe methods differ in three respects: (a) MaskLLM's mask parameters are fixed per input (static N:M weight sparsity via Gumbel-Softmax), while our predictor generates \\emph{per-token} masks that must generalize to unseen inputs; (b) static N:M patterns have no cross-layer allocation interaction, whereas our masks coordinate through TEAL's global top-$k$; (c) activation masks must be robust to distribution shift at inference, while weight masks are input-independent.\nOur contribution beyond the shared recipe is analytical: a systematic decomposition of signal type vs.\\ coupling scope for sparsity prediction training, via target-swap ablation and per-layer KL controls (\\S\\ref{sec:perlayer}).\nAll prior predictor-based methods for activation sparsity use decomposed (BCE) or intermediate (MSE) objectives where each neuron's gradient is independent of other mask states.\nWe empirically observe that an output-distribution-coupled objective propagates gradients through all downstream layers and quantify when this matters for global allocation quality.\n\n\\paragraph{Static Bias Correction.}\nSPON (Spontaneous Neurons;~\\citealp{xu2025spon}) learns input-independent bias vectors via closed-form KL minimization per layer, absorbed into weights at deployment.\nOur method is fundamentally different: a per-token contextual predictor trained end-to-end across all layers that produces input-dependent masks.\nSPON solves a static per-layer problem; we solve a global dynamic prediction problem. The two are weakly correlated (cosine similarity 0.196, $R^2$=0.038; \\S\\ref{sec:experiments}).\n\n\\paragraph{Activation Function Engineering.}\nReLU Strikes Back~\\cite{mirzadeh2024relu} replaces SiLU with ReLU for $>$90\\% natural sparsity; TurboSparse~\\cite{song2024turbosparse} and ProSparse~\\cite{song2025prosparse} engineer extreme sparsity through activation modifications; the Sparsing Law~\\cite{luo2024sparsinglaw} formalizes how activation density increases with training compute.\nMiniTron~\\cite{muralidharan2024minitron} combines structured pruning with distillation but modifies architecture permanently.\nHaziza et al.~\\cite{haziza2025accelerating} demonstrate 2:4 semi-structured activation sparsity with hardware-native acceleration, complementing our unstructured approach.\nMoC~\\cite{wu2025moc} selectively activates Top-$K$ FFN channels using SwiGLU's native gating during pretraining.\nAll require retraining or weight modification; our method is a plug-in predictor on \\emph{unmodified} SwiGLU models.\n\n\\paragraph{Weight Pruning, Distillation, and Routing.}\nWanda~\\cite{sun2024wanda}, SparseGPT~\\cite{frantar2023sparsegpt}, and SliceGPT~\\cite{ashkboos2024slicegpt} produce static weight masks via one-shot or structured pruning; Polar Sparsity~\\cite{shrestha2025polar} scales contextual sparsity to batched inference by shifting focus from MLP to attention head sparsity; Alizadeh et al.~\\cite{alizadeh2024llmflash} leverage activation sparsity for memory-efficient inference via selective flash loading.\nSwitch Transformers~\\cite{fedus2022switch} and Mixture-of-Depths~\\cite{raposo2024mod} achieve conditional computation through learned routing.\nKL-based distillation~\\cite{kim2016sequencekd,sanh2019distilbert,gu2024minillm,agarwal2024gkd,ko2024distillm} trains compact students; SparseLoRA~\\cite{khaki2025sparselora} exploits contextual sparsity for fine-tuning.\nWe apply the KL principle to train a sparsity predictor on unmodified dense models, using Gumbel-Sigmoid sampling~\\cite{maddison2017concrete,louizos2018l0} for differentiable discrete mask optimization.\n\n\\paragraph{MoE Routing and Gated Sparsity.}\nExpert Choice routing~\\cite{zhou2022expertchoice} lets each expert select its top-$k$ tokens under a fixed capacity budget, a global allocation perspective that parallels TEAL's neuron-level global top-$k$.\nD2D-MoE~\\cite{szatkowski2024d2dmoe} converts dense SwiGLU layers into dynamic-$k$ MoE by exploiting the same activation sparsity we target, but restructures the network into discrete experts rather than predicting masks on the original architecture.\nMoNE~\\cite{cheng2025mone} applies neuron-granular top-$k$ selection within each MoE expert during pretraining for fine-grained conditional computation without additional routing parameters.\n",
+      "numLines": 48,
+      "startLine": 1,
+      "totalLines": 48
+    }
+  },
+  "sourceToolAssistantUUID": "baaf20a4-2f42-498f-ad8f-369731780900",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 306 · 2026-05-24T03:22:59.028Z_
+
+<details><summary>↩ Tool result · `toolu_01G4KNdECwthiGAyNMzjrBTx`</summary>
+
+```text
+-rw-r--r-- 1 ubuntu ubuntu 559416 May 24 02:32 /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/main.pdf
+992 /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/main.log
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "01c83eb9-0c51-407e-858a-9b8d0679abb0",
+  "isSidechain": false,
+  "promptId": "2592e8e0-a6d0-474e-b4ec-8e113926083a",
+  "type": "user",
+  "uuid": "c041c6df-cd46-479b-9e1b-3bef6e74bda8",
+  "toolUseResult": {
+    "stdout": "-rw-r--r-- 1 ubuntu ubuntu 559416 May 24 02:32 /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/main.pdf\n992 /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/main.log",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "01c83eb9-0c51-407e-858a-9b8d0679abb0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 307 · 2026-05-24T03:22:59.492Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_011L9JBJN3bMwWNLxG3MvdkE`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/conclusion.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c041c6df-cd46-479b-9e1b-3bef6e74bda8",
+  "isSidechain": false,
+  "requestId": "req_011CbLg8r6JNnA5NXyrh13Jt",
+  "type": "assistant",
+  "uuid": "c00d43b6-eedf-4aaa-9cda-b9d8349a8518",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HU65bdE4pJuge48kqkaEWf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1826,
+      "cache_read_input_tokens": 126209,
+      "output_tokens": 2108,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1826,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2108,
+          "cache_read_input_tokens": 126209,
+          "cache_creation_input_tokens": 1826,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1826
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 308 · 2026-05-24T03:22:59.497Z_
+
+<details><summary>↩ Tool result · `toolu_011L9JBJN3bMwWNLxG3MvdkE`</summary>
+
+```text
+File unchanged since last read. The content from the earlier Read tool_result in this conversation is still current — refer to that instead of re-reading.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c00d43b6-eedf-4aaa-9cda-b9d8349a8518",
+  "isSidechain": false,
+  "promptId": "2592e8e0-a6d0-474e-b4ec-8e113926083a",
+  "type": "user",
+  "uuid": "a9fcf385-d635-49b0-a598-82c73363ad4a",
+  "toolUseResult": {
+    "type": "file_unchanged",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/conclusion.tex"
+    }
+  },
+  "sourceToolAssistantUUID": "c00d43b6-eedf-4aaa-9cda-b9d8349a8518",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 309 · 2026-05-24T03:23:00.061Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01AteU6KMbBuoKZ82uRfWRBG`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/related_work.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a9fcf385-d635-49b0-a598-82c73363ad4a",
+  "isSidechain": false,
+  "requestId": "req_011CbLg8r6JNnA5NXyrh13Jt",
+  "type": "assistant",
+  "uuid": "baaf20a4-2f42-498f-ad8f-369731780900",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HU65bdE4pJuge48kqkaEWf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1826,
+      "cache_read_input_tokens": 126209,
+      "output_tokens": 2108,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1826,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2108,
+          "cache_read_input_tokens": 126209,
+          "cache_creation_input_tokens": 1826,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1826
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 310_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[System 触发审查]: R28 审稿报告 + Action Matrix 审核请求  **背景**：R28 Overall 3.0 (Findings)，与 R27 持平。三个 critical 全部是长期复发的 evidence 问题（C1 ×9轮, C2 ×11轮, C3 ×5轮），写作降级多轮后仍被标记。DDL 明天 05-25，无法补实验。  **请审核以下 Action Matri…",
+  "leafUuid": "b3163116-7cde-426a-ac1f-a665fc6eacac",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 311_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Research review and data consistency validation",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 312 · 2026-05-24T03:23:03.660Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, now let me check the current PDF page count. I have the PDF file. Let me try to determine page count from the aux file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b3163116-7cde-426a-ac1f-a665fc6eacac",
+  "isSidechain": false,
+  "requestId": "req_011CbLgCwsfbPcWpcaJSuBFf",
+  "type": "assistant",
+  "uuid": "f22fa088-106c-497c-9ac4-086631eec1cf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011hL8DfpTx183uh8gjDC65w",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4380,
+      "cache_read_input_tokens": 128035,
+      "output_tokens": 343,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4380,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 343,
+          "cache_read_input_tokens": 128035,
+          "cache_creation_input_tokens": 4380,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4380
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 313 · 2026-05-24T03:23:07.488Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01XWWsKdaCMHhVUjhEAdsu5j`</summary>
+
+```json
+{
+  "command": "grep -c \"\\\\\\\\@writefile{toc}\" /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/main.aux 2>/dev/null; grep \"LastPage\" /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/main.aux 2>/dev/null; grep \"abspage@last\" /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/main.aux 2>/dev/null",
+  "description": "Check page count from aux file"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f22fa088-106c-497c-9ac4-086631eec1cf",
+  "isSidechain": false,
+  "requestId": "req_011CbLgCwsfbPcWpcaJSuBFf",
+  "type": "assistant",
+  "uuid": "ba8e2ba6-a259-4928-b66d-7c01a93626d7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011hL8DfpTx183uh8gjDC65w",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4380,
+      "cache_read_input_tokens": 128035,
+      "output_tokens": 343,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4380,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 343,
+          "cache_read_input_tokens": 128035,
+          "cache_creation_input_tokens": 4380,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4380
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 314 · 2026-05-24T03:23:07.546Z_
+
+<details><summary>↩ Tool result · `toolu_01XWWsKdaCMHhVUjhEAdsu5j`</summary>
+
+```text
+70
+\gdef \@abspage@last{19}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ba8e2ba6-a259-4928-b66d-7c01a93626d7",
+  "isSidechain": false,
+  "promptId": "2592e8e0-a6d0-474e-b4ec-8e113926083a",
+  "type": "user",
+  "uuid": "c5764470-716f-4269-a7b1-35934868caa6",
+  "toolUseResult": {
+    "stdout": "70\n\\gdef \\@abspage@last{19}",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "ba8e2ba6-a259-4928-b66d-7c01a93626d7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 315 · 2026-05-24T03:23:08.304Z_
+
+<details><summary>↩ Tool result · `toolu_013WXXXAS6pYqHWMCo4x4kQS`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__check_figures_and_layout"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d76ddee2-bfc8-42f9-8428-35ff1e416061",
+  "isSidechain": false,
+  "promptId": "2592e8e0-a6d0-474e-b4ec-8e113926083a",
+  "type": "user",
+  "uuid": "d396cd0c-647a-4f60-b3aa-54c45aa6c8aa",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__check_figures_and_layout"
+    ],
+    "query": "select:mcp__agent-ml-research__check_figures_and_layout",
+    "total_deferred_tools": 35
+  },
+  "sourceToolAssistantUUID": "d76ddee2-bfc8-42f9-8428-35ff1e416061",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 316 · 2026-05-24T03:23:08.301Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_013WXXXAS6pYqHWMCo4x4kQS`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__check_figures_and_layout",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c5764470-716f-4269-a7b1-35934868caa6",
+  "isSidechain": false,
+  "requestId": "req_011CbLgCwsfbPcWpcaJSuBFf",
+  "type": "assistant",
+  "uuid": "d76ddee2-bfc8-42f9-8428-35ff1e416061",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011hL8DfpTx183uh8gjDC65w",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4380,
+      "cache_read_input_tokens": 128035,
+      "output_tokens": 343,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4380,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 343,
+          "cache_read_input_tokens": 128035,
+          "cache_creation_input_tokens": 4380,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4380
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 317 · 2026-05-24T03:23:12.179Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The paper is 19 pages total (including appendix). The main text needs to be within 8 pages. Let me check what page the appendix starts on from the aux file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d396cd0c-647a-4f60-b3aa-54c45aa6c8aa",
+  "isSidechain": false,
+  "requestId": "req_011CbLgDZ4WHGNt4WUmH68D8",
+  "type": "assistant",
+  "uuid": "9b00f04e-9033-4425-a3fb-a34be306720b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Psv5d3oLwFXFk32CixsiRQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 727,
+      "cache_read_input_tokens": 132415,
+      "output_tokens": 246,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 727,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 246,
+          "cache_read_input_tokens": 132415,
+          "cache_creation_input_tokens": 727,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 727
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 318 · 2026-05-24T03:23:14.507Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01VmrmajDah81XfhEdqXsdcP`</summary>
+
+```json
+{
+  "command": "grep -n \"appendix\\|Limitations\\|Conclusion\\|References\\|bibliography\" /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/main.aux | head -20",
+  "description": "Find section page boundaries from aux file"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9b00f04e-9033-4425-a3fb-a34be306720b",
+  "isSidechain": false,
+  "requestId": "req_011CbLgDZ4WHGNt4WUmH68D8",
+  "type": "assistant",
+  "uuid": "c7105cd3-f7a4-4d43-84cc-44a7cc4b72a3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Psv5d3oLwFXFk32CixsiRQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 727,
+      "cache_read_input_tokens": 132415,
+      "output_tokens": 246,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 727,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 246,
+          "cache_read_input_tokens": 132415,
+          "cache_creation_input_tokens": 727,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 727
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 319 · 2026-05-24T03:23:14.555Z_
+
+<details><summary>↩ Tool result · `toolu_01VmrmajDah81XfhEdqXsdcP`</summary>
+
+```text
+816:\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion}{8}{section.5}\protected@file@percent }
+817:\newlabel{sec:conclusion}{{5}{8}{Conclusion}{section.5}{}}
+1216:\@writefile{toc}{\contentsline {section}{\numberline {A}Inference Efficiency}{12}{appendix.A}\protected@file@percent }
+1217:\newlabel{app:latency}{{A}{12}{Inference Efficiency}{appendix.A}{}}
+1249:\@writefile{toc}{\contentsline {section}{\numberline {B}Predictor Bottleneck Sensitivity}{12}{appendix.B}\protected@file@percent }
+1250:\newlabel{app:db_sensitivity}{{B}{12}{Predictor Bottleneck Sensitivity}{appendix.B}{}}
+1290:\@writefile{toc}{\contentsline {section}{\numberline {C}Geometric Penalty Schedule Dynamics}{12}{appendix.C}\protected@file@percent }
+1291:\newlabel{app:lagrangian}{{C}{12}{Geometric Penalty Schedule Dynamics}{appendix.C}{}}
+1330:\@writefile{toc}{\contentsline {section}{\numberline {D}Out-of-Distribution Evaluation}{13}{appendix.D}\protected@file@percent }
+1331:\newlabel{app:ood}{{D}{13}{Out-of-Distribution Evaluation}{appendix.D}{}}
+1374:\@writefile{toc}{\contentsline {section}{\numberline {E}Per-Layer Retention Analysis}{14}{appendix.E}\protected@file@percent }
+1375:\newlabel{app:retention}{{E}{14}{Per-Layer Retention Analysis}{appendix.E}{}}
+1377:\@writefile{toc}{\contentsline {section}{\numberline {F}Training Stability}{14}{appendix.F}\protected@file@percent }
+1378:\newlabel{app:stability}{{F}{14}{Training Stability}{appendix.F}{}}
+1424:\@writefile{toc}{\contentsline {section}{\numberline {G}MSE Baseline Configuration}{14}{appendix.G}\protected@file@percent }
+1425:\newlabel{app:mse_config}{{G}{14}{MSE Baseline Configuration}{appendix.G}{}}
+1462:\@writefile{toc}{\contentsline {section}{\numberline {H}Extended SNR Analysis}{15}{appendix.H}\protected@file@percent }
+1463:\newlabel{app:snr_extended}{{H}{15}{Extended SNR Analysis}{appendix.H}{}}
+1483:\@writefile{toc}{\contentsline {section}{\numberline {I}Extended Downstream Evaluation}{15}{appendix.I}\protected@file@percent }
+1484:\newlabel{app:downstream}{{I}{15}{Extended Downstream Evaluation}{appendix.I}{}}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c7105cd3-f7a4-4d43-84cc-44a7cc4b72a3",
+  "isSidechain": false,
+  "promptId": "2592e8e0-a6d0-474e-b4ec-8e113926083a",
+  "type": "user",
+  "uuid": "630c6081-1f10-4521-9524-f3e25009a22b",
+  "toolUseResult": {
+    "stdout": "816:\\@writefile{toc}{\\contentsline {section}{\\numberline {5}Conclusion}{8}{section.5}\\protected@file@percent }\n817:\\newlabel{sec:conclusion}{{5}{8}{Conclusion}{section.5}{}}\n1216:\\@writefile{toc}{\\contentsline {section}{\\numberline {A}Inference Efficiency}{12}{appendix.A}\\protected@file@percent }\n1217:\\newlabel{app:latency}{{A}{12}{Inference Efficiency}{appendix.A}{}}\n1249:\\@writefile{toc}{\\contentsline {section}{\\numberline {B}Predictor Bottleneck Sensitivity}{12}{appendix.B}\\protected@file@percent }\n1250:\\newlabel{app:db_sensitivity}{{B}{12}{Predictor Bottleneck Sensitivity}{appendix.B}{}}\n1290:\\@writefile{toc}{\\contentsline {section}{\\numberline {C}Geometric Penalty Schedule Dynamics}{12}{appendix.C}\\protected@file@percent }\n1291:\\newlabel{app:lagrangian}{{C}{12}{Geometric Penalty Schedule Dynamics}{appendix.C}{}}\n1330:\\@writefile{toc}{\\contentsline {section}{\\numberline {D}Out-of-Distribution Evaluation}{13}{appendix.D}\\protected@file@percent }\n1331:\\newlabel{app:ood}{{D}{13}{Out-of-Distribution Evaluation}{appendix.D}{}}\n1374:\\@writefile{toc}{\\contentsline {section}{\\numberline {E}Per-Layer Retention Analysis}{14}{appendix.E}\\protected@file@percent }\n1375:\\newlabel{app:retention}{{E}{14}{Per-Layer Retention Analysis}{appendix.E}{}}\n1377:\\@writefile{toc}{\\contentsline {section}{\\numberline {F}Training Stability}{14}{appendix.F}\\protected@file@percent }\n1378:\\newlabel{app:stability}{{F}{14}{Training Stability}{appendix.F}{}}\n1424:\\@writefile{toc}{\\contentsline {section}{\\numberline {G}MSE Baseline Configuration}{14}{appendix.G}\\protected@file@percent }\n1425:\\newlabel{app:mse_config}{{G}{14}{MSE Baseline Configuration}{appendix.G}{}}\n1462:\\@writefile{toc}{\\contentsline {section}{\\numberline {H}Extended SNR Analysis}{15}{appendix.H}\\protected@file@percent }\n1463:\\newlabel{app:snr_extended}{{H}{15}{Extended SNR Analysis}{appendix.H}{}}\n1483:\\@writefile{toc}{\\contentsline {section}{\\numberline {I}Extended Downstream Evaluation}{15}{appendix.I}\\protected@file@percent }\n1484:\\newlabel{app:downstream}{{I}{15}{Extended Downstream Evaluation}{appendix.I}{}}",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "c7105cd3-f7a4-4d43-84cc-44a7cc4b72a3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 320 · 2026-05-24T03:23:14.672Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__check_figures_and_layout · `toolu_01XArLdyjgNgp9NmaBJm2EYU`</summary>
+
+```json
+{
+  "project": "distill_sparse_swiglu"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "630c6081-1f10-4521-9524-f3e25009a22b",
+  "isSidechain": false,
+  "requestId": "req_011CbLgDZ4WHGNt4WUmH68D8",
+  "type": "assistant",
+  "uuid": "8537ce56-8cdd-4162-b545-0acc14be48fb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Psv5d3oLwFXFk32CixsiRQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 727,
+      "cache_read_input_tokens": 132415,
+      "output_tokens": 246,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 727,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 246,
+          "cache_read_input_tokens": 132415,
+          "cache_creation_input_tokens": 727,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 727
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 321 · 2026-05-24T03:23:14.702Z_
+
+<details><summary>↩ Tool result · `toolu_01XArLdyjgNgp9NmaBJm2EYU`</summary>
+
+```text
+{"result":"{\"passed\": false, \"critical\": [{\"kind\": \"missing_required_section\", \"message\": \"Venue requires a 'Limitations' section but none was found\", \"location\": \"cross-file\"}], \"warning\": [{\"kind\": \"missing_required_section\", \"message\": \"Venue requires a 'Ethics Statement' section but none was found\", \"location\": \"cross-file\"}], \"info\": [], \"summary\": \"1 critical, 1 warning, 0 info\"}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8537ce56-8cdd-4162-b545-0acc14be48fb",
+  "isSidechain": false,
+  "promptId": "2592e8e0-a6d0-474e-b4ec-8e113926083a",
+  "type": "user",
+  "uuid": "44856c85-fda3-464d-809b-59a7f683d508",
+  "toolUseResult": "{\"result\":\"{\\\"passed\\\": false, \\\"critical\\\": [{\\\"kind\\\": \\\"missing_required_section\\\", \\\"message\\\": \\\"Venue requires a 'Limitations' section but none was found\\\", \\\"location\\\": \\\"cross-file\\\"}], \\\"warning\\\": [{\\\"kind\\\": \\\"missing_required_section\\\", \\\"message\\\": \\\"Venue requires a 'Ethics Statement' section but none was found\\\", \\\"location\\\": \\\"cross-file\\\"}], \\\"info\\\": [], \\\"summary\\\": \\\"1 critical, 1 warning, 0 info\\\"}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"passed\": false, \"critical\": [{\"kind\": \"missing_required_section\", \"message\": \"Venue requires a 'Limitations' section but none was found\", \"location\": \"cross-file\"}], \"warning\": [{\"kind\": \"missing_required_section\", \"message\": \"Venue requires a 'Ethics Statement' section but none was found\", \"location\": \"cross-file\"}], \"info\": [], \"summary\": \"1 critical, 1 warning, 0 info\"}"
+    }
+  },
+  "sourceToolAssistantUUID": "8537ce56-8cdd-4162-b545-0acc14be48fb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 322 · 2026-05-24T03:23:35.397Z_
+
+<details><summary>Logged reasoning block</summary>
+
+````text
+Important findings:
+
+1. **Page count**: Conclusion is on page 8. Appendix starts on page 12. So the main text (sections 1-5 + Limitations) is approximately pages 1-8 (or slightly more with Limitations). The references are between Conclusion and Appendix (pages 9-11ish).
+
+Wait, the aux shows Conclusion at page 8. But Limitations is after Conclusion. Let me check where Limitations is.
+
+Actually, looking at the main.tex structure:
+```
+\input{conclusion}
+\input{limitations}
+\bibliography{references}
+\input{appendix}
+
+
+```
+
+Limitations comes after Conclusion. Per EMNLP rules, Limitations don't count toward the 8-page limit. So if Conclusion is on page 8, the main text ends on page 8 (or the beginning of page 8 since Conclusion is only 2 sentences).
+
+2. **check_figures_and_layout**: It says Limitations section not found (critical). This is likely a false positive because the Limitations section exists but uses an unnumbered section command. Let me verify by checking the limitations.tex file directly.
+
+The Ethics warning can be ignored since EMNLP 2026 rules say ethics is optional, and the paper explicitly removed it per submission guidelines.
+
+Now I need to figure out where Limitations starts in the page layout and compile my comprehensive response to Director.
+
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "44856c85-fda3-464d-809b-59a7f683d508",
+  "isSidechain": false,
+  "requestId": "req_011CbLgE2UGWzhCgYunaioae",
+  "type": "assistant",
+  "uuid": "26999306-6e29-4692-97e4-3bd750ca492c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016M13y53GJ3nusELrGCQ8FL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1187,
+      "cache_read_input_tokens": 133142,
+      "output_tokens": 523,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1187,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 523,
+          "cache_read_input_tokens": 133142,
+          "cache_creation_input_tokens": 1187,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1187
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 323 · 2026-05-24T03:23:36.119Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_015GMhsjLNZvskxcFr7oy7RV`</summary>
+
+```json
+{
+  "command": "grep -n \"Limitations\\|limitations\" /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/main.aux | head -5",
+  "description": "Find Limitations section page in aux"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "26999306-6e29-4692-97e4-3bd750ca492c",
+  "isSidechain": false,
+  "requestId": "req_011CbLgE2UGWzhCgYunaioae",
+  "type": "assistant",
+  "uuid": "664c042f-b116-4bac-b430-5a5824652ac3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016M13y53GJ3nusELrGCQ8FL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1187,
+      "cache_read_input_tokens": 133142,
+      "output_tokens": 523,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1187,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 523,
+          "cache_read_input_tokens": 133142,
+          "cache_creation_input_tokens": 1187,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1187
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 324 · 2026-05-24T03:23:36.162Z_
+
+<details><summary>↩ Tool result · `toolu_015GMhsjLNZvskxcFr7oy7RV`</summary>
+
+```text
+(Bash completed with no output)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "664c042f-b116-4bac-b430-5a5824652ac3",
+  "isSidechain": false,
+  "promptId": "2592e8e0-a6d0-474e-b4ec-8e113926083a",
+  "type": "user",
+  "uuid": "753133e7-5115-43ca-8629-1404b6f8e4be",
+  "toolUseResult": {
+    "stdout": "",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "664c042f-b116-4bac-b430-5a5824652ac3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 325 · 2026-05-24T03:23:38.708Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_0192YTwJQMxyGMWfS58d9Ycq`</summary>
+
+```json
+{
+  "command": "grep -i \"limit\" /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/main.aux | head -5",
+  "description": "Search for Limitations in aux"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "753133e7-5115-43ca-8629-1404b6f8e4be",
+  "isSidechain": false,
+  "requestId": "req_011CbLgFcCaCpRYxqyLEwW4S",
+  "type": "assistant",
+  "uuid": "ba988131-0bda-469a-bae9-f901b368bc00",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Rdw4SgntagoR1DnwKArb6g",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 541,
+      "cache_read_input_tokens": 134329,
+      "output_tokens": 119,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 541,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 119,
+          "cache_read_input_tokens": 134329,
+          "cache_creation_input_tokens": 541,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 541
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 326 · 2026-05-24T03:23:38.757Z_
+
+<details><summary>↩ Tool result · `toolu_0192YTwJQMxyGMWfS58d9Ycq`</summary>
+
+```text
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Per-layer neuron retention under global top-$k$ allocation at 30\%, 50\%, and 70\% sparsity. Dashed lines indicate uniform retention baselines. Late layers (L24--31) are consistently starved due to long-tailed activation distributions, with retention dropping to 28.4\% (L31) even at 30\% sparsity. At 70\%, starvation extends to mid-layers (L10--12: 16.7--20.1\%), explaining the transition to the capacity-limited regime.}}{14}{figure.caption.40}\protected@file@percent }
+\newlabel{fig:retention}{{5}{14}{Per-layer neuron retention under global top-$k$ allocation at 30\%, 50\%, and 70\% sparsity. Dashed lines indicate uniform retention baselines. Late layers (L24--31) are consistently starved due to long-tailed activation distributions, with retention dropping to 28.4\% (L31) even at 30\% sparsity. At 70\%, starvation extends to mid-layers (L10--12: 16.7--20.1\%), explaining the transition to the capacity-limited regime}{figure.caption.40}{}}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ba988131-0bda-469a-bae9-f901b368bc00",
+  "isSidechain": false,
+  "promptId": "2592e8e0-a6d0-474e-b4ec-8e113926083a",
+  "type": "user",
+  "uuid": "0dcfc973-3803-4aab-956d-8e78252968c6",
+  "toolUseResult": {
+    "stdout": "\\@writefile{lof}{\\contentsline {figure}{\\numberline {5}{\\ignorespaces Per-layer neuron retention under global top-$k$ allocation at 30\\%, 50\\%, and 70\\% sparsity. Dashed lines indicate uniform retention baselines. Late layers (L24--31) are consistently starved due to long-tailed activation distributions, with retention dropping to 28.4\\% (L31) even at 30\\% sparsity. At 70\\%, starvation extends to mid-layers (L10--12: 16.7--20.1\\%), explaining the transition to the capacity-limited regime.}}{14}{figure.caption.40}\\protected@file@percent }\n\\newlabel{fig:retention}{{5}{14}{Per-layer neuron retention under global top-$k$ allocation at 30\\%, 50\\%, and 70\\% sparsity. Dashed lines indicate uniform retention baselines. Late layers (L24--31) are consistently starved due to long-tailed activation distributions, with retention dropping to 28.4\\% (L31) even at 30\\% sparsity. At 70\\%, starvation extends to mid-layers (L10--12: 16.7--20.1\\%), explaining the transition to the capacity-limited regime}{figure.caption.40}{}}",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "ba988131-0bda-469a-bae9-f901b368bc00",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 327 · 2026-05-24T03:23:38.759Z_
+
+```json
+{
+  "parentUuid": "0dcfc973-3803-4aab-956d-8e78252968c6",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "4c146379-63e9-416a-bb2f-367fc8702780",
+  "timestamp": "2026-05-24T03:23:38.759Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 328 · 2026-05-24T03:23:48.436Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The Limitations section uses `\section*{Limitations}` which creates an unnumbered section, so it won't appear in the aux file with a number. The key finding is that Conclusion starts on page 8 and the Appendix starts on page 12 — meaning References + Limitations occupy pages 9-11ish.
+
+So the main text is exactly at the 8-page limit. The Conclusion is on page 8 and is only 2 sentences. Expanding Conclusion to ~8 sentences would add maybe 5-6 lines, which should still fit on page 8 because the current Conclusion is extremely short (leaves plenty of room on page 8).
+
+
+Now I'm preparing to write the comprehensive Action Matrix review for the Director. The check_figures_and_layout tool flagged Limitations as missing because it's looking for numbered sections, but the unnumbered format with `\section*{Limitations}` is actually correct for EMNLP — this is a tool limitation rather than a paper issue.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4c146379-63e9-416a-bb2f-367fc8702780",
+  "isSidechain": false,
+  "requestId": "req_011CbLgFnyxrqAXVhHsDuVv1",
+  "type": "assistant",
+  "uuid": "7ea241bc-940a-4f37-87c8-532c5abbff10",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013mM7e2dxmAkqhKXcQRc38U",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 548,
+      "cache_read_input_tokens": 134870,
+      "output_tokens": 3063,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 548,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3063,
+          "cache_read_input_tokens": 134870,
+          "cache_creation_input_tokens": 548,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 548
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 329 · 2026-05-24T03:23:50.293Z_
+
+页面布局确认：Conclusion 在第 8 页，Appendix 从第 12 页开始。主文正好 8 页，Conclusion 仅 2 句话，有扩展空间。`check_figures_and_layout` 报 Limitations missing 是误报（`\section*{Limitations}` 存在但是 unnumbered）。
+
+现在对 Action Matrix 做全面独立判断。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7ea241bc-940a-4f37-87c8-532c5abbff10",
+  "isSidechain": false,
+  "requestId": "req_011CbLgFnyxrqAXVhHsDuVv1",
+  "type": "assistant",
+  "uuid": "aca16dde-021d-4f61-a552-d25a58654bb7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013mM7e2dxmAkqhKXcQRc38U",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 548,
+      "cache_read_input_tokens": 134870,
+      "output_tokens": 3063,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 548,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3063,
+          "cache_read_input_tokens": 134870,
+          "cache_creation_input_tokens": 548,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 548
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 330 · 2026-05-24T03:25:01.408Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reviewer_post_to_director · `toolu_011Unw6p5UuspRfJw3pv1TaV`</summary>
+
+```json
+{
+  "text": "## Action Matrix 独立审核 — R28 修订方案\n\n### 前置发现\n已单独报告 [severity: critical]：Qwen 14B GSM8K 使用了 killed s123 数据（32.0±5.2），需恢复为 n=2（30.9±6.8）或等 v4 完成后用干净数据重算。以下审核基于此修正后的状态。\n\n---\n\n### CRITICAL 1: C1 (per-layer decomposition confound)\n\n**Action Matrix 方案评估**：进一步降级措辞（\"suggestive but not definitive\"）+ §4.5 加 limitation paragraph。\n\n**我的判断**：问题不在措辞强度，而在叙事结构。当前 §4.5 的问题是：\n1. 段落标题已经写了 \"Exploratory\"，但正文立刻用 \"may account for a substantial portion\" + \"coupling-dominated\" / \"mismatch-dominated\" 标签做定量归因 → 审稿人看到的是 **exploratory title + definitive body**，矛盾感触发 flag\n2. K=1 和 K=4 的 confound（train-inference mismatch、update count 差异）在脚注里提，但 decomposition 结论在正文里给 → 信息层级倒置\n\n**建议方案（优于 Action Matrix）**：\n- **不移到 Appendix**。K-curve 是 3-seed 新数据，本身有价值，也是 contribution 之一。移走减少攻击面但同时削弱 contribution list\n- **重构 §4.5 为 empirical observation first**：\n  1. 先报告 K-curve 纯经验发现（K=16 最优，非单调，全 coupling range 仅 2.08 PPL vs signal type gap 9.47 PPL）\n  2. 然后用 1-2 句话说 \"This suggests signal type contributes more than coupling scope to PPL, though the decomposition is confounded by [列出 confounds] and should be treated as suggestive\"\n  3. 删除 \"coupling-dominated\" / \"mismatch-dominated\" 标签和百分比归因（97%, 67% 等）→ 这些移到 Appendix 作为详细数据\n  4. Conclusion 中列为 \"open empirical question\" 而非 finding\n\n**风险**：多轮降级后仍被标记，可能因为审稿人认为这个 decomposition 本身不可靠——进一步降级措辞不会改变这个认知。改变叙事结构（observation → suggestion，而非 claim → caveat）可能更有效。\n\n---\n\n### CRITICAL 2: C2 (MMLU/GSM8K regression)\n\n**Action Matrix 方案评估**：Conclusion 扩展 mode-covering 验证路径 + hybrid loss/task-aware allocation + use-case recommendation。\n\n**我的判断**：11 轮被标记，所有实验手段穷尽。问题的根源是**叙事定位**：论文仍以 \"KL 比 TEAL 好\" 为主 claim，MMLU/GSM8K regression 作为 limitation 处理。审稿人每次都会指出 \"你说 KL 好，但知识任务上 TEAL 赢了\"。\n\n**建议方案**：\n- **将 task-type split 提升为核心发现之一**（不是 side observation）。正文 §4.1 已经有 \"Task-Type Split\" 段落——好。但 Introduction contribution list 没有单独列出这个 finding\n- 在 Contribution list 增加一条：\"KL gains are task-type dependent: directional improvements on commonsense tasks (4/4) but systematic regression on knowledge-intensive tasks across scales, attributable to output-distribution optimization rather than training data\"\n- Conclusion 扩展时，不要只说 \"future work: hybrid loss\"——直接给出 **use-case recommendation**：\"For deployment scenarios prioritizing commonsense reasoning and PPL, KL predictors are preferred; for knowledge-critical applications, TEAL remains competitive\"\n- 这样 regression 从 \"limitation\" 变成 \"empirical finding + actionable guideline\"，审稿人的攻击面从 \"你的方法有缺陷\" 变成 \"你的分析有用\"\n\n**注意**：如果 Abstract 已经说了 \"knowledge-intensive regression\"（已经说了），这个方向是一致的。\n\n---\n\n### CRITICAL 3: C3 (n=3 统计功效)\n\n**Action Matrix 方案评估**：Abstract 去掉具体 gap 数值，改为定性描述。\n\n**我的判断**：**不建议去掉数值**。Abstract 没有数字 = 信息量不足，审稿人更可能标记 \"vague claims\"。\n\n**建议方案**：保留数值 + 加限定语\n- 8B MMLU: \"−5.2pp (point estimate, $n{=}3$, CIs overlap)\"\n- 14B GSM8K: 恢复 n=2 后 \"−21.2pp ($n{=}2$, high variance)\" 或等 v4 完成后用 3-seed 数据\n\n对于 Conclusion：加一句 \"All downstream differences should be interpreted as directional evidence given the sample size ($n{=}3$); PPL ($\\sigma{=}0.02$) provides the most statistically reliable comparison.\"\n\n这已经在 §4.1 正文中说过了（\"we therefore treat PPL as the primary metric and downstream differences as directional evidence\"），在 Conclusion 重申一次是合理的。\n\n---\n\n### SHOULD-FIX 快评\n\n| # | 方案 | 判断 |\n|---|------|------|\n| W5 | Conclusion 扩展至 ~8 句 | **可行**。当前 2 句确实太短。第 8 页 Conclusion 只占几行，空间充裕。建议覆盖：(1) 核心发现 (2) task-type split (3) decomposition open question (4) practical recommendation (5) 主要 limitation 一句话指向 §Limitations |\n| W6 | \"Practical\" → \"Analytical\" | **同意**。当前 contribution list 第 3、4 条标记 \"Practical\" 但论文明确说 \"wall-clock speedup is not addressed\"——\"Analytical\" 更准确 |\n| W2 | MSE 50% 标注加强 | **同意**。Table 3 脚注已有但不够显眼 |\n| W1 | C1 Gumbel confound 补充 | **同意**。已在 §4.3 提到 BCE+Gumbel (32.22) vs standard BCE (27.97)，可加一句明确说 \"trajectory-dependent confounds prevent clean separation\" |\n| W3/W4 | Limitations 承认 30% BCE isocompute 缺失 + 指标单一 | **同意**。但 Limitations 当前 ~90 words（3 点），加这个会变 4 点。如果精简其他点的措辞可以保持简洁 |\n| A1 | 缺失引用 ActTail + WiSparse | **低风险但应做**。Related Work 已经很全面，加 2 条引用不影响空间 |\n\n---\n\n### 三个关键问题回答\n\n**Q1: §4.5 移到 Appendix？**\n**不建议移**。K-curve 是本文为数不多的多 seed 系统实验之一，也是 contribution list 第一条的核心支撑。移走后 contribution 1 变成无正文对应的空洞 claim。正确做法是重构叙事（见 C1 分析）。\n\n**Q2: Conclusion 扩展是否有页数风险？**\n**无风险**。Conclusion 在第 8 页开头，当前仅 2 句（~3 行）。扩展到 ~8 句（~12-15 行）不会溢出第 8 页。Limitations（~90 words, 不计入 8 页）在 Conclusion 之后。\n\n**Q3: 3.0 (Findings) 是否为合理上限？**\n**3.0 是当前证据下的现实评分，但不是硬上限**。写作改善可以将评分区间从 3.0 推向 3.0-3.5 边界：\n- C1 重构叙事（减少 confound 攻击面）可能消除一个 critical\n- C2 提升 task-type split 为核心发现（将 limitation 变成 contribution）可能消除另一个 critical\n- C3 加限定语是标准做法\n- 如果三个 recurring critical 中有 2 个降为 warning/info，3.5 不是不可能\n\n但要达到 4.0 (Conference) 需要根本性的 evidence 提升（resolve knowledge regression or provide clean decomposition），DDL 前不可能。**3.0-3.5 是合理目标区间**。\n\n---\n\n### 额外发现\n\n`check_figures_and_layout` 报 Limitations section missing（critical）和 Ethics missing（warning）。前者是工具误报（`\\section*{Limitations}` 存在但 unnumbered），后者已按 EMNLP 规则移除（ethics 可选）。不需要处理。",
+  "project": "distill_sparse_swiglu"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "aca16dde-021d-4f61-a552-d25a58654bb7",
+  "isSidechain": false,
+  "requestId": "req_011CbLgFnyxrqAXVhHsDuVv1",
+  "type": "assistant",
+  "uuid": "9bc21c52-f57e-4f11-bcc9-e5d3c703380c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013mM7e2dxmAkqhKXcQRc38U",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 548,
+      "cache_read_input_tokens": 134870,
+      "output_tokens": 3063,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 548,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3063,
+          "cache_read_input_tokens": 134870,
+          "cache_creation_input_tokens": 548,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 548
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 331_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[System 触发审查]: R28 审稿报告 + Action Matrix 审核请求  **背景**：R28 Overall 3.0 (Findings)，与 R27 持平。三个 critical 全部是长期复发的 evidence 问题（C1 ×9轮, C2 ×11轮, C3 ×5轮），写作降级多轮后仍被标记。DDL 明天 05-25，无法补实验。  **请审核以下 Action Matri…",
+  "leafUuid": "9bc21c52-f57e-4f11-bcc9-e5d3c703380c",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 332_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Research review and data consistency validation",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371"
+}
+```
+
+---
+
+
+### Tool result
+
+_source line 333 · 2026-05-24T03:25:02.738Z_
+
+<details><summary>↩ Tool result · `toolu_011Unw6p5UuspRfJw3pv1TaV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_dbbf8d2c695f1e79e11713aebc107790:director\"}, \"error\": \"\"}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9bc21c52-f57e-4f11-bcc9-e5d3c703380c",
+  "isSidechain": false,
+  "promptId": "2592e8e0-a6d0-474e-b4ec-8e113926083a",
+  "type": "user",
+  "uuid": "bbbe1a6f-d253-43e4-9b09-ff97fca70985",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_dbbf8d2c695f1e79e11713aebc107790:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_dbbf8d2c695f1e79e11713aebc107790:director\"}, \"error\": \"\"}"
+    }
+  },
+  "sourceToolAssistantUUID": "9bc21c52-f57e-4f11-bcc9-e5d3c703380c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 334 · 2026-05-24T03:25:07.227Z_
+
+v4 进度再检查一下。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bbbe1a6f-d253-43e4-9b09-ff97fca70985",
+  "isSidechain": false,
+  "requestId": "req_011CbLgMz58XRPkipa6tfXtA",
+  "type": "assistant",
+  "uuid": "330071d2-4810-4946-8a9c-fd6a6c97d061",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014Dk2uupoP5TXveKyfw1Ext",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3136,
+      "cache_read_input_tokens": 135418,
+      "output_tokens": 135,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3136,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 135,
+          "cache_read_input_tokens": 135418,
+          "cache_creation_input_tokens": 3136,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3136
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 335 · 2026-05-24T03:25:09.476Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Ta8zUixXH9grVB9EnMjuX6`</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "tail -2 /root/runs/distill_sparse_swiglu/qwen14b_kl30_s123_gsm8k_v4.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "330071d2-4810-4946-8a9c-fd6a6c97d061",
+  "isSidechain": false,
+  "requestId": "req_011CbLgMz58XRPkipa6tfXtA",
+  "type": "assistant",
+  "uuid": "bc6b867c-d939-4374-a595-069f4d3d483f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014Dk2uupoP5TXveKyfw1Ext",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3136,
+      "cache_read_input_tokens": 135418,
+      "output_tokens": 135,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3136,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 135,
+          "cache_read_input_tokens": 135418,
+          "cache_creation_input_tokens": 3136,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3136
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 336 · 2026-05-24T03:25:10.729Z_
+
+<details><summary>↩ Tool result · `toolu_01Ta8zUixXH9grVB9EnMjuX6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Results saved to /root/distill_sparse_swiglu/results/benchmark/qwen14b_kl30_s123_gsm8k_v4/results.json\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.24}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bc6b867c-d939-4374-a595-069f4d3d483f",
+  "isSidechain": false,
+  "promptId": "2592e8e0-a6d0-474e-b4ec-8e113926083a",
+  "type": "user",
+  "uuid": "222c953f-2901-4bcd-bee7-7f2a394f9449",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Results saved to /root/distill_sparse_swiglu/results/benchmark/qwen14b_kl30_s123_gsm8k_v4/results.json\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.24}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Results saved to /root/distill_sparse_swiglu/results/benchmark/qwen14b_kl30_s123_gsm8k_v4/results.json\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.24}}"
+    }
+  },
+  "sourceToolAssistantUUID": "bc6b867c-d939-4374-a595-069f4d3d483f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 337 · 2026-05-24T03:25:14.629Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+v4 experiment has completed successfully (EXIT_CODE=0)! The results are saved to `/root/distill_sparse_swiglu/results/benchmark/qwen14b_kl30_s123_gsm8k_v4/results.json`. Let me read the results to verify the GSM8K score.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "222c953f-2901-4bcd-bee7-7f2a394f9449",
+  "isSidechain": false,
+  "requestId": "req_011CbLgNbb4A6ZHgTLyhWQoH",
+  "type": "assistant",
+  "uuid": "88829e3b-388a-4df5-9974-69ce4124ea3f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SdSXYTgEc6eYSdTXe9Wv7Q",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 261,
+      "cache_read_input_tokens": 138554,
+      "output_tokens": 235,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 261,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 235,
+          "cache_read_input_tokens": 138554,
+          "cache_creation_input_tokens": 261,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 261
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 338 · 2026-05-24T03:25:15.151Z_
+
+v4 完成了（EXIT_CODE=0）！立即读取结果。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "88829e3b-388a-4df5-9974-69ce4124ea3f",
+  "isSidechain": false,
+  "requestId": "req_011CbLgNbb4A6ZHgTLyhWQoH",
+  "type": "assistant",
+  "uuid": "cad3fdaf-48ce-4623-a5e1-ea2546d31e4c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SdSXYTgEc6eYSdTXe9Wv7Q",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 261,
+      "cache_read_input_tokens": 138554,
+      "output_tokens": 235,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 261,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 235,
+          "cache_read_input_tokens": 138554,
+          "cache_creation_input_tokens": 261,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 261
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 339 · 2026-05-24T03:25:15.729Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LRkRRTAHBe3g2hwf2zSbdj`</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "cat /root/distill_sparse_swiglu/results/benchmark/qwen14b_kl30_s123_gsm8k_v4/results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cad3fdaf-48ce-4623-a5e1-ea2546d31e4c",
+  "isSidechain": false,
+  "requestId": "req_011CbLgNbb4A6ZHgTLyhWQoH",
+  "type": "assistant",
+  "uuid": "fd14c1ba-4d8a-4c36-94a0-aee29137fe0d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SdSXYTgEc6eYSdTXe9Wv7Q",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 261,
+      "cache_read_input_tokens": 138554,
+      "output_tokens": 235,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 261,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 235,
+          "cache_read_input_tokens": 138554,
+          "cache_creation_input_tokens": 261,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 261
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 340 · 2026-05-24T03:25:16.169Z_
+
+<details><summary>↩ Tool result · `toolu_01LRkRRTAHBe3g2hwf2zSbdj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"exp_id\\\": \\\"qwen14b_kl30_s123_gsm8k_v4\\\",\\n  \\\"config\\\": {\\n    \\\"model_name_or_path\\\": \\\"/root/autodl-tmp/models/qwen2.5-14b/\\\",\\n    \\\"checkpoint\\\": \\\"checkpoints/qwen14b_kl30_s123/predictor_kl_normalized.pt\\\",\\n    \\\"tasks\\\": \\\"gsm8k\\\",\\n    \\\"sparsity_mode\\\": \\\"teal_global\\\",\\n    \\\"baseline_mode\\\": null,\\n    \\\"dense\\\": false,\\n    \\\"exp_id\\\": \\\"qwen14b_kl30_s123_gsm8k_v4\\\",\\n    \\\"sparsity_target\\\": 0.3,\\n    \\\"allocation\\\": \\\"uniform\\\",\\n    \\\"gpu\\\": 0,\\n    \\\"multi_gpu\\\": false,\\n    \\\"seq_len\\\": 2048,\\n    \\\"calibration_samples\\\": 32,\\n    \\\"batch_size\\\": 8,\\n    \\\"bottleneck_size\\\": 128,\\n    \\\"svd_rank\\\": 256,\\n    \\\"max_eval_samples\\\": null\\n  },\\n  \\\"mode\\\": {\\n    \\\"mode\\\": \\\"teal_global\\\",\\n    \\\"checkpoint\\\": \\\"/root/distill_sparse_swiglu/checkpoints/qwen14b_kl30_s123/predictor_kl_normalized.pt\\\",\\n    \\\"sparsity_target\\\": 0.3,\\n    \\\"allocation\\\": \\\"uniform\\\"\\n  },\\n  \\\"metrics\\\": {\\n    \\\"lm_eval\\\": {\\n      \\\"gsm8k\\\": {\\n        \\\"sample_len\\\": 1319,\\n        \\\"exact_match\\\": 0.3472,\\n        \\\"exact_match_stderr\\\": 0.013113898382146875\\n      }\\n    },\\n    \\\"lm_eval_raw\\\": {\\n      \\\"gsm8k\\\": {\\n        \\\"name\\\": \\\"gsm8k\\\",\\n        \\\"alias\\\": \\\"gsm8k\\\",\\n        \\\"sample_len\\\": 1319,\\n        \\\"exact_match,strict-match\\\": 0.3464746019711903,\\n        \\\"exact_match_stderr,strict-match\\\": 0.013107179054313405,\\n        \\\"exact_match,flexible-extract\\\": 0.34723275208491283,\\n        \\\"exact_match_stderr,flexible-extract\\\": 0.013113898382146875\\n      }\\n    }\\n  },\\n  \\\"timestamp\\\": \\\"2026-05-24 08:43:05\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fd14c1ba-4d8a-4c36-94a0-aee29137fe0d",
+  "isSidechain": false,
+  "promptId": "2592e8e0-a6d0-474e-b4ec-8e113926083a",
+  "type": "user",
+  "uuid": "ac095151-cbd2-4705-a5fe-148ab38fd8f6",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"exp_id\\\\\\\": \\\\\\\"qwen14b_kl30_s123_gsm8k_v4\\\\\\\",\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_name_or_path\\\\\\\": \\\\\\\"/root/autodl-tmp/models/qwen2.5-14b/\\\\\\\",\\\\n    \\\\\\\"checkpoint\\\\\\\": \\\\\\\"checkpoints/qwen14b_kl30_s123/predictor_kl_normalized.pt\\\\\\\",\\\\n    \\\\\\\"tasks\\\\\\\": \\\\\\\"gsm8k\\\\\\\",\\\\n    \\\\\\\"sparsity_mode\\\\\\\": \\\\\\\"teal_global\\\\\\\",\\\\n    \\\\\\\"baseline_mode\\\\\\\": null,\\\\n    \\\\\\\"dense\\\\\\\": false,\\\\n    \\\\\\\"exp_id\\\\\\\": \\\\\\\"qwen14b_kl30_s123_gsm8k_v4\\\\\\\",\\\\n    \\\\\\\"sparsity_target\\\\\\\": 0.3,\\\\n    \\\\\\\"allocation\\\\\\\": \\\\\\\"uniform\\\\\\\",\\\\n    \\\\\\\"gpu\\\\\\\": 0,\\\\n    \\\\\\\"multi_gpu\\\\\\\": false,\\\\n    \\\\\\\"seq_len\\\\\\\": 2048,\\\\n    \\\\\\\"calibration_samples\\\\\\\": 32,\\\\n    \\\\\\\"batch_size\\\\\\\": 8,\\\\n    \\\\\\\"bottleneck_size\\\\\\\": 128,\\\\n    \\\\\\\"svd_rank\\\\\\\": 256,\\\\n    \\\\\\\"max_eval_samples\\\\\\\": null\\\\n  },\\\\n  \\\\\\\"mode\\\\\\\": {\\\\n    \\\\\\\"mode\\\\\\\": \\\\\\\"teal_global\\\\\\\",\\\\n    \\\\\\\"checkpoint\\\\\\\": \\\\\\\"/root/distill_sparse_swiglu/checkpoints/qwen14b_kl30_s123/predictor_kl_normalized.pt\\\\\\\",\\\\n    \\\\\\\"sparsity_target\\\\\\\": 0.3,\\\\n    \\\\\\\"allocation\\\\\\\": \\\\\\\"uniform\\\\\\\"\\\\n  },\\\\n  \\\\\\\"metrics\\\\\\\": {\\\\n    \\\\\\\"lm_eval\\\\\\\": {\\\\n      \\\\\\\"gsm8k\\\\\\\": {\\\\n        \\\\\\\"sample_len\\\\\\\": 1319,\\\\n        \\\\\\\"exact_match\\\\\\\": 0.3472,\\\\n        \\\\\\\"exact_match_stderr\\\\\\\": 0.013113898382146875\\\\n      }\\\\n    },\\\\n    \\\\\\\"lm_eval_raw\\\\\\\": {\\\\n      \\\\\\\"gsm8k\\\\\\\": {\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"gsm8k\\\\\\\",\\\\n        \\\\\\\"alias\\\\\\\": \\\\\\\"gsm8k\\\\\\\",\\\\n        \\\\\\\"sample_len\\\\\\\": 1319,\\\\n        \\\\\\\"exact_match,strict-match\\\\\\\": 0.3464746019711903,\\\\n        \\\\\\\"exact_match_stderr,strict-match\\\\\\\": 0.013107179054313405,\\\\n        \\\\\\\"exact_match,flexible-extract\\\\\\\": 0.34723275208491283,\\\\n        \\\\\\\"exact_match_stderr,flexible-extract\\\\\\\": 0.013113898382146875\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"timestamp\\\\\\\": \\\\\\\"2026-05-24 08:43:05\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"exp_id\\\": \\\"qwen14b_kl30_s123_gsm8k_v4\\\",\\n  \\\"config\\\": {\\n    \\\"model_name_or_path\\\": \\\"/root/autodl-tmp/models/qwen2.5-14b/\\\",\\n    \\\"checkpoint\\\": \\\"checkpoints/qwen14b_kl30_s123/predictor_kl_normalized.pt\\\",\\n    \\\"tasks\\\": \\\"gsm8k\\\",\\n    \\\"sparsity_mode\\\": \\\"teal_global\\\",\\n    \\\"baseline_mode\\\": null,\\n    \\\"dense\\\": false,\\n    \\\"exp_id\\\": \\\"qwen14b_kl30_s123_gsm8k_v4\\\",\\n    \\\"sparsity_target\\\": 0.3,\\n    \\\"allocation\\\": \\\"uniform\\\",\\n    \\\"gpu\\\": 0,\\n    \\\"multi_gpu\\\": false,\\n    \\\"seq_len\\\": 2048,\\n    \\\"calibration_samples\\\": 32,\\n    \\\"batch_size\\\": 8,\\n    \\\"bottleneck_size\\\": 128,\\n    \\\"svd_rank\\\": 256,\\n    \\\"max_eval_samples\\\": null\\n  },\\n  \\\"mode\\\": {\\n    \\\"mode\\\": \\\"teal_global\\\",\\n    \\\"checkpoint\\\": \\\"/root/distill_sparse_swiglu/checkpoints/qwen14b_kl30_s123/predictor_kl_normalized.pt\\\",\\n    \\\"sparsity_target\\\": 0.3,\\n    \\\"allocation\\\": \\\"uniform\\\"\\n  },\\n  \\\"metrics\\\": {\\n    \\\"lm_eval\\\": {\\n      \\\"gsm8k\\\": {\\n        \\\"sample_len\\\": 1319,\\n        \\\"exact_match\\\": 0.3472,\\n        \\\"exact_match_stderr\\\": 0.013113898382146875\\n      }\\n    },\\n    \\\"lm_eval_raw\\\": {\\n      \\\"gsm8k\\\": {\\n        \\\"name\\\": \\\"gsm8k\\\",\\n        \\\"alias\\\": \\\"gsm8k\\\",\\n        \\\"sample_len\\\": 1319,\\n        \\\"exact_match,strict-match\\\": 0.3464746019711903,\\n        \\\"exact_match_stderr,strict-match\\\": 0.013107179054313405,\\n        \\\"exact_match,flexible-extract\\\": 0.34723275208491283,\\n        \\\"exact_match_stderr,flexible-extract\\\": 0.013113898382146875\\n      }\\n    }\\n  },\\n  \\\"timestamp\\\": \\\"2026-05-24 08:43:05\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  },
+  "sourceToolAssistantUUID": "fd14c1ba-4d8a-4c36-94a0-aee29137fe0d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 341 · 2026-05-24T03:25:37.982Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Excellent! v4 completed successfully with:
+- sample_len: 1319 ✅ (matches expected)
+- exact_match (flexible): 0.3472 (34.72%)
+- exact_match (strict): 0.3465 (34.65%)
+
+Now let me compare with the killed s123 result:
+- Killed s123: 0.3442 (34.42%)
+- Clean v4 s123: 0.3472 (34.72%)
+
+Difference: 0.3pp — very close! The killed data was actually quite accurate despite being killed.
+
+Now let me recompute the 3-seed statistics with the clean data:
+
+
+- s42: 35.71% (v2)
+- s123: 34.72% (v4, clean)
+- s456: 26.08%
+
+Computing the mean and standard deviation across these three seeds to get a sense of the overall performance variability.
+
+The clean data yields 32.2±5.3, which is remarkably close to the paper's reported 32.0±5.2 even though they used killed data. The difference is negligible—just 0.3 percentage points on the mean and 0.1 on the standard deviation. So while the procedural issue with killed data was problematic, the actual results were sound. I need to report that v4 completed successfully with clean s123 at 34.72%, and the three-seed aggregate matches the paper's findings within measurement noise.
+
+The sample size of 1319 also checks out, confirming what the original killed experiment claimed. For the TEAL delta, both approaches round to -20pp in the abstract, though the precise value shifts slightly from -20.1pp to -19.9pp with clean data. Time to update the Director.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ac095151-cbd2-4705-a5fe-148ab38fd8f6",
+  "isSidechain": false,
+  "requestId": "req_011CbLgNyThCYLhmPQENuwGa",
+  "type": "assistant",
+  "uuid": "1271a9ba-3692-4b7f-8e22-e6ec53bda4e9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X5Bs6vC9NrVTaUeJFJyAvs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1165,
+      "cache_read_input_tokens": 138815,
+      "output_tokens": 1525,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1165,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1525,
+          "cache_read_input_tokens": 138815,
+          "cache_creation_input_tokens": 1165,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1165
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 342 · 2026-05-24T03:25:40.434Z_
+
+v4 结果出来了。关键数据：
+
+- **v4 clean s123 GSM8K: 34.72%**（sample_len=1319 ✅）
+- killed s123: 34.42%（差 0.3pp，killed 数据实际上接近正确）
+
+用 clean 数据重算 3-seed：
+- s42: 35.71%, s123: 34.72% (v4), s456: 26.08%
+- **Mean = 32.2±5.3**（论文写的 32.0±5.2 基于 killed 数据）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1271a9ba-3692-4b7f-8e22-e6ec53bda4e9",
+  "isSidechain": false,
+  "requestId": "req_011CbLgNyThCYLhmPQENuwGa",
+  "type": "assistant",
+  "uuid": "c40fbdbb-5212-4e11-b7aa-5a8df75e5e01",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X5Bs6vC9NrVTaUeJFJyAvs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1165,
+      "cache_read_input_tokens": 138815,
+      "output_tokens": 1525,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1165,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1525,
+          "cache_read_input_tokens": 138815,
+          "cache_creation_input_tokens": 1165,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1165
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 343 · 2026-05-24T03:25:52.646Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reviewer_post_to_director · `toolu_01C7a2kXWK2X9wSDDG62oGsa`</summary>
+
+```json
+{
+  "text": "[severity: info] qwen14b_kl30_s123_gsm8k_v4 已完成 — 数据验证 + 修正建议\n\n**v4 结果**：\n- GSM8K exact_match = 0.3472 (34.72%)\n- sample_len = 1319 ✅（确认原 killed 实验声称的样本数正确）\n- 服务器 westd-34887, GPU cuda:0 ✅, EXIT_CODE=0\n\n**与 killed 数据对比**：\n- killed s123: 34.42%\n- clean v4 s123: 34.72%\n- 差异仅 0.3pp — killed 数据实际接近正确\n\n**3-seed 重算（使用 v4 clean 数据）**：\n- s42: 35.71% + s123: 34.72% (v4) + s456: 26.08%\n- **Mean = 32.2±5.3**\n- 论文当前值 32.0±5.2 需更新为 32.2±5.3\n- TEAL delta: 52.1 - 32.2 = **-19.9pp**（当前论文写 -20.1pp）\n\n**需更新位置**：\n1. experiments.tex L195: 32.0±5.2 → 32.2±5.3\n2. abstract.tex L3: -20.1pp → -19.9pp（或保持 ~20pp 的定性描述）\n3. introduction.tex L17: -20.1pp, σ=5.2pp → -19.9pp, σ=5.3pp\n4. appendix.tex L325 (Table 13): 32.0±5.2 → 32.2±5.3\n5. limitations.tex L5: -20pp → ~20pp（已经是近似值，无需改）\n6. Registry: v4 标记为 DONE + 更新 metrics\n\n**之前的 critical 降级为 info**：killed 数据与 clean 数据仅差 0.3pp，不构成结论性错误。但仍应使用 clean 数据并在 registry 中正式记录 v4。",
+  "project": "distill_sparse_swiglu"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c40fbdbb-5212-4e11-b7aa-5a8df75e5e01",
+  "isSidechain": false,
+  "requestId": "req_011CbLgNyThCYLhmPQENuwGa",
+  "type": "assistant",
+  "uuid": "818abd89-8f4c-4362-81af-04cb8524a6ad",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X5Bs6vC9NrVTaUeJFJyAvs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1165,
+      "cache_read_input_tokens": 138815,
+      "output_tokens": 1525,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1165,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1525,
+          "cache_read_input_tokens": 138815,
+          "cache_creation_input_tokens": 1165,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1165
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 344 · 2026-05-24T03:25:53.987Z_
+
+<details><summary>↩ Tool result · `toolu_01C7a2kXWK2X9wSDDG62oGsa`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_dbbf8d2c695f1e79e11713aebc107790:director\"}, \"error\": \"\"}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "818abd89-8f4c-4362-81af-04cb8524a6ad",
+  "isSidechain": false,
+  "promptId": "2592e8e0-a6d0-474e-b4ec-8e113926083a",
+  "type": "user",
+  "uuid": "4d0063af-d9e7-48e9-8c67-cda4bac61ae7",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_dbbf8d2c695f1e79e11713aebc107790:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_dbbf8d2c695f1e79e11713aebc107790:director\"}, \"error\": \"\"}"
+    }
+  },
+  "sourceToolAssistantUUID": "818abd89-8f4c-4362-81af-04cb8524a6ad",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 345_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Research review and data consistency validation",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 346 · 2026-05-24T03:54:00.349Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-24T03:54:00.349Z",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "content": "[System 触发审查]:\nR28 写作修复已完成，请验证三个 critical 修复是否充分。\n\n**验证重点**（以审稿人视角判断修复是否有效）：\n\n1. **C1 (§4.5 per-layer decomposition)**：已重构为 empirical-first 叙事，移除 \"coupling-dominated\"/\"mismatch-dominated\" 标签和 % 归因，加显式 confound 声明。请检查：(a) 是否仍有 definitive-sounding 措辞与 \"exploratory\" 标题矛盾？(b) \"may account for a substantial portion\" 是否已删除？\n\n2. **C2 (task-type split)**：已提升为核心发现，新增 contribution item + Conclusion use-case recommendation。请检查：(a) Introduction contribution list 是否包含 task-type dependent finding？(b) Conclusion 是否有明确的 \"KL for commonsense/PPL, TEAL for knowledge\" recommendation？\n\n3. **C3 (统计限定)**：全文使用 \"directional\"，14B GSM8K 更新为 n=3 clean (32.2±5.3, -19.9pp)。请检查：Abstract 中数值是否有 n=3 或 CI overlap 限定？\n\n4. **W5 (Conclusion)**：Paper Agent 说由于页面限制压缩回 2 句。请检查 Conclusion 实际长度——如果仍是 2 句且审稿人特别标记了这个问题，需要想办法扩展。\n\n5. **GSM8K 数据**：确认论文中所有 GSM8K 数字已统一为 clean 3-seed (32.2±5.3, -19.9pp)，无残留 2-seed 或 killed 数据。\n\n论文路径：`/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/`\n\n请逐条返回 PASS/FAIL + 具体发现。"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 347 · 2026-05-24T03:54:00.350Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-24T03:54:00.350Z",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371"
+}
+```
+
+---
+
+
+## Round 20
+
+## Round 20
+
+2 recorded events
+
+
+### User
+
+_source line 348 · 2026-05-24T03:54:00.341Z_
+
+Continue from where you left off.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4d0063af-d9e7-48e9-8c67-cda4bac61ae7",
+  "isSidechain": false,
+  "promptId": "141b67c7-0191-4fec-ab4e-aeab3eadc633",
+  "type": "user",
+  "isMeta": true,
+  "uuid": "60604cda-dfea-46b2-b189-b964afe75964",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 349 · 2026-05-24T03:54:00.341Z_
+
+No response requested.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "60604cda-dfea-46b2-b189-b964afe75964",
+  "isSidechain": false,
+  "type": "assistant",
+  "uuid": "4296df73-a9d9-4c18-8261-e6184bcd107d",
+  "isApiErrorMessage": false,
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "id": "e76938b7-d1b3-4fd4-9f3c-a9091679f5d6",
+    "container": null,
+    "model": "&lt;synthetic>",
+    "stop_reason": "stop_sequence",
+    "stop_sequence": "",
+    "type": "message",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": null,
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": null,
+      "iterations": null,
+      "speed": null
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+## Round 21
+
+## Round 21
+
+34 recorded events
+
+
+### User
+
+_source line 350 · 2026-05-24T03:54:00.458Z_
+
+[System 触发审查]:
+R28 写作修复已完成，请验证三个 critical 修复是否充分。
+
+**验证重点**（以审稿人视角判断修复是否有效）：
+
+1. **C1 (§4.5 per-layer decomposition)**：已重构为 empirical-first 叙事，移除 "coupling-dominated"/"mismatch-dominated" 标签和 % 归因，加显式 confound 声明。请检查：(a) 是否仍有 definitive-sounding 措辞与 "exploratory" 标题矛盾？(b) "may account for a substantial portion" 是否已删除？
+
+2. **C2 (task-type split)**：已提升为核心发现，新增 contribution item + Conclusion use-case recommendation。请检查：(a) Introduction contribution list 是否包含 task-type dependent finding？(b) Conclusion 是否有明确的 "KL for commonsense/PPL, TEAL for knowledge" recommendation？
+
+3. **C3 (统计限定)**：全文使用 "directional"，14B GSM8K 更新为 n=3 clean (32.2±5.3, -19.9pp)。请检查：Abstract 中数值是否有 n=3 或 CI overlap 限定？
+
+4. **W5 (Conclusion)**：Paper Agent 说由于页面限制压缩回 2 句。请检查 Conclusion 实际长度——如果仍是 2 句且审稿人特别标记了这个问题，需要想办法扩展。
+
+5. **GSM8K 数据**：确认论文中所有 GSM8K 数字已统一为 clean 3-seed (32.2±5.3, -19.9pp)，无残留 2-seed 或 killed 数据。
+
+论文路径：`/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/`
+
+请逐条返回 PASS/FAIL + 具体发现。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4296df73-a9d9-4c18-8261-e6184bcd107d",
+  "isSidechain": false,
+  "promptId": "141b67c7-0191-4fec-ab4e-aeab3eadc633",
+  "type": "user",
+  "uuid": "c2b06287-423c-4368-b84a-5fb37740d170",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 351 · 2026-05-24T03:54:04.312Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01WbnZXNwLLpoMSqs2G4r3cs`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/experiments.tex",
+  "limit": 200
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c2b06287-423c-4368-b84a-5fb37740d170",
+  "isSidechain": false,
+  "requestId": "req_011CbLia5baS4rNHjDU7w8Z8",
+  "type": "assistant",
+  "uuid": "66aeb88d-950e-48e2-b259-99b7d26aac27",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013xUmpyd83D5SRu4B66fwPX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 130329,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 390,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 130329,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 390,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 130329,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 130329
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "system_changed",
+        "cache_missed_input_tokens": 86486
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 352 · 2026-05-24T03:54:04.346Z_
+
+<details><summary>↩ Tool result · `toolu_01WbnZXNwLLpoMSqs2G4r3cs`</summary>
+
+```text
+1	\section{Experiments}
+2	\label{sec:experiments}
+3	
+4	\subsection{Experimental Setup}
+5	
+6	\paragraph{Model and Predictor.}
+7	We evaluate on LLaMA-3.1-8B~\cite{grattafiori2024llama3}, which uses SwiGLU FFN blocks~\cite{shazeer2020glu} with $d_{\text{model}}=4096$ and $d_{\text{ff}}=14336$ across 32 layers.
+8	The sparsity predictor is a two-layer MLP with 2.37M parameters per layer (75.9M total), implemented as Linear($4096 \to 128$) + GELU + Linear($128 \to 14336$), trained to produce per-neuron importance scores that minimize output-distribution divergence under sparsity.
+9	
+10	\paragraph{Training.}
+11	All predictors are trained for 1000 steps on WikiText-103 with sequence length 2048 and batch size 4 on a single NVIDIA RTX PRO 6000 Blackwell Server Edition GPU (96\,GB), using AdamW~\cite{loshchilov2019adamw} with learning rate $1 \times 10^{-3}$, weight decay $1 \times 10^{-2}$, and cosine decay.
+12	The KL predictor uses Gumbel-Sigmoid relaxation~\cite{jang2017gumbel} with temperature $\tau=1.0$ annealed to $0.1$ over training.
+13	
+14	\paragraph{Evaluation.}
+15	We report perplexity on WikiText-2~\cite{merity2017pointer} (seq\_len=2048) and downstream accuracy on ARC-Challenge (25-shot), WinoGrande (5-shot), MMLU (5-shot), GSM8K (8-shot), HellaSwag (10-shot), and PIQA (0-shot).
+16	
+17	\paragraph{Inference Protocol.}
+18	At inference, the predictor produces per-neuron scores that are passed to TEAL's global top-$k$ allocation mechanism~\cite{liu2025teal}, which distributes the sparsity budget across layers non-uniformly.
+19	We term this \textit{predictor-TEAL}: the predictor replaces TEAL's magnitude-based scoring while retaining its allocation strategy.
+20	
+21	\paragraph{Baselines.}
+22	We compare against: (1) \textbf{Vanilla TEAL}~\cite{liu2025teal}, which uses activation magnitudes directly\footnote{TEAL is deterministic; single-run evaluation suffices. KL/BCE predictors require multi-seed evaluation due to random initialization.}; (2) \textbf{BCE predictor} (DejaVu-style~\cite{liu2023dejavu}), trained with per-neuron binary cross-entropy on magnitude-based oracle masks for 1000 and 2700 steps; and (3) \textbf{Uniform allocation}, which distributes the sparsity budget equally across layers.
+23	
+24	
+25	\subsection{Main Results}
+26	
+27	Table~\ref{tab:main} presents the primary comparison. Uniform allocation preserves downstream performance best; global allocation is analyzed to understand allocation-quality tradeoffs (\S\ref{sec:scaling}).
+28	At 30\% sparsity, output-distribution KL under uniform allocation achieves PPL 8.81$\pm$0.02 (3-seed), a 14.5\% reduction over TEAL at matched actual sparsity (8.81 vs.\ 10.30, both at 28.5\%; Appendix~\ref{app:ood}).
+29	Uniform allocation yields stable downstream (MMLU 40.7$\pm$1.3\%, 3-seed; Appendix~\ref{app:stability}), while global top-$k$ exhibits high seed variance (35.7$\pm$9.5\%) from late-layer starvation (L31 retention 28.4\%; \S\ref{sec:scaling}). % exp_id: bench_kl30_uniform, kl30_s123_uniform, kl30_s456_uniform, kl30_3seed
+30	
+31	\paragraph{Task-Type Split.}
+32	KL shows directional improvements over TEAL on commonsense reasoning (ARC-c, WG, HellaSwag, PIQA: 4/4 wins at 30\% uniform) but underperforms on knowledge-intensive tasks (MMLU, GSM8K: 0/2).
+33	With only three seeds, 95\% confidence intervals for individual downstream tasks overlap; we therefore treat PPL ($\sigma{=}0.02$, non-overlapping) as the primary metric and downstream differences as directional evidence.
+34	The KL predictor protects L14--L18 (14--18\% sparsity vs.\ 32\% global mean) while aggressively pruning L22--L28 (48--57\%). Constraint interventions (Appendix~\ref{app:constraint}) confirm a task-dependent trade-off: removing the valley improves MMLU +3.4pp but reduces ARC-c by 1.5pp, consistent with localized factual associations~\cite{geva2023dissecting}; task-aware allocation may resolve this. % exp_id: bench_kl30_uniform, teal30_uniform, hellaswag_piqa_kl30_uniform, perlayer_sparsity_analysis, constraint_protect_late, constraint_remove_valley
+35	
+36	\paragraph{Knowledge-Task Regression: Hypothesis.}
+37	Constraint experiments (Appendix~\ref{app:constraint}) confirm allocation contributes: removing the learned valley improves MMLU +3.4pp and GSM8K +1.6pp. A C4-trained control (Appendix~\ref{app:c4_control}) does not alleviate the regression (MMLU 40.0\%, GSM8K 4.1\% vs.\ 40.7\%, 7.5\%), confirming the deficit is structural to forward KL's mode-covering property~\cite{meng2022locating} rather than training data composition. % exp_id: constraint_remove_valley, c4_control_eval
+38	
+39	At 50\%, the PPL advantage widens (11.92 vs.\ 23.90, 50\% reduction) and generalizes to C4 (Appendix~\ref{app:ood}), but all methods collapse to near-random on MMLU and GSM8K ($\leq$2.7\%); no allocation strategy recovers at this capacity limit. % exp_id: bench_kl50_global, kl50_global_s123_downstream_v2, kl50_global_s456_eval, d030_kl50_uniform, multi_seed_kl50_global
+40	
+41	\begin{table}[t]
+42	\centering
+43	\caption{Main results on LLaMA-3.1-8B. $^\ast$$2.71\times$ KL compute (\S\ref{sec:isocompute}). $\pm$: 3-seed; unmarked: s42. $^\ddagger$Actual sparsity: KL 28.5\% vs.\ TEAL 29.3\% at 30\% (Appendix~\ref{app:ood}).}
+44	\label{tab:main}
+45	\resizebox{\columnwidth}{!}{
+46	\begin{tabular}{llccccc}
+47	\toprule
+48	Sparsity & Method & PPL$\downarrow$ & ARC-c & WG & MMLU & GSM8K \\
+49	\midrule
+50	0\% & Dense & 6.12 & 58.28 & 78.06 & 65.27 & 48.75 \\
+51	\midrule
+52	\multirow{6}{*}{30\%}
+53	& TEAL uniform & 10.82 & 39.33 & 65.04 & \textbf{45.86} & \textbf{8.79} \\ % exp_id: teal30_uniform
+54	& BCE global & 11.25 & 41.2 & 66.0 & 36.3 & 6.0 \\ % exp_id: bce30_teal_global
+55	& BCE uniform & 15.09$\pm$0.13 & 33.45 & 61.09 & 43.05 & 3.97 \\ % exp_id: bce_iso_v3_s42, bce_iso_v3_s123, bce_iso_v3_s456
+56	& MSE uniform & 18.52$\pm$1.68 & 35.8$\pm$4.1 & 59.8$\pm$2.6 & 30.7$\pm$2.6 & 2.3$\pm$0.7 \\ % exp_id: mse30_3seed
+57	& KL global (Ours)$^\ddagger$ & 8.96$\pm$0.02 & \textbf{43.8$\pm$3.6} & \textbf{70.2$\pm$0.9} & 35.7$\pm$9.5 & 8.0$\pm$0.7 \\ % exp_id: kl30_3seed_global
+58	& KL uniform$^\ddagger$ & \textbf{8.81$\pm$0.02} & 43.7$\pm$2.5 & 68.9$\pm$0.4 & 40.7$\pm$1.3 & 7.5$\pm$0.1 \\ % exp_id: bench_kl30_uniform, kl30_s123_uniform, kl30_s456_uniform
+59	\midrule
+60	\multirow{5}{*}{50\%}
+61	& TEAL uniform & 23.90 & 27.47 & 54.38 & \textbf{29.26} & 1.74 \\ % exp_id: teal50_uniform
+62	& BCE (2700 steps)$^\ast$ & 28.13$\pm$0.20 & 27.6$\pm$0.6 & 51.8$\pm$0.6 & 26.1$\pm$0.5 & 2.1$\pm$0.2 \\ % exp_id: bce50_3seed
+63	& MSE uniform & 229.26 & 25.00 & 50.59 & 23.79 & 1.59 \\ % exp_id: mse50_uniform_s42
+64	& KL global (Ours) & \textbf{11.84$\pm$0.15} & \textbf{36.3$\pm$3.2} & \textbf{63.8$\pm$0.3} & 28.3$\pm$0.7 & \textbf{2.7$\pm$1.3} \\ % exp_id: bench_kl50_global (s42), kl50_global_s123_reeval (s123 PPL), kl50_global_s123_downstream_v2 (s123 downstream), kl50_global_s456_eval (s456)
+65	& KL uniform & 11.92$\pm$0.07 & 33.8$\pm$1.2 & 62.9$\pm$0.1 & 28.0$\pm$0.6 & 2.2$\pm$0.1 \\ % exp_id: bench_kl50_uniform, bench_kl50_uniform_s123, bench_kl50_uniform_s456
+66	\bottomrule
+67	\end{tabular}}
+68	\end{table}
+69	
+70	
+71	\subsection{Extended Training Analysis}
+72	\label{sec:isocompute}
+73	
+74	At $2.71\times$ KL compute budget (2700 steps, matched wall-clock), BCE achieves PPL 28.13$\pm$0.20 (3-seed), still $2.39\times$ worse than KL (11.79). % exp_id: bce50_3seed
+75	The gap is systematic: BCE reaches higher oracle F1 (0.613 vs.\ 0.540) with 139\% worse PPL, confirming KL optimizes for distributional fidelity rather than magnitude agreement. % exp_id: f1_oracle_analysis, bce_isocompute_s42
+76	
+77	
+78	\subsection{Mask Pattern Analysis}
+79	\label{sec:mask_analysis}
+80	
+81	KL-derived masks diverge from magnitude oracles: per-layer Jaccard distance averages 68\% at 50\% (64 samples, 131K tokens; Figure~\ref{fig:mask_heatmap}), with cross-seed variation (36.3\%) confirming systematic divergence (Appendices~\ref{app:cross_seed_jaccard},~\ref{app:mask_viz}).
+82	Despite this, KL achieves PPL 11.79 vs.\ BCE's 28.13$\pm$0.20, confirming that distributional fidelity, not magnitude agreement, produces better masks. % exp_id: bench_kl50_global, bce50_3seed, c1_mask_overlap
+83	Divergence follows a U-shaped per-layer pattern, peaking in late layers (0.70--0.75 at 50\%). % exp_id: c1_mask_overlap
+84	
+85	\paragraph{Target-Swap Ablation: Target Quality vs.\ Gradient Coupling.}
+86	To disentangle whether KL's advantage stems from its coupled gradient pathway or from the mask patterns it discovers, we train a standard BCE predictor on KL-derived oracle masks instead of magnitude-based masks (C1 target-swap ablation).
+87	Table~\ref{tab:c1} reports results under TEAL uniform allocation at matched sparsity.
+88	
+89	\begin{table}[t]
+90	\centering
+91	\caption{Target-swap ablation (C1): BCE on KL-derived masks vs.\ KL predictor (same seed), TEAL uniform. All seeds show max $\Delta$$\leq$1.70pp at 30\%; max $\Delta$$\leq$0.79pp at 50\% (s42). $^\dagger$\textbf{Provenance:} s42 oracle extracted from an earlier training run (not seed-matched); s123/s456 use seed-matched retrained oracles (Appendix~\ref{app:oracle_provenance}).}
+92	\label{tab:c1}
+93	\resizebox{\columnwidth}{!}{
+94	\begin{tabular}{lllccccc}
+95	\toprule
+96	Sparsity & Seed & Method & PPL$\downarrow$ & ARC-c & WG & MMLU & GSM8K \\
+97	\midrule
+98	\multirow{6}{*}{30\%}
+99	& s42$^\dagger$ & C1 & 9.45 & 40.27 & 67.40 & \textbf{42.30} & \textbf{7.58} \\ % exp_id: c1_ablation_30pct_s42_eval_v2
+100	& & KL & \textbf{8.82} & \textbf{40.78} & \textbf{68.59} & 40.6 & 7.35 \\ % exp_id: bench_kl30_uniform
+101	& s123 & C1 & 8.84 & 44.71 & \textbf{69.77} & \textbf{39.92} & 6.82 \\ % exp_id: eval_c1_retrain_30pct_s123
+102	& & KL & \textbf{8.83} & \textbf{45.31} & 69.38 & 39.4 & \textbf{7.51} \\ % exp_id: kl30_s123_eval
+103	& s456 & C1 & 8.82 & 44.71 & \textbf{69.93} & 41.04 & 6.60 \\ % exp_id: eval_c1_retrain_30pct_s456
+104	& & KL & \textbf{8.79} & \textbf{45.05} & 68.75 & \textbf{42.0} & \textbf{7.58} \\ % exp_id: kl30_s456_uniform_eval
+105	\midrule
+106	\multirow{2}{*}{50\%}
+107	& s42 & C1 & 11.96 & 32.17 & \textbf{63.14} & 27.79 & \textbf{2.05} \\ % exp_id: c1_bce_kl_targets_teal50u
+108	& & KL & 11.96 & \textbf{32.59} & 62.35 & \textbf{27.92} & 1.97 \\ % exp_id: c1_kl_teal50u
+109	\bottomrule
+110	\end{tabular}}
+111	\end{table}
+112	
+113	At 50\% (s42, earlier oracle), C1 matches KL within 0.79pp, while magnitude-trained BCE yields $2.4\times$ worse PPL (Table~\ref{tab:main}).
+114	At 30\%, retrained seeds show $\leq$1.18pp agreement\footnote{s42 oracle from earlier checkpoint (gap 0.65pp); s123/s456 use seed-matched converged oracles ($\leq$0.03pp gap).}.
+115	C1 demonstrates that KL-discovered mask patterns \emph{transfer} to a simpler training mechanism (PPL within 0.79pp; downstream variation up to 4.5pp MMLU); per-layer KL controls (\S\ref{sec:perlayer}) further suggest task-dependent coupling effects.
+116	However, C1 also changes mask representation: binarizing oracle soft logits ($>$0) into hard masks discards ranking information, so the near-zero delta reflects transferability of binary mask \emph{patterns} rather than full predictor knowledge. BCE+Gumbel (32.22) underperforms standard BCE (27.97), indicating trajectory-dependent confounds that prevent clean isolation of target quality from gradient coupling (Appendix~\ref{app:oracle_provenance}). % exp_id: bce50_3seed, c1_bce_kl_targets_30u, c1_s123, bce_gumbel_no_penalty_s42, eval_bce_v3_s42
+117	
+118	\subsection{Ablation Studies}
+119	
+120	Table~\ref{tab:ablation} isolates the contribution of each design choice at 30\% and 50\% sparsity.
+121	
+122	\begin{table}[t]
+123	\centering
+124	\caption{Ablation on LLaMA-3.1-8B (WikiText-2 PPL$\downarrow$; uniform at 30\%, global at 50\%). $\pm$: 3-seed; unmarked: s42. $^\ddagger$STE: 20.8\% actual sparsity at 30\% target; loss effect ($\Delta$PPL=20.4) is $5.1\times$ relaxation effect ($\Delta$PPL=3.98). $^\S$MSE 50\%: 2/3 seeds collapsed to ${\sim}$5\% actual sparsity; s42 only (Appendix~\ref{app:mse_config}).}
+125	\label{tab:ablation}
+126	\resizebox{\columnwidth}{!}{
+127	\begin{tabular}{lccc}
+128	\toprule
+129	Configuration & 30\% PPL$\downarrow$ & 50\% PPL$\downarrow$ & $\Delta_{50}$ \\
+130	\midrule
+131	\multicolumn{4}{l}{\textit{KL-based variants}} \\
+132	Forward KL + Gumbel (Ours) & \textbf{8.81$\pm$0.02} & \textbf{11.79} & --- \\ % exp_id: kl30_ablation_s42, bench_kl50_global
+133	JSD (symmetric) + Gumbel & 8.90$\pm$0.02 & 12.54 & +0.75 \\ % exp_id: jsd30_ablation_s42, jsd_ablation_s42
+134	Reverse KL + Gumbel & 9.26$\pm$0.07 & 12.80 & +1.01 \\ % exp_id: rkl30_ablation_s42, reverse_kl_ablation_s42
+135	Forward KL + STE & ---$^\ddagger$ & 15.77 & +3.98 \\ % exp_id: ste_baseline_s42
+136	\midrule
+137	\multicolumn{4}{l}{\textit{Per-layer training}} \\
+138	Per-layer MSE & 18.52$\pm$1.68 & 229.26$^\S$ & +217.47 \\ % exp_id: mse30_uniform_s42, mse50_uniform_s42
+139	Per-layer KL ($K{=}1$) & 9.05$\pm$0.02 & 34.85 & +23.06 \\ % exp_id: perlayer_kl_30_3seed, perlayer_kl_50_s42
+140	Per-layer KL ($K{=}4$) & 8.89$\pm$0.01 & 44.23 & +32.44 \\ % exp_id: perlayer_kl_k4_3seed, perlayer_kl_k4_50_s42
+141	\midrule
+142	\multicolumn{4}{l}{\textit{BCE-based variants}} \\
+143	BCE (no compensation) & 15.71 & 27.97 & +16.18 \\ % exp_id: bce30_uniform_s42, eval_bce_v3_s42
+144	BCE + Gumbel (no penalty) & --- & 32.22 & +20.43 \\ % exp_id: bce_gumbel_no_penalty_s42
+145	BCE + Gumbel + Penalty & --- & 38.02 & +26.23 \\ % exp_id: bce_gumbel_lagrangian_isolation
+146	BCE + STE & --- & 60.54 & +48.75 \\ % exp_id: bce_ste_s42
+147	\bottomrule
+148	\end{tabular}}
+149	\end{table}
+150	
+151	\paragraph{Relaxation, Divergence, and SPON.}
+152	At 50\%, Gumbel-Sigmoid outperforms STE~\cite{bengio2013ste} by 33.8\% (11.79 vs.\ 15.77); forward KL outperforms JSD (+6.4\%) and reverse KL (+8.6\%), consistent with mode-covering~\cite{gu2024minillm}. % exp_id: ste_baseline_s42, jsd_ablation_s42, reverse_kl_ablation_s42
+153	At 30\%, forward KL (8.81) and JSD (8.90) are near-identical, both outperforming reverse KL (9.26) and MSE (18.52$\pm$1.68). % exp_id: kl30_ablation_s42, jsd30_ablation_s42, rkl30_ablation_s42, mse30_uniform_s42, mse30_3seed
+154	KL--JSD near-equivalence suggests the divergence measure matters less than optimizing through the output distribution; coupling scope may provide additional downstream benefits (\S\ref{sec:perlayer}). % exp_id: bce30_uniform_s42, rkl30_downstream_3seed
+155	\paragraph{Per-Layer KL: Signal Type vs.\ Coupling Scope.}
+156	\label{sec:perlayer}
+157	To isolate cross-layer coupling, we train per-layer KL predictors that mask $K$ random layers per step and compute KL on the full model output, preserving the output-distribution signal without cross-layer gradients.
+158	The $K$-curve (Figure~\ref{fig:k_curve_ppl}) reveals three empirical patterns at 30\%: (1)~PPL is non-monotonic, with $K{=}2$ worst (10.75$\pm$0.15) due to insufficient per-layer updates and $K{=}16$ best (8.67$\pm$0.02), marginally outperforming E2E (8.81$\pm$0.02); (2)~at $K{=}1$ (no coupling), per-layer KL achieves 9.05$\pm$0.02, within 2.7\% of E2E, while per-layer MSE degrades to 18.52$\pm$1.68 ($2.05\times$ worse); (3)~the signal type\footnote{We use ``signal type'' as shorthand for the training objective's optimization target (output distribution vs.\ intermediate activations); this dimension also entails differences in gradient flow topology and optimization landscape that are not independently controlled.} gap ($K{=}1$ KL 9.05 vs.\ MSE 18.52: 9.47 PPL) dwarfs the coupling breadth range ($K{=}16$ 8.67 vs.\ $K{=}2$ 10.75: 2.08 PPL).
+159	This suggests output-distribution alignment contributes more than coupling scope to PPL, but the decomposition is confounded by train--inference mismatch ($K{=}1$ masks 1/32 layers during training vs.\ all 32 at inference), per-layer update count disparity, and the 50\% failure where $K{=}1$ (34.85) outperforms $K{=}4$ (44.23) while E2E reaches 11.84.
+160	A 3-seed $K{=}4$ control\footnote{Actual sparsity 29.6\%; per-layer sparsity std=0.003 (near-uniform).} partially deconfounds (Appendix~\ref{app:k4_downstream}): PPL and GSM8K gaps largely close while commonsense gaps (ARC-c, WG) persist, suggesting task-dependent coupling effects; detailed per-task attribution is in Appendices~\ref{app:k4_downstream}--\ref{app:perlayer_downstream}. % exp_id: perlayer_kl_30_3seed, perlayer_kl_downstream, mse30_downstream_decomp, perlayer_kl_k4_3seed, perlayer_kl_k4_50_s42, perlayer_kl_50_s42, bench_kl50_global, k_curve_k2_3seed, k_curve_k8_3seed, k_curve_k16_3seed
+161	
+162	\begin{figure}[t]
+163	\centering
+164	\includegraphics[width=\columnwidth]{k_curve_ppl}
+165	\vspace{-8pt}
+166	\caption{Coupling breadth $K$ vs.\ perplexity (30\%, TEAL uniform, 3-seed mean$\pm$std). $K{=}32$ denotes end-to-end training. $K{=}2$ degradation reflects insufficient per-layer updates (${\sim}62$ vs.\ ${\sim}250$ at $K{=}8$).}
+167	\label{fig:k_curve_ppl}
+168	\vspace{-8pt}
+169	\end{figure}
+170	
+171	\paragraph{Compensation Redundancy.}
+172	\label{sec:compensation}
+173	FastForward-style compensation~\cite{gautam2026fastforward} (+67.2M params) provides no benefit (Appendices~\ref{app:comp_convergence}--\ref{app:training_convergence}). % exp_id: kl_comp_30_s42, kl_comp_30_s456, kl_comp_50_s42, bce_comp_staged_s42, db_sensitivity_sweep, tau_schedule_sweep, training_steps_sweep
+174	
+175	
+176	\subsection{Sparsity Scaling and Regime Analysis}
+177	\label{sec:scaling}
+178	
+179	\begin{figure}[t]
+180	\centering
+181	\includegraphics[width=\columnwidth]{fig2_sparsity_sweep.pdf}
+182	\vspace{-8pt}
+183	\caption{PPL scaling with sparsity (global allocation). KL's advantage over TEAL grows with sparsity.}
+184	\label{fig:sparsity_sweep}
+185	\vspace{-8pt}
+186	\end{figure}
+187	
+188	\paragraph{Allocation Behavior.}
+189	Table~\ref{tab:phase} (Appendix~\ref{app:alloc_full}) reveals non-monotonic allocation preference: uniform is best at $\leq$30\% ($7.3\times$ smaller MMLU $\sigma$), global at 35--40\%, both collapse at $\geq$45\%. % exp_id: kl30_3seed, regime_kl35_global, regime_kl35_uniform, multi_seed_kl50_global, multi_seed_kl50_uniform
+190	
+191	\paragraph{Cross-Architecture and Scale.}
+192	\label{sec:cross_arch}
+193	On Mistral-7B-v0.3~\cite{jiang2023mistral}, PPL generalizes ($-$17.3\%, 3-seed; Table~\ref{tab:mistral_downstream}); on Qwen-2.5-14B~\cite{qwen2024qwen25}, PPL generalizes but MMLU/GSM8K decline (Table~\ref{tab:14b}).
+194	Consistent regression across scales (8B MMLU $-$5.2pp, 14B GSM8K 32.2$\pm$5.3 vs.\ 52.1) suggests systematic limitations of output-distribution KL. The pipeline adds 6.4\% latency overhead absent sparse kernels (Appendix~\ref{app:latency}). % exp_id: mistral_kl30_s42, mistral_kl30_s123, mistral_kl30_s456, mistral_teal30_downstream, qwen14b_kl30_uniform_4task, qwen14b_teal30_uniform, latency_profiling
+195	
+196	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "66aeb88d-950e-48e2-b259-99b7d26aac27",
+  "isSidechain": false,
+  "promptId": "141b67c7-0191-4fec-ab4e-aeab3eadc633",
+  "type": "user",
+  "uuid": "147627b7-f534-4714-bffc-ff2e1b624b4e",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/experiments.tex",
+      "content": "\\section{Experiments}\n\\label{sec:experiments}\n\n\\subsection{Experimental Setup}\n\n\\paragraph{Model and Predictor.}\nWe evaluate on LLaMA-3.1-8B~\\cite{grattafiori2024llama3}, which uses SwiGLU FFN blocks~\\cite{shazeer2020glu} with $d_{\\text{model}}=4096$ and $d_{\\text{ff}}=14336$ across 32 layers.\nThe sparsity predictor is a two-layer MLP with 2.37M parameters per layer (75.9M total), implemented as Linear($4096 \\to 128$) + GELU + Linear($128 \\to 14336$), trained to produce per-neuron importance scores that minimize output-distribution divergence under sparsity.\n\n\\paragraph{Training.}\nAll predictors are trained for 1000 steps on WikiText-103 with sequence length 2048 and batch size 4 on a single NVIDIA RTX PRO 6000 Blackwell Server Edition GPU (96\\,GB), using AdamW~\\cite{loshchilov2019adamw} with learning rate $1 \\times 10^{-3}$, weight decay $1 \\times 10^{-2}$, and cosine decay.\nThe KL predictor uses Gumbel-Sigmoid relaxation~\\cite{jang2017gumbel} with temperature $\\tau=1.0$ annealed to $0.1$ over training.\n\n\\paragraph{Evaluation.}\nWe report perplexity on WikiText-2~\\cite{merity2017pointer} (seq\\_len=2048) and downstream accuracy on ARC-Challenge (25-shot), WinoGrande (5-shot), MMLU (5-shot), GSM8K (8-shot), HellaSwag (10-shot), and PIQA (0-shot).\n\n\\paragraph{Inference Protocol.}\nAt inference, the predictor produces per-neuron scores that are passed to TEAL's global top-$k$ allocation mechanism~\\cite{liu2025teal}, which distributes the sparsity budget across layers non-uniformly.\nWe term this \\textit{predictor-TEAL}: the predictor replaces TEAL's magnitude-based scoring while retaining its allocation strategy.\n\n\\paragraph{Baselines.}\nWe compare against: (1) \\textbf{Vanilla TEAL}~\\cite{liu2025teal}, which uses activation magnitudes directly\\footnote{TEAL is deterministic; single-run evaluation suffices. KL/BCE predictors require multi-seed evaluation due to random initialization.}; (2) \\textbf{BCE predictor} (DejaVu-style~\\cite{liu2023dejavu}), trained with per-neuron binary cross-entropy on magnitude-based oracle masks for 1000 and 2700 steps; and (3) \\textbf{Uniform allocation}, which distributes the sparsity budget equally across layers.\n\n\n\\subsection{Main Results}\n\nTable~\\ref{tab:main} presents the primary comparison. Uniform allocation preserves downstream performance best; global allocation is analyzed to understand allocation-quality tradeoffs (\\S\\ref{sec:scaling}).\nAt 30\\% sparsity, output-distribution KL under uniform allocation achieves PPL 8.81$\\pm$0.02 (3-seed), a 14.5\\% reduction over TEAL at matched actual sparsity (8.81 vs.\\ 10.30, both at 28.5\\%; Appendix~\\ref{app:ood}).\nUniform allocation yields stable downstream (MMLU 40.7$\\pm$1.3\\%, 3-seed; Appendix~\\ref{app:stability}), while global top-$k$ exhibits high seed variance (35.7$\\pm$9.5\\%) from late-layer starvation (L31 retention 28.4\\%; \\S\\ref{sec:scaling}). % exp_id: bench_kl30_uniform, kl30_s123_uniform, kl30_s456_uniform, kl30_3seed\n\n\\paragraph{Task-Type Split.}\nKL shows directional improvements over TEAL on commonsense reasoning (ARC-c, WG, HellaSwag, PIQA: 4/4 wins at 30\\% uniform) but underperforms on knowledge-intensive tasks (MMLU, GSM8K: 0/2).\nWith only three seeds, 95\\% confidence intervals for individual downstream tasks overlap; we therefore treat PPL ($\\sigma{=}0.02$, non-overlapping) as the primary metric and downstream differences as directional evidence.\nThe KL predictor protects L14--L18 (14--18\\% sparsity vs.\\ 32\\% global mean) while aggressively pruning L22--L28 (48--57\\%). Constraint interventions (Appendix~\\ref{app:constraint}) confirm a task-dependent trade-off: removing the valley improves MMLU +3.4pp but reduces ARC-c by 1.5pp, consistent with localized factual associations~\\cite{geva2023dissecting}; task-aware allocation may resolve this. % exp_id: bench_kl30_uniform, teal30_uniform, hellaswag_piqa_kl30_uniform, perlayer_sparsity_analysis, constraint_protect_late, constraint_remove_valley\n\n\\paragraph{Knowledge-Task Regression: Hypothesis.}\nConstraint experiments (Appendix~\\ref{app:constraint}) confirm allocation contributes: removing the learned valley improves MMLU +3.4pp and GSM8K +1.6pp. A C4-trained control (Appendix~\\ref{app:c4_control}) does not alleviate the regression (MMLU 40.0\\%, GSM8K 4.1\\% vs.\\ 40.7\\%, 7.5\\%), confirming the deficit is structural to forward KL's mode-covering property~\\cite{meng2022locating} rather than training data composition. % exp_id: constraint_remove_valley, c4_control_eval\n\nAt 50\\%, the PPL advantage widens (11.92 vs.\\ 23.90, 50\\% reduction) and generalizes to C4 (Appendix~\\ref{app:ood}), but all methods collapse to near-random on MMLU and GSM8K ($\\leq$2.7\\%); no allocation strategy recovers at this capacity limit. % exp_id: bench_kl50_global, kl50_global_s123_downstream_v2, kl50_global_s456_eval, d030_kl50_uniform, multi_seed_kl50_global\n\n\\begin{table}[t]\n\\centering\n\\caption{Main results on LLaMA-3.1-8B. $^\\ast$$2.71\\times$ KL compute (\\S\\ref{sec:isocompute}). $\\pm$: 3-seed; unmarked: s42. $^\\ddagger$Actual sparsity: KL 28.5\\% vs.\\ TEAL 29.3\\% at 30\\% (Appendix~\\ref{app:ood}).}\n\\label{tab:main}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{llccccc}\n\\toprule\nSparsity & Method & PPL$\\downarrow$ & ARC-c & WG & MMLU & GSM8K \\\\\n\\midrule\n0\\% & Dense & 6.12 & 58.28 & 78.06 & 65.27 & 48.75 \\\\\n\\midrule\n\\multirow{6}{*}{30\\%}\n& TEAL uniform & 10.82 & 39.33 & 65.04 & \\textbf{45.86} & \\textbf{8.79} \\\\ % exp_id: teal30_uniform\n& BCE global & 11.25 & 41.2 & 66.0 & 36.3 & 6.0 \\\\ % exp_id: bce30_teal_global\n& BCE uniform & 15.09$\\pm$0.13 & 33.45 & 61.09 & 43.05 & 3.97 \\\\ % exp_id: bce_iso_v3_s42, bce_iso_v3_s123, bce_iso_v3_s456\n& MSE uniform & 18.52$\\pm$1.68 & 35.8$\\pm$4.1 & 59.8$\\pm$2.6 & 30.7$\\pm$2.6 & 2.3$\\pm$0.7 \\\\ % exp_id: mse30_3seed\n& KL global (Ours)$^\\ddagger$ & 8.96$\\pm$0.02 & \\textbf{43.8$\\pm$3.6} & \\textbf{70.2$\\pm$0.9} & 35.7$\\pm$9.5 & 8.0$\\pm$0.7 \\\\ % exp_id: kl30_3seed_global\n& KL uniform$^\\ddagger$ & \\textbf{8.81$\\pm$0.02} & 43.7$\\pm$2.5 & 68.9$\\pm$0.4 & 40.7$\\pm$1.3 & 7.5$\\pm$0.1 \\\\ % exp_id: bench_kl30_uniform, kl30_s123_uniform, kl30_s456_uniform\n\\midrule\n\\multirow{5}{*}{50\\%}\n& TEAL uniform & 23.90 & 27.47 & 54.38 & \\textbf{29.26} & 1.74 \\\\ % exp_id: teal50_uniform\n& BCE (2700 steps)$^\\ast$ & 28.13$\\pm$0.20 & 27.6$\\pm$0.6 & 51.8$\\pm$0.6 & 26.1$\\pm$0.5 & 2.1$\\pm$0.2 \\\\ % exp_id: bce50_3seed\n& MSE uniform & 229.26 & 25.00 & 50.59 & 23.79 & 1.59 \\\\ % exp_id: mse50_uniform_s42\n& KL global (Ours) & \\textbf{11.84$\\pm$0.15} & \\textbf{36.3$\\pm$3.2} & \\textbf{63.8$\\pm$0.3} & 28.3$\\pm$0.7 & \\textbf{2.7$\\pm$1.3} \\\\ % exp_id: bench_kl50_global (s42), kl50_global_s123_reeval (s123 PPL), kl50_global_s123_downstream_v2 (s123 downstream), kl50_global_s456_eval (s456)\n& KL uniform & 11.92$\\pm$0.07 & 33.8$\\pm$1.2 & 62.9$\\pm$0.1 & 28.0$\\pm$0.6 & 2.2$\\pm$0.1 \\\\ % exp_id: bench_kl50_uniform, bench_kl50_uniform_s123, bench_kl50_uniform_s456\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\n\\subsection{Extended Training Analysis}\n\\label{sec:isocompute}\n\nAt $2.71\\times$ KL compute budget (2700 steps, matched wall-clock), BCE achieves PPL 28.13$\\pm$0.20 (3-seed), still $2.39\\times$ worse than KL (11.79). % exp_id: bce50_3seed\nThe gap is systematic: BCE reaches higher oracle F1 (0.613 vs.\\ 0.540) with 139\\% worse PPL, confirming KL optimizes for distributional fidelity rather than magnitude agreement. % exp_id: f1_oracle_analysis, bce_isocompute_s42\n\n\n\\subsection{Mask Pattern Analysis}\n\\label{sec:mask_analysis}\n\nKL-derived masks diverge from magnitude oracles: per-layer Jaccard distance averages 68\\% at 50\\% (64 samples, 131K tokens; Figure~\\ref{fig:mask_heatmap}), with cross-seed variation (36.3\\%) confirming systematic divergence (Appendices~\\ref{app:cross_seed_jaccard},~\\ref{app:mask_viz}).\nDespite this, KL achieves PPL 11.79 vs.\\ BCE's 28.13$\\pm$0.20, confirming that distributional fidelity, not magnitude agreement, produces better masks. % exp_id: bench_kl50_global, bce50_3seed, c1_mask_overlap\nDivergence follows a U-shaped per-layer pattern, peaking in late layers (0.70--0.75 at 50\\%). % exp_id: c1_mask_overlap\n\n\\paragraph{Target-Swap Ablation: Target Quality vs.\\ Gradient Coupling.}\nTo disentangle whether KL's advantage stems from its coupled gradient pathway or from the mask patterns it discovers, we train a standard BCE predictor on KL-derived oracle masks instead of magnitude-based masks (C1 target-swap ablation).\nTable~\\ref{tab:c1} reports results under TEAL uniform allocation at matched sparsity.\n\n\\begin{table}[t]\n\\centering\n\\caption{Target-swap ablation (C1): BCE on KL-derived masks vs.\\ KL predictor (same seed), TEAL uniform. All seeds show max $\\Delta$$\\leq$1.70pp at 30\\%; max $\\Delta$$\\leq$0.79pp at 50\\% (s42). $^\\dagger$\\textbf{Provenance:} s42 oracle extracted from an earlier training run (not seed-matched); s123/s456 use seed-matched retrained oracles (Appendix~\\ref{app:oracle_provenance}).}\n\\label{tab:c1}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{lllccccc}\n\\toprule\nSparsity & Seed & Method & PPL$\\downarrow$ & ARC-c & WG & MMLU & GSM8K \\\\\n\\midrule\n\\multirow{6}{*}{30\\%}\n& s42$^\\dagger$ & C1 & 9.45 & 40.27 & 67.40 & \\textbf{42.30} & \\textbf{7.58} \\\\ % exp_id: c1_ablation_30pct_s42_eval_v2\n& & KL & \\textbf{8.82} & \\textbf{40.78} & \\textbf{68.59} & 40.6 & 7.35 \\\\ % exp_id: bench_kl30_uniform\n& s123 & C1 & 8.84 & 44.71 & \\textbf{69.77} & \\textbf{39.92} & 6.82 \\\\ % exp_id: eval_c1_retrain_30pct_s123\n& & KL & \\textbf{8.83} & \\textbf{45.31} & 69.38 & 39.4 & \\textbf{7.51} \\\\ % exp_id: kl30_s123_eval\n& s456 & C1 & 8.82 & 44.71 & \\textbf{69.93} & 41.04 & 6.60 \\\\ % exp_id: eval_c1_retrain_30pct_s456\n& & KL & \\textbf{8.79} & \\textbf{45.05} & 68.75 & \\textbf{42.0} & \\textbf{7.58} \\\\ % exp_id: kl30_s456_uniform_eval\n\\midrule\n\\multirow{2}{*}{50\\%}\n& s42 & C1 & 11.96 & 32.17 & \\textbf{63.14} & 27.79 & \\textbf{2.05} \\\\ % exp_id: c1_bce_kl_targets_teal50u\n& & KL & 11.96 & \\textbf{32.59} & 62.35 & \\textbf{27.92} & 1.97 \\\\ % exp_id: c1_kl_teal50u\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\nAt 50\\% (s42, earlier oracle), C1 matches KL within 0.79pp, while magnitude-trained BCE yields $2.4\\times$ worse PPL (Table~\\ref{tab:main}).\nAt 30\\%, retrained seeds show $\\leq$1.18pp agreement\\footnote{s42 oracle from earlier checkpoint (gap 0.65pp); s123/s456 use seed-matched converged oracles ($\\leq$0.03pp gap).}.\nC1 demonstrates that KL-discovered mask patterns \\emph{transfer} to a simpler training mechanism (PPL within 0.79pp; downstream variation up to 4.5pp MMLU); per-layer KL controls (\\S\\ref{sec:perlayer}) further suggest task-dependent coupling effects.\nHowever, C1 also changes mask representation: binarizing oracle soft logits ($>$0) into hard masks discards ranking information, so the near-zero delta reflects transferability of binary mask \\emph{patterns} rather than full predictor knowledge. BCE+Gumbel (32.22) underperforms standard BCE (27.97), indicating trajectory-dependent confounds that prevent clean isolation of target quality from gradient coupling (Appendix~\\ref{app:oracle_provenance}). % exp_id: bce50_3seed, c1_bce_kl_targets_30u, c1_s123, bce_gumbel_no_penalty_s42, eval_bce_v3_s42\n\n\\subsection{Ablation Studies}\n\nTable~\\ref{tab:ablation} isolates the contribution of each design choice at 30\\% and 50\\% sparsity.\n\n\\begin{table}[t]\n\\centering\n\\caption{Ablation on LLaMA-3.1-8B (WikiText-2 PPL$\\downarrow$; uniform at 30\\%, global at 50\\%). $\\pm$: 3-seed; unmarked: s42. $^\\ddagger$STE: 20.8\\% actual sparsity at 30\\% target; loss effect ($\\Delta$PPL=20.4) is $5.1\\times$ relaxation effect ($\\Delta$PPL=3.98). $^\\S$MSE 50\\%: 2/3 seeds collapsed to ${\\sim}$5\\% actual sparsity; s42 only (Appendix~\\ref{app:mse_config}).}\n\\label{tab:ablation}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{lccc}\n\\toprule\nConfiguration & 30\\% PPL$\\downarrow$ & 50\\% PPL$\\downarrow$ & $\\Delta_{50}$ \\\\\n\\midrule\n\\multicolumn{4}{l}{\\textit{KL-based variants}} \\\\\nForward KL + Gumbel (Ours) & \\textbf{8.81$\\pm$0.02} & \\textbf{11.79} & --- \\\\ % exp_id: kl30_ablation_s42, bench_kl50_global\nJSD (symmetric) + Gumbel & 8.90$\\pm$0.02 & 12.54 & +0.75 \\\\ % exp_id: jsd30_ablation_s42, jsd_ablation_s42\nReverse KL + Gumbel & 9.26$\\pm$0.07 & 12.80 & +1.01 \\\\ % exp_id: rkl30_ablation_s42, reverse_kl_ablation_s42\nForward KL + STE & ---$^\\ddagger$ & 15.77 & +3.98 \\\\ % exp_id: ste_baseline_s42\n\\midrule\n\\multicolumn{4}{l}{\\textit{Per-layer training}} \\\\\nPer-layer MSE & 18.52$\\pm$1.68 & 229.26$^\\S$ & +217.47 \\\\ % exp_id: mse30_uniform_s42, mse50_uniform_s42\nPer-layer KL ($K{=}1$) & 9.05$\\pm$0.02 & 34.85 & +23.06 \\\\ % exp_id: perlayer_kl_30_3seed, perlayer_kl_50_s42\nPer-layer KL ($K{=}4$) & 8.89$\\pm$0.01 & 44.23 & +32.44 \\\\ % exp_id: perlayer_kl_k4_3seed, perlayer_kl_k4_50_s42\n\\midrule\n\\multicolumn{4}{l}{\\textit{BCE-based variants}} \\\\\nBCE (no compensation) & 15.71 & 27.97 & +16.18 \\\\ % exp_id: bce30_uniform_s42, eval_bce_v3_s42\nBCE + Gumbel (no penalty) & --- & 32.22 & +20.43 \\\\ % exp_id: bce_gumbel_no_penalty_s42\nBCE + Gumbel + Penalty & --- & 38.02 & +26.23 \\\\ % exp_id: bce_gumbel_lagrangian_isolation\nBCE + STE & --- & 60.54 & +48.75 \\\\ % exp_id: bce_ste_s42\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\\paragraph{Relaxation, Divergence, and SPON.}\nAt 50\\%, Gumbel-Sigmoid outperforms STE~\\cite{bengio2013ste} by 33.8\\% (11.79 vs.\\ 15.77); forward KL outperforms JSD (+6.4\\%) and reverse KL (+8.6\\%), consistent with mode-covering~\\cite{gu2024minillm}. % exp_id: ste_baseline_s42, jsd_ablation_s42, reverse_kl_ablation_s42\nAt 30\\%, forward KL (8.81) and JSD (8.90) are near-identical, both outperforming reverse KL (9.26) and MSE (18.52$\\pm$1.68). % exp_id: kl30_ablation_s42, jsd30_ablation_s42, rkl30_ablation_s42, mse30_uniform_s42, mse30_3seed\nKL--JSD near-equivalence suggests the divergence measure matters less than optimizing through the output distribution; coupling scope may provide additional downstream benefits (\\S\\ref{sec:perlayer}). % exp_id: bce30_uniform_s42, rkl30_downstream_3seed\n\\paragraph{Per-Layer KL: Signal Type vs.\\ Coupling Scope.}\n\\label{sec:perlayer}\nTo isolate cross-layer coupling, we train per-layer KL predictors that mask $K$ random layers per step and compute KL on the full model output, preserving the output-distribution signal without cross-layer gradients.\nThe $K$-curve (Figure~\\ref{fig:k_curve_ppl}) reveals three empirical patterns at 30\\%: (1)~PPL is non-monotonic, with $K{=}2$ worst (10.75$\\pm$0.15) due to insufficient per-layer updates and $K{=}16$ best (8.67$\\pm$0.02), marginally outperforming E2E (8.81$\\pm$0.02); (2)~at $K{=}1$ (no coupling), per-layer KL achieves 9.05$\\pm$0.02, within 2.7\\% of E2E, while per-layer MSE degrades to 18.52$\\pm$1.68 ($2.05\\times$ worse); (3)~the signal type\\footnote{We use ``signal type'' as shorthand for the training objective's optimization target (output distribution vs.\\ intermediate activations); this dimension also entails differences in gradient flow topology and optimization landscape that are not independently controlled.} gap ($K{=}1$ KL 9.05 vs.\\ MSE 18.52: 9.47 PPL) dwarfs the coupling breadth range ($K{=}16$ 8.67 vs.\\ $K{=}2$ 10.75: 2.08 PPL).\nThis suggests output-distribution alignment contributes more than coupling scope to PPL, but the decomposition is confounded by train--inference mismatch ($K{=}1$ masks 1/32 layers during training vs.\\ all 32 at inference), per-layer update count disparity, and the 50\\% failure where $K{=}1$ (34.85) outperforms $K{=}4$ (44.23) while E2E reaches 11.84.\nA 3-seed $K{=}4$ control\\footnote{Actual sparsity 29.6\\%; per-layer sparsity std=0.003 (near-uniform).} partially deconfounds (Appendix~\\ref{app:k4_downstream}): PPL and GSM8K gaps largely close while commonsense gaps (ARC-c, WG) persist, suggesting task-dependent coupling effects; detailed per-task attribution is in Appendices~\\ref{app:k4_downstream}--\\ref{app:perlayer_downstream}. % exp_id: perlayer_kl_30_3seed, perlayer_kl_downstream, mse30_downstream_decomp, perlayer_kl_k4_3seed, perlayer_kl_k4_50_s42, perlayer_kl_50_s42, bench_kl50_global, k_curve_k2_3seed, k_curve_k8_3seed, k_curve_k16_3seed\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{k_curve_ppl}\n\\vspace{-8pt}\n\\caption{Coupling breadth $K$ vs.\\ perplexity (30\\%, TEAL uniform, 3-seed mean$\\pm$std). $K{=}32$ denotes end-to-end training. $K{=}2$ degradation reflects insufficient per-layer updates (${\\sim}62$ vs.\\ ${\\sim}250$ at $K{=}8$).}\n\\label{fig:k_curve_ppl}\n\\vspace{-8pt}\n\\end{figure}\n\n\\paragraph{Compensation Redundancy.}\n\\label{sec:compensation}\nFastForward-style compensation~\\cite{gautam2026fastforward} (+67.2M params) provides no benefit (Appendices~\\ref{app:comp_convergence}--\\ref{app:training_convergence}). % exp_id: kl_comp_30_s42, kl_comp_30_s456, kl_comp_50_s42, bce_comp_staged_s42, db_sensitivity_sweep, tau_schedule_sweep, training_steps_sweep\n\n\n\\subsection{Sparsity Scaling and Regime Analysis}\n\\label{sec:scaling}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig2_sparsity_sweep.pdf}\n\\vspace{-8pt}\n\\caption{PPL scaling with sparsity (global allocation). KL's advantage over TEAL grows with sparsity.}\n\\label{fig:sparsity_sweep}\n\\vspace{-8pt}\n\\end{figure}\n\n\\paragraph{Allocation Behavior.}\nTable~\\ref{tab:phase} (Appendix~\\ref{app:alloc_full}) reveals non-monotonic allocation preference: uniform is best at $\\leq$30\\% ($7.3\\times$ smaller MMLU $\\sigma$), global at 35--40\\%, both collapse at $\\geq$45\\%. % exp_id: kl30_3seed, regime_kl35_global, regime_kl35_uniform, multi_seed_kl50_global, multi_seed_kl50_uniform\n\n\\paragraph{Cross-Architecture and Scale.}\n\\label{sec:cross_arch}\nOn Mistral-7B-v0.3~\\cite{jiang2023mistral}, PPL generalizes ($-$17.3\\%, 3-seed; Table~\\ref{tab:mistral_downstream}); on Qwen-2.5-14B~\\cite{qwen2024qwen25}, PPL generalizes but MMLU/GSM8K decline (Table~\\ref{tab:14b}).\nConsistent regression across scales (8B MMLU $-$5.2pp, 14B GSM8K 32.2$\\pm$5.3 vs.\\ 52.1) suggests systematic limitations of output-distribution KL. The pipeline adds 6.4\\% latency overhead absent sparse kernels (Appendix~\\ref{app:latency}). % exp_id: mistral_kl30_s42, mistral_kl30_s123, mistral_kl30_s456, mistral_teal30_downstream, qwen14b_kl30_uniform_4task, qwen14b_teal30_uniform, latency_profiling\n\n",
+      "numLines": 196,
+      "startLine": 1,
+      "totalLines": 196
+    }
+  },
+  "sourceToolAssistantUUID": "66aeb88d-950e-48e2-b259-99b7d26aac27",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 353 · 2026-05-24T03:54:04.712Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01YSFQtoxARFT4PSAuHxdWv3`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/abstract.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "147627b7-f534-4714-bffc-ff2e1b624b4e",
+  "isSidechain": false,
+  "requestId": "req_011CbLia5baS4rNHjDU7w8Z8",
+  "type": "assistant",
+  "uuid": "15bcc96b-f658-4194-ba20-38ea9fe1fafc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013xUmpyd83D5SRu4B66fwPX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 130329,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 390,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 130329,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 390,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 130329,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 130329
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "system_changed",
+        "cache_missed_input_tokens": 86486
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 354 · 2026-05-24T03:54:06.338Z_
+
+<details><summary>↩ Tool result · `toolu_01XoVcCnmbD7wAYYCWzBY722`</summary>
+
+```text
+1	\section*{Limitations}
+2	
+3	Our findings are bounded by four limitations.
+4	\textbf{Sparsity sweet spot.} 30\% is the lowest-degradation level; at 50\%, all methods collapse on reasoning tasks, and a separate predictor must be retrained per target.
+5	\textbf{Knowledge-intensive regression.} KL consistently underperforms on MMLU and GSM8K across scales (8B: $-$5.2pp MMLU; 14B: $-$19.9pp GSM8K), suggesting output-distribution objectives systematically sacrifice reasoning-critical pathways.
+6	\textbf{Evaluation scope.} Open-ended generation (e.g., MT-Bench) and contexts beyond 2048 tokens remain untested.
+7	\textbf{Baseline coverage.} The 30\% isocompute comparison lacks a BCE 2700-step baseline; WikiText-2 evaluation shares provenance with the training corpus (WikiText-103), partially mitigated by C4 OOD results (Appendix~\ref{app:ood}).
+8	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a8d4920d-76b5-4280-b03a-64ad3da9832b",
+  "isSidechain": false,
+  "promptId": "141b67c7-0191-4fec-ab4e-aeab3eadc633",
+  "type": "user",
+  "uuid": "af10a2dd-cc53-4c68-87b7-1d54ad0d608f",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/limitations.tex",
+      "content": "\\section*{Limitations}\n\nOur findings are bounded by four limitations.\n\\textbf{Sparsity sweet spot.} 30\\% is the lowest-degradation level; at 50\\%, all methods collapse on reasoning tasks, and a separate predictor must be retrained per target.\n\\textbf{Knowledge-intensive regression.} KL consistently underperforms on MMLU and GSM8K across scales (8B: $-$5.2pp MMLU; 14B: $-$19.9pp GSM8K), suggesting output-distribution objectives systematically sacrifice reasoning-critical pathways.\n\\textbf{Evaluation scope.} Open-ended generation (e.g., MT-Bench) and contexts beyond 2048 tokens remain untested.\n\\textbf{Baseline coverage.} The 30\\% isocompute comparison lacks a BCE 2700-step baseline; WikiText-2 evaluation shares provenance with the training corpus (WikiText-103), partially mitigated by C4 OOD results (Appendix~\\ref{app:ood}).\n",
+      "numLines": 8,
+      "startLine": 1,
+      "totalLines": 8
+    }
+  },
+  "sourceToolAssistantUUID": "a8d4920d-76b5-4280-b03a-64ad3da9832b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 355 · 2026-05-24T03:54:04.717Z_
+
+<details><summary>↩ Tool result · `toolu_01YSFQtoxARFT4PSAuHxdWv3`</summary>
+
+```text
+1	Learned sparsity predictors for SwiGLU LLMs predominantly use binary cross-entropy (BCE), training each neuron independently, yet inference allocates budgets globally via top-$k$ ranking.
+2	We train lightweight predictors ($<$1\% of base parameters) with forward KL divergence, coupling all mask decisions through the output distribution.
+3	On LLaMA-3.1-8B at 30\% sparsity, the KL predictor reduces perplexity by 14.5\% over TEAL at matched sparsity, with directional commonsense gains ($n{=}3$) but knowledge-intensive regression (8B MMLU $-$5.2pp, CIs overlap; 14B GSM8K $-$19.9pp, $n{=}3$); post-hoc compensation (+67.2M params) becomes redundant.
+4	Output-distribution optimization yields masks that diverge 46--68\% from magnitude-based targets; a target-swap ablation suggests these discovered patterns carry most of the quality information: BCE trained on KL-derived targets approaches KL-level PPL (PPL gap $\leq$0.65pp; 3-seed, 30\%).
+5	Per-layer controls show the signal type gap (9.47 PPL) dwarfs the coupling breadth range (2.08 PPL) at 30\%, though the decomposition is confounded by train--inference mismatch; a $K{=}4$ control suggests task-dependent coupling effects (\S\ref{sec:perlayer}).
+6	Cross-architecture evaluation on Mistral-7B-v0.3 and Qwen-2.5-14B confirms PPL generalization with scale-dependent downstream effects.
+7	This is primarily an empirical study; wall-clock speedup requires sparse kernel support not addressed here.
+8	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "15bcc96b-f658-4194-ba20-38ea9fe1fafc",
+  "isSidechain": false,
+  "promptId": "141b67c7-0191-4fec-ab4e-aeab3eadc633",
+  "type": "user",
+  "uuid": "977aed1a-df29-4bc2-869d-354beb47ca83",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/abstract.tex",
+      "content": "Learned sparsity predictors for SwiGLU LLMs predominantly use binary cross-entropy (BCE), training each neuron independently, yet inference allocates budgets globally via top-$k$ ranking.\nWe train lightweight predictors ($<$1\\% of base parameters) with forward KL divergence, coupling all mask decisions through the output distribution.\nOn LLaMA-3.1-8B at 30\\% sparsity, the KL predictor reduces perplexity by 14.5\\% over TEAL at matched sparsity, with directional commonsense gains ($n{=}3$) but knowledge-intensive regression (8B MMLU $-$5.2pp, CIs overlap; 14B GSM8K $-$19.9pp, $n{=}3$); post-hoc compensation (+67.2M params) becomes redundant.\nOutput-distribution optimization yields masks that diverge 46--68\\% from magnitude-based targets; a target-swap ablation suggests these discovered patterns carry most of the quality information: BCE trained on KL-derived targets approaches KL-level PPL (PPL gap $\\leq$0.65pp; 3-seed, 30\\%).\nPer-layer controls show the signal type gap (9.47 PPL) dwarfs the coupling breadth range (2.08 PPL) at 30\\%, though the decomposition is confounded by train--inference mismatch; a $K{=}4$ control suggests task-dependent coupling effects (\\S\\ref{sec:perlayer}).\nCross-architecture evaluation on Mistral-7B-v0.3 and Qwen-2.5-14B confirms PPL generalization with scale-dependent downstream effects.\nThis is primarily an empirical study; wall-clock speedup requires sparse kernel support not addressed here.\n",
+      "numLines": 8,
+      "startLine": 1,
+      "totalLines": 8
+    }
+  },
+  "sourceToolAssistantUUID": "15bcc96b-f658-4194-ba20-38ea9fe1fafc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 356 · 2026-05-24T03:54:05.684Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_018AAdsghJcJkeex3KaVgfVR`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/introduction.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "977aed1a-df29-4bc2-869d-354beb47ca83",
+  "isSidechain": false,
+  "requestId": "req_011CbLia5baS4rNHjDU7w8Z8",
+  "type": "assistant",
+  "uuid": "0370780d-5382-4abf-b904-6fa1d9826328",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013xUmpyd83D5SRu4B66fwPX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 130329,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 390,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 130329,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 390,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 130329,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 130329
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "system_changed",
+        "cache_missed_input_tokens": 86486
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 357 · 2026-05-24T03:54:05.689Z_
+
+<details><summary>↩ Tool result · `toolu_018AAdsghJcJkeex3KaVgfVR`</summary>
+
+```text
+1	\section{Introduction}
+2	
+3	How the training objective shapes learned sparsity prediction quality is an open question for SwiGLU LLMs~\cite{shazeer2020glu}. SwiGLU FFN blocks exhibit high contextual sparsity, but their gated activation makes importance prediction challenging: neuron importance depends on both gate and up-projection values, a target that magnitude-based methods handle suboptimally.
+4	Learned sparsity predictors~\cite{liu2023dejavu,gautam2026fastforward} exploit this property by training small networks to anticipate which neurons are important, but they predominantly rely on binary cross-entropy (BCE) loss, treating each neuron as an independent classification target.
+5	Yet at inference, sparsity budgets are allocated globally: the TEAL (training-free activation sparsity;~\citealp{liu2025teal}) top-$k$ mechanism ranks all neurons across all layers and retains only those above a model-wide threshold.
+6	This mismatch between per-neuron training and global inference allocation has not been formally analyzed.
+7	Unlike MaskLLM~\cite{fang2024maskllm}, which applies KL to static N:M weight masks, we address contextual activation sparsity where masks must generalize to unseen inputs, vary per token, and coordinate across layers through global allocation.
+8	
+9	Gradient analysis reveals a structural asymmetry: BCE's gradient $\partial \mathcal{L}_{\text{BCE}} / \partial s_j = \sigma(s_j) - m_j^*$ depends only on neuron $j$, while under KL divergence, the gradient couples each neuron to all others through the downstream Jacobian (\S\ref{sec:method:gradient}).
+10	KL's coupled gradients discover neuron importance patterns that diverge 68\% from magnitude-based masks (mean per-layer Jaccard distance).
+11	A target-swap ablation shows KL-discovered mask targets carry most of the quality information: BCE retrained on KL-derived targets approaches KL PPL ($\leq$0.65pp gap, 3-seed), while magnitude-trained BCE yields 28.13$\pm$0.20. Per-layer controls suggest coupling effects are task-dependent, with larger impacts on commonsense than knowledge tasks (\S\ref{sec:perlayer}).
+12	
+13	We instantiate a lightweight predictor (75.9M params, $<$1\% of base) trained with forward KL and Gumbel-Sigmoid relaxation~\cite{jang2017gumbel} on LLaMA-3.1-8B~\cite{grattafiori2024llama3}.
+14	At 30\% sparsity under uniform allocation, the predictor reduces TEAL's perplexity by 14.5\% at matched sparsity (8.81 vs.\ 10.30, both at 28.5\%) with downstream (MMLU 40.7$\pm$1.3\% vs.\ 65.3\% dense, 3-seed); global top-$k$ amplifies cross-seed variance ($7.3\times$).
+15	At 50\%, the perplexity advantage widens (50\% over TEAL), but downstream reasoning collapses regardless of method.
+16	
+17	Cross-architecture evaluation on Mistral-7B-v0.3~\cite{jiang2023mistral} (3-seed) confirms the PPL advantage ($-$17.3\%) with directional commonsense gains but tied MMLU; preliminary evaluation on Qwen-2.5-14B~\cite{qwen2024qwen25} shows consistent PPL improvement but reasoning decline (GSM8K $-$19.9pp, $\sigma$=5.3pp; MMLU $-$2.8pp).
+18	This paper is primarily an empirical study characterizing how the training objective shapes sparsity prediction quality across allocation strategies, sparsity levels, and model scales. The central finding---that output-distribution alignment consistently and substantially outperforms per-neuron classification for learned sparsity---is the paper's contribution. Without sparse kernel support, the predictor adds 6.4\% latency overhead; wall-clock speedup is not addressed (Appendix~\ref{app:latency}).
+19	While individual components (KL divergence, Gumbel-Sigmoid relaxation) are established techniques, their application to contextual activation sparsity prediction has not been explored, and the resulting empirical behaviors are non-obvious.
+20	
+21	Our contributions are:
+22	\begin{itemize}[nosep,leftmargin=*]
+23	\item \emph{Empirical:} Output-distribution alignment ranking across five losses, with per-layer decomposition showing the signal type gap (9.47 PPL) dwarfs the coupling breadth range (2.08 PPL), though confounded by train--inference mismatch (\S\ref{sec:perlayer});
+24	\item \emph{Empirical:} Cross-scale evidence (7--14B) with task-type split: KL outperforms on PPL and commonsense but shows systematic knowledge regression, structural to output-distribution optimization (C4 control; \S\ref{sec:experiments});
+25	\item \emph{Analytical:} Target-swap ablation suggests KL-discovered mask targets transfer to BCE; per-layer controls suggest task-dependent coupling effects (\S\ref{sec:perlayer});
+26	\item \emph{Analytical:} KL-derived masks render post-hoc compensation (+67.2M params) redundant at both tested sparsity levels (\S\ref{sec:compensation}).
+27	\end{itemize}
+28	
+29	\begin{figure}[t]
+30	\centering
+31	\includegraphics[width=\columnwidth]{fig1_overview.pdf}
+32	\caption{Method overview: a lightweight per-layer predictor produces importance scores trained via KL divergence with Gumbel-Sigmoid relaxation. At inference, scores feed TEAL's global top-$k$ allocation without compensation networks.}
+33	\label{fig:overview}
+34	\end{figure}
+35	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0370780d-5382-4abf-b904-6fa1d9826328",
+  "isSidechain": false,
+  "promptId": "141b67c7-0191-4fec-ab4e-aeab3eadc633",
+  "type": "user",
+  "uuid": "f86515a0-8bc7-4705-8bfe-917fe6f7fb95",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/introduction.tex",
+      "content": "\\section{Introduction}\n\nHow the training objective shapes learned sparsity prediction quality is an open question for SwiGLU LLMs~\\cite{shazeer2020glu}. SwiGLU FFN blocks exhibit high contextual sparsity, but their gated activation makes importance prediction challenging: neuron importance depends on both gate and up-projection values, a target that magnitude-based methods handle suboptimally.\nLearned sparsity predictors~\\cite{liu2023dejavu,gautam2026fastforward} exploit this property by training small networks to anticipate which neurons are important, but they predominantly rely on binary cross-entropy (BCE) loss, treating each neuron as an independent classification target.\nYet at inference, sparsity budgets are allocated globally: the TEAL (training-free activation sparsity;~\\citealp{liu2025teal}) top-$k$ mechanism ranks all neurons across all layers and retains only those above a model-wide threshold.\nThis mismatch between per-neuron training and global inference allocation has not been formally analyzed.\nUnlike MaskLLM~\\cite{fang2024maskllm}, which applies KL to static N:M weight masks, we address contextual activation sparsity where masks must generalize to unseen inputs, vary per token, and coordinate across layers through global allocation.\n\nGradient analysis reveals a structural asymmetry: BCE's gradient $\\partial \\mathcal{L}_{\\text{BCE}} / \\partial s_j = \\sigma(s_j) - m_j^*$ depends only on neuron $j$, while under KL divergence, the gradient couples each neuron to all others through the downstream Jacobian (\\S\\ref{sec:method:gradient}).\nKL's coupled gradients discover neuron importance patterns that diverge 68\\% from magnitude-based masks (mean per-layer Jaccard distance).\nA target-swap ablation shows KL-discovered mask targets carry most of the quality information: BCE retrained on KL-derived targets approaches KL PPL ($\\leq$0.65pp gap, 3-seed), while magnitude-trained BCE yields 28.13$\\pm$0.20. Per-layer controls suggest coupling effects are task-dependent, with larger impacts on commonsense than knowledge tasks (\\S\\ref{sec:perlayer}).\n\nWe instantiate a lightweight predictor (75.9M params, $<$1\\% of base) trained with forward KL and Gumbel-Sigmoid relaxation~\\cite{jang2017gumbel} on LLaMA-3.1-8B~\\cite{grattafiori2024llama3}.\nAt 30\\% sparsity under uniform allocation, the predictor reduces TEAL's perplexity by 14.5\\% at matched sparsity (8.81 vs.\\ 10.30, both at 28.5\\%) with downstream (MMLU 40.7$\\pm$1.3\\% vs.\\ 65.3\\% dense, 3-seed); global top-$k$ amplifies cross-seed variance ($7.3\\times$).\nAt 50\\%, the perplexity advantage widens (50\\% over TEAL), but downstream reasoning collapses regardless of method.\n\nCross-architecture evaluation on Mistral-7B-v0.3~\\cite{jiang2023mistral} (3-seed) confirms the PPL advantage ($-$17.3\\%) with directional commonsense gains but tied MMLU; preliminary evaluation on Qwen-2.5-14B~\\cite{qwen2024qwen25} shows consistent PPL improvement but reasoning decline (GSM8K $-$19.9pp, $\\sigma$=5.3pp; MMLU $-$2.8pp).\nThis paper is primarily an empirical study characterizing how the training objective shapes sparsity prediction quality across allocation strategies, sparsity levels, and model scales. The central finding---that output-distribution alignment consistently and substantially outperforms per-neuron classification for learned sparsity---is the paper's contribution. Without sparse kernel support, the predictor adds 6.4\\% latency overhead; wall-clock speedup is not addressed (Appendix~\\ref{app:latency}).\nWhile individual components (KL divergence, Gumbel-Sigmoid relaxation) are established techniques, their application to contextual activation sparsity prediction has not been explored, and the resulting empirical behaviors are non-obvious.\n\nOur contributions are:\n\\begin{itemize}[nosep,leftmargin=*]\n\\item \\emph{Empirical:} Output-distribution alignment ranking across five losses, with per-layer decomposition showing the signal type gap (9.47 PPL) dwarfs the coupling breadth range (2.08 PPL), though confounded by train--inference mismatch (\\S\\ref{sec:perlayer});\n\\item \\emph{Empirical:} Cross-scale evidence (7--14B) with task-type split: KL outperforms on PPL and commonsense but shows systematic knowledge regression, structural to output-distribution optimization (C4 control; \\S\\ref{sec:experiments});\n\\item \\emph{Analytical:} Target-swap ablation suggests KL-discovered mask targets transfer to BCE; per-layer controls suggest task-dependent coupling effects (\\S\\ref{sec:perlayer});\n\\item \\emph{Analytical:} KL-derived masks render post-hoc compensation (+67.2M params) redundant at both tested sparsity levels (\\S\\ref{sec:compensation}).\n\\end{itemize}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig1_overview.pdf}\n\\caption{Method overview: a lightweight per-layer predictor produces importance scores trained via KL divergence with Gumbel-Sigmoid relaxation. At inference, scores feed TEAL's global top-$k$ allocation without compensation networks.}\n\\label{fig:overview}\n\\end{figure}\n",
+      "numLines": 35,
+      "startLine": 1,
+      "totalLines": 35
+    }
+  },
+  "sourceToolAssistantUUID": "0370780d-5382-4abf-b904-6fa1d9826328",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 358 · 2026-05-24T03:54:06.161Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_016wyw85ZrbCcVjnvwUuUZbC`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/conclusion.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f86515a0-8bc7-4705-8bfe-917fe6f7fb95",
+  "isSidechain": false,
+  "requestId": "req_011CbLia5baS4rNHjDU7w8Z8",
+  "type": "assistant",
+  "uuid": "f4e2f0db-38bd-45b9-8e81-8a1d4bf647ca",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013xUmpyd83D5SRu4B66fwPX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 130329,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 390,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 130329,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 390,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 130329,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 130329
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "system_changed",
+        "cache_missed_input_tokens": 86486
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 359 · 2026-05-24T03:54:06.167Z_
+
+<details><summary>↩ Tool result · `toolu_016wyw85ZrbCcVjnvwUuUZbC`</summary>
+
+```text
+1	\section{Conclusion}
+2	\label{sec:conclusion}
+3	
+4	Output-distribution alignment is the primary design dimension, outperforming BCE/MSE across five losses and three architectures (7--14B) with 14.5\% PPL reduction at 30\%; gains are task-type dependent (commonsense up, knowledge down; C4 control confirms structural to KL), suggesting KL for commonsense/PPL, TEAL for knowledge tasks.
+5	The signal type gap (9.47 PPL) dwarfs coupling breadth (2.08 PPL), though confounded (\S\ref{sec:perlayer}); downstream differences are directional ($n{=}3$). Code released upon acceptance.
+6	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f4e2f0db-38bd-45b9-8e81-8a1d4bf647ca",
+  "isSidechain": false,
+  "promptId": "141b67c7-0191-4fec-ab4e-aeab3eadc633",
+  "type": "user",
+  "uuid": "ef1a98dd-7814-4588-8b12-2644dcca1398",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/conclusion.tex",
+      "content": "\\section{Conclusion}\n\\label{sec:conclusion}\n\nOutput-distribution alignment is the primary design dimension, outperforming BCE/MSE across five losses and three architectures (7--14B) with 14.5\\% PPL reduction at 30\\%; gains are task-type dependent (commonsense up, knowledge down; C4 control confirms structural to KL), suggesting KL for commonsense/PPL, TEAL for knowledge tasks.\nThe signal type gap (9.47 PPL) dwarfs coupling breadth (2.08 PPL), though confounded (\\S\\ref{sec:perlayer}); downstream differences are directional ($n{=}3$). Code released upon acceptance.\n",
+      "numLines": 6,
+      "startLine": 1,
+      "totalLines": 6
+    }
+  },
+  "sourceToolAssistantUUID": "f4e2f0db-38bd-45b9-8e81-8a1d4bf647ca",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 360 · 2026-05-24T03:54:06.334Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01XoVcCnmbD7wAYYCWzBY722`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/limitations.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ef1a98dd-7814-4588-8b12-2644dcca1398",
+  "isSidechain": false,
+  "requestId": "req_011CbLia5baS4rNHjDU7w8Z8",
+  "type": "assistant",
+  "uuid": "a8d4920d-76b5-4280-b03a-64ad3da9832b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013xUmpyd83D5SRu4B66fwPX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 130329,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 390,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 130329,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 390,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 130329,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 130329
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "system_changed",
+        "cache_missed_input_tokens": 86486
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 361 · 2026-05-24T03:54:06.403Z_
+
+```json
+{
+  "parentUuid": "af10a2dd-cc53-4c68-87b7-1d54ad0d608f",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "7fe5ce55-476a-4a35-baeb-dadf1b7b6ede",
+  "timestamp": "2026-05-24T03:54:06.403Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 362_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[System 触发审查]: R28 写作修复已完成，请验证三个 critical 修复是否充分。  **验证重点**（以审稿人视角判断修复是否有效）：  1. **C1 (§4.5 per-layer decomposition)**：已重构为 empirical-first 叙事，移除 \"coupling-dominated\"/\"mismatch-dominated\" 标签和 % 归因，加显式…",
+  "leafUuid": "7fe5ce55-476a-4a35-baeb-dadf1b7b6ede",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 363_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Research review and data consistency validation",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 364 · 2026-05-24T03:54:48.489Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the necessary information to do a thorough verification. Let me go through each item:
+
+### C1: §4.5 per-layer decomposition
+
+**Current state** (experiments.tex L155-160):
+- Title changed from "Per-Layer KL: Exploratory Decomposition of Signal Type and Coupling Scope" to "Per-Layer KL: Signal Type vs. Coupling Scope" — wait, it's now "Per-Layer KL: Signal Type vs. Coupling Scope." Actually no, let me re-read: L155 says `\paragraph{Per-Layer KL: Signal Type vs.\ Coupling Scope.}` — the "Exploratory" is dropped from the title!
+
+
+- That's a problem. The old version had "Exploratory Decomposition" as a qualifier, but now it's just "Signal Type vs. Coupling Scope" — which sounds more definitive and less tentative. The section label remains `sec:perlayer`, and L158 still uses "suggests" when describing the output-distribution alignment contribution, which softens the claim somewhat. But the title itself has lost its exploratory framing, and L159 appears to be cut off mid-sentence about the decomposition.
+
+Let me check what actually made it into the final text. The abstract mentions the signal type gap (9.47 PPL) dwarfing the coupling breadth range (2.08 PPL), and the conclusion repeats similar numbers. I need to verify whether the "may account for a substantial portion" phrasing was actually removed or if it's been replaced with these more specific numerical comparisons.
+
+Looking at the actual language used — "dwarfs" is a strong descriptor, but it's paired with "though confounded" each time, which appropriately hedges the claim. The 4.6× difference is real, so the language is factually grounded even if it sounds emphatic. The key question is whether readers will understand that "confounded" means we can't cleanly attribute causation, and it seems the text does make that explicit.
+
+But I'm noticing the section title shift from "Exploratory Decomposition" to "Signal Type vs. Coupling Scope" is problematic — that's a more definitive framing that doesn't match the exploratory nature of the analysis. That's worth flagging.
+
+Moving to the task-type split findings, the contribution list now properly includes it as a separate empirical item with cross-scale evidence, and the conclusion adds a concrete use-case recommendation distinguishing when to use KL versus TEAL. Both checks pass, though I should note the introduction had another change around line 11.
+
+For statistical qualification, the abstract now includes the n=3 limitation and mentions CI overlap for the 8B MMLU result, which is good. The train-inference mismatch caveat is also there, and the conclusion starts to address the directional nature of the downstream differences.
+
+On the conclusion length, I'm seeing that it's currently just 2 sentences but they're quite dense. The Director mentioned compressing to 2 sentences due to page limits, and while these are packed with information—covering the main finding, the 14.5% PPL improvement, task-type differences, the control analysis, use-case guidance, and the confounding issue—they're still technically within bounds. The real concern is whether reviewers will think a 2-sentence conclusion is too sparse, though many NLP papers at 8-page limits do have very brief conclusions. It's borderline defensible but not ideal.
+
+Now I'm checking the GSM8K numbers across all sections to make sure they're consistent with the clean 3-seed results. The experiments section shows 32.2±5.3 versus 52.1, the abstract has -19.9pp with n=3, and the introduction also references -19.9pp with σ=5.3pp. These look aligned.
+
+Let me verify the math: 52.1 minus 32.2 equals 19.9pp, which checks out. Everything appears consistent with the updated v4 data, but I should double-check what's in appendix Table 13 to make sure there aren't any discrepancies there.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7fe5ce55-476a-4a35-baeb-dadf1b7b6ede",
+  "isSidechain": false,
+  "requestId": "req_011CbLiaWyZVjQhCZLFbDF8T",
+  "type": "assistant",
+  "uuid": "f2a14add-1a96-46d9-8490-49da53e34e5c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HmxtiTQweLqQDQR55R2Bup",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10899,
+      "cache_read_input_tokens": 142170,
+      "output_tokens": 1835,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 10899,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1835,
+          "cache_read_input_tokens": 142170,
+          "cache_creation_input_tokens": 10899,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 10899
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 365 · 2026-05-24T03:54:49.165Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01MQUGc8zY5WgkyksAYohWxk`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/appendix.tex",
+  "offset": 300,
+  "limit": 40
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f2a14add-1a96-46d9-8490-49da53e34e5c",
+  "isSidechain": false,
+  "requestId": "req_011CbLiaWyZVjQhCZLFbDF8T",
+  "type": "assistant",
+  "uuid": "4c0af814-aad1-4e98-815a-499c4756b02e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HmxtiTQweLqQDQR55R2Bup",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10899,
+      "cache_read_input_tokens": 142170,
+      "output_tokens": 1835,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 10899,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1835,
+          "cache_read_input_tokens": 142170,
+          "cache_creation_input_tokens": 10899,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 10899
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 366 · 2026-05-24T03:54:49.181Z_
+
+<details><summary>↩ Tool result · `toolu_01MQUGc8zY5WgkyksAYohWxk`</summary>
+
+```text
+300	
+301	All compensation networks~\cite{gautam2026fastforward} were trained for 1000 steps (lr=$10^{-4}$, batch size 4, seq length 2048). Training loss plateaus by step 700 across all valid runs: 30\% s42 (final loss 0.70), 30\% s456 (0.68), 50\% s42 (1.07), with fluctuations remaining within 0.08 loss units for the final 300 steps. The compensation network converges but provides no quality improvement over the KL predictor alone, confirming that the redundancy result reflects predictor self-sufficiency rather than insufficient compensation training. % exp_id: kl_comp_30_s42, kl_comp_30_s456, kl_comp_50_s42
+302	
+303	
+304	\section{Qwen-2.5-14B Detailed Results}
+305	\label{app:14b}
+306	
+307	\begin{table}[h]
+308	\centering
+309	\caption{Qwen-2.5-14B at 30\% nominal sparsity. Actual sparsity differs: KL 29.6\% (3-seed), TEAL 29.3\% (target 30\%). \textbf{Bold}: best sparse per column per group. BCE collapses to 6.4\% native sparsity (\S\ref{sec:method:gradient}), so forced global top-$k$ is used.}
+310	\label{tab:14b}
+311	\small
+312	\resizebox{\columnwidth}{!}{
+313	\begin{tabular}{lcccccccc}
+314	\toprule
+315	Method & PPL$\downarrow$ & ARC-c & WG & MMLU & GSM8K & HS & PIQA \\
+316	\midrule
+317	Dense & 5.19 & 67.58 & 81.06 & 79.77 & 87.57 & 84.20 & 81.94 \\
+318	\midrule
+319	\multicolumn{8}{l}{\emph{Global top-$k$ allocation}} \\
+320	KL (Ours) & \textbf{7.62} & 57.17 & 72.06 & 63.72 & 48.82 & \textbf{75.01} & \textbf{77.37} \\ % exp_id: qwen14b_kl30_s42
+321	TEAL & 8.73 & 56.83 & \textbf{72.69} & \textbf{71.83} & 49.51 & 70.51 & 74.70 \\ % exp_id: qwen14b_teal30_eval
+322	BCE & 8.76 & \textbf{57.59} & 72.61 & 71.67 & \textbf{53.07} & 53.43 & 68.28 \\ % exp_id: qwen14b_bce30_s42_eval
+323	\midrule
+324	\multicolumn{8}{l}{\emph{Uniform allocation}} \\
+325	KL (Ours) & \textbf{7.90} & 53.50 & \textbf{72.82} & 63.55 & 32.2$\pm$5.3 & \textbf{72.68$\pm$0.2} & \textbf{76.01$\pm$1.1} \\ % exp_id: qwen14b_kl30_uniform (3-seed s42/s123(v4)/s456)
+326	TEAL & 8.01 & \textbf{55.29} & 69.85 & \textbf{66.34} & \textbf{52.1} & 67.72 & 74.70 \\ % exp_id: qwen14b_teal30_uniform
+327	\bottomrule
+328	\multicolumn{8}{l}{\footnotesize GSM8K: 3-seed (s42/s123(v4)/s456).} \\
+329	\end{tabular}}
+330	\end{table}
+331	
+332	Under global allocation, BCE's HellaSwag drops to 53.43\% ($-$17pp vs.\ TEAL), indicating that the magnitude-based predictor's mask quality degrades severely when combined with non-uniform budget distribution at 14B scale. % exp_id: qwen14b_bce30_s42_eval, qwen14b_teal30_eval
+333	
+334	\section{Full Allocation Analysis}
+335	\label{app:alloc_full}
+336	
+337	\begin{table}[t]
+338	\centering
+339	\caption{Allocation summary (LLaMA-3.1-8B). $\pm$: 3-seed; $^\ast$high seed variance.}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4c0af814-aad1-4e98-815a-499c4756b02e",
+  "isSidechain": false,
+  "promptId": "141b67c7-0191-4fec-ab4e-aeab3eadc633",
+  "type": "user",
+  "uuid": "34579ac8-1210-44e3-b658-d94f6cbd0469",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/appendix.tex",
+      "content": "\nAll compensation networks~\\cite{gautam2026fastforward} were trained for 1000 steps (lr=$10^{-4}$, batch size 4, seq length 2048). Training loss plateaus by step 700 across all valid runs: 30\\% s42 (final loss 0.70), 30\\% s456 (0.68), 50\\% s42 (1.07), with fluctuations remaining within 0.08 loss units for the final 300 steps. The compensation network converges but provides no quality improvement over the KL predictor alone, confirming that the redundancy result reflects predictor self-sufficiency rather than insufficient compensation training. % exp_id: kl_comp_30_s42, kl_comp_30_s456, kl_comp_50_s42\n\n\n\\section{Qwen-2.5-14B Detailed Results}\n\\label{app:14b}\n\n\\begin{table}[h]\n\\centering\n\\caption{Qwen-2.5-14B at 30\\% nominal sparsity. Actual sparsity differs: KL 29.6\\% (3-seed), TEAL 29.3\\% (target 30\\%). \\textbf{Bold}: best sparse per column per group. BCE collapses to 6.4\\% native sparsity (\\S\\ref{sec:method:gradient}), so forced global top-$k$ is used.}\n\\label{tab:14b}\n\\small\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{lcccccccc}\n\\toprule\nMethod & PPL$\\downarrow$ & ARC-c & WG & MMLU & GSM8K & HS & PIQA \\\\\n\\midrule\nDense & 5.19 & 67.58 & 81.06 & 79.77 & 87.57 & 84.20 & 81.94 \\\\\n\\midrule\n\\multicolumn{8}{l}{\\emph{Global top-$k$ allocation}} \\\\\nKL (Ours) & \\textbf{7.62} & 57.17 & 72.06 & 63.72 & 48.82 & \\textbf{75.01} & \\textbf{77.37} \\\\ % exp_id: qwen14b_kl30_s42\nTEAL & 8.73 & 56.83 & \\textbf{72.69} & \\textbf{71.83} & 49.51 & 70.51 & 74.70 \\\\ % exp_id: qwen14b_teal30_eval\nBCE & 8.76 & \\textbf{57.59} & 72.61 & 71.67 & \\textbf{53.07} & 53.43 & 68.28 \\\\ % exp_id: qwen14b_bce30_s42_eval\n\\midrule\n\\multicolumn{8}{l}{\\emph{Uniform allocation}} \\\\\nKL (Ours) & \\textbf{7.90} & 53.50 & \\textbf{72.82} & 63.55 & 32.2$\\pm$5.3 & \\textbf{72.68$\\pm$0.2} & \\textbf{76.01$\\pm$1.1} \\\\ % exp_id: qwen14b_kl30_uniform (3-seed s42/s123(v4)/s456)\nTEAL & 8.01 & \\textbf{55.29} & 69.85 & \\textbf{66.34} & \\textbf{52.1} & 67.72 & 74.70 \\\\ % exp_id: qwen14b_teal30_uniform\n\\bottomrule\n\\multicolumn{8}{l}{\\footnotesize GSM8K: 3-seed (s42/s123(v4)/s456).} \\\\\n\\end{tabular}}\n\\end{table}\n\nUnder global allocation, BCE's HellaSwag drops to 53.43\\% ($-$17pp vs.\\ TEAL), indicating that the magnitude-based predictor's mask quality degrades severely when combined with non-uniform budget distribution at 14B scale. % exp_id: qwen14b_bce30_s42_eval, qwen14b_teal30_eval\n\n\\section{Full Allocation Analysis}\n\\label{app:alloc_full}\n\n\\begin{table}[t]\n\\centering\n\\caption{Allocation summary (LLaMA-3.1-8B). $\\pm$: 3-seed; $^\\ast$high seed variance.}",
+      "numLines": 40,
+      "startLine": 300,
+      "totalLines": 673
+    }
+  },
+  "sourceToolAssistantUUID": "4c0af814-aad1-4e98-815a-499c4756b02e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 367 · 2026-05-24T03:55:48.155Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I can now see Table 13 (tab:14b) has been updated:
+- Line 325: `32.2$\pm$5.3` ✅ (updated from 32.0±5.2)
+- Line 325 comment: `% exp_id: qwen14b_kl30_uniform (3-seed s42/s123(v4)/s456)` ✅ (now references v4)
+- Line 328: footnote `GSM8K: 3-seed (s42/s123(v4)/s456).` ✅ (explicitly labels v4 data)
+
+
+- The GSM8K data is now consistent across all references.
+
+Now I'm compiling my full verification report. For C1 in section 4.5 on per-layer decomposition, I found that the coupling and mismatch labels have been removed, the attribution percentages moved to the appendix, and the confound declaration is now explicit, though there's still a minor issue with the paragraph title.
+
+It shifted from "Exploratory Decomposition" to "Signal Type vs. Coupling Scope," which sounds more definitive rather than more cautious—I should recommend restoring the exploratory framing. Also, the word "dwarfs" appears three times across the abstract, conclusion, and introduction, and while the 4.6× ratio is accurate, it's quite strong language for a confounded decomposition; something like "exceeds" or "is larger than" would be more measured.
+
+For C2 on the task-type split, this passes cleanly—the introduction now explicitly lists it as a contribution, the labels changed from "Practical" to "Analytical," and the conclusion provides specific use-case recommendations for which metric works best for different task types.
+
+C3 on statistical qualification also passes. The abstract and conclusion both properly qualify the downstream results as directional with sample sizes noted, and the numbers are preserved with their confidence intervals intact.
+
+But C3 on conclusion length is failing. The conclusion is still just two sentences, and while the paper agent mentioned compressing back to two sentences, the conclusion actually starts on page 8 and is only about three lines—there's room to expand slightly or at least ensure it's truly minimal. I need to check whether doubling the length would actually violate space constraints.
+
+Looking at the GSM8K data across the paper, everything checks out: the experiments file shows 32.2±5.3 versus 52.1, the abstract reports the -19.9pp drop with n=3, the introduction cites -19.9pp with σ=5.3pp, limitations mention -19.9pp, and the appendix table includes the full 32.2±5.3 with a comment. The data is consistent throughout.
+
+Now checking the references—the Table 13 footnote correctly specifies the three seeds with version 4, and there's no leftover killed data or two-seed references lingering anywhere. Let me also verify the abstract isn't running over on word count.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "34579ac8-1210-44e3-b658-d94f6cbd0469",
+  "isSidechain": false,
+  "requestId": "req_011CbLidfx8zXQxMjLpf5WDY",
+  "type": "assistant",
+  "uuid": "c5fa7bad-e756-4abc-b257-6c422ad2b84f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KMHLRLfUexz9rjaYecYgP1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3088,
+      "cache_read_input_tokens": 153069,
+      "output_tokens": 1179,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3088,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1179,
+          "cache_read_input_tokens": 153069,
+          "cache_creation_input_tokens": 3088,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3088
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 368 · 2026-05-24T03:56:11.985Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01A9dCfKVo7C82uwPVFH96YX`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/abstract.tex | sed 's/\\\\[a-zA-Z]*{[^}]*}//g; s/\\\\[a-zA-Z]*//g; s/[{}$\\\\~]//g; s/  */ /g' | wc -w",
+  "description": "Count abstract words (approximate, stripping LaTeX commands)"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c5fa7bad-e756-4abc-b257-6c422ad2b84f",
+  "isSidechain": false,
+  "requestId": "req_011CbLidfx8zXQxMjLpf5WDY",
+  "type": "assistant",
+  "uuid": "af865b68-1ec1-4ac1-9ecb-27fbb4dfbb20",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KMHLRLfUexz9rjaYecYgP1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3088,
+      "cache_read_input_tokens": 153069,
+      "output_tokens": 1179,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3088,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1179,
+          "cache_read_input_tokens": 153069,
+          "cache_creation_input_tokens": 3088,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3088
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 369 · 2026-05-24T03:56:12.149Z_
+
+<details><summary>↩ Tool result · `toolu_01A9dCfKVo7C82uwPVFH96YX`</summary>
+
+```text
+181
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "af865b68-1ec1-4ac1-9ecb-27fbb4dfbb20",
+  "isSidechain": false,
+  "promptId": "141b67c7-0191-4fec-ab4e-aeab3eadc633",
+  "type": "user",
+  "uuid": "a180d362-3914-4c8d-8a3a-8e311326b212",
+  "toolUseResult": {
+    "stdout": "181",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "af865b68-1ec1-4ac1-9ecb-27fbb4dfbb20",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 370 · 2026-05-24T03:56:15.646Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Abstract is ~181 words, under the 200-word EMNLP limit. ✅
+
+Now let me also do a quick check for any remaining instances of "may account for a substantial portion" or "coupling-dominated" / "mismatch-dominated" anywhere in the paper.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a180d362-3914-4c8d-8a3a-8e311326b212",
+  "isSidechain": false,
+  "requestId": "req_011CbLijncuAsCJMeHu3mAVV",
+  "type": "assistant",
+  "uuid": "14a7cc6f-49c2-491c-9679-8aea9e6829d2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BLMbzJShvBVoh9UF8PRXrH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1190,
+      "cache_read_input_tokens": 156157,
+      "output_tokens": 404,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1190,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 404,
+          "cache_read_input_tokens": 156157,
+          "cache_creation_input_tokens": 1190,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1190
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 371 · 2026-05-24T03:56:17.121Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_018WhxjrNhmjUWH5j15XKWkZ`</summary>
+
+```json
+{
+  "pattern": "substantial portion|coupling-dominated|mismatch-dominated|may account for",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper",
+  "output_mode": "content",
+  "-n": true,
+  "-i": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "14a7cc6f-49c2-491c-9679-8aea9e6829d2",
+  "isSidechain": false,
+  "requestId": "req_011CbLijncuAsCJMeHu3mAVV",
+  "type": "assistant",
+  "uuid": "56514ebd-772f-4b2f-8c0b-6a8748eb0690",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BLMbzJShvBVoh9UF8PRXrH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1190,
+      "cache_read_input_tokens": 156157,
+      "output_tokens": 404,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1190,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 404,
+          "cache_read_input_tokens": 156157,
+          "cache_creation_input_tokens": 1190,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1190
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 372 · 2026-05-24T03:56:17.143Z_
+
+<details><summary>↩ Tool result · `toolu_018WhxjrNhmjUWH5j15XKWkZ`</summary>
+
+```text
+No matches found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "56514ebd-772f-4b2f-8c0b-6a8748eb0690",
+  "isSidechain": false,
+  "promptId": "141b67c7-0191-4fec-ab4e-aeab3eadc633",
+  "type": "user",
+  "uuid": "6729d5e5-e7d3-4300-be78-27a1b79735c5",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "",
+    "numLines": 0
+  },
+  "sourceToolAssistantUUID": "56514ebd-772f-4b2f-8c0b-6a8748eb0690",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 373 · 2026-05-24T03:56:18.825Z_
+
+<details><summary>↩ Tool result · `toolu_01N413ax6w1thHYvkinrZnWm`</summary>
+
+```text
+No matches found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8985f8f6-f1f3-4c2a-bc2a-eb5d07558fa6",
+  "isSidechain": false,
+  "promptId": "141b67c7-0191-4fec-ab4e-aeab3eadc633",
+  "type": "user",
+  "uuid": "7bf223b8-7b95-4a9e-b73c-bf1f38ffd0fb",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "",
+    "numLines": 0
+  },
+  "sourceToolAssistantUUID": "8985f8f6-f1f3-4c2a-bc2a-eb5d07558fa6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 374 · 2026-05-24T03:56:18.816Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01N413ax6w1thHYvkinrZnWm`</summary>
+
+```json
+{
+  "pattern": "n\\\\{=\\\\}2|n=2|killed|30\\\\.9",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper",
+  "output_mode": "content",
+  "-n": true,
+  "glob": "*.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6729d5e5-e7d3-4300-be78-27a1b79735c5",
+  "isSidechain": false,
+  "requestId": "req_011CbLijncuAsCJMeHu3mAVV",
+  "type": "assistant",
+  "uuid": "8985f8f6-f1f3-4c2a-bc2a-eb5d07558fa6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BLMbzJShvBVoh9UF8PRXrH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1190,
+      "cache_read_input_tokens": 156157,
+      "output_tokens": 404,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1190,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 404,
+          "cache_read_input_tokens": 156157,
+          "cache_creation_input_tokens": 1190,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1190
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 375_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[System 触发审查]: R28 写作修复已完成，请验证三个 critical 修复是否充分。  **验证重点**（以审稿人视角判断修复是否有效）：  1. **C1 (§4.5 per-layer decomposition)**：已重构为 empirical-first 叙事，移除 \"coupling-dominated\"/\"mismatch-dominated\" 标签和 % 归因，加显式…",
+  "leafUuid": "7bf223b8-7b95-4a9e-b73c-bf1f38ffd0fb",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 376_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Research review and data consistency validation",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 377 · 2026-05-24T03:56:23.291Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+All old wording is gone:
+- "substantial portion" / "may account for" — none found ✅
+- "coupling-dominated" / "mismatch-dominated" — none found ✅
+- "n=2" / "30.9" / "killed" — none found ✅
+
+Now let me compile the full report and send to Director.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7bf223b8-7b95-4a9e-b73c-bf1f38ffd0fb",
+  "isSidechain": false,
+  "requestId": "req_011CbLikHMnTH7SRk5xVUZiK",
+  "type": "assistant",
+  "uuid": "9088ab30-aa9f-42ec-b93b-bdd1ab3595e3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WQ8tD2H2Jkokk3qhSUBVPi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 471,
+      "cache_read_input_tokens": 157347,
+      "output_tokens": 1799,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 471,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1799,
+          "cache_read_input_tokens": 157347,
+          "cache_creation_input_tokens": 471,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 471
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 378 · 2026-05-24T03:56:24.234Z_
+
+验证完成。向 Director 发送逐条结果。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9088ab30-aa9f-42ec-b93b-bdd1ab3595e3",
+  "isSidechain": false,
+  "requestId": "req_011CbLikHMnTH7SRk5xVUZiK",
+  "type": "assistant",
+  "uuid": "a3d3ae72-92be-43cf-990f-9026a251782b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WQ8tD2H2Jkokk3qhSUBVPi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 471,
+      "cache_read_input_tokens": 157347,
+      "output_tokens": 1799,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 471,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1799,
+          "cache_read_input_tokens": 157347,
+          "cache_creation_input_tokens": 471,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 471
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 379 · 2026-05-24T03:57:02.792Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reviewer_post_to_director · `toolu_01THkHCRuTTbmcr1LuN3YJ6j`</summary>
+
+```json
+{
+  "text": "## R28 Critical 修复验证报告\n\n### C1 (§4.5 per-layer decomposition): PARTIAL PASS — 2 处残留问题\n\n**已修复 ✅：**\n- \"may account for a substantial portion\" 全文已删除（grep 零匹配）\n- \"coupling-dominated\" / \"mismatch-dominated\" 标签已删除\n- 百分比归因（97%, 67%）从正文移至 Appendix\n- 显式 confound 声明已加入（experiments.tex L159：\"confounded by train--inference mismatch, per-layer update count disparity, and the 50% failure\"）\n- K-curve 以 empirical-first 叙事呈现（L158 先报告 3 个 empirical patterns 再做 suggest）\n\n**残留问题 ⚠️：**\n1. **段落标题从 \"Exploratory Decomposition\" 改为 \"Signal Type vs. Coupling Scope\"** — 实际上变得*更*确定性。\"Exploratory\" 在旧版是重要的保护词，新标题暗示这是一个干净的二元对比，而非 confounded 的探索性分析。**建议恢复 \"Exploratory\" 或加 \"Empirical\"**（如 \"Per-Layer KL: Empirical Signal Type vs.\\ Coupling Scope\"）。\n2. **\"dwarfs\" 在 3 处使用**（abstract L5, conclusion L5, introduction L23）：raw 数据确实 4.6×，但 \"dwarfs\" 在 confounded decomposition 中语感太强——审稿人可能再次质疑。**建议改为 \"exceeds\"**（中性但仍传达量级差异）。\n\n**[severity: warning]** — 修复方向正确但标题 + 措辞可能让审稿人仍认为作者在做因果归因。\n\n---\n\n### C2 (task-type split): PASS ✅\n\n- Introduction L24：新增 contribution item \"Cross-scale evidence (7--14B) with task-type split: KL outperforms on PPL and commonsense but shows systematic knowledge regression, structural to output-distribution optimization\" ✅\n- Contribution 标签从 \"Practical\" 改为 \"Analytical\"（L25-26）✅\n- Conclusion L4：明确 use-case recommendation \"suggesting KL for commonsense/PPL, TEAL for knowledge tasks\" ✅\n- Introduction L11：Per-layer 描述改为 \"task-dependent\" 而非因果归因 ✅\n\n修复充分，regression 从 limitation 升级为 empirical finding + actionable guideline。\n\n---\n\n### C3 (统计限定): PASS ✅\n\n- Abstract L3：\"directional commonsense gains ($n{=}3$) but knowledge-intensive regression (8B MMLU $-$5.2pp, CIs overlap; 14B GSM8K $-$19.9pp, $n{=}3$)\" ✅\n- 保留数值 + 加限定语（CIs overlap, n=3），信息量充足\n- Conclusion L5：\"downstream differences are directional ($n{=}3$)\" ✅\n- Abstract 约 181 words（<200 限制）✅\n\n---\n\n### W5 (Conclusion 长度): FAIL ❌\n\nConclusion 仍然是 2 句话（conclusion.tex L4-5）。虽然两句都很密集，但**结构上仍是 2 句**。\n\n如果 W5 审稿人的具体 complaint 是 \"Conclusion is too brief (2 sentences)\"，保持 2 句不解决问题。Paper Agent 说\"页面限制压缩回 2 句\"，但：\n- aux 显示 Conclusion 在第 8 页\n- 当前 Conclusion 约 3 行文本\n- 即使扩展到 8 行（~5 句），仍在第 8 页内（Limitations 不计入 8 页限制）\n\n**建议拆分为 4-5 句**，不增加实质内容，只拆句：\n1. 核心发现（output-distribution > BCE/MSE）\n2. PPL 量化 + 跨架构确认\n3. Task-type split + use-case recommendation\n4. Signal type vs coupling（confounded）\n5. 统计 caveat + code release\n\n这样不增加字数但结构上变为 5 句，消除 reviewer complaint。\n\n---\n\n### GSM8K 数据一致性: PASS ✅\n\n全文已统一为 clean 3-seed (32.2±5.3, -19.9pp)：\n- experiments.tex L194: 32.2±5.3 ✅\n- abstract.tex L3: -19.9pp, n=3 ✅\n- introduction.tex L17: -19.9pp, σ=5.3pp ✅\n- limitations.tex L5: -19.9pp ✅\n- appendix.tex L325 (Table 13): 32.2±5.3, comment 标注 \"s123(v4)\" ✅\n- Table 13 脚注: \"3-seed (s42/s123(v4)/s456)\" ✅\n- grep \"n=2\" / \"30.9\" / \"killed\" 零匹配 ✅\n\n---\n\n### 总结\n\n| 检查项 | 结果 | 需要动作 |\n|--------|------|----------|\n| C1 decomposition | ⚠️ PARTIAL PASS | 恢复段落标题 \"Exploratory\"；\"dwarfs\"→\"exceeds\" |\n| C2 task-type split | ✅ PASS | 无 |\n| C3 统计限定 | ✅ PASS | 无 |\n| W5 Conclusion | ❌ FAIL | 拆分为 4-5 句（不增字数） |\n| GSM8K 数据 | ✅ PASS | 无 |",
+  "project": "distill_sparse_swiglu"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a3d3ae72-92be-43cf-990f-9026a251782b",
+  "isSidechain": false,
+  "requestId": "req_011CbLikHMnTH7SRk5xVUZiK",
+  "type": "assistant",
+  "uuid": "a93194d2-6761-4286-a49f-035c5858beed",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WQ8tD2H2Jkokk3qhSUBVPi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 471,
+      "cache_read_input_tokens": 157347,
+      "output_tokens": 1799,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 471,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1799,
+          "cache_read_input_tokens": 157347,
+          "cache_creation_input_tokens": 471,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 471
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 380 · 2026-05-24T03:57:06.288Z_
+
+<details><summary>↩ Tool result · `toolu_01THkHCRuTTbmcr1LuN3YJ6j`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_dbbf8d2c695f1e79e11713aebc107790:director\"}, \"error\": \"\"}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a93194d2-6761-4286-a49f-035c5858beed",
+  "isSidechain": false,
+  "promptId": "141b67c7-0191-4fec-ab4e-aeab3eadc633",
+  "type": "user",
+  "uuid": "6aded642-7ba8-48d7-b499-e685599655e3",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_dbbf8d2c695f1e79e11713aebc107790:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_dbbf8d2c695f1e79e11713aebc107790:director\"}, \"error\": \"\"}"
+    }
+  },
+  "sourceToolAssistantUUID": "a93194d2-6761-4286-a49f-035c5858beed",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 381_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Research review and data consistency validation",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 382 · 2026-05-24T03:59:58.920Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-24T03:59:58.920Z",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "content": "[服务器重启后首条消息] 当前日期: 2026-05-24。服务器刚重启，项目状态可能已更新。在处理审查请求前，**先读取 registry.yaml 和 report.md** 获取最新实验状态，不要依赖对话历史中的状态信息。\n\n**审查请求：** [系统通知 — worker_done:worker_audit_registry_paper_consistency_20260524T035709]:\nWorker worker_audit_registry_paper_consistency_20260524T035709 已完成（status=failed），请审查 Agent 的处理结果。"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 383 · 2026-05-24T03:59:58.921Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-24T03:59:58.921Z",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371"
+}
+```
+
+---
+
+
+## Round 22
+
+## Round 22
+
+2 recorded events
+
+
+### User
+
+_source line 384 · 2026-05-24T03:59:58.909Z_
+
+Continue from where you left off.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6aded642-7ba8-48d7-b499-e685599655e3",
+  "isSidechain": false,
+  "promptId": "772c360c-f65e-4e4b-b2a2-7ca08c5cc2e3",
+  "type": "user",
+  "isMeta": true,
+  "uuid": "48ca0a46-9357-4f14-9cbb-a7dbbee1cdd6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 385 · 2026-05-24T03:59:58.909Z_
+
+No response requested.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "48ca0a46-9357-4f14-9cbb-a7dbbee1cdd6",
+  "isSidechain": false,
+  "type": "assistant",
+  "uuid": "58ef2448-29aa-4eec-b9c1-beb688d7860f",
+  "isApiErrorMessage": false,
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "id": "76cbc026-1ebc-477f-b9fe-3ccee0a534c4",
+    "container": null,
+    "model": "&lt;synthetic>",
+    "stop_reason": "stop_sequence",
+    "stop_sequence": "",
+    "type": "message",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": null,
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": null,
+      "iterations": null,
+      "speed": null
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+## Round 23
+
+## Round 23
+
+27 recorded events
+
+
+### User
+
+_source line 386 · 2026-05-24T03:59:59.135Z_
+
+[服务器重启后首条消息] 当前日期: 2026-05-24。服务器刚重启，项目状态可能已更新。在处理审查请求前，**先读取 registry.yaml 和 report.md** 获取最新实验状态，不要依赖对话历史中的状态信息。
+
+**审查请求：** [系统通知 — worker_done:worker_audit_registry_paper_consistency_20260524T035709]:
+Worker worker_audit_registry_paper_consistency_20260524T035709 已完成（status=failed），请审查 Agent 的处理结果。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "58ef2448-29aa-4eec-b9c1-beb688d7860f",
+  "isSidechain": false,
+  "promptId": "772c360c-f65e-4e4b-b2a2-7ca08c5cc2e3",
+  "type": "user",
+  "uuid": "f575c011-8beb-40eb-ac07-2cc7e2b6ef10",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 387 · 2026-05-24T04:00:05.851Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01Q2ivfQQReiAp6LFboFzPoZ`</summary>
+
+```json
+{
+  "project": "distill_sparse_swiglu",
+  "limit": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f575c011-8beb-40eb-ac07-2cc7e2b6ef10",
+  "isSidechain": false,
+  "requestId": "req_011CbLj2XG9Tq4CU5kPLusxR",
+  "type": "assistant",
+  "uuid": "661475c8-55c2-48ca-9d10-3e17468daec2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QRxtgEbqsCPVnzpSzjafUy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 148011,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 180,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 148011,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 180,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 148011,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 148011
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "messages_changed",
+        "cache_missed_input_tokens": 98376
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 388 · 2026-05-24T04:00:05.873Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_011WTiimSYieEmBvP5APceMy`</summary>
+
+```json
+{
+  "project": "distill_sparse_swiglu",
+  "file": "report.md",
+  "max_chars": 6000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "661475c8-55c2-48ca-9d10-3e17468daec2",
+  "isSidechain": false,
+  "requestId": "req_011CbLj2XG9Tq4CU5kPLusxR",
+  "type": "assistant",
+  "uuid": "9a966e08-8d85-454d-901c-671da8e851a4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QRxtgEbqsCPVnzpSzjafUy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 148011,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 180,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 148011,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 180,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 148011,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 148011
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "messages_changed",
+        "cache_missed_input_tokens": 98376
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 389 · 2026-05-24T04:00:06.963Z_
+
+<details><summary>↩ Tool result · `toolu_01Q2ivfQQReiAp6LFboFzPoZ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"qwen14b_kl30_s123_eval_v4\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T11:25:23.513Z\", \"updated_at\": \"2026-05-24T03:27:37.442Z\", \"hypothesis\": \"Qwen-14B KL 30% s123 benchmark eval (WikiText-2 PPL + 5 downstream: ARC/WG/HS/PIQA/MMLU) with TEAL uniform allocation. Retry after v2/v3 OOM (caused by orphan PID 93142, now killed). Multi-seed replication to confirm MMLU reversal is systematic.\", \"parent\": \"qwen14b_kl30_s123\", \"metrics\": {\"gsm8k_exact_match\": 0.3472, \"sample_len\": 1319}, \"conclusion\": \"success\"}, \"perlayer_kl_k4_s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T11:31:06.522Z\", \"updated_at\": \"2026-05-24T00:44:00.272Z\", \"conclusion\": \"killed\", \"hypothesis\": \"Per-layer KL distillation with K=4 active layers per step and adaptive lambda scheduling can train the sparsity predictor to achieve avg KL < 0.05 while maintaining ~28% sparsity across all 32 layers.\"}, \"mse30_s123_downstream\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T10:42:48.731Z\", \"updated_at\": \"2026-05-24T00:43:37.197Z\", \"metrics\": {\"arc_challenge_acc\": 0.3285, \"arc_challenge_acc_norm\": 0.3737, \"winogrande_acc\": 0.5699, \"mmlu_acc\": 0.2781, \"gsm8k_exact_match\": 0.0174, \"hellaswag_acc\": 0.4009, \"hellaswag_acc_norm\": 0.5358, \"piqa_acc\": 0.7106, \"piqa_acc_norm\": 0.7067, \"boolq_acc\": 0.6324}, \"conclusion\": \"success\", \"hypothesis\": \"MSE-trained predictor at 30% sparsity (seed 123) preserves downstream task performance comparable to dense baseline because MSE distillation captures sufficient activation magnitude information to maintain task-relevant features in the sparse SwiGLU network.\"}, \"qwen14b_kl30_s123_gsm8k_v4\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T00:42:34.570Z\", \"updated_at\": \"2026-05-24T00:42:47.546Z\", \"hypothesis\": \"Rerun s123 GSM8K eval (v3 failed: HF network unreachable). Added source /etc/network_turbo + HF_DATASETS_OFFLINE fallback.\", \"parent\": \"qwen14b_kl30_s123_gsm8k_v3\"}, \"qwen14b_kl30_s123_gsm8k_v3\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T19:52:35.662Z\", \"updated_at\": \"2026-05-24T00:42:27.796Z\", \"hypothesis\": \"Rerun s123 GSM8K eval (v2 failed: python not found, conda not activated). Checkpoint on westd-34887.\", \"parent\": \"qwen14b_kl30_s123_gsm8k_v2\", \"conclusion\": \"failed\"}}, \"count\": 5, \"total\": 408, \"baseline\": \"bench_dense\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0879}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "661475c8-55c2-48ca-9d10-3e17468daec2",
+  "isSidechain": false,
+  "promptId": "772c360c-f65e-4e4b-b2a2-7ca08c5cc2e3",
+  "type": "user",
+  "uuid": "f2a8bd41-7c6d-4593-b11a-051333a71ad5",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"qwen14b_kl30_s123_eval_v4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-19T11:25:23.513Z\\\", \\\"updated_at\\\": \\\"2026-05-24T03:27:37.442Z\\\", \\\"hypothesis\\\": \\\"Qwen-14B KL 30% s123 benchmark eval (WikiText-2 PPL + 5 downstream: ARC/WG/HS/PIQA/MMLU) with TEAL uniform allocation. Retry after v2/v3 OOM (caused by orphan PID 93142, now killed). Multi-seed replication to confirm MMLU reversal is systematic.\\\", \\\"parent\\\": \\\"qwen14b_kl30_s123\\\", \\\"metrics\\\": {\\\"gsm8k_exact_match\\\": 0.3472, \\\"sample_len\\\": 1319}, \\\"conclusion\\\": \\\"success\\\"}, \\\"perlayer_kl_k4_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-22T11:31:06.522Z\\\", \\\"updated_at\\\": \\\"2026-05-24T00:44:00.272Z\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"hypothesis\\\": \\\"Per-layer KL distillation with K=4 active layers per step and adaptive lambda scheduling can train the sparsity predictor to achieve avg KL < 0.05 while maintaining ~28% sparsity across all 32 layers.\\\"}, \\\"mse30_s123_downstream\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-22T10:42:48.731Z\\\", \\\"updated_at\\\": \\\"2026-05-24T00:43:37.197Z\\\", \\\"metrics\\\": {\\\"arc_challenge_acc\\\": 0.3285, \\\"arc_challenge_acc_norm\\\": 0.3737, \\\"winogrande_acc\\\": 0.5699, \\\"mmlu_acc\\\": 0.2781, \\\"gsm8k_exact_match\\\": 0.0174, \\\"hellaswag_acc\\\": 0.4009, \\\"hellaswag_acc_norm\\\": 0.5358, \\\"piqa_acc\\\": 0.7106, \\\"piqa_acc_norm\\\": 0.7067, \\\"boolq_acc\\\": 0.6324}, \\\"conclusion\\\": \\\"success\\\", \\\"hypothesis\\\": \\\"MSE-trained predictor at 30% sparsity (seed 123) preserves downstream task performance comparable to dense baseline because MSE distillation captures sufficient activation magnitude information to maintain task-relevant features in the sparse SwiGLU network.\\\"}, \\\"qwen14b_kl30_s123_gsm8k_v4\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-24T00:42:34.570Z\\\", \\\"updated_at\\\": \\\"2026-05-24T00:42:47.546Z\\\", \\\"hypothesis\\\": \\\"Rerun s123 GSM8K eval (v3 failed: HF network unreachable). Added source /etc/network_turbo + HF_DATASETS_OFFLINE fallback.\\\", \\\"parent\\\": \\\"qwen14b_kl30_s123_gsm8k_v3\\\"}, \\\"qwen14b_kl30_s123_gsm8k_v3\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-23T19:52:35.662Z\\\", \\\"updated_at\\\": \\\"2026-05-24T00:42:27.796Z\\\", \\\"hypothesis\\\": \\\"Rerun s123 GSM8K eval (v2 failed: python not found, conda not activated). Checkpoint on westd-34887.\\\", \\\"parent\\\": \\\"qwen14b_kl30_s123_gsm8k_v2\\\", \\\"conclusion\\\": \\\"failed\\\"}}, \\\"count\\\": 5, \\\"total\\\": 408, \\\"baseline\\\": \\\"bench_dense\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0879}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"qwen14b_kl30_s123_eval_v4\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T11:25:23.513Z\", \"updated_at\": \"2026-05-24T03:27:37.442Z\", \"hypothesis\": \"Qwen-14B KL 30% s123 benchmark eval (WikiText-2 PPL + 5 downstream: ARC/WG/HS/PIQA/MMLU) with TEAL uniform allocation. Retry after v2/v3 OOM (caused by orphan PID 93142, now killed). Multi-seed replication to confirm MMLU reversal is systematic.\", \"parent\": \"qwen14b_kl30_s123\", \"metrics\": {\"gsm8k_exact_match\": 0.3472, \"sample_len\": 1319}, \"conclusion\": \"success\"}, \"perlayer_kl_k4_s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T11:31:06.522Z\", \"updated_at\": \"2026-05-24T00:44:00.272Z\", \"conclusion\": \"killed\", \"hypothesis\": \"Per-layer KL distillation with K=4 active layers per step and adaptive lambda scheduling can train the sparsity predictor to achieve avg KL < 0.05 while maintaining ~28% sparsity across all 32 layers.\"}, \"mse30_s123_downstream\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T10:42:48.731Z\", \"updated_at\": \"2026-05-24T00:43:37.197Z\", \"metrics\": {\"arc_challenge_acc\": 0.3285, \"arc_challenge_acc_norm\": 0.3737, \"winogrande_acc\": 0.5699, \"mmlu_acc\": 0.2781, \"gsm8k_exact_match\": 0.0174, \"hellaswag_acc\": 0.4009, \"hellaswag_acc_norm\": 0.5358, \"piqa_acc\": 0.7106, \"piqa_acc_norm\": 0.7067, \"boolq_acc\": 0.6324}, \"conclusion\": \"success\", \"hypothesis\": \"MSE-trained predictor at 30% sparsity (seed 123) preserves downstream task performance comparable to dense baseline because MSE distillation captures sufficient activation magnitude information to maintain task-relevant features in the sparse SwiGLU network.\"}, \"qwen14b_kl30_s123_gsm8k_v4\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T00:42:34.570Z\", \"updated_at\": \"2026-05-24T00:42:47.546Z\", \"hypothesis\": \"Rerun s123 GSM8K eval (v3 failed: HF network unreachable). Added source /etc/network_turbo + HF_DATASETS_OFFLINE fallback.\", \"parent\": \"qwen14b_kl30_s123_gsm8k_v3\"}, \"qwen14b_kl30_s123_gsm8k_v3\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T19:52:35.662Z\", \"updated_at\": \"2026-05-24T00:42:27.796Z\", \"hypothesis\": \"Rerun s123 GSM8K eval (v2 failed: python not found, conda not activated). Checkpoint on westd-34887.\", \"parent\": \"qwen14b_kl30_s123_gsm8k_v2\", \"conclusion\": \"failed\"}}, \"count\": 5, \"total\": 408, \"baseline\": \"bench_dense\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0879}}"
+    }
+  },
+  "sourceToolAssistantUUID": "661475c8-55c2-48ca-9d10-3e17468daec2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/reviewer_ab8e9749",
+  "sessionId": "d51aa5af-61bf-4531-b8ca-381ad00f2371",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---

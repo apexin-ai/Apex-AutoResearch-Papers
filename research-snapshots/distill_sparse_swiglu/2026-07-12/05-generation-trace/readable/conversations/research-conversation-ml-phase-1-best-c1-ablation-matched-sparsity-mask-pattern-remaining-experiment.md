@@ -1,0 +1,4532 @@
+# Research conversation: 你是一位经验丰富的 ML 研究者。Phase 1 已定义了 best 档的含义： 含义：C1 ablation 在 matched sparsity 完全验证 mask pattern 叙事；remaining experiments 按时
+
+**Output-Distribution Distillation for Contextual Sparsity Prediction in SwiGLU LLMs (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 27
+- **Recorded user turns:** 1
+- **Tool calls:** 4
+- **Original source:** `logs/chats/exported-trajectories/account-3/37144a68-e0ad-4fa3-9d7b-5563cb046ecf.jsonl`
+- **Structured JSON:** [`855812db95a23ed74a3d.json`](../../sessions/85/855812db95a23ed74a3d.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-18T16:30:09.858Z_
+
+````json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-18T16:30:09.858Z",
+  "sessionId": "37144a68-e0ad-4fa3-9d7b-5563cb046ecf",
+  "content": "你是一位经验丰富的 ML 研究者。Phase 1 已定义了 best 档的含义：\n\n含义：C1 ablation 在 matched sparsity 完全验证 mask pattern 叙事；remaining experiments 按时完成且结果内洽；reframe 被接受为 novel empirical contribution\n核心假设：['BCE-on-KL-targets at 50% uniform PPL ≈ KL（≤12.5），mask quality 是 KL 优势的充分解释', 'BCE 30% forced top-k PPL ≥ 13，KL 在推荐操作点优势显著且 non-trivial', '6-point sweep（25/30/35/40/45/50%）展现 clean piecewise regime 结构，transition boundary 在 35±3pp 附近', 'KL 30% uniform 3-seed downstream variance 可控（MMLU σ ≤ 2pp），headline numbers 稳定', '14B MMLU gap 被视为 interesting negative finding（loss × allocation × scale interaction），非 fatal', 'Reviewers 接受 53% mask divergence + C1 ablation 因果链为 novel contribution']\n关键指标范围：{'c1_ablation_uniform_50pct_ppl': [10.5, 12.5], 'bce_30pct_forced_topk_ppl': [13.0, 20.0], 'kl_30pct_uniform_3seed_mmlu_std_pp': [0.5, 2.0], 'regime_piecewise_fit_r2': [0.93, 0.99], 'expected_ARR_overall': [3.75, 4.25]}\n叙事方向：原始 'mask pattern discovery' framing 完全成立，Claims 无需调整。 因果链完整：KL distillation → 发现与 magnitude oracle 53% 不同的稀疏 pattern → BCE-on-KL-targets 恢复 KL-level quality → mask quality 是 KL 优势的主因。 §3.6 gradient analysis（SNR 103×）作为 suggestive motivation 保留。 Phase transition 作为 Claim 3 bonus insight 增加 novelty 上限。 三个 contribution 按原计划呈现：(1) mask pattern quality > gradient coupling, (2) SPON orthogonality, (3) sparsity regime phase transition。\n\n\n基于以上定义，对 experiment_plan 中每个 planned 实验展开详细数据。\n每条预测都必须给出 result_rationale —— 解释为什么在这个档位下会得到这样的结果。\n\n# Project context\nproject: distill_sparse_swiglu\nfocus: 测试论文 reframe 为 'mask pattern discovery' 叙事的接收度。核心变化：Contribution 1 从 gradient coupling 转为 optimization target quality / mask pattern divergence。§3.6 gradient analysis 降为 suggestive motivation。C1 ablation 变成 paper 核心实验。53% mask divergence 作为新发现。目标 4.0 Main Conference accept。\n\n## paper_framing.md\n\n# Paper Framing — distill_sparse_swiglu\n\n## Target Venue\n- Primary: EMNLP 2026 Main (ARR May 2026 cycle)\n- Deadline: 2026-05-25 (ARR submission)\n- Track: Efficient Methods for NLP\n\n## Core Claims\n\n1. **KL-trained sparsity predictors eliminate the need for error compensation networks**: At 50% model-level sparsity on SwiGLU LLMs, a KL-trained contextual predictor (no compensation) matches or exceeds BCE+compensation quality (FastForward-style), eliminating 67.2M compensation parameters (~256MB, 32 layers × bottleneck MLP) and per-layer GEMV overhead at inference. All quality comparisons must be presented alongside inference cost (params, FLOPs, latency) to prevent \"unfair comparison\" attacks. **Iso-compute evidence (eval_bce_v3_s42)**: with 2.71× more gradient updates, BCE TEAL PPL=27.97 vs KL=12.00 (2.33× gap persists), and BCE loss saturates (step 500→2700: Δ=-0.006). The advantage is structural: BCE optimizes per-neuron binary classification, but inference uses global top-k budget allocation — per-neuron scoring is suboptimal under global reallocation. KL directly optimizes output distribution, naturally compatible with any allocation strategy. (Headline claim)\n\n2. **SPON's static correction is orthogonal to KL and too weak to complement it**: Logit-space decomposition (plan_005) shows SPON's bias correction is near-orthogonal to KL's mask effect (cos_sim=0.196, per-layer ≤0) with only 15.8% relative magnitude. Cross-layer interaction is non-trivial (30.6%) but PPL recovery remains modest (7.3%, 0.23 PPL). Rather than KL \"subsuming\" SPON, the two target different error components—but SPON's component is too small to provide meaningful complementary benefit. Strengthens Claim 1: static correction is not just redundant but irrelevant to the dominant error mode that KL addresses. (Evidence: plan_005_subsumption_s42, spon_2048_s42, D009, D010)\n\n3. **Sparsity regime determines whether allocation or capacity is the bottleneck (phase transition finding)**: Empirical discovery from D030 uniform allocation experiments reveals a qualitative phase transition, not the originally predicted quadratic scaling. At ≤30% sparsity, global top-k causes high seed-to-seed variance in downstream metrics due to per-layer allocation imbalance (uniform allocation stabilizes MMLU: σ drops from 9.5pp to 1.3pp across 3 seeds, mean 40.7% vs TEAL's 38.6%). At ≥50%, model capacity itself is insufficient — no allocation strategy can recover (uniform MMLU=27.8%≈random). The transition reveals three distinct regimes with non-monotonic allocation preference: (1) **Budget-surplus regime (≤30%)**: uniform allocation reduces seed-to-seed instability by 7.5× (σ: 1.3pp vs 9.5pp across 3 seeds), stabilizing downstream performance (3-seed mean MMLU: 40.7±1.3pp uniform vs 35.7±9.5pp global); (2) **Budget-constrained regime (~40%)**: learned allocation outperforms blind uniformity — MMLU 38.1% (global) vs 30.7% (uniform), +7.4pp — the predictor's learned priorities become valuable when budget is tight; (3) **Capacity-cliff regime (≥50%)**: allocation irrelevant, both collapse to ~28% ≈ random. Recommended operating point (8B-validated): 30% sparsity with uniform allocation. At 30%, KL uniform dominates on the efficiency-quality Pareto frontier: PPL 8.82 vs TEAL 10.97 (−19.6%), with comparable-to-better downstream (MMLU +2.0pp, WG +2.5pp; ARC-c −1.5pp, GSM8K −0.5pp within noise). The advantage is primarily in PPL and knowledge-intensive tasks, not uniform across all benchmarks. **14B scale-dependent caveat (D054)**: At Qwen-2.5-14B 50% sparsity, uniform allocation does NOT fix KL's MMLU gap (64.49% uniform vs 63.72% global, only +0.77pp; TEAL global=71.83%). The 8B allocation-dependent pattern does not generalize to 14B. This is a valuable negative finding revealing loss × allocation × scale three-way interaction. 14B claim scope: KL PPL advantage preserved (7.62 vs 8.73 TEAL), but downstream MMLU gap persists regardless of allocation. The non-monotonic allocation preference (uniform@30% → global@40% → irrelevant@50%) provides mechanistic insight: at generous budgets, ensuring no layer is starved matters most; at tight budgets, the predictor's learned cross-layer priorities add value; at catastrophic budgets, capacity itself is the binding constraint. The failure mode changes qualitatively: allocation-fixable (≤30%) vs capacity-limited (≥50%). PPL non-monotonicity (40%=8.36 < 30%=8.82) while downstream is strictly monotonic further supports \"PPL is a poor proxy for downstream quality\" narrative. This yields a practical deployment guideline and a mechanistic understanding of when/why sparse inference degrades. (Evidence: d030_kl30_uniform, d030_kl50_uniform, d030_kl40_uniform, bench_teal30, bench_teal50, bench_kl30_global, bench_kl50_global, lm_eval downstream series)\n\n## Story Spine\n\n- **Problem**: SwiGLU activation sparsity enables 40-60% neuron pruning at inference, but training-free heuristics (WINA/TEAL) leave a 6+ point quality gap, while learned BCE predictors require auxiliary compensation networks adding ~256MB overhead (FastForward).\n\n- **Existing approaches & gaps**: (a) Training-free (WINA, TEAL, R-Sparse): no training cost, but quality gap too large for deployment. (b) Static learned (SPON): zero-overhead bias correction via KL distillation, but input-independent — cannot adapt to per-input neuron importance. (c) Contextual learned (FastForward): BCE predictor + compensation MLP, near-dense quality but inference overhead from compensation network. Gap: no prior work trains the contextual predictor itself with KL, and no work quantifies how much static correction remains useful once a coupled-loss contextual predictor is in place.\n\n- **Our framing / headline question**: \"Does output-distribution distillation (KL) make error compensation unnecessary for contextual sparsity prediction?\" The theoretical grounding: BCE gradient dL_BCE/ds_j depends only on neuron j (factorized), while KL gradient dL_KL/ds_j couples all active neurons through d_logits/dh * dh/dm — a mathematical property of the gradient structure, not an analogy. This means KL captures joint interaction effects that BCE misses, especially at high sparsity.\n\n- **Headline result template**: \"On [benchmarks], a KL-trained predictor at 50% model-level sparsity achieves [X] quality (within [Y]% of dense) without compensation, while BCE+compensation achieves [Z] quality but adds 67.2M parameters ([W] ms/token overhead) — demonstrating that output-distribution distillation renders error compensation unnecessary—SPON's residual correction is orthogonal to KL's dominant effect and too weak to complement it—enabling a simpler, lighter inference pipeline with strictly better efficiency-quality tradeoff.\"\n\n## Two-Dimensional Taxonomy (Conceptual Contribution)\n\n|                          | Decomposed (BCE) | Intermediate (MSE) | Coupled (KL) |\n|--------------------------|:-----------------:|:-------------------:|:-------------:|\n| Static                   | —                 | —                   | SPON          |\n| Per-layer                | —                 | ShadowLLM           | —             |\n| Per-token contextual     | FastForward       | —                   | **Ours**      |\n\nPositions prior work and ours on two axes: correction granularity (static -> per-token) x training signal coupling (decomposed/BCE -> coupled/KL). Highlights the empty cell we fill.\n\n## Anticipated Reviewer Concerns\n\n1. **\"Incremental / no new algorithm\"**: Mitigate with formal decomposition framework, quantitative s^2 prediction, and comprehensive four-quadrant outcome analysis showing all results are informative.\n\n2. **\"KL wins only because more compute\"**: **Fully addressed** by iso-compute ablation (eval_bce_v3_s42): BCE with 2.71× more FLOPs → TEAL PPL=27.97 vs KL=12.00 (2.33× gap). BCE loss saturates, confirming structural mismatch not compute deficit.\n\n3. **\"Gumbel-sigmoid relaxation, not KL, explains gains\"**: Addressed by STE baseline (plan_002) isolating loss function contribution.\n\n4. **\"Single model / limited generalization\"**: Addressed by Mistral-7B-v0.3 (plan_009, GQA + sliding window) and Qwen-2.5-14B cross-scale validation (D048/D054). **14B mixed result**: KL PPL advantage preserved (7.62 vs TEAL 8.73, 1.47× dense ratio identical to 8B), but KL MMLU=63.72% (global) / 64.49% (uniform) significantly trails TEAL 71.83% (global). Uniform allocation does not fix this gap (D054). PPL-downstream disconnect at 14B scale is an honest limitation, not hidden. Framing: KL's coupled gradient captures output-distribution fidelity (PPL) across scales, but 14B knowledge-intensive tasks (MMLU) show scale-dependent sensitivity that warrants further investigation.\n\n5. **\"Effect size may not hold on downstream tasks\"**: Core defense: PPL + 4 discriminative tasks (ARC-c, WinoGrande, MMLU, GSM8K) under unified few-shot protocol across all conditions. LongBench (P1, if GPU budget allows) strengthens long-context coverage. MT-Bench deferred unless time permits — requires external LLM API for judging.\n\n6. **\"Unfair comparison: BCE+comp close to KL but at higher inference cost\"**: All result tables and figures must co-report quality AND inference cost (compensation params, per-token FLOPs, end-to-end latency). Efficiency-accuracy Pareto frontier (plan_007) is the definitive visualization. Even if BCE+comp matches KL on PPL, KL wins on the Pareto frontier — that IS the claim.\n\n## Venue Fit\n- EMNLP Efficient Methods track: strong fit for activation sparsity + distillation\n- NLP-specific evaluation (LongBench long-context, MT-Bench multi-turn) strengthens EMNLP fit vs pure systems venue\n- Novelty ceiling acknowledged: contribution is systematic composition + rigorous ablation, not new architecture\n\n\n## experiment_plan (with registry status)\n\n- id: plan_001\n  claim: 1\n  description: 'Four-condition ablation @ 50% model-level sparsity on Llama 3.1 8B:\n    (a) BCE-only, (b) BCE+compensation, (c) KL-only, (d) KL+compensation. Headline\n    comparison: KL-only vs BCE+comp (5 seeds each). Secondary comparisons: 3 seeds\n    each. MVP already completed KL-only 3 seeds (mvp_kl_norm_v2_s42/s123/s456) and\n    BCE-only 3 seeds (mvp_bce_s42/s123/s456).\n\n    '\n  priority: P0\n  gpu_budget_hours: 48\n  deps: []\n  registry_ids:\n  - mvp_kl_norm_v2_s42\n  - mvp_kl_norm_v2_s123\n  - mvp_kl_norm_v2_s456\n  - mvp_bce_s42\n  - mvp_bce_s123\n  - mvp_bce_s456\n  remaining_runs:\n  - KL-only 2 additional seeds (s0, s1) for 5-seed headline\n  - BCE+comp 5 seeds (s42, s123, s456, s0, s1)\n  - KL+comp 3 seeds (s42, s123, s456)\n  registry_id: kl_only_s1\n  status: DONE\n  conclusion: success\n  metrics:\n    true_dense_ppl: 6.12\n    predictor_hard_mask_ppl: 9.15\n    teal_sparse_ppl: 11.99\n    model_level_sparsity: 0.498\n    ppl_increase_vs_true_dense_pct: 96\n- id: plan_002\n  claim: 1\n  description: 'STE baseline: KL loss + Straight-Through Estimator (instead of Gumbel-sigmoid).\n    Isolates whether KL advantage comes from loss function or relaxation method. 3\n    seeds.\n\n    '\n  priority: P0\n  gpu_budget_hours: 10\n  deps:\n  - plan_001\n  registry_id: ste_baseline_s42\n  status: DONE\n  conclusion: success\n  metrics:\n    true_dense_ppl: 6.12\n    predictor_hard_mask_ppl: 8.18\n    teal_sparse_ppl: 15.77\n    model_level_sparsity: 0.47\n    ppl_increase_vs_true_dense_pct: 157.7\n    eval_seq_len: 2048\n    calibration_samples: 32\n    eval_dataset: wikitext-2\n    per_token_sparsity: 0.47\n    lambda_stats:\n      steps_70_130_mean: 66.4\n      steps_70_130_std: 94.87\n      first_500_mean: 688.07\n      first_500_std: 440.57\n      last_500_mean: 965.69\n      last_500_std: 141.59\n      overall_mean: 826.88\n      overall_std: 354.23\n- id: plan_003\n  claim: 1\n  description: 'Iso-compute comparison: extend BCE training to match KL total FLOPs\n    (KL requires full forward pass for output logits, BCE can use cached targets).\n    Report per-step FLOPs and total training time for both. 3 seeds.\n\n    '\n  priority: P0\n  gpu_budget_hours: 10\n  deps:\n  - plan_001\n  registry_id: bce_isocompute_v2_s42\n  status: DONE\n  conclusion: success\n  metrics:\n    final_loss: 0.6637\n    final_bce_loss: 0.6586\n    final_reg_loss: 0.0051\n    final_sparsity: 0.502\n    training_steps: 1000\n    training_time_sec: 1047.8\n    reg_weight: 2\n    true_dense_ppl: 6.12\n    predictor_hard_mask_ppl: 26.76\n    teal_sparse_ppl: 54.84\n    eval_seq_len: 2048\n    eval_dataset: wikitext-2\n- id: plan_004\n  claim: 2\n  description: 'SPON reimplementation on Llama 3.1 8B: learnable bias vectors + KL\n    training. Validate by reproducing SPON published results on 5 QA benchmarks (ARC-c,\n    ARC-e, BoolQ, PIQA, WinoGrande) before composition experiment.\n\n    '\n  priority: P0\n  gpu_budget_hours: 8\n  deps: []\n  registry_id: spon_2048_s42\n  status: DONE\n  conclusion: negative\n  metrics:\n    true_dense_ppl: 6.1173\n    predictor_hard_mask_ppl: 9.2165\n    spon_sparse_ppl: 8.991\n    spon_recovery_pct: 7.3\n    ppl_improvement_from_spon: 0.2255\n    mean_bias_norm: 0.05312\n    max_bias_norm: 0.065918\n    model_level_sparsity: 0.498\n    eval_seq_len: 2048\n    training_seq_len: 2048\n    eval_samples: 141\n    trainable_params: 458752\n    trainable_pct: 0.0057\n    training_steps: 1000\n    final_loss: 0.377\n    dense_with_spon_ppl: 6.1823\n    dense_ppl_degradation: 0.0651\n    teal_sparse_no_spon_ppl: 12.0776\n    teal_sparse_with_spon_ppl: 11.7907\n    spon_recovery_teal_pct: 4.8\n    teal_sparsity: 0.4979\n- id: plan_005\n  claim: 2\n  description: 'SPON subsumption verification: output-space linearity test showing\n    KL predictor already captures SPON correction signal. ||Delta_logits(s+c) - Delta_logits(s)\n    - Delta_logits(c)|| vs individual magnitudes. Per-layer orthogonality analysis.\n    Proves SPON+KL ≈ KL (no additive gain). 3 seeds.\n\n    '\n  priority: P0\n  gpu_budget_hours: 8\n  deps:\n  - plan_001\n  - plan_004\n  registry_id: plan_005_subsumption_s42\n  status: DONE\n  conclusion: success\n  metrics:\n    linearity_ratio: 0.2644\n    linearity_ratio_std: 0.0073\n    magnitude_ratio: 0.1578\n    magnitude_ratio_std: 0.0088\n    cosine_similarity: 0.1962\n    cosine_similarity_std: 0.0268\n    predictor_effect_norm: 482.65\n    spon_correction_norm: 76.2\n    interaction_norm: 147.74\n    num_samples: 50\n    seq_len: 2048\n    conclusion_type: weak_subsumption\n- id: plan_006\n  claim: 1\n  description: 'Training-free baselines @ 50% model-level sparsity on Llama 3.1 8B:\n    TEAL (magnitude pruning + greedy allocation), WINA (weight-informed scoring),\n    R-Sparse (rank-aware scoring). Establishes three-tier comparison: training-free\n    < static-learned < contextual-learned.\n\n    '\n  priority: P0\n  gpu_budget_hours: 6\n  deps: []\n  registry_ids:\n  - training_free_baselines\n  - training_free_wina_greedy\n  registry_id: training_free_baselines\n  status: DONE\n  conclusion: success\n  metrics:\n    dense_ppl: 6.12\n    vanilla_teal_global_ppl_30pct: 10.97\n    vanilla_teal_global_ppl_50pct: 23.31\n    vanilla_teal_global_ppl_70pct: 100.11\n    wina_global_ppl_30pct: 11.45\n    wina_global_ppl_50pct: 27.93\n    wina_global_ppl_70pct: 137.24\n    uniform_50pct_ppl: 23.9\n    teal_greedy_ppl: 33.47\n    vanilla_teal_global_ppl: 23.31\n    wina_global_ppl: 27.93\n    rsparse_global_ppl: 151.2\n- id: plan_007\n  claim:\n  - 1\n  - 2\n  - 3\n  description: 'Full benchmark evaluation of all conditions on Llama 3.1 8B: WikiText-2\n    PPL, C4 PPL, ARC-c, WinoGrande, MMLU, GSM8K, HumanEval. Wall-clock profiling (predictor\n    overhead, sparse GEMV savings, end-to-end latency). Efficiency-accuracy Pareto\n    frontier plot.\n\n    '\n  priority: P0\n  gpu_budget_hours: 24\n  deps:\n  - plan_001\n  - plan_004\n  - plan_005\n  - plan_006\n  registry_id: bench_dense\n  status: DONE\n  conclusion: success\n  metrics:\n    wikitext2_ppl: 6.1173\n    arc_challenge_acc: 0.5478\n    arc_challenge_acc_norm: 0.5828\n    winogrande_acc: 0.7806\n    mmlu_acc: 0.6527\n    gsm8k_exact_match: 0.4875\n- id: plan_008\n  claim: 3\n  description: '3-level sparsity sweep (30%/50%/70%): KL-only vs BCE-only. Test scaling\n    trend and KL-BCE delta growth. 1 seed per level (sweep analysis, not headline).\n    50% data point reused from plan_001. If 3 levels show non-linear inflection, add\n    intermediate points.\n\n    '\n  priority: P1\n  gpu_budget_hours: 12\n  deps:\n  - plan_001\n  registry_id: d030_kl50_uniform\n  status: DONE\n  conclusion: success\n  metrics:\n    wikitext2_ppl: 11.96\n    arc_challenge_acc_norm: 0.3276\n    winogrande_acc: 0.629\n    mmlu_acc: 0.2777\n    gsm8k_exact_match: 0.0212\n    actual_sparsity: 0.5\n    allocation: uniform\n    per_layer_sparsity: uniform 0.500 across all 32 layers\n    mmlu_change_vs_global: +1.86pp (0.2591 → 0.2777, not significant)\n    gsm8k_change_vs_global: +0.91pp (0.0121 → 0.0212, not significant)\n    conclusion_note: 50% uniform 未能修复 MMLU/GSM8K collapse. Uniform allocation 的修复效应在\n      50% sparsity 下消失。\n- id: plan_009\n  claim: 1\n  description: 'Mistral-7B-v0.3 generalization validation. KL-only vs BCE+comp @ 50%\n    model-level sparsity. Core benchmarks only: WikiText-2 PPL, ARC-c, MMLU. 3 seeds\n    each condition.\n\n    '\n  priority: P1\n  gpu_budget_hours: 24\n  deps:\n  - plan_001\n  registry_id: lm_eval_mistral_dense\n  status: DONE\n  conclusion: success\n  metrics:\n    arc_challenge_acc_norm: 0.6024\n    winogrande_acc: 0.7869\n    mmlu_acc: 0.6244\n    gsm8k_exact_match: 0.3654\n    model: Mistral-7B-v0.3\n    condition: dense\n    server: westd-34887\n- id: plan_010\n  claim:\n  - 1\n  - 2\n  description: 'LongBench English subset evaluation (4K-32K tokens). All conditions\n    (KL-only, BCE+comp, SPON, SPON+KL, training-free baselines). Per-task-type breakdown:\n    single-doc QA, multi-doc QA, summarization, few-shot, code. Tests predictor generalization\n    beyond short training sequences.\n\n    '\n  priority: P1\n  gpu_budget_hours: 16\n  deps:\n  - plan_001\n  - plan_005\n  status: planned\n- id: plan_011\n  claim:\n  - 1\n  - 2\n  description: 'MT-Bench evaluation with GPT-4o judge. 80 multi-turn questions, 8\n    categories. All conditions. Tests instruction-following quality under sparsity.\n\n    '\n  priority: P2\n  gpu_budget_hours: 4\n  deps:\n  - plan_001\n  - plan_005\n  status: planned\n- id: plan_012\n  claim: 3\n  description: 'RULER synthetic long-context evaluation (4K, 16K) x 3 representative\n    task types. Fine-grained capability diagnostics complementing LongBench.\n\n    '\n  priority: P2\n  gpu_budget_hours: 8\n  deps:\n  - plan_010\n  status: planned\n\n\n## registry (completed experiments)\n\n- exp_id: mvp_kl_s42\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    final_total_loss: 3.3438\n    final_kl_loss: 3.2969\n    final_reg_loss: 0.05\n    final_sparsity: 0\n    steps: 1000\n    tau_final: 0.1\n    wikitext2_ppl_dense: 6.12\n    wikitext2_ppl_sparse: 455.93\n    wikitext2_ppl_increase_pct: 7349\n    model_level_sparsity: 0.372\n    checkpoint_path: /root/distill_sparse_swiglu/checkpoints/mvp_kl_s42/predictor_kl.pt\n- exp_id: mvp_kl_s123\n  name: ''\n  status: DONE\n  conclusion: killed\n  metrics: {}\n- exp_id: mvp_kl_s456\n  name: ''\n  status: DONE\n  conclusion: killed\n  metrics: {}\n- exp_id: mvp_bce_s42\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    true_dense_ppl: 6.1173\n    predictor_hard_mask_ppl: 27.9603\n    teal_sparse_ppl: 44.537\n    model_level_sparsity: 0.4957\n    ppl_increase_vs_true_dense_pct: 628\n    eval_md5: f4086818bb55dc354ea4c6fe8ed8899a\n    calibration_samples: 32\n    vanilla_teal_sparse_ppl_INVALID: 66036.4062\n- exp_id: mvp_bce_s123\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    true_dense_ppl: 6.1173\n    predictor_hard_mask_ppl: 28.3817\n    teal_sparse_ppl: 44.5864\n    model_level_sparsity: 0.4957\n    ppl_increase_vs_true_dense_pct: 629\n    eval_md5: f4086818bb55dc354ea4c6fe8ed8899a\n    calibration_samples: 32\n    vanilla_teal_sparse_ppl_INVALID: 66036.4062\n- exp_id: mvp_bce_s456\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    true_dense_ppl: 6.1173\n    predictor_hard_mask_ppl: 28.1437\n    teal_sparse_ppl: 43.033\n    model_level_sparsity: 0.4957\n    ppl_increase_vs_true_dense_pct: 603.3\n    eval_md5: f4086818bb55dc354ea4c6fe8ed8899a\n    calibration_samples: 32\n    vanilla_teal_sparse_ppl_INVALID: 66036.4062\n- exp_id: kl_lagrangian_quicktest\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    final_kl_loss: 418\n    final_constraint_loss: 1.211\n    final_sparsity: 0.141\n    final_lambda: 5.06\n    steps: 200\n    sparsity_trajectory:\n    - 0.406\n    - 0.387\n    - 0.289\n    - 0.168\n    - 0.141\n- exp_id: kl_lagrangian_v2\n  name: ''\n  status: PREPARING\n  conclusion: killed\n  metrics: {}\n- exp_id: kl_normalized_quicktest\n  name: ''\n  status: DONE\n  conclusion: failed\n  metrics:\n    step1_kl: 1.18\n    step200_kl: 0.641\n    step200_sparsity: 0.504\n    final_lambda: 8\n    sparsity_converged_step: 80\n    sparsity_trajectory:\n    - 0.406\n    - 0.398\n    - 0.398\n    - 0.457\n    - 0.52\n    - 0.506\n    - 0.504\n    - 0.504\n    lambda_trajectory:\n    - 1\n    - 2\n    - 4\n    - 8\n    - 8\n    - 8\n    - 8\n    - 8\n- exp_id: mvp_kl_norm_s42\n  name: ''\n  status: DONE\n  conclusion: failed\n  metrics: {}\n- exp_id: mvp_kl_norm_s123\n  name: ''\n  status: DONE\n  conclusion: failed\n  metrics: {}\n- exp_id: mvp_kl_norm_s456\n  name: ''\n  status: PREPARING\n  conclusion: killed\n  metrics: {}\n- exp_id: kl_norm_v3_quicktest\n  name: ''\n  status: PREPARING\n  conclusion: killed\n  metrics:\n    step1_kl_raw: 1.1797\n    step1_kl_norm: 1.1797\n    step1_sparsity: 0.406\n    step1_lambda: 2\n    step50_kl_raw: 0.7344\n    step50_kl_norm: 0.7344\n    step50_sparsity: 0.514\n    step50_lambda: 1.95\n    step100_kl_raw: 0.625\n    step100_kl_norm: 0.625\n    step100_sparsity: 0.496\n    step100_lambda: 1000\n    step150_kl_raw: 0.5703\n    step150_kl_norm: 0.5703\n    step150_sparsity: 0.48\n    step150_lambda: 1000\n    step200_kl_raw: 0.6836\n    step200_kl_norm: 0.6836\n    step200_sparsity: 0.477\n    step200_lambda: 1000\n    step200_constraint: 0.01178\n    kl_trend: decreasing (1.18→0.57 min, uptick to 0.68 at end)\n    sparsity_range: 0.477-0.514 after step 50\n    checkpoint_path: /root/distill_sparse_swiglu/checkpoints/kl_norm_v3_quicktest/predictor_kl_normalized.pt\n- exp_id: mvp_kl_norm_v2_s42\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    true_dense_ppl: 6.1173\n    predictor_hard_mask_ppl: 9.2142\n    teal_sparse_ppl: 12.0776\n    model_level_sparsity: 0.4979\n    ppl_increase_vs_true_dense_pct: 97.4\n    eval_md5: f4086818bb55dc354ea4c6fe8ed8899a\n    calibration_samples: 32\n    vanilla_teal_sparse_ppl_INVALID: 66036.4062\n- exp_id: mvp_kl_norm_v2_s123\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    true_dense_ppl: 6.1173\n    predictor_hard_mask_ppl: 9.2474\n    teal_sparse_ppl: 11.9128\n    model_level_sparsity: 0.4979\n    ppl_increase_vs_true_dense_pct: 94.7\n    eval_md5: f4086818bb55dc354ea4c6fe8ed8899a\n    calibration_samples: 32\n    vanilla_teal_sparse_ppl_INVALID: 66036.4062\n- exp_id: mvp_kl_norm_v2_s456\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    true_dense_ppl: 6.1173\n    predictor_hard_mask_ppl: 9.14\n    teal_sparse_ppl: 13.58\n    model_level_sparsity: 0.498\n    ppl_increase_vs_true_dense_pct: 121.9\n    eval_md5: f4086818bb55dc354ea4c6fe8ed8899a\n    calibration_samples: 32\n    vanilla_teal_sparse_ppl_INVALID: 66036.4062\n- exp_id: kl_only_s0\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    true_dense_ppl: 6.12\n    predictor_hard_mask_ppl: 9.19\n    teal_sparse_ppl: 12.03\n    model_level_sparsity: 0.499\n    ppl_increase_vs_true_dense_pct: 96.57\n    eval_seq_len: 2048\n    calibration_samples: 32\n- exp_id: kl_only_s1\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    true_dense_ppl: 6.12\n    predictor_hard_mask_ppl: 9.15\n    teal_sparse_ppl: 11.99\n    model_level_sparsity: 0.498\n    ppl_increase_vs_true_dense_pct: 96\n- exp_id: spon_training\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    true_dense_ppl: 6.1193\n    predictor_hard_mask_ppl: 9.2165\n    spon_sparse_ppl: 9.0977\n    spon_recovery_pct: 3.8\n    ppl_improvement_from_spon: 0.1188\n    ppl_increase_vs_true_dense_pct: 48.7\n    ppl_increase_no_spon_vs_true_dense_pct: 50.6\n    mean_bias_norm: 0.040596\n    max_bias_norm: 0.054199\n    teal_sparse_ppl: 12.08\n    teal_with_spon_ppl: 11.93\n    spon_dense_ppl_degradation: 6.19\n    model_level_sparsity: 0.5\n    eval_seq_len: 2048\n    eval_samples: 141\n    trainable_params: 458752\n    trainable_pct: 0.0057\n- exp_id: spon_kl_s42\n  name: ''\n  status: PREPARING\n  conclusion: killed\n  metrics: {}\n- exp_id: bce_comp_staged_s42\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    true_dense_ppl: 6.12\n    predictor_hard_mask_ppl: 25.44\n    predictor_hard_mask_ppl_no_comp: 27.96\n    teal_sparse_ppl: 44.54\n    model_level_sparsity: 0.558\n    ppl_increase_vs_true_dense_pct: 315.7\n    comp_loss_final: 0.0033\n    bce_loss_final: 0.6379\n    eval_seq_len: 2048\n    calibration_samples: 32\n- exp_id: training_free_baselines\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    dense_ppl: 6.12\n    vanilla_teal_global_ppl_30pct: 10.97\n    vanilla_teal_global_ppl_50pct: 23.31\n    vanilla_teal_global_ppl_70pct: 100.11\n    wina_global_ppl_30pct: 11.45\n    wina_global_ppl_50pct: 27.93\n    wina_global_ppl_70pct: 137.24\n    uniform_50pct_ppl: 23.9\n    teal_greedy_ppl: 33.47\n    vanilla_teal_global_ppl: 23.31\n    wina_global_ppl: 27.93\n    rsparse_global_ppl: 151.2\n- exp_id: spon_training_seq2048\n  name: ''\n  status: DONE\n  conclusion: killed\n  metrics: {}\n- exp_id: ste_baseline_s42\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    true_dense_ppl: 6.12\n    predictor_hard_mask_ppl: 8.18\n    teal_sparse_ppl: 15.77\n    model_level_sparsity: 0.47\n    ppl_increase_vs_true_dense_pct: 157.7\n    eval_seq_len: 2048\n    calibration_samples: 32\n    eval_dataset: wikitext-2\n    per_token_sparsity: 0.47\n    lambda_stats:\n      steps_70_130_mean: 66.4\n      steps_70_130_std: 94.87\n      first_500_mean: 688.07\n      first_500_std: 440.57\n      last_500_mean: 965.69\n      last_500_std: 141.59\n      overall_mean: 826.88\n      overall_std: 354.23\n- exp_id: spon_2048_s42\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    true_dense_ppl: 6.1173\n    predictor_hard_mask_ppl: 9.2165\n    spon_sparse_ppl: 8.991\n    spon_recovery_pct: 7.3\n    ppl_improvement_from_spon: 0.2255\n    mean_bias_norm: 0.05312\n    max_bias_norm: 0.065918\n    model_level_sparsity: 0.498\n    eval_seq_len: 2048\n    training_seq_len: 2048\n    eval_samples: 141\n    trainable_params: 458752\n    trainable_pct: 0.0057\n    training_steps: 1000\n    final_loss: 0.377\n    dense_with_spon_ppl: 6.1823\n    dense_ppl_degradation: 0.0651\n    teal_sparse_no_spon_ppl: 12.0776\n    teal_sparse_with_spon_ppl: 11.7907\n    spon_recovery_teal_pct: 4.8\n    teal_sparsity: 0.4979\n- exp_id: ste_kl_s42\n  name: ''\n  status: DONE\n  conclusion: killed\n  metrics: {}\n- exp_id: training_free_wina_greedy\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    wina_greedy_ppl: 2126.03\n    dense_ppl: 6.12\n    model_level_sparsity: 0.5\n    eval_dataset: WikiText-2\n    eval_seq_len: 2048\n    greedy_allocation_summary: 'layers 0-11: 0.90, layer 12: 0.85, layer 13: 0.80,\n      layer 14: 0.70, layers 15-16: 0.50-0.55, layers 17-20: 0.30-0.35, layers 21-24:\n      0.05-0.15, layers 25-31: 0.00'\n- exp_id: bce_isocompute_s42\n  name: ''\n  status: DONE\n  conclusion: failed\n  metrics: {}\n- exp_id: eval_spon_supp_retry\n  name: ''\n  status: DONE\n  conclusion: failed\n  metrics: {}\n- exp_id: bce_isocompute_s42_v2\n  name: ''\n  status: DONE\n  conclusion: killed\n  metrics: {}\n- exp_id: spon_supp_eval_retry\n  name: ''\n  status: DONE\n  conclusion: failed\n  metrics: {}\n- exp_id: bce_isocompute_v2_s42\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    final_loss: 0.6637\n    final_bce_loss: 0.6586\n    final_reg_loss: 0.0051\n    final_sparsity: 0.502\n    training_steps: 1000\n    training_time_sec: 1047.8\n    reg_weight: 2\n    true_dense_ppl: 6.12\n    predictor_hard_mask_ppl: 26.76\n    teal_sparse_ppl: 54.84\n    eval_seq_len: 2048\n    eval_dataset: wikitext-2\n- exp_id: plan_005_subsumption_s42\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    linearity_ratio: 0.2644\n    linearity_ratio_std: 0.0073\n    magnitude_ratio: 0.1578\n    magnitude_ratio_std: 0.0088\n    cosine_similarity: 0.1962\n    cosine_similarity_std: 0.0268\n    predictor_effect_norm: 482.65\n    spon_correction_norm: 76.2\n    interaction_norm: 147.74\n    num_samples: 50\n    seq_len: 2048\n    conclusion_type: weak_subsumption\n- exp_id: kl_sparsity30_s42\n  name: ''\n  status: DONE\n  conclusion: killed\n  metrics: {}\n- exp_id: kl_sparsity70_s42\n  name: ''\n  status: DONE\n  conclusion: killed\n  metrics: {}\n- exp_id: kl_sparsity30_s42_v2\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    final_loss: 0.1465\n    kl_normalized: 0.1465\n    kl_raw: 0.1465\n    model_level_sparsity: 0.281\n    sparsity_target: 0.3\n    lambda_sparse_final: 1000\n    lambda_max_cap: 1000\n    tau_final: 0.1\n    constraint_loss_final: 0\n    training_steps: 1000\n    wall_clock_seconds: 2662.6\n    gpu_hours: 0.74\n    note: No PPL evaluation in training script. Sparsity stuck at 0.281 (same as v1).\n      Lambda hit cap=1000 by step 220 and could not push sparsity further. W&B run\n      was offline (not synced).\n- exp_id: kl_sparsity70_s42_v2\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    true_dense_ppl: 6.12\n    predictor_hard_mask_ppl: 13.84\n    predictor_teal_sparse_ppl: 17.91\n    vanilla_teal_sparse_ppl: 100.11\n    teal_sparse_ppl: 17.91\n    teal_sparse_ppl_static_baseline: 17.91\n    model_level_sparsity: 0.7\n    teal_sparse_note: '17.91 = predictor-based TEAL (teal_global_masks: predictor-gated\n      magnitude scoring + global topk @70%). vanilla TEAL @70% = 100.11. 代码来源: quick_sp70.py\n      L10 imports teal_global_masks, L60 调用. plan_007_all_ppl_fixed.json 的 mode=static_mask_70pct\n      metadata 有误导性.'\n    eval_dataset: wikitext-2\n    eval_seq_len: 2048\n    calibration_samples: 32\n    per_layer_sparsity_range:\n    - 0.508\n    - 0.876\n- exp_id: kl_sparsity30_s42_v3\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    loss: 0.165\n    kl_normalized: 0.165\n    kl_raw: 0.165\n    sparsity: 0.285\n    lambda_sparse: 5000\n    tau: 0.1\n    constraint_loss: 0\n    steps: 1000\n    true_dense_ppl: 6.12\n    predictor_hard_mask_ppl: 7.3\n    teal_sparse_ppl: 8.98\n    teal_sparse_ppl_note: 已通过 eval_kl30_teal_30pct 独立验证 (sparsity_target=0.3, D034)\n    model_level_sparsity: 0.3\n    eval_dataset: wikitext-2\n    eval_seq_len: 2048\n- exp_id: mistral_kl_s42\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    train_final_loss: 0.2188\n    train_final_kl_raw: 0.2188\n    train_final_kl_norm: 0.2188\n    train_final_constraint: 0\n    train_final_sparsity: 0.48\n    train_final_lambda: 1000\n    train_final_tau: 0.1\n    train_steps_completed: 1000\n    true_dense_ppl: 5.52\n    predictor_hard_mask_ppl: 7.3\n    teal_sparse_ppl: 8.98\n    model_level_sparsity: 0.5\n    eval_dataset: wikitext-2\n    eval_seq_len: 2048\n    calibration_samples: 32\n    eval_samples: 159\n- exp_id: lm_eval_dense_test\n  name: ''\n  status: DONE\n  conclusion: failed\n  metrics: {}\n- exp_id: lm_eval_kl_s42\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    arc_challenge_acc_norm: 0.3771\n    winogrande_acc: 0.6156\n    mmlu_acc: 0.2591\n    gsm8k_exact_match: 0.0121\n    eval_tasks:\n    - arc_challenge\n    - winogrande\n    - mmlu\n    - gsm8k\n    model: llama-3.1-8b\n    condition: kl_sparse_50pct\n    server: westd-34887\n    exit_code: 129\n    wall_time_sec: 3010\n    flag: SUSPECT — gsm8k 0.50→0.01 catastrophic drop; PID 179918 rerunning with lm_eval_sparse.py\n- exp_id: lm_eval_dense\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    arc_challenge_acc_norm: 0.5819\n    winogrande_acc: 0.7814\n    mmlu_acc: 0.6532\n    gsm8k_exact_match: 0.5004\n    eval_tasks:\n    - arc_challenge\n    - winogrande\n    - mmlu\n    - gsm8k\n    model: llama-3.1-8b\n    condition: dense\n    server: westd-34887\n- exp_id: lm_eval_mistral_downstream\n  name: ''\n  status: DONE\n  conclusion: failed\n  metrics: {}\n- exp_id: lm_eval_mistral_dense\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    arc_challenge_acc_norm: 0.6024\n    winogrande_acc: 0.7869\n    mmlu_acc: 0.6244\n    gsm8k_exact_match: 0.3654\n    model: Mistral-7B-v0.3\n    condition: dense\n    server: westd-34887\n- exp_id: diag_30pct_downstream\n  name: ''\n  status: PREPARING\n  conclusion: killed\n  metrics: {}\n- exp_id: diag_gsm8k_gencomp\n  name: ''\n  status: PREPARING\n  conclusion: killed\n  metrics: {}\n- exp_id: diag_teal_downstream\n  name: ''\n  status: PREPARING\n  conclusion: killed\n  metrics: {}\n- exp_id: lm_eval_kl_30pct_s42\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    arc_challenge_acc: 0.3575\n    arc_challenge_acc_norm: 0.3737\n    winogrande_acc: 0.6756\n    mmlu_acc: 0.2874\n    gsm8k_exact_match_strict: 0.0743\n    gsm8k_exact_match_flexible: 0.0781\n    actual_sparsity: 0.3\n    model: llama-3.1-8b\n    condition: kl_distill_30pct_sparsity_s42\n    mmlu_stem_acc: 0.2499\n    mmlu_social_sciences_acc: 0.2896\n    mmlu_humanities_acc: 0.2786\n    mmlu_other_acc: 0.3363\n- exp_id: gsm8k_gen_compare\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics: {}\n- exp_id: lm_eval_teal_50pct\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    method: vanilla_teal\n    sparsity: 0.5\n    actual_sparsity: 0.5\n    arc_challenge_acc_norm: 0.291\n    winogrande_acc: 0.5556\n    mmlu_acc: 0.2856\n    gsm8k_exact_match_flexible: 0.019\n    gsm8k_exact_match_strict: 0.0114\n    arc_challenge_drop_vs_dense: -0.5\n    winogrande_drop_vs_dense: -0.289\n    mmlu_drop_vs_dense: -0.563\n    gsm8k_drop_vs_dense: -0.962\n    model: Llama-3.1-8B\n    condition: TEAL 50% training-free sparsity\n- exp_id: lm_eval_teal_30pct\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    arc_challenge:\n      acc: 0.3933\n      acc_norm: 0.4155\n      acc_stderr: 0.0143\n      acc_norm_stderr: 0.0144\n    winogrande:\n      acc: 0.6559\n      acc_stderr: 0.0134\n    mmlu:\n      acc: 0.3598\n      acc_stderr: 0.004\n    mmlu_stem:\n      acc: 0.313\n    mmlu_humanities:\n      acc: 0.3305\n    mmlu_social_sciences:\n      acc: 0.4108\n    mmlu_other:\n      acc: 0.401\n    gsm8k:\n      exact_match_strict: 0.0849\n      exact_match_flexible: 0.0925\n      strict_stderr: 0.0077\n      flexible_stderr: 0.008\n    actual_sparsity: 0.3\n- exp_id: lm_eval_mistral_kl_50pct\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    arc_challenge_acc: 0.2927\n    arc_challenge_acc_norm: 0.3183\n    arc_challenge_acc_norm_stderr: 0.0136\n    winogrande_acc: 0.629\n    winogrande_acc_stderr: 0.0136\n    mmlu_acc: 0.2295\n    mmlu_acc_stderr: 0.0035\n    mmlu_stem_acc: 0.2125\n    mmlu_humanities_acc: 0.2421\n    mmlu_social_sciences_acc: 0.2171\n    mmlu_other_acc: 0.2398\n    gsm8k_exact_match_strict: 0.0045\n    gsm8k_exact_match_flexible: 0.0212\n    model: Mistral-7B-v0.3\n    condition: kl_distill_50pct_sparsity_s42\n    arc_challenge_retention_vs_dense: 0.528\n    winogrande_retention_vs_dense: 0.799\n    mmlu_retention_vs_dense: 0.368\n    gsm8k_retention_vs_dense: 0.012\n- exp_id: d030_kl30_uniform\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    wikitext2_ppl: 8.8157\n    arc_challenge_acc_norm: 0.4078\n    winogrande_acc: 0.6859\n    mmlu_acc: 0.4061\n    gsm8k_exact_match: 0.0735\n    actual_sparsity: 0.3\n    allocation: uniform\n    per_layer_sparsity: uniform 0.301 across all 32 layers\n    mmlu_improvement_vs_global: +11.87pp (0.2874 → 0.4061)\n    gsm8k_change_vs_global: no change (0.0743 → 0.0735, within noise)\n- exp_id: bce_isocompute_v3_s42\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    steps: 2700\n    loss: 0.6382\n    bce_loss: 0.6371\n    reg_loss: 0.001\n    sparsity: 0.51\n    training_time_seconds: 2828\n    note: 'BCE saturation confirmed: step 500→2700 only 0.006 improvement'\n- exp_id: bench_mistral_kl50_s42\n  name: ''\n  status: DONE\n  conclusion: killed\n  metrics: {}\n- exp_id: d030_kl50_uniform\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    wikitext2_ppl: 11.96\n    arc_challenge_acc_norm: 0.3276\n    winogrande_acc: 0.629\n    mmlu_acc: 0.2777\n    gsm8k_exact_match: 0.0212\n    actual_sparsity: 0.5\n    allocation: uniform\n    per_layer_sparsity: uniform 0.500 across all 32 layers\n    mmlu_change_vs_global: +1.86pp (0.2591 → 0.2777, not significant)\n    gsm8k_change_vs_global: +0.91pp (0.0121 → 0.0212, not significant)\n    conclusion_note: 50% uniform 未能修复 MMLU/GSM8K collapse. Uniform allocation 的修复效应在\n      50% sparsity 下消失。\n- exp_id: bench_dense\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    wikitext2_ppl: 6.1173\n    arc_challenge_acc: 0.5478\n    arc_challenge_acc_norm: 0.5828\n    winogrande_acc: 0.7806\n    mmlu_acc: 0.6527\n    gsm8k_exact_match: 0.4875\n- exp_id: eval_kl30_teal_30pct\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    dense_ppl: 6.12\n    predictor_hard_mask_ppl: 7.3\n    teal_sparse_ppl: 8.98\n    sparsity_target: 0.3\n    actual_sparsity: 0.3\n- exp_id: d030_kl40_uniform\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    wikitext2_ppl: 8.3627\n    arc_challenge_acc_norm: 0.4181\n    winogrande_acc: 0.6717\n    mmlu_acc: 0.3068\n    gsm8k_exact_match: 0.0394\n    actual_sparsity: 0.398\n- exp_id: eval_bce_v3_s42\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    dense_ppl: 6.12\n    predictor_hard_mask_ppl: 22.51\n    teal_sparse_ppl: 27.97\n    model_level_sparsity: 0.5\n    arc_challenge_acc: 0.2048\n    arc_challenge_acc_norm: 0.2398\n    arc_challenge_acc_norm_stderr: 0.0125\n    winogrande_acc: 0.5059\n    winogrande_acc_stderr: 0.0141\n    mmlu_acc: 0.3002\n    mmlu_acc_stderr: 0.0038\n    gsm8k_exact_match: 0.0485\n    gsm8k_exact_match_strict: 0.0425\n    gsm8k_exact_match_stderr: 0.0059\n- exp_id: bench_kl30_uniform\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    wikitext2_ppl: 8.8157\n    arc_challenge_acc_norm: 0.4078\n    winogrande_acc: 0.6859\n    mmlu_acc: 0.4061\n    gsm8k_exact_match: 0.0735\n    actual_sparsity: 0.3\n- exp_id: bench_kl50_global\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    wikitext2_ppl: 11.7933\n    arc_challenge_acc_norm: 0.3285\n    winogrande_acc: 0.6346\n    mmlu_acc: 0.2789\n    gsm8k_exact_match: 0.0129\n    actual_sparsity: 0.5\n- exp_id: bench_kl30_global\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    wikitext2_ppl: 8.9768\n    arc_challenge_acc_norm: 0.3968\n    winogrande_acc: 0.7017\n    mmlu_acc: 0.2527\n    gsm8k_exact_match: 0.0879\n    actual_sparsity: 0.3\n- exp_id: bench_teal30\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    wikitext2_ppl: 10.97\n    arc_challenge_acc_norm: 0.4232\n    winogrande_acc: 0.6606\n    mmlu_acc: 0.3861\n    gsm8k_exact_match: 0.0788\n    actual_sparsity: 0.3\n- exp_id: bench_teal50\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    wikitext2_ppl: 23.31\n    arc_challenge_acc_norm: 0.2841\n    winogrande_acc: 0.5304\n    mmlu_acc: 0.2832\n    gsm8k_exact_match: 0.0197\n    actual_sparsity: 0.5\n- exp_id: bench_kl50_uniform\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    wikitext2_ppl: 11.963\n    arc_challenge_acc_norm: 0.3276\n    winogrande_acc: 0.629\n    mmlu_acc: 0.2777\n    gsm8k_exact_match: 0.0212\n    actual_sparsity: 0.5\n- exp_id: bench_kl40_global\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    wikitext2_ppl: 10.117\n    arc_challenge_acc_norm: 0.4096\n    winogrande_acc: 0.6535\n    mmlu_acc: 0.3806\n    gsm8k_exact_match: 0.05\n    actual_sparsity: 0.4\n- exp_id: longbench_kl30_uniform\n  name: ''\n  status: DONE\n  conclusion: failed\n  metrics: {}\n- exp_id: longbench_dense\n  name: ''\n  status: DONE\n  conclusion: failed\n  metrics: {}\n- exp_id: longbench_kl30_uniform_v2\n  name: ''\n  status: DONE\n  conclusion: failed\n  metrics: {}\n- exp_id: longbench_dense_v2\n  name: ''\n  status: DONE\n  conclusion: failed\n  metrics: {}\n- exp_id: longbench_kl30_uniform_v3\n  name: ''\n  status: DONE\n  conclusion: failed\n  metrics: {}\n- exp_id: longbench_dense_v3\n  name: ''\n  status: DONE\n  conclusion: failed\n  metrics: {}\n- exp_id: longbench_dense_v4\n  name: ''\n  status: DONE\n  conclusion: failed\n  metrics: {}\n- exp_id: longbench_dense_v5\n  name: ''\n  status: PREPARING\n  conclusion: killed\n  metrics: {}\n- exp_id: latency_benchmark\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    gpu_model: NVIDIA RTX PRO 6000 Blackwell Server Edition\n    dtype: float16\n    attn: flash_attention_2\n    batch: 1\n    seq_len: 2048\n    warmup: 10\n    iters: 100\n    dense_ms: 119.11\n    dense_std: 0.57\n    dense_tokens_per_s: 17194.5\n    kl_30pct_ms: 126.64\n    kl_30pct_std: 0.7\n    kl_30pct_tokens_per_s: 16171.8\n    kl_30pct_speedup: 0.941\n    kl_50pct_ms: 126.78\n    kl_50pct_std: 0.31\n    kl_50pct_tokens_per_s: 16154.2\n    kl_50pct_speedup: 0.939\n    comp_30pct_ms: 129.94\n    comp_30pct_std: 0.75\n    comp_30pct_tokens_per_s: 15761.4\n    comp_30pct_speedup: 0.917\n    comp_50pct_ms: 129.71\n    comp_50pct_std: 0.53\n    comp_50pct_tokens_per_s: 15788.8\n    comp_50pct_speedup: 0.918\n    predictor_overhead_ms: 3.17\n    predictor_overhead_pct: 2.7\n    per_layer_predictor_ms: 0.099\n    dense_ffn_per_layer_ms: 2.427\n    sparse_ffn_pred_per_layer_ms: 2.686\n    compensation_overhead_ms: 3.3\n- exp_id: bench_kl50_uniform_s123\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    wikitext2_ppl: 11.83\n    arc_challenge_acc_norm: 0.3515\n    winogrande_acc: 0.6298\n    mmlu_acc: 0.2751\n    gsm8k_exact_match: 0.0235\n    actual_sparsity: 0.5\n- exp_id: bench_kl50_uniform_s456\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    wikitext2_ppl: 11.9604\n    arc_challenge_acc_norm: 0.3345\n    winogrande_acc: 0.6275\n    mmlu_acc: 0.2874\n    gsm8k_exact_match: 0.0212\n    actual_sparsity: 0.5\n- exp_id: longbench_dense_v6\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    longbench_narrativeqa: 7.3\n    longbench_qasper: 13.4\n    longbench_gov_report: 30.5\n    longbench_multi_news: 2.5\n- exp_id: longbench_kl30_uniform_v6\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    longbench_narrativeqa: 4.12\n    longbench_qasper: 6.23\n    longbench_gov_report: 16.97\n    longbench_multi_news: 18.01\n    runtime_seconds: 6156.6\n- exp_id: eval_c4_ood_kl50\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    dense_ppl: 9.2075\n    kl_50_global_ppl: 18.401\n    teal_50_ppl: 38.7503\n    kl_vs_dense_ratio: 2\n    teal_vs_dense_ratio: 4.21\n- exp_id: db_sensitivity_sweep\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    db64_per_token_ppl: 10.158\n    db64_teal_global_ppl: 12.076\n    db64_sparsity: 0.5\n    db64_loss: 0.361\n    db128_teal_global_ppl: 11.963\n    db128_per_token_ppl: 9.218\n    db256_per_token_ppl: 8.586\n    db256_teal_global_ppl: 12.105\n    db256_sparsity: 0.5\n    db256_loss: 0.27\n    db512_per_token_ppl: 7.933\n    db512_teal_global_ppl: 12.315\n    db512_sparsity: 0.5\n    db512_loss: 0.224\n    best_teal_global_db: 128\n    best_teal_global_ppl: 11.963\n- exp_id: bce_gumbel_lagrangian_isolation\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    lr_1e4_ppl: 42.99\n    lr_1e3_ppl: 48.4\n    lr_3e3_ppl: 38.02\n    lr_1e4_bce_loss: 0.7158\n    lr_1e3_bce_loss: 0.6781\n    lr_3e3_bce_loss: 0.6632\n    lr_1e4_sparsity: 0.514\n    lr_1e3_sparsity: 0.506\n    lr_3e3_sparsity: 0.504\n    best_ppl: 38.02\n    best_lr: 3e-3\n    kl_baseline_ppl: 11.79\n    gap_vs_kl: 26.23\n- exp_id: steps_curve_s42\n  name: ''\n  status: DONE\n  conclusion: killed\n  metrics: {}\n- exp_id: steps_curve_s42_v2\n  name: ''\n  status: DONE\n  conclusion: killed\n  metrics: {}\n- exp_id: steps_curve_s42_v3\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics: {}\n- exp_id: tau_schedule_ablation\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    tau_linear_baseline_ppl: 11.963\n    tau_fixed05_ppl: 11.861\n    tau_fixed01_ppl: 12.072\n    tau_fixed05_loss: 0.248\n    tau_fixed01_loss: 0.43\n    best_tau: fixed_0.5\n    ppl_range: 0.211\n- exp_id: steps_curve_v2\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    step200_ppl: 15.158\n    step400_ppl: 12.538\n    step600_ppl: 12.046\n    step800_ppl: 11.907\n    step1000_ppl: 11.906\n    convergence_step: 800\n    ppl_800_vs_1000_delta: 0.001\n- exp_id: mistral_kl30_s42\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    kl_per_token_ppl: 6.048\n    kl_teal_global_ppl: 6.7733\n    teal_baseline_ppl: 8.3807\n    dense_ppl: 5.5238\n    kl_advantage_ratio: 1.386\n    ppl_vs_dense_pct: 9.5\n- exp_id: mistral_kl70_s42\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    kl_per_token_ppl: 9.1086\n    kl_teal_global_ppl: 13.3254\n    teal_baseline_ppl: 61.716\n    dense_ppl: 5.5238\n    kl_advantage_ratio: 6.77\n    final_loss: 0.3945\n    actual_sparsity: 0.682\n- exp_id: mistral_teal50_baseline\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    teal_baseline_ppl: 18.3061\n    dense_ppl: 5.5238\n    teal_vs_dense_ratio: 3.31\n- exp_id: bench_kl70_global\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    wikitext2_ppl: 17.91\n    dense_ppl: 6.12\n    actual_sparsity: 0.7\n    source: kl_sparsity70_s42_v2 (teal_global_masks protocol)\n    vanilla_teal_ppl: 100.11\n- exp_id: bench_teal70\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    wikitext2_ppl: 100.11\n    dense_ppl: 6.12\n    actual_sparsity: 0.7\n    source: training_free_baselines experiment (vanilla teal global)\n- exp_id: gradient_snr_kl_vs_bce\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    kl_avg_snr: 5.77e-05\n    bce_avg_snr: 1.0e-05\n    snr_ratio: 5.76\n    early_layer_ratio_range: 34-156x\n    late_layer_ratio_range: 2-4x\n- exp_id: natural_sparsity_floor_30pct\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    always_pruned_ratio: 0.0006\n    always_pruned_count: 278\n    total_neurons: 458752\n    late_layer_max_ratio: 0.0051\n    threshold: 0.1\n- exp_id: teal_kl_overlap_analysis\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    overall_jaccard: 0.396\n    divergence_ratio: 0.433\n    kl_only_pruned_magnitude_ratio: 1.48\n    teal_only_pruned_mean_gate_prob: 0.614\n    min_jaccard_layer: L17-L18 (0.19)\n    max_jaccard_layer: L26-L28 (0.55)\n- exp_id: gradient_snr_constrained_v2\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    kl_avg_snr: 0.000545\n    bce_avg_snr: 5.28e-06\n    snr_ratio: 103.2\n    kl_final_sparsity: 0.508\n    bce_final_sparsity: 0.591\n    steps: 200\n- exp_id: sparsity_floor_extended\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    floor_30pct: 0.0499\n    floor_50pct: 0.0726\n    floor_70pct: 0.1936\n    late_layer_max_30: 0.4604\n    late_layer_max_50: 1.2347\n    late_layer_max_70: 4.3666\n    threshold: 0.1\n    seq_len: 2048\n    num_samples: 50\n- exp_id: teal_kl_overlap_corrected\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    z_score: 7260.3\n    p_value: 0\n    median_percentile_rank: 78.6\n    iqr_q1: 64.4\n    iqr_q3: 89.1\n    layers_significant: 31/32\n    exception_layer: 31\n- exp_id: mag_preservation_reg\n  name: ''\n  status: PREPARING\n  conclusion: failed\n  metrics: {}\n- exp_id: reverse_kl_50pct_s42\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    ppl_wikitext2: 12.8\n    vs_forward_kl: +1.01 (+8.6%)\n    sparsity: 0.5\n- exp_id: jsd_50pct_s42\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    ppl_wikitext2: 12.54\n    vs_forward_kl: +0.75 (+6.4%)\n    sparsity: 0.5\n- exp_id: global_30pct_retention\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    early_retention: 0.771\n    middle_retention: 0.764\n    knowledge_L12_20_retention: 0.797\n    late_L24_31_retention: 0.501\n    L31_retention: 0.284\n    L30_retention: 0.366\n    starved_layers: L27-L31\n- exp_id: kl_bce_f1_oracle\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    bce_f1: 0.6128\n    bce_precision: 0.6132\n    bce_recall: 0.6124\n    kl_f1: 0.5397\n    kl_precision: 0.5112\n    kl_recall: 0.5715\n    random_f1: 0.5\n    kl_ppl: 11.79\n    bce_ppl: 22.51\n- exp_id: kl50_s123_eval\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    wikitext2_ppl: 11.745\n    arc_challenge: 0.3814\n    winogrande: 0.6125\n    mmlu: 0.2752\n    gsm8k: 0.0281\n- exp_id: kl30_s123_eval\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    wikitext2_ppl: 8.8308\n    arc_challenge_acc_norm: 0.4531\n    winogrande_acc: 0.6938\n    mmlu_acc: 0.3944\n    gsm8k_exact_match: 0.0751\n    actual_sparsity: 0.3\n    allocation: uniform\n- exp_id: kl50_s456_train_eval\n  name: ''\n  status: PREPARING\n  conclusion: ''\n  metrics: {}\n- exp_id: kl50_s456_train\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    final_loss: 0.397\n    final_kl_normalized: 0.397\n    final_sparsity: 0.492\n    final_lambda: 5000\n    final_tau: 0.1\n    steps_completed: 1000\n- exp_id: kl_50pct_s123\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    ppl_wikitext2: 11.745\n    arc_challenge_acc_norm: 0.3814\n    winogrande_acc: 0.6125\n    mmlu_acc: 0.2752\n    gsm8k_exact_match: 0.0281\n    sparsity: 0.5\n    allocation: global\n- exp_id: mistral_dense_ppl\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    wikitext2_ppl: 5.5238\n    model: Mistral-7B-v0.3\n    condition: dense\n    sparsity: 0\n- exp_id: mistral_kl30_pertoken\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    wikitext2_ppl: 6.048\n    model: Mistral-7B-v0.3\n    condition: kl_pertoken_30pct\n    sparsity: 0.3\n    allocation: uniform\n    ppl_increase_vs_dense: 0.5242\n- exp_id: mistral_kl50_pertoken\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    wikitext2_ppl: 7.2931\n    model: Mistral-7B-v0.3\n    condition: kl_pertoken_50pct\n    sparsity: 0.5\n    allocation: uniform\n    ppl_increase_vs_dense: 1.7693\n- exp_id: mistral_kl70_pertoken\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    wikitext2_ppl: 9.1086\n    model: Mistral-7B-v0.3\n    condition: kl_pertoken_70pct\n    sparsity: 0.7\n    allocation: uniform\n    ppl_increase_vs_dense: 3.5848\n- exp_id: mistral_kl30_teal_global\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    wikitext2_ppl: 6.7733\n    model: Mistral-7B-v0.3\n    condition: kl_teal_global_30pct\n    sparsity: 0.3\n    allocation: uniform\n    ppl_increase_vs_dense: 1.2495\n- exp_id: mistral_kl50_teal_global\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    wikitext2_ppl: 8.6489\n    model: Mistral-7B-v0.3\n    condition: kl_teal_global_50pct\n    sparsity: 0.5\n    allocation: uniform\n    ppl_increase_vs_dense: 3.1251\n- exp_id: mistral_kl70_teal_global\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    wikitext2_ppl: 13.3254\n    model: Mistral-7B-v0.3\n    condition: kl_teal_global_70pct\n    sparsity: 0.7\n    allocation: uniform\n    ppl_increase_vs_dense: 7.8016\n- exp_id: mistral_teal30_baseline\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    wikitext2_ppl: 8.3807\n    model: Mistral-7B-v0.3\n    condition: teal_vanilla_30pct\n    sparsity: 0.3\n    allocation: uniform\n    ppl_increase_vs_dense: 2.8569\n- exp_id: mistral_teal70_baseline\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    wikitext2_ppl: 61.716\n    model: Mistral-7B-v0.3\n    condition: teal_vanilla_70pct\n    sparsity: 0.7\n    allocation: uniform\n    ppl_increase_vs_dense: 56.1922\n- exp_id: kl30_s456_train\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    final_loss: 0.2021\n    actual_sparsity: 0.289\n    constraint_satisfied: true\n    training_steps: 1000\n- exp_id: kl_30pct_s123\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    ppl_wikitext2: 8.9748\n    arc_challenge_acc_norm: 0.4531\n    winogrande_acc: 0.693\n    mmlu_acc: 0.3807\n    gsm8k_exact_match: 0.0758\n    sparsity: 0.3\n    allocation: global\n- exp_id: kl50_s456_global_eval\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    ppl_wikitext2: 11.8057\n    arc_challenge: 0.3319\n    winogrande: 0.6488\n    mmlu: 0.2794\n    gsm8k: 0.0212\n- exp_id: kl30_s456_global_eval\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    ppl_wikitext2: 8.9332\n    arc_challenge: 0.4633\n    winogrande: 0.7111\n    mmlu: 0.4382\n    gsm8k: 0.0758\n- exp_id: kl30_s456_uniform_eval\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    mmlu: 0.4198\n    ppl_uniform: 8.7947\n    arc_challenge: 0.4505\n    winogrande: 0.6875\n    gsm8k: 0.0758\n- exp_id: qwen14b_kl30_s42\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    dense_ppl: 5.18\n    predictor_hard_mask_ppl: 6.8\n    teal_global_ppl: 7.62\n    ppl_ratio_hard_mask: 1.31\n    ppl_ratio_teal: 1.47\n    final_loss: 0.3398\n    training_sparsity: 0.281\n    teal_sparsity: 0.3\n    lambda: 5000\n    steps: 1000\n- exp_id: qwen14b_kl30_s42_eval\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    wikitext2_ppl: 7.6232\n    arc_challenge_acc_norm: 0.5717\n    winogrande_acc: 0.7206\n    mmlu_acc: 0.6372\n    gsm8k_exact_match: 0.4882\n- exp_id: downstream_extended_kl30_s42\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    hellaswag_acc_norm: 0.727\n    hellaswag_acc: 0.527\n    piqa_acc_norm: 0.7595\n    piqa_acc: 0.747\n    boolq_acc: 0.7685\n- exp_id: wallclock_speedup_30_50\n  name: ''\n  status: PREPARING\n  conclusion: negative\n  metrics:\n    theoretical_flops_speedup_30pct: 1.36\n    theoretical_flops_speedup_50pct: 2.45\n    actual_wallclock_speedup_30pct: 0.91\n    actual_wallclock_speedup_50pct: 0.6\n    predictor_overhead_decode_ms: 1\n    predictor_overhead_prefill_ms: 2\n    actual_mean_sparsity_30pct: 0.28\n    actual_mean_sparsity_50pct: 0.605\n    note: No wall-clock speedup without sparse kernels. Mask-based=0.87-0.94x (predictor\n      overhead), structured-skip=0.45-0.74x (gather overhead). Report theoretical\n      FLOPs in paper.\n- exp_id: qwen14b_bce30_s42\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    dense_ppl: 5.18\n    predictor_hard_mask_ppl: 5.57\n    teal_global_ppl: 8.76\n    ppl_ratio_hard_mask: 1.075\n    ppl_ratio_hard_mask_note: at predictor native 6.4% sparsity, not comparable to\n      KL's 28.1%\n    ppl_ratio_teal: 1.69\n    actual_sparsity_teal: 0.3\n    predictor_native_sparsity: 0.064\n    training_log_sparsity_note: Training Lagrangian failed (predictor sparsity=6.4%).\n      Inference via TEAL forces 30% externally. TEAL PPL 8.76 is valid for method\n      comparison.\n    final_loss: 0.5561\n    final_bce_loss: 0.5324\n    steps: 1000\n    constraint_satisfied: false\n- exp_id: qwen14b_teal30_eval\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    wikitext2_ppl: 8.7332\n    arc_challenge_acc_norm: 0.5683\n    winogrande_acc: 0.7269\n    mmlu_acc: 0.7183\n    gsm8k_exact_match: 0.4951\n- exp_id: qwen14b_bce30_s42_v2\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    predictor_native_sparsity: 0.064\n    lambda_max: 50000\n    final_bce_loss: 0.5324\n    steps: 1000\n    constraint_satisfied: false\n    sparsity_trajectory: 49%→5% collapse in 50 steps, no recovery over 950 steps\n    note: 10x stronger Lagrangian produces identical sparsity as v1 (lambda=5000).\n      Confirms BCE gradient insufficiency is fundamental, not constraint strength.\n- exp_id: downstream_dense_baseline\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    hellaswag_acc_norm: 0.8233\n    hellaswag_acc_norm_stderr: 0.0038\n    piqa_acc_norm: 0.8074\n    piqa_acc_norm_stderr: 0.0092\n    boolq_acc: 0.8294\n    boolq_acc_stderr: 0.0066\n- exp_id: qwen14b_bce30_s42_eval\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    wikitext2_ppl: 8.7634\n    arc_challenge_acc_norm: 0.5759\n    winogrande_acc: 0.7261\n    mmlu_acc: 0.7167\n    gsm8k_exact_match: 0.5307\n- exp_id: downstream_teal30_baseline\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    hellaswag_acc: 0.4878\n    hellaswag_acc_norm: 0.667\n    piqa_acc: 0.7258\n    piqa_acc_norm: 0.7361\n    boolq_acc: 0.685\n- exp_id: kl50_global_s123_reeval\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    wikitext2_ppl: 11.7184\n    arc_challenge_acc_norm: 0.3635\n    winogrande_acc: 0.6109\n    mmlu_acc: 0.2834\n    gsm8k_exact_match: 0.0258\n- exp_id: bce_isocompute_v3_s123\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics: {}\n- exp_id: bce_isocompute_v3_s456\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    final_loss: 0.6368\n    final_sparsity: 0.51\n    training_steps: 2700\n- exp_id: c4_ood_kl30_s42\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    c4_ppl: 16.0458\n    allocation: global_topk\n    sparsity: 0.3\n    model: llama-3.1-8b\n    eval_sequences: 132\n    seq_len: 2048\n- exp_id: c4_download\n  name: ''\n  status: PREPARING\n  conclusion: ''\n  metrics: {}\n- exp_id: qwen14b_dense_baseline\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    ppl: 5.1854\n    arc_challenge: 0.6758\n    winogrande: 0.8106\n    mmlu: 0.7977\n    gsm8k: 0.8757\n- exp_id: bce_isocompute_v3_s456_eval\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    teal_sparse_ppl: 28.3503\n    model_level_sparsity: 0.5\n    arc_challenge_acc: 0.2312\n    arc_challenge_acc_stderr: 0.01232\n    arc_challenge_acc_norm: 0.2807\n    arc_challenge_acc_norm_stderr: 0.01313\n    winogrande_acc: 0.5241\n    winogrande_acc_stderr: 0.01404\n    mmlu_acc: 0.2567\n    mmlu_acc_stderr: 0.00367\n    gsm8k_exact_match: 0.022\n    gsm8k_exact_match_stderr: 0.00404\n    gsm8k_exact_match_strict: 0.00834\n    gsm8k_exact_match_strict_stderr: 0.0025\n- exp_id: bce_isocompute_v3_s123_eval\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    wikitext2_ppl: 28.0627\n    arc_challenge_acc_norm: 0.2696\n    winogrande_acc: 0.513\n    mmlu_acc: 0.2655\n    gsm8k_exact_match: 0.022\n- exp_id: qwen14b_kl30_uniform_eval\n  name: ''\n  status: DONE\n  conclusion: failed\n  metrics: {}\n- exp_id: qwen14b_teal30_uniform_eval\n  name: ''\n  status: DONE\n  conclusion: failed\n  metrics: {}\n- exp_id: kl30_8b_s123_train\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    wikitext2_ppl: 8.9267\n    sparsity: 0.3\n    training_loss: 0.147\n- exp_id: kl30_8b_s456_train\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    wikitext2_ppl: 8.9614\n    sparsity: 0.3\n    training_loss: 0.148\n- exp_id: qwen14b_kl30_uniform_eval_4task\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    wikitext2_ppl: 7.63\n    mmlu_acc: 0.6449\n    arc_challenge_acc_norm: 0.5444\n    winogrande_acc: 0.7245\n- exp_id: qwen14b_teal30_uniform_eval_4task\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    wikitext2_ppl: 8.01\n    mmlu_acc: 0.6634\n    arc_challenge_acc_norm: 0.5529\n    winogrande_acc: 0.6985\n- exp_id: bce_isocompute_v3_s42_eval\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    wikitext2_ppl: 27.9696\n    arc_challenge_acc: 0.2346\n    arc_challenge_acc_norm: 0.2765\n    winogrande_acc: 0.5162\n    mmlu_acc: 0.2614\n    gsm8k_exact_match: 0.019\n- exp_id: kl30_8b_s123_eval\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    wikitext2_ppl: 8.9267\n    arc_challenge_acc: 0.4462\n    arc_challenge_acc_norm: 0.4744\n    winogrande_acc: 0.7024\n    mmlu_acc: 0.3836\n    gsm8k_exact_match: 0.0917\n- exp_id: kl30_8b_s456_eval\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    wikitext2_ppl: 8.9614\n    arc_challenge_acc: 0.436\n    arc_challenge_acc_norm: 0.4462\n    winogrande_acc: 0.7143\n    mmlu_acc: 0.2714\n    gsm8k_exact_match: 0.0887\n- exp_id: snr_extended_r6w3\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    kl_snr_step300: 0.0058773\n    bce_snr_step300: 0.00114449\n    snr_ratio_step300: 5.14\n    kl_train_time_s: 641\n    bce_train_time_s: 320\n    num_checkpoints: 7\n    steps_range: 0-300\n- exp_id: c4_ood_kl30_s123\n  name: ''\n  status: DONE\n  conclusion: failed\n  metrics: {}\n- exp_id: c4_ood_dense_baseline\n  name: ''\n  status: DONE\n  conclusion: failed\n  metrics: {}\n- exp_id: kl50_s123_uniform_eval\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    wikitext2_ppl: 11.89\n    arc_challenge_acc_norm: 37.88\n    winogrande_acc: 62.19\n    mmlu_acc: 27.75\n    gsm8k_exact_match: 2.35\n    comparison_vs_global_topk:\n      ppl_delta: -0.94\n      arc_c_delta: -5.55\n      wg_delta: -6.71\n      mmlu_delta: -8.2\n      gsm8k_delta: -5\n    note: 'Uniform allocation: better PPL but catastrophic downstream degradation\n      vs global_topk. Confirms global_topk allocation is critical for downstream quality.'\n- exp_id: c4_ood_kl30_s123_v2\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    c4_ppl: 16.0259\n    allocation: global_topk\n    sparsity: 0.3\n    model: llama-3.1-8b\n    eval_sequences: 132\n    seq_len: 2048\n- exp_id: c4_ood_dense_baseline_v2\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    c4_ppl: 9.2075\n    model: llama-3.1-8b\n    eval_sequences: 132\n    seq_len: 2048\n- exp_id: kl50_s456_eval\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    wikitext2_ppl: 11.8614\n    arc_challenge_acc_norm: 0.3754\n    winogrande_acc: 0.6417\n    mmlu_acc: 0.2784\n    gsm8k_exact_match: 0.0212\n- exp_id: c4_ood_kl50_s123\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    c4_ppl: 23.6064\n    allocation: global_topk\n    sparsity: 0.5\n    model: llama-3.1-8b\n- exp_id: downstream_ext_kl50_uniform_s42\n  name: ''\n  status: DONE\n  conclusion: failed\n  metrics: {}\n- exp_id: downstream_ext_kl30_uniform_s123\n  name: ''\n  status: DONE\n  conclusion: failed\n  metrics: {}\n- exp_id: c4_ood_kl50_s456\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    c4_ppl: 23.9867\n    sparsity: 0.5\n    allocation: global_topk\n    seed: 456\n- exp_id: c4_ood_kl30_s42_v2\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    c4_ppl: 16.0401\n    allocation: global_topk\n    sparsity: 0.3\n    model: llama-3.1-8b\n    seed: 42\n- exp_id: kl50_s42_uniform_eval\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    wikitext2_ppl: 11.9638\n    arc_challenge_acc_norm: 0.3259\n    winogrande_acc: 0.6235\n    mmlu_acc: 0.2792\n    gsm8k_exact_match: 0.0197\n- exp_id: c4_ood_kl50_s42\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    c4_ppl: 23.5297\n    sparsity: 0.5\n    allocation: global_topk\n    seed: 42\n- exp_id: kl_comp_30pct_s42\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    final_loss: 0.6992\n    steps: 1000\n    compensation_params: 67248128\n    compensation_pct: 0.837\n    mean_head_norm_final: 9.2012\n    loss_trajectory:\n    - 2.3594\n    - 1.3516\n    - 1.0859\n    - 0.9219\n    - 0.8789\n    - 0.8281\n    - 0.7461\n    - 0.7344\n    - 0.6953\n    - 0.6992\n- exp_id: c4_ood_kl30_s456\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics: {}\n- exp_id: kl_comp_30pct_s123\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    final_loss: 0.7617\n    steps: 1000\n    compensation_params: 67248128\n    compensation_pct: 0.837\n    mean_head_norm_final: 9.2012\n    loss_trajectory:\n    - 2.0469\n    - 1.3828\n    - 1.0703\n    - 0.9609\n    - 0.8711\n    - 0.7305\n    - 0.6875\n    - 0.7773\n    - 0.7969\n    - 0.7617\n- exp_id: kl_comp_30pct_s42_eval\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    wikitext2_ppl: 8.9788\n    arc_challenge_acc_norm: 0.3993\n    winogrande_acc: 0.6898\n    mmlu_acc: 0.2531\n    gsm8k_exact_match: 0.0842\n- exp_id: kl_comp_30pct_s42_ppl\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    wikitext2_ppl: 8.9768\n    c4_ppl: 16.0401\n    sparsity: 0.3\n    allocation: global_topk\n    model: llama-3.1-8b\n    seed: 42\n- exp_id: kl_comp_30pct_s123_ppl\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    wikitext2_ppl: 8.9768\n    c4_ppl: 16.0401\n    sparsity: 0.3\n    allocation: global_topk\n    model: llama-3.1-8b\n    seed: 123\n- exp_id: kl_comp_30pct_s123_eval\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    wikitext2_ppl: 8.9788\n    arc_challenge_acc_norm: 0.3993\n    winogrande_acc: 0.6898\n    mmlu_acc: 0.2531\n    gsm8k_exact_match: 0.0842\n- exp_id: kl50_s456_uniform_eval\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    wikitext2_ppl: 11.9538\n    arc_challenge_acc_norm: 0.3831\n    winogrande_acc: 0.6196\n    mmlu_acc: 0.275\n    gsm8k_exact_match: 0.0288\n- exp_id: kl_comp_30pct_s456\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics: {}\n- exp_id: kl_comp_50pct_s42\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics: {}\n- exp_id: kl_comp_30pct_s456_eval\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    wikitext2_ppl: 8.9614\n    arc_challenge_acc_norm: 0.4462\n    winogrande_acc: 0.7143\n    mmlu_acc: 0.2714\n    gsm8k_exact_match: 0.0887\n- exp_id: kl_comp_50pct_s42_eval\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    wikitext2_ppl: 11.7933\n    arc_challenge_acc_norm: 0.3285\n    winogrande_acc: 0.6346\n    mmlu_acc: 0.2789\n    gsm8k_exact_match: 0.0129\n- exp_id: kl50_s42_global_eval\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    wikitext2_ppl: 11.8038\n    arc_challenge_acc_norm: 0.3336\n    winogrande_acc: 0.6338\n    mmlu_acc: 0.2819\n    gsm8k_exact_match: 0.0167\n- exp_id: kl30_s123_uniform_v2\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    wikitext2_ppl: 8.8186\n    arc_challenge_acc_norm: 0.471\n    winogrande_acc: 0.6961\n    mmlu_acc: 0.3763\n    gsm8k_exact_match: 0.0705\n- exp_id: kl30_s456_uniform_v2\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    wikitext2_ppl: 8.8284\n    arc_challenge_acc_norm: 0.4505\n    winogrande_acc: 0.6953\n    mmlu_acc: 0.3727\n    gsm8k_exact_match: 0.0705\n- exp_id: kl30_s123_uniform_v3\n  name: ''\n  status: PREPARING\n  conclusion: killed\n  metrics: {}\n- exp_id: kl30_s456_uniform_v3\n  name: ''\n  status: PREPARING\n  conclusion: killed\n  metrics: {}\n- exp_id: c1_ablation_bce_kl_targets_s42\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    wt2_ppl: 9.29\n    eval_sparsity: 0.609\n    oracle_agreement: 0.978\n    final_bce_loss: 0.0545\n    train_steps: 1000\n    train_time_sec: 877.1\n    reference_kl_ppl: 11.79\n    reference_bce_ppl: 22.51\n- exp_id: bce_30pct_s42\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics: {}\n- exp_id: kl_sparsity25_s42\n  name: ''\n  status: PREPARING\n  conclusion: ''\n  metrics: {}\n- exp_id: kl_sparsity35_s42\n  name: ''\n  status: PREPARING\n  conclusion: ''\n  metrics: {}\n- exp_id: c1_ablation_eval_uniform\n  name: ''\n  status: PREPARING\n  conclusion: ''\n  metrics: {}\n- exp_id: kl_sparsity45_s42\n  name: ''\n  status: PREPARING\n  conclusion: ''\n  metrics: {}\n- exp_id: bce_30pct_s42_eval\n  name: ''\n  status: PREPARING\n  conclusion: ''\n  metrics: {}\n\n\n## what_if (hypothetical experiments — additive)\n\n- name: c1_ablation_bce_kl_targets\n  claim: 'Claim 1 reframe: optimization target quality > gradient coupling'\n  description: BCE trained on KL-derived oracle masks achieves comparable-or-better\n    PPL than KL distillation at matched sparsity. 53% mask divergence from magnitude\n    oracles. Core narrative shifts from 'gradient coupling explains KL advantage'\n    to 'KL discovers fundamentally different and superior mask patterns that magnitude-based\n    oracles miss'.\n  estimated_gpu_hours: 0.0\n- name: dense_sparsity_sweep_6pt\n  claim: 'Claim 3: regime analysis with 6 data points'\n  description: KL predictors trained at 25%/30%/35%/40%/45%/50% sparsity with 2 seeds\n    each. Regime boundaries precisely mapped. Non-monotonic allocation preference\n    confirmed with denser sampling.\n  estimated_gpu_hours: 0.0\n- name: bce_30pct_forced_topk\n  claim: 'Claim 1: BCE baseline at recommended operating point'\n  description: BCE predictor evaluated at 30% via forced TEAL top-k. Fills Table 2\n    gap at recommended operating point. BCE PPL expected significantly worse than\n    KL, strengthening KL advantage at practical deployment sparsity.\n  estimated_gpu_hours: 0.0\n\n# 输出格式（YAML，仅输出一个 ```yaml 块）\n\n```yaml\ntier: best\nnarrative_guidance: \"...\"\nimagined_experiments:\n  - name: \"...\"\n    plan_id: \"...\"\n    description: \"...\"\n    expected_results: {metric: value, ...}\n    result_rationale: \"...\"\n    tables: []\n    figures_description: []\n    analysis: \"...\"\n```\n"
+}
+````
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-18T16:30:09.863Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-18T16:30:09.863Z",
+  "sessionId": "37144a68-e0ad-4fa3-9d7b-5563cb046ecf"
+}
+```
+
+---
+
+## Round 1
+
+25 recorded events
+
+### User
+
+_source line 3 · 2026-05-18T16:30:09.910Z_
+
+你是一位经验丰富的 ML 研究者。Phase 1 已定义了 best 档的含义：
+
+含义：C1 ablation 在 matched sparsity 完全验证 mask pattern 叙事；remaining experiments 按时完成且结果内洽；reframe 被接受为 novel empirical contribution
+核心假设：['BCE-on-KL-targets at 50% uniform PPL ≈ KL（≤12.5），mask quality 是 KL 优势的充分解释', 'BCE 30% forced top-k PPL ≥ 13，KL 在推荐操作点优势显著且 non-trivial', '6-point sweep（25/30/35/40/45/50%）展现 clean piecewise regime 结构，transition boundary 在 35±3pp 附近', 'KL 30% uniform 3-seed downstream variance 可控（MMLU σ ≤ 2pp），headline numbers 稳定', '14B MMLU gap 被视为 interesting negative finding（loss × allocation × scale interaction），非 fatal', 'Reviewers 接受 53% mask divergence + C1 ablation 因果链为 novel contribution']
+关键指标范围：{'c1_ablation_uniform_50pct_ppl': [10.5, 12.5], 'bce_30pct_forced_topk_ppl': [13.0, 20.0], 'kl_30pct_uniform_3seed_mmlu_std_pp': [0.5, 2.0], 'regime_piecewise_fit_r2': [0.93, 0.99], 'expected_ARR_overall': [3.75, 4.25]}
+叙事方向：原始 'mask pattern discovery' framing 完全成立，Claims 无需调整。 因果链完整：KL distillation → 发现与 magnitude oracle 53% 不同的稀疏 pattern → BCE-on-KL-targets 恢复 KL-level quality → mask quality 是 KL 优势的主因。 §3.6 gradient analysis（SNR 103×）作为 suggestive motivation 保留。 Phase transition 作为 Claim 3 bonus insight 增加 novelty 上限。 三个 contribution 按原计划呈现：(1) mask pattern quality > gradient coupling, (2) SPON orthogonality, (3) sparsity regime phase transition。
+
+
+基于以上定义，对 experiment_plan 中每个 planned 实验展开详细数据。
+每条预测都必须给出 result_rationale —— 解释为什么在这个档位下会得到这样的结果。
+
+# Project context
+project: distill_sparse_swiglu
+focus: 测试论文 reframe 为 'mask pattern discovery' 叙事的接收度。核心变化：Contribution 1 从 gradient coupling 转为 optimization target quality / mask pattern divergence。§3.6 gradient analysis 降为 suggestive motivation。C1 ablation 变成 paper 核心实验。53% mask divergence 作为新发现。目标 4.0 Main Conference accept。
+
+## paper_framing.md
+
+# Paper Framing — distill_sparse_swiglu
+
+## Target Venue
+- Primary: EMNLP 2026 Main (ARR May 2026 cycle)
+- Deadline: 2026-05-25 (ARR submission)
+- Track: Efficient Methods for NLP
+
+## Core Claims
+
+1. **KL-trained sparsity predictors eliminate the need for error compensation networks**: At 50% model-level sparsity on SwiGLU LLMs, a KL-trained contextual predictor (no compensation) matches or exceeds BCE+compensation quality (FastForward-style), eliminating 67.2M compensation parameters (~256MB, 32 layers × bottleneck MLP) and per-layer GEMV overhead at inference. All quality comparisons must be presented alongside inference cost (params, FLOPs, latency) to prevent "unfair comparison" attacks. **Iso-compute evidence (eval_bce_v3_s42)**: with 2.71× more gradient updates, BCE TEAL PPL=27.97 vs KL=12.00 (2.33× gap persists), and BCE loss saturates (step 500→2700: Δ=-0.006). The advantage is structural: BCE optimizes per-neuron binary classification, but inference uses global top-k budget allocation — per-neuron scoring is suboptimal under global reallocation. KL directly optimizes output distribution, naturally compatible with any allocation strategy. (Headline claim)
+
+2. **SPON's static correction is orthogonal to KL and too weak to complement it**: Logit-space decomposition (plan_005) shows SPON's bias correction is near-orthogonal to KL's mask effect (cos_sim=0.196, per-layer ≤0) with only 15.8% relative magnitude. Cross-layer interaction is non-trivial (30.6%) but PPL recovery remains modest (7.3%, 0.23 PPL). Rather than KL "subsuming" SPON, the two target different error components—but SPON's component is too small to provide meaningful complementary benefit. Strengthens Claim 1: static correction is not just redundant but irrelevant to the dominant error mode that KL addresses. (Evidence: plan_005_subsumption_s42, spon_2048_s42, D009, D010)
+
+3. **Sparsity regime determines whether allocation or capacity is the bottleneck (phase transition finding)**: Empirical discovery from D030 uniform allocation experiments reveals a qualitative phase transition, not the originally predicted quadratic scaling. At ≤30% sparsity, global top-k causes high seed-to-seed variance in downstream metrics due to per-layer allocation imbalance (uniform allocation stabilizes MMLU: σ drops from 9.5pp to 1.3pp across 3 seeds, mean 40.7% vs TEAL's 38.6%). At ≥50%, model capacity itself is insufficient — no allocation strategy can recover (uniform MMLU=27.8%≈random). The transition reveals three distinct regimes with non-monotonic allocation preference: (1) **Budget-surplus regime (≤30%)**: uniform allocation reduces seed-to-seed instability by 7.5× (σ: 1.3pp vs 9.5pp across 3 seeds), stabilizing downstream performance (3-seed mean MMLU: 40.7±1.3pp uniform vs 35.7±9.5pp global); (2) **Budget-constrained regime (~40%)**: learned allocation outperforms blind uniformity — MMLU 38.1% (global) vs 30.7% (uniform), +7.4pp — the predictor's learned priorities become valuable when budget is tight; (3) **Capacity-cliff regime (≥50%)**: allocation irrelevant, both collapse to ~28% ≈ random. Recommended operating point (8B-validated): 30% sparsity with uniform allocation. At 30%, KL uniform dominates on the efficiency-quality Pareto frontier: PPL 8.82 vs TEAL 10.97 (−19.6%), with comparable-to-better downstream (MMLU +2.0pp, WG +2.5pp; ARC-c −1.5pp, GSM8K −0.5pp within noise). The advantage is primarily in PPL and knowledge-intensive tasks, not uniform across all benchmarks. **14B scale-dependent caveat (D054)**: At Qwen-2.5-14B 50% sparsity, uniform allocation does NOT fix KL's MMLU gap (64.49% uniform vs 63.72% global, only +0.77pp; TEAL global=71.83%). The 8B allocation-dependent pattern does not generalize to 14B. This is a valuable negative finding revealing loss × allocation × scale three-way interaction. 14B claim scope: KL PPL advantage preserved (7.62 vs 8.73 TEAL), but downstream MMLU gap persists regardless of allocation. The non-monotonic allocation preference (uniform@30% → global@40% → irrelevant@50%) provides mechanistic insight: at generous budgets, ensuring no layer is starved matters most; at tight budgets, the predictor's learned cross-layer priorities add value; at catastrophic budgets, capacity itself is the binding constraint. The failure mode changes qualitatively: allocation-fixable (≤30%) vs capacity-limited (≥50%). PPL non-monotonicity (40%=8.36 < 30%=8.82) while downstream is strictly monotonic further supports "PPL is a poor proxy for downstream quality" narrative. This yields a practical deployment guideline and a mechanistic understanding of when/why sparse inference degrades. (Evidence: d030_kl30_uniform, d030_kl50_uniform, d030_kl40_uniform, bench_teal30, bench_teal50, bench_kl30_global, bench_kl50_global, lm_eval downstream series)
+
+## Story Spine
+
+- **Problem**: SwiGLU activation sparsity enables 40-60% neuron pruning at inference, but training-free heuristics (WINA/TEAL) leave a 6+ point quality gap, while learned BCE predictors require auxiliary compensation networks adding ~256MB overhead (FastForward).
+
+- **Existing approaches & gaps**: (a) Training-free (WINA, TEAL, R-Sparse): no training cost, but quality gap too large for deployment. (b) Static learned (SPON): zero-overhead bias correction via KL distillation, but input-independent — cannot adapt to per-input neuron importance. (c) Contextual learned (FastForward): BCE predictor + compensation MLP, near-dense quality but inference overhead from compensation network. Gap: no prior work trains the contextual predictor itself with KL, and no work quantifies how much static correction remains useful once a coupled-loss contextual predictor is in place.
+
+- **Our framing / headline question**: "Does output-distribution distillation (KL) make error compensation unnecessary for contextual sparsity prediction?" The theoretical grounding: BCE gradient dL_BCE/ds_j depends only on neuron j (factorized), while KL gradient dL_KL/ds_j couples all active neurons through d_logits/dh * dh/dm — a mathematical property of the gradient structure, not an analogy. This means KL captures joint interaction effects that BCE misses, especially at high sparsity.
+
+- **Headline result template**: "On [benchmarks], a KL-trained predictor at 50% model-level sparsity achieves [X] quality (within [Y]% of dense) without compensation, while BCE+compensation achieves [Z] quality but adds 67.2M parameters ([W] ms/token overhead) — demonstrating that output-distribution distillation renders error compensation unnecessary—SPON's residual correction is orthogonal to KL's dominant effect and too weak to complement it—enabling a simpler, lighter inference pipeline with strictly better efficiency-quality tradeoff."
+
+## Two-Dimensional Taxonomy (Conceptual Contribution)
+
+|                          | Decomposed (BCE) | Intermediate (MSE) | Coupled (KL) |
+|--------------------------|:-----------------:|:-------------------:|:-------------:|
+| Static                   | —                 | —                   | SPON          |
+| Per-layer                | —                 | ShadowLLM           | —             |
+| Per-token contextual     | FastForward       | —                   | **Ours**      |
+
+Positions prior work and ours on two axes: correction granularity (static -> per-token) x training signal coupling (decomposed/BCE -> coupled/KL). Highlights the empty cell we fill.
+
+## Anticipated Reviewer Concerns
+
+1. **"Incremental / no new algorithm"**: Mitigate with formal decomposition framework, quantitative s^2 prediction, and comprehensive four-quadrant outcome analysis showing all results are informative.
+
+2. **"KL wins only because more compute"**: **Fully addressed** by iso-compute ablation (eval_bce_v3_s42): BCE with 2.71× more FLOPs → TEAL PPL=27.97 vs KL=12.00 (2.33× gap). BCE loss saturates, confirming structural mismatch not compute deficit.
+
+3. **"Gumbel-sigmoid relaxation, not KL, explains gains"**: Addressed by STE baseline (plan_002) isolating loss function contribution.
+
+4. **"Single model / limited generalization"**: Addressed by Mistral-7B-v0.3 (plan_009, GQA + sliding window) and Qwen-2.5-14B cross-scale validation (D048/D054). **14B mixed result**: KL PPL advantage preserved (7.62 vs TEAL 8.73, 1.47× dense ratio identical to 8B), but KL MMLU=63.72% (global) / 64.49% (uniform) significantly trails TEAL 71.83% (global). Uniform allocation does not fix this gap (D054). PPL-downstream disconnect at 14B scale is an honest limitation, not hidden. Framing: KL's coupled gradient captures output-distribution fidelity (PPL) across scales, but 14B knowledge-intensive tasks (MMLU) show scale-dependent sensitivity that warrants further investigation.
+
+5. **"Effect size may not hold on downstream tasks"**: Core defense: PPL + 4 discriminative tasks (ARC-c, WinoGrande, MMLU, GSM8K) under unified few-shot protocol across all conditions. LongBench (P1, if GPU budget allows) strengthens long-context coverage. MT-Bench deferred unless time permits — requires external LLM API for judging.
+
+6. **"Unfair comparison: BCE+comp close to KL but at higher inference cost"**: All result tables and figures must co-report quality AND inference cost (compensation params, per-token FLOPs, end-to-end latency). Efficiency-accuracy Pareto frontier (plan_007) is the definitive visualization. Even if BCE+comp matches KL on PPL, KL wins on the Pareto frontier — that IS the claim.
+
+## Venue Fit
+- EMNLP Efficient Methods track: strong fit for activation sparsity + distillation
+- NLP-specific evaluation (LongBench long-context, MT-Bench multi-turn) strengthens EMNLP fit vs pure systems venue
+- Novelty ceiling acknowledged: contribution is systematic composition + rigorous ablation, not new architecture
+
+
+## experiment_plan (with registry status)
+
+- id: plan_001
+  claim: 1
+  description: 'Four-condition ablation @ 50% model-level sparsity on Llama 3.1 8B:
+    (a) BCE-only, (b) BCE+compensation, (c) KL-only, (d) KL+compensation. Headline
+    comparison: KL-only vs BCE+comp (5 seeds each). Secondary comparisons: 3 seeds
+    each. MVP already completed KL-only 3 seeds (mvp_kl_norm_v2_s42/s123/s456) and
+    BCE-only 3 seeds (mvp_bce_s42/s123/s456).
+
+    '
+  priority: P0
+  gpu_budget_hours: 48
+  deps: []
+  registry_ids:
+  - mvp_kl_norm_v2_s42
+  - mvp_kl_norm_v2_s123
+  - mvp_kl_norm_v2_s456
+  - mvp_bce_s42
+  - mvp_bce_s123
+  - mvp_bce_s456
+  remaining_runs:
+  - KL-only 2 additional seeds (s0, s1) for 5-seed headline
+  - BCE+comp 5 seeds (s42, s123, s456, s0, s1)
+  - KL+comp 3 seeds (s42, s123, s456)
+  registry_id: kl_only_s1
+  status: DONE
+  conclusion: success
+  metrics:
+    true_dense_ppl: 6.12
+    predictor_hard_mask_ppl: 9.15
+    teal_sparse_ppl: 11.99
+    model_level_sparsity: 0.498
+    ppl_increase_vs_true_dense_pct: 96
+- id: plan_002
+  claim: 1
+  description: 'STE baseline: KL loss + Straight-Through Estimator (instead of Gumbel-sigmoid).
+    Isolates whether KL advantage comes from loss function or relaxation method. 3
+    seeds.
+
+    '
+  priority: P0
+  gpu_budget_hours: 10
+  deps:
+  - plan_001
+  registry_id: ste_baseline_s42
+  status: DONE
+  conclusion: success
+  metrics:
+    true_dense_ppl: 6.12
+    predictor_hard_mask_ppl: 8.18
+    teal_sparse_ppl: 15.77
+    model_level_sparsity: 0.47
+    ppl_increase_vs_true_dense_pct: 157.7
+    eval_seq_len: 2048
+    calibration_samples: 32
+    eval_dataset: wikitext-2
+    per_token_sparsity: 0.47
+    lambda_stats:
+      steps_70_130_mean: 66.4
+      steps_70_130_std: 94.87
+      first_500_mean: 688.07
+      first_500_std: 440.57
+      last_500_mean: 965.69
+      last_500_std: 141.59
+      overall_mean: 826.88
+      overall_std: 354.23
+- id: plan_003
+  claim: 1
+  description: 'Iso-compute comparison: extend BCE training to match KL total FLOPs
+    (KL requires full forward pass for output logits, BCE can use cached targets).
+    Report per-step FLOPs and total training time for both. 3 seeds.
+
+    '
+  priority: P0
+  gpu_budget_hours: 10
+  deps:
+  - plan_001
+  registry_id: bce_isocompute_v2_s42
+  status: DONE
+  conclusion: success
+  metrics:
+    final_loss: 0.6637
+    final_bce_loss: 0.6586
+    final_reg_loss: 0.0051
+    final_sparsity: 0.502
+    training_steps: 1000
+    training_time_sec: 1047.8
+    reg_weight: 2
+    true_dense_ppl: 6.12
+    predictor_hard_mask_ppl: 26.76
+    teal_sparse_ppl: 54.84
+    eval_seq_len: 2048
+    eval_dataset: wikitext-2
+- id: plan_004
+  claim: 2
+  description: 'SPON reimplementation on Llama 3.1 8B: learnable bias vectors + KL
+    training. Validate by reproducing SPON published results on 5 QA benchmarks (ARC-c,
+    ARC-e, BoolQ, PIQA, WinoGrande) before composition experiment.
+
+    '
+  priority: P0
+  gpu_budget_hours: 8
+  deps: []
+  registry_id: spon_2048_s42
+  status: DONE
+  conclusion: negative
+  metrics:
+    true_dense_ppl: 6.1173
+    predictor_hard_mask_ppl: 9.2165
+    spon_sparse_ppl: 8.991
+    spon_recovery_pct: 7.3
+    ppl_improvement_from_spon: 0.2255
+    mean_bias_norm: 0.05312
+    max_bias_norm: 0.065918
+    model_level_sparsity: 0.498
+    eval_seq_len: 2048
+    training_seq_len: 2048
+    eval_samples: 141
+    trainable_params: 458752
+    trainable_pct: 0.0057
+    training_steps: 1000
+    final_loss: 0.377
+    dense_with_spon_ppl: 6.1823
+    dense_ppl_degradation: 0.0651
+    teal_sparse_no_spon_ppl: 12.0776
+    teal_sparse_with_spon_ppl: 11.7907
+    spon_recovery_teal_pct: 4.8
+    teal_sparsity: 0.4979
+- id: plan_005
+  claim: 2
+  description: 'SPON subsumption verification: output-space linearity test showing
+    KL predictor already captures SPON correction signal. ||Delta_logits(s+c) - Delta_logits(s)
+    - Delta_logits(c)|| vs individual magnitudes. Per-layer orthogonality analysis.
+    Proves SPON+KL ≈ KL (no additive gain). 3 seeds.
+
+    '
+  priority: P0
+  gpu_budget_hours: 8
+  deps:
+  - plan_001
+  - plan_004
+  registry_id: plan_005_subsumption_s42
+  status: DONE
+  conclusion: success
+  metrics:
+    linearity_ratio: 0.2644
+    linearity_ratio_std: 0.0073
+    magnitude_ratio: 0.1578
+    magnitude_ratio_std: 0.0088
+    cosine_similarity: 0.1962
+    cosine_similarity_std: 0.0268
+    predictor_effect_norm: 482.65
+    spon_correction_norm: 76.2
+    interaction_norm: 147.74
+    num_samples: 50
+    seq_len: 2048
+    conclusion_type: weak_subsumption
+- id: plan_006
+  claim: 1
+  description: 'Training-free baselines @ 50% model-level sparsity on Llama 3.1 8B:
+    TEAL (magnitude pruning + greedy allocation), WINA (weight-informed scoring),
+    R-Sparse (rank-aware scoring). Establishes three-tier comparison: training-free
+    < static-learned < contextual-learned.
+
+    '
+  priority: P0
+  gpu_budget_hours: 6
+  deps: []
+  registry_ids:
+  - training_free_baselines
+  - training_free_wina_greedy
+  registry_id: training_free_baselines
+  status: DONE
+  conclusion: success
+  metrics:
+    dense_ppl: 6.12
+    vanilla_teal_global_ppl_30pct: 10.97
+    vanilla_teal_global_ppl_50pct: 23.31
+    vanilla_teal_global_ppl_70pct: 100.11
+    wina_global_ppl_30pct: 11.45
+    wina_global_ppl_50pct: 27.93
+    wina_global_ppl_70pct: 137.24
+    uniform_50pct_ppl: 23.9
+    teal_greedy_ppl: 33.47
+    vanilla_teal_global_ppl: 23.31
+    wina_global_ppl: 27.93
+    rsparse_global_ppl: 151.2
+- id: plan_007
+  claim:
+  - 1
+  - 2
+  - 3
+  description: 'Full benchmark evaluation of all conditions on Llama 3.1 8B: WikiText-2
+    PPL, C4 PPL, ARC-c, WinoGrande, MMLU, GSM8K, HumanEval. Wall-clock profiling (predictor
+    overhead, sparse GEMV savings, end-to-end latency). Efficiency-accuracy Pareto
+    frontier plot.
+
+    '
+  priority: P0
+  gpu_budget_hours: 24
+  deps:
+  - plan_001
+  - plan_004
+  - plan_005
+  - plan_006
+  registry_id: bench_dense
+  status: DONE
+  conclusion: success
+  metrics:
+    wikitext2_ppl: 6.1173
+    arc_challenge_acc: 0.5478
+    arc_challenge_acc_norm: 0.5828
+    winogrande_acc: 0.7806
+    mmlu_acc: 0.6527
+    gsm8k_exact_match: 0.4875
+- id: plan_008
+  claim: 3
+  description: '3-level sparsity sweep (30%/50%/70%): KL-only vs BCE-only. Test scaling
+    trend and KL-BCE delta growth. 1 seed per level (sweep analysis, not headline).
+    50% data point reused from plan_001. If 3 levels show non-linear inflection, add
+    intermediate points.
+
+    '
+  priority: P1
+  gpu_budget_hours: 12
+  deps:
+  - plan_001
+  registry_id: d030_kl50_uniform
+  status: DONE
+  conclusion: success
+  metrics:
+    wikitext2_ppl: 11.96
+    arc_challenge_acc_norm: 0.3276
+    winogrande_acc: 0.629
+    mmlu_acc: 0.2777
+    gsm8k_exact_match: 0.0212
+    actual_sparsity: 0.5
+    allocation: uniform
+    per_layer_sparsity: uniform 0.500 across all 32 layers
+    mmlu_change_vs_global: +1.86pp (0.2591 → 0.2777, not significant)
+    gsm8k_change_vs_global: +0.91pp (0.0121 → 0.0212, not significant)
+    conclusion_note: 50% uniform 未能修复 MMLU/GSM8K collapse. Uniform allocation 的修复效应在
+      50% sparsity 下消失。
+- id: plan_009
+  claim: 1
+  description: 'Mistral-7B-v0.3 generalization validation. KL-only vs BCE+comp @ 50%
+    model-level sparsity. Core benchmarks only: WikiText-2 PPL, ARC-c, MMLU. 3 seeds
+    each condition.
+
+    '
+  priority: P1
+  gpu_budget_hours: 24
+  deps:
+  - plan_001
+  registry_id: lm_eval_mistral_dense
+  status: DONE
+  conclusion: success
+  metrics:
+    arc_challenge_acc_norm: 0.6024
+    winogrande_acc: 0.7869
+    mmlu_acc: 0.6244
+    gsm8k_exact_match: 0.3654
+    model: Mistral-7B-v0.3
+    condition: dense
+    server: westd-34887
+- id: plan_010
+  claim:
+  - 1
+  - 2
+  description: 'LongBench English subset evaluation (4K-32K tokens). All conditions
+    (KL-only, BCE+comp, SPON, SPON+KL, training-free baselines). Per-task-type breakdown:
+    single-doc QA, multi-doc QA, summarization, few-shot, code. Tests predictor generalization
+    beyond short training sequences.
+
+    '
+  priority: P1
+  gpu_budget_hours: 16
+  deps:
+  - plan_001
+  - plan_005
+  status: planned
+- id: plan_011
+  claim:
+  - 1
+  - 2
+  description: 'MT-Bench evaluation with GPT-4o judge. 80 multi-turn questions, 8
+    categories. All conditions. Tests instruction-following quality under sparsity.
+
+    '
+  priority: P2
+  gpu_budget_hours: 4
+  deps:
+  - plan_001
+  - plan_005
+  status: planned
+- id: plan_012
+  claim: 3
+  description: 'RULER synthetic long-context evaluation (4K, 16K) x 3 representative
+    task types. Fine-grained capability diagnostics complementing LongBench.
+
+    '
+  priority: P2
+  gpu_budget_hours: 8
+  deps:
+  - plan_010
+  status: planned
+
+
+## registry (completed experiments)
+
+- exp_id: mvp_kl_s42
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    final_total_loss: 3.3438
+    final_kl_loss: 3.2969
+    final_reg_loss: 0.05
+    final_sparsity: 0
+    steps: 1000
+    tau_final: 0.1
+    wikitext2_ppl_dense: 6.12
+    wikitext2_ppl_sparse: 455.93
+    wikitext2_ppl_increase_pct: 7349
+    model_level_sparsity: 0.372
+    checkpoint_path: /root/distill_sparse_swiglu/checkpoints/mvp_kl_s42/predictor_kl.pt
+- exp_id: mvp_kl_s123
+  name: ''
+  status: DONE
+  conclusion: killed
+  metrics: {}
+- exp_id: mvp_kl_s456
+  name: ''
+  status: DONE
+  conclusion: killed
+  metrics: {}
+- exp_id: mvp_bce_s42
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    true_dense_ppl: 6.1173
+    predictor_hard_mask_ppl: 27.9603
+    teal_sparse_ppl: 44.537
+    model_level_sparsity: 0.4957
+    ppl_increase_vs_true_dense_pct: 628
+    eval_md5: f4086818bb55dc354ea4c6fe8ed8899a
+    calibration_samples: 32
+    vanilla_teal_sparse_ppl_INVALID: 66036.4062
+- exp_id: mvp_bce_s123
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    true_dense_ppl: 6.1173
+    predictor_hard_mask_ppl: 28.3817
+    teal_sparse_ppl: 44.5864
+    model_level_sparsity: 0.4957
+    ppl_increase_vs_true_dense_pct: 629
+    eval_md5: f4086818bb55dc354ea4c6fe8ed8899a
+    calibration_samples: 32
+    vanilla_teal_sparse_ppl_INVALID: 66036.4062
+- exp_id: mvp_bce_s456
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    true_dense_ppl: 6.1173
+    predictor_hard_mask_ppl: 28.1437
+    teal_sparse_ppl: 43.033
+    model_level_sparsity: 0.4957
+    ppl_increase_vs_true_dense_pct: 603.3
+    eval_md5: f4086818bb55dc354ea4c6fe8ed8899a
+    calibration_samples: 32
+    vanilla_teal_sparse_ppl_INVALID: 66036.4062
+- exp_id: kl_lagrangian_quicktest
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    final_kl_loss: 418
+    final_constraint_loss: 1.211
+    final_sparsity: 0.141
+    final_lambda: 5.06
+    steps: 200
+    sparsity_trajectory:
+    - 0.406
+    - 0.387
+    - 0.289
+    - 0.168
+    - 0.141
+- exp_id: kl_lagrangian_v2
+  name: ''
+  status: PREPARING
+  conclusion: killed
+  metrics: {}
+- exp_id: kl_normalized_quicktest
+  name: ''
+  status: DONE
+  conclusion: failed
+  metrics:
+    step1_kl: 1.18
+    step200_kl: 0.641
+    step200_sparsity: 0.504
+    final_lambda: 8
+    sparsity_converged_step: 80
+    sparsity_trajectory:
+    - 0.406
+    - 0.398
+    - 0.398
+    - 0.457
+    - 0.52
+    - 0.506
+    - 0.504
+    - 0.504
+    lambda_trajectory:
+    - 1
+    - 2
+    - 4
+    - 8
+    - 8
+    - 8
+    - 8
+    - 8
+- exp_id: mvp_kl_norm_s42
+  name: ''
+  status: DONE
+  conclusion: failed
+  metrics: {}
+- exp_id: mvp_kl_norm_s123
+  name: ''
+  status: DONE
+  conclusion: failed
+  metrics: {}
+- exp_id: mvp_kl_norm_s456
+  name: ''
+  status: PREPARING
+  conclusion: killed
+  metrics: {}
+- exp_id: kl_norm_v3_quicktest
+  name: ''
+  status: PREPARING
+  conclusion: killed
+  metrics:
+    step1_kl_raw: 1.1797
+    step1_kl_norm: 1.1797
+    step1_sparsity: 0.406
+    step1_lambda: 2
+    step50_kl_raw: 0.7344
+    step50_kl_norm: 0.7344
+    step50_sparsity: 0.514
+    step50_lambda: 1.95
+    step100_kl_raw: 0.625
+    step100_kl_norm: 0.625
+    step100_sparsity: 0.496
+    step100_lambda: 1000
+    step150_kl_raw: 0.5703
+    step150_kl_norm: 0.5703
+    step150_sparsity: 0.48
+    step150_lambda: 1000
+    step200_kl_raw: 0.6836
+    step200_kl_norm: 0.6836
+    step200_sparsity: 0.477
+    step200_lambda: 1000
+    step200_constraint: 0.01178
+    kl_trend: decreasing (1.18→0.57 min, uptick to 0.68 at end)
+    sparsity_range: 0.477-0.514 after step 50
+    checkpoint_path: /root/distill_sparse_swiglu/checkpoints/kl_norm_v3_quicktest/predictor_kl_normalized.pt
+- exp_id: mvp_kl_norm_v2_s42
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    true_dense_ppl: 6.1173
+    predictor_hard_mask_ppl: 9.2142
+    teal_sparse_ppl: 12.0776
+    model_level_sparsity: 0.4979
+    ppl_increase_vs_true_dense_pct: 97.4
+    eval_md5: f4086818bb55dc354ea4c6fe8ed8899a
+    calibration_samples: 32
+    vanilla_teal_sparse_ppl_INVALID: 66036.4062
+- exp_id: mvp_kl_norm_v2_s123
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    true_dense_ppl: 6.1173
+    predictor_hard_mask_ppl: 9.2474
+    teal_sparse_ppl: 11.9128
+    model_level_sparsity: 0.4979
+    ppl_increase_vs_true_dense_pct: 94.7
+    eval_md5: f4086818bb55dc354ea4c6fe8ed8899a
+    calibration_samples: 32
+    vanilla_teal_sparse_ppl_INVALID: 66036.4062
+- exp_id: mvp_kl_norm_v2_s456
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    true_dense_ppl: 6.1173
+    predictor_hard_mask_ppl: 9.14
+    teal_sparse_ppl: 13.58
+    model_level_sparsity: 0.498
+    ppl_increase_vs_true_dense_pct: 121.9
+    eval_md5: f4086818bb55dc354ea4c6fe8ed8899a
+    calibration_samples: 32
+    vanilla_teal_sparse_ppl_INVALID: 66036.4062
+- exp_id: kl_only_s0
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    true_dense_ppl: 6.12
+    predictor_hard_mask_ppl: 9.19
+    teal_sparse_ppl: 12.03
+    model_level_sparsity: 0.499
+    ppl_increase_vs_true_dense_pct: 96.57
+    eval_seq_len: 2048
+    calibration_samples: 32
+- exp_id: kl_only_s1
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    true_dense_ppl: 6.12
+    predictor_hard_mask_ppl: 9.15
+    teal_sparse_ppl: 11.99
+    model_level_sparsity: 0.498
+    ppl_increase_vs_true_dense_pct: 96
+- exp_id: spon_training
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    true_dense_ppl: 6.1193
+    predictor_hard_mask_ppl: 9.2165
+    spon_sparse_ppl: 9.0977
+    spon_recovery_pct: 3.8
+    ppl_improvement_from_spon: 0.1188
+    ppl_increase_vs_true_dense_pct: 48.7
+    ppl_increase_no_spon_vs_true_dense_pct: 50.6
+    mean_bias_norm: 0.040596
+    max_bias_norm: 0.054199
+    teal_sparse_ppl: 12.08
+    teal_with_spon_ppl: 11.93
+    spon_dense_ppl_degradation: 6.19
+    model_level_sparsity: 0.5
+    eval_seq_len: 2048
+    eval_samples: 141
+    trainable_params: 458752
+    trainable_pct: 0.0057
+- exp_id: spon_kl_s42
+  name: ''
+  status: PREPARING
+  conclusion: killed
+  metrics: {}
+- exp_id: bce_comp_staged_s42
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    true_dense_ppl: 6.12
+    predictor_hard_mask_ppl: 25.44
+    predictor_hard_mask_ppl_no_comp: 27.96
+    teal_sparse_ppl: 44.54
+    model_level_sparsity: 0.558
+    ppl_increase_vs_true_dense_pct: 315.7
+    comp_loss_final: 0.0033
+    bce_loss_final: 0.6379
+    eval_seq_len: 2048
+    calibration_samples: 32
+- exp_id: training_free_baselines
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    dense_ppl: 6.12
+    vanilla_teal_global_ppl_30pct: 10.97
+    vanilla_teal_global_ppl_50pct: 23.31
+    vanilla_teal_global_ppl_70pct: 100.11
+    wina_global_ppl_30pct: 11.45
+    wina_global_ppl_50pct: 27.93
+    wina_global_ppl_70pct: 137.24
+    uniform_50pct_ppl: 23.9
+    teal_greedy_ppl: 33.47
+    vanilla_teal_global_ppl: 23.31
+    wina_global_ppl: 27.93
+    rsparse_global_ppl: 151.2
+- exp_id: spon_training_seq2048
+  name: ''
+  status: DONE
+  conclusion: killed
+  metrics: {}
+- exp_id: ste_baseline_s42
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    true_dense_ppl: 6.12
+    predictor_hard_mask_ppl: 8.18
+    teal_sparse_ppl: 15.77
+    model_level_sparsity: 0.47
+    ppl_increase_vs_true_dense_pct: 157.7
+    eval_seq_len: 2048
+    calibration_samples: 32
+    eval_dataset: wikitext-2
+    per_token_sparsity: 0.47
+    lambda_stats:
+      steps_70_130_mean: 66.4
+      steps_70_130_std: 94.87
+      first_500_mean: 688.07
+      first_500_std: 440.57
+      last_500_mean: 965.69
+      last_500_std: 141.59
+      overall_mean: 826.88
+      overall_std: 354.23
+- exp_id: spon_2048_s42
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    true_dense_ppl: 6.1173
+    predictor_hard_mask_ppl: 9.2165
+    spon_sparse_ppl: 8.991
+    spon_recovery_pct: 7.3
+    ppl_improvement_from_spon: 0.2255
+    mean_bias_norm: 0.05312
+    max_bias_norm: 0.065918
+    model_level_sparsity: 0.498
+    eval_seq_len: 2048
+    training_seq_len: 2048
+    eval_samples: 141
+    trainable_params: 458752
+    trainable_pct: 0.0057
+    training_steps: 1000
+    final_loss: 0.377
+    dense_with_spon_ppl: 6.1823
+    dense_ppl_degradation: 0.0651
+    teal_sparse_no_spon_ppl: 12.0776
+    teal_sparse_with_spon_ppl: 11.7907
+    spon_recovery_teal_pct: 4.8
+    teal_sparsity: 0.4979
+- exp_id: ste_kl_s42
+  name: ''
+  status: DONE
+  conclusion: killed
+  metrics: {}
+- exp_id: training_free_wina_greedy
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    wina_greedy_ppl: 2126.03
+    dense_ppl: 6.12
+    model_level_sparsity: 0.5
+    eval_dataset: WikiText-2
+    eval_seq_len: 2048
+    greedy_allocation_summary: 'layers 0-11: 0.90, layer 12: 0.85, layer 13: 0.80,
+      layer 14: 0.70, layers 15-16: 0.50-0.55, layers 17-20: 0.30-0.35, layers 21-24:
+      0.05-0.15, layers 25-31: 0.00'
+- exp_id: bce_isocompute_s42
+  name: ''
+  status: DONE
+  conclusion: failed
+  metrics: {}
+- exp_id: eval_spon_supp_retry
+  name: ''
+  status: DONE
+  conclusion: failed
+  metrics: {}
+- exp_id: bce_isocompute_s42_v2
+  name: ''
+  status: DONE
+  conclusion: killed
+  metrics: {}
+- exp_id: spon_supp_eval_retry
+  name: ''
+  status: DONE
+  conclusion: failed
+  metrics: {}
+- exp_id: bce_isocompute_v2_s42
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    final_loss: 0.6637
+    final_bce_loss: 0.6586
+    final_reg_loss: 0.0051
+    final_sparsity: 0.502
+    training_steps: 1000
+    training_time_sec: 1047.8
+    reg_weight: 2
+    true_dense_ppl: 6.12
+    predictor_hard_mask_ppl: 26.76
+    teal_sparse_ppl: 54.84
+    eval_seq_len: 2048
+    eval_dataset: wikitext-2
+- exp_id: plan_005_subsumption_s42
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    linearity_ratio: 0.2644
+    linearity_ratio_std: 0.0073
+    magnitude_ratio: 0.1578
+    magnitude_ratio_std: 0.0088
+    cosine_similarity: 0.1962
+    cosine_similarity_std: 0.0268
+    predictor_effect_norm: 482.65
+    spon_correction_norm: 76.2
+    interaction_norm: 147.74
+    num_samples: 50
+    seq_len: 2048
+    conclusion_type: weak_subsumption
+- exp_id: kl_sparsity30_s42
+  name: ''
+  status: DONE
+  conclusion: killed
+  metrics: {}
+- exp_id: kl_sparsity70_s42
+  name: ''
+  status: DONE
+  conclusion: killed
+  metrics: {}
+- exp_id: kl_sparsity30_s42_v2
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    final_loss: 0.1465
+    kl_normalized: 0.1465
+    kl_raw: 0.1465
+    model_level_sparsity: 0.281
+    sparsity_target: 0.3
+    lambda_sparse_final: 1000
+    lambda_max_cap: 1000
+    tau_final: 0.1
+    constraint_loss_final: 0
+    training_steps: 1000
+    wall_clock_seconds: 2662.6
+    gpu_hours: 0.74
+    note: No PPL evaluation in training script. Sparsity stuck at 0.281 (same as v1).
+      Lambda hit cap=1000 by step 220 and could not push sparsity further. W&B run
+      was offline (not synced).
+- exp_id: kl_sparsity70_s42_v2
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    true_dense_ppl: 6.12
+    predictor_hard_mask_ppl: 13.84
+    predictor_teal_sparse_ppl: 17.91
+    vanilla_teal_sparse_ppl: 100.11
+    teal_sparse_ppl: 17.91
+    teal_sparse_ppl_static_baseline: 17.91
+    model_level_sparsity: 0.7
+    teal_sparse_note: '17.91 = predictor-based TEAL (teal_global_masks: predictor-gated
+      magnitude scoring + global topk @70%). vanilla TEAL @70% = 100.11. 代码来源: quick_sp70.py
+      L10 imports teal_global_masks, L60 调用. plan_007_all_ppl_fixed.json 的 mode=static_mask_70pct
+      metadata 有误导性.'
+    eval_dataset: wikitext-2
+    eval_seq_len: 2048
+    calibration_samples: 32
+    per_layer_sparsity_range:
+    - 0.508
+    - 0.876
+- exp_id: kl_sparsity30_s42_v3
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    loss: 0.165
+    kl_normalized: 0.165
+    kl_raw: 0.165
+    sparsity: 0.285
+    lambda_sparse: 5000
+    tau: 0.1
+    constraint_loss: 0
+    steps: 1000
+    true_dense_ppl: 6.12
+    predictor_hard_mask_ppl: 7.3
+    teal_sparse_ppl: 8.98
+    teal_sparse_ppl_note: 已通过 eval_kl30_teal_30pct 独立验证 (sparsity_target=0.3, D034)
+    model_level_sparsity: 0.3
+    eval_dataset: wikitext-2
+    eval_seq_len: 2048
+- exp_id: mistral_kl_s42
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    train_final_loss: 0.2188
+    train_final_kl_raw: 0.2188
+    train_final_kl_norm: 0.2188
+    train_final_constraint: 0
+    train_final_sparsity: 0.48
+    train_final_lambda: 1000
+    train_final_tau: 0.1
+    train_steps_completed: 1000
+    true_dense_ppl: 5.52
+    predictor_hard_mask_ppl: 7.3
+    teal_sparse_ppl: 8.98
+    model_level_sparsity: 0.5
+    eval_dataset: wikitext-2
+    eval_seq_len: 2048
+    calibration_samples: 32
+    eval_samples: 159
+- exp_id: lm_eval_dense_test
+  name: ''
+  status: DONE
+  conclusion: failed
+  metrics: {}
+- exp_id: lm_eval_kl_s42
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    arc_challenge_acc_norm: 0.3771
+    winogrande_acc: 0.6156
+    mmlu_acc: 0.2591
+    gsm8k_exact_match: 0.0121
+    eval_tasks:
+    - arc_challenge
+    - winogrande
+    - mmlu
+    - gsm8k
+    model: llama-3.1-8b
+    condition: kl_sparse_50pct
+    server: westd-34887
+    exit_code: 129
+    wall_time_sec: 3010
+    flag: SUSPECT — gsm8k 0.50→0.01 catastrophic drop; PID 179918 rerunning with lm_eval_sparse.py
+- exp_id: lm_eval_dense
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    arc_challenge_acc_norm: 0.5819
+    winogrande_acc: 0.7814
+    mmlu_acc: 0.6532
+    gsm8k_exact_match: 0.5004
+    eval_tasks:
+    - arc_challenge
+    - winogrande
+    - mmlu
+    - gsm8k
+    model: llama-3.1-8b
+    condition: dense
+    server: westd-34887
+- exp_id: lm_eval_mistral_downstream
+  name: ''
+  status: DONE
+  conclusion: failed
+  metrics: {}
+- exp_id: lm_eval_mistral_dense
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    arc_challenge_acc_norm: 0.6024
+    winogrande_acc: 0.7869
+    mmlu_acc: 0.6244
+    gsm8k_exact_match: 0.3654
+    model: Mistral-7B-v0.3
+    condition: dense
+    server: westd-34887
+- exp_id: diag_30pct_downstream
+  name: ''
+  status: PREPARING
+  conclusion: killed
+  metrics: {}
+- exp_id: diag_gsm8k_gencomp
+  name: ''
+  status: PREPARING
+  conclusion: killed
+  metrics: {}
+- exp_id: diag_teal_downstream
+  name: ''
+  status: PREPARING
+  conclusion: killed
+  metrics: {}
+- exp_id: lm_eval_kl_30pct_s42
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    arc_challenge_acc: 0.3575
+    arc_challenge_acc_norm: 0.3737
+    winogrande_acc: 0.6756
+    mmlu_acc: 0.2874
+    gsm8k_exact_match_strict: 0.0743
+    gsm8k_exact_match_flexible: 0.0781
+    actual_sparsity: 0.3
+    model: llama-3.1-8b
+    condition: kl_distill_30pct_sparsity_s42
+    mmlu_stem_acc: 0.2499
+    mmlu_social_sciences_acc: 0.2896
+    mmlu_humanities_acc: 0.2786
+    mmlu_other_acc: 0.3363
+- exp_id: gsm8k_gen_compare
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics: {}
+- exp_id: lm_eval_teal_50pct
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    method: vanilla_teal
+    sparsity: 0.5
+    actual_sparsity: 0.5
+    arc_challenge_acc_norm: 0.291
+    winogrande_acc: 0.5556
+    mmlu_acc: 0.2856
+    gsm8k_exact_match_flexible: 0.019
+    gsm8k_exact_match_strict: 0.0114
+    arc_challenge_drop_vs_dense: -0.5
+    winogrande_drop_vs_dense: -0.289
+    mmlu_drop_vs_dense: -0.563
+    gsm8k_drop_vs_dense: -0.962
+    model: Llama-3.1-8B
+    condition: TEAL 50% training-free sparsity
+- exp_id: lm_eval_teal_30pct
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    arc_challenge:
+      acc: 0.3933
+      acc_norm: 0.4155
+      acc_stderr: 0.0143
+      acc_norm_stderr: 0.0144
+    winogrande:
+      acc: 0.6559
+      acc_stderr: 0.0134
+    mmlu:
+      acc: 0.3598
+      acc_stderr: 0.004
+    mmlu_stem:
+      acc: 0.313
+    mmlu_humanities:
+      acc: 0.3305
+    mmlu_social_sciences:
+      acc: 0.4108
+    mmlu_other:
+      acc: 0.401
+    gsm8k:
+      exact_match_strict: 0.0849
+      exact_match_flexible: 0.0925
+      strict_stderr: 0.0077
+      flexible_stderr: 0.008
+    actual_sparsity: 0.3
+- exp_id: lm_eval_mistral_kl_50pct
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    arc_challenge_acc: 0.2927
+    arc_challenge_acc_norm: 0.3183
+    arc_challenge_acc_norm_stderr: 0.0136
+    winogrande_acc: 0.629
+    winogrande_acc_stderr: 0.0136
+    mmlu_acc: 0.2295
+    mmlu_acc_stderr: 0.0035
+    mmlu_stem_acc: 0.2125
+    mmlu_humanities_acc: 0.2421
+    mmlu_social_sciences_acc: 0.2171
+    mmlu_other_acc: 0.2398
+    gsm8k_exact_match_strict: 0.0045
+    gsm8k_exact_match_flexible: 0.0212
+    model: Mistral-7B-v0.3
+    condition: kl_distill_50pct_sparsity_s42
+    arc_challenge_retention_vs_dense: 0.528
+    winogrande_retention_vs_dense: 0.799
+    mmlu_retention_vs_dense: 0.368
+    gsm8k_retention_vs_dense: 0.012
+- exp_id: d030_kl30_uniform
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    wikitext2_ppl: 8.8157
+    arc_challenge_acc_norm: 0.4078
+    winogrande_acc: 0.6859
+    mmlu_acc: 0.4061
+    gsm8k_exact_match: 0.0735
+    actual_sparsity: 0.3
+    allocation: uniform
+    per_layer_sparsity: uniform 0.301 across all 32 layers
+    mmlu_improvement_vs_global: +11.87pp (0.2874 → 0.4061)
+    gsm8k_change_vs_global: no change (0.0743 → 0.0735, within noise)
+- exp_id: bce_isocompute_v3_s42
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    steps: 2700
+    loss: 0.6382
+    bce_loss: 0.6371
+    reg_loss: 0.001
+    sparsity: 0.51
+    training_time_seconds: 2828
+    note: 'BCE saturation confirmed: step 500→2700 only 0.006 improvement'
+- exp_id: bench_mistral_kl50_s42
+  name: ''
+  status: DONE
+  conclusion: killed
+  metrics: {}
+- exp_id: d030_kl50_uniform
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    wikitext2_ppl: 11.96
+    arc_challenge_acc_norm: 0.3276
+    winogrande_acc: 0.629
+    mmlu_acc: 0.2777
+    gsm8k_exact_match: 0.0212
+    actual_sparsity: 0.5
+    allocation: uniform
+    per_layer_sparsity: uniform 0.500 across all 32 layers
+    mmlu_change_vs_global: +1.86pp (0.2591 → 0.2777, not significant)
+    gsm8k_change_vs_global: +0.91pp (0.0121 → 0.0212, not significant)
+    conclusion_note: 50% uniform 未能修复 MMLU/GSM8K collapse. Uniform allocation 的修复效应在
+      50% sparsity 下消失。
+- exp_id: bench_dense
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    wikitext2_ppl: 6.1173
+    arc_challenge_acc: 0.5478
+    arc_challenge_acc_norm: 0.5828
+    winogrande_acc: 0.7806
+    mmlu_acc: 0.6527
+    gsm8k_exact_match: 0.4875
+- exp_id: eval_kl30_teal_30pct
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    dense_ppl: 6.12
+    predictor_hard_mask_ppl: 7.3
+    teal_sparse_ppl: 8.98
+    sparsity_target: 0.3
+    actual_sparsity: 0.3
+- exp_id: d030_kl40_uniform
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    wikitext2_ppl: 8.3627
+    arc_challenge_acc_norm: 0.4181
+    winogrande_acc: 0.6717
+    mmlu_acc: 0.3068
+    gsm8k_exact_match: 0.0394
+    actual_sparsity: 0.398
+- exp_id: eval_bce_v3_s42
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    dense_ppl: 6.12
+    predictor_hard_mask_ppl: 22.51
+    teal_sparse_ppl: 27.97
+    model_level_sparsity: 0.5
+    arc_challenge_acc: 0.2048
+    arc_challenge_acc_norm: 0.2398
+    arc_challenge_acc_norm_stderr: 0.0125
+    winogrande_acc: 0.5059
+    winogrande_acc_stderr: 0.0141
+    mmlu_acc: 0.3002
+    mmlu_acc_stderr: 0.0038
+    gsm8k_exact_match: 0.0485
+    gsm8k_exact_match_strict: 0.0425
+    gsm8k_exact_match_stderr: 0.0059
+- exp_id: bench_kl30_uniform
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    wikitext2_ppl: 8.8157
+    arc_challenge_acc_norm: 0.4078
+    winogrande_acc: 0.6859
+    mmlu_acc: 0.4061
+    gsm8k_exact_match: 0.0735
+    actual_sparsity: 0.3
+- exp_id: bench_kl50_global
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    wikitext2_ppl: 11.7933
+    arc_challenge_acc_norm: 0.3285
+    winogrande_acc: 0.6346
+    mmlu_acc: 0.2789
+    gsm8k_exact_match: 0.0129
+    actual_sparsity: 0.5
+- exp_id: bench_kl30_global
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    wikitext2_ppl: 8.9768
+    arc_challenge_acc_norm: 0.3968
+    winogrande_acc: 0.7017
+    mmlu_acc: 0.2527
+    gsm8k_exact_match: 0.0879
+    actual_sparsity: 0.3
+- exp_id: bench_teal30
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    wikitext2_ppl: 10.97
+    arc_challenge_acc_norm: 0.4232
+    winogrande_acc: 0.6606
+    mmlu_acc: 0.3861
+    gsm8k_exact_match: 0.0788
+    actual_sparsity: 0.3
+- exp_id: bench_teal50
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    wikitext2_ppl: 23.31
+    arc_challenge_acc_norm: 0.2841
+    winogrande_acc: 0.5304
+    mmlu_acc: 0.2832
+    gsm8k_exact_match: 0.0197
+    actual_sparsity: 0.5
+- exp_id: bench_kl50_uniform
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    wikitext2_ppl: 11.963
+    arc_challenge_acc_norm: 0.3276
+    winogrande_acc: 0.629
+    mmlu_acc: 0.2777
+    gsm8k_exact_match: 0.0212
+    actual_sparsity: 0.5
+- exp_id: bench_kl40_global
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    wikitext2_ppl: 10.117
+    arc_challenge_acc_norm: 0.4096
+    winogrande_acc: 0.6535
+    mmlu_acc: 0.3806
+    gsm8k_exact_match: 0.05
+    actual_sparsity: 0.4
+- exp_id: longbench_kl30_uniform
+  name: ''
+  status: DONE
+  conclusion: failed
+  metrics: {}
+- exp_id: longbench_dense
+  name: ''
+  status: DONE
+  conclusion: failed
+  metrics: {}
+- exp_id: longbench_kl30_uniform_v2
+  name: ''
+  status: DONE
+  conclusion: failed
+  metrics: {}
+- exp_id: longbench_dense_v2
+  name: ''
+  status: DONE
+  conclusion: failed
+  metrics: {}
+- exp_id: longbench_kl30_uniform_v3
+  name: ''
+  status: DONE
+  conclusion: failed
+  metrics: {}
+- exp_id: longbench_dense_v3
+  name: ''
+  status: DONE
+  conclusion: failed
+  metrics: {}
+- exp_id: longbench_dense_v4
+  name: ''
+  status: DONE
+  conclusion: failed
+  metrics: {}
+- exp_id: longbench_dense_v5
+  name: ''
+  status: PREPARING
+  conclusion: killed
+  metrics: {}
+- exp_id: latency_benchmark
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    gpu_model: NVIDIA RTX PRO 6000 Blackwell Server Edition
+    dtype: float16
+    attn: flash_attention_2
+    batch: 1
+    seq_len: 2048
+    warmup: 10
+    iters: 100
+    dense_ms: 119.11
+    dense_std: 0.57
+    dense_tokens_per_s: 17194.5
+    kl_30pct_ms: 126.64
+    kl_30pct_std: 0.7
+    kl_30pct_tokens_per_s: 16171.8
+    kl_30pct_speedup: 0.941
+    kl_50pct_ms: 126.78
+    kl_50pct_std: 0.31
+    kl_50pct_tokens_per_s: 16154.2
+    kl_50pct_speedup: 0.939
+    comp_30pct_ms: 129.94
+    comp_30pct_std: 0.75
+    comp_30pct_tokens_per_s: 15761.4
+    comp_30pct_speedup: 0.917
+    comp_50pct_ms: 129.71
+    comp_50pct_std: 0.53
+    comp_50pct_tokens_per_s: 15788.8
+    comp_50pct_speedup: 0.918
+    predictor_overhead_ms: 3.17
+    predictor_overhead_pct: 2.7
+    per_layer_predictor_ms: 0.099
+    dense_ffn_per_layer_ms: 2.427
+    sparse_ffn_pred_per_layer_ms: 2.686
+    compensation_overhead_ms: 3.3
+- exp_id: bench_kl50_uniform_s123
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    wikitext2_ppl: 11.83
+    arc_challenge_acc_norm: 0.3515
+    winogrande_acc: 0.6298
+    mmlu_acc: 0.2751
+    gsm8k_exact_match: 0.0235
+    actual_sparsity: 0.5
+- exp_id: bench_kl50_uniform_s456
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    wikitext2_ppl: 11.9604
+    arc_challenge_acc_norm: 0.3345
+    winogrande_acc: 0.6275
+    mmlu_acc: 0.2874
+    gsm8k_exact_match: 0.0212
+    actual_sparsity: 0.5
+- exp_id: longbench_dense_v6
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    longbench_narrativeqa: 7.3
+    longbench_qasper: 13.4
+    longbench_gov_report: 30.5
+    longbench_multi_news: 2.5
+- exp_id: longbench_kl30_uniform_v6
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    longbench_narrativeqa: 4.12
+    longbench_qasper: 6.23
+    longbench_gov_report: 16.97
+    longbench_multi_news: 18.01
+    runtime_seconds: 6156.6
+- exp_id: eval_c4_ood_kl50
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    dense_ppl: 9.2075
+    kl_50_global_ppl: 18.401
+    teal_50_ppl: 38.7503
+    kl_vs_dense_ratio: 2
+    teal_vs_dense_ratio: 4.21
+- exp_id: db_sensitivity_sweep
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    db64_per_token_ppl: 10.158
+    db64_teal_global_ppl: 12.076
+    db64_sparsity: 0.5
+    db64_loss: 0.361
+    db128_teal_global_ppl: 11.963
+    db128_per_token_ppl: 9.218
+    db256_per_token_ppl: 8.586
+    db256_teal_global_ppl: 12.105
+    db256_sparsity: 0.5
+    db256_loss: 0.27
+    db512_per_token_ppl: 7.933
+    db512_teal_global_ppl: 12.315
+    db512_sparsity: 0.5
+    db512_loss: 0.224
+    best_teal_global_db: 128
+    best_teal_global_ppl: 11.963
+- exp_id: bce_gumbel_lagrangian_isolation
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    lr_1e4_ppl: 42.99
+    lr_1e3_ppl: 48.4
+    lr_3e3_ppl: 38.02
+    lr_1e4_bce_loss: 0.7158
+    lr_1e3_bce_loss: 0.6781
+    lr_3e3_bce_loss: 0.6632
+    lr_1e4_sparsity: 0.514
+    lr_1e3_sparsity: 0.506
+    lr_3e3_sparsity: 0.504
+    best_ppl: 38.02
+    best_lr: 3e-3
+    kl_baseline_ppl: 11.79
+    gap_vs_kl: 26.23
+- exp_id: steps_curve_s42
+  name: ''
+  status: DONE
+  conclusion: killed
+  metrics: {}
+- exp_id: steps_curve_s42_v2
+  name: ''
+  status: DONE
+  conclusion: killed
+  metrics: {}
+- exp_id: steps_curve_s42_v3
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics: {}
+- exp_id: tau_schedule_ablation
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    tau_linear_baseline_ppl: 11.963
+    tau_fixed05_ppl: 11.861
+    tau_fixed01_ppl: 12.072
+    tau_fixed05_loss: 0.248
+    tau_fixed01_loss: 0.43
+    best_tau: fixed_0.5
+    ppl_range: 0.211
+- exp_id: steps_curve_v2
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    step200_ppl: 15.158
+    step400_ppl: 12.538
+    step600_ppl: 12.046
+    step800_ppl: 11.907
+    step1000_ppl: 11.906
+    convergence_step: 800
+    ppl_800_vs_1000_delta: 0.001
+- exp_id: mistral_kl30_s42
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    kl_per_token_ppl: 6.048
+    kl_teal_global_ppl: 6.7733
+    teal_baseline_ppl: 8.3807
+    dense_ppl: 5.5238
+    kl_advantage_ratio: 1.386
+    ppl_vs_dense_pct: 9.5
+- exp_id: mistral_kl70_s42
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    kl_per_token_ppl: 9.1086
+    kl_teal_global_ppl: 13.3254
+    teal_baseline_ppl: 61.716
+    dense_ppl: 5.5238
+    kl_advantage_ratio: 6.77
+    final_loss: 0.3945
+    actual_sparsity: 0.682
+- exp_id: mistral_teal50_baseline
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    teal_baseline_ppl: 18.3061
+    dense_ppl: 5.5238
+    teal_vs_dense_ratio: 3.31
+- exp_id: bench_kl70_global
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    wikitext2_ppl: 17.91
+    dense_ppl: 6.12
+    actual_sparsity: 0.7
+    source: kl_sparsity70_s42_v2 (teal_global_masks protocol)
+    vanilla_teal_ppl: 100.11
+- exp_id: bench_teal70
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    wikitext2_ppl: 100.11
+    dense_ppl: 6.12
+    actual_sparsity: 0.7
+    source: training_free_baselines experiment (vanilla teal global)
+- exp_id: gradient_snr_kl_vs_bce
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    kl_avg_snr: 5.77e-05
+    bce_avg_snr: 1.0e-05
+    snr_ratio: 5.76
+    early_layer_ratio_range: 34-156x
+    late_layer_ratio_range: 2-4x
+- exp_id: natural_sparsity_floor_30pct
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    always_pruned_ratio: 0.0006
+    always_pruned_count: 278
+    total_neurons: 458752
+    late_layer_max_ratio: 0.0051
+    threshold: 0.1
+- exp_id: teal_kl_overlap_analysis
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    overall_jaccard: 0.396
+    divergence_ratio: 0.433
+    kl_only_pruned_magnitude_ratio: 1.48
+    teal_only_pruned_mean_gate_prob: 0.614
+    min_jaccard_layer: L17-L18 (0.19)
+    max_jaccard_layer: L26-L28 (0.55)
+- exp_id: gradient_snr_constrained_v2
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    kl_avg_snr: 0.000545
+    bce_avg_snr: 5.28e-06
+    snr_ratio: 103.2
+    kl_final_sparsity: 0.508
+    bce_final_sparsity: 0.591
+    steps: 200
+- exp_id: sparsity_floor_extended
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    floor_30pct: 0.0499
+    floor_50pct: 0.0726
+    floor_70pct: 0.1936
+    late_layer_max_30: 0.4604
+    late_layer_max_50: 1.2347
+    late_layer_max_70: 4.3666
+    threshold: 0.1
+    seq_len: 2048
+    num_samples: 50
+- exp_id: teal_kl_overlap_corrected
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    z_score: 7260.3
+    p_value: 0
+    median_percentile_rank: 78.6
+    iqr_q1: 64.4
+    iqr_q3: 89.1
+    layers_significant: 31/32
+    exception_layer: 31
+- exp_id: mag_preservation_reg
+  name: ''
+  status: PREPARING
+  conclusion: failed
+  metrics: {}
+- exp_id: reverse_kl_50pct_s42
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    ppl_wikitext2: 12.8
+    vs_forward_kl: +1.01 (+8.6%)
+    sparsity: 0.5
+- exp_id: jsd_50pct_s42
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    ppl_wikitext2: 12.54
+    vs_forward_kl: +0.75 (+6.4%)
+    sparsity: 0.5
+- exp_id: global_30pct_retention
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    early_retention: 0.771
+    middle_retention: 0.764
+    knowledge_L12_20_retention: 0.797
+    late_L24_31_retention: 0.501
+    L31_retention: 0.284
+    L30_retention: 0.366
+    starved_layers: L27-L31
+- exp_id: kl_bce_f1_oracle
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    bce_f1: 0.6128
+    bce_precision: 0.6132
+    bce_recall: 0.6124
+    kl_f1: 0.5397
+    kl_precision: 0.5112
+    kl_recall: 0.5715
+    random_f1: 0.5
+    kl_ppl: 11.79
+    bce_ppl: 22.51
+- exp_id: kl50_s123_eval
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    wikitext2_ppl: 11.745
+    arc_challenge: 0.3814
+    winogrande: 0.6125
+    mmlu: 0.2752
+    gsm8k: 0.0281
+- exp_id: kl30_s123_eval
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    wikitext2_ppl: 8.8308
+    arc_challenge_acc_norm: 0.4531
+    winogrande_acc: 0.6938
+    mmlu_acc: 0.3944
+    gsm8k_exact_match: 0.0751
+    actual_sparsity: 0.3
+    allocation: uniform
+- exp_id: kl50_s456_train_eval
+  name: ''
+  status: PREPARING
+  conclusion: ''
+  metrics: {}
+- exp_id: kl50_s456_train
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    final_loss: 0.397
+    final_kl_normalized: 0.397
+    final_sparsity: 0.492
+    final_lambda: 5000
+    final_tau: 0.1
+    steps_completed: 1000
+- exp_id: kl_50pct_s123
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    ppl_wikitext2: 11.745
+    arc_challenge_acc_norm: 0.3814
+    winogrande_acc: 0.6125
+    mmlu_acc: 0.2752
+    gsm8k_exact_match: 0.0281
+    sparsity: 0.5
+    allocation: global
+- exp_id: mistral_dense_ppl
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    wikitext2_ppl: 5.5238
+    model: Mistral-7B-v0.3
+    condition: dense
+    sparsity: 0
+- exp_id: mistral_kl30_pertoken
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    wikitext2_ppl: 6.048
+    model: Mistral-7B-v0.3
+    condition: kl_pertoken_30pct
+    sparsity: 0.3
+    allocation: uniform
+    ppl_increase_vs_dense: 0.5242
+- exp_id: mistral_kl50_pertoken
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    wikitext2_ppl: 7.2931
+    model: Mistral-7B-v0.3
+    condition: kl_pertoken_50pct
+    sparsity: 0.5
+    allocation: uniform
+    ppl_increase_vs_dense: 1.7693
+- exp_id: mistral_kl70_pertoken
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    wikitext2_ppl: 9.1086
+    model: Mistral-7B-v0.3
+    condition: kl_pertoken_70pct
+    sparsity: 0.7
+    allocation: uniform
+    ppl_increase_vs_dense: 3.5848
+- exp_id: mistral_kl30_teal_global
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    wikitext2_ppl: 6.7733
+    model: Mistral-7B-v0.3
+    condition: kl_teal_global_30pct
+    sparsity: 0.3
+    allocation: uniform
+    ppl_increase_vs_dense: 1.2495
+- exp_id: mistral_kl50_teal_global
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    wikitext2_ppl: 8.6489
+    model: Mistral-7B-v0.3
+    condition: kl_teal_global_50pct
+    sparsity: 0.5
+    allocation: uniform
+    ppl_increase_vs_dense: 3.1251
+- exp_id: mistral_kl70_teal_global
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    wikitext2_ppl: 13.3254
+    model: Mistral-7B-v0.3
+    condition: kl_teal_global_70pct
+    sparsity: 0.7
+    allocation: uniform
+    ppl_increase_vs_dense: 7.8016
+- exp_id: mistral_teal30_baseline
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    wikitext2_ppl: 8.3807
+    model: Mistral-7B-v0.3
+    condition: teal_vanilla_30pct
+    sparsity: 0.3
+    allocation: uniform
+    ppl_increase_vs_dense: 2.8569
+- exp_id: mistral_teal70_baseline
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    wikitext2_ppl: 61.716
+    model: Mistral-7B-v0.3
+    condition: teal_vanilla_70pct
+    sparsity: 0.7
+    allocation: uniform
+    ppl_increase_vs_dense: 56.1922
+- exp_id: kl30_s456_train
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    final_loss: 0.2021
+    actual_sparsity: 0.289
+    constraint_satisfied: true
+    training_steps: 1000
+- exp_id: kl_30pct_s123
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    ppl_wikitext2: 8.9748
+    arc_challenge_acc_norm: 0.4531
+    winogrande_acc: 0.693
+    mmlu_acc: 0.3807
+    gsm8k_exact_match: 0.0758
+    sparsity: 0.3
+    allocation: global
+- exp_id: kl50_s456_global_eval
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    ppl_wikitext2: 11.8057
+    arc_challenge: 0.3319
+    winogrande: 0.6488
+    mmlu: 0.2794
+    gsm8k: 0.0212
+- exp_id: kl30_s456_global_eval
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    ppl_wikitext2: 8.9332
+    arc_challenge: 0.4633
+    winogrande: 0.7111
+    mmlu: 0.4382
+    gsm8k: 0.0758
+- exp_id: kl30_s456_uniform_eval
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    mmlu: 0.4198
+    ppl_uniform: 8.7947
+    arc_challenge: 0.4505
+    winogrande: 0.6875
+    gsm8k: 0.0758
+- exp_id: qwen14b_kl30_s42
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    dense_ppl: 5.18
+    predictor_hard_mask_ppl: 6.8
+    teal_global_ppl: 7.62
+    ppl_ratio_hard_mask: 1.31
+    ppl_ratio_teal: 1.47
+    final_loss: 0.3398
+    training_sparsity: 0.281
+    teal_sparsity: 0.3
+    lambda: 5000
+    steps: 1000
+- exp_id: qwen14b_kl30_s42_eval
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    wikitext2_ppl: 7.6232
+    arc_challenge_acc_norm: 0.5717
+    winogrande_acc: 0.7206
+    mmlu_acc: 0.6372
+    gsm8k_exact_match: 0.4882
+- exp_id: downstream_extended_kl30_s42
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    hellaswag_acc_norm: 0.727
+    hellaswag_acc: 0.527
+    piqa_acc_norm: 0.7595
+    piqa_acc: 0.747
+    boolq_acc: 0.7685
+- exp_id: wallclock_speedup_30_50
+  name: ''
+  status: PREPARING
+  conclusion: negative
+  metrics:
+    theoretical_flops_speedup_30pct: 1.36
+    theoretical_flops_speedup_50pct: 2.45
+    actual_wallclock_speedup_30pct: 0.91
+    actual_wallclock_speedup_50pct: 0.6
+    predictor_overhead_decode_ms: 1
+    predictor_overhead_prefill_ms: 2
+    actual_mean_sparsity_30pct: 0.28
+    actual_mean_sparsity_50pct: 0.605
+    note: No wall-clock speedup without sparse kernels. Mask-based=0.87-0.94x (predictor
+      overhead), structured-skip=0.45-0.74x (gather overhead). Report theoretical
+      FLOPs in paper.
+- exp_id: qwen14b_bce30_s42
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    dense_ppl: 5.18
+    predictor_hard_mask_ppl: 5.57
+    teal_global_ppl: 8.76
+    ppl_ratio_hard_mask: 1.075
+    ppl_ratio_hard_mask_note: at predictor native 6.4% sparsity, not comparable to
+      KL's 28.1%
+    ppl_ratio_teal: 1.69
+    actual_sparsity_teal: 0.3
+    predictor_native_sparsity: 0.064
+    training_log_sparsity_note: Training Lagrangian failed (predictor sparsity=6.4%).
+      Inference via TEAL forces 30% externally. TEAL PPL 8.76 is valid for method
+      comparison.
+    final_loss: 0.5561
+    final_bce_loss: 0.5324
+    steps: 1000
+    constraint_satisfied: false
+- exp_id: qwen14b_teal30_eval
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    wikitext2_ppl: 8.7332
+    arc_challenge_acc_norm: 0.5683
+    winogrande_acc: 0.7269
+    mmlu_acc: 0.7183
+    gsm8k_exact_match: 0.4951
+- exp_id: qwen14b_bce30_s42_v2
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    predictor_native_sparsity: 0.064
+    lambda_max: 50000
+    final_bce_loss: 0.5324
+    steps: 1000
+    constraint_satisfied: false
+    sparsity_trajectory: 49%→5% collapse in 50 steps, no recovery over 950 steps
+    note: 10x stronger Lagrangian produces identical sparsity as v1 (lambda=5000).
+      Confirms BCE gradient insufficiency is fundamental, not constraint strength.
+- exp_id: downstream_dense_baseline
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    hellaswag_acc_norm: 0.8233
+    hellaswag_acc_norm_stderr: 0.0038
+    piqa_acc_norm: 0.8074
+    piqa_acc_norm_stderr: 0.0092
+    boolq_acc: 0.8294
+    boolq_acc_stderr: 0.0066
+- exp_id: qwen14b_bce30_s42_eval
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    wikitext2_ppl: 8.7634
+    arc_challenge_acc_norm: 0.5759
+    winogrande_acc: 0.7261
+    mmlu_acc: 0.7167
+    gsm8k_exact_match: 0.5307
+- exp_id: downstream_teal30_baseline
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    hellaswag_acc: 0.4878
+    hellaswag_acc_norm: 0.667
+    piqa_acc: 0.7258
+    piqa_acc_norm: 0.7361
+    boolq_acc: 0.685
+- exp_id: kl50_global_s123_reeval
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    wikitext2_ppl: 11.7184
+    arc_challenge_acc_norm: 0.3635
+    winogrande_acc: 0.6109
+    mmlu_acc: 0.2834
+    gsm8k_exact_match: 0.0258
+- exp_id: bce_isocompute_v3_s123
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics: {}
+- exp_id: bce_isocompute_v3_s456
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    final_loss: 0.6368
+    final_sparsity: 0.51
+    training_steps: 2700
+- exp_id: c4_ood_kl30_s42
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    c4_ppl: 16.0458
+    allocation: global_topk
+    sparsity: 0.3
+    model: llama-3.1-8b
+    eval_sequences: 132
+    seq_len: 2048
+- exp_id: c4_download
+  name: ''
+  status: PREPARING
+  conclusion: ''
+  metrics: {}
+- exp_id: qwen14b_dense_baseline
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    ppl: 5.1854
+    arc_challenge: 0.6758
+    winogrande: 0.8106
+    mmlu: 0.7977
+    gsm8k: 0.8757
+- exp_id: bce_isocompute_v3_s456_eval
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    teal_sparse_ppl: 28.3503
+    model_level_sparsity: 0.5
+    arc_challenge_acc: 0.2312
+    arc_challenge_acc_stderr: 0.01232
+    arc_challenge_acc_norm: 0.2807
+    arc_challenge_acc_norm_stderr: 0.01313
+    winogrande_acc: 0.5241
+    winogrande_acc_stderr: 0.01404
+    mmlu_acc: 0.2567
+    mmlu_acc_stderr: 0.00367
+    gsm8k_exact_match: 0.022
+    gsm8k_exact_match_stderr: 0.00404
+    gsm8k_exact_match_strict: 0.00834
+    gsm8k_exact_match_strict_stderr: 0.0025
+- exp_id: bce_isocompute_v3_s123_eval
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    wikitext2_ppl: 28.0627
+    arc_challenge_acc_norm: 0.2696
+    winogrande_acc: 0.513
+    mmlu_acc: 0.2655
+    gsm8k_exact_match: 0.022
+- exp_id: qwen14b_kl30_uniform_eval
+  name: ''
+  status: DONE
+  conclusion: failed
+  metrics: {}
+- exp_id: qwen14b_teal30_uniform_eval
+  name: ''
+  status: DONE
+  conclusion: failed
+  metrics: {}
+- exp_id: kl30_8b_s123_train
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    wikitext2_ppl: 8.9267
+    sparsity: 0.3
+    training_loss: 0.147
+- exp_id: kl30_8b_s456_train
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    wikitext2_ppl: 8.9614
+    sparsity: 0.3
+    training_loss: 0.148
+- exp_id: qwen14b_kl30_uniform_eval_4task
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    wikitext2_ppl: 7.63
+    mmlu_acc: 0.6449
+    arc_challenge_acc_norm: 0.5444
+    winogrande_acc: 0.7245
+- exp_id: qwen14b_teal30_uniform_eval_4task
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    wikitext2_ppl: 8.01
+    mmlu_acc: 0.6634
+    arc_challenge_acc_norm: 0.5529
+    winogrande_acc: 0.6985
+- exp_id: bce_isocompute_v3_s42_eval
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    wikitext2_ppl: 27.9696
+    arc_challenge_acc: 0.2346
+    arc_challenge_acc_norm: 0.2765
+    winogrande_acc: 0.5162
+    mmlu_acc: 0.2614
+    gsm8k_exact_match: 0.019
+- exp_id: kl30_8b_s123_eval
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    wikitext2_ppl: 8.9267
+    arc_challenge_acc: 0.4462
+    arc_challenge_acc_norm: 0.4744
+    winogrande_acc: 0.7024
+    mmlu_acc: 0.3836
+    gsm8k_exact_match: 0.0917
+- exp_id: kl30_8b_s456_eval
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    wikitext2_ppl: 8.9614
+    arc_challenge_acc: 0.436
+    arc_challenge_acc_norm: 0.4462
+    winogrande_acc: 0.7143
+    mmlu_acc: 0.2714
+    gsm8k_exact_match: 0.0887
+- exp_id: snr_extended_r6w3
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    kl_snr_step300: 0.0058773
+    bce_snr_step300: 0.00114449
+    snr_ratio_step300: 5.14
+    kl_train_time_s: 641
+    bce_train_time_s: 320
+    num_checkpoints: 7
+    steps_range: 0-300
+- exp_id: c4_ood_kl30_s123
+  name: ''
+  status: DONE
+  conclusion: failed
+  metrics: {}
+- exp_id: c4_ood_dense_baseline
+  name: ''
+  status: DONE
+  conclusion: failed
+  metrics: {}
+- exp_id: kl50_s123_uniform_eval
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    wikitext2_ppl: 11.89
+    arc_challenge_acc_norm: 37.88
+    winogrande_acc: 62.19
+    mmlu_acc: 27.75
+    gsm8k_exact_match: 2.35
+    comparison_vs_global_topk:
+      ppl_delta: -0.94
+      arc_c_delta: -5.55
+      wg_delta: -6.71
+      mmlu_delta: -8.2
+      gsm8k_delta: -5
+    note: 'Uniform allocation: better PPL but catastrophic downstream degradation
+      vs global_topk. Confirms global_topk allocation is critical for downstream quality.'
+- exp_id: c4_ood_kl30_s123_v2
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    c4_ppl: 16.0259
+    allocation: global_topk
+    sparsity: 0.3
+    model: llama-3.1-8b
+    eval_sequences: 132
+    seq_len: 2048
+- exp_id: c4_ood_dense_baseline_v2
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    c4_ppl: 9.2075
+    model: llama-3.1-8b
+    eval_sequences: 132
+    seq_len: 2048
+- exp_id: kl50_s456_eval
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    wikitext2_ppl: 11.8614
+    arc_challenge_acc_norm: 0.3754
+    winogrande_acc: 0.6417
+    mmlu_acc: 0.2784
+    gsm8k_exact_match: 0.0212
+- exp_id: c4_ood_kl50_s123
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    c4_ppl: 23.6064
+    allocation: global_topk
+    sparsity: 0.5
+    model: llama-3.1-8b
+- exp_id: downstream_ext_kl50_uniform_s42
+  name: ''
+  status: DONE
+  conclusion: failed
+  metrics: {}
+- exp_id: downstream_ext_kl30_uniform_s123
+  name: ''
+  status: DONE
+  conclusion: failed
+  metrics: {}
+- exp_id: c4_ood_kl50_s456
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    c4_ppl: 23.9867
+    sparsity: 0.5
+    allocation: global_topk
+    seed: 456
+- exp_id: c4_ood_kl30_s42_v2
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    c4_ppl: 16.0401
+    allocation: global_topk
+    sparsity: 0.3
+    model: llama-3.1-8b
+    seed: 42
+- exp_id: kl50_s42_uniform_eval
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    wikitext2_ppl: 11.9638
+    arc_challenge_acc_norm: 0.3259
+    winogrande_acc: 0.6235
+    mmlu_acc: 0.2792
+    gsm8k_exact_match: 0.0197
+- exp_id: c4_ood_kl50_s42
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    c4_ppl: 23.5297
+    sparsity: 0.5
+    allocation: global_topk
+    seed: 42
+- exp_id: kl_comp_30pct_s42
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    final_loss: 0.6992
+    steps: 1000
+    compensation_params: 67248128
+    compensation_pct: 0.837
+    mean_head_norm_final: 9.2012
+    loss_trajectory:
+    - 2.3594
+    - 1.3516
+    - 1.0859
+    - 0.9219
+    - 0.8789
+    - 0.8281
+    - 0.7461
+    - 0.7344
+    - 0.6953
+    - 0.6992
+- exp_id: c4_ood_kl30_s456
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics: {}
+- exp_id: kl_comp_30pct_s123
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    final_loss: 0.7617
+    steps: 1000
+    compensation_params: 67248128
+    compensation_pct: 0.837
+    mean_head_norm_final: 9.2012
+    loss_trajectory:
+    - 2.0469
+    - 1.3828
+    - 1.0703
+    - 0.9609
+    - 0.8711
+    - 0.7305
+    - 0.6875
+    - 0.7773
+    - 0.7969
+    - 0.7617
+- exp_id: kl_comp_30pct_s42_eval
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    wikitext2_ppl: 8.9788
+    arc_challenge_acc_norm: 0.3993
+    winogrande_acc: 0.6898
+    mmlu_acc: 0.2531
+    gsm8k_exact_match: 0.0842
+- exp_id: kl_comp_30pct_s42_ppl
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    wikitext2_ppl: 8.9768
+    c4_ppl: 16.0401
+    sparsity: 0.3
+    allocation: global_topk
+    model: llama-3.1-8b
+    seed: 42
+- exp_id: kl_comp_30pct_s123_ppl
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    wikitext2_ppl: 8.9768
+    c4_ppl: 16.0401
+    sparsity: 0.3
+    allocation: global_topk
+    model: llama-3.1-8b
+    seed: 123
+- exp_id: kl_comp_30pct_s123_eval
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    wikitext2_ppl: 8.9788
+    arc_challenge_acc_norm: 0.3993
+    winogrande_acc: 0.6898
+    mmlu_acc: 0.2531
+    gsm8k_exact_match: 0.0842
+- exp_id: kl50_s456_uniform_eval
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    wikitext2_ppl: 11.9538
+    arc_challenge_acc_norm: 0.3831
+    winogrande_acc: 0.6196
+    mmlu_acc: 0.275
+    gsm8k_exact_match: 0.0288
+- exp_id: kl_comp_30pct_s456
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics: {}
+- exp_id: kl_comp_50pct_s42
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics: {}
+- exp_id: kl_comp_30pct_s456_eval
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    wikitext2_ppl: 8.9614
+    arc_challenge_acc_norm: 0.4462
+    winogrande_acc: 0.7143
+    mmlu_acc: 0.2714
+    gsm8k_exact_match: 0.0887
+- exp_id: kl_comp_50pct_s42_eval
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    wikitext2_ppl: 11.7933
+    arc_challenge_acc_norm: 0.3285
+    winogrande_acc: 0.6346
+    mmlu_acc: 0.2789
+    gsm8k_exact_match: 0.0129
+- exp_id: kl50_s42_global_eval
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    wikitext2_ppl: 11.8038
+    arc_challenge_acc_norm: 0.3336
+    winogrande_acc: 0.6338
+    mmlu_acc: 0.2819
+    gsm8k_exact_match: 0.0167
+- exp_id: kl30_s123_uniform_v2
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    wikitext2_ppl: 8.8186
+    arc_challenge_acc_norm: 0.471
+    winogrande_acc: 0.6961
+    mmlu_acc: 0.3763
+    gsm8k_exact_match: 0.0705
+- exp_id: kl30_s456_uniform_v2
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    wikitext2_ppl: 8.8284
+    arc_challenge_acc_norm: 0.4505
+    winogrande_acc: 0.6953
+    mmlu_acc: 0.3727
+    gsm8k_exact_match: 0.0705
+- exp_id: kl30_s123_uniform_v3
+  name: ''
+  status: PREPARING
+  conclusion: killed
+  metrics: {}
+- exp_id: kl30_s456_uniform_v3
+  name: ''
+  status: PREPARING
+  conclusion: killed
+  metrics: {}
+- exp_id: c1_ablation_bce_kl_targets_s42
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    wt2_ppl: 9.29
+    eval_sparsity: 0.609
+    oracle_agreement: 0.978
+    final_bce_loss: 0.0545
+    train_steps: 1000
+    train_time_sec: 877.1
+    reference_kl_ppl: 11.79
+    reference_bce_ppl: 22.51
+- exp_id: bce_30pct_s42
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics: {}
+- exp_id: kl_sparsity25_s42
+  name: ''
+  status: PREPARING
+  conclusion: ''
+  metrics: {}
+- exp_id: kl_sparsity35_s42
+  name: ''
+  status: PREPARING
+  conclusion: ''
+  metrics: {}
+- exp_id: c1_ablation_eval_uniform
+  name: ''
+  status: PREPARING
+  conclusion: ''
+  metrics: {}
+- exp_id: kl_sparsity45_s42
+  name: ''
+  status: PREPARING
+  conclusion: ''
+  metrics: {}
+- exp_id: bce_30pct_s42_eval
+  name: ''
+  status: PREPARING
+  conclusion: ''
+  metrics: {}
+
+
+## what_if (hypothetical experiments — additive)
+
+- name: c1_ablation_bce_kl_targets
+  claim: 'Claim 1 reframe: optimization target quality > gradient coupling'
+  description: BCE trained on KL-derived oracle masks achieves comparable-or-better
+    PPL than KL distillation at matched sparsity. 53% mask divergence from magnitude
+    oracles. Core narrative shifts from 'gradient coupling explains KL advantage'
+    to 'KL discovers fundamentally different and superior mask patterns that magnitude-based
+    oracles miss'.
+  estimated_gpu_hours: 0.0
+- name: dense_sparsity_sweep_6pt
+  claim: 'Claim 3: regime analysis with 6 data points'
+  description: KL predictors trained at 25%/30%/35%/40%/45%/50% sparsity with 2 seeds
+    each. Regime boundaries precisely mapped. Non-monotonic allocation preference
+    confirmed with denser sampling.
+  estimated_gpu_hours: 0.0
+- name: bce_30pct_forced_topk
+  claim: 'Claim 1: BCE baseline at recommended operating point'
+  description: BCE predictor evaluated at 30% via forced TEAL top-k. Fills Table 2
+    gap at recommended operating point. BCE PPL expected significantly worse than
+    KL, strengthening KL advantage at practical deployment sparsity.
+  estimated_gpu_hours: 0.0
+
+# 输出格式（YAML，仅输出一个 ```yaml 块）
+
+```yaml
+tier: best
+narrative_guidance: "..."
+imagined_experiments:
+  - name: "..."
+    plan_id: "..."
+    description: "..."
+    expected_results: {metric: value, ...}
+    result_rationale: "..."
+    tables: []
+    figures_description: []
+    analysis: "..."
+```
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "77c50a89-b523-4116-85bf-7322d39ef32f",
+  "type": "user",
+  "uuid": "1f3aad16-3e42-401d-865f-dafab07aa157",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14",
+  "sessionId": "37144a68-e0ad-4fa3-9d7b-5563cb046ecf",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-18T16:30:09.906Z_
+
+```json
+{
+  "parentUuid": "1f3aad16-3e42-401d-865f-dafab07aa157",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "e67f3f87-7d32-43e2-a479-fbd824c3470b",
+  "timestamp": "2026-05-18T16:30:09.906Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14",
+  "sessionId": "37144a68-e0ad-4fa3-9d7b-5563cb046ecf",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-18T16:30:09.907Z_
+
+```json
+{
+  "parentUuid": "e67f3f87-7d32-43e2-a479-fbd824c3470b",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "e972374c-681d-453b-a195-8f168e760775",
+  "timestamp": "2026-05-18T16:30:09.907Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14",
+  "sessionId": "37144a68-e0ad-4fa3-9d7b-5563cb046ecf",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是一位经验丰富的 ML 研究者。Phase 1 已定义了 best 档的含义：  含义：C1 ablation 在 matched sparsity 完全验证 mask pattern 叙事；remaining experiments 按时完成且结果内洽；reframe 被接受为 novel empirical contribution 核心假设：['BCE-on-KL-targets at 5…",
+  "leafUuid": "e972374c-681d-453b-a195-8f168e760775",
+  "sessionId": "37144a68-e0ad-4fa3-9d7b-5563cb046ecf"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "KL distillation enables mask pattern discovery in sparse LLMs",
+  "sessionId": "37144a68-e0ad-4fa3-9d7b-5563cb046ecf"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-18T16:35:35.178Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to generate detailed predicted data for every planned experiment in the experiment_plan, under the "best" tier scenario. I need to provide result_rationale for each prediction explaining why this result would occur under the best tier.
+
+Let me go through the experiment plan and identify all experiments that need predictions. I need to cross-reference with the registry to see which are already done and which still need predictions.
+
+Let me look at the experiment plan:
+
+1. **plan_001** - Four-condition ablation @ 50% sparsity. Status: DONE. But there are remaining runs listed.
+
+
+2. **plan_002** - STE baseline. Status: DONE.
+3. **plan_003** - Iso-compute. Status: DONE.
+4. **plan_004** - SPON reimplementation. Status: DONE.
+5. **plan_005** - SPON subsumption. Status: DONE.
+6. **plan_006** - Training-free baselines. Status: DONE.
+7. **plan_007** - Full benchmark eval. Status: DONE.
+8. **plan_008** - 3-level sparsity sweep. Status: DONE.
+9. **plan_009** - Mistral generalization. Status: DONE.
+10. **plan_010** - LongBench evaluation. Status: DONE.
+11. **plan_011** - MT-Bench. Status: planned.
+12. **plan_012** - RULER. Status: planned.
+
+I've also got a few what-if experiments queued up: an ablation on BCE and KL targets, a 6-point dense sparsity sweep, and a 30% BCE forced top-k variant. From the original plan, I still need to run BCE+comp across 5 seeds and KL+comp across 3 seeds. Looking at the registry, several runs are currently preparing: the KL sparsity sweeps at 25%, 35%, and 45%, plus the uniform ablation eval and the 30% BCE evaluation.
+
+The c1_ablation_bce_kl_targets experiment just finished with a perplexity of 9.29 at 60.9% sparsity. So now I'm tracking which experiments need predictions under the best tier: the BCE-KL ablation needs a uniform 50% evaluation to complete, the dense sparsity sweep is still waiting on those three sparsity levels, the forced top-k variant has the seed run done but the evaluation is still preparing, and then I've got the two planned benchmarks—LongBench and MT-Bench—still to schedule.
+
+Beyond those, there's plan_012 for RULER coming up, plus I need to finish the remaining BCE and KL seeds with compression, and run that 3-seed variance check on the 30% KL setup to see how much downstream performance varies across seeds.
+
+Looking at what I have so far for the best tier predictions: the ablation at matched sparsity supports the mask pattern story, the BCE-on-KL-targets should hit around 12.5 perplexity at 50% uniform sparsity which would match KL, the forced top-k variant will likely be worse at 13+, the sweep shows a clean transition around 35 percentage points, the KL 30% variance across seeds looks controlled with MMLU staying within 2 percentage points, and there's that interesting negative finding about the 14B MMLU gap that reviewers seem to accept.
+
+Now I need to think through the causal chain connecting the mask divergence patterns to the C1 ablation results, then map out predictions for every experiment in the plan—both the ones already done and the remaining ones.
+
+Looking at the user's request more carefully, they want detailed predicted data for all experiments in the plan to show what the best-case scenario looks like across the board. For completed experiments, the real data serves as the baseline, but for the planned and remaining ones, I need to generate coherent predictions that fit the overall pattern.
+
+Let me identify which experiments are still pending versus already executed, then work through the predictions systematically to show a complete picture. Looking at the remaining experiments in PREPARING state, I need to generate predictions across all plans to show both completed and projected results under the "best" tier narrative. I'm constructing a YAML output that will include performance estimates for the ablation studies and sparsity sweeps, focusing on key metrics like PPL improvements at different sparsity levels. Rationale: BCE's per-neuron independent optimization produces masks poorly suited for global budget allocation. Even at 30% (generous budget), the per-neuron scoring mismatch means many "confident" BCE predictions get overridden by top-k, producing a suboptimal mask.
+
+For the sparsity sweep across 25%, 35%, and 45%, I expect to see a piecewise structure where performance improves as sparsity decreases—around 8.0-8.3 at 25%, transitioning through 8.5-9.0 at 35%, then degrading to 10.5-11.0 at 45% as we approach the 50% baseline. The R² should stay above 0.93 to confirm this pattern. I also need to check the MMLU variance for KL at 30% uniform across three seeds, where I already have the seed 42 result.
+
+Now I'm looking at the MMLU scores from different evaluation runs for the KL 30% uniform setup. The three seeds show some variation—seed 42 gives 0.4061, seed 123 gives 0.3763, and seed 456 gives 0.3727—so there's meaningful spread across the runs that I need to account for. I'm calculating the mean and standard deviation across those three seed runs: 38.50% mean with 1.83pp standard deviation, which falls within the acceptable [0.5, 2.0] range for the "best" tier. Now I need to assess what's left for plan_001, starting with the BCE+comp runs where I already have some seeds.
+
+Looking at the existing results, the basic BCE at 50% sparsity gives around 27.96 PPL, while the staged version with compensation achieves 25.44 PPL at 55.8% sparsity—roughly a 2.5 PPL improvement from the compensation mechanism. Extrapolating to 50% sparsity for the best tier, I'd expect BCE+comp to land in the 24-26 PPL range. For KL+comp, I have one seed result at 11 PPL already.
+
+Now I'm looking at the compensation results more carefully—the KL+comp variants show that compensation adds essentially nothing on top of KL-only performance, which confirms the pattern I'm seeing. Let me organize all the experiments systematically and map out which ones are complete versus which still need predictions, then construct the full results structure.
+
+I'm going through the experiment plan: most of the core plans (001-009) are done, while 010-012 are still pending evaluations on LongBench, MT-Bench, and RULER. For the ablations and sweeps, I have partial results and need to fill in the gaps. I should generate predictions for all experiments comprehensively and organize them by plan ID.
+
+Generating YAML structure... 在 matched sparsity 下完全验证 mask pattern 叙事：BCE-on-KL-targets 恢复 KL-level quality（PPL ≤12.5 @ 50% uniform），证明 KL 的优势来自其发现的 mask pattern 而非 gradient coupling。BCE 在推荐操作点（30%）表现显著差于 KL。6-point sweep 展现 clean piecewise regime 结构，transition ~35%。3-seed variance 受控。现在看 KL 的 5-seed 完整结果，PPL 集中在 9.14-9.25 范围内，标准差仅 0.04，说明 Gumbel-sigmoid 加 Lagrangian 的训练动力学非常稳定。所有结果内洽，reframe 被接受为 novel empirical contribution，预期 ARR overall 3.75-4.25。 度确定性：lambda 在 ~200 步收敛到 cap，tau 从 1.0 线性降到 0.1 使 mask 逐渐硬化。种子主要影响 mini-batch 顺序和 Gumbel noise，但 1000 步 + 全模型 forward KL 的 loss landscape 足够平滑，不同种子收敛到 PPL 几乎相同的解。5-seed 均值 9.19 vs TEAL 11.99 (−23.4%) 和 BCE 27.96 (−67.1%)，极低方差表明 KL training 的稳定性。现在看 BCE+compensation 在 50% 模型级稀疏度下的表现，预期 PPL 约 25.2，虽然补偿网络能做 post-hoc 错误修正，但基础 mask 本身就不够优化。
+
+BCE 的逐神经元分解梯度无法捕捉 KL 发现的跨神经元交互模式，补偿网络在分阶段训练中收敛到接近零的 loss，说明几乎没有可利用的残差信号，所以 5 种子预期 PPL 波动在 24-27 范围，方差比 KL 更大因为 BCE loss landscape 更粗糙。
+
+即使添加 67.2M 补偿参数，BCE+comp 的 PPL 仍然比 KL-only 差 2.7 倍，补偿无法修复掩码质量的根本缺陷——这是第一个主张的核心证据。现在我在检查 KL+compensation 在 50% 模型级稀疏性下的结果，3 个种子的预期 PPL 在 11.79-11.80 范围，与 KL-only 的差异极小。
+
+KL 通过输出分布匹配已经优化了整个 logit 空间的重建，补偿的瓶颈 MLP 找不到额外的系统性错误模式可以纠正，这直接证明了误差补偿是不必要的。
+
+现在看 STE 基线的结果，STE 的困难阈值在前向传播中直接产生二进制掩码，PPL 达到 8.18，优于 Gumbel 的 9.19，但稀疏度只有 47%，低于目标的 50%。
+
+梯度通过直通估计器反向传播，避免了 Gumbel 温度调度的问题，但拉格朗日约束更难强制执行——lambda 统计显示在步骤 70-130 中出现振荡。PPL 更好的原因是 STE 在 47% 稀疏度下保留了更多神经元，所以需要控制稀疏度后再比较，确认 KL 的优势确实来自损失函数而非松弛方法。
+
+现在看到即使用 STE 替换 Gumbel-sigmoid，KL 仍然大幅超过 BCE，这说明关键驱动力在于损失函数本身。我在查看等计算量的 BCE 训练结果，2700 步的 BCE 达到了特定的 PPL，而 1000 步的 KL 仍然表现更好。
+
+问题的根源在于 BCE 的梯度是分解的，只作用于单个神经元，无法捕捉跨神经元的相互作用，这导致无论训练多久都存在目标函数与推理时全局 top-k 重新分配之间的根本不匹配。
+
+等计算量实验直接回应了审稿人关于 KL 优势仅来自更多计算的质疑，结果显示即使 BCE 已经饱和，性能差距仍然持续扩大 2.33 倍。SPON 在 Llama 3.1 8B 上的重新实现只恢复了 7.3% 的性能，因为 SPON 本身的设计限制。
+
+SPON 的静态偏差向量无法适应每个 token 不同的活跃神经元集合，只能学到全局平均的修正，而且学到的修正幅度极小（偏差范数仅 0.053），在密集模式下还会引入噪声。这个负面结果直接支持了我的第二个主张：静态修正在 KL 的上下文预测器面前是无效的。
+
+现在看到 SPON 的包含关系验证结果，通过 logit 空间分解发现两者修正的是几乎正交的误差分量（余弦相似度 0.196），SPON 的修正幅度只有 KL 效应的 15.8%，说明 KL 预测器已经涵盖了 SPON 能做的事情。
+
+虽然存在 30.6% 的跨层交互，但 PPL 恢复仍然很弱（7.3%），表明 SPON 的贡献太小无法提供有意义的补充效果。
+
+这重新定义了 KL 和 SPON 的关系——不是 KL 包含了 SPON，而是两者针对不同的错误成分，只是 SPON 的成分太微弱了。现在看一下训练无关的基线方法在 50% 稀疏度下的表现，包括 TEAL、WINA 和 R-Sparse 的 PPL 结果。
+
+TEAL 表现最好是因为它直接用激活幅度这个最有信息量的启发式方法，WINA 虽然加入了权重信息但反而引入了噪声，而 R-Sparse 在 SwiGLU 架构上完全失效，因为那种门控-上升的乘积结构让基于秩的重要性评分与实际贡献完全不相关。这样就形成了三个层级：训练无关的方法、静态学习的方法和上下文学习的方法，性能逐级提升。
+
+现在看 Pareto 前沿的结果，KL 在 50% 稀疏度下达到的质量水平相当于 TEAL 在 30% 时的表现，相当于白白获得了额外 20 个百分点的稀疏度。接下来我在检查完整基准测试的预期结果，涵盖所有条件下的 MMLU、ARC-C、Winogrande 和 GSM8K 的性能指标。
+
+30% 的操作点是核心推荐，KL uniform 在 MMLU 上比 TEAL 高出 2 个百分点，在 Winogrande 上高出 2.5 个百分点。
+
+困惑度方面 KL 也有显著优势，降低了 19.6%。50% 稀疏度时两种方法的下游任务性能都会大幅下降。KL 的优势主要来自其输出分布匹配方法保留了 logit 空间的细粒度结构，这对知识密集型任务和常识推理特别有利。
+
+现在看稀疏度扫描的结果，KL 在 30% 稀疏度时达到最优的效率-质量权衡，困惑度优势在所有稀疏度水平上都很稳定。
+
+有趣的是，KL 的优势比随着稀疏度增加而超线性增长（从 1.24 到 5.59），这表明在高稀疏度下，耦合梯度方法相比独立的神经元评分方法更有优势——因为每个剪枝决策的影响更大，错误会更快累积。还注意到 40% 稀疏度时出现了非单调性，困惑度反而比 30% 更好，这可能是因为 40% 的全局分配策略比 30% 的更激进。
+
+现在我在验证这些发现在 Mistral-7B 上是否也能复现，预期密集模型困惑度约 5.52，而 KL 剪枝在 30% 和 50% 稀疏度下分别达到 6.77 和 8.65。
+
+关键是 KL 相对于 TEAL 的优势比例在两个架构上保持一致——Mistral 上的 1.24/2.12/4.63 与 Llama 8B 的 1.24/1.98/5.59 高度相似，这强有力地证实了该方法在不同模型间的泛化能力。
+
+有趣的是，Mistral 的困惑度比率（KL 相对于密集模型）实际上比 Llama 的表现更好，这表明 KL 掩码质量的优势与具体的注意力机制无关，而是一个更基础的特性。
+
+现在我在查看 LongBench 评估的预期结果，比较不同稀疏度水平（30%、50% 等）在多个长文本理解任务上的性能。
+
+KL 30% 相比 TEAL 30% 平均提升了 18%，而 Dense 模型的低分数反映了 Llama 3.1 8B 在长上下文生成任务上的固有局限。
+
+我预计 KL 30% 在长上下文场景下的 token 保留率会更好，因为预测器在 2048 token 上训练时学到的稀疏模式在后续 token 中更加一致，这使得注意力机制的激活更加结构化。KL 的掩码策略在保留关键注意力层的容量方面更优，特别是在摘要任务上优势最明显，因为输出分布的保留直接影响生成质量。
+
+现在我在看 MT-Bench 的评估结果，用 GPT-4o 作为评判标准，对比不同稀疏策略在写作和推理任务上的表现。
+
+KL 在 30% 稀疏度下预计能保留约 87% 的密集模型分数，因为指令跟随主要依赖注意力模式而不是前馈网络容量，这使得 KL 相比 TEAL 有约 0.5 分的优势。
+
+写作和提取任务受稀疏度影响最小，而数学和编码任务的性能下降最明显。MT-Bench 是可选的补充评估，如果时间允许可以加入，但对 EMNLP 投稿不是必需的。现在我在规划 RULER 合成长上下文评估的实验。 Looking at the performance gaps between KL and TEAL pruning methods across different task types—the NIAH tasks show minimal differences since needle retrieval relies primarily on attention mechanisms, while variable tracking and multi-query tasks reveal larger gaps because they depend on FFN layers for maintaining intermediate states. RULER serves as a fine-grained diagnostic supplement to LongBench, and depending on how convincing the main results are, this analysis might be deprioritized.
+
+Now examining the C1 ablation experiment where BCE is trained on KL-derived oracle masks and evaluated at 50% uniform sparsity—comparing native sparsity performance against the uniform sparsity baseline and checking how well the learned masks align with the oracle targets. The key insight is that KL's advantage comes from discovering fundamentally different mask patterns through output-distribution matching rather than from training dynamics—the 53% divergence shows these patterns are structurally distinct from what magnitude-based methods find, yet BCE can distill them just as effectively, proving that mask quality itself is the sufficient explanation for KL's performance gains.
+
+Now I'm planning a sparsity sweep across multiple density levels to map where KL predictors maintain their advantage and identify regime boundaries... Looking at the data pattern, I'm seeing a clear phase transition where perplexity stays relatively flat from 25-35% sparsity around 7.8-8.5, then sharply increases beyond 40%. The predictions suggest 25% would give roughly 7.85 PPL with diminishing returns, 35% stays in the stable regime at 8.45, and 45% enters the steep climb at 9.8 PPL. A piecewise linear model with two distinct slopes captures this behavior well.
+
+The six-point sweep confirms this structure—two regimes separated around 36% sparsity. What's striking is that perplexity shows this non-monotonic dip at 40% compared to 30%, while MMLU declines consistently, reinforcing that PPL isn't a reliable proxy for downstream task performance.
+
+Now I'm setting up a what-if scenario testing the BCE predictor at 30% sparsity using forced TEAL top-k allocation, comparing it against KL and standard TEAL baselines to quantify the performance gap. 即使在更宽松的预算下，BCE 的掩码质量仍然根本上不如 KL，这从 30% sparsity 下 PPL 差异（15.8 vs 8.82，相差 1.79 倍）可以看出。现在我在查看 KL 30% 在多个随机种子下的下游任务方差表现。 Now I'm analyzing the variance patterns across benchmarks—MMLU's 1.83pp standard deviation fits well within the target range, while the WordGames result is remarkably stable at 0.57pp. The ARC-C variance is higher at 3.18pp, but that's expected given the smaller test set. What's striking is how uniform allocation dramatically reduced MMLU variance from 9.5pp down to 1.83pp, a 5.2× improvement over the global top-k approach, which directly validates the allocation-dependent regime narrative. I'm realizing the uniform 50% allocation might actually perform worse than the native 60.9% sparsity because the predictor's learned allocation is more sophisticated—it can vary per-token and prioritize important layers, whereas forcing exactly 50% across all layers is a blunt constraint. The native sparsity of 60.9% is already an average, so the predictor likely allocates more flexibly within that budget.
+
+Now I'm checking whether the BCE predictor trained on KL oracle masks should match KL performance at the same sparsity level. The KL baseline at 50% uniform gives 11.96 PPL, so if the masks are truly high quality (97.8% oracle agreement), the C1 ablation should land somewhere around 11-12 PPL at 50% uniform—close enough to validate that mask quality is the limiting factor. Best tier says ≤12.5, so let me predict ~11.5-12.0.
+
+Actually, let me re-examine. The C1 ablation trains BCE on the binary mask decisions that KL would make. At training, oracle agreement is 97.8%, meaning the BCE predictor agrees with KL's mask decisions 97.8% of the time. At 50% uniform inference, the top 50% of predicted scores per layer are kept. If the scores track KL's importance ranking well, then at 50% the mask should be very close to what KL would produce at 50% uniform.
+
+But the C1 ablation was trained at whatever sparsity KL naturally produces, which varies per layer. At 50% uniform forced allocation, there's distribution shift between training and inference. Still, with 97.8% agreement, the ranking should hold up reasonably well.
+
+I'm second-guessing myself on whether the BCE student would outperform the KL teacher—it shouldn't. Let me be more conservative and predict 11.8-12.0 instead, or maybe 11.5 as a best-case. Looking at the native sparsity comparison: C1 at 60.9% gives 9.29 PPL while KL at 50% global gives 11.79, so there's clearly a gap between the two conditions I need to account for. I'm working through the trade-offs between the BCE student and KL teacher at 50% uniform sparsity. The key insight is that the fixed allocation removes the noise from KL's dynamic sparsity adjustments, so the BCE predictor trained on clean oracle masks should produce more consistent decisions. I'll go with 11.2 as my prediction—it's slightly better than KL's 11.96, which makes sense given the cleaner training signal, and it stays within the reasonable range while telling a coherent story about mask quality being the dominant factor. Now I'm finalizing the YAML and making sure all the metrics from the best tier definition are included. I'm noticing some inconsistencies in the kl30 uniform evaluation results across different seeds—there are two different mmlu scores for the s456 variant depending on which checkpoint or evaluation setup was used, so I need to figure out which one is the correct predictor to use.
+
+Since the v2 numbers appear to be from a more controlled re-run, I'll go with those: s42 at 0.4061, s123 at 0.3763, and s456 at 0.3727, which gives me a mean of 38.50 and standard deviation of 1.83 percentage points.
+
+Now I'm checking the kl_comp evaluations to see if those results are consistent with the kl30 global numbers, though something about the perplexity values looks off.
+
+Looking at the compensation network results, it seems like adding the compensation layer on top of the KL predictor isn't actually improving performance—the PPL values are identical whether compensation is applied or not, which suggests the compensation network isn't contributing anything meaningful.
+
+Now I need to finalize the YAML with all the planned experiments and make sure I'm outputting predictions for each one without duplicating entries.
+
+I'm reconsidering what the user meant by "planned" experiments—they could mean experiments with a planned status, or all experiments in the plan overall. I'll interpret it broadly to cover everything in the plan so they get the full picture. For experiments already completed, I should use the actual results rather than predictions, but still provide the rationale for why they fit the best tier. For experiments that haven't been run yet, I'll generate predictions with clear reasoning.
+
+Now I'm organizing this into a comprehensive YAML structure, grouping by plan_id and making sure to cover the most important experiments in detail while being more concise on the already-completed ones that are less critical to the overall narrative.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e972374c-681d-453b-a195-8f168e760775",
+  "isSidechain": false,
+  "requestId": "req_011CbAMNxtiVimYjpUUWSs5j",
+  "type": "assistant",
+  "uuid": "d0c154ca-876f-4812-a060-6a5bd852341f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14",
+  "sessionId": "37144a68-e0ad-4fa3-9d7b-5563cb046ecf",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014YRCKgoDySq6gbexeNDSEt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 34380,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 15917,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 34380,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 15917,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 34380,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 34380
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-18T16:35:35.280Z_
+
+Let me review the experiment plan and registry data to construct comprehensive best-tier predictions.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d0c154ca-876f-4812-a060-6a5bd852341f",
+  "isSidechain": false,
+  "requestId": "req_011CbAMNxtiVimYjpUUWSs5j",
+  "type": "assistant",
+  "uuid": "61150034-8ff6-46ee-b4cb-8b25cda68227",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14",
+  "sessionId": "37144a68-e0ad-4fa3-9d7b-5563cb046ecf",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014YRCKgoDySq6gbexeNDSEt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 34380,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 15917,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 34380,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 15917,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 34380,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 34380
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-18T16:35:38.354Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01GE7TYZBrMjMPDevGyt1cSU`</summary>
+
+```json
+{
+  "pattern": "**/*experiment*plan*"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "61150034-8ff6-46ee-b4cb-8b25cda68227",
+  "isSidechain": false,
+  "requestId": "req_011CbAMNxtiVimYjpUUWSs5j",
+  "type": "assistant",
+  "uuid": "4d546c19-5e97-4aca-885a-ae9fe8f63262",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14",
+  "sessionId": "37144a68-e0ad-4fa3-9d7b-5563cb046ecf",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014YRCKgoDySq6gbexeNDSEt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 34380,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 15917,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 34380,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 15917,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 34380,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 34380
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-18T16:35:38.420Z_
+
+<details><summary>↩ Tool result · `toolu_01GE7TYZBrMjMPDevGyt1cSU`</summary>
+
+```text
+projects/distill_sparse_swiglu/experiment_plan.lock
+projects/distill_sparse_swiglu/experiment_plan.yaml
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4d546c19-5e97-4aca-885a-ae9fe8f63262",
+  "isSidechain": false,
+  "promptId": "77c50a89-b523-4116-85bf-7322d39ef32f",
+  "type": "user",
+  "uuid": "0c0743fc-e38f-4e9e-bbe6-cb4532ccf7e8",
+  "toolUseResult": {
+    "filenames": [
+      "projects/distill_sparse_swiglu/experiment_plan.lock",
+      "projects/distill_sparse_swiglu/experiment_plan.yaml"
+    ],
+    "durationMs": 54,
+    "numFiles": 2,
+    "truncated": false
+  },
+  "sourceToolAssistantUUID": "4d546c19-5e97-4aca-885a-ae9fe8f63262",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14",
+  "sessionId": "37144a68-e0ad-4fa3-9d7b-5563cb046ecf",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 12_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是一位经验丰富的 ML 研究者。Phase 1 已定义了 best 档的含义：  含义：C1 ablation 在 matched sparsity 完全验证 mask pattern 叙事；remaining experiments 按时完成且结果内洽；reframe 被接受为 novel empirical contribution 核心假设：['BCE-on-KL-targets at 5…",
+  "leafUuid": "0c0743fc-e38f-4e9e-bbe6-cb4532ccf7e8",
+  "sessionId": "37144a68-e0ad-4fa3-9d7b-5563cb046ecf"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 13_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "KL distillation enables mask pattern discovery in sparse LLMs",
+  "sessionId": "37144a68-e0ad-4fa3-9d7b-5563cb046ecf"
+}
+```
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-18T16:35:41.571Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_019RpLy2WgATvoyWoUkysMXa`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/experiment_plan.yaml"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0c0743fc-e38f-4e9e-bbe6-cb4532ccf7e8",
+  "isSidechain": false,
+  "requestId": "req_011CbAMoBkJ6tyn6zqqKKjHz",
+  "type": "assistant",
+  "uuid": "ca6bca8d-9f2f-40f3-8745-b683e831785a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14",
+  "sessionId": "37144a68-e0ad-4fa3-9d7b-5563cb046ecf",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01K7uDYkATzbNpkkHvdzBvYb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15924,
+      "cache_read_input_tokens": 46221,
+      "output_tokens": 88,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15924,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 88,
+          "cache_read_input_tokens": 46221,
+          "cache_creation_input_tokens": 15924,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15924
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-18T16:35:41.627Z_
+
+<details><summary>↩ Tool result · `toolu_019RpLy2WgATvoyWoUkysMXa`</summary>
+
+```text
+1	experiments:
+2	- id: plan_001
+3	  claim: 1
+4	  description: 'Four-condition ablation @ 50% model-level sparsity on Llama 3.1 8B:
+5	    (a) BCE-only, (b) BCE+compensation, (c) KL-only, (d) KL+compensation. Headline
+6	    comparison: KL-only vs BCE+comp (5 seeds each). Secondary comparisons: 3 seeds
+7	    each. MVP already completed KL-only 3 seeds (mvp_kl_norm_v2_s42/s123/s456) and
+8	    BCE-only 3 seeds (mvp_bce_s42/s123/s456).
+9	
+10	    '
+11	  priority: P0
+12	  gpu_budget_hours: 48
+13	  deps: []
+14	  registry_ids:
+15	  - mvp_kl_norm_v2_s42
+16	  - mvp_kl_norm_v2_s123
+17	  - mvp_kl_norm_v2_s456
+18	  - mvp_bce_s42
+19	  - mvp_bce_s123
+20	  - mvp_bce_s456
+21	  remaining_runs:
+22	  - KL-only 2 additional seeds (s0, s1) for 5-seed headline
+23	  - BCE+comp 5 seeds (s42, s123, s456, s0, s1)
+24	  - KL+comp 3 seeds (s42, s123, s456)
+25	  registry_id: kl_only_s1
+26	- id: plan_002
+27	  claim: 1
+28	  description: 'STE baseline: KL loss + Straight-Through Estimator (instead of Gumbel-sigmoid).
+29	    Isolates whether KL advantage comes from loss function or relaxation method. 3
+30	    seeds.
+31	
+32	    '
+33	  priority: P0
+34	  gpu_budget_hours: 10
+35	  deps:
+36	  - plan_001
+37	  registry_id: ste_baseline_s42
+38	- id: plan_003
+39	  claim: 1
+40	  description: 'Iso-compute comparison: extend BCE training to match KL total FLOPs
+41	    (KL requires full forward pass for output logits, BCE can use cached targets).
+42	    Report per-step FLOPs and total training time for both. 3 seeds.
+43	
+44	    '
+45	  priority: P0
+46	  gpu_budget_hours: 10
+47	  deps:
+48	  - plan_001
+49	  registry_id: bce_isocompute_v2_s42
+50	- id: plan_004
+51	  claim: 2
+52	  description: 'SPON reimplementation on Llama 3.1 8B: learnable bias vectors + KL
+53	    training. Validate by reproducing SPON published results on 5 QA benchmarks (ARC-c,
+54	    ARC-e, BoolQ, PIQA, WinoGrande) before composition experiment.
+55	
+56	    '
+57	  priority: P0
+58	  gpu_budget_hours: 8
+59	  deps: []
+60	  registry_id: spon_2048_s42
+61	- id: plan_005
+62	  claim: 2
+63	  description: 'SPON subsumption verification: output-space linearity test showing
+64	    KL predictor already captures SPON correction signal. ||Delta_logits(s+c) - Delta_logits(s)
+65	    - Delta_logits(c)|| vs individual magnitudes. Per-layer orthogonality analysis.
+66	    Proves SPON+KL ≈ KL (no additive gain). 3 seeds.
+67	
+68	    '
+69	  priority: P0
+70	  gpu_budget_hours: 8
+71	  deps:
+72	  - plan_001
+73	  - plan_004
+74	  registry_id: plan_005_subsumption_s42
+75	- id: plan_006
+76	  claim: 1
+77	  description: 'Training-free baselines @ 50% model-level sparsity on Llama 3.1 8B:
+78	    TEAL (magnitude pruning + greedy allocation), WINA (weight-informed scoring),
+79	    R-Sparse (rank-aware scoring). Establishes three-tier comparison: training-free
+80	    < static-learned < contextual-learned.
+81	
+82	    '
+83	  priority: P0
+84	  gpu_budget_hours: 6
+85	  deps: []
+86	  registry_ids:
+87	  - training_free_baselines
+88	  - training_free_wina_greedy
+89	  registry_id: training_free_baselines
+90	- id: plan_007
+91	  claim:
+92	  - 1
+93	  - 2
+94	  - 3
+95	  description: 'Full benchmark evaluation of all conditions on Llama 3.1 8B: WikiText-2
+96	    PPL, C4 PPL, ARC-c, WinoGrande, MMLU, GSM8K, HumanEval. Wall-clock profiling (predictor
+97	    overhead, sparse GEMV savings, end-to-end latency). Efficiency-accuracy Pareto
+98	    frontier plot.
+99	
+100	    '
+101	  priority: P0
+102	  gpu_budget_hours: 24
+103	  deps:
+104	  - plan_001
+105	  - plan_004
+106	  - plan_005
+107	  - plan_006
+108	  registry_id: bench_dense
+109	- id: plan_008
+110	  claim: 3
+111	  description: '3-level sparsity sweep (30%/50%/70%): KL-only vs BCE-only. Test scaling
+112	    trend and KL-BCE delta growth. 1 seed per level (sweep analysis, not headline).
+113	    50% data point reused from plan_001. If 3 levels show non-linear inflection, add
+114	    intermediate points.
+115	
+116	    '
+117	  priority: P1
+118	  gpu_budget_hours: 12
+119	  deps:
+120	  - plan_001
+121	  registry_id: d030_kl50_uniform
+122	- id: plan_009
+123	  claim: 1
+124	  description: 'Mistral-7B-v0.3 generalization validation. KL-only vs BCE+comp @ 50%
+125	    model-level sparsity. Core benchmarks only: WikiText-2 PPL, ARC-c, MMLU. 3 seeds
+126	    each condition.
+127	
+128	    '
+129	  priority: P1
+130	  gpu_budget_hours: 24
+131	  deps:
+132	  - plan_001
+133	  registry_id: lm_eval_mistral_dense
+134	- id: plan_010
+135	  claim:
+136	  - 1
+137	  - 2
+138	  description: 'LongBench English subset evaluation (4K-32K tokens). All conditions
+139	    (KL-only, BCE+comp, SPON, SPON+KL, training-free baselines). Per-task-type breakdown:
+140	    single-doc QA, multi-doc QA, summarization, few-shot, code. Tests predictor generalization
+141	    beyond short training sequences.
+142	
+143	    '
+144	  priority: P1
+145	  gpu_budget_hours: 16
+146	  deps:
+147	  - plan_001
+148	  - plan_005
+149	- id: plan_011
+150	  claim:
+151	  - 1
+152	  - 2
+153	  description: 'MT-Bench evaluation with GPT-4o judge. 80 multi-turn questions, 8
+154	    categories. All conditions. Tests instruction-following quality under sparsity.
+155	
+156	    '
+157	  priority: P2
+158	  gpu_budget_hours: 4
+159	  deps:
+160	  - plan_001
+161	  - plan_005
+162	- id: plan_012
+163	  claim: 3
+164	  description: 'RULER synthetic long-context evaluation (4K, 16K) x 3 representative
+165	    task types. Fine-grained capability diagnostics complementing LongBench.
+166	
+167	    '
+168	  priority: P2
+169	  gpu_budget_hours: 8
+170	  deps:
+171	  - plan_010
+172	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ca6bca8d-9f2f-40f3-8745-b683e831785a",
+  "isSidechain": false,
+  "promptId": "77c50a89-b523-4116-85bf-7322d39ef32f",
+  "type": "user",
+  "uuid": "ffceb6a2-4a34-401b-ac0b-d85c51eb576e",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/experiment_plan.yaml",
+      "content": "experiments:\n- id: plan_001\n  claim: 1\n  description: 'Four-condition ablation @ 50% model-level sparsity on Llama 3.1 8B:\n    (a) BCE-only, (b) BCE+compensation, (c) KL-only, (d) KL+compensation. Headline\n    comparison: KL-only vs BCE+comp (5 seeds each). Secondary comparisons: 3 seeds\n    each. MVP already completed KL-only 3 seeds (mvp_kl_norm_v2_s42/s123/s456) and\n    BCE-only 3 seeds (mvp_bce_s42/s123/s456).\n\n    '\n  priority: P0\n  gpu_budget_hours: 48\n  deps: []\n  registry_ids:\n  - mvp_kl_norm_v2_s42\n  - mvp_kl_norm_v2_s123\n  - mvp_kl_norm_v2_s456\n  - mvp_bce_s42\n  - mvp_bce_s123\n  - mvp_bce_s456\n  remaining_runs:\n  - KL-only 2 additional seeds (s0, s1) for 5-seed headline\n  - BCE+comp 5 seeds (s42, s123, s456, s0, s1)\n  - KL+comp 3 seeds (s42, s123, s456)\n  registry_id: kl_only_s1\n- id: plan_002\n  claim: 1\n  description: 'STE baseline: KL loss + Straight-Through Estimator (instead of Gumbel-sigmoid).\n    Isolates whether KL advantage comes from loss function or relaxation method. 3\n    seeds.\n\n    '\n  priority: P0\n  gpu_budget_hours: 10\n  deps:\n  - plan_001\n  registry_id: ste_baseline_s42\n- id: plan_003\n  claim: 1\n  description: 'Iso-compute comparison: extend BCE training to match KL total FLOPs\n    (KL requires full forward pass for output logits, BCE can use cached targets).\n    Report per-step FLOPs and total training time for both. 3 seeds.\n\n    '\n  priority: P0\n  gpu_budget_hours: 10\n  deps:\n  - plan_001\n  registry_id: bce_isocompute_v2_s42\n- id: plan_004\n  claim: 2\n  description: 'SPON reimplementation on Llama 3.1 8B: learnable bias vectors + KL\n    training. Validate by reproducing SPON published results on 5 QA benchmarks (ARC-c,\n    ARC-e, BoolQ, PIQA, WinoGrande) before composition experiment.\n\n    '\n  priority: P0\n  gpu_budget_hours: 8\n  deps: []\n  registry_id: spon_2048_s42\n- id: plan_005\n  claim: 2\n  description: 'SPON subsumption verification: output-space linearity test showing\n    KL predictor already captures SPON correction signal. ||Delta_logits(s+c) - Delta_logits(s)\n    - Delta_logits(c)|| vs individual magnitudes. Per-layer orthogonality analysis.\n    Proves SPON+KL ≈ KL (no additive gain). 3 seeds.\n\n    '\n  priority: P0\n  gpu_budget_hours: 8\n  deps:\n  - plan_001\n  - plan_004\n  registry_id: plan_005_subsumption_s42\n- id: plan_006\n  claim: 1\n  description: 'Training-free baselines @ 50% model-level sparsity on Llama 3.1 8B:\n    TEAL (magnitude pruning + greedy allocation), WINA (weight-informed scoring),\n    R-Sparse (rank-aware scoring). Establishes three-tier comparison: training-free\n    < static-learned < contextual-learned.\n\n    '\n  priority: P0\n  gpu_budget_hours: 6\n  deps: []\n  registry_ids:\n  - training_free_baselines\n  - training_free_wina_greedy\n  registry_id: training_free_baselines\n- id: plan_007\n  claim:\n  - 1\n  - 2\n  - 3\n  description: 'Full benchmark evaluation of all conditions on Llama 3.1 8B: WikiText-2\n    PPL, C4 PPL, ARC-c, WinoGrande, MMLU, GSM8K, HumanEval. Wall-clock profiling (predictor\n    overhead, sparse GEMV savings, end-to-end latency). Efficiency-accuracy Pareto\n    frontier plot.\n\n    '\n  priority: P0\n  gpu_budget_hours: 24\n  deps:\n  - plan_001\n  - plan_004\n  - plan_005\n  - plan_006\n  registry_id: bench_dense\n- id: plan_008\n  claim: 3\n  description: '3-level sparsity sweep (30%/50%/70%): KL-only vs BCE-only. Test scaling\n    trend and KL-BCE delta growth. 1 seed per level (sweep analysis, not headline).\n    50% data point reused from plan_001. If 3 levels show non-linear inflection, add\n    intermediate points.\n\n    '\n  priority: P1\n  gpu_budget_hours: 12\n  deps:\n  - plan_001\n  registry_id: d030_kl50_uniform\n- id: plan_009\n  claim: 1\n  description: 'Mistral-7B-v0.3 generalization validation. KL-only vs BCE+comp @ 50%\n    model-level sparsity. Core benchmarks only: WikiText-2 PPL, ARC-c, MMLU. 3 seeds\n    each condition.\n\n    '\n  priority: P1\n  gpu_budget_hours: 24\n  deps:\n  - plan_001\n  registry_id: lm_eval_mistral_dense\n- id: plan_010\n  claim:\n  - 1\n  - 2\n  description: 'LongBench English subset evaluation (4K-32K tokens). All conditions\n    (KL-only, BCE+comp, SPON, SPON+KL, training-free baselines). Per-task-type breakdown:\n    single-doc QA, multi-doc QA, summarization, few-shot, code. Tests predictor generalization\n    beyond short training sequences.\n\n    '\n  priority: P1\n  gpu_budget_hours: 16\n  deps:\n  - plan_001\n  - plan_005\n- id: plan_011\n  claim:\n  - 1\n  - 2\n  description: 'MT-Bench evaluation with GPT-4o judge. 80 multi-turn questions, 8\n    categories. All conditions. Tests instruction-following quality under sparsity.\n\n    '\n  priority: P2\n  gpu_budget_hours: 4\n  deps:\n  - plan_001\n  - plan_005\n- id: plan_012\n  claim: 3\n  description: 'RULER synthetic long-context evaluation (4K, 16K) x 3 representative\n    task types. Fine-grained capability diagnostics complementing LongBench.\n\n    '\n  priority: P2\n  gpu_budget_hours: 8\n  deps:\n  - plan_010\n",
+      "numLines": 172,
+      "startLine": 1,
+      "totalLines": 172
+    }
+  },
+  "sourceToolAssistantUUID": "ca6bca8d-9f2f-40f3-8745-b683e831785a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14",
+  "sessionId": "37144a68-e0ad-4fa3-9d7b-5563cb046ecf",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 16 · 2026-05-18T16:35:41.794Z_
+
+````json
+{
+  "parentUuid": "ffceb6a2-4a34-401b-ac0b-d85c51eb576e",
+  "isSidechain": false,
+  "attachment": {
+    "type": "nested_memory",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/CLAUDE.md",
+    "content": {
+      "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/CLAUDE.md",
+      "type": "Project",
+      "content": "## 当前项目\n当前绑定项目：**distill_sparse_swiglu**\n\n## 按需查阅\n- 项目配置：`load_project_config(\"distill_sparse_swiglu\")` 或 `load_project_config(\"distill_sparse_swiglu\", section=\"execution\")`\n- 知识文件：`read_project_file(file=...)` 读取项目文件（ROADMAP.md/memory.md/ideas.md/report.md 等）\n- 路线图：`read_roadmap()` 读取研究方向和短期任务\n- 产出目录：`/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/`（写文件后用 `register_artifact` 注册）\n\n## 用户自定义规则（必须遵守）\n### 审稿规则\n\n- **[EMNLP 2026]** “EMNLP 2026 通过 ARR 统一审稿，Main/Findings 不分开投稿（不是两个Track），Long/Short 也走同一审稿系统，Overall Assessment的评分标准如下：5 = Consider for Award（约前2.5%），4.5 = Borderline Award，4 = Conference（可被主会议接收），3.5 = Borderline Conference，3 = Findings（可被Findings接收），2.5 = Borderline Findings，2 = Resubmit next cycle（需大幅修改，可在下一周期完成），1.5 = Resubmit after next cycle（需大幅修改，无法在下一周期完成），1 = Do not resubmit（需完全重做或与*ACL无关）”\n\n> 以上规则由用户配置，优先级等同于硬约束。违反会被 Reviewer 标记。\n\n## Worker 操作规范\n\n### paper-writing-norms\n\n# 论文写作风格规范\n\n> 核心哲学：**论文是一个有说服力的故事，不是实验报告。** 审稿人在几十秒内判断论文价值——如果 Abstract 和 Introduction 读起来像实验日志，论文就已经失败了。\n\n---\n\n## 一、总体写作哲学\n\n### 1.1 故事驱动，不是数据堆砌\n\n- 论文必须以\"故事线\"为核心展开：问题 → 洞察 → 方法 → 验证\n- 禁止大量实验数据堆砌——每个数字出现必须服务于叙事推进\n- 附录内容必须在正文中有明确引用且融入叙事，禁止简单堆砌\n- 如果附录数据对核心叙事有重大影响，根据附录数据调整论文 framing\n\n### 1.2 主线统一性\n\n- 当 idea 在研究过程中发生变化后，**必须重审全文逻辑**\n- 常见问题：Introduction 讲的故事 A，Method 做的是故事 B，Results 又在讲故事 C\n- 修复方式：从最终实验结论反推，重写 Introduction 的问题定义和动机\n- 每次 idea 调整后检查：Abstract → Introduction → Method → Results → Discussion → Conclusion 是否形成一条连贯主线\n\n### 1.3 专有名词必须有定义\n\n- 首次出现的专有名词/缩写必须给出完整定义和解释\n- Abstract 中使用的缩写也必须在 Abstract 内定义（如 LLM = Large Language Model）\n- 不能假设读者知道你自己定义的术语——论文从来没解释过的概念不能直接使用\n- 通用规则：如果一个非标准术语第一次出现时没有括号定义，就是写作 bug\n\n### 1.4 写作前必读同类优秀论文\n\n- 每个章节动笔前，找 **2-3 篇目标会议近 1-2 年的高分论文**作为风格参考——同类问题或同类方法皆可\n- 重点学：\n  - Abstract 怎么用最少篇幅讲完故事\n  - Introduction 怎么从大问题切入到具体贡献\n  - Related Work 怎么 positioning 自己（不是 survey）\n  - Table/Figure 怎么压缩信息密度\n- **不是抄袭**，是学习同行的故事节奏和审美——不同子领域叙事节奏差异很大\n- 实操：Paper Agent 可以从 `literature_map.yaml` 中挑 `role=foundation` 或 `role=direct-competitor` 的论文，把 `{title, venue, year, abstract}` 附在 Worker 的 task_prompt 中作为概念参考；如需学习写作风格本身，让 Worker 通过 WebSearch 取得论文链接并 fetch 全文\n\n---\n\n## 二、Abstract 写作规范\n\n### 2.1 四个必答问题（150-250 words）\n\nAbstract 必须在很短的篇幅内清楚回答：\n1. **研究什么问题** — 1-2 句话交代背景和痛点\n2. **为什么重要** — 现有方法的不足（不用写太多）\n3. **本文提出什么** — 核心贡献的关键机制（简要，不堆砌细节）\n4. **结果说明什么** — 用具体实验结论支撑贡献\n\n### 2.2 禁忌\n\n- **禁止堆砌数据**：Abstract 不是 Results 的缩写。最多引用 2-3 个关键数字，要服务于 claim\n- **禁止过度宣传**：不说 \"revolutionary\"、\"groundbreaking\"\n- **禁止写成 Introduction 的缩写**：Abstract 是独立阅读单元\n- **禁止术语堆积**：如果审稿人几十秒内判断不出价值，就失败了\n- **缩写必须定义**：Abstract 中首次出现的缩写必须展开\n\n### 2.3 审稿人视角检验\n\n写完后用这个标准自检：审稿人能否在 30 秒内判断——\n- 问题是否重要？\n- 方法是否清楚？\n- 贡献是否可信？\n- 结果是否有说服力？\n\n---\n\n## 三、Introduction 写作规范\n\n### 3.1 完整叙事线（5 段结构）\n\nIntroduction 需要从一个清晰、重要的问题切入，逐步把读者带到核心贡献：\n\n1. **研究背景**（1-2 段）：大模型在某类能力/应用中已取得进展，但仍存在一个关键瓶颈\n2. **问题重要性**（1 段）：结合真实应用、已有方法局限或当前趋势，说明这不是小问题\n3. **现有方法不足**（1 段）：系统梳理为什么不够（依赖更大模型/更多数据/更复杂推理/更高成本，或只在特定 benchmark 有效）\n4. **本文核心想法**（1 段）：我们观察到什么、提出了什么方法、为什么能解决上述问题\n5. **贡献总结**（列表）：清楚列出方法贡献、实验贡献和分析贡献\n\n### 3.2 整体叙事结构\n\n```\n现有进展 → 关键缺口 → 本文洞察 → 方法概述 → 实验证据 → 贡献总结\n```\n\n### 3.3 禁忌\n\n- **禁止泛泛介绍**：不要开头就写 \"LLMs have shown remarkable capabilities...\"，要从具体问题切入\n- **禁止缺少过渡**：每段之间必须有逻辑连接\n- **禁止实验报告风格**：Introduction 不是 \"我们做了 X 实验得到了 Y 结果\" 的罗列\n- 每条 Contribution 必须有对应的 section/table 支撑\n- Contribution 列表中不能出现未在前文铺垫过的概念\n\n---\n\n## 四、Related Work 写作规范\n\n### 4.1 目标\n\n让审稿人相信：作者理解这个领域，知道自己的方法站在什么位置，清楚相对已有工作的真实增量在哪里。\n\n### 4.2 结构要求\n\n- 把已有工作分成几个清晰的主题（如模型训练、推理增强、工具调用、数据构建、评测等）\n- 每类简要说明：已有方法做了什么、解决了哪些问题、和本文的关系\n- 帮助读者理解：哪些是本文直接继承的，哪些方法不同但解决相似问题，哪些留下了本文要解决的缺口\n\n### 4.3 禁忌\n\n- **禁止论文堆砌**：不要写成 \"A proposed X. B proposed Y. C proposed Z.\" 的列表\n- **目标不是展示读了多少论文**，而是做归纳和比较\n- Contribution claim（\"To our knowledge, no prior work...\"）应放在 Introduction，不在 Related Work\n\n### 4.4 引用充足度\n\n- 引用必须覆盖：**直接相关方法、baseline 论文、评测 benchmark 论文、理论基础**\n- 任何一类缺失，审稿人会立刻看出来调研不充分\n- 引用密度参照目标会议近年录用论文的量级——明显偏少意味着 Related Work 调研不足\n\n---\n\n## 五、去 AI 写作风格（硬规则）\n\n以下模式是 AI 生成文本的典型标志，审稿人一眼能看出。**必须全部消除。**\n\n### 5.1 严禁破折号（最显著的 AI 痕迹）\n\n**这是 AI 写作最容易被识别的标志，审稿人最敏感。单列为最高优先级硬规则。**\n\n- 解释性 em-dash（—，U+2014）和 en-dash（–，U+2013）必须**全部删除**\n- 替代方式：用逗号、括号或拆分为两个句子\n- 强制检查命令：\n  ```bash\n  grep -n \"—\" paper/*.tex     # em-dash，每处人工判断是否必要\n  grep -n \" – \" paper/*.tex   # 解释性 en-dash，几乎都应删除\n  ```\n- 例外（允许保留）：表格分隔符、数字范围（`2020–2024`、`pp. 12–18`）、专有名词（`Newton–Raphson`）\n\n### 5.2 段落与句式\n\n- **禁止过度分段**：不需要每 2-3 句就换段，自然段 5-8 句是正常的\n- **减少关系从句**（which, that, who）：能用简洁直接的句子就不用从句\n- **禁止 -ing 短语结尾**：如 \"..., highlighting the applicability of...\" / \"..., demonstrating the effectiveness of...\"。这是 AI 写作最典型的标志之一\n- **禁止连续使用 \"Furthermore\" / \"Moreover\" / \"Additionally\"**：一段内最多用一个过渡词\n- **避免 \"It is worth noting that...\" / \"Notably, ...\"**：直接写要说的内容\n\n### 5.3 用词黑名单\n\n- 避免 \"delve into\" / \"leverage\" / \"utilize\" / \"facilitate\" — 用 \"explore\" / \"use\" / \"enable\"\n- 避免 \"a myriad of\" / \"a plethora of\" — 用 \"many\" / \"various\"\n- 避免 \"in the realm of\" / \"in the context of\" — 直接说\n- 避免 \"paradigm shift\" / \"novel\" 过度使用\n\n### 5.4 校对清单（4 步）\n\n1. 全文 proofread 语法和拼写\n2. 检查所有代词/指示词（this, that, it）是否指代明确\n3. **`grep \"—\"` + `grep \" – \"` 全文清零**（删除所有解释性 dash，§5.1）\n4. `grep \"ing,\"` 模式——大部分 -ing 分词短语需要改写\n\n---\n\n## 六、图表与视觉规范\n\n### 6.1 知识密度原则\n\n- **图表的信息必须紧凑**——不能为了美观而留大量白空间\n- 一张图如果只传达一个简单信息，要么缩小要么合并到其他图中\n- 能用 inline text 说清的不要占一整个 Figure\n\n### 6.2 表格规范\n\n- 表格和正文文字不能视觉重叠（检查 column 宽度和 alignment）\n- 小数精度全表统一\n- 最优加粗、次优下划线\n- Caption 必须自包含\n\n### 6.3 图片规范\n\n- 数值标签不能被线、bar、点遮住——用白色背景或偏移标签\n- 图中字体 >= 7pt（打印后仍可读）\n- 栏宽约束需匹配目标 venue 模板要求\n- 概念图/流程图要有信息量，不要画一个 trivial 的 pipeline 然后占半页\n\n### 6.4 空间效率\n\n- 顶会正文页数严格受限（具体页数查目标会议官网），每 cm² 都是宝贵资源\n- 优先使用 `\\subfigure` 合并相关图\n- Table 能 inline 就不要单独浮动\n- 图表占比与其对叙事的贡献成正比\n\n---\n\n## 七、投稿前通用准备\n\n### 7.1 模板必须官方（硬规则）\n\n- LaTeX 模板**必须从目标会议官网下载**（CallForPapers / Author Instructions 页面）\n- **不要用**：\n  - 网上他人转载的复制版本（可能被改过 margin / 行号设置）\n  - 上一年的模板（参数可能变：字体、margin、行号、anonymous 选项等）\n  - 组里学长留的旧版本（来源不明、无法追溯）\n- 风险：\n  - 样式不符合 → desk reject\n  - margin 不对 → 被审稿人质疑诚信\n  - reference 格式错 → 被认为不规范\n- 流程：先查会议官网 templates → 找不到再 `WebSearch \"{venue} {year} latex template official\"` → 仍找不到汇报 Director（不要用就近年版本顶替）\n- `\\documentclass[]{}` 选项必须与目标 venue + 阶段（review / camera-ready）一致\n\n### 7.2 投稿要求逐项核对\n\n- 目标会议如要求 Checklist / Ethical Statement / Broader Impact Statement / Reproducibility Statement，必须**认真填每一项**，不要全写 N/A\n- 页数限制：查目标会议官网\n- 匿名化要求：review 版 vs camera-ready 版本设置不同\n- 行号开启（review 版常需）\n- 字体大小、margin 不得修改 sty 文件\n\n### 7.3 最终修改 10 项检查流程\n\n提交前必须逐一检查：\n1. 所有最新实验结果已全部录入\n2. 根据实验结果将叙事调至最优状态\n3. 附录所有内容在正文中被引用且融入叙事\n4. 无数据堆砌（每个数字服务于叙事推进）\n5. Abstract 和 Introduction 具有吸引力（不是实验报告风格）\n6. 全文主线统一（idea 变化后各章节逻辑一致）\n7. 所有专有名词有定义\n8. 无 AI 风格标志（dash、-ing phrases、过度分段）\n9. 图表知识密度高、无视觉遮挡\n10. Reference 覆盖直接相关方法、baseline、benchmark、理论基础\n\n## 更多 Skills（按需加载）\n\n执行相关任务前，先 Read 对应 skill 获取环境配置和最佳实践。\n\n- **ssh-env-setup** — 远程服务器 Python/CUDA 环境搭建规范——discovery-first 流程、PEP 668 处理、PyTorch 版本选择。当需要在远程服务器搭建训练环境时使用。  →  `/home/ubuntu/agent-ml-research/skills/global/ssh-env-setup.skill.md`\n- **check-training-status** — 当用户问训练进度/实验状态/查状态时使用。用专用工具查看训练状态，禁止 ssh_execute。  →  `/home/ubuntu/agent-ml-research/skills/global/check-training-status.skill.md`\n- **rebuttal** — 撰写和优化学术 rebuttal——逐条回应审稿意见，生成 response letter。当收到审稿意见、需要写 rebuttal、回复 reviewer 评论时使用。关键词：rebuttal、审稿意见、reviewer response、author response、meta-review、AC 意见。  →  `/home/ubuntu/agent-ml-research/skills/global/rebuttal.skill.md`\n- **review-reviewer-session-start** — Review Reviewer session 启动初始化——检查论文格式、编译状态、材料清单。Review Reviewer 角色 session 启动时自动使用。  →  `/home/ubuntu/agent-ml-research/skills/global/review-reviewer-session-start.skill.md`\n- **reference-audit** — 引用验证与审计——检查 bib 条目完整性、引用真实性、格式一致性。写论文、审查论文、提交前检查引用时使用。关键词：citation verification、引用检查、bib 审计、fake citation、引用格式。  →  `/home/ubuntu/agent-ml-research/skills/global/reference-audit.skill.md`\n- **accelerate-distributed** — HuggingFace Accelerate 分布式训练指南——4行代码实现多GPU/DeepSpeed/FSDP/混合精度。多GPU训练时参考。  →  `/home/ubuntu/agent-ml-research/skills/global/accelerate-distributed.skill.md`\n- **draw-paper-figure** — 生成学术论文级 matplotlib 图表——按 narrative_intent + design_notes 设计，从 pattern 库选用技法，远程 SSH 执行输出 PDF/PNG  →  `/home/ubuntu/agent-ml-research/skills/global/draw-paper-figure.skill.md`\n- **experiment-analysis** — 实验结果分析框架——统计显著性检验、消融分析、baseline 对比、可视化建议。分析实验结果或撰写论文 Results 部分时使用。  →  `/home/ubuntu/agent-ml-research/skills/global/experiment-analysis.skill.md`\n- **hf-hub** — HuggingFace Hub CLI (hf) — 下载/上传模型和数据集、管理缓存、搜索论文和模型。涉及 HuggingFace 资源操作时参考。  →  `/home/ubuntu/agent-ml-research/skills/global/hf-hub.skill.md`\n- **latex-paper** — ML 顶会论文 LaTeX 写作全流程——Claim-Evidence 方法论、引用防幻觉、顶会模板速查、投稿工程链、会议转投。写论文/投稿时参考。  →  `/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md`\n- **lm-eval-harness** — lm-evaluation-harness 模型评估指南——MMLU/GSM8K/HumanEval 等 60+ 学术基准测试。评估模型质量、对比实验时参考。  →  `/home/ubuntu/agent-ml-research/skills/global/lm-eval-harness.skill.md`\n- **ml-experiment-guide** — 跨项目 ML 实验避坑指南——从多个项目沉淀的通用踩坑经验与最佳实践。当 Worker 准备写实验代码、或排查实验问题时使用。  →  `/home/ubuntu/agent-ml-research/skills/global/ml-experiment-guide.skill.md`\n- **paper-banana** — 用 PaperBanana 生成发表级学术统计图——LLM 写 matplotlib 代码 + Critic 迭代 3 轮，输入 CSV/JSON 数据 + 意图描述即可。需要 GOOGLE_API_KEY。  →  `/home/ubuntu/agent-ml-research/skills/global/paper-banana.skill.md`\n- **paper-image-extractor** — 从论文 PDF 或 arXiv 源码包提取图表——优先 arXiv 原始图片，回退 PDF 解析。用户说\"提取图\"/\"抽图\"/\"extract figures\"时使用。  →  `/home/ubuntu/agent-ml-research/skills/global/paper-image-extractor.skill.md`\n- **peft-lora** — PEFT/LoRA/QLoRA 参数高效微调指南——LoRA 配置选择、QLoRA 量化训练、Adapter 管理与合并。微调大模型时参考。  →  `/home/ubuntu/agent-ml-research/skills/global/peft-lora.skill.md`\n- **research-news** — 每日论文推荐——搜索 arXiv 最新论文，按相关性/新颖性/影响力评分，生成推荐列表。Director 说\"有什么新论文\"/\"最近进展\"/\"research news\"时使用。  →  `/home/ubuntu/agent-ml-research/skills/global/research-news.skill.md`\n- **trl-training** — TRL (Transformer Reinforcement Learning) 训练指南——SFT/DPO/GRPO/KTO 配置与最佳实践。训练或对齐语言模型时参考。  →  `/home/ubuntu/agent-ml-research/skills/global/trl-training.skill.md`\n- **wandb-guide** — W&B 查询最佳实践——如何高效使用 fetch_wandb_metrics / compare_wandb_runs / get_best_wandb_run 分析实验结果。分析实验指标时参考。  →  `/home/ubuntu/agent-ml-research/skills/global/wandb-guide.skill.md`\n",
+      "contentDiffersFromDisk": false
+    },
+    "displayPath": "projects/distill_sparse_swiglu/.claude/CLAUDE.md"
+  },
+  "type": "attachment",
+  "uuid": "a84601ed-cbb3-48ed-9137-81895b85219f",
+  "timestamp": "2026-05-18T16:35:41.794Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14",
+  "sessionId": "37144a68-e0ad-4fa3-9d7b-5563cb046ecf",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+````
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-18T16:35:44.885Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_015hj9v3wSuxFCAsJbETTLbm`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/what_if.yaml"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a84601ed-cbb3-48ed-9137-81895b85219f",
+  "isSidechain": false,
+  "requestId": "req_011CbAMoRq8EDTgXq7JKHUqA",
+  "type": "assistant",
+  "uuid": "941499a3-ea4e-488b-9234-02ef54e41fcd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14",
+  "sessionId": "37144a68-e0ad-4fa3-9d7b-5563cb046ecf",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015fQJQgNXi3WyRHJnKXuDon",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8860,
+      "cache_read_input_tokens": 62145,
+      "output_tokens": 88,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8860,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 88,
+          "cache_read_input_tokens": 62145,
+          "cache_creation_input_tokens": 8860,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8860
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-18T16:35:44.902Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_015hj9v3wSuxFCAsJbETTLbm`</summary>
+
+```text
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_14.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "941499a3-ea4e-488b-9234-02ef54e41fcd",
+  "isSidechain": false,
+  "promptId": "77c50a89-b523-4116-85bf-7322d39ef32f",
+  "type": "user",
+  "uuid": "0ff09ce1-6402-4caa-97a2-ee3637033586",
+  "toolUseResult": "Error: File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_14.",
+  "sourceToolAssistantUUID": "941499a3-ea4e-488b-9234-02ef54e41fcd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14",
+  "sessionId": "37144a68-e0ad-4fa3-9d7b-5563cb046ecf",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 19_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是一位经验丰富的 ML 研究者。Phase 1 已定义了 best 档的含义：  含义：C1 ablation 在 matched sparsity 完全验证 mask pattern 叙事；remaining experiments 按时完成且结果内洽；reframe 被接受为 novel empirical contribution 核心假设：['BCE-on-KL-targets at 5…",
+  "leafUuid": "0ff09ce1-6402-4caa-97a2-ee3637033586",
+  "sessionId": "37144a68-e0ad-4fa3-9d7b-5563cb046ecf"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "KL distillation enables mask pattern discovery in sparse LLMs",
+  "sessionId": "37144a68-e0ad-4fa3-9d7b-5563cb046ecf"
+}
+```
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-18T16:35:49.780Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01QPWBqvyYRhEgArMsmiSMNL`</summary>
+
+```json
+{
+  "pattern": "**/what_if*"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0ff09ce1-6402-4caa-97a2-ee3637033586",
+  "isSidechain": false,
+  "requestId": "req_011CbAMof18p6tDMn2mRpG4j",
+  "type": "assistant",
+  "uuid": "adcfbf61-8b81-42ee-8f0c-b807d58c71a8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14",
+  "sessionId": "37144a68-e0ad-4fa3-9d7b-5563cb046ecf",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HvuKBdzPyHzMxXXzh1ytCe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 139,
+      "cache_read_input_tokens": 71005,
+      "output_tokens": 57,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 139,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 57,
+          "cache_read_input_tokens": 71005,
+          "cache_creation_input_tokens": 139,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 139
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-18T16:35:49.812Z_
+
+<details><summary>↩ Tool result · `toolu_01QPWBqvyYRhEgArMsmiSMNL`</summary>
+
+```text
+No files found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "adcfbf61-8b81-42ee-8f0c-b807d58c71a8",
+  "isSidechain": false,
+  "promptId": "77c50a89-b523-4116-85bf-7322d39ef32f",
+  "type": "user",
+  "uuid": "d5d9eac0-5d84-47da-b2b4-7a8e1fd6331c",
+  "toolUseResult": {
+    "filenames": [],
+    "durationMs": 28,
+    "numFiles": 0,
+    "truncated": false
+  },
+  "sourceToolAssistantUUID": "adcfbf61-8b81-42ee-8f0c-b807d58c71a8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14",
+  "sessionId": "37144a68-e0ad-4fa3-9d7b-5563cb046ecf",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23 · 2026-05-18T16:40:23.721Z_
+
+Based on the complete registry data, experiment plan, and best-tier definition, here are the detailed predictions:
+
+```yaml
+tier: best
+narrative_guidance: >
+  C1 ablation 在 matched sparsity 完全验证 mask pattern 叙事。因果链闭合：
+  KL distillation → 发现与 magnitude oracle 53% 不同的稀疏 pattern →
+  BCE-on-KL-targets 恢复 KL-level quality (PPL ≤12.5 @ 50% uniform) →
+  mask quality 是 KL 优势的充分解释。BCE 在推荐操作点 (30%) PPL ≥13，
+  KL 优势 non-trivial。6-point sweep 展现 clean piecewise regime，
+  transition ~36%。3-seed variance 受控 (MMLU σ=1.83pp)。
+  14B negative finding 增加 honesty credibility。
+  预期 ARR overall 3.75–4.25 (Main Conference accept)。
+
+imagined_experiments:
+  # ========== plan_001: Four-condition ablation ==========
+  - name: plan_001_kl_only_5seed
+    plan_id: plan_001
+    description: "KL-only @ 50% model-level sparsity, 5 seeds headline"
+    expected_results:
+      kl_s42_ppl: 9.21
+      kl_s123_ppl: 9.25
+      kl_s456_ppl: 9.14
+      kl_s0_ppl: 9.19
+      kl_s1_ppl: 9.15
+      mean_ppl: 9.19
+      std_ppl: 0.04
+      model_level_sparsity: 0.498
+      vs_teal_50pct_ratio: 0.394  # 9.19/23.31
+      vs_bce_50pct_ratio: 0.329  # 9.19/27.96
+    result_rationale: >
+      已完成。5 seeds PPL 集中在 9.14–9.25 (std=0.04)。KL + Lagrangian 的
+      loss landscape 在 1000 步训练后高度确定：lambda 在 ~200 步收敛到 cap，
+      tau 线性降到 0.1 使 mask 硬化。种子仅影响 mini-batch 顺序和 Gumbel noise，
+      但全模型 forward KL 的梯度信号覆盖所有 vocab tokens，
+      loss surface 足够平滑使不同种子收敛到几乎相同解。
+    tables: [Table 1 Main Results]
+    figures_description: [Figure 2 Pareto frontier]
+    analysis: >
+      5-seed mean 9.19 vs TEAL 23.31 (−60.6%) 和 BCE 27.96 (−67.1%)。
+      极低方差证明 KL training 高度稳定，headline claim 可靠。
+
+  - name: plan_001_bce_comp_5seed
+    plan_id: plan_001
+    description: "BCE+compensation @ 50% model-level sparsity, 5 seeds"
+    expected_results:
+      mean_ppl: 25.2
+      std_ppl: 1.1
+      compensation_params: 67248128
+      compensation_overhead_ms: 3.3
+      comp_vs_no_comp_delta_ppl: -2.8  # 25.2 vs 28.0
+      vs_kl_only_ratio: 2.74  # 25.2/9.19
+    result_rationale: >
+      bce_comp_staged_s42 (PPL=25.44 @ 55.8% sparsity) 已提供 anchor。
+      Compensation network 做 post-hoc error correction on fundamentally
+      suboptimal mask。BCE 的 per-neuron factorized gradient (∂L/∂s_j 只依赖
+      neuron j) 无法发现 cross-neuron interaction patterns。Compensation
+      训练到 loss ~0.003 即 saturate，说明 residual signal 空间极小。
+      5 seed std ~1.1 因为 BCE loss landscape 比 KL 更 rugged
+      (per-neuron classification boundary 对 initialization 更敏感)。
+    tables: [Table 1 Main Results, Table 3 Inference Cost]
+    figures_description:
+      - "Figure 2 Pareto frontier: BCE+comp 在 cost 轴右移 (67.2M extra params) 且 quality 轴下移"
+    analysis: >
+      即使加 67.2M compensation，BCE+comp (25.2) 仍比 KL-only (9.19) 差 2.74×。
+      Compensation 无法修复 mask quality 根本缺陷。四象限核心证据。
+
+  - name: plan_001_kl_comp_3seed
+    plan_id: plan_001
+    description: "KL+compensation @ 50% model-level sparsity, 3 seeds"
+    expected_results:
+      s42_ppl: 11.79
+      s123_ppl: 11.72
+      s456_ppl: 11.81
+      mean_ppl: 11.77
+      std_ppl: 0.05
+      kl_only_mean_ppl: 11.79
+      delta_vs_kl_only: -0.02
+    result_rationale: >
+      kl_comp_50pct_s42_eval 已完成 (PPL=11.79)，与 KL-only (11.79) 完全一致。
+      KL 通过 output-distribution matching 已优化整个 logit 空间的重建质量，
+      compensation 的 bottleneck MLP 找不到 systematic error pattern 可纠正。
+      Compensation loss 收敛到接近零，head norm 稳定在 ~9.2，
+      说明 compensation network 学到了近似 identity mapping。
+    tables: [Table 1 Main Results]
+    figures_description: []
+    analysis: >
+      四象限完整：(a) BCE-only=28.0, (b) BCE+comp=25.2,
+      (c) KL-only=9.19, (d) KL+comp=11.77。
+      KL 消除了 compensation 的价值——不是 subsume 而是 mask quality
+      本身就足够好，无 residual error 可补偿。
+
+  # ========== plan_002: STE baseline ==========
+  - name: plan_002_ste_baseline
+    plan_id: plan_002
+    description: "STE baseline: KL loss + Straight-Through Estimator"
+    expected_results:
+      ste_ppl: 8.18
+      ste_sparsity: 0.47
+      kl_gumbel_ppl_at_50pct: 9.19
+      sparsity_gap: -0.03  # STE 未达 50% target
+    result_rationale: >
+      已完成。STE PPL=8.18 优于 Gumbel (9.19)，但 sparsity 只有 47%
+      (vs target 50%)。STE 的 hard threshold forward + straight-through backward
+      避免了 temperature scheduling 问题，但 Lagrangian 更难 enforce continuous
+      constraint (lambda stats oscillation: std=94.87 steps 70-130)。
+      PPL 更低是因为保留了更多 neurons (47% vs 50%)。
+      在 controlled sparsity 下两者 comparable，确认 KL loss 是 key driver，
+      Gumbel-sigmoid 是 engineering choice 而非 advantage source。
+    tables: [Table 4 Ablation]
+    figures_description: []
+    analysis: >
+      隔离 relaxation method 贡献：KL loss 本身解释优势，
+      即使换 STE，KL 仍大幅优于 BCE (8.18 vs 27.96)。
+
+  # ========== plan_003: Iso-compute ==========
+  - name: plan_003_iso_compute
+    plan_id: plan_003
+    description: "Iso-compute: BCE with 2.71× more FLOPs"
+    expected_results:
+      bce_2700step_teal_ppl: 27.97
+      bce_1000step_ppl: 22.51
+      kl_1000step_ppl: 11.79
+      flops_multiplier: 2.71
+      bce_loss_step500: 0.644
+      bce_loss_step2700: 0.638
+      saturation_delta: 0.006
+      gap_ratio: 2.33  # 27.97/12.00
+      s123_teal_ppl: 28.06
+      s456_teal_ppl: 28.35
+      three_seed_mean: 28.13
+      three_seed_std: 0.20
+    result_rationale: >
+      已完成 (3 seeds)。2700 步 BCE (2.71× FLOPs) TEAL PPL 均值 28.13，
+      反而比 1000 步 (22.51 hard mask) 更差 (TEAL protocol 不同)。
+      BCE loss 从 step 500→2700 仅下降 0.006 (saturation 确认)。
+      根本原因：BCE 优化 per-neuron binary classification，但 inference
+      使用 global top-k budget allocation。更多训练让 BCE 更 confident
+      on per-neuron boundary，但 global reallocation 完全无视这个 confidence。
+      BCE gradient ∂L/∂s_j 是 factorized 的，无论训练多久都无法学到
+      cross-neuron interaction。
+    tables: [Table 4 Ablation]
+    figures_description: [Figure S1 BCE loss saturation curve]
+    analysis: >
+      决定性回应 "KL wins only because more compute" reviewer concern。
+      Gap 持续 2.33×，BCE 已 saturate。结构性 mismatch 而非 compute deficit。
+
+  # ========== plan_004: SPON ==========
+  - name: plan_004_spon
+    plan_id: plan_004
+    description: "SPON reimplementation on Llama 3.1 8B"
+    expected_results:
+      spon_recovery_pct: 7.3
+      spon_ppl_improvement: 0.2255
+      sparse_ppl_no_spon: 9.2165
+      sparse_ppl_with_spon: 8.991
+      dense_ppl_degradation: 0.065
+      mean_bias_norm: 0.053
+      trainable_params: 458752
+    result_rationale: >
+      已完成 (negative result)。Recovery 仅 7.3% 因为 SPON 的 static bias
+      是 input-independent 的，只能学到 population-level average correction。
+      对 contextual sparsity (per-token active set 不同)，static correction
+      无法适应 per-input variation。Bias norm 极小 (0.053) 说明学到的
+      correction magnitude 本身就很弱。Dense PPL degradation (0.065)
+      进一步说明 SPON 在 dense 模式下引入噪声。
+    tables: [Table 2 SPON Analysis]
+    figures_description: []
+    analysis: >
+      Negative result 直接支持 Claim 2：static correction 在
+      KL contextual predictor 面前 irrelevant。
+
+  # ========== plan_005: SPON subsumption ==========
+  - name: plan_005_subsumption
+    plan_id: plan_005
+    description: "SPON subsumption: logit-space orthogonality analysis"
+    expected_results:
+      cosine_similarity: 0.196
+      cosine_similarity_std: 0.027
+      magnitude_ratio: 0.158
+      linearity_ratio: 0.264
+      predictor_effect_norm: 482.65
+      spon_correction_norm: 76.2
+      interaction_norm: 147.74
+      per_layer_cos_max: 0.0  # all layers ≤0
+    result_rationale: >
+      已完成。cos_sim=0.196 (near-orthogonal) 表明 KL predictor 和 SPON
+      修正的是 logit space 中近乎正交的 error components。SPON magnitude
+      仅为 KL effect 的 15.8% (76.2 vs 482.65)。KL 的 mask effect 通过
+      output distribution matching 捕获了 dominant error mode (cross-neuron
+      interaction under global allocation)，而 SPON 的 static bias 只纠正
+      population-average per-neuron activation shift，两者在功能空间
+      几乎不重叠。Cross-layer interaction (30.6%) 非零但 PPL recovery
+      仍微弱 (7.3%)，说明 SPON 的 component 太小。
+    tables: [Table 2 SPON Orthogonality]
+    figures_description: [Figure 3 Per-layer cosine similarity]
+    analysis: >
+      Reframing: 不是 KL "subsumes" SPON，而是两者 target 不同的 error
+      components，但 SPON 的 component too small to matter。
+      "Irrelevant, not redundant."
+
+  # ========== plan_006: Training-free baselines ==========
+  - name: plan_006_training_free
+    plan_id: plan_006
+    description: "Training-free baselines: TEAL, WINA, R-Sparse"
+    expected_results:
+      teal_30pct_ppl: 10.97
+      teal_50pct_ppl: 23.31
+      teal_70pct_ppl: 100.11
+      wina_30pct_ppl: 11.45
+      wina_50pct_ppl: 27.93
+      wina_70pct_ppl: 137.24
+      rsparse_50pct_ppl: 151.2
+    result_rationale: >
+      已完成。TEAL (magnitude + global allocation) 是 training-free 最佳
+      因为 activation magnitude 是 neuron importance 最 informative 的
+      heuristic。WINA 加入 weight 信息但引入额外 noise (11.45 vs 10.97 @30%)。
+      R-Sparse 的 rank-based scoring 在 SwiGLU 上完全失败 (151.2) 因为
+      SwiGLU 的 gate-up 乘积结构使 rank 与 actual contribution 不 correlate。
+    tables: [Table 1 Main Results]
+    figures_description: [Figure 2 Pareto frontier]
+    analysis: >
+      建立三层比较 baseline：training-free (10.97-151.2) < static-learned
+      (SPON ~9.0) < contextual-learned (KL 9.19)。KL 在 50% 达到
+      TEAL 30% 的 quality level (9.19 vs 10.97)，等效于 "免费" 获得
+      额外 20pp sparsity。
+
+  # ========== plan_007: Full benchmark ==========
+  - name: plan_007_full_benchmark
+    plan_id: plan_007
+    description: "Full benchmark: PPL + downstream + latency across all conditions"
+    expected_results:
+      # Dense baseline
+      dense_ppl: 6.12
+      dense_mmlu: 0.6527
+      dense_arc_c: 0.5828
+      dense_wg: 0.7806
+      dense_gsm8k: 0.4875
+      # KL 30% uniform (recommended operating point)
+      kl30u_ppl: 8.82
+      kl30u_mmlu: 0.4061
+      kl30u_arc_c: 0.4078
+      kl30u_wg: 0.6859
+      kl30u_gsm8k: 0.0735
+      # KL 50% global
+      kl50g_ppl: 11.79
+      kl50g_mmlu: 0.2789
+      kl50g_wg: 0.6346
+      # TEAL 30%
+      teal30_ppl: 10.97
+      teal30_mmlu: 0.3861
+      teal30_arc_c: 0.4232
+      teal30_wg: 0.6606
+      # TEAL 50%
+      teal50_ppl: 23.31
+      teal50_mmlu: 0.2832
+      teal50_wg: 0.5304
+      # Latency (batch=1, seq=2048)
+      dense_ms: 119.11
+      kl30_ms: 126.64
+      predictor_overhead_ms: 3.17
+      compensation_overhead_ms: 3.30
+    result_rationale: >
+      已完成。30% operating point 是核心推荐：KL uniform PPL −19.6% vs TEAL
+      (8.82 vs 10.97)，MMLU +2.0pp (40.61 vs 38.61)，WG +2.5pp (68.59 vs 66.06)。
+      ARC-c KL 略低于 TEAL (40.78 vs 42.32，−1.5pp within noise)，
+      GSM8K comparable (7.35 vs 7.88，−0.5pp within noise)。PPL 优势在
+      所有 sparsity levels 一致，但 downstream 优势集中在 knowledge-intensive
+      tasks (MMLU)，因为 KL 的 output-distribution matching 保留了 logit 空间
+      fine-grained probability ranking，对需要 soft knowledge retrieval 的
+      tasks 更有利。Latency: predictor overhead 仅 2.7% (3.17ms)，
+      无 sparse kernel 时无 wall-clock speedup，但 FLOPs 减少 30-50%
+      待 sparse kernel 支持后即可兑现。
+    tables: [Table 1, Table 2, Table 3]
+    figures_description:
+      - "Figure 2: Efficiency-accuracy Pareto frontier (x=FLOPs/params, y=PPL/MMLU)"
+      - "Figure 4: Sparsity-quality trade-off curves"
+    analysis: >
+      Headline: 30% KL uniform dominates Pareto frontier。PPL advantage universal；
+      downstream advantage task-dependent but net positive。
+
+  # ========== plan_008: Sparsity sweep ==========
+  - name: plan_008_sparsity_sweep
+    plan_id: plan_008
+    description: "Multi-level sparsity sweep with extended intermediate points"
+    expected_results:
+      kl_30pct_ppl: 8.82
+      kl_40pct_ppl: 8.36
+      kl_50pct_ppl: 11.79
+      kl_70pct_ppl: 17.91
+      teal_30pct_ppl: 10.97
+      teal_50pct_ppl: 23.31
+      teal_70pct_ppl: 100.11
+      kl_advantage_ratio_30: 1.24
+      kl_advantage_ratio_50: 1.98
+      kl_advantage_ratio_70: 5.59
+      # Regime analysis (done data)
+      kl30_uniform_mmlu: 0.4061
+      kl40_uniform_mmlu: 0.3068
+      kl50_uniform_mmlu: 0.2777
+      regime_transition: "allocation-fixable → capacity-limited"
+    result_rationale: >
+      已完成。KL advantage ratio 随 sparsity 超线性增长 (1.24→1.98→5.59)，
+      因为高 sparsity 时每个 pruning decision 的 impact 更大，BCE 的
+      independent per-neuron scoring 错误累积更快，而 KL 的 coupled gradient
+      (dL/ds_j 通过 d_logits/dh × dh/dm 耦合所有 active neurons) 能
+      捕获 joint interaction effects。PPL non-monotonicity (40%=8.36 < 30%=8.82)
+      是 genuine finding：40% 的 learned global allocation 对某些 layers
+      的 aggressive pruning 起到类 regularization 效果，但 downstream
+      严格单调下降，支持 "PPL is poor proxy for downstream" narrative。
+    tables: [Table 5 Sparsity Scaling]
+    figures_description: [Figure 4 PPL vs sparsity curves]
+    analysis: >
+      超线性 advantage growth 说明 KL coupled optimization 在
+      high-sparsity regime 更 critical。PPL/downstream 背离是 bonus insight。
+
+  # ========== plan_009: Mistral generalization ==========
+  - name: plan_009_mistral
+    plan_id: plan_009
+    description: "Mistral-7B-v0.3 cross-architecture generalization"
+    expected_results:
+      mistral_dense_ppl: 5.52
+      mistral_kl30_teal_ppl: 6.77
+      mistral_kl50_teal_ppl: 8.65
+      mistral_kl70_teal_ppl: 13.33
+      mistral_teal30_ppl: 8.38
+      mistral_teal50_ppl: 18.31
+      mistral_teal70_ppl: 61.72
+      kl_advantage_30: 1.24  # 8.38/6.77
+      kl_advantage_50: 2.12  # 18.31/8.65
+      kl_advantage_70: 4.63  # 61.72/13.33
+      mistral_dense_mmlu: 0.6244
+      mistral_dense_arc_c: 0.6024
+      mistral_kl50_mmlu: 0.2295
+    result_rationale: >
+      已完成。KL advantage ratios (1.24/2.12/4.63) 与 Llama 8B
+      (1.24/1.98/5.59) 高度一致。Mistral 使用 GQA + sliding window
+      attention，SwiGLU intermediate size 同为 14336。KL 的 mask quality
+      advantage 不依赖 attention mechanism specifics — 因为 KL 优化的
+      是 FFN output 对 final logits 的贡献，与 attention 架构解耦。
+      Mistral 50% downstream collapse (MMLU=0.2295) 同样存在，
+      确认 50% 是所有 7-8B 模型的 capacity cliff。
+    tables: [Table 6 Cross-model Generalization]
+    figures_description: [Figure 5 KL advantage ratio comparison across models]
+    analysis: >
+      Cross-model consistency 回应 "single model" reviewer concern。
+      KL advantage ratio 的 superlinear growth pattern 跨模型重现。
+
+  # ========== plan_010: LongBench (planned) ==========
+  - name: plan_010_longbench
+    plan_id: plan_010
+    description: "LongBench English subset (4K-32K tokens), all conditions"
+    expected_results:
+      # Dense
+      dense_narrativeqa: 7.3
+      dense_qasper: 13.4
+      dense_gov_report: 30.5
+      dense_multi_news: 2.5
+      # KL 30% uniform
+      kl30u_narrativeqa: 5.8
+      kl30u_qasper: 10.2
+      kl30u_gov_report: 25.5
+      kl30u_multi_news: 14.8
+      # KL 50% global
+      kl50g_narrativeqa: 3.0
+      kl50g_qasper: 4.8
+      kl50g_gov_report: 13.5
+      kl50g_multi_news: 9.5
+      # TEAL 30%
+      teal30_narrativeqa: 4.3
+      teal30_qasper: 7.5
+      teal30_gov_report: 21.0
+      teal30_multi_news: 12.0
+      # KL 30% vs TEAL 30% avg retention
+      kl30u_avg_retention_vs_dense: 0.78
+      teal30_avg_retention_vs_dense: 0.65
+    result_rationale: >
+      LongBench v6 已有部分数据。Dense 数值整体偏低 (narrativeqa=7.3)
+      因为 Llama 3.1 8B base model 在 long-form generation 上本身不强。
+      KL 30% uniform 预计相对 retention ~78% vs dense，优于 TEAL 30% (~65%)。
+      理由：KL predictor 在 2048 token 上训练，但 long context 时
+      later tokens 有更丰富 context → activation pattern 更 structured →
+      per-token sparsity prediction 更 accurate (训练分布内的
+      generalization)。Summarization tasks (gov_report) KL 优势最大
+      因为 output distribution preservation 直接影响 generation quality。
+      NarrativeQA 优势较小因为主要靠 retrieval from long context
+      (更依赖 attention 而非 FFN)。multi_news dense=2.5 极低是 base model
+      limitation，sparsity 下 multi_news 可能异常高 (scoring artifact)。
+    tables: [Table 7 Long-context Evaluation]
+    figures_description: [Figure S2 LongBench by task type]
+    analysis: >
+      LongBench 验证 predictor generalization beyond training seq length。
+      KL 在 long context 的相对优势持续。Strengthens EMNLP venue fit。
+      P1 priority — 如果 GPU budget 不够可以只报 dense + KL30 + TEAL30。
+
+  # ========== plan_011: MT-Bench (planned) ==========
+  - name: plan_011_mtbench
+    plan_id: plan_011
+    description: "MT-Bench 80 multi-turn questions, GPT-4o judge"
+    expected_results:
+      dense_avg: 6.8
+      kl30u_avg: 5.9
+      kl50g_avg: 4.1
+      teal30_avg: 5.3
+      teal50_avg: 3.4
+      kl30u_writing: 6.3
+      kl30u_reasoning: 5.2
+      kl30u_math: 3.5
+      kl30u_coding: 4.2
+      kl30u_vs_teal30_delta: "+0.6"
+    result_rationale: >
+      Llama 3.1 8B base model MT-Bench 预计 ~6.8 (base model 未 instruction
+      tuned，score 受限)。30% sparsity KL 预计保留 ~87% dense score
+      (5.9/6.8)：instruction following 主要依赖 attention patterns 而非
+      FFN capacity，所以 FFN sparsity 的 impact 相对 moderate。
+      KL vs TEAL 30% 的 delta (+0.6) 来自 KL 更好保留 late-layer
+      language modeling quality — GPT-4o judge 对 fluency/coherence 敏感。
+      Writing/extraction tasks 受 sparsity 影响最小 (attention-dominated)；
+      math/coding 退化最大 (需要 FFN capacity 做 intermediate computation)。
+    tables: [Table S1 MT-Bench by Category]
+    figures_description: []
+    analysis: >
+      P2 实验。MT-Bench 增加 instruction-following dimension coverage。
+      对 EMNLP submission 非必须但能增强 NLP-specific evaluation。
+      如果时间不够可以 defer。
+
+  # ========== plan_012: RULER (planned) ==========
+  - name: plan_012_ruler
+    plan_id: plan_012
+    description: "RULER synthetic long-context diagnostics (4K, 16K)"
+    expected_results:
+      dense_4k_avg: 0.92
+      dense_16k_avg: 0.85
+      kl30u_4k_avg: 0.86
+      kl30u_16k_avg: 0.73
+      teal30_4k_avg: 0.79
+      teal30_16k_avg: 0.64
+      kl30u_niah_4k: 0.95
+      kl30u_niah_16k: 0.83
+      kl30u_vt_4k: 0.78
+      kl30u_vt_16k: 0.60
+    result_rationale: >
+      RULER 的 synthetic tasks 提供 controlled diagnostic。4K 时 KL 30%
+      预计保留 ~93% (0.86/0.92)：4K 在训练 context 内，predictor 可靠。
+      16K retention 下降到 ~86% (0.73/0.85)：超出训练 seq_len 时
+      predictor 的 per-token decision 可能偏移。NIAH tasks gap 最小
+      因为 needle retrieval 主要靠 attention。Variable tracking 和
+      multi-query tasks gap 最大因为需要 FFN 参与 intermediate state
+      tracking。KL vs TEAL gap 在 16K 时扩大 (0.73 vs 0.64)
+      因为 longer sequences amplify mask quality difference。
+    tables: [Table S2 RULER Diagnostics]
+    figures_description: []
+    analysis: >
+      P2 实验，补充 LongBench 的 fine-grained diagnostic。
+      如 LongBench 结果足够 convincing，可 deprioritize。
+
+  # ========== what_if: C1 ablation ==========
+  - name: c1_ablation_bce_kl_targets
+    plan_id: what_if_c1_ablation
+    description: "C1 核心实验: BCE trained on KL-derived oracle masks, matched 50% uniform sparsity"
+    expected_results:
+      # 已完成 (native sparsity)
+      native_sparsity_ppl: 9.29
+      native_sparsity: 0.609
+      oracle_agreement: 0.978
+      bce_loss_final: 0.0545
+      # 预测 (50% uniform — c1_ablation_eval_uniform PREPARING)
+      uniform_50pct_ppl: 11.5
+      uniform_50pct_mmlu: 0.276
+      uniform_50pct_arc_c: 0.330
+      uniform_50pct_wg: 0.630
+      # Reference comparisons
+      kl_50pct_uniform_ppl: 11.96
+      bce_50pct_teal_ppl: 27.97
+      mask_divergence_from_magnitude: 0.53
+    result_rationale: >
+      C1 ablation s42 已完成：native sparsity (60.9%) PPL=9.29，
+      oracle agreement=97.8%。在 50% uniform 下，每层只 prune 50% neurons
+      (vs native 60.9% average)，保留更多 capacity → PPL 应 comparable to
+      或略好于 KL 50% uniform (11.96)。预测 PPL ~11.5：
+      (1) oracle agreement 97.8% 说明 BCE 几乎完美复现了 KL 的 mask decisions；
+      (2) 50% uniform 比 native allocation 更 conservative (每层统一
+      而非 predictor 自由分配)；
+      (3) KL 的 Gumbel-sigmoid 产生 soft scores，50% uniform top-k
+      从中 select 时可能比 BCE 的 hard binary training 更 robust。
+      11.5 落在 best tier [10.5, 12.5] 内，证明 mask quality 解释了
+      KL 优势的 >95%。因果链闭合：KL → discovers 53% divergent patterns
+      → BCE copies these patterns → recovers KL quality → mask quality
+      is the sufficient explanation。
+    tables: [Table 3 C1 Ablation (paper 核心实验)]
+    figures_description:
+      - "Figure 6: Mask divergence — KL vs magnitude oracle Jaccard per layer"
+      - "Figure 1 (概念图): 因果链 diagram"
+    analysis: >
+      Paper reframe 后的最核心实验。PPL 11.5 vs KL 11.96 (Δ=0.46)
+      vs BCE 27.97 (Δ=16.47)。BCE-on-KL-targets 恢复了 97% 的
+      KL-to-BCE gap (16.47 of 16.01)。53% mask divergence 是 novel
+      empirical discovery — prior work 从未量化 KL distillation 的
+      learned masks 与 magnitude oracles 的分歧程度。
+
+  # ========== what_if: 6-point sparsity sweep ==========
+  - name: dense_sparsity_sweep_6pt
+    plan_id: what_if_sweep_6pt
+    description: "6-point sweep (25/30/35/40/45/50%) for regime analysis"
+    expected_results:
+      # Existing data points
+      kl_30pct_ppl: 8.82
+      kl_30pct_mmlu: 0.4061
+      kl_40pct_ppl: 8.36
+      kl_40pct_mmlu: 0.3068
+      kl_50pct_ppl: 11.96
+      kl_50pct_mmlu: 0.2777
+      # Predicted new points (25/35/45 PREPARING)
+      kl_25pct_ppl: 7.90
+      kl_25pct_mmlu: 0.485
+      kl_25pct_wg: 0.725
+      kl_25pct_arc_c: 0.455
+      kl_35pct_ppl: 8.50
+      kl_35pct_mmlu: 0.360
+      kl_35pct_wg: 0.675
+      kl_35pct_arc_c: 0.420
+      kl_45pct_ppl: 9.85
+      kl_45pct_mmlu: 0.290
+      kl_45pct_wg: 0.645
+      kl_45pct_arc_c: 0.350
+      # Regime analysis
+      regime_transition_boundary_pct: 36
+      piecewise_fit_r2: 0.96
+      regime1_slope_ppl_per_pp: 0.06  # 25-35%: shallow
+      regime2_slope_ppl_per_pp: 0.23  # 35-50%: steep
+      mmlu_monotonic: true
+      ppl_nonmonotonic: true
+    result_rationale: >
+      现有 3 点 (30/40/50) 显示 PPL 在 30-40% 近乎 flat (8.82→8.36)
+      然后 40-50% 急升 (8.36→11.96)。新增 3 点预测：
+      
+      25%: PPL ~7.90。比 30% (8.82) 好 ~0.92。Natural sparsity floor
+      (~5% neurons 在所有 inputs 下都 inactive)，所以从 5% 到 25%
+      只 prune ~20% additional neurons，margin 有限但每个被 prune 的
+      neuron importance 最低 → quality drop gentle。MMLU ~48.5%
+      (dense=65.3% 的 ~74% retention)。
+      
+      35%: PPL ~8.50。仍在 flat regime 内 (30% 和 40% 的插值偏后者)。
+      MMLU 开始明显下降 (~36.0%)：transition zone，部分 knowledge-critical
+      layers (L12-L20) 开始被 capacity-constrained。
+      
+      45%: PPL ~9.85。已进入 steep regime (40%=8.36 到 50%=11.96
+      的中间点偏低，因为 phase transition 是 convex curve 而非线性)。
+      MMLU ~29.0% (接近 random ~25%)。
+
+      Piecewise fit: 两段线性 (breakpoint ~36%) 预期 R²=0.96。
+      Regime 1 (25-36%): slope ~0.06 PPL/pp；
+      Regime 2 (36-50%): slope ~0.23 PPL/pp (3.8× steeper)。
+      MMLU 严格单调但 PPL 非单调 (40%<30%) → "PPL poor proxy" narrative。
+    tables: [Table 8 Sparsity Regime Analysis]
+    figures_description:
+      - "Figure 7: PPL vs sparsity 6-point + piecewise fit overlay, regime boundaries marked"
+      - "Figure 8: MMLU vs sparsity — strict monotonic decline, annotated regime zones"
+    analysis: >
+      6 点揭示 clean piecewise structure。Transition ~36% 在 best tier
+      35±3pp 内。R²=0.96 在 [0.93, 0.99] 内。
+      三个 regime: (1) budget-surplus ≤35%: uniform allocation 优，
+      variance 低; (2) budget-constrained 35-50%: learned allocation 值得;
+      (3) capacity-cliff ≥50%: allocation irrelevant。
+      Non-monotonic allocation preference 提供 mechanistic insight。
+
+  # ========== what_if: BCE 30% forced top-k ==========
+  - name: bce_30pct_forced_topk
+    plan_id: what_if_bce_30pct
+    description: "BCE predictor @ 30% forced TEAL top-k (recommended operating point)"
+    expected_results:
+      bce_30pct_teal_ppl: 15.8
+      bce_30pct_mmlu: 0.320
+      bce_30pct_arc_c: 0.350
+      bce_30pct_wg: 0.620
+      bce_30pct_gsm8k: 0.045
+      kl_30pct_uniform_ppl: 8.82
+      teal_30pct_baseline_ppl: 10.97
+      bce_vs_kl_ratio: 1.79  # 15.8/8.82
+      bce_vs_teal_ratio: 1.44  # 15.8/10.97
+    result_rationale: >
+      bce_30pct_s42 训练已完成，eval PREPARING。BCE predictor 在 50%
+      target 下训练 (same as KL)，forced to 30% via external TEAL top-k。
+      
+      预测 PPL ~15.8 基于：
+      (1) BCE 50% 的 TEAL PPL=27.97。30% 保留 70% neurons (vs 50% 的 50%)，
+      但 BCE scores 与 true importance 的 correlation 较弱 (F1=0.61)，
+      所以 PPL improvement 非线性。从 27.97 到 15.8 是 ~44% improvement，
+      与 KL 从 11.79 (50%) 到 8.82 (30%) 的 25% improvement 比，
+      BCE 在 generous budget 下 gains 更大 (因为 bad masks 的 marginal
+      damage 在 low sparsity 时更小)。
+      (2) 但 15.8 仍远差于 TEAL 30% (10.97)：因为 BCE 训练 target
+      是 per-neuron classification boundary at 50% sparsity，
+      forced to 30% 时保留的 "bottom 20%" neurons 的 BCE scores
+      几乎是 random (在 decision boundary 附近)，引入噪声。
+      (3) 甚至差于 training-free TEAL (10.97 vs 15.8)，说明
+      BCE 的 learned scoring 在 off-target sparsity 下
+      比 raw magnitude heuristic 更差。
+
+      这在推荐操作点确认了 KL 优势的 non-triviality：
+      KL 8.82 vs BCE 15.8 (gap=6.98, 1.79×)。
+    tables: [Table 2 Operating Point Comparison]
+    figures_description: []
+    analysis: >
+      BCE 30% PPL=15.8，甚至差于 training-free TEAL 30% (10.97)。
+      KL 30% (8.82) vs BCE 30% (15.8) gap = 1.79×。
+      在推荐操作点，KL mask quality advantage 是 decisive 的。
+      这填充了 Table 2 在 recommended operating point 的 gap。
+
+  # ========== Cross-cutting: 3-seed variance ==========
+  - name: kl30_3seed_variance
+    plan_id: plan_001_plan_008
+    description: "KL 30% uniform 3-seed downstream variance (best tier key metric)"
+    expected_results:
+      s42_mmlu: 0.4061
+      s123_mmlu: 0.3763
+      s456_mmlu: 0.3727
+      mmlu_mean: 0.3850
+      mmlu_std_pp: 1.83
+      s42_wg: 0.6859
+      s123_wg: 0.6961
+      s456_wg: 0.6953
+      wg_mean: 0.6924
+      wg_std_pp: 0.57
+      s42_arc_c: 0.4078
+      s123_arc_c: 0.4710
+      s456_arc_c: 0.4505
+      arc_c_mean: 0.4431
+      arc_c_std_pp: 3.18
+      s42_gsm8k: 0.0735
+      s123_gsm8k: 0.0705
+      s456_gsm8k: 0.0705
+      gsm8k_mean: 0.0715
+      gsm8k_std_pp: 0.17
+      # Comparison: global top-k variance
+      global_mmlu_std_pp: 9.5
+      uniform_vs_global_variance_reduction: 5.2
+    result_rationale: >
+      3-seed uniform 评估已完成。MMLU std=1.83pp 落在 best tier [0.5, 2.0] 内。
+      Uniform allocation 消除了 per-layer budget allocation variance
+      这个 seed-to-seed variability 的最大来源：global top-k 下不同 seed
+      的 predictor 对各层分配不同比例 → 某些 seed 饿死 knowledge-critical
+      layers (L12-L20) → MMLU 大幅波动 (std=9.5pp)。
+      Uniform allocation 强制每层 30% → 消除 allocation noise →
+      MMLU std 从 9.5pp 降到 1.83pp (5.2× reduction)。
+      WG std=0.57pp (极低，因为 WG 是 commonsense reasoning，
+      对 specific layer allocation 不敏感)。
+      ARC-c std=3.18pp 偏高但 ARC-c test set 仅 1172 samples
+      (binomial std ≈ √(p(1-p)/n) ≈ 1.4pp for p=0.44)。
+      Headline numbers 稳定：任何 single seed MMLU 在 37-41% 范围内。
+    tables: [Table 9 Seed Stability]
+    figures_description: [Figure S3 Variance comparison uniform vs global]
+    analysis: >
+      MMLU σ=1.83pp ≤ 2.0pp 满足 best tier。Uniform allocation 的
+      5.2× variance reduction 是 Claim 3 regime analysis 的核心发现。
+
+  # ========== Cross-cutting: 14B negative finding ==========
+  - name: qwen14b_negative_finding
+    plan_id: plan_008_scale
+    description: "Qwen-2.5-14B: KL PPL advantage preserved but MMLU gap persists"
+    expected_results:
+      # KL 30%
+      qwen14b_kl30_ppl: 7.62
+      qwen14b_kl30_mmlu: 0.6372
+      qwen14b_kl30_arc_c: 0.5717
+      qwen14b_kl30_gsm8k: 0.4882
+      # KL 30% uniform
+      qwen14b_kl30_uniform_mmlu: 0.6449
+      qwen14b_kl30_uniform_ppl: 7.63
+      # TEAL 30%
+      qwen14b_teal30_ppl: 8.73
+      qwen14b_teal30_mmlu: 0.7183
+      qwen14b_teal30_arc_c: 0.5683
+      qwen14b_teal30_gsm8k: 0.4951
+      # Dense
+      qwen14b_dense_ppl: 5.18
+      qwen14b_dense_mmlu: 0.7977
+      # Key metrics
+      kl_ppl_advantage_ratio: 1.47  # 8.73/7.62, identical to 8B
+      mmlu_gap_pp: -8.11  # 63.72 vs 71.83
+      uniform_mmlu_recovery: 0.77  # only +0.77pp, not fixed
+    result_rationale: >
+      已完成。KL PPL advantage (1.47× dense ratio) 与 8B 完全一致，
+      确认 KL 的 output-distribution fidelity 跨 scale 保持。
+      但 MMLU gap 持续 (63.72 vs 71.83 TEAL, −8.11pp)，
+      uniform allocation 几乎无效 (+0.77pp)。
+      
+      解释：14B 模型的 knowledge encoding 更 distributed across layers，
+      TEAL 的 magnitude-based allocation 恰好与 14B 的 knowledge
+      distribution 更 aligned (larger model → activation magnitudes
+      更 informative about knowledge importance)。KL predictor 优化
+      output distribution matching 但可能牺牲了对 14B-specific
+      knowledge-critical neurons 的精确保留。
+      
+      这是 loss × allocation × scale 三方交互的 honest negative finding。
+      14B PPL 优势保持 → KL 的 core mechanism works across scales。
+      14B MMLU gap → scale-dependent sensitivity warranting investigation。
+      Framing: interesting negative finding, not fatal。
+    tables: [Table 6 Cross-scale]
+    figures_description: [Figure 5 with 14B data point annotated]
+    analysis: >
+      14B negative finding 增加论文 honesty credibility。
+      PPL advantage preserved (1.47×)；MMLU gap is a genuine limitation。
+      Best tier: reviewers view this as interesting finding
+      (loss × allocation × scale interaction) 而非 fatal flaw。
+
+  # ========== Compensation overhead (latency) ==========
+  - name: latency_profiling
+    plan_id: plan_007
+    description: "Wall-clock latency profiling for Pareto frontier"
+    expected_results:
+      dense_ms: 119.11
+      kl_30pct_ms: 126.64
+      kl_50pct_ms: 126.78
+      comp_30pct_ms: 129.94
+      comp_50pct_ms: 129.71
+      predictor_overhead_ms: 3.17
+      predictor_overhead_pct: 2.7
+      compensation_overhead_ms: 3.30
+      theoretical_flops_30pct: 1.36
+      theoretical_flops_50pct: 2.45
+      actual_speedup_30pct: 0.941
+      actual_speedup_50pct: 0.939
+    result_rationale: >
+      已完成。无 sparse kernel 时 wall-clock 无 speedup (mask overhead
+      + gather overhead > FLOPs savings at current hardware)。
+      但 FLOPs 减少 30-50% 是 hardware-invariant metric。
+      Predictor overhead 仅 3.17ms (2.7%)，compensation 额外 3.30ms。
+      KL-only 比 BCE+comp 节省 3.30ms/token + 67.2M params (256MB memory)。
+      Paper 报告 theoretical FLOPs + 实际 overhead breakdown，
+      待 sparse kernel 支持后 FLOPs savings 可直接兑现为 latency savings。
+    tables: [Table 3 Inference Cost]
+    figures_description: [Figure 2 Pareto frontier with cost axis]
+    analysis: >
+      KL-only 在 efficiency 轴严格优于 BCE+comp
+      (fewer params, less overhead, better quality)。
+      即使 quality 相当，KL-only 仍因 fewer params 而 Pareto-dominant。
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d5d9eac0-5d84-47da-b2b4-7a8e1fd6331c",
+  "isSidechain": false,
+  "requestId": "req_011CbAMp26eEB5qU4JDbN7pC",
+  "type": "assistant",
+  "uuid": "454e500f-1939-4e81-8757-82f2d5786a79",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14",
+  "sessionId": "37144a68-e0ad-4fa3-9d7b-5563cb046ecf",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017xhL6RL2GGfMqov9AH5iZz",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 72,
+      "cache_read_input_tokens": 71144,
+      "output_tokens": 13080,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 72,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 13080,
+          "cache_read_input_tokens": 71144,
+          "cache_creation_input_tokens": 72,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 72
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 24_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是一位经验丰富的 ML 研究者。Phase 1 已定义了 best 档的含义：  含义：C1 ablation 在 matched sparsity 完全验证 mask pattern 叙事；remaining experiments 按时完成且结果内洽；reframe 被接受为 novel empirical contribution 核心假设：['BCE-on-KL-targets at 5…",
+  "leafUuid": "454e500f-1939-4e81-8757-82f2d5786a79",
+  "sessionId": "37144a68-e0ad-4fa3-9d7b-5563cb046ecf"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 25_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "KL distillation enables mask pattern discovery in sparse LLMs",
+  "sessionId": "37144a68-e0ad-4fa3-9d7b-5563cb046ecf"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 26_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是一位经验丰富的 ML 研究者。Phase 1 已定义了 best 档的含义：  含义：C1 ablation 在 matched sparsity 完全验证 mask pattern 叙事；remaining experiments 按时完成且结果内洽；reframe 被接受为 novel empirical contribution 核心假设：['BCE-on-KL-targets at 5…",
+  "leafUuid": "454e500f-1939-4e81-8757-82f2d5786a79",
+  "sessionId": "37144a68-e0ad-4fa3-9d7b-5563cb046ecf"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 27_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "KL distillation enables mask pattern discovery in sparse LLMs",
+  "sessionId": "37144a68-e0ad-4fa3-9d7b-5563cb046ecf"
+}
+```
+
+---
