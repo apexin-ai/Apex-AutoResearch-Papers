@@ -1,0 +1,333 @@
+{
+  "schema_version": "1.0",
+  "session_id": "07a3aefbe853db008021",
+  "rounds": [
+    {
+      "number": 11,
+      "messages": [
+        {
+          "source_line": 156,
+          "timestamp": "2026-05-19T06:05:17.412Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018huU6LggJK3mR7wb75gNX8",
+              "name": "mcp__agent-ml-research__update_review_issues",
+              "input": {
+                "project": "provenance_weight_training",
+                "issues_yaml": "- id: \"RR-W1\"\n  summary: \"Paper claims 'from random initialization' but code uses from_pretrained() — actually continued pretraining\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 1\n  last_seen_round: 2\n  mentions:\n    - round: 1\n      reviewers: [research_reviewer]\n      note: \"Two independent reviews confirmed: pretrain_weighted.py L318 uses from_pretrained()\"\n    - round: 2\n      reviewers: [R1, R2]\n      note: \"Both reviewers confirm fixed\"\n    - round: 3\n      reviewers: [R1, R2]\n      note: \"本轮未提及，已确认修复\"\n    - round: 4\n      reviewers: []\n      note: \"本轮未提及，已确认修复\"\n  action_items:\n    - round: 1\n      action: \"Fix paper text\"\n      assigned_to: paper_agent\n      status: done\n  resolution: \"Fixed in current version\"\n  resolution_round: 2\n\n- id: \"RR-W2\"\n  summary: \"Paper claims 'balanced real/synthetic test set' but eval_holdout.jsonl is human-only\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 1\n  last_seen_round: 2\n  mentions:\n    - round: 1\n      reviewers: [research_reviewer]\n      note: \"eval_holdout.jsonl: 67823 lines, all source=fineweb\"\n    - round: 2\n      reviewers: [R1, R2]\n      note: \"Confirmed fixed\"\n    - round: 4\n      reviewers: []\n      note: \"本轮未提及，已确认修复\"\n  action_items:\n    - round: 1\n      action: \"Fix paper text\"\n      assigned_to: paper_agent\n      status: done\n  resolution: \"Fixed\"\n  resolution_round: 2\n\n- id: \"R3-N1\"\n  summary: \"Statistical support insufficient: N=3 CI [-0.039, 0.101] includes degradation; 'competitive' is overstatement; downstream 4/5 tasks worse\"\n  category: method\n  severity: critical\n  status: in_progress\n  first_raised_round: 2\n  last_seen_round: 4\n  mentions:\n    - round: 2\n      reviewers: [R1, R2]\n      note: \"R1-N1: 'statistically indistinguishable' changed to 'competitive'.\"\n    - round: 3\n      reviewers: [R1, R2]\n      note: \"Full consensus. 'competitive' still overstatement.\"\n    - round: 4\n      reviewers: [R1, R2]\n      note: \"Full consensus again. R1 emphasizes CI upper bound 0.101 is 2.3x the effect; Abstract/Conclusion framing inconsistent with §5.1 caveats. R2 adds downstream 4/5 negative pattern more concerning than individual negatives. Both agree PPL may be distribution matching artifact.\"\n  action_items:\n    - round: 3\n      action: \"Weaken framing; add CI caveat; add downstream caveat\"\n      assigned_to: paper_agent\n      status: in_progress\n    - round: 4\n      action: \"Abstract must explicitly note CI includes degradation; move downstream results to main text (not just Appendix); discuss PPL-downstream divergence in Results or Discussion\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R3-N2\"\n  summary: \"Theory-empirical disconnect: τ=0.8 is empirical but framed as 'principled default'; Wang 2026 requires known α; τ optimal shifts with ρ\"\n  category: method\n  severity: critical\n  status: in_progress\n  first_raised_round: 2\n  last_seen_round: 4\n  mentions:\n    - round: 2\n      reviewers: [R1, R2]\n      note: \"α_eff motivation disconnected.\"\n    - round: 3\n      reviewers: [R1, R2]\n      note: \"Full consensus.\"\n    - round: 4\n      reviewers: [R1, R2]\n      note: \"R1 confirms τ sweep based on single seed/single ρ. R2 agrees 'robust defaults' overclaimed. Both: τ validated on only 2 ρ values (0.4, 0.6) and 1 model.\"\n  action_items:\n    - round: 3\n      action: \"'principled defaults' → 'empirically robust defaults'\"\n      assigned_to: paper_agent\n      status: in_progress\n    - round: 4\n      action: \"Further weaken to 'default values that perform well in the tested configurations'; explicitly state τ sweep is single-seed\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R3-N3\"\n  summary: \"1.7B 'transfers without degradation' claim unsupported: 2 seeds adaptive vs 1 seed uniform, Δ=-0.01\"\n  category: framing\n  severity: critical\n  status: in_progress\n  first_raised_round: 2\n  last_seen_round: 4\n  mentions:\n    - round: 2\n      reviewers: [R1, R2]\n      note: \"1.7B added but single seed.\"\n    - round: 3\n      reviewers: [R1, R2]\n      note: \"Δ=-0.01 equally supports 'no effect at this scale'.\"\n    - round: 4\n      reviewers: [R1, R2]\n      note: \"Full consensus. R1: 2 data points cannot compute meaningful CI or p-value; 'confirming' in §5.2 is too strong. R2 agrees, notes Conclusion is more restrained but §5.2 is not.\"\n  action_items:\n    - round: 3\n      action: \"Reposition as 'does not degrade' with explicit no-amplification acknowledgment\"\n      assigned_to: paper_agent\n      status: in_progress\n    - round: 4\n      action: \"§5.2 change 'confirming' → 'preliminary evidence suggests'; do not cite as contribution in Abstract/Conclusion; add 3+ seeds or remove scale claim\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R3-N4\"\n  summary: \"Novelty insufficient for EMNLP Main: core formula from Drayson 2025, dual constraint is standard IS, minimum intervention is standard constrained optimization\"\n  category: framing\n  severity: critical\n  status: in_progress\n  first_raised_round: 2\n  last_seen_round: 4\n  mentions:\n    - round: 2\n      reviewers: [R1, R2]\n      note: \"Both agree Findings-level.\"\n    - round: 3\n      reviewers: [R1, R2]\n      note: \"Consensus Findings-level.\"\n    - round: 4\n      reviewers: [R1, R2]\n      note: \"Full consensus. R2: three claimed differentiators are (i) engineering, (ii) implementation, (iii) experimental finding. R1 agrees and adds: analytical findings (epoch confound, detector type) have higher independent value than the method. Both recommend reframing as analysis-driven contribution.\"\n  action_items:\n    - round: 3\n      action: \"Strengthen contributions: epoch-matched as corrective, detector type as practical\"\n      assigned_to: paper_agent\n      status: in_progress\n    - round: 4\n      action: \"Consider reframing paper: analytical study (epoch confound + detector type findings) as primary contributions, method as practical byproduct. This better matches actual evidence and may improve reception at Findings track.\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R3-N5\"\n  summary: \"Scale mismatch: paper frames web-scale but experiments only 0.6B/132M tokens\"\n  category: framing\n  severity: critical\n  status: in_progress\n  first_raised_round: 3\n  last_seen_round: 4\n  mentions:\n    - round: 3\n      reviewers: [R1, R2]\n      note: \"Full consensus.\"\n    - round: 4\n      reviewers: [R1, R2]\n      note: \"R1: Introduction opens with web-scale but experiments 4 orders of magnitude smaller. R2: 132M tokens reasonable for continued pretraining (cites Gururangan 2020) but Introduction should limit scope explicitly.\"\n  action_items:\n    - round: 3\n      action: \"Narrow Introduction to continued pretraining scenario\"\n      assigned_to: paper_agent\n      status: in_progress\n    - round: 4\n      action: \"Introduction must explicitly state 'continued pretraining on moderate-scale corpora' early; Abstract should limit scope\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R3-W1\"\n  summary: \"Self-contamination (generator=trainee) external validity: real web contamination is multi-source, multi-model\"\n  category: experiment\n  severity: warning\n  status: in_progress\n  first_raised_round: 2\n  last_seen_round: 4\n  mentions:\n    - round: 2\n      reviewers: [R1, R2]\n      note: \"Part of external validity.\"\n    - round: 3\n      reviewers: [R1, R2]\n      note: \"Self-contamination not representative.\"\n    - round: 4\n      reviewers: [R1, R2]\n      note: \"Escalated by both reviewers. R1: self-contamination is NOT the 'challenging scenario' claimed — AUC=0.94 shows it's easy. R2: Limitations has no dedicated paragraph on self-contamination design. Cross-model (Appendix H) single seed, mixed results, no PPL ('checkpoints not retained' is experimental management failure).\"\n  action_items:\n    - round: 3\n      action: \"Strengthen Limitations discussion\"\n      assigned_to: paper_agent\n      status: in_progress\n    - round: 4\n      action: \"Add dedicated self-contamination limitation paragraph; remove 'challenging detection scenario' claim from §4; if possible run one cross-generator experiment with retained checkpoints\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R3-W2\"\n  summary: \"Abstract ~280-291 words, exceeds 250 convention; data-heavy rather than narrative-driven\"\n  category: writing\n  severity: warning\n  status: in_progress\n  first_raised_round: 3\n  last_seen_round: 3\n  mentions:\n    - round: 3\n      reviewers: [R1, R2]\n      note: \"R2: reads like Results summary.\"\n    - round: 4\n      reviewers: []\n      note: \"本轮未单独提及，但R1-N3指出Abstract framing与证据不一致，属相关问题\"\n  action_items:\n    - round: 3\n      action: \"Trim to ≤250 words\"\n      assigned_to: paper_agent\n      status: in_progress\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R3-W3\"\n  summary: \"Citation coverage still insufficient: ~41 refs; missing recent contamination-aware training works\"\n  category: writing\n  severity: warning\n  status: in_progress\n  first_raised_round: 2\n  last_seen_round: 4\n  mentions:\n    - round: 2\n      reviewers: [director_audit]\n      note: \"Increased to 30 refs.\"\n    - round: 3\n      reviewers: [R1, R2]\n      note: \"Now ~39 still below norm.\"\n    - round: 4\n      reviewers: [R2]\n      note: \"Now ~41 refs. R2 identifies 3 specific missing works: Kang et al. (EMNLP 2025) 'Demystifying Synthetic Data in LLM Pre-training'; Zhang et al. (2025) 'ForTIFAI' (arXiv:2509.08972); Yi et al. (2025) 'Escaping Model Collapse via Synthetic Data Verification' (arXiv:2510.16657). R1 agrees in principle but cannot independently verify existence.\"\n  action_items:\n    - round: 3\n      action: \"Add 10-15 references\"\n      assigned_to: paper_agent\n      status: in_progress\n    - round: 4\n      action: \"Verify and add R2's 3 suggested references if confirmed real; aim for 50+ total\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R3-W4\"\n  summary: \"Discussion section too thin: rehashes Results without deeper analysis\"\n  category: writing\n  severity: warning\n  status: in_progress\n  first_raised_round: 3\n  last_seen_round: 3\n  mentions:\n    - round: 3\n      reviewers: [R1, R2]\n      note: \"Missing failure conditions, PSIS, deployment guidance.\"\n    - round: 4\n      reviewers: []\n      note: \"本轮未单独提及，Discussion 内容已有扩展但仍偏薄\"\n  action_items:\n    - round: 3\n      action: \"Expand to ~40-50 lines\"\n      assigned_to: paper_agent\n      status: in_progress\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R3-W5\"\n  summary: \"'Minimum Intervention Principle' framing overstates a standard constrained optimization choice\"\n  category: framing\n  severity: warning\n  status: in_progress\n  first_raised_round: 3\n  last_seen_round: 4\n  mentions:\n    - round: 3\n      reviewers: [R1, R2]\n      note: \"Standard optimization not a 'principle'.\"\n    - round: 4\n      reviewers: [R1, R2]\n      note: \"R1-W6: minimum intervention not proven optimal, (b_τ+b_ESS)/2 not tested. R2 partially rebuts: ESS-only ablation shows maximum is worse, so minimum > maximum established; but agrees should label as heuristic/design choice. Consensus: label as 'empirically motivated strategy', not 'principle' or implied optimality.\"\n  action_items:\n    - round: 3\n      action: \"'minimum intervention principle' → 'empirically motivated minimum intervention strategy'\"\n      assigned_to: paper_agent\n      status: in_progress\n    - round: 4\n      action: \"Consider testing midpoint strategy as ablation; if not feasible, explicitly state minimum intervention is a design choice, not proven optimal\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R3-W6\"\n  summary: \"ρ=0.2 failure (+0.046 PPL) undiscussed in main text; failure mechanism unexplained\"\n  category: experiment\n  severity: warning\n  status: in_progress\n  first_raised_round: 3\n  last_seen_round: 3\n  mentions:\n    - round: 3\n      reviewers: [R1, R2]\n      note: \"Consensus.\"\n    - round: 4\n      reviewers: []\n      note: \"本轮未单独提及。论文已在 Discussion 中加入 ρ=0.2 failure 分析段落（mean_q=0.393, 60% α_eff-binding）。Appendix K 也新增了低污染分析。\"\n  action_items:\n    - round: 3\n      action: \"Add ρ=0.2 analysis\"\n      assigned_to: paper_agent\n      status: in_progress\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R3-W7\"\n  summary: \"Micro-batch B=4: α_eff has only 5 discrete values, 'continuous adaptive selection' framing inconsistent\"\n  category: method\n  severity: warning\n  status: in_progress\n  first_raised_round: 3\n  last_seen_round: 4\n  mentions:\n    - round: 3\n      reviewers: [R1, R2]\n      note: \"B=4 means α_eff ∈ {0, 0.25, 0.5, 0.75, 1.0}.\"\n    - round: 4\n      reviewers: [R1, R2]\n      note: \"R1 raises to critical (N4): bisection on staircase function; Pearson r=0.70 means 51% variance unexplained; MAE=0.114 is crude for 'quality floor'. R2 rebuts severity: bisection still correct on staircase (efficiency not correctness issue); B=8/16 validated PPL <0.01 diff; rank-order sufficient for b* selection. Consensus on substance, divergence on severity (R1: critical, R2: should-fix).\"\n  action_items:\n    - round: 3\n      action: \"Add micro-batch design justification\"\n      assigned_to: paper_agent\n      status: in_progress\n    - round: 4\n      action: \"§3.3 must acknowledge B=4 discretization explicitly; clarify bisection is correct but 'continuous optimization' framing misleads; strengthen B=8/16 evidence (multi-seed if possible)\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R3-W8\"\n  summary: \"Proposition 1 proof sketch misleading: Cov≥0 is tautological given r_i=1[q_i≤0.5]\"\n  category: method\n  severity: warning\n  status: in_progress\n  first_raised_round: 2\n  last_seen_round: 3\n  mentions:\n    - round: 2\n      reviewers: [R1, R2]\n      note: \"Covariance positivity by construction.\"\n    - round: 3\n      reviewers: [R1, R2]\n      note: \"Full consensus. Presentation issue.\"\n    - round: 4\n      reviewers: []\n      note: \"本轮未单独提及\"\n  action_items:\n    - round: 3\n      action: \"Rewrite: state monotonicity by construction\"\n      assigned_to: paper_agent\n      status: in_progress\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R3-W9\"\n  summary: \"ECE abbreviation used without definition\"\n  category: writing\n  severity: info\n  status: in_progress\n  first_raised_round: 3\n  last_seen_round: 3\n  mentions:\n    - round: 3\n      reviewers: [R1, R2]\n      note: \"ECE appears multiple times without expansion.\"\n    - round: 4\n      reviewers: []\n      note: \"本轮未单独提及。当前版本 Introduction line 25 已有 'Expected Calibration Error, ECE' 定义。\"\n  action_items:\n    - round: 3\n      action: \"Define ECE at first occurrence\"\n      assigned_to: paper_agent\n      status: in_progress\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R3-M1\"\n  summary: \"Responsible NLP Research Checklist — required by ACL ARR\"\n  category: format\n  severity: warning\n  status: resolved\n  first_raised_round: 3\n  last_seen_round: 4\n  mentions:\n    - round: 3\n      reviewers: [R2]\n      note: \"ACL ARR requires checklist.\"\n    - round: 4\n      reviewers: [R2]\n      note: \"Checklist now present (sections/checklist.tex, A1-E1 all filled). R2 confirms '格式完全合规' and 'checklist 认真填写'. Resolved.\"\n  action_items:\n    - round: 3\n      action: \"Complete checklist\"\n      assigned_to: paper_agent\n      status: done\n  resolution: \"Checklist present and substantively filled\"\n  resolution_round: 4\n\n- id: \"R3-M2\"\n  summary: \"Hybrid method (q>0.95 + adaptive) achieves 17.514 but not discussed as recommended approach\"\n  category: experiment\n  severity: info\n  status: in_progress\n  first_raised_round: 3\n  last_seen_round: 3\n  mentions:\n    - round: 3\n      reviewers: [R1, R2]\n      note: \"Hybrid 0.139 PPL better.\"\n    - round: 4\n      reviewers: []\n      note: \"本轮未单独提及。Discussion 中有'hybrid + minimum intervention philosophy contradiction'段落。\"\n  action_items:\n    - round: 3\n      action: \"Discuss in main text\"\n      assigned_to: paper_agent\n      status: in_progress\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R3-M3\"\n  summary: \"Detector training details insufficient for reproducibility\"\n  category: experiment\n  severity: info\n  status: resolved\n  first_raised_round: 3\n  last_seen_round: 4\n  mentions:\n    - round: 3\n      reviewers: [R1]\n      note: \"Missing TF-IDF details.\"\n    - round: 4\n      reviewers: [R1, R2]\n      note: \"Appendix J now contains full detector details: TF-IDF features (unigrams+bigrams, max 50K, sublinear TF), LR (C=1.0, L2, lbfgs, max_iter=100), calibration (T=0.204), generation params (nucleus p=0.95, T=0.8, 384 tokens). R1 gives Reproducibility 4/5.\"\n  action_items:\n    - round: 3\n      action: \"Add Appendix section\"\n      assigned_to: paper_agent\n      status: done\n  resolution: \"Appendix J (Detector and Synthetic Data Details) added with full specs\"\n  resolution_round: 4\n\n- id: \"R3-M4\"\n  summary: \"Llama-3.2-3B cross-model results — no table, unverifiable\"\n  category: writing\n  severity: info\n  status: in_progress\n  first_raised_round: 3\n  last_seen_round: 4\n  mentions:\n    - round: 3\n      reviewers: [R1, R2]\n      note: \"Limitations mentions Llama-3.2-3B parity but no table.\"\n    - round: 4\n      reviewers: [R1, R2]\n      note: \"Appendix I (Table 10) now exists with MMLU +1.57pp / HellaSwag -0.60pp. But still single seed and no PPL ('checkpoints not retained'). R1 flags this as experimental management failure.\"\n  action_items:\n    - round: 3\n      action: \"Add Appendix table\"\n      assigned_to: paper_agent\n      status: done\n    - round: 4\n      action: \"Re-run cross-model experiment with checkpoint retention for PPL comparison; or clearly label as 'preliminary, single seed, no PPL available'\"\n      assigned_to: main_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R3-M5\"\n  summary: \"Reference issues: lin2017focal venue type, vehtari2024psis year\"\n  category: writing\n  severity: info\n  status: in_progress\n  first_raised_round: 2\n  last_seen_round: 3\n  mentions:\n    - round: 2\n      reviewers: [R1, R2]\n      note: \"vehtari2024psis year uncertain.\"\n    - round: 3\n      reviewers: [R1]\n      note: \"lin2017focal: article→inproceedings.\"\n    - round: 4\n      reviewers: []\n      note: \"本轮未单独提及\"\n  action_items:\n    - round: 3\n      action: \"Fix reference types/years\"\n      assigned_to: paper_agent\n      status: in_progress\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R2-N2\"\n  summary: \"Hard filtering crushes reweighting (17.290 vs 17.651); undermines motivation\"\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 2\n  last_seen_round: 4\n  mentions:\n    - round: 2\n      reviewers: [research_reviewer]\n      note: \"Epoch-matched controls added.\"\n    - round: 3\n      reviewers: [R1, R2]\n      note: \"Table 2 resolves confound. Both cite as strength.\"\n    - round: 4\n      reviewers: [R1, R2]\n      note: \"Epoch-matched finding remains a consensus strength. Table 2 convincing.\"\n  action_items:\n    - round: 2\n      action: \"Add epoch-matched discussion\"\n      assigned_to: paper_agent\n      status: done\n  resolution: \"Epoch-matched 3-seed Table 2 resolves the confound\"\n  resolution_round: 3\n\n- id: \"R1-N1\"\n  summary: \"'Statistically indistinguishable' → 'competitive' but CI still problematic\"\n  category: method\n  severity: critical\n  status: in_progress\n  first_raised_round: 2\n  last_seen_round: 4\n  mentions:\n    - round: 2\n      reviewers: [R1, R2]\n      note: \"p=0.30 failure-to-reject ≠ equivalence.\"\n    - round: 3\n      reviewers: [R1, R2]\n      note: \"Changed to 'competitive'. Residual in R3-N1.\"\n    - round: 4\n      reviewers: [R1, R2]\n      note: \"R1-N3: 'competitive' still implied equivalence. Abstract compares gap to cross-seed variance (different statistical quantities). CI [-0.039, 0.101] means possible 0.101 degradation.\"\n  action_items:\n    - round: 2\n      action: \"Replace 'statistically indistinguishable'\"\n      assigned_to: paper_agent\n      status: done\n    - round: 4\n      action: \"Tracked via R3-N1\"\n      assigned_to: paper_agent\n      status: in_progress\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R1-N2\"\n  summary: \"α_eff motivation disconnected from computation; Proposition 1 covariance tautological\"\n  category: method\n  severity: critical\n  status: in_progress\n  first_raised_round: 2\n  last_seen_round: 3\n  mentions:\n    - round: 2\n      reviewers: [R1, R2]\n      note: \"No error bound for α_eff vs true α.\"\n    - round: 3\n      reviewers: [R1, R2]\n      note: \"Proxy validation added. Proposition 1 tautology persists.\"\n    - round: 4\n      reviewers: []\n      note: \"本轮未单独提及。Tracked via R3-N2 and R3-W8.\"\n  action_items:\n    - round: 2\n      action: \"Add proxy discussion\"\n      assigned_to: paper_agent\n      status: done\n  resolution: \"Proxy validation added. Remaining in R3-N2, R3-W8.\"\n  resolution_round: null\n\n- id: \"R1-N3\"\n  summary: \"External validity insufficient: single model/detector/data/contamination-type\"\n  category: experiment\n  severity: critical\n  status: in_progress\n  first_raised_round: 2\n  last_seen_round: 4\n  mentions:\n    - round: 2\n      reviewers: [R1, R2]\n      note: \"Far less coverage than Drayson.\"\n    - round: 3\n      reviewers: [R1, R2]\n      note: \"1.7B added, 3 detectors tested.\"\n    - round: 4\n      reviewers: [R1, R2]\n      note: \"Tracked via R3-N3, R3-N5, R3-W1.\"\n  action_items:\n    - round: 2\n      action: \"Acknowledge in Limitations\"\n      assigned_to: paper_agent\n      status: done\n  resolution: \"Partially addressed. Remaining in R3-N3, R3-N5, R3-W1.\"\n  resolution_round: null\n\n- id: \"R1-W1\"\n  summary: \"Effect size tiny with downstream 4/5 benchmarks worse\"\n  category: framing\n  severity: warning\n  status: in_progress\n  first_raised_round: 2\n  last_seen_round: 4\n  mentions:\n    - round: 2\n      reviewers: [R1, R2]\n      note: \"Suggest reframing.\"\n    - round: 3\n      reviewers: [R1, R2]\n      note: \"Reframing done but concern persists.\"\n    - round: 4\n      reviewers: [R1, R2]\n      note: \"Tracked via R3-N1.\"\n  action_items:\n    - round: 2\n      action: \"Reframe\"\n      assigned_to: paper_agent\n      status: done\n  resolution: \"Reframing done. Remaining in R3-N1.\"\n  resolution_round: null\n\n- id: \"R1-W2\"\n  summary: \"Proposition 1 proof gap: strictly increasing vs non-decreasing\"\n  category: method\n  severity: warning\n  status: resolved\n  first_raised_round: 2\n  last_seen_round: 3\n  mentions:\n    - round: 2\n      reviewers: [R1, R2]\n      note: \"Fixable.\"\n    - round: 3\n      reviewers: [R1, R2]\n      note: \"Confirmed fixed.\"\n  action_items:\n    - round: 2\n      action: \"Fix\"\n      assigned_to: paper_agent\n      status: done\n  resolution: \"Fixed\"\n  resolution_round: 3\n\n- id: \"R1-W3\"\n  summary: \"ESS monotonicity not formally proven\"\n  category: method\n  severity: warning\n  status: resolved\n  first_raised_round: 2\n  last_seen_round: 3\n  mentions:\n    - round: 2\n      reviewers: [R1, R2]\n      note: \"Citation insufficient.\"\n    - round: 3\n      reviewers: [R1, R2]\n      note: \"Confirmed fixed: Proposition 2 with proof.\"\n  action_items:\n    - round: 2\n      action: \"Add proof\"\n      assigned_to: paper_agent\n      status: done\n  resolution: \"Fixed\"\n  resolution_round: 3\n\n- id: \"R1-W4\"\n  summary: \"Grid-b post-hoc oracle\"\n  category: experiment\n  severity: warning\n  status: in_progress\n  first_raised_round: 2\n  last_seen_round: 4\n  mentions:\n    - round: 2\n      reviewers: [R1, R2]\n      note: \"Consensus.\"\n    - round: 3\n      reviewers: [R1, R2]\n      note: \"Footnote added.\"\n    - round: 4\n      reviewers: [R1, R2]\n      note: \"R1-W4: post-hoc vs validation-based distinction should be discussed more explicitly; this actually favors the paper. R2 agrees.\"\n  action_items:\n    - round: 2\n      action: \"Add annotation\"\n      assigned_to: paper_agent\n      status: done\n    - round: 4\n      action: \"Expand discussion: note that validation-based grid search would likely be worse than post-hoc, making adaptive's advantage larger in practice\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R1-W5\"\n  summary: \"D&R and Golden Ratio baselines seed coverage\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 2\n  last_seen_round: 2\n  mentions:\n    - round: 2\n      reviewers: [R1, R2]\n      note: \"D&R needs 3-seed.\"\n    - round: 3\n      reviewers: [R1, R2]\n      note: \"D&R epoch-matched 3-seed in Table 2.\"\n  action_items:\n    - round: 2\n      action: \"Run multi-seed\"\n      assigned_to: main_agent\n      status: done\n  resolution: \"D&R epoch-matched 3-seed complete\"\n  resolution_round: 2\n\n- id: \"R2-W1\"\n  summary: \"Novelty relative to Drayson limited\"\n  category: framing\n  severity: warning\n  status: in_progress\n  first_raised_round: 2\n  last_seen_round: 4\n  mentions:\n    - round: 2\n      reviewers: [R1, R2]\n      note: \"Both agree Findings-level.\"\n    - round: 3\n      reviewers: [R1, R2]\n      note: \"Escalated to critical in R3-N4.\"\n    - round: 4\n      reviewers: [R1, R2]\n      note: \"Tracked via R3-N4.\"\n  action_items:\n    - round: 2\n      action: \"Clarify unique aspects\"\n      assigned_to: paper_agent\n      status: done\n  resolution: \"Residual in R3-N4.\"\n  resolution_round: null\n\n- id: \"R2-W3\"\n  summary: \"τ depends on ρ, contradicting 'zero validation cost'\"\n  category: method\n  severity: warning\n  status: in_progress\n  first_raised_round: 2\n  last_seen_round: 4\n  mentions:\n    - round: 2\n      reviewers: [R1, R2]\n      note: \"τ≈1−ρ/2 contradicts ρ-unknown.\"\n    - round: 3\n      reviewers: [R1, R2]\n      note: \"Heuristic deleted.\"\n    - round: 4\n      reviewers: [R1, R2]\n      note: \"Tracked via R3-N2.\"\n  action_items:\n    - round: 2\n      action: \"Delete heuristic\"\n      assigned_to: paper_agent\n      status: done\n  resolution: \"Heuristic deleted. Remaining in R3-N2.\"\n  resolution_round: null\n\n- id: \"R2-W4\"\n  summary: \"Citation density insufficient\"\n  category: writing\n  severity: warning\n  status: in_progress\n  first_raised_round: 2\n  last_seen_round: 4\n  mentions:\n    - round: 2\n      reviewers: [director_audit]\n      note: \"Increased to 30.\"\n    - round: 3\n      reviewers: [R1, R2]\n      note: \"Now ~39.\"\n    - round: 4\n      reviewers: [R2]\n      note: \"Tracked via R3-W3.\"\n  action_items:\n    - round: 2\n      action: \"Add references\"\n      assigned_to: paper_agent\n      status: done\n  resolution: \"Increased to 41 but still below norm. See R3-W3.\"\n  resolution_round: null\n\n- id: \"R2-M1\"\n  summary: \"'five approaches' but lists 6 methods\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 2\n  last_seen_round: 2\n  mentions:\n    - round: 2\n      reviewers: [R1, R2]\n      note: \"Count error.\"\n  action_items:\n    - round: 2\n      action: \"Fix\"\n      assigned_to: paper_agent\n      status: done\n  resolution: \"Fixed: now says 'six approaches'\"\n  resolution_round: 2\n\n- id: \"R2-M2\"\n  summary: \"Grid-b values inconsistent\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 2\n  last_seen_round: 2\n  mentions:\n    - round: 2\n      reviewers: [R1, R2]\n      note: \"Inconsistent.\"\n  action_items:\n    - round: 2\n      action: \"Unify\"\n      assigned_to: paper_agent\n      status: done\n  resolution: \"Unified\"\n  resolution_round: 2\n\n- id: \"R2-M3\"\n  summary: \"Reference guo2025escaping phantom\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 2\n  last_seen_round: 2\n  mentions:\n    - round: 2\n      reviewers: [director_audit]\n      note: \"Deleted.\"\n  action_items:\n    - round: 2\n      action: \"Remove\"\n      assigned_to: paper_agent\n      status: done\n  resolution: \"Deleted\"\n  resolution_round: 2\n\n- id: \"R2-M5\"\n  summary: \"Hybrid ρ=0.6 comparability\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 2\n  last_seen_round: 3\n  mentions:\n    - round: 2\n      reviewers: [R1, R2]\n      note: \"Hybrid changes effective ρ.\"\n    - round: 3\n      reviewers: [R2]\n      note: \"Footnote added.\"\n  action_items:\n    - round: 2\n      action: \"Add note\"\n      assigned_to: paper_agent\n      status: done\n  resolution: \"Footnote added\"\n  resolution_round: 3\n\n# New issues from Round 4\n- id: \"R4-N1\"\n  summary: \"'D&R' abbreviation used in Abstract and Introduction without definition\"\n  category: writing\n  severity: warning\n  status: open\n  first_raised_round: 4\n  last_seen_round: 4\n  mentions:\n    - round: 4\n      reviewers: [R1, R2]\n      note: \"Abstract line 9 'D&R's full-length advantage' and Introduction contribution #2 use D&R without prior definition. Full form 'Detect & Remove' first appears in §4. Consensus.\"\n  action_items:\n    - round: 4\n      action: \"Define 'Detect and Remove (D&R)' at first use in Abstract or Introduction\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R4-N2\"\n  summary: \"Grid search at ρ=0.6 is single seed; Adaptive-vs-Grid gap 0.106 unreliable\"\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 4\n  last_seen_round: 4\n  mentions:\n    - round: 4\n      reviewers: [R1, R2]\n      note: \"Table 5 (Appendix E): Grid b=0.3 at ρ=0.6 is seed 42 only. Adaptive 3-seed mean 17.736 vs Grid 17.634, gap 0.102. At ρ=0.4, Grid 3-seed variance ±0.033, so single-seed comparison unreliable. §5.2 'gap widens' narrative not supported. Consensus.\"\n  action_items:\n    - round: 4\n      action: \"Run 3-seed Grid at ρ=0.6, or clearly label comparison as single-seed preliminary; remove 'gap widens' claim\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R4-N3\"\n  summary: \"Epoch-matched LR schedule confound: D&R 2533 steps vs adaptive 6103 steps with different cosine schedules\"\n  category: experiment\n  severity: info\n  status: open\n  first_raised_round: 4\n  last_seen_round: 4\n  mentions:\n    - round: 4\n      reviewers: [R1, R2]\n      note: \"R1-W3 raises this. R2 partially rebuts: confound direction likely favors paper's conclusion (shorter schedule may hurt D&R, so fair comparison would strengthen epoch-confound finding). Both agree 1-2 sentence discussion would suffice. Minor divergence on severity.\"\n  action_items:\n    - round: 4\n      action: \"Add brief discussion of LR schedule difference in §5.1 or Table 2 caption\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R4-N4\"\n  summary: \"p<0.01 (N=3) reporting needs caveats: 2 df, normality unverifiable\"\n  category: method\n  severity: warning\n  status: open\n  first_raised_round: 4\n  last_seen_round: 4\n  mentions:\n    - round: 4\n      reviewers: [R1, R2]\n      note: \"R1-W5: N=3 paired t-test has 2 df, t-distribution tails very thick, normality assumption uncheckable. R2 agrees. Both suggest: report exact paired differences, add sample size caveat, consider non-parametric robustness check.\"\n  action_items:\n    - round: 4\n      action: \"Report exact paired differences alongside p-values; add caveat about N=3 t-test limitations\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R4-N5\"\n  summary: \"wang2026survive (arXiv:2602.16065) date needs verification — 2026 February arXiv preprint\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 4\n  last_seen_round: 4\n  mentions:\n    - round: 4\n      reviewers: [R2]\n      note: \"arXiv ID 2602.16065 implies February 2026 posting. Needs verification that this paper actually exists and is publicly available.\"\n  action_items:\n    - round: 4\n      action: \"Verify wang2026survive exists on arXiv; confirm ID and publication status\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7a103131-0081-4faa-afa4-f5548f941ecf",
+            "isSidechain": false,
+            "requestId": "req_011CbBRGazPnZ5H4x7VoKvL1",
+            "type": "assistant",
+            "uuid": "cb177eb4-fa14-4def-828d-f83b76c07601",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/review_director_5d592d28",
+            "sessionId": "a93ece23-1076-49ed-a6f3-70d869b55d63",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0184iZyPogSa7AB7wRc1zdCE",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 3435,
+                "cache_read_input_tokens": 110019,
+                "output_tokens": 12560,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3435,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 12560,
+                    "cache_read_input_tokens": 110019,
+                    "cache_creation_input_tokens": 3435,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3435
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000156"
+        },
+        {
+          "source_line": 157,
+          "timestamp": "2026-05-19T06:05:17.519Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018huU6LggJK3mR7wb75gNX8",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/review_issues.yaml\\\", \\\"bytes\\\": 31880}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cb177eb4-fa14-4def-828d-f83b76c07601",
+            "isSidechain": false,
+            "promptId": "a7ddb855-4935-4b63-9696-b9cd95860de1",
+            "type": "user",
+            "uuid": "cec5187e-844b-4889-8014-e7802f3ec99f",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/review_issues.yaml\\\", \\\"bytes\\\": 31880}, \\\"error\\\": \\\"\\\"}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/review_issues.yaml\", \"bytes\": 31880}, \"error\": \"\"}"
+              }
+            },
+            "sourceToolAssistantUUID": "cb177eb4-fa14-4def-828d-f83b76c07601",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/review_director_5d592d28",
+            "sessionId": "a93ece23-1076-49ed-a6f3-70d869b55d63",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000157"
+        },
+        {
+          "source_line": 158,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "[Reviewer 2 审稿结果]: 交叉回应已提交。对 R1 的 10 个问题：6 个 [AGREE]，4 个 [REBUT]（部分反驳）。  核心共识点：效果量小、统计支撑不足、自污染设计限制泛化性。分歧点：B=4 离散化的严重程度（我认为应降为 Should-Fix）、epoch-matched LR schedule confound（方向对论文结论有利）、minimum interven…",
+                "leafUuid": "cec5187e-844b-4889-8014-e7802f3ec99f",
+                "sessionId": "a93ece23-1076-49ed-a6f3-70d869b55d63"
+              }
+            }
+          ],
+          "id": "event-000158"
+        },
+        {
+          "source_line": 159,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Review provenance weight training paper for EMNLP 2026",
+                "sessionId": "a93ece23-1076-49ed-a6f3-70d869b55d63"
+              }
+            }
+          ],
+          "id": "event-000159"
+        },
+        {
+          "source_line": 160,
+          "timestamp": "2026-05-19T06:05:21.640Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Issue Tracker 已更新。现在提交最终审稿报告。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cec5187e-844b-4889-8014-e7802f3ec99f",
+            "isSidechain": false,
+            "requestId": "req_011CbBRYADZwnmJQWnnQEWRV",
+            "type": "assistant",
+            "uuid": "fb265f18-7ef4-42ab-afd2-29cf4b579ed7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/review_director_5d592d28",
+            "sessionId": "a93ece23-1076-49ed-a6f3-70d869b55d63",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019Cvb7QkC4mKd1Bj7dHKUHF",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 12642,
+                "cache_read_input_tokens": 113454,
+                "output_tokens": 6578,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 12642,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 6578,
+                    "cache_read_input_tokens": 113454,
+                    "cache_creation_input_tokens": 12642,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 12642
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000160"
+        },
+        {
+          "source_line": 161,
+          "timestamp": "2026-05-19T06:07:52.855Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AvdTpwmBEoX7wgt2Z9hL3t",
+              "name": "mcp__agent-ml-research__submit_review_report_to_research_director",
+              "input": {
+                "project": "provenance_weight_training",
+                "report": "# 审稿报告 — Round 4 (Fresh Review)\n\n**论文**: Minimum Intervention Reweighting: Adaptive Exponent Selection for Contamination-Aware Pretraining\n**目标 Venue**: EMNLP 2026 Main Conference (ARR May 2026 cycle)\n**截止日期**: 2026-05-25\n**Reviewer 编排**: 2 人（R1: 方法严谨性+实验+统计; R2: 新颖性+叙事+Related Work+格式）\n**审稿轮次**: Round 1 独立初审 → 交叉分享 → 收敛（1 轮收敛，关键问题全部达成共识）\n\n---\n\n## Summary\n\n本文提出 Minimum Intervention Reweighting (MIR)，在 detect-and-reweight 框架 w(x)=(1-q(x))^b 下，通过 per-batch 双约束优化（α_eff(b) ≥ τ 质量下限 + ESS(b) ≥ n_min 稳定性上限）自动选择最小 b，消除 grid search。在 Qwen3-0.6B 续训（132M FineWeb tokens, 40% 合成污染）上，adaptive b* 与 grid-best 竞争（gap 0.031 PPL, 95% CI [-0.039, 0.101]），将搜索从 9 次训练降至 1 次。论文还发现 D&R 的优势完全来自多 epoch 暴露（epoch-matched Δ=0.006），以及判别式检测器（而非生成式）是 reweighting 有效性的必要条件。\n\n---\n\n## Strengths\n\n**S1. D&R Epoch Confound 发现（独立社区价值）** [共识]\nTable 2 的 epoch-matched 实验干净地分离了 data exposure 和 filtering quality：D&R 全长 17.290 vs. epoch-matched 17.657（Δ=0.367 完全来自多 epoch），3-seed 验证。这是一个有纠偏价值的 corrective finding，无论方法本身是否被接受。\n\n**S2. Detector Type 发现（实践指导意义）** [共识]\nGPT-2 PPL (AUC=0.91) 反而使 adaptive 退化 (+0.10)，证明 AUC 不等于 reweighting effectiveness。discriminative vs. generative 的区分对实践有指导意义，这个发现可能比方法本身更有影响力。\n\n**S3. 诚实透明的 Limitations** [共识]\n论文对自身局限的讨论异常坦诚：ρ=0.2 失败、downstream mixed、1.7B 无优势、CI 包含退化。Conclusion 明确承认 \"the method's primary value lies in the 0.6B continued pretraining regime tested here\"。在该领域少见。\n\n**S4. 框架设计优雅** [共识]\n将 b 选择形式化为双约束优化，两个约束具有自然的对立单调性（Proposition 1 & 2），比 grid search 更有原则性。\n\n**S5. 写作和格式** [共识]\n写作干净，无 em-dash/en-dash AI 痕迹，无过度分段，技术术语使用精准。格式完全合规（ACL review 模板, double-blind, 行号开启, Limitations section, Responsible NLP Research Checklist 认真填写）。\n\n**S6. 可复现性高** [共识]\n算法、超参、训练配置、detector 细节（Appendix J）描述充分。R1/R2 均给出 Reproducibility 4/5。\n\n---\n\n## Weaknesses\n\n### Critical（影响接收决定）\n\n**C1. 新颖性不足以支撑 Main Conference** [R1 AGREE, R2 raised; 共识]\n论文使用与 Drayson et al. (2025) 完全相同的公式 w=(1-q)^b。全部方法创新在于 b 的选择方式：\n- (i) per-batch vs fixed b：工程层面改进\n- (ii) loss reweighting vs SIR resampling：实现选择差异\n- (iii) lightweight detector suffices：实验发现而非方法贡献\n- α_eff 约束是 Wang et al. (2026) 收敛理论的直接操作化；ESS 约束是 importance sampling 标准做法 (Kish 1965)\n- \"Minimum intervention\" 本质是在两个单调函数上取 infimum，属标准约束优化\n\n论文最有价值的贡献（D&R epoch confound, detector type finding）是**分析性发现**而非方法贡献，但当前 framing 将方法置于核心（Contribution 1）。两位 Reviewer 一致建议重新定位：以 analytical study 为主、method 为辅。\n\n**C2. 效应量极小，下游任务不支持 PPL 改善的实际意义** [R1 raised, R2 AGREE; 共识]\n- ρ=0.4: Δ = -0.043 PPL (0.24% relative)，在续训已吸收 5.2 PPL 的残差区间内\n- ρ=0.6: Δ = -0.028 (减弱)\n- 1.7B: Δ = -0.01 (negligible)\n- Downstream: 5 个 benchmark 中 4 个为负（ARC-C -0.005, ARC-E -0.007, HellaSwag -0.005, WinoGrande -0.008），sign-test p≈0.19\n- PPL 改善可能仅反映 distribution matching（训练数据更接近 human-only 评估集），而非真正的模型质量提升\n- Abstract/Introduction framing 给出比实际证据更强的印象\n\n**C3. \"Competitive with grid-best\" 的 framing 与统计证据不一致** [R1 raised, R2 AGREE; 共识]\n- 95% CI [-0.039, 0.101] 包含 0.101 PPL 的降级（upper bound 是 effect size 的 2.3x）\n- Abstract 将 gap (0.031) 与 cross-seed variance (±0.033) 做比较，但这是两个不同统计量（paired variability vs. marginal variability）\n- N=3 下 CI 过宽是 power 不足的结果，不是等价性的证明\n- §5.1 的 \"we refrain from claiming statistical indistinguishability\" 是正确的审慎态度，但 Abstract 和 Conclusion 的措辞与此矛盾\n\n**C4. 1.7B \"transfers without degradation\" claim 缺乏统计支撑** [R1 raised, R2 AGREE; 共识]\n- 2 seeds adaptive (13.25, 13.27) vs. 1 seed uniform (13.26)\n- Δ = -0.01 在任何标准下都无法区分 noise 和 signal\n- §5.2 的 \"confirming\" 用词过强\n- 效应量从 0.6B 到 1.7B 缩小 4x，equally consistent with \"no effect at this scale\"\n\n**C5. 自污染实验设计严重限制泛化性** [R2 raised as critical, R1 AGREE; 共识]\n- Self-contamination (generator=trainee) 是最容易检测的场景，不是论文声称的 \"challenging detection scenario\"\n- TF-IDF+LR 在此场景下达到 AUC=0.94 恰好证明了检测的容易性\n- 真实 web 污染的关键挑战（多源异构、非均匀混合）在 uniform random mixing 设计中完全缺失\n- Limitations section **没有**将 self-contamination 作为独立限制讨论\n- Cross-model 结果 (Appendix H) 单 seed、mixed results、缺少 PPL（\"checkpoints not retained\"）\n\n### Warning（影响评分但不一票否决）\n\n**W1. B=4 下 α_eff 仅 5 个离散值，与 \"连续优化\" 叙事不一致** [R1: critical N4; R2: should-fix W6; 严重程度分歧]\n- B=4 时 α_eff ∈ {0, 0.25, 0.5, 0.75, 1.0}，bisection 在阶梯函数上运行\n- Pearson r≈0.70（51% 方差未解释），MAE=0.114\n- R2 反驳严重程度：bisection 仍正确（效率非正确性问题）；B=8/16 验证 PPL <0.01 差异\n- 共识：substance 成立，但方法描述与实际操作之间存在失配，需在§3.3 承认\n\n**W2. \"Robust defaults\" 声明验证不足** [共识]\n- τ sweep 基于 seed 42, ρ=0.4 单次实验\n- ρ=0.6 时 optimal τ shift 到 0.7（Figure 3）\n- \"empirically robust defaults that transfer without per-model tuning\" 仅在 1 个模型、2 个 ρ 值上验证\n- 建议弱化为 \"default values that perform well in the tested configurations\"\n\n**W3. Grid search 在 ρ=0.6 为单 seed** [共识]\n- Table 5: Grid b=0.3 at ρ=0.6 仅 seed 42 (17.634)\n- Adaptive 3-seed mean 17.736 vs Grid 单 seed，gap 0.102 不具可比性\n- §5.2 \"gap widens from 0.013 to 0.106\" 叙述不可靠\n\n**W4. \"D&R\" 缩写在 Abstract/Introduction 中未定义** [共识]\n- Abstract line 9, Introduction contribution #2 直接使用，全称首次出现在 §4\n\n**W5. 下游评估不充分** [共识]\n- 5 benchmarks, single seed, 4/5 negative Δ\n- 放在 Appendix 而非正文，且 caption 称 \"preserves downstream performance\"（over-positive interpretation）\n- 建议纳入正文并诚实讨论 PPL-downstream 脱节\n\n**W6. p<0.01 (N=3) 需要附带 caveats** [共识]\n- 2 df, t 分布尾部极厚，正态性假设不可验证\n- 建议报告 exact paired differences，注明 sample size 限制\n\n**W7. 缺少近期重要相关工作** [R2 raised, R1 AGREE with caveat]\n- R2 识别 3 篇未引用论文：Kang et al. (EMNLP 2025), Zhang et al. (2025 ForTIFAI), Yi et al. (2025)\n- R1 无法独立验证存在性但原则同意应覆盖\n- 当前 41 条引用偏少\n\n**W8. Scale mismatch: Introduction 框架 web-scale 但实验 132M tokens** [共识]\n- Introduction 以 \"Web corpora increasingly contain machine-generated text\" 开头\n- 实验规模与 web-scale 差 4 个数量级\n- 建议 Introduction 明确限定为 \"continued pretraining on moderate-scale corpora\"\n\n**W9. \"Minimum intervention\" 缺乏最优性证明** [R1 raised, R2 partially rebuts]\n- 选择 b*=b_τ (minimum) 而非中间值是设计直觉\n- R2 反驳：ESS-only ablation (maximum) 已显示退化，minimum > maximum 已建立\n- 但 (b_τ+b_ESS)/2 等中间策略未测试\n- 共识：应标注为 \"empirically motivated strategy\"，不暗示最优性\n\n---\n\n## Reviewer Consensus\n\n以下问题两位 Reviewer **完全一致**（[AGREE]）：\n\n1. 效应量过小（0.043 PPL, 0.24%），下游 4/5 为负，PPL 改善可能是 distribution matching artifact\n2. 1.7B claim 统计不支撑（2 seeds vs 1 seed, Δ=-0.01）\n3. \"Competitive\" framing 与 CI [-0.039, 0.101] 矛盾\n4. 新颖性不足以支撑 Main Conference（同一公式，不同 b 选择）\n5. 自污染设计限制泛化性，Limitations 未充分讨论\n6. \"Robust defaults\" 验证不足\n7. Grid ρ=0.6 单 seed 比较不可靠\n8. 下游评估不充分\n9. D&R 缩写未定义\n10. p<0.01 (N=3) 需要 caveats\n11. 分析性发现（epoch confound, detector type）比方法本身更有价值\n\n---\n\n## Reviewer Divergence\n\n| 问题 | R1 | R2 | 分析 |\n|------|----|----|------|\n| B=4 离散化严重程度 | Critical (N4) | Should-Fix (W6) | R2 认为正确性不受影响，B=8/16 已验证。Director 判断：Should-Fix 更合理，离散化不影响算法正确性 |\n| Epoch-matched LR confound | Should-Fix (W3) | REBUT（方向有利） | R2 认为 schedule 差异的方向对论文结论有利而非不利。Director 判断：R2 分析合理，但应在论文中简要讨论 |\n| Minimum intervention 最优性 | Should-Fix (W6) | REBUT（ablation 已足够） | R2 认为 min > max 已通过 ESS-only ablation 建立。Director 判断：中间策略未测试是 completeness gap，但不构成 soundness 问题 |\n| Overall 评分 | 2.5/5 (Borderline Findings) | 3.0/5 (Findings) | R1 对效应量权重更大。Director 综合判断见下 |\n\n---\n\n## Questions（需要作者澄清）\n\n1. 如果 PPL 改善仅反映 distribution matching（训练数据更接近 human-only 评估集），方法的核心 value proposition 是什么？\n2. 在 B=4 的阶梯函数上，per-batch adaptation 的实际机制是什么？是 α_eff 的精确值驱动了 b* 的选择，还是其他因素（如 batch-level contamination composition 的变异性）？\n3. 论文 Conclusion 承认 \"primary value lies in the 0.6B continued pretraining regime\"——如果方法不 scale，它的 target audience 是谁？\n4. Midpoint 策略 b* = (b_τ + b_ESS)/2 是否测试过？如果 minimum 是唯一测试的 feasible region 内策略，\"minimum intervention\" 的 claim 缺乏对照\n5. Self-contamination 设计下 AUC=0.94 是否代表了真实 web 污染场景下的检测器性能？如果真实场景 AUC 显著更低，α_eff proxy 的可靠性如何？\n\n---\n\n## Missing References（R2 识别，R1 原则同意）\n\n| 论文 | 为什么相关 |\n|------|-----------|\n| Kang et al. (EMNLP 2025) \"Demystifying Synthetic Data in LLM Pre-training\" | 大规模 synthetic data mixing 研究（>1000 LLMs），直接相关 |\n| Zhang et al. (2025) \"ForTIFAI\" (arXiv:2509.08972) | 不依赖检测器的 model collapse prevention（Truncated CE loss），替代方案 |\n| Yi et al. (2025) \"Escaping Model Collapse via Synthetic Data Verification\" (arXiv:2510.16657) | Verifier-guided retraining 理论分析，与 α_eff 动机相关 |\n\n注：R1 无法独立验证这些论文的存在性，建议 Research Director 核实后决定是否引用。\n\n---\n\n## External Review (Stanford Agentic Reviewer)\n\n外部审稿：未配置。项目配置中无 `external_review.paperreview_ai.enabled` 字段。\n\n---\n\n## Overall Assessment\n\n**Overall Score: Weak Reject (for Main Conference) / Borderline Accept (for Findings)**\n\n**评分依据:**\n- R1: 2.5/5 (Borderline Findings)\n- R2: 3.0/5 (Findings)\n- Director 综合: **Weak Reject for Main Conference, potential Findings-level accept**\n\n**核心判断:**\n\n论文技术执行干净、写作诚实，但存在两个根本性问题：\n\n1. **新颖性不足以支撑 Main Conference**。核心方法对 Drayson et al. (2025) 的增量有限——同一公式，不同的 b 选择策略。双约束框架虽优雅，但各组件（α_eff 约束、ESS 约束、bisection）均来自已有工具的组合。\n\n2. **实验证据系统性地弱于 claims**。效应量极小（0.043 PPL, 0.24%），下游 4/5 为负，1.7B 无 measurable advantage，CI 包含 substantial degradation。论文在 Limitations 和 Conclusion 中审慎表述，但 Abstract 和 Introduction 的 framing 过度乐观。\n\n**论文最有价值的部分是两个分析性发现**：(1) D&R 优势完全来自多 epoch 暴露（Table 2）；(2) 检测器 signal type 而非 AUC 决定 reweighting 有效性。这些发现有独立社区价值，但在当前 framing 中被方法论述遮盖。\n\n**建议投稿路径:**\n- **Findings track**: 重新 frame 为 analytical study（epoch confound + detector type 为主要贡献，method 为实用工具），补充下游评估和统计 caveats 后，Findings 级别可行\n- **Main Conference**: 需要显著增强实验证据（更多 seeds、更大规模、下游转化、cross-generator 验证）或提出本质不同的方法创新\n\n**置信度**: 4/5（两位 Reviewer 在关键问题上独立达成高度一致，增强了判断的可信度）\n\n---\n\n## Detailed Comments\n\n### Abstract (sections/abstract.tex)\n- \"eliminating the need for exhaustive search (nine runs to one; 95% CI of gap [−0.039, 0.101], which includes possible degradation)\" — 后半句削弱前半句的 claim，造成 Abstract 内部信息矛盾。建议选择一个一致的 framing [R1]\n- \"D&R's full-length advantage\" — D&R 缩写未定义 [共识]\n- 字数偏多（约 280 words），数据堆砌过多，建议精简到 ≤250 words [R3-W2 延续]\n\n### Introduction (sections/introduction.tex)\n- Line 1 \"Web corpora increasingly contain machine-generated text\" 开启 web-scale framing，但实验仅 132M tokens / 0.6B。建议明确 scope 为 continued pretraining [共识]\n- Contribution list 将方法置于 #1，分析发现置于 #2 和 #3。建议颠倒优先级，以 analytical contributions 为主 [共识]\n- \"D&R's reported advantage\" (contribution #2) — 缩写未定义 [共识]\n\n### Method (sections/method.tex)\n- §3.2 Proposition 1 proof sketch: \"better-than-random discrimination\" 条件对 Cov ≥ 0 是冗余的（given r_i = 1[q_i ≤ 0.5]，covariance non-negativity is by construction）[R3-W8 延续]\n- §3.3 \"we compute b* at the micro-batch level (B=4)\" — 应明确承认 B=4 下 α_eff 仅 5 个离散值，bisection 退化为离散 lookup [R1-N4 / R2-W6]\n- §3.4 \"empirically robust defaults\" — 验证不足，建议弱化表述 [共识]\n\n### Experiments (sections/experiments.tex)\n- \"creates a challenging detection scenario\" — 实际上 self-contamination 下 AUC=0.94 证明这不 challenging。建议移除或改述 [R1 交叉回应]\n\n### Results (sections/results.tex)\n- §5.1 \"competitive with grid-best\" 与后文 CI caveat 矛盾 [共识]\n- §5.1 downstream 结果不在正文——4/5 negative 的 pattern 应在正文讨论 [R1-N1]\n- §5.2 \"confirming that the method transfers to larger scale without degradation\" — 2 seeds 不足以 \"confirm\"，改为 \"preliminary evidence suggests\" [共识]\n- §5.2 ρ=0.6 Grid 比较为单 seed，\"gap widens\" 叙述不可靠 [共识]\n\n### Discussion (sections/discussion.tex)\n- \"the selected exponent is 4.9× lower than the ESS-only upper bound\" — 有价值但本节整体仍偏薄\n- 缺少 PPL-downstream divergence 的讨论 [R1-N1]\n\n### Limitations (sections/limitations.tex)\n- 缺少 self-contamination 设计作为独立限制的讨论 [共识]\n- \"Cross-model transfer\" 段落讨论 Llama-3.2-3B 但这是 cross-generator transfer，不是 self-contamination 限制\n\n### References (references.bib)\n- wang2026survive (arXiv:2602.16065): 2026 年 2 月 arXiv，需验证存在性 [R2]\n- 可能缺少 3 篇近期相关工作 [R2-W4]\n- 总数 41 条偏少 [共识]\n\n### Appendix (sections/appendix.tex)\n- Detector details (Appendix J) 现在完整 [resolved]\n- Cross-model table (Appendix H, Table 10) 存在但 single seed + no PPL [R3-M4]",
+                "reviewer_ids_acknowledged": [
+                  1,
+                  2
+                ],
+                "cross_response_reviewer_ids": [
+                  1,
+                  2
+                ],
+                "overall_score": "weak reject",
+                "review_chat_id": "oc_069d56747de0423c793156b069500cb3"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fb265f18-7ef4-42ab-afd2-29cf4b579ed7",
+            "isSidechain": false,
+            "requestId": "req_011CbBRYADZwnmJQWnnQEWRV",
+            "type": "assistant",
+            "uuid": "43caadc2-6679-44f8-b20d-22ad54586dd4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/review_director_5d592d28",
+            "sessionId": "a93ece23-1076-49ed-a6f3-70d869b55d63",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019Cvb7QkC4mKd1Bj7dHKUHF",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 12642,
+                "cache_read_input_tokens": 113454,
+                "output_tokens": 6578,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 12642,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 6578,
+                    "cache_read_input_tokens": 113454,
+                    "cache_creation_input_tokens": 12642,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 12642
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000161"
+        },
+        {
+          "source_line": 162,
+          "timestamp": "2026-05-19T06:07:57.127Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AvdTpwmBEoX7wgt2Z9hL3t",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"research_director_key\\\": \\\"feishu:group:oc_2b6c9bea33a70c93bf4bf04ac36b8df9:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "43caadc2-6679-44f8-b20d-22ad54586dd4",
+            "isSidechain": false,
+            "promptId": "a7ddb855-4935-4b63-9696-b9cd95860de1",
+            "type": "user",
+            "uuid": "69e3b88a-563d-4a39-8554-b71f5538065b",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"research_director_key\\\": \\\"feishu:group:oc_2b6c9bea33a70c93bf4bf04ac36b8df9:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"research_director_key\": \"feishu:group:oc_2b6c9bea33a70c93bf4bf04ac36b8df9:director\"}, \"error\": \"\"}"
+              }
+            },
+            "sourceToolAssistantUUID": "43caadc2-6679-44f8-b20d-22ad54586dd4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/review_director_5d592d28",
+            "sessionId": "a93ece23-1076-49ed-a6f3-70d869b55d63",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000162"
+        }
+      ]
+    }
+  ]
+}

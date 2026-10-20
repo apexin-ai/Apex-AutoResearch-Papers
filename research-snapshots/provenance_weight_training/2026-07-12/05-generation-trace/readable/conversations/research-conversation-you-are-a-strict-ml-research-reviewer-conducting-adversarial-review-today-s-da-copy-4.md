@@ -1,0 +1,4771 @@
+# Research conversation: You are a strict ML research reviewer conducting adversarial review. **Today's date: 2026-05-10 (UTC).** Your job: indep
+
+**When Does Detect-and-Reweight Work for Synthetic Contamination? (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 64
+- **Recorded user turns:** 1
+- **Tool calls:** 14
+- **Original source:** `logs/chats/exported-trajectories/account-3/b9bb4059-e3b3-488b-9ce3-35bd9d7de68e.jsonl`
+- **Structured JSON:** [`ab1bb073b2a44da237c8.json`](../../sessions/ab/ab1bb073b2a44da237c8.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-10T19:17:26.952Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-10T19:17:26.952Z",
+  "sessionId": "b9bb4059-e3b3-488b-9ce3-35bd9d7de68e",
+  "content": "You are a strict ML research reviewer conducting adversarial review.\n\n**Today's date: 2026-05-10 (UTC).**\n\nYour job: independently verify this idea's claims via WebSearch, then issue a verdict.\n\n## User requirements\nThe user asked for: **Target: CoRL 2026 (Austin, Nov 9-12, 2026). Abstract deadline 2026-05-26 (17 days); paper deadline 2026-05-29 (20 days).\n\nDirection: Generative models specifically targeting HUMANOID robot training data — addressing the high-DoF, whole-body, loco-manipulation data scarcity that bottlenecks humanoid VLA / WM training. SCOPE LIMITED TO TWO CONTRIBUTION TYPES:\n  (a) Generation ALGORITHMS — e.g., video diffusion conditioned on humanoid action streams, action-conditioned generative models, latent humanoid trajectory generators, physics-aware whole-body video generation.\n  (b) Procedural data-generation PIPELINES — e.g., MimicGen-style automated demo multiplication for humanoids, procedural whole-body task/scene generation, automated quality filtering pipelines for synthetic humanoid trajectories.\n\nOUT OF SCOPE: action retargeting innovations (human-video → humanoid-action retargeting). Treat existing retargeters (HumanPlus, OmniH2O) as black-box upstream tools if needed; do NOT propose new retargeting methods.\n\nRecent landscape (do not duplicate): NVIDIA GR00T-Dreams, DexMimicGen, MimicGen extensions for humanoid, Helix self-supervised humanoid pipelines, Cosmos for synthetic humanoid video. Humanoid data scarcity is the #1 bottleneck cited in 2026 humanoid papers — high impact area.\n\nContribution type: METHOD ONLY. New generation algorithm OR new procedural pipeline. Not a new released humanoid dataset alone.\n\nSIM-ONLY MITIGATION: Validate generated data by training a downstream humanoid policy/VLA in sim and comparing against models trained on baseline data. Frame contribution as method, not dataset.\n\nHARD CONSTRAINTS:\n1. Compute: ≤200 H100-hours total. Strategies: (a) fine-tune existing video diffusion (CogVideoX, OpenSora, Cosmos) with humanoid-action conditioning, (b) procedural pipeline that requires negligible training compute, (c) small efficient humanoid-specific generator that beats general baselines.\n2. Time: ≤20 days. Build on HF Diffusers, OpenSora, NVIDIA Cosmos repos, Isaac Lab humanoid suite (G1, H1), MimicGen, RoboCasa with humanoid embodiments if available.\n3. Eval: train humanoid policy/VLA on generated vs baseline data. Test on Isaac Lab humanoid manipulation/locomanipulation tasks, RoboCasa kitchen with humanoid embodiment, HumanoidBench. Report success rate + data efficiency curves.\n\nLook for: physics-aware whole-body video generation with kinematic consistency, action-conditioned generators that exploit humanoid kinematic structure, procedural pipelines that produce diverse loco-manipulation (not just static manipulation) data, automatic quality filtering for synthetic humanoid trajectories. Avoid: any retargeting-based contribution, arm-only generation rebadged as humanoid, naive fine-tuning of video diffusion on humanoid clips without method.\n\nTag: direction=humanoid_data_gen, contribution_type=method. target_venues=[\"CoRL 2026\"].**\nYou MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be \"revise\" or \"fail\".\n\n## 核心要求：非常仔细地调研，非常仔细地思考\n\n你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。\n\n### 调研要求\n\n1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。\n   每个验证维度建议用 2-3 种不同的搜索查询。\n\n2. **可行性深度检查**：\n   - 搜索类似实验的实际成本/周期\n   - 检查 claimed baselines 是否可复现\n   - 验证所需的 datasets/models 是否真的可以获取\n\n3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：\n   - 尝试不同的关键词组合\n   - 同时检查 arXiv 和 conference proceedings\n   - 寻找相邻领域的并行/concurrent 工作\n\n4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。\n\n### 思考要求\n\n5. **独立判断**：\n   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查\n   - 思考这个 idea 在实际执行中会遇到什么困难\n   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）\n\n6. **评分诚实**：\n   - 不要给\"看起来还行\"的 idea 高分——4 分意味着\"确实很好\"，5 分意味着\"令人兴奋\"\n   - Agent 评分经常虚高，你的职责就是纠正这种偏差\n\n充分利用你的工具——做真正的调研，不是走过场。\n\n\n## 论文搜索策略\n\n你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。\n\n### 搜索源（推荐每个维度使用 2 个不同来源）\n\n1. **arXiv 预印本**（最新工作）:\n   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文\n   - `site:arxiv.org {method_name}` — 按具体方法名搜索\n   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作\n\n2. **Google Scholar**（引用关系 + 综合覆盖）:\n   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果\n   - `\"{exact paper title}\"` — 验证论文是否真实存在\n   - `\"{author name}\" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）\n\n3. **Papers With Code**（SOTA 排行 + 代码可用性）:\n   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜\n   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现\n   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局\n\n4. **OpenReview**（会议审稿 + 同行评价）:\n   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文\n   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价\n\n5. **Semantic Scholar**（语义搜索 + 引用图谱）:\n   - `semantic scholar {topic} survey {year}` — 找综述论文\n   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）\n\n6. **GitHub**（实现验证）:\n   - `site:github.com {method_name} {task}` — 验证开源实现是否存在\n   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取\n\n### 搜索维度（多角度交叉，不要只按 topic 搜）\n\n对每个 idea/方向，尽量覆盖以下维度：\n\n1. **正向搜索**：直接搜索主题相关论文\n   - `{topic} {subtopic} {year}`\n   - `{method_name} for {task_name}`\n\n2. **竞争论文搜索**（最关键！）：\n   - `{core_problem} {year}` — 有没有人在解决同样的问题？\n   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？\n   - `{gap_description} solution` — 你发现的 gap 是否已被解决？\n   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文\n\n3. **相邻领域搜索**：\n   - `{method_from_other_field} applied to {your_task}`\n   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题\n\n4. **反面搜索**（找到反对你 idea 的证据）：\n   - `{your_approach} limitations` / `{your_approach} failure`\n   - `why {assumed_gap} is not a problem`\n   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好\n\n5. **引用链追踪**（发现遗漏工作的最有效方法）：\n   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分\n   - 在 Semantic Scholar 上查看它的 \"cited by\" — 最近引用它的论文很可能是 concurrent work\n   - 对 3 个以上核心相关论文重复此步骤\n\n### 搜索数量建议（理想目标，上下文充裕时尽量达到）\n\n| 角色 | 建议搜索次数 | 说明 |\n|------|-------------|------|\n| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |\n| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |\n| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |\n| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |\n\n### 上下文管理\n\n你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。\n\n- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。\n- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。\n- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。\n- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。\n\n\nAs a reviewer, your search focus should be:\n1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实\n2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作\n3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通\n4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work\n\n## 竞争论文专项搜索（Reviewer 独有）\n\n这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：\n\n1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题\n   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）\n   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）\n   - 方法名 + 任务名的不同组合\n\n2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，\n   搜索他们最近的论文（`\"team_name\" OR \"author_name\" {topic} {year}`）\n\n3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers\n   - `site:openreview.net {topic} 2026`\n   - `{conference_name} 2026 accepted papers {topic}`\n\n4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文\n   这是发现 concurrent work 最有效的窗口\n\n如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，\n并在 feedback 中说明这些工作如何影响 idea 的 novelty。\n\n## Review checklist\n1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?\n   If outdated, specify what the current SOTA is and cite your source.\n2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)\n3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?\n4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-10?\n5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?\n6. **Novelty**: Is this sufficiently different from existing work?\n   When scoring novelty < 4:\n   - You MUST identify the closest existing work(s) via WebSearch\n   - In your feedback, write: \"This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion].\"\n   - This gives the generator targeted guidance to boost novelty, not just \"be more novel\".\n7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?\n   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero\n   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks\n   - Human-in-Loop should fall between manual and auto on most dimensions\n   - Manual and HIL must NOT include salary/wages — only GPU and API costs\n   - Auto Research must NOT include agent operational overhead\n   - If any mode estimate is clearly unrealistic, flag it\n\n## Idea under review (round 10/10)\n{\n  \"title\": \"Fidelity, Diversity, or Both? Scaling Laws for Synthetic Motion Data in Humanoid Imitation Learning\",\n  \"core_problem\": \"Data scaling laws for imitation learning are well-established for arm manipulation (ICLR 2025: diversity of environments/objects >> quantity of demonstrations; 2507.06219: task diversity helps, expert diversity hurts). However, these findings DO NOT transfer trivially to whole-body humanoid loco-manipulation for a fundamental reason: bipedal balance constraints create a qualitative break. For arm robots, a physically invalid trajectory (slight collision, impossible torque) causes a minor task failure. For a humanoid, a physically invalid trajectory means the robot falls — contaminating the entire demonstration with catastrophic failure behavior. This raises a critical open question: when generating synthetic motion data for humanoid imitation learning, does physics FIDELITY (ensuring balance, valid contacts, feasible torques) matter more than motion DIVERSITY (covering the space of task-relevant behaviors)? Or is there a phase transition where below some fidelity threshold, more diversity actively hurts?\\n\\nCritically, the dominant humanoid pipeline paradigm — exemplified by NVIDIA GR00T N1 — sidesteps this question architecturally: GR00T's VLA is trained via IL (flow matching on heterogeneous data), but it deploys above an RL-trained Whole-Body Controller (SONIC/GEAR-SONIC) that decodes latent actions into physically feasible joint commands. This WBC acts as an implicit physics filter — if the VLA produces a latent action that would cause a fall, the WBC 'corrects' it during execution. But this architectural safety net is unavailable when training whole-body joint-level policies via direct IL (e.g., from Kimodo-generated motions without RL tracking). Our study asks: in this direct-IL regime, does physics fidelity become a NECESSARY condition for diversity scaling to help? Recent concurrent work (Iterative Closed-Loop Motion Synthesis, 2602.21599) shows that quality-curated synthetic data at 1/10 AMASS scale beats the full dataset for RL-based humanoid tracking — but whether this quality-over-quantity finding extends to direct IL, and how it interacts with diversity, remains unstudied.\",\n  \"opportunity\": \"Three converging factors make this study timely and feasible: (1) Kimodo (March 2026) generates diverse G1 motions from text in seconds with controllable quality — enabling systematic variation of motion diversity at fixed physics fidelity, and vice versa; (2) Isaac Lab provides ready-to-use G1 loco-manipulation environments with full-body contact dynamics — enabling physics validation and policy evaluation at scale; (3) a critical gap has emerged between two research trajectories: data scaling papers (ICLR 2025) studied arm manipulation only, while humanoid data generation work (Iterative Closed-Loop, 2602.21599; GenMimic; GR00T pipeline) uses RL-based tracking that implicitly handles physics quality. Nobody has studied whether the 'diversity >> quantity' scaling law holds for direct whole-body humanoid IL, where there is no RL-trained WBC safety net to compensate for physically invalid training data. Furthermore, the Benchmarking Humanoid IL paper (2512.07248) provides Motion Difficulty Score as an analytical tool for understanding which motion properties affect policy learning, but offers no guidance on the DATA GENERATION side — what to generate and how much to filter. Our study provides the complementary data-side answer.\",\n  \"landscape\": \"Data Scaling Laws in Imitation Learning (arXiv:2410.18647, ICLR 2025) — established power-law relationship between diversity (environments, objects) and imitation learning performance for arm manipulation. Found diversity >> quantity. Did NOT study physics fidelity as a variable. Arms only.\\n\\nIs Diversity All You Need? (arXiv:2507.06219, 2025) — studied task, embodiment, and expert diversity for manipulation. Found task diversity helps, expert diversity hurts due to velocity multimodality. Cross-embodiment but manipulation-focused, no humanoid balance study.\\n\\nNVIDIA GR00T N1 (arXiv:2503.14734, Mar 2025) — VLA trained via IL (flow matching on heterogeneous data including real trajectories, human videos, and synthetic datasets). Deploys above RL-trained Whole-Body Controller (SONIC) that decodes latent VLA actions into physically feasible joint commands. The WBC acts as an implicit physics quality filter during execution. Our study examines the direct-IL regime where no such WBC safety net exists.\\n\\nGR00T Whole-Body Control / SONIC (NVIDIA, 2025-2026) — RL-trained whole-body controller serving as action decoder for GR00T VLA. GEAR-SONIC provides pretrained checkpoints for G1. Key distinction: SONIC handles physics implicitly through RL; our study asks what happens when physics quality must come from the DATA rather than the controller.\\n\\nIterative Closed-Loop Motion Synthesis (arXiv:2602.21599, Feb 2026) — automated synthetic motion generation with physics-based quality metrics and LLM-guided difficulty iteration. Key finding: 1/10 of AMASS with quality-curated data beats full dataset (45% failure reduction) for RL-based PHC tracking. Uses MDM for generation + RL tracking (not direct IL). Studies difficulty progression; we study fidelity-diversity interaction under direct IL.\\n\\nBenchmarking Humanoid IL with Motion Difficulty (arXiv:2512.07248, Dec 2025) — introduces Motion Difficulty Score (MDS) grounded in rigid-body dynamics (torque variation from pose perturbations). Creates difficulty-stratified evaluation (MD-AMASS) with MID and DSJE metrics. Provides the EVALUATION-SIDE answer (how to measure motion difficulty); our study provides the complementary DATA-SIDE answer (what to generate and how much to filter).\\n\\nWholeBodyVLA (arXiv:2512.11047, ICLR 2026) — unified latent VLA for whole-body loco-manipulation on AgiBot X2. Learns latent actions from action-free egocentric videos via Latent Action Model, then uses LMO RL policy for stable whole-body execution. Demonstrates IL+RL hybrid for loco-manipulation but does not study data quality/quantity tradeoffs.\\n\\nREFINE-DP (arXiv:2603.13707, Mar 2026) — Diffusion Policy fine-tuned via PPO for humanoid loco-manipulation. Achieves >90% success in sim and real. Validates Diffusion Policy as viable architecture for humanoid whole-body control, but uses RL fine-tuning to compensate for IL distribution shift. We study the IL-only regime.\\n\\nKimodo (arXiv:2603.15546, Mar 2026) — generative motion diffusion on G1 skeleton (34 joints, wrist-level, no finger DOF) from text+constraints. 700h mocap training including object interactions. Outputs compatible with ProtoMotions for physics-based RL. Never studied for direct imitation learning quality.\\n\\nVisualMimic (arXiv:2509.20322, Stanford 2025) — hierarchical visuomotor policy for humanoid loco-manipulation. Zero-shot sim-to-real. Uses RL-trained keypoint tracker. Architecturally different from direct IL.\\n\\nVIRAL (arXiv:2511.15200, Nov 2025) — G1 visual sim-to-real with massive domain randomization. Teacher-student RL. Strong baseline but RL-based.\\n\\nRoboCurate (arXiv:2602.18742, Feb 2026) — action-verified synthetic data with sim-replay filtering. +70.1% on GR-1 tabletop. Demonstrates filtering helps for arm manipulation — our study extends to whole-body humanoids where failures are catastrophic falls.\\n\\nGenMimic (arXiv:2512.05094, Dec 2025) — generated human videos → 4D lifting → physics-aware RL tracking on G1. Uses RL, not IL. Does not study quality-diversity tradeoff.\\n\\nTACT (arXiv:2506.15146, 2025) — extends ACT with tactile modality for whole-body humanoid contact manipulation on RHP7 Kaleido. Validates ACT-family architectures for whole-body humanoid IL from teleoperation data.\\n\\nGBC (arXiv:2508.09960, Aug 2025) — Generalized Behavior-Cloning framework for whole-body humanoid imitation across heterogeneous morphologies. Uses DAgger-MMPPO (IL+RL hybrid). Demonstrates whole-body BC is feasible but does not study data quality/quantity.\\n\\nData Quality in Imitation Learning (arXiv:2306.02437, NeurIPS 2023) — formal framework analyzing action divergence and transition diversity as data quality dimensions. Arm manipulation focus. Provides theoretical grounding for our empirical humanoid study.\",\n  \"approach\": \"We conduct a controlled empirical study answering: For whole-body humanoid imitation learning (without an RL-trained WBC safety net), how do physics FIDELITY and motion DIVERSITY independently and jointly affect policy performance? This extends the data scaling laws framework (ICLR 2025) to whole-body humanoids by introducing physics fidelity as a new scaling dimension.\\n\\nConcrete, Testable Hypotheses (designed to yield publishable findings whether confirmed or refuted):\\n\\nH1 (Anti-scaling threshold): Below 50% physics pass rate in the training set, increasing motion diversity from 30→200 DECREASES task success rate (not just plateaus). Rationale: diverse-but-invalid motions create multimodal action distributions centered on infeasible states, causing the policy to learn 'averaged' actions that reliably produce falls. If REFUTED (diversity helps even with low fidelity), this contradicts the intuitive expectation and suggests policies can extract useful behavioral structure from noisy humanoid demonstrations.\\n\\nH2 (Fidelity-diversity interaction): The importance of physics fidelity INCREASES with diversity. At low diversity (30 motions), strict vs. no filtering differs by <5% success rate; at high diversity (200 motions), the gap exceeds 30%. Rationale: low-diversity sets contain similar near-feasible motions regardless of filtering; high-diversity sets include extreme motions where filtering becomes critical. If REFUTED, fidelity matters equally at all diversity scales.\\n\\nH3 (Violation taxonomy): Balance violations (CoM outside support polygon) are ≥3× more damaging per-occurrence than torque feasibility violations. Rationale: balance failures produce sudden catastrophic state transitions (falls) that are maximally out-of-distribution for the policy, while torque violations produce gradual degradation that the policy can partially accommodate. Practical implication: data pipelines should prioritize balance filtering over torque checking. If REFUTED (torque violations equally damaging), this reveals that subtle action-space corruption is as harmful as dramatic state-space disruption.\\n\\nH4 (Task-structure dependence): The fidelity threshold is LOWER for locomotion-only tasks than for contact-rich tasks (pushing). Pure locomotion tolerates diverse-but-noisy data (fidelity threshold ~30% pass rate), while sustained-contact tasks require strict filtering (threshold ~70%). If CONFIRMED, scaling laws are task-structure-dependent, not universal — contradicting naive generalization of arm-manipulation findings.\\n\\nExperimental Design (3×3×3 factorial + violation analysis):\\n\\nIndependent Variables:\\n(A) Motion Diversity — number of unique Kimodo-generated G1 motions per task: {30, 100, 200}\\n(B) Physics Fidelity — filtering threshold applied to Kimodo outputs via Isaac Lab simulation:\\n  - None: raw Kimodo kinematic outputs, no physics check\\n  - Loose: center-of-mass within support polygon, no ground penetration\\n  - Strict: full ZMP balance + joint torque limits + self-collision + contact validity + task completion predicate\\n\\nDependent Variables: Task success rate (%), mean episode duration before failure, physics violation frequency during evaluation rollouts\\n\\nTasks (3 G1 loco-manipulation tasks in Isaac Lab, all feasible with Kimodo's wrist-level output — no finger DOF required):\\n1. Box carry: walk 2m while holding pre-grasped 0.5kg box (locomotion + balance under external load). Grasp is initialized by environment; Kimodo generates walking-with-load motions. Tests: how fidelity affects balance under payload.\\n2. Cart push: push wheeled cart 1.5m to goal using palm contact (whole-body coordination + sustained contact + locomotion). No grasp required; palm-to-object contact. Tests: how fidelity affects contact-rich coordination.\\n3. Dynamic walk-to-target: walk to randomized goal position with varied speeds, approach angles, and stopping behavior (pure locomotion with behavioral diversity). Tests: baseline task where fidelity may matter less.\\n\\nPipeline (for each experimental condition):\\n(1) Motion Generation: Kimodo text-to-motion on G1 skeleton with task-relevant prompts. Generate N motions per task where N ∈ {30, 100, 200}. Prompt diversity controlled via systematic variation of action descriptions, speeds, approach angles, load positions.\\n\\n(2) Physics Validation: Execute each motion in Isaac Lab with G1 URDF. For 'Loose' filtering: check CoM stability and ground contact validity. For 'Strict' filtering: full ZMP, torque feasibility, self-collision, task success predicate. Record per-motion: pass/fail label, violation type breakdown (balance/torque/collision/contact), severity score. This violation log enables H3 analysis.\\n\\n(3) Dataset Assembly: For each (diversity, fidelity) condition, pair proprioceptive state observations with ground-truth joint actions from Kimodo outputs (for passed motions under the given filter). Action space: G1 joint positions (23 actively controlled DOF, no finger joints).\\n\\n(4) Policy Training: Train Diffusion Policy (primary) on each condition. Diffusion Policy is chosen over ACT for three reasons: (a) proven for humanoid loco-manipulation (REFINE-DP, 2603.13707), (b) GR00T N1 uses diffusion transformer for action generation, (c) better handling of multimodal action distributions from diverse demonstrations. Fixed architecture (U-Net 1D, 100 diffusion steps, action horizon 16), fixed hyperparameters across all conditions. 2 seeds per condition.\\n\\nACT comparison on a representative subset (9 conditions: 3 diversity × 3 fidelity, Task 1 only, 2 seeds) to verify findings are architecture-independent. ACT feasibility for whole-body humanoids is supported by TACT (2506.15146) precedent on RHP7 Kaleido.\\n\\n(5) Evaluation: 50 rollouts per condition on held-out initial configurations. Report: success rate, mean episode duration, time-to-fall for failed episodes. Additionally, log physics violations during evaluation to correlate training data quality with deployment failure modes.\\n\\nKey Experimental Questions mapped to Hypotheses:\\n- Q1 → H1: Is there a sharp anti-scaling transition? Plot success rate vs. diversity at each fidelity level. Look for crossing curves (where more diversity hurts at low fidelity but helps at high fidelity).\\n- Q2 → H2: Does fidelity become MORE important as diversity increases? Compute fidelity sensitivity (strict−none gap) at each diversity level.\\n- Q3 → H3: Which violation types are most damaging? For the 'None' filtering condition, correlate the violation-type composition of training data with task failure modes during evaluation.\\n- Q4 → H4: Are findings task-dependent? Compare fidelity thresholds across the three tasks.\\n\\nCritical First Step (Kimodo Validation, Day 1-2): Before committing to full experiments, generate 50 Kimodo G1 motions with loco-manipulation prompts and assess: (a) do they involve meaningful task-relevant behavior (walking with load, pushing motions)? (b) what fraction pass strict physics validation in Isaac Lab? (c) is there sufficient behavioral diversity? If <30% show task-relevant behavior, pivot prompting strategy or use DemoHLM demonstrations as supplementary motion source. This addresses feasibility risk.\\n\\nDiffusion Policy Pilot (Day 2-3): Train Diffusion Policy on 50 strict-filtered Kimodo motions for Task 3 (walk-to-target, simplest task). If the policy cannot achieve >30% success on this easiest condition, the whole-body action space may require architectural modifications (action space decomposition, hierarchical prediction). This pilot addresses the ACT/DP scalability concern before committing to the full factorial.\\n\\nContribution framing: NOT a pipeline or system paper. The contribution is an empirical finding with four testable hypotheses that extends data scaling laws to whole-body humanoids, revealing whether the 'diversity >> quantity' finding from arm manipulation (ICLR 2025) holds when (a) physics violations cause catastrophic failures, and (b) no RL-trained WBC safety net compensates for data quality. The practical impact: guidance for humanoid data generation pipelines on whether to invest compute in diversity or filtering when operating in the direct-IL regime.\\n\\nDifferentiation from prior work:\\n- vs. Data Scaling Laws (ICLR 2025): extends to whole-body humanoid, adds physics fidelity dimension, studies catastrophic (not minor) failure modes\\n- vs. RoboCurate: studies balance/falls (catastrophic failures) not minor arm errors; different embodiment class\\n- vs. NVIDIA GR00T N1: GR00T's VLA trains via IL but deploys above RL-trained SONIC WBC that acts as implicit physics filter; we study direct joint-level IL without WBC safety net\\n- vs. Iterative Closed-Loop (2602.21599): they use RL tracking and study difficulty curriculum progression; we study direct IL and the fidelity×diversity interaction effect\\n- vs. Benchmarking Humanoid IL (2512.07248): they provide evaluation-side metrics (MDS, MID, DSJE); we provide data-side guidance (what to generate and how to filter). We adopt their MDS metric for analyzing H3.\\n- vs. WholeBodyVLA / REFINE-DP: they use IL+RL hybrids; we study the pure-IL regime to understand when RL augmentation is necessary\\n- vs. GenMimic: they use RL tracking; we study whether filtering alone suffices for direct IL\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~155h H100: Kimodo generation ~2h; Isaac Lab physics validation ~8h; Isaac Lab rendering (27 main conditions + 9 ACT subset) ~22h; Diffusion Policy training (27 conditions × 2 seeds × 1.5h = 81h); ACT training (9 conditions × 2 seeds × 1h = 18h); evaluation rollouts ~8h; pilot experiments ~6h; iteration/debug ~10h\",\n      \"gpu_utilization\": \"~50-60% during development, ~85% during batch training\",\n      \"timeline\": \"14-16 days (targeting CoRL 2026 abstract May 26, paper May 29)\",\n      \"team\": \"1-2 researchers\",\n      \"estimated_gpu_cost\": \"$250-310 at ~$1.60/hr H100 spot pricing\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~165h H100: same as manual with additional Kimodo prompt iteration and quality assessment\",\n      \"gpu_utilization\": \"~60-70% utilization\",\n      \"timeline\": \"12-15 days\",\n      \"team\": \"1 researcher, ~30min/day assessing Kimodo motion quality and filtering thresholds\",\n      \"claude_api_cost\": \"$150-250 (~1500-2000 Opus turns for experiment code, analysis, paper writing)\",\n      \"estimated_gpu_cost\": \"$265-330\",\n      \"risk_note\": \"Human needed for: Kimodo prompt engineering for loco-manipulation; physics filtering threshold calibration; sanity-checking generated motions are task-relevant\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~185h H100: comprehensive factorial + finer-grained fidelity analysis (5 filter thresholds instead of 3 on best task) + cross-task transfer experiment\",\n      \"gpu_utilization\": \"~80-90% with batched experiment scheduling\",\n      \"timeline\": \"10-14 days with 4 H100s\",\n      \"team\": \"0 (initial setup: Isaac Lab G1 environments, Kimodo weights, Diffusion Policy + ACT training code, evaluation protocol)\",\n      \"claude_api_cost\": \"$250-450 (~2500-4000 Opus turns)\",\n      \"estimated_gpu_cost\": \"$295-370\",\n      \"speed_bottleneck\": \"Isaac Lab rendering throughput and policy training parallelization. Kimodo generation is fast (<1min/motion).\",\n      \"risk_note\": \"Kimodo loco-manipulation prompt quality is the primary risk. If motions lack task-relevant content, agent must pivot to locomotion-only tasks or use DemoHLM demonstrations as motion source instead.\"\n    }\n  },\n  \"target_venues\": [\n    \"CoRL 2026 (abstract May 26, paper May 29 — primary target. Empirical findings papers with practical implications are well-received at CoRL; cf. 'Data Scaling Laws' at ICLR 2025)\",\n    \"Humanoids 2026 (deadline ~June-July 2026 — strong backup, natural fit for whole-body findings)\",\n    \"IEEE RA-L (rolling — fallback for rapid publication of fidelity-diversity tradeoff finding)\"\n  ],\n  \"level\": \"solid-to-strong\",\n  \"key_references\": [\n    \"Data Scaling Laws in Imitation Learning for Robotic Manipulation (arXiv:2410.18647, ICLR 2025) — establishes scaling law framework we extend to humanoids; found diversity >> quantity for arms; did NOT study physics fidelity\",\n    \"Is Diversity All You Need for Scalable Robotic Manipulation? (arXiv:2507.06219, 2025) — nuances the diversity narrative (expert diversity hurts); manipulation only, no humanoid balance study\",\n    \"GR00T N1: An Open Foundation Model for Generalist Humanoid Robots (arXiv:2503.14734, Mar 2025) — VLA trained via IL (flow matching) above RL-trained SONIC WBC; our study examines direct IL without WBC safety net\",\n    \"GR00T Whole-Body Control / SONIC (NVIDIA, 2025-2026) — RL-trained WBC that acts as implicit physics filter for GR00T VLA; key architectural contrast with our direct-IL regime\",\n    \"Iterative Closed-Loop Motion Synthesis for Scaling Humanoid Control (arXiv:2602.21599, Feb 2026) — quality-curated synthetic data at 1/10 AMASS beats full dataset for RL tracking; demonstrates quality > quantity but under RL (not IL) and without diversity interaction study\",\n    \"Benchmarking Humanoid Imitation Learning with Motion Difficulty (arXiv:2512.07248, Dec 2025) — MDS metric grounded in rigid-body dynamics; evaluation-side contribution complementary to our data-side study; we adopt MDS for violation analysis\",\n    \"WholeBodyVLA: Unified Latent VLA for Whole-Body Loco-Manipulation (arXiv:2512.11047, ICLR 2026) — IL+RL hybrid for loco-manipulation on AgiBot X2; demonstrates feasibility but uses RL safety net\",\n    \"REFINE-DP: Diffusion Policy Fine-tuning for Humanoid Loco-Manipulation (arXiv:2603.13707, Mar 2026) — validates Diffusion Policy for humanoid whole-body control; >90% sim success with RL fine-tuning; motivates our DP architecture choice\",\n    \"Kimodo: Scaling Controllable Human Motion Generation (arXiv:2603.15546, Mar 2026) — motion generation backbone; G1 skeleton (34 joints, wrist-level, no finger DOF) with object interactions\",\n    \"TACT: Humanoid Whole-body Contact Manipulation through Deep Imitation Learning (arXiv:2506.15146, 2025) — validates ACT-family architecture for whole-body humanoid IL on RHP7 Kaleido; precedent for our ACT comparison\",\n    \"GBC: Generalized Behavior-Cloning for Whole-Body Humanoid Imitation (arXiv:2508.09960, Aug 2025) — DAgger-MMPPO for whole-body BC across morphologies; demonstrates feasibility of whole-body behavioral cloning\",\n    \"VisualMimic: Visual Humanoid Loco-Manipulation (arXiv:2509.20322, Sep 2025) — zero-shot humanoid loco-manipulation via hierarchical RL; evaluation reference\",\n    \"VIRAL: Visual Sim-to-Real for Humanoid Loco-Manipulation (arXiv:2511.15200, Nov 2025) — G1 SOTA via massive RL; evaluation baseline\",\n    \"RoboCurate: Action-Verified Neural Trajectory (arXiv:2602.18742, Feb 2026) — sim-replay filtering for arm manipulation (+70.1% on GR-1); extends filtering paradigm we study for whole-body humanoids\",\n    \"GenMimic: Generated Videos to Physically Plausible Robot Trajectories (arXiv:2512.05094, Dec 2025) — physics-aware RL for generated motion tracking on G1; demonstrates physics matters but uses RL not IL\",\n    \"Data Quality in Imitation Learning (arXiv:2306.02437, NeurIPS 2023) — formal framework for action divergence and transition diversity as data quality dimensions; theoretical grounding\",\n    \"Isaac Lab G1 Loco-Manipulation Environments (Unitree + NVIDIA, 2026) — G1 simulation environments with whole-body contact dynamics\"\n  ],\n  \"description\": \"We conduct the first empirical study of how physics fidelity and motion diversity independently and jointly affect imitation learning for whole-body humanoid loco-manipulation in the direct-IL regime (no RL-trained Whole-Body Controller safety net). Prior data scaling work (ICLR 2025) established that diversity >> quantity for arm manipulation, and concurrent humanoid work (Iterative Closed-Loop, 2602.21599) shows quality > quantity for RL-based tracking — but nobody has studied the fidelity×diversity interaction under direct IL, where physically invalid training data enters the policy unfiltered. Using Kimodo (text-to-G1-motion) to systematically vary motion diversity and Isaac Lab to vary physics filtering strictness, we train Diffusion Policy across a 3×3×3 factorial design (3 tasks × 3 diversity levels × 3 fidelity levels, 27 conditions, 2 seeds) on three G1 tasks that require no finger DOF: box carry (pre-grasped), cart push (palm contact), and dynamic walk-to-target. We test four concrete, non-obvious hypotheses: (H1) anti-scaling — below 50% physics pass rate, more diversity DECREASES success; (H2) fidelity-diversity interaction — fidelity matters <5% at low diversity but >30% at high diversity; (H3) violation taxonomy — balance violations are ≥3× more damaging than torque violations; (H4) task dependence — locomotion-only tasks tolerate lower fidelity thresholds than contact-rich tasks. ACT comparison on a 9-condition subset verifies architecture independence. Total compute: ≤185 H100h. The contribution is practical guidance for humanoid data generation pipelines: whether to invest compute in diversity or fidelity, with quantified thresholds — resolving a question that arm-manipulation scaling laws and WBC-augmented pipelines have both obscured.\",\n  \"project_name\": \"humanoid_data_scaling_fidelity_study\",\n  \"source\": \"web_research\"\n}\n\n\n## Previous review history\n### Round 1 review\nVerdict: revise\nIssues: [\"CRITICAL NOVELTY GAP: BridgeV2W (arXiv 2602.03793, Feb 2026) already does URDF-rendered conditioning + ControlNet-style injection into video diffusion, tested on AgiBot-G1 humanoid — this is the same core technical contribution as KineVid. The generator completely omitted this paper from the landscape analysis.\", \"Dream2Act (arXiv 2603.19709, Mar 2026) generates robot-centric videos for Unitree G1 humanoid and extracts robot-native joint trajectories — overlapping significantly with KineVid's 'data engine' goal. Listed in key_references but barely analyzed.\", \"RoboCurate (arXiv 2602.18742, Feb 2026) already achieves +70.1% on GR-1 humanoid and +179.9% on ALLEX humanoid via action-verified synthetic data generation with sim replay quality filtering — a directly competing data engine approach not mentioned at all.\", \"COMPUTE BUDGET VIOLATION: 200 H100-hours hard constraint is incompatible with 20-day timeline. Manual mode (400h A100 ≈ 130-200 H100h) takes 3-5 months; auto mode fits timeline (2-4 weeks) but requires 1000-1500h A100 (333-750 H100h), 1.5-3.7x over budget.\", \"The 'structure-aware IDM constrained by URDF forward kinematics' claim lacks demonstrated novelty — using FK constraints for action feasibility is standard robotics engineering, and EVA (arXiv 2603.17808) already addresses the executability gap via RL-based alignment.\", \"CoRL 2026 deadlines slightly incorrect: actual dates are abstract May 26 (not May 25) and paper May 29 (not May 28) per official corl.org.\", \"Paired training data construction (humanoid videos with aligned skeleton overlay + action labels) is a significant hidden dependency. No existing dataset provides this pairing — it must be generated from scratch in MuJoCo/Isaac Lab, adding substantial pipeline engineering time not accounted for in the timeline.\", \"Skeleton overlays may be an inferior conditioning signal compared to BridgeV2W's full embodiment masks rendered from URDF meshes, which provide richer shape and spatial information for video generation.\"]\nFeedback: The idea's core technical contribution (URDF-conditioned video generation via ControlNet) is preempted by BridgeV2W (Feb 2026). To salvage this direction for CoRL 2026, the generator must:\n\n1. **Acknowledge and differentiate from BridgeV2W explicitly**: Read BridgeV2W carefully and identify what it does NOT do. BridgeV2W frames itself as a world model, not a data engine — it does not evaluate downstream policy improvement from generated data at scale. BridgeV2W also does not leverage motion priors from Kimodo-style generators. A credible contribution could be: 'We show that combining BridgeV2W-style embodiment conditioning with diverse kinematic motion priors (Kimodo) creates a scalable data engine that significantly improves downstream humanoid policy performance — something neither world model papers nor motion generation papers have demonstrated.'\n\n2. **Shift the contribution from the generation algorithm to the data engine pipeline**: Instead of claiming the ControlNet conditioning as novel, frame the contribution as the complete pipeline — motion diversity via Kimodo → embodiment-conditioned video synthesis → action-verified quality filtering (RoboCurate-style) → downstream policy improvement. The pipeline integration + humanoid-specific quality filtering could be novel.\n\n3. **Fix the compute/timeline tension**: Either (a) drastically simplify the approach to fit 200 H100h in 20 days (e.g., skip ControlNet adapter training entirely — use BridgeV2W or existing Wan 2.2 Fun ControlNet as frozen conditioning, only train the IDM), or (b) propose a procedural pipeline (contribution type b) that requires negligible training compute and focuses on MimicGen-style trajectory multiplication + Kimodo motion diversification + sim-based quality filtering.\n\n4. **Add RoboCurate and BridgeV2W as baselines**: These are direct competitors that must appear in the evaluation. Compare against RoboCurate's sim-replay filtering and BridgeV2W's generated video quality.\n\n5. **Consider pivoting to the procedural pipeline contribution type**: Given BridgeV2W's preemption of the generation algorithm, a Kimodo+MimicGen+sim-filtering pipeline for humanoid data amplification might be more novel and more feasible within 20 days/200 H100h.\n\n### Round 2 review\nVerdict: error\nIssues: []\nFeedback: Review subprocess failed (timeout or parse error)\n\n### Round 3 review\nVerdict: error\nIssues: []\nFeedback: Review subprocess failed (timeout or parse error)\n\n### Round 4 review\nVerdict: error\nIssues: []\nFeedback: Review subprocess failed (timeout or parse error)\n\n### Round 5 review\nVerdict: error\nIssues: []\nFeedback: Review subprocess failed (timeout or parse error)\n\n### Round 6 review\nVerdict: error\nIssues: []\nFeedback: Review subprocess failed (timeout or parse error)\n\n### Round 7 review\nVerdict: revise\nIssues: [\"CRITICAL MISSING COMPETITOR: AnchorDream (arXiv:2512.11797, ICRA 2026) follows essentially the same paradigm as MotionForge — starts from small set of demonstrations, expands trajectories via perturbation/recombination, renders robot-only motion as conditioning signal for video diffusion, synthesizes diverse visual environments, trains downstream policies with +36.4% sim improvement and ~2x real-world improvement. The only difference is AnchorDream targets arm robots while MotionForge targets humanoids — but the method architecture is nearly identical. This paper is accepted at ICRA 2026 and must be acknowledged as the closest prior work.\", \"MISSING COMPETITOR: DemoHLM (arXiv:2510.11258, Oct 2025) generates hundreds to thousands of successful trajectories for G1 humanoid loco-manipulation from a single demonstration, using stage-segmented replay with command modification. This is a directly competing procedural pipeline for the exact same embodiment (G1) and task class (loco-manipulation).\", \"MISSING COMPETITOR: OmniRetarget (arXiv:2509.26633, Sep 2025) is an interaction-preserving data generation engine that generates kinematically feasible trajectories enabling 30-second G1 humanoid parkour and loco-manipulation. While retargeting-based (declared out of scope), it directly competes as a humanoid data generation method and must be evaluated against.\", \"KIMODO MANIPULATION QUALITY: Kimodo's G1 model uses a 34-joint skeleton (with extra toe joints) trained on Bones Rigplay mocap data covering 'locomotion, gestures, everyday activities, common object interactions, dancing, athletics.' The 34-joint skeleton likely terminates at wrist level without individual finger DOF (the real G1 has 7 DOF per Dex3-1 hand). This means Kimodo CANNOT generate fine manipulation motions required for RoboCasa kitchen tasks, pick-and-place, or tool use — yet these are the primary evaluation tasks proposed. The risk note acknowledges this but proposes no mitigation strategy.\", \"CtrLoRA IS IMAGE-ONLY: CtrLoRA (arXiv:2410.09400, ICLR 2025) is explicitly designed for controllable IMAGE generation, not video. The proposal claims a lightweight CtrLoRA adapter for video conditioning with '~1K paired images, <1 GPU-hour' — but adapting image-level spatial conditioning to temporal video models is a non-trivial research problem (temporal consistency, motion coherence) that is understated as mere engineering. Either use an existing video ControlNet approach or acknowledge this as an additional research contribution.\", \"NVIDIA GR00T PIPELINE OVERLAP: NVIDIA's own production pipeline already combines GR00T-Mimic (trajectory multiplication) + Cosmos Transfer (photorealistic visual augmentation) + Isaac Lab (policy training) to generate 780K trajectories in 11 hours, improving GR00T N1 by 40%. MotionForge is essentially proposing to replace Mimic with Kimodo in this pipeline. This must be explicitly positioned against — why is Kimodo-based diversity superior to Mimic-based diversity?\", \"COMPUTE REALISM: The auto_research mode claims 200 H100h is sufficient for the full pipeline including 3 baseline comparisons and full ablation suite. With Kimodo inference, MuJoCo validation, Isaac Lab rendering, video generation (~30s/clip), downstream ACT + Diffusion Policy training, AND three separate baseline pipelines (DreamGen-style requiring video fine-tuning, RoboCurate-style, DexMimicGen-style), 200 H100h is likely underestimated. The DreamGen baseline alone requires substantial video model fine-tuning compute.\"]\nFeedback: The idea has improved significantly since Round 1 — BridgeV2W differentiation, RoboCurate as baseline, honest timeline assessment. But three critical gaps remain:\n\n1. **Address AnchorDream directly**: AnchorDream (ICRA 2026) is the closest prior work — same paradigm (motion rendering → video diffusion conditioning → policy training). Read this paper carefully and differentiate: MotionForge uses a generative motion model (Kimodo) for trajectory diversity vs. AnchorDream's heuristic perturbation; MotionForge adds whole-body physics filtering. Frame the contribution as: 'We extend the AnchorDream paradigm from arm robots to whole-body humanoids, replacing heuristic trajectory expansion with generative motion diffusion (Kimodo), and adding balance/contact physics verification — enabling the first demonstration that motion-diffusion-driven data amplification improves whole-body humanoid policy performance.'\n\n2. **Mitigate the Kimodo manipulation gap**: The 34-joint G1 skeleton lacks finger DOF. Two options: (a) Focus evaluation on loco-manipulation tasks where coarse grasping suffices (box carrying, door opening, tray moving) rather than fine manipulation. (b) Pair Kimodo whole-body motions with separately generated hand trajectories via constraint-based IK or heuristic grasp primitives. Choose option (a) — it's more honest and more feasible in 20 days.\n\n3. **Fix the CtrLoRA video gap**: Either (a) replace CtrLoRA with an existing video ControlNet approach (e.g., ControlNeXt which supports both image and video), or (b) simplify to sim-rendering + Cosmos Transfer only for visual grounding (skip the embodiment-conditioned video generation path), or (c) acknowledge the image→video adaptation as a secondary contribution. Option (b) is cleanest for a pipeline paper.\n\n4. **Add DemoHLM and OmniRetarget to the landscape**: These are G1-specific humanoid data generation methods that reviewers WILL find. Position clearly: DemoHLM segments single demos into stages for replay (no motion diversity beyond command perturbation); OmniRetarget is retargeting-based (no generative motion diversity); MotionForge uses generative motion priors (Kimodo) for broader distributional coverage.\n\n5. **Sharpen the contribution claim**: The current framing as a 'pipeline paper' combining existing components risks reviewer pushback of 'insufficient novelty.' Strengthen by: (a) providing a rigorous ablation showing motion-first > video-first in a controlled comparison, and (b) demonstrating that whole-body physics filtering is essential (not just beneficial) for humanoid policy quality — a finding that would generalize beyond this specific pipeline.\n\n### Round 8 review\nVerdict: revise\nIssues: [\"COMPUTE BUDGET VIOLATION: Auto mode requires ~275 H100h, exceeding the 200 H100h hard constraint by 37.5%. The AnchorDream-style baseline alone (originally 8 A100s × 3 days = 576 A100h for LoRA fine-tuning of Cosmos-Predict2) is likely unreproducible within budget — meaning the key Q1 ablation (generative vs. heuristic) cannot be fairly tested.\", \"VENUE/TIMELINE MISMATCH: The proposal explicitly states 'CoRL 2026 (abstract May 26 — extremely tight at 16 days, NOT recommended)' and targets Humanoids 2026 as primary. The user's hard requirement is CoRL 2026. An idea that self-declares it cannot meet the target deadline is fundamentally misaligned with user requirements.\", \"HUMANOIDBENCH USES H1, NOT G1: HumanoidBench (RSS 2024) uses Unitree H1 with dexterous hands (151D observation, 61D action). Kimodo generates G1 skeleton motions. The proposal lists 'HumanoidBench loco-manipulation tasks' as evaluation but never addresses this embodiment mismatch. Either retrain Kimodo for H1 (infeasible in timeline) or drop HumanoidBench.\", \"KIMODO LOCO-MANIPULATION QUALITY UNVERIFIED: The Kimodo GitHub repository contains NO documentation of object interaction, grasping, or manipulation capabilities. The BONES Rigplay training data includes 'common object interactions' but it is completely unvalidated whether text prompts can generate useful loco-manipulation behaviors (box carrying, door opening, cart pushing) rather than just generic locomotion and gestures.\", \"INTEGRATION PAPER RISK UNRESOLVED: Despite the proposal's attempt to frame the contribution as 'two generalizable findings,' the actual method is a pipeline connecting existing tools: Kimodo (NVIDIA) → Isaac Lab physics sim (NVIDIA) → Cosmos Transfer 2.5 (NVIDIA). CoRL reviewers will likely note that NVIDIA could run this experiment in-house and may question whether tool integration constitutes a research contribution.\", \"MISSING COMPETITOR: VisualMimic (arXiv:2509.20322, Stanford) achieves zero-shot sim-to-real humanoid loco-manipulation (box lifting, pushing, football) using motion data + hierarchical visuomotor policies. While architecturally different (motion tracking policy, not data amplification), it demonstrates that existing approaches already enable visual humanoid loco-manipulation from motion data — weakening the motivation that 'data scarcity bottlenecks humanoid visuomotor policy learning.'\"]\nFeedback: The idea has strong scientific framing (Q1-Q3 ablations) and honest self-assessment, but fails on two hard user constraints: compute budget (275 > 200 H100h) and venue target (self-declares CoRL infeasible). To salvage for CoRL 2026 within budget:\n\n1. **DRASTICALLY SIMPLIFY THE COMPARISON**: Drop the AnchorDream LoRA fine-tuning baseline entirely (too expensive). Instead, compare: (a) Kimodo-generated + physics-filtered trajectories vs. (b) Kimodo-generated without physics filtering vs. (c) DemoHLM-style single-demo perturbation vs. (d) random Isaac Lab rollouts. This tests Q2 (physics filtering essential?) with much cheaper baselines. Budget: Kimodo inference ~5h + physics sim ~20h + Isaac Lab rendering ~40h + Cosmos Transfer ~30h + 3 policy training runs ~60h + ablations ~30h ≈ 185 H100h.\n\n2. **COMMIT TO CoRL OR EXPLICITLY PIVOT**: Either (a) scope down to a focused 'finding paper' (single ablation: Q2 only — physics filtering essential for humanoid data quality) that's achievable in 16 days with preliminary results, OR (b) honestly acknowledge Humanoids 2026 as the target and let the user decide.\n\n3. **DROP HUMANOIDBENCH, USE ISAAC LAB G1 TASKS ONLY**: Create 3-4 G1 loco-manipulation tasks directly in Isaac Lab (box carry, door open, tray transport, cart push). This avoids the H1 embodiment mismatch and is more aligned with DemoHLM's evaluation (same tasks, same robot).\n\n4. **VALIDATE KIMODO MANIPULATION PROMPTS FIRST**: Before committing to this direction, spend 2 hours generating Kimodo G1 motions with manipulation-relevant text prompts and verify they produce useful behaviors. If Kimodo only generates locomotion/gestures without meaningful object interaction intent, the entire premise collapses.\n\n5. **ADD VisualMimic TO LANDSCAPE**: VisualMimic (Stanford, Sep 2025) demonstrates visual humanoid loco-manipulation from motion data with zero-shot transfer — acknowledge it exists and differentiate (MotionForge is a data engine, VisualMimic is a policy architecture).\n\n6. **SHARPEN THE NOVELTY CLAIM**: The strongest novel finding would be demonstrating that physics filtering is ESSENTIAL (large performance gap) for humanoid data quality. If the gap is small, the paper has no contribution. Consider framing the paper as 'When Does Physics Validation Matter? A Study of Synthetic Data Quality for Humanoid Loco-Manipulation' — this is more publishable as a findings paper at CoRL.\n\n### Round 9 review\nVerdict: revise\nIssues: [\"CRITICAL FACTUAL ERROR: The proposal repeatedly claims 'NVIDIA GR00T uses RL, not IL' and 'they use RL which implicitly handles physics; we study IL where bad data directly enters training.' This is WRONG. GR00T N1 (arXiv:2503.14734) is explicitly trained via imitation learning on 'a heterogeneous mixture of real-robot trajectories, human videos, and synthetically generated datasets.' The RL component is only for the low-level Whole-Body Controller (WBC), not the VLA itself. This undermines the paper's central differentiation claim. The correct framing should be: 'NVIDIA's VLA trains via IL but operates above a physics-grounded WBC that acts as an implicit quality filter; our study examines direct whole-body joint-level IL where no WBC safety net exists.'\", \"MISSING COMPETITOR: 'Iterative Closed-Loop Motion Synthesis for Scaling the Capabilities of Humanoid Control' (arXiv:2602.21599, Feb 2026) is directly relevant — it proposes automated synthetic motion data generation for humanoid control with physics-based quality metrics and difficulty iteration, demonstrating that 1/10 of AMASS dataset with quality-curated data beats the full dataset (45% failure reduction). While using RL tracking (not direct IL), it studies the SAME core question of data quality vs quantity for humanoid motion.\", \"MISSING COMPETITOR: 'Benchmarking Humanoid Imitation Learning with Motion Difficulty' (arXiv:2512.07248, Dec 2025) introduces Motion Difficulty Score grounded in rigid-body dynamics and creates difficulty-stratified evaluation for humanoid IL. This provides directly relevant analytical tools and partial answers about which motion properties affect policy learning.\", \"COMPUTE BUDGET ACCOUNTING ERROR: The proposal claims '~160h H100' with ACT training at '(36 conditions × 3 seeds × 1.5h = 162h, parallelized across 4 GPUs) ~80h.' Parallelization reduces WALL-CLOCK time to ~40h but total GPU-hours remain 162h. Correct total: 3 + 12 + 35 + 162 + 10 + 20 = 242 H100h, exceeding the 200h hard constraint by 21%.\", \"KIMODO FINGER DOF GAP: Kimodo's G1 skeleton has 34 joints terminating at wrists (no finger DOF). The real G1 with Dex3-1 has 7 DOF per hand. 'Object pick-and-place' (proposed Task 2) requires finger control for grasping that Kimodo cannot generate. Either drop pick-and-place in favor of locomotion-heavy tasks (box carry with fixed grasp, cart push with palm contact), or acknowledge that grasping must be handled by separate heuristic/controller.\", \"ACT WHOLE-BODY SCALABILITY RISK: ACT was designed for 6-14 DOF arm manipulation. Scaling to 29+ DOF whole-body humanoid with simultaneous locomotion and manipulation is a significant untested leap. The only precedent (TACT, 2025) uses teleoperation data on a different robot with different action space structure. If ACT cannot learn reasonable whole-body policies from 20-200 demonstrations, the entire factorial study produces no usable findings. A pilot experiment is needed before committing.\", \"'OBVIOUS FINDING' RISK: If the study confirms that physics fidelity matters for bipedal robots (where falls are catastrophic), reviewers may judge this as intuitively obvious. The contribution depends on finding a SURPRISING result — e.g., a sharp phase transition, diversity dominating despite fidelity issues, or specific violation types mattering far more than others. The proposal should formulate concrete non-obvious hypotheses to defend against this.\"]\nFeedback: The idea has evolved well through 9 rounds — the pivot from a method paper to an empirical study is the right call, and the Q1/Q2/Q3 framing is excellent. But several critical issues remain that must be fixed in the final round:\n\n1. **Fix the GR00T factual error (CRITICAL)**: GR00T N1 trains via imitation learning (behavioral cloning with diffusion transformer), NOT RL. The RL is only for the low-level WBC. Rewrite the differentiation as: 'NVIDIA's VLA trains via IL above a physics-grounded WBC that implicitly filters out physically infeasible demonstrations. Our study asks: when training whole-body joint-level policies via direct IL (without a WBC safety net), does physics fidelity become a necessary condition for diversity to help?' This is a stronger and more accurate framing.\n\n2. **Add the two missing competitors**: (a) 'Iterative Closed-Loop Motion Synthesis' (2602.21599) — key parallel work studying data quality for humanoid control. Differentiate: they use RL tracking and study difficulty progression; you study direct IL and the fidelity-diversity interaction. (b) 'Benchmarking Humanoid IL with Motion Difficulty' (2512.07248) — provides complementary analytical tools. Position your work as providing the DATA-SIDE answer (what to generate) to their EVALUATION-SIDE contribution (how to measure).\n\n3. **Fix compute budget**: Reduce scope to fit 200 H100h. Options: (a) reduce to 2 tasks instead of 3 (drop pick-and-place which has the finger DOF problem), (b) reduce seeds from 3 to 2, (c) reduce diversity levels from 4 to 3. Target: 24 conditions × 2 seeds × 1.5h = 72 GPU-hours training. Total: ~150 H100h.\n\n4. **Address ACT feasibility**: Cite TACT (2025) as precedent for ACT on humanoids. Consider adding Diffusion Policy as a second policy architecture (if budget allows) to test whether findings generalize beyond ACT. If not, acknowledge this as a limitation.\n\n5. **Sharpen hypotheses to avoid 'obvious finding' risk**: Propose specific, testable, NON-OBVIOUS predictions. E.g., 'H1: Below 60% physics pass rate, increasing diversity from 50→200 motions will DECREASE success rate (not just plateau).' 'H2: Balance violations (ZMP) will be 3x more damaging than torque violations, because torque violations produce slow failures while balance violations produce immediate falls.' These concrete predictions make the study publishable regardless of whether they're confirmed or refuted.\n\n6. **Restructure tasks around Kimodo's actual capabilities**: Drop pick-and-place (requires finger DOF Kimodo lacks). Use: (T1) Box carry with pre-grasped object (locomotion + balance under load), (T2) Cart/object push (whole-body contact + locomotion), (T3) Walk-to-target with obstacle avoidance (pure locomotion with diversity in paths/speeds). These are achievable with Kimodo's wrist-level output.\n\nIf these 6 issues are resolved, the idea is a borderline pass for CoRL — a focused, honest empirical contribution that answers a genuine open question. The key risk is whether the finding will be surprising enough, but strong experimental design with clear hypotheses can make it publishable either way.\n\n\n## Output format\nOutput ONLY a JSON object:\n{\n  \"verdict\": \"pass | revise | fail\",\n  \"scores\": {\n    \"novelty\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"feasibility\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"clarity\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"impact\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"}\n  },\n  \"issues\": [\"specific issue 1\", \"specific issue 2\", ...],\n  \"feedback\": \"Actionable feedback for the generator (if verdict=revise)\",\n  \"reason\": \"One-line summary of verdict rationale\"\n}\n\nRules:\n- \"pass\": idea is sound AND high quality — avg score >= 4.0, no critical issues\n- \"revise\": fixable issues OR scores below threshold — provide specific feedback\n- \"fail\": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)\n- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.\n- Round 10 only: if still \"revise\", you MUST choose \"pass\" or \"fail\"."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-10T19:17:26.962Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-10T19:17:26.962Z",
+  "sessionId": "b9bb4059-e3b3-488b-9ce3-35bd9d7de68e"
+}
+```
+
+---
+
+## Round 1
+
+62 recorded events
+
+### User
+
+_source line 3 · 2026-05-10T19:17:27.062Z_
+
+You are a strict ML research reviewer conducting adversarial review.
+
+**Today's date: 2026-05-10 (UTC).**
+
+Your job: independently verify this idea's claims via WebSearch, then issue a verdict.
+
+## User requirements
+The user asked for: **Target: CoRL 2026 (Austin, Nov 9-12, 2026). Abstract deadline 2026-05-26 (17 days); paper deadline 2026-05-29 (20 days).
+
+Direction: Generative models specifically targeting HUMANOID robot training data — addressing the high-DoF, whole-body, loco-manipulation data scarcity that bottlenecks humanoid VLA / WM training. SCOPE LIMITED TO TWO CONTRIBUTION TYPES:
+  (a) Generation ALGORITHMS — e.g., video diffusion conditioned on humanoid action streams, action-conditioned generative models, latent humanoid trajectory generators, physics-aware whole-body video generation.
+  (b) Procedural data-generation PIPELINES — e.g., MimicGen-style automated demo multiplication for humanoids, procedural whole-body task/scene generation, automated quality filtering pipelines for synthetic humanoid trajectories.
+
+OUT OF SCOPE: action retargeting innovations (human-video → humanoid-action retargeting). Treat existing retargeters (HumanPlus, OmniH2O) as black-box upstream tools if needed; do NOT propose new retargeting methods.
+
+Recent landscape (do not duplicate): NVIDIA GR00T-Dreams, DexMimicGen, MimicGen extensions for humanoid, Helix self-supervised humanoid pipelines, Cosmos for synthetic humanoid video. Humanoid data scarcity is the #1 bottleneck cited in 2026 humanoid papers — high impact area.
+
+Contribution type: METHOD ONLY. New generation algorithm OR new procedural pipeline. Not a new released humanoid dataset alone.
+
+SIM-ONLY MITIGATION: Validate generated data by training a downstream humanoid policy/VLA in sim and comparing against models trained on baseline data. Frame contribution as method, not dataset.
+
+HARD CONSTRAINTS:
+1. Compute: ≤200 H100-hours total. Strategies: (a) fine-tune existing video diffusion (CogVideoX, OpenSora, Cosmos) with humanoid-action conditioning, (b) procedural pipeline that requires negligible training compute, (c) small efficient humanoid-specific generator that beats general baselines.
+2. Time: ≤20 days. Build on HF Diffusers, OpenSora, NVIDIA Cosmos repos, Isaac Lab humanoid suite (G1, H1), MimicGen, RoboCasa with humanoid embodiments if available.
+3. Eval: train humanoid policy/VLA on generated vs baseline data. Test on Isaac Lab humanoid manipulation/locomanipulation tasks, RoboCasa kitchen with humanoid embodiment, HumanoidBench. Report success rate + data efficiency curves.
+
+Look for: physics-aware whole-body video generation with kinematic consistency, action-conditioned generators that exploit humanoid kinematic structure, procedural pipelines that produce diverse loco-manipulation (not just static manipulation) data, automatic quality filtering for synthetic humanoid trajectories. Avoid: any retargeting-based contribution, arm-only generation rebadged as humanoid, naive fine-tuning of video diffusion on humanoid clips without method.
+
+Tag: direction=humanoid_data_gen, contribution_type=method. target_venues=["CoRL 2026"].**
+You MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be "revise" or "fail".
+
+## 核心要求：非常仔细地调研，非常仔细地思考
+
+你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。
+
+### 调研要求
+
+1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。
+   每个验证维度建议用 2-3 种不同的搜索查询。
+
+2. **可行性深度检查**：
+   - 搜索类似实验的实际成本/周期
+   - 检查 claimed baselines 是否可复现
+   - 验证所需的 datasets/models 是否真的可以获取
+
+3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：
+   - 尝试不同的关键词组合
+   - 同时检查 arXiv 和 conference proceedings
+   - 寻找相邻领域的并行/concurrent 工作
+
+4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。
+
+### 思考要求
+
+5. **独立判断**：
+   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查
+   - 思考这个 idea 在实际执行中会遇到什么困难
+   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）
+
+6. **评分诚实**：
+   - 不要给"看起来还行"的 idea 高分——4 分意味着"确实很好"，5 分意味着"令人兴奋"
+   - Agent 评分经常虚高，你的职责就是纠正这种偏差
+
+充分利用你的工具——做真正的调研，不是走过场。
+
+
+## 论文搜索策略
+
+你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。
+
+### 搜索源（推荐每个维度使用 2 个不同来源）
+
+1. **arXiv 预印本**（最新工作）:
+   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文
+   - `site:arxiv.org {method_name}` — 按具体方法名搜索
+   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作
+
+2. **Google Scholar**（引用关系 + 综合覆盖）:
+   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果
+   - `"{exact paper title}"` — 验证论文是否真实存在
+   - `"{author name}" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）
+
+3. **Papers With Code**（SOTA 排行 + 代码可用性）:
+   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜
+   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现
+   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局
+
+4. **OpenReview**（会议审稿 + 同行评价）:
+   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文
+   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价
+
+5. **Semantic Scholar**（语义搜索 + 引用图谱）:
+   - `semantic scholar {topic} survey {year}` — 找综述论文
+   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）
+
+6. **GitHub**（实现验证）:
+   - `site:github.com {method_name} {task}` — 验证开源实现是否存在
+   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取
+
+### 搜索维度（多角度交叉，不要只按 topic 搜）
+
+对每个 idea/方向，尽量覆盖以下维度：
+
+1. **正向搜索**：直接搜索主题相关论文
+   - `{topic} {subtopic} {year}`
+   - `{method_name} for {task_name}`
+
+2. **竞争论文搜索**（最关键！）：
+   - `{core_problem} {year}` — 有没有人在解决同样的问题？
+   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？
+   - `{gap_description} solution` — 你发现的 gap 是否已被解决？
+   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文
+
+3. **相邻领域搜索**：
+   - `{method_from_other_field} applied to {your_task}`
+   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题
+
+4. **反面搜索**（找到反对你 idea 的证据）：
+   - `{your_approach} limitations` / `{your_approach} failure`
+   - `why {assumed_gap} is not a problem`
+   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好
+
+5. **引用链追踪**（发现遗漏工作的最有效方法）：
+   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分
+   - 在 Semantic Scholar 上查看它的 "cited by" — 最近引用它的论文很可能是 concurrent work
+   - 对 3 个以上核心相关论文重复此步骤
+
+### 搜索数量建议（理想目标，上下文充裕时尽量达到）
+
+| 角色 | 建议搜索次数 | 说明 |
+|------|-------------|------|
+| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |
+| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |
+| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |
+| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |
+
+### 上下文管理
+
+你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。
+
+- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。
+- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。
+- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。
+- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。
+
+
+As a reviewer, your search focus should be:
+1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实
+2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作
+3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通
+4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work
+
+## 竞争论文专项搜索（Reviewer 独有）
+
+这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：
+
+1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题
+   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）
+   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）
+   - 方法名 + 任务名的不同组合
+
+2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，
+   搜索他们最近的论文（`"team_name" OR "author_name" {topic} {year}`）
+
+3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers
+   - `site:openreview.net {topic} 2026`
+   - `{conference_name} 2026 accepted papers {topic}`
+
+4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文
+   这是发现 concurrent work 最有效的窗口
+
+如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，
+并在 feedback 中说明这些工作如何影响 idea 的 novelty。
+
+## Review checklist
+1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?
+   If outdated, specify what the current SOTA is and cite your source.
+2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)
+3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?
+4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-10?
+5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?
+6. **Novelty**: Is this sufficiently different from existing work?
+   When scoring novelty < 4:
+   - You MUST identify the closest existing work(s) via WebSearch
+   - In your feedback, write: "This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion]."
+   - This gives the generator targeted guidance to boost novelty, not just "be more novel".
+7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?
+   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero
+   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks
+   - Human-in-Loop should fall between manual and auto on most dimensions
+   - Manual and HIL must NOT include salary/wages — only GPU and API costs
+   - Auto Research must NOT include agent operational overhead
+   - If any mode estimate is clearly unrealistic, flag it
+
+## Idea under review (round 10/10)
+{
+  "title": "Fidelity, Diversity, or Both? Scaling Laws for Synthetic Motion Data in Humanoid Imitation Learning",
+  "core_problem": "Data scaling laws for imitation learning are well-established for arm manipulation (ICLR 2025: diversity of environments/objects >> quantity of demonstrations; 2507.06219: task diversity helps, expert diversity hurts). However, these findings DO NOT transfer trivially to whole-body humanoid loco-manipulation for a fundamental reason: bipedal balance constraints create a qualitative break. For arm robots, a physically invalid trajectory (slight collision, impossible torque) causes a minor task failure. For a humanoid, a physically invalid trajectory means the robot falls — contaminating the entire demonstration with catastrophic failure behavior. This raises a critical open question: when generating synthetic motion data for humanoid imitation learning, does physics FIDELITY (ensuring balance, valid contacts, feasible torques) matter more than motion DIVERSITY (covering the space of task-relevant behaviors)? Or is there a phase transition where below some fidelity threshold, more diversity actively hurts?\n\nCritically, the dominant humanoid pipeline paradigm — exemplified by NVIDIA GR00T N1 — sidesteps this question architecturally: GR00T's VLA is trained via IL (flow matching on heterogeneous data), but it deploys above an RL-trained Whole-Body Controller (SONIC/GEAR-SONIC) that decodes latent actions into physically feasible joint commands. This WBC acts as an implicit physics filter — if the VLA produces a latent action that would cause a fall, the WBC 'corrects' it during execution. But this architectural safety net is unavailable when training whole-body joint-level policies via direct IL (e.g., from Kimodo-generated motions without RL tracking). Our study asks: in this direct-IL regime, does physics fidelity become a NECESSARY condition for diversity scaling to help? Recent concurrent work (Iterative Closed-Loop Motion Synthesis, 2602.21599) shows that quality-curated synthetic data at 1/10 AMASS scale beats the full dataset for RL-based humanoid tracking — but whether this quality-over-quantity finding extends to direct IL, and how it interacts with diversity, remains unstudied.",
+  "opportunity": "Three converging factors make this study timely and feasible: (1) Kimodo (March 2026) generates diverse G1 motions from text in seconds with controllable quality — enabling systematic variation of motion diversity at fixed physics fidelity, and vice versa; (2) Isaac Lab provides ready-to-use G1 loco-manipulation environments with full-body contact dynamics — enabling physics validation and policy evaluation at scale; (3) a critical gap has emerged between two research trajectories: data scaling papers (ICLR 2025) studied arm manipulation only, while humanoid data generation work (Iterative Closed-Loop, 2602.21599; GenMimic; GR00T pipeline) uses RL-based tracking that implicitly handles physics quality. Nobody has studied whether the 'diversity >> quantity' scaling law holds for direct whole-body humanoid IL, where there is no RL-trained WBC safety net to compensate for physically invalid training data. Furthermore, the Benchmarking Humanoid IL paper (2512.07248) provides Motion Difficulty Score as an analytical tool for understanding which motion properties affect policy learning, but offers no guidance on the DATA GENERATION side — what to generate and how much to filter. Our study provides the complementary data-side answer.",
+  "landscape": "Data Scaling Laws in Imitation Learning (arXiv:2410.18647, ICLR 2025) — established power-law relationship between diversity (environments, objects) and imitation learning performance for arm manipulation. Found diversity >> quantity. Did NOT study physics fidelity as a variable. Arms only.\n\nIs Diversity All You Need? (arXiv:2507.06219, 2025) — studied task, embodiment, and expert diversity for manipulation. Found task diversity helps, expert diversity hurts due to velocity multimodality. Cross-embodiment but manipulation-focused, no humanoid balance study.\n\nNVIDIA GR00T N1 (arXiv:2503.14734, Mar 2025) — VLA trained via IL (flow matching on heterogeneous data including real trajectories, human videos, and synthetic datasets). Deploys above RL-trained Whole-Body Controller (SONIC) that decodes latent VLA actions into physically feasible joint commands. The WBC acts as an implicit physics quality filter during execution. Our study examines the direct-IL regime where no such WBC safety net exists.\n\nGR00T Whole-Body Control / SONIC (NVIDIA, 2025-2026) — RL-trained whole-body controller serving as action decoder for GR00T VLA. GEAR-SONIC provides pretrained checkpoints for G1. Key distinction: SONIC handles physics implicitly through RL; our study asks what happens when physics quality must come from the DATA rather than the controller.\n\nIterative Closed-Loop Motion Synthesis (arXiv:2602.21599, Feb 2026) — automated synthetic motion generation with physics-based quality metrics and LLM-guided difficulty iteration. Key finding: 1/10 of AMASS with quality-curated data beats full dataset (45% failure reduction) for RL-based PHC tracking. Uses MDM for generation + RL tracking (not direct IL). Studies difficulty progression; we study fidelity-diversity interaction under direct IL.\n\nBenchmarking Humanoid IL with Motion Difficulty (arXiv:2512.07248, Dec 2025) — introduces Motion Difficulty Score (MDS) grounded in rigid-body dynamics (torque variation from pose perturbations). Creates difficulty-stratified evaluation (MD-AMASS) with MID and DSJE metrics. Provides the EVALUATION-SIDE answer (how to measure motion difficulty); our study provides the complementary DATA-SIDE answer (what to generate and how much to filter).\n\nWholeBodyVLA (arXiv:2512.11047, ICLR 2026) — unified latent VLA for whole-body loco-manipulation on AgiBot X2. Learns latent actions from action-free egocentric videos via Latent Action Model, then uses LMO RL policy for stable whole-body execution. Demonstrates IL+RL hybrid for loco-manipulation but does not study data quality/quantity tradeoffs.\n\nREFINE-DP (arXiv:2603.13707, Mar 2026) — Diffusion Policy fine-tuned via PPO for humanoid loco-manipulation. Achieves >90% success in sim and real. Validates Diffusion Policy as viable architecture for humanoid whole-body control, but uses RL fine-tuning to compensate for IL distribution shift. We study the IL-only regime.\n\nKimodo (arXiv:2603.15546, Mar 2026) — generative motion diffusion on G1 skeleton (34 joints, wrist-level, no finger DOF) from text+constraints. 700h mocap training including object interactions. Outputs compatible with ProtoMotions for physics-based RL. Never studied for direct imitation learning quality.\n\nVisualMimic (arXiv:2509.20322, Stanford 2025) — hierarchical visuomotor policy for humanoid loco-manipulation. Zero-shot sim-to-real. Uses RL-trained keypoint tracker. Architecturally different from direct IL.\n\nVIRAL (arXiv:2511.15200, Nov 2025) — G1 visual sim-to-real with massive domain randomization. Teacher-student RL. Strong baseline but RL-based.\n\nRoboCurate (arXiv:2602.18742, Feb 2026) — action-verified synthetic data with sim-replay filtering. +70.1% on GR-1 tabletop. Demonstrates filtering helps for arm manipulation — our study extends to whole-body humanoids where failures are catastrophic falls.\n\nGenMimic (arXiv:2512.05094, Dec 2025) — generated human videos → 4D lifting → physics-aware RL tracking on G1. Uses RL, not IL. Does not study quality-diversity tradeoff.\n\nTACT (arXiv:2506.15146, 2025) — extends ACT with tactile modality for whole-body humanoid contact manipulation on RHP7 Kaleido. Validates ACT-family architectures for whole-body humanoid IL from teleoperation data.\n\nGBC (arXiv:2508.09960, Aug 2025) — Generalized Behavior-Cloning framework for whole-body humanoid imitation across heterogeneous morphologies. Uses DAgger-MMPPO (IL+RL hybrid). Demonstrates whole-body BC is feasible but does not study data quality/quantity.\n\nData Quality in Imitation Learning (arXiv:2306.02437, NeurIPS 2023) — formal framework analyzing action divergence and transition diversity as data quality dimensions. Arm manipulation focus. Provides theoretical grounding for our empirical humanoid study.",
+  "approach": "We conduct a controlled empirical study answering: For whole-body humanoid imitation learning (without an RL-trained WBC safety net), how do physics FIDELITY and motion DIVERSITY independently and jointly affect policy performance? This extends the data scaling laws framework (ICLR 2025) to whole-body humanoids by introducing physics fidelity as a new scaling dimension.\n\nConcrete, Testable Hypotheses (designed to yield publishable findings whether confirmed or refuted):\n\nH1 (Anti-scaling threshold): Below 50% physics pass rate in the training set, increasing motion diversity from 30→200 DECREASES task success rate (not just plateaus). Rationale: diverse-but-invalid motions create multimodal action distributions centered on infeasible states, causing the policy to learn 'averaged' actions that reliably produce falls. If REFUTED (diversity helps even with low fidelity), this contradicts the intuitive expectation and suggests policies can extract useful behavioral structure from noisy humanoid demonstrations.\n\nH2 (Fidelity-diversity interaction): The importance of physics fidelity INCREASES with diversity. At low diversity (30 motions), strict vs. no filtering differs by <5% success rate; at high diversity (200 motions), the gap exceeds 30%. Rationale: low-diversity sets contain similar near-feasible motions regardless of filtering; high-diversity sets include extreme motions where filtering becomes critical. If REFUTED, fidelity matters equally at all diversity scales.\n\nH3 (Violation taxonomy): Balance violations (CoM outside support polygon) are ≥3× more damaging per-occurrence than torque feasibility violations. Rationale: balance failures produce sudden catastrophic state transitions (falls) that are maximally out-of-distribution for the policy, while torque violations produce gradual degradation that the policy can partially accommodate. Practical implication: data pipelines should prioritize balance filtering over torque checking. If REFUTED (torque violations equally damaging), this reveals that subtle action-space corruption is as harmful as dramatic state-space disruption.\n\nH4 (Task-structure dependence): The fidelity threshold is LOWER for locomotion-only tasks than for contact-rich tasks (pushing). Pure locomotion tolerates diverse-but-noisy data (fidelity threshold ~30% pass rate), while sustained-contact tasks require strict filtering (threshold ~70%). If CONFIRMED, scaling laws are task-structure-dependent, not universal — contradicting naive generalization of arm-manipulation findings.\n\nExperimental Design (3×3×3 factorial + violation analysis):\n\nIndependent Variables:\n(A) Motion Diversity — number of unique Kimodo-generated G1 motions per task: {30, 100, 200}\n(B) Physics Fidelity — filtering threshold applied to Kimodo outputs via Isaac Lab simulation:\n  - None: raw Kimodo kinematic outputs, no physics check\n  - Loose: center-of-mass within support polygon, no ground penetration\n  - Strict: full ZMP balance + joint torque limits + self-collision + contact validity + task completion predicate\n\nDependent Variables: Task success rate (%), mean episode duration before failure, physics violation frequency during evaluation rollouts\n\nTasks (3 G1 loco-manipulation tasks in Isaac Lab, all feasible with Kimodo's wrist-level output — no finger DOF required):\n1. Box carry: walk 2m while holding pre-grasped 0.5kg box (locomotion + balance under external load). Grasp is initialized by environment; Kimodo generates walking-with-load motions. Tests: how fidelity affects balance under payload.\n2. Cart push: push wheeled cart 1.5m to goal using palm contact (whole-body coordination + sustained contact + locomotion). No grasp required; palm-to-object contact. Tests: how fidelity affects contact-rich coordination.\n3. Dynamic walk-to-target: walk to randomized goal position with varied speeds, approach angles, and stopping behavior (pure locomotion with behavioral diversity). Tests: baseline task where fidelity may matter less.\n\nPipeline (for each experimental condition):\n(1) Motion Generation: Kimodo text-to-motion on G1 skeleton with task-relevant prompts. Generate N motions per task where N ∈ {30, 100, 200}. Prompt diversity controlled via systematic variation of action descriptions, speeds, approach angles, load positions.\n\n(2) Physics Validation: Execute each motion in Isaac Lab with G1 URDF. For 'Loose' filtering: check CoM stability and ground contact validity. For 'Strict' filtering: full ZMP, torque feasibility, self-collision, task success predicate. Record per-motion: pass/fail label, violation type breakdown (balance/torque/collision/contact), severity score. This violation log enables H3 analysis.\n\n(3) Dataset Assembly: For each (diversity, fidelity) condition, pair proprioceptive state observations with ground-truth joint actions from Kimodo outputs (for passed motions under the given filter). Action space: G1 joint positions (23 actively controlled DOF, no finger joints).\n\n(4) Policy Training: Train Diffusion Policy (primary) on each condition. Diffusion Policy is chosen over ACT for three reasons: (a) proven for humanoid loco-manipulation (REFINE-DP, 2603.13707), (b) GR00T N1 uses diffusion transformer for action generation, (c) better handling of multimodal action distributions from diverse demonstrations. Fixed architecture (U-Net 1D, 100 diffusion steps, action horizon 16), fixed hyperparameters across all conditions. 2 seeds per condition.\n\nACT comparison on a representative subset (9 conditions: 3 diversity × 3 fidelity, Task 1 only, 2 seeds) to verify findings are architecture-independent. ACT feasibility for whole-body humanoids is supported by TACT (2506.15146) precedent on RHP7 Kaleido.\n\n(5) Evaluation: 50 rollouts per condition on held-out initial configurations. Report: success rate, mean episode duration, time-to-fall for failed episodes. Additionally, log physics violations during evaluation to correlate training data quality with deployment failure modes.\n\nKey Experimental Questions mapped to Hypotheses:\n- Q1 → H1: Is there a sharp anti-scaling transition? Plot success rate vs. diversity at each fidelity level. Look for crossing curves (where more diversity hurts at low fidelity but helps at high fidelity).\n- Q2 → H2: Does fidelity become MORE important as diversity increases? Compute fidelity sensitivity (strict−none gap) at each diversity level.\n- Q3 → H3: Which violation types are most damaging? For the 'None' filtering condition, correlate the violation-type composition of training data with task failure modes during evaluation.\n- Q4 → H4: Are findings task-dependent? Compare fidelity thresholds across the three tasks.\n\nCritical First Step (Kimodo Validation, Day 1-2): Before committing to full experiments, generate 50 Kimodo G1 motions with loco-manipulation prompts and assess: (a) do they involve meaningful task-relevant behavior (walking with load, pushing motions)? (b) what fraction pass strict physics validation in Isaac Lab? (c) is there sufficient behavioral diversity? If <30% show task-relevant behavior, pivot prompting strategy or use DemoHLM demonstrations as supplementary motion source. This addresses feasibility risk.\n\nDiffusion Policy Pilot (Day 2-3): Train Diffusion Policy on 50 strict-filtered Kimodo motions for Task 3 (walk-to-target, simplest task). If the policy cannot achieve >30% success on this easiest condition, the whole-body action space may require architectural modifications (action space decomposition, hierarchical prediction). This pilot addresses the ACT/DP scalability concern before committing to the full factorial.\n\nContribution framing: NOT a pipeline or system paper. The contribution is an empirical finding with four testable hypotheses that extends data scaling laws to whole-body humanoids, revealing whether the 'diversity >> quantity' finding from arm manipulation (ICLR 2025) holds when (a) physics violations cause catastrophic failures, and (b) no RL-trained WBC safety net compensates for data quality. The practical impact: guidance for humanoid data generation pipelines on whether to invest compute in diversity or filtering when operating in the direct-IL regime.\n\nDifferentiation from prior work:\n- vs. Data Scaling Laws (ICLR 2025): extends to whole-body humanoid, adds physics fidelity dimension, studies catastrophic (not minor) failure modes\n- vs. RoboCurate: studies balance/falls (catastrophic failures) not minor arm errors; different embodiment class\n- vs. NVIDIA GR00T N1: GR00T's VLA trains via IL but deploys above RL-trained SONIC WBC that acts as implicit physics filter; we study direct joint-level IL without WBC safety net\n- vs. Iterative Closed-Loop (2602.21599): they use RL tracking and study difficulty curriculum progression; we study direct IL and the fidelity×diversity interaction effect\n- vs. Benchmarking Humanoid IL (2512.07248): they provide evaluation-side metrics (MDS, MID, DSJE); we provide data-side guidance (what to generate and how to filter). We adopt their MDS metric for analyzing H3.\n- vs. WholeBodyVLA / REFINE-DP: they use IL+RL hybrids; we study the pure-IL regime to understand when RL augmentation is necessary\n- vs. GenMimic: they use RL tracking; we study whether filtering alone suffices for direct IL",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~155h H100: Kimodo generation ~2h; Isaac Lab physics validation ~8h; Isaac Lab rendering (27 main conditions + 9 ACT subset) ~22h; Diffusion Policy training (27 conditions × 2 seeds × 1.5h = 81h); ACT training (9 conditions × 2 seeds × 1h = 18h); evaluation rollouts ~8h; pilot experiments ~6h; iteration/debug ~10h",
+      "gpu_utilization": "~50-60% during development, ~85% during batch training",
+      "timeline": "14-16 days (targeting CoRL 2026 abstract May 26, paper May 29)",
+      "team": "1-2 researchers",
+      "estimated_gpu_cost": "$250-310 at ~$1.60/hr H100 spot pricing"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~165h H100: same as manual with additional Kimodo prompt iteration and quality assessment",
+      "gpu_utilization": "~60-70% utilization",
+      "timeline": "12-15 days",
+      "team": "1 researcher, ~30min/day assessing Kimodo motion quality and filtering thresholds",
+      "claude_api_cost": "$150-250 (~1500-2000 Opus turns for experiment code, analysis, paper writing)",
+      "estimated_gpu_cost": "$265-330",
+      "risk_note": "Human needed for: Kimodo prompt engineering for loco-manipulation; physics filtering threshold calibration; sanity-checking generated motions are task-relevant"
+    },
+    "auto_research": {
+      "gpu_hours": "~185h H100: comprehensive factorial + finer-grained fidelity analysis (5 filter thresholds instead of 3 on best task) + cross-task transfer experiment",
+      "gpu_utilization": "~80-90% with batched experiment scheduling",
+      "timeline": "10-14 days with 4 H100s",
+      "team": "0 (initial setup: Isaac Lab G1 environments, Kimodo weights, Diffusion Policy + ACT training code, evaluation protocol)",
+      "claude_api_cost": "$250-450 (~2500-4000 Opus turns)",
+      "estimated_gpu_cost": "$295-370",
+      "speed_bottleneck": "Isaac Lab rendering throughput and policy training parallelization. Kimodo generation is fast (<1min/motion).",
+      "risk_note": "Kimodo loco-manipulation prompt quality is the primary risk. If motions lack task-relevant content, agent must pivot to locomotion-only tasks or use DemoHLM demonstrations as motion source instead."
+    }
+  },
+  "target_venues": [
+    "CoRL 2026 (abstract May 26, paper May 29 — primary target. Empirical findings papers with practical implications are well-received at CoRL; cf. 'Data Scaling Laws' at ICLR 2025)",
+    "Humanoids 2026 (deadline ~June-July 2026 — strong backup, natural fit for whole-body findings)",
+    "IEEE RA-L (rolling — fallback for rapid publication of fidelity-diversity tradeoff finding)"
+  ],
+  "level": "solid-to-strong",
+  "key_references": [
+    "Data Scaling Laws in Imitation Learning for Robotic Manipulation (arXiv:2410.18647, ICLR 2025) — establishes scaling law framework we extend to humanoids; found diversity >> quantity for arms; did NOT study physics fidelity",
+    "Is Diversity All You Need for Scalable Robotic Manipulation? (arXiv:2507.06219, 2025) — nuances the diversity narrative (expert diversity hurts); manipulation only, no humanoid balance study",
+    "GR00T N1: An Open Foundation Model for Generalist Humanoid Robots (arXiv:2503.14734, Mar 2025) — VLA trained via IL (flow matching) above RL-trained SONIC WBC; our study examines direct IL without WBC safety net",
+    "GR00T Whole-Body Control / SONIC (NVIDIA, 2025-2026) — RL-trained WBC that acts as implicit physics filter for GR00T VLA; key architectural contrast with our direct-IL regime",
+    "Iterative Closed-Loop Motion Synthesis for Scaling Humanoid Control (arXiv:2602.21599, Feb 2026) — quality-curated synthetic data at 1/10 AMASS beats full dataset for RL tracking; demonstrates quality > quantity but under RL (not IL) and without diversity interaction study",
+    "Benchmarking Humanoid Imitation Learning with Motion Difficulty (arXiv:2512.07248, Dec 2025) — MDS metric grounded in rigid-body dynamics; evaluation-side contribution complementary to our data-side study; we adopt MDS for violation analysis",
+    "WholeBodyVLA: Unified Latent VLA for Whole-Body Loco-Manipulation (arXiv:2512.11047, ICLR 2026) — IL+RL hybrid for loco-manipulation on AgiBot X2; demonstrates feasibility but uses RL safety net",
+    "REFINE-DP: Diffusion Policy Fine-tuning for Humanoid Loco-Manipulation (arXiv:2603.13707, Mar 2026) — validates Diffusion Policy for humanoid whole-body control; >90% sim success with RL fine-tuning; motivates our DP architecture choice",
+    "Kimodo: Scaling Controllable Human Motion Generation (arXiv:2603.15546, Mar 2026) — motion generation backbone; G1 skeleton (34 joints, wrist-level, no finger DOF) with object interactions",
+    "TACT: Humanoid Whole-body Contact Manipulation through Deep Imitation Learning (arXiv:2506.15146, 2025) — validates ACT-family architecture for whole-body humanoid IL on RHP7 Kaleido; precedent for our ACT comparison",
+    "GBC: Generalized Behavior-Cloning for Whole-Body Humanoid Imitation (arXiv:2508.09960, Aug 2025) — DAgger-MMPPO for whole-body BC across morphologies; demonstrates feasibility of whole-body behavioral cloning",
+    "VisualMimic: Visual Humanoid Loco-Manipulation (arXiv:2509.20322, Sep 2025) — zero-shot humanoid loco-manipulation via hierarchical RL; evaluation reference",
+    "VIRAL: Visual Sim-to-Real for Humanoid Loco-Manipulation (arXiv:2511.15200, Nov 2025) — G1 SOTA via massive RL; evaluation baseline",
+    "RoboCurate: Action-Verified Neural Trajectory (arXiv:2602.18742, Feb 2026) — sim-replay filtering for arm manipulation (+70.1% on GR-1); extends filtering paradigm we study for whole-body humanoids",
+    "GenMimic: Generated Videos to Physically Plausible Robot Trajectories (arXiv:2512.05094, Dec 2025) — physics-aware RL for generated motion tracking on G1; demonstrates physics matters but uses RL not IL",
+    "Data Quality in Imitation Learning (arXiv:2306.02437, NeurIPS 2023) — formal framework for action divergence and transition diversity as data quality dimensions; theoretical grounding",
+    "Isaac Lab G1 Loco-Manipulation Environments (Unitree + NVIDIA, 2026) — G1 simulation environments with whole-body contact dynamics"
+  ],
+  "description": "We conduct the first empirical study of how physics fidelity and motion diversity independently and jointly affect imitation learning for whole-body humanoid loco-manipulation in the direct-IL regime (no RL-trained Whole-Body Controller safety net). Prior data scaling work (ICLR 2025) established that diversity >> quantity for arm manipulation, and concurrent humanoid work (Iterative Closed-Loop, 2602.21599) shows quality > quantity for RL-based tracking — but nobody has studied the fidelity×diversity interaction under direct IL, where physically invalid training data enters the policy unfiltered. Using Kimodo (text-to-G1-motion) to systematically vary motion diversity and Isaac Lab to vary physics filtering strictness, we train Diffusion Policy across a 3×3×3 factorial design (3 tasks × 3 diversity levels × 3 fidelity levels, 27 conditions, 2 seeds) on three G1 tasks that require no finger DOF: box carry (pre-grasped), cart push (palm contact), and dynamic walk-to-target. We test four concrete, non-obvious hypotheses: (H1) anti-scaling — below 50% physics pass rate, more diversity DECREASES success; (H2) fidelity-diversity interaction — fidelity matters <5% at low diversity but >30% at high diversity; (H3) violation taxonomy — balance violations are ≥3× more damaging than torque violations; (H4) task dependence — locomotion-only tasks tolerate lower fidelity thresholds than contact-rich tasks. ACT comparison on a 9-condition subset verifies architecture independence. Total compute: ≤185 H100h. The contribution is practical guidance for humanoid data generation pipelines: whether to invest compute in diversity or fidelity, with quantified thresholds — resolving a question that arm-manipulation scaling laws and WBC-augmented pipelines have both obscured.",
+  "project_name": "humanoid_data_scaling_fidelity_study",
+  "source": "web_research"
+}
+
+
+## Previous review history
+### Round 1 review
+Verdict: revise
+Issues: ["CRITICAL NOVELTY GAP: BridgeV2W (arXiv 2602.03793, Feb 2026) already does URDF-rendered conditioning + ControlNet-style injection into video diffusion, tested on AgiBot-G1 humanoid — this is the same core technical contribution as KineVid. The generator completely omitted this paper from the landscape analysis.", "Dream2Act (arXiv 2603.19709, Mar 2026) generates robot-centric videos for Unitree G1 humanoid and extracts robot-native joint trajectories — overlapping significantly with KineVid's 'data engine' goal. Listed in key_references but barely analyzed.", "RoboCurate (arXiv 2602.18742, Feb 2026) already achieves +70.1% on GR-1 humanoid and +179.9% on ALLEX humanoid via action-verified synthetic data generation with sim replay quality filtering — a directly competing data engine approach not mentioned at all.", "COMPUTE BUDGET VIOLATION: 200 H100-hours hard constraint is incompatible with 20-day timeline. Manual mode (400h A100 ≈ 130-200 H100h) takes 3-5 months; auto mode fits timeline (2-4 weeks) but requires 1000-1500h A100 (333-750 H100h), 1.5-3.7x over budget.", "The 'structure-aware IDM constrained by URDF forward kinematics' claim lacks demonstrated novelty — using FK constraints for action feasibility is standard robotics engineering, and EVA (arXiv 2603.17808) already addresses the executability gap via RL-based alignment.", "CoRL 2026 deadlines slightly incorrect: actual dates are abstract May 26 (not May 25) and paper May 29 (not May 28) per official corl.org.", "Paired training data construction (humanoid videos with aligned skeleton overlay + action labels) is a significant hidden dependency. No existing dataset provides this pairing — it must be generated from scratch in MuJoCo/Isaac Lab, adding substantial pipeline engineering time not accounted for in the timeline.", "Skeleton overlays may be an inferior conditioning signal compared to BridgeV2W's full embodiment masks rendered from URDF meshes, which provide richer shape and spatial information for video generation."]
+Feedback: The idea's core technical contribution (URDF-conditioned video generation via ControlNet) is preempted by BridgeV2W (Feb 2026). To salvage this direction for CoRL 2026, the generator must:
+
+1. **Acknowledge and differentiate from BridgeV2W explicitly**: Read BridgeV2W carefully and identify what it does NOT do. BridgeV2W frames itself as a world model, not a data engine — it does not evaluate downstream policy improvement from generated data at scale. BridgeV2W also does not leverage motion priors from Kimodo-style generators. A credible contribution could be: 'We show that combining BridgeV2W-style embodiment conditioning with diverse kinematic motion priors (Kimodo) creates a scalable data engine that significantly improves downstream humanoid policy performance — something neither world model papers nor motion generation papers have demonstrated.'
+
+2. **Shift the contribution from the generation algorithm to the data engine pipeline**: Instead of claiming the ControlNet conditioning as novel, frame the contribution as the complete pipeline — motion diversity via Kimodo → embodiment-conditioned video synthesis → action-verified quality filtering (RoboCurate-style) → downstream policy improvement. The pipeline integration + humanoid-specific quality filtering could be novel.
+
+3. **Fix the compute/timeline tension**: Either (a) drastically simplify the approach to fit 200 H100h in 20 days (e.g., skip ControlNet adapter training entirely — use BridgeV2W or existing Wan 2.2 Fun ControlNet as frozen conditioning, only train the IDM), or (b) propose a procedural pipeline (contribution type b) that requires negligible training compute and focuses on MimicGen-style trajectory multiplication + Kimodo motion diversification + sim-based quality filtering.
+
+4. **Add RoboCurate and BridgeV2W as baselines**: These are direct competitors that must appear in the evaluation. Compare against RoboCurate's sim-replay filtering and BridgeV2W's generated video quality.
+
+5. **Consider pivoting to the procedural pipeline contribution type**: Given BridgeV2W's preemption of the generation algorithm, a Kimodo+MimicGen+sim-filtering pipeline for humanoid data amplification might be more novel and more feasible within 20 days/200 H100h.
+
+### Round 2 review
+Verdict: error
+Issues: []
+Feedback: Review subprocess failed (timeout or parse error)
+
+### Round 3 review
+Verdict: error
+Issues: []
+Feedback: Review subprocess failed (timeout or parse error)
+
+### Round 4 review
+Verdict: error
+Issues: []
+Feedback: Review subprocess failed (timeout or parse error)
+
+### Round 5 review
+Verdict: error
+Issues: []
+Feedback: Review subprocess failed (timeout or parse error)
+
+### Round 6 review
+Verdict: error
+Issues: []
+Feedback: Review subprocess failed (timeout or parse error)
+
+### Round 7 review
+Verdict: revise
+Issues: ["CRITICAL MISSING COMPETITOR: AnchorDream (arXiv:2512.11797, ICRA 2026) follows essentially the same paradigm as MotionForge — starts from small set of demonstrations, expands trajectories via perturbation/recombination, renders robot-only motion as conditioning signal for video diffusion, synthesizes diverse visual environments, trains downstream policies with +36.4% sim improvement and ~2x real-world improvement. The only difference is AnchorDream targets arm robots while MotionForge targets humanoids — but the method architecture is nearly identical. This paper is accepted at ICRA 2026 and must be acknowledged as the closest prior work.", "MISSING COMPETITOR: DemoHLM (arXiv:2510.11258, Oct 2025) generates hundreds to thousands of successful trajectories for G1 humanoid loco-manipulation from a single demonstration, using stage-segmented replay with command modification. This is a directly competing procedural pipeline for the exact same embodiment (G1) and task class (loco-manipulation).", "MISSING COMPETITOR: OmniRetarget (arXiv:2509.26633, Sep 2025) is an interaction-preserving data generation engine that generates kinematically feasible trajectories enabling 30-second G1 humanoid parkour and loco-manipulation. While retargeting-based (declared out of scope), it directly competes as a humanoid data generation method and must be evaluated against.", "KIMODO MANIPULATION QUALITY: Kimodo's G1 model uses a 34-joint skeleton (with extra toe joints) trained on Bones Rigplay mocap data covering 'locomotion, gestures, everyday activities, common object interactions, dancing, athletics.' The 34-joint skeleton likely terminates at wrist level without individual finger DOF (the real G1 has 7 DOF per Dex3-1 hand). This means Kimodo CANNOT generate fine manipulation motions required for RoboCasa kitchen tasks, pick-and-place, or tool use — yet these are the primary evaluation tasks proposed. The risk note acknowledges this but proposes no mitigation strategy.", "CtrLoRA IS IMAGE-ONLY: CtrLoRA (arXiv:2410.09400, ICLR 2025) is explicitly designed for controllable IMAGE generation, not video. The proposal claims a lightweight CtrLoRA adapter for video conditioning with '~1K paired images, <1 GPU-hour' — but adapting image-level spatial conditioning to temporal video models is a non-trivial research problem (temporal consistency, motion coherence) that is understated as mere engineering. Either use an existing video ControlNet approach or acknowledge this as an additional research contribution.", "NVIDIA GR00T PIPELINE OVERLAP: NVIDIA's own production pipeline already combines GR00T-Mimic (trajectory multiplication) + Cosmos Transfer (photorealistic visual augmentation) + Isaac Lab (policy training) to generate 780K trajectories in 11 hours, improving GR00T N1 by 40%. MotionForge is essentially proposing to replace Mimic with Kimodo in this pipeline. This must be explicitly positioned against — why is Kimodo-based diversity superior to Mimic-based diversity?", "COMPUTE REALISM: The auto_research mode claims 200 H100h is sufficient for the full pipeline including 3 baseline comparisons and full ablation suite. With Kimodo inference, MuJoCo validation, Isaac Lab rendering, video generation (~30s/clip), downstream ACT + Diffusion Policy training, AND three separate baseline pipelines (DreamGen-style requiring video fine-tuning, RoboCurate-style, DexMimicGen-style), 200 H100h is likely underestimated. The DreamGen baseline alone requires substantial video model fine-tuning compute."]
+Feedback: The idea has improved significantly since Round 1 — BridgeV2W differentiation, RoboCurate as baseline, honest timeline assessment. But three critical gaps remain:
+
+1. **Address AnchorDream directly**: AnchorDream (ICRA 2026) is the closest prior work — same paradigm (motion rendering → video diffusion conditioning → policy training). Read this paper carefully and differentiate: MotionForge uses a generative motion model (Kimodo) for trajectory diversity vs. AnchorDream's heuristic perturbation; MotionForge adds whole-body physics filtering. Frame the contribution as: 'We extend the AnchorDream paradigm from arm robots to whole-body humanoids, replacing heuristic trajectory expansion with generative motion diffusion (Kimodo), and adding balance/contact physics verification — enabling the first demonstration that motion-diffusion-driven data amplification improves whole-body humanoid policy performance.'
+
+2. **Mitigate the Kimodo manipulation gap**: The 34-joint G1 skeleton lacks finger DOF. Two options: (a) Focus evaluation on loco-manipulation tasks where coarse grasping suffices (box carrying, door opening, tray moving) rather than fine manipulation. (b) Pair Kimodo whole-body motions with separately generated hand trajectories via constraint-based IK or heuristic grasp primitives. Choose option (a) — it's more honest and more feasible in 20 days.
+
+3. **Fix the CtrLoRA video gap**: Either (a) replace CtrLoRA with an existing video ControlNet approach (e.g., ControlNeXt which supports both image and video), or (b) simplify to sim-rendering + Cosmos Transfer only for visual grounding (skip the embodiment-conditioned video generation path), or (c) acknowledge the image→video adaptation as a secondary contribution. Option (b) is cleanest for a pipeline paper.
+
+4. **Add DemoHLM and OmniRetarget to the landscape**: These are G1-specific humanoid data generation methods that reviewers WILL find. Position clearly: DemoHLM segments single demos into stages for replay (no motion diversity beyond command perturbation); OmniRetarget is retargeting-based (no generative motion diversity); MotionForge uses generative motion priors (Kimodo) for broader distributional coverage.
+
+5. **Sharpen the contribution claim**: The current framing as a 'pipeline paper' combining existing components risks reviewer pushback of 'insufficient novelty.' Strengthen by: (a) providing a rigorous ablation showing motion-first > video-first in a controlled comparison, and (b) demonstrating that whole-body physics filtering is essential (not just beneficial) for humanoid policy quality — a finding that would generalize beyond this specific pipeline.
+
+### Round 8 review
+Verdict: revise
+Issues: ["COMPUTE BUDGET VIOLATION: Auto mode requires ~275 H100h, exceeding the 200 H100h hard constraint by 37.5%. The AnchorDream-style baseline alone (originally 8 A100s × 3 days = 576 A100h for LoRA fine-tuning of Cosmos-Predict2) is likely unreproducible within budget — meaning the key Q1 ablation (generative vs. heuristic) cannot be fairly tested.", "VENUE/TIMELINE MISMATCH: The proposal explicitly states 'CoRL 2026 (abstract May 26 — extremely tight at 16 days, NOT recommended)' and targets Humanoids 2026 as primary. The user's hard requirement is CoRL 2026. An idea that self-declares it cannot meet the target deadline is fundamentally misaligned with user requirements.", "HUMANOIDBENCH USES H1, NOT G1: HumanoidBench (RSS 2024) uses Unitree H1 with dexterous hands (151D observation, 61D action). Kimodo generates G1 skeleton motions. The proposal lists 'HumanoidBench loco-manipulation tasks' as evaluation but never addresses this embodiment mismatch. Either retrain Kimodo for H1 (infeasible in timeline) or drop HumanoidBench.", "KIMODO LOCO-MANIPULATION QUALITY UNVERIFIED: The Kimodo GitHub repository contains NO documentation of object interaction, grasping, or manipulation capabilities. The BONES Rigplay training data includes 'common object interactions' but it is completely unvalidated whether text prompts can generate useful loco-manipulation behaviors (box carrying, door opening, cart pushing) rather than just generic locomotion and gestures.", "INTEGRATION PAPER RISK UNRESOLVED: Despite the proposal's attempt to frame the contribution as 'two generalizable findings,' the actual method is a pipeline connecting existing tools: Kimodo (NVIDIA) → Isaac Lab physics sim (NVIDIA) → Cosmos Transfer 2.5 (NVIDIA). CoRL reviewers will likely note that NVIDIA could run this experiment in-house and may question whether tool integration constitutes a research contribution.", "MISSING COMPETITOR: VisualMimic (arXiv:2509.20322, Stanford) achieves zero-shot sim-to-real humanoid loco-manipulation (box lifting, pushing, football) using motion data + hierarchical visuomotor policies. While architecturally different (motion tracking policy, not data amplification), it demonstrates that existing approaches already enable visual humanoid loco-manipulation from motion data — weakening the motivation that 'data scarcity bottlenecks humanoid visuomotor policy learning.'"]
+Feedback: The idea has strong scientific framing (Q1-Q3 ablations) and honest self-assessment, but fails on two hard user constraints: compute budget (275 > 200 H100h) and venue target (self-declares CoRL infeasible). To salvage for CoRL 2026 within budget:
+
+1. **DRASTICALLY SIMPLIFY THE COMPARISON**: Drop the AnchorDream LoRA fine-tuning baseline entirely (too expensive). Instead, compare: (a) Kimodo-generated + physics-filtered trajectories vs. (b) Kimodo-generated without physics filtering vs. (c) DemoHLM-style single-demo perturbation vs. (d) random Isaac Lab rollouts. This tests Q2 (physics filtering essential?) with much cheaper baselines. Budget: Kimodo inference ~5h + physics sim ~20h + Isaac Lab rendering ~40h + Cosmos Transfer ~30h + 3 policy training runs ~60h + ablations ~30h ≈ 185 H100h.
+
+2. **COMMIT TO CoRL OR EXPLICITLY PIVOT**: Either (a) scope down to a focused 'finding paper' (single ablation: Q2 only — physics filtering essential for humanoid data quality) that's achievable in 16 days with preliminary results, OR (b) honestly acknowledge Humanoids 2026 as the target and let the user decide.
+
+3. **DROP HUMANOIDBENCH, USE ISAAC LAB G1 TASKS ONLY**: Create 3-4 G1 loco-manipulation tasks directly in Isaac Lab (box carry, door open, tray transport, cart push). This avoids the H1 embodiment mismatch and is more aligned with DemoHLM's evaluation (same tasks, same robot).
+
+4. **VALIDATE KIMODO MANIPULATION PROMPTS FIRST**: Before committing to this direction, spend 2 hours generating Kimodo G1 motions with manipulation-relevant text prompts and verify they produce useful behaviors. If Kimodo only generates locomotion/gestures without meaningful object interaction intent, the entire premise collapses.
+
+5. **ADD VisualMimic TO LANDSCAPE**: VisualMimic (Stanford, Sep 2025) demonstrates visual humanoid loco-manipulation from motion data with zero-shot transfer — acknowledge it exists and differentiate (MotionForge is a data engine, VisualMimic is a policy architecture).
+
+6. **SHARPEN THE NOVELTY CLAIM**: The strongest novel finding would be demonstrating that physics filtering is ESSENTIAL (large performance gap) for humanoid data quality. If the gap is small, the paper has no contribution. Consider framing the paper as 'When Does Physics Validation Matter? A Study of Synthetic Data Quality for Humanoid Loco-Manipulation' — this is more publishable as a findings paper at CoRL.
+
+### Round 9 review
+Verdict: revise
+Issues: ["CRITICAL FACTUAL ERROR: The proposal repeatedly claims 'NVIDIA GR00T uses RL, not IL' and 'they use RL which implicitly handles physics; we study IL where bad data directly enters training.' This is WRONG. GR00T N1 (arXiv:2503.14734) is explicitly trained via imitation learning on 'a heterogeneous mixture of real-robot trajectories, human videos, and synthetically generated datasets.' The RL component is only for the low-level Whole-Body Controller (WBC), not the VLA itself. This undermines the paper's central differentiation claim. The correct framing should be: 'NVIDIA's VLA trains via IL but operates above a physics-grounded WBC that acts as an implicit quality filter; our study examines direct whole-body joint-level IL where no WBC safety net exists.'", "MISSING COMPETITOR: 'Iterative Closed-Loop Motion Synthesis for Scaling the Capabilities of Humanoid Control' (arXiv:2602.21599, Feb 2026) is directly relevant — it proposes automated synthetic motion data generation for humanoid control with physics-based quality metrics and difficulty iteration, demonstrating that 1/10 of AMASS dataset with quality-curated data beats the full dataset (45% failure reduction). While using RL tracking (not direct IL), it studies the SAME core question of data quality vs quantity for humanoid motion.", "MISSING COMPETITOR: 'Benchmarking Humanoid Imitation Learning with Motion Difficulty' (arXiv:2512.07248, Dec 2025) introduces Motion Difficulty Score grounded in rigid-body dynamics and creates difficulty-stratified evaluation for humanoid IL. This provides directly relevant analytical tools and partial answers about which motion properties affect policy learning.", "COMPUTE BUDGET ACCOUNTING ERROR: The proposal claims '~160h H100' with ACT training at '(36 conditions × 3 seeds × 1.5h = 162h, parallelized across 4 GPUs) ~80h.' Parallelization reduces WALL-CLOCK time to ~40h but total GPU-hours remain 162h. Correct total: 3 + 12 + 35 + 162 + 10 + 20 = 242 H100h, exceeding the 200h hard constraint by 21%.", "KIMODO FINGER DOF GAP: Kimodo's G1 skeleton has 34 joints terminating at wrists (no finger DOF). The real G1 with Dex3-1 has 7 DOF per hand. 'Object pick-and-place' (proposed Task 2) requires finger control for grasping that Kimodo cannot generate. Either drop pick-and-place in favor of locomotion-heavy tasks (box carry with fixed grasp, cart push with palm contact), or acknowledge that grasping must be handled by separate heuristic/controller.", "ACT WHOLE-BODY SCALABILITY RISK: ACT was designed for 6-14 DOF arm manipulation. Scaling to 29+ DOF whole-body humanoid with simultaneous locomotion and manipulation is a significant untested leap. The only precedent (TACT, 2025) uses teleoperation data on a different robot with different action space structure. If ACT cannot learn reasonable whole-body policies from 20-200 demonstrations, the entire factorial study produces no usable findings. A pilot experiment is needed before committing.", "'OBVIOUS FINDING' RISK: If the study confirms that physics fidelity matters for bipedal robots (where falls are catastrophic), reviewers may judge this as intuitively obvious. The contribution depends on finding a SURPRISING result — e.g., a sharp phase transition, diversity dominating despite fidelity issues, or specific violation types mattering far more than others. The proposal should formulate concrete non-obvious hypotheses to defend against this."]
+Feedback: The idea has evolved well through 9 rounds — the pivot from a method paper to an empirical study is the right call, and the Q1/Q2/Q3 framing is excellent. But several critical issues remain that must be fixed in the final round:
+
+1. **Fix the GR00T factual error (CRITICAL)**: GR00T N1 trains via imitation learning (behavioral cloning with diffusion transformer), NOT RL. The RL is only for the low-level WBC. Rewrite the differentiation as: 'NVIDIA's VLA trains via IL above a physics-grounded WBC that implicitly filters out physically infeasible demonstrations. Our study asks: when training whole-body joint-level policies via direct IL (without a WBC safety net), does physics fidelity become a necessary condition for diversity to help?' This is a stronger and more accurate framing.
+
+2. **Add the two missing competitors**: (a) 'Iterative Closed-Loop Motion Synthesis' (2602.21599) — key parallel work studying data quality for humanoid control. Differentiate: they use RL tracking and study difficulty progression; you study direct IL and the fidelity-diversity interaction. (b) 'Benchmarking Humanoid IL with Motion Difficulty' (2512.07248) — provides complementary analytical tools. Position your work as providing the DATA-SIDE answer (what to generate) to their EVALUATION-SIDE contribution (how to measure).
+
+3. **Fix compute budget**: Reduce scope to fit 200 H100h. Options: (a) reduce to 2 tasks instead of 3 (drop pick-and-place which has the finger DOF problem), (b) reduce seeds from 3 to 2, (c) reduce diversity levels from 4 to 3. Target: 24 conditions × 2 seeds × 1.5h = 72 GPU-hours training. Total: ~150 H100h.
+
+4. **Address ACT feasibility**: Cite TACT (2025) as precedent for ACT on humanoids. Consider adding Diffusion Policy as a second policy architecture (if budget allows) to test whether findings generalize beyond ACT. If not, acknowledge this as a limitation.
+
+5. **Sharpen hypotheses to avoid 'obvious finding' risk**: Propose specific, testable, NON-OBVIOUS predictions. E.g., 'H1: Below 60% physics pass rate, increasing diversity from 50→200 motions will DECREASE success rate (not just plateau).' 'H2: Balance violations (ZMP) will be 3x more damaging than torque violations, because torque violations produce slow failures while balance violations produce immediate falls.' These concrete predictions make the study publishable regardless of whether they're confirmed or refuted.
+
+6. **Restructure tasks around Kimodo's actual capabilities**: Drop pick-and-place (requires finger DOF Kimodo lacks). Use: (T1) Box carry with pre-grasped object (locomotion + balance under load), (T2) Cart/object push (whole-body contact + locomotion), (T3) Walk-to-target with obstacle avoidance (pure locomotion with diversity in paths/speeds). These are achievable with Kimodo's wrist-level output.
+
+If these 6 issues are resolved, the idea is a borderline pass for CoRL — a focused, honest empirical contribution that answers a genuine open question. The key risk is whether the finding will be surprising enough, but strong experimental design with clear hypotheses can make it publishable either way.
+
+
+## Output format
+Output ONLY a JSON object:
+{
+  "verdict": "pass | revise | fail",
+  "scores": {
+    "novelty": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "feasibility": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "clarity": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "impact": {"score": 0-5, "rationale": "1-2 sentence justification"}
+  },
+  "issues": ["specific issue 1", "specific issue 2", ...],
+  "feedback": "Actionable feedback for the generator (if verdict=revise)",
+  "reason": "One-line summary of verdict rationale"
+}
+
+Rules:
+- "pass": idea is sound AND high quality — avg score >= 4.0, no critical issues
+- "revise": fixable issues OR scores below threshold — provide specific feedback
+- "fail": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)
+- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.
+- Round 10 only: if still "revise", you MUST choose "pass" or "fail".
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "b0150ee4-e7f7-496d-afa5-c1d4cb4e7131",
+  "type": "user",
+  "uuid": "1b376a3b-eec5-4be0-acea-a832ea0d417a",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b9bb4059-e3b3-488b-9ce3-35bd9d7de68e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-10T19:17:27.052Z_
+
+```json
+{
+  "parentUuid": "1b376a3b-eec5-4be0-acea-a832ea0d417a",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "115f4926-fab9-4273-bf97-e54cfc4e216f",
+  "timestamp": "2026-05-10T19:17:27.052Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b9bb4059-e3b3-488b-9ce3-35bd9d7de68e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-10T19:17:27.052Z_
+
+```json
+{
+  "parentUuid": "115f4926-fab9-4273-bf97-e54cfc4e216f",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "f61cfdd5-a915-4594-b181-5c66ce779835",
+  "timestamp": "2026-05-10T19:17:27.052Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b9bb4059-e3b3-488b-9ce3-35bd9d7de68e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "f61cfdd5-a915-4594-b181-5c66ce779835",
+  "sessionId": "b9bb4059-e3b3-488b-9ce3-35bd9d7de68e"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Scaling laws for humanoid imitation learning",
+  "sessionId": "b9bb4059-e3b3-488b-9ce3-35bd9d7de68e"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-10T19:17:43.392Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+This is round 10/10, so I must choose either "pass" or "fail" — no more "revise" option. Let me carefully review this idea and conduct independent verification.
+
+The idea has evolved significantly over 9 rounds. Let me understand what it is now:
+
+**Title**: "Fidelity, Diversity, or Both? Scaling Laws for Synthetic Motion Data in Humanoid Imitation Learning"
+
+**Core**: An empirical study examining how physics fidelity and motion diversity interact when training whole-body humanoid policies via direct imitation learning (without an RL-trained Whole-Body Controller). 
+
+I'm using Kimodo for motion generation and Isaac Lab for physics validation, then training Diffusion Policy and ACT across a factorial design to test the interaction effects.
+
+**Key changes from earlier rounds**:
+1. Fixed the GR00T factual error (now correctly states GR00T uses IL above RL-trained WBC)
+2. Added missing competitors (Iterative Closed-Loop, Benchmarking Humanoid IL)
+3. Restructured tasks around Kimodo's capabilities (no finger DOF needed)
+4. Formulated concrete testable hypotheses (H1-H4)
+5. Uses Diffusion Policy as primary architecture with ACT comparison
+6. Pivoted from method/pipeline paper to empirical study
+
+Let me now independently verify the key claims and assess whether this actually holds up—checking if the cited papers exist and support what I'm claiming, whether the research gap is real, if Kimodo can actually do what I'm proposing, whether my compute budget is realistic, if I'm missing any major competitors, and whether this would be CoRL-quality work.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f61cfdd5-a915-4594-b181-5c66ce779835",
+  "isSidechain": false,
+  "requestId": "req_011CauRfY8L2hgMZoPTjN5uo",
+  "type": "assistant",
+  "uuid": "644fd7d6-8803-408f-8de1-d8b7480d395e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b9bb4059-e3b3-488b-9ce3-35bd9d7de68e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ptzriznnqqe8nHBXrYb3gq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 22207,
+      "cache_read_input_tokens": 11664,
+      "output_tokens": 1906,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 22207,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1906,
+          "cache_read_input_tokens": 11664,
+          "cache_creation_input_tokens": 22207,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 22207
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-10T19:17:43.395Z_
+
+I'll conduct an independent verification of this round 10 idea. Let me search for key claims and potential missing competitors in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "644fd7d6-8803-408f-8de1-d8b7480d395e",
+  "isSidechain": false,
+  "requestId": "req_011CauRfY8L2hgMZoPTjN5uo",
+  "type": "assistant",
+  "uuid": "a6781c35-cc65-4cc4-a6f9-9ec3c0c114ff",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b9bb4059-e3b3-488b-9ce3-35bd9d7de68e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ptzriznnqqe8nHBXrYb3gq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 22207,
+      "cache_read_input_tokens": 11664,
+      "output_tokens": 1906,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 22207,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1906,
+          "cache_read_input_tokens": 11664,
+          "cache_creation_input_tokens": 22207,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 22207
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-10T19:17:47.358Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01EK73EGtAEg4k5rny8kYmXB`</summary>
+
+```json
+{
+  "subagent_type": "Explore",
+  "description": "Verify Kimodo capabilities",
+  "prompt": "Search the web for information about \"Kimodo\" humanoid motion generation (arXiv:2603.15546, March 2026). I need to verify:\n1. Does this paper exist? What does it actually do?\n2. Does it generate motions for G1 skeleton specifically?\n3. What is the joint count / skeleton structure? Does it have finger DOF?\n4. Can it generate object interaction / manipulation motions, or only locomotion/gestures?\n5. Is there a public GitHub repo or model weights?\n\nUse WebSearch with queries like:\n- \"Kimodo motion generation arXiv 2603.15546\"\n- \"Kimodo humanoid motion diffusion G1\"\n- \"site:github.com Kimodo motion generation\"\n- \"Kimodo scaling controllable human motion\"\n\nAlso search for \"site:arxiv.org 2603.15546\" to verify the paper exists.\n\nReport all findings in detail."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a6781c35-cc65-4cc4-a6f9-9ec3c0c114ff",
+  "isSidechain": false,
+  "requestId": "req_011CauRfY8L2hgMZoPTjN5uo",
+  "type": "assistant",
+  "uuid": "c9c643ee-9663-4fc9-86ad-d8eed5ecc45c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b9bb4059-e3b3-488b-9ce3-35bd9d7de68e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ptzriznnqqe8nHBXrYb3gq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 22207,
+      "cache_read_input_tokens": 11664,
+      "output_tokens": 1906,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 22207,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1906,
+          "cache_read_input_tokens": 11664,
+          "cache_creation_input_tokens": 22207,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 22207
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-10T19:17:54.493Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01L484FcFk5ba8p4hZd3Ar5g`</summary>
+
+```json
+{
+  "subagent_type": "Explore",
+  "description": "Verify data scaling laws paper",
+  "prompt": "Search the web for these papers and verify their claims:\n\n1. \"Data Scaling Laws in Imitation Learning\" (arXiv:2410.18647) - claimed to be at ICLR 2025, establishing that diversity >> quantity for arm manipulation. Verify: does it exist? Is it ICLR 2025? Does it study physics fidelity? Is it arm-only?\n\n2. \"Is Diversity All You Need for Scalable Robotic Manipulation?\" (arXiv:2507.06219) - claimed to find task diversity helps, expert diversity hurts. Verify existence and claims.\n\n3. \"Iterative Closed-Loop Motion Synthesis\" (arXiv:2602.21599) - claimed Feb 2026, quality-curated data at 1/10 AMASS beats full dataset for RL tracking. Verify.\n\n4. \"Benchmarking Humanoid Imitation Learning with Motion Difficulty\" (arXiv:2512.07248) - claimed Dec 2025, introduces Motion Difficulty Score. Verify.\n\nUse WebSearch with queries like:\n- \"arXiv 2410.18647 data scaling laws imitation learning\"\n- \"arXiv 2507.06219 diversity robotic manipulation\"\n- \"arXiv 2602.21599 iterative closed-loop motion synthesis humanoid\"\n- \"arXiv 2512.07248 benchmarking humanoid imitation learning motion difficulty\"\n\nReport all findings."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c9c643ee-9663-4fc9-86ad-d8eed5ecc45c",
+  "isSidechain": false,
+  "requestId": "req_011CauRfY8L2hgMZoPTjN5uo",
+  "type": "assistant",
+  "uuid": "c80f2c84-36f8-4af9-9a9e-d3667ac48364",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b9bb4059-e3b3-488b-9ce3-35bd9d7de68e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ptzriznnqqe8nHBXrYb3gq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 22207,
+      "cache_read_input_tokens": 11664,
+      "output_tokens": 1906,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 22207,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1906,
+          "cache_read_input_tokens": 11664,
+          "cache_creation_input_tokens": 22207,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 22207
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-10T19:18:03.060Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_015UiazcwHY2CBRRsBXHLwya`</summary>
+
+```json
+{
+  "subagent_type": "Explore",
+  "description": "Search missing competitors",
+  "prompt": "Search the web for potential competing work that may be missing from an empirical study about \"physics fidelity vs motion diversity for humanoid imitation learning.\" I need to find papers from late 2025 or 2026 that study:\n\n1. Data quality/quantity tradeoffs for humanoid robot learning\n2. Synthetic data generation quality for bipedal/humanoid robots\n3. Physics-aware data filtering for robot imitation learning\n4. Scaling laws for robot learning data\n\nUse these searches:\n- \"humanoid imitation learning data quality 2026 arxiv\"\n- \"synthetic data humanoid robot policy training 2025 2026\"\n- \"data quality filtering robot imitation learning 2025 2026\"\n- \"scaling laws robot learning data 2025 2026 arxiv\"\n- \"whole-body humanoid behavioral cloning data 2026\"\n- \"humanoid data generation pipeline 2026\"\n- \"physics validation synthetic robot demonstrations\"\n\nAlso search for any very recent work on:\n- \"DemoHLM humanoid loco-manipulation\" \n- \"AnchorDream robot data generation ICRA 2026\"\n- \"RoboCurate action-verified synthetic data\"\n\nReport all relevant papers found with titles, venues, dates, and brief descriptions."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c80f2c84-36f8-4af9-9a9e-d3667ac48364",
+  "isSidechain": false,
+  "requestId": "req_011CauRfY8L2hgMZoPTjN5uo",
+  "type": "assistant",
+  "uuid": "f7b8d907-fc85-4bfc-814d-8d8f84a486a5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b9bb4059-e3b3-488b-9ce3-35bd9d7de68e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ptzriznnqqe8nHBXrYb3gq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 22207,
+      "cache_read_input_tokens": 11664,
+      "output_tokens": 1906,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 22207,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1906,
+          "cache_read_input_tokens": 11664,
+          "cache_creation_input_tokens": 22207,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 22207
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-10T19:18:09.412Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_012zi8tkqjgh1khTm89tGGrJ`</summary>
+
+```json
+{
+  "subagent_type": "Explore",
+  "description": "Verify CoRL 2026 and GR00T N1",
+  "prompt": "Search the web for:\n\n1. CoRL 2026 submission deadlines - verify abstract deadline May 26 and paper deadline May 29\n   - Search \"CoRL 2026 submission deadline\"\n   - Search \"CoRL 2026 Austin\"\n   - Search \"site:corl.org 2026\"\n\n2. GR00T N1 (arXiv:2503.14734) - verify it uses imitation learning (not RL) for the VLA, and that RL is only for the low-level Whole-Body Controller (SONIC)\n   - Search \"GR00T N1 arXiv 2503.14734 imitation learning\"\n   - Search \"GR00T N1 SONIC whole body controller RL\"\n\n3. REFINE-DP (arXiv:2603.13707) - verify it validates Diffusion Policy for humanoid whole-body control\n   - Search \"REFINE-DP diffusion policy humanoid loco-manipulation\"\n\n4. TACT (arXiv:2506.15146) - verify it uses ACT for whole-body humanoid IL\n   - Search \"TACT humanoid whole-body contact imitation learning ACT\"\n\nReport all findings in detail."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f7b8d907-fc85-4bfc-814d-8d8f84a486a5",
+  "isSidechain": false,
+  "requestId": "req_011CauRfY8L2hgMZoPTjN5uo",
+  "type": "assistant",
+  "uuid": "3c6dc725-24d4-4996-8463-fa99f6757210",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b9bb4059-e3b3-488b-9ce3-35bd9d7de68e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ptzriznnqqe8nHBXrYb3gq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 22207,
+      "cache_read_input_tokens": 11664,
+      "output_tokens": 1906,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 22207,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1906,
+          "cache_read_input_tokens": 11664,
+          "cache_creation_input_tokens": 22207,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 22207
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-10T19:18:23.239Z_
+
+<details><summary>↩ Tool result · `toolu_01L484FcFk5ba8p4hZd3Ar5g`</summary>
+
+```text
+## Summary of Findings
+
+All four papers exist and have been verified. Here are the detailed results:
+
+### Paper 1: "Data Scaling Laws in Imitation Learning" (arXiv:2410.18647)
+
+**Status: VERIFIED**
+- **Exists**: Yes, confirmed on arXiv
+- **Venue**: ICLR 2025 (Oral Presentation + Best Paper Award at Workshop on X-Embodiment Robot Learning, CoRL 2024)
+- **Key Claims Verification**:
+  - ✓ Studies diversity vs quantity in data scaling
+  - ✓ Focus on robotic manipulation with real-world experiments
+  - ✓ Collected 40,000+ demonstrations and executed 15,000+ real robot rollouts
+  - ⚠️ **Note**: Not arm-only—focuses on general robotic manipulation (multiple tasks/objects in different environments)
+
+### Paper 2: "Is Diversity All You Need for Scalable Robotic Manipulation?" (arXiv:2507.06219)
+
+**Status: VERIFIED**
+- **Exists**: Yes, confirmed on arXiv
+- **Published**: July 2025
+- **Key Claims Verification**:
+  - ✓ Task diversity helps (critical for transfer from diverse pre-training to novel tasks)
+  - ✓ Expert diversity hurts (velocity multimodality from individual operational preferences is confounding)
+  - ✓ Multi-embodiment pre-training is optional (single-embodiment models transfer efficiently)
+  - ✓ Proposes distribution debiasing method yielding 15% performance gains (equivalent to 2.5x pre-training data)
+
+### Paper 3: "Iterative Closed-Loop Motion Synthesis" (arXiv:2602.21599)
+
+**Status: VERIFIED**
+- **Exists**: Yes, confirmed on arXiv
+- **Published**: February 2026 (v1), revised March 2026 (v2)
+- **Key Claims Verification**:
+  - ✓ Quality-curated data at ~1/10 AMASS dataset size beats full dataset
+  - ✓ 45% reduction in average failure rate on test set (2201 clips) compared to baseline
+  - ✓ Focuses on humanoid control with closed-loop motion synthesis
+  - ✓ Generates high-quality motion data with rich action semantics (martial arts, dance, combat, sports, gymnastics)
+
+### Paper 4: "Benchmarking Humanoid Imitation Learning with Motion Difficulty" (arXiv:2512.07248)
+
+**Status: VERIFIED**
+- **Exists**: Yes, confirmed on arXiv
+- **Published**: December 2025 (submitted Dec 8, 2025)
+- **Key Claims Verification**:
+  - ✓ Introduces Motion Difficulty Score (MDS)
+  - ✓ Novel metric that quantifies imitation difficulty independent of policy performance
+  - ✓ Grounded in rigid-body dynamics (torque variation induced by small pose perturbations)
+  - ✓ Addresses the problem that traditional metrics (e.g., joint position error) don't measure motion difficulty
+
+Sources:
+- [arXiv 2410.18647 - Data Scaling Laws in Imitation Learning](https://arxiv.org/abs/2410.18647)
+- [ICLR 2025 Oral Presentation](https://iclr.cc/virtual/2025/oral/31769)
+- [OpenReview Forum](https://openreview.net/forum?id=pISLZG7ktL)
+- [Project Website](https://data-scaling-laws.github.io/)
+- [arXiv 2507.06219 - Is Diversity All You Need](https://arxiv.org/abs/2507.06219)
+- [arXiv 2602.21599 - Iterative Closed-Loop Motion Synthesis](https://arxiv.org/abs/2602.21599)
+- [arXiv 2512.07248 - Benchmarking Humanoid Imitation Learning](https://arxiv.org/abs/2512.07248)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c80f2c84-36f8-4af9-9a9e-d3667ac48364",
+  "isSidechain": false,
+  "promptId": "b0150ee4-e7f7-496d-afa5-c1d4cb4e7131",
+  "type": "user",
+  "uuid": "3ac7d067-60cb-44c4-85ab-0f728b014479",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Search the web for these papers and verify their claims:\n\n1. \"Data Scaling Laws in Imitation Learning\" (arXiv:2410.18647) - claimed to be at ICLR 2025, establishing that diversity >> quantity for arm manipulation. Verify: does it exist? Is it ICLR 2025? Does it study physics fidelity? Is it arm-only?\n\n2. \"Is Diversity All You Need for Scalable Robotic Manipulation?\" (arXiv:2507.06219) - claimed to find task diversity helps, expert diversity hurts. Verify existence and claims.\n\n3. \"Iterative Closed-Loop Motion Synthesis\" (arXiv:2602.21599) - claimed Feb 2026, quality-curated data at 1/10 AMASS beats full dataset for RL tracking. Verify.\n\n4. \"Benchmarking Humanoid Imitation Learning with Motion Difficulty\" (arXiv:2512.07248) - claimed Dec 2025, introduces Motion Difficulty Score. Verify.\n\nUse WebSearch with queries like:\n- \"arXiv 2410.18647 data scaling laws imitation learning\"\n- \"arXiv 2507.06219 diversity robotic manipulation\"\n- \"arXiv 2602.21599 iterative closed-loop motion synthesis humanoid\"\n- \"arXiv 2512.07248 benchmarking humanoid imitation learning motion difficulty\"\n\nReport all findings.",
+    "agentId": "ac19a8454999ca4b7",
+    "agentType": "Explore",
+    "content": [
+      {
+        "type": "text",
+        "text": "## Summary of Findings\n\nAll four papers exist and have been verified. Here are the detailed results:\n\n### Paper 1: \"Data Scaling Laws in Imitation Learning\" (arXiv:2410.18647)\n\n**Status: VERIFIED**\n- **Exists**: Yes, confirmed on arXiv\n- **Venue**: ICLR 2025 (Oral Presentation + Best Paper Award at Workshop on X-Embodiment Robot Learning, CoRL 2024)\n- **Key Claims Verification**:\n  - ✓ Studies diversity vs quantity in data scaling\n  - ✓ Focus on robotic manipulation with real-world experiments\n  - ✓ Collected 40,000+ demonstrations and executed 15,000+ real robot rollouts\n  - ⚠️ **Note**: Not arm-only—focuses on general robotic manipulation (multiple tasks/objects in different environments)\n\n### Paper 2: \"Is Diversity All You Need for Scalable Robotic Manipulation?\" (arXiv:2507.06219)\n\n**Status: VERIFIED**\n- **Exists**: Yes, confirmed on arXiv\n- **Published**: July 2025\n- **Key Claims Verification**:\n  - ✓ Task diversity helps (critical for transfer from diverse pre-training to novel tasks)\n  - ✓ Expert diversity hurts (velocity multimodality from individual operational preferences is confounding)\n  - ✓ Multi-embodiment pre-training is optional (single-embodiment models transfer efficiently)\n  - ✓ Proposes distribution debiasing method yielding 15% performance gains (equivalent to 2.5x pre-training data)\n\n### Paper 3: \"Iterative Closed-Loop Motion Synthesis\" (arXiv:2602.21599)\n\n**Status: VERIFIED**\n- **Exists**: Yes, confirmed on arXiv\n- **Published**: February 2026 (v1), revised March 2026 (v2)\n- **Key Claims Verification**:\n  - ✓ Quality-curated data at ~1/10 AMASS dataset size beats full dataset\n  - ✓ 45% reduction in average failure rate on test set (2201 clips) compared to baseline\n  - ✓ Focuses on humanoid control with closed-loop motion synthesis\n  - ✓ Generates high-quality motion data with rich action semantics (martial arts, dance, combat, sports, gymnastics)\n\n### Paper 4: \"Benchmarking Humanoid Imitation Learning with Motion Difficulty\" (arXiv:2512.07248)\n\n**Status: VERIFIED**\n- **Exists**: Yes, confirmed on arXiv\n- **Published**: December 2025 (submitted Dec 8, 2025)\n- **Key Claims Verification**:\n  - ✓ Introduces Motion Difficulty Score (MDS)\n  - ✓ Novel metric that quantifies imitation difficulty independent of policy performance\n  - ✓ Grounded in rigid-body dynamics (torque variation induced by small pose perturbations)\n  - ✓ Addresses the problem that traditional metrics (e.g., joint position error) don't measure motion difficulty\n\nSources:\n- [arXiv 2410.18647 - Data Scaling Laws in Imitation Learning](https://arxiv.org/abs/2410.18647)\n- [ICLR 2025 Oral Presentation](https://iclr.cc/virtual/2025/oral/31769)\n- [OpenReview Forum](https://openreview.net/forum?id=pISLZG7ktL)\n- [Project Website](https://data-scaling-laws.github.io/)\n- [arXiv 2507.06219 - Is Diversity All You Need](https://arxiv.org/abs/2507.06219)\n- [arXiv 2602.21599 - Iterative Closed-Loop Motion Synthesis](https://arxiv.org/abs/2602.21599)\n- [arXiv 2512.07248 - Benchmarking Humanoid Imitation Learning](https://arxiv.org/abs/2512.07248)"
+      }
+    ],
+    "totalDurationMs": 28743,
+    "totalTokens": 21527,
+    "totalToolUseCount": 6,
+    "usage": {
+      "input_tokens": 7,
+      "cache_creation_input_tokens": 3510,
+      "cache_read_input_tokens": 17021,
+      "output_tokens": 989,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 3510
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 7,
+          "output_tokens": 989,
+          "cache_read_input_tokens": 17021,
+          "cache_creation_input_tokens": 3510,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 3510,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 6
+    }
+  },
+  "sourceToolAssistantUUID": "c80f2c84-36f8-4af9-9a9e-d3667ac48364",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b9bb4059-e3b3-488b-9ce3-35bd9d7de68e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-10T19:18:30.887Z_
+
+<details><summary>↩ Tool result · `toolu_012zi8tkqjgh1khTm89tGGrJ`</summary>
+
+```text
+Based on my comprehensive web search, here are the detailed findings for all four items:
+
+## 1. CoRL 2026 Submission Deadlines
+
+**VERIFIED - Dates Confirmed:**
+- **Abstract deadline:** May 26, 2026 at 11:59 UTC ✓
+- **Paper deadline:** May 29, 2026 at 11:59 UTC ✓
+- **Conference location:** Austin, Texas, US ✓
+- **Conference dates:** November 9-12, 2026
+- **Venue:** JW Marriott Austin
+
+The official Call for Papers is available on the CoRL website.
+
+## 2. GR00T N1 (arXiv:2503.14734) - Training Approach
+
+**VERIFIED - Imitation Learning for VLA with RL for SONIC:**
+
+The search results confirm that GR00T N1 uses a dual-system architecture:
+- **Vision-Language-Action (VLA) module:** Uses imitation learning - trained on a heterogeneous mixture of real-robot trajectories, human videos, and synthetically generated datasets
+- **Motor control:** Handled by a diffusion transformer module that generates fluid motor actions in real-time
+- **SONIC (Supersizing Motion Tracking for Natural Humanoid Whole-Body Control):** A separate humanoid behavior foundation model that uses reinforcement learning for whole-body control - specifically a hybrid architecture that uses RL for lower-body locomotion and Inverse Kinematics (IK) for upper-body manipulation
+
+The paper demonstrates that GR00T N1 outperforms state-of-the-art imitation learning baselines on simulation benchmarks and has been deployed on the Fourier GR-1 humanoid robot.
+
+## 3. REFINE-DP (arXiv:2603.13707) - Diffusion Policy Validation
+
+**VERIFIED - Validates Diffusion Policy for Humanoid Loco-Manipulation:**
+
+REFINE-DP uses a hierarchical framework that:
+- **High-level planner:** Uses a Diffusion Policy (DP) for whole-body motion planning
+- **Low-level controller:** Uses reinforcement learning (PPO-based diffusion policy gradient) for loco-manipulation control
+- **Problem addressed:** Bridges the gap between offline demonstration-based diffusion policies and the dynamic challenges of real humanoid control
+- **Performance:** Achieves over 90% success rate in simulation, including out-of-distribution cases, and enables smooth autonomous task execution in real-world dynamic environments
+
+The approach validates that diffusion policies can be effectively used for humanoid loco-manipulation when properly fine-tuned with RL.
+
+## 4. TACT (arXiv:2506.15146) - Whole-Body Humanoid IL
+
+**VERIFIED - Uses ACT for Whole-Body Humanoid Imitation Learning:**
+
+TACT is a tactile-modality extended version of Action Chunking with Transformers (ACT) that:
+- **Architecture:** A Transformer-based policy that extends ACT to accept multimodal inputs including tactile measurements, vision, and proprioception (joint position)
+- **Modality:** Integrates distributed tactile sensors mounted on the upper body
+- **Framework:** Uses imitation learning from human demonstrations
+- **Application:** Enables humanoid robots (specifically tested on RHP7 Kaleido) to perform whole-body contact manipulation while maintaining balance and walking
+- **Results:** Demonstrated superior success rates, especially for manipulating fragile objects (paper boxes) of varying sizes using both arms with whole-body contact
+
+---
+
+**Sources:**
+- [CoRL 2026 - Call for Papers](https://www.corl.org/contributions/call-for-papers)
+- [CoRL 2026 - Official Website](https://www.corl.org/)
+- [GR00T N1 arXiv Paper](https://arxiv.org/abs/2503.14734)
+- [GR00T Whole-Body Control GitHub](https://github.com/NVlabs/GR00T-WholeBodyControl)
+- [REFINE-DP arXiv Paper](https://arxiv.org/abs/2603.13707)
+- [TACT arXiv Paper](https://arxiv.org/abs/2506.15146)
+- [GR00T-WholeBodyControl Documentation](https://nvlabs.github.io/GR00T-WholeBodyControl/)
+- [SONIC Documentation](https://nvlabs.github.io/GEAR-SONIC/)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3c6dc725-24d4-4996-8463-fa99f6757210",
+  "isSidechain": false,
+  "promptId": "b0150ee4-e7f7-496d-afa5-c1d4cb4e7131",
+  "type": "user",
+  "uuid": "c12d1511-92ff-4978-a9d7-fe7617c9ea53",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Search the web for:\n\n1. CoRL 2026 submission deadlines - verify abstract deadline May 26 and paper deadline May 29\n   - Search \"CoRL 2026 submission deadline\"\n   - Search \"CoRL 2026 Austin\"\n   - Search \"site:corl.org 2026\"\n\n2. GR00T N1 (arXiv:2503.14734) - verify it uses imitation learning (not RL) for the VLA, and that RL is only for the low-level Whole-Body Controller (SONIC)\n   - Search \"GR00T N1 arXiv 2503.14734 imitation learning\"\n   - Search \"GR00T N1 SONIC whole body controller RL\"\n\n3. REFINE-DP (arXiv:2603.13707) - verify it validates Diffusion Policy for humanoid whole-body control\n   - Search \"REFINE-DP diffusion policy humanoid loco-manipulation\"\n\n4. TACT (arXiv:2506.15146) - verify it uses ACT for whole-body humanoid IL\n   - Search \"TACT humanoid whole-body contact imitation learning ACT\"\n\nReport all findings in detail.",
+    "agentId": "a211ab76614849440",
+    "agentType": "Explore",
+    "content": [
+      {
+        "type": "text",
+        "text": "Based on my comprehensive web search, here are the detailed findings for all four items:\n\n## 1. CoRL 2026 Submission Deadlines\n\n**VERIFIED - Dates Confirmed:**\n- **Abstract deadline:** May 26, 2026 at 11:59 UTC ✓\n- **Paper deadline:** May 29, 2026 at 11:59 UTC ✓\n- **Conference location:** Austin, Texas, US ✓\n- **Conference dates:** November 9-12, 2026\n- **Venue:** JW Marriott Austin\n\nThe official Call for Papers is available on the CoRL website.\n\n## 2. GR00T N1 (arXiv:2503.14734) - Training Approach\n\n**VERIFIED - Imitation Learning for VLA with RL for SONIC:**\n\nThe search results confirm that GR00T N1 uses a dual-system architecture:\n- **Vision-Language-Action (VLA) module:** Uses imitation learning - trained on a heterogeneous mixture of real-robot trajectories, human videos, and synthetically generated datasets\n- **Motor control:** Handled by a diffusion transformer module that generates fluid motor actions in real-time\n- **SONIC (Supersizing Motion Tracking for Natural Humanoid Whole-Body Control):** A separate humanoid behavior foundation model that uses reinforcement learning for whole-body control - specifically a hybrid architecture that uses RL for lower-body locomotion and Inverse Kinematics (IK) for upper-body manipulation\n\nThe paper demonstrates that GR00T N1 outperforms state-of-the-art imitation learning baselines on simulation benchmarks and has been deployed on the Fourier GR-1 humanoid robot.\n\n## 3. REFINE-DP (arXiv:2603.13707) - Diffusion Policy Validation\n\n**VERIFIED - Validates Diffusion Policy for Humanoid Loco-Manipulation:**\n\nREFINE-DP uses a hierarchical framework that:\n- **High-level planner:** Uses a Diffusion Policy (DP) for whole-body motion planning\n- **Low-level controller:** Uses reinforcement learning (PPO-based diffusion policy gradient) for loco-manipulation control\n- **Problem addressed:** Bridges the gap between offline demonstration-based diffusion policies and the dynamic challenges of real humanoid control\n- **Performance:** Achieves over 90% success rate in simulation, including out-of-distribution cases, and enables smooth autonomous task execution in real-world dynamic environments\n\nThe approach validates that diffusion policies can be effectively used for humanoid loco-manipulation when properly fine-tuned with RL.\n\n## 4. TACT (arXiv:2506.15146) - Whole-Body Humanoid IL\n\n**VERIFIED - Uses ACT for Whole-Body Humanoid Imitation Learning:**\n\nTACT is a tactile-modality extended version of Action Chunking with Transformers (ACT) that:\n- **Architecture:** A Transformer-based policy that extends ACT to accept multimodal inputs including tactile measurements, vision, and proprioception (joint position)\n- **Modality:** Integrates distributed tactile sensors mounted on the upper body\n- **Framework:** Uses imitation learning from human demonstrations\n- **Application:** Enables humanoid robots (specifically tested on RHP7 Kaleido) to perform whole-body contact manipulation while maintaining balance and walking\n- **Results:** Demonstrated superior success rates, especially for manipulating fragile objects (paper boxes) of varying sizes using both arms with whole-body contact\n\n---\n\n**Sources:**\n- [CoRL 2026 - Call for Papers](https://www.corl.org/contributions/call-for-papers)\n- [CoRL 2026 - Official Website](https://www.corl.org/)\n- [GR00T N1 arXiv Paper](https://arxiv.org/abs/2503.14734)\n- [GR00T Whole-Body Control GitHub](https://github.com/NVlabs/GR00T-WholeBodyControl)\n- [REFINE-DP arXiv Paper](https://arxiv.org/abs/2603.13707)\n- [TACT arXiv Paper](https://arxiv.org/abs/2506.15146)\n- [GR00T-WholeBodyControl Documentation](https://nvlabs.github.io/GR00T-WholeBodyControl/)\n- [SONIC Documentation](https://nvlabs.github.io/GEAR-SONIC/)"
+      }
+    ],
+    "totalDurationMs": 21471,
+    "totalTokens": 22540,
+    "totalToolUseCount": 7,
+    "usage": {
+      "input_tokens": 7,
+      "cache_creation_input_tokens": 7113,
+      "cache_read_input_tokens": 14361,
+      "output_tokens": 1059,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 7113
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 7,
+          "output_tokens": 1059,
+          "cache_read_input_tokens": 14361,
+          "cache_creation_input_tokens": 7113,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 7113,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 7
+    }
+  },
+  "sourceToolAssistantUUID": "3c6dc725-24d4-4996-8463-fa99f6757210",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b9bb4059-e3b3-488b-9ce3-35bd9d7de68e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 16_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "c12d1511-92ff-4978-a9d7-fe7617c9ea53",
+  "sessionId": "b9bb4059-e3b3-488b-9ce3-35bd9d7de68e"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 17_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Scaling laws for humanoid imitation learning",
+  "sessionId": "b9bb4059-e3b3-488b-9ce3-35bd9d7de68e"
+}
+```
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-10T19:18:36.843Z_
+
+<details><summary>↩ Tool result · `toolu_01EK73EGtAEg4k5rny8kYmXB`</summary>
+
+```text
+Perfect! Now I have comprehensive information. Let me compile my findings:
+
+## Summary of Findings on Kimodo (arXiv:2603.15546, March 2026)
+
+Based on my search, here are the answers to your verification questions:
+
+### 1. **Does this paper exist? What does it actually do?**
+
+**YES** - The paper exists and was published on arXiv on March 16, 2026 at [arXiv:2603.15546]. Kimodo is a **kinematic motion diffusion model** that generates high-quality 3D human and humanoid robot motions trained on 700 hours of production-quality optical mocap data. The model can be controlled through:
+- Text prompts ("describe the motion you want")
+- Kinematic constraints (full-body keyframes, sparse joint positions/rotations, 2D paths/waypoints)
+- Combinations of both
+
+### 2. **Does it generate motions for G1 skeleton specifically?**
+
+**YES** - Kimodo includes a dedicated trained model variant for the Unitree G1 robot skeleton. The training data (Rigplay dataset) was specifically retargeted to the G1 skeleton using the SOMA retargeter, enabling direct generation of kinematic demonstrations for robot control. This is particularly useful for generating robot skills like recovering from stumbles/falls and object interactions.
+
+### 3. **What is the joint count / skeleton structure? Does it have finger DOF?**
+
+The supported skeletons and their specifications are:
+
+| Skeleton | Joint Count | Hand/Finger DOF |
+|----------|-------------|-----------------|
+| **G1** | **34 joints** (root + 33 others; 4 are toe joints added by Kimodo) | **No finger DOF** |
+| **SOMA** | 30 joints (internal `somaskel30`); 77 joints (export version `somaskel77`) | **No finger DOF** (removes most hand detail) |
+| **SMPL-X** | 22 joints (body only) | **No finger DOF** |
+
+**None of the Kimodo skeleton variants include detailed finger articulation.** The models focus on whole-body motion generation rather than fine-grained hand pose control.
+
+### 4. **Can it generate object interaction / manipulation motions, or only locomotion/gestures?**
+
+**YES, it can generate object interactions.** Kimodo supports object manipulation through:
+- Constraint-based control: Users can place hand position constraints on objects to encourage the model to generate plausible pick-and-place motions tailored to specific object sizes
+- Text-based control: The training dataset includes "thousands of unique actions covering a range of locomotion, gestures, everyday activities, **common object interactions**, videogame combat, dancing, athletics, and more"
+
+However, the focus is on **whole-body motion** compatibility with object positions rather than detailed hand/finger-level grasping strategies. The model was specifically used in the GEAR-SONIC robotics demo to generate kinematic motions that the G1 robot can then track in simulation.
+
+### 5. **Is there a public GitHub repo or model weights?**
+
+**YES** - Both are publicly available:
+
+- **GitHub Repository**: [nv-tlabs/kimodo](https://github.com/nv-tlabs/kimodo) - Official NVIDIA implementation with interactive demo, CLI, and motion correction library
+- **Model Weights**: Available on [Hugging Face](https://huggingface.co/nvidia) with multiple variants:
+  - `nvidia/Kimodo-G1-RP-v1` and `v1.1` (G1 robot skeleton, trained on Rigplay)
+  - `nvidia/Kimodo-G1-SEED-v1` (G1, trained on public BONES-SEED data)
+  - `nvidia/Kimodo-SOMA-RP-v1` and `v1.1` (SOMA skeleton)
+  - `nvidia/Kimodo-SOMA-SEED-v1` (SOMA, public data)
+  - `nvidia/Kimodo-SMPLX-RP-v1` (SMPL-X skeleton)
+
+Models are downloaded automatically when using the CLI or interactive demo. The project includes a web-based interactive interface (launchable with `kimodo_demo`) running on `http://127.0.0.1:7860`.
+
+**Key Limitation**: The code is open-source, but the training dataset (Rigplay - 700 hours of mocap) is proprietary and not publicly released.
+
+---
+
+Sources:
+- [arXiv 2603.15546 - Kimodo Paper](https://arxiv.org/abs/2603.15546)
+- [NVIDIA Research - Kimodo Project](https://research.nvidia.com/labs/sil/projects/kimodo/)
+- [GitHub - nv-tlabs/kimodo](https://github.com/nv-tlabs/kimodo)
+- [Kimodo Skeleton Documentation](https://research.nvidia.com/labs/sil/projects/kimodo/docs/key_concepts/skeleton.html)
+- [Hugging Face - Kimodo Models](https://huggingface.co/nvidia)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c9c643ee-9663-4fc9-86ad-d8eed5ecc45c",
+  "isSidechain": false,
+  "promptId": "b0150ee4-e7f7-496d-afa5-c1d4cb4e7131",
+  "type": "user",
+  "uuid": "f3167073-612d-4012-9ce5-a0469c55c4aa",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Search the web for information about \"Kimodo\" humanoid motion generation (arXiv:2603.15546, March 2026). I need to verify:\n1. Does this paper exist? What does it actually do?\n2. Does it generate motions for G1 skeleton specifically?\n3. What is the joint count / skeleton structure? Does it have finger DOF?\n4. Can it generate object interaction / manipulation motions, or only locomotion/gestures?\n5. Is there a public GitHub repo or model weights?\n\nUse WebSearch with queries like:\n- \"Kimodo motion generation arXiv 2603.15546\"\n- \"Kimodo humanoid motion diffusion G1\"\n- \"site:github.com Kimodo motion generation\"\n- \"Kimodo scaling controllable human motion\"\n\nAlso search for \"site:arxiv.org 2603.15546\" to verify the paper exists.\n\nReport all findings in detail.",
+    "agentId": "a45eccbe6d5835774",
+    "agentType": "Explore",
+    "content": [
+      {
+        "type": "text",
+        "text": "Perfect! Now I have comprehensive information. Let me compile my findings:\n\n## Summary of Findings on Kimodo (arXiv:2603.15546, March 2026)\n\nBased on my search, here are the answers to your verification questions:\n\n### 1. **Does this paper exist? What does it actually do?**\n\n**YES** - The paper exists and was published on arXiv on March 16, 2026 at [arXiv:2603.15546]. Kimodo is a **kinematic motion diffusion model** that generates high-quality 3D human and humanoid robot motions trained on 700 hours of production-quality optical mocap data. The model can be controlled through:\n- Text prompts (\"describe the motion you want\")\n- Kinematic constraints (full-body keyframes, sparse joint positions/rotations, 2D paths/waypoints)\n- Combinations of both\n\n### 2. **Does it generate motions for G1 skeleton specifically?**\n\n**YES** - Kimodo includes a dedicated trained model variant for the Unitree G1 robot skeleton. The training data (Rigplay dataset) was specifically retargeted to the G1 skeleton using the SOMA retargeter, enabling direct generation of kinematic demonstrations for robot control. This is particularly useful for generating robot skills like recovering from stumbles/falls and object interactions.\n\n### 3. **What is the joint count / skeleton structure? Does it have finger DOF?**\n\nThe supported skeletons and their specifications are:\n\n| Skeleton | Joint Count | Hand/Finger DOF |\n|----------|-------------|-----------------|\n| **G1** | **34 joints** (root + 33 others; 4 are toe joints added by Kimodo) | **No finger DOF** |\n| **SOMA** | 30 joints (internal `somaskel30`); 77 joints (export version `somaskel77`) | **No finger DOF** (removes most hand detail) |\n| **SMPL-X** | 22 joints (body only) | **No finger DOF** |\n\n**None of the Kimodo skeleton variants include detailed finger articulation.** The models focus on whole-body motion generation rather than fine-grained hand pose control.\n\n### 4. **Can it generate object interaction / manipulation motions, or only locomotion/gestures?**\n\n**YES, it can generate object interactions.** Kimodo supports object manipulation through:\n- Constraint-based control: Users can place hand position constraints on objects to encourage the model to generate plausible pick-and-place motions tailored to specific object sizes\n- Text-based control: The training dataset includes \"thousands of unique actions covering a range of locomotion, gestures, everyday activities, **common object interactions**, videogame combat, dancing, athletics, and more\"\n\nHowever, the focus is on **whole-body motion** compatibility with object positions rather than detailed hand/finger-level grasping strategies. The model was specifically used in the GEAR-SONIC robotics demo to generate kinematic motions that the G1 robot can then track in simulation.\n\n### 5. **Is there a public GitHub repo or model weights?**\n\n**YES** - Both are publicly available:\n\n- **GitHub Repository**: [nv-tlabs/kimodo](https://github.com/nv-tlabs/kimodo) - Official NVIDIA implementation with interactive demo, CLI, and motion correction library\n- **Model Weights**: Available on [Hugging Face](https://huggingface.co/nvidia) with multiple variants:\n  - `nvidia/Kimodo-G1-RP-v1` and `v1.1` (G1 robot skeleton, trained on Rigplay)\n  - `nvidia/Kimodo-G1-SEED-v1` (G1, trained on public BONES-SEED data)\n  - `nvidia/Kimodo-SOMA-RP-v1` and `v1.1` (SOMA skeleton)\n  - `nvidia/Kimodo-SOMA-SEED-v1` (SOMA, public data)\n  - `nvidia/Kimodo-SMPLX-RP-v1` (SMPL-X skeleton)\n\nModels are downloaded automatically when using the CLI or interactive demo. The project includes a web-based interactive interface (launchable with `kimodo_demo`) running on `http://127.0.0.1:7860`.\n\n**Key Limitation**: The code is open-source, but the training dataset (Rigplay - 700 hours of mocap) is proprietary and not publicly released.\n\n---\n\nSources:\n- [arXiv 2603.15546 - Kimodo Paper](https://arxiv.org/abs/2603.15546)\n- [NVIDIA Research - Kimodo Project](https://research.nvidia.com/labs/sil/projects/kimodo/)\n- [GitHub - nv-tlabs/kimodo](https://github.com/nv-tlabs/kimodo)\n- [Kimodo Skeleton Documentation](https://research.nvidia.com/labs/sil/projects/kimodo/docs/key_concepts/skeleton.html)\n- [Hugging Face - Kimodo Models](https://huggingface.co/nvidia)"
+      }
+    ],
+    "totalDurationMs": 49480,
+    "totalTokens": 24968,
+    "totalToolUseCount": 12,
+    "usage": {
+      "input_tokens": 7,
+      "cache_creation_input_tokens": 860,
+      "cache_read_input_tokens": 22886,
+      "output_tokens": 1215,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 860
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 7,
+          "output_tokens": 1215,
+          "cache_read_input_tokens": 22886,
+          "cache_creation_input_tokens": 860,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 860,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 12
+    }
+  },
+  "sourceToolAssistantUUID": "c9c643ee-9663-4fc9-86ad-d8eed5ecc45c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b9bb4059-e3b3-488b-9ce3-35bd9d7de68e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-10T19:18:39.943Z_
+
+<details><summary>↩ Tool result · `toolu_015UiazcwHY2CBRRsBXHLwya`</summary>
+
+```text
+## Summary of Relevant Papers for Your Empirical Study
+
+Based on my comprehensive web search, here are the papers and work that may be missing from your study on "physics fidelity vs motion diversity for humanoid imitation learning":
+
+### 1. **Data Quality & Filtering for Robot Learning**
+
+**Learning from the Best: Smoothness-Driven Metrics for Data Quality in Imitation Learning**
+- arXiv: 2604.23000 (April 2026)
+- Proposes RINSE (Ranking and INdexing Smooth Examples), a lightweight framework for scoring demonstrations based on trajectory smoothness that is policy-architecture-agnostic
+- Directly addresses how data quality fundamentally limits behavioral cloning performance
+
+**DataMIL: Selecting Data for Robot Imitation Learning with Datamodels**
+- arXiv: 2505.09603 (May 2025)
+- Policy-driven data selection framework using datamodels paradigm that reasons about data selection end-to-end
+- Unlike traditional filtering, directly optimizes data selection for task success rather than using human notions of quality
+
+**Robot Data Curation with Mutual Information Estimators**
+- arXiv: 2502.08623 (February 2025)
+- Estimates relative quality of demonstrations using mutual information between states and actions
+- Can partition high vs. low-quality data and achieve higher performing policies across benchmarks
+
+**Scizor: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning**
+- arXiv: 2505.22626 (May 2025)
+- Self-supervised methods for curating large-scale imitation learning datasets
+- Addresses variability in demonstration quality that negatively impacts performance
+
+### 2. **Scaling Laws for Robot Learning Data**
+
+**Data Scaling Laws in Imitation Learning for Robotic Manipulation**
+- arXiv: 2410.18647 (ICLR 2025 Oral + Best Paper at Workshop on X-Embodiment Learning, CoRL 2024)
+- Comprehensive empirical study investigating whether data scaling laws exist in robotics
+- Collected 40,000+ demonstrations with 15,000+ real-world robot rollouts
+- Studied scaling across training environments, objects, and demonstrations
+
+**Towards Embodiment Scaling Laws in Robot Locomotion**
+- arXiv: 2505.05753 (May 2025)
+- Investigates embodiment scaling laws (increasing training embodiments improves generalization to unseen ones)
+- Generated ~1,000 procedural embodiments with topological/geometric/kinematic variations
+- Shows embodiment scaling enables broader generalization than data scaling alone
+
+**Robot Learning with Super-Linear Scaling**
+- arXiv: 2412.01770 (December 2024)
+- Demonstrates zero-shot and few-shot scaling laws on three real-world tasks
+
+### 3. **Synthetic Data & Physics Fidelity**
+
+**GBC: Generalized Behavior-Cloning Framework for Whole-Body Humanoid Imitation**
+- arXiv: 2508.09960 (August 2025)
+- Universal behavior cloning framework for whole-body humanoid imitation across heterogeneous morphologies
+- Includes real-time, differentiable MoCap data processing pipeline that converts motion capture into physically feasible, high-quality demonstrations
+- Directly relevant to your physics-fidelity question with data adaptation for different robot configurations
+
+**RoboCurate: Harnessing Diversity with Action-Verified Neural Trajectory for Robot Learning**
+- arXiv: 2602.18742 (February 2026)
+- Synthetic robot data generation framework that evaluates action quality by comparing with simulation replay
+- Replays predicted actions in simulator and assesses consistency between simulator rollout and generated video
+- Achieved +70.1% improvement on GR-1 Tabletop, +179.9% on ALLEX humanoid dexterous manipulation
+- Directly addresses physics validation for synthetic demonstrations
+
+**LeVERB: Humanoid Whole-Body Control**
+- 2025 (Berkeley)
+- Trained entirely on synthetic data with data synthesis pipeline collecting diverse human motions retargeted to humanoids
+- Renders photorealistically in randomized scene contexts
+
+**Real2Render2Real: Scaling Robot Data Without Dynamics Simulation or Robot Hardware**
+- arXiv: 2505.09601 (May 2025)
+- Pipeline for generating large-scale synthetic robot training data from smartphone object scans and human demonstrations
+- Scales trajectory diversity while preserving visual accuracy
+
+### 4. **Humanoid-Specific Imitation Learning**
+
+**Learning Whole-Body Human-Humanoid Interaction from Human-Human Demonstrations**
+- arXiv: 2601.09518 (January 2026)
+- Introduces D-STAR (Decoupled Spatio-Temporal Action Reasoner) for hierarchical humanoid imitation
+- Disentangles when to act from where to act, moving beyond simple trajectory mimicry
+
+**Active Stereo-Camera Outperforms Multi-Sensor Setup in ACT Imitation Learning for Humanoid Manipulation**
+- arXiv: 2603.28422 (March 2026)
+- Benchmarks 14 sensor configurations for humanoid imitation learning
+- Addresses data collection quality through sensor selection
+
+**EgoHumanoid: Unlocking In-the-Wild Loco-Manipulation with Robot-Free Egocentric Demonstration**
+- arXiv: 2602.10106 (February 2026)
+- Uses egocentric human demonstrations as scalable data source for humanoid loco-manipulation
+- Addresses embodiment gap from both data and modeling perspectives
+
+**Learning Humanoid Loco-manipulation with Constraints as Terminations**
+- Papers with this title show RL-based whole-body controllers for stable humanoid manipulation
+- Whole-body humanoid data collection combining VR teleoperation with human-to-humanoid motion mapping
+
+**Psi_0: An Open Foundation Model Towards Universal Humanoid Loco-Manipulation**
+- arXiv: 2603.12263 (March 2026)
+- Foundation model for humanoid loco-manipulation
+
+### 5. **Motion Diversity & Data Generation Pipelines**
+
+**Omnia: Synthetic Data Pipelines for Adaptive, Mission-Ready Militarized Humanoids**
+- arXiv: 2512.14411 (December 2025)
+- Synthetic data pipelines transforming first-person spatial data into training data
+- Accelerates humanoid autonomy
+
+**NVIDIA Isaac GR00T Blueprint**
+- Generates exponentially larger synthetic motion datasets for humanoid training via imitation learning
+- NVIDIA Cosmos Predict 2.5 enables physically based synthetic data generation and policy evaluation
+
+**Humanoid Transformer with Touch Dreaming (HTD)**
+- arXiv: 2604.13015 (April 2026)
+- Multimodal encoder-decoder Transformer modeling touch as core modality
+- Trained with behavioral cloning augmented by touch dreaming for learning versatile manipulation
+
+### 6. **Data Efficiency & Physics-Aware Learning**
+
+**Foundation Models in Robotics: A Comprehensive Review**
+- arXiv: 2604.15395 (April 2026)
+- Reviews methods, models, datasets, challenges and future directions in robotics foundation models
+- Covers broader context of data efficiency in robot learning
+
+---
+
+## Key Gaps/Competing Work to Address
+
+The papers above represent significant recent work (late 2025 - 2026) in:
+1. **Data quality metrics** - Moving beyond visual similarity to action consistency and physics validation
+2. **Scaling laws** - Systematic studies showing how data, embodiments, and environments scale
+3. **Physics-aware data curation** - Methods like RoboCurate that validate synthetic data via simulation replay
+4. **Whole-body control with data diversity** - GBC, HTD, EgoHumanoid showing how to leverage diverse data sources while maintaining physics fidelity
+
+The most directly competing work would be **RoboCurate** (physics-verified synthetic data), **DataMIL** (quality-aware data selection), and the **Data Scaling Laws paper** which systematically studies similar tradeoffs in imitation learning.
+
+---
+
+Sources:
+- [Learning from the Best: Smoothness-Driven Metrics for Data Quality in Imitation Learning](https://arxiv.org/abs/2604.23000)
+- [DataMIL: Selecting Data for Robot Imitation Learning with Datamodels](https://arxiv.org/abs/2505.09603)
+- [Robot Data Curation with Mutual Information Estimators](https://arxiv.org/html/2502.08623v2)
+- [Scizor: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning](https://arxiv.org/html/2505.22626v1)
+- [Data Scaling Laws in Imitation Learning for Robotic Manipulation](https://arxiv.org/abs/2410.18647)
+- [Towards Embodiment Scaling Laws in Robot Locomotion](https://arxiv.org/abs/2505.05753)
+- [Robot Learning with Super-Linear Scaling](https://arxiv.org/abs/2412.01770)
+- [GBC: Generalized Behavior-Cloning Framework for Whole-Body Humanoid Imitation](https://arxiv.org/abs/2508.09960)
+- [RoboCurate: Harnessing Diversity with Action-Verified Neural Trajectory for Robot Learning](https://arxiv.org/abs/2602.18742)
+- [Learning Whole-Body Human-Humanoid Interaction from Human-Human Demonstrations](https://arxiv.org/abs/2601.09518)
+- [Active Stereo-Camera Outperforms Multi-Sensor Setup in ACT Imitation Learning for Humanoid Manipulation](https://arxiv.org/abs/2603.28422)
+- [EgoHumanoid: Unlocking In-the-Wild Loco-Manipulation with Robot-Free Egocentric Demonstration](https://arxiv.org/html/2602.10106v1)
+- [Psi_0: An Open Foundation Model Towards Universal Humanoid Loco-Manipulation](https://arxiv.org/abs/2603.12263)
+- [Learning Versatile Humanoid Manipulation with Touch Dreaming](https://arxiv.org/abs/2604.13015)
+- [Omnia: Synthetic Data Pipelines for Adaptive, Mission-Ready Militarized Humanoids](https://arxiv.org/html/2512.14411)
+- [Foundation Models in Robotics: A Comprehensive Review of Methods, Models, Datasets, Challenges and Future Research Directions](https://arxiv.org/html/2604.15395v1)
+- [Real2Render2Real: Scaling Robot Data Without Dynamics Simulation or Robot Hardware](https://arxiv.org/html/2505.09601v1)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f7b8d907-fc85-4bfc-814d-8d8f84a486a5",
+  "isSidechain": false,
+  "promptId": "b0150ee4-e7f7-496d-afa5-c1d4cb4e7131",
+  "type": "user",
+  "uuid": "456b2d60-5f73-457a-8e37-71da1ebe943a",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Search the web for potential competing work that may be missing from an empirical study about \"physics fidelity vs motion diversity for humanoid imitation learning.\" I need to find papers from late 2025 or 2026 that study:\n\n1. Data quality/quantity tradeoffs for humanoid robot learning\n2. Synthetic data generation quality for bipedal/humanoid robots\n3. Physics-aware data filtering for robot imitation learning\n4. Scaling laws for robot learning data\n\nUse these searches:\n- \"humanoid imitation learning data quality 2026 arxiv\"\n- \"synthetic data humanoid robot policy training 2025 2026\"\n- \"data quality filtering robot imitation learning 2025 2026\"\n- \"scaling laws robot learning data 2025 2026 arxiv\"\n- \"whole-body humanoid behavioral cloning data 2026\"\n- \"humanoid data generation pipeline 2026\"\n- \"physics validation synthetic robot demonstrations\"\n\nAlso search for any very recent work on:\n- \"DemoHLM humanoid loco-manipulation\" \n- \"AnchorDream robot data generation ICRA 2026\"\n- \"RoboCurate action-verified synthetic data\"\n\nReport all relevant papers found with titles, venues, dates, and brief descriptions.",
+    "agentId": "a52c9ecb504856c76",
+    "agentType": "Explore",
+    "content": [
+      {
+        "type": "text",
+        "text": "## Summary of Relevant Papers for Your Empirical Study\n\nBased on my comprehensive web search, here are the papers and work that may be missing from your study on \"physics fidelity vs motion diversity for humanoid imitation learning\":\n\n### 1. **Data Quality & Filtering for Robot Learning**\n\n**Learning from the Best: Smoothness-Driven Metrics for Data Quality in Imitation Learning**\n- arXiv: 2604.23000 (April 2026)\n- Proposes RINSE (Ranking and INdexing Smooth Examples), a lightweight framework for scoring demonstrations based on trajectory smoothness that is policy-architecture-agnostic\n- Directly addresses how data quality fundamentally limits behavioral cloning performance\n\n**DataMIL: Selecting Data for Robot Imitation Learning with Datamodels**\n- arXiv: 2505.09603 (May 2025)\n- Policy-driven data selection framework using datamodels paradigm that reasons about data selection end-to-end\n- Unlike traditional filtering, directly optimizes data selection for task success rather than using human notions of quality\n\n**Robot Data Curation with Mutual Information Estimators**\n- arXiv: 2502.08623 (February 2025)\n- Estimates relative quality of demonstrations using mutual information between states and actions\n- Can partition high vs. low-quality data and achieve higher performing policies across benchmarks\n\n**Scizor: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning**\n- arXiv: 2505.22626 (May 2025)\n- Self-supervised methods for curating large-scale imitation learning datasets\n- Addresses variability in demonstration quality that negatively impacts performance\n\n### 2. **Scaling Laws for Robot Learning Data**\n\n**Data Scaling Laws in Imitation Learning for Robotic Manipulation**\n- arXiv: 2410.18647 (ICLR 2025 Oral + Best Paper at Workshop on X-Embodiment Learning, CoRL 2024)\n- Comprehensive empirical study investigating whether data scaling laws exist in robotics\n- Collected 40,000+ demonstrations with 15,000+ real-world robot rollouts\n- Studied scaling across training environments, objects, and demonstrations\n\n**Towards Embodiment Scaling Laws in Robot Locomotion**\n- arXiv: 2505.05753 (May 2025)\n- Investigates embodiment scaling laws (increasing training embodiments improves generalization to unseen ones)\n- Generated ~1,000 procedural embodiments with topological/geometric/kinematic variations\n- Shows embodiment scaling enables broader generalization than data scaling alone\n\n**Robot Learning with Super-Linear Scaling**\n- arXiv: 2412.01770 (December 2024)\n- Demonstrates zero-shot and few-shot scaling laws on three real-world tasks\n\n### 3. **Synthetic Data & Physics Fidelity**\n\n**GBC: Generalized Behavior-Cloning Framework for Whole-Body Humanoid Imitation**\n- arXiv: 2508.09960 (August 2025)\n- Universal behavior cloning framework for whole-body humanoid imitation across heterogeneous morphologies\n- Includes real-time, differentiable MoCap data processing pipeline that converts motion capture into physically feasible, high-quality demonstrations\n- Directly relevant to your physics-fidelity question with data adaptation for different robot configurations\n\n**RoboCurate: Harnessing Diversity with Action-Verified Neural Trajectory for Robot Learning**\n- arXiv: 2602.18742 (February 2026)\n- Synthetic robot data generation framework that evaluates action quality by comparing with simulation replay\n- Replays predicted actions in simulator and assesses consistency between simulator rollout and generated video\n- Achieved +70.1% improvement on GR-1 Tabletop, +179.9% on ALLEX humanoid dexterous manipulation\n- Directly addresses physics validation for synthetic demonstrations\n\n**LeVERB: Humanoid Whole-Body Control**\n- 2025 (Berkeley)\n- Trained entirely on synthetic data with data synthesis pipeline collecting diverse human motions retargeted to humanoids\n- Renders photorealistically in randomized scene contexts\n\n**Real2Render2Real: Scaling Robot Data Without Dynamics Simulation or Robot Hardware**\n- arXiv: 2505.09601 (May 2025)\n- Pipeline for generating large-scale synthetic robot training data from smartphone object scans and human demonstrations\n- Scales trajectory diversity while preserving visual accuracy\n\n### 4. **Humanoid-Specific Imitation Learning**\n\n**Learning Whole-Body Human-Humanoid Interaction from Human-Human Demonstrations**\n- arXiv: 2601.09518 (January 2026)\n- Introduces D-STAR (Decoupled Spatio-Temporal Action Reasoner) for hierarchical humanoid imitation\n- Disentangles when to act from where to act, moving beyond simple trajectory mimicry\n\n**Active Stereo-Camera Outperforms Multi-Sensor Setup in ACT Imitation Learning for Humanoid Manipulation**\n- arXiv: 2603.28422 (March 2026)\n- Benchmarks 14 sensor configurations for humanoid imitation learning\n- Addresses data collection quality through sensor selection\n\n**EgoHumanoid: Unlocking In-the-Wild Loco-Manipulation with Robot-Free Egocentric Demonstration**\n- arXiv: 2602.10106 (February 2026)\n- Uses egocentric human demonstrations as scalable data source for humanoid loco-manipulation\n- Addresses embodiment gap from both data and modeling perspectives\n\n**Learning Humanoid Loco-manipulation with Constraints as Terminations**\n- Papers with this title show RL-based whole-body controllers for stable humanoid manipulation\n- Whole-body humanoid data collection combining VR teleoperation with human-to-humanoid motion mapping\n\n**Psi_0: An Open Foundation Model Towards Universal Humanoid Loco-Manipulation**\n- arXiv: 2603.12263 (March 2026)\n- Foundation model for humanoid loco-manipulation\n\n### 5. **Motion Diversity & Data Generation Pipelines**\n\n**Omnia: Synthetic Data Pipelines for Adaptive, Mission-Ready Militarized Humanoids**\n- arXiv: 2512.14411 (December 2025)\n- Synthetic data pipelines transforming first-person spatial data into training data\n- Accelerates humanoid autonomy\n\n**NVIDIA Isaac GR00T Blueprint**\n- Generates exponentially larger synthetic motion datasets for humanoid training via imitation learning\n- NVIDIA Cosmos Predict 2.5 enables physically based synthetic data generation and policy evaluation\n\n**Humanoid Transformer with Touch Dreaming (HTD)**\n- arXiv: 2604.13015 (April 2026)\n- Multimodal encoder-decoder Transformer modeling touch as core modality\n- Trained with behavioral cloning augmented by touch dreaming for learning versatile manipulation\n\n### 6. **Data Efficiency & Physics-Aware Learning**\n\n**Foundation Models in Robotics: A Comprehensive Review**\n- arXiv: 2604.15395 (April 2026)\n- Reviews methods, models, datasets, challenges and future directions in robotics foundation models\n- Covers broader context of data efficiency in robot learning\n\n---\n\n## Key Gaps/Competing Work to Address\n\nThe papers above represent significant recent work (late 2025 - 2026) in:\n1. **Data quality metrics** - Moving beyond visual similarity to action consistency and physics validation\n2. **Scaling laws** - Systematic studies showing how data, embodiments, and environments scale\n3. **Physics-aware data curation** - Methods like RoboCurate that validate synthetic data via simulation replay\n4. **Whole-body control with data diversity** - GBC, HTD, EgoHumanoid showing how to leverage diverse data sources while maintaining physics fidelity\n\nThe most directly competing work would be **RoboCurate** (physics-verified synthetic data), **DataMIL** (quality-aware data selection), and the **Data Scaling Laws paper** which systematically studies similar tradeoffs in imitation learning.\n\n---\n\nSources:\n- [Learning from the Best: Smoothness-Driven Metrics for Data Quality in Imitation Learning](https://arxiv.org/abs/2604.23000)\n- [DataMIL: Selecting Data for Robot Imitation Learning with Datamodels](https://arxiv.org/abs/2505.09603)\n- [Robot Data Curation with Mutual Information Estimators](https://arxiv.org/html/2502.08623v2)\n- [Scizor: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning](https://arxiv.org/html/2505.22626v1)\n- [Data Scaling Laws in Imitation Learning for Robotic Manipulation](https://arxiv.org/abs/2410.18647)\n- [Towards Embodiment Scaling Laws in Robot Locomotion](https://arxiv.org/abs/2505.05753)\n- [Robot Learning with Super-Linear Scaling](https://arxiv.org/abs/2412.01770)\n- [GBC: Generalized Behavior-Cloning Framework for Whole-Body Humanoid Imitation](https://arxiv.org/abs/2508.09960)\n- [RoboCurate: Harnessing Diversity with Action-Verified Neural Trajectory for Robot Learning](https://arxiv.org/abs/2602.18742)\n- [Learning Whole-Body Human-Humanoid Interaction from Human-Human Demonstrations](https://arxiv.org/abs/2601.09518)\n- [Active Stereo-Camera Outperforms Multi-Sensor Setup in ACT Imitation Learning for Humanoid Manipulation](https://arxiv.org/abs/2603.28422)\n- [EgoHumanoid: Unlocking In-the-Wild Loco-Manipulation with Robot-Free Egocentric Demonstration](https://arxiv.org/html/2602.10106v1)\n- [Psi_0: An Open Foundation Model Towards Universal Humanoid Loco-Manipulation](https://arxiv.org/abs/2603.12263)\n- [Learning Versatile Humanoid Manipulation with Touch Dreaming](https://arxiv.org/abs/2604.13015)\n- [Omnia: Synthetic Data Pipelines for Adaptive, Mission-Ready Militarized Humanoids](https://arxiv.org/html/2512.14411)\n- [Foundation Models in Robotics: A Comprehensive Review of Methods, Models, Datasets, Challenges and Future Research Directions](https://arxiv.org/html/2604.15395v1)\n- [Real2Render2Real: Scaling Robot Data Without Dynamics Simulation or Robot Hardware](https://arxiv.org/html/2505.09601v1)"
+      }
+    ],
+    "totalDurationMs": 36878,
+    "totalTokens": 27443,
+    "totalToolUseCount": 10,
+    "usage": {
+      "input_tokens": 3534,
+      "cache_creation_input_tokens": 6930,
+      "cache_read_input_tokens": 14362,
+      "output_tokens": 2617,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 6930
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3534,
+          "output_tokens": 2617,
+          "cache_read_input_tokens": 14362,
+          "cache_creation_input_tokens": 6930,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 6930,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 10
+    }
+  },
+  "sourceToolAssistantUUID": "f7b8d907-fc85-4bfc-814d-8d8f84a486a5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b9bb4059-e3b3-488b-9ce3-35bd9d7de68e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "456b2d60-5f73-457a-8e37-71da1ebe943a",
+  "sessionId": "b9bb4059-e3b3-488b-9ce3-35bd9d7de68e"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Scaling laws for humanoid imitation learning",
+  "sessionId": "b9bb4059-e3b3-488b-9ce3-35bd9d7de68e"
+}
+```
+
+---
+
+### Assistant
+
+_source line 22 · 2026-05-10T19:18:44.605Z_
+
+Good, key references verified. Now let me check some specific concerns: compute budget accuracy, and a few more potential competitors.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "456b2d60-5f73-457a-8e37-71da1ebe943a",
+  "isSidechain": false,
+  "requestId": "req_011CauRktcGLorGCRbPfwqFa",
+  "type": "assistant",
+  "uuid": "2f0e9d7d-cfa6-4297-8140-d4f84f2901a0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b9bb4059-e3b3-488b-9ce3-35bd9d7de68e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PQ18wSnjtTNfewoQu9tBT6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1086,
+      "cache_creation_input_tokens": 6792,
+      "cache_read_input_tokens": 33871,
+      "output_tokens": 823,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6792,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1086,
+          "output_tokens": 823,
+          "cache_read_input_tokens": 33871,
+          "cache_creation_input_tokens": 6792,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6792
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-10T19:18:53.883Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01EuddEsE2cQ5LwrhVgcJDuy`</summary>
+
+```json
+{
+  "subagent_type": "Explore",
+  "description": "Check compute budget realism",
+  "prompt": "I need to verify the compute budget realism for an empirical study that claims ~155-185 H100-hours total for:\n- Kimodo motion generation on G1: ~2h\n- Isaac Lab physics validation: ~8h\n- Isaac Lab rendering (27 conditions + 9 ACT): ~22h\n- Diffusion Policy training (27 conditions × 2 seeds × 1.5h = 81h)\n- ACT training (9 conditions × 2 seeds × 1h = 18h)\n- Evaluation rollouts: ~8h\n- Pilot experiments: ~6h\n- Debug: ~10h\n\nSearch for:\n1. \"Diffusion Policy training time GPU hours\" - how long does it take to train a Diffusion Policy (1D U-Net) for robot control? Is 1.5h per condition on H100 realistic?\n2. \"ACT action chunking transformer training time\" - how long does ACT training take?\n3. \"Isaac Lab rendering throughput humanoid\" - how fast can Isaac Lab render humanoid environments?\n4. \"Kimodo inference speed motion generation\" - how fast is Kimodo inference?\n\nAlso search for:\n- \"diffusion policy training cost robot manipulation\"\n- \"Isaac Lab G1 humanoid environment setup\"\n\nReport what you find about typical training times for these components."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2f0e9d7d-cfa6-4297-8140-d4f84f2901a0",
+  "isSidechain": false,
+  "requestId": "req_011CauRktcGLorGCRbPfwqFa",
+  "type": "assistant",
+  "uuid": "271a81e8-9498-4708-bc49-b6f083bc6ac7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b9bb4059-e3b3-488b-9ce3-35bd9d7de68e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PQ18wSnjtTNfewoQu9tBT6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1086,
+      "cache_creation_input_tokens": 6792,
+      "cache_read_input_tokens": 33871,
+      "output_tokens": 823,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6792,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1086,
+          "output_tokens": 823,
+          "cache_read_input_tokens": 33871,
+          "cache_creation_input_tokens": 6792,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6792
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-10T19:19:02.601Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01VW5Pz871mk4vEpbQ93i4PZ`</summary>
+
+```json
+{
+  "subagent_type": "Explore",
+  "description": "Search for recent concurrent work",
+  "prompt": "Search for very recent (2026) papers that might be directly competing with a study on \"physics fidelity vs diversity in humanoid imitation learning data.\" I need to check if anyone has already done this study or something very similar.\n\nSearch queries:\n1. \"humanoid data quality diversity imitation learning 2026\"\n2. \"synthetic motion quality humanoid policy 2026 arxiv\"\n3. \"data curation humanoid robot learning 2026\"\n4. \"GR00T data pipeline scaling 2026\"\n5. \"Isaac Lab humanoid imitation learning data\"\n6. \"Diffusion Policy humanoid whole-body training data\"\n7. \"fidelity diversity tradeoff robot data 2026\"\n8. \"physics validation synthetic humanoid demonstrations 2026\"\n9. \"NVIDIA humanoid data generation pipeline 2026\"\n10. \"Psi_0 humanoid loco-manipulation foundation model\"\n\nAlso check:\n- \"arXiv 2603.12263\" (Psi_0 foundation model)\n- \"arXiv 2604.13015\" (Humanoid Transformer Touch Dreaming)\n- \"arXiv 2604.23000\" (Learning from the Best smoothness metrics)\n\nI want to know if any of these papers study the same core question: how physics fidelity and motion diversity interact for humanoid imitation learning.\n\nReport all findings."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "271a81e8-9498-4708-bc49-b6f083bc6ac7",
+  "isSidechain": false,
+  "requestId": "req_011CauRktcGLorGCRbPfwqFa",
+  "type": "assistant",
+  "uuid": "e2290361-e751-405f-8cc9-348fbf2311fc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b9bb4059-e3b3-488b-9ce3-35bd9d7de68e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PQ18wSnjtTNfewoQu9tBT6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1086,
+      "cache_creation_input_tokens": 6792,
+      "cache_read_input_tokens": 33871,
+      "output_tokens": 823,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6792,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1086,
+          "output_tokens": 823,
+          "cache_read_input_tokens": 33871,
+          "cache_creation_input_tokens": 6792,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6792
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-10T19:19:20.876Z_
+
+<details><summary>↩ Tool result · `toolu_01EuddEsE2cQ5LwrhVgcJDuy`</summary>
+
+```text
+Based on my search results, here's what I found about the computational realism of your empirical study's budget:
+
+## Diffusion Policy Training Time (1.5h per condition on H100)
+
+Your estimate of 1.5 hours per condition appears **optimistic but not unreasonable** for H100s, with important caveats:
+
+- Standard Diffusion Policy on RTX 3090/4090 takes 4-12 hours for 200-episode datasets
+- DP3 (3D variant) takes ~3 hours on an A40 GPU  
+- Mini-Diffuser (optimized) trains in <13 hours on RTX 4090 or 1 day on A100
+- Multi-task policies take days; generalist policies take weeks on multi-GPU clusters
+
+H100s are substantially faster than these consumer/mid-range GPUs, so 1.5 hours per condition might be achievable if: (a) dataset sizes are modest, (b) you're using an optimized variant like Mini-Diffuser, and (c) the 1D U-Net architecture is relatively lightweight. However, 81 hours total for 27 conditions × 2 seeds seems tight—you may face overhead from data loading, validation, and checkpoint management that could push this higher.
+
+## ACT (Action Chunking Transformer) Training Time (~1h per condition)
+
+Your estimate of 1 hour per condition appears **realistic to slightly optimistic**:
+
+- Standard ACT requires 5-8 hours on RTX 2080 Ti for full training
+- Training can be as fast as <30 minutes on high-end GPUs (RTX 3080+) with small datasets
+- 100k training steps on single GPU typically takes "a few hours"
+
+Your 9 conditions × 2 seeds × 1h = 18 hours total is reasonable if conditions have relatively small datasets. On H100s with modest demonstration sets, 1 hour per condition is plausible.
+
+## Isaac Lab Rendering Throughput
+
+Isaac Lab achieves **135,000 FPS for humanoid locomotion** (Unitree H1), which is exceptionally high. Your 22 hours for rendering 27 conditions + 9 ACT variants appears **very realistic**:
+
+- Isaac Lab uses GPU-accelerated tiled rendering via RTX, batching thousands of environments into single render passes
+- The TiledCamera aggregates views across many environments efficiently
+- This enables massive parallel rendering for policy training data generation
+
+22 hours to render diverse conditions is actually quite reasonable given the high throughput.
+
+## Kimodo Motion Generation Inference Speed (~2h for G1 motion)
+
+Your 2-hour estimate for Kimodo on G1 is **plausible but worth scrutinizing**:
+
+- Kimodo requires 2-5 seconds per inference call for motion generation
+- Maximum output is 10 seconds of motion per inference
+- Requires ~17GB VRAM (can run on smaller GPUs with CPU-offloaded text encoding)
+
+If you're generating motion for 27 conditions with some diversity and accounting for failed generations, batch processing overhead, and possibly some iterative refinement, 2 hours is reasonable. However, this is one of the potential bottlenecks if your motion diversity requirements are high.
+
+## Overall Budget Assessment
+
+**Total from your breakdown: ~155h to 185h on H100**
+
+This appears **moderately realistic** with these caveats:
+
+1. **Diffusion Policy (81h)** - This is your biggest unknown. If using standard DP without optimization tricks, you might exceed this. Mini-Diffuser or other optimizations could help you stay within budget.
+
+2. **ACT (18h)** - Reasonable, likely achievable on H100.
+
+3. **Isaac Lab Rendering (22h)** - Well-grounded given Isaac Lab's exceptional rendering throughput.
+
+4. **Kimodo (2h)** - Plausible but depends on motion generation complexity and diversity requirements.
+
+5. **Evaluation + Pilot + Debug (24h)** - This overhead is realistic for comprehensive evaluation and iterative debugging.
+
+**Risk factors:**
+- Diffusion Policy training could exceed 81h if datasets are larger or models more complex than anticipated
+- Real-world physics validation might take longer than 8h for 27 conditions
+- Checkpoint saving, data I/O, and system overhead aren't always accounted for in theoretical estimates
+
+The budget appears credible but somewhat optimistic on training times. You might expect closer to 200-220 H100-hours in practice if you encounter typical engineering overhead and don't use cutting-edge optimization techniques.
+
+Sources:
+- [Mini Diffuser: Fast Multi-task Diffusion Policy Training](https://arxiv.org/html/2505.09430v2)
+- [3D Diffusion Policy](https://3d-diffusion-policy.github.io/)
+- [ACT Hugging Face Documentation](https://huggingface.co/docs/lerobot/act)
+- [Isaac Lab: A GPU-Accelerated Simulation Framework](https://arxiv.org/html/2511.04831v1)
+- [Kimodo: Scaling Controllable Human Motion Generation](https://arxiv.org/html/2603.15546v1)
+- [R²D² Scaling Multimodal Robot Learning with NVIDIA Isaac Lab](https://developer.nvidia.com/blog/r2d2-scaling-multimodal-robot-learning-with-nvidia-isaac-lab/)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "271a81e8-9498-4708-bc49-b6f083bc6ac7",
+  "isSidechain": false,
+  "promptId": "b0150ee4-e7f7-496d-afa5-c1d4cb4e7131",
+  "type": "user",
+  "uuid": "140b4e8c-4a4a-442b-ab5b-932b3a4e57b7",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "I need to verify the compute budget realism for an empirical study that claims ~155-185 H100-hours total for:\n- Kimodo motion generation on G1: ~2h\n- Isaac Lab physics validation: ~8h\n- Isaac Lab rendering (27 conditions + 9 ACT): ~22h\n- Diffusion Policy training (27 conditions × 2 seeds × 1.5h = 81h)\n- ACT training (9 conditions × 2 seeds × 1h = 18h)\n- Evaluation rollouts: ~8h\n- Pilot experiments: ~6h\n- Debug: ~10h\n\nSearch for:\n1. \"Diffusion Policy training time GPU hours\" - how long does it take to train a Diffusion Policy (1D U-Net) for robot control? Is 1.5h per condition on H100 realistic?\n2. \"ACT action chunking transformer training time\" - how long does ACT training take?\n3. \"Isaac Lab rendering throughput humanoid\" - how fast can Isaac Lab render humanoid environments?\n4. \"Kimodo inference speed motion generation\" - how fast is Kimodo inference?\n\nAlso search for:\n- \"diffusion policy training cost robot manipulation\"\n- \"Isaac Lab G1 humanoid environment setup\"\n\nReport what you find about typical training times for these components.",
+    "agentId": "a41d313cb1b0d8db5",
+    "agentType": "Explore",
+    "content": [
+      {
+        "type": "text",
+        "text": "Based on my search results, here's what I found about the computational realism of your empirical study's budget:\n\n## Diffusion Policy Training Time (1.5h per condition on H100)\n\nYour estimate of 1.5 hours per condition appears **optimistic but not unreasonable** for H100s, with important caveats:\n\n- Standard Diffusion Policy on RTX 3090/4090 takes 4-12 hours for 200-episode datasets\n- DP3 (3D variant) takes ~3 hours on an A40 GPU  \n- Mini-Diffuser (optimized) trains in <13 hours on RTX 4090 or 1 day on A100\n- Multi-task policies take days; generalist policies take weeks on multi-GPU clusters\n\nH100s are substantially faster than these consumer/mid-range GPUs, so 1.5 hours per condition might be achievable if: (a) dataset sizes are modest, (b) you're using an optimized variant like Mini-Diffuser, and (c) the 1D U-Net architecture is relatively lightweight. However, 81 hours total for 27 conditions × 2 seeds seems tight—you may face overhead from data loading, validation, and checkpoint management that could push this higher.\n\n## ACT (Action Chunking Transformer) Training Time (~1h per condition)\n\nYour estimate of 1 hour per condition appears **realistic to slightly optimistic**:\n\n- Standard ACT requires 5-8 hours on RTX 2080 Ti for full training\n- Training can be as fast as <30 minutes on high-end GPUs (RTX 3080+) with small datasets\n- 100k training steps on single GPU typically takes \"a few hours\"\n\nYour 9 conditions × 2 seeds × 1h = 18 hours total is reasonable if conditions have relatively small datasets. On H100s with modest demonstration sets, 1 hour per condition is plausible.\n\n## Isaac Lab Rendering Throughput\n\nIsaac Lab achieves **135,000 FPS for humanoid locomotion** (Unitree H1), which is exceptionally high. Your 22 hours for rendering 27 conditions + 9 ACT variants appears **very realistic**:\n\n- Isaac Lab uses GPU-accelerated tiled rendering via RTX, batching thousands of environments into single render passes\n- The TiledCamera aggregates views across many environments efficiently\n- This enables massive parallel rendering for policy training data generation\n\n22 hours to render diverse conditions is actually quite reasonable given the high throughput.\n\n## Kimodo Motion Generation Inference Speed (~2h for G1 motion)\n\nYour 2-hour estimate for Kimodo on G1 is **plausible but worth scrutinizing**:\n\n- Kimodo requires 2-5 seconds per inference call for motion generation\n- Maximum output is 10 seconds of motion per inference\n- Requires ~17GB VRAM (can run on smaller GPUs with CPU-offloaded text encoding)\n\nIf you're generating motion for 27 conditions with some diversity and accounting for failed generations, batch processing overhead, and possibly some iterative refinement, 2 hours is reasonable. However, this is one of the potential bottlenecks if your motion diversity requirements are high.\n\n## Overall Budget Assessment\n\n**Total from your breakdown: ~155h to 185h on H100**\n\nThis appears **moderately realistic** with these caveats:\n\n1. **Diffusion Policy (81h)** - This is your biggest unknown. If using standard DP without optimization tricks, you might exceed this. Mini-Diffuser or other optimizations could help you stay within budget.\n\n2. **ACT (18h)** - Reasonable, likely achievable on H100.\n\n3. **Isaac Lab Rendering (22h)** - Well-grounded given Isaac Lab's exceptional rendering throughput.\n\n4. **Kimodo (2h)** - Plausible but depends on motion generation complexity and diversity requirements.\n\n5. **Evaluation + Pilot + Debug (24h)** - This overhead is realistic for comprehensive evaluation and iterative debugging.\n\n**Risk factors:**\n- Diffusion Policy training could exceed 81h if datasets are larger or models more complex than anticipated\n- Real-world physics validation might take longer than 8h for 27 conditions\n- Checkpoint saving, data I/O, and system overhead aren't always accounted for in theoretical estimates\n\nThe budget appears credible but somewhat optimistic on training times. You might expect closer to 200-220 H100-hours in practice if you encounter typical engineering overhead and don't use cutting-edge optimization techniques.\n\nSources:\n- [Mini Diffuser: Fast Multi-task Diffusion Policy Training](https://arxiv.org/html/2505.09430v2)\n- [3D Diffusion Policy](https://3d-diffusion-policy.github.io/)\n- [ACT Hugging Face Documentation](https://huggingface.co/docs/lerobot/act)\n- [Isaac Lab: A GPU-Accelerated Simulation Framework](https://arxiv.org/html/2511.04831v1)\n- [Kimodo: Scaling Controllable Human Motion Generation](https://arxiv.org/html/2603.15546v1)\n- [R²D² Scaling Multimodal Robot Learning with NVIDIA Isaac Lab](https://developer.nvidia.com/blog/r2d2-scaling-multimodal-robot-learning-with-nvidia-isaac-lab/)"
+      }
+    ],
+    "totalDurationMs": 26988,
+    "totalTokens": 21996,
+    "totalToolUseCount": 6,
+    "usage": {
+      "input_tokens": 3514,
+      "cache_creation_input_tokens": 2836,
+      "cache_read_input_tokens": 14381,
+      "output_tokens": 1265,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2836
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3514,
+          "output_tokens": 1265,
+          "cache_read_input_tokens": 14381,
+          "cache_creation_input_tokens": 2836,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2836,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 6
+    }
+  },
+  "sourceToolAssistantUUID": "271a81e8-9498-4708-bc49-b6f083bc6ac7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b9bb4059-e3b3-488b-9ce3-35bd9d7de68e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-10T19:19:44.307Z_
+
+<details><summary>↩ Tool result · `toolu_01VW5Pz871mk4vEpbQ93i4PZ`</summary>
+
+```text
+Perfect! Now I have comprehensive information. Let me compile the findings for you.
+
+## Summary of Findings: Recent Competitive Research (2026)
+
+Based on my search of recent papers and arXiv submissions, I found **several papers that directly or tangentially address the physics fidelity vs. diversity question for humanoid imitation learning**, though none appear to study the exact same core question with the same framing.
+
+### Papers That Most Directly Compete
+
+**1. Ψ₀ (Psi-Zero) - arXiv 2603.12263**
+- **Directly addresses fidelity-diversity tradeoff**: This is your closest competitor.
+- **Core finding**: Demonstrates that high-quality, domain-specific data dramatically outperforms large volumes of low-quality data. Achieves superior performance with only ~800 hours human video + 30 hours robot data vs. baselines using 10x more data.
+- **Training methodology**: Two-stage training separating human pre-training from robot post-training, explicitly avoiding co-training on heterogeneous cross-embodiment data.
+- **Key insight**: The paper validates that quality beats quantity for humanoid loco-manipulation.
+- **URL**: https://arxiv.org/abs/2603.12263
+
+**2. Learning From the Best (RINSE) - arXiv 2604.23000**
+- **Related but narrower scope**: Proposes smoothness-based metrics (SAL and TED) to score demonstration quality without expensive retraining.
+- **Focus**: Data filtering and curation, showing 16% success improvement using only 1/6 of filtered data on RoboMimic.
+- **Does NOT directly study fidelity-diversity tradeoff**, but provides complementary methodology for assessing data quality.
+- **URL**: https://arxiv.org/abs/2604.23000
+
+**3. Humanoid Transformer with Touch Dreaming - arXiv 2604.13015**
+- **NOT a close competitor**: Focuses on architectural design and tactile sensing integration, not data composition analysis.
+- **Contribution**: Touch-based representation learning for contact-rich manipulation.
+- **Relevance**: Demonstrates multimodal data collection but doesn't study fidelity-diversity tradeoffs.
+- **URL**: https://arxiv.org/abs/2604.13015
+
+### Other Relevant 2026 Work (Less Direct Competition)
+
+**4. From Generated Human Videos to Physically Plausible Robot Trajectories (GenMimic)**
+- Studies synthetic motion data generation quality with physics-aware RL.
+- Creates GenMimicBench synthetic dataset across varying actions/contexts.
+- Addresses physics plausibility but focused on video-to-trajectory conversion, not core fidelity-diversity tradeoff.
+
+**5. The Role of Domain Randomization in Training Diffusion Policies (arXiv 2411.01349)**
+- Investigates domain randomization effects on diffusion policies for humanoid control.
+- Related to diversity aspect but focuses on randomization strategy, not the core fidelity-diversity interaction.
+
+**6. Quality Diversity Imitation Learning (arXiv 2410.06151, 2411.06965)**
+- Addresses quality-diversity in imitation learning framework.
+- Uses adversarial training (GAIL, VAIL) to learn diverse skills.
+- Different algorithmic focus than physics fidelity vs. motion diversity.
+
+**7. Natural Humanoid Robot Locomotion with Generative Motion Prior (arXiv 2503.09015)**
+- Uses generative models as motion priors for natural locomotion.
+- Addresses naturalness and diversity via generative approaches.
+- Not explicitly studying fidelity-diversity data composition tradeoff.
+
+**8. Data Infrastructure & Pipelines (GR00T, Isaac Lab, NeMo Curator)**
+- NVIDIA's GR00T combines real + synthetic + internet-scale video data.
+- Isaac Lab provides standardized data collection infrastructure.
+- These are tooling/infrastructure, not research studies of the fidelity-diversity question.
+
+**9. AGIBOT WORLD 2026 Dataset**
+- Explicitly balances fidelity (high-quality realistic data with error recovery) and diversity (varied task executions, environmental conditions).
+- Dataset paper, not a controlled study of the tradeoff mechanics.
+
+### Key Gaps (What You Could Uniquely Contribute)
+
+1. **Ψ₀ validates that quality > quantity** but doesn't systematically study the interaction effects between specific fidelity metrics (physics accuracy, motion naturalness, etc.) and diversity dimensions (task variations, morphology variations, etc.).
+
+2. **No papers found that systematically ablate** physics fidelity (e.g., perfect physics vs. degraded physics vs. learned approximations) against motion diversity metrics.
+
+3. **RINSE provides quality metrics** but doesn't connect smoothness to downstream policy performance vs. diversity-fidelity tradeoffs.
+
+4. **Data infrastructure papers** (GR00T, NeMo, Isaac) describe pipelines but don't provide controlled scientific analysis of the tradeoff.
+
+### Recommendation
+
+Your study is **well-positioned as novel research** if you:
+- Systematically ablate physics fidelity dimensions (contact accuracy, dynamics precision, etc.)
+- Study interaction with diversity metrics (task coverage, morphology variation, motion style, etc.)
+- Provide generalizable findings beyond single-dataset or single-algorithm evaluations
+- Include comparison with Ψ₀'s approach to validate findings on their regime
+
+Ψ₀ is your main competitor in spirit but with a different methodology—they show quality matters via a two-stage training split, while you appear to be doing a more controlled scientific study of the actual fidelity-diversity interaction function.
+
+### Sources:
+- [Ψ₀: An Open Foundation Model Towards Universal Humanoid Loco-Manipulation](https://arxiv.org/abs/2603.12263)
+- [Learning from the Best: Ranking-Supervised Imitation Learning from Demonstrations](https://arxiv.org/abs/2604.23000)
+- [Humanoid Transformer with Touch Dreaming for Contact-Rich Manipulation](https://arxiv.org/abs/2604.13015)
+- [From Generated Human Videos to Physically Plausible Robot Trajectories](https://arxiv.org/html/2512.05094)
+- [The Role of Domain Randomization in Training Diffusion Policies for Whole-Body Humanoid Control](https://arxiv.org/abs/2411.01349)
+- [Quality Diversity Imitation Learning](https://arxiv.org/html/2410.06151v1)
+- [Natural Humanoid Robot Locomotion with Generative Motion Prior](https://arxiv.org/html/2503.09015v1)
+- [Benchmarking Humanoid Imitation Learning with Motion Difficulty](https://arxiv.org/html/2512.07248)
+- [Isaac Lab: A GPU-Accelerated Simulation Framework for Multi-Modal Robot Learning](https://arxiv.org/html/2511.04831v1)
+- [NVIDIA Isaac GR00T Blueprint](https://developer.nvidia.com/isaac/gr00t)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e2290361-e751-405f-8cc9-348fbf2311fc",
+  "isSidechain": false,
+  "promptId": "b0150ee4-e7f7-496d-afa5-c1d4cb4e7131",
+  "type": "user",
+  "uuid": "6756ab47-1667-4f34-ba4b-502ad0b91fd6",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Search for very recent (2026) papers that might be directly competing with a study on \"physics fidelity vs diversity in humanoid imitation learning data.\" I need to check if anyone has already done this study or something very similar.\n\nSearch queries:\n1. \"humanoid data quality diversity imitation learning 2026\"\n2. \"synthetic motion quality humanoid policy 2026 arxiv\"\n3. \"data curation humanoid robot learning 2026\"\n4. \"GR00T data pipeline scaling 2026\"\n5. \"Isaac Lab humanoid imitation learning data\"\n6. \"Diffusion Policy humanoid whole-body training data\"\n7. \"fidelity diversity tradeoff robot data 2026\"\n8. \"physics validation synthetic humanoid demonstrations 2026\"\n9. \"NVIDIA humanoid data generation pipeline 2026\"\n10. \"Psi_0 humanoid loco-manipulation foundation model\"\n\nAlso check:\n- \"arXiv 2603.12263\" (Psi_0 foundation model)\n- \"arXiv 2604.13015\" (Humanoid Transformer Touch Dreaming)\n- \"arXiv 2604.23000\" (Learning from the Best smoothness metrics)\n\nI want to know if any of these papers study the same core question: how physics fidelity and motion diversity interact for humanoid imitation learning.\n\nReport all findings.",
+    "agentId": "a81bd06220acdefeb",
+    "agentType": "Explore",
+    "content": [
+      {
+        "type": "text",
+        "text": "Perfect! Now I have comprehensive information. Let me compile the findings for you.\n\n## Summary of Findings: Recent Competitive Research (2026)\n\nBased on my search of recent papers and arXiv submissions, I found **several papers that directly or tangentially address the physics fidelity vs. diversity question for humanoid imitation learning**, though none appear to study the exact same core question with the same framing.\n\n### Papers That Most Directly Compete\n\n**1. Ψ₀ (Psi-Zero) - arXiv 2603.12263**\n- **Directly addresses fidelity-diversity tradeoff**: This is your closest competitor.\n- **Core finding**: Demonstrates that high-quality, domain-specific data dramatically outperforms large volumes of low-quality data. Achieves superior performance with only ~800 hours human video + 30 hours robot data vs. baselines using 10x more data.\n- **Training methodology**: Two-stage training separating human pre-training from robot post-training, explicitly avoiding co-training on heterogeneous cross-embodiment data.\n- **Key insight**: The paper validates that quality beats quantity for humanoid loco-manipulation.\n- **URL**: https://arxiv.org/abs/2603.12263\n\n**2. Learning From the Best (RINSE) - arXiv 2604.23000**\n- **Related but narrower scope**: Proposes smoothness-based metrics (SAL and TED) to score demonstration quality without expensive retraining.\n- **Focus**: Data filtering and curation, showing 16% success improvement using only 1/6 of filtered data on RoboMimic.\n- **Does NOT directly study fidelity-diversity tradeoff**, but provides complementary methodology for assessing data quality.\n- **URL**: https://arxiv.org/abs/2604.23000\n\n**3. Humanoid Transformer with Touch Dreaming - arXiv 2604.13015**\n- **NOT a close competitor**: Focuses on architectural design and tactile sensing integration, not data composition analysis.\n- **Contribution**: Touch-based representation learning for contact-rich manipulation.\n- **Relevance**: Demonstrates multimodal data collection but doesn't study fidelity-diversity tradeoffs.\n- **URL**: https://arxiv.org/abs/2604.13015\n\n### Other Relevant 2026 Work (Less Direct Competition)\n\n**4. From Generated Human Videos to Physically Plausible Robot Trajectories (GenMimic)**\n- Studies synthetic motion data generation quality with physics-aware RL.\n- Creates GenMimicBench synthetic dataset across varying actions/contexts.\n- Addresses physics plausibility but focused on video-to-trajectory conversion, not core fidelity-diversity tradeoff.\n\n**5. The Role of Domain Randomization in Training Diffusion Policies (arXiv 2411.01349)**\n- Investigates domain randomization effects on diffusion policies for humanoid control.\n- Related to diversity aspect but focuses on randomization strategy, not the core fidelity-diversity interaction.\n\n**6. Quality Diversity Imitation Learning (arXiv 2410.06151, 2411.06965)**\n- Addresses quality-diversity in imitation learning framework.\n- Uses adversarial training (GAIL, VAIL) to learn diverse skills.\n- Different algorithmic focus than physics fidelity vs. motion diversity.\n\n**7. Natural Humanoid Robot Locomotion with Generative Motion Prior (arXiv 2503.09015)**\n- Uses generative models as motion priors for natural locomotion.\n- Addresses naturalness and diversity via generative approaches.\n- Not explicitly studying fidelity-diversity data composition tradeoff.\n\n**8. Data Infrastructure & Pipelines (GR00T, Isaac Lab, NeMo Curator)**\n- NVIDIA's GR00T combines real + synthetic + internet-scale video data.\n- Isaac Lab provides standardized data collection infrastructure.\n- These are tooling/infrastructure, not research studies of the fidelity-diversity question.\n\n**9. AGIBOT WORLD 2026 Dataset**\n- Explicitly balances fidelity (high-quality realistic data with error recovery) and diversity (varied task executions, environmental conditions).\n- Dataset paper, not a controlled study of the tradeoff mechanics.\n\n### Key Gaps (What You Could Uniquely Contribute)\n\n1. **Ψ₀ validates that quality > quantity** but doesn't systematically study the interaction effects between specific fidelity metrics (physics accuracy, motion naturalness, etc.) and diversity dimensions (task variations, morphology variations, etc.).\n\n2. **No papers found that systematically ablate** physics fidelity (e.g., perfect physics vs. degraded physics vs. learned approximations) against motion diversity metrics.\n\n3. **RINSE provides quality metrics** but doesn't connect smoothness to downstream policy performance vs. diversity-fidelity tradeoffs.\n\n4. **Data infrastructure papers** (GR00T, NeMo, Isaac) describe pipelines but don't provide controlled scientific analysis of the tradeoff.\n\n### Recommendation\n\nYour study is **well-positioned as novel research** if you:\n- Systematically ablate physics fidelity dimensions (contact accuracy, dynamics precision, etc.)\n- Study interaction with diversity metrics (task coverage, morphology variation, motion style, etc.)\n- Provide generalizable findings beyond single-dataset or single-algorithm evaluations\n- Include comparison with Ψ₀'s approach to validate findings on their regime\n\nΨ₀ is your main competitor in spirit but with a different methodology—they show quality matters via a two-stage training split, while you appear to be doing a more controlled scientific study of the actual fidelity-diversity interaction function.\n\n### Sources:\n- [Ψ₀: An Open Foundation Model Towards Universal Humanoid Loco-Manipulation](https://arxiv.org/abs/2603.12263)\n- [Learning from the Best: Ranking-Supervised Imitation Learning from Demonstrations](https://arxiv.org/abs/2604.23000)\n- [Humanoid Transformer with Touch Dreaming for Contact-Rich Manipulation](https://arxiv.org/abs/2604.13015)\n- [From Generated Human Videos to Physically Plausible Robot Trajectories](https://arxiv.org/html/2512.05094)\n- [The Role of Domain Randomization in Training Diffusion Policies for Whole-Body Humanoid Control](https://arxiv.org/abs/2411.01349)\n- [Quality Diversity Imitation Learning](https://arxiv.org/html/2410.06151v1)\n- [Natural Humanoid Robot Locomotion with Generative Motion Prior](https://arxiv.org/html/2503.09015v1)\n- [Benchmarking Humanoid Imitation Learning with Motion Difficulty](https://arxiv.org/html/2512.07248)\n- [Isaac Lab: A GPU-Accelerated Simulation Framework for Multi-Modal Robot Learning](https://arxiv.org/html/2511.04831v1)\n- [NVIDIA Isaac GR00T Blueprint](https://developer.nvidia.com/isaac/gr00t)"
+      }
+    ],
+    "totalDurationMs": 41701,
+    "totalTokens": 28151,
+    "totalToolUseCount": 13,
+    "usage": {
+      "input_tokens": 7,
+      "cache_creation_input_tokens": 9872,
+      "cache_read_input_tokens": 16588,
+      "output_tokens": 1684,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 9872
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 7,
+          "output_tokens": 1684,
+          "cache_read_input_tokens": 16588,
+          "cache_creation_input_tokens": 9872,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 9872,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 13
+    }
+  },
+  "sourceToolAssistantUUID": "e2290361-e751-405f-8cc9-348fbf2311fc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b9bb4059-e3b3-488b-9ce3-35bd9d7de68e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 27_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "6756ab47-1667-4f34-ba4b-502ad0b91fd6",
+  "sessionId": "b9bb4059-e3b3-488b-9ce3-35bd9d7de68e"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 28_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Scaling laws for humanoid imitation learning",
+  "sessionId": "b9bb4059-e3b3-488b-9ce3-35bd9d7de68e"
+}
+```
+
+---
+
+### Assistant
+
+_source line 29 · 2026-05-10T19:22:20.510Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me carefully analyze and synthesize all my findings to form an independent judgment on this idea.
+
+## Key Verified Facts
+
+1. **CoRL 2026 deadlines**: Abstract May 26, Paper May 29 - CONFIRMED
+2. **GR00T N1**: Uses IL (not RL) for VLA, RL only for SONIC WBC - CONFIRMED. The proposal now correctly states this.
+3. **Kimodo**: Exists, G1 skeleton with 34 joints, NO finger DOF, supports text-to-motion and constraint-based generation. Public repo and weights available. Can generate "object interactions" but at wrist level only.
+
+
+4. **Data Scaling Laws (ICLR 2025)**: Exists, ICLR 2025 Oral + Best Paper at workshop. Diversity >> quantity for arm manipulation. CONFIRMED.
+5. **Iterative Closed-Loop (2602.21599)**: Exists, quality-curated data at 1/10 AMASS beats full dataset. CONFIRMED.
+6. **Benchmarking Humanoid IL (2512.07248)**: Exists, Motion Difficulty Score. CONFIRMED.
+7. **REFINE-DP**: Validated Diffusion Policy for humanoid loco-manipulation with >90% success. CONFIRMED.
+8. **TACT**: Uses ACT for whole-body control. CONFIRMED.
+
+Now I'm breaking down the compute budget for manual mode, which totals around 155 H100 hours across data generation, physics validation, rendering, policy training for both Diffusion Policy and ACT, evaluation, and debugging. My verification suggests this is moderately optimistic—realistically closer to 200-220 hours—which puts us right at the edge of the 200 H100h constraint. The auto mode pushes this to 185 hours with additional experiments included.
+
+Looking at the missing competitors, there are two critical gaps. Ψ₀ from March 2026 is particularly relevant since it shows that high-quality domain-specific data substantially outperforms larger volumes of lower-quality data for humanoid loco-manipulation tasks, which directly speaks to the study's hypotheses about data fidelity versus diversity. Learning from the Best and RINSE are also important recent works that should be included in the comparison.
+
+Now I'm assessing the novelty angle — the proposal has shifted from proposing a new method to conducting an empirical study instead.
+
+The core research question about how physics fidelity and motion diversity interact specifically for whole-body humanoid direct imitation learning hasn't been systematically explored. I'm identifying what sets this apart: it extends beyond existing data scaling work by adding the physics fidelity dimension to humanoid tasks, differs from prior approaches that use RL-based tracking or focus on arm manipulation rather than whole-body control, and provides actionable data generation guidance rather than just evaluation metrics. The controlled factorial design with testable hypotheses gives this a rigorous scientific foundation.
+
+Now I'm assessing feasibility. The key tools are available—Kimodo with public weights, Isaac Lab environments, and both Diffusion Policy and ACT have been validated for humanoid tasks. The main concern is whether Kimodo can actually generate high-quality loco-manipulation behaviors like box-carrying and cart-pushing, which the proposal plans to validate early on. The compute budget is tight at around 155 hours for manual mode and 185 for auto mode, leaving little margin for engineering overhead. The timeline is aggressive with only 17 days to abstract and 20 to paper, though there's a concrete plan in place. There's also uncertainty about whether Diffusion Policy will scale effectively to the 23-DOF humanoid setup.
+
+The critical dependency here is Kimodo's ability to produce meaningful task-relevant motions at different quality levels—if it only generates generic walking or gestures, the entire study falls apart. That's why the Day 1-2 validation is non-negotiable.
+
+For CoRL, this work has real merit. Findings papers perform well at the venue, the question addresses a timely and practically relevant problem in humanoid robotics, and the factorial design with four testable hypotheses would generate insights that directly shape how people approach humanoid data generation pipelines.
+
+But there are legitimate concerns. The risk of confirming something obvious—that physics matters for bipedal robots—is real, and the work relies on integrating existing tools rather than introducing algorithmic novelty. The scale is modest at 27 conditions with 2 seeds, the timeline is tight, and there's a notable gap in the experimental landscape. My sense is this sits right on the borderline for CoRL. If the findings surprise—especially if the anti-scaling hypothesis holds up—it's a solid contribution. If the results are predictable, it probably lands better as a workshop paper.
+
+Looking at the scoring, novelty is around 3 out of 5. The fidelity-diversity interaction for humanoid imitation learning is genuinely unexplored, and the four hypotheses add specificity, but the approach itself isn't methodologically novel—it's an empirical study combining known tools. There's also the complication that Ψ₀ already hints at quality mattering more than quantity in humanoid data, which partially overlaps with what I'm investigating.
+
+Feasibility looks like 3.5 out of 5. The tools are ready and I've validated them, and the compute is manageable, though tight. The real vulnerability is whether Kimodo can generate convincing loco-manipulation behaviors—if that fails, the whole study falls apart. The early validation on days 1-2 should catch that risk, but the timeline itself is still compressed.
+
+Clarity scores well at 4 out of 5. The hypotheses are explicit, the factorial design is straightforward, and I've done a thorough landscape review, though I'm missing that Ψ₀ paper. The proposal differentiates itself clearly from existing work.
+
+Impact is 3.5 out of 5. If the results surprise—showing anti-scaling effects or a strong fidelity-diversity interaction—that's genuinely useful for the humanoid community. But if the findings are predictable, the impact shrinks. Plus, direct imitation learning is becoming less central as the field shifts toward vision-language models with whole-body controllers, which limits the relevance window.
+
+The average comes to 3.5, which falls short of the 4.0 bar I'd want.
+
+The main issues are that Ψ₀ from March 2026 directly addresses quality versus quantity in humanoid data and needs to be in my landscape analysis, the compute budget is borderline with real-world overhead potentially pushing into the 200-220 hour range, and there's a risk with Kimodo's ability to generate meaningful task motions.
+
+The direct-IL regime itself may be too narrow—the field is moving toward VLA plus whole-body control architectures, so pure direct imitation learning findings might not translate to how systems are actually deployed. There's also the persistent risk that reviewers see the core insight—that physics matters for bipedal robots—as obvious, even though the anti-scaling hypothesis is the strongest non-obvious prediction. And I'm missing recent work on data curation like RINSE, which uses smoothness metrics for filtering.
+
+This is decision time. The proposal is well-designed and the question is genuine, but the score is below threshold, Ψ₀ partially overlaps with what I'm studying, the direct-IL focus is increasingly niche, and Kimodo's feasibility for loco-manipulation is a major unmitigated risk. Reconsidering feasibility though—this is mostly a parallelizable factorial experiment with no new method to develop, so with 4 H100s the wall-clock time becomes manageable if the pilot succeeds. That pushes feasibility closer to 4 out of 5. But impact remains limited if the field is moving away from direct-IL, and the novelty is empirical rather than methodological.
+
+The average stays at 3.5, below the 4.0 threshold. The question is whether the idea deserves to pass despite the scores.
+
+The proposal has genuinely improved—it now correctly frames the setup, includes all major competitors, has well-formulated hypotheses, feasible compute, and appropriate task design with de-risking pilots. But the core issues remain: no methodological novelty, the central question is partially addressed by existing work, the direct-IL regime is increasingly niche, and there's significant uncertainty around whether Kimodo can actually do loco-manipulation. Given the high 4.0 threshold is meant to filter for truly outstanding ideas, an honest 3.5 average doesn't meet that bar—this is a solid empirical study but not strong enough to pass.
+
+The main problems are limited novelty (just a factorial experiment with existing tools), core finding risk (the results might be obvious or already covered by prior work), and impact constrained by the niche direct-IL setting without world models. My instinct says this should fail. But I'm second-guessing myself because empirical studies using existing tools can still be top-tier papers—like the Data Scaling Laws work that got an ICLR oral and best paper at a workshop, which was also just robot data collection plus standard IL.
+
+The difference is that paper succeeded because it asked an important question and delivered actionable findings. This proposal has the same structure: extending a proven approach to humanoids with new dimensions like fidelity. If my hypotheses pan out—anti-scaling below fidelity thresholds, fidelity-diversity interactions, practical guidance on balance versus torque, task-dependent structure—then even if parts feel obvious, the specific quantification and thresholds would be genuinely novel for the community. No one has these numbers yet. That's what made the Data Scaling Laws paper work at such a high bar, so maybe this could actually be a solid contribution if the findings are crisp enough.
+
+But I'm being honest about the constraints here: I'm looking at roughly 2,700 evaluation rollouts across sim-only conditions, which is much smaller than the 40,000+ demonstrations and 15,000+ real-world rollouts that paper had. The whole thing also hinges on Kimodo working well, which I haven't verified yet. The average score of 3.5 reflects these real limitations, and under a strict "only truly outstanding ideas pass" standard, I'd have to reject this.
+
+That said, the user's constraints matter too—they specified CoRL 2026, a 200 H100h budget, a method contribution rather than a dataset, and acknowledged sim-only as a mitigation. The proposal actually meets all of those requirements.
+
+So the real question becomes whether it's CoRL-quality work. I think the honest answer is **fail**, because while it's well-designed, it lacks the novelty and impact CoRL expects: it's an empirical study using existing tools, the findings could be obvious, it's fairly niche to the direct-IL regime, and Ψ₀ already partially answers the core question.
+
+But let me reconsider the novelty score one more time. The specific interaction between fidelity and diversity is genuinely new, and there are four concrete non-obvious hypotheses here. There's no methodological novelty, sure, and Ψ₀ does partially address things, but I think 3 out of 5 is fair for novelty.
+
+Feasibility sits at 3.5—all the tools are available and the compute is within budget, though the timeline is tight and the Kimodo loco-manipulation quality is a real concern. Clarity is solid at 4 after all the refinement. Impact is 3.5 because while it addresses an important question for the humanoid community and offers practical guidance, the direct-IL regime is pretty niche and the findings might not generalize to other architectures.
+
+That puts the average at 3.5, which falls short of the 4.0 threshold.
+
+My verdict is fail. The empirical study design is solid after ten rounds, but it doesn't have the novelty or impact breadth that CoRL expects. The core contribution—a factorial analysis of fidelity versus diversity using existing tools—is useful but not particularly exciting. The direct-IL regime is becoming increasingly niche as the field shifts toward VLA and whole-body control. The missing Ψ₀ weakens the gap claim, and I haven't fully addressed the risk that the main finding—that physics matters for bipedal robots—might just be obvious.
+
+Though I'm second-guessing myself. Let me think about whether this actually deserves to pass. The Data Scaling Laws paper at ICLR 2025 showed that well-designed empirical scaling studies can be impactful, so maybe I'm being too harsh.
+
+But there's a key difference: Data Scaling Laws collected real robot data at massive scale and was the first systematic study of its kind, while this proposal uses only synthetic data in simulation and extends existing work rather than breaking new ground. Being second inherently carries less novelty. The average score of 3.5 reflects real limitations, and the threshold for passing is genuinely outstanding work at 4.0 or above. This is a competent study, but not outstanding enough.
+
+Actually, let me reconsider the novelty angle one more time. If these hypotheses pan out—especially the anti-scaling effect where diversity actually hurts below a physics fidelity threshold, or the specific interaction patterns between fidelity and diversity—those would be genuinely surprising findings that challenge the conventional wisdom from prior work. The violation taxonomy and task-dependent fidelity tolerance would also provide concrete, actionable insights that don't exist elsewhere.
+
+The real question is whether the experimental setup can actually detect these effects cleanly. With only 2 seeds and 50 rollouts per condition, statistical power is limited, but that's actually standard for CoRL papers—most don't go beyond 3-5 seeds anyway. And thinking about the broader impact: while the direct-IL concern is valid, many humanoid companies beyond NVIDIA are already using it for prototyping, so understanding when you actually need RL versus when IL suffices could be practically useful.
+
+If the study demonstrates that strict physics filtering makes direct IL viable, that's immediately actionable guidance for anyone generating humanoid training data—especially with the timing being perfect as data generation explodes. Maybe I should rate impact higher at 4/5, which would bring the overall average to around 3.6, still not quite hitting 4.0, but the question itself is genuinely important even if the regime is somewhat specialized.
+
+Actually, I need to stop second-guessing myself. This isn't truly outstanding work—it's a solid empirical study with existing tools, no real methodological novelty, and the core question is partially addressed by prior work like Ψ₀. The regime is niche, there's an obvious finding risk, and I can't honestly inflate the novelty score without being dishonest. This doesn't pass the bar.
+
+That said, I should give constructive feedback—this is legitimate research that would fit well at Humanoids 2026 or RA-L, just not quite at CoRL's level right now.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6756ab47-1667-4f34-ba4b-502ad0b91fd6",
+  "isSidechain": false,
+  "requestId": "req_011CauRqdr9TLwY8Fk96o5iq",
+  "type": "assistant",
+  "uuid": "22b569b1-ec29-4c19-b319-abf1e231e893",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b9bb4059-e3b3-488b-9ce3-35bd9d7de68e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PeBnqLgs1sCphxyJra2CtP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4909,
+      "cache_read_input_tokens": 40663,
+      "output_tokens": 6454,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4909,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6454,
+          "cache_read_input_tokens": 40663,
+          "cache_creation_input_tokens": 4909,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4909
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30 · 2026-05-10T19:22:20.913Z_
+
+Now let me fetch the WebSearch tool to check one more critical item — the Ψ₀ paper that was flagged as a potential competitor.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "22b569b1-ec29-4c19-b319-abf1e231e893",
+  "isSidechain": false,
+  "requestId": "req_011CauRqdr9TLwY8Fk96o5iq",
+  "type": "assistant",
+  "uuid": "6ae66e07-e9db-4cae-b283-fcb6e28888e6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b9bb4059-e3b3-488b-9ce3-35bd9d7de68e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PeBnqLgs1sCphxyJra2CtP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4909,
+      "cache_read_input_tokens": 40663,
+      "output_tokens": 6454,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4909,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6454,
+          "cache_read_input_tokens": 40663,
+          "cache_creation_input_tokens": 4909,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4909
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-10T19:22:21.515Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01EGsCwHyDDq42vYYLRXXuGE`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6ae66e07-e9db-4cae-b283-fcb6e28888e6",
+  "isSidechain": false,
+  "requestId": "req_011CauRqdr9TLwY8Fk96o5iq",
+  "type": "assistant",
+  "uuid": "2291ec8b-b7a1-4947-87ae-e1f00433ea23",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b9bb4059-e3b3-488b-9ce3-35bd9d7de68e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PeBnqLgs1sCphxyJra2CtP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4909,
+      "cache_read_input_tokens": 40663,
+      "output_tokens": 6454,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4909,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6454,
+          "cache_read_input_tokens": 40663,
+          "cache_creation_input_tokens": 4909,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4909
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-10T19:22:21.522Z_
+
+<details><summary>↩ Tool result · `toolu_01EGsCwHyDDq42vYYLRXXuGE`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2291ec8b-b7a1-4947-87ae-e1f00433ea23",
+  "isSidechain": false,
+  "promptId": "b0150ee4-e7f7-496d-afa5-c1d4cb4e7131",
+  "type": "user",
+  "uuid": "078ebd94-a7fd-4396-b075-9a3791367537",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "2291ec8b-b7a1-4947-87ae-e1f00433ea23",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b9bb4059-e3b3-488b-9ce3-35bd9d7de68e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 33 · 2026-05-10T19:22:21.585Z_
+
+```json
+{
+  "parentUuid": "078ebd94-a7fd-4396-b075-9a3791367537",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "87541b6a-18ba-408a-b2bf-0f7107868eab",
+  "timestamp": "2026-05-10T19:22:21.585Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b9bb4059-e3b3-488b-9ce3-35bd9d7de68e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 34_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "87541b6a-18ba-408a-b2bf-0f7107868eab",
+  "sessionId": "b9bb4059-e3b3-488b-9ce3-35bd9d7de68e"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 35_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Scaling laws for humanoid imitation learning",
+  "sessionId": "b9bb4059-e3b3-488b-9ce3-35bd9d7de68e"
+}
+```
+
+---
+
+### Assistant
+
+_source line 36 · 2026-05-10T19:22:24.979Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me search for Ψ₀ and a few other critical items to complete my review.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "87541b6a-18ba-408a-b2bf-0f7107868eab",
+  "isSidechain": false,
+  "requestId": "req_011CauS3ECBcpEUrGuapm3fS",
+  "type": "assistant",
+  "uuid": "ad660543-95b7-4e11-a0cd-2449fa990dc0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b9bb4059-e3b3-488b-9ce3-35bd9d7de68e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Axc2itRSygUWJLASvVKL6E",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 7562,
+      "cache_read_input_tokens": 45572,
+      "output_tokens": 246,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7562,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 246,
+          "cache_read_input_tokens": 45572,
+          "cache_creation_input_tokens": 7562,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7562
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37 · 2026-05-10T19:22:25.462Z_
+
+Let me verify the Ψ₀ paper and check for a few more potential competitors.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ad660543-95b7-4e11-a0cd-2449fa990dc0",
+  "isSidechain": false,
+  "requestId": "req_011CauS3ECBcpEUrGuapm3fS",
+  "type": "assistant",
+  "uuid": "66cc6a3b-5d2e-469a-a003-ce1d14ac33f8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b9bb4059-e3b3-488b-9ce3-35bd9d7de68e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Axc2itRSygUWJLASvVKL6E",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 7562,
+      "cache_read_input_tokens": 45572,
+      "output_tokens": 246,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7562,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 246,
+          "cache_read_input_tokens": 45572,
+          "cache_creation_input_tokens": 7562,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7562
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-10T19:22:26.879Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01ECXeRPbtfqvPNbYcPbbNQA`</summary>
+
+```json
+{
+  "query": "Psi_0 foundation model humanoid loco-manipulation arXiv 2603.12263 data quality"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "66cc6a3b-5d2e-469a-a003-ce1d14ac33f8",
+  "isSidechain": false,
+  "requestId": "req_011CauS3ECBcpEUrGuapm3fS",
+  "type": "assistant",
+  "uuid": "cb43b376-2b4a-4d6b-a5e6-65019d5fb12f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b9bb4059-e3b3-488b-9ce3-35bd9d7de68e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Axc2itRSygUWJLASvVKL6E",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 7562,
+      "cache_read_input_tokens": 45572,
+      "output_tokens": 246,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7562,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 246,
+          "cache_read_input_tokens": 45572,
+          "cache_creation_input_tokens": 7562,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7562
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-10T19:22:27.357Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018EkdDeYJbmDUuPmimf5jhw`</summary>
+
+```json
+{
+  "query": "humanoid imitation learning data fidelity diversity scaling 2026 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cb43b376-2b4a-4d6b-a5e6-65019d5fb12f",
+  "isSidechain": false,
+  "requestId": "req_011CauS3ECBcpEUrGuapm3fS",
+  "type": "assistant",
+  "uuid": "46174e06-5c31-468c-9a34-de1b2f3e7826",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b9bb4059-e3b3-488b-9ce3-35bd9d7de68e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Axc2itRSygUWJLASvVKL6E",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 7562,
+      "cache_read_input_tokens": 45572,
+      "output_tokens": 246,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7562,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 246,
+          "cache_read_input_tokens": 45572,
+          "cache_creation_input_tokens": 7562,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7562
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-10T19:22:28.394Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015irUjuNzvv4o54XzAJG3Fn`</summary>
+
+```json
+{
+  "query": "Diffusion Policy whole-body humanoid joint-level imitation learning without RL 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "46174e06-5c31-468c-9a34-de1b2f3e7826",
+  "isSidechain": false,
+  "requestId": "req_011CauS3ECBcpEUrGuapm3fS",
+  "type": "assistant",
+  "uuid": "8bab0489-8d11-47f1-8ed1-3709b35bcdd3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b9bb4059-e3b3-488b-9ce3-35bd9d7de68e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Axc2itRSygUWJLASvVKL6E",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 7562,
+      "cache_read_input_tokens": 45572,
+      "output_tokens": 246,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7562,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 246,
+          "cache_read_input_tokens": 45572,
+          "cache_creation_input_tokens": 7562,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7562
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-10T19:22:33.407Z_
+
+<details><summary>↩ Tool result · `toolu_01ECXeRPbtfqvPNbYcPbbNQA`</summary>
+
+```text
+Web search results for query: "Psi_0 foundation model humanoid loco-manipulation arXiv 2603.12263 data quality"
+
+Links: [{"title":"[2603.12263] $Ψ_0$: An Open Foundation Model Towards Universal Humanoid Loco-Manipulation","url":"https://arxiv.org/abs/2603.12263"},{"title":"Ψ₀: An Open Foundation Model Towards Universal Humanoid Loco-Manipulation","url":"https://arxiv.org/html/2603.12263v1"},{"title":"GitHub - physical-superintelligence-lab/Psi0: [RSS26'] Welcome to Psi-Zero, a Humanoid VLA towards Universal Humanoid Intelligence. · GitHub","url":"https://github.com/physical-superintelligence-lab/Psi0"},{"title":"Ψ₀: An Open Foundation Model Towards Universal Humanoid Loco-Manipulation","url":"https://psi-lab.ai/Psi0/"},{"title":"Ψ₀: An Open Foundation Model Towards Universal Humanoid Loco-Manipulation - Hongyi Jing","url":"https://hongyijing.me/publications/psi-0/"},{"title":"$Ψ_0$: An Open Foundation Model Towards Universal Humanoid Loco-Manipulation | alphaXiv","url":"https://www.alphaxiv.org/overview/2603.12263"},{"title":"GitHub - YanjieZe/awesome-humanoid-robot-learning: A Paper List for Humanoid Robot Learning. · GitHub","url":"https://github.com/YanjieZe/awesome-humanoid-robot-learning"},{"title":"Ψ0: An Open Foundation Model Towards Universal Humanoid Loco-Manipulation (Mar 2026) - YouTube","url":"https://www.youtube.com/watch?v=sf31pDnScf8"},{"title":"Ψ 0 Ψ_0 Ψ0: An Open Foundation Model Towards Universal Humanoid Loco-Manipulation | ArXiv Intelligence","url":"https://arxivai.iip.com.ua/en/paper/JUNFJUE4JTIwMCUyMCVD"},{"title":"$Ψ_0$: An Open Foundation Model Towards Universal Humanoid Loco-Manipulation","url":"https://www.wispaper.ai/en/blog/psi-zero-open-foundation-model-universal-humanoid-loco-manipulation-20260314/eng"}]
+
+Based on the search results, I found relevant information about the Ψ₀ (Psi-Zero) foundation model and its approach to data quality:
+
+## Key Findings on Data Quality:
+
+The paper argues that co-training on large and diverse human and humanoid data is suboptimal due to kinematic and motion disparities between humans and humanoid robots, resulting in unsatisfactory data efficiency and model performance despite considerable data volume.
+
+To address this challenge, the model decouples the learning process to maximize the utility of heterogeneous data sources. The model first learns task semantics and visual representation from large-scale human egocentric videos, and then is post-trained on a smaller amount of real-world teleoperated robot data to learn general dynamics of the embodiment.
+
+### Data Handling for Quality:
+
+Regarding specific data quality measures, action values from the EgoDex dataset are normalized using the 1st and 99th quantiles due to the presence of extreme outliers.
+
+### Performance Impact:
+
+The foundation model is capable of acquiring new long-horizon dexterous loco-manipulation skills by fine-tuning using as few as 80 trajectories, and Ψ₀ achieves superior performance on long-horizon tasks using 10x less data than current industry leaders.
+
+The core insight is that Ψ₀'s approach emphasizes **data quality and efficient learning** through decoupled training stages rather than simply scaling up data volume.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cb43b376-2b4a-4d6b-a5e6-65019d5fb12f",
+  "isSidechain": false,
+  "promptId": "b0150ee4-e7f7-496d-afa5-c1d4cb4e7131",
+  "type": "user",
+  "uuid": "21dbae4b-2724-4f9f-a585-525c5aa93116",
+  "toolUseResult": {
+    "query": "Psi_0 foundation model humanoid loco-manipulation arXiv 2603.12263 data quality",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012GVJK4U6c4D76VN6UZ8zij",
+        "content": [
+          {
+            "title": "[2603.12263] $Ψ_0$: An Open Foundation Model Towards Universal Humanoid Loco-Manipulation",
+            "url": "https://arxiv.org/abs/2603.12263"
+          },
+          {
+            "title": "Ψ₀: An Open Foundation Model Towards Universal Humanoid Loco-Manipulation",
+            "url": "https://arxiv.org/html/2603.12263v1"
+          },
+          {
+            "title": "GitHub - physical-superintelligence-lab/Psi0: [RSS26'] Welcome to Psi-Zero, a Humanoid VLA towards Universal Humanoid Intelligence. · GitHub",
+            "url": "https://github.com/physical-superintelligence-lab/Psi0"
+          },
+          {
+            "title": "Ψ₀: An Open Foundation Model Towards Universal Humanoid Loco-Manipulation",
+            "url": "https://psi-lab.ai/Psi0/"
+          },
+          {
+            "title": "Ψ₀: An Open Foundation Model Towards Universal Humanoid Loco-Manipulation - Hongyi Jing",
+            "url": "https://hongyijing.me/publications/psi-0/"
+          },
+          {
+            "title": "$Ψ_0$: An Open Foundation Model Towards Universal Humanoid Loco-Manipulation | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2603.12263"
+          },
+          {
+            "title": "GitHub - YanjieZe/awesome-humanoid-robot-learning: A Paper List for Humanoid Robot Learning. · GitHub",
+            "url": "https://github.com/YanjieZe/awesome-humanoid-robot-learning"
+          },
+          {
+            "title": "Ψ0: An Open Foundation Model Towards Universal Humanoid Loco-Manipulation (Mar 2026) - YouTube",
+            "url": "https://www.youtube.com/watch?v=sf31pDnScf8"
+          },
+          {
+            "title": "Ψ 0 Ψ_0 Ψ0: An Open Foundation Model Towards Universal Humanoid Loco-Manipulation | ArXiv Intelligence",
+            "url": "https://arxivai.iip.com.ua/en/paper/JUNFJUE4JTIwMCUyMCVD"
+          },
+          {
+            "title": "$Ψ_0$: An Open Foundation Model Towards Universal Humanoid Loco-Manipulation",
+            "url": "https://www.wispaper.ai/en/blog/psi-zero-open-foundation-model-universal-humanoid-loco-manipulation-20260314/eng"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about the Ψ₀ (Psi-Zero) foundation model and its approach to data quality:\n\n## Key Findings on Data Quality:\n\nThe paper argues that co-training on large and diverse human and humanoid data is suboptimal due to kinematic and motion disparities between humans and humanoid robots, resulting in unsatisfactory data efficiency and model performance despite considerable data volume.\n\nTo address this challenge, the model decouples the learning process to maximize the utility of heterogeneous data sources. The model first learns task semantics and visual representation from large-scale human egocentric videos, and then is post-trained on a smaller amount of real-world teleoperated robot data to learn general dynamics of the embodiment.\n\n### Data Handling for Quality:\n\nRegarding specific data quality measures, action values from the EgoDex dataset are normalized using the 1st and 99th quantiles due to the presence of extreme outliers.\n\n### Performance Impact:\n\nThe foundation model is capable of acquiring new long-horizon dexterous loco-manipulation skills by fine-tuning using as few as 80 trajectories, and Ψ₀ achieves superior performance on long-horizon tasks using 10x less data than current industry leaders.\n\nThe core insight is that Ψ₀'s approach emphasizes **data quality and efficient learning** through decoupled training stages rather than simply scaling up data volume."
+    ],
+    "durationSeconds": 6.524772148000018
+  },
+  "sourceToolAssistantUUID": "cb43b376-2b4a-4d6b-a5e6-65019d5fb12f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b9bb4059-e3b3-488b-9ce3-35bd9d7de68e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-10T19:22:34.552Z_
+
+<details><summary>↩ Tool result · `toolu_018EkdDeYJbmDUuPmimf5jhw`</summary>
+
+```text
+Web search results for query: "humanoid imitation learning data fidelity diversity scaling 2026 arxiv"
+
+Links: [{"title":"Benchmarking Humanoid Imitation Learning with Motion Difficulty","url":"https://arxiv.org/html/2512.07248"},{"title":"EgoMimic: Scaling Imitation Learning via Egocentric Video","url":"https://arxiv.org/html/2410.24221v1"},{"title":"I-CTRL: Imitation to Control Humanoid Robots Through ...","url":"https://arxiv.org/pdf/2405.08726"},{"title":"PHUMA: PHYSICALLY-GROUNDED HUMANOID ...","url":"https://openreview.net/pdf/a36747cac87a488230dfe8cb6d5c0aa5a6db82d7.pdf"},{"title":"Generalizable Humanoid Manipulation with Improved 3D Diffusion Policies","url":"https://arxiv.org/html/2410.10803v1"},{"title":"[2603.01452] Scaling Tasks, Not Samples: Mastering Humanoid Control through Multi-Task Model-Based Reinforcement Learning","url":"https://arxiv.org/abs/2603.01452"},{"title":"[2405.08726] I-CTRL: Imitation to Control Humanoid Robots Through Constrained Reinforcement Learning","url":"https://arxiv.org/abs/2405.08726"},{"title":"Data Scaling Laws in Imitation Learning for Robotic Manipulation","url":"https://arxiv.org/html/2410.18647v1"},{"title":"Robotic Manipulation via Imitation Learning: Taxonomy, Evolution, Benchmark, and Challenges","url":"https://arxiv.org/html/2508.17449v1"},{"title":"Quality Diversity Imitation Learning","url":"https://arxiv.org/html/2410.06151v1"}]
+
+I found several relevant research papers on humanoid imitation learning. Here's a summary of the key results:
+
+## Recent Humanoid Imitation Learning Research (2026)
+
+One recent work on benchmarking humanoid imitation learning found that imitation fidelity visibly degrades as motion difficulty increases. This research proposes Motion Difficulty Score (MDS), a novel metric that quantifies motion difficulty through three complementary components: Spectral Diversity, Variance Diversity, and Segment Diversity, and constructs MD-AMASS, the first difficulty-aware repartitioning of the AMASS dataset.
+
+## Data Scaling and Diversity
+
+Research on data scaling in imitation learning reveals that generalization performance follows a roughly power-law relationship with the number of environments and objects, and that the diversity of environments and objects is far more important than the absolute number of demonstrations.
+
+## Multi-Task Humanoid Control
+
+A recent approach (EfficientZero-Multitask) demonstrates that task diversity acts as a regularizer for model-based RL, improving dynamics learning and sample efficiency, and achieves state-of-the-art performance on HumanoidBench, establishing task scaling as a critical axis for scalable robotic learning.
+
+## Large-Scale Motion Dataset Management
+
+Another framework (I-CTRL) introduces an automatic priority scheduler to manage large-scale motion datasets when efficiently training a unified RL policy across diverse motions.
+
+These papers collectively address key aspects of your query regarding humanoid imitation learning with emphasis on data fidelity, diversity, and scaling approaches.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "46174e06-5c31-468c-9a34-de1b2f3e7826",
+  "isSidechain": false,
+  "promptId": "b0150ee4-e7f7-496d-afa5-c1d4cb4e7131",
+  "type": "user",
+  "uuid": "9b6914f1-0080-4ecc-bcfc-e056cdb8b9bc",
+  "toolUseResult": {
+    "query": "humanoid imitation learning data fidelity diversity scaling 2026 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014EksbH3yAXkWwZokVxzex8",
+        "content": [
+          {
+            "title": "Benchmarking Humanoid Imitation Learning with Motion Difficulty",
+            "url": "https://arxiv.org/html/2512.07248"
+          },
+          {
+            "title": "EgoMimic: Scaling Imitation Learning via Egocentric Video",
+            "url": "https://arxiv.org/html/2410.24221v1"
+          },
+          {
+            "title": "I-CTRL: Imitation to Control Humanoid Robots Through ...",
+            "url": "https://arxiv.org/pdf/2405.08726"
+          },
+          {
+            "title": "PHUMA: PHYSICALLY-GROUNDED HUMANOID ...",
+            "url": "https://openreview.net/pdf/a36747cac87a488230dfe8cb6d5c0aa5a6db82d7.pdf"
+          },
+          {
+            "title": "Generalizable Humanoid Manipulation with Improved 3D Diffusion Policies",
+            "url": "https://arxiv.org/html/2410.10803v1"
+          },
+          {
+            "title": "[2603.01452] Scaling Tasks, Not Samples: Mastering Humanoid Control through Multi-Task Model-Based Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2603.01452"
+          },
+          {
+            "title": "[2405.08726] I-CTRL: Imitation to Control Humanoid Robots Through Constrained Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2405.08726"
+          },
+          {
+            "title": "Data Scaling Laws in Imitation Learning for Robotic Manipulation",
+            "url": "https://arxiv.org/html/2410.18647v1"
+          },
+          {
+            "title": "Robotic Manipulation via Imitation Learning: Taxonomy, Evolution, Benchmark, and Challenges",
+            "url": "https://arxiv.org/html/2508.17449v1"
+          },
+          {
+            "title": "Quality Diversity Imitation Learning",
+            "url": "https://arxiv.org/html/2410.06151v1"
+          }
+        ]
+      },
+      "I found several relevant research papers on humanoid imitation learning. Here's a summary of the key results:\n\n## Recent Humanoid Imitation Learning Research (2026)\n\nOne recent work on benchmarking humanoid imitation learning found that imitation fidelity visibly degrades as motion difficulty increases. This research proposes Motion Difficulty Score (MDS), a novel metric that quantifies motion difficulty through three complementary components: Spectral Diversity, Variance Diversity, and Segment Diversity, and constructs MD-AMASS, the first difficulty-aware repartitioning of the AMASS dataset.\n\n## Data Scaling and Diversity\n\nResearch on data scaling in imitation learning reveals that generalization performance follows a roughly power-law relationship with the number of environments and objects, and that the diversity of environments and objects is far more important than the absolute number of demonstrations.\n\n## Multi-Task Humanoid Control\n\nA recent approach (EfficientZero-Multitask) demonstrates that task diversity acts as a regularizer for model-based RL, improving dynamics learning and sample efficiency, and achieves state-of-the-art performance on HumanoidBench, establishing task scaling as a critical axis for scalable robotic learning.\n\n## Large-Scale Motion Dataset Management\n\nAnother framework (I-CTRL) introduces an automatic priority scheduler to manage large-scale motion datasets when efficiently training a unified RL policy across diverse motions.\n\nThese papers collectively address key aspects of your query regarding humanoid imitation learning with emphasis on data fidelity, diversity, and scaling approaches."
+    ],
+    "durationSeconds": 7.193425561999961
+  },
+  "sourceToolAssistantUUID": "46174e06-5c31-468c-9a34-de1b2f3e7826",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b9bb4059-e3b3-488b-9ce3-35bd9d7de68e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-10T19:22:35.424Z_
+
+<details><summary>↩ Tool result · `toolu_015irUjuNzvv4o54XzAJG3Fn`</summary>
+
+```text
+Web search results for query: "Diffusion Policy whole-body humanoid joint-level imitation learning without RL 2025 2026"
+
+Links: [{"title":"Published as a conference paper at ICLR 2026","url":"https://openreview.net/pdf?id=eSkDNIGbcd"},{"title":"GitHub - jonyzhang2023/awesome-embodied-vla-va-vln: A curated list of state-of-the-art research in embodied AI, focusing on vision-language-action (VLA) models, vision-language navigation (VLN), and related multimodal learning approaches. · GitHub","url":"https://github.com/jonyzhang2023/awesome-embodied-vla-va-vln"},{"title":"GitHub - YanjieZe/awesome-humanoid-robot-learning: A Paper List for Humanoid Robot Learning. · GitHub","url":"https://github.com/YanjieZe/awesome-humanoid-robot-learning"},{"title":"GitHub - showlab/Awesome-Robotics-Diffusion: A curated list of recent robot learning papers incorporating diffusion models for robotics tasks. · GitHub","url":"https://github.com/showlab/Awesome-Robotics-Diffusion"},{"title":"Advancements in humanoid robot dynamics and learning-based locomotion control methods","url":"https://www.oaepublish.com/articles/ir.2025.32"},{"title":"Diffusion policy: Visuomotor policy learning via action diffusion - Cheng Chi, Zhenjia Xu, Siyuan Feng, Eric Cousineau, Yilun Du, Benjamin Burchfiel, Russ Tedrake, Shuran Song, 2025","url":"https://journals.sagepub.com/doi/full/10.1177/02783649241273668"},{"title":"Learning Whole-Body Human-Humanoid Interaction from Human-Human Demonstrations - ADS","url":"https://ui.adsabs.harvard.edu/abs/2026arXiv260109518H/abstract"},{"title":"Adversarial Locomotion and Motion Imitation for Humanoid Policy Learning","url":"https://openreview.net/pdf/4e96b518dac685f70d6ab976fbf0438344e28577.pdf"},{"title":"GitHub - YanjieZe/Paper-List: A paper list of my history reading. Robotics, Learning, Vision. · GitHub","url":"https://github.com/YanjieZe/Paper-List"},{"title":"REFINE-DP: Diffusion Policy Fine-tuning for Humanoid Loco-manipulation via Reinforcement Learning","url":"https://arxiv.org/html/2603.13707"}]
+
+I found several relevant results related to diffusion policies and humanoid robot learning in 2025-2026. Here's what the search revealed:
+
+## Key Findings
+
+**Diffusion Policy Research:**
+Diffusion Policy represents a robot's visuomotor policy as a conditional denoising diffusion process. This approach has become a significant area of focus in robotics research.
+
+**Recent Humanoid Applications:**
+
+The Galaxea R1, a real-world wheeled humanoid robot with a 21-DoF whole-body system, has been used for experiments published at ICLR 2026, demonstrating imitation learning approaches on whole-body humanoid systems.
+
+**Hierarchical Framework Approaches:**
+
+REFINE-DP presents a hierarchical framework that jointly optimizes a diffusion policy high-level planner and an RL-based low-level loco-manipulation controller, with the DP fine-tuned via a PPO-based diffusion policy gradient. This represents work combining diffusion policies with reinforcement learning for humanoid control.
+
+**Whole-Body Humanoid Learning:**
+
+D-STAR introduces a hierarchical policy that disentangles when to act from where to act, with Phase Attention and a Multi-Scale Spatial module fused by the diffusion head to produce synchronized whole-body behaviors.
+
+**Related Imitation Learning Methods:**
+
+Imitation learning enables humanoid robots to learn and perform complex tasks rapidly by replicating human demonstrations, with high-quality demonstration data allowing robots to accurately imitate actions and significantly reduce training time.
+
+The search results show active research in 2025-2026 on diffusion-based policies for whole-body humanoid control, with various approaches combining diffusion models with both imitation learning and reinforcement learning methods.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8bab0489-8d11-47f1-8ed1-3709b35bcdd3",
+  "isSidechain": false,
+  "promptId": "b0150ee4-e7f7-496d-afa5-c1d4cb4e7131",
+  "type": "user",
+  "uuid": "97bfd5d9-4909-42f1-95de-6e9610f39ec2",
+  "toolUseResult": {
+    "query": "Diffusion Policy whole-body humanoid joint-level imitation learning without RL 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VCBp6gNpzx8XT2BFCByySZ",
+        "content": [
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://openreview.net/pdf?id=eSkDNIGbcd"
+          },
+          {
+            "title": "GitHub - jonyzhang2023/awesome-embodied-vla-va-vln: A curated list of state-of-the-art research in embodied AI, focusing on vision-language-action (VLA) models, vision-language navigation (VLN), and related multimodal learning approaches. · GitHub",
+            "url": "https://github.com/jonyzhang2023/awesome-embodied-vla-va-vln"
+          },
+          {
+            "title": "GitHub - YanjieZe/awesome-humanoid-robot-learning: A Paper List for Humanoid Robot Learning. · GitHub",
+            "url": "https://github.com/YanjieZe/awesome-humanoid-robot-learning"
+          },
+          {
+            "title": "GitHub - showlab/Awesome-Robotics-Diffusion: A curated list of recent robot learning papers incorporating diffusion models for robotics tasks. · GitHub",
+            "url": "https://github.com/showlab/Awesome-Robotics-Diffusion"
+          },
+          {
+            "title": "Advancements in humanoid robot dynamics and learning-based locomotion control methods",
+            "url": "https://www.oaepublish.com/articles/ir.2025.32"
+          },
+          {
+            "title": "Diffusion policy: Visuomotor policy learning via action diffusion - Cheng Chi, Zhenjia Xu, Siyuan Feng, Eric Cousineau, Yilun Du, Benjamin Burchfiel, Russ Tedrake, Shuran Song, 2025",
+            "url": "https://journals.sagepub.com/doi/full/10.1177/02783649241273668"
+          },
+          {
+            "title": "Learning Whole-Body Human-Humanoid Interaction from Human-Human Demonstrations - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2026arXiv260109518H/abstract"
+          },
+          {
+            "title": "Adversarial Locomotion and Motion Imitation for Humanoid Policy Learning",
+            "url": "https://openreview.net/pdf/4e96b518dac685f70d6ab976fbf0438344e28577.pdf"
+          },
+          {
+            "title": "GitHub - YanjieZe/Paper-List: A paper list of my history reading. Robotics, Learning, Vision. · GitHub",
+            "url": "https://github.com/YanjieZe/Paper-List"
+          },
+          {
+            "title": "REFINE-DP: Diffusion Policy Fine-tuning for Humanoid Loco-manipulation via Reinforcement Learning",
+            "url": "https://arxiv.org/html/2603.13707"
+          }
+        ]
+      },
+      "I found several relevant results related to diffusion policies and humanoid robot learning in 2025-2026. Here's what the search revealed:\n\n## Key Findings\n\n**Diffusion Policy Research:**\nDiffusion Policy represents a robot's visuomotor policy as a conditional denoising diffusion process. This approach has become a significant area of focus in robotics research.\n\n**Recent Humanoid Applications:**\n\nThe Galaxea R1, a real-world wheeled humanoid robot with a 21-DoF whole-body system, has been used for experiments published at ICLR 2026, demonstrating imitation learning approaches on whole-body humanoid systems.\n\n**Hierarchical Framework Approaches:**\n\nREFINE-DP presents a hierarchical framework that jointly optimizes a diffusion policy high-level planner and an RL-based low-level loco-manipulation controller, with the DP fine-tuned via a PPO-based diffusion policy gradient. This represents work combining diffusion policies with reinforcement learning for humanoid control.\n\n**Whole-Body Humanoid Learning:**\n\nD-STAR introduces a hierarchical policy that disentangles when to act from where to act, with Phase Attention and a Multi-Scale Spatial module fused by the diffusion head to produce synchronized whole-body behaviors.\n\n**Related Imitation Learning Methods:**\n\nImitation learning enables humanoid robots to learn and perform complex tasks rapidly by replicating human demonstrations, with high-quality demonstration data allowing robots to accurately imitate actions and significantly reduce training time.\n\nThe search results show active research in 2025-2026 on diffusion-based policies for whole-body humanoid control, with various approaches combining diffusion models with both imitation learning and reinforcement learning methods."
+    ],
+    "durationSeconds": 7.028079207000031
+  },
+  "sourceToolAssistantUUID": "8bab0489-8d11-47f1-8ed1-3709b35bcdd3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b9bb4059-e3b3-488b-9ce3-35bd9d7de68e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44 · 2026-05-10T19:22:39.303Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me check a couple more things. Let me look at the Ψ₀ paper more carefully — specifically whether it studies the fidelity-diversity interaction.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "97bfd5d9-4909-42f1-95de-6e9610f39ec2",
+  "isSidechain": false,
+  "requestId": "req_011CauS4FP9smYVrZaDLY8PS",
+  "type": "assistant",
+  "uuid": "945837f9-8879-4cb4-85f2-68f52cf59170",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b9bb4059-e3b3-488b-9ce3-35bd9d7de68e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015EgoAA8dVw1itYybziPNZs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3202,
+      "cache_read_input_tokens": 53134,
+      "output_tokens": 357,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3202,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 357,
+          "cache_read_input_tokens": 53134,
+          "cache_creation_input_tokens": 3202,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3202
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45 · 2026-05-10T19:22:40.334Z_
+
+Let me check one more critical paper and the PHUMA result that appeared.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "945837f9-8879-4cb4-85f2-68f52cf59170",
+  "isSidechain": false,
+  "requestId": "req_011CauS4FP9smYVrZaDLY8PS",
+  "type": "assistant",
+  "uuid": "e3f5eff4-4033-4dad-8ca4-0c9f4eb9d1ae",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b9bb4059-e3b3-488b-9ce3-35bd9d7de68e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015EgoAA8dVw1itYybziPNZs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3202,
+      "cache_read_input_tokens": 53134,
+      "output_tokens": 357,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3202,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 357,
+          "cache_read_input_tokens": 53134,
+          "cache_creation_input_tokens": 3202,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3202
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-10T19:22:43.722Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_017coxdRAfwfMe5jNTMffUZk`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2603.12263",
+  "prompt": "Extract the following from this paper:\n1. What data does Ψ₀ use for training? How much data?\n2. Does it study data quality vs quantity tradeoffs explicitly?\n3. Does it use direct IL (behavioral cloning) or IL+RL hybrid?\n4. What are the key findings about data efficiency?\n5. What robot embodiment is used?\n6. Does it address physics fidelity of training data?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e3f5eff4-4033-4dad-8ca4-0c9f4eb9d1ae",
+  "isSidechain": false,
+  "requestId": "req_011CauS4FP9smYVrZaDLY8PS",
+  "type": "assistant",
+  "uuid": "d4518b9a-3b62-40b0-be05-7ec822fb3702",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b9bb4059-e3b3-488b-9ce3-35bd9d7de68e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015EgoAA8dVw1itYybziPNZs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3202,
+      "cache_read_input_tokens": 53134,
+      "output_tokens": 357,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3202,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 357,
+          "cache_read_input_tokens": 53134,
+          "cache_creation_input_tokens": 3202,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3202
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-10T19:22:44.716Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UgWrobGqa9pPgLe6L4TPgR`</summary>
+
+```json
+{
+  "query": "PHUMA physically grounded humanoid data augmentation 2026 openreview"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d4518b9a-3b62-40b0-be05-7ec822fb3702",
+  "isSidechain": false,
+  "requestId": "req_011CauS4FP9smYVrZaDLY8PS",
+  "type": "assistant",
+  "uuid": "f432b656-7508-4272-b237-ffb92cae0b1b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b9bb4059-e3b3-488b-9ce3-35bd9d7de68e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015EgoAA8dVw1itYybziPNZs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3202,
+      "cache_read_input_tokens": 53134,
+      "output_tokens": 357,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3202,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 357,
+          "cache_read_input_tokens": 53134,
+          "cache_creation_input_tokens": 3202,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3202
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-10T19:22:45.357Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Denj6PwHxfWndTas86APix`</summary>
+
+```json
+{
+  "query": "\"scaling tasks not samples\" humanoid multi-task model-based RL 2603.01452"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f432b656-7508-4272-b237-ffb92cae0b1b",
+  "isSidechain": false,
+  "requestId": "req_011CauS4FP9smYVrZaDLY8PS",
+  "type": "assistant",
+  "uuid": "7f433622-d626-4865-a929-a542dd8cce10",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b9bb4059-e3b3-488b-9ce3-35bd9d7de68e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015EgoAA8dVw1itYybziPNZs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3202,
+      "cache_read_input_tokens": 53134,
+      "output_tokens": 357,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3202,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 357,
+          "cache_read_input_tokens": 53134,
+          "cache_creation_input_tokens": 3202,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3202
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 49_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "7f433622-d626-4865-a929-a542dd8cce10",
+  "sessionId": "b9bb4059-e3b3-488b-9ce3-35bd9d7de68e"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 50_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Scaling laws for humanoid imitation learning",
+  "sessionId": "b9bb4059-e3b3-488b-9ce3-35bd9d7de68e"
+}
+```
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-10T19:22:48.179Z_
+
+<details><summary>↩ Tool result · `toolu_017coxdRAfwfMe5jNTMffUZk`</summary>
+
+```text
+# Ψ₀ Paper Analysis
+
+**1. Training Data:**
+The model uses "800 hours of human video data and 30 hours of real-world robot data." The approach involves pre-training on egocentric human manipulation videos followed by post-training on humanoid robot trajectories.
+
+**2. Data Quality vs Quantity Tradeoffs:**
+Yes, explicitly studied. The paper demonstrates that "high-quality egocentric human manipulation data followed by post-training on domain-specific real-world humanoid trajectories yields superior performance" compared to approaches using "noisy Internet clips or heterogeneous cross-embodiment robot datasets."
+
+**3. Training Approach:**
+The method appears hybrid rather than pure behavioral cloning. It uses "a flow-based action expert" for the post-training phase on robot data, suggesting learned action distributions rather than simple imitation.
+
+**4. Key Data Efficiency Findings:**
+The model "achieves the best performance using only about 800 hours of human video data and 30 hours of real-world robot data, outperforming baselines pre-trained on more than 10× as much data by over 40% in overall success rate."
+
+**5. Robot Embodiment:**
+The paper specifies "humanoid robot" but does not identify the specific embodiment model in the provided abstract.
+
+**6. Physics Fidelity:**
+Not addressed in the abstract content provided. The paper focuses on data quality and domain specificity rather than explicitly discussing physics simulation fidelity.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d4518b9a-3b62-40b0-be05-7ec822fb3702",
+  "isSidechain": false,
+  "promptId": "b0150ee4-e7f7-496d-afa5-c1d4cb4e7131",
+  "type": "user",
+  "uuid": "37bf1e68-207f-41e5-85cf-758d3e7f0846",
+  "toolUseResult": {
+    "bytes": 48592,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Ψ₀ Paper Analysis\n\n**1. Training Data:**\nThe model uses \"800 hours of human video data and 30 hours of real-world robot data.\" The approach involves pre-training on egocentric human manipulation videos followed by post-training on humanoid robot trajectories.\n\n**2. Data Quality vs Quantity Tradeoffs:**\nYes, explicitly studied. The paper demonstrates that \"high-quality egocentric human manipulation data followed by post-training on domain-specific real-world humanoid trajectories yields superior performance\" compared to approaches using \"noisy Internet clips or heterogeneous cross-embodiment robot datasets.\"\n\n**3. Training Approach:**\nThe method appears hybrid rather than pure behavioral cloning. It uses \"a flow-based action expert\" for the post-training phase on robot data, suggesting learned action distributions rather than simple imitation.\n\n**4. Key Data Efficiency Findings:**\nThe model \"achieves the best performance using only about 800 hours of human video data and 30 hours of real-world robot data, outperforming baselines pre-trained on more than 10× as much data by over 40% in overall success rate.\"\n\n**5. Robot Embodiment:**\nThe paper specifies \"humanoid robot\" but does not identify the specific embodiment model in the provided abstract.\n\n**6. Physics Fidelity:**\nNot addressed in the abstract content provided. The paper focuses on data quality and domain specificity rather than explicitly discussing physics simulation fidelity.",
+    "durationMs": 4455,
+    "url": "https://arxiv.org/abs/2603.12263"
+  },
+  "sourceToolAssistantUUID": "d4518b9a-3b62-40b0-be05-7ec822fb3702",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b9bb4059-e3b3-488b-9ce3-35bd9d7de68e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-10T19:22:51.760Z_
+
+<details><summary>↩ Tool result · `toolu_01UgWrobGqa9pPgLe6L4TPgR`</summary>
+
+```text
+Web search results for query: "PHUMA physically grounded humanoid data augmentation 2026 openreview"
+
+Links: [{"title":"PHUMA: Physically-Grounded Humanoid Locomotion Dataset | OpenReview","url":"https://openreview.net/forum?id=DDogB73gS4"},{"title":"PHUMA: PHYSICALLY-GROUNDED HUMANOID ...","url":"https://openreview.net/pdf/a36747cac87a488230dfe8cb6d5c0aa5a6db82d7.pdf"},{"title":"[2510.26236] PHUMA: Physically-Grounded Humanoid Locomotion Dataset","url":"https://arxiv.org/abs/2510.26236"},{"title":"Paper page - PHUMA: Physically-Grounded Humanoid Locomotion Dataset","url":"https://huggingface.co/papers/2510.26236"},{"title":"(PDF) PHUMA: Physically-Grounded Humanoid Locomotion Dataset","url":"https://www.researchgate.net/publication/397088902_PHUMA_Physically-Grounded_Humanoid_Locomotion_Dataset"},{"title":"GitHub - DAVIAN-Robotics/PHUMA: Code for \"PHUMA: Physically-Grounded Humanoid Locomotion Dataset\" · GitHub","url":"https://github.com/DAVIAN-Robotics/PHUMA"},{"title":"DAVIAN-Robotics/PHUMA · Datasets at Hugging Face","url":"https://huggingface.co/datasets/DAVIAN-Robotics/PHUMA"},{"title":"[Quick Review] PHUMA: Physically-Grounded Humanoid Locomotion Dataset","url":"https://liner.com/review/phuma-physicallygrounded-humanoid-locomotion-dataset"},{"title":"PHUMA: PHYSICALLY-GROUNDED HUMANOID LOCOMOTION DATASET","url":"https://arxiv.org/pdf/2510.26236"},{"title":"DAVIAN-Robotics · GitHub","url":"https://github.com/DAVIAN-Robotics"}]
+
+I found relevant information about PHUMA. Here's what the search results show:
+
+## PHUMA: Physically-Grounded Humanoid Locomotion Dataset
+
+PHUMA is a Physically-grounded Humanoid locomotion dataset that leverages human video at scale, while addressing physical artifacts through careful data curation and physics-constrained retargeting.
+
+### Key Features
+
+PHUMA enforces joint limits, ensures ground contact, and eliminates foot skating, producing motions that are both large-scale and physically reliable.
+
+### Problem It Addresses
+
+Existing methods typically rely on high-quality motion capture datasets such as AMASS, but these are scarce and expensive, limiting scalability and diversity. However, recent attempts to scale data collection by converting large-scale internet videos often introduce physical artifacts such as floating, penetration, and foot skating, which hinder stable imitation.
+
+### Performance
+
+PHUMA-trained policies outperform Humanoid-X and AMASS, achieving significant gains in imitating diverse motions. The research was evaluated in two conditions: imitation of unseen motion from self-recorded test videos and path following with pelvis-only guidance.
+
+### Availability
+
+PHUMA will be publicly released to support future research. The paper was submitted for review as a conference paper at ICLR 2026, and the code is available at https://davian-robotics.github.io/PHUMA with resources on GitHub and Hugging Face.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f432b656-7508-4272-b237-ffb92cae0b1b",
+  "isSidechain": false,
+  "promptId": "b0150ee4-e7f7-496d-afa5-c1d4cb4e7131",
+  "type": "user",
+  "uuid": "c9163d65-73f6-4eaf-968d-bb043fd34f86",
+  "toolUseResult": {
+    "query": "PHUMA physically grounded humanoid data augmentation 2026 openreview",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_015nC74hPr53yh3UFcq2q26U",
+        "content": [
+          {
+            "title": "PHUMA: Physically-Grounded Humanoid Locomotion Dataset | OpenReview",
+            "url": "https://openreview.net/forum?id=DDogB73gS4"
+          },
+          {
+            "title": "PHUMA: PHYSICALLY-GROUNDED HUMANOID ...",
+            "url": "https://openreview.net/pdf/a36747cac87a488230dfe8cb6d5c0aa5a6db82d7.pdf"
+          },
+          {
+            "title": "[2510.26236] PHUMA: Physically-Grounded Humanoid Locomotion Dataset",
+            "url": "https://arxiv.org/abs/2510.26236"
+          },
+          {
+            "title": "Paper page - PHUMA: Physically-Grounded Humanoid Locomotion Dataset",
+            "url": "https://huggingface.co/papers/2510.26236"
+          },
+          {
+            "title": "(PDF) PHUMA: Physically-Grounded Humanoid Locomotion Dataset",
+            "url": "https://www.researchgate.net/publication/397088902_PHUMA_Physically-Grounded_Humanoid_Locomotion_Dataset"
+          },
+          {
+            "title": "GitHub - DAVIAN-Robotics/PHUMA: Code for \"PHUMA: Physically-Grounded Humanoid Locomotion Dataset\" · GitHub",
+            "url": "https://github.com/DAVIAN-Robotics/PHUMA"
+          },
+          {
+            "title": "DAVIAN-Robotics/PHUMA · Datasets at Hugging Face",
+            "url": "https://huggingface.co/datasets/DAVIAN-Robotics/PHUMA"
+          },
+          {
+            "title": "[Quick Review] PHUMA: Physically-Grounded Humanoid Locomotion Dataset",
+            "url": "https://liner.com/review/phuma-physicallygrounded-humanoid-locomotion-dataset"
+          },
+          {
+            "title": "PHUMA: PHYSICALLY-GROUNDED HUMANOID LOCOMOTION DATASET",
+            "url": "https://arxiv.org/pdf/2510.26236"
+          },
+          {
+            "title": "DAVIAN-Robotics · GitHub",
+            "url": "https://github.com/DAVIAN-Robotics"
+          }
+        ]
+      },
+      "I found relevant information about PHUMA. Here's what the search results show:\n\n## PHUMA: Physically-Grounded Humanoid Locomotion Dataset\n\nPHUMA is a Physically-grounded Humanoid locomotion dataset that leverages human video at scale, while addressing physical artifacts through careful data curation and physics-constrained retargeting.\n\n### Key Features\n\nPHUMA enforces joint limits, ensures ground contact, and eliminates foot skating, producing motions that are both large-scale and physically reliable.\n\n### Problem It Addresses\n\nExisting methods typically rely on high-quality motion capture datasets such as AMASS, but these are scarce and expensive, limiting scalability and diversity. However, recent attempts to scale data collection by converting large-scale internet videos often introduce physical artifacts such as floating, penetration, and foot skating, which hinder stable imitation.\n\n### Performance\n\nPHUMA-trained policies outperform Humanoid-X and AMASS, achieving significant gains in imitating diverse motions. The research was evaluated in two conditions: imitation of unseen motion from self-recorded test videos and path following with pelvis-only guidance.\n\n### Availability\n\nPHUMA will be publicly released to support future research. The paper was submitted for review as a conference paper at ICLR 2026, and the code is available at https://davian-robotics.github.io/PHUMA with resources on GitHub and Hugging Face."
+    ],
+    "durationSeconds": 7.041736738000007
+  },
+  "sourceToolAssistantUUID": "f432b656-7508-4272-b237-ffb92cae0b1b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b9bb4059-e3b3-488b-9ce3-35bd9d7de68e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-10T19:22:53.699Z_
+
+<details><summary>↩ Tool result · `toolu_01Denj6PwHxfWndTas86APix`</summary>
+
+```text
+Web search results for query: ""scaling tasks not samples" humanoid multi-task model-based RL 2603.01452"
+
+No links found.
+
+The search didn't return any results for that specific query string and arXiv identifier. Let me try a broader search:
+
+Links: [{"title":"[2603.01452] Scaling Tasks, Not Samples: Mastering Humanoid Control through Multi-Task Model-Based Reinforcement Learning","url":"https://arxiv.org/abs/2603.01452"},{"title":"Scaling Tasks, Not Samples: Mastering Humanoid Control through Multi-Task Model-Based Reinforcement Learning","url":"https://arxiv.org/html/2603.01452"},{"title":"The Art of Scaling Reinforcement Learning Compute for LLMs [PAPER EXPLAINED] | by Sebastian Buzdugan | Medium","url":"https://medium.com/@sebuzdugan/the-art-of-scaling-reinforcement-learning-compute-for-llms-8b354ae2964c"},{"title":"Real-world humanoid locomotion with reinforcement learning | Science Robotics","url":"https://www.science.org/doi/10.1126/scirobotics.adi9579"},{"title":"What is reinforcement learning in humanoid robot training?","url":"https://en.bonsystems.com/newsletter/humanoid-robot-reinforcement-learning/"},{"title":"Deep Reinforcement Learning for Real-World Humanoid Robot Locomotion Control with Automatic Reward Learning | Research","url":"https://spj.science.org/doi/10.34133/research.1123"},{"title":"Scaling Reinforcement Learning: Environments, Reward Hacking, Agents, Scaling Data","url":"https://newsletter.semianalysis.com/p/scaling-reinforcement-learning-environments-reward-hacking-agents-scaling-data"},{"title":"Towards robust Humanoid Loco-Manipulation using Deep Reinforcement Learning | by Niraj Pudasaini | Toward Humanoids | Medium","url":"https://medium.com/correll-lab/towards-robust-humanoid-loco-manipulation-using-deep-reinforcement-learning-45c8a5a0fcbf"},{"title":"How to scale RL - by Nathan Lambert - Interconnects AI","url":"https://www.interconnects.ai/p/the-new-rl-scaling-laws"},{"title":"Scaling Reinforcement Learning will never lead to AGI","url":"https://www.artificialintelligencemadesimple.com/p/scaling-reinforcement-learning-will"}]
+
+Perfect! I found the paper. Here are the results for your search query:
+
+## Search Results
+
+The paper "Scaling Tasks, Not Samples" proposes that effective online learning should scale the number of tasks rather than the number of samples per task, which reveals a structural advantage of model-based reinforcement learning (MBRL).
+
+**Key Findings:**
+
+- The work introduces EfficientZero-Multitask (EZ-M), a sample-efficient multi-task MBRL algorithm for online learning, which achieves state-of-the-art performance on HumanoidBench with significantly higher sample efficiency than strong baselines, without extreme parameter scaling.
+
+- Since physical dynamics are invariant across tasks, a shared world model can aggregate multi-task experience to learn robust, task-agnostic representations.
+
+- In contrast, model-free methods suffer from gradient interference when tasks demand conflicting actions in similar states, while task diversity acts as a regularizer for MBRL, improving dynamics learning and sample efficiency.
+
+- EZ-M exhibits distinct positive transfer properties: whereas Model-Free baselines degrade or plateau as task cardinality increases, EZ-M leverages task diversity to improve sample efficiency.
+
+The paper (arXiv:2603.01452) was published on March 2, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7f433622-d626-4865-a929-a542dd8cce10",
+  "isSidechain": false,
+  "promptId": "b0150ee4-e7f7-496d-afa5-c1d4cb4e7131",
+  "type": "user",
+  "uuid": "2c8d8eb8-ed0a-4d12-8cc7-53181fce4118",
+  "toolUseResult": {
+    "query": "\"scaling tasks not samples\" humanoid multi-task model-based RL 2603.01452",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017VkRgYeeSwfJNayage2nMf",
+        "content": []
+      },
+      "The search didn't return any results for that specific query string and arXiv identifier. Let me try a broader search:",
+      {
+        "tool_use_id": "srvtoolu_018syso1aqZCKQPwBMQz1Nk8",
+        "content": [
+          {
+            "title": "[2603.01452] Scaling Tasks, Not Samples: Mastering Humanoid Control through Multi-Task Model-Based Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2603.01452"
+          },
+          {
+            "title": "Scaling Tasks, Not Samples: Mastering Humanoid Control through Multi-Task Model-Based Reinforcement Learning",
+            "url": "https://arxiv.org/html/2603.01452"
+          },
+          {
+            "title": "The Art of Scaling Reinforcement Learning Compute for LLMs [PAPER EXPLAINED] | by Sebastian Buzdugan | Medium",
+            "url": "https://medium.com/@sebuzdugan/the-art-of-scaling-reinforcement-learning-compute-for-llms-8b354ae2964c"
+          },
+          {
+            "title": "Real-world humanoid locomotion with reinforcement learning | Science Robotics",
+            "url": "https://www.science.org/doi/10.1126/scirobotics.adi9579"
+          },
+          {
+            "title": "What is reinforcement learning in humanoid robot training?",
+            "url": "https://en.bonsystems.com/newsletter/humanoid-robot-reinforcement-learning/"
+          },
+          {
+            "title": "Deep Reinforcement Learning for Real-World Humanoid Robot Locomotion Control with Automatic Reward Learning | Research",
+            "url": "https://spj.science.org/doi/10.34133/research.1123"
+          },
+          {
+            "title": "Scaling Reinforcement Learning: Environments, Reward Hacking, Agents, Scaling Data",
+            "url": "https://newsletter.semianalysis.com/p/scaling-reinforcement-learning-environments-reward-hacking-agents-scaling-data"
+          },
+          {
+            "title": "Towards robust Humanoid Loco-Manipulation using Deep Reinforcement Learning | by Niraj Pudasaini | Toward Humanoids | Medium",
+            "url": "https://medium.com/correll-lab/towards-robust-humanoid-loco-manipulation-using-deep-reinforcement-learning-45c8a5a0fcbf"
+          },
+          {
+            "title": "How to scale RL - by Nathan Lambert - Interconnects AI",
+            "url": "https://www.interconnects.ai/p/the-new-rl-scaling-laws"
+          },
+          {
+            "title": "Scaling Reinforcement Learning will never lead to AGI",
+            "url": "https://www.artificialintelligencemadesimple.com/p/scaling-reinforcement-learning-will"
+          }
+        ]
+      },
+      "Perfect! I found the paper. Here are the results for your search query:\n\n## Search Results\n\nThe paper \"Scaling Tasks, Not Samples\" proposes that effective online learning should scale the number of tasks rather than the number of samples per task, which reveals a structural advantage of model-based reinforcement learning (MBRL).\n\n**Key Findings:**\n\n- The work introduces EfficientZero-Multitask (EZ-M), a sample-efficient multi-task MBRL algorithm for online learning, which achieves state-of-the-art performance on HumanoidBench with significantly higher sample efficiency than strong baselines, without extreme parameter scaling.\n\n- Since physical dynamics are invariant across tasks, a shared world model can aggregate multi-task experience to learn robust, task-agnostic representations.\n\n- In contrast, model-free methods suffer from gradient interference when tasks demand conflicting actions in similar states, while task diversity acts as a regularizer for MBRL, improving dynamics learning and sample efficiency.\n\n- EZ-M exhibits distinct positive transfer properties: whereas Model-Free baselines degrade or plateau as task cardinality increases, EZ-M leverages task diversity to improve sample efficiency.\n\nThe paper (arXiv:2603.01452) was published on March 2, 2026."
+    ],
+    "durationSeconds": 8.340404658999992
+  },
+  "sourceToolAssistantUUID": "7f433622-d626-4865-a929-a542dd8cce10",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b9bb4059-e3b3-488b-9ce3-35bd9d7de68e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 54 · 2026-05-10T19:23:48.347Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Excellent! PHUMA is a very important finding. Let me analyze it:
+
+**PHUMA (arXiv:2510.26236, ICLR 2026 submission)**: This is a physically-grounded humanoid locomotion dataset that addresses the EXACT tension between data diversity (from internet videos) and physics fidelity (through constrained retargeting). It demonstrates that:
+- Large-scale internet video data introduces physical artifacts (floating, penetration, foot skating)
+- Physics-constrained retargeting produces "physically reliable" motions
+- PHUMA-trained policies outperform both Humanoid-X (diverse but noisy) and AMASS (high quality but limited)
+
+
+- This directly validates one point in the fidelity-diversity tradeoff space: combining high diversity with physics filtering beats either extreme alone
+
+PHUMA is fundamentally a dataset contribution rather than a systematic scaling study, so while it provides strong evidence for one specific design choice, it doesn't explore the full factorial space of fidelity and diversity levels that the proposed work would investigate.
+
+I should also look at "Scaling Tasks, Not Samples" which examines how task diversity functions as a regularizer in model-based RL on HumanoidBench—related territory but focused on the RL side rather than data curation.
+
+Now I'm compiling my final assessment of what's been verified and what gaps remain in the literature.
+
+I've confirmed all the major references check out—the GR00T distinction, CoRL deadlines, Kimodo specs, and the precedent work. But there are several recent papers that should be cited as they directly address the core tension the proposal is investigating. Ψ₀ provides empirical evidence that data quality matters more than quantity for humanoid manipulation. PHUMA is particularly relevant since it explicitly tackles the fidelity-diversity tradeoff using physics-constrained retargeting combined with large-scale video data. There's also work on task diversity as a regularizer for control, and smoothness-based quality metrics for imitation learning that have methodological relevance even if not humanoid-specific. Now I need to assess how these findings affect the novelty of the proposal itself.
+
+The core question—how fidelity and diversity interact specifically for humanoid direct imitation learning—hasn't been studied in a controlled, systematic way with quantified thresholds. The four hypotheses about anti-scaling effects, interaction patterns, violation taxonomies, and task dependence are genuinely novel and non-obvious. That said, PHUMA already demonstrates that combining physics filtering with diversity works for humanoid data, and Ψ₀ shows quality outperforms quantity in this domain. The field is converging on "physics matters" as established knowledge, so while the controlled factorial study adds methodological rigor, it's more incremental than conceptually groundbreaking.
+
+On feasibility, the key tools are in place: Kimodo is public with verified G1 skeleton support, Isaac Lab offers high throughput simulation, and the diff-based retargeting pipeline is established. The main constraints are computational resources and timeline.
+
+Now I'm assessing the practical impact and venue fit. The findings would provide concrete guidance for humanoid data generation pipelines, which matters for the community. But direct imitation learning is a narrower niche compared to the VLA+WBC paradigm that systems like GR00T N1 actually use, so the results might not transfer directly. CoRL does value practical, data-focused papers with quantified insights, which aligns with this proposal's template, though the originality question remains somewhat open.
+
+Looking at the novelty angle, the core research question hasn't been systematically studied in this controlled factorial way, which is genuine. But the underlying intuition that physics matters for bipedal robots is becoming clearer from prior work like PHUMA and Ψ₀. There's no new methodology here—just applying existing factorial design tools—though the specific hypotheses do add some structure to the investigation.
+
+The feasibility looks reasonable overall. All the tools are available and the compute fits within the 200-hour budget, though the timeline is tight with only 17 days to the abstract deadline. The main risk is whether Kimodo's loco-manipulation quality will hold up, but running pilot experiments early should catch problems quickly. The task design itself is well-suited to what Kimodo can actually do.
+
+The experimental design is solid after multiple iterations, with clear hypotheses and quantified predictions that differentiate this from prior work. The main gap is not positioning relative to Ψ₀ and PHUMA in the landscape. For impact, this addresses a real need in the humanoid community and would provide actionable thresholds for data generation decisions, though direct imitation learning is becoming less central to the field. The average score comes to around 3.5 across these dimensions.
+
+At round 10 with a 3.5 average below the 4.0 threshold, I'm weighing whether to pass or fail. The work is genuinely important and would be the first controlled factorial study of this kind with rigorous experimental design and verified tools. But there's no methodological novelty, the core insight about physics mattering for bipedal robots is increasingly obvious, and there's real uncertainty around Kimodo's reliability that could derail the whole thing.
+
+The real problem is that this is a carefully executed but ultimately incremental empirical study without real-robot validation. For CoRL, which demands either novel methods or surprising results, that's not enough—it would fit better at Humanoids 2026 or RA-L. The honest call is fail.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2c8d8eb8-ed0a-4d12-8cc7-53181fce4118",
+  "isSidechain": false,
+  "requestId": "req_011CauS5bWtu8gMbSQ7m9Qyz",
+  "type": "assistant",
+  "uuid": "0771c43e-3b51-4313-9abb-f1ea7f669cef",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b9bb4059-e3b3-488b-9ce3-35bd9d7de68e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y24x8iUMLvHgo2mfgaDK5C",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2558,
+      "cache_read_input_tokens": 56336,
+      "output_tokens": 2152,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2558,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2152,
+          "cache_read_input_tokens": 56336,
+          "cache_creation_input_tokens": 2558,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2558
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 55 · 2026-05-10T19:23:48.348Z_
+
+Now let me check PHUMA more closely — this is a critical potential competitor I've discovered.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0771c43e-3b51-4313-9abb-f1ea7f669cef",
+  "isSidechain": false,
+  "requestId": "req_011CauS5bWtu8gMbSQ7m9Qyz",
+  "type": "assistant",
+  "uuid": "3a654bf7-4439-45db-acbe-2f1ede2c10fa",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b9bb4059-e3b3-488b-9ce3-35bd9d7de68e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y24x8iUMLvHgo2mfgaDK5C",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2558,
+      "cache_read_input_tokens": 56336,
+      "output_tokens": 2152,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2558,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2152,
+          "cache_read_input_tokens": 56336,
+          "cache_creation_input_tokens": 2558,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2558
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-10T19:23:51.060Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01VfPCov19GkVwWRwpfwxpJC`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2510.26236",
+  "prompt": "Extract key information from this paper:\n1. What is the core contribution?\n2. Does it study the tradeoff between data diversity (from internet videos) and physics fidelity?\n3. What embodiment does it use?\n4. How does it handle physics artifacts in video-derived motion data?\n5. What are the main findings about physics-grounded vs non-grounded data?\n6. Was it accepted at a venue?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3a654bf7-4439-45db-acbe-2f1ede2c10fa",
+  "isSidechain": false,
+  "requestId": "req_011CauS5bWtu8gMbSQ7m9Qyz",
+  "type": "assistant",
+  "uuid": "4b88e027-4481-4dd7-9cb3-5efa4cc28e32",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b9bb4059-e3b3-488b-9ce3-35bd9d7de68e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y24x8iUMLvHgo2mfgaDK5C",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2558,
+      "cache_read_input_tokens": 56336,
+      "output_tokens": 2152,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2558,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2152,
+          "cache_read_input_tokens": 56336,
+          "cache_creation_input_tokens": 2558,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2558
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 57_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "4b88e027-4481-4dd7-9cb3-5efa4cc28e32",
+  "sessionId": "b9bb4059-e3b3-488b-9ce3-35bd9d7de68e"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 58_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Scaling laws for humanoid imitation learning",
+  "sessionId": "b9bb4059-e3b3-488b-9ce3-35bd9d7de68e"
+}
+```
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-10T19:23:57.218Z_
+
+<details><summary>↩ Tool result · `toolu_01VfPCov19GkVwWRwpfwxpJC`</summary>
+
+```text
+# PHUMA Paper Summary
+
+**1. Core Contribution:**
+PHUMA introduces a large-scale humanoid locomotion dataset derived from internet videos while maintaining physical accuracy through careful curation and physics-constrained retargeting.
+
+**2. Data Diversity vs. Physics Fidelity:**
+Yes, this directly addresses that tradeoff. The paper states the approach "leverages human video at scale, while addressing physical artifacts through careful data curation and physics-constrained retargeting."
+
+**3. Embodiment:**
+Humanoid robots (the paper focuses on humanoid locomotion).
+
+**4. Physics Artifact Handling:**
+The dataset "enforces joint limits, ensures ground contact, and eliminates foot skating," specifically targeting three problematic issues: floating, penetration, and foot skating that plagued prior video-derived datasets.
+
+**5. Main Findings:**
+Policies trained on PHUMA "outperform Humanoid-X and AMASS, achieving significant gains in imitating diverse motions" in both unseen motion imitation and path-following tasks. This demonstrates that physics-grounded large-scale data surpasses both non-grounded video data and smaller motion-capture datasets.
+
+**6. Venue Acceptance:**
+The document does not indicate acceptance at a conference or journal—it shows this as a recent arXiv submission (October 30, 2025) with no venue information provided.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4b88e027-4481-4dd7-9cb3-5efa4cc28e32",
+  "isSidechain": false,
+  "promptId": "b0150ee4-e7f7-496d-afa5-c1d4cb4e7131",
+  "type": "user",
+  "uuid": "6749bd80-2d0e-4f82-b1c4-cc41ef2cb5a6",
+  "toolUseResult": {
+    "bytes": 46026,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# PHUMA Paper Summary\n\n**1. Core Contribution:**\nPHUMA introduces a large-scale humanoid locomotion dataset derived from internet videos while maintaining physical accuracy through careful curation and physics-constrained retargeting.\n\n**2. Data Diversity vs. Physics Fidelity:**\nYes, this directly addresses that tradeoff. The paper states the approach \"leverages human video at scale, while addressing physical artifacts through careful data curation and physics-constrained retargeting.\"\n\n**3. Embodiment:**\nHumanoid robots (the paper focuses on humanoid locomotion).\n\n**4. Physics Artifact Handling:**\nThe dataset \"enforces joint limits, ensures ground contact, and eliminates foot skating,\" specifically targeting three problematic issues: floating, penetration, and foot skating that plagued prior video-derived datasets.\n\n**5. Main Findings:**\nPolicies trained on PHUMA \"outperform Humanoid-X and AMASS, achieving significant gains in imitating diverse motions\" in both unseen motion imitation and path-following tasks. This demonstrates that physics-grounded large-scale data surpasses both non-grounded video data and smaller motion-capture datasets.\n\n**6. Venue Acceptance:**\nThe document does not indicate acceptance at a conference or journal—it shows this as a recent arXiv submission (October 30, 2025) with no venue information provided.",
+    "durationMs": 6155,
+    "url": "https://arxiv.org/abs/2510.26236"
+  },
+  "sourceToolAssistantUUID": "4b88e027-4481-4dd7-9cb3-5efa4cc28e32",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b9bb4059-e3b3-488b-9ce3-35bd9d7de68e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 60 · 2026-05-10T19:23:57.225Z_
+
+```json
+{
+  "parentUuid": "6749bd80-2d0e-4f82-b1c4-cc41ef2cb5a6",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "bb6f1c54-65f5-4766-99ed-dded6db67cdb",
+  "timestamp": "2026-05-10T19:23:57.225Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b9bb4059-e3b3-488b-9ce3-35bd9d7de68e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 61 · 2026-05-10T19:24:09.973Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+PHUMA is very relevant. It explicitly addresses the diversity vs. physics fidelity tradeoff for humanoid locomotion data, showing that physics-grounded large-scale data > either non-grounded video data (diversity without fidelity) or smaller mocap data (fidelity without diversity). This partially validates the proposed study's premise but also partially answers the question for locomotion.
+
+However, PHUMA is:
+1. A dataset paper, not a controlled factorial study
+2. Focused on locomotion only, not loco-manipulation
+3. Uses RL-based tracking policy (not direct IL)
+4. Doesn't systematically vary fidelity and diversity levels
+
+
+5. Should definitely be included in the landscape analysis
+
+Now I'm settling on my final assessment. The study does have some differentiation from existing work, but the core contribution—a factorial study using existing tools to explore the diversity-fidelity tradeoff—lacks sufficient novelty, and the direct imitation learning regime is becoming increasingly standard. My scores are novelty 3/5, feasibility 3.5/5, clarity 4/5, and impact 3.5/5, averaging 3.5, which falls below the 4.0 threshold. The verdict is fail, primarily because critical competitors like PHUMA partially address the research question and there's no real methodological innovation beyond applying existing techniques systematically.
+
+Formatting the final JSON output now.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bb6f1c54-65f5-4766-99ed-dded6db67cdb",
+  "isSidechain": false,
+  "requestId": "req_011CauSAH6WWaATcweH7gfeC",
+  "type": "assistant",
+  "uuid": "ffe26e9f-3e9e-4e58-9a42-82be5f270022",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b9bb4059-e3b3-488b-9ce3-35bd9d7de68e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DcyuLLnxeyczLdyPdaVFqd",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2573,
+      "cache_read_input_tokens": 58894,
+      "output_tokens": 2157,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2573,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2157,
+          "cache_read_input_tokens": 58894,
+          "cache_creation_input_tokens": 2573,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2573
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 62 · 2026-05-10T19:24:55.167Z_
+
+I've completed my independent verification. Here's my assessment.
+
+**Key findings from verification:**
+- All major cited papers verified and correctly described
+- GR00T N1 IL/RL framing now correct (fixed from round 9)
+- Kimodo is public with G1 weights, 34 joints, no finger DOF — confirmed
+- CoRL 2026 deadlines confirmed (abstract May 26, paper May 29)
+- Two significant missing competitors discovered: **Ψ₀** and **PHUMA**
+- Compute budget tight but within range (~155-185h, agent estimates 200-220h real-world)
+
+```json
+{
+  "verdict": "fail",
+  "scores": {
+    "novelty": {
+      "score": 3,
+      "rationale": "The controlled factorial design studying fidelity×diversity interaction is genuinely unstudied, and the four hypotheses (especially H1 anti-scaling and H3 violation taxonomy) are non-obvious. However, the conceptual contribution — 'physics matters for bipedal robots' — is increasingly self-evident. PHUMA (arXiv:2510.26236) already demonstrates that physics-grounded large-scale data outperforms both noisy-but-diverse (Humanoid-X) and clean-but-small (AMASS) datasets for humanoid locomotion, and Ψ₀ (arXiv:2603.12263, RSS 2026) shows quality > quantity with 10× less data for humanoid loco-manipulation. No methodological novelty — the study combines Kimodo + Isaac Lab + Diffusion Policy, all existing NVIDIA tools."
+    },
+    "feasibility": {
+      "score": 3,
+      "rationale": "All tools are public and verified (Kimodo G1 weights on HuggingFace, Isaac Lab G1 environments, DP/ACT precedents via REFINE-DP/TACT). Compute at ~155h manual fits the 200h budget on paper, but independent estimate suggests 200-220h with real engineering overhead — borderline. The critical unmitigated risk is Kimodo loco-manipulation prompt quality: Kimodo's training data covers 'common object interactions' but generating meaningful box-carrying and cart-pushing motions (vs. generic walking/gestures) is completely unvalidated. If the Day 1-2 pilot fails, there is no credible fallback within 17 days to CoRL abstract."
+    },
+    "clarity": {
+      "score": 4,
+      "rationale": "Exceptionally well-structured after 9 rounds. The factorial design (3 tasks × 3 diversity × 3 fidelity) is clean, hypotheses are quantified with specific thresholds (50% pass rate, <5% vs >30% gap, 3× ratio), and differentiation from prior work is thorough. However, two significant competitors are missing from the landscape (Ψ₀ and PHUMA), and the paper omits discussion of how findings relate to the dominant VLA+WBC paradigm."
+    },
+    "impact": {
+      "score": 3,
+      "rationale": "The direct-IL regime studied (no RL-trained WBC safety net) is increasingly niche as the field converges on VLA+WBC architectures (GR00T N1, REFINE-DP, WholeBodyVLA). While quantified fidelity-diversity thresholds would be useful for data pipeline designers, the practical impact is constrained to a shrinking use case. If the findings are 'physics filtering is essential' (likely), reviewers may judge this as confirming the obvious; if 'diversity helps despite low fidelity' (H1 refuted), that would be surprising but the sim-only validation limits real-world applicability."
+    }
+  },
+  "issues": [
+    "MISSING CRITICAL COMPETITOR — Ψ₀ (arXiv:2603.12263, RSS 2026): Demonstrates that 800h high-quality egocentric video + 30h robot data outperforms baselines using 10× more data by 40% for humanoid loco-manipulation. While not a controlled factorial study, it provides strong directional evidence for quality > quantity in humanoid IL — partially addressing H1 and H2. The proposal must cite and differentiate from this work.",
+    "MISSING CRITICAL COMPETITOR — PHUMA (arXiv:2510.26236, Oct 2025): A physically-grounded humanoid locomotion dataset that explicitly addresses the diversity-vs-fidelity tension by enforcing joint limits, ground contact, and eliminating foot skating in internet-video-derived motions. PHUMA-trained policies outperform both Humanoid-X (diverse but noisy) and AMASS (clean but small). This directly demonstrates one point in the proposed study's factorial space (high diversity + physics filtering > either alone) for humanoid locomotion.",
+    "DIRECT-IL REGIME NICHE: The study explicitly examines IL without WBC safety net, but the dominant humanoid paradigm (GR00T N1, REFINE-DP, WholeBodyVLA) uses VLA+WBC with RL-based low-level control. The proposal never addresses whether findings transfer to the VLA+WBC regime — if they don't, the practical audience for this study is very small. A real reviewer will ask: 'Why should I care about direct joint-level IL when production systems use RL-based WBCs?'",
+    "KIMODO LOCO-MANIPULATION QUALITY REMAINS UNVALIDATED: The entire study hinges on Kimodo generating task-relevant box-carrying, cart-pushing, and dynamic walking motions. While Kimodo supports 'common object interactions,' there is zero evidence (no demo, no example, no published result) showing it can generate coherent loco-manipulation behaviors via text prompts for G1. The Day 1-2 pilot is necessary but insufficient — if it fails, 15 of 17 remaining days are wasted with no viable alternative.",
+    "COMPUTE BUDGET BORDERLINE: Manual mode claims ~155h but independent analysis suggests 200-220h with real-world overhead (data I/O, checkpointing, failed runs, environment setup). Auto mode at 185h leaves only 15h buffer. With 27 conditions × 2 seeds of Diffusion Policy + 9 conditions × 2 seeds of ACT + physics validation + rendering + evaluation, budget overruns are likely.",
+    "'OBVIOUS FINDING' RISK NOT FULLY MITIGATED: Despite well-formulated hypotheses, the most likely outcome — 'physics fidelity matters more for bipedal robots because falls are catastrophic' — is intuitively obvious to the humanoid robotics community. PHUMA already shows physics-grounded data wins. The anti-scaling hypothesis (H1) is the strongest non-obvious prediction, but if it doesn't hold (diversity helps even with bad physics), the study's contribution reduces to confirming what PHUMA and Ψ₀ already suggest directionally."
+  ],
+  "feedback": "",
+  "reason": "After 10 rounds, the idea is a well-designed empirical study but falls short of CoRL quality: no methodological novelty (factorial experiment with existing NVIDIA tools), partially preempted by Ψ₀ and PHUMA, niche regime (direct-IL without WBC), and high risk of producing either obvious or non-transferable findings. Average score 3.5 < 4.0 threshold. Better suited for Humanoids 2026 or RA-L."
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ffe26e9f-3e9e-4e58-9a42-82be5f270022",
+  "isSidechain": false,
+  "requestId": "req_011CauSAH6WWaATcweH7gfeC",
+  "type": "assistant",
+  "uuid": "fe603bca-0f97-4dec-92a0-97d3f3d40d67",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b9bb4059-e3b3-488b-9ce3-35bd9d7de68e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DcyuLLnxeyczLdyPdaVFqd",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2573,
+      "cache_read_input_tokens": 58894,
+      "output_tokens": 2157,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2573,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2157,
+          "cache_read_input_tokens": 58894,
+          "cache_creation_input_tokens": 2573,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2573
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 63_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "fe603bca-0f97-4dec-92a0-97d3f3d40d67",
+  "sessionId": "b9bb4059-e3b3-488b-9ce3-35bd9d7de68e"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 64_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Scaling laws for humanoid imitation learning",
+  "sessionId": "b9bb4059-e3b3-488b-9ce3-35bd9d7de68e"
+}
+```
+
+---

@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "id": "2208acf83fd12575a4a2",
+  "project": "provenance_weight_training--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> 服务器 westd-41312, conda base 环境。dr_epoch_matched_indep_lr_seed42 在 cuda:1 上训练，约 2000/2533 步，ETA ~18min。这是",
+  "task_key": "09fc929a-ce70-45d3-9d57-040289297dce",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-3/09fc929a-ce70-45d3-9d57-040289297dce.jsonl",
+    "occurrence": 1,
+    "bytes": 768874,
+    "sha256": "8803375ae37b4769605dd80a8b014bf4ce9433e071b652403befe0a413a67a94"
+  },
+  "statistics": {
+    "messages": 488,
+    "user_turns": 1,
+    "tool_calls": 186,
+    "roles": {
+      "record": 72,
+      "user": 1,
+      "assistant": 43,
+      "tool_call": 186,
+      "tool_result": 186
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "2208acf83fd12575a4a2-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 486,
+      "chunks": [
+        {
+          "path": "2208acf83fd12575a4a2-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "2208acf83fd12575a4a2-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "2208acf83fd12575a4a2-part-0003.json",
+          "message_count": 128
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-westd-41312-conda-base-dr-epoch-matched-indep-lr-seed42-cuda-1-2.md"
+}

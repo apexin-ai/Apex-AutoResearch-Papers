@@ -1,0 +1,3311 @@
+# Research conversation: I'm reviewing a research proposal about automated compositional task generation for humanoid robots. I need to find comp
+
+**When Does Detect-and-Reweight Work for Synthetic Contamination? (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 53
+- **Recorded user turns:** 1
+- **Tool calls:** 23
+- **Original source:** `logs/chats/exported-trajectories/account-3/agent-a9cb18d5268af53bf.jsonl`
+- **Structured JSON:** [`6b4ea3d7fb56cbf59f86.json`](../../sessions/6b/6b4ea3d7fb56cbf59f86.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+53 recorded events
+
+### User
+
+_source line 1 · 2026-05-10T19:46:20.580Z_
+
+I'm reviewing a research proposal about automated compositional task generation for humanoid robots. I need to find competing/concurrent work that the proposal might have missed. Search for the following, and report what you find concisely:
+
+1. Search: "humanoid loco-manipulation data generation 2026 arxiv" - any papers from 2026 on generating training data for humanoid robots
+2. Search: "compositional task generation robot 2026" - any systems that compose multi-stage robot tasks automatically
+3. Search: "GR00T N1.7 NVIDIA 2026" - verify if GR00T N1.7 VLA workflow was actually released in May 2026
+4. Search: "GEAR-SONIC humanoid locomotion 2026" - verify this exists and is open-source
+5. Search: "transition feasibility learning robot skill composition" - any work on learned feasibility for skill composition
+6. Search: "graph neural network skill composition robot 2026" - GNN-based approaches for robot skill composition
+7. Search: "humanoid whole-body control foundation model 2026" - any foundation models for humanoid control released in 2026
+8. Search: "CoRL 2026 submission deadline" - verify CoRL 2026 dates
+9. Search: "physics-aware task generation simulation robot 2026"
+10. Search: "LHM-Humanoid arXiv 2508.16943" - verify this paper exists
+
+For each search, use WebSearch and report key findings. Focus on identifying papers NOT mentioned in this list: Eurekaverse, VIRAL, RoboGene, FATE, Ψ₀, DemoHLM, AGILE, GEAR-SONIC, Generative Skill Chaining, GSC, SCaR, SuperDyno, Genie Sim 3.0, STRIDE, FORGE, EUREKA, LHM-Humanoid, WholeBodyVLA, FALCON, SkillBlender, Humanoid Hanoi, GenManip, GR00T-Gen, Scene Graph Atomic Skills.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": true,
+  "promptId": "e53579c9-e601-4dc6-95a6-469f9c14177e",
+  "agentId": "a9cb18d5268af53bf",
+  "type": "user",
+  "uuid": "f0d34b88-5faf-49aa-b5a8-838b22bcd803",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "34372a5f-d207-4297-b608-e5da36373289",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-10T19:46:20.584Z_
+
+```json
+{
+  "parentUuid": "f0d34b88-5faf-49aa-b5a8-838b22bcd803",
+  "isSidechain": true,
+  "agentId": "a9cb18d5268af53bf",
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "TaskStop",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "TaskStop",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "61944044-2dec-47f6-a0a0-48651f6710c4",
+  "timestamp": "2026-05-10T19:46:20.584Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "34372a5f-d207-4297-b608-e5da36373289",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 3 · 2026-05-10T19:46:23.724Z_
+
+
+
+I'll run all 10 searches in parallel to maximize efficiency. Let me first load the WebSearch tool.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "61944044-2dec-47f6-a0a0-48651f6710c4",
+  "isSidechain": true,
+  "agentId": "a9cb18d5268af53bf",
+  "requestId": "req_011CauTsJXayM8xC1GyRAVcH",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "83aca8fb-ecfa-4c0f-9fd5-806a7af21395",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "34372a5f-d207-4297-b608-e5da36373289",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012uGnT9Kos8BJkCV3Cu15vw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1002,
+      "cache_read_input_tokens": 7164,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1002,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-10T19:46:24.076Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Mhov9tAeJ7VbpfsF8tfRAL`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "83aca8fb-ecfa-4c0f-9fd5-806a7af21395",
+  "isSidechain": true,
+  "agentId": "a9cb18d5268af53bf",
+  "requestId": "req_011CauTsJXayM8xC1GyRAVcH",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "e587e202-97c9-4949-b0cc-93f9860558a1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "34372a5f-d207-4297-b608-e5da36373289",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012uGnT9Kos8BJkCV3Cu15vw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1002,
+      "cache_read_input_tokens": 7164,
+      "output_tokens": 100,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1002
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 100,
+          "cache_read_input_tokens": 7164,
+          "cache_creation_input_tokens": 1002,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1002,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-10T19:46:24.079Z_
+
+<details><summary>↩ Tool result · `toolu_01Mhov9tAeJ7VbpfsF8tfRAL`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e587e202-97c9-4949-b0cc-93f9860558a1",
+  "isSidechain": true,
+  "promptId": "e53579c9-e601-4dc6-95a6-469f9c14177e",
+  "agentId": "a9cb18d5268af53bf",
+  "type": "user",
+  "uuid": "c20112f9-2ca2-49cc-b6ac-f3ba0c7dbc47",
+  "sourceToolAssistantUUID": "e587e202-97c9-4949-b0cc-93f9860558a1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "34372a5f-d207-4297-b608-e5da36373289",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 6 · 2026-05-10T19:46:26.500Z_
+
+
+
+Now let me run all 10 searches in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c20112f9-2ca2-49cc-b6ac-f3ba0c7dbc47",
+  "isSidechain": true,
+  "agentId": "a9cb18d5268af53bf",
+  "requestId": "req_011CauTsZr5fQZFPZdbZPjXK",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "80e9a48b-05e1-4856-a1e0-38a926c549b3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "34372a5f-d207-4297-b608-e5da36373289",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HLpzRB6umeuA5n7WtRBQ86",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1417,
+      "cache_read_input_tokens": 8166,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1417,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-10T19:46:27.446Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JNV4mWxKCqeV48u3DxkSYD`</summary>
+
+```json
+{
+  "query": "humanoid loco-manipulation data generation 2026 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "80e9a48b-05e1-4856-a1e0-38a926c549b3",
+  "isSidechain": true,
+  "agentId": "a9cb18d5268af53bf",
+  "requestId": "req_011CauTsZr5fQZFPZdbZPjXK",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "759434f9-0c48-4593-8214-c1136b0286eb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "34372a5f-d207-4297-b608-e5da36373289",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HLpzRB6umeuA5n7WtRBQ86",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1417,
+      "cache_read_input_tokens": 8166,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1417,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-10T19:46:27.960Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0169BGkT1SEouEesXUWJsx6Z`</summary>
+
+```json
+{
+  "query": "compositional task generation robot 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "759434f9-0c48-4593-8214-c1136b0286eb",
+  "isSidechain": true,
+  "agentId": "a9cb18d5268af53bf",
+  "requestId": "req_011CauTsZr5fQZFPZdbZPjXK",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "f616c61d-5526-47c9-b90e-380ec50a7e8c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "34372a5f-d207-4297-b608-e5da36373289",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HLpzRB6umeuA5n7WtRBQ86",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1417,
+      "cache_read_input_tokens": 8166,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1417,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-10T19:46:28.954Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011Ti6bkwCRNahkkkCqKJhrf`</summary>
+
+```json
+{
+  "query": "GR00T N1.7 NVIDIA 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f616c61d-5526-47c9-b90e-380ec50a7e8c",
+  "isSidechain": true,
+  "agentId": "a9cb18d5268af53bf",
+  "requestId": "req_011CauTsZr5fQZFPZdbZPjXK",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "d4c01e15-ae6a-48c3-ba83-db6a09703b88",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "34372a5f-d207-4297-b608-e5da36373289",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HLpzRB6umeuA5n7WtRBQ86",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1417,
+      "cache_read_input_tokens": 8166,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1417,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-10T19:46:29.470Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01BeFE9BnnCAScBa1DQ1SQun`</summary>
+
+```json
+{
+  "query": "GEAR-SONIC humanoid locomotion 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d4c01e15-ae6a-48c3-ba83-db6a09703b88",
+  "isSidechain": true,
+  "agentId": "a9cb18d5268af53bf",
+  "requestId": "req_011CauTsZr5fQZFPZdbZPjXK",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "3789729c-04af-4421-bfa0-c88502a4deed",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "34372a5f-d207-4297-b608-e5da36373289",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HLpzRB6umeuA5n7WtRBQ86",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1417,
+      "cache_read_input_tokens": 8166,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1417,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-10T19:46:30.035Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012d2tHnfCnqBZ3Lm8NJCvyc`</summary>
+
+```json
+{
+  "query": "transition feasibility learning robot skill composition"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3789729c-04af-4421-bfa0-c88502a4deed",
+  "isSidechain": true,
+  "agentId": "a9cb18d5268af53bf",
+  "requestId": "req_011CauTsZr5fQZFPZdbZPjXK",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "9a1dd986-dc9e-4075-aa3f-7a707e45c900",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "34372a5f-d207-4297-b608-e5da36373289",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HLpzRB6umeuA5n7WtRBQ86",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1417,
+      "cache_read_input_tokens": 8166,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1417,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-10T19:46:30.405Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01BaBYmgPFF6pPCQFyjeR86V`</summary>
+
+```json
+{
+  "query": "graph neural network skill composition robot 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9a1dd986-dc9e-4075-aa3f-7a707e45c900",
+  "isSidechain": true,
+  "agentId": "a9cb18d5268af53bf",
+  "requestId": "req_011CauTsZr5fQZFPZdbZPjXK",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "db68eb09-8629-4c15-8169-6df3ba1e6d2b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "34372a5f-d207-4297-b608-e5da36373289",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HLpzRB6umeuA5n7WtRBQ86",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1417,
+      "cache_read_input_tokens": 8166,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1417,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-10T19:46:30.869Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01A7HkBnCBuZaw4wBEtAuoWT`</summary>
+
+```json
+{
+  "query": "humanoid whole-body control foundation model 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "db68eb09-8629-4c15-8169-6df3ba1e6d2b",
+  "isSidechain": true,
+  "agentId": "a9cb18d5268af53bf",
+  "requestId": "req_011CauTsZr5fQZFPZdbZPjXK",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "bbc294dc-8cf9-45d1-aedb-07395b489eaf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "34372a5f-d207-4297-b608-e5da36373289",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HLpzRB6umeuA5n7WtRBQ86",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1417,
+      "cache_read_input_tokens": 8166,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1417,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-10T19:46:31.342Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01YFa7Hf1YSrKAbSZXL8MtBs`</summary>
+
+```json
+{
+  "query": "CoRL 2026 submission deadline"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bbc294dc-8cf9-45d1-aedb-07395b489eaf",
+  "isSidechain": true,
+  "agentId": "a9cb18d5268af53bf",
+  "requestId": "req_011CauTsZr5fQZFPZdbZPjXK",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "0326fc3f-2288-443e-8231-d3da389b7ffc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "34372a5f-d207-4297-b608-e5da36373289",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HLpzRB6umeuA5n7WtRBQ86",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1417,
+      "cache_read_input_tokens": 8166,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1417,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-10T19:46:31.825Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TuF6LvXspBE8R69BDCdpMJ`</summary>
+
+```json
+{
+  "query": "physics-aware task generation simulation robot 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0326fc3f-2288-443e-8231-d3da389b7ffc",
+  "isSidechain": true,
+  "agentId": "a9cb18d5268af53bf",
+  "requestId": "req_011CauTsZr5fQZFPZdbZPjXK",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "71638eaf-5721-4a66-96fc-ce71334ec041",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "34372a5f-d207-4297-b608-e5da36373289",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HLpzRB6umeuA5n7WtRBQ86",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1417,
+      "cache_read_input_tokens": 8166,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1417,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-10T19:46:32.446Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01LTvT4AvgQgeuwD2ECU4Z8y`</summary>
+
+```json
+{
+  "query": "LHM-Humanoid arXiv 2508.16943"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "71638eaf-5721-4a66-96fc-ce71334ec041",
+  "isSidechain": true,
+  "agentId": "a9cb18d5268af53bf",
+  "requestId": "req_011CauTsZr5fQZFPZdbZPjXK",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "ce5794b3-2aaa-433b-8879-d4d3906c3c38",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "34372a5f-d207-4297-b608-e5da36373289",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HLpzRB6umeuA5n7WtRBQ86",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1417,
+      "cache_read_input_tokens": 8166,
+      "output_tokens": 480,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1417
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 480,
+          "cache_read_input_tokens": 8166,
+          "cache_creation_input_tokens": 1417,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1417,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-10T19:46:35.725Z_
+
+<details><summary>↩ Tool result · `toolu_01JNV4mWxKCqeV48u3DxkSYD`</summary>
+
+```text
+Web search results for query: "humanoid loco-manipulation data generation 2026 arxiv"
+
+Links: [{"title":"GitHub - YanjieZe/awesome-humanoid-robot-learning: A Paper List for Humanoid Robot Learning. · GitHub","url":"https://github.com/YanjieZe/awesome-humanoid-robot-learning"},{"title":"GitHub - OpenDriveLab/WholebodyVLA: [ICLR 2026] Towards Unified Latent VLA for Whole-body Loco-manipulation Control · GitHub","url":"https://github.com/OpenDriveLab/WholebodyVLA"},{"title":"OmniRetarget: Interaction-Preserving Data Generation for Humanoid Whole-Body Loco-Manipulation and Scene Interaction","url":"https://arxiv.org/html/2509.26633v2"},{"title":"[2509.26633] OmniRetarget: Interaction-Preserving Data Generation for Humanoid Whole-Body Loco-Manipulation and Scene Interaction","url":"https://arxiv.org/abs/2509.26633"},{"title":"[2509.26633v1] OmniRetarget: Interaction-Preserving Data Generation for Humanoid Whole-Body Loco-Manipulation and Scene Interaction","url":"https://arxiv.org/abs/2509.26633v1"},{"title":"Systems and Control Sep 2025","url":"https://arxiv.org/list/eess.SY/2025-09?skip=675&show=250"},{"title":"EgoHumanoid: Unlocking In-the-Wild Loco-Manipulation with Robot-Free Egocentric Demonstration","url":"https://arxiv.org/html/2602.10106v1"},{"title":"[2603.12263] $Ψ_0$: An Open Foundation Model Towards Universal Humanoid Loco-Manipulation","url":"https://arxiv.org/abs/2603.12263"},{"title":"Humanoid Manipulation Interface: Humanoid Whole-Body Manipulation from Robot-Free Demonstrations","url":"https://arxiv.org/html/2602.06643v2"},{"title":"DemoHLM: From One Demonstration to Generalizable Humanoid Loco-Manipulation","url":"https://arxiv.org/html/2510.11258v1"}]
+
+Based on the search results, here are several recent papers on humanoid loco-manipulation data generation from arXiv in 2026 and late 2025:
+
+## Key Papers on Humanoid Loco-Manipulation Data Generation
+
+**OmniRetarget (arXiv 2025.09)**
+
+OmniRetarget is an interaction-preserving data generation engine based on an interaction mesh that explicitly models and preserves the crucial spatial and contact relationships between an agent, the terrain, and manipulated objects. The framework generates over 8-hour trajectories that achieve better kinematic constraint satisfaction and contact preservation than widely used baselines.
+
+**EgoHumanoid (arXiv 2026.02)**
+
+EgoHumanoid is a paper that unlocks in-the-wild loco-manipulation with robot-free egocentric demonstration. This work presents the first validation of human-robot co-training for humanoid loco-manipulation, addressing the unique challenges of transferring whole-body human demonstrations to mobile manipulation.
+
+**Ψ₀ (Psi-Zero) (arXiv 2026.03)**
+
+Ψ₀ (Psi-Zero) is an open foundation model to address challenging humanoid loco-manipulation tasks. The research demonstrates that pre-training on high-quality egocentric human manipulation data followed by post-training on domain-specific real-world humanoid trajectories yields superior performance, achieving the best performance using only about 800 hours of human video data and 30 hours of real-world robot data.
+
+**DemoHLM (arXiv 2025.10)**
+
+DemoHLM is a framework for humanoid loco-manipulation that enables scalable data generation and policy learning across diverse tasks, requiring only a single demonstration and automatically synthesizing hundreds to thousands of successful trajectories.
+
+**Humanoid Manipulation Interface (arXiv 2026.02)**
+
+HuMI gathers robot-free demonstrations across diverse real-world scenes, enabling the investigation of whether policies trained on such in-the-wild data can genuinely generalize to unseen configurations.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "759434f9-0c48-4593-8214-c1136b0286eb",
+  "isSidechain": true,
+  "promptId": "e53579c9-e601-4dc6-95a6-469f9c14177e",
+  "agentId": "a9cb18d5268af53bf",
+  "type": "user",
+  "uuid": "09f46dd3-718a-496d-b9ac-1eeea4f18a29",
+  "sourceToolAssistantUUID": "759434f9-0c48-4593-8214-c1136b0286eb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "34372a5f-d207-4297-b608-e5da36373289",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-10T19:46:35.866Z_
+
+<details><summary>↩ Tool result · `toolu_0169BGkT1SEouEesXUWJsx6Z`</summary>
+
+```text
+Web search results for query: "compositional task generation robot 2026"
+
+Links: [{"title":"Top 10 Physical AI Models Powering Real-World Robots in 2026 - MarkTechPost","url":"https://www.marktechpost.com/2026/04/28/top-10-physical-ai-models-powering-real-world-robots-in-2026/"},{"title":"SCALABLE REAL-WORLD ROBOT DATA GENERATION","url":"https://openreview.net/pdf/f5a78437564237bc7f54eef88e7d84e3c0cb2614.pdf"},{"title":"ROBOMONSTER: COMPOSITIONAL GENERALIZATION","url":"https://openreview.net/pdf/2aeacc6b15e068c9720861728ad4611b5b5706b1.pdf"},{"title":"Physical Intelligence says new robot brain can generalize to unfamiliar tasks | Prism News","url":"https://www.prismnews.com/news/physical-intelligence-says-new-robot-brain-can-generalize"},{"title":"Physical Intelligence, a hot robotics startup, says its new robot brain can figure out tasks it was never taught | TechCrunch","url":"https://techcrunch.com/2026/04/16/physical-intelligence-a-hot-robotics-startup-says-its-new-robot-brain-can-figure-out-tasks-it-was-never-taught/"},{"title":"Generative AI in Industrial Robotics: 2026 Layers Guide","url":"https://www.evsint.com/generative-ai-industrial-robotics-foundation-models-code-generation-2026/"},{"title":"ProgPrompt: program generation for situated robot task planning using large language models | Autonomous Robots | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s10514-023-10135-3"},{"title":"Learning compositional models of robot skills for task and motion planning - Zi Wang, Caelan Reed Garrett, Leslie Pack Kaelbling, Tomás Lozano-Pérez, 2021","url":"https://journals.sagepub.com/doi/abs/10.1177/02783649211004615"},{"title":"IEEE survey sheds light on how AI and humanoids will affect robotics in 2026 - The Robot Report","url":"https://www.therobotreport.com/ieee-survey-sheds-light-how-ai-humanoids-will-affect-robotics-2026/"},{"title":"CES 2026 Robotics Announcements Recap","url":"https://counterpointresearch.com/en/insights/ces-2026-robotics-announcements-recap"}]
+
+Based on the search results, here's what I found about compositional task generation and robots in 2026:
+
+## Compositional Generalization in Robotics
+
+The most recent public research release is π0.7, published April 16, 2026, which is a research-stage system focused on compositional generalization: combining learned skills from different contexts to solve tasks the model was never explicitly trained on.
+
+Physical Intelligence's pitch is straightforward: give the system an unfamiliar job, describe it in plain language, and it can still complete the work by combining skills it learned in different settings. That idea, known as compositional generalization, is what makes the result interesting.
+
+## Key Research Initiatives
+
+**RoboMonster**: Despite rapid progress in robot hardware and algorithms, a persistent gap remains between flexible decision-making in simulation and the embodiment constraints of real robots, which RoboMonster addresses. It is a paradigm and system that reasons over and coordinates multiple, diverse agents to execute tasks more effectively.
+
+**Compositional Simulation**: A novel hybrid approach called Compositional Simulation combines classical simulation and neural simulation to generate accurate action-video pairs while maintaining real-world consistency.
+
+## Practical Implications
+
+If compositional generalization proves reliable in messy real-world settings, it would change how quickly robots can move from the lab into commercial use and how much custom programming they require.
+
+These advances represent significant progress in enabling robots to generalize beyond their training data and solve novel tasks by composing learned skills in new ways.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f616c61d-5526-47c9-b90e-380ec50a7e8c",
+  "isSidechain": true,
+  "promptId": "e53579c9-e601-4dc6-95a6-469f9c14177e",
+  "agentId": "a9cb18d5268af53bf",
+  "type": "user",
+  "uuid": "b72b59bc-d70e-4610-9b22-56a2e53bea3d",
+  "sourceToolAssistantUUID": "f616c61d-5526-47c9-b90e-380ec50a7e8c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "34372a5f-d207-4297-b608-e5da36373289",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-10T19:46:36.745Z_
+
+<details><summary>↩ Tool result · `toolu_01BaBYmgPFF6pPCQFyjeR86V`</summary>
+
+```text
+Web search results for query: "graph neural network skill composition robot 2026"
+
+Links: [{"title":"Skill Composition for Robot Learning | Scene Graph Atomic Skills (ICRA 2026)","url":"https://computationalrobotics.seas.harvard.edu/SkillComposition/"},{"title":"GSC: A graph-based skill composition framework for robot learning - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0921889024001714"},{"title":"WAGNN: A Weighted Aggregation Graph Neural Network for robot skill learning - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S092188902030395X"},{"title":"Neural Graph Evolution: Towards Efficient Automatic Robot Design | OpenReview","url":"https://openreview.net/forum?id=BkgWHnR5tm"},{"title":"A graph neural network to model disruption in human-aware robot navigation | Multimedia Tools and Applications | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s11042-021-11113-6"},{"title":"Graph Neural Networks for Multi-Robot Coordination - Apollo","url":"https://www.repository.cam.ac.uk/items/d13c6d2e-aadc-4335-aff2-df30a6044991"},{"title":"Graph neural network based method for robot path planning - ScienceDirect","url":"https://www.sciencedirect.com/science/article/pii/S2667379724000056"},{"title":"[2102.13177] Efficient and Interpretable Robot Manipulation with Graph Neural Networks","url":"https://arxiv.org/abs/2102.13177"},{"title":"5 Breakthroughs in Graph Neural Networks to Watch in 2026 - KDnuggets","url":"https://www.kdnuggets.com/5-breakthroughs-in-graph-neural-networks-to-watch-in-2026"},{"title":"Graph Neural Networks: Learning Representations of ...","url":"https://phejohnwang.github.io/files/AAMAS_Tutorial.pdf"}]
+
+Based on the search results, here's what I found regarding graph neural networks, skill composition, and robotics for 2026:
+
+## Recent Developments in Graph Neural Networks for Robot Skill Composition
+
+The most relevant recent work is a scene graph-based framework for skill composition in robot learning that improves compositional generalization for long-horizon robotic manipulation by focusing on task-relevant object relations. This framework integrates graph neural networks with diffusion-based imitation learning, and further combines "focused" scene-graph skills with a vision-language model (VLM) based task planner. This is an ICRA 2026 paper on skill composition for robot learning.
+
+## Graph-Based Skill Composition Framework (GSC)
+
+Another significant approach is modeling skill sets as graphs using embeddings with Graph Neural Networks (GNN), with nodes as skills and edges as their relations. Skill composition aims to accelerate the learning process on new robotic tasks by building on prior skills.
+
+## 2026 Trends in GNNs
+
+Looking ahead, 2026 is marked as the year of shifting GNN and large language model (LLM) integration from experimental scientific research settings to enterprise contexts, leveraging the infrastructure needed to process datasets that combine graph-based structural relationships with natural language.
+
+The integration of graph neural networks with robot skill composition represents an emerging area that combines structural reasoning about robot capabilities with the ability to generalize skills across different manipulation tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "db68eb09-8629-4c15-8169-6df3ba1e6d2b",
+  "isSidechain": true,
+  "promptId": "e53579c9-e601-4dc6-95a6-469f9c14177e",
+  "agentId": "a9cb18d5268af53bf",
+  "type": "user",
+  "uuid": "abac665a-776a-42b3-9f26-7b19f596319b",
+  "sourceToolAssistantUUID": "db68eb09-8629-4c15-8169-6df3ba1e6d2b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "34372a5f-d207-4297-b608-e5da36373289",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-10T19:46:37.051Z_
+
+<details><summary>↩ Tool result · `toolu_011Ti6bkwCRNahkkkCqKJhrf`</summary>
+
+```text
+Web search results for query: "GR00T N1.7 NVIDIA 2026"
+
+Links: [{"title":"NVIDIA Isaac GR00T N1.7: Open Reasoning VLA Model for Humanoid Robots","url":"https://huggingface.co/blog/nvidia/gr00t-n1-7"},{"title":"EARLY ACCESS: Isaac GR00T N1.7 - Open Reasoning VLA model for Humanoid Robotics - Announcements - NVIDIA Developer Forums","url":"https://forums.developer.nvidia.com/t/early-access-isaac-gr00t-n1-7-open-reasoning-vla-model-for-humanoid-robotics/366916"},{"title":"GitHub - NVIDIA/Isaac-GR00T: NVIDIA Isaac GR00T N1.7 - A Foundation Model for Generalist Robots. · GitHub","url":"https://github.com/NVIDIA/Isaac-GR00T"},{"title":"NVIDIA Announces Isaac GR00T N1 — the World’s First Open Humanoid Robot Foundation Model — and Simulation Frameworks to Speed Robot Development | NVIDIA Newsroom","url":"https://nvidianews.nvidia.com/news/nvidia-isaac-gr00t-n1-open-humanoid-robot-foundation-model-simulation-frameworks"},{"title":"[2503.14734] GR00T N1: An Open Foundation Model for Generalist Humanoid Robots","url":"https://arxiv.org/abs/2503.14734"},{"title":"NVIDIA Expands Open Model Families to Power the Next Wave of Agentic, Physical and Healthcare AI | NVIDIA Newsroom","url":"https://nvidianews.nvidia.com/news/nvidia-expands-open-model-families-to-power-the-next-wave-of-agentic-physical-and-healthcare-ai"},{"title":"NVIDIA Corporation - NVIDIA Expands Open Model Families to Power the Next Wave of Agentic, Physical and Healthcare AI","url":"https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Expands-Open-Model-Families-to-Power-the-Next-Wave-of-Agentic-Physical-and-Healthcare-AI/default.aspx"},{"title":"Isaac GR00T - Generalist Robot 00 Technology | NVIDIA Developer","url":"https://developer.nvidia.com/isaac/gr00t"},{"title":"NVIDIA Launches Nemotron 3 and GR00T N1.7 Open Models for AI Agents and Robotics","url":"https://blockchain.news/news/nvidia-nemotron-3-groot-open-models-gtc-2026"},{"title":"GR00T N1.5","url":"https://research.nvidia.com/labs/gear/gr00t-n1_5/"}]
+
+Based on the search results, here's information about NVIDIA's GR00T N1.7:
+
+## Overview
+
+NVIDIA Isaac GR00T N1.7 is an open, commercially licensed Vision-Language-Action model for humanoid robots, built on the premise that human data is the most scalable source of robot intelligence.
+
+## Key Features
+
+GR00T N1.7 is an open, commercially licensed humanoid foundation model available now on Hugging Face and GitHub, factory-floor ready for commercial licensing enabling production deployments across material handling, packaging, and inspection, with reasoning built for multi-step tasks and expanded dexterous manipulation with finger-level control for contact-rich tasks like small parts assembly.
+
+The model was trained on 20,000+ hours of human egocentric video, with a first-ever dexterity scaling law showing that more human data directly and predictably improves robot dexterity—without mass teleoperation.
+
+## Improvements Over Previous Version
+
+The main differences from N1.6 are the upgraded VLM backbone (Cosmos-Reason2-2B) and EgoScale pre-training, which improves out-of-the-box dexterity and generalization before any fine-tuning.
+
+## Availability and Adoption
+
+NVIDIA Isaac GR00T N1.7 is now commercially viable for real-world deployment. Humanoid, LG Electronics, NEURA and Noble Machines are adopting NVIDIA Isaac GR00T N1.7 to scale humanoid robot deployment.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d4c01e15-ae6a-48c3-ba83-db6a09703b88",
+  "isSidechain": true,
+  "promptId": "e53579c9-e601-4dc6-95a6-469f9c14177e",
+  "agentId": "a9cb18d5268af53bf",
+  "type": "user",
+  "uuid": "1b2515ad-365d-4ce4-a04a-196f3efda295",
+  "sourceToolAssistantUUID": "d4c01e15-ae6a-48c3-ba83-db6a09703b88",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "34372a5f-d207-4297-b608-e5da36373289",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-10T19:46:37.075Z_
+
+<details><summary>↩ Tool result · `toolu_01YFa7Hf1YSrKAbSZXL8MtBs`</summary>
+
+```text
+Web search results for query: "CoRL 2026 submission deadline"
+
+Links: [{"title":"Update CoRL 2026 conference details · huggingface/ai-deadlines at 0ba012a","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/0ba012abbc2f4e96e0072f99fd68649bfc69d9cf"},{"title":"CoRL 2026 - Call for Papers","url":"https://www.corl.org/contributions/call-for-papers"},{"title":"CoRL 2026 - Instruction for Authors","url":"https://www.corl.org/contributions/instruction-for-authors"},{"title":"CoRL 2026","url":"https://www.corl.org/"},{"title":"CoRL LaTeX Template | Robot Learning Conference Format | Underleaf","url":"https://www.underleaf.ai/templates/corl"},{"title":"CoRL 2026 Conference | OpenReview","url":"https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2026%2FConference"},{"title":"Robot Learning Foundation","url":"https://www.robot-learning.org/"},{"title":"Conference on Robot Learning (@corl_conf) / Posts / X","url":"https://x.com/corl_conf?lang=en"},{"title":"Vincent Vanhoucke's Post","url":"https://www.linkedin.com/posts/vanhoucke_corl-2026-website-is-officially-live-at-http-activity-7432112475480817664-gBos"},{"title":"CoRL 2026 - Contributions","url":"https://www.corl.org/contributions"}]
+
+Based on the search results, here are the CoRL 2026 submission deadlines:
+
+**Abstract submission deadline:** May 26, 2026 11:59 UTC
+
+**Paper submission deadline:** May 29, 2026 11:59 UTC
+
+However, there's an important note: the paper submission deadline is Thursday (5/28) EOD rather than Friday, so the actual paper deadline appears to be May 28, 2026 at end of day.
+
+CoRL 2026 will be held in Austin, Texas, US, and the conference dates are November 9-12, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0326fc3f-2288-443e-8231-d3da389b7ffc",
+  "isSidechain": true,
+  "promptId": "e53579c9-e601-4dc6-95a6-469f9c14177e",
+  "agentId": "a9cb18d5268af53bf",
+  "type": "user",
+  "uuid": "94d49b5b-14df-483f-990c-1e7af2bd1cdc",
+  "sourceToolAssistantUUID": "0326fc3f-2288-443e-8231-d3da389b7ffc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "34372a5f-d207-4297-b608-e5da36373289",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-10T19:46:37.251Z_
+
+<details><summary>↩ Tool result · `toolu_012d2tHnfCnqBZ3Lm8NJCvyc`</summary>
+
+```text
+Web search results for query: "transition feasibility learning robot skill composition"
+
+Links: [{"title":"GSC: A graph-based skill composition framework for robot learning - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0921889024001714"},{"title":"Frontiers | Skill Learning by Autonomous Robotic Playing Using Active Learning and Exploratory Behavior Composition","url":"https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2020.00042/full"},{"title":"Generative Skill Chaining: Long-Horizon Skill Planning with Diffusion Models","url":"https://proceedings.mlr.press/v229/mishra23a/mishra23a.pdf"},{"title":"MetaWorld: Skill Transfer and Composition in a Hierarchical World Model for Grounding High-Level Instructions","url":"https://arxiv.org/html/2601.17507"},{"title":"Sample-Efficient Robot Skill Learning for Construction Tasks:","url":"https://arxiv.org/pdf/2512.14031"},{"title":"A Robot Skill Learning Framework Based on Compliant Movement Primitives | Journal of Intelligent & Robotic Systems","url":"https://link.springer.com/article/10.1007/s10846-022-01605-4"},{"title":"A review of learning-based dynamics models for robotic manipulation | Science Robotics","url":"https://www.science.org/doi/10.1126/scirobotics.adt1497"},{"title":"Movement Primitives in Robotics: A Comprehensive Survey","url":"https://arxiv.org/html/2601.02379v1"},{"title":"Toward next-generation learned robot manipulation | Science Robotics","url":"https://www.science.org/doi/10.1126/scirobotics.abd9461"},{"title":"Learning Compositional Behaviors from Demonstration and Language","url":"https://blade-bot.github.io/blade.pdf"}]
+
+Based on the web search results, I found relevant research on transition feasibility, robot skill learning, and skill composition. Here are the key findings:
+
+## Generative Skill Chaining with Transition Feasibility
+
+A framework called Generative Skill Chaining implicitly considers transition feasibility and subsequent skill affordability while demonstrating flexible constraint-handling abilities. This approach uses skill-level probabilistic generative models that capture the joint distribution of precondition - skill parameter - effect of each skill, with each skill trained as an unconditional diffusion model.
+
+## Graph-Based Skill Composition
+
+Skill composition aims to accelerate the learning process on new robotic tasks by incorporating prior skills. A Graph-based Skill Composition (GSC) framework has been proposed to integrate previously learned knowledge more efficiently, and it is the first to model a whole skill set as a graph and learn skill embeddings with Graph Neural Networks.
+
+## Behavior Composition and Learning
+
+Behavior abstraction learning builds representations that describe the preconditions and effects of behaviors to enable chaining and search, and these representations depend on the environment, the set of possible goals, and the specifications of individual behaviors.
+
+## Hierarchical Dynamics Models
+
+Low-level models can capture fine-grained physical interactions for motor control, whereas high-level models may represent skill-level transitions or abstract state dynamics to support task planning. An exciting direction is to investigate how to learn unified hierarchical dynamics models or to compose and interface separate models at different abstraction levels.
+
+These research directions show active work in making robot skills composable, feasible, and transferable across tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9a1dd986-dc9e-4075-aa3f-7a707e45c900",
+  "isSidechain": true,
+  "promptId": "e53579c9-e601-4dc6-95a6-469f9c14177e",
+  "agentId": "a9cb18d5268af53bf",
+  "type": "user",
+  "uuid": "60ce8770-c838-4bf1-8665-38a7fa79828b",
+  "sourceToolAssistantUUID": "9a1dd986-dc9e-4075-aa3f-7a707e45c900",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "34372a5f-d207-4297-b608-e5da36373289",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-10T19:46:37.435Z_
+
+<details><summary>↩ Tool result · `toolu_01A7HkBnCBuZaw4wBEtAuoWT`</summary>
+
+```text
+Web search results for query: "humanoid whole-body control foundation model 2026"
+
+Links: [{"title":"A Survey of Behavior Foundation Model: Next-Generation Whole-Body Control System of Humanoid Robots - PubMed","url":"https://pubmed.ncbi.nlm.nih.gov/41468330/"},{"title":"[2506.20487] A Survey of Behavior Foundation Model: Next-Generation Whole-Body Control System of Humanoid Robots","url":"https://arxiv.org/abs/2506.20487"},{"title":"GR00T-WholeBodyControl Documentation — GR00T-WholeBodyControl Documentation","url":"https://nvlabs.github.io/GR00T-WholeBodyControl/"},{"title":"GitHub - HorizonRobotics/HoloMotion: HoloMotion: A Foundation Model for Whole-Body Humanoid Control","url":"https://github.com/HorizonRobotics/HoloMotion"},{"title":"GitHub - YanjieZe/awesome-humanoid-robot-learning: A Paper List for Humanoid Robot Learning. · GitHub","url":"https://github.com/YanjieZe/awesome-humanoid-robot-learning"},{"title":"Training a Whole-Body Control Foundation Model | Agility","url":"https://www.agilityrobotics.com/content/training-a-whole-body-control-foundation-model"},{"title":"GitHub - OpenDriveLab/WholebodyVLA: [ICLR 2026] Towards Unified Latent VLA for Whole-body Loco-manipulation Control · GitHub","url":"https://github.com/OpenDriveLab/WholebodyVLA"},{"title":"GitHub - NVlabs/GR00T-WholeBodyControl: Welcome to GR00T Whole-Body Control (WBC)! This is a unified platform for developing and deploying advanced humanoid controllers. This includes: Decoupled WBC models used in NVIDIA Isaac-Gr00t, Gr00t N1.5 and N1.6 and GEAR-SONIC · GitHub","url":"https://github.com/NVlabs/GR00T-WholeBodyControl"},{"title":"Humanoid Robot ‘Digit’ Powered by Whole-Body Control Foundation Model | NVIDIA","url":"https://www.nvidia.com/en-us/case-studies/agility-robotics-digit-humanoid-robot/"},{"title":"nvidia/GEAR-SONIC · Hugging Face","url":"https://huggingface.co/nvidia/GEAR-SONIC"}]
+
+Based on the search results, here's what's happening with humanoid whole-body control foundation models in 2026:
+
+## Recent Developments
+
+Behavioral foundation models (BFMs) have emerged as a new paradigm that leverages large-scale pre-training to learn reusable primitive skills and broad behavioral priors, enabling zero-shot or rapid adaptation to a wide range of downstream tasks.
+
+## Key Foundation Models
+
+**SONIC**: SONIC is a humanoid behavior foundation model that gives robots a core set of motor skills learned from large-scale human motion data, using motion tracking as a scalable training task to enable a single unified policy to produce natural, whole-body movement and support a wide range of behaviors. SONIC training code and checkpoint were released on HuggingFace in April 2026.
+
+**HoloMotion**: HoloMotion serves as a powerful, extensible, and open-source foundation for achieving whole-body control, with development structured around four core generalization goals: Any Pose, Any Command, Any Terrain, and Any Embodiment.
+
+**Research Survey**: A comprehensive survey on behavioral foundation models for humanoid whole-body control was published in 2026, discussing how BFMs enable zero-shot or rapid adaptation to downstream tasks.
+
+## Real-World Applications
+
+Whole-body control foundation models have been successfully deployed from simulation to real warehouse and manufacturing operations with improved reliability and task performance.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bbc294dc-8cf9-45d1-aedb-07395b489eaf",
+  "isSidechain": true,
+  "promptId": "e53579c9-e601-4dc6-95a6-469f9c14177e",
+  "agentId": "a9cb18d5268af53bf",
+  "type": "user",
+  "uuid": "263d22be-416d-442c-b55b-e770a336f3c1",
+  "sourceToolAssistantUUID": "bbc294dc-8cf9-45d1-aedb-07395b489eaf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "34372a5f-d207-4297-b608-e5da36373289",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-10T19:46:39.601Z_
+
+<details><summary>↩ Tool result · `toolu_01BeFE9BnnCAScBa1DQ1SQun`</summary>
+
+```text
+Web search results for query: "GEAR-SONIC humanoid locomotion 2026"
+
+Links: [{"title":"GitHub - NVlabs/GR00T-WholeBodyControl: Welcome to GR00T Whole-Body Control (WBC)! This is a unified platform for developing and deploying advanced humanoid controllers. This includes: Decoupled WBC models used in NVIDIA Isaac-Gr00t, Gr00t N1.5 and N1.6 and GEAR-SONIC · GitHub","url":"https://github.com/NVlabs/GR00T-WholeBodyControl"},{"title":"SONIC: Supersizing Motion Tracking for Natural Humanoid Whole-Body Control","url":"https://nvlabs.github.io/GEAR-SONIC/"},{"title":"GR00T-WholeBodyControl Documentation — GR00T-WholeBodyControl Documentation","url":"https://nvlabs.github.io/GR00T-WholeBodyControl/"},{"title":"nvidia/GEAR-SONIC · Hugging Face","url":"https://huggingface.co/nvidia/GEAR-SONIC"},{"title":"Control Paradigms | NVlabs/GR00T-WholeBodyControl | DeepWiki","url":"https://deepwiki.com/NVlabs/GR00T-WholeBodyControl/1.2-key-features"},{"title":"SONIC: Supersizing Motion Tracking for Natural Humanoid Whole-Body Control","url":"https://arxiv.org/html/2511.07820v1"},{"title":"Teaching a Humanoid Robot to Wave: Custom Motions with GEAR-SONIC","url":"https://www.akshayparkhi.net/2026/Feb/24/teaching-a-humanoid-robot-to-wave-custom-motions-with-gear-sonic/"},{"title":"SONIC: Supersizing Motion Tracking for Natural Humanoid ...","url":"https://nvlabs.github.io/SONIC/"},{"title":"GR00T-WholeBodyControl/README.md at main · NVlabs/GR00T-WholeBodyControl","url":"https://github.com/NVlabs/GR00T-WholeBodyControl/blob/main/README.md"},{"title":"NVlabs/GR00T-WholeBodyControl | DeepWiki","url":"https://deepwiki.com/NVlabs/GR00T-WholeBodyControl"}]
+
+Based on the search results, here's what I found about GEAR-SONIC humanoid locomotion in 2026:
+
+## Overview
+
+SONIC is a humanoid behavior foundation model that gives robots a core set of motor skills learned from large-scale human motion data. GEAR-SONIC was released on February 19, 2026, with pretrained checkpoints, C++ inference, VR teleoperation, and documentation.
+
+## Key Capabilities
+
+GEAR-SONIC is a generalist humanoid behavior foundation model that uses a unified Transformer-based architecture to track motion across the entire body, supporting diverse behaviors like crawling, walking, and teleoperation through a single policy.
+
+SONIC uses motion tracking as a scalable training task, enabling a single unified policy to produce natural, whole-body movement and support a wide range of behaviors.
+
+## Locomotion Features
+
+SONIC includes a kinematic planner for real-time locomotion generation — choose a movement style, steer with keyboard/gamepad, and adjust speed and height on the fly.
+
+The real-time kinematic planner enables interactive gamepad control with diverse locomotion styles, and supports diverse body configurations beyond standing locomotion, enabling low-posture movements essential for navigating constrained environments.
+
+## 2026 Developments
+
+Recent 2026 updates include:
+- MotionBricks preview with interactive G1 demo, pretrained checkpoints, and synthetic training code
+- End-to-end VLA workflow on G1 for collecting teleop data, fine-tuning Isaac-GR00T N1.7, and deploying with SONIC whole-body control
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3789729c-04af-4421-bfa0-c88502a4deed",
+  "isSidechain": true,
+  "promptId": "e53579c9-e601-4dc6-95a6-469f9c14177e",
+  "agentId": "a9cb18d5268af53bf",
+  "type": "user",
+  "uuid": "402d5163-88af-45b3-b19a-4f89357c69ec",
+  "sourceToolAssistantUUID": "3789729c-04af-4421-bfa0-c88502a4deed",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "34372a5f-d207-4297-b608-e5da36373289",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-10T19:46:40.220Z_
+
+<details><summary>↩ Tool result · `toolu_01LTvT4AvgQgeuwD2ECU4Z8y`</summary>
+
+```text
+Web search results for query: "LHM-Humanoid arXiv 2508.16943"
+
+Links: [{"title":"[2508.16943] LHM-Humanoid: Learning a Unified Policy for Long-Horizon Humanoid Whole-Body Loco-Manipulation in Diverse Messy Environments","url":"https://arxiv.org/abs/2508.16943"},{"title":"LHM-Humanoid: Learning a Unified Policy for Long-Horizon Humanoid Whole-Body Loco-Manipulation in Diverse Messy Environments","url":"https://arxiv.org/html/2508.16943"},{"title":"HUMANOIDVERSE: A VERSATILE HUMANOID FOR","url":"https://arxiv.org/pdf/2508.16943"},{"title":"HumanoidVerse: A Versatile Humanoid for Vision-Language Guided Multi-Object Rearrangement","url":"https://haozhuo-zhang.github.io/HumanoidVerse-project-page/"},{"title":"HumanoidVerse: A Versatile Humanoid for Vision-Language Guided Multi-Object Rearrangement","url":"https://arxiv.org/html/2508.16943v1"},{"title":"GitHub - YanjieZe/awesome-humanoid-robot-learning: A Paper List for Humanoid Robot Learning. · GitHub","url":"https://github.com/YanjieZe/awesome-humanoid-robot-learning"},{"title":"[2508.08258] Humanoid Robot Acrobatics Utilizing Complete Articulated Rigid Body Dynamics","url":"https://arxiv.org/abs/2508.08258"},{"title":"Learning Human-to-Humanoid Real-Time Whole-Body Teleoperation","url":"https://arxiv.org/html/2403.04436v1"},{"title":"Humanoid Robot Acrobatics Utilizing Complete Articulated Rigid Body Dynamics","url":"https://arxiv.org/html/2508.08258"},{"title":"GitHub - weihaox/awesome-digital-human: Digital Human Resource: 2D/3D/4D Human Modeling, Avatar Generation & Animation, Clothed People Digitalization, Virtual Try-On, etc. · GitHub","url":"https://github.com/weihaox/awesome-digital-human"}]
+
+Based on the search results, here's what I found about arXiv paper 2508.16943:
+
+LHM-Humanoid is a benchmark and learning framework for long-horizon whole-body humanoid loco-manipulation in diverse, cluttered scenes. 
+
+The paper addresses a complex robotics challenge where a humanoid agent must repeatedly (i) walk to a target, (ii) pick it up with diverse whole-body postures under balance constraints, (iii) carry it while navigating around obstacles, and (iv) place it at a designated goal -- all within a single continuous episode and without any environment reset.
+
+Key aspects of the work include:
+
+- **Dataset**: The dataset spans four room types (bedroom, living room, kitchen, and warehouse), comprising 350 diverse scenes/tasks with 79 objects (25 movable targets).
+
+- **Learning Approach**: The researchers learn goal-conditioned teacher policies via reinforcement learning and distill them into a single end-to-end student policy using DAgger. They further distill this unified policy into a vision-language-action (VLA) model driven by egocentric RGB observations and natural language.
+
+- **Results**: Experiments in Isaac Gym demonstrate that LHM-Humanoid substantially outperforms end-to-end RL baselines and prior humanoid loco-manipulation methods on both seen and unseen scenes, exhibiting strong long-horizon robustness and cross-scene generalization.
+
+The paper was last updated on March 5, 2026, with authors including Haozhuo Zhang, Jingkai Sun, Michele Caprio, Jian Tang, Shanghang Zhang, Qiang Zhang, and Wei Pan.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ce5794b3-2aaa-433b-8879-d4d3906c3c38",
+  "isSidechain": true,
+  "promptId": "e53579c9-e601-4dc6-95a6-469f9c14177e",
+  "agentId": "a9cb18d5268af53bf",
+  "type": "user",
+  "uuid": "7a7995aa-da4c-41a9-8269-f6d5ee92f0b9",
+  "sourceToolAssistantUUID": "ce5794b3-2aaa-433b-8879-d4d3906c3c38",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "34372a5f-d207-4297-b608-e5da36373289",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-10T19:46:42.828Z_
+
+<details><summary>↩ Tool result · `toolu_01TuF6LvXspBE8R69BDCdpMJ`</summary>
+
+```text
+Web search results for query: "physics-aware task generation simulation robot 2026"
+
+Links: [{"title":"AGIBOT introduces Genie Sim 3.0 simulation platform for embodied AI - The Robot Report","url":"https://www.therobotreport.com/agibot-introduces-genie-sim-3-0-simulation-platform-embodied-ai/"},{"title":"AI goes physical: Navigating the convergence of AI and robotics","url":"https://www.deloitte.com/us/en/insights/topics/technology-management/tech-trends/2026/physical-ai-humanoid-robots.html"},{"title":"Universal Robots and Scale AI launch imitation learning system to accelerate AI model training, bridging the 'lab-to-factory' gap","url":"https://www.universal-robots.com/news-and-media/news-center/universal-robots-scale-ai-launch-imitation-learning-system-accelerate-ai-training-lab-to-factory/"},{"title":"National Robotics Week — Latest Physical AI Research, Breakthroughs and Resources | NVIDIA Blog","url":"https://blogs.nvidia.com/blog/national-robotics-week-2026/"},{"title":"This simulation startup wants to be the Cursor for physical AI | TechCrunch","url":"https://techcrunch.com/2026/04/16/this-simulation-startup-wants-to-be-the-cursor-for-physical-ai/"},{"title":"Robot Simulation Software: A 2026 Perspective","url":"https://www.blackcoffeerobotics.com/blog/which-robot-simulation-software-to-use"},{"title":"Genie Sim 3.0 : A High-Fidelity Comprehensive Simulation Platform for Humanoid Robot","url":"https://arxiv.org/html/2601.02078v1"},{"title":"Isaac Sim - Robotics Simulation and Synthetic Data Generation | NVIDIA Developer","url":"https://developer.nvidia.com/isaac/sim"},{"title":"Interactive World Simulator for Robot Policy Training and Evaluation","url":"https://www.yixuanwang.me/interactive_world_sim/texts/main.pdf"},{"title":"From Simulation to Scale: How World Models Will Unlock the Robotics Frontier","url":"https://www.3one4capital.com/blogs/from-simulation-to-scale-how-world-models-will-unlock-the-robotics-frontier"}]
+
+Based on the search results, here's what's happening with physics-aware task generation and simulation for robots in 2026:
+
+## Key Developments
+
+**Genie Sim 3.0 Platform**
+
+Genie Sim 3.0 is a unified platform that uses LLM to create generalized, high-fidelity scenes from natural language instructions and features a pioneering LLM-VLM benchmark for automated, scalable task generation and evaluation. The platform features decoupled physics and rendering engines that support high-frequency (1,000Hz) physics simulation alongside high-fidelity visual observation, and supports massively parallel simulation for increased data throughput and accelerated model convergence.
+
+**Physics-Based Simulation Focus**
+
+Physical AI systems rely on a blend of neural graphics, synthetic data generation, physics-based simulation, and advanced AI reasoning, with training approaches such as reinforcement learning and imitation learning enabling these systems to master principles like gravity and friction in virtual environments before being deployed in the real world.
+
+**Industry Solutions**
+
+Isaac Sim provides physics-accurate simulation with real-time haptic feedback, allowing developers to control virtual bi-manual robot systems. NVIDIA's Newton 1.0 physics engine provides fast and reliable foundation for dexterous robot manipulation with accurate collision detection, realistic object contact and stable simulation of complex systems with both rigid and flexible parts.
+
+**Data Generation at Scale**
+
+Synthetic data can be generated efficiently at scale with extensive randomization in parameters such as object textures, lighting conditions, physics properties, and task variations; by scaling the synthetic dataset systematically and varying simulation conditions, the resulting training distribution effectively mitigates the domain gap and enhances model generalization capabilities to real-world settings.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "71638eaf-5721-4a66-96fc-ce71334ec041",
+  "isSidechain": true,
+  "promptId": "e53579c9-e601-4dc6-95a6-469f9c14177e",
+  "agentId": "a9cb18d5268af53bf",
+  "type": "user",
+  "uuid": "288aa469-4326-40da-ba5a-e6937f1011c4",
+  "sourceToolAssistantUUID": "71638eaf-5721-4a66-96fc-ce71334ec041",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "34372a5f-d207-4297-b608-e5da36373289",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27 · 2026-05-10T19:46:45.182Z_
+
+Now let me do a few follow-up searches to dig deeper into potentially missed work.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "288aa469-4326-40da-ba5a-e6937f1011c4",
+  "isSidechain": true,
+  "agentId": "a9cb18d5268af53bf",
+  "requestId": "req_011CauTtwcYcK5MRKGq4ukFJ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "863c93ed-ef9b-4182-a01d-00cb4005581e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "34372a5f-d207-4297-b608-e5da36373289",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016pyGQRZWs484r5cRUUm79W",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 988,
+      "cache_creation_input_tokens": 9024,
+      "cache_read_input_tokens": 9583,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 9024,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-10T19:46:46.141Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Q9PNHQXR89zF7jFAdMSpgE`</summary>
+
+```json
+{
+  "query": "OmniRetarget humanoid data generation interaction mesh 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "863c93ed-ef9b-4182-a01d-00cb4005581e",
+  "isSidechain": true,
+  "agentId": "a9cb18d5268af53bf",
+  "requestId": "req_011CauTtwcYcK5MRKGq4ukFJ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "eb7d1fce-1093-412c-aac4-aa44ea6ef297",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "34372a5f-d207-4297-b608-e5da36373289",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016pyGQRZWs484r5cRUUm79W",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 988,
+      "cache_creation_input_tokens": 9024,
+      "cache_read_input_tokens": 9583,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 9024,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-10T19:46:46.608Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Er85cyY9kNAnwPy4HmnzbX`</summary>
+
+```json
+{
+  "query": "EgoHumanoid robot-free egocentric demonstration loco-manipulation 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "eb7d1fce-1093-412c-aac4-aa44ea6ef297",
+  "isSidechain": true,
+  "agentId": "a9cb18d5268af53bf",
+  "requestId": "req_011CauTtwcYcK5MRKGq4ukFJ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "d2123eb1-5134-4547-9c6c-19e40a8180ea",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "34372a5f-d207-4297-b608-e5da36373289",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016pyGQRZWs484r5cRUUm79W",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 988,
+      "cache_creation_input_tokens": 9024,
+      "cache_read_input_tokens": 9583,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 9024,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-10T19:46:47.548Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01T2gJzP5Z1q2ZJFf8vqBkJs`</summary>
+
+```json
+{
+  "query": "HoloMotion humanoid foundation model Horizon Robotics 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d2123eb1-5134-4547-9c6c-19e40a8180ea",
+  "isSidechain": true,
+  "agentId": "a9cb18d5268af53bf",
+  "requestId": "req_011CauTtwcYcK5MRKGq4ukFJ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "b7ef84bf-a585-4eae-adfc-9a2761acec6b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "34372a5f-d207-4297-b608-e5da36373289",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016pyGQRZWs484r5cRUUm79W",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 988,
+      "cache_creation_input_tokens": 9024,
+      "cache_read_input_tokens": 9583,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 9024,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-10T19:46:48.172Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VsMZDyvXpzy1oGbfvsh5as`</summary>
+
+```json
+{
+  "query": "pi0.7 Physical Intelligence compositional generalization robot 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b7ef84bf-a585-4eae-adfc-9a2761acec6b",
+  "isSidechain": true,
+  "agentId": "a9cb18d5268af53bf",
+  "requestId": "req_011CauTtwcYcK5MRKGq4ukFJ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "d8717669-3ca2-446d-ae1f-330aa482b29f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "34372a5f-d207-4297-b608-e5da36373289",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016pyGQRZWs484r5cRUUm79W",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 988,
+      "cache_creation_input_tokens": 9024,
+      "cache_read_input_tokens": 9583,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 9024,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-10T19:46:49.163Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MH5t5VKoDHNE2a1wriMCUL`</summary>
+
+```json
+{
+  "query": "MetaWorld skill transfer composition hierarchical world model 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d8717669-3ca2-446d-ae1f-330aa482b29f",
+  "isSidechain": true,
+  "agentId": "a9cb18d5268af53bf",
+  "requestId": "req_011CauTtwcYcK5MRKGq4ukFJ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "5be10c98-1fd1-40d5-b91c-fdc3b88e51ec",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "34372a5f-d207-4297-b608-e5da36373289",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016pyGQRZWs484r5cRUUm79W",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 988,
+      "cache_creation_input_tokens": 9024,
+      "cache_read_input_tokens": 9583,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 9024,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-10T19:46:49.481Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MRkJyWk6z2qpDR1A8U7PB5`</summary>
+
+```json
+{
+  "query": "RoboMonster compositional multi-agent robot 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5be10c98-1fd1-40d5-b91c-fdc3b88e51ec",
+  "isSidechain": true,
+  "agentId": "a9cb18d5268af53bf",
+  "requestId": "req_011CauTtwcYcK5MRKGq4ukFJ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "5010fa5f-0fe3-412d-9f79-c0cccf76f2c1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "34372a5f-d207-4297-b608-e5da36373289",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016pyGQRZWs484r5cRUUm79W",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 988,
+      "cache_creation_input_tokens": 9024,
+      "cache_read_input_tokens": 9583,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 9024,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-10T19:46:50.004Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01YP8gq21GEV56Z52kLwQAMh`</summary>
+
+```json
+{
+  "query": "HumanoidVerse vision language rearrangement 2508.16943"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5010fa5f-0fe3-412d-9f79-c0cccf76f2c1",
+  "isSidechain": true,
+  "agentId": "a9cb18d5268af53bf",
+  "requestId": "req_011CauTtwcYcK5MRKGq4ukFJ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "ef98f57f-040a-4654-aeb5-e34ef05d6993",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "34372a5f-d207-4297-b608-e5da36373289",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016pyGQRZWs484r5cRUUm79W",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 988,
+      "cache_creation_input_tokens": 9024,
+      "cache_read_input_tokens": 9583,
+      "output_tokens": 386,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 9024
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 988,
+          "output_tokens": 386,
+          "cache_read_input_tokens": 9583,
+          "cache_creation_input_tokens": 9024,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 9024,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-10T19:46:53.256Z_
+
+<details><summary>↩ Tool result · `toolu_01Q9PNHQXR89zF7jFAdMSpgE`</summary>
+
+```text
+Web search results for query: "OmniRetarget humanoid data generation interaction mesh 2025"
+
+Links: [{"title":"[2509.26633] OmniRetarget: Interaction-Preserving Data Generation for Humanoid Whole-Body Loco-Manipulation and Scene Interaction","url":"https://arxiv.org/abs/2509.26633"},{"title":"OmniRetarget: Interaction-Preserving Data Generation for Humanoid","url":"https://omniretarget.github.io/static/images/paper.pdf"},{"title":"OmniRetarget: Interaction-Preserving Data Generation for Humanoid Whole-Body Loco-Manipulation and Scene Interaction","url":"https://arxiv.org/html/2509.26633v2"},{"title":"OmniRetarget: Humanoid Data Generation","url":"https://www.emergentmind.com/papers/2509.26633"},{"title":"[2509.26633v1] OmniRetarget: Interaction-Preserving Data Generation for Humanoid Whole-Body Loco-Manipulation and Scene Interaction","url":"https://arxiv.org/abs/2509.26633v1"},{"title":"OmniRetarget","url":"https://omniretarget.github.io/"},{"title":"omniretarget/OmniRetarget_Dataset · Datasets at Hugging Face","url":"https://huggingface.co/datasets/omniretarget/OmniRetarget_Dataset"},{"title":"[PDF] OmniRetarget: Interaction-Preserving Data Generation for Humanoid Whole-Body Loco-Manipulation and Scene Interaction | Semantic Scholar","url":"https://www.semanticscholar.org/paper/OmniRetarget:-Interaction-Preserving-Data-for-and-Yang-Huang/234018fa87b6c649830e1e6274362c58445a9fbc"},{"title":"Paper page - OmniRetarget: Interaction-Preserving Data Generation for Humanoid Whole-Body Loco-Manipulation and Scene Interaction","url":"https://huggingface.co/papers/2509.26633"},{"title":"[Literature Review] OmniRetarget: Interaction-Preserving Data Generation for Humanoid Whole-Body Loco-Manipulation and Scene Interaction","url":"https://www.themoonlight.io/en/review/omniretarget-interaction-preserving-data-generation-for-humanoid-whole-body-loco-manipulation-and-scene-interaction"}]
+
+Based on the search results, here's what I found about OmniRetarget:
+
+## Overview
+
+OmniRetarget is an interaction-preserving data generation engine based on an interaction mesh that explicitly models and preserves the crucial spatial and contact relationships between an agent, the terrain, and manipulated objects.
+
+## Key Problem It Addresses
+
+The framework addresses challenges in teaching humanoid robots complex skills through motion retargeting, as existing retargeting pipelines struggle with the embodiment gap between humans and robots, producing artifacts like foot-skating and penetration, while neglecting rich human-object and human-environment interactions.
+
+## Technical Approach
+
+By minimizing the Laplacian deformation between the human and robot meshes while enforcing kinematic constraints, OmniRetarget generates kinematically feasible trajectories. Preserving task-relevant interactions enables efficient data augmentation, from a single demonstration to different robot embodiments, terrains, and object configurations.
+
+## Results and Applications
+
+OmniRetarget was evaluated by retargeting motions from OMOMO, LAFAN1, and in-house MoCap datasets, generating over 8-hour trajectories that achieve better kinematic constraint satisfaction and contact preservation than widely used baselines.
+
+The high-quality data enables proprioceptive RL policies to successfully execute long-horizon (up to 30 seconds) parkour and loco-manipulation skills on a Unitree G1 humanoid, trained with only 5 reward terms and simple domain randomization shared by all tasks, without any learning curriculum.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "eb7d1fce-1093-412c-aac4-aa44ea6ef297",
+  "isSidechain": true,
+  "promptId": "e53579c9-e601-4dc6-95a6-469f9c14177e",
+  "agentId": "a9cb18d5268af53bf",
+  "type": "user",
+  "uuid": "8949367d-99a6-44d4-ac4b-0b333eb89a09",
+  "sourceToolAssistantUUID": "eb7d1fce-1093-412c-aac4-aa44ea6ef297",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "34372a5f-d207-4297-b608-e5da36373289",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-10T19:46:53.592Z_
+
+<details><summary>↩ Tool result · `toolu_01Er85cyY9kNAnwPy4HmnzbX`</summary>
+
+```text
+Web search results for query: "EgoHumanoid robot-free egocentric demonstration loco-manipulation 2026"
+
+Links: [{"title":"EgoHumanoid: Unlocking In-the-Wild Loco-Manipulation with Robot-Free Egocentric Demonstration","url":"https://arxiv.org/html/2602.10106v1"},{"title":"EgoHumanoid: Unlocking In-the-Wild Loco-Manipulation with Robot-Free Egocentric Demonstration | Request PDF","url":"https://www.researchgate.net/publication/400660604_EgoHumanoid_Unlocking_In-the-Wild_Loco-Manipulation_with_Robot-Free_Egocentric_Demonstration"},{"title":"[2602.10106] EgoHumanoid: Unlocking In-the-Wild Loco-Manipulation with Robot-Free Egocentric Demonstration","url":"https://arxiv.org/abs/2602.10106"},{"title":"GitHub - OpenDriveLab/WholebodyVLA: [ICLR 2026] Towards Unified Latent VLA for Whole-body Loco-manipulation Control · GitHub","url":"https://github.com/OpenDriveLab/WholebodyVLA"},{"title":"EGOHUMANOID | Human-to-Humanoid Transfer for Loco-Manipulation","url":"https://opendrivelab.com/EgoHumanoid/"},{"title":"GitHub - YanjieZe/awesome-humanoid-robot-learning: A Paper List for Humanoid Robot Learning. · GitHub","url":"https://github.com/YanjieZe/awesome-humanoid-robot-learning"},{"title":"GitHub - OpenDriveLab/EgoHumanoid: The first framework enabling humanoid robots to learn whole-body loco-manipulation from egocentric human demos · GitHub","url":"https://github.com/OpenDriveLab/EgoHumanoid"},{"title":"Robots Learn To Walk And Manipulate Objects By Watching Humans Perform Tasks","url":"https://quantumzeitgeist.com/robots-learn-walk-manipulate-objects/"},{"title":"EgoMimic: Scaling Imitation Learning via Egocentric Video","url":"https://www.researchgate.net/publication/395228678_EgoMimic_Scaling_Imitation_Learning_via_Egocentric_Video"},{"title":"EgoScale: Scaling Human-to-Robot Dexterity","url":"https://www.emergentmind.com/papers/2602.16710"}]
+
+I found comprehensive information about the EgoHumanoid research. Here are the key results:
+
+## Overview
+
+EgoHumanoid is the first framework to co-train a vision-language-action policy using abundant egocentric human demonstrations together with a limited amount of robot data, enabling humanoids to perform loco-manipulation across diverse real-world environments.
+
+## Key Innovation
+
+To bridge the embodiment gap between humans and robots, including discrepancies in physical morphology and viewpoint, the framework introduces a systematic alignment pipeline spanning from hardware design to data processing. The alignment pipeline has two core components:
+
+1. View alignment reduces visual discrepancies by transforming human egocentric observations to approximate robot viewpoints using depth-based reprojection and inpainting.
+
+2. Action alignment employs a unified action space shared by humans and robots, using delta end-effector poses for upper body control and discrete commands for locomotion.
+
+## Performance Results
+
+Incorporating robot-free egocentric data significantly outperforms robot-only baselines by 51%, particularly in unseen environments. Experiments demonstrate that incorporating human data significantly improves policy performance by 20% on average and enables generalization to scenes not covered by the robot data.
+
+## Hardware Platform
+
+EgoHumanoid is validated on a Unitree G1 humanoid robot across four indoor and outdoor loco-manipulation tasks.
+
+The research was published in February 2026 and represents a significant advancement in training humanoid robots for complex whole-body manipulation tasks using human demonstrations.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d2123eb1-5134-4547-9c6c-19e40a8180ea",
+  "isSidechain": true,
+  "promptId": "e53579c9-e601-4dc6-95a6-469f9c14177e",
+  "agentId": "a9cb18d5268af53bf",
+  "type": "user",
+  "uuid": "776b6a34-56b2-451a-8576-8a348191bace",
+  "sourceToolAssistantUUID": "d2123eb1-5134-4547-9c6c-19e40a8180ea",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "34372a5f-d207-4297-b608-e5da36373289",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-10T19:46:54.658Z_
+
+<details><summary>↩ Tool result · `toolu_01T2gJzP5Z1q2ZJFf8vqBkJs`</summary>
+
+```text
+Web search results for query: "HoloMotion humanoid foundation model Horizon Robotics 2026"
+
+Links: [{"title":"GitHub - HorizonRobotics/HoloMotion: HoloMotion: A Foundation Model for Whole-Body Humanoid Control","url":"https://github.com/HorizonRobotics/HoloMotion"},{"title":"Horizon Robotics · GitHub","url":"https://github.com/HorizonRobotics"},{"title":"HoloMotion - a HorizonRobotics Collection","url":"https://huggingface.co/collections/HorizonRobotics/holomotion"},{"title":"HoloMotion","url":"https://horizonrobotics.github.io/robot_lab/holomotion/"},{"title":"D-Robotics secures $150 million to accelerate embodied AI ecosystem with Horizon Robotics | Gasgoo","url":"https://autonews.gasgoo.com/articles/icv/d-robotics-secures-150-million-to-accelerate-embodied-ai-ecosystem-with-horizon-robotics-2041759438526922753"},{"title":"Welcome to HorizonRobotics RobotLab — HorizonRobotics RobotLab","url":"https://horizonrobotics.github.io/robot_lab/main/index.html"},{"title":"Foundation Models: The AI Revolution in Robotics 2026 | OnOff.gr","url":"https://www.onoff.gr/blog/en/robot/foundation-models-ai-robotics-2026/"},{"title":"Humanoid Robotics Commercialization Trends 2026","url":"https://www.idc.com/resource-center/blog/humanoid-robotics-commercialization-2026/"},{"title":"Robotics Trends 2026: What's Hot, What's Working, and What's Next | RoboCloud Hub","url":"https://robocloud-dashboard.vercel.app/learn/blog/robotics-trends-2026"},{"title":"Foundation Robotics Tests Humanoid Bots in Ukraine For 'Defense' | RoboHorizon Robot Magazine - AI you can touch","url":"https://robohorizon.com/en-us/news/2026/03/foundation-robotics-tests-humanoid-bots-in-ukraine-for/"}]
+
+Based on the search results, here's what I found about HoloMotion and Horizon Robotics:
+
+## HoloMotion Overview
+
+HoloMotion is a foundation model for humanoid robotics, designed to fulfill robust, real-time, and generalizable whole-body control. The project was released in January 2026 with version 1.1.0 and is available as an open-source project under the Apache 2.0 license.
+
+## Key Goals and Features
+
+HoloMotion is envisioned as a general-purpose foundation for humanoid motion and control, with development structured around four core generalization goals: Any Pose, Any Command, Any Terrain, and Any Embodiment.
+
+The model aims to achieve several capabilities:
+- Robust tracking and imitation of diverse, whole-body human motions, forming the core of the imitation learning capability
+- Language- and task-conditioned motion generation, allowing for goal-directed and interactive behaviors
+- Adaptation to uneven, dynamic, and complex terrains, enhancing real-world operational robustness
+- Generalization of control policies across humanoids with varying morphologies and kinematics, achieving true embodiment-level abstraction
+
+## Horizon Robotics' Context
+
+HoloMotion V1.0 was released in November 2025, and it's part of Horizon Robotics' broader efforts in embodied AI. In February 2026, Horizon also released HoloBrain V0.0, further expanding their foundation model offerings for robotics.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b7ef84bf-a585-4eae-adfc-9a2761acec6b",
+  "isSidechain": true,
+  "promptId": "e53579c9-e601-4dc6-95a6-469f9c14177e",
+  "agentId": "a9cb18d5268af53bf",
+  "type": "user",
+  "uuid": "61cc7499-a6ab-45b6-926c-e55762753aa3",
+  "sourceToolAssistantUUID": "b7ef84bf-a585-4eae-adfc-9a2761acec6b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "34372a5f-d207-4297-b608-e5da36373289",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-10T19:46:54.884Z_
+
+<details><summary>↩ Tool result · `toolu_01MRkJyWk6z2qpDR1A8U7PB5`</summary>
+
+```text
+Web search results for query: "RoboMonster compositional multi-agent robot 2026"
+
+Links: [{"title":"RoboMonster: Compositional Generalization of Heterogeneous Multi-End Effector Embodied Agents | OpenReview","url":"https://openreview.net/forum?id=cY5BXtkI9F"},{"title":"ROBOMONSTER: COMPOSITIONAL GENERALIZATION","url":"https://openreview.net/pdf/2aeacc6b15e068c9720861728ad4611b5b5706b1.pdf"},{"title":"RoboMonster","url":"https://www.facebook.com/robomoster.co/"},{"title":"Steam Workshop::ROBO MONSTER","url":"https://steamcommunity.com/sharedfiles/filedetails/?id=894039677"},{"title":"Paper page - RoboFactory: Exploring Embodied Agent Collaboration with Compositional Constraints","url":"https://huggingface.co/papers/2503.16408"},{"title":"AGIBOT WORLD","url":"https://agibot-world.com/"},{"title":"ROBOmonster by rimroger","url":"https://rimroger.itch.io/robomonster"},{"title":"[2503.16408] RoboFactory: Exploring Embodied Agent Collaboration with Compositional Constraints","url":"https://arxiv.org/abs/2503.16408"},{"title":"RoboMonster - my first art robot. | Robo.House","url":"https://www.robo.house/en/robomonster_art-robot/"},{"title":"MEIS-Workshop@CVPR2025","url":"https://coop-intelligence.github.io/"}]
+
+Based on the search results, here's what I found about RoboMonster:
+
+RoboMonster is a new paradigm that integrates heterogeneous end-effectors with a cross-end-effector embodied planning brain, reasoning over visual inputs, task instructions, and the properties of its diverse end-effectors to select and coordinate optimal agents.
+
+The system features four specialized end-effectors with corresponding trained policies and a high-level planner based on combinatorial logical, spatial, and temporal constraints, and experiments demonstrate that RoboMonster significantly outperforms systems relying on a single gripper.
+
+The validation system leverages multi-modal large language models for high-level planning and employs four specially designed end-effectors, with the system selecting agents based on task requirements and agent capabilities using a Robot Manual that outlines each agent's skills and limitations.
+
+This research appears to be a recent academic paper that was submitted to ICLR 2026, representing advances in compositional generalization for embodied multi-agent robot systems.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5010fa5f-0fe3-412d-9f79-c0cccf76f2c1",
+  "isSidechain": true,
+  "promptId": "e53579c9-e601-4dc6-95a6-469f9c14177e",
+  "agentId": "a9cb18d5268af53bf",
+  "type": "user",
+  "uuid": "bb9f0920-1644-4754-8b27-7e636ec576ed",
+  "sourceToolAssistantUUID": "5010fa5f-0fe3-412d-9f79-c0cccf76f2c1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "34372a5f-d207-4297-b608-e5da36373289",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-10T19:46:56.072Z_
+
+<details><summary>↩ Tool result · `toolu_01VsMZDyvXpzy1oGbfvsh5as`</summary>
+
+```text
+Web search results for query: "pi0.7 Physical Intelligence compositional generalization robot 2026"
+
+Links: [{"title":"π 0.7 : a Steerable Model with Emergent Capabilities","url":"https://www.pi.website/blog/pi07"},{"title":"[2604.15483] $π_{0.7}$: a Steerable Generalist Robotic Foundation Model with Emergent Capabilities","url":"https://arxiv.org/abs/2604.15483"},{"title":"Physical Intelligence (π)","url":"https://www.pi.website/"},{"title":"Physical Intelligence, a hot robotics startup, says its new robot brain can figure out tasks it was never taught | TechCrunch","url":"https://techcrunch.com/2026/04/16/physical-intelligence-a-hot-robotics-startup-says-its-new-robot-brain-can-figure-out-tasks-it-was-never-taught/"},{"title":"Physical Intelligence Unveils π0.7: The Rise of Compositional Generalization in Robotics | Humanoids Daily","url":"https://www.humanoidsdaily.com/news/physical-intelligence-unveils-0-7-the-rise-of-compositional-generalization-in-robotics"},{"title":"Physical Intelligence’s π0.7 Robot Brain Tackles Tasks It Was Never Trained On","url":"https://www.technology.org/2026/04/17/physical-intelligences-%CF%800-7-robot-brain-tackles-tasks-it-was-never-trained-on/"},{"title":"Physical Intelligence unveils pi 0.7 new robot brain","url":"https://www.digitaltoday.co.kr/en/view/48697/physical-intelligence-unveils-pi-0-7-new-robot-brain"},{"title":"Physical Intelligence shows robot model with LLM-like generalization, flaws included","url":"https://the-decoder.com/physical-intelligence-shows-robot-model-with-llm-like-generalization-flaws-included/"},{"title":"Physical Intelligence says new robot brain can generalize to unfamiliar tasks | Prism News","url":"https://www.prismnews.com/news/physical-intelligence-says-new-robot-brain-can-generalize"},{"title":"π0.7: a Steerable Generalist Robotic Foundation","url":"https://www.pi.website/download/pi07.pdf"}]
+
+Based on the search results, here's what I found about π0.7:
+
+## Overview
+
+π0.7 is a general-purpose model trained by Physical Intelligence that can perform a wide range of dexterous tasks with the same performance as fine-tuned specialists, and can follow new language commands and perform tasks that were never seen in its training data.
+
+## Compositional Generalization
+
+π0.7 exhibits the first signs of compositional generalization, recombining skills from various tasks to solve new problems, like using new kitchen appliances and enabling a new robot to fold laundry for which there is no laundry folding data. Physical Intelligence announced π0.7 as a general-purpose foundation model that exhibits compositional generalization, allowing it to recombine known skills to solve novel tasks.
+
+## Technical Approach
+
+The key to using diverse data sources to attain compositional generalization is to add diverse context to the prompt: training the model with a variety of multimodal prompt structures that specify not only what the robot should do, but how it should do it. π0.7 receives a range of contextual information including subtask instructions in natural language, episode metadata on quality and speed of the demonstration, control mode labels, and subgoal images that show what the result of an intermediate step should look like.
+
+## Notable Capabilities
+
+The model demonstrated the ability to control a UR5e bimanual system for laundry folding despite having zero training data for that specific task on that hardware. With plain-language coaching from a human, the model lifted its air fryer success rate from about five percent to roughly ninety-five percent in half an hour of prompt tweaking.
+
+## Status
+
+The paper describes π0.7 as showing "early signs" of generalization and "initial demonstrations" of new capabilities, noting these are research results, not a deployed product.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d8717669-3ca2-446d-ae1f-330aa482b29f",
+  "isSidechain": true,
+  "promptId": "e53579c9-e601-4dc6-95a6-469f9c14177e",
+  "agentId": "a9cb18d5268af53bf",
+  "type": "user",
+  "uuid": "401c9bca-18ec-4890-9cb5-e25cb7022a9c",
+  "sourceToolAssistantUUID": "d8717669-3ca2-446d-ae1f-330aa482b29f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "34372a5f-d207-4297-b608-e5da36373289",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-10T19:46:56.493Z_
+
+<details><summary>↩ Tool result · `toolu_01MH5t5VKoDHNE2a1wriMCUL`</summary>
+
+```text
+Web search results for query: "MetaWorld skill transfer composition hierarchical world model 2026"
+
+Links: [{"title":"[2601.17507] MetaWorld: Skill Transfer and Composition in a Hierarchical World Model for Grounding High-Level Instructions","url":"https://arxiv.org/abs/2601.17507"},{"title":"MetaWorld: Skill Transfer and Composition in a Hierarchical World Model for Grounding High-Level Instructions","url":"https://arxiv.org/html/2601.17507v1"},{"title":"MetaWorld-X: Hierarchical World Modeling via VLM-Orchestrated Experts for Humanoid Loco-Manipulation","url":"https://arxiv.org/html/2603.08572"},{"title":"[2603.08572] MetaWorld-X: Hierarchical World Modeling via VLM-Orchestrated Experts for Humanoid Loco-Manipulation","url":"https://arxiv.org/abs/2603.08572"},{"title":"GitHub - leofan90/Awesome-World-Models: A comprehensive list of papers for the definition of World Models and using World Models for General Video Generation, Embodied AI, and Autonomous Driving, including papers, codes, and related websites. · GitHub","url":"https://github.com/leofan90/Awesome-World-Models"},{"title":"Awesome-World-Models/README.md at main · leofan90/Awesome-World-Models","url":"https://github.com/leofan90/Awesome-World-Models/blob/main/README.md"},{"title":"MetaWorld: Robotic Manipulation Suite","url":"https://www.emergentmind.com/topics/metaworld"},{"title":"Real-World Robot Control by Deep Active Inference With a Temporally Hierarchical World Model","url":"https://www.researchgate.net/publication/397931741_Real-World_Robot_Control_by_Deep_Active_Inference_With_a_Temporally_Hierarchical_World_Model"},{"title":"Awesome-World-Model/README.md at main · LMD0311/Awesome-World-Model","url":"https://github.com/LMD0311/Awesome-World-Model/blob/main/README.md"},{"title":"AgentOWL: Hierarchical Options & World Modeling","url":"https://www.emergentmind.com/topics/agentowl-option-and-world-model-learning-agent"}]
+
+Based on the search results, I found relevant recent research on MetaWorld with hierarchical world models and skill transfer composition.
+
+## Key Findings:
+
+MetaWorld is a hierarchical world model that integrates semantic planning and physical control via expert policy transfer, decoupling tasks into a VLM-driven semantic layer and a latent dynamics model operating in a compact state space.
+
+The framework uses a dynamic expert selection and motion prior fusion mechanism that leverages a pre-trained multi-expert policy library as transferable knowledge, enabling efficient online adaptation via a two-stage framework.
+
+VLMs serve as semantic interfaces, mapping instructions to executable skills and bypassing symbol grounding, with experiments on Humanoid-Bench showing MetaWorld outperforms world model-based RL in task completion and motion coherence.
+
+There's also a related framework called MetaWorld-X, which decomposes complex control problems into specialized expert policies trained under human motion priors through imitation-constrained reinforcement learning, and features an Intelligent Routing Mechanism supervised by a Vision-Language Model that enables semantic-driven expert composition and dynamic integration of expert policies according to high-level task semantics.
+
+Both papers were published in early 2026 and represent recent advances in hierarchical control for humanoid robot manipulation tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5be10c98-1fd1-40d5-b91c-fdc3b88e51ec",
+  "isSidechain": true,
+  "promptId": "e53579c9-e601-4dc6-95a6-469f9c14177e",
+  "agentId": "a9cb18d5268af53bf",
+  "type": "user",
+  "uuid": "1d836591-3157-4bc6-97d6-a344cabc0b8d",
+  "sourceToolAssistantUUID": "5be10c98-1fd1-40d5-b91c-fdc3b88e51ec",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "34372a5f-d207-4297-b608-e5da36373289",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-10T19:46:56.692Z_
+
+<details><summary>↩ Tool result · `toolu_01YP8gq21GEV56Z52kLwQAMh`</summary>
+
+```text
+Web search results for query: "HumanoidVerse vision language rearrangement 2508.16943"
+
+Links: [{"title":"HumanoidVerse: A Versatile Humanoid for Vision-Language Guided Multi-Object Rearrangement","url":"https://haozhuo-zhang.github.io/HumanoidVerse-project-page/"},{"title":"HumanoidVerse: A Versatile Humanoid for Vision-Language Guided Multi-Object Rearrangement","url":"https://arxiv.org/html/2508.16943v1"},{"title":"HUMANOIDVERSE: A VERSATILE HUMANOID FOR","url":"https://arxiv.org/pdf/2508.16943"},{"title":"[2508.16943] LHM-Humanoid: Learning a Unified Policy for Long-Horizon Humanoid Whole-Body Loco-Manipulation in Diverse Messy Environments","url":"https://arxiv.org/abs/2508.16943"},{"title":"HUMANOIDVERSE","url":"https://openreview.net/pdf/475c161c53aebbc639b754ab9ac4974e4e0addac.pdf"},{"title":"HumanVLA: Towards Vision-Language Directed Object Rearrangement by Physical Humanoid | Request PDF","url":"https://www.researchgate.net/publication/397202934_HumanVLA_Towards_Vision-Language_Directed_Object_Rearrangement_by_Physical_Humanoid"},{"title":"HumanoidVerse: A Versatile Humanoid for Vision-Language Guided Multi-Object Rearrangement | OpenReview","url":"https://openreview.net/forum?id=AryG8SZxUa"},{"title":"GitHub - YanjieZe/awesome-humanoid-robot-learning: A Paper List for Humanoid Robot Learning. · GitHub","url":"https://github.com/YanjieZe/awesome-humanoid-robot-learning"},{"title":"LHM-Humanoid: Learning a Unified Policy for Long-Horizon Humanoid Whole-Body Loco-Manipulation in Diverse Messy Environments","url":"https://arxiv.org/html/2508.16943"},{"title":"HumanVLA: Towards Vision-Language Directed Object Rearrangement by Physical Humanoid | OpenReview","url":"https://openreview.net/forum?id=pjD08dtAh0"}]
+
+Based on the search results, here's what I found about HumanoidVerse (paper 2508.16943):
+
+## Overview
+
+HumanoidVerse is a novel framework for vision-language guided humanoid control that enables a single physically simulated robot to perform long-horizon, multi-object rearrangement tasks across diverse scenes.
+
+## Key Features
+
+Unlike prior methods that operate in fixed settings with single-object interactions, the approach supports consecutive manipulation of multiple objects, guided only by natural language instructions and egocentric camera RGB observations. HumanoidVerse is, to our knowledge, the first system enabling humanoids to execute physically stable, continuous multi-object rearrangement.
+
+## Training Approach
+
+HumanoidVerse is trained via a multi-stage curriculum using a dual-teacher distillation pipeline, enabling fluid transitions between sub-tasks without requiring environment resets.
+
+## Dataset and Evaluation
+
+The researchers construct a large-scale dataset comprising 350 multi-object tasks spanning four room layouts. Extensive experiments in the Isaac Gym simulator demonstrate that the method significantly outperforms prior state-of-the-art in both task success rate and spatial precision, and generalizes well to unseen environments and instructions.
+
+The paper was published in August 2025 and is authored by Haozhuo Zhang, Jingkai Sun, and others. You can find more details on the project page: https://haozhuo-zhang.github.io/HumanoidVerse-project-page/
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ef98f57f-040a-4654-aeb5-e34ef05d6993",
+  "isSidechain": true,
+  "promptId": "e53579c9-e601-4dc6-95a6-469f9c14177e",
+  "agentId": "a9cb18d5268af53bf",
+  "type": "user",
+  "uuid": "fe2fdc81-d6b3-4226-a9b3-1ac4399c6224",
+  "sourceToolAssistantUUID": "ef98f57f-040a-4654-aeb5-e34ef05d6993",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "34372a5f-d207-4297-b608-e5da36373289",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42 · 2026-05-10T19:47:00.190Z_
+
+Let me do one more round of targeted searches to find additional competing work that might be missing from the proposal's reference list.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fe2fdc81-d6b3-4226-a9b3-1ac4399c6224",
+  "isSidechain": true,
+  "agentId": "a9cb18d5268af53bf",
+  "requestId": "req_011CauTuxuDWmAxh4WPhTFGM",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "e100cadf-fe4d-42b3-80eb-9b2f936ebbdf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "34372a5f-d207-4297-b608-e5da36373289",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bq8ZkSXp5hzeaigEi6PDM9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7987,
+      "cache_read_input_tokens": 18607,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 7987,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-10T19:47:01.095Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RpArXn4t3tPxvGGoG6NvPJ`</summary>
+
+```json
+{
+  "query": "Agility Robotics whole-body control foundation model Digit 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e100cadf-fe4d-42b3-80eb-9b2f936ebbdf",
+  "isSidechain": true,
+  "agentId": "a9cb18d5268af53bf",
+  "requestId": "req_011CauTuxuDWmAxh4WPhTFGM",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "e1ffbed1-6631-416e-b37c-0d45e30f2d4e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "34372a5f-d207-4297-b608-e5da36373289",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bq8ZkSXp5hzeaigEi6PDM9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7987,
+      "cache_read_input_tokens": 18607,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 7987,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-10T19:47:01.574Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XDmAmYq6xGfXu1tBTzMVYU`</summary>
+
+```json
+{
+  "query": "RoboFactory embodied agent collaboration compositional constraints 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e1ffbed1-6631-416e-b37c-0d45e30f2d4e",
+  "isSidechain": true,
+  "agentId": "a9cb18d5268af53bf",
+  "requestId": "req_011CauTuxuDWmAxh4WPhTFGM",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "ba5961ed-c374-4cec-bac1-f2e7d6a82f16",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "34372a5f-d207-4297-b608-e5da36373289",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bq8ZkSXp5hzeaigEi6PDM9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7987,
+      "cache_read_input_tokens": 18607,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 7987,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-10T19:47:02.521Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01PMQb2TNyFBZPGKzgc9b9DB`</summary>
+
+```json
+{
+  "query": "BLADE learning compositional behaviors demonstration language 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ba5961ed-c374-4cec-bac1-f2e7d6a82f16",
+  "isSidechain": true,
+  "agentId": "a9cb18d5268af53bf",
+  "requestId": "req_011CauTuxuDWmAxh4WPhTFGM",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "010f1e71-26f0-476c-8a20-950530e39e1e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "34372a5f-d207-4297-b608-e5da36373289",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bq8ZkSXp5hzeaigEi6PDM9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7987,
+      "cache_read_input_tokens": 18607,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 7987,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-10T19:47:03.249Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018b9gvKrJVaSou8PPxV8rZU`</summary>
+
+```json
+{
+  "query": "Compositional Simulation neural classical robot data generation 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "010f1e71-26f0-476c-8a20-950530e39e1e",
+  "isSidechain": true,
+  "agentId": "a9cb18d5268af53bf",
+  "requestId": "req_011CauTuxuDWmAxh4WPhTFGM",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "9c18d243-31bf-4037-8cd2-dc95e86b9486",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "34372a5f-d207-4297-b608-e5da36373289",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bq8ZkSXp5hzeaigEi6PDM9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7987,
+      "cache_read_input_tokens": 18607,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 7987,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-10T19:47:03.676Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WhZQDBzkRY2DAJeFTUFDfY`</summary>
+
+```json
+{
+  "query": "EgoScale human robot dexterity scaling 2026 NVIDIA"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9c18d243-31bf-4037-8cd2-dc95e86b9486",
+  "isSidechain": true,
+  "agentId": "a9cb18d5268af53bf",
+  "requestId": "req_011CauTuxuDWmAxh4WPhTFGM",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "706a55d1-3281-410d-b999-4a0d37c04a29",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "34372a5f-d207-4297-b608-e5da36373289",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bq8ZkSXp5hzeaigEi6PDM9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7987,
+      "cache_read_input_tokens": 18607,
+      "output_tokens": 284,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 7987
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 284,
+          "cache_read_input_tokens": 18607,
+          "cache_creation_input_tokens": 7987,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 7987,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-10T19:47:07.456Z_
+
+<details><summary>↩ Tool result · `toolu_01XDmAmYq6xGfXu1tBTzMVYU`</summary>
+
+```text
+Web search results for query: "RoboFactory embodied agent collaboration compositional constraints 2025"
+
+Links: [{"title":"GitHub - MARS-EAI/RoboFactory: [ICCV 2025] RoboFactory: Exploring Embodied Agent Collaboration with Compositional Constraints · GitHub","url":"https://github.com/MARS-EAI/RoboFactory"},{"title":"RoboFactory: Exploring Embodied Agent Collaboration with ...","url":"https://openaccess.thecvf.com/content/ICCV2025/papers/Qin_RoboFactory_Exploring_Embodied_Agent_Collaboration_with_Compositional_Constraints_ICCV_2025_paper.pdf"},{"title":"[2503.16408] RoboFactory: Exploring Embodied Agent Collaboration with Compositional Constraints","url":"https://arxiv.org/abs/2503.16408"},{"title":"ICCV 2025 Open Access Repository","url":"https://openaccess.thecvf.com/content/ICCV2025/html/Qin_RoboFactory_Exploring_Embodied_Agent_Collaboration_with_Compositional_Constraints_ICCV_2025_paper.html"},{"title":"Paper page - RoboFactory: Exploring Embodied Agent Collaboration with Compositional Constraints","url":"https://huggingface.co/papers/2503.16408"},{"title":"RoboFactory: Exploring Embodied Agent Collaboration","url":"https://arxiv.org/pdf/2503.16408"},{"title":"MAS-2025","url":"https://mas-2025.github.io/MAS-2025/"},{"title":"【論文読み会】RoboFactory: Exploring Embodied Agent Collaboration with Compositional Constraints | ドクセル","url":"https://www.docswell.com/s/kyoto-kaira/ZQXJWN-2025-10-25-112126"},{"title":"RoboFactory: Exploring Embodied Agent Collaboration ...","url":"https://openaccess.thecvf.com/content/ICCV2025/supplemental/Qin_RoboFactory_Exploring_Embodied_ICCV_2025_supplemental.pdf"},{"title":"RoboFactory: Exploring Embodied Agent Collaboration with Compositional Constraints | OpenReview","url":"https://openreview.net/forum?id=pXbWf8h2eX"}]
+
+Here are the search results for RoboFactory and embodied agent collaboration with compositional constraints:
+
+## Overview
+
+RoboFactory is a benchmark for embodied multi-agent manipulation, based on ManiSkill, and leverages compositional constraints and specifically designed interfaces as an automated data collection framework for embodied multi-agent systems.
+
+## Key Concepts
+
+Designing effective embodied multi-agent systems is critical for solving complex real-world tasks across domains, but due to the complexity of multi-agent embodied systems, existing methods fail to automatically generate safe and efficient training data for such systems, which is why the concept of compositional constraints for embodied multi-agent systems was proposed.
+
+## Compositional Constraints
+
+RoboFactory introduces a constraint-driven framework where agent behavior is guided by logical, spatial, and temporal constraints, which are critical for enabling safe, efficient, and interpretable collaboration among embodied agents in shared spaces.
+
+Specifically, compositional constraints ensure safe and efficient collaboration among agents, with logical constraints preventing incorrect interaction forms (e.g., a3 grabbing the camera lens, causing damage).
+
+## Publication & Framework
+
+The paper was published at ICCV 2025 and is authored by Qin, Yiran and others, with the title "RoboFactory: Exploring Embodied Agent Collaboration with Compositional Constraints". Based on RoboFactory benchmark, imitation learning methods were adapted and evaluated for their performance in different difficulty agent tasks.
+
+The code and benchmark are available on GitHub at https://github.com/MARS-EAI/RoboFactory.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ba5961ed-c374-4cec-bac1-f2e7d6a82f16",
+  "isSidechain": true,
+  "promptId": "e53579c9-e601-4dc6-95a6-469f9c14177e",
+  "agentId": "a9cb18d5268af53bf",
+  "type": "user",
+  "uuid": "91f2874d-7ce3-45ac-aba3-cc2469e81b6b",
+  "sourceToolAssistantUUID": "ba5961ed-c374-4cec-bac1-f2e7d6a82f16",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "34372a5f-d207-4297-b608-e5da36373289",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-10T19:47:08.929Z_
+
+<details><summary>↩ Tool result · `toolu_01PMQb2TNyFBZPGKzgc9b9DB`</summary>
+
+```text
+Web search results for query: "BLADE learning compositional behaviors demonstration language 2026"
+
+Links: [{"title":"Learning Compositional Behaviors from Demonstration and Language","url":"https://blade-bot.github.io/blade.pdf"},{"title":"Learning Compositional Behaviors from Demonstration and Language | OpenReview","url":"https://openreview.net/forum?id=fR1rCXjCQX&noteId=fR1rCXjCQX"},{"title":"[2505.21981] Learning Compositional Behaviors from Demonstration and Language","url":"https://arxiv.org/abs/2505.21981"},{"title":"Learning Compositional Behaviors from Demonstration and Language","url":"https://arxiv.org/html/2505.21981v1"},{"title":"Learning Compositional Behaviors from Demonstration and Language","url":"https://proceedings.mlr.press/v270/liu25d.html"},{"title":"Jiayuan Mao Email : jiayuanm@amazon.com Website : https ://jiayuanm.com","url":"https://jiayuanm.com/data/CV.latest.pdf"},{"title":"Learning Compositional Behaviors from Demonstration ...","url":"https://openreview.net/pdf/6f26635c8c2a08b949e7d991dad86258848ea7a7.pdf"},{"title":"2nd Workshop on Compositional Learning: Safety, Interpretability, and Agents","url":"https://compositional-learning.github.io/"},{"title":"Spoken Instruction-Based One-Shot Object and Action ...","url":"https://hrilab.tufts.edu/publications/scheutzetal17aamas.pdf"},{"title":"Learning, Reasoning and Planning with Neuro-Symbolic Concepts Jiayuan Mao","url":"https://jiayuanm.com/data/RS.latest.pdf"}]
+
+## Search Results for BLADE: Learning Compositional Behaviors from Demonstration and Language
+
+BLADE (Behavior from Language and Demonstration) is a framework for long-horizon robotic manipulation by integrating imitation learning and model-based planning.
+
+**Key Features:**
+
+BLADE leverages language-annotated demonstrations, extracts abstract action knowledge from large language models (LLMs), and constructs a library of structured, high-level action representations that include preconditions and effects grounded in visual perception for each high-level action, along with corresponding controllers implemented as neural network-based policies.
+
+BLADE can recover such structured representations automatically, without manually labeled states or symbolic definitions.
+
+**Capabilities:**
+
+BLADE shows significant capabilities in generalizing to novel situations, including novel initial states, external state perturbations, and novel goals. The approach has been validated in both simulation and on real robots with a diverse set of objects with articulated parts and partial observability.
+
+**Real-World Experiments:**
+
+The real-robot experiments tested two domains: Make Tea and Boil Water, with 85 language-annotated demonstrations collected for each domain using teleoperation with a 3D mouse.
+
+The paper appears to have been published in 2025 at the 8th Conference on Robot Learning.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "010f1e71-26f0-476c-8a20-950530e39e1e",
+  "isSidechain": true,
+  "promptId": "e53579c9-e601-4dc6-95a6-469f9c14177e",
+  "agentId": "a9cb18d5268af53bf",
+  "type": "user",
+  "uuid": "77b7fae0-533d-4b9b-8cb0-8d6cdabca949",
+  "sourceToolAssistantUUID": "010f1e71-26f0-476c-8a20-950530e39e1e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "34372a5f-d207-4297-b608-e5da36373289",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-10T19:47:09.834Z_
+
+<details><summary>↩ Tool result · `toolu_01RpArXn4t3tPxvGGoG6NvPJ`</summary>
+
+```text
+Web search results for query: "Agility Robotics whole-body control foundation model Digit 2026"
+
+Links: [{"title":"Humanoid Robot ‘Digit’ Powered by Whole-Body Control Foundation Model | NVIDIA","url":"https://www.nvidia.com/en-us/case-studies/agility-robotics-digit-humanoid-robot/"},{"title":"Training a Whole-Body Control Foundation Model | Agility","url":"https://www.agilityrobotics.com/content/training-a-whole-body-control-foundation-model"},{"title":"Agility Robotics explains how to train a whole-body control foundation model - The Robot Report","url":"https://www.therobotreport.com/agility-robotics-explains-train-whole-body-control-foundation-model/"},{"title":"Agility Robotics","url":"https://www.agilityrobotics.com/"},{"title":"The Humanoid Hub on X: \"Agility Robotics has developed a whole-body control foundation model for their humanoid robot, Digit, acting like a \"motor cortex\" to ensure safe, stable performance in diverse tasks. This small neural network (&lt;1M parameters) is trained in NVIDIA's Isaac Sim for simulated https://t.co/jf2Qcw5kaY\" / X","url":"https://x.com/TheHumanoidHub/status/1963687216477319333"},{"title":"Agility Robotics Debuts Compact Foundation Model for Digit Robot Control","url":"https://www.webpronews.com/agility-robotics-debuts-compact-foundation-model-for-digit-robot-control/"},{"title":"Agility Robotics - Wikipedia","url":"https://en.wikipedia.org/wiki/Agility_Robotics"},{"title":"Agility and AI","url":"https://www.agilityrobotics.com/content/agility-and-ai"},{"title":"Agility Digit Review: Specs & Price [2026]","url":"https://blog.robozaps.com/b/agility-robotics-digit-review"},{"title":"Humanoid robot Digit deadlifts 65 lbs with advanced coordination","url":"https://interestingengineering.com/ai-robotics/us-digit-humanoid-robot-deadlift"}]
+
+Based on the search results, here's what I found about Agility Robotics' whole-body control foundation model for Digit:
+
+## Overview
+
+Agility Robotics has developed a whole-body control foundation model for their humanoid robot, Digit, to ensure it remains safe and stable while performing a wide variety of tasks. It functions much like the Motor Cortex in the human brain, taking signals from different parts of the brain to control voluntary movements & fine motor skills.
+
+## Technical Details
+
+The model is a relatively small LSTM neural network with fewer than one million parameters, which is trained in NVIDIA's Isaac Sim physics simulator for decades of simulated time over three or four days. Digit's motor cortex is learned purely in simulation and transfers zero-shot to the real world.
+
+## Capabilities
+
+It can be prompted with dense free-space position and orientation objectives for the arms and torso to accomplish different goals, including walking around and picking and placing heavy objects. Complex behaviors can be built on top of this lower-level motor cortex, including learning dexterous mobile manipulation behaviors, representing the first step towards a safe and robust motion foundation model for real-world humanoid robots.
+
+## Training Approach
+
+To overcome the inherent complexity of achieving reliable whole-body control for humanoid robots operating safely alongside human workers, Agility Robotics leveraged NVIDIA Isaac Sim and Isaac Lab to create a breakthrough training methodology.
+
+## Real-World Deployment
+
+Digit robots are now successfully deployed, performing complex material-handling tasks in live operations. Under an industry-first Robots-as-a-Service agreement, GXO is running Digit fleets in a Georgia fulfillment center, where the robots pick totes, sort, and manage inventory alongside human crews.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e1ffbed1-6631-416e-b37c-0d45e30f2d4e",
+  "isSidechain": true,
+  "promptId": "e53579c9-e601-4dc6-95a6-469f9c14177e",
+  "agentId": "a9cb18d5268af53bf",
+  "type": "user",
+  "uuid": "772e179b-3ac6-4a38-851c-33ba308e7749",
+  "sourceToolAssistantUUID": "e1ffbed1-6631-416e-b37c-0d45e30f2d4e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "34372a5f-d207-4297-b608-e5da36373289",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-10T19:47:10.298Z_
+
+<details><summary>↩ Tool result · `toolu_01WhZQDBzkRY2DAJeFTUFDfY`</summary>
+
+```text
+Web search results for query: "EgoScale human robot dexterity scaling 2026 NVIDIA"
+
+Links: [{"title":"EgoScale","url":"https://research.nvidia.com/labs/gear/egoscale/"},{"title":"EgoScale: Scaling Dexterous Manipulation with Diverse Egocentric Human – Sharpa","url":"https://www.sharpa.com/blogs/research/egoscale-20-000-hours-of-video-grow-a-robot-hand-opening-the-scaling-law-era-of-dexterous-manipulation"},{"title":"EgoScale: Scaling Dexterous Manipulation with Diverse Egocentric Human Data","url":"https://arxiv.org/html/2602.16710v1"},{"title":"NVIDIA EgoScale Scaling Dexterous Robot Manipulation with MANUS Gloves -MANUS Use Case","url":"https://www.manus-meta.com/use-cases/nvidia-egoscale-scaling-dexterous-robot-manipulation-with-manus-gloves"},{"title":"The Human Scale: NVIDIA’s EgoScale Unlocks High-Dexterity Robotics via 20,000 Hours of Human Video | Humanoids Daily","url":"https://www.humanoidsdaily.com/news/the-human-scale-nvidia-s-egoscale-unlocks-high-dexterity-robotics-via-20-000-hours-of-human-video"},{"title":"RoboHub🤖 on X: \"NVIDIA just announced EgoScale 🤖🧠 NVIDIA Research has uncovered a log-linear scaling law for robot dexterity by pretraining VLA models on over 20,000 hours of egocentric human video This massive dataset is 20 times larger than previous efforts and proves that robot https://t.co/U57QqiZITg\" / X","url":"https://x.com/XRoboHub/status/2028051372923572250"},{"title":"[2602.16710] EgoScale: Scaling Dexterous Manipulation with Diverse Egocentric Human Data","url":"https://arxiv.org/abs/2602.16710"},{"title":"(PDF) EgoScale: Scaling Dexterous Manipulation with Diverse Egocentric Human Data","url":"https://www.researchgate.net/publication/400929404_EgoScale_Scaling_Dexterous_Manipulation_with_Diverse_Egocentric_Human_Data"},{"title":"Top 10 Physical AI Models Powering Real-World Robots in 2026 • Dev|Journal","url":"https://earezki.com/ai-news/2026-04-28-top-10-physical-ai-models-powering-real-world-robots-in-2026/"},{"title":"[Paper Notes] EgoScale: Scaling Dexterous Manipulation with Diverse Egocentric Human Data (arXiv 2026) - Lixin Xu","url":"https://davidlxu.github.io/posts/2026/02/egoscale-paper-notes/"}]
+
+Based on the search results, here's what I found about EgoScale:
+
+## Overview
+
+EgoScale is a human-to-dexterous-manipulation transfer framework built on large-scale egocentric human data. NVIDIA released the paper EgoScale: Scaling Dexterous Manipulation with Diverse Egocentric Human Data.
+
+## Key Findings
+
+The research trains a vision–language–action (VLA) model on over 20k hours of action-labeled egocentric human video, more than 20× larger than prior efforts, and uncovers a log-linear scaling law between human data scale and validation loss. This loss strongly correlates with downstream real-robot performance, establishing large-scale human data as a predictable supervision source.
+
+## Training Framework
+
+The framework combines large-scale human pretraining with a small amount of aligned human–robot mid-training, enabling strong long-horizon dexterous manipulation and one-shot task adaptation with minimal robot supervision.
+
+## Results
+
+The resulting policy improves average success rate by 54% over a no-pretraining baseline using a 22-DoF robotic hand, and also transfers effectively to robots with lower-DoF hands. Using 20,854 hours of egocentric human video data, the study successfully enabled a 22-DoF dexterous hand to master challenging actions such as folding clothes, separating cards, and even picking up fruit with tongs.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "706a55d1-3281-410d-b999-4a0d37c04a29",
+  "isSidechain": true,
+  "promptId": "e53579c9-e601-4dc6-95a6-469f9c14177e",
+  "agentId": "a9cb18d5268af53bf",
+  "type": "user",
+  "uuid": "885c1bc4-910a-4616-97fa-d9c3c9331e67",
+  "sourceToolAssistantUUID": "706a55d1-3281-410d-b999-4a0d37c04a29",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "34372a5f-d207-4297-b608-e5da36373289",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-10T19:47:11.147Z_
+
+<details><summary>↩ Tool result · `toolu_018b9gvKrJVaSou8PPxV8rZU`</summary>
+
+```text
+Web search results for query: "Compositional Simulation neural classical robot data generation 2026"
+
+Links: [{"title":"ComSim: Building Scalable Real-World Robot Data Generation via Compositional Simulation","url":"https://faceong.github.io/ComSim/"},{"title":"Building Scalable Real-World Robot Data Generation via Compositional Simulation | OpenReview","url":"https://openreview.net/forum?id=27mRzKDpAE"},{"title":"SCALABLE REAL-WORLD ROBOT DATA GENERATION","url":"https://openreview.net/pdf/f5a78437564237bc7f54eef88e7d84e3c0cb2614.pdf"},{"title":"Building Scalable Real-World Robot Data Generation via Compositional Simulation","url":"https://arxiv.org/html/2604.11386v1"},{"title":"Iterative Compositional Data Generation for Robot Control","url":"https://arxiv.org/html/2512.10891v3"},{"title":"Isaac Sim - Robotics Simulation and Synthetic Data Generation | NVIDIA Developer","url":"https://developer.nvidia.com/isaac/sim"},{"title":"RoboGen: Towards Unleashing Infinite Data for Automated Robot Learning via Generative Simulation","url":"https://arxiv.org/html/2311.01455v3"},{"title":"1 A Step Toward World Models: A Survey on Robotic Manipulation","url":"https://www.techrxiv.org/users/935947/articles/1356038/master/file/data/A%20Step%20Toward%20World%20Models2/A%20Step%20Toward%20World%20Models2.pdf?inline=true"},{"title":"Scaling up Robot Skill Learning with Generative Simulation Pushkal Katara","url":"https://www.ri.cmu.edu/app/uploads/2024/08/Pushkal_Katara_MSR_Thesis.pdf"},{"title":"GitHub - YanjieZe/Paper-List: A paper list of my history reading. Robotics, Learning, Vision. · GitHub","url":"https://github.com/YanjieZe/Paper-List"}]
+
+Here are the search results for "Compositional Simulation neural classical robot data generation 2026":
+
+## Key Findings
+
+**Compositional Simulation Overview:**
+
+Compositional Simulation bridges classical and neural simulation via compositional dynamic video generation. This hybrid approach combines classical simulation and neural simulation to generate accurate action–video pairs while maintaining real-world consistency.
+
+**The Problem It Addresses:**
+
+Recent advancements in foundational models have greatly enhanced the capabilities of robotics, yet acquiring large-scale, high-quality training data remains a challenge due to extensive manual effort and limited coverage of real-world environments.
+
+**How It Works:**
+
+The method utilizes a closed-loop real–sim–real data augmentation pipeline, leveraging a small amount of real-world data to produce diverse, large-scale training datasets. A neural simulator transforms classical simulation videos into realistic representations, improving the accuracy of policy models trained for real-world deployment.
+
+**Key Advantage:**
+
+Through a closed-loop real–sim–real pipeline, as little as 10 real-world demonstrations suffice to bootstrap the generation of large-scale, photorealistic training data, substantially boosting real-world policy success and generalization.
+
+**Addressing Limitations of Each Approach:**
+
+Classical simulators generate massive action-video pairs cheaply and at scale, but suffer from appearance and physics gaps that derail direct sim-to-real transfer. Neural simulators based on video generation can narrow visual gaps, but hallucinations and weak action consistency undermine their usefulness for policy training.
+
+The research appears to be under review for ICLR 2026, making it a current area of active research in robot learning and data generation.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9c18d243-31bf-4037-8cd2-dc95e86b9486",
+  "isSidechain": true,
+  "promptId": "e53579c9-e601-4dc6-95a6-469f9c14177e",
+  "agentId": "a9cb18d5268af53bf",
+  "type": "user",
+  "uuid": "a4d91308-d535-4e86-9112-4c7fe1288a5d",
+  "sourceToolAssistantUUID": "9c18d243-31bf-4037-8cd2-dc95e86b9486",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "34372a5f-d207-4297-b608-e5da36373289",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 53 · 2026-05-10T19:48:19.775Z_
+
+Here is my consolidated report on all 10 searches.
+
+---
+
+## Search Results Summary
+
+### 1. Humanoid Loco-Manipulation Data Generation (2026, arXiv)
+
+**Papers NOT on your reference list:**
+
+- **OmniRetarget** (arXiv 2509.26633, Sep 2025): An interaction-preserving data generation engine using an "interaction mesh" to model spatial/contact relationships between agent, terrain, and objects. Generates 8+ hours of trajectories for a Unitree G1 humanoid. Trains RL policies for 30-second parkour and loco-manipulation with only 5 reward terms. [arXiv](https://arxiv.org/abs/2509.26633)
+
+- **EgoHumanoid** (arXiv 2602.10106, Feb 2026): First framework to co-train a VLA policy using egocentric human demonstrations + limited robot data for humanoid loco-manipulation. Incorporates view alignment (depth-based reprojection) and action alignment. Human data improves performance by 20% on average and 51% in unseen environments vs. robot-only baselines. [arXiv](https://arxiv.org/abs/2602.10106)
+
+- **HuMI (Humanoid Manipulation Interface)** (arXiv 2602.06643, Feb 2026): Gathers robot-free demonstrations across diverse real-world scenes for humanoid whole-body manipulation. [arXiv link in results]
+
+- **EgoScale** (arXiv 2602.16710, Feb 2026, NVIDIA): Trains a VLA on 20,000+ hours of egocentric human video, discovering a log-linear scaling law for dexterity. Improves success rate by 54% over no-pretraining baseline. Used in GR00T N1.7. [arXiv](https://arxiv.org/abs/2602.16710)
+
+### 2. Compositional Task Generation for Robots (2026)
+
+**Papers NOT on your reference list:**
+
+- **pi0.7** (arXiv 2604.15483, Apr 2026, Physical Intelligence): A steerable generalist robotic foundation model exhibiting compositional generalization -- recombining skills from various tasks to solve novel problems. Zero-shot laundry folding on a UR5e bimanual system with zero training data for that task/hardware. [arXiv](https://arxiv.org/abs/2604.15483)
+
+- **RoboMonster** (ICLR 2026 submission): Integrates heterogeneous end-effectors with a cross-end-effector planning brain using logical, spatial, and temporal compositional constraints. Uses MLLMs for high-level planning. [OpenReview](https://openreview.net/forum?id=cY5BXtkI9F)
+
+- **ComSim (Compositional Simulation)** (ICLR 2026 submission): Bridges classical and neural simulation via compositional dynamic video generation. 10 real-world demos bootstrap large-scale photorealistic training data via a closed-loop real-sim-real pipeline. [Project page](https://faceong.github.io/ComSim/)
+
+- **RoboFactory** (ICCV 2025, arXiv 2503.16408): Benchmark for embodied multi-agent manipulation with compositional constraints (logical, spatial, temporal) for automated safe data collection. [arXiv](https://arxiv.org/abs/2503.16408)
+
+### 3. GR00T N1.7 NVIDIA -- Verification
+
+**Confirmed.** GR00T N1.7 is real and released. It is an open, commercially licensed VLA model for humanoid robots. Key facts:
+- Available on [Hugging Face](https://huggingface.co/blog/nvidia/gr00t-n1-7) and [GitHub](https://github.com/NVIDIA/Isaac-GR00T)
+- Uses Cosmos-Reason2-2B VLM backbone + EgoScale pre-training (20,000+ hrs human video)
+- Finger-level dexterous control for contact-rich assembly
+- Adopted by Humanoid Inc., LG Electronics, NEURA, Noble Machines
+- Announced at GTC 2026
+
+### 4. GEAR-SONIC -- Verification
+
+**Confirmed.** GEAR-SONIC exists and is open-source.
+- Released Feb 19, 2026 with pretrained checkpoints, C++ inference, VR teleoperation
+- Available on [Hugging Face](https://huggingface.co/nvidia/GEAR-SONIC) and part of [GR00T-WholeBodyControl](https://github.com/NVlabs/GR00T-WholeBodyControl) on GitHub
+- Unified Transformer-based architecture for whole-body motion tracking (crawling, walking, teleop in a single policy)
+- Includes MotionBricks preview and end-to-end VLA workflow with N1.7
+
+### 5. Transition Feasibility Learning for Skill Composition
+
+**Papers NOT on your reference list:**
+
+- **BLADE (Behavior from Language and Demonstration)** (CoRL 2025, arXiv 2505.21981): Extracts structured action representations (preconditions/effects) from language-annotated demonstrations + LLMs. Builds a library of grounded high-level actions with neural network policies. Generalizes to novel initial states, perturbations, and novel goals. [arXiv](https://arxiv.org/abs/2505.21981)
+
+- **MetaWorld** (arXiv 2601.17507, Jan 2026): Hierarchical world model integrating semantic planning (VLM-driven) and physical control via expert policy transfer. Decouples tasks into a semantic layer and a latent dynamics model. [arXiv](https://arxiv.org/abs/2601.17507)
+
+- **MetaWorld-X** (arXiv 2603.08572, Mar 2026): Extension with VLM-orchestrated expert composition for humanoid loco-manipulation. Uses imitation-constrained RL and an Intelligent Routing Mechanism. [arXiv](https://arxiv.org/abs/2603.08572)
+
+### 6. GNN-Based Skill Composition (2026)
+
+No major new papers found beyond **GSC** and **Scene Graph Atomic Skills** (both already on your list). The Scene Graph Atomic Skills paper (ICRA 2026) integrates GNNs with diffusion-based imitation learning + VLM task planner. GSC remains the primary GNN-for-skill-graph work.
+
+### 7. Humanoid Whole-Body Control Foundation Models (2026)
+
+**Papers/systems NOT on your reference list:**
+
+- **HoloMotion** (Horizon Robotics, v1.1.0 Jan 2026, Apache 2.0): Foundation model for whole-body humanoid control with four generalization goals: Any Pose, Any Command, Any Terrain, Any Embodiment. [GitHub](https://github.com/HorizonRobotics/HoloMotion)
+
+- **Agility Robotics WBC Foundation Model** (2026): Sub-1M parameter LSTM trained in Isaac Sim for Digit robot. Zero-shot sim-to-real transfer. Deployed in GXO fulfillment center under Robots-as-a-Service. [Agility blog](https://www.agilityrobotics.com/content/training-a-whole-body-control-foundation-model)
+
+- **Survey: Behavior Foundation Models for Humanoid WBC** (arXiv 2506.20487): Comprehensive 2026 survey on behavioral foundation models as the next-gen whole-body control paradigm. [arXiv](https://arxiv.org/abs/2506.20487)
+
+### 8. CoRL 2026 Dates -- Verification
+
+**Confirmed.**
+- Abstract deadline: **May 26, 2026** (11:59 UTC)
+- Paper deadline: **May 28-29, 2026** (Thu/Fri EOD UTC)
+- Conference: **November 9-12, 2026**, Austin, Texas
+- [Official site](https://www.corl.org/contributions/call-for-papers)
+
+### 9. Physics-Aware Task Generation in Simulation (2026)
+
+**Papers NOT on your reference list:**
+
+- **ComSim** (same as search #2 above): Compositional Simulation with closed-loop real-sim-real pipeline. 10 demos suffice to bootstrap large-scale data. [OpenReview](https://openreview.net/forum?id=27mRzKDpAE)
+
+- **Newton 1.0** (NVIDIA, 2026): Physics engine for dexterous manipulation with accurate collision detection, realistic contact, stable simulation of rigid+flexible parts. Integrated into Isaac Sim. [NVIDIA developer](https://developer.nvidia.com/isaac/sim)
+
+- **Iterative Compositional Data Generation** (arXiv 2512.10891): Iterative approach to compositional data generation for robot control. [arXiv](https://arxiv.org/abs/2512.10891)
+
+### 10. LHM-Humanoid arXiv 2508.16943 -- Verification
+
+**Partially confirmed, with a caveat.** The arXiv ID 2508.16943 exists but appears to have been updated/superseded. The current version at that ID is titled **"HumanoidVerse: A Versatile Humanoid for Vision-Language Guided Multi-Object Rearrangement"** (by Haozhuo Zhang et al.), while earlier versions were titled "LHM-Humanoid." The content describes:
+- 350 multi-object rearrangement tasks across 4 room types (bedroom, living room, kitchen, warehouse)
+- Dual-teacher distillation pipeline with multi-stage curriculum
+- VLA model with egocentric RGB + natural language
+- Last updated March 2026
+
+So the paper exists but may have been renamed from "LHM-Humanoid" to "HumanoidVerse" between versions.
+
+---
+
+## Summary of Potentially Missed Competing/Concurrent Work
+
+Papers and systems **not on your reference list** that appear most relevant to a proposal on automated compositional task generation for humanoid robots:
+
+| Work | Year | Key Relevance |
+|------|------|---------------|
+| **pi0.7** | Apr 2026 | Compositional generalization in a generalist robot foundation model |
+| **OmniRetarget** | Sep 2025 | Interaction-preserving data generation for humanoid loco-manipulation |
+| **EgoHumanoid** | Feb 2026 | Robot-free egocentric demo pipeline for humanoid training |
+| **EgoScale** | Feb 2026 | 20K-hour scaling law for VLA dexterity pre-training |
+| **HoloMotion** | Jan 2026 | Open-source whole-body control foundation model |
+| **ComSim** | 2026 | Compositional classical+neural simulation for data generation |
+| **MetaWorld / MetaWorld-X** | Jan-Mar 2026 | Hierarchical world models with VLM-orchestrated skill composition |
+| **BLADE** | CoRL 2025 | Structured precondition/effect extraction for compositional behaviors |
+| **RoboMonster** | ICLR 2026 | Multi-end-effector compositional planning with constraints |
+| **RoboFactory** | ICCV 2025 | Multi-agent manipulation with compositional constraints |
+| **Agility WBC FM** | 2026 | Deployed sub-1M param foundation model for Digit humanoid |
+| **BFM Survey** | 2026 | Comprehensive survey on behavior foundation models for humanoid WBC |
+| **Iterative Compositional Data Gen** | Dec 2025 | Iterative compositional data generation for robot control |
+
+The most critical omissions for a CoRL 2026 submission would be **pi0.7** (major industry result on compositional generalization), **EgoScale/EgoHumanoid** (data scaling for humanoids), **ComSim** (compositional simulation for data generation), and **MetaWorld-X** (VLM-orchestrated skill composition for humanoid loco-manipulation).
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a4d91308-d535-4e86-9112-4c7fe1288a5d",
+  "isSidechain": true,
+  "agentId": "a9cb18d5268af53bf",
+  "requestId": "req_011CauTw2ighzyajkQq8BKNk",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "27edef9c-f9f6-4bae-9753-b4dadd6cdd81",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "34372a5f-d207-4297-b608-e5da36373289",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RUQyW2ozQYUoyiYw6AcVG4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1114,
+      "cache_creation_input_tokens": 4006,
+      "cache_read_input_tokens": 26594,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4006,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---

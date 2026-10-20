@@ -1,0 +1,86 @@
+{
+  "schema_version": "1.0",
+  "id": "92c1cd76a0aa6b8e0d3a",
+  "project": "provenance_weight_training--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: provenance_weight_training ## 运行环境 - 服务器名: westd-30476 - SSH 账户: root（调用 ssh_execute / submit_tr",
+  "task_key": "e1fff226-a14f-4317-b22a-abeb6fca808f",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-3/e1fff226-a14f-4317-b22a-abeb6fca808f.jsonl",
+    "occurrence": 1,
+    "bytes": 1895997,
+    "sha256": "501bc77576b9facce52e6b8712d33d2e9fb3b2a703ecd37ca7560a953aca140a"
+  },
+  "statistics": {
+    "messages": 911,
+    "user_turns": 2,
+    "tool_calls": 304,
+    "roles": {
+      "record": 136,
+      "user": 2,
+      "assistant": 164,
+      "tool_call": 304,
+      "tool_result": 304,
+      "system": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "92c1cd76a0aa6b8e0d3a-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 857,
+      "chunks": [
+        {
+          "path": "92c1cd76a0aa6b8e0d3a-part-0001.json",
+          "message_count": 122
+        },
+        {
+          "path": "92c1cd76a0aa6b8e0d3a-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "92c1cd76a0aa6b8e0d3a-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "92c1cd76a0aa6b8e0d3a-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "92c1cd76a0aa6b8e0d3a-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "92c1cd76a0aa6b8e0d3a-part-0006.json",
+          "message_count": 15
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 52,
+      "chunks": [
+        {
+          "path": "92c1cd76a0aa6b8e0d3a-part-0006.json",
+          "message_count": 52
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-provenance-weight-training-westd-30476-ssh-root-ssh-execute-su-copy-82.md"
+}

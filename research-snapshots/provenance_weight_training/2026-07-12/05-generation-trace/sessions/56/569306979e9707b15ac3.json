@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "569306979e9707b15ac3",
+  "project": "provenance_weight_training--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: provenance_weight_training ## 运行环境 - 服务器名: westd-30476 - SSH 账户: root（调用 ssh_execute / submit_tr",
+  "task_key": "c320569f-783e-4a08-a208-cfd6834fec98",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-3/c320569f-783e-4a08-a208-cfd6834fec98.jsonl",
+    "occurrence": 1,
+    "bytes": 688059,
+    "sha256": "f3ccccc90ba7a966420d20251203a7c611fec407a1244e08b6d8430e7ad0f80f"
+  },
+  "statistics": {
+    "messages": 316,
+    "user_turns": 2,
+    "tool_calls": 101,
+    "roles": {
+      "record": 55,
+      "user": 2,
+      "assistant": 57,
+      "tool_call": 101,
+      "tool_result": 101
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "569306979e9707b15ac3-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 310,
+      "chunks": [
+        {
+          "path": "569306979e9707b15ac3-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "569306979e9707b15ac3-part-0002.json",
+          "message_count": 132
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 4,
+      "chunks": [
+        {
+          "path": "569306979e9707b15ac3-part-0002.json",
+          "message_count": 4
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-provenance-weight-training-westd-30476-ssh-root-ssh-execute-su-copy-80.md"
+}

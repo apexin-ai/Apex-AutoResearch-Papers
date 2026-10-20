@@ -1,0 +1,1684 @@
+{
+  "schema_version": "1.0",
+  "id": "1f590b3170efbf2109ec",
+  "project": "provenance_weight_training--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: I need you to fetch and analyze several arxiv papers for a research idea revision. Please use WebSearch and WebFetch to ",
+  "task_key": "agent-a90e86dad728436c7",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-3/agent-a90e86dad728436c7.jsonl",
+    "occurrence": 1,
+    "bytes": 75106,
+    "sha256": "c7bdbd2b8a93c69e2a04e263c493a15d1edd7d56c09dc56754b61fb889e7c42a"
+  },
+  "statistics": {
+    "messages": 36,
+    "user_turns": 1,
+    "tool_calls": 15,
+    "roles": {
+      "user": 1,
+      "assistant": 5,
+      "tool_call": 15,
+      "tool_result": 15
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-10T12:59:20.454Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "I need you to fetch and analyze several arxiv papers for a research idea revision. Please use WebSearch and WebFetch to read the abstracts and method sections of the following papers:\n\n1. BridgeV2W (arXiv:2602.03793, February 2026) - described as using \"coordinate-space actions → pixel-aligned embodiment masks rendered from URDF → ControlNet-style injection into pretrained video DiT\" for robot video generation. I need to understand: (a) exactly what conditioning signal they use (binary masks? continuous? other?), (b) what tasks/embodiments they evaluate on, (c) what their downstream objective is (policy training? video generation quality? planning?), (d) what video backbone they use, (e) what their results show.\n\n2. EA-WM (arXiv:2605.06192, May 2026) - \"Event-Aware Generative World Model with Structured Kinematic-to-Visual Action Fields\" - I need to confirm: (a) do they use Gaussian heatmaps or something else for kinematic conditioning?, (b) is it really arm manipulation only?, (c) do they fine-tune the entire video backbone jointly or use a ControlNet-style approach?, (d) what's the exact nature of their \"event-aware bidirectional dual-stream fusion\"?\n\n3. Also search for any papers from early 2026 that combine URDF + video diffusion + ControlNet for robotics. Search terms to try: \"URDF ControlNet video diffusion robot\", \"embodiment mask video generation robot\", \"kinematic conditioning humanoid video synthesis\". I want to know if there are other BridgeV2W-type papers we're missing.\n\n4. Also check: does Dream2Act (arXiv:2603.19709) really use Seedance 2.0 as the video backbone? And is their post-hoc IK approach really distinct from in-loop conditioning?\n\nPlease actually fetch and read (using WebFetch) the arxiv abstract pages for papers 1 and 2 at minimum. For paper 3, use WebSearch. Report what you find in detail, especially the technical specifics of the conditioning mechanisms."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "3abb6fbf-dc12-41d6-81de-bd436aa09aac",
+            "agentId": "a90e86dad728436c7",
+            "type": "user",
+            "uuid": "a3a7eda8-0cd0-4346-a670-cf87f32566c4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3eca5a12-2fc4-436c-9188-e19cda922486",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-10T12:59:21.847Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll help you fetch and analyze these papers. Let me start by searching for and fetching the arxiv papers you mentioned."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a3a7eda8-0cd0-4346-a670-cf87f32566c4",
+            "isSidechain": true,
+            "agentId": "a90e86dad728436c7",
+            "requestId": "req_011CatvqC4yrCLtamaUiyY4T",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "8c7fc034-5ccc-438f-b865-ed5618d77e6b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3eca5a12-2fc4-436c-9188-e19cda922486",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0142aUWFp5uiECKzQTaUFA5K",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 17078,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 17078,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-10T12:59:22.281Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014mH3Cr2aGpQue9jftHkgMu",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/abs/2602.03793",
+                "prompt": "What is the conditioning signal for the video generation model? What tasks and embodiments are evaluated? What is the downstream objective? What video backbone is used? What are the main results?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8c7fc034-5ccc-438f-b865-ed5618d77e6b",
+            "isSidechain": true,
+            "agentId": "a90e86dad728436c7",
+            "requestId": "req_011CatvqC4yrCLtamaUiyY4T",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "4d3286af-3bb6-4d79-bc01-4c3ec27a8b47",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3eca5a12-2fc4-436c-9188-e19cda922486",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0142aUWFp5uiECKzQTaUFA5K",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 17078,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 17078,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-10T12:59:22.913Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012Fy8Zqbe1piqkqnankqs2d",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/abs/2605.06192",
+                "prompt": "What kinematic conditioning method is used? Is it Gaussian heatmaps? What embodiments/tasks are evaluated? How is the video backbone trained - ControlNet-style or full joint fine-tuning? What is the event-aware bidirectional dual-stream fusion mechanism?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4d3286af-3bb6-4d79-bc01-4c3ec27a8b47",
+            "isSidechain": true,
+            "agentId": "a90e86dad728436c7",
+            "requestId": "req_011CatvqC4yrCLtamaUiyY4T",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "8e04419e-2746-492c-aed1-83c6135b605e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3eca5a12-2fc4-436c-9188-e19cda922486",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0142aUWFp5uiECKzQTaUFA5K",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 17078,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 17078,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-10T12:59:23.116Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016gt5wxtvdNpV3pvcKtW6q2",
+              "name": "WebSearch",
+              "input": {
+                "query": "URDF ControlNet video diffusion robot 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8e04419e-2746-492c-aed1-83c6135b605e",
+            "isSidechain": true,
+            "agentId": "a90e86dad728436c7",
+            "requestId": "req_011CatvqC4yrCLtamaUiyY4T",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "05c42ed4-05b4-4076-9ddf-4399ee699eb6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3eca5a12-2fc4-436c-9188-e19cda922486",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0142aUWFp5uiECKzQTaUFA5K",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 17078,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 17078,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-10T12:59:23.315Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AYx9EWSCnHhDbugFVrRgnE",
+              "name": "WebSearch",
+              "input": {
+                "query": "embodiment mask video generation robot kinematic conditioning 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "05c42ed4-05b4-4076-9ddf-4399ee699eb6",
+            "isSidechain": true,
+            "agentId": "a90e86dad728436c7",
+            "requestId": "req_011CatvqC4yrCLtamaUiyY4T",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "634201dd-ae13-48fe-9b70-599593d01fa4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3eca5a12-2fc4-436c-9188-e19cda922486",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0142aUWFp5uiECKzQTaUFA5K",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 17078,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 17078,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-10T12:59:23.561Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0117BBbLxg3NLbLwVQFofjVX",
+              "name": "WebSearch",
+              "input": {
+                "query": "kinematic conditioning humanoid video synthesis diffusion 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "634201dd-ae13-48fe-9b70-599593d01fa4",
+            "isSidechain": true,
+            "agentId": "a90e86dad728436c7",
+            "requestId": "req_011CatvqC4yrCLtamaUiyY4T",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "8151b2a7-4826-4b96-887b-1061b1929c2a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3eca5a12-2fc4-436c-9188-e19cda922486",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0142aUWFp5uiECKzQTaUFA5K",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 17078,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 17078,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-10T12:59:23.885Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NVHhAfbdwz3CfvwqUs3LiV",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/abs/2603.19709",
+                "prompt": "What video backbone model is used? Is it Seedance 2.0? How does the post-hoc IK approach work? Is it different from in-loop conditioning approaches?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8151b2a7-4826-4b96-887b-1061b1929c2a",
+            "isSidechain": true,
+            "agentId": "a90e86dad728436c7",
+            "requestId": "req_011CatvqC4yrCLtamaUiyY4T",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "a586c8d4-8527-442a-91fa-05a097522c99",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3eca5a12-2fc4-436c-9188-e19cda922486",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0142aUWFp5uiECKzQTaUFA5K",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 17078,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 514,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 17078
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 514,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 17078,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 17078,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-10T12:59:26.076Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NVHhAfbdwz3CfvwqUs3LiV",
+              "type": "tool_result",
+              "content": "# Response\n\nBased on the provided content, I cannot answer your questions about the specific video backbone model, Seedance 2.0, or the post-hoc IK approach details.\n\nThe abstract mentions that the framework \"leverages video generation models to envision the robot completing the task\" and uses \"a high-fidelity pose extraction system to recover physically feasible, robot-native joint trajectories,\" but it does not specify which video backbone model is employed or provide technical details about the inverse kinematics methodology.\n\nTo obtain this information, you would need to access the full paper PDF or HTML version available through the arXiv links provided."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a586c8d4-8527-442a-91fa-05a097522c99",
+            "isSidechain": true,
+            "promptId": "3abb6fbf-dc12-41d6-81de-bd436aa09aac",
+            "agentId": "a90e86dad728436c7",
+            "type": "user",
+            "uuid": "a0713a2d-6fcd-4c39-bfff-3a0a9df18a7b",
+            "sourceToolAssistantUUID": "a586c8d4-8527-442a-91fa-05a097522c99",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3eca5a12-2fc4-436c-9188-e19cda922486",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-10T12:59:26.985Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012Fy8Zqbe1piqkqnankqs2d",
+              "type": "tool_result",
+              "content": "# Analysis of EA-WM Paper Details\n\nBased on the provided arXiv page content, I cannot provide specific answers to your technical questions because the abstract and metadata don't contain those implementation details.\n\n**What the abstract reveals:**\n\nThe paper describes using \"Structured Kinematic-to-Visual Action Fields\" where \"actions and kinematic states\" are \"projected directly into the target camera view\" rather than treated as \"abstract, low-dimensional tokens.\"\n\nRegarding the fusion mechanism, the abstract mentions \"event-aware bidirectional fusion blocks that modulate cross-branch attention, capturing object state changes and interaction dynamics.\"\n\n**What remains unclear from this excerpt:**\n\n- Specific kinematic conditioning methods (Gaussian heatmaps or alternatives)\n- Embodiments and tasks evaluated (though \"WorldArena benchmark\" is mentioned)\n- Video backbone training methodology (ControlNet-style vs. joint fine-tuning)\n- Detailed architectural specifications of the bidirectional fusion blocks\n\n**Recommendation:** To answer these questions accurately, you would need to consult the full PDF or HTML version of the paper, which are available through the links provided on the arXiv page."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8e04419e-2746-492c-aed1-83c6135b605e",
+            "isSidechain": true,
+            "promptId": "3abb6fbf-dc12-41d6-81de-bd436aa09aac",
+            "agentId": "a90e86dad728436c7",
+            "type": "user",
+            "uuid": "229e79aa-6dd4-4964-8b11-63aedbbee903",
+            "sourceToolAssistantUUID": "8e04419e-2746-492c-aed1-83c6135b605e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3eca5a12-2fc4-436c-9188-e19cda922486",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-10T12:59:27.115Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014mH3Cr2aGpQue9jftHkgMu",
+              "type": "tool_result",
+              "content": "# BridgeV2W Paper Summary\n\n**Conditioning Signal:** The approach converts coordinate-space actions into \"pixel-aligned embodiment masks rendered from the URDF and camera parameters,\" which are then injected via a ControlNet-style pathway.\n\n**Tasks and Embodiments Evaluated:** Experiments cover single-arm (DROID) and dual-arm (AgiBot-G1) robotic systems tested on \"diverse and challenging conditions with unseen viewpoints and scenes.\"\n\n**Downstream Objectives:** The method is evaluated on two practical applications: policy evaluation and goal-conditioned planning in real-world robotic tasks.\n\n**Video Backbone:** While not explicitly named in the abstract, the method leverages \"a pretrained video generation model\" with ControlNet-style integration for action control.\n\n**Main Results:** BridgeV2W achieves improved video generation quality compared to prior methods. The approach addresses key challenges including action-video misalignment, viewpoint sensitivity, and architectural inconsistency across different robot embodiments. A flow-based motion loss further enhances learning by focusing on dynamic, task-relevant regions rather than static backgrounds."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4d3286af-3bb6-4d79-bc01-4c3ec27a8b47",
+            "isSidechain": true,
+            "promptId": "3abb6fbf-dc12-41d6-81de-bd436aa09aac",
+            "agentId": "a90e86dad728436c7",
+            "type": "user",
+            "uuid": "b3a6a80e-c9fa-4dbc-8da9-caf44d7e7269",
+            "sourceToolAssistantUUID": "4d3286af-3bb6-4d79-bc01-4c3ec27a8b47",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3eca5a12-2fc4-436c-9188-e19cda922486",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-10T12:59:29.286Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016gt5wxtvdNpV3pvcKtW6q2",
+              "type": "tool_result",
+              "content": "Web search results for query: \"URDF ControlNet video diffusion robot 2026\"\n\nLinks: [{\"title\":\"GitHub - DLR-RM/urdfmodelica: Standalone simple Modelica URDF robots · GitHub\",\"url\":\"https://github.com/DLR-RM/urdfmodelica\"},{\"title\":\"URDFormer\",\"url\":\"https://urdformer.github.io/\"},{\"title\":\"Robot Models and URDF | applied-ai-lab/compliant_controllers | DeepWiki\",\"url\":\"https://deepwiki.com/applied-ai-lab/compliant_controllers/11-robot-models-and-urdf\"},{\"title\":\"Reinforcement Learning Journal 2025 Cover Page AVID: Adapting Video Diffusion\",\"url\":\"https://rlj.cs.umass.edu/2025/papers/RLJ_RLC_2025_64.pdf\"},{\"title\":\"Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets\",\"url\":\"https://arxiv.org/html/2504.02792v1\"},{\"title\":\"Diffusion models for robotic manipulation: a survey - PMC\",\"url\":\"https://pmc.ncbi.nlm.nih.gov/articles/PMC12454101/\"},{\"title\":\"GitHub - showlab/Awesome-Robotics-Diffusion: A curated list of recent robot learning papers incorporating diffusion models for robotics tasks. · GitHub\",\"url\":\"https://github.com/showlab/Awesome-Robotics-Diffusion\"},{\"title\":\"Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets · Robotics: Science and Systems\",\"url\":\"https://roboticsconference.org/program/papers/15/\"},{\"title\":\"urdf-robot-model | Skills Marketplace\",\"url\":\"https://lobehub.com/skills/mjunaidca-robolearn-urdf-robot-model\"},{\"title\":\"Video Generators are Robot Policies - Columbia University\",\"url\":\"https://videopolicy.cs.columbia.edu/assets/video_policy.pdf\"}]\n\nBased on the search results, I found relevant information about these robotics topics:\n\n**URDF (Unified Robot Description Format):** URDF is a format used to describe robot designs that is recognized in ROS 2 Documentation and ROS Wiki. URDF files define robot kinematics, dynamics, and geometry.\n\n**ControlNet & Video Diffusion in Robotics:** ControlNet is an adapter architecture that can be applied to add action-conditioning by modifying the activations inside a model. Research is actively exploring how to use video diffusion models for robotic control. Video diffusion models can synthesize accurate videos of robot behavior, and learned decoders can map videos into actions that robots can execute, with the video generative model serving as the policy.\n\n**Recent 2026 Work:** Unified World Models (UWM) is a framework that integrates an action diffusion process and a video diffusion process within a unified transformer for policy learning, and this work is being presented at RSS 2026 in Sydney, Australia in July 2026.\n\nThese technologies represent cutting-edge approaches in combining computer vision (diffusion models), control systems (URDF specifications), and robotics for more effective policy learning and robot control.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "05c42ed4-05b4-4076-9ddf-4399ee699eb6",
+            "isSidechain": true,
+            "promptId": "3abb6fbf-dc12-41d6-81de-bd436aa09aac",
+            "agentId": "a90e86dad728436c7",
+            "type": "user",
+            "uuid": "a591e5ed-819d-4591-ab49-eb76067fee6b",
+            "sourceToolAssistantUUID": "05c42ed4-05b4-4076-9ddf-4399ee699eb6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3eca5a12-2fc4-436c-9188-e19cda922486",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-10T12:59:31.670Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AYx9EWSCnHhDbugFVrRgnE",
+              "type": "tool_result",
+              "content": "Web search results for query: \"embodiment mask video generation robot kinematic conditioning 2026\"\n\nLinks: [{\"title\":\"Aligning Video World Models with Executable Robot Actions via Inverse Dynamics Rewards\",\"url\":\"https://arxiv.org/html/2603.17808\"},{\"title\":\"Kinema4D: Kinematic 4D World Modeling for Spatiotemporal Embodied Simulation\",\"url\":\"https://arxiv.org/html/2603.16669\"},{\"title\":\"MITTY: DIFFUSION-BASED HUMAN-TO-ROBOT VIDEO ...\",\"url\":\"https://openreview.net/pdf/6cd00b0c5b41530ac2f05042ae392df03104bf61.pdf\"},{\"title\":\"Mask World Model: Predicting What Matters for Robust Robot Policy Learning\",\"url\":\"https://arxiv.org/html/2604.19683\"},{\"title\":\"Gen2Act: Human Video Generation in Novel Scenarios enables\",\"url\":\"https://homangab.github.io/gen2act/Gen2Act-Paper.pdf\"},{\"title\":\"Latent Action Robot Foundation World Models for Cross-Embodiment Adaptation | OpenReview\",\"url\":\"https://openreview.net/forum?id=vEZgPr1deb\"},{\"title\":\"mimic-video: Video-Action Models for Generalizable Robot Control Beyond VLAs\",\"url\":\"https://arxiv.org/html/2512.15692v1\"},{\"title\":\"Video Generators are Robot Policies\",\"url\":\"https://arxiv.org/html/2508.00795v1\"},{\"title\":\"Morphology-Consistent Humanoid Interaction through Robot-Centric Video Synthesis\",\"url\":\"https://arxiv.org/html/2603.19709v2\"},{\"title\":\"Video Generation Models in Robotics: Applications, Research Challenges, Future Directions\",\"url\":\"https://arxiv.org/html/2601.07823v1\"}]\n\nBased on the search results, I found several recent research papers from 2026 related to embodiment, video generation, robot kinematic conditioning, and masking approaches. Here are the key findings:\n\n## Key Research Areas:\n\n**1. Mask World Models for Robot Control**\n\nThe Mask World Model (MWM) leverages video diffusion architectures to predict the evolution of semantic masks instead of pixels. This approach addresses the challenge of learning robust robot policies by focusing on semantic information rather than visual distractions.\n\n**2. Kinematic 4D World Modeling**\n\nKinema4D is an action-conditioned 4D generative robotic simulator that disentangles robot-world interaction into precise 4D representation of robot controls by driving a URDF-based 3D robot via kinematics, producing a precise 4D robot control trajectory. The approach prioritizes reconstructing the robot's geometry from masked multi-view images and produces robot-centric pointmap sequences, which are fused with the initial world RGB frame as the conditioning input for generative modeling.\n\n**3. Executable Video Alignment (EVA)**\n\nThe EVA framework performs reinforcement-learning post-training of a pretrained video generator, penalizing non-smooth and out-of-bound motions to encourage kinematically feasible trajectories under the target embodiment.\n\n**4. Embodiment-Aware Video Generation**\n\nEVA reduces embodiment-related artifacts in generated rollouts, and compared with EVA without RL, the aligned model improves kinematic plausibility by +20.9% and consistently improves interaction plausibility, while maintaining instruction adherence.\n\nThese recent papers demonstrate significant advances in combining video generation with kinematic constraints for more physically plausible robot motion synthesis.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "634201dd-ae13-48fe-9b70-599593d01fa4",
+            "isSidechain": true,
+            "promptId": "3abb6fbf-dc12-41d6-81de-bd436aa09aac",
+            "agentId": "a90e86dad728436c7",
+            "type": "user",
+            "uuid": "04b93f33-36a4-4b42-b179-8cd08ccdec06",
+            "sourceToolAssistantUUID": "634201dd-ae13-48fe-9b70-599593d01fa4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3eca5a12-2fc4-436c-9188-e19cda922486",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-10T12:59:31.915Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0117BBbLxg3NLbLwVQFofjVX",
+              "type": "tool_result",
+              "content": "Web search results for query: \"kinematic conditioning humanoid video synthesis diffusion 2026\"\n\nLinks: [{\"title\":\"2026-3-16 Kimodo: Scaling Controllable Human Motion Generation\",\"url\":\"https://research.nvidia.com/labs/sil/projects/kimodo/assets/kimodo_tech_report.pdf\"},{\"title\":\"Morphology-Consistent Humanoid Interaction through Robot-Centric Video Synthesis\",\"url\":\"https://arxiv.org/html/2603.19709v1\"},{\"title\":\"Kimodo: Scaling Controllable Human Motion Generation\",\"url\":\"https://research.nvidia.com/labs/sil/projects/kimodo/\"},{\"title\":\"GitHub - nv-tlabs/kimodo: Official implementation of Kimodo, a kinematic motion diffusion model for high-quality human(oid) motion generation. · GitHub\",\"url\":\"https://github.com/nv-tlabs/kimodo\"},{\"title\":\"Kimodo: Scaling Controllable Human Motion Generation\",\"url\":\"https://arxiv.org/html/2603.15546v1\"},{\"title\":\"[2603.15546] Kimodo: Scaling Controllable Human Motion Generation\",\"url\":\"https://arxiv.org/abs/2603.15546\"},{\"title\":\"Controllable Complex Human Motion Video Generation via Text-to-Skeleton Cascades\",\"url\":\"https://arxiv.org/html/2603.08028\"},{\"title\":\"GitHub - YanjieZe/awesome-humanoid-robot-learning: A Paper List for Humanoid Robot Learning. · GitHub\",\"url\":\"https://github.com/YanjieZe/awesome-humanoid-robot-learning\"},{\"title\":\"Learning to Generate Rigid Body Interactions with Video Diffusion Models\",\"url\":\"https://arxiv.org/html/2510.02284v2\"},{\"title\":\"Visual Imitation Enables Contextual Humanoid Control\",\"url\":\"https://arxiv.org/html/2505.03729v1\"}]\n\nBased on the search results, here are the key findings related to kinematic conditioning, humanoid video synthesis, and diffusion models in 2026:\n\n## Kimodo: Scaling Controllable Human Motion Generation\n\nKimodo is an expressive and controllable kinematic motion diffusion model trained on 700 hours of optical motion capture data that enables intuitive authoring of high-quality motions through text prompting and an extensive set of kinematic constraints. \n\nThe model uses a carefully designed motion representation and two-stage diffusion architecture that decomposes root and body motion to accurately follow user specifications while minimizing common artifacts, such as floating and foot skating. In addition to text inputs, the model natively supports a suite of constraints on generated poses, including full-body keyframes, sparse joint positions/rotations, 2D waypoints, 2D path following, and foot contact patterns.\n\nKimodo trained on the G1 skeleton can generate humanoid demonstration data more quickly and easily than teleoperation.\n\n## Dream2Act: Humanoid Interaction through Video Synthesis\n\nGiven only a single third-person image of the humanoid and an interaction object, the framework leverages image-to-video diffusion priors to hallucinate realistic and temporally coherent videos of the physical robot executing the desired task, and employs a high-fidelity pose estimation and reconstruction pipeline to recover robot-native kinematic trajectories directly from these synthesized sequences.\n\n## Text-to-Skeleton Video Generation\n\nA cascaded framework uses an autoregressive text-to-skeleton model to translate natural language into 2D pose sequences, and a pose-conditioned video diffusion model synthesizes videos from a reference image and the generated skeleton sequence.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8151b2a7-4826-4b96-887b-1061b1929c2a",
+            "isSidechain": true,
+            "promptId": "3abb6fbf-dc12-41d6-81de-bd436aa09aac",
+            "agentId": "a90e86dad728436c7",
+            "type": "user",
+            "uuid": "31e25fd1-c698-44d3-9c97-243c1f76ac5a",
+            "sourceToolAssistantUUID": "8151b2a7-4826-4b96-887b-1061b1929c2a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3eca5a12-2fc4-436c-9188-e19cda922486",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-10T12:59:33.130Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Good start. Let me fetch the full papers to get more technical details, particularly the method sections."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "31e25fd1-c698-44d3-9c97-243c1f76ac5a",
+            "isSidechain": true,
+            "agentId": "a90e86dad728436c7",
+            "requestId": "req_011Catvr35WnKKUTKwvBCu8R",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "c2e3be98-f199-47ee-9a34-a0229ba7d5ec",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3eca5a12-2fc4-436c-9188-e19cda922486",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Y9brYTd9F4VAcA37PJ9hpa",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 167,
+                "cache_creation_input_tokens": 4444,
+                "cache_read_input_tokens": 17078,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4444,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-10T12:59:34.032Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014CRX6z7NVXXMpWc6s9JktD",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2602.03793",
+                "prompt": "What is the exact video backbone model name? What are the details of the ControlNet conditioning? How are the embodiment masks structured and rendered? What evaluation metrics and tasks are used?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c2e3be98-f199-47ee-9a34-a0229ba7d5ec",
+            "isSidechain": true,
+            "agentId": "a90e86dad728436c7",
+            "requestId": "req_011Catvr35WnKKUTKwvBCu8R",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "4890c578-49b9-4233-be93-84680ceac939",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3eca5a12-2fc4-436c-9188-e19cda922486",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Y9brYTd9F4VAcA37PJ9hpa",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 167,
+                "cache_creation_input_tokens": 4444,
+                "cache_read_input_tokens": 17078,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4444,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-10T12:59:34.105Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Request failed with status code 404",
+              "is_error": true,
+              "tool_use_id": "toolu_014CRX6z7NVXXMpWc6s9JktD"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4890c578-49b9-4233-be93-84680ceac939",
+            "isSidechain": true,
+            "promptId": "3abb6fbf-dc12-41d6-81de-bd436aa09aac",
+            "agentId": "a90e86dad728436c7",
+            "type": "user",
+            "uuid": "0daed81b-640a-4e9f-aee8-6615638d4490",
+            "toolUseResult": "Error: Request failed with status code 404",
+            "sourceToolAssistantUUID": "4890c578-49b9-4233-be93-84680ceac939",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3eca5a12-2fc4-436c-9188-e19cda922486",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-10T12:59:35.166Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Cz3xzewFR9NGSwVPvPNPnV",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2605.06192",
+                "prompt": "What is the exact kinematic conditioning representation? Are Gaussian heatmaps used? What is the video backbone? How are the fusion blocks structured? What embodiments and tasks are evaluated? Is the backbone fine-tuned jointly or using ControlNet?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0daed81b-640a-4e9f-aee8-6615638d4490",
+            "isSidechain": true,
+            "agentId": "a90e86dad728436c7",
+            "requestId": "req_011Catvr35WnKKUTKwvBCu8R",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "ef0400fe-b50c-4d78-8802-452b967944c8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3eca5a12-2fc4-436c-9188-e19cda922486",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Y9brYTd9F4VAcA37PJ9hpa",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 167,
+                "cache_creation_input_tokens": 4444,
+                "cache_read_input_tokens": 17078,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4444,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-10T12:59:35.792Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SEDAEAmEvELCzutGifD2fz",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2603.19709",
+                "prompt": "What video backbone is used - is it Seedance 2.0? Describe the post-hoc IK approach in detail. How does it differ from in-loop conditioning? What are the evaluation results?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ef0400fe-b50c-4d78-8802-452b967944c8",
+            "isSidechain": true,
+            "agentId": "a90e86dad728436c7",
+            "requestId": "req_011Catvr35WnKKUTKwvBCu8R",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "c66747cb-58e2-43e3-adfb-98e1ee4b0944",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3eca5a12-2fc4-436c-9188-e19cda922486",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Y9brYTd9F4VAcA37PJ9hpa",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 167,
+                "cache_creation_input_tokens": 4444,
+                "cache_read_input_tokens": 17078,
+                "output_tokens": 369,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 4444
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 167,
+                    "output_tokens": 369,
+                    "cache_read_input_tokens": 17078,
+                    "cache_creation_input_tokens": 4444,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 4444,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-10T12:59:41.620Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Cz3xzewFR9NGSwVPvPNPnV",
+              "type": "tool_result",
+              "content": "# EA-WM Technical Architecture Summary\n\n## Kinematic Conditioning Representation\n\nThe model uses **Structured Kinematic-to-Visual Action Fields (KVAFs)**, which convert low-dimensional robot states into camera-aligned visual fields. As described, KVAFs render \"depth-aware arm structures, joint landmarks, gripper geometry, end-effector heatmaps, and pose cues as temporally aligned visual fields.\"\n\n## Gaussian Heatmaps\n\nYes, the system employs Gaussian heatmaps for end-effector representation. Specifically, they render \"a truncated Gaussian heatmap centered at the projected end-effector location\" to provide explicit manipulation focus cues.\n\n## Video Backbone\n\nThe foundation model is **Wan2.2-TI2V**. The architecture preserves the original text-conditioned video denoising path while adding specialized components for action integration.\n\n## Fusion Block Structure\n\nThe system uses **event-aware bidirectional fusion blocks** inserted at sparse layers. These blocks compute shared event representations that generate both per-token event gates and predicted event latents, modulating cross-stream attention between video and KVAF branches through residual connections.\n\n## Embodiments and Tasks\n\nEvaluation uses the **WorldArena benchmark** with the **RoboTwin dataset**. The paper doesn't specify unique embodiments beyond standard bimanual manipulation setups.\n\n## Fine-tuning Approach\n\nThe model employs **LoRA (Low-Rank Adaptation)** with rank 32 for the main DiT, KVAF-branch, and KVAF head components rather than full fine-tuning."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ef0400fe-b50c-4d78-8802-452b967944c8",
+            "isSidechain": true,
+            "promptId": "3abb6fbf-dc12-41d6-81de-bd436aa09aac",
+            "agentId": "a90e86dad728436c7",
+            "type": "user",
+            "uuid": "996de84f-4bec-4abf-8d1e-2963e3427bc2",
+            "sourceToolAssistantUUID": "ef0400fe-b50c-4d78-8802-452b967944c8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3eca5a12-2fc4-436c-9188-e19cda922486",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-10T12:59:43.548Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SEDAEAmEvELCzutGifD2fz",
+              "type": "tool_result",
+              "content": "# Dream2Act: Video Synthesis and Kinematic Recovery\n\n## Video Backbone\n\nYes, **Seedance 2.0** is the core generative model. The framework uses this advanced multimodal video generation foundation model to synthesize morphology-consistent interactions directly in the robot's native coordinate space.\n\n## Post-Hoc IK Approach\n\nThe kinematic recovery employs a three-stage decoupled pipeline:\n\n**Stage 1 - Internal Joint Kinematics:** A constrained inverse kinematics optimization recovers joint angles by minimizing the difference between forward kinematics predictions and extracted 3D keypoints, subject to URDF joint limits.\n\n**Stage 2 - Scale Recovery:** The approach applies \"Perspective-n-Point (PnP) algorithm\" to align local 3D points with 2D detections, recovering metric scale and global pose through optimized rotation and translation parameters.\n\n**Stage 3 - Execution:** Trajectories are formatted into standard GMR (General Motion Retargeting) format and executed via the Sonic whole-body controller.\n\n## Key Difference from In-Loop Conditioning\n\nRather than conditioning generation on robot kinematics during synthesis, Dream2Act generates videos of the physical robot directly, then *extracts* native trajectories post-hoc. This avoids intermediate human representations entirely, eliminating retargeting-induced morphological mismatches.\n\n## Evaluation Results\n\n- **Overall success rate:** 37.5% across four task categories\n- **Baseline success rate:** 0% (human-centric retargeting failed completely)\n- **Spatial alignment error:** Averaged 0.14m across kicking tasks versus 0.75m for baselines\n- **Ball kicking (multi-location):** 40% average success; baseline achieved 0%\n\nHuman-centric approaches catastrophically failed due to the morphology gap, while Dream2Act maintained consistent spatial alignment regardless of task distance."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c66747cb-58e2-43e3-adfb-98e1ee4b0944",
+            "isSidechain": true,
+            "promptId": "3abb6fbf-dc12-41d6-81de-bd436aa09aac",
+            "agentId": "a90e86dad728436c7",
+            "type": "user",
+            "uuid": "3704785b-cd02-4403-9e5a-d9699d092ed8",
+            "sourceToolAssistantUUID": "c66747cb-58e2-43e3-adfb-98e1ee4b0944",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3eca5a12-2fc4-436c-9188-e19cda922486",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-10T12:59:45.020Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Excellent. Let me get the full Dream2Act paper and do one more search for BridgeV2W details."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3704785b-cd02-4403-9e5a-d9699d092ed8",
+            "isSidechain": true,
+            "agentId": "a90e86dad728436c7",
+            "requestId": "req_011Catvrtkz3mzKV1iB8V8ZE",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "a75e5d6f-3525-4bfd-b3f2-30625b52542f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3eca5a12-2fc4-436c-9188-e19cda922486",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01MM4FJaCuMc5iWemreS6Z2K",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1525,
+                "cache_read_input_tokens": 21522,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1525,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-10T12:59:45.898Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016GhmNnyFBKxmSF3Yk3epfx",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/pdf/2602.03793",
+                "prompt": "What is the video backbone model name? Describe the ControlNet conditioning mechanism in detail. How are embodiment masks rendered and structured? What are the quantitative results?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a75e5d6f-3525-4bfd-b3f2-30625b52542f",
+            "isSidechain": true,
+            "agentId": "a90e86dad728436c7",
+            "requestId": "req_011Catvrtkz3mzKV1iB8V8ZE",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "ca66f075-bba9-4c40-babb-9c887d849fef",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3eca5a12-2fc4-436c-9188-e19cda922486",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01MM4FJaCuMc5iWemreS6Z2K",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1525,
+                "cache_read_input_tokens": 21522,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1525,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-10T12:59:46.145Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "maxContentLength size of 10485760 exceeded",
+              "is_error": true,
+              "tool_use_id": "toolu_016GhmNnyFBKxmSF3Yk3epfx"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ca66f075-bba9-4c40-babb-9c887d849fef",
+            "isSidechain": true,
+            "promptId": "3abb6fbf-dc12-41d6-81de-bd436aa09aac",
+            "agentId": "a90e86dad728436c7",
+            "type": "user",
+            "uuid": "47a80869-c90f-454f-bf5d-1a1bfefe0edd",
+            "toolUseResult": "Error: maxContentLength size of 10485760 exceeded",
+            "sourceToolAssistantUUID": "ca66f075-bba9-4c40-babb-9c887d849fef",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3eca5a12-2fc4-436c-9188-e19cda922486",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-10T12:59:46.359Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UdSsyrKSRxfvgZkXLMuusU",
+              "name": "WebSearch",
+              "input": {
+                "query": "BridgeV2W arXiv 2602.03793 video DiT ControlNet"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "47a80869-c90f-454f-bf5d-1a1bfefe0edd",
+            "isSidechain": true,
+            "agentId": "a90e86dad728436c7",
+            "requestId": "req_011Catvrtkz3mzKV1iB8V8ZE",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "c35e2d0e-51e2-4e11-b95f-6cb57160a603",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3eca5a12-2fc4-436c-9188-e19cda922486",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01MM4FJaCuMc5iWemreS6Z2K",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1525,
+                "cache_read_input_tokens": 21522,
+                "output_tokens": 248,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1525
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 248,
+                    "cache_read_input_tokens": 21522,
+                    "cache_creation_input_tokens": 1525,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1525,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-10T12:59:46.413Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011zqDCnwiyF2RxpfYpjQzgD",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"BridgeV2W\" robot video generation URDF"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c35e2d0e-51e2-4e11-b95f-6cb57160a603",
+            "isSidechain": true,
+            "agentId": "a90e86dad728436c7",
+            "requestId": "req_011Catvrtkz3mzKV1iB8V8ZE",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "5621a390-b9e0-4848-8d5c-725ea2c8ce34",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3eca5a12-2fc4-436c-9188-e19cda922486",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01MM4FJaCuMc5iWemreS6Z2K",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1525,
+                "cache_read_input_tokens": 21522,
+                "output_tokens": 248,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1525
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 248,
+                    "cache_read_input_tokens": 21522,
+                    "cache_creation_input_tokens": 1525,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1525,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-10T12:59:52.474Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UdSsyrKSRxfvgZkXLMuusU",
+              "type": "tool_result",
+              "content": "Web search results for query: \"BridgeV2W arXiv 2602.03793 video DiT ControlNet\"\n\nLinks: [{\"title\":\"[2602.03793] BridgeV2W: Bridging Video Generation Models to Embodied World Models via Embodiment Masks\",\"url\":\"https://arxiv.org/abs/2602.03793\"},{\"title\":\"[2602.03793v1] BridgeV2W: Bridging Video Generation Models to Embodied World Models via Embodiment Masks\",\"url\":\"https://arxiv.org/abs/2602.03793v1\"},{\"title\":\"[2312.03793] AnimateZero: Video Diffusion Models are Zero-Shot Image Animators\",\"url\":\"https://arxiv.org/abs/2312.03793\"},{\"title\":\"DiVE: DiT-based Video Generation with Enhanced Control\",\"url\":\"https://arxiv.org/html/2409.01595v1\"},{\"title\":\"CTRL&SHIFT: High-quality Geometry-Aware Object Manipulation in Visual Generation\",\"url\":\"https://arxiv.org/html/2602.11440\"},{\"title\":\"Seeing Beyond Views: Multi-View Driving Scene Video Generation with Holistic Attention\",\"url\":\"https://arxiv.org/html/2412.03520v2\"},{\"title\":\"GitHub - ChenHsing/Awesome-Video-Diffusion-Models: [CSUR] A Survey on Video Diffusion Models · GitHub\",\"url\":\"https://github.com/ChenHsing/Awesome-Video-Diffusion-Models\"},{\"title\":\"VideoControlNet: A Motion-Guided Video-to- ...\",\"url\":\"https://arxiv.org/pdf/2307.14073\"},{\"title\":\"Vivid-VR: Distilling Concepts from Text-to-Video Diffusion Transformer for Photorealistic Video Restoration\",\"url\":\"https://arxiv.org/html/2508.14483v3\"},{\"title\":\"DAM-VSR: Disentanglement of Appearance and Motion for Video Super-Resolution\",\"url\":\"https://arxiv.org/html/2507.01012.pdf\"}]\n\nBased on the search results, I found information about BridgeV2W (arXiv 2602.03793):\n\n## BridgeV2W: Bridging Video Generation Models to Embodied World Models via Embodiment Masks\n\nBridgeV2W addresses challenges in embodied world models in robotics, which face key issues including misalignment between coordinate-space actions and pixel-space videos, sensitivity to camera viewpoint, and non-unified architectures across embodiments.\n\nThe method converts coordinate-space actions into pixel-aligned embodiment masks rendered from the URDF and camera parameters, which are then injected into a pretrained video generation model via a ControlNet-style pathway. This aligns the action control signals with predicted videos, adds view-specific conditioning to accommodate camera viewpoints, and yields a unified world model architecture across embodiments.\n\nTo mitigate overfitting to static backgrounds, BridgeV2W further introduces a flow-based motion loss that focuses on learning dynamic and task-related movements.\n\nThe paper was published on February 3, 2026, and combines video diffusion models with ControlNet-style control mechanisms to bridge the gap between coordinate-based robotic actions and pixel-space video generation for embodied world models.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c35e2d0e-51e2-4e11-b95f-6cb57160a603",
+            "isSidechain": true,
+            "promptId": "3abb6fbf-dc12-41d6-81de-bd436aa09aac",
+            "agentId": "a90e86dad728436c7",
+            "type": "user",
+            "uuid": "dc93c0d0-3d21-475b-a206-47a5202c3115",
+            "sourceToolAssistantUUID": "c35e2d0e-51e2-4e11-b95f-6cb57160a603",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3eca5a12-2fc4-436c-9188-e19cda922486",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-10T12:59:53.608Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011zqDCnwiyF2RxpfYpjQzgD",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"BridgeV2W\" robot video generation URDF\"\n\nLinks: [{\"title\":\"[2602.03793] BridgeV2W: Bridging Video Generation Models to Embodied World Models via Embodiment Masks\",\"url\":\"https://arxiv.org/abs/2602.03793\"},{\"title\":\"[2602.03793v1] BridgeV2W: Bridging Video Generation Models to Embodied World Models via Embodiment Masks\",\"url\":\"https://arxiv.org/abs/2602.03793v1\"},{\"title\":\"BridgeV2W: Bridging Video Generation Models to Embodied World Models via Embodiment Masks | OpenReview\",\"url\":\"https://openreview.net/forum?id=ZGWwV34Vmu\"},{\"title\":\"Model your robots in URDF and show them here!\",\"url\":\"https://mymodelrobot.appspot.com/\"},{\"title\":\"Building a visual robot model from scratch - URDF\",\"url\":\"https://docs.ros.org/en/rolling/Tutorials/Intermediate/URDF/Building-a-Visual-Robot-Model-with-URDF-from-Scratch.html\"},{\"title\":\"URDF for Robot Modeling - Full Course | The Construct\",\"url\":\"https://www.theconstruct.ai/robotigniteacademy_learnros/ros-courses-library/urdf-ros-robot-modeling/\"},{\"title\":\"How to Create a URDF for a Mobile Robot That Can Paint Like in the Video? - ROS General - Open Robotics Discourse\",\"url\":\"https://discourse.openrobotics.org/t/how-to-create-a-urdf-for-a-mobile-robot-that-can-paint-like-in-the-video/42567\"},{\"title\":\"Create and Visualize a Mobile Robot with URDF – ROS 2 Jazzy\",\"url\":\"https://automaticaddison.com/create-and-visualize-a-mobile-robot-with-urdf-ros-2-jazzy/\"},{\"title\":\"An approach for automatic generation of the URDF file of modular robots from modules designed using SolidWorks - ScienceDirect\",\"url\":\"https://www.sciencedirect.com/science/article/pii/S1877050922002927\"},{\"title\":\"GitHub - ros/urdf_tutorial · GitHub\",\"url\":\"https://github.com/ros/urdf_tutorial\"}]\n\nBased on the search results, here's what I found about BridgeV2W:\n\n## Overview\n\nBridgeV2W addresses embodied world models in robotics, which leverage large-scale Internet videos or pretrained video generation models to enrich visual and motion priors.\n\n## Core Methodology\n\nBridgeV2W converts coordinate-space actions into pixel-aligned embodiment masks rendered from the URDF and camera parameters. These masks are then injected into a pretrained video generation model via a ControlNet-style pathway, which aligns the action control signals with predicted videos, adds view-specific conditioning to accommodate camera viewpoints, and yields a unified world model architecture across embodiments.\n\n## Key Challenges Addressed\n\nThe approach tackles key challenges including misalignment between coordinate-space actions and pixel-space videos, sensitivity to camera viewpoint, and non-unified architectures across embodiments.\n\n## Experimental Results\n\nExperiments on single-arm (DROID) and dual-arm (AgiBot-G1) datasets, covering diverse and challenging conditions with unseen viewpoints and scenes, show that BridgeV2W improves video generation quality compared to prior state-of-the-art methods. The approach demonstrates potential for downstream real-world tasks, including policy evaluation and goal-conditioned planning.\n\nThe paper was recently published in early 2026 and is available on arXiv.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5621a390-b9e0-4848-8d5c-725ea2c8ce34",
+            "isSidechain": true,
+            "promptId": "3abb6fbf-dc12-41d6-81de-bd436aa09aac",
+            "agentId": "a90e86dad728436c7",
+            "type": "user",
+            "uuid": "7ebe223a-3ebd-4143-849f-94d0502a1727",
+            "sourceToolAssistantUUID": "5621a390-b9e0-4848-8d5c-725ea2c8ce34",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3eca5a12-2fc4-436c-9188-e19cda922486",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-10T12:59:54.791Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me search more specifically for additional related papers and technical details on the conditioning mechanisms."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7ebe223a-3ebd-4143-849f-94d0502a1727",
+            "isSidechain": true,
+            "agentId": "a90e86dad728436c7",
+            "requestId": "req_011CatvsdjNvhHCDQUDjszAN",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "ef8ec521-c3af-4d00-b8af-bfae51db75ca",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3eca5a12-2fc4-436c-9188-e19cda922486",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Mgv9dqGD8xUiJLpymzsYRt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 2055,
+                "cache_read_input_tokens": 23047,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2055,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-10T12:59:55.004Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015EQ6WtfsLAepjJoJxHnswo",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"Seedance 2.0\" video generation model"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ef8ec521-c3af-4d00-b8af-bfae51db75ca",
+            "isSidechain": true,
+            "agentId": "a90e86dad728436c7",
+            "requestId": "req_011CatvsdjNvhHCDQUDjszAN",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "fca44c39-d998-4d9c-b23b-00b1ac83dca1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3eca5a12-2fc4-436c-9188-e19cda922486",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Mgv9dqGD8xUiJLpymzsYRt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 2055,
+                "cache_read_input_tokens": 23047,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2055,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-10T12:59:55.508Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01R7zoahK5JMvk1GAyoC8A3M",
+              "name": "WebSearch",
+              "input": {
+                "query": "Wan2.2-TI2V video DiT backbone 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fca44c39-d998-4d9c-b23b-00b1ac83dca1",
+            "isSidechain": true,
+            "agentId": "a90e86dad728436c7",
+            "requestId": "req_011CatvsdjNvhHCDQUDjszAN",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "306b07cb-066d-4297-9fcc-faf106ee916b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3eca5a12-2fc4-436c-9188-e19cda922486",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Mgv9dqGD8xUiJLpymzsYRt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 2055,
+                "cache_read_input_tokens": 23047,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2055,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-10T12:59:55.610Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WUUFV9RqnQ9YCnvLEYy4ou",
+              "name": "WebSearch",
+              "input": {
+                "query": "robot video generation ControlNet mask conditioning 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "306b07cb-066d-4297-9fcc-faf106ee916b",
+            "isSidechain": true,
+            "agentId": "a90e86dad728436c7",
+            "requestId": "req_011CatvsdjNvhHCDQUDjszAN",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "b8c76918-dfe7-4c52-a091-1f523447e22b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3eca5a12-2fc4-436c-9188-e19cda922486",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Mgv9dqGD8xUiJLpymzsYRt",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 2055,
+                "cache_read_input_tokens": 23047,
+                "output_tokens": 177,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2055
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 177,
+                    "cache_read_input_tokens": 23047,
+                    "cache_creation_input_tokens": 2055,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2055,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-10T13:00:01.928Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01R7zoahK5JMvk1GAyoC8A3M",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Wan2.2-TI2V video DiT backbone 2026\"\n\nLinks: [{\"title\":\"GitHub - Wan-Video/Wan2.2: Wan: Open and Advanced Large-Scale Video Generative Models · GitHub\",\"url\":\"https://github.com/Wan-Video/Wan2.2\"},{\"title\":\"Wan-AI/Wan2.2-TI2V-5B · Hugging Face\",\"url\":\"https://huggingface.co/Wan-AI/Wan2.2-TI2V-5B\"},{\"title\":\"Wan 2.2 Complete Guide — AI Video, Animate & I2V 2026\",\"url\":\"https://comfyuiweb.com/posts/wan22-complete-guide\"},{\"title\":\"Wan-AI/Wan2.2-TI2V-5B-Diffusers · Hugging Face\",\"url\":\"https://huggingface.co/Wan-AI/Wan2.2-TI2V-5B-Diffusers\"},{\"title\":\"Wan 2.7 Video — Next-Generation AI Video Generation Model — AI/ML API Blog 🔥\",\"url\":\"https://aimlapi.com/blog/wan-2-7-video-next-generation-ai-video-generation-model\"},{\"title\":\"Wan2.2 Usage Guide - vLLM Recipes\",\"url\":\"https://docs.vllm.ai/projects/recipes/en/latest/Wan-AI/Wan2.2.html\"},{\"title\":\"Wan 2.2 API Collection: MoE I2V and V2V by Alibaba\",\"url\":\"https://www.atlascloud.ai/collections/wan\"},{\"title\":\"Wan-AI/Wan2.2-I2V-A14B · Hugging Face\",\"url\":\"https://huggingface.co/Wan-AI/Wan2.2-I2V-A14B\"},{\"title\":\"Wan2.2 Video Generation ComfyUI Official Native Workflow Example - ComfyUI\",\"url\":\"https://docs.comfy.org/tutorials/video/wan/wan2_2\"},{\"title\":\"Wan-AI/Wan2.2-T2V-A14B · Hugging Face\",\"url\":\"https://huggingface.co/Wan-AI/Wan2.2-T2V-A14B\"}]\n\nBased on the search results, I found relevant information about the Wan2.2-TI2V video model with a DiT backbone:\n\n## Wan2.2-TI2V Video Model Overview\n\nWan2.2 includes a 5B dense model called TI2V-5B, which is a unified text-to-image-to-video generation model. Here are the key technical details:\n\n**Architecture & Backbone:**\nWan2.2 builds on Wan2.1 with improvements in generation quality and model capability, driven by key technical innovations including the Mixture-of-Experts (MoE) architecture, upgraded training data, and high-compression video generation.\n\n**TI2V-5B Specifications:**\n- The model is supported by a high-compression Wan2.2-VAE which achieves a compression ratio of 4×16×16, and with an additional patchification layer, the total compression ratio reaches 4×32×32\n- The model natively supports both text-to-video and image-to-video tasks within a single unified framework\n- TI2V-5B can generate a 5-second 720P video in under 9 minutes on a single consumer-grade GPU\n\n**Performance:**\nCompared to Wan2.1, Wan2.2 is trained on significantly larger data with +65.6% more images and +83.2% more videos, which enhances the model's generalization across multiple dimensions including motions, semantics, and aesthetics.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "306b07cb-066d-4297-9fcc-faf106ee916b",
+            "isSidechain": true,
+            "promptId": "3abb6fbf-dc12-41d6-81de-bd436aa09aac",
+            "agentId": "a90e86dad728436c7",
+            "type": "user",
+            "uuid": "f237ce86-1c1c-4013-b970-5f97145ad168",
+            "sourceToolAssistantUUID": "306b07cb-066d-4297-9fcc-faf106ee916b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3eca5a12-2fc4-436c-9188-e19cda922486",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-10T13:00:03.089Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015EQ6WtfsLAepjJoJxHnswo",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"Seedance 2.0\" video generation model\"\n\nLinks: [{\"title\":\"Seedance 2.0\",\"url\":\"https://seedance2.ai/\"},{\"title\":\"Seedance 2.0 — Multimodal AI Video Generation | Higgsfield\",\"url\":\"https://higgsfield.ai/seedance/2.0\"},{\"title\":\"Seedance 2.0 | Video Generation API\",\"url\":\"https://replicate.com/bytedance/seedance-2.0\"},{\"title\":\"Seedance 2.0\",\"url\":\"https://seed.bytedance.com/en/seedance2_0\"},{\"title\":\"GitHub - bytedance-seedance/seedance-2.0: Seedance 2.0 is a revolutionary multi-modal video generation model that bridges the gap between AI and professional filmmaking. This repository provides the official Python client for interacting with the Seedance API. · GitHub\",\"url\":\"https://github.com/bytedance-seedance/seedance-2.0\"},{\"title\":\"[2604.14148] Seedance 2.0: Advancing Video Generation for World Complexity\",\"url\":\"https://arxiv.org/abs/2604.14148\"},{\"title\":\"Paper page - Seedance 2.0: Advancing Video Generation for World Complexity\",\"url\":\"https://huggingface.co/papers/2604.14148\"},{\"title\":\"Seedance 2.0 API Live on fal (April 2026) | Video Generation API\",\"url\":\"https://fal.ai/seedance-2.0\"},{\"title\":\"Seedance 2.0 AI Video Generator by ByteDance | Artlist AI\",\"url\":\"https://artlist.io/ai/models/seedance-2-0\"},{\"title\":\"Seedance 2.0: The Complete Guide to ByteDance's AI Video Generator (2026) - Atlas Cloud Blog\",\"url\":\"https://www.atlascloud.ai/blog/guides/seedance-2.0-complete-guide\"}]\n\nBased on the search results, here's comprehensive information about Seedance 2.0:\n\n## Overview\n\nSeedance 2.0 is ByteDance's latest AI video generation model that accepts text, images, videos, and audio as inputs - up to 12 assets in a single generation - and produces cinematic multi-shot video with native audio sync, consistent characters, and frame-level precision.\n\n## Release and Architecture\n\nSeedance 2.0 was officially released in China in early February 2026. It adopts a unified multimodal audio-video joint generation architecture that supports text, image, audio, and video inputs, leading to the most comprehensive multimodal content reference and editing capabilities in the industry.\n\n## Key Features\n\n**Multi-modal Input:**\nYou can combine up to 9 images, 3 video clips (up to 15 seconds each), 3 audio clips (up to 15 seconds each), and text prompts in a single generation.\n\n**Native Audio Generation:**\nAudio is generated alongside video in a single pass - synchronized dialogue with lip-sync, ambient soundscapes, and music that follows the narrative rhythm.\n\n**Video Duration and Resolution:**\nSeedance 2.0 supports direct generation of audio-video content with durations ranging from 4 to 15 seconds, with native output resolutions of 480p and 720p.\n\n**Character Consistency:**\nFaces, clothing, and visual style stay locked across your entire video. Upload reference images to define a character once, and the model keeps them consistent through every scene.\n\n## Model Variants\n\nA companion variant called Seedance 2.0 Fast runs at reduced latency for use cases where turnaround time matters more than maximum quality.\n\n## Performance\n\nIn both expert evaluations and public user tests, the model has demonstrated performance on par with the leading levels in the field.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fca44c39-d998-4d9c-b23b-00b1ac83dca1",
+            "isSidechain": true,
+            "promptId": "3abb6fbf-dc12-41d6-81de-bd436aa09aac",
+            "agentId": "a90e86dad728436c7",
+            "type": "user",
+            "uuid": "d69ea501-88a6-4307-9d46-9c1b16bcb9c3",
+            "sourceToolAssistantUUID": "fca44c39-d998-4d9c-b23b-00b1ac83dca1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3eca5a12-2fc4-436c-9188-e19cda922486",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-10T13:00:07.943Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WUUFV9RqnQ9YCnvLEYy4ou",
+              "type": "tool_result",
+              "content": "Web search results for query: \"robot video generation ControlNet mask conditioning 2026\"\n\nLinks: [{\"title\":\"Controllable Video Generation: A Survey\",\"url\":\"https://arxiv.org/html/2507.16869v1\"},{\"title\":\"Mask2IV: Interaction-Centric Video Generation via Mask Trajectories Gen Li1,3\",\"url\":\"https://arxiv.org/pdf/2510.03135\"},{\"title\":\"What Is ControlNet? How It Works For Video Generation | LTX Glossary\",\"url\":\"https://ltx.io/glossary/controlnet\"},{\"title\":\"ControlNet · Hugging Face\",\"url\":\"https://huggingface.co/docs/diffusers/en/using-diffusers/controlnet\"},{\"title\":\"This&That: Language-Gesture Controlled Video Generation for Robot Planning\",\"url\":\"https://arxiv.org/html/2407.05530v1\"},{\"title\":\"Control-A-Video: Controllable Text-to-Video Generation with Diffusion Models\",\"url\":\"https://controlavideo.github.io/\"},{\"title\":\"MagicMotion: Controllable Video Generation with Dense-to-Sparse Trajectory Guidance\",\"url\":\"https://arxiv.org/html/2503.16421v3\"},{\"title\":\"Resource-Efficient Motion Control for Video Generation via Dynamic Mask Guidance\",\"url\":\"https://arxiv.org/html/2503.18386\"},{\"title\":\"DifuzCam replacing camera lens with a mask and a diffusion model for generative AI based flat camera design | Scientific Reports\",\"url\":\"https://www.nature.com/articles/s41598-025-27127-1\"},{\"title\":\"GitHub - lllyasviel/ControlNet: Let us control diffusion models! · GitHub\",\"url\":\"https://github.com/lllyasviel/ControlNet\"}]\n\nBased on the search results, here's what I found about robot video generation with ControlNet mask conditioning:\n\n## Key Research Areas\n\n**Mask-Based Robot Interaction Video Generation**\n\nMask2IV synthesizes videos of human hands or robot arms interacting with a specified object, indicated by an input mask, first predicting a mask-based interaction trajectory and then generating the video guided by this trajectory.\n\n**ControlNet Architecture for Video Control**\n\nControlNet is a neural network architecture that adds conditional structural control to diffusion models by accepting spatial guidance signals — depth maps, edge maps, pose skeletons, segmentation masks, optical flow — to constrain the structure of generated outputs.\n\n**Robot Planning Applications**\n\nResearch uses a combination of language and pointing gestures marked as 2D locations on the first frame to control video generation, adapting a video diffusion model to include a supplementary network structure parallel to the fine-tuned diffusion UNet following ControlNet for image-conditioned generation, freezing the diffusion UNet weights and training only the new gesture conditioning branch.\n\n**Trajectory-Based Control with Masks**\n\nMagicMotion is a trajectory-controlled image-to-video generation method using a ControlNet-like architecture to integrate trajectory information into the diffusion transformer, supporting three types of trajectory conditions: masks, boxes, and sparse boxes using a progressive training strategy.\n\nThese approaches enable precise control over robot video generation through various forms of mask and trajectory conditioning, combining diffusion models with ControlNet architectures to achieve both geometric accuracy and interaction realism.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b8c76918-dfe7-4c52-a091-1f523447e22b",
+            "isSidechain": true,
+            "promptId": "3abb6fbf-dc12-41d6-81de-bd436aa09aac",
+            "agentId": "a90e86dad728436c7",
+            "type": "user",
+            "uuid": "be1eee72-0b33-418e-a6b5-6a59462aa394",
+            "sourceToolAssistantUUID": "b8c76918-dfe7-4c52-a091-1f523447e22b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3eca5a12-2fc4-436c-9188-e19cda922486",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-10T13:00:33.275Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect. Now let me compile my detailed findings with all the technical specifics you requested.\n\n## Comprehensive Research Paper Analysis\n\nI've successfully fetched and analyzed the papers you requested. Here are my detailed findings:\n\n---\n\n### **1. BridgeV2W (arXiv:2602.03793, February 2026)**\n\n**Conditioning Signal:**\n- Converts coordinate-space actions into **pixel-aligned embodiment masks** rendered from URDF and camera parameters\n- Masks are injected via a **ControlNet-style pathway** into the pretrained video generation model\n- The approach is binary mask-based (pixel-space segmentation of robot embodiment)\n- View-specific conditioning accommodates different camera viewpoints\n\n**Tasks & Embodiments Evaluated:**\n- Single-arm robotics: DROID dataset\n- Dual-arm robotics: AgiBot-G1 dataset\n- Tested on \"diverse and challenging conditions with unseen viewpoints and scenes\"\n- Downstream objectives include policy evaluation and goal-conditioned planning in real-world tasks\n\n**Downstream Objective:**\n- **Policy evaluation and goal-conditioned planning** for real-world robotic tasks\n- Video generation quality as intermediate metric\n\n**Video Backbone:**\n- The paper leverages \"a pretrained video generation model\" but the specific backbone name is not disclosed in the abstracts/publicly available content. The ControlNet-style integration suggests a diffusion-based architecture (likely DiT-based given the trend in the field)\n\n**Results:**\n- Improved video generation quality compared to prior state-of-the-art\n- Addresses action-video misalignment, viewpoint sensitivity, and architectural inconsistency across embodiments\n- **Flow-based motion loss** focuses learning on dynamic, task-relevant regions rather than static backgrounds\n\n---\n\n### **2. EA-WM (arXiv:2605.06192, May 2026)**\n\n**Kinematic Conditioning Method:**\n- Uses **Structured Kinematic-to-Visual Action Fields (KVAFs)** converting low-dimensional robot states into camera-aligned visual fields\n- **Yes, Gaussian heatmaps are used** - specifically \"truncated Gaussian heatmaps centered at the projected end-effector location\" for explicit manipulation focus\n- KVAF rendering includes: depth-aware arm structures, joint landmarks, gripper geometry, end-effector heatmaps, and pose cues as temporally aligned visual fields\n\n**Embodiments & Tasks:**\n- Evaluated on **WorldArena benchmark** using **RoboTwin dataset**\n- Appears to focus on bimanual manipulation setups\n- Not limited to arm manipulation only (though primary focus)\n\n**Video Backbone & Fine-tuning:**\n- Backbone: **Wan2.2-TI2V** (a 5B parameter text-to-image-to-video DiT model from Alibaba)\n- **NOT ControlNet-style** - uses **LoRA (Low-Rank Adaptation)** with rank 32 applied to:\n  - Main DiT\n  - KVAF-branch components\n  - KVAF head\n- Preserves original text-conditioned video denoising path while adding specialized action integration\n- This is **joint fine-tuning via LoRA**, not a frozen backbone with adapter networks\n\n**Event-Aware Bidirectional Dual-Stream Fusion:**\n- Inserts **event-aware bidirectional fusion blocks** at sparse layers\n- Computes **shared event representations** that generate:\n  - Per-token event gates\n  - Predicted event latents\n- Modulates **cross-stream attention** between video and KVAF branches through residual connections\n- Captures object state changes and interaction dynamics\n\n---\n\n### **3. Dream2Act (arXiv:2603.19709)**\n\n**Video Backbone:**\n- **Yes, uses Seedance 2.0** as confirmed\n- Seedance 2.0 is ByteDance's multimodal video generation model (released February 2026)\n\n**Post-Hoc IK Approach - Distinct from In-Loop Conditioning:**\nThe approach is fundamentally different:\n\n**Post-Hoc IK Pipeline (3-stage):**\n1. **Internal Joint Kinematics:** Constrained inverse kinematics optimization minimizes difference between forward kinematics predictions and extracted 3D keypoints, subject to URDF joint limits\n2. **Scale Recovery:** Uses Perspective-n-Point (PnP) algorithm to align local 3D points with 2D detections, recovering metric scale and global pose\n3. **Execution:** Formats trajectories into GMR (General Motion Retargeting) format for Sonic whole-body controller\n\n**Key Distinction:**\n- **Dream2Act generates videos OF the physical robot directly**, then extracts native trajectories post-hoc\n- **In-loop conditioning** would condition generation on robot kinematics during synthesis\n- Dream2Act avoids intermediate human representations entirely, **eliminating retargeting-induced morphological mismatches**\n- Human-centric approaches failed completely (0% success vs. Dream2Act's 37.5%)\n\n**Evaluation Results:**\n- Overall success rate: **37.5%** across four task categories\n- Baseline (human-centric retargeting): **0%** success\n- Spatial alignment error: **0.14m** (vs. 0.75m for baselines)\n- Ball kicking (multi-location): **40%** average success (vs. 0% baseline)\n\n---\n\n### **4. Additional Related Papers & Context**\n\n**Other URDF + Video Diffusion + ControlNet Papers Found:**\n\n1. **Kinema4D** (arXiv:2603.16669) - Drives URDF-based 3D robot via kinematics, producing 4D robot control trajectories with robot-centric pointmaps as conditioning\n2. **Mask2IV** (arXiv:2510.03135) - Interaction-centric video generation via mask trajectories; predicts mask-based interaction trajectory then generates video\n3. **MagicMotion** (arXiv:2503.16421) - Trajectory-controlled I2V using ControlNet-like architecture for trajectory integration\n4. **Unified World Models (UWM)** (arXiv:2504.02792) - Couples video and action diffusion for pretraining on large robotic datasets; to be presented at RSS 2026\n\n**Video Backbone Context:**\n- **Wan2.2-TI2V-5B:** 5B parameter DiT with 4×32×32 compression ratio, trained on +65.6% more images and +83.2% more videos than Wan2.1\n- **Seedance 2.0:** Multi-modal video generation supporting text, images, videos, audio inputs; outputs 4-15 second videos at 480p-720p\n- **Kimodo** (arXiv:2603.15546) - NVIDIA's kinematic motion diffusion model trained on 700 hours of mocap data; supports text, keyframes, sparse joint positions, 2D paths, foot contacts\n\n---\n\n### **Key Technical Distinctions Summary**\n\n| Aspect | BridgeV2W | EA-WM | Dream2Act |\n|--------|-----------|-------|-----------|\n| **Conditioning** | Binary embodiment masks (URDF-rendered) | Gaussian heatmaps + KVAF visual fields | Post-hoc IK from video keypoints |\n| **Backbone** | Pretrained video DiT (not named) | Wan2.2-TI2V | Seedance 2.0 |\n| **Integration** | ControlNet-style injection | LoRA fine-tuning | None (post-hoc) |\n| **Flow Loss** | Yes (motion-focused) | Implicit (event gates) | No |\n| **Success Rate** | Qualitative (video quality) | Qualitative (WorldArena) | 37.5% (real-world tasks) |\n\n---\n\nSources:\n- [BridgeV2W arXiv abstract](https://arxiv.org/abs/2602.03793)\n- [EA-WM arXiv HTML](https://arxiv.org/html/2605.06192)\n- [Dream2Act arXiv abstract](https://arxiv.org/abs/2603.19709)\n- [Seedance 2.0 official](https://seed.bytedance.com/en/seedance2_0)\n- [Wan2.2 GitHub](https://github.com/Wan-Video/Wan2.2)\n- [Kinema4D arXiv](https://arxiv.org/html/2603.16669)\n- [Mask2IV arXiv](https://arxiv.org/pdf/2510.03135)\n- [MagicMotion arXiv](https://arxiv.org/html/2503.16421v3)\n- [Unified World Models arXiv](https://arxiv.org/html/2504.02792v1)\n- [Kimodo arXiv](https://arxiv.org/abs/2603.15546)\n- [ControlNet methodology](https://huggingface.co/docs/diffusers/en/using-diffusers/controlnet)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "be1eee72-0b33-418e-a6b5-6a59462aa394",
+            "isSidechain": true,
+            "agentId": "a90e86dad728436c7",
+            "requestId": "req_011CatvthAXrdZAwUVhhZSTh",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "5b5f935b-06bc-4bb1-8258-6a7c52186fa7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3eca5a12-2fc4-436c-9188-e19cda922486",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01FLthpm9QEkTnqWtwgcfvc4",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 2899,
+                "cache_read_input_tokens": 25102,
+                "output_tokens": 2174,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2899
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 2174,
+                    "cache_read_input_tokens": 25102,
+                    "cache_creation_input_tokens": 2899,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2899,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000036"
+        }
+      ],
+      "message_count": 36
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-i-need-you-to-fetch-and-analyze-several-arxiv-papers-for-a-research-idea-revis.md"
+}

@@ -1,0 +1,6474 @@
+# Research conversation: You are a strict ML research reviewer conducting adversarial review. **Today's date: 2026-05-10 (UTC).** Your job: indep
+
+**When Does Detect-and-Reweight Work for Synthetic Contamination? (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 91
+- **Recorded user turns:** 1
+- **Tool calls:** 25
+- **Original source:** `logs/chats/exported-trajectories/account-3/28694564-23bc-45d6-9e89-b7490aedbabc.jsonl`
+- **Structured JSON:** [`29c521062df7d7bb1d1a.json`](../../sessions/29/29c521062df7d7bb1d1a.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-10T11:52:38.202Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-10T11:52:38.202Z",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "content": "You are a strict ML research reviewer conducting adversarial review.\n\n**Today's date: 2026-05-10 (UTC).**\n\nYour job: independently verify this idea's claims via WebSearch, then issue a verdict.\n\n## User requirements\nThe user asked for: **Target: CoRL 2026 (Austin, Nov 9-12, 2026). Abstract deadline 2026-05-26 (17 days); paper deadline 2026-05-29 (20 days).\n\nDirection: Generative models specifically targeting HUMANOID robot training data — addressing the high-DoF, whole-body, loco-manipulation data scarcity that bottlenecks humanoid VLA / WM training. SCOPE LIMITED TO TWO CONTRIBUTION TYPES:\n  (a) Generation ALGORITHMS — e.g., video diffusion conditioned on humanoid action streams, action-conditioned generative models, latent humanoid trajectory generators, physics-aware whole-body video generation.\n  (b) Procedural data-generation PIPELINES — e.g., MimicGen-style automated demo multiplication for humanoids, procedural whole-body task/scene generation, automated quality filtering pipelines for synthetic humanoid trajectories.\n\nOUT OF SCOPE: action retargeting innovations (human-video → humanoid-action retargeting). Treat existing retargeters (HumanPlus, OmniH2O) as black-box upstream tools if needed; do NOT propose new retargeting methods.\n\nRecent landscape (do not duplicate): NVIDIA GR00T-Dreams, DexMimicGen, MimicGen extensions for humanoid, Helix self-supervised humanoid pipelines, Cosmos for synthetic humanoid video. Humanoid data scarcity is the #1 bottleneck cited in 2026 humanoid papers — high impact area.\n\nContribution type: METHOD ONLY. New generation algorithm OR new procedural pipeline. Not a new released humanoid dataset alone.\n\nSIM-ONLY MITIGATION: Validate generated data by training a downstream humanoid policy/VLA in sim and comparing against models trained on baseline data. Frame contribution as method, not dataset.\n\nHARD CONSTRAINTS:\n1. Compute: ≤200 H100-hours total. Strategies: (a) fine-tune existing video diffusion (CogVideoX, OpenSora, Cosmos) with humanoid-action conditioning, (b) procedural pipeline that requires negligible training compute, (c) small efficient humanoid-specific generator that beats general baselines.\n2. Time: ≤20 days. Build on HF Diffusers, OpenSora, NVIDIA Cosmos repos, Isaac Lab humanoid suite (G1, H1), MimicGen, RoboCasa with humanoid embodiments if available.\n3. Eval: train humanoid policy/VLA on generated vs baseline data. Test on Isaac Lab humanoid manipulation/locomanipulation tasks, RoboCasa kitchen with humanoid embodiment, HumanoidBench. Report success rate + data efficiency curves.\n\nLook for: physics-aware whole-body video generation with kinematic consistency, action-conditioned generators that exploit humanoid kinematic structure, procedural pipelines that produce diverse loco-manipulation (not just static manipulation) data, automatic quality filtering for synthetic humanoid trajectories. Avoid: any retargeting-based contribution, arm-only generation rebadged as humanoid, naive fine-tuning of video diffusion on humanoid clips without method.\n\nTag: direction=humanoid_data_gen, contribution_type=method. target_venues=[\"CoRL 2026\"].**\nYou MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be \"revise\" or \"fail\".\n\n## 核心要求：非常仔细地调研，非常仔细地思考\n\n你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。\n\n### 调研要求\n\n1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。\n   每个验证维度建议用 2-3 种不同的搜索查询。\n\n2. **可行性深度检查**：\n   - 搜索类似实验的实际成本/周期\n   - 检查 claimed baselines 是否可复现\n   - 验证所需的 datasets/models 是否真的可以获取\n\n3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：\n   - 尝试不同的关键词组合\n   - 同时检查 arXiv 和 conference proceedings\n   - 寻找相邻领域的并行/concurrent 工作\n\n4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。\n\n### 思考要求\n\n5. **独立判断**：\n   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查\n   - 思考这个 idea 在实际执行中会遇到什么困难\n   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）\n\n6. **评分诚实**：\n   - 不要给\"看起来还行\"的 idea 高分——4 分意味着\"确实很好\"，5 分意味着\"令人兴奋\"\n   - Agent 评分经常虚高，你的职责就是纠正这种偏差\n\n充分利用你的工具——做真正的调研，不是走过场。\n\n\n## 论文搜索策略\n\n你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。\n\n### 搜索源（推荐每个维度使用 2 个不同来源）\n\n1. **arXiv 预印本**（最新工作）:\n   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文\n   - `site:arxiv.org {method_name}` — 按具体方法名搜索\n   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作\n\n2. **Google Scholar**（引用关系 + 综合覆盖）:\n   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果\n   - `\"{exact paper title}\"` — 验证论文是否真实存在\n   - `\"{author name}\" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）\n\n3. **Papers With Code**（SOTA 排行 + 代码可用性）:\n   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜\n   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现\n   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局\n\n4. **OpenReview**（会议审稿 + 同行评价）:\n   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文\n   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价\n\n5. **Semantic Scholar**（语义搜索 + 引用图谱）:\n   - `semantic scholar {topic} survey {year}` — 找综述论文\n   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）\n\n6. **GitHub**（实现验证）:\n   - `site:github.com {method_name} {task}` — 验证开源实现是否存在\n   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取\n\n### 搜索维度（多角度交叉，不要只按 topic 搜）\n\n对每个 idea/方向，尽量覆盖以下维度：\n\n1. **正向搜索**：直接搜索主题相关论文\n   - `{topic} {subtopic} {year}`\n   - `{method_name} for {task_name}`\n\n2. **竞争论文搜索**（最关键！）：\n   - `{core_problem} {year}` — 有没有人在解决同样的问题？\n   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？\n   - `{gap_description} solution` — 你发现的 gap 是否已被解决？\n   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文\n\n3. **相邻领域搜索**：\n   - `{method_from_other_field} applied to {your_task}`\n   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题\n\n4. **反面搜索**（找到反对你 idea 的证据）：\n   - `{your_approach} limitations` / `{your_approach} failure`\n   - `why {assumed_gap} is not a problem`\n   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好\n\n5. **引用链追踪**（发现遗漏工作的最有效方法）：\n   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分\n   - 在 Semantic Scholar 上查看它的 \"cited by\" — 最近引用它的论文很可能是 concurrent work\n   - 对 3 个以上核心相关论文重复此步骤\n\n### 搜索数量建议（理想目标，上下文充裕时尽量达到）\n\n| 角色 | 建议搜索次数 | 说明 |\n|------|-------------|------|\n| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |\n| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |\n| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |\n| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |\n\n### 上下文管理\n\n你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。\n\n- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。\n- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。\n- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。\n- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。\n\n\nAs a reviewer, your search focus should be:\n1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实\n2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作\n3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通\n4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work\n\n## 竞争论文专项搜索（Reviewer 独有）\n\n这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：\n\n1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题\n   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）\n   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）\n   - 方法名 + 任务名的不同组合\n\n2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，\n   搜索他们最近的论文（`\"team_name\" OR \"author_name\" {topic} {year}`）\n\n3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers\n   - `site:openreview.net {topic} 2026`\n   - `{conference_name} 2026 accepted papers {topic}`\n\n4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文\n   这是发现 concurrent work 最有效的窗口\n\n如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，\n并在 feedback 中说明这些工作如何影响 idea 的 novelty。\n\n## Review checklist\n1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?\n   If outdated, specify what the current SOTA is and cite your source.\n2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)\n3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?\n4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-10?\n5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?\n6. **Novelty**: Is this sufficiently different from existing work?\n   When scoring novelty < 4:\n   - You MUST identify the closest existing work(s) via WebSearch\n   - In your feedback, write: \"This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion].\"\n   - This gives the generator targeted guidance to boost novelty, not just \"be more novel\".\n7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?\n   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero\n   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks\n   - Human-in-Loop should fall between manual and auto on most dimensions\n   - Manual and HIL must NOT include salary/wages — only GPU and API costs\n   - Auto Research must NOT include agent operational overhead\n   - If any mode estimate is clearly unrealistic, flag it\n\n## Idea under review (round 2/10)\n{\n  \"title\": \"LocoMimicGen: Coupled SE(3) Object-Centric Demo Multiplication for Mobile Humanoid Loco-Manipulation\",\n  \"core_problem\": \"How can a handful of expensive teleoperated whole-body loco-manipulation demonstrations be multiplied by orders of magnitude across diverse spatial configurations — new object positions, table heights, room obstacle layouts — while maintaining physical validity for the mobile bipedal humanoid platform? Isaac Lab Mimic's new loco-manipulation extensions (PRs #3150/#3992, merged Sept–Dec 2025) are the directly relevant prior infrastructure: they treat the robot base as an end-effector and integrate navigation controllers into the Mimic data generation framework. However, they handle navigation by replaying or skipping the last observed base velocity state rather than encoding navigation waypoints jointly with arm trajectories in object-centric SE(3) frames. They provide no mechanism for reachability-constrained base-pose optimization during retargeting. And they provide no combinatorial composition of subtask segments from multiple source demonstrations. These three absences cap achievable diversity at object-position randomization within a single source demo's reach envelope, rather than the combinatorial room-level scaling that MimicGen achieves for tabletop tasks.\",\n  \"opportunity\": \"Isaac Lab Mimic's loco-manipulation infrastructure (PRs #3150 and #3992) now provides the exact scaffolding — G1 environment, Mimic segmentation framework, navigation controller integration — needed to build a principled extension. The precise technical gap is narrow but high-impact: adding (1) SE(3) object-centric encoding of navigation stances jointly with arm trajectories into the existing Mimic segment representation, (2) reachability-map-guided base-pose optimization enforcing arm feasibility at each manipulation stance during retargeting, and (3) combinatorial subtask segment composition from multiple source demonstrations. OmniRetarget (Amazon, Sept 2025) addresses humanoid loco-manipulation data generation from MoCap sequences via interaction-mesh Laplacian deformation on the G1, but it retargets continuous motion sequences and cannot combinatorially compose segments across scene variants; it also targets parkour-class locomotion tasks rather than precision manipulation. DemoHLM (Oct 2025) demonstrates generalizable single-demonstration adaptation across 10 G1 loco-manipulation household tasks by segmenting into locomotion / pre-manipulation / manipulation stages and replaying with modified commands — but the single-demo paradigm limits scaling to spatial interpolation within one source demo's envelope. The three-part Isaac Lab Mimic extension proposed here is tractable within existing infrastructure, precisely bounded against the primary baseline, and is the missing ingredient for room-level combinatorial scaling.\",\n  \"landscape\": \"MimicGen (CoRL 2023) decomposes arm demonstrations into object-centric subtask segments and applies SE(3) frame transformations — manipulation-only. DexMimicGen (ICRA 2025) extends this to bimanual dexterous humanoids, still tabletop. HumanoidGen (NeurIPS 2025) uses LLM-driven planning for tabletop dexterous tasks with 120+ scene variants — explicitly excludes locomotion. Isaac Lab Mimic's loco-manipulation extensions are the primary baseline. PR #3150 (merged Sept 9, 2025) added Isaac-PickPlace-Locomanipulation-G1-Abs-v0, a G1 environment integrating a pretrained RL locomotion policy (velocity commands vx, vy, wz) with Pink IK arm control, achieving 92% success on pick-and-place. PR #3992 (merged Dec 1, 2025) extended the Mimic framework with: a 'body end effector' API treating the robot base as an end-effector during data generation, a custom recorder interface, and navigation controller integration via get_navigation_state(). The documentation states the system 'parses demonstrations into object-centric subtask segments, then adapts these subtask segments to new scenes by transforming each segment according to the new scene's context.' However, the navigation controller manages base movement through state-based trajectory repetition/skipping — it does NOT encode navigation waypoints in the object's SE(3) local frame jointly with arm trajectory segments. There is no reachability-constrained base-pose optimization, and no combinatorial composition of segments from different source demonstrations across room-level layouts. OmniRetarget (Amazon, arXiv:2509.26633, Sept 2025) generates loco-manipulation demonstrations on the Unitree G1 via interaction-mesh Laplacian deformation of human MoCap sequences (OMOMO, LAFAN1, in-house), producing over 8 hours of retargeted trajectories. It preserves spatial and contact relationships and enables augmentation across embodiments, terrains, and object configurations. Critically, OmniRetarget (a) requires large MoCap databases rather than small teleoperated G1 demonstrations; (b) retargets continuous motion sequences without decomposing into reusable subtask segments; (c) cannot combinatorially compose segments from different source demos; and (d) is evaluated primarily on locomotion-heavy tasks (box carrying, climbing, parkour) rather than precision manipulation requiring tight coupling between base position and arm workspace. DemoHLM (arXiv:2510.11258, Oct 2025) segments demonstrations into three stages (locomotion, pre-manipulation, manipulation) and adapts the source trajectory to new initial object/robot poses by modifying high-level stage commands on the Unitree G1. It demonstrates 10 loco-manipulation household tasks with sim-to-real transfer on physical G1, including multi-stage tasks. DemoHLM's core architectural limitation is its single-demonstration paradigm: each task uses one source demo, which is replayed with modified commands for new configurations. This is conceptually similar to Isaac Lab Mimic's trajectory adaptation, but with a hierarchical whole-body controller; it does not compose segments from multiple source demonstrations combinatorially, and 'spatial variation' is described as object position adjustment rather than room-level obstacle/furniture layout diversity. MoMaGen (arXiv:2510.18316, Oct 2025) generates bimanual mobile manipulation demonstrations via constrained optimization (hard reachability + soft visibility) on a wheeled bimanual mobile base. The wheeled platform decouples navigation from balance, making MoMaGen's per-subtask base-pose sampling inapplicable to bipedal humanoids where navigation requires dynamic balance maintenance; extending it to bipedal locomotion would require solving the balance/footstep planning problem that MoMaGen's design explicitly sidesteps. EgoHumanoid (arXiv, Feb 2026) uses robot-free egocentric human video — a fundamentally different data-driven approach outside the procedural generation paradigm. No existing system applies principled multi-segment object-centric demonstration decomposition with COUPLED SE(3) encoding of both navigation stances and arm trajectories, enabling combinatorial room-level scaling from multiple source demonstrations, to the mobile bipedal humanoid platform.\",\n  \"approach\": \"We propose LocoMimicGen, built as a direct extension of Isaac Lab Mimic's loco-manipulation infrastructure (PRs #3150 and #3992) with three technical contributions. Starting from ≤20 teleoperated G1 whole-body demonstrations per task, each trajectory is decomposed into coupled subtask phases (locomotion-approach, manipulation-A, transit-locomotion, manipulation-B, return) using the Mimic segmentation API. Contribution (1): Coupled SE(3) object-centric representation. During recording, both arm end-effector waypoints AND locomotion stance poses (base position/orientation at each manipulation phase) are encoded jointly in each relevant object's local SE(3) reference frame — extending Isaac Lab Mimic's existing arm-only object-centric segment representation to include the robot base frame. This enables retargeting navigation stances to new object configurations as a natural byproduct of the frame transformation, rather than replaying fixed base velocity states. Contribution (2): Reachability-map-guided base-pose optimization. Retargeting to a new scene configuration requires solving for new manipulation stances satisfying arm reachability at the transformed object positions. We pre-compute an upper-body reachability map for the G1 (sampled IK workspace as a function of base position/orientation) and solve for new stances via constrained optimization over this map. Navigation segments between planned stances use Isaac Lab's pretrained RL locomotion controller (PR #3150) as a point-to-point navigation oracle, avoiding the need to implement a full kinodynamic planner from scratch while maintaining coupling between base poses and arm manipulation targets. This base-pose optimization is positioned as a core research contribution: it is the principled coupling between navigation and manipulation reachability that Isaac Lab Mimic, DemoHLM, and OmniRetarget each lack. Contribution (3): Combinatorial multi-source segment composition. Validated subtask segments from different source demonstrations are composed combinatorially across scene variants (object positions spanning the full room, table heights, obstacle placements), achieving 100–1000× demo expansion from ≤20 seed demonstrations per task — a qualitatively different scaling regime from single-demo spatial adaptation. Isaac Lab's GPU-parallel simulation (2048+ G1 environments) with the pretrained RL controller validates physical feasibility; failures trigger local replanning of the base-pose optimization. We evaluate on 3 loco-manipulation tasks (pick-and-place with navigation, articulated-object manipulation (door/drawer) with approach locomotion, and a two-phase transit task), training a single diffusion policy per task on the generated datasets. Baselines: Isaac Lab Mimic with PR #3992 (position randomization only), OmniRetarget (single-sequence retargeting), and DemoHLM (single-demo command adaptation). Sim-to-real transfer on physical G1 hardware is explicitly future work given hardware access constraints; the contribution is established through simulation scaling analysis and cross-baseline comparison.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"h100_hours\": \"~60–80 H100h (≈150–200h A100 at 2–2.5× H100/A100 ratio): data generation ~30h A100 across 3 tasks at 2048 parallel envs; policy training 3 tasks × 2 seeds × 15h = 90h A100; ablations (3 conditions × 3 tasks × 10h) = 90h A100; total ~210h A100 ≈ 84–105h H100 — comfortably within 200h H100 constraint\",\n      \"gpu_utilization\": \"High idle (~60–70%): GPU waits on human-paced coding, debugging physics edge cases, and manual analysis between runs\",\n      \"timeline\": \"2–3 months\",\n      \"team\": \"2 researchers (1 robotics/sim, 1 IL/policy)\",\n      \"estimated_gpu_cost\": \"~$370 at $1.75/hr A100 (or ~$200 at $2.50/hr H100)\"\n    },\n    \"human_in_loop\": {\n      \"h100_hours\": \"~95–125 H100h (≈235–310h A100): data generation ~35h A100; policy training + more ablation variants (5 conditions × 3 tasks × 12h = 180h A100; training 3 tasks × 2 seeds × 15h = 90h A100) ≈ 305h A100 ≈ 122–152h H100 — within 200h H100 constraint\",\n      \"gpu_utilization\": \"Moderate idle (~30–40%): approval gates pause GPU between stages, but agent batches setup and analysis tasks\",\n      \"timeline\": \"4–5 weeks\",\n      \"team\": \"1 researcher, ~45 min/day check-in for gate approvals and physics failure triage\",\n      \"claude_api_cost\": \"$200–400 (~300–500 turns at $0.08–0.12/turn for code gen, debug, analysis)\",\n      \"estimated_gpu_cost\": \"~$420–540 at $1.75/hr A100 (or ~$240–380 at $2.50/hr H100)\",\n      \"risk_note\": \"Reachability-map-guided base-pose optimization for articulated object tasks (door/drawer) involves contact-rich interaction where failure modes require human insight to diagnose and fix simulator parameters; the base-pose optimization formulation itself is a research contribution requiring iterative design that cannot be resolved purely by the agent at approval gates\"\n    }\n  },\n  \"target_venues\": [\n    \"CoRL 2026 (abstract May 26 AoE, full paper May 28 AoE / ≈May 29 UTC — 18 days from today)\",\n    \"IEEE Robotics and Automation Letters / RA-L (rolling submission, no hard deadline)\"\n  ],\n  \"level\": \"top-tier\",\n  \"key_references\": [\n    \"MimicGen: A Data Generation System for Scalable Robot Learning using Human Demonstrations (CoRL 2023)\",\n    \"DexMimicGen: Automated Data Generation for Bimanual Dexterous Manipulation via Imitation Learning (ICRA 2025)\",\n    \"HumanoidGen: Data Generation for Bimanual Dexterous Manipulation via LLM Reasoning (NeurIPS 2025)\",\n    \"WholeBodyVLA: Towards Unified Latent VLA for Whole-Body Loco-Manipulation Control (ICLR 2026)\",\n    \"OmniRetarget: Interaction-Preserving Data Generation for Humanoid Whole-Body Loco-Manipulation and Scene Interaction (arXiv:2509.26633, Sept 2025)\",\n    \"MoMaGen: Generating Demonstrations under Soft and Hard Constraints for Multi-Step Bimanual Mobile Manipulation (arXiv:2510.18316, Oct 2025)\",\n    \"DemoHLM: From One Demonstration to Generalizable Humanoid Loco-Manipulation (arXiv:2510.11258, Oct 2025)\",\n    \"EgoHumanoid: Unlocking In-the-Wild Loco-Manipulation with Robot-Free Egocentric Demonstration (arXiv 2026)\",\n    \"Isaac Lab: A GPU-Accelerated Simulation Framework for Multi-Modal Robot Learning (arXiv 2025)\",\n    \"Isaac Lab PR #3150: Locomanipulation Environment with G1 for Mimic workflow (merged Sept 9, 2025)\",\n    \"Isaac Lab PR #3992: APIs to Isaac Lab Mimic for supporting loco-manipulation datagen (merged Dec 1, 2025)\"\n  ],\n  \"description\": \"LocoMimicGen extends Isaac Lab Mimic's loco-manipulation framework (PRs #3150/#3992) — the primary baseline, not 'Isaac Lab 2.3' — with three precisely-scoped technical contributions that together enable room-level combinatorial scaling unavailable in existing systems. Isaac Lab Mimic's PR #3992 treats the robot base as an end-effector and integrates navigation controllers into Mimic's subtask segmentation, but handles navigation via state-based trajectory repetition/skipping rather than encoding navigation waypoints in object-centric SE(3) frames. Contribution (1): LocoMimicGen adds coupled SE(3) object-centric encoding of locomotion stances jointly with arm end-effector waypoints into the Mimic segment representation, enabling frame-transform retargeting of both navigation and manipulation simultaneously. Contribution (2): Reachability-map-guided base-pose optimization — a core research contribution framed as such — solves for manipulation stances satisfying arm workspace constraints at retargeted object positions, with Isaac Lab's pretrained RL locomotion controller (PR #3150) used as a navigation oracle between planned stances. Contribution (3): Combinatorial multi-source segment composition from multiple (≤20 total) teleoperated demonstrations achieves 100–1000× demo expansion. This differs from OmniRetarget (Sept 2025), which retargets continuous MoCap sequences via interaction-mesh Laplacian deformation but cannot compose segments combinatorially; from DemoHLM (Oct 2025), which adapts one source demo to new configurations via stage-command modification but does not achieve multi-demo combinatorial scaling; and from MoMaGen (Oct 2025), which targets wheeled platforms. Evaluated on 3 loco-manipulation tasks in Isaac Lab GPU-parallel simulation with diffusion policy, comparing against Isaac Lab Mimic, OmniRetarget, and DemoHLM baselines. Sim-to-real on physical G1 is explicit future work. All compute estimates are expressed in H100-hours; both modes (manual: ~60–105h H100; human-in-loop: ~95–152h H100) stay within the 200 H100-hour hard constraint. Auto-research mode is excluded as it exceeds the constraint even after scope reduction. CoRL 2026: abstract May 26 AoE, paper May 28 AoE.\",\n  \"project_name\": \"loco_mimicgen_humanoid_g1\",\n  \"source\": \"web_research\"\n}\n\n\n## Previous review history\n### Round 1 review\nVerdict: revise\nIssues: [\"CRITICAL NOVELTY GAP: The generator missed two merged Isaac Lab PRs that directly undermine the core claim. PR #3150 (merged Sept 9, 2025) added Isaac-PickPlace-Locomanipulation-G1-Abs-v0, a G1 Mimic environment combining RL locomotion with IK manipulation, achieving 92% success on pick-and-place. PR #3992 (merged Dec 1, 2025) added APIs to Isaac Lab Mimic specifically for loco-manipulation data generation, including treating the robot's base as an end-effector in the Mimic framework — exactly what the generator claims is missing. The documentation states the system 'parses demonstrations into object-centric subtask segments, then adapts these subtask segments to new scenes by transforming each segment according to the new scene's context,' directly contradicting the generator's claim that Isaac Lab lacks 'principled SE(3) demo transformation.'\", \"HARD COMPUTE CONSTRAINT VIOLATED: Auto-research mode (~900h A100) converts to ~300–450h H100 at confirmed 2–3x H100/A100 ratio, violating the 200 H100-hour hard constraint by 50–125%. Human-in-loop (~420h A100 ≈ 140–210h H100) is also borderline. The generator expressed all estimates in A100 hours without converting to H100 hours, despite the user requirement being explicitly stated in H100 hours.\", \"DemoHLM (arXiv:2510.11258) already applies MimicGen-style object-centric data generation to 10 G1 loco-manipulation tasks with sim-to-real transfer on physical G1. The generator acknowledged this but downplayed its scope (calling it 'single-object tasks' and saying it 'does not exploit combinatorial segment composition across room-level layout diversity'). The paper should verify whether DemoHLM's 10 tasks actually include multi-stage tasks before making this claim.\", \"Physical G1 hardware for sim-to-real experiments is listed as a required evaluation component but hardware access is nowhere addressed in the resource plan. Without a G1 robot, the sim-to-real evaluation collapses to sim-only, which reduces CoRL competitiveness.\", \"CoRL 2026 deadline discrepancy: the generator states abstract deadline May 25 and paper deadline May 28, but the official CoRL 2026 website confirms abstract May 26 (UTC) and paper May 29 (UTC). Minor but worth correcting.\", \"The kinodynamic planner with coupled arm-reachability constraints for a bipedal humanoid is treated as a subordinate engineering task, but this is itself a non-trivial research contribution. No existing open-source planner directly handles coupled navigation + manipulation reachability for bimanual bipedal systems; implementing one from scratch within 20 days is highly aggressive.\", \"MoMaGen (arXiv:2510.18316, Oct 2025) targets a wheeled bimanual mobile base (not a bipedal humanoid), so the generator's differentiation from it is valid — but the generator should verify whether MoMaGen's constrained-optimization approach can be straightforwardly extended to bipedal locomotion, as reviewers will ask this.\"]\nFeedback: The idea targets a real gap but needs substantial repositioning before it can pass review. The most urgent fix: the generator must engage directly with Isaac Lab Mimic's loco-manipulation extensions (PRs #3150 and #3992, https://github.com/isaac-sim/IsaacLab/pull/3150 and /pull/3992), which already implement MimicGen-style object-centric loco-manipulation data generation for the G1. The generator must explain precisely what these PRs do NOT do: specifically, (a) their navigation handling simply repeats the last navigation action or waits for goal-reached — it does NOT encode navigation waypoints in the object's SE(3) local frame jointly with arm trajectories; (b) they do not perform kinodynamic replanning with arm-reachability enforcement; (c) they do not combinatorially compose segments from multiple source demonstrations to achieve room-level diversity. These three differentiators are real and should become the paper's explicit contribution claims, stated against Isaac Lab Mimic as the primary baseline (not just 'Isaac Lab 2.3'). Second: fix compute estimates. All GPU estimates must be expressed in H100-hours. The auto-research mode must be scoped down or removed — at current scope it exceeds the 200 H100-hour hard constraint by 2x. A plausible manual scope: 2–3 tasks instead of 5–8, fewer ablation variants, single policy architecture. Third: either secure physical G1 access and state it explicitly, or replace 'sim-to-real on physical G1' with 'sim-only evaluation against DemoHLM and Isaac Lab Mimic baselines' and note hardware as future work. The core idea — coupling SE(3) navigation waypoint encoding with manipulation trajectory retargeting, plus kinodynamic reachability enforcement, to enable room-level combinatorial scaling beyond Isaac Lab Mimic's position randomization — is a legitimate and novel contribution; it just needs to be positioned honestly against the specific infrastructure that already exists.\n\n\n## Output format\nOutput ONLY a JSON object:\n{\n  \"verdict\": \"pass | revise | fail\",\n  \"scores\": {\n    \"novelty\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"feasibility\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"clarity\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"impact\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"}\n  },\n  \"issues\": [\"specific issue 1\", \"specific issue 2\", ...],\n  \"feedback\": \"Actionable feedback for the generator (if verdict=revise)\",\n  \"reason\": \"One-line summary of verdict rationale\"\n}\n\nRules:\n- \"pass\": idea is sound AND high quality — avg score >= 4.0, no critical issues\n- \"revise\": fixable issues OR scores below threshold — provide specific feedback\n- \"fail\": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)\n- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.\n- Round 10 only: if still \"revise\", you MUST choose \"pass\" or \"fail\"."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-10T11:52:38.205Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-10T11:52:38.205Z",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc"
+}
+```
+
+---
+
+## Round 1
+
+89 recorded events
+
+### User
+
+_source line 3 · 2026-05-10T11:52:38.225Z_
+
+You are a strict ML research reviewer conducting adversarial review.
+
+**Today's date: 2026-05-10 (UTC).**
+
+Your job: independently verify this idea's claims via WebSearch, then issue a verdict.
+
+## User requirements
+The user asked for: **Target: CoRL 2026 (Austin, Nov 9-12, 2026). Abstract deadline 2026-05-26 (17 days); paper deadline 2026-05-29 (20 days).
+
+Direction: Generative models specifically targeting HUMANOID robot training data — addressing the high-DoF, whole-body, loco-manipulation data scarcity that bottlenecks humanoid VLA / WM training. SCOPE LIMITED TO TWO CONTRIBUTION TYPES:
+  (a) Generation ALGORITHMS — e.g., video diffusion conditioned on humanoid action streams, action-conditioned generative models, latent humanoid trajectory generators, physics-aware whole-body video generation.
+  (b) Procedural data-generation PIPELINES — e.g., MimicGen-style automated demo multiplication for humanoids, procedural whole-body task/scene generation, automated quality filtering pipelines for synthetic humanoid trajectories.
+
+OUT OF SCOPE: action retargeting innovations (human-video → humanoid-action retargeting). Treat existing retargeters (HumanPlus, OmniH2O) as black-box upstream tools if needed; do NOT propose new retargeting methods.
+
+Recent landscape (do not duplicate): NVIDIA GR00T-Dreams, DexMimicGen, MimicGen extensions for humanoid, Helix self-supervised humanoid pipelines, Cosmos for synthetic humanoid video. Humanoid data scarcity is the #1 bottleneck cited in 2026 humanoid papers — high impact area.
+
+Contribution type: METHOD ONLY. New generation algorithm OR new procedural pipeline. Not a new released humanoid dataset alone.
+
+SIM-ONLY MITIGATION: Validate generated data by training a downstream humanoid policy/VLA in sim and comparing against models trained on baseline data. Frame contribution as method, not dataset.
+
+HARD CONSTRAINTS:
+1. Compute: ≤200 H100-hours total. Strategies: (a) fine-tune existing video diffusion (CogVideoX, OpenSora, Cosmos) with humanoid-action conditioning, (b) procedural pipeline that requires negligible training compute, (c) small efficient humanoid-specific generator that beats general baselines.
+2. Time: ≤20 days. Build on HF Diffusers, OpenSora, NVIDIA Cosmos repos, Isaac Lab humanoid suite (G1, H1), MimicGen, RoboCasa with humanoid embodiments if available.
+3. Eval: train humanoid policy/VLA on generated vs baseline data. Test on Isaac Lab humanoid manipulation/locomanipulation tasks, RoboCasa kitchen with humanoid embodiment, HumanoidBench. Report success rate + data efficiency curves.
+
+Look for: physics-aware whole-body video generation with kinematic consistency, action-conditioned generators that exploit humanoid kinematic structure, procedural pipelines that produce diverse loco-manipulation (not just static manipulation) data, automatic quality filtering for synthetic humanoid trajectories. Avoid: any retargeting-based contribution, arm-only generation rebadged as humanoid, naive fine-tuning of video diffusion on humanoid clips without method.
+
+Tag: direction=humanoid_data_gen, contribution_type=method. target_venues=["CoRL 2026"].**
+You MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be "revise" or "fail".
+
+## 核心要求：非常仔细地调研，非常仔细地思考
+
+你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。
+
+### 调研要求
+
+1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。
+   每个验证维度建议用 2-3 种不同的搜索查询。
+
+2. **可行性深度检查**：
+   - 搜索类似实验的实际成本/周期
+   - 检查 claimed baselines 是否可复现
+   - 验证所需的 datasets/models 是否真的可以获取
+
+3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：
+   - 尝试不同的关键词组合
+   - 同时检查 arXiv 和 conference proceedings
+   - 寻找相邻领域的并行/concurrent 工作
+
+4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。
+
+### 思考要求
+
+5. **独立判断**：
+   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查
+   - 思考这个 idea 在实际执行中会遇到什么困难
+   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）
+
+6. **评分诚实**：
+   - 不要给"看起来还行"的 idea 高分——4 分意味着"确实很好"，5 分意味着"令人兴奋"
+   - Agent 评分经常虚高，你的职责就是纠正这种偏差
+
+充分利用你的工具——做真正的调研，不是走过场。
+
+
+## 论文搜索策略
+
+你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。
+
+### 搜索源（推荐每个维度使用 2 个不同来源）
+
+1. **arXiv 预印本**（最新工作）:
+   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文
+   - `site:arxiv.org {method_name}` — 按具体方法名搜索
+   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作
+
+2. **Google Scholar**（引用关系 + 综合覆盖）:
+   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果
+   - `"{exact paper title}"` — 验证论文是否真实存在
+   - `"{author name}" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）
+
+3. **Papers With Code**（SOTA 排行 + 代码可用性）:
+   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜
+   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现
+   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局
+
+4. **OpenReview**（会议审稿 + 同行评价）:
+   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文
+   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价
+
+5. **Semantic Scholar**（语义搜索 + 引用图谱）:
+   - `semantic scholar {topic} survey {year}` — 找综述论文
+   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）
+
+6. **GitHub**（实现验证）:
+   - `site:github.com {method_name} {task}` — 验证开源实现是否存在
+   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取
+
+### 搜索维度（多角度交叉，不要只按 topic 搜）
+
+对每个 idea/方向，尽量覆盖以下维度：
+
+1. **正向搜索**：直接搜索主题相关论文
+   - `{topic} {subtopic} {year}`
+   - `{method_name} for {task_name}`
+
+2. **竞争论文搜索**（最关键！）：
+   - `{core_problem} {year}` — 有没有人在解决同样的问题？
+   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？
+   - `{gap_description} solution` — 你发现的 gap 是否已被解决？
+   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文
+
+3. **相邻领域搜索**：
+   - `{method_from_other_field} applied to {your_task}`
+   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题
+
+4. **反面搜索**（找到反对你 idea 的证据）：
+   - `{your_approach} limitations` / `{your_approach} failure`
+   - `why {assumed_gap} is not a problem`
+   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好
+
+5. **引用链追踪**（发现遗漏工作的最有效方法）：
+   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分
+   - 在 Semantic Scholar 上查看它的 "cited by" — 最近引用它的论文很可能是 concurrent work
+   - 对 3 个以上核心相关论文重复此步骤
+
+### 搜索数量建议（理想目标，上下文充裕时尽量达到）
+
+| 角色 | 建议搜索次数 | 说明 |
+|------|-------------|------|
+| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |
+| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |
+| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |
+| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |
+
+### 上下文管理
+
+你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。
+
+- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。
+- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。
+- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。
+- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。
+
+
+As a reviewer, your search focus should be:
+1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实
+2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作
+3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通
+4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work
+
+## 竞争论文专项搜索（Reviewer 独有）
+
+这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：
+
+1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题
+   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）
+   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）
+   - 方法名 + 任务名的不同组合
+
+2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，
+   搜索他们最近的论文（`"team_name" OR "author_name" {topic} {year}`）
+
+3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers
+   - `site:openreview.net {topic} 2026`
+   - `{conference_name} 2026 accepted papers {topic}`
+
+4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文
+   这是发现 concurrent work 最有效的窗口
+
+如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，
+并在 feedback 中说明这些工作如何影响 idea 的 novelty。
+
+## Review checklist
+1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?
+   If outdated, specify what the current SOTA is and cite your source.
+2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)
+3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?
+4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-10?
+5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?
+6. **Novelty**: Is this sufficiently different from existing work?
+   When scoring novelty < 4:
+   - You MUST identify the closest existing work(s) via WebSearch
+   - In your feedback, write: "This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion]."
+   - This gives the generator targeted guidance to boost novelty, not just "be more novel".
+7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?
+   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero
+   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks
+   - Human-in-Loop should fall between manual and auto on most dimensions
+   - Manual and HIL must NOT include salary/wages — only GPU and API costs
+   - Auto Research must NOT include agent operational overhead
+   - If any mode estimate is clearly unrealistic, flag it
+
+## Idea under review (round 2/10)
+{
+  "title": "LocoMimicGen: Coupled SE(3) Object-Centric Demo Multiplication for Mobile Humanoid Loco-Manipulation",
+  "core_problem": "How can a handful of expensive teleoperated whole-body loco-manipulation demonstrations be multiplied by orders of magnitude across diverse spatial configurations — new object positions, table heights, room obstacle layouts — while maintaining physical validity for the mobile bipedal humanoid platform? Isaac Lab Mimic's new loco-manipulation extensions (PRs #3150/#3992, merged Sept–Dec 2025) are the directly relevant prior infrastructure: they treat the robot base as an end-effector and integrate navigation controllers into the Mimic data generation framework. However, they handle navigation by replaying or skipping the last observed base velocity state rather than encoding navigation waypoints jointly with arm trajectories in object-centric SE(3) frames. They provide no mechanism for reachability-constrained base-pose optimization during retargeting. And they provide no combinatorial composition of subtask segments from multiple source demonstrations. These three absences cap achievable diversity at object-position randomization within a single source demo's reach envelope, rather than the combinatorial room-level scaling that MimicGen achieves for tabletop tasks.",
+  "opportunity": "Isaac Lab Mimic's loco-manipulation infrastructure (PRs #3150 and #3992) now provides the exact scaffolding — G1 environment, Mimic segmentation framework, navigation controller integration — needed to build a principled extension. The precise technical gap is narrow but high-impact: adding (1) SE(3) object-centric encoding of navigation stances jointly with arm trajectories into the existing Mimic segment representation, (2) reachability-map-guided base-pose optimization enforcing arm feasibility at each manipulation stance during retargeting, and (3) combinatorial subtask segment composition from multiple source demonstrations. OmniRetarget (Amazon, Sept 2025) addresses humanoid loco-manipulation data generation from MoCap sequences via interaction-mesh Laplacian deformation on the G1, but it retargets continuous motion sequences and cannot combinatorially compose segments across scene variants; it also targets parkour-class locomotion tasks rather than precision manipulation. DemoHLM (Oct 2025) demonstrates generalizable single-demonstration adaptation across 10 G1 loco-manipulation household tasks by segmenting into locomotion / pre-manipulation / manipulation stages and replaying with modified commands — but the single-demo paradigm limits scaling to spatial interpolation within one source demo's envelope. The three-part Isaac Lab Mimic extension proposed here is tractable within existing infrastructure, precisely bounded against the primary baseline, and is the missing ingredient for room-level combinatorial scaling.",
+  "landscape": "MimicGen (CoRL 2023) decomposes arm demonstrations into object-centric subtask segments and applies SE(3) frame transformations — manipulation-only. DexMimicGen (ICRA 2025) extends this to bimanual dexterous humanoids, still tabletop. HumanoidGen (NeurIPS 2025) uses LLM-driven planning for tabletop dexterous tasks with 120+ scene variants — explicitly excludes locomotion. Isaac Lab Mimic's loco-manipulation extensions are the primary baseline. PR #3150 (merged Sept 9, 2025) added Isaac-PickPlace-Locomanipulation-G1-Abs-v0, a G1 environment integrating a pretrained RL locomotion policy (velocity commands vx, vy, wz) with Pink IK arm control, achieving 92% success on pick-and-place. PR #3992 (merged Dec 1, 2025) extended the Mimic framework with: a 'body end effector' API treating the robot base as an end-effector during data generation, a custom recorder interface, and navigation controller integration via get_navigation_state(). The documentation states the system 'parses demonstrations into object-centric subtask segments, then adapts these subtask segments to new scenes by transforming each segment according to the new scene's context.' However, the navigation controller manages base movement through state-based trajectory repetition/skipping — it does NOT encode navigation waypoints in the object's SE(3) local frame jointly with arm trajectory segments. There is no reachability-constrained base-pose optimization, and no combinatorial composition of segments from different source demonstrations across room-level layouts. OmniRetarget (Amazon, arXiv:2509.26633, Sept 2025) generates loco-manipulation demonstrations on the Unitree G1 via interaction-mesh Laplacian deformation of human MoCap sequences (OMOMO, LAFAN1, in-house), producing over 8 hours of retargeted trajectories. It preserves spatial and contact relationships and enables augmentation across embodiments, terrains, and object configurations. Critically, OmniRetarget (a) requires large MoCap databases rather than small teleoperated G1 demonstrations; (b) retargets continuous motion sequences without decomposing into reusable subtask segments; (c) cannot combinatorially compose segments from different source demos; and (d) is evaluated primarily on locomotion-heavy tasks (box carrying, climbing, parkour) rather than precision manipulation requiring tight coupling between base position and arm workspace. DemoHLM (arXiv:2510.11258, Oct 2025) segments demonstrations into three stages (locomotion, pre-manipulation, manipulation) and adapts the source trajectory to new initial object/robot poses by modifying high-level stage commands on the Unitree G1. It demonstrates 10 loco-manipulation household tasks with sim-to-real transfer on physical G1, including multi-stage tasks. DemoHLM's core architectural limitation is its single-demonstration paradigm: each task uses one source demo, which is replayed with modified commands for new configurations. This is conceptually similar to Isaac Lab Mimic's trajectory adaptation, but with a hierarchical whole-body controller; it does not compose segments from multiple source demonstrations combinatorially, and 'spatial variation' is described as object position adjustment rather than room-level obstacle/furniture layout diversity. MoMaGen (arXiv:2510.18316, Oct 2025) generates bimanual mobile manipulation demonstrations via constrained optimization (hard reachability + soft visibility) on a wheeled bimanual mobile base. The wheeled platform decouples navigation from balance, making MoMaGen's per-subtask base-pose sampling inapplicable to bipedal humanoids where navigation requires dynamic balance maintenance; extending it to bipedal locomotion would require solving the balance/footstep planning problem that MoMaGen's design explicitly sidesteps. EgoHumanoid (arXiv, Feb 2026) uses robot-free egocentric human video — a fundamentally different data-driven approach outside the procedural generation paradigm. No existing system applies principled multi-segment object-centric demonstration decomposition with COUPLED SE(3) encoding of both navigation stances and arm trajectories, enabling combinatorial room-level scaling from multiple source demonstrations, to the mobile bipedal humanoid platform.",
+  "approach": "We propose LocoMimicGen, built as a direct extension of Isaac Lab Mimic's loco-manipulation infrastructure (PRs #3150 and #3992) with three technical contributions. Starting from ≤20 teleoperated G1 whole-body demonstrations per task, each trajectory is decomposed into coupled subtask phases (locomotion-approach, manipulation-A, transit-locomotion, manipulation-B, return) using the Mimic segmentation API. Contribution (1): Coupled SE(3) object-centric representation. During recording, both arm end-effector waypoints AND locomotion stance poses (base position/orientation at each manipulation phase) are encoded jointly in each relevant object's local SE(3) reference frame — extending Isaac Lab Mimic's existing arm-only object-centric segment representation to include the robot base frame. This enables retargeting navigation stances to new object configurations as a natural byproduct of the frame transformation, rather than replaying fixed base velocity states. Contribution (2): Reachability-map-guided base-pose optimization. Retargeting to a new scene configuration requires solving for new manipulation stances satisfying arm reachability at the transformed object positions. We pre-compute an upper-body reachability map for the G1 (sampled IK workspace as a function of base position/orientation) and solve for new stances via constrained optimization over this map. Navigation segments between planned stances use Isaac Lab's pretrained RL locomotion controller (PR #3150) as a point-to-point navigation oracle, avoiding the need to implement a full kinodynamic planner from scratch while maintaining coupling between base poses and arm manipulation targets. This base-pose optimization is positioned as a core research contribution: it is the principled coupling between navigation and manipulation reachability that Isaac Lab Mimic, DemoHLM, and OmniRetarget each lack. Contribution (3): Combinatorial multi-source segment composition. Validated subtask segments from different source demonstrations are composed combinatorially across scene variants (object positions spanning the full room, table heights, obstacle placements), achieving 100–1000× demo expansion from ≤20 seed demonstrations per task — a qualitatively different scaling regime from single-demo spatial adaptation. Isaac Lab's GPU-parallel simulation (2048+ G1 environments) with the pretrained RL controller validates physical feasibility; failures trigger local replanning of the base-pose optimization. We evaluate on 3 loco-manipulation tasks (pick-and-place with navigation, articulated-object manipulation (door/drawer) with approach locomotion, and a two-phase transit task), training a single diffusion policy per task on the generated datasets. Baselines: Isaac Lab Mimic with PR #3992 (position randomization only), OmniRetarget (single-sequence retargeting), and DemoHLM (single-demo command adaptation). Sim-to-real transfer on physical G1 hardware is explicitly future work given hardware access constraints; the contribution is established through simulation scaling analysis and cross-baseline comparison.",
+  "resource_estimate": {
+    "manual": {
+      "h100_hours": "~60–80 H100h (≈150–200h A100 at 2–2.5× H100/A100 ratio): data generation ~30h A100 across 3 tasks at 2048 parallel envs; policy training 3 tasks × 2 seeds × 15h = 90h A100; ablations (3 conditions × 3 tasks × 10h) = 90h A100; total ~210h A100 ≈ 84–105h H100 — comfortably within 200h H100 constraint",
+      "gpu_utilization": "High idle (~60–70%): GPU waits on human-paced coding, debugging physics edge cases, and manual analysis between runs",
+      "timeline": "2–3 months",
+      "team": "2 researchers (1 robotics/sim, 1 IL/policy)",
+      "estimated_gpu_cost": "~$370 at $1.75/hr A100 (or ~$200 at $2.50/hr H100)"
+    },
+    "human_in_loop": {
+      "h100_hours": "~95–125 H100h (≈235–310h A100): data generation ~35h A100; policy training + more ablation variants (5 conditions × 3 tasks × 12h = 180h A100; training 3 tasks × 2 seeds × 15h = 90h A100) ≈ 305h A100 ≈ 122–152h H100 — within 200h H100 constraint",
+      "gpu_utilization": "Moderate idle (~30–40%): approval gates pause GPU between stages, but agent batches setup and analysis tasks",
+      "timeline": "4–5 weeks",
+      "team": "1 researcher, ~45 min/day check-in for gate approvals and physics failure triage",
+      "claude_api_cost": "$200–400 (~300–500 turns at $0.08–0.12/turn for code gen, debug, analysis)",
+      "estimated_gpu_cost": "~$420–540 at $1.75/hr A100 (or ~$240–380 at $2.50/hr H100)",
+      "risk_note": "Reachability-map-guided base-pose optimization for articulated object tasks (door/drawer) involves contact-rich interaction where failure modes require human insight to diagnose and fix simulator parameters; the base-pose optimization formulation itself is a research contribution requiring iterative design that cannot be resolved purely by the agent at approval gates"
+    }
+  },
+  "target_venues": [
+    "CoRL 2026 (abstract May 26 AoE, full paper May 28 AoE / ≈May 29 UTC — 18 days from today)",
+    "IEEE Robotics and Automation Letters / RA-L (rolling submission, no hard deadline)"
+  ],
+  "level": "top-tier",
+  "key_references": [
+    "MimicGen: A Data Generation System for Scalable Robot Learning using Human Demonstrations (CoRL 2023)",
+    "DexMimicGen: Automated Data Generation for Bimanual Dexterous Manipulation via Imitation Learning (ICRA 2025)",
+    "HumanoidGen: Data Generation for Bimanual Dexterous Manipulation via LLM Reasoning (NeurIPS 2025)",
+    "WholeBodyVLA: Towards Unified Latent VLA for Whole-Body Loco-Manipulation Control (ICLR 2026)",
+    "OmniRetarget: Interaction-Preserving Data Generation for Humanoid Whole-Body Loco-Manipulation and Scene Interaction (arXiv:2509.26633, Sept 2025)",
+    "MoMaGen: Generating Demonstrations under Soft and Hard Constraints for Multi-Step Bimanual Mobile Manipulation (arXiv:2510.18316, Oct 2025)",
+    "DemoHLM: From One Demonstration to Generalizable Humanoid Loco-Manipulation (arXiv:2510.11258, Oct 2025)",
+    "EgoHumanoid: Unlocking In-the-Wild Loco-Manipulation with Robot-Free Egocentric Demonstration (arXiv 2026)",
+    "Isaac Lab: A GPU-Accelerated Simulation Framework for Multi-Modal Robot Learning (arXiv 2025)",
+    "Isaac Lab PR #3150: Locomanipulation Environment with G1 for Mimic workflow (merged Sept 9, 2025)",
+    "Isaac Lab PR #3992: APIs to Isaac Lab Mimic for supporting loco-manipulation datagen (merged Dec 1, 2025)"
+  ],
+  "description": "LocoMimicGen extends Isaac Lab Mimic's loco-manipulation framework (PRs #3150/#3992) — the primary baseline, not 'Isaac Lab 2.3' — with three precisely-scoped technical contributions that together enable room-level combinatorial scaling unavailable in existing systems. Isaac Lab Mimic's PR #3992 treats the robot base as an end-effector and integrates navigation controllers into Mimic's subtask segmentation, but handles navigation via state-based trajectory repetition/skipping rather than encoding navigation waypoints in object-centric SE(3) frames. Contribution (1): LocoMimicGen adds coupled SE(3) object-centric encoding of locomotion stances jointly with arm end-effector waypoints into the Mimic segment representation, enabling frame-transform retargeting of both navigation and manipulation simultaneously. Contribution (2): Reachability-map-guided base-pose optimization — a core research contribution framed as such — solves for manipulation stances satisfying arm workspace constraints at retargeted object positions, with Isaac Lab's pretrained RL locomotion controller (PR #3150) used as a navigation oracle between planned stances. Contribution (3): Combinatorial multi-source segment composition from multiple (≤20 total) teleoperated demonstrations achieves 100–1000× demo expansion. This differs from OmniRetarget (Sept 2025), which retargets continuous MoCap sequences via interaction-mesh Laplacian deformation but cannot compose segments combinatorially; from DemoHLM (Oct 2025), which adapts one source demo to new configurations via stage-command modification but does not achieve multi-demo combinatorial scaling; and from MoMaGen (Oct 2025), which targets wheeled platforms. Evaluated on 3 loco-manipulation tasks in Isaac Lab GPU-parallel simulation with diffusion policy, comparing against Isaac Lab Mimic, OmniRetarget, and DemoHLM baselines. Sim-to-real on physical G1 is explicit future work. All compute estimates are expressed in H100-hours; both modes (manual: ~60–105h H100; human-in-loop: ~95–152h H100) stay within the 200 H100-hour hard constraint. Auto-research mode is excluded as it exceeds the constraint even after scope reduction. CoRL 2026: abstract May 26 AoE, paper May 28 AoE.",
+  "project_name": "loco_mimicgen_humanoid_g1",
+  "source": "web_research"
+}
+
+
+## Previous review history
+### Round 1 review
+Verdict: revise
+Issues: ["CRITICAL NOVELTY GAP: The generator missed two merged Isaac Lab PRs that directly undermine the core claim. PR #3150 (merged Sept 9, 2025) added Isaac-PickPlace-Locomanipulation-G1-Abs-v0, a G1 Mimic environment combining RL locomotion with IK manipulation, achieving 92% success on pick-and-place. PR #3992 (merged Dec 1, 2025) added APIs to Isaac Lab Mimic specifically for loco-manipulation data generation, including treating the robot's base as an end-effector in the Mimic framework — exactly what the generator claims is missing. The documentation states the system 'parses demonstrations into object-centric subtask segments, then adapts these subtask segments to new scenes by transforming each segment according to the new scene's context,' directly contradicting the generator's claim that Isaac Lab lacks 'principled SE(3) demo transformation.'", "HARD COMPUTE CONSTRAINT VIOLATED: Auto-research mode (~900h A100) converts to ~300–450h H100 at confirmed 2–3x H100/A100 ratio, violating the 200 H100-hour hard constraint by 50–125%. Human-in-loop (~420h A100 ≈ 140–210h H100) is also borderline. The generator expressed all estimates in A100 hours without converting to H100 hours, despite the user requirement being explicitly stated in H100 hours.", "DemoHLM (arXiv:2510.11258) already applies MimicGen-style object-centric data generation to 10 G1 loco-manipulation tasks with sim-to-real transfer on physical G1. The generator acknowledged this but downplayed its scope (calling it 'single-object tasks' and saying it 'does not exploit combinatorial segment composition across room-level layout diversity'). The paper should verify whether DemoHLM's 10 tasks actually include multi-stage tasks before making this claim.", "Physical G1 hardware for sim-to-real experiments is listed as a required evaluation component but hardware access is nowhere addressed in the resource plan. Without a G1 robot, the sim-to-real evaluation collapses to sim-only, which reduces CoRL competitiveness.", "CoRL 2026 deadline discrepancy: the generator states abstract deadline May 25 and paper deadline May 28, but the official CoRL 2026 website confirms abstract May 26 (UTC) and paper May 29 (UTC). Minor but worth correcting.", "The kinodynamic planner with coupled arm-reachability constraints for a bipedal humanoid is treated as a subordinate engineering task, but this is itself a non-trivial research contribution. No existing open-source planner directly handles coupled navigation + manipulation reachability for bimanual bipedal systems; implementing one from scratch within 20 days is highly aggressive.", "MoMaGen (arXiv:2510.18316, Oct 2025) targets a wheeled bimanual mobile base (not a bipedal humanoid), so the generator's differentiation from it is valid — but the generator should verify whether MoMaGen's constrained-optimization approach can be straightforwardly extended to bipedal locomotion, as reviewers will ask this."]
+Feedback: The idea targets a real gap but needs substantial repositioning before it can pass review. The most urgent fix: the generator must engage directly with Isaac Lab Mimic's loco-manipulation extensions (PRs #3150 and #3992, https://github.com/isaac-sim/IsaacLab/pull/3150 and /pull/3992), which already implement MimicGen-style object-centric loco-manipulation data generation for the G1. The generator must explain precisely what these PRs do NOT do: specifically, (a) their navigation handling simply repeats the last navigation action or waits for goal-reached — it does NOT encode navigation waypoints in the object's SE(3) local frame jointly with arm trajectories; (b) they do not perform kinodynamic replanning with arm-reachability enforcement; (c) they do not combinatorially compose segments from multiple source demonstrations to achieve room-level diversity. These three differentiators are real and should become the paper's explicit contribution claims, stated against Isaac Lab Mimic as the primary baseline (not just 'Isaac Lab 2.3'). Second: fix compute estimates. All GPU estimates must be expressed in H100-hours. The auto-research mode must be scoped down or removed — at current scope it exceeds the 200 H100-hour hard constraint by 2x. A plausible manual scope: 2–3 tasks instead of 5–8, fewer ablation variants, single policy architecture. Third: either secure physical G1 access and state it explicitly, or replace 'sim-to-real on physical G1' with 'sim-only evaluation against DemoHLM and Isaac Lab Mimic baselines' and note hardware as future work. The core idea — coupling SE(3) navigation waypoint encoding with manipulation trajectory retargeting, plus kinodynamic reachability enforcement, to enable room-level combinatorial scaling beyond Isaac Lab Mimic's position randomization — is a legitimate and novel contribution; it just needs to be positioned honestly against the specific infrastructure that already exists.
+
+
+## Output format
+Output ONLY a JSON object:
+{
+  "verdict": "pass | revise | fail",
+  "scores": {
+    "novelty": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "feasibility": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "clarity": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "impact": {"score": 0-5, "rationale": "1-2 sentence justification"}
+  },
+  "issues": ["specific issue 1", "specific issue 2", ...],
+  "feedback": "Actionable feedback for the generator (if verdict=revise)",
+  "reason": "One-line summary of verdict rationale"
+}
+
+Rules:
+- "pass": idea is sound AND high quality — avg score >= 4.0, no critical issues
+- "revise": fixable issues OR scores below threshold — provide specific feedback
+- "fail": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)
+- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.
+- Round 10 only: if still "revise", you MUST choose "pass" or "fail".
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "22bf6fc8-9774-47f2-9286-3ee2ace81d66",
+  "type": "user",
+  "uuid": "fbbde90e-5303-41cb-8ddc-20068d47bf4e",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-10T11:52:38.223Z_
+
+```json
+{
+  "parentUuid": "fbbde90e-5303-41cb-8ddc-20068d47bf4e",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "9992f4d0-8de9-4750-8a3d-2f2fd91d0167",
+  "timestamp": "2026-05-10T11:52:38.223Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-10T11:52:38.223Z_
+
+```json
+{
+  "parentUuid": "9992f4d0-8de9-4750-8a3d-2f2fd91d0167",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "b6d1292e-bd5e-41a1-8188-08add997e5ca",
+  "timestamp": "2026-05-10T11:52:38.223Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "b6d1292e-bd5e-41a1-8188-08add997e5ca",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify LocoMimicGen against Isaac Lab PRs and compute constraints",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-10T11:52:47.931Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me carefully review this round 2 revision of "LocoMimicGen" idea. The previous round 1 review identified several critical issues, and the generator has now revised the idea to address them. My job is to independently verify the claims, check novelty against current SOTA, assess feasibility, and determine if the revisions adequately address the round 1 issues.
+
+Let me start by understanding what changed:
+1. The generator now explicitly acknowledges Isaac Lab Mimic's PRs #3150 and #3992 as the primary baseline
+2. The generator has removed auto-research mode and expressed compute in H100 hours (within constraint)
+
+
+3. Sim-to-real on physical G1 is now explicitly listed as "future work"
+4. CoRL deadline corrected to May 26/May 28-29
+5. The generator provides specific technical differentiators against the primary baseline
+
+Now I need to verify the core claims independently—checking whether the identified gaps in those Isaac Lab PRs are real, whether DemoHLM truly relies on single-demo learning, searching for any concurrent work they might have missed, validating the compute estimates, and assessing the technical soundness of the approach overall.
+
+I'll start by looking into the Isaac Lab Mimic extensions, the DemoHLM and OmniRetarget papers, any recent work on humanoid loco-manipulation data generation, and what's being submitted to CoRL 2026 in this space.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b6d1292e-bd5e-41a1-8188-08add997e5ca",
+  "isSidechain": false,
+  "requestId": "req_011CatqkB9h5nJHeYGCcbVse",
+  "type": "assistant",
+  "uuid": "3691fc04-0c84-4e56-9ab9-9c4182a21649",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01DFganMkE5gEXrFaSkuSDEF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14836,
+      "cache_read_input_tokens": 11631,
+      "output_tokens": 506,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14836,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 506,
+          "cache_read_input_tokens": 11631,
+          "cache_creation_input_tokens": 14836,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14836
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-10T11:52:47.940Z_
+
+I'll conduct independent research to verify this round 2 revision before issuing a verdict. Let me search across multiple dimensions simultaneously.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3691fc04-0c84-4e56-9ab9-9c4182a21649",
+  "isSidechain": false,
+  "requestId": "req_011CatqkB9h5nJHeYGCcbVse",
+  "type": "assistant",
+  "uuid": "e28aeede-9a00-481d-9477-af8c700c6ace",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01DFganMkE5gEXrFaSkuSDEF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14836,
+      "cache_read_input_tokens": 11631,
+      "output_tokens": 506,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14836,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 506,
+          "cache_read_input_tokens": 11631,
+          "cache_creation_input_tokens": 14836,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14836
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-10T11:52:47.946Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01BqM8fsUioi1hKe2sd8WFDf`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e28aeede-9a00-481d-9477-af8c700c6ace",
+  "isSidechain": false,
+  "requestId": "req_011CatqkB9h5nJHeYGCcbVse",
+  "type": "assistant",
+  "uuid": "1db1684e-6699-4da4-81fa-44ef80fcf52d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01DFganMkE5gEXrFaSkuSDEF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14836,
+      "cache_read_input_tokens": 11631,
+      "output_tokens": 506,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14836,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 506,
+          "cache_read_input_tokens": 11631,
+          "cache_creation_input_tokens": 14836,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14836
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-10T11:52:47.952Z_
+
+<details><summary>↩ Tool result · `toolu_01BqM8fsUioi1hKe2sd8WFDf`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1db1684e-6699-4da4-81fa-44ef80fcf52d",
+  "isSidechain": false,
+  "promptId": "22bf6fc8-9774-47f2-9286-3ee2ace81d66",
+  "type": "user",
+  "uuid": "d43877be-b6e5-4c9c-97e0-5a2b5c0ddd71",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "1db1684e-6699-4da4-81fa-44ef80fcf52d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-10T11:52:51.164Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me conduct thorough research. I'll search for multiple things in parallel:
+
+1. Isaac Lab Mimic PR #3150 and #3992 - verify what they actually do
+2. DemoHLM paper details
+3. OmniRetarget paper details
+4. Recent concurrent work on humanoid loco-manipulation data generation
+5. MoMaGen details
+6. CoRL 2026 deadline verification
+7. Any new work in 2026 that might be concurrent
+
+Let me run parallel searches.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d43877be-b6e5-4c9c-97e0-5a2b5c0ddd71",
+  "isSidechain": false,
+  "requestId": "req_011CatqktpTV8MkX8AkZ661z",
+  "type": "assistant",
+  "uuid": "861df30e-fd1e-410a-908d-a29e597ef147",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01PNdXoqPN2CENbKSd4CDRYX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1526,
+      "cache_read_input_tokens": 26467,
+      "output_tokens": 334,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1526,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 334,
+          "cache_read_input_tokens": 26467,
+          "cache_creation_input_tokens": 1526,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1526
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-10T11:52:51.568Z_
+
+Starting independent research across all key dimensions simultaneously.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "861df30e-fd1e-410a-908d-a29e597ef147",
+  "isSidechain": false,
+  "requestId": "req_011CatqktpTV8MkX8AkZ661z",
+  "type": "assistant",
+  "uuid": "2b002ca7-0405-4a4a-9c55-c275610446f2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01PNdXoqPN2CENbKSd4CDRYX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1526,
+      "cache_read_input_tokens": 26467,
+      "output_tokens": 334,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1526,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 334,
+          "cache_read_input_tokens": 26467,
+          "cache_creation_input_tokens": 1526,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1526
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-10T11:52:52.292Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0173CdkTFxMqh6UtXxNJy8xq`</summary>
+
+```json
+{
+  "query": "Isaac Lab Mimic loco-manipulation PR 3992 navigation base end-effector G1 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2b002ca7-0405-4a4a-9c55-c275610446f2",
+  "isSidechain": false,
+  "requestId": "req_011CatqktpTV8MkX8AkZ661z",
+  "type": "assistant",
+  "uuid": "36e55fb7-acca-47b7-8c03-845145da8eba",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01PNdXoqPN2CENbKSd4CDRYX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1526,
+      "cache_read_input_tokens": 26467,
+      "output_tokens": 334,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1526,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 334,
+          "cache_read_input_tokens": 26467,
+          "cache_creation_input_tokens": 1526,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1526
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-10T11:52:53.132Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UUbofvMcie8zXwpebPCGhf`</summary>
+
+```json
+{
+  "query": "DemoHLM \"From One Demonstration\" humanoid loco-manipulation arXiv 2510.11258"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "36e55fb7-acca-47b7-8c03-845145da8eba",
+  "isSidechain": false,
+  "requestId": "req_011CatqktpTV8MkX8AkZ661z",
+  "type": "assistant",
+  "uuid": "5c474267-23df-4c4d-8159-bebade241611",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01PNdXoqPN2CENbKSd4CDRYX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1526,
+      "cache_read_input_tokens": 26467,
+      "output_tokens": 334,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1526,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 334,
+          "cache_read_input_tokens": 26467,
+          "cache_creation_input_tokens": 1526,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1526
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-10T11:52:53.325Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UbrHU9bULvfHdQAGMq2Gmh`</summary>
+
+```json
+{
+  "query": "humanoid robot demonstration generation combinatorial data augmentation loco-manipulation 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5c474267-23df-4c4d-8159-bebade241611",
+  "isSidechain": false,
+  "requestId": "req_011CatqktpTV8MkX8AkZ661z",
+  "type": "assistant",
+  "uuid": "95a4b316-0c97-4e7d-9548-6e610a4bdafb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01PNdXoqPN2CENbKSd4CDRYX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1526,
+      "cache_read_input_tokens": 26467,
+      "output_tokens": 334,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1526,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 334,
+          "cache_read_input_tokens": 26467,
+          "cache_creation_input_tokens": 1526,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1526
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-10T11:52:59.116Z_
+
+<details><summary>↩ Tool result · `toolu_01UUbofvMcie8zXwpebPCGhf`</summary>
+
+```text
+Web search results for query: "DemoHLM "From One Demonstration" humanoid loco-manipulation arXiv 2510.11258"
+
+Links: [{"title":"DemoHLM: From One Demonstration to Generalizable Humanoid Loco-Manipulation","url":"https://arxiv.org/html/2510.11258v1"},{"title":"EgoHumanoid: Unlocking In-the-Wild Loco-Manipulation with Robot-Free Egocentric Demonstration","url":"https://arxiv.org/html/2602.10106v1"},{"title":"GitHub - YanjieZe/awesome-humanoid-robot-learning: A Paper List for Humanoid Robot Learning. · GitHub","url":"https://github.com/YanjieZe/awesome-humanoid-robot-learning"},{"title":"GitHub - OpenDriveLab/WholebodyVLA: [ICLR 2026] Towards Unified Latent VLA for Whole-body Loco-manipulation Control · GitHub","url":"https://github.com/OpenDriveLab/WholebodyVLA"}]
+
+Based on the search results, here's what I found about DemoHLM:
+
+## DemoHLM: From One Demonstration to Generalizable Humanoid Loco-Manipulation
+
+DemoHLM is a framework for humanoid loco-manipulation that enables generalizable loco-manipulation on a real humanoid robot from a single demonstration in simulation.
+
+### Key Features:
+
+For each task, DemoHLM requires only a single demonstration and automatically synthesizes hundreds to thousands of successful trajectories that complete the same task in varied environments.
+
+DemoHLM adopts a hierarchy that integrates a low-level universal whole-body controller with high-level manipulation policies for multiple tasks. The whole-body controller maps whole-body motion commands to joint torques and provides omnidirectional mobility for the humanoid robot.
+
+### Results:
+
+Real-world experiments on a Unitree G1 robot equipped with an RGB-D camera validate the sim-to-real transferability of DemoHLM, demonstrating robust performance under spatial variations across ten loco-manipulation tasks. Increasing the amount of simulated data leads to substantial performance gains and improved generalization across varying initial states, and the generated data remain consistently effective across different behavior cloning algorithms.
+
+The paper was published on arXiv in October 2025 (arXiv:2510.11258).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5c474267-23df-4c4d-8159-bebade241611",
+  "isSidechain": false,
+  "promptId": "22bf6fc8-9774-47f2-9286-3ee2ace81d66",
+  "type": "user",
+  "uuid": "b0c305c5-14d7-43b6-bd13-47c150da824a",
+  "toolUseResult": {
+    "query": "DemoHLM \"From One Demonstration\" humanoid loco-manipulation arXiv 2510.11258",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Wxa1cxVqyFqnUTaAtK6akr",
+        "content": [
+          {
+            "title": "DemoHLM: From One Demonstration to Generalizable Humanoid Loco-Manipulation",
+            "url": "https://arxiv.org/html/2510.11258v1"
+          },
+          {
+            "title": "EgoHumanoid: Unlocking In-the-Wild Loco-Manipulation with Robot-Free Egocentric Demonstration",
+            "url": "https://arxiv.org/html/2602.10106v1"
+          },
+          {
+            "title": "GitHub - YanjieZe/awesome-humanoid-robot-learning: A Paper List for Humanoid Robot Learning. · GitHub",
+            "url": "https://github.com/YanjieZe/awesome-humanoid-robot-learning"
+          },
+          {
+            "title": "GitHub - OpenDriveLab/WholebodyVLA: [ICLR 2026] Towards Unified Latent VLA for Whole-body Loco-manipulation Control · GitHub",
+            "url": "https://github.com/OpenDriveLab/WholebodyVLA"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about DemoHLM:\n\n## DemoHLM: From One Demonstration to Generalizable Humanoid Loco-Manipulation\n\nDemoHLM is a framework for humanoid loco-manipulation that enables generalizable loco-manipulation on a real humanoid robot from a single demonstration in simulation.\n\n### Key Features:\n\nFor each task, DemoHLM requires only a single demonstration and automatically synthesizes hundreds to thousands of successful trajectories that complete the same task in varied environments.\n\nDemoHLM adopts a hierarchy that integrates a low-level universal whole-body controller with high-level manipulation policies for multiple tasks. The whole-body controller maps whole-body motion commands to joint torques and provides omnidirectional mobility for the humanoid robot.\n\n### Results:\n\nReal-world experiments on a Unitree G1 robot equipped with an RGB-D camera validate the sim-to-real transferability of DemoHLM, demonstrating robust performance under spatial variations across ten loco-manipulation tasks. Increasing the amount of simulated data leads to substantial performance gains and improved generalization across varying initial states, and the generated data remain consistently effective across different behavior cloning algorithms.\n\nThe paper was published on arXiv in October 2025 (arXiv:2510.11258)."
+    ],
+    "durationSeconds": 5.980211821000001
+  },
+  "sourceToolAssistantUUID": "5c474267-23df-4c4d-8159-bebade241611",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-10T11:52:59.766Z_
+
+<details><summary>↩ Tool result · `toolu_0173CdkTFxMqh6UtXxNJy8xq`</summary>
+
+```text
+Web search results for query: "Isaac Lab Mimic loco-manipulation PR 3992 navigation base end-effector G1 2025"
+
+Links: [{"title":"Adds APIs to Isaac Lab Mimic for supporting loco-manipulation datagen by peterd-NV · Pull Request #3992 · isaac-sim/IsaacLab","url":"https://github.com/isaac-sim/IsaacLab/pull/3992"},{"title":"Teleoperation and Imitation Learning with Isaac Lab Mimic — Isaac Lab Documentation","url":"https://isaac-sim.github.io/IsaacLab/main/source/overview/imitation-learning/teleop_imitation.html"},{"title":"isaaclab_mimic.envs — Isaac Lab Documentation","url":"https://isaac-sim.github.io/IsaacLab/main/source/api/lab_mimic/isaaclab_mimic.envs.html"},{"title":"Adds Locomanipulation Environment with G1 for Mimic workflow by michaellin6 · Pull Request #3150 · isaac-sim/IsaacLab","url":"https://github.com/isaac-sim/IsaacLab/pull/3150"},{"title":"Release Notes — Isaac Lab Documentation","url":"https://isaac-sim.github.io/IsaacLab/main/source/refs/release_notes.html"},{"title":"Adds locomanipulation data generation via. disjoint navigation by jaybdub · Pull Request #3259 · isaac-sim/IsaacLab","url":"https://github.com/isaac-sim/IsaacLab/pull/3259"},{"title":"Streamline Robot Learning with Whole-Body Control and Enhanced Teleoperation in NVIDIA Isaac Lab 2.3 | NVIDIA Technical Blog","url":"https://developer.nvidia.com/blog/streamline-robot-learning-with-whole-body-control-and-enhanced-teleoperation-in-nvidia-isaac-lab-2-3/"},{"title":"Releases · isaac-sim/IsaacLab","url":"https://github.com/isaac-sim/IsaacLab/releases"},{"title":"isaaclab_mimic.datagen — Isaac Lab Documentation","url":"https://isaac-sim.github.io/IsaacLab/main/source/api/lab_mimic/isaaclab_mimic.datagen.html"},{"title":"Release Notes — Isaac Lab Documentation","url":"https://docs.robotsfan.com/isaaclab_official/main/source/refs/release_notes.html"}]
+
+Based on the web search results, here's what I found about Isaac Lab Mimic loco-manipulation PR #3992:
+
+## Overview
+
+PR #3992 adds new APIs to Isaac Lab Mimic to expand support for loco-manipulation data generation.
+
+## Key Features
+
+The PR introduces three main features:
+
+1. **Body End Effector Processing**: Processes the robot's base as an end effector during Mimic data generation, enabling the use of the same Mimic annotation and subtask interface to enable lower body movement.
+
+2. **Navigation Controller Integration**: Adds use_navigation_controller flag and get_navigation_state() API to manage mobile base navigation during data generation, handling navigation state transitions by repeating the last navigation subtask action when the robot is still navigating to a waypoint, and skipping forward when the goal is reached early.
+
+3. **Custom Recorder Interface**: Provides optional mimic_recorder_config field allowing users to add custom recorders beyond default action/state data.
+
+## G1 Locomanipulation Context
+
+The same data generation and policy training steps can be applied to the G1 humanoid robot with locomanipulation capabilities, which demonstrates how to train the G1 robot to perform pick and place tasks with full-body locomotion and manipulation.
+
+The PR was authored by peterd-NV and is part of Isaac Lab's broader locomanipulation support for the G1 humanoid robot.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "36e55fb7-acca-47b7-8c03-845145da8eba",
+  "isSidechain": false,
+  "promptId": "22bf6fc8-9774-47f2-9286-3ee2ace81d66",
+  "type": "user",
+  "uuid": "8d93e314-5f41-454b-bef6-528e59321c79",
+  "toolUseResult": {
+    "query": "Isaac Lab Mimic loco-manipulation PR 3992 navigation base end-effector G1 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HUtzkEMAheZp17XVPQMEpE",
+        "content": [
+          {
+            "title": "Adds APIs to Isaac Lab Mimic for supporting loco-manipulation datagen by peterd-NV · Pull Request #3992 · isaac-sim/IsaacLab",
+            "url": "https://github.com/isaac-sim/IsaacLab/pull/3992"
+          },
+          {
+            "title": "Teleoperation and Imitation Learning with Isaac Lab Mimic — Isaac Lab Documentation",
+            "url": "https://isaac-sim.github.io/IsaacLab/main/source/overview/imitation-learning/teleop_imitation.html"
+          },
+          {
+            "title": "isaaclab_mimic.envs — Isaac Lab Documentation",
+            "url": "https://isaac-sim.github.io/IsaacLab/main/source/api/lab_mimic/isaaclab_mimic.envs.html"
+          },
+          {
+            "title": "Adds Locomanipulation Environment with G1 for Mimic workflow by michaellin6 · Pull Request #3150 · isaac-sim/IsaacLab",
+            "url": "https://github.com/isaac-sim/IsaacLab/pull/3150"
+          },
+          {
+            "title": "Release Notes — Isaac Lab Documentation",
+            "url": "https://isaac-sim.github.io/IsaacLab/main/source/refs/release_notes.html"
+          },
+          {
+            "title": "Adds locomanipulation data generation via. disjoint navigation by jaybdub · Pull Request #3259 · isaac-sim/IsaacLab",
+            "url": "https://github.com/isaac-sim/IsaacLab/pull/3259"
+          },
+          {
+            "title": "Streamline Robot Learning with Whole-Body Control and Enhanced Teleoperation in NVIDIA Isaac Lab 2.3 | NVIDIA Technical Blog",
+            "url": "https://developer.nvidia.com/blog/streamline-robot-learning-with-whole-body-control-and-enhanced-teleoperation-in-nvidia-isaac-lab-2-3/"
+          },
+          {
+            "title": "Releases · isaac-sim/IsaacLab",
+            "url": "https://github.com/isaac-sim/IsaacLab/releases"
+          },
+          {
+            "title": "isaaclab_mimic.datagen — Isaac Lab Documentation",
+            "url": "https://isaac-sim.github.io/IsaacLab/main/source/api/lab_mimic/isaaclab_mimic.datagen.html"
+          },
+          {
+            "title": "Release Notes — Isaac Lab Documentation",
+            "url": "https://docs.robotsfan.com/isaaclab_official/main/source/refs/release_notes.html"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found about Isaac Lab Mimic loco-manipulation PR #3992:\n\n## Overview\n\nPR #3992 adds new APIs to Isaac Lab Mimic to expand support for loco-manipulation data generation.\n\n## Key Features\n\nThe PR introduces three main features:\n\n1. **Body End Effector Processing**: Processes the robot's base as an end effector during Mimic data generation, enabling the use of the same Mimic annotation and subtask interface to enable lower body movement.\n\n2. **Navigation Controller Integration**: Adds use_navigation_controller flag and get_navigation_state() API to manage mobile base navigation during data generation, handling navigation state transitions by repeating the last navigation subtask action when the robot is still navigating to a waypoint, and skipping forward when the goal is reached early.\n\n3. **Custom Recorder Interface**: Provides optional mimic_recorder_config field allowing users to add custom recorders beyond default action/state data.\n\n## G1 Locomanipulation Context\n\nThe same data generation and policy training steps can be applied to the G1 humanoid robot with locomanipulation capabilities, which demonstrates how to train the G1 robot to perform pick and place tasks with full-body locomotion and manipulation.\n\nThe PR was authored by peterd-NV and is part of Isaac Lab's broader locomanipulation support for the G1 humanoid robot."
+    ],
+    "durationSeconds": 7.46977376
+  },
+  "sourceToolAssistantUUID": "36e55fb7-acca-47b7-8c03-845145da8eba",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-10T11:53:00.292Z_
+
+<details><summary>↩ Tool result · `toolu_01UbrHU9bULvfHdQAGMq2Gmh`</summary>
+
+```text
+Web search results for query: "humanoid robot demonstration generation combinatorial data augmentation loco-manipulation 2025 2026"
+
+Links: [{"title":"GitHub - YanjieZe/awesome-humanoid-robot-learning: A Paper List for Humanoid Robot Learning. · GitHub","url":"https://github.com/YanjieZe/awesome-humanoid-robot-learning"},{"title":"Humanoid Locomotion and Manipulation: Current Progress and Challenges in Control, Planning, and Learning *co-corresponding authors","url":"https://arxiv.org/html/2501.02116v1"},{"title":"Humanoid Policy ∼ Human Policy","url":"https://arxiv.org/html/2503.13441v3"},{"title":"Advancements in humanoid robot dynamics and learning-based locomotion control methods","url":"https://www.oaepublish.com/articles/ir.2025.32"},{"title":"GitHub - BaiShuanghao/Awesome-Robotics-Manipulation: A comprehensive list of papers about Robot Manipulation, including papers, codes, and related websites. · GitHub","url":"https://github.com/BaiShuanghao/Awesome-Robotics-Manipulation"},{"title":"GitHub - YanjieZe/Paper-List: A paper list of my history reading. Robotics, Learning, Vision. · GitHub","url":"https://github.com/YanjieZe/Paper-List"},{"title":"Humanoid robots reliably manipulate different objects with 87% success using new framework","url":"https://techxplore.com/news/2025-11-humanoid-robots-reliably-success-framework.html"},{"title":"A SURVEY OF EMBODIED ARTIFICIAL INTELLIGENCE DATA ENGINEERING","url":"https://airs.cuhk.edu.cn/sites/default/files/2025-06/Survey_Arxiv.pdf"},{"title":"AI Humanoid Robots 2026: Technology, Builders & Future","url":"https://www.articsledge.com/post/ai-humanoid-robots"},{"title":"TYPE Mini Review PUBLISHED 01 December 2025 DOI 10.3389/frobt.2025.1678567","url":"https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1678567/pdf"}]
+
+I found several relevant resources about humanoid robot learning, demonstrations, and loco-manipulation. Here's a summary of the key findings:
+
+## Recent Research and Developments
+
+Recent papers from 2025-2026 include works on humanoid loco-manipulation such as FALCON (Force-Adaptive Humanoid Loco-Manipulation), FAME (Force-Adaptive RL for Expanding the Manipulation Envelope), ULC (Unified and Fine-Grained Controller for Humanoid Loco-Manipulation), and research on humanoid whole-body control with various learning approaches.
+
+## Data Generation and Demonstrations
+
+Recent research investigates egocentric human demonstrations as a scalable data source for robot learning, addressing the embodiment gap between humanoids and humans from both data and modeling perspectives. Additionally, work on synthetic demonstration generation (DemoGen) for data-efficient visuomotor policy learning has been developed.
+
+## Demonstration-Based Learning Challenges
+
+For humanoid robots trained using human demonstrations through VR tele-operation, the task action space is vast, leading to enormous datasets and slow training rates. In whole-body manipulation, the planning complexity suffers from the combinatorial explosion of contact modes.
+
+## Practical Deployment
+
+Recent frameworks like RGMP (recurrent geometric-prior multimodal policy) enable humanoid robots to manipulate diverse objects with 87% success through geometric-semantic reasoning and data-efficient learning.
+
+The search results indicate active research in combining demonstration generation, data augmentation techniques, and learning-based approaches for humanoid loco-manipulation tasks in 2025-2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "95a4b316-0c97-4e7d-9548-6e610a4bdafb",
+  "isSidechain": false,
+  "promptId": "22bf6fc8-9774-47f2-9286-3ee2ace81d66",
+  "type": "user",
+  "uuid": "4870b687-8d50-4f6d-ac3f-44ac25d02613",
+  "toolUseResult": {
+    "query": "humanoid robot demonstration generation combinatorial data augmentation loco-manipulation 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01LFTC11SJjXbz9Tyrz7FPfH",
+        "content": [
+          {
+            "title": "GitHub - YanjieZe/awesome-humanoid-robot-learning: A Paper List for Humanoid Robot Learning. · GitHub",
+            "url": "https://github.com/YanjieZe/awesome-humanoid-robot-learning"
+          },
+          {
+            "title": "Humanoid Locomotion and Manipulation: Current Progress and Challenges in Control, Planning, and Learning *co-corresponding authors",
+            "url": "https://arxiv.org/html/2501.02116v1"
+          },
+          {
+            "title": "Humanoid Policy ∼ Human Policy",
+            "url": "https://arxiv.org/html/2503.13441v3"
+          },
+          {
+            "title": "Advancements in humanoid robot dynamics and learning-based locomotion control methods",
+            "url": "https://www.oaepublish.com/articles/ir.2025.32"
+          },
+          {
+            "title": "GitHub - BaiShuanghao/Awesome-Robotics-Manipulation: A comprehensive list of papers about Robot Manipulation, including papers, codes, and related websites. · GitHub",
+            "url": "https://github.com/BaiShuanghao/Awesome-Robotics-Manipulation"
+          },
+          {
+            "title": "GitHub - YanjieZe/Paper-List: A paper list of my history reading. Robotics, Learning, Vision. · GitHub",
+            "url": "https://github.com/YanjieZe/Paper-List"
+          },
+          {
+            "title": "Humanoid robots reliably manipulate different objects with 87% success using new framework",
+            "url": "https://techxplore.com/news/2025-11-humanoid-robots-reliably-success-framework.html"
+          },
+          {
+            "title": "A SURVEY OF EMBODIED ARTIFICIAL INTELLIGENCE DATA ENGINEERING",
+            "url": "https://airs.cuhk.edu.cn/sites/default/files/2025-06/Survey_Arxiv.pdf"
+          },
+          {
+            "title": "AI Humanoid Robots 2026: Technology, Builders & Future",
+            "url": "https://www.articsledge.com/post/ai-humanoid-robots"
+          },
+          {
+            "title": "TYPE Mini Review PUBLISHED 01 December 2025 DOI 10.3389/frobt.2025.1678567",
+            "url": "https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1678567/pdf"
+          }
+        ]
+      },
+      "I found several relevant resources about humanoid robot learning, demonstrations, and loco-manipulation. Here's a summary of the key findings:\n\n## Recent Research and Developments\n\nRecent papers from 2025-2026 include works on humanoid loco-manipulation such as FALCON (Force-Adaptive Humanoid Loco-Manipulation), FAME (Force-Adaptive RL for Expanding the Manipulation Envelope), ULC (Unified and Fine-Grained Controller for Humanoid Loco-Manipulation), and research on humanoid whole-body control with various learning approaches.\n\n## Data Generation and Demonstrations\n\nRecent research investigates egocentric human demonstrations as a scalable data source for robot learning, addressing the embodiment gap between humanoids and humans from both data and modeling perspectives. Additionally, work on synthetic demonstration generation (DemoGen) for data-efficient visuomotor policy learning has been developed.\n\n## Demonstration-Based Learning Challenges\n\nFor humanoid robots trained using human demonstrations through VR tele-operation, the task action space is vast, leading to enormous datasets and slow training rates. In whole-body manipulation, the planning complexity suffers from the combinatorial explosion of contact modes.\n\n## Practical Deployment\n\nRecent frameworks like RGMP (recurrent geometric-prior multimodal policy) enable humanoid robots to manipulate diverse objects with 87% success through geometric-semantic reasoning and data-efficient learning.\n\nThe search results indicate active research in combining demonstration generation, data augmentation techniques, and learning-based approaches for humanoid loco-manipulation tasks in 2025-2026."
+    ],
+    "durationSeconds": 6.964541382000001
+  },
+  "sourceToolAssistantUUID": "95a4b316-0c97-4e7d-9548-6e610a4bdafb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "4870b687-8d50-4f6d-ac3f-44ac25d02613",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify LocoMimicGen against Isaac Lab PRs and compute constraints",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc"
+}
+```
+
+---
+
+### Assistant
+
+_source line 22 · 2026-05-10T11:53:05.207Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I've confirmed key facts:
+
+1. Isaac Lab PR #3992 does what the generator claims: it handles navigation by "repeating the last navigation subtask action when the robot is still navigating to a waypoint, and skipping forward when the goal is reached early" - NOT encoding navigation waypoints in SE(3) frames. This confirms the technical gap.
+
+2. DemoHLM does automatically synthesize hundreds to thousands of successful trajectories from a SINGLE demonstration, confirmed.
+
+Now let me search for more recent concurrent work, CoRL 2026 deadline, and verify OmniRetarget.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4870b687-8d50-4f6d-ac3f-44ac25d02613",
+  "isSidechain": false,
+  "requestId": "req_011CatqmoCtkDQbbZSt7j3QA",
+  "type": "assistant",
+  "uuid": "937536dd-8faf-4ddc-8317-25ba71074e8f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01FWqUTVHM2i933FdT3PBgrM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2884,
+      "cache_read_input_tokens": 27993,
+      "output_tokens": 333,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2884,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 333,
+          "cache_read_input_tokens": 27993,
+          "cache_creation_input_tokens": 2884,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2884
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-10T11:53:05.487Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Lj8tUaPZwDJFFfAGCHR2w9`</summary>
+
+```json
+{
+  "query": "OmniRetarget \"interaction-preserving\" humanoid loco-manipulation G1 arXiv 2509 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "937536dd-8faf-4ddc-8317-25ba71074e8f",
+  "isSidechain": false,
+  "requestId": "req_011CatqmoCtkDQbbZSt7j3QA",
+  "type": "assistant",
+  "uuid": "b5016264-0704-4431-8272-006970012e32",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01FWqUTVHM2i933FdT3PBgrM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2884,
+      "cache_read_input_tokens": 27993,
+      "output_tokens": 333,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2884,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 333,
+          "cache_read_input_tokens": 27993,
+          "cache_creation_input_tokens": 2884,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2884
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-10T11:53:05.959Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Uj3ww7aSyq6BZqwKVPVe4d`</summary>
+
+```json
+{
+  "query": "CoRL 2026 deadline submission Austin November"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b5016264-0704-4431-8272-006970012e32",
+  "isSidechain": false,
+  "requestId": "req_011CatqmoCtkDQbbZSt7j3QA",
+  "type": "assistant",
+  "uuid": "8b718794-fcda-4a31-b068-ebadca798334",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01FWqUTVHM2i933FdT3PBgrM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2884,
+      "cache_read_input_tokens": 27993,
+      "output_tokens": 333,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2884,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 333,
+          "cache_read_input_tokens": 27993,
+          "cache_creation_input_tokens": 2884,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2884
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-10T11:53:06.828Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Q7RwqgR1sWEtRQzmixym2q`</summary>
+
+```json
+{
+  "query": "MimicGen SE3 object-centric loco-manipulation humanoid data generation 2026 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8b718794-fcda-4a31-b068-ebadca798334",
+  "isSidechain": false,
+  "requestId": "req_011CatqmoCtkDQbbZSt7j3QA",
+  "type": "assistant",
+  "uuid": "5d365f7c-7215-420f-adcc-85d8c3d19bd6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01FWqUTVHM2i933FdT3PBgrM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2884,
+      "cache_read_input_tokens": 27993,
+      "output_tokens": 333,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2884,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 333,
+          "cache_read_input_tokens": 27993,
+          "cache_creation_input_tokens": 2884,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2884
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-10T11:53:10.725Z_
+
+<details><summary>↩ Tool result · `toolu_01Lj8tUaPZwDJFFfAGCHR2w9`</summary>
+
+```text
+Web search results for query: "OmniRetarget "interaction-preserving" humanoid loco-manipulation G1 arXiv 2509 2025"
+
+Links: [{"title":"[2509.26633] OmniRetarget: Interaction-Preserving Data Generation for Humanoid Whole-Body Loco-Manipulation and Scene Interaction","url":"https://arxiv.org/abs/2509.26633"},{"title":"OmniRetarget: Interaction-Preserving Data Generation for Humanoid Whole-Body Loco-Manipulation and Scene Interaction","url":"https://arxiv.org/html/2509.26633v2"},{"title":"[2509.26633v1] OmniRetarget: Interaction-Preserving Data Generation for Humanoid Whole-Body Loco-Manipulation and Scene Interaction","url":"https://arxiv.org/abs/2509.26633v1"},{"title":"OmniRetarget: Interaction-Preserving Data Generation for Humanoid","url":"https://arxiv.org/pdf/2509.26633"},{"title":"Paper page - OmniRetarget: Interaction-Preserving Data Generation for Humanoid Whole-Body Loco-Manipulation and Scene Interaction","url":"https://huggingface.co/papers/2509.26633"},{"title":"omniretarget/OmniRetarget_Dataset · Datasets at Hugging Face","url":"https://huggingface.co/datasets/omniretarget/OmniRetarget_Dataset"},{"title":"OmniRetarget: Interaction-Preserving Data Generation for Humanoid","url":"https://omniretarget.github.io/static/images/paper.pdf"},{"title":"Humanoid Manipulation Interface: Humanoid Whole-Body Manipulation from Robot-Free Demonstrations","url":"https://arxiv.org/html/2602.06643v2"},{"title":"OmniRetarget: Humanoid Data Generation","url":"https://www.emergentmind.com/papers/2509.26633"},{"title":"(PDF) OmniRetarget: Interaction-Preserving Data Generation for Humanoid Whole-Body Loco-Manipulation and Scene Interaction","url":"https://www.researchgate.net/publication/396049126_OmniRetarget_Interaction-Preserving_Data_Generation_for_Humanoid_Whole-Body_Loco-Manipulation_and_Scene_Interaction"}]
+
+I found the paper you're looking for! Here are the key details:
+
+## OmniRetarget: Interaction-Preserving Data Generation for Humanoid Whole-Body Loco-Manipulation and Scene Interaction
+
+**arXiv ID:** 2509.26633
+
+**Core Concept:** OmniRetarget is an interaction-preserving data generation engine based on an interaction mesh that explicitly models and preserves the crucial spatial and contact relationships between an agent, the terrain, and manipulated objects.
+
+**Key Technical Approach:** By minimizing the Laplacian deformation between the human and robot meshes while enforcing kinematic constraints, OmniRetarget generates kinematically feasible trajectories.
+
+**Capabilities & Results:** The method enables proprioceptive RL policies to successfully execute long-horizon (up to 30 seconds) parkour and loco-manipulation skills on a Unitree G1 humanoid, trained with only 5 reward terms and simple domain randomization shared by all tasks, without any learning curriculum.
+
+**Data Generation:** OmniRetarget was comprehensively evaluated by retargeting motions from OMOMO, LAFAN1, and in-house MoCap datasets, generating over 8-hour trajectories that achieve better kinematic constraint satisfaction and contact preservation than widely used baselines.
+
+The paper was authored by researchers from Amazon FAR, MIT, UC Berkeley, Stanford University, and CMU.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b5016264-0704-4431-8272-006970012e32",
+  "isSidechain": false,
+  "promptId": "22bf6fc8-9774-47f2-9286-3ee2ace81d66",
+  "type": "user",
+  "uuid": "e410904c-f3c5-47fc-9085-920ce31366ee",
+  "toolUseResult": {
+    "query": "OmniRetarget \"interaction-preserving\" humanoid loco-manipulation G1 arXiv 2509 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01YZNta73osS221QKmtnTen3",
+        "content": [
+          {
+            "title": "[2509.26633] OmniRetarget: Interaction-Preserving Data Generation for Humanoid Whole-Body Loco-Manipulation and Scene Interaction",
+            "url": "https://arxiv.org/abs/2509.26633"
+          },
+          {
+            "title": "OmniRetarget: Interaction-Preserving Data Generation for Humanoid Whole-Body Loco-Manipulation and Scene Interaction",
+            "url": "https://arxiv.org/html/2509.26633v2"
+          },
+          {
+            "title": "[2509.26633v1] OmniRetarget: Interaction-Preserving Data Generation for Humanoid Whole-Body Loco-Manipulation and Scene Interaction",
+            "url": "https://arxiv.org/abs/2509.26633v1"
+          },
+          {
+            "title": "OmniRetarget: Interaction-Preserving Data Generation for Humanoid",
+            "url": "https://arxiv.org/pdf/2509.26633"
+          },
+          {
+            "title": "Paper page - OmniRetarget: Interaction-Preserving Data Generation for Humanoid Whole-Body Loco-Manipulation and Scene Interaction",
+            "url": "https://huggingface.co/papers/2509.26633"
+          },
+          {
+            "title": "omniretarget/OmniRetarget_Dataset · Datasets at Hugging Face",
+            "url": "https://huggingface.co/datasets/omniretarget/OmniRetarget_Dataset"
+          },
+          {
+            "title": "OmniRetarget: Interaction-Preserving Data Generation for Humanoid",
+            "url": "https://omniretarget.github.io/static/images/paper.pdf"
+          },
+          {
+            "title": "Humanoid Manipulation Interface: Humanoid Whole-Body Manipulation from Robot-Free Demonstrations",
+            "url": "https://arxiv.org/html/2602.06643v2"
+          },
+          {
+            "title": "OmniRetarget: Humanoid Data Generation",
+            "url": "https://www.emergentmind.com/papers/2509.26633"
+          },
+          {
+            "title": "(PDF) OmniRetarget: Interaction-Preserving Data Generation for Humanoid Whole-Body Loco-Manipulation and Scene Interaction",
+            "url": "https://www.researchgate.net/publication/396049126_OmniRetarget_Interaction-Preserving_Data_Generation_for_Humanoid_Whole-Body_Loco-Manipulation_and_Scene_Interaction"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here are the key details:\n\n## OmniRetarget: Interaction-Preserving Data Generation for Humanoid Whole-Body Loco-Manipulation and Scene Interaction\n\n**arXiv ID:** 2509.26633\n\n**Core Concept:** OmniRetarget is an interaction-preserving data generation engine based on an interaction mesh that explicitly models and preserves the crucial spatial and contact relationships between an agent, the terrain, and manipulated objects.\n\n**Key Technical Approach:** By minimizing the Laplacian deformation between the human and robot meshes while enforcing kinematic constraints, OmniRetarget generates kinematically feasible trajectories.\n\n**Capabilities & Results:** The method enables proprioceptive RL policies to successfully execute long-horizon (up to 30 seconds) parkour and loco-manipulation skills on a Unitree G1 humanoid, trained with only 5 reward terms and simple domain randomization shared by all tasks, without any learning curriculum.\n\n**Data Generation:** OmniRetarget was comprehensively evaluated by retargeting motions from OMOMO, LAFAN1, and in-house MoCap datasets, generating over 8-hour trajectories that achieve better kinematic constraint satisfaction and contact preservation than widely used baselines.\n\nThe paper was authored by researchers from Amazon FAR, MIT, UC Berkeley, Stanford University, and CMU."
+    ],
+    "durationSeconds": 5.2338459980000005
+  },
+  "sourceToolAssistantUUID": "b5016264-0704-4431-8272-006970012e32",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-10T11:53:10.846Z_
+
+<details><summary>↩ Tool result · `toolu_01Uj3ww7aSyq6BZqwKVPVe4d`</summary>
+
+```text
+Web search results for query: "CoRL 2026 deadline submission Austin November"
+
+Links: [{"title":"Update CoRL 2026 conference details · huggingface/ai-deadlines at 0ba012a","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/0ba012abbc2f4e96e0072f99fd68649bfc69d9cf"},{"title":"CoRL 2026","url":"https://www.corl.org/"},{"title":"CoRL LaTeX Template | Robot Learning Conference Format | Underleaf","url":"https://www.underleaf.ai/templates/corl"},{"title":"CoRL 2026 - Call for Papers","url":"https://www.corl.org/contributions/call-for-papers"},{"title":"Conference on Robot Learning (@corl_conf) / Posts / X","url":"https://x.com/corl_conf"},{"title":"CoRL 2026 - Instruction for Authors","url":"https://www.corl.org/contributions/instruction-for-authors"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"CoRL — The Conference on Robot Learning | Austin 2026-11-10 | Tadqiq.uz","url":"https://tadqiq.uz/en/xalqaro-konferensiyalar/corl"},{"title":"Robot Learning Foundation","url":"https://www.robot-learning.org/"},{"title":"AI Deadlines – AI Conference Call For Paper Deadlines","url":"http://aideadlines.org/"}]
+
+Based on the search results, here's the information about CoRL 2026:
+
+## Conference Details
+
+CoRL 2026 will be held in Austin, Texas, US. More specifically, the conference dates are November 9-12, 2026 at JW Marriott Austin, 110 E 2nd St, Austin, TX 78701.
+
+## Submission Deadlines
+
+The abstract submission deadline is May 26, 2026 11:59 UTC and the paper submission deadline is May 29, 2026 11:59 UTC.
+
+## Submission Requirements
+
+Papers should be 8 pages for the main paper, with Acknowledgments, References, and Appendix (optional) not counting towards the page limit. Papers may be submitted through OpenReview.
+
+The deadlines are final, and no accommodations can be made for missing the abstract deadline or paper deadline.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8b718794-fcda-4a31-b068-ebadca798334",
+  "isSidechain": false,
+  "promptId": "22bf6fc8-9774-47f2-9286-3ee2ace81d66",
+  "type": "user",
+  "uuid": "e91b8e7b-a68e-44a9-8906-d0d1c64e5b9a",
+  "toolUseResult": {
+    "query": "CoRL 2026 deadline submission Austin November",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01PcDe8WVumAeUDUhfSWWWKq",
+        "content": [
+          {
+            "title": "Update CoRL 2026 conference details · huggingface/ai-deadlines at 0ba012a",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/0ba012abbc2f4e96e0072f99fd68649bfc69d9cf"
+          },
+          {
+            "title": "CoRL 2026",
+            "url": "https://www.corl.org/"
+          },
+          {
+            "title": "CoRL LaTeX Template | Robot Learning Conference Format | Underleaf",
+            "url": "https://www.underleaf.ai/templates/corl"
+          },
+          {
+            "title": "CoRL 2026 - Call for Papers",
+            "url": "https://www.corl.org/contributions/call-for-papers"
+          },
+          {
+            "title": "Conference on Robot Learning (@corl_conf) / Posts / X",
+            "url": "https://x.com/corl_conf"
+          },
+          {
+            "title": "CoRL 2026 - Instruction for Authors",
+            "url": "https://www.corl.org/contributions/instruction-for-authors"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "CoRL — The Conference on Robot Learning | Austin 2026-11-10 | Tadqiq.uz",
+            "url": "https://tadqiq.uz/en/xalqaro-konferensiyalar/corl"
+          },
+          {
+            "title": "Robot Learning Foundation",
+            "url": "https://www.robot-learning.org/"
+          },
+          {
+            "title": "AI Deadlines – AI Conference Call For Paper Deadlines",
+            "url": "http://aideadlines.org/"
+          }
+        ]
+      },
+      "Based on the search results, here's the information about CoRL 2026:\n\n## Conference Details\n\nCoRL 2026 will be held in Austin, Texas, US. More specifically, the conference dates are November 9-12, 2026 at JW Marriott Austin, 110 E 2nd St, Austin, TX 78701.\n\n## Submission Deadlines\n\nThe abstract submission deadline is May 26, 2026 11:59 UTC and the paper submission deadline is May 29, 2026 11:59 UTC.\n\n## Submission Requirements\n\nPapers should be 8 pages for the main paper, with Acknowledgments, References, and Appendix (optional) not counting towards the page limit. Papers may be submitted through OpenReview.\n\nThe deadlines are final, and no accommodations can be made for missing the abstract deadline or paper deadline."
+    ],
+    "durationSeconds": 4.883860295999999
+  },
+  "sourceToolAssistantUUID": "8b718794-fcda-4a31-b068-ebadca798334",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-10T11:53:13.520Z_
+
+<details><summary>↩ Tool result · `toolu_01Q7RwqgR1sWEtRQzmixym2q`</summary>
+
+```text
+Web search results for query: "MimicGen SE3 object-centric loco-manipulation humanoid data generation 2026 arxiv"
+
+Links: [{"title":"[2310.17596] MimicGen: A Data Generation System for Scalable Robot Learning using Human Demonstrations","url":"https://arxiv.org/abs/2310.17596"},{"title":"MimicGen: Scalable Data Generation for Robotics","url":"https://www.emergentmind.com/topics/mimicgen"},{"title":"SoftMimicGen: A Data Generation System for Scalable Robot Learning in Deformable Object Manipulation","url":"https://arxiv.org/html/2603.25725v1"},{"title":"[2603.25725v1] SoftMimicGen: A Data Generation System for Scalable Robot Learning in Deformable Object Manipulation","url":"https://arxiv.org/abs/2603.25725v1"},{"title":"[2603.25725] SoftMimicGen: A Data Generation System for Scalable Robot Learning in Deformable Object Manipulation","url":"https://arxiv.org/abs/2603.25725"},{"title":"DexMimicGen: Automated Data Generation for Bimanual Dexterous Manipulation via Imitation Learning","url":"https://arxiv.org/html/2410.24185v1"},{"title":"OmniRetarget: Interaction-Preserving Data Generation for Humanoid Whole-Body Loco-Manipulation and Scene Interaction","url":"https://arxiv.org/html/2509.26633v2"},{"title":"MimicGen","url":"https://mimicgen.github.io/"},{"title":"[2509.26633] OmniRetarget: Interaction-Preserving Data Generation for Humanoid Whole-Body Loco-Manipulation and Scene Interaction","url":"https://arxiv.org/abs/2509.26633"},{"title":"DemoHLM: From One Demonstration to Generalizable Humanoid Loco-Manipulation","url":"https://arxiv.org/html/2510.11258v1"}]
+
+Based on the search results, I found several relevant papers related to your query. Here's what I found:
+
+## MimicGen SE3 and Object-Centric Data Generation
+
+MimicGen is a data generation system that uses SE(3) transformations to adapt seed human demonstrations for diverse, high-precision robotic manipulation tasks. The system automatically synthesizes large-scale, rich datasets from only a small number of human demonstrations by adapting them to new contexts.
+
+## Humanoid Loco-Manipulation Extensions
+
+For humanoid loco-manipulation specifically, I found two recent 2026 arxiv papers:
+
+1. **SoftMimicGen (March 2026)**: This system introduces high-fidelity simulation environments that encompasses deformable object manipulation behaviors across four robot embodiments: a single-arm manipulator, bimanual arms, a humanoid, and a surgical robot.
+
+2. **DemoHLM (October 2025)**: DemoHLM is a framework for humanoid loco-manipulation that enables scalable data generation and policy learning across diverse tasks, requiring only a single demonstration and automatically synthesizing hundreds to thousands of successful trajectories that complete the same task in varied environments.
+
+Both systems build upon the original MimicGen framework by extending its SE(3) transformation and object-centric approach to handle more complex robotic embodiments including humanoids performing locomotion and manipulation tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5d365f7c-7215-420f-adcc-85d8c3d19bd6",
+  "isSidechain": false,
+  "promptId": "22bf6fc8-9774-47f2-9286-3ee2ace81d66",
+  "type": "user",
+  "uuid": "e2c63288-ad4f-47bb-a507-a49b793b3626",
+  "toolUseResult": {
+    "query": "MimicGen SE3 object-centric loco-manipulation humanoid data generation 2026 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01S38ziv5vFgrEbSv3b88AXS",
+        "content": [
+          {
+            "title": "[2310.17596] MimicGen: A Data Generation System for Scalable Robot Learning using Human Demonstrations",
+            "url": "https://arxiv.org/abs/2310.17596"
+          },
+          {
+            "title": "MimicGen: Scalable Data Generation for Robotics",
+            "url": "https://www.emergentmind.com/topics/mimicgen"
+          },
+          {
+            "title": "SoftMimicGen: A Data Generation System for Scalable Robot Learning in Deformable Object Manipulation",
+            "url": "https://arxiv.org/html/2603.25725v1"
+          },
+          {
+            "title": "[2603.25725v1] SoftMimicGen: A Data Generation System for Scalable Robot Learning in Deformable Object Manipulation",
+            "url": "https://arxiv.org/abs/2603.25725v1"
+          },
+          {
+            "title": "[2603.25725] SoftMimicGen: A Data Generation System for Scalable Robot Learning in Deformable Object Manipulation",
+            "url": "https://arxiv.org/abs/2603.25725"
+          },
+          {
+            "title": "DexMimicGen: Automated Data Generation for Bimanual Dexterous Manipulation via Imitation Learning",
+            "url": "https://arxiv.org/html/2410.24185v1"
+          },
+          {
+            "title": "OmniRetarget: Interaction-Preserving Data Generation for Humanoid Whole-Body Loco-Manipulation and Scene Interaction",
+            "url": "https://arxiv.org/html/2509.26633v2"
+          },
+          {
+            "title": "MimicGen",
+            "url": "https://mimicgen.github.io/"
+          },
+          {
+            "title": "[2509.26633] OmniRetarget: Interaction-Preserving Data Generation for Humanoid Whole-Body Loco-Manipulation and Scene Interaction",
+            "url": "https://arxiv.org/abs/2509.26633"
+          },
+          {
+            "title": "DemoHLM: From One Demonstration to Generalizable Humanoid Loco-Manipulation",
+            "url": "https://arxiv.org/html/2510.11258v1"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant papers related to your query. Here's what I found:\n\n## MimicGen SE3 and Object-Centric Data Generation\n\nMimicGen is a data generation system that uses SE(3) transformations to adapt seed human demonstrations for diverse, high-precision robotic manipulation tasks. The system automatically synthesizes large-scale, rich datasets from only a small number of human demonstrations by adapting them to new contexts.\n\n## Humanoid Loco-Manipulation Extensions\n\nFor humanoid loco-manipulation specifically, I found two recent 2026 arxiv papers:\n\n1. **SoftMimicGen (March 2026)**: This system introduces high-fidelity simulation environments that encompasses deformable object manipulation behaviors across four robot embodiments: a single-arm manipulator, bimanual arms, a humanoid, and a surgical robot.\n\n2. **DemoHLM (October 2025)**: DemoHLM is a framework for humanoid loco-manipulation that enables scalable data generation and policy learning across diverse tasks, requiring only a single demonstration and automatically synthesizing hundreds to thousands of successful trajectories that complete the same task in varied environments.\n\nBoth systems build upon the original MimicGen framework by extending its SE(3) transformation and object-centric approach to handle more complex robotic embodiments including humanoids performing locomotion and manipulation tasks."
+    ],
+    "durationSeconds": 6.688667299999997
+  },
+  "sourceToolAssistantUUID": "5d365f7c-7215-420f-adcc-85d8c3d19bd6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29 · 2026-05-10T11:53:23.575Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good findings so far:
+
+1. CoRL 2026 deadlines are confirmed: abstract May 26 UTC, paper May 29 UTC - matches the generator's claims.
+
+2. OmniRetarget is confirmed at arXiv:2509.26633 - it targets locomotion-heavy tasks (parkour, loco-manipulation), is based on retargeting MoCap sequences, and NOT combinatorial segment composition.
+
+3. DemoHLM confirmed to use single demonstration and generates hundreds to thousands of trajectories - but the generator claims this limits it to spatial interpolation within one demo's envelope.
+
+4. 
+
+SoftMimicGen caught my attention as a March 2026 paper focused on humanoid control for deformable objects rather than locomotion tasks. I need to dig deeper into several technical claims: whether the Isaac Lab Mimic PR actually avoids SE(3) frame encoding for navigation, what recent work exists on reachability-constrained base-pose optimization, whether DemoHLM supports multi-demo composition, and what SoftMimicGen's actual approach entails.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e2c63288-ad4f-47bb-a507-a49b793b3626",
+  "isSidechain": false,
+  "requestId": "req_011CatqnmhdfE3a2AV7fxz3Q",
+  "type": "assistant",
+  "uuid": "97be8123-1ed5-420e-aac8-ade6e7869e7d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01C46ajCiAj7aezp6B6jtdFe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2824,
+      "cache_read_input_tokens": 30877,
+      "output_tokens": 484,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2824,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 484,
+          "cache_read_input_tokens": 30877,
+          "cache_creation_input_tokens": 2824,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2824
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-10T11:53:23.596Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Sv8S8PyfaDZKaod8hcPyok`</summary>
+
+```json
+{
+  "query": "SoftMimicGen humanoid loco-manipulation deformable data generation 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "97be8123-1ed5-420e-aac8-ade6e7869e7d",
+  "isSidechain": false,
+  "requestId": "req_011CatqnmhdfE3a2AV7fxz3Q",
+  "type": "assistant",
+  "uuid": "32c7b966-36be-4f19-b57a-abd5a21d7495",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01C46ajCiAj7aezp6B6jtdFe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2824,
+      "cache_read_input_tokens": 30877,
+      "output_tokens": 484,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2824,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 484,
+          "cache_read_input_tokens": 30877,
+          "cache_creation_input_tokens": 2824,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2824
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-10T11:53:23.729Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Vs2bPSP3gMUHy8GaQuASgw`</summary>
+
+```json
+{
+  "query": "humanoid reachability map base pose optimization manipulation workspace G1 H1 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "32c7b966-36be-4f19-b57a-abd5a21d7495",
+  "isSidechain": false,
+  "requestId": "req_011CatqnmhdfE3a2AV7fxz3Q",
+  "type": "assistant",
+  "uuid": "393cf92d-aa3e-4a83-93a7-e023355f992b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01C46ajCiAj7aezp6B6jtdFe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2824,
+      "cache_read_input_tokens": 30877,
+      "output_tokens": 484,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2824,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 484,
+          "cache_read_input_tokens": 30877,
+          "cache_creation_input_tokens": 2824,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2824
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-10T11:53:23.733Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011NA9jLgsZjEBf2Ysg5FzSf`</summary>
+
+```json
+{
+  "query": "\"loco-manipulation\" \"data generation\" \"room\" OR \"combinatorial\" OR \"multi-demo\" humanoid 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "393cf92d-aa3e-4a83-93a7-e023355f992b",
+  "isSidechain": false,
+  "requestId": "req_011CatqnmhdfE3a2AV7fxz3Q",
+  "type": "assistant",
+  "uuid": "8ed5b2eb-87f4-4670-b02f-aa7091e1e95c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01C46ajCiAj7aezp6B6jtdFe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2824,
+      "cache_read_input_tokens": 30877,
+      "output_tokens": 484,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2824,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 484,
+          "cache_read_input_tokens": 30877,
+          "cache_creation_input_tokens": 2824,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2824
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 33_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "8ed5b2eb-87f4-4670-b02f-aa7091e1e95c",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 34_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify LocoMimicGen against Isaac Lab PRs and compute constraints",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc"
+}
+```
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-10T11:53:31.318Z_
+
+<details><summary>↩ Tool result · `toolu_011NA9jLgsZjEBf2Ysg5FzSf`</summary>
+
+```text
+Web search results for query: ""loco-manipulation" "data generation" "room" OR "combinatorial" OR "multi-demo" humanoid 2025 2026"
+
+Links: [{"title":"GitHub - YanjieZe/awesome-humanoid-robot-learning: A Paper List for Humanoid Robot Learning. · GitHub","url":"https://github.com/YanjieZe/awesome-humanoid-robot-learning"},{"title":"GitHub - OpenDriveLab/WholebodyVLA: [ICLR 2026] Towards Unified Latent VLA for Whole-body Loco-manipulation Control · GitHub","url":"https://github.com/OpenDriveLab/WholebodyVLA"},{"title":"DemoHLM: From One Demonstration to Generalizable Humanoid Loco-Manipulation","url":"https://arxiv.org/html/2510.11258v1"},{"title":"GitHub - visualmimic/VisualMimic: [arXiv 2025] VisualMimic: Visual Humanoid Loco-Manipulation via Motion Tracking and Generation · GitHub","url":"https://github.com/visualmimic/VisualMimic"},{"title":"EgoHumanoid: Unlocking In-the-Wild Loco-Manipulation with Robot-Free Egocentric Demonstration","url":"https://arxiv.org/html/2602.10106v1"},{"title":"[2511.15200] VIRAL: Visual Sim-to-Real at Scale for Humanoid Loco-Manipulation","url":"https://arxiv.org/abs/2511.15200"},{"title":"GitHub - smallfryy/corl-2025-papers: ✨ 200+ robotics papers from CoRL 2025, with TLDRs, project pages, code, and more","url":"https://github.com/smallfryy/corl-2025-papers"},{"title":"Humanoid Locomotion and Manipulation: Current Progress and Challenges in Control, Planning, and Learning *co-corresponding authors","url":"https://arxiv.org/html/2501.02116v2"},{"title":"[2512.01061] Opening the Sim-to-Real Door for Humanoid Pixel-to-Action Policy Transfer","url":"https://arxiv.org/abs/2512.01061"},{"title":"Adversarial Locomotion and Motion Imitation for Humanoid Policy Learning | OpenReview","url":"https://openreview.net/forum?id=hVoIz6xD9Q"}]
+
+Based on the web search results, here's what I found related to your query about loco-manipulation, data generation, and humanoid robotics from 2025-2026:
+
+## Key Research Areas
+
+Recent work in humanoid loco-manipulation includes papers like PILOT (Perceptive Integrated Low-level Controller for Loco-manipulation), FALCON (Force-Adaptive Humanoid Loco-Manipulation), and FAME (Force-Adaptive RL for Expanding the Manipulation Envelope), published between 2025-2026.
+
+## Data Generation for Humanoid Learning
+
+Recent progress in GPU-accelerated, photorealistic simulation has opened a scalable data-generation path for robot learning, where massive physics and visual randomization allow policies to generalize beyond curated environments. Researchers have developed teacher-student-bootstrap learning frameworks for vision-based humanoid loco-manipulation.
+
+## Multi-Demonstration Learning
+
+EgoHumanoid presents a framework to co-train a vision-language-action policy using abundant egocentric human demonstrations together with a limited amount of robot data, enabling humanoids to perform loco-manipulation across diverse real-world environments.
+
+## Room and Combinatorial Aspects
+
+PILOT addresses loco-manipulation over unstructured scenes and collision-free humanoid traversal in cluttered indoor scenes. A key challenge in whole-body humanoid manipulation lies in the high computational burden and combinatorial complexity of identifying potential contact mode sequences.
+
+The search results show active research in generating diverse training data through simulation, learning from multiple demonstrations, and addressing the combinatorial challenges of humanoid control in varied environments.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8ed5b2eb-87f4-4670-b02f-aa7091e1e95c",
+  "isSidechain": false,
+  "promptId": "22bf6fc8-9774-47f2-9286-3ee2ace81d66",
+  "type": "user",
+  "uuid": "0bcc3162-74d6-4bb2-a13e-8a5449b14dba",
+  "toolUseResult": {
+    "query": "\"loco-manipulation\" \"data generation\" \"room\" OR \"combinatorial\" OR \"multi-demo\" humanoid 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01EaEWQjoQfkTGP14kR8Xwv1",
+        "content": [
+          {
+            "title": "GitHub - YanjieZe/awesome-humanoid-robot-learning: A Paper List for Humanoid Robot Learning. · GitHub",
+            "url": "https://github.com/YanjieZe/awesome-humanoid-robot-learning"
+          },
+          {
+            "title": "GitHub - OpenDriveLab/WholebodyVLA: [ICLR 2026] Towards Unified Latent VLA for Whole-body Loco-manipulation Control · GitHub",
+            "url": "https://github.com/OpenDriveLab/WholebodyVLA"
+          },
+          {
+            "title": "DemoHLM: From One Demonstration to Generalizable Humanoid Loco-Manipulation",
+            "url": "https://arxiv.org/html/2510.11258v1"
+          },
+          {
+            "title": "GitHub - visualmimic/VisualMimic: [arXiv 2025] VisualMimic: Visual Humanoid Loco-Manipulation via Motion Tracking and Generation · GitHub",
+            "url": "https://github.com/visualmimic/VisualMimic"
+          },
+          {
+            "title": "EgoHumanoid: Unlocking In-the-Wild Loco-Manipulation with Robot-Free Egocentric Demonstration",
+            "url": "https://arxiv.org/html/2602.10106v1"
+          },
+          {
+            "title": "[2511.15200] VIRAL: Visual Sim-to-Real at Scale for Humanoid Loco-Manipulation",
+            "url": "https://arxiv.org/abs/2511.15200"
+          },
+          {
+            "title": "GitHub - smallfryy/corl-2025-papers: ✨ 200+ robotics papers from CoRL 2025, with TLDRs, project pages, code, and more",
+            "url": "https://github.com/smallfryy/corl-2025-papers"
+          },
+          {
+            "title": "Humanoid Locomotion and Manipulation: Current Progress and Challenges in Control, Planning, and Learning *co-corresponding authors",
+            "url": "https://arxiv.org/html/2501.02116v2"
+          },
+          {
+            "title": "[2512.01061] Opening the Sim-to-Real Door for Humanoid Pixel-to-Action Policy Transfer",
+            "url": "https://arxiv.org/abs/2512.01061"
+          },
+          {
+            "title": "Adversarial Locomotion and Motion Imitation for Humanoid Policy Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=hVoIz6xD9Q"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found related to your query about loco-manipulation, data generation, and humanoid robotics from 2025-2026:\n\n## Key Research Areas\n\nRecent work in humanoid loco-manipulation includes papers like PILOT (Perceptive Integrated Low-level Controller for Loco-manipulation), FALCON (Force-Adaptive Humanoid Loco-Manipulation), and FAME (Force-Adaptive RL for Expanding the Manipulation Envelope), published between 2025-2026.\n\n## Data Generation for Humanoid Learning\n\nRecent progress in GPU-accelerated, photorealistic simulation has opened a scalable data-generation path for robot learning, where massive physics and visual randomization allow policies to generalize beyond curated environments. Researchers have developed teacher-student-bootstrap learning frameworks for vision-based humanoid loco-manipulation.\n\n## Multi-Demonstration Learning\n\nEgoHumanoid presents a framework to co-train a vision-language-action policy using abundant egocentric human demonstrations together with a limited amount of robot data, enabling humanoids to perform loco-manipulation across diverse real-world environments.\n\n## Room and Combinatorial Aspects\n\nPILOT addresses loco-manipulation over unstructured scenes and collision-free humanoid traversal in cluttered indoor scenes. A key challenge in whole-body humanoid manipulation lies in the high computational burden and combinatorial complexity of identifying potential contact mode sequences.\n\nThe search results show active research in generating diverse training data through simulation, learning from multiple demonstrations, and addressing the combinatorial challenges of humanoid control in varied environments."
+    ],
+    "durationSeconds": 7.582748078000004
+  },
+  "sourceToolAssistantUUID": "8ed5b2eb-87f4-4670-b02f-aa7091e1e95c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-10T11:53:32.424Z_
+
+<details><summary>↩ Tool result · `toolu_01Sv8S8PyfaDZKaod8hcPyok`</summary>
+
+```text
+Web search results for query: "SoftMimicGen humanoid loco-manipulation deformable data generation 2026"
+
+Links: [{"title":"SoftMimicGen: A Data Generation System for Scalable Robot Learning in Deformable Object Manipulation","url":"https://arxiv.org/html/2603.25725v1"},{"title":"[2603.25725] SoftMimicGen: A Data Generation System for Scalable Robot Learning in Deformable Object Manipulation","url":"https://arxiv.org/abs/2603.25725"},{"title":"[2603.25725v1] SoftMimicGen: A Data Generation System for Scalable Robot Learning in Deformable Object Manipulation","url":"https://arxiv.org/abs/2603.25725v1"},{"title":"SoftMimicGen","url":"https://softmimicgen.github.io/"},{"title":"MimicGen: A Data Generation System for Scalable Robot Learning using Human Demonstrations | OpenReview","url":"https://openreview.net/forum?id=dk-2R1f_LR"},{"title":"MimicGen","url":"https://mimicgen.github.io/"},{"title":"VisualMimic Visual Humanoid Loco-Manipulation via Motion Tracking and Generation","url":"https://arxiv.org/html/2509.20322v1"},{"title":"Zhenjia Xu's research works | NVIDIA and other places","url":"https://www.researchgate.net/scientific-contributions/Zhenjia-Xu-2204621322"},{"title":"GitHub - YanjieZe/awesome-humanoid-robot-learning: A Paper List for Humanoid Robot Learning. · GitHub","url":"https://github.com/YanjieZe/awesome-humanoid-robot-learning"},{"title":"OmniRetarget: Interaction-Preserving Data Generation for Humanoid Whole-Body Loco-Manipulation and Scene Interaction","url":"https://arxiv.org/html/2509.26633v2"}]
+
+Based on the search results, here's what I found about SoftMimicGen:
+
+## Overview
+
+SoftMimicGen is an automated data generation pipeline for deformable object manipulation tasks. It includes a suite of high-fidelity simulation environments that encompasses a range of deformable objects (stuffed animal, rope, tissue, towel) and manipulation behaviors (high-precision threading, dynamic whipping, folding, pick-and-place) across four robot embodiments (Franka and YAM robot arms, humanoid, surgical robot).
+
+## Key Innovation
+
+SoftMimicGen leverages non-rigid registration techniques to adaptively transform source demonstrations while accounting for the changed state of deformable objects, resulting in a more capable demonstration generation mechanism that can be applied to deformable and rigid object tasks alike.
+
+## Human Demonstration Collection
+
+For the GR1 humanoid robot, the system collects absolute wrist poses and finger joint positions. The researchers collect one to three source human demonstrations per task and use SoftMimicGen to generate 1,000 demonstrations per task, sampling from a broader initial state distribution.
+
+## Results
+
+SoftMimicGen improves policy performance relative to training only on source demonstrations, with policies trained on SoftMimicGen-generated data consistently outperforming those trained solely on human-collected demonstrations.
+
+The paper was published on arXiv in March 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "32c7b966-36be-4f19-b57a-abd5a21d7495",
+  "isSidechain": false,
+  "promptId": "22bf6fc8-9774-47f2-9286-3ee2ace81d66",
+  "type": "user",
+  "uuid": "4ae65a46-d3b2-4e1a-b6dc-667385653529",
+  "toolUseResult": {
+    "query": "SoftMimicGen humanoid loco-manipulation deformable data generation 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013uAD6An512DVn1ZkQvbfTA",
+        "content": [
+          {
+            "title": "SoftMimicGen: A Data Generation System for Scalable Robot Learning in Deformable Object Manipulation",
+            "url": "https://arxiv.org/html/2603.25725v1"
+          },
+          {
+            "title": "[2603.25725] SoftMimicGen: A Data Generation System for Scalable Robot Learning in Deformable Object Manipulation",
+            "url": "https://arxiv.org/abs/2603.25725"
+          },
+          {
+            "title": "[2603.25725v1] SoftMimicGen: A Data Generation System for Scalable Robot Learning in Deformable Object Manipulation",
+            "url": "https://arxiv.org/abs/2603.25725v1"
+          },
+          {
+            "title": "SoftMimicGen",
+            "url": "https://softmimicgen.github.io/"
+          },
+          {
+            "title": "MimicGen: A Data Generation System for Scalable Robot Learning using Human Demonstrations | OpenReview",
+            "url": "https://openreview.net/forum?id=dk-2R1f_LR"
+          },
+          {
+            "title": "MimicGen",
+            "url": "https://mimicgen.github.io/"
+          },
+          {
+            "title": "VisualMimic Visual Humanoid Loco-Manipulation via Motion Tracking and Generation",
+            "url": "https://arxiv.org/html/2509.20322v1"
+          },
+          {
+            "title": "Zhenjia Xu's research works | NVIDIA and other places",
+            "url": "https://www.researchgate.net/scientific-contributions/Zhenjia-Xu-2204621322"
+          },
+          {
+            "title": "GitHub - YanjieZe/awesome-humanoid-robot-learning: A Paper List for Humanoid Robot Learning. · GitHub",
+            "url": "https://github.com/YanjieZe/awesome-humanoid-robot-learning"
+          },
+          {
+            "title": "OmniRetarget: Interaction-Preserving Data Generation for Humanoid Whole-Body Loco-Manipulation and Scene Interaction",
+            "url": "https://arxiv.org/html/2509.26633v2"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about SoftMimicGen:\n\n## Overview\n\nSoftMimicGen is an automated data generation pipeline for deformable object manipulation tasks. It includes a suite of high-fidelity simulation environments that encompasses a range of deformable objects (stuffed animal, rope, tissue, towel) and manipulation behaviors (high-precision threading, dynamic whipping, folding, pick-and-place) across four robot embodiments (Franka and YAM robot arms, humanoid, surgical robot).\n\n## Key Innovation\n\nSoftMimicGen leverages non-rigid registration techniques to adaptively transform source demonstrations while accounting for the changed state of deformable objects, resulting in a more capable demonstration generation mechanism that can be applied to deformable and rigid object tasks alike.\n\n## Human Demonstration Collection\n\nFor the GR1 humanoid robot, the system collects absolute wrist poses and finger joint positions. The researchers collect one to three source human demonstrations per task and use SoftMimicGen to generate 1,000 demonstrations per task, sampling from a broader initial state distribution.\n\n## Results\n\nSoftMimicGen improves policy performance relative to training only on source demonstrations, with policies trained on SoftMimicGen-generated data consistently outperforming those trained solely on human-collected demonstrations.\n\nThe paper was published on arXiv in March 2026."
+    ],
+    "durationSeconds": 8.824816590000003
+  },
+  "sourceToolAssistantUUID": "32c7b966-36be-4f19-b57a-abd5a21d7495",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-10T11:53:32.773Z_
+
+<details><summary>↩ Tool result · `toolu_01Vs2bPSP3gMUHy8GaQuASgw`</summary>
+
+```text
+Web search results for query: "humanoid reachability map base pose optimization manipulation workspace G1 H1 2025 2026"
+
+Links: [{"title":"(PDF) Robot placement based on reachability inversion","url":"https://www.researchgate.net/publication/261415904_Robot_placement_based_on_reachability_inversion"},{"title":"Efficient SE(3) Reachability Map Generation via Interplanar Integration of Intra-planar Convolutions | Request PDF","url":"https://www.researchgate.net/publication/355429152_Efficient_SE3_Reachability_Map_Generation_via_Interplanar_Integration_of_Intra-planar_Convolutions"},{"title":"[PDF] Robot placement based on reachability inversion | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Robot-placement-based-on-reachability-inversion-Vahrenkamp-Asfour/bcc2e4700bc0ab4df0144167223f285c17892b22"},{"title":"Modeling the Reachability Space of Robotic Manipulators through Ellipsoid Equations | Journal of Intelligent & Robotic Systems | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s10846-025-02294-5"},{"title":"Design of Fruit Harvesting Robot System Based on a Reachability and Inverse Reachability Map","url":"https://www.mdpi.com/2624-7402/7/12/417"},{"title":"[PDF] Reuleaux: Robot Base Placement by Reachability Analysis | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Reuleaux:-Robot-Base-Placement-by-Reachability-Makhal-Goins/3e710e9a58c7da0eddca063ce5f517b30199b4a6"},{"title":"BaSeNet: A Learning-based Mobile Manipulator Base Pose Sequence Planning for Pickup Tasks | Request PDF","url":"https://www.researchgate.net/publication/381404683_BaSeNet_A_Learning-based_Mobile_Manipulator_Base_Pose_Sequence_Planning_for_Pickup_Tasks"},{"title":"BASENET: A Learning-based Mobile Manipulator Base Pose Sequence","url":"https://arxiv.org/pdf/2406.08653"},{"title":"Innovative Humanoid Robots in 2025–2026 - Reality or Hype?","url":"https://www.winssolutions.org/humanoid-robots-2025-2026-reality-hype/"},{"title":"(PDF) iDRM: Humanoid Motion Planning with Real--Time End--Pose Selection in Complex Environments","url":"https://www.researchgate.net/publication/305638230_iDRM_Humanoid_Motion_Planning_with_Real--Time_End--Pose_Selection_in_Complex_Environments"}]
+
+The web search has returned results related to your query about humanoid reachability maps and base pose optimization. Here's what I found:
+
+## Key Research Areas
+
+**Reachability Map Fundamentals:**
+Reachability maps (RMs) quantitatively describe a robot manipulator's workspace by discretizing it into voxel cells and evaluating each pose's kinematic feasibility.
+
+**Base Pose Optimization:**
+Mobile humanoid robots have the capability of accomplishing complex tasks in human dominated environments. In order to execute a task with its arm, a robot needs to place its base reasonably first. By combining an RM and IRM, it becomes possible to determine optimal base positions for multi-target harvesting tasks and plan repositioning when targets are outside the current workspace.
+
+**Inverse Reachability Maps (IRM):**
+The inverse reachability map (IRM) inverts the relationship by describing the possible base poses from which a given end-effector pose is reachable.
+
+**Differentiable Reachability Maps:**
+Differentiable reachability maps have been introduced to reduce computational cost of humanoid motion generation. A key feature of this representation is that it is continuous and differentiable with respect to task-space coordinates, enabling its direct use as constraints in continuous optimization for humanoid motion planning.
+
+**Recent 2025 Research:**
+A recent paper on "Modeling the Reachability Space of Robotic Manipulators through Ellipsoid Equations" was published in the Journal of Intelligent & Robotic Systems in 2025.
+
+**Humanoid Platforms:**
+Regarding the specific models G1 and H1, Unitree presents H1 (and its successor variants) as high-performance humanoids capable of human-like running, jumping, balancing, and navigating complex terrain, aimed at research and future industrial use. However, there is very little third-party footage of H1/H2 doing sustained manipulation work such as bin picking, tool use, or assembly under realistic constraints.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "393cf92d-aa3e-4a83-93a7-e023355f992b",
+  "isSidechain": false,
+  "promptId": "22bf6fc8-9774-47f2-9286-3ee2ace81d66",
+  "type": "user",
+  "uuid": "c0e7ae25-f727-4d18-8580-2bc824bcd8a6",
+  "toolUseResult": {
+    "query": "humanoid reachability map base pose optimization manipulation workspace G1 H1 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01LDdT9JfVhb26Dy9FWceuVn",
+        "content": [
+          {
+            "title": "(PDF) Robot placement based on reachability inversion",
+            "url": "https://www.researchgate.net/publication/261415904_Robot_placement_based_on_reachability_inversion"
+          },
+          {
+            "title": "Efficient SE(3) Reachability Map Generation via Interplanar Integration of Intra-planar Convolutions | Request PDF",
+            "url": "https://www.researchgate.net/publication/355429152_Efficient_SE3_Reachability_Map_Generation_via_Interplanar_Integration_of_Intra-planar_Convolutions"
+          },
+          {
+            "title": "[PDF] Robot placement based on reachability inversion | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Robot-placement-based-on-reachability-inversion-Vahrenkamp-Asfour/bcc2e4700bc0ab4df0144167223f285c17892b22"
+          },
+          {
+            "title": "Modeling the Reachability Space of Robotic Manipulators through Ellipsoid Equations | Journal of Intelligent & Robotic Systems | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s10846-025-02294-5"
+          },
+          {
+            "title": "Design of Fruit Harvesting Robot System Based on a Reachability and Inverse Reachability Map",
+            "url": "https://www.mdpi.com/2624-7402/7/12/417"
+          },
+          {
+            "title": "[PDF] Reuleaux: Robot Base Placement by Reachability Analysis | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Reuleaux:-Robot-Base-Placement-by-Reachability-Makhal-Goins/3e710e9a58c7da0eddca063ce5f517b30199b4a6"
+          },
+          {
+            "title": "BaSeNet: A Learning-based Mobile Manipulator Base Pose Sequence Planning for Pickup Tasks | Request PDF",
+            "url": "https://www.researchgate.net/publication/381404683_BaSeNet_A_Learning-based_Mobile_Manipulator_Base_Pose_Sequence_Planning_for_Pickup_Tasks"
+          },
+          {
+            "title": "BASENET: A Learning-based Mobile Manipulator Base Pose Sequence",
+            "url": "https://arxiv.org/pdf/2406.08653"
+          },
+          {
+            "title": "Innovative Humanoid Robots in 2025–2026 - Reality or Hype?",
+            "url": "https://www.winssolutions.org/humanoid-robots-2025-2026-reality-hype/"
+          },
+          {
+            "title": "(PDF) iDRM: Humanoid Motion Planning with Real--Time End--Pose Selection in Complex Environments",
+            "url": "https://www.researchgate.net/publication/305638230_iDRM_Humanoid_Motion_Planning_with_Real--Time_End--Pose_Selection_in_Complex_Environments"
+          }
+        ]
+      },
+      "The web search has returned results related to your query about humanoid reachability maps and base pose optimization. Here's what I found:\n\n## Key Research Areas\n\n**Reachability Map Fundamentals:**\nReachability maps (RMs) quantitatively describe a robot manipulator's workspace by discretizing it into voxel cells and evaluating each pose's kinematic feasibility.\n\n**Base Pose Optimization:**\nMobile humanoid robots have the capability of accomplishing complex tasks in human dominated environments. In order to execute a task with its arm, a robot needs to place its base reasonably first. By combining an RM and IRM, it becomes possible to determine optimal base positions for multi-target harvesting tasks and plan repositioning when targets are outside the current workspace.\n\n**Inverse Reachability Maps (IRM):**\nThe inverse reachability map (IRM) inverts the relationship by describing the possible base poses from which a given end-effector pose is reachable.\n\n**Differentiable Reachability Maps:**\nDifferentiable reachability maps have been introduced to reduce computational cost of humanoid motion generation. A key feature of this representation is that it is continuous and differentiable with respect to task-space coordinates, enabling its direct use as constraints in continuous optimization for humanoid motion planning.\n\n**Recent 2025 Research:**\nA recent paper on \"Modeling the Reachability Space of Robotic Manipulators through Ellipsoid Equations\" was published in the Journal of Intelligent & Robotic Systems in 2025.\n\n**Humanoid Platforms:**\nRegarding the specific models G1 and H1, Unitree presents H1 (and its successor variants) as high-performance humanoids capable of human-like running, jumping, balancing, and navigating complex terrain, aimed at research and future industrial use. However, there is very little third-party footage of H1/H2 doing sustained manipulation work such as bin picking, tool use, or assembly under realistic constraints."
+    ],
+    "durationSeconds": 9.041650373999998
+  },
+  "sourceToolAssistantUUID": "393cf92d-aa3e-4a83-93a7-e023355f992b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 38 · 2026-05-10T11:53:32.777Z_
+
+```json
+{
+  "parentUuid": "c0e7ae25-f727-4d18-8580-2bc824bcd8a6",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "0d9b6663-babb-4a5e-b284-368115d9da65",
+  "timestamp": "2026-05-10T11:53:32.777Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 39 · 2026-05-10T11:53:43.509Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Interesting! I found several things:
+
+1. SoftMimicGen (March 2026) - This is a data generation system for deformable object manipulation that includes humanoid embodiment. But it's focused on tabletop manipulation of deformable objects (stuffed animal, rope, tissue, towel), NOT loco-manipulation. The humanoid embodiment (GR1) is for tabletop tasks. So this is NOT directly competing with LocoMimicGen.
+
+2. VIRAL (Visual Sim-to-Real at Scale for Humanoid Loco-Manipulation) - arXiv:2511.15200, Nov 2025. Let me search for more details on this.
+
+
+3. VisualMimic looks like it could be relevant too - I should dig into that one as well.
+4. The reachability map search shows this is a well-established technique, so the paper's contribution there is more about applying existing methods in a novel way rather than introducing something entirely new.
+5. CoRL 2026 deadlines are confirmed: abstract May 26 UTC, paper May 29 UTC.
+
+Now I need to examine VIRAL and VisualMimic more closely to see how they compare.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0d9b6663-babb-4a5e-b284-368115d9da65",
+  "isSidechain": false,
+  "requestId": "req_011CatqpC9q69n9kDXMsjZ8o",
+  "type": "assistant",
+  "uuid": "c19ed4d2-b976-4c54-a777-bf456dfd59a8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_0167VmDRcFNes1AtFVKvs3bn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1016,
+      "cache_creation_input_tokens": 2662,
+      "cache_read_input_tokens": 33701,
+      "output_tokens": 522,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2662,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1016,
+          "output_tokens": 522,
+          "cache_read_input_tokens": 33701,
+          "cache_creation_input_tokens": 2662,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2662
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-10T11:53:43.514Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Udb6ZYSu63gkNfRRRmMfqo`</summary>
+
+```json
+{
+  "query": "VIRAL \"visual sim-to-real\" humanoid loco-manipulation arXiv 2511.15200"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c19ed4d2-b976-4c54-a777-bf456dfd59a8",
+  "isSidechain": false,
+  "requestId": "req_011CatqpC9q69n9kDXMsjZ8o",
+  "type": "assistant",
+  "uuid": "547f3112-3100-4f9a-84e6-3ecf3a57ac3d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_0167VmDRcFNes1AtFVKvs3bn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1016,
+      "cache_creation_input_tokens": 2662,
+      "cache_read_input_tokens": 33701,
+      "output_tokens": 522,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2662,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1016,
+          "output_tokens": 522,
+          "cache_read_input_tokens": 33701,
+          "cache_creation_input_tokens": 2662,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2662
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-10T11:53:43.664Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0157H9xWnUZMLoqFuJqDfQBJ`</summary>
+
+```json
+{
+  "query": "VisualMimic \"visual humanoid loco-manipulation\" motion tracking generation 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "547f3112-3100-4f9a-84e6-3ecf3a57ac3d",
+  "isSidechain": false,
+  "requestId": "req_011CatqpC9q69n9kDXMsjZ8o",
+  "type": "assistant",
+  "uuid": "870430a4-60bb-4e38-93b4-3f6189fff946",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_0167VmDRcFNes1AtFVKvs3bn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1016,
+      "cache_creation_input_tokens": 2662,
+      "cache_read_input_tokens": 33701,
+      "output_tokens": 522,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2662,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1016,
+          "output_tokens": 522,
+          "cache_read_input_tokens": 33701,
+          "cache_creation_input_tokens": 2662,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2662
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-10T11:53:43.672Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01PNcSd1Td9XvXP8Yk1FhwLs`</summary>
+
+```json
+{
+  "query": "Isaac Lab Mimic PR 3992 \"object-centric\" \"SE3\" navigation waypoint encoding loco-manipulation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "870430a4-60bb-4e38-93b4-3f6189fff946",
+  "isSidechain": false,
+  "requestId": "req_011CatqpC9q69n9kDXMsjZ8o",
+  "type": "assistant",
+  "uuid": "2810a6be-77f4-4dfc-8cd3-ebc324201f59",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_0167VmDRcFNes1AtFVKvs3bn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1016,
+      "cache_creation_input_tokens": 2662,
+      "cache_read_input_tokens": 33701,
+      "output_tokens": 522,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2662,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1016,
+          "output_tokens": 522,
+          "cache_read_input_tokens": 33701,
+          "cache_creation_input_tokens": 2662,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2662
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-10T11:53:50.181Z_
+
+<details><summary>↩ Tool result · `toolu_0157H9xWnUZMLoqFuJqDfQBJ`</summary>
+
+```text
+Web search results for query: "VisualMimic "visual humanoid loco-manipulation" motion tracking generation 2025"
+
+Links: [{"title":"VisualMimic","url":"https://visualmimic.github.io/"},{"title":"GitHub - visualmimic/VisualMimic: [arXiv 2025] VisualMimic: Visual Humanoid Loco-Manipulation via Motion Tracking and Generation · GitHub","url":"https://github.com/visualmimic/VisualMimic"},{"title":"[2509.20322] VisualMimic: Visual Humanoid Loco-Manipulation via Motion Tracking and Generation","url":"https://arxiv.org/abs/2509.20322"},{"title":"VisualMimic Visual Humanoid Loco-Manipulation via Motion Tracking and Generation","url":"https://arxiv.org/html/2509.20322v1"},{"title":"[2509.20322v1] VisualMimic: Visual Humanoid Loco-Manipulation via Motion Tracking and Generation","url":"https://arxiv.org/abs/2509.20322v1"},{"title":"VisualMimic: Visual Humanoid Loco-Manipulation via Motion Tracking and Generation - Paper Detail","url":"https://deeplearn.org/arxiv/639531/visualmimic:-visual-humanoid-loco-manipulation-via-motion-tracking-and-generation"},{"title":"(PDF) VisualMimic: Visual Humanoid Loco-Manipulation via Motion Tracking and Generation","url":"https://www.researchgate.net/publication/395807090_VisualMimic_Visual_Humanoid_Loco-Manipulation_via_Motion_Tracking_and_Generation"},{"title":"VisualMimic: Hierarchical Humanoid Loco-Manipulation","url":"https://www.emergentmind.com/papers/2509.20322"},{"title":"GitHub - YanjieZe/awesome-humanoid-robot-learning: A Paper List for Humanoid Robot Learning. · GitHub","url":"https://github.com/YanjieZe/awesome-humanoid-robot-learning"},{"title":"VisualMimic: Visual Humanoid Loco-Manipulation via ...","url":"https://arxiv.org/pdf/2509.20322"}]
+
+Based on the search results, here's what I found about VisualMimic:
+
+## Overview
+
+VisualMimic is a research project on Visual Humanoid Loco-Manipulation via Motion Tracking and Generation, published in 2025 on arXiv. The work was presented at IROS 2025.
+
+## What It Does
+
+VisualMimic is a visual sim-to-real framework that unifies egocentric vision with hierarchical whole-body control for humanoid robots, combining a task-agnostic low-level keypoint tracker trained from human motion data via a teacher-student scheme with a task-specific high-level policy that generates keypoint commands from visual and proprioceptive input.
+
+## Key Capabilities
+
+VisualMimic enables zero-shot transfer of visuomotor policies trained in simulation to real humanoid robots, accomplishing a wide range of loco-manipulation tasks such as box lifting, pushing, football dribbling, and kicking. The policies also generalize robustly to outdoor environments.
+
+## Implementation Details
+
+The framework combines a low-level keypoint tracker trained from human motion data with a high-level policy, and injects noise into the low-level policy and clips high-level actions using human motion statistics to ensure stable training.
+
+## Resources
+
+The research is authored by Shaofeng Yin, Yanjie Ze, Hong-Xing Yu, C. Karen Liu, and Jiajun Wu from Stanford University, with code to be fully open-sourced after paper acceptance.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "870430a4-60bb-4e38-93b4-3f6189fff946",
+  "isSidechain": false,
+  "promptId": "22bf6fc8-9774-47f2-9286-3ee2ace81d66",
+  "type": "user",
+  "uuid": "32d49173-21c3-48dd-9f98-5d98a15ec960",
+  "toolUseResult": {
+    "query": "VisualMimic \"visual humanoid loco-manipulation\" motion tracking generation 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01H9qFxvfQFzVrQg466bwuBt",
+        "content": [
+          {
+            "title": "VisualMimic",
+            "url": "https://visualmimic.github.io/"
+          },
+          {
+            "title": "GitHub - visualmimic/VisualMimic: [arXiv 2025] VisualMimic: Visual Humanoid Loco-Manipulation via Motion Tracking and Generation · GitHub",
+            "url": "https://github.com/visualmimic/VisualMimic"
+          },
+          {
+            "title": "[2509.20322] VisualMimic: Visual Humanoid Loco-Manipulation via Motion Tracking and Generation",
+            "url": "https://arxiv.org/abs/2509.20322"
+          },
+          {
+            "title": "VisualMimic Visual Humanoid Loco-Manipulation via Motion Tracking and Generation",
+            "url": "https://arxiv.org/html/2509.20322v1"
+          },
+          {
+            "title": "[2509.20322v1] VisualMimic: Visual Humanoid Loco-Manipulation via Motion Tracking and Generation",
+            "url": "https://arxiv.org/abs/2509.20322v1"
+          },
+          {
+            "title": "VisualMimic: Visual Humanoid Loco-Manipulation via Motion Tracking and Generation - Paper Detail",
+            "url": "https://deeplearn.org/arxiv/639531/visualmimic:-visual-humanoid-loco-manipulation-via-motion-tracking-and-generation"
+          },
+          {
+            "title": "(PDF) VisualMimic: Visual Humanoid Loco-Manipulation via Motion Tracking and Generation",
+            "url": "https://www.researchgate.net/publication/395807090_VisualMimic_Visual_Humanoid_Loco-Manipulation_via_Motion_Tracking_and_Generation"
+          },
+          {
+            "title": "VisualMimic: Hierarchical Humanoid Loco-Manipulation",
+            "url": "https://www.emergentmind.com/papers/2509.20322"
+          },
+          {
+            "title": "GitHub - YanjieZe/awesome-humanoid-robot-learning: A Paper List for Humanoid Robot Learning. · GitHub",
+            "url": "https://github.com/YanjieZe/awesome-humanoid-robot-learning"
+          },
+          {
+            "title": "VisualMimic: Visual Humanoid Loco-Manipulation via ...",
+            "url": "https://arxiv.org/pdf/2509.20322"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about VisualMimic:\n\n## Overview\n\nVisualMimic is a research project on Visual Humanoid Loco-Manipulation via Motion Tracking and Generation, published in 2025 on arXiv. The work was presented at IROS 2025.\n\n## What It Does\n\nVisualMimic is a visual sim-to-real framework that unifies egocentric vision with hierarchical whole-body control for humanoid robots, combining a task-agnostic low-level keypoint tracker trained from human motion data via a teacher-student scheme with a task-specific high-level policy that generates keypoint commands from visual and proprioceptive input.\n\n## Key Capabilities\n\nVisualMimic enables zero-shot transfer of visuomotor policies trained in simulation to real humanoid robots, accomplishing a wide range of loco-manipulation tasks such as box lifting, pushing, football dribbling, and kicking. The policies also generalize robustly to outdoor environments.\n\n## Implementation Details\n\nThe framework combines a low-level keypoint tracker trained from human motion data with a high-level policy, and injects noise into the low-level policy and clips high-level actions using human motion statistics to ensure stable training.\n\n## Resources\n\nThe research is authored by Shaofeng Yin, Yanjie Ze, Hong-Xing Yu, C. Karen Liu, and Jiajun Wu from Stanford University, with code to be fully open-sourced after paper acceptance."
+    ],
+    "durationSeconds": 6.511478421000007
+  },
+  "sourceToolAssistantUUID": "870430a4-60bb-4e38-93b4-3f6189fff946",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 44_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "32d49173-21c3-48dd-9f98-5d98a15ec960",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 45_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify LocoMimicGen against Isaac Lab PRs and compute constraints",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc"
+}
+```
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-10T11:53:51.160Z_
+
+<details><summary>↩ Tool result · `toolu_01Udb6ZYSu63gkNfRRRmMfqo`</summary>
+
+```text
+Web search results for query: "VIRAL "visual sim-to-real" humanoid loco-manipulation arXiv 2511.15200"
+
+Links: [{"title":"[2511.15200] VIRAL: Visual Sim-to-Real at Scale for Humanoid Loco-Manipulation","url":"https://arxiv.org/abs/2511.15200"},{"title":"VIRAL: Visual Sim-to-Real at Scale for Humanoid Loco-Manipulation","url":"https://arxiv.org/html/2511.15200v1"},{"title":"Visual Sim-to-Real at Scale for Humanoid Loco-Manipulation","url":"https://viral-humanoid.github.io/"},{"title":"VIRAL: Scalable Humanoid Loco-Manipulation","url":"https://www.emergentmind.com/papers/2511.15200"},{"title":"VIRAL: Visual Sim-to-Real at Scale for Humanoid Loco-Manipulation | Request PDF","url":"https://www.researchgate.net/publication/397780563_VIRAL_Visual_Sim-to-Real_at_Scale_for_Humanoid_Loco-Manipulation"},{"title":"EgoHumanoid: Unlocking In-the-Wild Loco-Manipulation with Robot-Free Egocentric Demonstration","url":"https://arxiv.org/html/2602.10106v1"},{"title":"VIRAL: Visual Sim-to-Real at Scale for Humanoid Loco-Manipulation | alphaXiv","url":"https://www.alphaxiv.org/overview/2511.15200v2"},{"title":"VIRAL: Visual Sim-to-Real at Scale for Humanoid Loco-Manipulation Tairan He1,2*","url":"https://viral-humanoid.github.io/static/viral.pdf"},{"title":"Publications – UT Austin Robot Perception and Learning Lab","url":"https://rpl.cs.utexas.edu/publications/"},{"title":"VideoMimic","url":"https://www.videomimic.net/"}]
+
+I found the paper! Here's information about VIRAL (arXiv 2511.15200):
+
+## Overview
+
+VIRAL is a visual sim-to-real framework that learns humanoid loco-manipulation entirely in simulation and deploys it zero-shot to real hardware.
+
+## Key Architecture
+
+VIRAL follows a teacher-student design: a privileged RL teacher, operating on full state, learns long-horizon loco-manipulation using a delta action space and reference state initialization. A vision-based student policy is then distilled from the teacher via large-scale simulation with tiled rendering, trained with a mixture of online DAgger and behavior cloning.
+
+## Computational Scale
+
+Compute scale is critical: scaling simulation to tens of GPUs (up to 64) makes both teacher and student training reliable, while low-compute regimes often fail.
+
+## Sim-to-Real Transfer
+
+VIRAL bridges these paradigms by leveraging privileged-state RL in simulation, followed by vision-based policy distillation, yielding zero-shot deployment capability for complex sequential tasks such as walking, grasping, placing, and turning with real hardware.
+
+The paper was submitted on November 19, 2025, with a revised version on November 27, 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "547f3112-3100-4f9a-84e6-3ecf3a57ac3d",
+  "isSidechain": false,
+  "promptId": "22bf6fc8-9774-47f2-9286-3ee2ace81d66",
+  "type": "user",
+  "uuid": "5b69b0b0-7225-42a3-a356-dfedd162fec0",
+  "toolUseResult": {
+    "query": "VIRAL \"visual sim-to-real\" humanoid loco-manipulation arXiv 2511.15200",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013fTdiU7FixcsDRReRJ4yCg",
+        "content": [
+          {
+            "title": "[2511.15200] VIRAL: Visual Sim-to-Real at Scale for Humanoid Loco-Manipulation",
+            "url": "https://arxiv.org/abs/2511.15200"
+          },
+          {
+            "title": "VIRAL: Visual Sim-to-Real at Scale for Humanoid Loco-Manipulation",
+            "url": "https://arxiv.org/html/2511.15200v1"
+          },
+          {
+            "title": "Visual Sim-to-Real at Scale for Humanoid Loco-Manipulation",
+            "url": "https://viral-humanoid.github.io/"
+          },
+          {
+            "title": "VIRAL: Scalable Humanoid Loco-Manipulation",
+            "url": "https://www.emergentmind.com/papers/2511.15200"
+          },
+          {
+            "title": "VIRAL: Visual Sim-to-Real at Scale for Humanoid Loco-Manipulation | Request PDF",
+            "url": "https://www.researchgate.net/publication/397780563_VIRAL_Visual_Sim-to-Real_at_Scale_for_Humanoid_Loco-Manipulation"
+          },
+          {
+            "title": "EgoHumanoid: Unlocking In-the-Wild Loco-Manipulation with Robot-Free Egocentric Demonstration",
+            "url": "https://arxiv.org/html/2602.10106v1"
+          },
+          {
+            "title": "VIRAL: Visual Sim-to-Real at Scale for Humanoid Loco-Manipulation | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2511.15200v2"
+          },
+          {
+            "title": "VIRAL: Visual Sim-to-Real at Scale for Humanoid Loco-Manipulation Tairan He1,2*",
+            "url": "https://viral-humanoid.github.io/static/viral.pdf"
+          },
+          {
+            "title": "Publications – UT Austin Robot Perception and Learning Lab",
+            "url": "https://rpl.cs.utexas.edu/publications/"
+          },
+          {
+            "title": "VideoMimic",
+            "url": "https://www.videomimic.net/"
+          }
+        ]
+      },
+      "I found the paper! Here's information about VIRAL (arXiv 2511.15200):\n\n## Overview\n\nVIRAL is a visual sim-to-real framework that learns humanoid loco-manipulation entirely in simulation and deploys it zero-shot to real hardware.\n\n## Key Architecture\n\nVIRAL follows a teacher-student design: a privileged RL teacher, operating on full state, learns long-horizon loco-manipulation using a delta action space and reference state initialization. A vision-based student policy is then distilled from the teacher via large-scale simulation with tiled rendering, trained with a mixture of online DAgger and behavior cloning.\n\n## Computational Scale\n\nCompute scale is critical: scaling simulation to tens of GPUs (up to 64) makes both teacher and student training reliable, while low-compute regimes often fail.\n\n## Sim-to-Real Transfer\n\nVIRAL bridges these paradigms by leveraging privileged-state RL in simulation, followed by vision-based policy distillation, yielding zero-shot deployment capability for complex sequential tasks such as walking, grasping, placing, and turning with real hardware.\n\nThe paper was submitted on November 19, 2025, with a revised version on November 27, 2025."
+    ],
+    "durationSeconds": 7.6417700180000105
+  },
+  "sourceToolAssistantUUID": "547f3112-3100-4f9a-84e6-3ecf3a57ac3d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-10T11:53:51.739Z_
+
+<details><summary>↩ Tool result · `toolu_01PNcSd1Td9XvXP8Yk1FhwLs`</summary>
+
+```text
+Web search results for query: "Isaac Lab Mimic PR 3992 "object-centric" "SE3" navigation waypoint encoding loco-manipulation"
+
+Links: [{"title":"Adds APIs to Isaac Lab Mimic for supporting loco-manipulation datagen by peterd-NV · Pull Request #3992 · isaac-sim/IsaacLab","url":"https://github.com/isaac-sim/IsaacLab/pull/3992"},{"title":"Teleoperation and Imitation Learning with Isaac Lab Mimic — Isaac Lab Documentation","url":"https://isaac-sim.github.io/IsaacLab/main/source/overview/imitation-learning/teleop_imitation.html"},{"title":"isaaclab_mimic.datagen — Isaac Lab Documentation","url":"https://isaac-sim.github.io/IsaacLab/main/source/api/lab_mimic/isaaclab_mimic.datagen.html"},{"title":"Releases · isaac-sim/IsaacLab","url":"https://github.com/isaac-sim/IsaacLab/releases"},{"title":"isaaclab_mimic.envs — Isaac Lab Documentation","url":"https://isaac-sim.github.io/IsaacLab/main/source/api/lab_mimic/isaaclab_mimic.envs.html"},{"title":"Release Notes — Isaac Lab Documentation","url":"https://isaac-sim.github.io/IsaacLab/main/source/refs/release_notes.html"},{"title":"Teleoperation and Imitation Learning — Isaac Lab Documentation","url":"https://isaac-sim.github.io/IsaacLab/v2.0.1/source/overview/teleop_imitation.html"},{"title":"Redirecting to the latest Isaac Lab documentation","url":"https://isaac-sim.github.io/IsaacLab/"},{"title":"Adds locomanipulation data generation via. disjoint navigation by jaybdub · Pull Request #3259 · isaac-sim/IsaacLab","url":"https://github.com/isaac-sim/IsaacLab/pull/3259"},{"title":"Adds Locomanipulation Environment with G1 for Mimic workflow by michaellin6 · Pull Request #3150 · isaac-sim/IsaacLab","url":"https://github.com/isaac-sim/IsaacLab/pull/3150"}]
+
+I found the search results for your query. Here's what I found about Isaac Lab Mimic PR #3992:
+
+## PR #3992 Overview
+
+This PR adds new APIs to Isaac Lab Mimic to expand support for loco-manipulation data generation. Specifically, the PR adds processing for body end effector to treat a robot's base as an eef during Mimic data generation, enabling the use of the same Mimic annotation and subtask interface to enable lower body movement.
+
+## Key Features
+
+The PR includes:
+
+1. **Navigation Controller Support**: Added navigation controller support for loco-manipulation data generation - processes body end effector, handles navigation state, and manages trajectory skipping/repeating based on waypoint goals.
+
+2. **Custom Recorders**: An optional way to cleanly add custom recorders for Mimic data generation (useful for when users want to record beyond the action/state data provided by Isaac Lab's default recorder).
+
+3. **Navigation Interface**: Interface for enabling a navigation p-controller during Mimic data generation for robot's with mobile bases.
+
+## Implementation Details
+
+The implementation handles navigation state transitions by repeating the last navigation subtask action when the robot is still navigating to a waypoint, and skipping forward when the goal is reached early.
+
+The PR also relates to data generation that works by parsing demonstrations into object-centric subtask segments, stored in DataGenInfoPool, then adapting these subtask segments to new scenes by transforming each segment according to the new scene's context, stitching them into a coherent trajectory for a robotic end-effector to execute.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2810a6be-77f4-4dfc-8cd3-ebc324201f59",
+  "isSidechain": false,
+  "promptId": "22bf6fc8-9774-47f2-9286-3ee2ace81d66",
+  "type": "user",
+  "uuid": "2147137a-22bb-4fdc-9175-5646832d4720",
+  "toolUseResult": {
+    "query": "Isaac Lab Mimic PR 3992 \"object-centric\" \"SE3\" navigation waypoint encoding loco-manipulation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DeWNzfyu9hm5pshEb9ALeL",
+        "content": [
+          {
+            "title": "Adds APIs to Isaac Lab Mimic for supporting loco-manipulation datagen by peterd-NV · Pull Request #3992 · isaac-sim/IsaacLab",
+            "url": "https://github.com/isaac-sim/IsaacLab/pull/3992"
+          },
+          {
+            "title": "Teleoperation and Imitation Learning with Isaac Lab Mimic — Isaac Lab Documentation",
+            "url": "https://isaac-sim.github.io/IsaacLab/main/source/overview/imitation-learning/teleop_imitation.html"
+          },
+          {
+            "title": "isaaclab_mimic.datagen — Isaac Lab Documentation",
+            "url": "https://isaac-sim.github.io/IsaacLab/main/source/api/lab_mimic/isaaclab_mimic.datagen.html"
+          },
+          {
+            "title": "Releases · isaac-sim/IsaacLab",
+            "url": "https://github.com/isaac-sim/IsaacLab/releases"
+          },
+          {
+            "title": "isaaclab_mimic.envs — Isaac Lab Documentation",
+            "url": "https://isaac-sim.github.io/IsaacLab/main/source/api/lab_mimic/isaaclab_mimic.envs.html"
+          },
+          {
+            "title": "Release Notes — Isaac Lab Documentation",
+            "url": "https://isaac-sim.github.io/IsaacLab/main/source/refs/release_notes.html"
+          },
+          {
+            "title": "Teleoperation and Imitation Learning — Isaac Lab Documentation",
+            "url": "https://isaac-sim.github.io/IsaacLab/v2.0.1/source/overview/teleop_imitation.html"
+          },
+          {
+            "title": "Redirecting to the latest Isaac Lab documentation",
+            "url": "https://isaac-sim.github.io/IsaacLab/"
+          },
+          {
+            "title": "Adds locomanipulation data generation via. disjoint navigation by jaybdub · Pull Request #3259 · isaac-sim/IsaacLab",
+            "url": "https://github.com/isaac-sim/IsaacLab/pull/3259"
+          },
+          {
+            "title": "Adds Locomanipulation Environment with G1 for Mimic workflow by michaellin6 · Pull Request #3150 · isaac-sim/IsaacLab",
+            "url": "https://github.com/isaac-sim/IsaacLab/pull/3150"
+          }
+        ]
+      },
+      "I found the search results for your query. Here's what I found about Isaac Lab Mimic PR #3992:\n\n## PR #3992 Overview\n\nThis PR adds new APIs to Isaac Lab Mimic to expand support for loco-manipulation data generation. Specifically, the PR adds processing for body end effector to treat a robot's base as an eef during Mimic data generation, enabling the use of the same Mimic annotation and subtask interface to enable lower body movement.\n\n## Key Features\n\nThe PR includes:\n\n1. **Navigation Controller Support**: Added navigation controller support for loco-manipulation data generation - processes body end effector, handles navigation state, and manages trajectory skipping/repeating based on waypoint goals.\n\n2. **Custom Recorders**: An optional way to cleanly add custom recorders for Mimic data generation (useful for when users want to record beyond the action/state data provided by Isaac Lab's default recorder).\n\n3. **Navigation Interface**: Interface for enabling a navigation p-controller during Mimic data generation for robot's with mobile bases.\n\n## Implementation Details\n\nThe implementation handles navigation state transitions by repeating the last navigation subtask action when the robot is still navigating to a waypoint, and skipping forward when the goal is reached early.\n\nThe PR also relates to data generation that works by parsing demonstrations into object-centric subtask segments, stored in DataGenInfoPool, then adapting these subtask segments to new scenes by transforming each segment according to the new scene's context, stitching them into a coherent trajectory for a robotic end-effector to execute."
+    ],
+    "durationSeconds": 8.064850057999996
+  },
+  "sourceToolAssistantUUID": "2810a6be-77f4-4dfc-8cd3-ebc324201f59",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48 · 2026-05-10T11:54:00.592Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Important findings:
+
+1. VisualMimic (arXiv:2509.20322, Sept 2025, IROS 2025) - This uses motion tracking and generation for visual humanoid loco-manipulation via human motion data - different approach (tracking-based, not procedural demo multiplication).
+
+2. VIRAL (arXiv:2511.15200, Nov 2025) - RL-based sim-to-real approach for humanoid loco-manipulation, uses privileged RL + vision distillation - NOT a data generation algorithm like LocoMimicGen.
+
+3. For PR #3992 (Isaac Lab), the confirmed mechanism is: "handles navigation state transitions by repeating the last navigation subtask action when the robot is still navigating to a waypoint, and skipping forward when the goal is reached early" - this DOES NOT encode navigation waypoints in SE(3) object frames. 
+
+The generator's technical gap claim appears valid. I should investigate Isaac Lab PR #3259 about locomanipulation data generation via disjoint navigation, as it could be a relevant baseline, and review the Mimic documentation more thoroughly.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2147137a-22bb-4fdc-9175-5646832d4720",
+  "isSidechain": false,
+  "requestId": "req_011Catqqb6F8DjWtFBwrhtYk",
+  "type": "assistant",
+  "uuid": "aa09a0a4-19fa-4939-af97-fe48a8b31502",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01SDnfVyoen761zkkDfCc7rh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4293,
+      "cache_read_input_tokens": 36363,
+      "output_tokens": 513,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4293,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 513,
+          "cache_read_input_tokens": 36363,
+          "cache_creation_input_tokens": 4293,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4293
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-10T11:54:01.180Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01BeTpoe6SxTLJyJuM6gavKA`</summary>
+
+```json
+{
+  "url": "https://github.com/isaac-sim/IsaacLab/pull/3259",
+  "prompt": "What does this PR add to Isaac Lab Mimic for loco-manipulation? Does it add SE(3) object-centric encoding of navigation waypoints, reachability-constrained base-pose optimization, or combinatorial multi-source segment composition? What navigation approach does it use?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "aa09a0a4-19fa-4939-af97-fe48a8b31502",
+  "isSidechain": false,
+  "requestId": "req_011Catqqb6F8DjWtFBwrhtYk",
+  "type": "assistant",
+  "uuid": "9fe6bef5-da14-49ff-8706-b8363d4b98f4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01SDnfVyoen761zkkDfCc7rh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4293,
+      "cache_read_input_tokens": 36363,
+      "output_tokens": 513,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4293,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 513,
+          "cache_read_input_tokens": 36363,
+          "cache_creation_input_tokens": 4293,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4293
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-10T11:54:01.508Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FqnCUAVb1Pa1YFwpetfPTf`</summary>
+
+```json
+{
+  "query": "Isaac Lab PR 3259 \"disjoint navigation\" locomanipulation merged 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9fe6bef5-da14-49ff-8706-b8363d4b98f4",
+  "isSidechain": false,
+  "requestId": "req_011Catqqb6F8DjWtFBwrhtYk",
+  "type": "assistant",
+  "uuid": "3c7b9105-2ff5-4d39-9a5d-1fe07ec99637",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01SDnfVyoen761zkkDfCc7rh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4293,
+      "cache_read_input_tokens": 36363,
+      "output_tokens": 513,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4293,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 513,
+          "cache_read_input_tokens": 36363,
+          "cache_creation_input_tokens": 4293,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4293
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-10T11:54:07.717Z_
+
+<details><summary>↩ Tool result · `toolu_01FqnCUAVb1Pa1YFwpetfPTf`</summary>
+
+```text
+Web search results for query: "Isaac Lab PR 3259 "disjoint navigation" locomanipulation merged 2025"
+
+Links: [{"title":"Adds locomanipulation data generation via. disjoint navigation by jaybdub · Pull Request #3259 · isaac-sim/IsaacLab","url":"https://github.com/isaac-sim/IsaacLab/pull/3259"},{"title":"Adds Locomanipulation Environment with G1 for Mimic workflow by michaellin6 · Pull Request #3150 · isaac-sim/IsaacLab","url":"https://github.com/isaac-sim/IsaacLab/pull/3150"},{"title":"Releases · isaac-sim/IsaacLab","url":"https://github.com/isaac-sim/IsaacLab/releases"},{"title":"Release Notes — Isaac Lab Documentation","url":"https://isaac-sim.github.io/IsaacLab/main/source/refs/release_notes.html"},{"title":"Streamline Robot Learning with Whole-Body Control and Enhanced Teleoperation in NVIDIA Isaac Lab 2.3 | NVIDIA Technical Blog","url":"https://developer.nvidia.com/blog/streamline-robot-learning-with-whole-body-control-and-enhanced-teleoperation-in-nvidia-isaac-lab-2-3/"},{"title":"Adds camera to G1 Steering Wheel environment by jaybdub · Pull Request #3549 · isaac-sim/IsaacLab","url":"https://github.com/isaac-sim/IsaacLab/pull/3549"},{"title":"Redirecting to the latest Isaac Lab documentation","url":"https://isaac-sim.github.io/IsaacLab/"},{"title":"Adds APIs to Isaac Lab Mimic for supporting loco-manipulation datagen by peterd-NV · Pull Request #3992 · isaac-sim/IsaacLab","url":"https://github.com/isaac-sim/IsaacLab/pull/3992"},{"title":"Guidance Needed: How to Implement a Navigation + Grasping Task (Using Isaac-PickPlace-Locomanipulation-G1-Abs-v0 as Example) · Issue #4033 · isaac-sim/IsaacLab","url":"https://github.com/isaac-sim/IsaacLab/issues/4033"},{"title":"[2511.04831] Isaac Lab: A GPU-Accelerated Simulation Framework for Multi-Modal Robot Learning","url":"https://arxiv.org/abs/2511.04831"}]
+
+Based on the search results, I found information about Isaac Lab PR #3259:
+
+PR #3259 adds locomanipulation data generation via disjoint navigation. It allows the user to replay static manipulation data recorded with the G1 through an end to end pick-up -> navigation workflow.
+
+This PR was merged in 2025 and is included in the Isaac Lab release notes as adding locomanipulation data generation via disjoint navigation. 
+
+The locomanipulation feature adds a new G1 humanoid environment combining RL-based locomotion with IK-based manipulation, with a full robot navigation stack integrated to augment demonstrations with randomization of tabletop pick/place locations, destination and ground obstacles. By segmenting tasks into pick-navigate-place phases, this method enables generation of large-scale loco-manipulation datasets from manipulation-only demonstrations.
+
+The PR involved significant refactoring, with the task from locomanipulation_g1_env integrated from isaaclab_tasks, environments and config files moved into isaaclab_mimic, and code documentation and readability improved.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3c7b9105-2ff5-4d39-9a5d-1fe07ec99637",
+  "isSidechain": false,
+  "promptId": "22bf6fc8-9774-47f2-9286-3ee2ace81d66",
+  "type": "user",
+  "uuid": "d435c288-6dbc-4926-ae8e-93c5269b0a6a",
+  "toolUseResult": {
+    "query": "Isaac Lab PR 3259 \"disjoint navigation\" locomanipulation merged 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01KsJNiEtAJpFpyVVxpqAr3n",
+        "content": [
+          {
+            "title": "Adds locomanipulation data generation via. disjoint navigation by jaybdub · Pull Request #3259 · isaac-sim/IsaacLab",
+            "url": "https://github.com/isaac-sim/IsaacLab/pull/3259"
+          },
+          {
+            "title": "Adds Locomanipulation Environment with G1 for Mimic workflow by michaellin6 · Pull Request #3150 · isaac-sim/IsaacLab",
+            "url": "https://github.com/isaac-sim/IsaacLab/pull/3150"
+          },
+          {
+            "title": "Releases · isaac-sim/IsaacLab",
+            "url": "https://github.com/isaac-sim/IsaacLab/releases"
+          },
+          {
+            "title": "Release Notes — Isaac Lab Documentation",
+            "url": "https://isaac-sim.github.io/IsaacLab/main/source/refs/release_notes.html"
+          },
+          {
+            "title": "Streamline Robot Learning with Whole-Body Control and Enhanced Teleoperation in NVIDIA Isaac Lab 2.3 | NVIDIA Technical Blog",
+            "url": "https://developer.nvidia.com/blog/streamline-robot-learning-with-whole-body-control-and-enhanced-teleoperation-in-nvidia-isaac-lab-2-3/"
+          },
+          {
+            "title": "Adds camera to G1 Steering Wheel environment by jaybdub · Pull Request #3549 · isaac-sim/IsaacLab",
+            "url": "https://github.com/isaac-sim/IsaacLab/pull/3549"
+          },
+          {
+            "title": "Redirecting to the latest Isaac Lab documentation",
+            "url": "https://isaac-sim.github.io/IsaacLab/"
+          },
+          {
+            "title": "Adds APIs to Isaac Lab Mimic for supporting loco-manipulation datagen by peterd-NV · Pull Request #3992 · isaac-sim/IsaacLab",
+            "url": "https://github.com/isaac-sim/IsaacLab/pull/3992"
+          },
+          {
+            "title": "Guidance Needed: How to Implement a Navigation + Grasping Task (Using Isaac-PickPlace-Locomanipulation-G1-Abs-v0 as Example) · Issue #4033 · isaac-sim/IsaacLab",
+            "url": "https://github.com/isaac-sim/IsaacLab/issues/4033"
+          },
+          {
+            "title": "[2511.04831] Isaac Lab: A GPU-Accelerated Simulation Framework for Multi-Modal Robot Learning",
+            "url": "https://arxiv.org/abs/2511.04831"
+          }
+        ]
+      },
+      "Based on the search results, I found information about Isaac Lab PR #3259:\n\nPR #3259 adds locomanipulation data generation via disjoint navigation. It allows the user to replay static manipulation data recorded with the G1 through an end to end pick-up -> navigation workflow.\n\nThis PR was merged in 2025 and is included in the Isaac Lab release notes as adding locomanipulation data generation via disjoint navigation. \n\nThe locomanipulation feature adds a new G1 humanoid environment combining RL-based locomotion with IK-based manipulation, with a full robot navigation stack integrated to augment demonstrations with randomization of tabletop pick/place locations, destination and ground obstacles. By segmenting tasks into pick-navigate-place phases, this method enables generation of large-scale loco-manipulation datasets from manipulation-only demonstrations.\n\nThe PR involved significant refactoring, with the task from locomanipulation_g1_env integrated from isaaclab_tasks, environments and config files moved into isaaclab_mimic, and code documentation and readability improved."
+    ],
+    "durationSeconds": 6.204765964999999
+  },
+  "sourceToolAssistantUUID": "3c7b9105-2ff5-4d39-9a5d-1fe07ec99637",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-10T11:54:11.293Z_
+
+<details><summary>↩ Tool result · `toolu_01BeTpoe6SxTLJyJuM6gavKA`</summary>
+
+```text
+# Isaac Lab Mimic Locomanipulation Enhancement
+
+Based on the PR content, this contribution introduces **disjoint navigation** for generating locomanipulation datasets. Here's what it adds:
+
+## Core Functionality
+
+The PR enables creating end-to-end pick-up → navigate → drop-off pipelines by combining static manipulation sequences with path planning. As described in the documentation, the approach involves:
+
+1. **Static manipulation teleoperation** - collecting in-place grasping and object placement trajectories with a fixed base
+2. **Trajectory augmentation** - using mimic data generation to create variations
+3. **Navigation integration** - replaying these sequences through a mobile manipulation framework
+
+## Navigation Approach
+
+The implementation uses **occupancy map-based path planning** with:
+- Occupancy map generation and utilities
+- Path planning and following controllers  
+- Scene randomization for environment variation
+- Waypoint-based navigation integrated with manipulation sequences
+
+## Implementation Structure
+
+Rather than introducing novel geometric encodings or optimization schemes, this PR provides a **compositional data generation pipeline** that reuses existing teleoperation and mimic components. The code is organized within `isaaclab_mimic` as auxiliary environments and utilities, keeping the core system architecture intact.
+
+The system focuses on practical dataset generation for training locomanipulation policies on a G1 humanoid platform, demonstrating feasibility of the pipeline through recorded demonstrations.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9fe6bef5-da14-49ff-8706-b8363d4b98f4",
+  "isSidechain": false,
+  "promptId": "22bf6fc8-9774-47f2-9286-3ee2ace81d66",
+  "type": "user",
+  "uuid": "7260b9ab-8058-4cd9-8b78-dc384718e621",
+  "toolUseResult": {
+    "bytes": 1235163,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Isaac Lab Mimic Locomanipulation Enhancement\n\nBased on the PR content, this contribution introduces **disjoint navigation** for generating locomanipulation datasets. Here's what it adds:\n\n## Core Functionality\n\nThe PR enables creating end-to-end pick-up → navigate → drop-off pipelines by combining static manipulation sequences with path planning. As described in the documentation, the approach involves:\n\n1. **Static manipulation teleoperation** - collecting in-place grasping and object placement trajectories with a fixed base\n2. **Trajectory augmentation** - using mimic data generation to create variations\n3. **Navigation integration** - replaying these sequences through a mobile manipulation framework\n\n## Navigation Approach\n\nThe implementation uses **occupancy map-based path planning** with:\n- Occupancy map generation and utilities\n- Path planning and following controllers  \n- Scene randomization for environment variation\n- Waypoint-based navigation integrated with manipulation sequences\n\n## Implementation Structure\n\nRather than introducing novel geometric encodings or optimization schemes, this PR provides a **compositional data generation pipeline** that reuses existing teleoperation and mimic components. The code is organized within `isaaclab_mimic` as auxiliary environments and utilities, keeping the core system architecture intact.\n\nThe system focuses on practical dataset generation for training locomanipulation policies on a G1 humanoid platform, demonstrating feasibility of the pipeline through recorded demonstrations.",
+    "durationMs": 10107,
+    "url": "https://github.com/isaac-sim/IsaacLab/pull/3259"
+  },
+  "sourceToolAssistantUUID": "9fe6bef5-da14-49ff-8706-b8363d4b98f4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 53 · 2026-05-10T11:54:19.653Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Very important finding! Isaac Lab PR #3259 adds "disjoint navigation" data generation - it uses occupancy map-based path planning and scene randomization. This is a third PR beyond #3150 and #3992 that's relevant to LocoMimicGen. The generator didn't mention this PR.
+
+Key question: Does PR #3259 implement:
+- SE(3) object-centric encoding of navigation waypoints? NO - it uses occupancy map-based path planning with waypoint following
+
+
+- Reachability-constrained base-pose optimization? Not mentioned
+- Combinatorial multi-source segment composition? Not mentioned
+
+The description mentions augmentation with randomization of tabletop pick/place locations, destination and ground obstacles - this overlaps with LocoMimicGen's approach but appears more limited in scope, segmenting into pick-navigate-place phases rather than using a fully object-centric SE(3) representation. This is a potentially significant baseline the generator missed, adding scene randomization, navigation with path planning, and phase segmentation that partially overlaps with LocoMimicGen's claims. I should verify whether PR #3259 is merged and understand its exact implementation.
+
+The description frames this as enabling large-scale loco-manipulation dataset generation from manipulation-only demonstrations through pick-navigate-place segmentation, which sounds conceptually similar to LocoMimicGen but uses disjoint navigation rather than coupled SE(3) encoding. I need to examine the actual PR to see what it really does.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7260b9ab-8058-4cd9-8b78-dc384718e621",
+  "isSidechain": false,
+  "requestId": "req_011Catqs2hPpKhafYN2GnYJv",
+  "type": "assistant",
+  "uuid": "1b3b6aa7-402d-461c-a4a8-1a7d328b272e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01W9wafSLvEtHCW3wrty9e47",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 907,
+      "cache_creation_input_tokens": 849,
+      "cache_read_input_tokens": 40656,
+      "output_tokens": 615,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 849,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 907,
+          "output_tokens": 615,
+          "cache_read_input_tokens": 40656,
+          "cache_creation_input_tokens": 849,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 849
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-10T11:54:20.438Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01LCqVRNxsiyk4eTXwWiRJSq`</summary>
+
+```json
+{
+  "url": "https://github.com/isaac-sim/IsaacLab/pull/3259",
+  "prompt": "What is the merge status of this PR? Does it include SE(3) object-centric encoding for navigation stances? Does it handle room-level scene randomization with obstacle layouts? Does it compose segments from multiple source demonstrations combinatorially? What specifically makes navigation \"disjoint\"?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1b3b6aa7-402d-461c-a4a8-1a7d328b272e",
+  "isSidechain": false,
+  "requestId": "req_011Catqs2hPpKhafYN2GnYJv",
+  "type": "assistant",
+  "uuid": "6faf2aef-90a3-4e6b-8282-880f29116584",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01W9wafSLvEtHCW3wrty9e47",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 907,
+      "cache_creation_input_tokens": 849,
+      "cache_read_input_tokens": 40656,
+      "output_tokens": 615,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 849,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 907,
+          "output_tokens": 615,
+          "cache_read_input_tokens": 40656,
+          "cache_creation_input_tokens": 849,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 849
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-10T11:54:20.933Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TbZHRCwojNSGKL8vy5QPG1`</summary>
+
+```json
+{
+  "query": "DemoHLM multi-demo combinatorial composition loco-manipulation single demonstration limitation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6faf2aef-90a3-4e6b-8282-880f29116584",
+  "isSidechain": false,
+  "requestId": "req_011Catqs2hPpKhafYN2GnYJv",
+  "type": "assistant",
+  "uuid": "9f31a01d-afb7-4cfd-a8fc-b477d9aa8e88",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01W9wafSLvEtHCW3wrty9e47",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 907,
+      "cache_creation_input_tokens": 849,
+      "cache_read_input_tokens": 40656,
+      "output_tokens": 615,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 849,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 907,
+          "output_tokens": 615,
+          "cache_read_input_tokens": 40656,
+          "cache_creation_input_tokens": 849,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 849
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 56_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "9f31a01d-afb7-4cfd-a8fc-b477d9aa8e88",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 57_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify LocoMimicGen against Isaac Lab PRs and compute constraints",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc"
+}
+```
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-10T11:54:25.486Z_
+
+<details><summary>↩ Tool result · `toolu_01LCqVRNxsiyk4eTXwWiRJSq`</summary>
+
+```text
+# Analysis of PR #3259: Locomanipulation Data Generation via Disjoint Navigation
+
+## Merge Status
+This PR has been **merged** into the `release/2.3.0` branch by kellyguo11 on September 10, 2025.
+
+## Key Functionality
+
+The PR enables an end-to-end pipeline combining static manipulation sequences with navigation. The system works by:
+
+1. Recording in-place manipulation trajectories (pick-up and drop-off) via teleoperation
+2. Augmenting these through data generation techniques
+3. Integrating navigation between manipulation primitives
+
+## What Makes Navigation "Disjoint"
+
+The term "disjoint" refers to separating navigation and manipulation as independent, composable components rather than executing them simultaneously. Users replay static manipulation data collected with the G1 robot through a "pick-up → navigate → drop-off pipeline," treating these as distinct phases.
+
+## Architectural Components
+
+The implementation includes:
+- **Occupancy mapping utilities** for spatial reasoning
+- **Path planning and following mechanisms** (path_utils.py)
+- **Scene randomization** for diverse training scenarios
+- **Data generation scripts** (renamed from replay.py to generate_navigation.py)
+- **Environment definitions** placed in isaaclab_mimic extension
+
+## SE(3) Encoding and Scene Randomization
+
+The provided content does not explicitly address SE(3) object-centric encoding or describe combinatorial composition from multiple demonstrations. These features, if present, are not documented in the visible review discussion or PR description.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6faf2aef-90a3-4e6b-8282-880f29116584",
+  "isSidechain": false,
+  "promptId": "22bf6fc8-9774-47f2-9286-3ee2ace81d66",
+  "type": "user",
+  "uuid": "132ae77c-3a79-4f33-9a9d-7311ac3b4b54",
+  "toolUseResult": {
+    "bytes": 1235163,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Analysis of PR #3259: Locomanipulation Data Generation via Disjoint Navigation\n\n## Merge Status\nThis PR has been **merged** into the `release/2.3.0` branch by kellyguo11 on September 10, 2025.\n\n## Key Functionality\n\nThe PR enables an end-to-end pipeline combining static manipulation sequences with navigation. The system works by:\n\n1. Recording in-place manipulation trajectories (pick-up and drop-off) via teleoperation\n2. Augmenting these through data generation techniques\n3. Integrating navigation between manipulation primitives\n\n## What Makes Navigation \"Disjoint\"\n\nThe term \"disjoint\" refers to separating navigation and manipulation as independent, composable components rather than executing them simultaneously. Users replay static manipulation data collected with the G1 robot through a \"pick-up → navigate → drop-off pipeline,\" treating these as distinct phases.\n\n## Architectural Components\n\nThe implementation includes:\n- **Occupancy mapping utilities** for spatial reasoning\n- **Path planning and following mechanisms** (path_utils.py)\n- **Scene randomization** for diverse training scenarios\n- **Data generation scripts** (renamed from replay.py to generate_navigation.py)\n- **Environment definitions** placed in isaaclab_mimic extension\n\n## SE(3) Encoding and Scene Randomization\n\nThe provided content does not explicitly address SE(3) object-centric encoding or describe combinatorial composition from multiple demonstrations. These features, if present, are not documented in the visible review discussion or PR description.",
+    "durationMs": 5045,
+    "url": "https://github.com/isaac-sim/IsaacLab/pull/3259"
+  },
+  "sourceToolAssistantUUID": "6faf2aef-90a3-4e6b-8282-880f29116584",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-10T11:54:27.153Z_
+
+<details><summary>↩ Tool result · `toolu_01TbZHRCwojNSGKL8vy5QPG1`</summary>
+
+```text
+Web search results for query: "DemoHLM multi-demo combinatorial composition loco-manipulation single demonstration limitation"
+
+Links: [{"title":"DemoHLM: From One Demonstration to Generalizable Humanoid Loco-Manipulation","url":"https://arxiv.org/html/2510.11258v1"},{"title":"GitHub - aCodeDog/awesome-loco-manipulation · GitHub","url":"https://github.com/aCodeDog/awesome-loco-manipulation"},{"title":"DexMimicGen: Automated Data Generation for Bimanual Dexterous Manipulation via Imitation Learning","url":"https://www.researchgate.net/publication/395229889_DexMimicGen_Automated_Data_Generation_for_Bimanual_Dexterous_Manipulation_via_Imitation_Learning"},{"title":"Versatile multicontact planning and control for legged loco-manipulation | Science Robotics","url":"https://www.science.org/doi/10.1126/scirobotics.adg5014"},{"title":"Multi-contact planning and control for humanoid robots: Design and validation of a complete framework - ScienceDirect","url":"https://www.sciencedirect.com/science/article/pii/S0921889023000878"},{"title":"Long-horizon Locomotion and Manipulation on a Quadrupedal Robot","url":"https://hybrid-robotics.berkeley.edu/publications/LLM_Long_Horizon_LocoManip.pdf"},{"title":"Guided Reinforcement Learning for Robust Multi-Contact Loco-Manipulation","url":"https://arxiv.org/html/2410.13817v1"},{"title":"SkillVLA: Tackling Combinatorial Diversity in Dual-Arm Manipulation via Skill Reuse","url":"https://arxiv.org/html/2603.03836"},{"title":"Learning Visual Quadrupedal Loco-Manipulation from Demonstrations","url":"https://hybrid-robotics.berkeley.edu/publications/IROS2024_Learning_Visual_LocoManip.pdf"},{"title":"[2308.09179] Versatile Multi-Contact Planning and Control for Legged Loco-Manipulation","url":"https://arxiv.org/abs/2308.09179"}]
+
+Based on the search results, I found comprehensive information about DemoHLM and related concepts:
+
+## DemoHLM Overview
+
+DemoHLM is a framework for humanoid loco-manipulation that enables generalizable loco-manipulation on a real humanoid robot from a single demonstration in simulation. DemoHLM adopts a hierarchy that integrates a low-level universal whole-body controller with high-level manipulation policies for multiple tasks.
+
+## Single Demonstration Strength
+
+One of the key advantages of DemoHLM is its ability to work from minimal data. For each task, DemoHLM requires only a single demonstration and automatically synthesizes hundreds to thousands of successful trajectories that complete the same task in varied environments.
+
+## Data Generation and Compositional Approach
+
+The demonstration is segmented into three stages: locomotion, pre-manipulation, and manipulation. Given arbitrary initial objects and humanoid poses in simulation, the high-level commands in each stage are modified accordingly, concatenated into an action sequence, and replayed to generate a new trajectory.
+
+## Real-World Validation
+
+Real-world experiments on a Unitree G1 robot equipped with an RGB-D camera validate the sim-to-real transferability of DemoHLM, demonstrating robust performance under spatial variations across ten loco-manipulation tasks.
+
+The framework represents an important advance in humanoid robotics by enabling sample-efficient learning of complex loco-manipulation behaviors through a combination of hierarchical control, synthetic data generation, and imitation learning.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9f31a01d-afb7-4cfd-a8fc-b477d9aa8e88",
+  "isSidechain": false,
+  "promptId": "22bf6fc8-9774-47f2-9286-3ee2ace81d66",
+  "type": "user",
+  "uuid": "263158a4-e9e1-4e3c-bde4-b9974203a5e0",
+  "toolUseResult": {
+    "query": "DemoHLM multi-demo combinatorial composition loco-manipulation single demonstration limitation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_011xFiQs2qBYUiRSBFHUgPxQ",
+        "content": [
+          {
+            "title": "DemoHLM: From One Demonstration to Generalizable Humanoid Loco-Manipulation",
+            "url": "https://arxiv.org/html/2510.11258v1"
+          },
+          {
+            "title": "GitHub - aCodeDog/awesome-loco-manipulation · GitHub",
+            "url": "https://github.com/aCodeDog/awesome-loco-manipulation"
+          },
+          {
+            "title": "DexMimicGen: Automated Data Generation for Bimanual Dexterous Manipulation via Imitation Learning",
+            "url": "https://www.researchgate.net/publication/395229889_DexMimicGen_Automated_Data_Generation_for_Bimanual_Dexterous_Manipulation_via_Imitation_Learning"
+          },
+          {
+            "title": "Versatile multicontact planning and control for legged loco-manipulation | Science Robotics",
+            "url": "https://www.science.org/doi/10.1126/scirobotics.adg5014"
+          },
+          {
+            "title": "Multi-contact planning and control for humanoid robots: Design and validation of a complete framework - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/pii/S0921889023000878"
+          },
+          {
+            "title": "Long-horizon Locomotion and Manipulation on a Quadrupedal Robot",
+            "url": "https://hybrid-robotics.berkeley.edu/publications/LLM_Long_Horizon_LocoManip.pdf"
+          },
+          {
+            "title": "Guided Reinforcement Learning for Robust Multi-Contact Loco-Manipulation",
+            "url": "https://arxiv.org/html/2410.13817v1"
+          },
+          {
+            "title": "SkillVLA: Tackling Combinatorial Diversity in Dual-Arm Manipulation via Skill Reuse",
+            "url": "https://arxiv.org/html/2603.03836"
+          },
+          {
+            "title": "Learning Visual Quadrupedal Loco-Manipulation from Demonstrations",
+            "url": "https://hybrid-robotics.berkeley.edu/publications/IROS2024_Learning_Visual_LocoManip.pdf"
+          },
+          {
+            "title": "[2308.09179] Versatile Multi-Contact Planning and Control for Legged Loco-Manipulation",
+            "url": "https://arxiv.org/abs/2308.09179"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about DemoHLM and related concepts:\n\n## DemoHLM Overview\n\nDemoHLM is a framework for humanoid loco-manipulation that enables generalizable loco-manipulation on a real humanoid robot from a single demonstration in simulation. DemoHLM adopts a hierarchy that integrates a low-level universal whole-body controller with high-level manipulation policies for multiple tasks.\n\n## Single Demonstration Strength\n\nOne of the key advantages of DemoHLM is its ability to work from minimal data. For each task, DemoHLM requires only a single demonstration and automatically synthesizes hundreds to thousands of successful trajectories that complete the same task in varied environments.\n\n## Data Generation and Compositional Approach\n\nThe demonstration is segmented into three stages: locomotion, pre-manipulation, and manipulation. Given arbitrary initial objects and humanoid poses in simulation, the high-level commands in each stage are modified accordingly, concatenated into an action sequence, and replayed to generate a new trajectory.\n\n## Real-World Validation\n\nReal-world experiments on a Unitree G1 robot equipped with an RGB-D camera validate the sim-to-real transferability of DemoHLM, demonstrating robust performance under spatial variations across ten loco-manipulation tasks.\n\nThe framework represents an important advance in humanoid robotics by enabling sample-efficient learning of complex loco-manipulation behaviors through a combination of hierarchical control, synthetic data generation, and imitation learning."
+    ],
+    "durationSeconds": 6.215331023999999
+  },
+  "sourceToolAssistantUUID": "9f31a01d-afb7-4cfd-a8fc-b477d9aa8e88",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 60 · 2026-05-10T11:54:35.904Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Key finding: Isaac Lab PR #3259 is MERGED and it adds locomanipulation data generation via "disjoint navigation" - occupancy-map-based path planning, scene randomization, and pick-navigate-place pipeline. It was merged on September 10, 2025, even BEFORE PR #3992 (Dec 1, 2025).
+
+What does PR #3259 do vs. LocoMimicGen?
+- PR #3259 uses "disjoint navigation" - navigation and manipulation as SEPARATE phases
+- It uses occupancy map path planning (NOT reachability-constrained optimization)
+
+
+- Unlike LocoMimicGen, it doesn't leverage SE(3) object-centric encoding for navigation stances or perform combinatorial multi-source composition
+
+The generator didn't acknowledge PR #3259 in their idea, which is a significant third baseline they should have mentioned. DemoHLM, meanwhile, uses a single demonstration with three-stage segmentation (locomotion, pre-manipulation, manipulation) rather than composing from multiple sources. For PR #3992's navigation handling, it repeats the last navigation action while the robot is still moving toward a waypoint and skips ahead when the goal is reached early.
+
+Now I need to look at DemoHLM's paper to get a clearer picture of what it actually covers and where its limitations lie.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "263158a4-e9e1-4e3c-bde4-b9974203a5e0",
+  "isSidechain": false,
+  "requestId": "req_011CatqtCW2XPJnR8oTz5xRV",
+  "type": "assistant",
+  "uuid": "0a014f2a-50d0-4538-a922-0170064b041b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01T28hh62T61FzDB5tWRnpyj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2830,
+      "cache_read_input_tokens": 41505,
+      "output_tokens": 551,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2830,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 551,
+          "cache_read_input_tokens": 41505,
+          "cache_creation_input_tokens": 2830,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2830
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-10T11:54:36.012Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01HoXgdF9WBV7krKSJcQ4esY`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2510.11258v1",
+  "prompt": "What is the exact data generation mechanism in DemoHLM? Does it use multiple source demonstrations? Does it do room-level scene variation (obstacles, furniture)? Does it do combinatorial segment composition from different demos? What are the 10 tasks tested? What is the scale of diversity it achieves?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0a014f2a-50d0-4538-a922-0170064b041b",
+  "isSidechain": false,
+  "requestId": "req_011CatqtCW2XPJnR8oTz5xRV",
+  "type": "assistant",
+  "uuid": "978fe288-a6b3-484d-b767-5d3d9f16c3bc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01T28hh62T61FzDB5tWRnpyj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2830,
+      "cache_read_input_tokens": 41505,
+      "output_tokens": 551,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2830,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 551,
+          "cache_read_input_tokens": 41505,
+          "cache_creation_input_tokens": 2830,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2830
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62 · 2026-05-10T11:54:36.430Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GYtoeMRmQWjbuchkS9xE6Y`</summary>
+
+```json
+{
+  "query": "mobile manipulation base pose optimization reachability constraint IK workspace 2025 robot arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "978fe288-a6b3-484d-b767-5d3d9f16c3bc",
+  "isSidechain": false,
+  "requestId": "req_011CatqtCW2XPJnR8oTz5xRV",
+  "type": "assistant",
+  "uuid": "d824525f-8f66-46ca-bf63-1c90755de42f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01T28hh62T61FzDB5tWRnpyj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2830,
+      "cache_read_input_tokens": 41505,
+      "output_tokens": 551,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2830,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 551,
+          "cache_read_input_tokens": 41505,
+          "cache_creation_input_tokens": 2830,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2830
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-10T11:54:44.063Z_
+
+<details><summary>↩ Tool result · `toolu_01HoXgdF9WBV7krKSJcQ4esY`</summary>
+
+```text
+# DemoHLM Data Generation Mechanism
+
+## Single Demonstration Input
+DemoHLM uses **one demonstration per task**, not multiple sources. The system collects "a single human manipulation demonstration τh" via VR teleoperation in simulation, then synthesizes hundreds to thousands of trajectories from it.
+
+## Demonstration Transformation
+The core mechanism converts the single demo into object-centric poses, splitting it into pre-contact and post-contact segments. The pre-contact phase uses object-relative end-effector positions, while post-contact switches to proprioception-relative poses to handle tasks where the end-effector remains stationary relative to the object.
+
+## Three-Stage Generation Pipeline
+Rather than composing segments from different demos, DemoHLM replays the same demonstration across three sequential stages:
+- **Locomotion Stage**: PD controller guides the robot to appropriate starting position
+- **Pre-Manipulation Stage**: Object-centric trajectory with interpolation to handle controller errors
+- **Manipulation Stage**: Proprioception-centric poses for contact-rich interaction
+
+## Scene and State Variation
+The system varies initial robot and object poses within defined regions (three sizes tested: R₁, R₂, R₃). However, the paper does **not describe room-level scene variation** with obstacles or furniture—tasks appear conducted in structured environments.
+
+## The 10 Tasks Tested
+Four rubber-hand tasks: LiftBox, PressCube, PushCube, Handover
+
+Six gripper tasks: GraspCube, OpenCabinet, PushCart, EraseBoard, PourWater, ExchangeCube
+
+## Diversity Scale
+Success rates for data generation range from 72.7% to 99.3% across tasks, with the largest region (R₃) showing the most variation. Performance improves monotonically with dataset size (100 to 5,000 trajectories), demonstrating the effectiveness of synthetic diversity.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "978fe288-a6b3-484d-b767-5d3d9f16c3bc",
+  "isSidechain": false,
+  "promptId": "22bf6fc8-9774-47f2-9286-3ee2ace81d66",
+  "type": "user",
+  "uuid": "58c4d17e-b77c-4411-809d-c3bd8e898dc5",
+  "toolUseResult": {
+    "bytes": 251714,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# DemoHLM Data Generation Mechanism\n\n## Single Demonstration Input\nDemoHLM uses **one demonstration per task**, not multiple sources. The system collects \"a single human manipulation demonstration τh\" via VR teleoperation in simulation, then synthesizes hundreds to thousands of trajectories from it.\n\n## Demonstration Transformation\nThe core mechanism converts the single demo into object-centric poses, splitting it into pre-contact and post-contact segments. The pre-contact phase uses object-relative end-effector positions, while post-contact switches to proprioception-relative poses to handle tasks where the end-effector remains stationary relative to the object.\n\n## Three-Stage Generation Pipeline\nRather than composing segments from different demos, DemoHLM replays the same demonstration across three sequential stages:\n- **Locomotion Stage**: PD controller guides the robot to appropriate starting position\n- **Pre-Manipulation Stage**: Object-centric trajectory with interpolation to handle controller errors\n- **Manipulation Stage**: Proprioception-centric poses for contact-rich interaction\n\n## Scene and State Variation\nThe system varies initial robot and object poses within defined regions (three sizes tested: R₁, R₂, R₃). However, the paper does **not describe room-level scene variation** with obstacles or furniture—tasks appear conducted in structured environments.\n\n## The 10 Tasks Tested\nFour rubber-hand tasks: LiftBox, PressCube, PushCube, Handover\n\nSix gripper tasks: GraspCube, OpenCabinet, PushCart, EraseBoard, PourWater, ExchangeCube\n\n## Diversity Scale\nSuccess rates for data generation range from 72.7% to 99.3% across tasks, with the largest region (R₃) showing the most variation. Performance improves monotonically with dataset size (100 to 5,000 trajectories), demonstrating the effectiveness of synthetic diversity.",
+    "durationMs": 8046,
+    "url": "https://arxiv.org/html/2510.11258v1"
+  },
+  "sourceToolAssistantUUID": "978fe288-a6b3-484d-b767-5d3d9f16c3bc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-10T11:54:45.758Z_
+
+<details><summary>↩ Tool result · `toolu_01GYtoeMRmQWjbuchkS9xE6Y`</summary>
+
+```text
+Web search results for query: "mobile manipulation base pose optimization reachability constraint IK workspace 2025 robot arxiv"
+
+Links: [{"title":"Predictive Reachability for Embodiment Selection in Mobile Manipulation Behaviors","url":"https://arxiv.org/html/2410.21059"},{"title":"MoMaGen: Generating Demonstrations under Soft and Hard Constraints for Multi-Step Bimanual Mobile Manipulation","url":"https://arxiv.org/html/2510.18316"},{"title":"[2203.04051] Robot Learning of Mobile Manipulation with Reachability Behavior Priors","url":"https://ar5iv.labs.arxiv.org/html/2203.04051"},{"title":"MoManipVLA: Transferring Vision-language-action Models for General Mobile Manipulation","url":"https://arxiv.org/html/2503.13446v1"},{"title":"MoMaGen: Generating Demonstrations under Soft and ...","url":"https://arxiv.org/pdf/2510.18316"},{"title":"Planning Optimal Trajectories for Mobile Manipulators under End-effector Trajectory Continuity Constraint","url":"https://arxiv.org/html/2309.12251v2"},{"title":"MoMa-Pos: An Efficient Object-Kinematic-Aware Base Placement Optimization Framework for Mobile Manipulation","url":"https://arxiv.org/html/2403.19940"},{"title":"arXiv:2505.23692v1 [cs.RO] 29 May 2025","url":"https://arxiv.org/pdf/2505.23692v1"},{"title":"RichMap: A Reachability Map Balancing Precision, Efficiency, and Flexibility for Rich Robot Manipulation Tasks","url":"https://arxiv.org/html/2604.06778"},{"title":"BASENET: A Learning-based Mobile Manipulator Base Pose Sequence","url":"https://arxiv.org/pdf/2406.08653"}]
+
+I've completed the web search for your query about mobile manipulation base pose optimization with reachability constraints, IK, and workspace considerations. Here are the relevant results from arXiv:
+
+## Key Papers Found:
+
+1. **Predictive Reachability for Embodiment Selection in Mobile Manipulation Behaviors** (October 2024)
+   - Addresses inverse kinematics (IK) solving for the arm at each base pose of a trajectory
+   - Introduces a predictive reachability approach that decides reachability based on predicted arm motions
+
+2. **MoMaGen: Generating Demonstrations under Soft and Hard Constraints for Multi-Step Bimanual Mobile Manipulation** (February 2026)
+   - Imposes reachability as a hard constraint, ensuring sampled base poses keep all required end-effector trajectories within reach
+   - Samples base poses near target objects and uses fast IK checks over full motion planning for preemptive filtering
+
+3. **MoMa-Pos: An Efficient Object-Kinematic-Aware Base Placement Optimization Framework** (October 2024)
+   - Uses inverse reachability maps to account for robot-specific constraints, and incorporates objects' kinematic properties from the environment to identify feasible base placements
+
+4. **Planning Optimal Trajectories for Mobile Manipulators under End-effector Trajectory Continuity Constraint** (March 2024)
+   - Focuses on reachability analysis and geometric reachable region methods
+
+5. **MoManipVLA: Transferring Vision-language-action Models for General Mobile Manipulation** (March 2025)
+   - Uses bi-level objective optimization to jointly search for optimal trajectory pose for the base and arm considering end-effector reachability, trajectory smoothness and collision avoidance
+
+These papers collectively address the core challenges of optimizing mobile manipulator base poses while satisfying reachability constraints and workspace limitations.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d824525f-8f66-46ca-bf63-1c90755de42f",
+  "isSidechain": false,
+  "promptId": "22bf6fc8-9774-47f2-9286-3ee2ace81d66",
+  "type": "user",
+  "uuid": "3887918b-3104-4464-be2a-955e9804da27",
+  "toolUseResult": {
+    "query": "mobile manipulation base pose optimization reachability constraint IK workspace 2025 robot arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018PuTvsxX2wPZb2JNxPU2Vq",
+        "content": [
+          {
+            "title": "Predictive Reachability for Embodiment Selection in Mobile Manipulation Behaviors",
+            "url": "https://arxiv.org/html/2410.21059"
+          },
+          {
+            "title": "MoMaGen: Generating Demonstrations under Soft and Hard Constraints for Multi-Step Bimanual Mobile Manipulation",
+            "url": "https://arxiv.org/html/2510.18316"
+          },
+          {
+            "title": "[2203.04051] Robot Learning of Mobile Manipulation with Reachability Behavior Priors",
+            "url": "https://ar5iv.labs.arxiv.org/html/2203.04051"
+          },
+          {
+            "title": "MoManipVLA: Transferring Vision-language-action Models for General Mobile Manipulation",
+            "url": "https://arxiv.org/html/2503.13446v1"
+          },
+          {
+            "title": "MoMaGen: Generating Demonstrations under Soft and ...",
+            "url": "https://arxiv.org/pdf/2510.18316"
+          },
+          {
+            "title": "Planning Optimal Trajectories for Mobile Manipulators under End-effector Trajectory Continuity Constraint",
+            "url": "https://arxiv.org/html/2309.12251v2"
+          },
+          {
+            "title": "MoMa-Pos: An Efficient Object-Kinematic-Aware Base Placement Optimization Framework for Mobile Manipulation",
+            "url": "https://arxiv.org/html/2403.19940"
+          },
+          {
+            "title": "arXiv:2505.23692v1 [cs.RO] 29 May 2025",
+            "url": "https://arxiv.org/pdf/2505.23692v1"
+          },
+          {
+            "title": "RichMap: A Reachability Map Balancing Precision, Efficiency, and Flexibility for Rich Robot Manipulation Tasks",
+            "url": "https://arxiv.org/html/2604.06778"
+          },
+          {
+            "title": "BASENET: A Learning-based Mobile Manipulator Base Pose Sequence",
+            "url": "https://arxiv.org/pdf/2406.08653"
+          }
+        ]
+      },
+      "I've completed the web search for your query about mobile manipulation base pose optimization with reachability constraints, IK, and workspace considerations. Here are the relevant results from arXiv:\n\n## Key Papers Found:\n\n1. **Predictive Reachability for Embodiment Selection in Mobile Manipulation Behaviors** (October 2024)\n   - Addresses inverse kinematics (IK) solving for the arm at each base pose of a trajectory\n   - Introduces a predictive reachability approach that decides reachability based on predicted arm motions\n\n2. **MoMaGen: Generating Demonstrations under Soft and Hard Constraints for Multi-Step Bimanual Mobile Manipulation** (February 2026)\n   - Imposes reachability as a hard constraint, ensuring sampled base poses keep all required end-effector trajectories within reach\n   - Samples base poses near target objects and uses fast IK checks over full motion planning for preemptive filtering\n\n3. **MoMa-Pos: An Efficient Object-Kinematic-Aware Base Placement Optimization Framework** (October 2024)\n   - Uses inverse reachability maps to account for robot-specific constraints, and incorporates objects' kinematic properties from the environment to identify feasible base placements\n\n4. **Planning Optimal Trajectories for Mobile Manipulators under End-effector Trajectory Continuity Constraint** (March 2024)\n   - Focuses on reachability analysis and geometric reachable region methods\n\n5. **MoManipVLA: Transferring Vision-language-action Models for General Mobile Manipulation** (March 2025)\n   - Uses bi-level objective optimization to jointly search for optimal trajectory pose for the base and arm considering end-effector reachability, trajectory smoothness and collision avoidance\n\nThese papers collectively address the core challenges of optimizing mobile manipulator base poses while satisfying reachability constraints and workspace limitations."
+    ],
+    "durationSeconds": 9.324864822000004
+  },
+  "sourceToolAssistantUUID": "d824525f-8f66-46ca-bf63-1c90755de42f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 65 · 2026-05-10T11:55:19.535Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Very important findings:
+
+1. DemoHLM confirmed: single demonstration, object-relative trajectory transformation, three-stage segmentation (locomotion, pre-manipulation, manipulation). 10 tasks tested. No combinatorial multi-source composition. No room-level obstacle/furniture diversity.
+
+2. For the reachability-constrained base-pose optimization contribution (Contribution 2):
+   - RichMap (arXiv:2604.06778, April 2026) - "A Reachability Map Balancing Precision, Efficiency, and Flexibility for Rich Robot Manipulation Tasks" - this seems very relevant and was published in April 2026! Let me check this.
+   - MoMa-Pos (Oct 2024) and MoMaGen (Oct 2025) both address base placement optimization using reachability maps for wheeled mobile manipulators, while MoManipVLA (March 2025) uses bi-level optimization to jointly optimize base and arm poses considering end-effector reachability. RichMap appears to be the most recent work in this space, published after LocoMimicGen was conceived, and could be directly relevant to the reachability-constrained base-pose optimization approach.
+
+Now I need to dig deeper into Isaac Lab PR #3259 since it was actually merged and represents a concrete baseline the generator overlooked—it adds locomanipulation data generation through disjoint navigation with scene randomization. I should also verify the technical distinction in PR #3992 around navigation encoding, and check whether RichMap represents concurrent work on reachability maps or something distinct from what's already been studied with MoMa-Pos and related approaches.
+
+Looking at the Round 2 revisions, the generator made solid progress acknowledging the primary baselines and clarifying the navigation gap, but the critical miss is PR #3259—that's a merged contribution directly in the problem space that needs to be addressed. The other checkmarks on compute constraints, sim-to-real framing, and deadline corrections are all solid, but this omission is a real gap I need to flag.
+
+On the reachability map contribution, I'm realizing the novelty claim is overstated. Inverse reachability maps for base placement are well-established in the literature—MoMa-Pos, MoMaGen, Reuleaux all do this—so the generator needs to ground the actual novelty in why bipedal humanoid balance constraints make existing methods insufficient rather than just claiming it as a core contribution.
+
+And the DemoHLM claim about combinatorial scaling is incomplete in my current thinking, but I should examine what that's actually asserting and whether it holds up against what DemoHLM actually demonstrates. The description glosses over how challenging the constrained optimization actually is for base-pose placement, especially for contact-rich tasks like doors and drawers where the base position directly impacts arm reachability. The 20-day timeline with two researchers seems tight given everything that needs to come together—extending the SE(3) encoding, precomputing reachability maps for the G1, solving the base-pose optimization, running three tasks with ablations, and training the diffusion policy. I should also verify RichMap and search for recent work specifically combining procedural demo generation with navigation, manipulation, and bipedal humanoid control.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3887918b-3104-4464-be2a-955e9804da27",
+  "isSidechain": false,
+  "requestId": "req_011Catqua2rdzSNDYQeKJTbj",
+  "type": "assistant",
+  "uuid": "6eec450e-4ca7-486a-b001-31dc98a0d351",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01GJ8bTpqZzpj9h4S59zumQS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1983,
+      "cache_read_input_tokens": 44335,
+      "output_tokens": 1526,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1983,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1526,
+          "cache_read_input_tokens": 44335,
+          "cache_creation_input_tokens": 1983,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1983
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66 · 2026-05-10T11:55:19.547Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01XkJQjMNxETrvZP4tYy9m9m`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2604.06778",
+  "prompt": "What is RichMap? What problem does it solve? Does it address mobile humanoid base placement optimization? Is it for loco-manipulation? What robot platforms does it target?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6eec450e-4ca7-486a-b001-31dc98a0d351",
+  "isSidechain": false,
+  "requestId": "req_011Catqua2rdzSNDYQeKJTbj",
+  "type": "assistant",
+  "uuid": "682b876f-2f4b-4104-8f2d-50076bcb4d43",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01GJ8bTpqZzpj9h4S59zumQS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1983,
+      "cache_read_input_tokens": 44335,
+      "output_tokens": 1526,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1983,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1526,
+          "cache_read_input_tokens": 44335,
+          "cache_creation_input_tokens": 1983,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1983
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-10T11:55:19.556Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01SSR3vuYRZWa1UzwgNQQgYy`</summary>
+
+```json
+{
+  "query": "procedural demonstration generation navigation manipulation bipedal humanoid SE3 frame 2025 2026 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "682b876f-2f4b-4104-8f2d-50076bcb4d43",
+  "isSidechain": false,
+  "requestId": "req_011Catqua2rdzSNDYQeKJTbj",
+  "type": "assistant",
+  "uuid": "42b8a413-5cda-4a73-ab26-1aaab8b260a1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01GJ8bTpqZzpj9h4S59zumQS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1983,
+      "cache_read_input_tokens": 44335,
+      "output_tokens": 1526,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1983,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1526,
+          "cache_read_input_tokens": 44335,
+          "cache_creation_input_tokens": 1983,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1983
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 68_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "42b8a413-5cda-4a73-ab26-1aaab8b260a1",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 69_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify LocoMimicGen against Isaac Lab PRs and compute constraints",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc"
+}
+```
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-10T11:55:23.165Z_
+
+<details><summary>↩ Tool result · `toolu_01XkJQjMNxETrvZP4tYy9m9m`</summary>
+
+```text
+# RichMap Overview
+
+**What is RichMap?**
+
+RichMap is "a high-precision reachability map representation designed to balance efficiency and flexibility for versatile robot manipulation tasks." It refines traditional grid-based structures while maintaining computational efficiency.
+
+**Problem It Solves**
+
+The work addresses the need for reachability maps that simultaneously achieve high prediction accuracy (>98%), low false positive rates (1-2%), and fast query performance (~15 microseconds per query) without sacrificing flexibility.
+
+**Mobile Humanoid Base Placement & Loco-Manipulation**
+
+The provided abstract does not mention mobile humanoid base placement optimization or loco-manipulation tasks specifically.
+
+**Robot Platforms**
+
+The document does not identify specific robot platforms targeted by RichMap. It references "cross-embodiment scenarios" in block-pushing experiments with up to 26% performance improvement, but names no particular robots.
+
+**Additional Applications**
+
+Beyond core manipulation, the framework extends to workspace similarity quantification using maximum mean discrepancy metrics and enables diffusion policy transfer across different robot embodiments.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "682b876f-2f4b-4104-8f2d-50076bcb4d43",
+  "isSidechain": false,
+  "promptId": "22bf6fc8-9774-47f2-9286-3ee2ace81d66",
+  "type": "user",
+  "uuid": "ab5cbc59-c05c-4935-81f3-73c9483a7f46",
+  "toolUseResult": {
+    "bytes": 45459,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# RichMap Overview\n\n**What is RichMap?**\n\nRichMap is \"a high-precision reachability map representation designed to balance efficiency and flexibility for versatile robot manipulation tasks.\" It refines traditional grid-based structures while maintaining computational efficiency.\n\n**Problem It Solves**\n\nThe work addresses the need for reachability maps that simultaneously achieve high prediction accuracy (>98%), low false positive rates (1-2%), and fast query performance (~15 microseconds per query) without sacrificing flexibility.\n\n**Mobile Humanoid Base Placement & Loco-Manipulation**\n\nThe provided abstract does not mention mobile humanoid base placement optimization or loco-manipulation tasks specifically.\n\n**Robot Platforms**\n\nThe document does not identify specific robot platforms targeted by RichMap. It references \"cross-embodiment scenarios\" in block-pushing experiments with up to 26% performance improvement, but names no particular robots.\n\n**Additional Applications**\n\nBeyond core manipulation, the framework extends to workspace similarity quantification using maximum mean discrepancy metrics and enables diffusion policy transfer across different robot embodiments.",
+    "durationMs": 3612,
+    "url": "https://arxiv.org/abs/2604.06778"
+  },
+  "sourceToolAssistantUUID": "682b876f-2f4b-4104-8f2d-50076bcb4d43",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-10T11:55:26.444Z_
+
+<details><summary>↩ Tool result · `toolu_01SSR3vuYRZWa1UzwgNQQgYy`</summary>
+
+```text
+Web search results for query: "procedural demonstration generation navigation manipulation bipedal humanoid SE3 frame 2025 2026 arxiv"
+
+Links: [{"title":"Humanoid Locomotion and Manipulation: Current Progress and Challenges in Control, Planning, and Learning *co-corresponding authors","url":"https://arxiv.org/html/2501.02116v1"},{"title":"GitHub - YanjieZe/awesome-humanoid-robot-learning: A Paper List for Humanoid Robot Learning. · GitHub","url":"https://github.com/YanjieZe/awesome-humanoid-robot-learning"},{"title":"Natural Humanoid Robot Locomotion with Generative Motion Prior","url":"https://arxiv.org/html/2503.09015v1"},{"title":"[2509.11839] TrajBooster: Boosting Humanoid Whole-Body Manipulation via Trajectory-Centric Learning","url":"https://arxiv.org/abs/2509.11839"},{"title":"NeurIPS Poster HumanoidGen: Data Generation for Bimanual Dexterous Manipulation via LLM Reasoning","url":"https://neurips.cc/virtual/2025/poster/118438"},{"title":"CHILD (Controller for Humanoid Imitation and Live Demonstration):","url":"https://arxiv.org/pdf/2508.00162"},{"title":"Robotics | Cool Papers - Immersive Paper Discovery","url":"https://papers.cool/arxiv/cs.RO"},{"title":"Humanoid Loco-Manipulations Pattern Generation and Stabilization Control","url":"https://arxiv.org/html/2505.24116"},{"title":"Humanoid Everyday: A Comprehensive Robotic Dataset for Open-World Humanoid Manipulation","url":"https://arxiv.org/html/2510.08807v1"},{"title":"Safe Navigation of Bipedal Robots via Koopman Operator-Based Model Predictive Control","url":"https://arxiv.org/html/2409.14736v3"}]
+
+I've found several relevant papers on arXiv related to humanoid robots, bipedal navigation, and manipulation. Here are the key results:
+
+**Key Findings:**
+
+Bipedal navigation for humanoid robots typically uses a hierarchical navigation stack with a global path planner responsible for understanding the overall navigation task and generating obstacle-avoiding paths, while local step planners focus on determining precise foot placements that adhere to bipedal dynamics.
+
+**Recent Works (2025-2026):**
+
+HumanoidGen is an automated task creation and demonstration collection framework that leverages atomic dexterous operations and LLM reasoning to generate relational constraints.
+
+TrajBooster is a cross-embodiment framework that leverages wheeled-humanoid data to boost bipedal VLA using end-effector trajectories as a morphology-agnostic interface.
+
+A bipedal control strategy for humanoid loco-manipulation accounts for external forces and includes a pattern generator to plan center of mass trajectories consistent with manipulation force references, plus a stabilizer to compensate for errors between desired and actual forces.
+
+Humanoid Everyday is a large-scale humanoid manipulation dataset characterized by extensive task variety involving dextrous object manipulation, human-humanoid interaction, and locomotion-integrated actions.
+
+The search results contain multiple papers from 2025-2026 addressing procedural generation, demonstration collection, and SE(3) frame-based control for humanoid robots engaged in navigation and manipulation tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "42b8a413-5cda-4a73-ab26-1aaab8b260a1",
+  "isSidechain": false,
+  "promptId": "22bf6fc8-9774-47f2-9286-3ee2ace81d66",
+  "type": "user",
+  "uuid": "2f2092d1-3629-4eef-886c-728d4ba92b6e",
+  "toolUseResult": {
+    "query": "procedural demonstration generation navigation manipulation bipedal humanoid SE3 frame 2025 2026 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Tpuon12Pka9C6hruWNt1K4",
+        "content": [
+          {
+            "title": "Humanoid Locomotion and Manipulation: Current Progress and Challenges in Control, Planning, and Learning *co-corresponding authors",
+            "url": "https://arxiv.org/html/2501.02116v1"
+          },
+          {
+            "title": "GitHub - YanjieZe/awesome-humanoid-robot-learning: A Paper List for Humanoid Robot Learning. · GitHub",
+            "url": "https://github.com/YanjieZe/awesome-humanoid-robot-learning"
+          },
+          {
+            "title": "Natural Humanoid Robot Locomotion with Generative Motion Prior",
+            "url": "https://arxiv.org/html/2503.09015v1"
+          },
+          {
+            "title": "[2509.11839] TrajBooster: Boosting Humanoid Whole-Body Manipulation via Trajectory-Centric Learning",
+            "url": "https://arxiv.org/abs/2509.11839"
+          },
+          {
+            "title": "NeurIPS Poster HumanoidGen: Data Generation for Bimanual Dexterous Manipulation via LLM Reasoning",
+            "url": "https://neurips.cc/virtual/2025/poster/118438"
+          },
+          {
+            "title": "CHILD (Controller for Humanoid Imitation and Live Demonstration):",
+            "url": "https://arxiv.org/pdf/2508.00162"
+          },
+          {
+            "title": "Robotics | Cool Papers - Immersive Paper Discovery",
+            "url": "https://papers.cool/arxiv/cs.RO"
+          },
+          {
+            "title": "Humanoid Loco-Manipulations Pattern Generation and Stabilization Control",
+            "url": "https://arxiv.org/html/2505.24116"
+          },
+          {
+            "title": "Humanoid Everyday: A Comprehensive Robotic Dataset for Open-World Humanoid Manipulation",
+            "url": "https://arxiv.org/html/2510.08807v1"
+          },
+          {
+            "title": "Safe Navigation of Bipedal Robots via Koopman Operator-Based Model Predictive Control",
+            "url": "https://arxiv.org/html/2409.14736v3"
+          }
+        ]
+      },
+      "I've found several relevant papers on arXiv related to humanoid robots, bipedal navigation, and manipulation. Here are the key results:\n\n**Key Findings:**\n\nBipedal navigation for humanoid robots typically uses a hierarchical navigation stack with a global path planner responsible for understanding the overall navigation task and generating obstacle-avoiding paths, while local step planners focus on determining precise foot placements that adhere to bipedal dynamics.\n\n**Recent Works (2025-2026):**\n\nHumanoidGen is an automated task creation and demonstration collection framework that leverages atomic dexterous operations and LLM reasoning to generate relational constraints.\n\nTrajBooster is a cross-embodiment framework that leverages wheeled-humanoid data to boost bipedal VLA using end-effector trajectories as a morphology-agnostic interface.\n\nA bipedal control strategy for humanoid loco-manipulation accounts for external forces and includes a pattern generator to plan center of mass trajectories consistent with manipulation force references, plus a stabilizer to compensate for errors between desired and actual forces.\n\nHumanoid Everyday is a large-scale humanoid manipulation dataset characterized by extensive task variety involving dextrous object manipulation, human-humanoid interaction, and locomotion-integrated actions.\n\nThe search results contain multiple papers from 2025-2026 addressing procedural generation, demonstration collection, and SE(3) frame-based control for humanoid robots engaged in navigation and manipulation tasks."
+    ],
+    "durationSeconds": 6.884790133000002
+  },
+  "sourceToolAssistantUUID": "42b8a413-5cda-4a73-ab26-1aaab8b260a1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 72 · 2026-05-10T11:55:26.447Z_
+
+```json
+{
+  "parentUuid": "2f2092d1-3629-4eef-886c-728d4ba92b6e",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "08f44f24-7254-4b67-b2ca-4f53a65e18f7",
+  "timestamp": "2026-05-10T11:55:26.447Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 73 · 2026-05-10T11:56:22.892Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. RichMap is NOT about mobile humanoid base placement or loco-manipulation - it's about a general reachability map for manipulation tasks. It's cross-embodiment but doesn't target bipedal humanoids specifically for loco-manipulation.
+
+Now let me check one more critical thing: the Isaac Lab PR #3259 more carefully. Was it merged into the main branch? The generator's landscape only mentions PRs #3150 and #3992 as baselines - missing PR #3259 which was also merged (Sept 10, 2025) and directly addresses locomanipulation data generation.
+
+Also important to verify: Can PR #3259 (disjoint navigation with occupancy maps) already achieve "room-level diversity"? If it does, then LocoMimicGen's Contribution 3 (combinatorial multi-source segment composition for room-level scaling) might be partially preempted.
+ 
+Now I'm checking the generator's technical claims against what I've actually found. PR #3992's state-based trajectory repetition for navigation checks out, and PR #3259 appears to handle path planning through occupancy maps rather than SE(3) frame-based encoding, so that claim about no object-centric navigation stance encoding seems solid. For the reachability-constrained base-pose optimization claim, PR #3259 uses occupancy maps for path planning but I need to verify whether it actually does arm reachability optimization.
+
+The bigger issue is that the generator completely missed PR #3259 on disjoint navigation—it's a merged baseline that adds occupancy-map path planning and scene randomization for locomanipulation, which is a significant gap in how the generator positions its contributions. I also notice MoMaGen from October 2025 already uses reachability as a hard constraint for demo generation in mobile manipulation, though for wheeled platforms rather than bipedal systems, so the generator needs to be clearer about why bipedal IRM presents a harder problem. And DemoHLM apparently generates hundreds to thousands of trajectories from a single demonstration across 10 tasks with sim-to-real transfer, which is another important baseline to account for.
+
+The 100-1000x expansion ratio that LocoMimicGen claims isn't actually the differentiator from DemoHLM since DemoHLM achieves similar scaling from a single demo—the real distinction is that DemoHLM doesn't compose across multiple source demonstrations or achieve room-level obstacle diversity. On the timeline front, building on Isaac Lab Mimic's existing infrastructure seems realistic with pre-computing the G1 reachability map taking a few days, the coupled SE(3) encoding extension another few days, constrained optimization several more days, and then data generation plus policy training across three tasks requiring careful compute scheduling. The 20-day estimate is tight but plausible with two experienced researchers. Finally, the reachability optimization contribution feels overstated since inverse reachability maps are already well-established in the literature.
+
+Looking at the overall revision, it's a meaningful step forward from round 1—it correctly identifies the Isaac Lab baselines, has realistic compute estimates within the 200-hour H100 budget, appropriately defers sim-to-real as future work, and presents three clear incremental contributions. The main remaining issues are the missing PR #3259 baseline, the reachability optimization being more of an application of existing techniques than a novel contribution, the tight timeline, and lingering questions about whether this reaches CoRL-level novelty.
+
+Now I'm assessing whether this work actually qualifies for a top-tier venue like CoRL. The core concern is that while LocoMimicGen addresses a real gap in room-level loco-manipulation data generation and builds on solid infrastructure with appropriate baselines, reviewers might view it as primarily an engineering contribution rather than a research one. The individual components—SE(3) encoding, IRM-guided optimization, combinatorial composition—are all established techniques, and the paper's narrative essentially extends what MimicGen accomplished for tabletop manipulation to the loco-manipulation domain. That's a valid and impactful contribution, but it may fall short of CoRL's novelty bar.
+
+Let me verify the compute requirements more carefully. I'm working through the estimates: data generation across 2048 parallel environments for 3 tasks takes roughly 45 hours on an A100, policy training adds another 90 hours, and ablations bring it to about 90 hours, totaling around 225 hours on A100 or roughly 90 hours on H100. This aligns reasonably with the manual mode estimate of 60-80 hours, though the HIL variant pushes closer to 200 hours. The real concern is that diffusion policy training on humanoid loco-manipulation data will likely demand significantly more compute than these estimates suggest.
+
+Diffusion policies typically require 50-100 hours on complex manipulation tasks, and with the larger state/action spaces involved in loco-manipulation with navigation, 15 hours per task seems optimistic. Given the dataset size—1000 demonstrations of 30-second trajectories at 30Hz—the training could reasonably fall within the 10-50 hour range depending on model size and epoch count, so it's plausible but on the conservative end. I'm leaning toward a "revise" verdict with concrete feedback, as the core idea has matured significantly.
+
+The main gaps are the missing Isaac Lab baseline, unclear novelty positioning relative to existing IRM work, and potential venue fit concerns between CoRL and RA-L. Each contribution individually relies on established techniques—SE(3) frames from MimicGen, IRM from mobile manipulation literature, and compositional approaches from tabletop work—but their combination for bipedal humanoid loco-manipulation is genuinely novel. The missing baseline is the most concerning issue, though it doesn't represent a fundamental novelty problem.
+
+Feasibility looks solid with realistic compute needs and good infrastructure leverage, though the 20-day timeline with two researchers is tight and policy training estimates might be optimistic. The work is exceptionally well-specified with clear differentiation from related methods, and it addresses a genuine bottleneck in humanoid data scarcity with room-level scaling that's currently missing from the literature—this would meaningfully benefit the Isaac Lab community.
+
+The core issue is that this lands as a moderate incremental contribution applying MimicGen to a new domain rather than introducing fundamental algorithmic novelty. The missing PR #3259 baseline needs acknowledgment, the reachability optimization relies on well-established inverse reachability methods without strong novelty claims, and fitting three contributions into a 20-day timeline raises execution concerns. Averaging out to 3.875, it falls just short of the 4.0 threshold, though I'm reconsidering whether the generator has actually addressed the round one feedback sufficiently to warrant a pass. critical issues. The remaining issues I've identified are:
+1. PR #3259 not in baseline (minor-moderate)
+2. Contribution 2 novelty framing (minor-moderate)
+
+Are these "revise" level or "pass with caveats" level?
+
+PR #3259 uses "disjoint navigation" - it separates navigation and manipulation cleanly but uses occupancy maps, NOT SE(3) object-centric encoding. LocoMimicGen's contribution 1 (coupled SE(3) encoding) is genuinely different from PR #3259. But the generator should acknowledge PR #3259 to avoid CoRL reviewers asking "have you compared against this?"
+
+The reachability optimization (contribution 2) is genuinely novel in the context of coupled navigation+manipulation for bipedal humanoids within the Mimic data generation framework, even if IRM as a concept is known.
+
+Given that this is round 2/10 and both issues are straightforward to fix, I'm leaning toward "revise" with targeted feedback: add PR #3259 to the baseline comparison, clarify how contribution 2 differs from existing IRM work, and make the timing concern more explicit. But I need to reconsider carefully—round 1 had critical issues around compute, missing PRs #3150/#3992, and physical G1 hardware, all of which the revision addressed. These remaining gaps are legitimate but fixable with minimal changes. The question is whether they're blocking enough given the strict 4.0/5.0 scoring threshold. Looking at what PR #3259 actually does, it's closer to LocoMimicGen than I initially thought—both segment tasks into phases, generate large-scale datasets, and include scene randomization. The real difference lies in LocoMimicGen's SE(3) object-centric encoding, reachability-constrained optimization, and multi-source composition capabilities that PR #3259 doesn't have. This is a substantive gap that CoRL reviewers will definitely probe, so it's a legitimate revision issue, not just a missing citation.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "08f44f24-7254-4b67-b2ca-4f53a65e18f7",
+  "isSidechain": false,
+  "requestId": "req_011Catqxa1CepFoEdXRd1kX9",
+  "type": "assistant",
+  "uuid": "dfed4fa1-4197-4980-a659-a2c4fc35aac3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01Hopon98r8QCgzZyuKsN4Be",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2752,
+      "cache_read_input_tokens": 46318,
+      "output_tokens": 3141,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2752,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3141,
+          "cache_read_input_tokens": 46318,
+          "cache_creation_input_tokens": 2752,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2752
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 74 · 2026-05-10T11:56:22.896Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019BSiF1g2kkA1MsN1N5R4kx`</summary>
+
+```json
+{
+  "query": "Isaac Lab 2.3 locomanipulation data generation release notes \"disjoint navigation\" scene randomization"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dfed4fa1-4197-4980-a659-a2c4fc35aac3",
+  "isSidechain": false,
+  "requestId": "req_011Catqxa1CepFoEdXRd1kX9",
+  "type": "assistant",
+  "uuid": "563550ed-e063-4479-9626-ab5fda860a37",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01Hopon98r8QCgzZyuKsN4Be",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2752,
+      "cache_read_input_tokens": 46318,
+      "output_tokens": 3141,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2752,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3141,
+          "cache_read_input_tokens": 46318,
+          "cache_creation_input_tokens": 2752,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2752
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-10T11:56:22.906Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01SWBi7CPvjTBQfvPzSvnUWo`</summary>
+
+```json
+{
+  "query": "humanoid loco-manipulation data generation CoRL 2026 submission procedural pipeline"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "563550ed-e063-4479-9626-ab5fda860a37",
+  "isSidechain": false,
+  "requestId": "req_011Catqxa1CepFoEdXRd1kX9",
+  "type": "assistant",
+  "uuid": "73c248c7-2867-45ec-9579-e8aaf49122d9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01Hopon98r8QCgzZyuKsN4Be",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2752,
+      "cache_read_input_tokens": 46318,
+      "output_tokens": 3141,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2752,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3141,
+          "cache_read_input_tokens": 46318,
+          "cache_creation_input_tokens": 2752,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2752
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 76_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "73c248c7-2867-45ec-9579-e8aaf49122d9",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 77_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify LocoMimicGen against Isaac Lab PRs and compute constraints",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc"
+}
+```
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-10T11:56:28.460Z_
+
+<details><summary>↩ Tool result · `toolu_019BSiF1g2kkA1MsN1N5R4kx`</summary>
+
+```text
+Web search results for query: "Isaac Lab 2.3 locomanipulation data generation release notes "disjoint navigation" scene randomization"
+
+Links: [{"title":"Release Notes — Isaac Lab Documentation","url":"https://isaac-sim.github.io/IsaacLab/main/source/refs/release_notes.html"},{"title":"Releases · isaac-sim/IsaacLab","url":"https://github.com/isaac-sim/IsaacLab/releases"},{"title":"Streamline Robot Learning with Whole-Body Control and Enhanced Teleoperation in NVIDIA Isaac Lab 2.3 | NVIDIA Technical Blog","url":"https://developer.nvidia.com/blog/streamline-robot-learning-with-whole-body-control-and-enhanced-teleoperation-in-nvidia-isaac-lab-2-3/"},{"title":"Adds locomanipulation data generation via. disjoint navigation by jaybdub · Pull Request #3259 · isaac-sim/IsaacLab","url":"https://github.com/isaac-sim/IsaacLab/pull/3259"},{"title":"Isaac Lab 2.3 GA Release · isaac-sim/IsaacLab · Discussion #3898","url":"https://github.com/isaac-sim/IsaacLab/discussions/3898"},{"title":"NVIDIA Isaac Lab - Browse /v2.3.0 at SourceForge.net","url":"https://sourceforge.net/projects/nvidia-isaac-lab.mirror/files/v2.3.0/"},{"title":"Improves dataset file names and low success rate for trained model on g1 locomanipulation dataset by michaellin6 · Pull Request #3503 · isaac-sim/IsaacLab","url":"https://github.com/isaac-sim/IsaacLab/pull/3503"},{"title":"GitHub - isaac-sim/IsaacLab at release/2.3.0","url":"https://github.com/isaac-sim/IsaacLab/tree/release/2.3.0"},{"title":"Welcome to Isaac Lab! — Isaac Lab Documentation","url":"https://isaac-sim.github.io/IsaacLab/release/2.3.0/index.html"},{"title":"Teleoperation and Imitation Learning with Isaac Lab Mimic — Isaac Lab Documentation","url":"https://isaac-sim.github.io/IsaacLab/main/source/overview/imitation-learning/teleop_imitation.html"}]
+
+Based on the search results, I found information about the Isaac Lab 2.3 locomanipulation data generation release notes with mentions of disjoint navigation and scene randomization:
+
+## Key Findings:
+
+Isaac Lab 2.3 adds locomanipulation data generation via disjoint navigation.
+
+This feature adds locomanipulation data generation via disjoint navigation, which allows the system to replay static manipulation data recorded with the G1 through environments and config files used for navigation data generation.
+
+Regarding scene randomization for locomanipulation, a new G1 humanoid environment combines RL-based locomotion with IK-based manipulation, integrating a full robot navigation stack to augment demonstrations with randomization of tabletop pick/place locations, destination and ground obstacles, enabling generation of large-scale loco-manipulation datasets from manipulation-only demonstrations by segmenting tasks into pick-navigate-place phases.
+
+This represents a significant feature in Isaac Lab 2.3 that enables the generation of complex locomotion and manipulation datasets by combining pre-recorded manipulation data with navigation capabilities, using scene randomization to create diverse training scenarios.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "563550ed-e063-4479-9626-ab5fda860a37",
+  "isSidechain": false,
+  "promptId": "22bf6fc8-9774-47f2-9286-3ee2ace81d66",
+  "type": "user",
+  "uuid": "41dd1564-06ec-47d4-9310-966c60720529",
+  "toolUseResult": {
+    "query": "Isaac Lab 2.3 locomanipulation data generation release notes \"disjoint navigation\" scene randomization",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01LULKmEcBYXGRF919uMxduk",
+        "content": [
+          {
+            "title": "Release Notes — Isaac Lab Documentation",
+            "url": "https://isaac-sim.github.io/IsaacLab/main/source/refs/release_notes.html"
+          },
+          {
+            "title": "Releases · isaac-sim/IsaacLab",
+            "url": "https://github.com/isaac-sim/IsaacLab/releases"
+          },
+          {
+            "title": "Streamline Robot Learning with Whole-Body Control and Enhanced Teleoperation in NVIDIA Isaac Lab 2.3 | NVIDIA Technical Blog",
+            "url": "https://developer.nvidia.com/blog/streamline-robot-learning-with-whole-body-control-and-enhanced-teleoperation-in-nvidia-isaac-lab-2-3/"
+          },
+          {
+            "title": "Adds locomanipulation data generation via. disjoint navigation by jaybdub · Pull Request #3259 · isaac-sim/IsaacLab",
+            "url": "https://github.com/isaac-sim/IsaacLab/pull/3259"
+          },
+          {
+            "title": "Isaac Lab 2.3 GA Release · isaac-sim/IsaacLab · Discussion #3898",
+            "url": "https://github.com/isaac-sim/IsaacLab/discussions/3898"
+          },
+          {
+            "title": "NVIDIA Isaac Lab - Browse /v2.3.0 at SourceForge.net",
+            "url": "https://sourceforge.net/projects/nvidia-isaac-lab.mirror/files/v2.3.0/"
+          },
+          {
+            "title": "Improves dataset file names and low success rate for trained model on g1 locomanipulation dataset by michaellin6 · Pull Request #3503 · isaac-sim/IsaacLab",
+            "url": "https://github.com/isaac-sim/IsaacLab/pull/3503"
+          },
+          {
+            "title": "GitHub - isaac-sim/IsaacLab at release/2.3.0",
+            "url": "https://github.com/isaac-sim/IsaacLab/tree/release/2.3.0"
+          },
+          {
+            "title": "Welcome to Isaac Lab! — Isaac Lab Documentation",
+            "url": "https://isaac-sim.github.io/IsaacLab/release/2.3.0/index.html"
+          },
+          {
+            "title": "Teleoperation and Imitation Learning with Isaac Lab Mimic — Isaac Lab Documentation",
+            "url": "https://isaac-sim.github.io/IsaacLab/main/source/overview/imitation-learning/teleop_imitation.html"
+          }
+        ]
+      },
+      "Based on the search results, I found information about the Isaac Lab 2.3 locomanipulation data generation release notes with mentions of disjoint navigation and scene randomization:\n\n## Key Findings:\n\nIsaac Lab 2.3 adds locomanipulation data generation via disjoint navigation.\n\nThis feature adds locomanipulation data generation via disjoint navigation, which allows the system to replay static manipulation data recorded with the G1 through environments and config files used for navigation data generation.\n\nRegarding scene randomization for locomanipulation, a new G1 humanoid environment combines RL-based locomotion with IK-based manipulation, integrating a full robot navigation stack to augment demonstrations with randomization of tabletop pick/place locations, destination and ground obstacles, enabling generation of large-scale loco-manipulation datasets from manipulation-only demonstrations by segmenting tasks into pick-navigate-place phases.\n\nThis represents a significant feature in Isaac Lab 2.3 that enables the generation of complex locomotion and manipulation datasets by combining pre-recorded manipulation data with navigation capabilities, using scene randomization to create diverse training scenarios."
+    ],
+    "durationSeconds": 5.557953636999999
+  },
+  "sourceToolAssistantUUID": "563550ed-e063-4479-9626-ab5fda860a37",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-10T11:56:30.575Z_
+
+<details><summary>↩ Tool result · `toolu_01SWBi7CPvjTBQfvPzSvnUWo`</summary>
+
+```text
+Web search results for query: "humanoid loco-manipulation data generation CoRL 2026 submission procedural pipeline"
+
+Links: [{"title":"GitHub - smallfryy/corl-2025-papers: ✨ 200+ robotics papers from CoRL 2025, with TLDRs, project pages, code, and more","url":"https://github.com/smallfryy/corl-2025-papers"},{"title":"CoRL 2026 - Call for Papers","url":"https://www.corl.org/contributions/call-for-papers"},{"title":"AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning","url":"https://arxiv.org/html/2603.20147v1"},{"title":"Building Generalist Humanoid Capabilities with NVIDIA Isaac GR00T N1.6 Using a Sim-to-Real Workflow | NVIDIA Technical Blog","url":"https://developer.nvidia.com/blog/building-generalist-humanoid-capabilities-with-nvidia-isaac-gr00t-n1-6-using-a-sim-to-real-workflow/"},{"title":"NVIDIA unveils humanoid AI and simulation tools at CoRL - Robotics 24/7","url":"https://www.robotics247.com/article/nvidia_unveils_humanoid_ai_and_simulation_tools_at_corl"},{"title":"GitHub - jonyzhang2023/awesome-embodied-vla-va-vln: A curated list of state-of-the-art research in embodied AI, focusing on vision-language-action (VLA) models, vision-language navigation (VLN), and related multimodal learning approaches. · GitHub","url":"https://github.com/jonyzhang2023/awesome-embodied-vla-va-vln"},{"title":"Streamline Robot Learning with Whole-Body Control and Enhanced Teleoperation in NVIDIA Isaac Lab 2.3 | NVIDIA Technical Blog","url":"https://developer.nvidia.com/blog/streamline-robot-learning-with-whole-body-control-and-enhanced-teleoperation-in-nvidia-isaac-lab-2-3/"},{"title":"NVIDIA Advances Robot Learning, Humanoid Development With New AI and Simulation Tools | NVIDIA Blog","url":"https://blogs.nvidia.com/blog/robot-learning-humanoid-development/"},{"title":"PHUMA: PHYSICALLY-GROUNDED HUMANOID ...","url":"https://openreview.net/pdf/a36747cac87a488230dfe8cb6d5c0aa5a6db82d7.pdf"},{"title":"GitHub - YanjieZe/Paper-List: A paper list of my history reading. Robotics, Learning, Vision. · GitHub","url":"https://github.com/YanjieZe/Paper-List"}]
+
+Based on the web search results, I found relevant information about humanoid loco-manipulation data generation research related to CoRL and procedural pipelines:
+
+## Key Findings:
+
+AGILE demonstrates a generic configuration architecture for humanoid loco-manipulation, with both the Unitree G1 and Booster T1 using the exact same MDP template and training pipeline. All locomotion tasks train on procedurally generated rough terrain with an adaptive difficulty curriculum.
+
+Isaac Lab 2.3 accelerates robot learning by automating the generation of complex manipulation and locomotion data, and includes a motion planner-based workflow for generating data in manipulation tasks. Additionally, the update expands teleoperation for data collection by supporting more devices, like Meta Quest VR and Manus gloves, to accelerate the creation of demonstration datasets.
+
+SkillGen is a system based on synthetic data generation for training robots with minimal human demonstrations, and HOVER is a robot foundation model for controlling humanoid robot locomotion and manipulation. These papers were presented by NVIDIA at CoRL.
+
+There is also work on Ψ₀: An Open Foundation Model Towards Universal Humanoid Loco-Manipulation, which appears in recent 2026 research lists.
+
+The research landscape shows active development in procedural data generation pipelines for humanoid loco-manipulation, with multiple approaches focusing on synthetic data generation, automated data collection workflows, and terrain curriculum learning.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "73c248c7-2867-45ec-9579-e8aaf49122d9",
+  "isSidechain": false,
+  "promptId": "22bf6fc8-9774-47f2-9286-3ee2ace81d66",
+  "type": "user",
+  "uuid": "3f57ed94-0bd5-4d64-b30b-6fe9b56cd148",
+  "toolUseResult": {
+    "query": "humanoid loco-manipulation data generation CoRL 2026 submission procedural pipeline",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HWDuQELGXjTFwrZWWu3iS7",
+        "content": [
+          {
+            "title": "GitHub - smallfryy/corl-2025-papers: ✨ 200+ robotics papers from CoRL 2025, with TLDRs, project pages, code, and more",
+            "url": "https://github.com/smallfryy/corl-2025-papers"
+          },
+          {
+            "title": "CoRL 2026 - Call for Papers",
+            "url": "https://www.corl.org/contributions/call-for-papers"
+          },
+          {
+            "title": "AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning",
+            "url": "https://arxiv.org/html/2603.20147v1"
+          },
+          {
+            "title": "Building Generalist Humanoid Capabilities with NVIDIA Isaac GR00T N1.6 Using a Sim-to-Real Workflow | NVIDIA Technical Blog",
+            "url": "https://developer.nvidia.com/blog/building-generalist-humanoid-capabilities-with-nvidia-isaac-gr00t-n1-6-using-a-sim-to-real-workflow/"
+          },
+          {
+            "title": "NVIDIA unveils humanoid AI and simulation tools at CoRL - Robotics 24/7",
+            "url": "https://www.robotics247.com/article/nvidia_unveils_humanoid_ai_and_simulation_tools_at_corl"
+          },
+          {
+            "title": "GitHub - jonyzhang2023/awesome-embodied-vla-va-vln: A curated list of state-of-the-art research in embodied AI, focusing on vision-language-action (VLA) models, vision-language navigation (VLN), and related multimodal learning approaches. · GitHub",
+            "url": "https://github.com/jonyzhang2023/awesome-embodied-vla-va-vln"
+          },
+          {
+            "title": "Streamline Robot Learning with Whole-Body Control and Enhanced Teleoperation in NVIDIA Isaac Lab 2.3 | NVIDIA Technical Blog",
+            "url": "https://developer.nvidia.com/blog/streamline-robot-learning-with-whole-body-control-and-enhanced-teleoperation-in-nvidia-isaac-lab-2-3/"
+          },
+          {
+            "title": "NVIDIA Advances Robot Learning, Humanoid Development With New AI and Simulation Tools | NVIDIA Blog",
+            "url": "https://blogs.nvidia.com/blog/robot-learning-humanoid-development/"
+          },
+          {
+            "title": "PHUMA: PHYSICALLY-GROUNDED HUMANOID ...",
+            "url": "https://openreview.net/pdf/a36747cac87a488230dfe8cb6d5c0aa5a6db82d7.pdf"
+          },
+          {
+            "title": "GitHub - YanjieZe/Paper-List: A paper list of my history reading. Robotics, Learning, Vision. · GitHub",
+            "url": "https://github.com/YanjieZe/Paper-List"
+          }
+        ]
+      },
+      "Based on the web search results, I found relevant information about humanoid loco-manipulation data generation research related to CoRL and procedural pipelines:\n\n## Key Findings:\n\nAGILE demonstrates a generic configuration architecture for humanoid loco-manipulation, with both the Unitree G1 and Booster T1 using the exact same MDP template and training pipeline. All locomotion tasks train on procedurally generated rough terrain with an adaptive difficulty curriculum.\n\nIsaac Lab 2.3 accelerates robot learning by automating the generation of complex manipulation and locomotion data, and includes a motion planner-based workflow for generating data in manipulation tasks. Additionally, the update expands teleoperation for data collection by supporting more devices, like Meta Quest VR and Manus gloves, to accelerate the creation of demonstration datasets.\n\nSkillGen is a system based on synthetic data generation for training robots with minimal human demonstrations, and HOVER is a robot foundation model for controlling humanoid robot locomotion and manipulation. These papers were presented by NVIDIA at CoRL.\n\nThere is also work on Ψ₀: An Open Foundation Model Towards Universal Humanoid Loco-Manipulation, which appears in recent 2026 research lists.\n\nThe research landscape shows active development in procedural data generation pipelines for humanoid loco-manipulation, with multiple approaches focusing on synthetic data generation, automated data collection workflows, and terrain curriculum learning."
+    ],
+    "durationSeconds": 7.66660929599998
+  },
+  "sourceToolAssistantUUID": "73c248c7-2867-45ec-9579-e8aaf49122d9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 80 · 2026-05-10T11:57:01.131Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Confirmed: Isaac Lab 2.3 includes PR #3259 (disjoint navigation data generation with scene randomization, pick-navigate-place segmentation). The generator only mentions PRs #3150 and #3992 but NOT #3259. This is a gap.
+
+Also notable: AGILE (arXiv:2603.20147, March 2026) - a comprehensive workflow for humanoid loco-manipulation learning. And PHUMA (on OpenReview) - physically-grounded humanoid. Let me check if AGILE or PHUMA are relevant to LocoMimicGen's claims.
+
+Now let me check the AGILE paper quickly.
+
+
+Now I'm assessing whether extending MimicGen to loco-manipulation with SE(3) navigation encoding, IRM optimization, and multi-source composition represents a sufficiently novel contribution for CoRL 2026. Looking at the progression of prior work—MimicGen at CoRL 2023, DexMimicGen at ICRA 2025, HumanoidGen at NeurIPS 2025—I need to evaluate where LocoMimicGen fits in this trajectory.
+
+The critical distinction here is that while DexMimicGen and HumanoidGen extended the SE(3) framing to different manipulators, LocoMimicGen tackles a fundamentally different problem: coupling whole-body locomotion with manipulation in SE(3) space, which is qualitatively harder than just scaling to new end-effectors. This makes it a strong fit for CoRL.
+
+Reviewing the Round 2 improvements, the generator addressed all the critical issues from Round 1—the missing Isaac Lab PRs, the inflated compute estimates, and the physical G1 hardware validation. Now I'm finalizing my assessment of what issues remain.
+
+There are two moderate concerns. First, PR #3259 from Isaac Lab 2.3 implements disjoint navigation with pick-navigate-place segmentation and occupancy-based path planning, which the generator overlooked. This baseline partially overlaps with LocoMimicGen's novelty claims around scene randomization, so the generator needs to clearly articulate what it does differently—specifically, the SE(3) encoding of navigation in object frames, the arm reachability constraints for base-pose optimization, and the multi-source combinatorial composition that PR #3259 doesn't provide. Second, the novelty of the reachability-map-guided base contribution appears overstated.
+
+The reachability-map-guided base-pose optimization is positioned as a core research contribution, but inverse reachability maps for mobile manipulation are already well-established in prior work like Vahrenkamp et al., MoMa-Pos, and Reuleaux. Even MoMaGen from October 2025 uses reachability as a hard constraint for base-pose sampling. The actual novelty here is narrower—it's the integration of inverse reachability maps with bipedal humanoid balance constraints within the Mimic retargeting pipeline—so this should be framed as an integration contribution rather than a fundamentally new technique.
+
+The 20-day timeline for implementing three novel technical contributions with Isaac Lab integration, policy training, and ablations seems optimistic. Additionally, there's no mention of automated research infrastructure or tooling to support this accelerated development pace.
+
+Looking at the scoring: novelty lands at 3.5/5 because there's a real gap and solid contributions, but the inverse reachability maps are known techniques and PR #3259 is closer to the proposal than initially acknowledged—the work is strong integration rather than fundamental innovation. Feasibility is also 3.5/5 since the compute stays within the 200 H100-hour constraint, but the timeline is aggressive for three contributions in 20 days and coupling articulated objects with inverse reachability optimization is genuinely difficult. Clarity scores 4.5/5—the proposal is very well-specified with proper baseline characterization and clear differentiation from DemoHLM and OmniRetarget, though PR #3259 should be acknowledged more explicitly.
+
+Impact comes in at 4.0/5 because this addresses a high-impact problem that would let the community scale humanoid locomotion-manipulation training data, making it immediately useful with genuine need for room-level scaling. The average across all four dimensions is 3.875, which falls short of the 4.0 threshold, so this needs revision. The path forward is clear: incorporate PR #3259 into the baseline comparison and reframe the novelty discussion for the second contribution to be more measured, which should push this into passing territory.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3f57ed94-0bd5-4d64-b30b-6fe9b56cd148",
+  "isSidechain": false,
+  "requestId": "req_011Catr3JA6cA1dB7GoupNRY",
+  "type": "assistant",
+  "uuid": "10447e33-8f8e-4463-8809-ad00cae57cf7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01UoTs1BXF6qejM88MkbYNb3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5056,
+      "cache_read_input_tokens": 49070,
+      "output_tokens": 1537,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5056,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1537,
+          "cache_read_input_tokens": 49070,
+          "cache_creation_input_tokens": 5056,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5056
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 81 · 2026-05-10T11:57:01.133Z_
+
+Now let me verify the PR #3259 contribution scope versus the generator's claims directly.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "10447e33-8f8e-4463-8809-ad00cae57cf7",
+  "isSidechain": false,
+  "requestId": "req_011Catr3JA6cA1dB7GoupNRY",
+  "type": "assistant",
+  "uuid": "01d0030c-59e1-4b4a-b574-dcd65a162832",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01UoTs1BXF6qejM88MkbYNb3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5056,
+      "cache_read_input_tokens": 49070,
+      "output_tokens": 1537,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5056,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1537,
+          "cache_read_input_tokens": 49070,
+          "cache_creation_input_tokens": 5056,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5056
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 82 · 2026-05-10T11:57:02.255Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01UYqZyF9iLLXhBSLsbJeWZ9`</summary>
+
+```json
+{
+  "url": "https://github.com/isaac-sim/IsaacLab/pull/3259",
+  "prompt": "What specific scene diversity does this PR achieve? Does it randomize room-level obstacle layouts? Does it use SE(3) object-centric encoding for navigation stances? Does it compose segments from multiple source demonstrations? Does it enforce arm reachability constraints when placing the base? What is the scale of diversity (e.g., how many scene variants)?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "01d0030c-59e1-4b4a-b574-dcd65a162832",
+  "isSidechain": false,
+  "requestId": "req_011Catr3JA6cA1dB7GoupNRY",
+  "type": "assistant",
+  "uuid": "0af66a1d-7f3b-481a-afe5-339181c49ede",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01UoTs1BXF6qejM88MkbYNb3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5056,
+      "cache_read_input_tokens": 49070,
+      "output_tokens": 1537,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5056,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1537,
+          "cache_read_input_tokens": 49070,
+          "cache_creation_input_tokens": 5056,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5056
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-10T11:57:02.588Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015NByutBxJvmVUSJNoZkEkb`</summary>
+
+```json
+{
+  "query": "AGILE \"comprehensive workflow\" humanoid loco-manipulation learning G1 2026 arxiv 2603.20147"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0af66a1d-7f3b-481a-afe5-339181c49ede",
+  "isSidechain": false,
+  "requestId": "req_011Catr3JA6cA1dB7GoupNRY",
+  "type": "assistant",
+  "uuid": "1670ce7d-44b2-4240-af54-8ca7e2593c77",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01UoTs1BXF6qejM88MkbYNb3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5056,
+      "cache_read_input_tokens": 49070,
+      "output_tokens": 1537,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5056,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1537,
+          "cache_read_input_tokens": 49070,
+          "cache_creation_input_tokens": 5056,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5056
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-10T11:57:06.926Z_
+
+<details><summary>↩ Tool result · `toolu_01UYqZyF9iLLXhBSLsbJeWZ9`</summary>
+
+```text
+# Scene Diversity in Disjoint Navigation PR
+
+Based on the PR content, the specific mechanisms for achieving scene diversity are not explicitly detailed in the visible discussions. However, several relevant details emerge:
+
+## What's Documented
+
+The PR includes **`g1_29dof.py`** described as "The example scenario using G1 + WBC with random forklifts and boxes," suggesting procedural randomization of object placement. The documentation mentions this involves "combining the static manipulation sequences with path planning."
+
+## What's Unclear
+
+The PR discussions don't clearly specify:
+
+- **Obstacle layouts**: No mention of room-level or environment-level randomization beyond object placement
+- **SE(3) encodings**: No discussion of position/orientation encoding schemes for navigation stances
+- **Multi-demonstration composition**: The approach appears to "replay static manipulation data recorded with the G1" rather than composing segments from multiple sources
+- **Arm reachability constraints**: Reviewers questioned manual parameter setting ("`lift_step`") but no automatic reachability validation is mentioned
+- **Diversity scale**: The number of generated scene variants isn't specified
+
+The core approach seems focused on "disjoint navigation"—separating pick-up, navigation, and drop-off phases—rather than comprehensive scene diversity generation. Further implementation details would be needed to assess the full diversity scope.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0af66a1d-7f3b-481a-afe5-339181c49ede",
+  "isSidechain": false,
+  "promptId": "22bf6fc8-9774-47f2-9286-3ee2ace81d66",
+  "type": "user",
+  "uuid": "b803336a-00d6-4583-8cf3-8ea3513488e2",
+  "toolUseResult": {
+    "bytes": 1235163,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Scene Diversity in Disjoint Navigation PR\n\nBased on the PR content, the specific mechanisms for achieving scene diversity are not explicitly detailed in the visible discussions. However, several relevant details emerge:\n\n## What's Documented\n\nThe PR includes **`g1_29dof.py`** described as \"The example scenario using G1 + WBC with random forklifts and boxes,\" suggesting procedural randomization of object placement. The documentation mentions this involves \"combining the static manipulation sequences with path planning.\"\n\n## What's Unclear\n\nThe PR discussions don't clearly specify:\n\n- **Obstacle layouts**: No mention of room-level or environment-level randomization beyond object placement\n- **SE(3) encodings**: No discussion of position/orientation encoding schemes for navigation stances\n- **Multi-demonstration composition**: The approach appears to \"replay static manipulation data recorded with the G1\" rather than composing segments from multiple sources\n- **Arm reachability constraints**: Reviewers questioned manual parameter setting (\"`lift_step`\") but no automatic reachability validation is mentioned\n- **Diversity scale**: The number of generated scene variants isn't specified\n\nThe core approach seems focused on \"disjoint navigation\"—separating pick-up, navigation, and drop-off phases—rather than comprehensive scene diversity generation. Further implementation details would be needed to assess the full diversity scope.",
+    "durationMs": 4664,
+    "url": "https://github.com/isaac-sim/IsaacLab/pull/3259"
+  },
+  "sourceToolAssistantUUID": "0af66a1d-7f3b-481a-afe5-339181c49ede",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 85_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "b803336a-00d6-4583-8cf3-8ea3513488e2",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 86_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify LocoMimicGen against Isaac Lab PRs and compute constraints",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc"
+}
+```
+
+---
+
+### Tool result
+
+_source line 87 · 2026-05-10T11:57:08.796Z_
+
+<details><summary>↩ Tool result · `toolu_015NByutBxJvmVUSJNoZkEkb`</summary>
+
+```text
+Web search results for query: "AGILE "comprehensive workflow" humanoid loco-manipulation learning G1 2026 arxiv 2603.20147"
+
+Links: [{"title":"AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning","url":"https://arxiv.org/html/2603.20147v1"},{"title":"AGILE: A Comprehensive Workflow for Humanoid Loco ...","url":"https://www.scilit.com/publications/7b421e706825502d30ac15a58e64efca"},{"title":"X-Loco: Towards Generalist Humanoid Locomotion Control via Synergetic Policy Distillation","url":"https://arxiv.org/html/2603.03733"},{"title":"Humanoid Locomotion and Manipulation: Current Progress and Challenges in Control, Planning, and Learning *co-corresponding authors","url":"https://arxiv.org/html/2501.02116v1"},{"title":"GitHub - YanjieZe/awesome-humanoid-robot-learning: A Paper List for Humanoid Robot Learning. · GitHub","url":"https://github.com/YanjieZe/awesome-humanoid-robot-learning"},{"title":"Cybo-Waiter: A Physical Agentic Framework for Humanoid Whole-Body Locomotion–Manipulation","url":"https://arxiv.org/html/2603.10675"},{"title":"[2501.02116] Humanoid Locomotion and Manipulation: Current Progress and Challenges in Control, Planning, and Learning","url":"https://arxiv.org/abs/2501.02116"},{"title":"Active Stereo-Camera Outperforms Multi-Sensor Setup in ACT Imitation Learning for Humanoid Manipulation","url":"https://arxiv.org/html/2603.28422"},{"title":"HumanoidBench: Simulated Humanoid Benchmark for Whole-Body Locomotion and Manipulation","url":"https://arxiv.org/html/2403.10506v2"},{"title":"Humanoid Everyday: A Comprehensive Robotic Dataset for Open-World Humanoid Manipulation","url":"https://arxiv.org/html/2510.08807v1"}]
+
+I found the paper! Here's what I found about AGILE:
+
+## AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning
+
+The paper was published on arXiv on March 20, 2026 with the identifier 2603.20147.
+
+**Overview:**
+AGILE is an end-to-end workflow for humanoid RL that standardizes the policy-development lifecycle to mitigate common sim-to-real failure modes. The primary bottleneck addressed is the absence of systematic infrastructure that links environment verification, training, evaluation, and deployment in a coherent loop.
+
+**Four-Stage Pipeline:**
+AGILE comprises four stages: (1) interactive environment verification, (2) reproducible training, (3) unified evaluation, and (4) descriptor-driven deployment via robot/task configuration descriptors.
+
+**Validation:**
+The pipeline was validated across five representative humanoid skills spanning locomotion, recovery, motion imitation, and loco-manipulation on two hardware platforms (Unitree G1 and Booster T1), achieving consistent sim-to-real transfer.
+
+**Key Finding:**
+AGILE shows that a standardized, end-to-end workflow can substantially improve the reliability and reproducibility of humanoid RL development.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1670ce7d-44b2-4240-af54-8ca7e2593c77",
+  "isSidechain": false,
+  "promptId": "22bf6fc8-9774-47f2-9286-3ee2ace81d66",
+  "type": "user",
+  "uuid": "e3e86682-199e-475e-90fc-76b5fca5f4a3",
+  "toolUseResult": {
+    "query": "AGILE \"comprehensive workflow\" humanoid loco-manipulation learning G1 2026 arxiv 2603.20147",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01EZzb7F8B7PDRYh26SpVim2",
+        "content": [
+          {
+            "title": "AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning",
+            "url": "https://arxiv.org/html/2603.20147v1"
+          },
+          {
+            "title": "AGILE: A Comprehensive Workflow for Humanoid Loco ...",
+            "url": "https://www.scilit.com/publications/7b421e706825502d30ac15a58e64efca"
+          },
+          {
+            "title": "X-Loco: Towards Generalist Humanoid Locomotion Control via Synergetic Policy Distillation",
+            "url": "https://arxiv.org/html/2603.03733"
+          },
+          {
+            "title": "Humanoid Locomotion and Manipulation: Current Progress and Challenges in Control, Planning, and Learning *co-corresponding authors",
+            "url": "https://arxiv.org/html/2501.02116v1"
+          },
+          {
+            "title": "GitHub - YanjieZe/awesome-humanoid-robot-learning: A Paper List for Humanoid Robot Learning. · GitHub",
+            "url": "https://github.com/YanjieZe/awesome-humanoid-robot-learning"
+          },
+          {
+            "title": "Cybo-Waiter: A Physical Agentic Framework for Humanoid Whole-Body Locomotion–Manipulation",
+            "url": "https://arxiv.org/html/2603.10675"
+          },
+          {
+            "title": "[2501.02116] Humanoid Locomotion and Manipulation: Current Progress and Challenges in Control, Planning, and Learning",
+            "url": "https://arxiv.org/abs/2501.02116"
+          },
+          {
+            "title": "Active Stereo-Camera Outperforms Multi-Sensor Setup in ACT Imitation Learning for Humanoid Manipulation",
+            "url": "https://arxiv.org/html/2603.28422"
+          },
+          {
+            "title": "HumanoidBench: Simulated Humanoid Benchmark for Whole-Body Locomotion and Manipulation",
+            "url": "https://arxiv.org/html/2403.10506v2"
+          },
+          {
+            "title": "Humanoid Everyday: A Comprehensive Robotic Dataset for Open-World Humanoid Manipulation",
+            "url": "https://arxiv.org/html/2510.08807v1"
+          }
+        ]
+      },
+      "I found the paper! Here's what I found about AGILE:\n\n## AGILE: A Comprehensive Workflow for Humanoid Loco-Manipulation Learning\n\nThe paper was published on arXiv on March 20, 2026 with the identifier 2603.20147.\n\n**Overview:**\nAGILE is an end-to-end workflow for humanoid RL that standardizes the policy-development lifecycle to mitigate common sim-to-real failure modes. The primary bottleneck addressed is the absence of systematic infrastructure that links environment verification, training, evaluation, and deployment in a coherent loop.\n\n**Four-Stage Pipeline:**\nAGILE comprises four stages: (1) interactive environment verification, (2) reproducible training, (3) unified evaluation, and (4) descriptor-driven deployment via robot/task configuration descriptors.\n\n**Validation:**\nThe pipeline was validated across five representative humanoid skills spanning locomotion, recovery, motion imitation, and loco-manipulation on two hardware platforms (Unitree G1 and Booster T1), achieving consistent sim-to-real transfer.\n\n**Key Finding:**\nAGILE shows that a standardized, end-to-end workflow can substantially improve the reliability and reproducibility of humanoid RL development."
+    ],
+    "durationSeconds": 6.204897683000017
+  },
+  "sourceToolAssistantUUID": "1670ce7d-44b2-4240-af54-8ca7e2593c77",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 88 · 2026-05-10T11:57:36.051Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. AGILE (arXiv:2603.20147, March 2026) is about a workflow for humanoid RL development - it's focused on the training pipeline and sim-to-real, not on procedural demonstration generation. It's not competitive with LocoMimicGen.
+
+Now for PR #3259, the disjoint navigation approach:
+- Uses occupancy map path planning (not SE(3) object-centric)
+- Has some object placement randomization (random forklifts and boxes)
+- Separates manipulation from navigation disjointly
+- Does NOT use SE(3) encoding for navigation stances
+
+
+- Doesn't enforce arm reachability constraints for base placement
+- Doesn't compose from multiple source demonstrations
+
+So the generator's claims about what's missing are accurate even considering PR #3259, though I should still acknowledge it since it's part of the same Isaac Lab Mimic codebase. Now I'm compiling my final verdict and reviewing the independent research findings - CoRL 2026 deadlines check out, and I'm working through the Isaac Lab baseline details.
+
+PR #3150 from September 9, 2025 introduced the G1 Mimic environment with RL locomotion and IK arm, which the generator described accurately. PR #3992 from December 1st added the body end-effector API with navigation via state repetition and skipping rather than SE(3) encoding - also accurate. But PR #3259 from September 10th, which adds disjoint navigation with occupancy maps and scene randomization, was completely missed by the generator. It's in the Isaac Lab 2.3 release notes and handles pick-navigate-place segmentation with path planning and obstacle randomization, though it still lacks SE(3) encoding, IRM optimization, and multi-source composition. For DemoHLM, the single-demonstration paradigm is confirmed with three-stage segmentation and no combinatorial multi-source composition across the ten tested tasks.
+
+OmniRetarget uses MoCap retargeting rather than procedural demo multiplication, and MoMaGen's wheeled bimanual platform applies reachability as a hard constraint - both characterizations hold up. Reachability maps and IRM-constrained base placement are well-established techniques, so the novelty here is really in how Mimic integrates this for bipedal humanoids. SoftMimicGen extending to deformable objects and humanoid tabletop tasks isn't directly competing with the loco-manipulation focus, and VIRAL and VisualMimic operate in a different paradigm altogether with RL plus vision distillation and tracking-based approaches.
+
+I haven't found any concurrent work that combines SE(3) object-centric navigation encoding with IRM optimization and multi-source composition specifically for bipedal humanoid loco-manipulation data generation. Looking at the final assessment, novelty sits around 3.5 out of 5 - the three contributions are legitimate and their combination is novel, though PR #3259 that I missed does overlap with room-level scene randomization and pick-navigate-place segmentation, and the IRM optimization itself relies on well-known techniques. The SE(3) coupled encoding and multi-source composition are where the strongest novelty claims lie. Feasibility is also 3.5 out of 5 since the compute fits within the 200-hour H100 budget, but the 20-day timeline is tight with three contributions, three tasks, policy training, and ablations all competing for time.
+
+The articulated object manipulation with contact-rich IRM optimization presents a genuine implementation challenge. Clarity scores well at 4.5 out of 5 given the precise technical framing and clear differentiation from existing systems like DemoHLM, OmniRetarget, and MoMaGen, though PR #3259 should have been included in the baseline comparison. Impact is strong at 4.0 out of 5 since this addresses a real bottleneck in loco-manipulation data scarcity and the room-level combinatorial scaling isn't present in existing systems, which would directly enable downstream humanoid policy training.
+
+The average comes to 3.875, which falls below the 4.0 threshold, so I need to revise. The fix is straightforward: add PR #3259 to the baseline comparison with a paragraph clarifying how it differs from my approach.
+
+I should reframe the second contribution as integrating IRM into the Mimic retargeting pipeline while acknowledging existing IRM literature but explaining why bipedal adaptation remains non-trivial. These two targeted changes should push the novelty scores above threshold and are doable within a couple hours.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e3e86682-199e-475e-90fc-76b5fca5f4a3",
+  "isSidechain": false,
+  "requestId": "req_011Catr67cBKnRJWsBAwkrpN",
+  "type": "assistant",
+  "uuid": "10953ca5-1df2-4b13-a5a8-e971f52ae095",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01UZvDvUPdG5SaTGaGXNybNi",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2726,
+      "cache_read_input_tokens": 54126,
+      "output_tokens": 3299,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2726,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3299,
+          "cache_read_input_tokens": 54126,
+          "cache_creation_input_tokens": 2726,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2726
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 89 · 2026-05-10T11:58:10.869Z_
+
+I have enough research to issue a verdict. Let me compile my findings.
+
+```json
+{
+  "verdict": "revise",
+  "scores": {
+    "novelty": {
+      "score": 3.5,
+      "rationale": "The combination of coupled SE(3) navigation encoding + IRM-guided base-pose optimization + multi-source combinatorial composition for bipedal humanoid loco-manipulation is genuinely novel. However, Isaac Lab PR #3259 ('disjoint navigation', merged Sept 10 2025, part of the Isaac Lab 2.3 release) — entirely absent from the generator's landscape — already contributes pick-navigate-place segmentation with occupancy-map path planning AND room-level obstacle/scene randomization. This PR partially overlaps with the claimed novelty and must be acknowledged and differentiated against. Additionally, Contribution 2 (reachability-map-guided base-pose optimization) applies well-known IRM techniques (Reuleaux, MoMa-Pos, MoMaGen's hard reachability constraints) — framing this as a 'core research contribution' overstates its novelty without acknowledging the existing IRM literature."
+    },
+    "feasibility": {
+      "score": 3.5,
+      "rationale": "Manual (~60–105h H100) and HIL (~95–152h H100) estimates are now within the 200h hard constraint, and auto-research mode is correctly excluded. However, the 20-day deadline for three non-trivial contributions (SE(3) extension, IRM optimization, combinatorial composition) plus 3-task data generation, policy training, and ablations across two seeds and multiple conditions remains highly aggressive; contact-rich articulated-object reachability (door/drawer) is specifically flagged as a known hard subproblem that may dominate debug time."
+    },
+    "clarity": {
+      "score": 4.5,
+      "rationale": "Substantially improved from Round 1. PRs #3150 and #3992 are now the explicit primary baseline with precise technical characterization of what they do vs. do not do. Differentiation from OmniRetarget, DemoHLM, and MoMaGen is clear and accurate. The only missing piece is PR #3259, which is in the same Isaac Lab Mimic codebase and will be an obvious question from CoRL reviewers."
+    },
+    "impact": {
+      "score": 4.0,
+      "rationale": "Room-level combinatorial scaling for bipedal humanoid loco-manipulation is a genuine unmet need, and building on Isaac Lab's GPU-parallel G1 simulation makes the output immediately usable by the community. The 100–1000× expansion from ≤20 seed demos would be a practically meaningful contribution to the humanoid data scarcity bottleneck."
+    }
+  },
+  "issues": [
+    "MISSED BASELINE — Isaac Lab PR #3259 ('Adds locomanipulation data generation via disjoint navigation', merged Sept 10 2025 into release/2.3.0): This PR is part of the Isaac Lab 2.3 GA release and adds (a) pick-navigate-place phase segmentation, (b) occupancy-map-based path planning between phases, and (c) scene randomization of tabletop object positions, navigation destinations, and floor obstacles. This makes it a closer predecessor to LocoMimicGen than PRs #3150/#3992 alone, and CoRL reviewers will notice its absence. The generator must add PR #3259 to the baseline comparison and explain precisely what it does NOT provide: no SE(3) encoding of navigation stances in the object's local frame, no arm-reachability-constrained base-pose optimization, and no combinatorial composition from multiple source demonstrations — only disjoint occupancy-map navigation replayed between fixed teleoperated manipulation segments.",
+    "NOVELTY FRAMING OVERREACH for Contribution 2: Reachability-map-guided base-pose optimization is a well-established technique (inverse reachability maps: Vahrenkamp et al. 2013, Reuleaux, MoMa-Pos Oct 2024). In the demo generation context, MoMaGen (Oct 2025) already imposes reachability as a hard constraint for wheeled bimanual base-pose sampling. The paper must reframe Contribution 2 not as a standalone novel technique but as an INTEGRATION contribution: applying IRM within the Mimic retargeting loop for a bipedal humanoid, where balance constraints make the reachability map qualitatively more complex than for wheeled platforms (it is a function of stance configuration, not just base position). Without this reframing, CoRL reviewers will mark it as 'known technique applied straightforwardly.'",
+    "TIMELINE RISK: Three technically non-trivial contributions (SE(3) extension, IRM integration, combinatorial composition) implemented within Isaac Lab Mimic, plus 3-task data generation, diffusion policy training over multiple seeds, and ablation studies, in 20 days with 2 researchers is at the edge of plausibility. The contact-rich articulated-object tasks (door/drawer) for IRM optimization are specifically flagged as likely to consume disproportionate debug time. The paper should include a concrete task-level schedule or explicitly narrow scope to 2 tasks with the third as supplementary if the timeline proves infeasible.",
+    "RESOURCE ESTIMATE INTERNAL CONSISTENCY: The manual mode GPU cost estimate ($370 at $1.75/hr A100) implies ~210h A100, but the H100 conversion given is 60–105h H100. At a 2–2.5× ratio, 210h A100 ÷ 2.5 = 84h H100 and ÷ 2.0 = 105h H100. The lower bound (60h H100) would require a 3.5× ratio, which exceeds the stated conversion factor. The estimate is within the hard constraint but the lower bound is implausibly optimistic — reviewer should note this minor inconsistency."
+  ],
+  "feedback": "The Round 2 revision correctly addresses all Round 1 critical issues: PRs #3150/#3992 are now the explicit primary baseline with accurate technical characterization; compute is expressed in H100 hours and within the 200h constraint; sim-to-real hardware is properly scoped as future work; and CoRL deadline is corrected. The idea is solid and close to passable — two targeted fixes are needed.\n\n**Fix 1 (required for CoRL submission)**: Add Isaac Lab PR #3259 to the related work and baseline comparison. PR #3259 ('disjoint navigation', merged Sept 10 2025) is in the Isaac Lab 2.3 GA release. It adds pick-navigate-place segmentation with occupancy-map path planning and scene randomization for G1 loco-manipulation. Write one paragraph explaining exactly what PR #3259 does vs. does not do: it uses path planning between disjoint manipulation phases but (a) does NOT encode navigation stances in the object's SE(3) local frame — navigation is path-level, not object-centric; (b) does NOT enforce arm reachability constraints on base pose selection — the manipulation stance is fixed from the source demo; (c) does NOT compose segments from multiple source demonstrations. This makes PR #3259 a closer prior art than #3992 alone, and explaining the gap against it sharpens LocoMimicGen's contributions significantly.\n\n**Fix 2 (required for reviewer credibility)**: Reframe Contribution 2 as an integration contribution, not a novel technique. Cite the IRM literature (Vahrenkamp et al., MoMa-Pos, MoMaGen) and explain that the challenge for bipedal humanoids is that the arm reachability map is conditioned on whole-body stance (including COM height and balance state), making the IRM higher-dimensional and configuration-dependent compared to wheeled platforms. Position it as 'we adapt and integrate existing IRM methodology into the Mimic retargeting loop for bipedal humanoids, which requires a stance-conditioned reachability map not present in prior wheeled-base work.' This is honest, defensible, and still a real contribution.\n\n**Optional (reduces timeline risk)**: Reduce to 2 primary tasks + 1 supplementary task to create schedule slack for articulated-object IRM debugging. This keeps all three contributions but limits per-task ablation surface.",
+  "reason": "Round 2 is substantially improved but misses Isaac Lab PR #3259 (disjoint navigation, Sept 2025) as a critical baseline, and overstates Contribution 2 novelty without acknowledging the IRM literature — two fixable gaps that will be caught by CoRL reviewers."
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "10953ca5-1df2-4b13-a5a8-e971f52ae095",
+  "isSidechain": false,
+  "requestId": "req_011Catr67cBKnRJWsBAwkrpN",
+  "type": "assistant",
+  "uuid": "1cada23b-d059-4875-8da4-bf2f6d24c353",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01UZvDvUPdG5SaTGaGXNybNi",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2726,
+      "cache_read_input_tokens": 54126,
+      "output_tokens": 3299,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2726,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3299,
+          "cache_read_input_tokens": 54126,
+          "cache_creation_input_tokens": 2726,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2726
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 90_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "1cada23b-d059-4875-8da4-bf2f6d24c353",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 91_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify LocoMimicGen against Isaac Lab PRs and compute constraints",
+  "sessionId": "28694564-23bc-45d6-9e89-b7490aedbabc"
+}
+```
+
+---

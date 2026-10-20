@@ -1,0 +1,6644 @@
+# Research conversation: You are a strict ML research reviewer conducting adversarial review. **Today's date: 2026-05-13 (UTC).** Your job: indep
+
+**When Does Detect-and-Reweight Work for Synthetic Contamination? (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 106
+- **Recorded user turns:** 1
+- **Tool calls:** 25
+- **Original source:** `logs/chats/exported-trajectories/account-3/45183731-1e2f-4b44-81c9-d3cd33b5498d.jsonl`
+- **Structured JSON:** [`0560ca7e430e94e2867f.json`](../../sessions/05/0560ca7e430e94e2867f.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-13T06:35:19.737Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-13T06:35:19.737Z",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "content": "You are a strict ML research reviewer conducting adversarial review.\n\n**Today's date: 2026-05-13 (UTC).**\n\nYour job: independently verify this idea's claims via WebSearch, then issue a verdict.\n\n## User requirements\nThe user asked for: **VLA中的token裁剪/增强能否提升VLA模型的泛化性（多从理论角度分析为何能增强）**\nYou MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be \"revise\" or \"fail\".\n\n## 核心要求：非常仔细地调研，非常仔细地思考\n\n你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。\n\n### 调研要求\n\n1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。\n   每个验证维度建议用 2-3 种不同的搜索查询。\n\n2. **可行性深度检查**：\n   - 搜索类似实验的实际成本/周期\n   - 检查 claimed baselines 是否可复现\n   - 验证所需的 datasets/models 是否真的可以获取\n\n3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：\n   - 尝试不同的关键词组合\n   - 同时检查 arXiv 和 conference proceedings\n   - 寻找相邻领域的并行/concurrent 工作\n\n4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。\n\n### 思考要求\n\n5. **独立判断**：\n   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查\n   - 思考这个 idea 在实际执行中会遇到什么困难\n   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）\n\n6. **评分诚实**：\n   - 不要给\"看起来还行\"的 idea 高分——4 分意味着\"确实很好\"，5 分意味着\"令人兴奋\"\n   - Agent 评分经常虚高，你的职责就是纠正这种偏差\n\n充分利用你的工具——做真正的调研，不是走过场。\n\n\n## 论文搜索策略\n\n你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。\n\n### 搜索源（推荐每个维度使用 2 个不同来源）\n\n1. **arXiv 预印本**（最新工作）:\n   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文\n   - `site:arxiv.org {method_name}` — 按具体方法名搜索\n   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作\n\n2. **Google Scholar**（引用关系 + 综合覆盖）:\n   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果\n   - `\"{exact paper title}\"` — 验证论文是否真实存在\n   - `\"{author name}\" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）\n\n3. **Papers With Code**（SOTA 排行 + 代码可用性）:\n   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜\n   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现\n   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局\n\n4. **OpenReview**（会议审稿 + 同行评价）:\n   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文\n   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价\n\n5. **Semantic Scholar**（语义搜索 + 引用图谱）:\n   - `semantic scholar {topic} survey {year}` — 找综述论文\n   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）\n\n6. **GitHub**（实现验证）:\n   - `site:github.com {method_name} {task}` — 验证开源实现是否存在\n   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取\n\n### 搜索维度（多角度交叉，不要只按 topic 搜）\n\n对每个 idea/方向，尽量覆盖以下维度：\n\n1. **正向搜索**：直接搜索主题相关论文\n   - `{topic} {subtopic} {year}`\n   - `{method_name} for {task_name}`\n\n2. **竞争论文搜索**（最关键！）：\n   - `{core_problem} {year}` — 有没有人在解决同样的问题？\n   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？\n   - `{gap_description} solution` — 你发现的 gap 是否已被解决？\n   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文\n\n3. **相邻领域搜索**：\n   - `{method_from_other_field} applied to {your_task}`\n   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题\n\n4. **反面搜索**（找到反对你 idea 的证据）：\n   - `{your_approach} limitations` / `{your_approach} failure`\n   - `why {assumed_gap} is not a problem`\n   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好\n\n5. **引用链追踪**（发现遗漏工作的最有效方法）：\n   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分\n   - 在 Semantic Scholar 上查看它的 \"cited by\" — 最近引用它的论文很可能是 concurrent work\n   - 对 3 个以上核心相关论文重复此步骤\n\n### 搜索数量建议（理想目标，上下文充裕时尽量达到）\n\n| 角色 | 建议搜索次数 | 说明 |\n|------|-------------|------|\n| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |\n| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |\n| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |\n| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |\n\n### 上下文管理\n\n你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。\n\n- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。\n- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。\n- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。\n- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。\n\n\nAs a reviewer, your search focus should be:\n1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实\n2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作\n3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通\n4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work\n\n## 竞争论文专项搜索（Reviewer 独有）\n\n这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：\n\n1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题\n   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）\n   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）\n   - 方法名 + 任务名的不同组合\n\n2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，\n   搜索他们最近的论文（`\"team_name\" OR \"author_name\" {topic} {year}`）\n\n3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers\n   - `site:openreview.net {topic} 2026`\n   - `{conference_name} 2026 accepted papers {topic}`\n\n4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文\n   这是发现 concurrent work 最有效的窗口\n\n如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，\n并在 feedback 中说明这些工作如何影响 idea 的 novelty。\n\n## Review checklist\n1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?\n   If outdated, specify what the current SOTA is and cite your source.\n2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)\n3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?\n4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-13?\n5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?\n6. **Novelty**: Is this sufficiently different from existing work?\n   When scoring novelty < 4:\n   - You MUST identify the closest existing work(s) via WebSearch\n   - In your feedback, write: \"This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion].\"\n   - This gives the generator targeted guidance to boost novelty, not just \"be more novel\".\n7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?\n   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero\n   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks\n   - Human-in-Loop should fall between manual and auto on most dimensions\n   - Manual and HIL must NOT include salary/wages — only GPU and API costs\n   - Auto Research must NOT include agent operational overhead\n   - If any mode estimate is clearly unrealistic, flag it\n\n## Idea under review (round 2/10)\n{\n  \"title\": \"When Does Visual Compression Help VLA Generalization? Characterizing the Information Bottleneck Phase Transition\",\n  \"core_problem\": \"VLA systems use vastly different visual token counts (1 to 512 per frame), and concurrent work selects compression ratios heuristically or optimizes for in-distribution success. No principled framework characterizes WHEN visual compression helps vs. hurts out-of-distribution generalization — despite evidence that compression can both improve robustness (by filtering task-irrelevant noise) and amplify vulnerability (by contracting decision margins).\",\n  \"opportunity\": \"The information bottleneck (IB) provides a formal framework for trading compression against task-relevant information preservation. Applied to VLA visual encoders, sweeping the IB Lagrange multiplier β traces a rate-distortion frontier where rate measures visual information bandwidth and distortion measures action prediction error. Critically, evaluating this frontier under both in-distribution AND out-of-distribution conditions reveals a phase transition: at moderate compression, the IB selectively removes task-irrelevant visual features (improving robustness); beyond a critical compression threshold, it begins discarding task-relevant information (degrading robustness faster than in-distribution performance). This phase transition — not a single optimal point — is the key object the field needs to understand. The opportunity is sharpened by three concurrent developments: (1) Li et al. (ICLR 2025) derive compute-optimal scaling laws for visual token count vs. model size, but only for inference efficiency, not OOD generalization; (2) Bai et al. (ICML 2025, BC-IB) show IB at the latent fusion level improves in-distribution BC performance on LIBERO, but do not evaluate OOD robustness or trace systematic RD frontiers; (3) Evans et al. (arXiv 2604.06954) formally show that fixed compression (JPEG, PCA) contracts classification margins and amplifies adversarial vulnerability — raising the question of whether learned compression via IB can escape this geometric constraint by selectively preserving task-critical information. Extending from compute-optimal to generalization-optimal visual bandwidth, and from latent-level IB to visual-token-level IB with systematic OOD evaluation, fills a clear and timely gap.\",\n  \"landscape\": \"OneWM-VLA (arXiv 2605.07931, May 2026) compresses each view into a single semantic token via Adaptive Attention Pooling, achieving 95.6% on LIBERO-Long — demonstrating that learned compression to extreme levels is feasible when the bottleneck is task-optimized. LightVLA uses 78 tokens with +2.9% improvement. GridS (ICML 2026) uses <10% tokens. LUVC (Dec 2025) shows low-frequency tokens are more robust to noise. Compressor-VLA, VLA-IAP, VLA-Pruner, and TEAM-VLA all select compression ratios heuristically or learn them to maximize in-distribution task success — none characterizes the OOD generalization tradeoff via information-theoretic analysis. BC-IB (ICML 2025) is the closest existing work: it applies IB at the latent fusion level of small BC models (BC-MLP, BC-RNN, BC-Transformer) with 4 β values (1e-4 to 1e-2) using MINE estimation, achieving consistent in-distribution improvements on LIBERO and CortexBench. However, BC-IB (a) operates on fused latent representations rather than visual tokens, (b) does not trace systematic RD frontiers, (c) evaluates only in-distribution performance (explicitly noting OOD robustness is 'insufficiently studied'), and (d) has not been applied to large VLA architectures. Li et al. (ICLR 2025) derive compute-optimal scaling laws showing inference-optimal VLMs minimize visual tokens while maximizing model size, but target efficiency rather than OOD generalization. On the robustness side, LIBERO-Plus (CVPR 2026) reveals VLA models drop from 95% to below 30% under modest perturbations across 7 dimensions. Evans et al. (arXiv 2604.06954) formally prove that fixed image compression (JPEG, PCA) contracts classification margins via decision space reduction, amplifying adversarial vulnerability — but their analysis is specific to non-learned, non-invertible codecs and classification tasks, leaving open whether learned bottlenecks jointly optimized for action prediction can escape this geometric constraint. Concurrently, arXiv 2601.21531 shows robustness assessments that ignore token compression can be overly optimistic, calling for compression-aware evaluation. The position paper by Kong et al. (arXiv 2505.18227) argues token reduction should go beyond efficiency to influence generalization and robustness — but provides no formal framework for when it helps vs. hurts. The Generalized Information Bottleneck theory (arXiv 2509.26327) shows synergistic representations achieve superior generalization, offering theoretical support for why selective compression can improve robustness. No work traces systematic IB-based RD frontiers for VLA visual bandwidth under OOD conditions to characterize the compression-robustness phase transition.\",\n  \"approach\": \"We formalize VLA visual bandwidth selection as an information bottleneck optimization where rate R = I(visual_input; bottleneck_representation) controls effective visual information bandwidth and distortion D measures action prediction error — both in-distribution (standard LIBERO task success) and out-of-distribution (LIBERO-Plus perturbations across camera viewpoint, lighting, distractors, object layout, robot state, texture, and sensor noise). We insert a learnable variational information bottleneck (VIB) between the visual encoder and the action generation module of π₀ (2B params, via the open-source openpi codebase). The VIB parameterizes a stochastic bottleneck z ~ q(z|v) where v is the visual representation, with the training objective: L = E[||a_pred - a_true||²] + β · KL(q(z|v) || r(z)), where β controls the compression-prediction tradeoff and r(z) is a learnable marginal prior. This is standard VIB for continuous outputs — no confusion matrices or categorical discretization required, unlike the classification-specific RD signatures of Caglar et al. (2026). We sweep β across 15 logarithmically-spaced values (1e-5 to 1e-1) to trace the full RD frontier on LIBERO-90 and MetaWorld ML-45. At each operating point we measure: (1) effective rate via KL divergence upper bound on I(V;Z), (2) in-distribution task success rate, (3) OOD task success rate across all 7 LIBERO-Plus perturbation dimensions at difficulty levels L1-L5, and (4) the generalization gap Δ(β) = success_ID(β) - success_OOD(β). The central analysis identifies the phase transition: the critical β* where the generalization gap begins to widen rapidly, indicating compression has shifted from filtering irrelevant features to discarding task-critical information. We characterize this transition by computing the slope and curvature of the OOD-distortion vs. rate curve directly from our (R, D_OOD) operating points — a continuous-output analog of RD frontier geometry that does not require confusion matrices. We then empirically characterize how β* shifts with task complexity (horizon length, object count), perturbation type and magnitude, and visual scene complexity, fitting approximate scaling relationships (log-linear or power-law) analogous to neural scaling laws. This provides practitioners an empirical recipe: given task and deployment characteristics, predict which compression regime to target. Key differentiation from BC-IB: we operate at the visual token level (not latent fusion), use a 2B-parameter VLA (not small BC models), trace systematic 15-point RD frontiers (not 4 β values), evaluate under 7 OOD perturbation types (not in-distribution only), and characterize the compression-robustness phase transition (not just in-distribution improvement). Key engagement with the Adversarial Amplifier thesis: Evans et al.'s margin contraction result applies to fixed, non-learned codecs. Our learned VIB is jointly optimized with the task objective, potentially learning to selectively compress task-irrelevant information — we explicitly test whether the VIB escapes the margin contraction regime by measuring adversarial robustness (untargeted PGD attacks on visual inputs) at each β operating point alongside natural perturbation robustness.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~600h A100 80GB\",\n      \"gpu_utilization\": \"Low (~30-35%). Human spends most wall-clock time implementing VIB integration with π₀ flow-matching architecture, analyzing RD frontiers, designing next sweep. GPUs idle during code iteration and result interpretation.\",\n      \"timeline\": \"3-5 months\",\n      \"team\": \"1-2 researchers (1 with information theory / VIB experience, 1 with VLA/robotics and openpi familiarity)\",\n      \"estimated_gpu_cost\": \"$900-$1,200 (at ~$1.50/hr A100 spot pricing)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~750h A100 80GB\",\n      \"gpu_utilization\": \"Moderate (~55-65%). Agent queues β-sweep experiments back-to-back and auto-launches LIBERO-Plus evaluation after training. Human approves experiment design and validates RD frontier shape at checkpoints.\",\n      \"timeline\": \"6-9 weeks\",\n      \"team\": \"1 researcher, ~45min/day review of RD frontier progress and approval of next β range\",\n      \"claude_api_cost\": \"$350-$700 (~150-300 turns/week × 7 weeks × $0.10/turn Opus)\",\n      \"estimated_gpu_cost\": \"$1,125-$1,500\",\n      \"risk_note\": \"VIB insertion into π₀'s flow-matching architecture requires careful handling of the stochastic bottleneck during the denoising process. The VIB adds noise that could interfere with flow-matching training dynamics — may require 1-2 weeks of human debugging to stabilize training with gradient clipping or β warmup schedules.\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~1,400h A100 80GB (explores 3-4x more β values, ablations across perturbation types, adversarial robustness sweeps, and backup VIB architectures)\",\n      \"gpu_utilization\": \"Near-zero idle (~90-95% utilization). Agent continuously schedules next β-sweep run as each completes, runs parallel LIBERO-Plus evaluation jobs across perturbation types, and auto-generates RD frontier analysis.\",\n      \"timeline\": \"12-20 days with 4-8 concurrent A100s\",\n      \"team\": \"0 (only initial setup of openpi environment and LIBERO/LIBERO-Plus datasets)\",\n      \"claude_api_cost\": \"$450-$800 (~250-400 turns/day × 16 days × $0.10/turn)\",\n      \"estimated_gpu_cost\": \"$2,100-$2,800\",\n      \"speed_bottleneck\": \"GPU count (need 4-8 A100s to parallelize β-sweep); LIBERO-Plus evaluation across 7 perturbation types × 5 difficulty levels is the longest serial dependency (~8h per checkpoint for full evaluation).\",\n      \"risk_note\": \"Agent may over-explore β regions near the phase transition boundary where training is unstable (VIB collapse or posterior collapse). Needs well-defined convergence criteria and KL annealing to prevent degenerate solutions at extreme β.\"\n    }\n  },\n  \"target_venues\": [\n    \"AAAI 2027 (deadline expected: Jul-Aug 2026)\",\n    \"ICLR 2027 (deadline expected: Sep-Oct 2026)\",\n    \"CoRL 2027 (deadline expected: May 2027, if additional development time needed)\"\n  ],\n  \"level\": \"solid-to-strong\",\n  \"key_references\": [\n    \"Rethinking Latent Redundancy in Behavior Cloning: An Information Bottleneck Approach for Robot Manipulation (BC-IB, ICML 2025, arXiv 2502.02853)\",\n    \"One Token Per Frame: Reconsidering Visual Bandwidth in World Models for VLA Policy (arXiv 2605.07931, 2026)\",\n    \"Inference Optimal VLMs Need Fewer Visual Tokens and More Parameters (ICLR 2025, arXiv 2411.03312)\",\n    \"Compression as an Adversarial Amplifier Through Decision Space Reduction (arXiv 2604.06954, 2026)\",\n    \"On the Adversarial Robustness of Large Vision-Language Models under Visual Token Compression (arXiv 2601.21531, 2026)\",\n    \"Rate-Distortion Signatures of Generalization and Information Trade-offs (arXiv 2603.01568, 2026)\",\n    \"A Generalized Information Bottleneck Theory of Deep Learning (arXiv 2509.26327, 2025)\",\n    \"Token Reduction Should Go Beyond Efficiency in Generative Models (arXiv 2505.18227, 2025)\",\n    \"Deep Variational Information Bottleneck (arXiv 1612.00410, 2017)\",\n    \"The Better You Learn, The Smarter You Prune: Towards Efficient VLA Models via Differentiable Token Pruning (ICRA 2026)\",\n    \"See What Matters: Differentiable Grid Sample Pruning for Generalizable VLA Model (ICML 2026)\",\n    \"Compressor-VLA: Instruction-Guided Visual Token Compression for Efficient Robotic Manipulation (arXiv 2511.18950, 2025)\",\n    \"LIBERO-Plus: A Progressive Robustness Benchmark for Visual-Language-Action Models (CVPR 2026)\",\n    \"On Robustness of Vision-Language-Action Model against Multi-Modal Perturbations (ICLR 2026)\",\n    \"Radio: Rate-Distortion Optimization for Large Language Model Compression (ICML 2025)\",\n    \"Balanced Rate-Distortion Optimization in Learned Image Compression (CVPR 2025)\"\n  ],\n  \"description\": \"We investigate when visual compression helps vs. hurts VLA generalization by tracing information bottleneck rate-distortion frontiers under out-of-distribution conditions. We insert a variational information bottleneck (VIB) between the visual encoder and action generation module of π₀ (2B, via openpi), sweeping the Lagrange multiplier β across 15 values to map the tradeoff between visual information rate I(V;Z) and action prediction distortion — measured both in-distribution (LIBERO-90, MetaWorld ML-45) and out-of-distribution (LIBERO-Plus, 7 perturbation types, 5 difficulty levels). Our central finding is a phase transition: at moderate compression, the VIB selectively filters task-irrelevant visual features, narrowing the generalization gap; beyond a critical β*, it begins discarding task-critical information, causing OOD performance to degrade faster than ID performance. This phase transition — not a single optimal operating point — is the key object we characterize. We directly address the tension between compression-as-regularizer and compression-as-vulnerability-amplifier: Evans et al. (2026) prove fixed codecs contract classification margins, but we show that learned VIB compression, jointly optimized with action prediction, can escape this regime below the critical threshold by preserving task-relevant information structure. We empirically characterize how β* shifts with task horizon, object diversity, perturbation type, and scene complexity, providing approximate scaling relationships that give practitioners a principled bandwidth selection recipe. Our work extends compute-optimal visual token scaling (Li et al., ICLR 2025) to generalization-optimal scaling, and extends latent-level IB for BC (Bai et al., ICML 2025) to visual-token-level IB for large VLAs with systematic OOD evaluation. No prior work traces IB-based RD frontiers for VLA visual bandwidth under distribution shift to characterize the compression-robustness phase transition.\",\n  \"project_name\": \"rd_optimal_vla_bandwidth\",\n  \"source\": \"web_research\"\n}\n\n\n## Previous review history\n### Round 1 review\nVerdict: revise\nIssues: [\"CRITICAL — CoRL 2026 deadline (abstract: May 25, paper: May 28) is 12-15 days from today (May 13). Even the auto_research estimate is 10-18 days, and no implementation has started. This first target venue is effectively impossible. Remove it.\", \"CRITICAL — BC-IB (ICML 2025, 'Rethinking Latent Redundancy in Behavior Cloning: An Information Bottleneck Approach for Robot Manipulation') is not cited despite directly applying information bottleneck to robot manipulation on LIBERO with β-sweeps. While BC-IB operates at the latent fusion level (not visual token level), the conceptual overlap is substantial and must be acknowledged and differentiated against.\", \"MAJOR — The Caglar et al. (2026) RD signatures framework extracts slope β and curvature κ from confusion matrices of classifiers under perturbation. VLA action prediction produces continuous action vectors, not categorical outputs. How do you construct confusion matrices for continuous actions? This transfer is non-trivial and the proposal does not address this fundamental methodological gap.\", \"MAJOR — 'Compression as an Adversarial Amplifier Through Decision Space Reduction' (arXiv 2604.06954, April 2026) formally shows that compression contracts classification margins and increases sensitivity to perturbations. This directly challenges the core premise that there exists a clean 'generalization-optimal' compression regime. The proposal mentions the gradient compression paper (2602.11584) as a counterpoint but that paper is about federated learning gradient compression, which is only tangentially relevant. The more directly threatening 2604.06954 paper is not discussed.\", \"MAJOR — The claim to 'derive and validate analytical predictions for how the optimal token count shifts with task horizon length, object diversity, and perturbation magnitude' is extremely ambitious but mathematically underspecified. What theoretical tools would enable closed-form predictions? Rate-distortion theory alone doesn't yield this — you'd need a model of task structure, which is absent from the proposal.\", \"MINOR — 'Inference Optimal VLMs Need Fewer Visual Tokens and More Parameters' (arXiv 2411.03312) already derives compute-optimal scaling laws for visual token count vs. model size in VLMs. While this targets inference efficiency (not OOD generalization), it represents a closely parallel effort that should be cited and differentiated.\", \"MINOR — The gradient compression paper (arXiv 2602.11584) is about gradient compression in federated learning, not input/visual token compression. Its inclusion as theoretical support is misleading — the mechanisms (gradient quantization in distributed training vs. visual information bottleneck) are fundamentally different.\", \"MINOR — The proposal claims OneWM-VLA's 1-token success is 'empirically puzzling,' but OneWM-VLA's own paper explains this: the single token is a semantic latent learned via Adaptive Attention Pooling, not a raw visual token. The puzzle is overstated to motivate the work.\"]\nFeedback: The core research direction — applying information-theoretic frameworks to understand VLA visual bandwidth and generalization — is genuinely valuable and timely. However, several revisions are needed:\n\n1. **Remove CoRL 2026** from target venues. Target AAAI 2027 (Jul-Aug 2026) or ICLR 2027 (Sep-Oct 2026) as primary venues, giving 2-5 months of development time.\n\n2. **Cite and differentiate from BC-IB (ICML 2025)**. This is the closest existing work. Your key differentiators should be: (a) operating at the visual token level rather than latent fusion level, (b) systematic RD frontier tracing rather than single-β improvement, (c) OOD robustness evaluation via LIBERO-Plus rather than in-distribution only. Make these distinctions explicit.\n\n3. **Address the confusion matrix problem**: Caglar et al.'s geometric signatures require confusion matrices. For continuous action prediction, you need to either (a) discretize actions into bins and construct approximate confusion matrices, (b) define an alternative RD signature extraction method for continuous outputs (e.g., using kernel density estimation of action error distributions), or (c) use a different metric entirely. This methodological detail is critical to the paper's viability.\n\n4. **Engage with the compression-vulnerability tension**: Cite arXiv 2604.06954 ('Compression as Adversarial Amplifier') and arXiv 2601.21531 ('Adversarial Robustness under Visual Token Compression'). Your theoretical contribution should explicitly characterize WHEN compression helps vs. hurts generalization — this is the key insight the field needs, not just 'find the optimal point.' Frame the RD frontier as revealing this phase transition.\n\n5. **Temper the analytical predictions claim**: Instead of claiming to 'derive analytical predictions,' frame this as 'empirically characterize and provide approximate scaling relationships.' Closed-form derivations require a tractable model of task structure that doesn't exist. Empirical scaling laws (similar to neural scaling laws) are more realistic and still valuable.\n\n6. **Replace the gradient compression reference** (2602.11584) with more relevant theoretical work: 'Compression as an Adversarial Amplifier' (2604.06954) and 'Generalized Information Bottleneck Theory of Deep Learning' (arXiv 2509.26327) are both more directly relevant to understanding when compression aids vs. harms generalization.\n\n7. **Cite 'Inference Optimal VLMs Need Fewer Visual Tokens'** (arXiv 2411.03312) and position your work as extending compute-optimal scaling to generalization-optimal scaling — this is a clean and compelling framing.\n\n\n## Output format\nOutput ONLY a JSON object:\n{\n  \"verdict\": \"pass | revise | fail\",\n  \"scores\": {\n    \"novelty\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"feasibility\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"clarity\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"impact\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"}\n  },\n  \"issues\": [\"specific issue 1\", \"specific issue 2\", ...],\n  \"feedback\": \"Actionable feedback for the generator (if verdict=revise)\",\n  \"reason\": \"One-line summary of verdict rationale\"\n}\n\nRules:\n- \"pass\": idea is sound AND high quality — avg score >= 4.0, no critical issues\n- \"revise\": fixable issues OR scores below threshold — provide specific feedback\n- \"fail\": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)\n- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.\n- Round 10 only: if still \"revise\", you MUST choose \"pass\" or \"fail\"."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-13T06:35:19.742Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-13T06:35:19.742Z",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d"
+}
+```
+
+---
+
+## Round 1
+
+104 recorded events
+
+### User
+
+_source line 3 · 2026-05-13T06:35:19.783Z_
+
+You are a strict ML research reviewer conducting adversarial review.
+
+**Today's date: 2026-05-13 (UTC).**
+
+Your job: independently verify this idea's claims via WebSearch, then issue a verdict.
+
+## User requirements
+The user asked for: **VLA中的token裁剪/增强能否提升VLA模型的泛化性（多从理论角度分析为何能增强）**
+You MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be "revise" or "fail".
+
+## 核心要求：非常仔细地调研，非常仔细地思考
+
+你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。
+
+### 调研要求
+
+1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。
+   每个验证维度建议用 2-3 种不同的搜索查询。
+
+2. **可行性深度检查**：
+   - 搜索类似实验的实际成本/周期
+   - 检查 claimed baselines 是否可复现
+   - 验证所需的 datasets/models 是否真的可以获取
+
+3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：
+   - 尝试不同的关键词组合
+   - 同时检查 arXiv 和 conference proceedings
+   - 寻找相邻领域的并行/concurrent 工作
+
+4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。
+
+### 思考要求
+
+5. **独立判断**：
+   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查
+   - 思考这个 idea 在实际执行中会遇到什么困难
+   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）
+
+6. **评分诚实**：
+   - 不要给"看起来还行"的 idea 高分——4 分意味着"确实很好"，5 分意味着"令人兴奋"
+   - Agent 评分经常虚高，你的职责就是纠正这种偏差
+
+充分利用你的工具——做真正的调研，不是走过场。
+
+
+## 论文搜索策略
+
+你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。
+
+### 搜索源（推荐每个维度使用 2 个不同来源）
+
+1. **arXiv 预印本**（最新工作）:
+   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文
+   - `site:arxiv.org {method_name}` — 按具体方法名搜索
+   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作
+
+2. **Google Scholar**（引用关系 + 综合覆盖）:
+   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果
+   - `"{exact paper title}"` — 验证论文是否真实存在
+   - `"{author name}" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）
+
+3. **Papers With Code**（SOTA 排行 + 代码可用性）:
+   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜
+   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现
+   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局
+
+4. **OpenReview**（会议审稿 + 同行评价）:
+   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文
+   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价
+
+5. **Semantic Scholar**（语义搜索 + 引用图谱）:
+   - `semantic scholar {topic} survey {year}` — 找综述论文
+   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）
+
+6. **GitHub**（实现验证）:
+   - `site:github.com {method_name} {task}` — 验证开源实现是否存在
+   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取
+
+### 搜索维度（多角度交叉，不要只按 topic 搜）
+
+对每个 idea/方向，尽量覆盖以下维度：
+
+1. **正向搜索**：直接搜索主题相关论文
+   - `{topic} {subtopic} {year}`
+   - `{method_name} for {task_name}`
+
+2. **竞争论文搜索**（最关键！）：
+   - `{core_problem} {year}` — 有没有人在解决同样的问题？
+   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？
+   - `{gap_description} solution` — 你发现的 gap 是否已被解决？
+   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文
+
+3. **相邻领域搜索**：
+   - `{method_from_other_field} applied to {your_task}`
+   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题
+
+4. **反面搜索**（找到反对你 idea 的证据）：
+   - `{your_approach} limitations` / `{your_approach} failure`
+   - `why {assumed_gap} is not a problem`
+   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好
+
+5. **引用链追踪**（发现遗漏工作的最有效方法）：
+   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分
+   - 在 Semantic Scholar 上查看它的 "cited by" — 最近引用它的论文很可能是 concurrent work
+   - 对 3 个以上核心相关论文重复此步骤
+
+### 搜索数量建议（理想目标，上下文充裕时尽量达到）
+
+| 角色 | 建议搜索次数 | 说明 |
+|------|-------------|------|
+| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |
+| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |
+| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |
+| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |
+
+### 上下文管理
+
+你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。
+
+- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。
+- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。
+- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。
+- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。
+
+
+As a reviewer, your search focus should be:
+1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实
+2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作
+3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通
+4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work
+
+## 竞争论文专项搜索（Reviewer 独有）
+
+这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：
+
+1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题
+   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）
+   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）
+   - 方法名 + 任务名的不同组合
+
+2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，
+   搜索他们最近的论文（`"team_name" OR "author_name" {topic} {year}`）
+
+3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers
+   - `site:openreview.net {topic} 2026`
+   - `{conference_name} 2026 accepted papers {topic}`
+
+4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文
+   这是发现 concurrent work 最有效的窗口
+
+如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，
+并在 feedback 中说明这些工作如何影响 idea 的 novelty。
+
+## Review checklist
+1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?
+   If outdated, specify what the current SOTA is and cite your source.
+2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)
+3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?
+4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-13?
+5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?
+6. **Novelty**: Is this sufficiently different from existing work?
+   When scoring novelty < 4:
+   - You MUST identify the closest existing work(s) via WebSearch
+   - In your feedback, write: "This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion]."
+   - This gives the generator targeted guidance to boost novelty, not just "be more novel".
+7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?
+   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero
+   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks
+   - Human-in-Loop should fall between manual and auto on most dimensions
+   - Manual and HIL must NOT include salary/wages — only GPU and API costs
+   - Auto Research must NOT include agent operational overhead
+   - If any mode estimate is clearly unrealistic, flag it
+
+## Idea under review (round 2/10)
+{
+  "title": "When Does Visual Compression Help VLA Generalization? Characterizing the Information Bottleneck Phase Transition",
+  "core_problem": "VLA systems use vastly different visual token counts (1 to 512 per frame), and concurrent work selects compression ratios heuristically or optimizes for in-distribution success. No principled framework characterizes WHEN visual compression helps vs. hurts out-of-distribution generalization — despite evidence that compression can both improve robustness (by filtering task-irrelevant noise) and amplify vulnerability (by contracting decision margins).",
+  "opportunity": "The information bottleneck (IB) provides a formal framework for trading compression against task-relevant information preservation. Applied to VLA visual encoders, sweeping the IB Lagrange multiplier β traces a rate-distortion frontier where rate measures visual information bandwidth and distortion measures action prediction error. Critically, evaluating this frontier under both in-distribution AND out-of-distribution conditions reveals a phase transition: at moderate compression, the IB selectively removes task-irrelevant visual features (improving robustness); beyond a critical compression threshold, it begins discarding task-relevant information (degrading robustness faster than in-distribution performance). This phase transition — not a single optimal point — is the key object the field needs to understand. The opportunity is sharpened by three concurrent developments: (1) Li et al. (ICLR 2025) derive compute-optimal scaling laws for visual token count vs. model size, but only for inference efficiency, not OOD generalization; (2) Bai et al. (ICML 2025, BC-IB) show IB at the latent fusion level improves in-distribution BC performance on LIBERO, but do not evaluate OOD robustness or trace systematic RD frontiers; (3) Evans et al. (arXiv 2604.06954) formally show that fixed compression (JPEG, PCA) contracts classification margins and amplifies adversarial vulnerability — raising the question of whether learned compression via IB can escape this geometric constraint by selectively preserving task-critical information. Extending from compute-optimal to generalization-optimal visual bandwidth, and from latent-level IB to visual-token-level IB with systematic OOD evaluation, fills a clear and timely gap.",
+  "landscape": "OneWM-VLA (arXiv 2605.07931, May 2026) compresses each view into a single semantic token via Adaptive Attention Pooling, achieving 95.6% on LIBERO-Long — demonstrating that learned compression to extreme levels is feasible when the bottleneck is task-optimized. LightVLA uses 78 tokens with +2.9% improvement. GridS (ICML 2026) uses <10% tokens. LUVC (Dec 2025) shows low-frequency tokens are more robust to noise. Compressor-VLA, VLA-IAP, VLA-Pruner, and TEAM-VLA all select compression ratios heuristically or learn them to maximize in-distribution task success — none characterizes the OOD generalization tradeoff via information-theoretic analysis. BC-IB (ICML 2025) is the closest existing work: it applies IB at the latent fusion level of small BC models (BC-MLP, BC-RNN, BC-Transformer) with 4 β values (1e-4 to 1e-2) using MINE estimation, achieving consistent in-distribution improvements on LIBERO and CortexBench. However, BC-IB (a) operates on fused latent representations rather than visual tokens, (b) does not trace systematic RD frontiers, (c) evaluates only in-distribution performance (explicitly noting OOD robustness is 'insufficiently studied'), and (d) has not been applied to large VLA architectures. Li et al. (ICLR 2025) derive compute-optimal scaling laws showing inference-optimal VLMs minimize visual tokens while maximizing model size, but target efficiency rather than OOD generalization. On the robustness side, LIBERO-Plus (CVPR 2026) reveals VLA models drop from 95% to below 30% under modest perturbations across 7 dimensions. Evans et al. (arXiv 2604.06954) formally prove that fixed image compression (JPEG, PCA) contracts classification margins via decision space reduction, amplifying adversarial vulnerability — but their analysis is specific to non-learned, non-invertible codecs and classification tasks, leaving open whether learned bottlenecks jointly optimized for action prediction can escape this geometric constraint. Concurrently, arXiv 2601.21531 shows robustness assessments that ignore token compression can be overly optimistic, calling for compression-aware evaluation. The position paper by Kong et al. (arXiv 2505.18227) argues token reduction should go beyond efficiency to influence generalization and robustness — but provides no formal framework for when it helps vs. hurts. The Generalized Information Bottleneck theory (arXiv 2509.26327) shows synergistic representations achieve superior generalization, offering theoretical support for why selective compression can improve robustness. No work traces systematic IB-based RD frontiers for VLA visual bandwidth under OOD conditions to characterize the compression-robustness phase transition.",
+  "approach": "We formalize VLA visual bandwidth selection as an information bottleneck optimization where rate R = I(visual_input; bottleneck_representation) controls effective visual information bandwidth and distortion D measures action prediction error — both in-distribution (standard LIBERO task success) and out-of-distribution (LIBERO-Plus perturbations across camera viewpoint, lighting, distractors, object layout, robot state, texture, and sensor noise). We insert a learnable variational information bottleneck (VIB) between the visual encoder and the action generation module of π₀ (2B params, via the open-source openpi codebase). The VIB parameterizes a stochastic bottleneck z ~ q(z|v) where v is the visual representation, with the training objective: L = E[||a_pred - a_true||²] + β · KL(q(z|v) || r(z)), where β controls the compression-prediction tradeoff and r(z) is a learnable marginal prior. This is standard VIB for continuous outputs — no confusion matrices or categorical discretization required, unlike the classification-specific RD signatures of Caglar et al. (2026). We sweep β across 15 logarithmically-spaced values (1e-5 to 1e-1) to trace the full RD frontier on LIBERO-90 and MetaWorld ML-45. At each operating point we measure: (1) effective rate via KL divergence upper bound on I(V;Z), (2) in-distribution task success rate, (3) OOD task success rate across all 7 LIBERO-Plus perturbation dimensions at difficulty levels L1-L5, and (4) the generalization gap Δ(β) = success_ID(β) - success_OOD(β). The central analysis identifies the phase transition: the critical β* where the generalization gap begins to widen rapidly, indicating compression has shifted from filtering irrelevant features to discarding task-critical information. We characterize this transition by computing the slope and curvature of the OOD-distortion vs. rate curve directly from our (R, D_OOD) operating points — a continuous-output analog of RD frontier geometry that does not require confusion matrices. We then empirically characterize how β* shifts with task complexity (horizon length, object count), perturbation type and magnitude, and visual scene complexity, fitting approximate scaling relationships (log-linear or power-law) analogous to neural scaling laws. This provides practitioners an empirical recipe: given task and deployment characteristics, predict which compression regime to target. Key differentiation from BC-IB: we operate at the visual token level (not latent fusion), use a 2B-parameter VLA (not small BC models), trace systematic 15-point RD frontiers (not 4 β values), evaluate under 7 OOD perturbation types (not in-distribution only), and characterize the compression-robustness phase transition (not just in-distribution improvement). Key engagement with the Adversarial Amplifier thesis: Evans et al.'s margin contraction result applies to fixed, non-learned codecs. Our learned VIB is jointly optimized with the task objective, potentially learning to selectively compress task-irrelevant information — we explicitly test whether the VIB escapes the margin contraction regime by measuring adversarial robustness (untargeted PGD attacks on visual inputs) at each β operating point alongside natural perturbation robustness.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~600h A100 80GB",
+      "gpu_utilization": "Low (~30-35%). Human spends most wall-clock time implementing VIB integration with π₀ flow-matching architecture, analyzing RD frontiers, designing next sweep. GPUs idle during code iteration and result interpretation.",
+      "timeline": "3-5 months",
+      "team": "1-2 researchers (1 with information theory / VIB experience, 1 with VLA/robotics and openpi familiarity)",
+      "estimated_gpu_cost": "$900-$1,200 (at ~$1.50/hr A100 spot pricing)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~750h A100 80GB",
+      "gpu_utilization": "Moderate (~55-65%). Agent queues β-sweep experiments back-to-back and auto-launches LIBERO-Plus evaluation after training. Human approves experiment design and validates RD frontier shape at checkpoints.",
+      "timeline": "6-9 weeks",
+      "team": "1 researcher, ~45min/day review of RD frontier progress and approval of next β range",
+      "claude_api_cost": "$350-$700 (~150-300 turns/week × 7 weeks × $0.10/turn Opus)",
+      "estimated_gpu_cost": "$1,125-$1,500",
+      "risk_note": "VIB insertion into π₀'s flow-matching architecture requires careful handling of the stochastic bottleneck during the denoising process. The VIB adds noise that could interfere with flow-matching training dynamics — may require 1-2 weeks of human debugging to stabilize training with gradient clipping or β warmup schedules."
+    },
+    "auto_research": {
+      "gpu_hours": "~1,400h A100 80GB (explores 3-4x more β values, ablations across perturbation types, adversarial robustness sweeps, and backup VIB architectures)",
+      "gpu_utilization": "Near-zero idle (~90-95% utilization). Agent continuously schedules next β-sweep run as each completes, runs parallel LIBERO-Plus evaluation jobs across perturbation types, and auto-generates RD frontier analysis.",
+      "timeline": "12-20 days with 4-8 concurrent A100s",
+      "team": "0 (only initial setup of openpi environment and LIBERO/LIBERO-Plus datasets)",
+      "claude_api_cost": "$450-$800 (~250-400 turns/day × 16 days × $0.10/turn)",
+      "estimated_gpu_cost": "$2,100-$2,800",
+      "speed_bottleneck": "GPU count (need 4-8 A100s to parallelize β-sweep); LIBERO-Plus evaluation across 7 perturbation types × 5 difficulty levels is the longest serial dependency (~8h per checkpoint for full evaluation).",
+      "risk_note": "Agent may over-explore β regions near the phase transition boundary where training is unstable (VIB collapse or posterior collapse). Needs well-defined convergence criteria and KL annealing to prevent degenerate solutions at extreme β."
+    }
+  },
+  "target_venues": [
+    "AAAI 2027 (deadline expected: Jul-Aug 2026)",
+    "ICLR 2027 (deadline expected: Sep-Oct 2026)",
+    "CoRL 2027 (deadline expected: May 2027, if additional development time needed)"
+  ],
+  "level": "solid-to-strong",
+  "key_references": [
+    "Rethinking Latent Redundancy in Behavior Cloning: An Information Bottleneck Approach for Robot Manipulation (BC-IB, ICML 2025, arXiv 2502.02853)",
+    "One Token Per Frame: Reconsidering Visual Bandwidth in World Models for VLA Policy (arXiv 2605.07931, 2026)",
+    "Inference Optimal VLMs Need Fewer Visual Tokens and More Parameters (ICLR 2025, arXiv 2411.03312)",
+    "Compression as an Adversarial Amplifier Through Decision Space Reduction (arXiv 2604.06954, 2026)",
+    "On the Adversarial Robustness of Large Vision-Language Models under Visual Token Compression (arXiv 2601.21531, 2026)",
+    "Rate-Distortion Signatures of Generalization and Information Trade-offs (arXiv 2603.01568, 2026)",
+    "A Generalized Information Bottleneck Theory of Deep Learning (arXiv 2509.26327, 2025)",
+    "Token Reduction Should Go Beyond Efficiency in Generative Models (arXiv 2505.18227, 2025)",
+    "Deep Variational Information Bottleneck (arXiv 1612.00410, 2017)",
+    "The Better You Learn, The Smarter You Prune: Towards Efficient VLA Models via Differentiable Token Pruning (ICRA 2026)",
+    "See What Matters: Differentiable Grid Sample Pruning for Generalizable VLA Model (ICML 2026)",
+    "Compressor-VLA: Instruction-Guided Visual Token Compression for Efficient Robotic Manipulation (arXiv 2511.18950, 2025)",
+    "LIBERO-Plus: A Progressive Robustness Benchmark for Visual-Language-Action Models (CVPR 2026)",
+    "On Robustness of Vision-Language-Action Model against Multi-Modal Perturbations (ICLR 2026)",
+    "Radio: Rate-Distortion Optimization for Large Language Model Compression (ICML 2025)",
+    "Balanced Rate-Distortion Optimization in Learned Image Compression (CVPR 2025)"
+  ],
+  "description": "We investigate when visual compression helps vs. hurts VLA generalization by tracing information bottleneck rate-distortion frontiers under out-of-distribution conditions. We insert a variational information bottleneck (VIB) between the visual encoder and action generation module of π₀ (2B, via openpi), sweeping the Lagrange multiplier β across 15 values to map the tradeoff between visual information rate I(V;Z) and action prediction distortion — measured both in-distribution (LIBERO-90, MetaWorld ML-45) and out-of-distribution (LIBERO-Plus, 7 perturbation types, 5 difficulty levels). Our central finding is a phase transition: at moderate compression, the VIB selectively filters task-irrelevant visual features, narrowing the generalization gap; beyond a critical β*, it begins discarding task-critical information, causing OOD performance to degrade faster than ID performance. This phase transition — not a single optimal operating point — is the key object we characterize. We directly address the tension between compression-as-regularizer and compression-as-vulnerability-amplifier: Evans et al. (2026) prove fixed codecs contract classification margins, but we show that learned VIB compression, jointly optimized with action prediction, can escape this regime below the critical threshold by preserving task-relevant information structure. We empirically characterize how β* shifts with task horizon, object diversity, perturbation type, and scene complexity, providing approximate scaling relationships that give practitioners a principled bandwidth selection recipe. Our work extends compute-optimal visual token scaling (Li et al., ICLR 2025) to generalization-optimal scaling, and extends latent-level IB for BC (Bai et al., ICML 2025) to visual-token-level IB for large VLAs with systematic OOD evaluation. No prior work traces IB-based RD frontiers for VLA visual bandwidth under distribution shift to characterize the compression-robustness phase transition.",
+  "project_name": "rd_optimal_vla_bandwidth",
+  "source": "web_research"
+}
+
+
+## Previous review history
+### Round 1 review
+Verdict: revise
+Issues: ["CRITICAL — CoRL 2026 deadline (abstract: May 25, paper: May 28) is 12-15 days from today (May 13). Even the auto_research estimate is 10-18 days, and no implementation has started. This first target venue is effectively impossible. Remove it.", "CRITICAL — BC-IB (ICML 2025, 'Rethinking Latent Redundancy in Behavior Cloning: An Information Bottleneck Approach for Robot Manipulation') is not cited despite directly applying information bottleneck to robot manipulation on LIBERO with β-sweeps. While BC-IB operates at the latent fusion level (not visual token level), the conceptual overlap is substantial and must be acknowledged and differentiated against.", "MAJOR — The Caglar et al. (2026) RD signatures framework extracts slope β and curvature κ from confusion matrices of classifiers under perturbation. VLA action prediction produces continuous action vectors, not categorical outputs. How do you construct confusion matrices for continuous actions? This transfer is non-trivial and the proposal does not address this fundamental methodological gap.", "MAJOR — 'Compression as an Adversarial Amplifier Through Decision Space Reduction' (arXiv 2604.06954, April 2026) formally shows that compression contracts classification margins and increases sensitivity to perturbations. This directly challenges the core premise that there exists a clean 'generalization-optimal' compression regime. The proposal mentions the gradient compression paper (2602.11584) as a counterpoint but that paper is about federated learning gradient compression, which is only tangentially relevant. The more directly threatening 2604.06954 paper is not discussed.", "MAJOR — The claim to 'derive and validate analytical predictions for how the optimal token count shifts with task horizon length, object diversity, and perturbation magnitude' is extremely ambitious but mathematically underspecified. What theoretical tools would enable closed-form predictions? Rate-distortion theory alone doesn't yield this — you'd need a model of task structure, which is absent from the proposal.", "MINOR — 'Inference Optimal VLMs Need Fewer Visual Tokens and More Parameters' (arXiv 2411.03312) already derives compute-optimal scaling laws for visual token count vs. model size in VLMs. While this targets inference efficiency (not OOD generalization), it represents a closely parallel effort that should be cited and differentiated.", "MINOR — The gradient compression paper (arXiv 2602.11584) is about gradient compression in federated learning, not input/visual token compression. Its inclusion as theoretical support is misleading — the mechanisms (gradient quantization in distributed training vs. visual information bottleneck) are fundamentally different.", "MINOR — The proposal claims OneWM-VLA's 1-token success is 'empirically puzzling,' but OneWM-VLA's own paper explains this: the single token is a semantic latent learned via Adaptive Attention Pooling, not a raw visual token. The puzzle is overstated to motivate the work."]
+Feedback: The core research direction — applying information-theoretic frameworks to understand VLA visual bandwidth and generalization — is genuinely valuable and timely. However, several revisions are needed:
+
+1. **Remove CoRL 2026** from target venues. Target AAAI 2027 (Jul-Aug 2026) or ICLR 2027 (Sep-Oct 2026) as primary venues, giving 2-5 months of development time.
+
+2. **Cite and differentiate from BC-IB (ICML 2025)**. This is the closest existing work. Your key differentiators should be: (a) operating at the visual token level rather than latent fusion level, (b) systematic RD frontier tracing rather than single-β improvement, (c) OOD robustness evaluation via LIBERO-Plus rather than in-distribution only. Make these distinctions explicit.
+
+3. **Address the confusion matrix problem**: Caglar et al.'s geometric signatures require confusion matrices. For continuous action prediction, you need to either (a) discretize actions into bins and construct approximate confusion matrices, (b) define an alternative RD signature extraction method for continuous outputs (e.g., using kernel density estimation of action error distributions), or (c) use a different metric entirely. This methodological detail is critical to the paper's viability.
+
+4. **Engage with the compression-vulnerability tension**: Cite arXiv 2604.06954 ('Compression as Adversarial Amplifier') and arXiv 2601.21531 ('Adversarial Robustness under Visual Token Compression'). Your theoretical contribution should explicitly characterize WHEN compression helps vs. hurts generalization — this is the key insight the field needs, not just 'find the optimal point.' Frame the RD frontier as revealing this phase transition.
+
+5. **Temper the analytical predictions claim**: Instead of claiming to 'derive analytical predictions,' frame this as 'empirically characterize and provide approximate scaling relationships.' Closed-form derivations require a tractable model of task structure that doesn't exist. Empirical scaling laws (similar to neural scaling laws) are more realistic and still valuable.
+
+6. **Replace the gradient compression reference** (2602.11584) with more relevant theoretical work: 'Compression as an Adversarial Amplifier' (2604.06954) and 'Generalized Information Bottleneck Theory of Deep Learning' (arXiv 2509.26327) are both more directly relevant to understanding when compression aids vs. harms generalization.
+
+7. **Cite 'Inference Optimal VLMs Need Fewer Visual Tokens'** (arXiv 2411.03312) and position your work as extending compute-optimal scaling to generalization-optimal scaling — this is a clean and compelling framing.
+
+
+## Output format
+Output ONLY a JSON object:
+{
+  "verdict": "pass | revise | fail",
+  "scores": {
+    "novelty": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "feasibility": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "clarity": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "impact": {"score": 0-5, "rationale": "1-2 sentence justification"}
+  },
+  "issues": ["specific issue 1", "specific issue 2", ...],
+  "feedback": "Actionable feedback for the generator (if verdict=revise)",
+  "reason": "One-line summary of verdict rationale"
+}
+
+Rules:
+- "pass": idea is sound AND high quality — avg score >= 4.0, no critical issues
+- "revise": fixable issues OR scores below threshold — provide specific feedback
+- "fail": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)
+- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.
+- Round 10 only: if still "revise", you MUST choose "pass" or "fail".
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "d00fd39b-05e8-4d12-acea-1a8fbd608c3e",
+  "type": "user",
+  "uuid": "34a57232-ae86-4b2a-b35c-d11ad75eeab0",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-13T06:35:19.780Z_
+
+```json
+{
+  "parentUuid": "34a57232-ae86-4b2a-b35c-d11ad75eeab0",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "8c99e4a1-fd17-4a80-9ddb-8e140d893060",
+  "timestamp": "2026-05-13T06:35:19.780Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-13T06:35:19.780Z_
+
+```json
+{
+  "parentUuid": "8c99e4a1-fd17-4a80-9ddb-8e140d893060",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "c083f035-57cf-4bf5-aba2-cd4a8782b4ae",
+  "timestamp": "2026-05-13T06:35:19.780Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "c083f035-57cf-4bf5-aba2-cd4a8782b4ae",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify VLA visual compression phase transitions",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-13T06:35:25.768Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me carefully review this revised idea about applying information bottleneck theory to VLA visual token compression for understanding generalization. This is round 2/10, so I need to check whether the previous round's issues have been addressed and do independent verification.
+
+Let me start by searching for the key claims and references.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c083f035-57cf-4bf5-aba2-cd4a8782b4ae",
+  "isSidechain": false,
+  "requestId": "req_011Caz6yWokvPZ3mgMGKbYok",
+  "type": "assistant",
+  "uuid": "e6a22c2c-f3cd-40a7-8b28-52679143e568",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019j46xt8dciYNNTZFA8bLYr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14115,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 558,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14115,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 558,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 14115,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14115
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-13T06:35:27.244Z_
+
+I'll conduct an independent, thorough review of this revised idea. Let me start by verifying the key claims, checking for competing work, and assessing whether the round 1 issues were adequately addressed.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e6a22c2c-f3cd-40a7-8b28-52679143e568",
+  "isSidechain": false,
+  "requestId": "req_011Caz6yWokvPZ3mgMGKbYok",
+  "type": "assistant",
+  "uuid": "5f8b3545-180f-4c1d-aca5-c05b45e56fd8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019j46xt8dciYNNTZFA8bLYr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14115,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 558,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14115,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 558,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 14115,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14115
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-13T06:35:35.914Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_0178gT2CVZZjL2WdT4nwHws8`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Verify BC-IB and core references",
+  "prompt": "I'm reviewing an ML research idea about applying information bottleneck to VLA (Vision-Language-Action) models for understanding generalization under visual token compression. I need to verify several key references and claims. Please do the following searches and report findings:\n\n1. Search for \"BC-IB information bottleneck behavior cloning ICML 2025\" and verify: Does this paper exist? What exactly does it do? Does it evaluate OOD robustness? What β values does it sweep?\n\n2. Search for \"Compression as Adversarial Amplifier Decision Space Reduction arXiv 2604.06954\" - verify this paper exists and what it proves about compression and margins.\n\n3. Search for \"OneWM-VLA arXiv 2605.07931 one token per frame\" - verify this paper exists and its key results.\n\n4. Search for \"LIBERO-Plus CVPR 2026 robustness benchmark VLA\" - verify this exists and what it shows about VLA robustness under perturbations.\n\n5. Search for \"variational information bottleneck VLA robot manipulation 2025 2026\" to check if anyone has already done what this idea proposes.\n\nFor each search, use WebSearch and try to fetch the most relevant result with WebFetch to read the abstract. Report what you find in detail.",
+  "run_in_background": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5f8b3545-180f-4c1d-aca5-c05b45e56fd8",
+  "isSidechain": false,
+  "requestId": "req_011Caz6yWokvPZ3mgMGKbYok",
+  "type": "assistant",
+  "uuid": "aa5e2619-4c2e-46b8-aef5-52c94ca20c0e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019j46xt8dciYNNTZFA8bLYr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14115,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 558,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14115,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 558,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 14115,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14115
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-13T06:35:35.923Z_
+
+<details><summary>↩ Tool result · `toolu_0178gT2CVZZjL2WdT4nwHws8`</summary>
+
+```text
+Async agent launched successfully.
+agentId: af05a12dcaf864aed (internal ID - do not mention to user. Use SendMessage with to: 'af05a12dcaf864aed' to continue this agent.)
+The agent is working in the background. You will be notified automatically when it completes.
+Do not duplicate this agent's work — avoid working with the same files or topics it is using. Work on non-overlapping tasks, or briefly tell the user what you launched and end your response.
+output_file: /tmp/claude-1000/-/45183731-1e2f-4b44-81c9-d3cd33b5498d/tasks/af05a12dcaf864aed.output
+Do NOT Read or tail this file via the shell tool — it is the full sub-agent JSONL transcript and reading it will overflow your context. If the user asks for progress, say the agent is still running; you'll get a completion notification.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "aa5e2619-4c2e-46b8-aef5-52c94ca20c0e",
+  "isSidechain": false,
+  "promptId": "d00fd39b-05e8-4d12-acea-1a8fbd608c3e",
+  "type": "user",
+  "uuid": "898e74cb-2f40-4dcd-b06f-a3b1347fa817",
+  "toolUseResult": {
+    "isAsync": true,
+    "status": "async_launched",
+    "agentId": "af05a12dcaf864aed",
+    "description": "Verify BC-IB and core references",
+    "prompt": "I'm reviewing an ML research idea about applying information bottleneck to VLA (Vision-Language-Action) models for understanding generalization under visual token compression. I need to verify several key references and claims. Please do the following searches and report findings:\n\n1. Search for \"BC-IB information bottleneck behavior cloning ICML 2025\" and verify: Does this paper exist? What exactly does it do? Does it evaluate OOD robustness? What β values does it sweep?\n\n2. Search for \"Compression as Adversarial Amplifier Decision Space Reduction arXiv 2604.06954\" - verify this paper exists and what it proves about compression and margins.\n\n3. Search for \"OneWM-VLA arXiv 2605.07931 one token per frame\" - verify this paper exists and its key results.\n\n4. Search for \"LIBERO-Plus CVPR 2026 robustness benchmark VLA\" - verify this exists and what it shows about VLA robustness under perturbations.\n\n5. Search for \"variational information bottleneck VLA robot manipulation 2025 2026\" to check if anyone has already done what this idea proposes.\n\nFor each search, use WebSearch and try to fetch the most relevant result with WebFetch to read the abstract. Report what you find in detail.",
+    "outputFile": "/tmp/claude-1000/-/45183731-1e2f-4b44-81c9-d3cd33b5498d/tasks/af05a12dcaf864aed.output",
+    "canReadOutputFile": true
+  },
+  "sourceToolAssistantUUID": "aa5e2619-4c2e-46b8-aef5-52c94ca20c0e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-13T06:35:51.262Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01K3Da4t6vzgVw2qkYXXw3Sc`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Search competing work and novelty",
+  "prompt": "I'm reviewing an ML research idea that proposes inserting a Variational Information Bottleneck (VIB) between the visual encoder and action module of a VLA (Vision-Language-Action) model (specifically π₀/openpi, 2B params). The idea traces rate-distortion frontiers by sweeping β to find when compression helps vs. hurts out-of-distribution generalization. \n\nI need to find competing or overlapping work that the idea may have missed. Please search for:\n\n1. \"information bottleneck visual tokens VLA 2025 2026\" - any work applying IB specifically to visual tokens in VLAs\n2. \"rate-distortion frontier robot policy generalization\" - any work tracing RD frontiers for robot policy\n3. \"visual token compression generalization robustness robot 2025 2026\" - broader search\n4. \"token pruning VLA generalization out-of-distribution\" - check if pruning methods already study OOD\n5. Search for \"LightVLA\" and \"GridS VLA ICML 2026\" to verify these exist\n6. Search for \"VLA-Pruner\" and \"Compressor-VLA\" to verify these exist\n7. Search for \"pi0 openpi VLA information bottleneck\" - check if anyone already applied IB to pi0\n8. Search for \"phase transition information bottleneck deep learning\" to see if this concept (phase transition in IB) has been studied before in deep learning contexts\n\nFor each search, use WebSearch and report the top results. If you find highly relevant papers, use WebFetch to read their abstracts. Report everything you find.",
+  "run_in_background": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "898e74cb-2f40-4dcd-b06f-a3b1347fa817",
+  "isSidechain": false,
+  "requestId": "req_011Caz6zhmMMcjo8PruFoQSS",
+  "type": "assistant",
+  "uuid": "956fa9c2-098d-4a47-97af-837f31b6edc9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0168j6iJiNweU5RYYXeCxSPi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 777,
+      "cache_read_input_tokens": 25956,
+      "output_tokens": 490,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 777,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 490,
+          "cache_read_input_tokens": 25956,
+          "cache_creation_input_tokens": 777,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 777
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-13T06:35:51.273Z_
+
+<details><summary>↩ Tool result · `toolu_01K3Da4t6vzgVw2qkYXXw3Sc`</summary>
+
+```text
+Async agent launched successfully.
+agentId: a1a2f23d5446ee3f0 (internal ID - do not mention to user. Use SendMessage with to: 'a1a2f23d5446ee3f0' to continue this agent.)
+The agent is working in the background. You will be notified automatically when it completes.
+Do not duplicate this agent's work — avoid working with the same files or topics it is using. Work on non-overlapping tasks, or briefly tell the user what you launched and end your response.
+output_file: /tmp/claude-1000/-/45183731-1e2f-4b44-81c9-d3cd33b5498d/tasks/a1a2f23d5446ee3f0.output
+Do NOT Read or tail this file via the shell tool — it is the full sub-agent JSONL transcript and reading it will overflow your context. If the user asks for progress, say the agent is still running; you'll get a completion notification.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "956fa9c2-098d-4a47-97af-837f31b6edc9",
+  "isSidechain": false,
+  "promptId": "d00fd39b-05e8-4d12-acea-1a8fbd608c3e",
+  "type": "user",
+  "uuid": "9261ac73-471c-44da-b853-059d56a4b8fd",
+  "toolUseResult": {
+    "isAsync": true,
+    "status": "async_launched",
+    "agentId": "a1a2f23d5446ee3f0",
+    "description": "Search competing work and novelty",
+    "prompt": "I'm reviewing an ML research idea that proposes inserting a Variational Information Bottleneck (VIB) between the visual encoder and action module of a VLA (Vision-Language-Action) model (specifically π₀/openpi, 2B params). The idea traces rate-distortion frontiers by sweeping β to find when compression helps vs. hurts out-of-distribution generalization. \n\nI need to find competing or overlapping work that the idea may have missed. Please search for:\n\n1. \"information bottleneck visual tokens VLA 2025 2026\" - any work applying IB specifically to visual tokens in VLAs\n2. \"rate-distortion frontier robot policy generalization\" - any work tracing RD frontiers for robot policy\n3. \"visual token compression generalization robustness robot 2025 2026\" - broader search\n4. \"token pruning VLA generalization out-of-distribution\" - check if pruning methods already study OOD\n5. Search for \"LightVLA\" and \"GridS VLA ICML 2026\" to verify these exist\n6. Search for \"VLA-Pruner\" and \"Compressor-VLA\" to verify these exist\n7. Search for \"pi0 openpi VLA information bottleneck\" - check if anyone already applied IB to pi0\n8. Search for \"phase transition information bottleneck deep learning\" to see if this concept (phase transition in IB) has been studied before in deep learning contexts\n\nFor each search, use WebSearch and report the top results. If you find highly relevant papers, use WebFetch to read their abstracts. Report everything you find.",
+    "outputFile": "/tmp/claude-1000/-/45183731-1e2f-4b44-81c9-d3cd33b5498d/tasks/a1a2f23d5446ee3f0.output",
+    "canReadOutputFile": true
+  },
+  "sourceToolAssistantUUID": "956fa9c2-098d-4a47-97af-837f31b6edc9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-13T06:36:01.102Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01XYsjKR1asLNX3V6TUFhMqA`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Verify venue deadlines and costs",
+  "prompt": "I need to verify several things for an ML research idea review:\n\n1. **Venue deadlines**: Search for \"AAAI 2027 submission deadline\" and \"ICLR 2027 submission deadline\" and \"CoRL 2027 submission deadline\". Today is May 13, 2026. I need to verify that these deadlines are after today.\n\n2. **GPU cost verification**: Search for \"A100 80GB spot pricing 2026\" or \"A100 GPU cloud pricing per hour\" to verify if ~$1.50/hr is realistic for A100 spot pricing.\n\n3. **openpi codebase**: Search for \"openpi pi0 codebase github\" to verify this codebase is publicly available and whether it's easy to modify (insert a VIB layer).\n\n4. **LIBERO benchmark**: Search for \"LIBERO-90 benchmark robot manipulation\" to verify this benchmark exists and is accessible.\n\n5. **MetaWorld ML-45**: Search for \"MetaWorld ML-45 benchmark\" to verify this exists.\n\n6. Search for \"Generalized Information Bottleneck arXiv 2509.26327\" to verify this reference.\n\n7. Search for \"Rate-Distortion Signatures arXiv 2603.01568 Caglar 2026\" to verify this reference exists.\n\nReport all findings in detail.",
+  "run_in_background": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9261ac73-471c-44da-b853-059d56a4b8fd",
+  "isSidechain": false,
+  "requestId": "req_011Caz71qGKrZMaYQBK2dRyB",
+  "type": "assistant",
+  "uuid": "5d139977-feab-45ef-b877-41ae9c303658",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LKJ1juRsKGsmweKZS8c73E",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 735,
+      "cache_read_input_tokens": 26733,
+      "output_tokens": 429,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 735,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 429,
+          "cache_read_input_tokens": 26733,
+          "cache_creation_input_tokens": 735,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 735
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-13T06:36:01.111Z_
+
+<details><summary>↩ Tool result · `toolu_01XYsjKR1asLNX3V6TUFhMqA`</summary>
+
+```text
+Async agent launched successfully.
+agentId: a88d788590e01909c (internal ID - do not mention to user. Use SendMessage with to: 'a88d788590e01909c' to continue this agent.)
+The agent is working in the background. You will be notified automatically when it completes.
+Do not duplicate this agent's work — avoid working with the same files or topics it is using. Work on non-overlapping tasks, or briefly tell the user what you launched and end your response.
+output_file: /tmp/claude-1000/-/45183731-1e2f-4b44-81c9-d3cd33b5498d/tasks/a88d788590e01909c.output
+Do NOT Read or tail this file via the shell tool — it is the full sub-agent JSONL transcript and reading it will overflow your context. If the user asks for progress, say the agent is still running; you'll get a completion notification.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5d139977-feab-45ef-b877-41ae9c303658",
+  "isSidechain": false,
+  "promptId": "d00fd39b-05e8-4d12-acea-1a8fbd608c3e",
+  "type": "user",
+  "uuid": "860cf096-e1bc-4e56-a351-4098a097a5a3",
+  "toolUseResult": {
+    "isAsync": true,
+    "status": "async_launched",
+    "agentId": "a88d788590e01909c",
+    "description": "Verify venue deadlines and costs",
+    "prompt": "I need to verify several things for an ML research idea review:\n\n1. **Venue deadlines**: Search for \"AAAI 2027 submission deadline\" and \"ICLR 2027 submission deadline\" and \"CoRL 2027 submission deadline\". Today is May 13, 2026. I need to verify that these deadlines are after today.\n\n2. **GPU cost verification**: Search for \"A100 80GB spot pricing 2026\" or \"A100 GPU cloud pricing per hour\" to verify if ~$1.50/hr is realistic for A100 spot pricing.\n\n3. **openpi codebase**: Search for \"openpi pi0 codebase github\" to verify this codebase is publicly available and whether it's easy to modify (insert a VIB layer).\n\n4. **LIBERO benchmark**: Search for \"LIBERO-90 benchmark robot manipulation\" to verify this benchmark exists and is accessible.\n\n5. **MetaWorld ML-45**: Search for \"MetaWorld ML-45 benchmark\" to verify this exists.\n\n6. Search for \"Generalized Information Bottleneck arXiv 2509.26327\" to verify this reference.\n\n7. Search for \"Rate-Distortion Signatures arXiv 2603.01568 Caglar 2026\" to verify this reference exists.\n\nReport all findings in detail.",
+    "outputFile": "/tmp/claude-1000/-/45183731-1e2f-4b44-81c9-d3cd33b5498d/tasks/a88d788590e01909c.output",
+    "canReadOutputFile": true
+  },
+  "sourceToolAssistantUUID": "5d139977-feab-45ef-b877-41ae9c303658",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16 · 2026-05-13T06:36:04.878Z_
+
+I've launched three parallel research agents to independently verify references, search for competing work, and check venue/cost feasibility. I'll analyze findings once they report back.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "860cf096-e1bc-4e56-a351-4098a097a5a3",
+  "isSidechain": false,
+  "requestId": "req_011Caz72ZM945ayF2bwDYCap",
+  "type": "assistant",
+  "uuid": "9dd30e8c-bb6a-462c-80b2-8fe0bc1a5556",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CkAfsYhY5457nwUPi4pkaN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 661,
+      "cache_read_input_tokens": 27468,
+      "output_tokens": 114,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 661,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 114,
+          "cache_read_input_tokens": 27468,
+          "cache_creation_input_tokens": 661,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 661
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-13T06:36:05.110Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_019tmtNhSX1uwiEJeWnTsBZ1`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9dd30e8c-bb6a-462c-80b2-8fe0bc1a5556",
+  "isSidechain": false,
+  "requestId": "req_011Caz72ZM945ayF2bwDYCap",
+  "type": "assistant",
+  "uuid": "afe4d5c2-28a6-4a91-a693-a7c8da0897e3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CkAfsYhY5457nwUPi4pkaN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 661,
+      "cache_read_input_tokens": 27468,
+      "output_tokens": 114,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 661,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 114,
+          "cache_read_input_tokens": 27468,
+          "cache_creation_input_tokens": 661,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 661
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-13T06:36:05.113Z_
+
+<details><summary>↩ Tool result · `toolu_019tmtNhSX1uwiEJeWnTsBZ1`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "afe4d5c2-28a6-4a91-a693-a7c8da0897e3",
+  "isSidechain": false,
+  "promptId": "d00fd39b-05e8-4d12-acea-1a8fbd608c3e",
+  "type": "user",
+  "uuid": "9f38b721-3bcc-44c4-9a59-d08304f234d4",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "afe4d5c2-28a6-4a91-a693-a7c8da0897e3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19 · 2026-05-13T06:36:09.181Z_
+
+Let me do some direct searches myself while waiting for the agents, focusing on the most critical verification points.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9f38b721-3bcc-44c4-9a59-d08304f234d4",
+  "isSidechain": false,
+  "requestId": "req_011Caz72rsLdg34PEA8edLPN",
+  "type": "assistant",
+  "uuid": "7508d8d7-20c4-4353-8a43-8f7d19ef850c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PitQwkWQckzLHvJfwn6ZUw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1133,
+      "cache_read_input_tokens": 28129,
+      "output_tokens": 147,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1133,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 147,
+          "cache_read_input_tokens": 28129,
+          "cache_creation_input_tokens": 1133,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1133
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-13T06:36:10.729Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Nsa3C1b1JmzXjZW6JNc9R7`</summary>
+
+```json
+{
+  "query": "information bottleneck phase transition deep learning generalization theory 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7508d8d7-20c4-4353-8a43-8f7d19ef850c",
+  "isSidechain": false,
+  "requestId": "req_011Caz72rsLdg34PEA8edLPN",
+  "type": "assistant",
+  "uuid": "ac8d1d5f-af59-477e-8975-51287c6a92e4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PitQwkWQckzLHvJfwn6ZUw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1133,
+      "cache_read_input_tokens": 28129,
+      "output_tokens": 147,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1133,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 147,
+          "cache_read_input_tokens": 28129,
+          "cache_creation_input_tokens": 1133,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1133
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-13T06:36:10.830Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011ytbKQpaJCqGEqPCn2pqyy`</summary>
+
+```json
+{
+  "query": "\"visual token compression\" VLA \"out-of-distribution\" generalization 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ac8d1d5f-af59-477e-8975-51287c6a92e4",
+  "isSidechain": false,
+  "requestId": "req_011Caz72rsLdg34PEA8edLPN",
+  "type": "assistant",
+  "uuid": "bdf21cab-5f6b-46f3-99e2-d671f5bc3fc6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PitQwkWQckzLHvJfwn6ZUw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1133,
+      "cache_read_input_tokens": 28129,
+      "output_tokens": 147,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1133,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 147,
+          "cache_read_input_tokens": 28129,
+          "cache_creation_input_tokens": 1133,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1133
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-13T06:36:17.114Z_
+
+<details><summary>↩ Tool result · `toolu_01Nsa3C1b1JmzXjZW6JNc9R7`</summary>
+
+```text
+Web search results for query: "information bottleneck phase transition deep learning generalization theory 2025 2026"
+
+Links: [{"title":"A GENERALIZED INFORMATION BOTTLENECK THEORY OF DEEP LEARNING","url":"https://arxiv.org/pdf/2509.26327"},{"title":"[2509.26327] A Generalized Information Bottleneck Theory of Deep Learning","url":"https://arxiv.org/abs/2509.26327"},{"title":"On the Information Bottleneck Theory of Deep Learning | OpenReview","url":"https://openreview.net/forum?id=ry_WPG-A-"},{"title":"A Two-Phase Perspective on Deep Learning Dynamics","url":"https://arxiv.org/html/2504.12700"},{"title":"(PDF) On the information bottleneck theory of deep learning","url":"https://www.researchgate.net/publication/325022755_On_the_information_bottleneck_theory_of_deep_learning"},{"title":"[PDF] How Does Information Bottleneck Help Deep Learning? | Semantic Scholar","url":"https://www.semanticscholar.org/paper/d1776e0a3d8c39a3c264c8fdecbca5b626426065"},{"title":"[1503.02406] Deep Learning and the Information Bottleneck Principle","url":"https://arxiv.org/abs/1503.02406"},{"title":"Information bottleneck method - Wikipedia","url":"https://en.wikipedia.org/wiki/Information_bottleneck_method"},{"title":"On the information bottleneck theory of deep learning - IOPscience","url":"https://iopscience.iop.org/article/10.1088/1742-5468/ab3985"},{"title":"Decoding the Information Bottleneck: A Deep Dive into Neural Network Learning Dynamics | by Mehmet Emre Akbulut | Medium","url":"https://medium.com/@memreakbulut/decoding-the-information-bottleneck-a-deep-dive-into-neural-network-learning-dynamics-8cb02aff37e2"}]
+
+I've found several relevant research results on information bottleneck theory, phase transitions, and deep learning generalization. Here's a summary of recent findings:
+
+## Recent Developments (2025-2026)
+
+A Generalized Information Bottleneck (GIB) framework has been proposed that reformulates the original IB principle through the lens of synergy, with evidence demonstrating that synergistic functions achieve superior generalization compared to their non-synergistic counterparts.
+
+Research proposes that learning in deep neural networks proceeds in two phases: a rapid curve-fitting phase followed by a slower compression or coarse-graining phase, supported by the shared temporal structure of three phenomena – grokking, double descent, and the information bottleneck.
+
+## Ongoing Debate on Phase Transitions
+
+There is significant scientific debate about the information bottleneck theory's core claims. The information bottleneck theory makes specific claims about two distinct phases (fitting and compression), that compression is causally related to generalization, and that compression arises from stochastic gradient descent, but none of these claims hold true in the general case.
+
+There is no evident causal connection between compression and generalization: networks that do not compress are still capable of generalization, and vice versa.
+
+## Theoretical Progress
+
+Research provides rigorous learning theory for justifying the benefit of information bottleneck in deep learning by mathematically relating information bottleneck to generalization errors and introduces new generalization bounds that scale with the degree of information bottlenecks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ac8d1d5f-af59-477e-8975-51287c6a92e4",
+  "isSidechain": false,
+  "promptId": "d00fd39b-05e8-4d12-acea-1a8fbd608c3e",
+  "type": "user",
+  "uuid": "3e535fb9-814c-40ef-b876-85409b3f26bc",
+  "toolUseResult": {
+    "query": "information bottleneck phase transition deep learning generalization theory 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Fz3vNPNMhLfXBaaRXxUbna",
+        "content": [
+          {
+            "title": "A GENERALIZED INFORMATION BOTTLENECK THEORY OF DEEP LEARNING",
+            "url": "https://arxiv.org/pdf/2509.26327"
+          },
+          {
+            "title": "[2509.26327] A Generalized Information Bottleneck Theory of Deep Learning",
+            "url": "https://arxiv.org/abs/2509.26327"
+          },
+          {
+            "title": "On the Information Bottleneck Theory of Deep Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=ry_WPG-A-"
+          },
+          {
+            "title": "A Two-Phase Perspective on Deep Learning Dynamics",
+            "url": "https://arxiv.org/html/2504.12700"
+          },
+          {
+            "title": "(PDF) On the information bottleneck theory of deep learning",
+            "url": "https://www.researchgate.net/publication/325022755_On_the_information_bottleneck_theory_of_deep_learning"
+          },
+          {
+            "title": "[PDF] How Does Information Bottleneck Help Deep Learning? | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/d1776e0a3d8c39a3c264c8fdecbca5b626426065"
+          },
+          {
+            "title": "[1503.02406] Deep Learning and the Information Bottleneck Principle",
+            "url": "https://arxiv.org/abs/1503.02406"
+          },
+          {
+            "title": "Information bottleneck method - Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/Information_bottleneck_method"
+          },
+          {
+            "title": "On the information bottleneck theory of deep learning - IOPscience",
+            "url": "https://iopscience.iop.org/article/10.1088/1742-5468/ab3985"
+          },
+          {
+            "title": "Decoding the Information Bottleneck: A Deep Dive into Neural Network Learning Dynamics | by Mehmet Emre Akbulut | Medium",
+            "url": "https://medium.com/@memreakbulut/decoding-the-information-bottleneck-a-deep-dive-into-neural-network-learning-dynamics-8cb02aff37e2"
+          }
+        ]
+      },
+      "I've found several relevant research results on information bottleneck theory, phase transitions, and deep learning generalization. Here's a summary of recent findings:\n\n## Recent Developments (2025-2026)\n\nA Generalized Information Bottleneck (GIB) framework has been proposed that reformulates the original IB principle through the lens of synergy, with evidence demonstrating that synergistic functions achieve superior generalization compared to their non-synergistic counterparts.\n\nResearch proposes that learning in deep neural networks proceeds in two phases: a rapid curve-fitting phase followed by a slower compression or coarse-graining phase, supported by the shared temporal structure of three phenomena – grokking, double descent, and the information bottleneck.\n\n## Ongoing Debate on Phase Transitions\n\nThere is significant scientific debate about the information bottleneck theory's core claims. The information bottleneck theory makes specific claims about two distinct phases (fitting and compression), that compression is causally related to generalization, and that compression arises from stochastic gradient descent, but none of these claims hold true in the general case.\n\nThere is no evident causal connection between compression and generalization: networks that do not compress are still capable of generalization, and vice versa.\n\n## Theoretical Progress\n\nResearch provides rigorous learning theory for justifying the benefit of information bottleneck in deep learning by mathematically relating information bottleneck to generalization errors and introduces new generalization bounds that scale with the degree of information bottlenecks."
+    ],
+    "durationSeconds": 6.382404747999994
+  },
+  "sourceToolAssistantUUID": "ac8d1d5f-af59-477e-8975-51287c6a92e4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 23_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "3e535fb9-814c-40ef-b876-85409b3f26bc",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 24_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify VLA visual compression phase transitions",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d"
+}
+```
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-13T06:36:18.336Z_
+
+<details><summary>↩ Tool result · `toolu_011ytbKQpaJCqGEqPCn2pqyy`</summary>
+
+```text
+Web search results for query: ""visual token compression" VLA "out-of-distribution" generalization 2025 2026"
+
+Links: [{"title":"GitHub - cokeshao/Awesome-Multimodal-Token-Compression: [TMLR 2026] Survey: https://arxiv.org/pdf/2507.20198 · GitHub","url":"https://github.com/cokeshao/Awesome-Multimodal-Token-Compression"},{"title":"Compressor-VLA: Instruction-Guided Visual Token Compression for Efficient Robotic Manipulation","url":"https://arxiv.org/html/2511.18950"},{"title":"Progressive Visual Token Compression for Unified Image and ...","url":"https://openaccess.thecvf.com/content/CVPR2025/papers/Yang_PVC_Progressive_Visual_Token_Compression_for_Unified_Image_and_Video_CVPR_2025_paper.pdf"},{"title":"GitHub - ZLKong/Awesome-Collection-Token-Reduction: A collection of token reduction (token pruning, merging, clustering, etc.) techniques for ML/AI · GitHub","url":"https://github.com/ZLKong/Awesome-Collection-Token-Reduction"},{"title":"GitHub - daixiangzi/Awesome-Token-Compress: A paper list of some recent works about Token Compress for Vit and VLM · GitHub","url":"https://github.com/daixiangzi/Awesome-Token-Compress"},{"title":"The Better You Learn, The Smarter You Prune: Towards Efficient Vision-language-action Models via Differentiable Token Pruning","url":"https://arxiv.org/html/2509.12594v1"},{"title":"Compressor-VLA: Instruction-Guided Visual Token Compression for Efficient Robotic Manipulation","url":"https://chatpaper.com/paper/212383"},{"title":"ℰ₀: Enhancing Generalization and Fine-Grained Control in VLA Models via Tweedie Discrete Diffusion","url":"https://arxiv.org/html/2511.21542"},{"title":"CoT-VLA: Visual Chain-of-Thought Reasoning for Vision-Language-Action Models","url":"https://openaccess.thecvf.com/content/CVPR2025/papers/Zhao_CoT-VLA_Visual_Chain-of-Thought_Reasoning_for_Vision-Language-Action_Models_CVPR_2025_paper.pdf"},{"title":"inference optimal vlms need fewer visual tokens and more ...","url":"https://arxiv.org/pdf/2411.03312"}]
+
+I've performed a web search for your query about visual token compression, VLAs (Vision-Language-Action models), and out-of-distribution generalization. Here are the key findings:
+
+## Recent Research on Visual Token Compression for VLAs
+
+Compressor-VLA achieves a good balance between efficiency and performance, reducing FLOPs by 59% and compressing the token sequence by over 3x while maintaining a competitive success rate. This framework is designed for efficient, task-oriented compression of visual information in VLA models, consisting of a Semantic Task Compressor (STC) that distills holistic, task-relevant context, and a Spatial Refinement Compressor (SRC) that preserves fine-grained spatial details.
+
+## Token Compression Beyond Efficiency
+
+Recent work emphasizes that token reduction goes beyond efficiency in generative models, with applications spanning vision, language, and multimodality, including updates to cover agentic systems and VLA models.
+
+## VLA-Specific Token Pruning Challenges
+
+While visual token pruning has been relatively widely studied in VLMs, recent studies show that these methods produce unsatisfactory performance when transferring to VLA models, as VLMs focus on global semantics while specialized robotic tasks depend more on local semantics.
+
+## Comprehensive Survey Resources
+
+A comprehensive v1 survey on multimodal token compression was published in 2025, and papers accepted by NeurIPS 2025 about MLLM token compression have been documented.
+
+The research landscape shows active development in this area with multiple recent papers addressing visual token compression specifically for VLA models, including focus on task-aware compression and generalization to diverse robotic tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bdf21cab-5f6b-46f3-99e2-d671f5bc3fc6",
+  "isSidechain": false,
+  "promptId": "d00fd39b-05e8-4d12-acea-1a8fbd608c3e",
+  "type": "user",
+  "uuid": "1634e414-68a8-4596-b567-c4f26cfc969f",
+  "toolUseResult": {
+    "query": "\"visual token compression\" VLA \"out-of-distribution\" generalization 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DyKKjuVKayKrLmHf8wwT6B",
+        "content": [
+          {
+            "title": "GitHub - cokeshao/Awesome-Multimodal-Token-Compression: [TMLR 2026] Survey: https://arxiv.org/pdf/2507.20198 · GitHub",
+            "url": "https://github.com/cokeshao/Awesome-Multimodal-Token-Compression"
+          },
+          {
+            "title": "Compressor-VLA: Instruction-Guided Visual Token Compression for Efficient Robotic Manipulation",
+            "url": "https://arxiv.org/html/2511.18950"
+          },
+          {
+            "title": "Progressive Visual Token Compression for Unified Image and ...",
+            "url": "https://openaccess.thecvf.com/content/CVPR2025/papers/Yang_PVC_Progressive_Visual_Token_Compression_for_Unified_Image_and_Video_CVPR_2025_paper.pdf"
+          },
+          {
+            "title": "GitHub - ZLKong/Awesome-Collection-Token-Reduction: A collection of token reduction (token pruning, merging, clustering, etc.) techniques for ML/AI · GitHub",
+            "url": "https://github.com/ZLKong/Awesome-Collection-Token-Reduction"
+          },
+          {
+            "title": "GitHub - daixiangzi/Awesome-Token-Compress: A paper list of some recent works about Token Compress for Vit and VLM · GitHub",
+            "url": "https://github.com/daixiangzi/Awesome-Token-Compress"
+          },
+          {
+            "title": "The Better You Learn, The Smarter You Prune: Towards Efficient Vision-language-action Models via Differentiable Token Pruning",
+            "url": "https://arxiv.org/html/2509.12594v1"
+          },
+          {
+            "title": "Compressor-VLA: Instruction-Guided Visual Token Compression for Efficient Robotic Manipulation",
+            "url": "https://chatpaper.com/paper/212383"
+          },
+          {
+            "title": "ℰ₀: Enhancing Generalization and Fine-Grained Control in VLA Models via Tweedie Discrete Diffusion",
+            "url": "https://arxiv.org/html/2511.21542"
+          },
+          {
+            "title": "CoT-VLA: Visual Chain-of-Thought Reasoning for Vision-Language-Action Models",
+            "url": "https://openaccess.thecvf.com/content/CVPR2025/papers/Zhao_CoT-VLA_Visual_Chain-of-Thought_Reasoning_for_Vision-Language-Action_Models_CVPR_2025_paper.pdf"
+          },
+          {
+            "title": "inference optimal vlms need fewer visual tokens and more ...",
+            "url": "https://arxiv.org/pdf/2411.03312"
+          }
+        ]
+      },
+      "I've performed a web search for your query about visual token compression, VLAs (Vision-Language-Action models), and out-of-distribution generalization. Here are the key findings:\n\n## Recent Research on Visual Token Compression for VLAs\n\nCompressor-VLA achieves a good balance between efficiency and performance, reducing FLOPs by 59% and compressing the token sequence by over 3x while maintaining a competitive success rate. This framework is designed for efficient, task-oriented compression of visual information in VLA models, consisting of a Semantic Task Compressor (STC) that distills holistic, task-relevant context, and a Spatial Refinement Compressor (SRC) that preserves fine-grained spatial details.\n\n## Token Compression Beyond Efficiency\n\nRecent work emphasizes that token reduction goes beyond efficiency in generative models, with applications spanning vision, language, and multimodality, including updates to cover agentic systems and VLA models.\n\n## VLA-Specific Token Pruning Challenges\n\nWhile visual token pruning has been relatively widely studied in VLMs, recent studies show that these methods produce unsatisfactory performance when transferring to VLA models, as VLMs focus on global semantics while specialized robotic tasks depend more on local semantics.\n\n## Comprehensive Survey Resources\n\nA comprehensive v1 survey on multimodal token compression was published in 2025, and papers accepted by NeurIPS 2025 about MLLM token compression have been documented.\n\nThe research landscape shows active development in this area with multiple recent papers addressing visual token compression specifically for VLA models, including focus on task-aware compression and generalization to diverse robotic tasks."
+    ],
+    "durationSeconds": 7.5034974199999995
+  },
+  "sourceToolAssistantUUID": "bdf21cab-5f6b-46f3-99e2-d671f5bc3fc6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-13T06:36:26.547Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DQ5XfSvkky2AUew6AYpsW5`</summary>
+
+```json
+{
+  "query": "variational information bottleneck pi0 openpi robot policy 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1634e414-68a8-4596-b567-c4f26cfc969f",
+  "isSidechain": false,
+  "requestId": "req_011Caz73qeT3JChWQVjwFp8V",
+  "type": "assistant",
+  "uuid": "b29d2783-1f63-4bfc-8d85-87e22c8d05e3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Guj6gXuP4qTUifCNrkMdNP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2102,
+      "cache_read_input_tokens": 29262,
+      "output_tokens": 134,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2102,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 134,
+          "cache_read_input_tokens": 29262,
+          "cache_creation_input_tokens": 2102,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2102
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-13T06:36:27.503Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01YXnWJiq58QB7L5LEXWWfwK`</summary>
+
+```json
+{
+  "query": "\"information bottleneck\" \"rate-distortion\" \"robustness\" \"out-of-distribution\" neural network compression 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b29d2783-1f63-4bfc-8d85-87e22c8d05e3",
+  "isSidechain": false,
+  "requestId": "req_011Caz73qeT3JChWQVjwFp8V",
+  "type": "assistant",
+  "uuid": "6323d5f9-c855-47ca-a36a-07aa3e777786",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Guj6gXuP4qTUifCNrkMdNP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2102,
+      "cache_read_input_tokens": 29262,
+      "output_tokens": 134,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2102,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 134,
+          "cache_read_input_tokens": 29262,
+          "cache_creation_input_tokens": 2102,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2102
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-13T06:36:33.691Z_
+
+<details><summary>↩ Tool result · `toolu_01DQ5XfSvkky2AUew6AYpsW5`</summary>
+
+```text
+Web search results for query: "variational information bottleneck pi0 openpi robot policy 2026"
+
+Links: [{"title":"𝜋₀: A Vision-Language-Action Flow Model for General Robot Control","url":"https://arxiv.org/html/2410.24164v1"},{"title":"Evaluating \\( \\pi_0 \\) in the Wild: Strengths, Problems, and the Future of Generalist Robot Policies","url":"https://penn-pal-lab.github.io/Pi0-Experiment-in-the-Wild/"},{"title":"GitHub - Physical-Intelligence/openpi · GitHub","url":"https://github.com/Physical-Intelligence/openpi"},{"title":"[2410.24164] $π_0$: A Vision-Language-Action Flow Model for General Robot Control","url":"https://arxiv.org/abs/2410.24164"},{"title":"π0 and π0-FAST: Vision-Language-Action Models for General Robot Control","url":"https://huggingface.co/blog/pi0"},{"title":"π 0 : Our First Generalist Policy","url":"https://www.pi.website/blog/pi0"},{"title":"A review of π0.5 — Scaling Open-World Generalization in Vision-Language-Action Models | by Isaac Edelman | Toward Humanoids | Mar, 2026 | Medium","url":"https://medium.com/correll-lab/a-review-of-%CF%800-5-scaling-open-world-generalization-in-vision-language-action-models-e4cb0d74264e"},{"title":"π0: A Vision-Language-Action Flow Model for General Robot Control","url":"https://www.pi.website/download/pi0.pdf"},{"title":"Variational Information Bottleneck Regularized Deep Reinforcement Learning for Efficient Robotic Skill Adaptation","url":"https://www.mdpi.com/1424-8220/23/2/762"},{"title":"Vision-Language-Action Models and the Search for a Generalist Robot Policy","url":"https://itcanthink.substack.com/p/vision-language-action-models-and"}]
+
+I found search results related to π0, OpenPI, and robot policies. Here's what the search revealed:
+
+## π0 and OpenPI Robot Policy
+
+π0 is Physical Intelligence's first generalist policy, a prototype model that combines large-scale multi-task and multi-robot data collection with a new network architecture to enable a capable and dexterous generalist robot policy.
+
+### Architecture and Key Features
+
+The model proposes a novel flow matching architecture built on top of a pre-trained vision-language model (VLM) to inherit Internet-scale semantic knowledge. Its key architectural innovation was a flow matching action head: rather than discretizing motor commands into tokens, π0 represents the action distribution as a continuous flow that can be sampled efficiently, which sidesteps a precision bottleneck in prior VLAs and enables the high-frequency, dexterous control needed for tasks like folding laundry.
+
+### OpenPI Implementation
+
+OpenPI is an approximate open-source implementation of the training pipeline used to train pi0-FAST-DROID. In September 2025, π0.5 was released, an upgraded version of π0 with better open-world generalization.
+
+### Variational Information Bottleneck Connection
+
+While the search results include academic work on variational information bottleneck applied to robotic reinforcement learning, the specific π0/OpenPI papers in these results do not appear to explicitly mention variational information bottleneck as a core component of their architecture. The flow matching approach appears to be the primary technical innovation for handling the action prediction bottleneck in π0.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b29d2783-1f63-4bfc-8d85-87e22c8d05e3",
+  "isSidechain": false,
+  "promptId": "d00fd39b-05e8-4d12-acea-1a8fbd608c3e",
+  "type": "user",
+  "uuid": "ff08ccb6-9a3a-4501-a761-8b63ba13e5d2",
+  "toolUseResult": {
+    "query": "variational information bottleneck pi0 openpi robot policy 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01UFFUaeNnSGbicrBFf4W6ys",
+        "content": [
+          {
+            "title": "𝜋₀: A Vision-Language-Action Flow Model for General Robot Control",
+            "url": "https://arxiv.org/html/2410.24164v1"
+          },
+          {
+            "title": "Evaluating \\( \\pi_0 \\) in the Wild: Strengths, Problems, and the Future of Generalist Robot Policies",
+            "url": "https://penn-pal-lab.github.io/Pi0-Experiment-in-the-Wild/"
+          },
+          {
+            "title": "GitHub - Physical-Intelligence/openpi · GitHub",
+            "url": "https://github.com/Physical-Intelligence/openpi"
+          },
+          {
+            "title": "[2410.24164] $π_0$: A Vision-Language-Action Flow Model for General Robot Control",
+            "url": "https://arxiv.org/abs/2410.24164"
+          },
+          {
+            "title": "π0 and π0-FAST: Vision-Language-Action Models for General Robot Control",
+            "url": "https://huggingface.co/blog/pi0"
+          },
+          {
+            "title": "π 0 : Our First Generalist Policy",
+            "url": "https://www.pi.website/blog/pi0"
+          },
+          {
+            "title": "A review of π0.5 — Scaling Open-World Generalization in Vision-Language-Action Models | by Isaac Edelman | Toward Humanoids | Mar, 2026 | Medium",
+            "url": "https://medium.com/correll-lab/a-review-of-%CF%800-5-scaling-open-world-generalization-in-vision-language-action-models-e4cb0d74264e"
+          },
+          {
+            "title": "π0: A Vision-Language-Action Flow Model for General Robot Control",
+            "url": "https://www.pi.website/download/pi0.pdf"
+          },
+          {
+            "title": "Variational Information Bottleneck Regularized Deep Reinforcement Learning for Efficient Robotic Skill Adaptation",
+            "url": "https://www.mdpi.com/1424-8220/23/2/762"
+          },
+          {
+            "title": "Vision-Language-Action Models and the Search for a Generalist Robot Policy",
+            "url": "https://itcanthink.substack.com/p/vision-language-action-models-and"
+          }
+        ]
+      },
+      "I found search results related to π0, OpenPI, and robot policies. Here's what the search revealed:\n\n## π0 and OpenPI Robot Policy\n\nπ0 is Physical Intelligence's first generalist policy, a prototype model that combines large-scale multi-task and multi-robot data collection with a new network architecture to enable a capable and dexterous generalist robot policy.\n\n### Architecture and Key Features\n\nThe model proposes a novel flow matching architecture built on top of a pre-trained vision-language model (VLM) to inherit Internet-scale semantic knowledge. Its key architectural innovation was a flow matching action head: rather than discretizing motor commands into tokens, π0 represents the action distribution as a continuous flow that can be sampled efficiently, which sidesteps a precision bottleneck in prior VLAs and enables the high-frequency, dexterous control needed for tasks like folding laundry.\n\n### OpenPI Implementation\n\nOpenPI is an approximate open-source implementation of the training pipeline used to train pi0-FAST-DROID. In September 2025, π0.5 was released, an upgraded version of π0 with better open-world generalization.\n\n### Variational Information Bottleneck Connection\n\nWhile the search results include academic work on variational information bottleneck applied to robotic reinforcement learning, the specific π0/OpenPI papers in these results do not appear to explicitly mention variational information bottleneck as a core component of their architecture. The flow matching approach appears to be the primary technical innovation for handling the action prediction bottleneck in π0."
+    ],
+    "durationSeconds": 7.140715874999994
+  },
+  "sourceToolAssistantUUID": "b29d2783-1f63-4bfc-8d85-87e22c8d05e3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-13T06:36:34.551Z_
+
+<details><summary>↩ Tool result · `toolu_01YXnWJiq58QB7L5LEXWWfwK`</summary>
+
+```text
+Web search results for query: ""information bottleneck" "rate-distortion" "robustness" "out-of-distribution" neural network compression 2025 2026"
+
+Links: [{"title":"Information bottleneck method - Wikipedia","url":"https://en.wikipedia.org/wiki/Information_bottleneck_method"},{"title":"The Supervised Information Bottleneck","url":"https://www.mdpi.com/1099-4300/27/5/452"},{"title":"Adversarial Robustness of Bottleneck Injected Deep Neural Networks for Task-Oriented Communication","url":"https://arxiv.org/html/2412.10265v1"},{"title":"A GENERALIZED INFORMATION BOTTLENECK THEORY OF DEEP LEARNING","url":"https://arxiv.org/pdf/2509.26327"},{"title":"[2509.26327] A Generalized Information Bottleneck Theory of Deep Learning","url":"https://arxiv.org/abs/2509.26327"},{"title":"On Neural Networks Fitting, Compression, and Generalization Behavior via Information-Bottleneck-like Approaches - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC10377965/"},{"title":"Decoding the Information Bottleneck: A Deep Dive into Neural Network Learning Dynamics | by Mehmet Emre Akbulut | Medium","url":"https://medium.com/@memreakbulut/decoding-the-information-bottleneck-a-deep-dive-into-neural-network-learning-dynamics-8cb02aff37e2"},{"title":"Compressing Neural Networks using the Variational Information Bottleneck","url":"http://proceedings.mlr.press/v80/dai18d/dai18d.pdf"},{"title":"Information Bottleneck Analysis of Deep Neural Networks via Lossy Compression | OpenReview","url":"https://openreview.net/forum?id=huGECz8dPp"},{"title":"Entropy | Special Issue : The Information Bottleneck Method: Theory and Applications","url":"https://www.mdpi.com/journal/entropy/special_issues/0RI6071773"}]
+
+Here are the search results for your query on information bottleneck, rate-distortion, robustness, out-of-distribution, and neural network compression in 2025-2026:
+
+## Key Recent Research
+
+**Supervised Information Bottleneck (2025)**
+
+Recent efforts have optimized supervised deep neural networks (DNNs) using a variational upper bound on the IB objective, leading to enhanced robustness to adversarial attacks. The Supervised IB (SIB) framework induces empirical gains in terms of classification accuracy and robustness to several adversarial attacks over high dimensional tasks of different modalities.
+
+**Generalized Information Bottleneck Theory (2025-2026)**
+
+A Generalized Information Bottleneck (GIB) framework reformulates the original IB principle through the lens of synergy, i.e., the information obtainable only through joint processing of features. GIB consistently exhibits compression phases across a wide range of architectures (including those with ReLU activations where the standard IB fails), while yielding interpretable dynamics in both CNNs and Transformers and aligning more closely with our understanding of adversarial robustness.
+
+**Bottleneck Injection and Adversarial Robustness (2024-2025)**
+
+Shallow Variational Bottleneck Injection (SVBI) provides less adversarial robustness compared to Deep Variational Information Bottleneck (DVIB) approaches, with the gap widening for more complex tasks.
+
+**Foundational Connections**
+
+The Information Bottleneck is a special case of rate distortion, and was initially designed to optimize compressed representations. The Information Bottleneck is studied in relation to generalization, optimization, and its connections to rate–distortion theory.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6323d5f9-c855-47ca-a36a-07aa3e777786",
+  "isSidechain": false,
+  "promptId": "d00fd39b-05e8-4d12-acea-1a8fbd608c3e",
+  "type": "user",
+  "uuid": "d4f76067-401a-46be-98ac-ee9487e60a23",
+  "toolUseResult": {
+    "query": "\"information bottleneck\" \"rate-distortion\" \"robustness\" \"out-of-distribution\" neural network compression 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NGuYu1qvdgiT6DSSCevBvs",
+        "content": [
+          {
+            "title": "Information bottleneck method - Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/Information_bottleneck_method"
+          },
+          {
+            "title": "The Supervised Information Bottleneck",
+            "url": "https://www.mdpi.com/1099-4300/27/5/452"
+          },
+          {
+            "title": "Adversarial Robustness of Bottleneck Injected Deep Neural Networks for Task-Oriented Communication",
+            "url": "https://arxiv.org/html/2412.10265v1"
+          },
+          {
+            "title": "A GENERALIZED INFORMATION BOTTLENECK THEORY OF DEEP LEARNING",
+            "url": "https://arxiv.org/pdf/2509.26327"
+          },
+          {
+            "title": "[2509.26327] A Generalized Information Bottleneck Theory of Deep Learning",
+            "url": "https://arxiv.org/abs/2509.26327"
+          },
+          {
+            "title": "On Neural Networks Fitting, Compression, and Generalization Behavior via Information-Bottleneck-like Approaches - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10377965/"
+          },
+          {
+            "title": "Decoding the Information Bottleneck: A Deep Dive into Neural Network Learning Dynamics | by Mehmet Emre Akbulut | Medium",
+            "url": "https://medium.com/@memreakbulut/decoding-the-information-bottleneck-a-deep-dive-into-neural-network-learning-dynamics-8cb02aff37e2"
+          },
+          {
+            "title": "Compressing Neural Networks using the Variational Information Bottleneck",
+            "url": "http://proceedings.mlr.press/v80/dai18d/dai18d.pdf"
+          },
+          {
+            "title": "Information Bottleneck Analysis of Deep Neural Networks via Lossy Compression | OpenReview",
+            "url": "https://openreview.net/forum?id=huGECz8dPp"
+          },
+          {
+            "title": "Entropy | Special Issue : The Information Bottleneck Method: Theory and Applications",
+            "url": "https://www.mdpi.com/journal/entropy/special_issues/0RI6071773"
+          }
+        ]
+      },
+      "Here are the search results for your query on information bottleneck, rate-distortion, robustness, out-of-distribution, and neural network compression in 2025-2026:\n\n## Key Recent Research\n\n**Supervised Information Bottleneck (2025)**\n\nRecent efforts have optimized supervised deep neural networks (DNNs) using a variational upper bound on the IB objective, leading to enhanced robustness to adversarial attacks. The Supervised IB (SIB) framework induces empirical gains in terms of classification accuracy and robustness to several adversarial attacks over high dimensional tasks of different modalities.\n\n**Generalized Information Bottleneck Theory (2025-2026)**\n\nA Generalized Information Bottleneck (GIB) framework reformulates the original IB principle through the lens of synergy, i.e., the information obtainable only through joint processing of features. GIB consistently exhibits compression phases across a wide range of architectures (including those with ReLU activations where the standard IB fails), while yielding interpretable dynamics in both CNNs and Transformers and aligning more closely with our understanding of adversarial robustness.\n\n**Bottleneck Injection and Adversarial Robustness (2024-2025)**\n\nShallow Variational Bottleneck Injection (SVBI) provides less adversarial robustness compared to Deep Variational Information Bottleneck (DVIB) approaches, with the gap widening for more complex tasks.\n\n**Foundational Connections**\n\nThe Information Bottleneck is a special case of rate distortion, and was initially designed to optimize compressed representations. The Information Bottleneck is studied in relation to generalization, optimization, and its connections to rate–distortion theory."
+    ],
+    "durationSeconds": 7.045864272000006
+  },
+  "sourceToolAssistantUUID": "6323d5f9-c855-47ca-a36a-07aa3e777786",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 30 · 2026-05-13T06:36:34.555Z_
+
+```json
+{
+  "parentUuid": "d4f76067-401a-46be-98ac-ee9487e60a23",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "17aab7ee-e0d4-49dc-9d4e-e24f419ee659",
+  "timestamp": "2026-05-13T06:36:34.555Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-13T06:36:37.950Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DG6BuUgLeNx3iXnPPmXixK`</summary>
+
+```json
+{
+  "query": "VIB flow matching training compatibility stochastic bottleneck diffusion denoising 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "17aab7ee-e0d4-49dc-9d4e-e24f419ee659",
+  "isSidechain": false,
+  "requestId": "req_011Caz752FCnV2hg9aM1UtCr",
+  "type": "assistant",
+  "uuid": "b7ce0947-2c25-42f4-81b9-28e5909392cd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RyaJAH8iBE1CnREcKS9ypg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2132,
+      "cache_read_input_tokens": 31364,
+      "output_tokens": 130,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2132,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 130,
+          "cache_read_input_tokens": 31364,
+          "cache_creation_input_tokens": 2132,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2132
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-13T06:36:38.380Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0129JdFr41xTUmfFcDAmRg5C`</summary>
+
+```json
+{
+  "query": "\"token reduction\" \"should go beyond efficiency\" Kong 2025 arXiv 2505.18227"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b7ce0947-2c25-42f4-81b9-28e5909392cd",
+  "isSidechain": false,
+  "requestId": "req_011Caz752FCnV2hg9aM1UtCr",
+  "type": "assistant",
+  "uuid": "77e88876-76e9-4587-850e-da958ca2378f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RyaJAH8iBE1CnREcKS9ypg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2132,
+      "cache_read_input_tokens": 31364,
+      "output_tokens": 130,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2132,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 130,
+          "cache_read_input_tokens": 31364,
+          "cache_creation_input_tokens": 2132,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2132
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-13T06:36:44.423Z_
+
+<details><summary>↩ Tool result · `toolu_0129JdFr41xTUmfFcDAmRg5C`</summary>
+
+```text
+Web search results for query: ""token reduction" "should go beyond efficiency" Kong 2025 arXiv 2505.18227"
+
+Links: [{"title":"[2505.18227] Token Reduction Should Go Beyond Efficiency in Generative Models -- From Vision, Language to Multimodality","url":"https://arxiv.org/abs/2505.18227"},{"title":"Token Reduction Should Go Beyond Efficiency in ...","url":"https://arxiv.org/pdf/2505.18227"},{"title":"Token Reduction Should Go Beyond Efficiency in Generative Models – From Vision, Language to Multimodality","url":"https://arxiv.org/html/2505.18227v1"},{"title":"[2505.18227v2] Token Reduction Should Go Beyond Efficiency in Generative Models -- From Vision, Language to Multimodality","url":"https://arxiv.org/abs/2505.18227v2"},{"title":"GitHub - ZLKong/Awesome-Collection-Token-Reduction: A collection of token reduction (token pruning, merging, clustering, etc.) techniques for ML/AI · GitHub","url":"https://github.com/ZLKong/Awesome-Collection-Token-Reduction"},{"title":"Token Reduction Should Go Beyond Efficiency in Generative Models -- From Vision, Language to Multimodality - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv250518227K/abstract"},{"title":"(PDF) Token Reduction Should Go Beyond Efficiency in Generative Models -- From Vision, Language to Multimodality","url":"https://www.researchgate.net/publication/392104162_Token_Reduction_Should_Go_Beyond_Efficiency_in_Generative_Models_--_From_Vision_Language_to_Multimodality"},{"title":"Token Reduction Should Go Beyond Efficiency in Generative Models -- From Vision, Language to Multimodality | alphaXiv","url":"https://www.alphaxiv.org/overview/2505.18227v2"},{"title":"Token Reduction","url":"https://www.aussieai.com/research/token-reduction"},{"title":"Machine Learning May 2025","url":"https://arxiv.org/list/cs.LG/2025-05?skip=1850&show=2000"}]
+
+I found the paper! Here's what the search retrieved:
+
+The paper "Token Reduction Should Go Beyond Efficiency in Generative Models -- From Vision, Language to Multimodality" (arXiv:2505.18227) was submitted on May 23, 2025, and authored by Zhenglun Kong and 9 other authors.
+
+In Transformer architectures, tokens are discrete units derived from raw data formed by segmenting inputs into fixed-length chunks, and each token is mapped to an embedding, enabling parallel attention computations while preserving the input's essential information. Due to the quadratic computational complexity of transformer self-attention mechanisms, token reduction has primarily been used as an efficiency strategy, especially in single vision and language domains, where it helps balance computational costs, memory usage, and inference latency.
+
+However, the paper argues that token reduction should transcend its traditional efficiency-oriented role in the era of large generative models. While effective in decreasing token-level computations and accelerating inference, this approach can discard subtle but important visual features, especially in dense prediction tasks such as segmentation and object detection, leading to significant performance degradation.
+
+The paper also has a GitHub repository with additional resources: https://github.com/ZLKong/Awesome-Collection-Token-Reduction
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "77e88876-76e9-4587-850e-da958ca2378f",
+  "isSidechain": false,
+  "promptId": "d00fd39b-05e8-4d12-acea-1a8fbd608c3e",
+  "type": "user",
+  "uuid": "3a8aa157-2014-4493-8a7c-47c96115c2af",
+  "toolUseResult": {
+    "query": "\"token reduction\" \"should go beyond efficiency\" Kong 2025 arXiv 2505.18227",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016gFzgf5DnSqiiEdsqWBKNa",
+        "content": [
+          {
+            "title": "[2505.18227] Token Reduction Should Go Beyond Efficiency in Generative Models -- From Vision, Language to Multimodality",
+            "url": "https://arxiv.org/abs/2505.18227"
+          },
+          {
+            "title": "Token Reduction Should Go Beyond Efficiency in ...",
+            "url": "https://arxiv.org/pdf/2505.18227"
+          },
+          {
+            "title": "Token Reduction Should Go Beyond Efficiency in Generative Models – From Vision, Language to Multimodality",
+            "url": "https://arxiv.org/html/2505.18227v1"
+          },
+          {
+            "title": "[2505.18227v2] Token Reduction Should Go Beyond Efficiency in Generative Models -- From Vision, Language to Multimodality",
+            "url": "https://arxiv.org/abs/2505.18227v2"
+          },
+          {
+            "title": "GitHub - ZLKong/Awesome-Collection-Token-Reduction: A collection of token reduction (token pruning, merging, clustering, etc.) techniques for ML/AI · GitHub",
+            "url": "https://github.com/ZLKong/Awesome-Collection-Token-Reduction"
+          },
+          {
+            "title": "Token Reduction Should Go Beyond Efficiency in Generative Models -- From Vision, Language to Multimodality - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2025arXiv250518227K/abstract"
+          },
+          {
+            "title": "(PDF) Token Reduction Should Go Beyond Efficiency in Generative Models -- From Vision, Language to Multimodality",
+            "url": "https://www.researchgate.net/publication/392104162_Token_Reduction_Should_Go_Beyond_Efficiency_in_Generative_Models_--_From_Vision_Language_to_Multimodality"
+          },
+          {
+            "title": "Token Reduction Should Go Beyond Efficiency in Generative Models -- From Vision, Language to Multimodality | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2505.18227v2"
+          },
+          {
+            "title": "Token Reduction",
+            "url": "https://www.aussieai.com/research/token-reduction"
+          },
+          {
+            "title": "Machine Learning May 2025",
+            "url": "https://arxiv.org/list/cs.LG/2025-05?skip=1850&show=2000"
+          }
+        ]
+      },
+      "I found the paper! Here's what the search retrieved:\n\nThe paper \"Token Reduction Should Go Beyond Efficiency in Generative Models -- From Vision, Language to Multimodality\" (arXiv:2505.18227) was submitted on May 23, 2025, and authored by Zhenglun Kong and 9 other authors.\n\nIn Transformer architectures, tokens are discrete units derived from raw data formed by segmenting inputs into fixed-length chunks, and each token is mapped to an embedding, enabling parallel attention computations while preserving the input's essential information. Due to the quadratic computational complexity of transformer self-attention mechanisms, token reduction has primarily been used as an efficiency strategy, especially in single vision and language domains, where it helps balance computational costs, memory usage, and inference latency.\n\nHowever, the paper argues that token reduction should transcend its traditional efficiency-oriented role in the era of large generative models. While effective in decreasing token-level computations and accelerating inference, this approach can discard subtle but important visual features, especially in dense prediction tasks such as segmentation and object detection, leading to significant performance degradation.\n\nThe paper also has a GitHub repository with additional resources: https://github.com/ZLKong/Awesome-Collection-Token-Reduction"
+    ],
+    "durationSeconds": 6.039218998999989
+  },
+  "sourceToolAssistantUUID": "77e88876-76e9-4587-850e-da958ca2378f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 34_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "3a8aa157-2014-4493-8a7c-47c96115c2af",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 35_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify VLA visual compression phase transitions",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d"
+}
+```
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-13T06:36:44.988Z_
+
+<details><summary>↩ Tool result · `toolu_01DG6BuUgLeNx3iXnPPmXixK`</summary>
+
+```text
+Web search results for query: "VIB flow matching training compatibility stochastic bottleneck diffusion denoising 2025"
+
+Links: [{"title":"[2506.02070] An Introduction to Flow Matching and Diffusion Models","url":"https://arxiv.org/abs/2506.02070"},{"title":"Flow Matching vs Diffusion. Briefly going into mathematical… | by Harsh Maheshwari | Medium","url":"https://harshm121.medium.com/flow-matching-vs-diffusion-79578a16c510"},{"title":"Diffusion Bridge or Flow Matching? A Unifying Framework and Comparative Analysis","url":"https://arxiv.org/html/2509.24531"},{"title":"Diffusion Meets Flow Matching","url":"https://diffusionflow.github.io/"},{"title":"1 INTRODUCTION","url":"https://arxiv.org/html/2506.02371"},{"title":"Boosting Latent Diffusion with Flow Matching","url":"https://arxiv.org/html/2312.07360v2"},{"title":"FMBoost: Boosting Latent Diffusion with Flow Matching | Springer Nature Link","url":"https://link.springer.com/chapter/10.1007/978-3-031-73030-6_19"},{"title":"Flow Matching for Efficient and Scalable Data AssimilationSubmitted to the editors September 27, 2025.","url":"https://arxiv.org/html/2508.13313v3"},{"title":"One-step Language Modeling via Continuous Denoising","url":"https://arxiv.org/html/2602.16813v1"},{"title":"purrception: variational flow matching","url":"https://arxiv.org/pdf/2510.01478"}]
+
+Based on the search results, I found relevant information about flow matching, diffusion models, and related concepts. Here's what the search revealed:
+
+## Flow Matching and Diffusion Models
+
+The mathematical foundations include ordinary and stochastic differential equations, with core algorithms for flow matching and denoising diffusion models. Diffusion models follow a fixed stochastic process and learn to reverse it, while flow matching directly learns a velocity field that can transform distributions along flexible paths.
+
+## Training Compatibility and Computational Improvements
+
+Flow Matching circumvents the computational bottleneck by first designing a probability path that interpolates between a prior and the data distribution, and then directly learning a time-dependent vector field whose integral trajectories realize this path. This addresses efficiency concerns in the training process.
+
+## Stochastic Processes and Denoising
+
+Diffusion models and flow matching are equivalent for the common special case that the source distribution used with flow matching corresponds to a Gaussian, and after training a flow matching model, you can use either a stochastic or deterministic sampling method.
+
+## Recent Developments
+
+Recent research has explored various extensions including continuous variants that remove the need for alternating steps and demonstrate connections to consistency constraint-based methods. Additionally, adaptations of variational flow matching to vector-quantized latents can use categorical posteriors while transporting probability in the continuous embedding space.
+
+The search results primarily show 2025-2026 research focusing on the theoretical foundations and practical implementations of these generative modeling approaches.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b7ce0947-2c25-42f4-81b9-28e5909392cd",
+  "isSidechain": false,
+  "promptId": "d00fd39b-05e8-4d12-acea-1a8fbd608c3e",
+  "type": "user",
+  "uuid": "a71d87d1-7149-4b42-a3cb-80552c7eecaf",
+  "toolUseResult": {
+    "query": "VIB flow matching training compatibility stochastic bottleneck diffusion denoising 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013n5PJBzhEQJTwbp6NZrbRv",
+        "content": [
+          {
+            "title": "[2506.02070] An Introduction to Flow Matching and Diffusion Models",
+            "url": "https://arxiv.org/abs/2506.02070"
+          },
+          {
+            "title": "Flow Matching vs Diffusion. Briefly going into mathematical… | by Harsh Maheshwari | Medium",
+            "url": "https://harshm121.medium.com/flow-matching-vs-diffusion-79578a16c510"
+          },
+          {
+            "title": "Diffusion Bridge or Flow Matching? A Unifying Framework and Comparative Analysis",
+            "url": "https://arxiv.org/html/2509.24531"
+          },
+          {
+            "title": "Diffusion Meets Flow Matching",
+            "url": "https://diffusionflow.github.io/"
+          },
+          {
+            "title": "1 INTRODUCTION",
+            "url": "https://arxiv.org/html/2506.02371"
+          },
+          {
+            "title": "Boosting Latent Diffusion with Flow Matching",
+            "url": "https://arxiv.org/html/2312.07360v2"
+          },
+          {
+            "title": "FMBoost: Boosting Latent Diffusion with Flow Matching | Springer Nature Link",
+            "url": "https://link.springer.com/chapter/10.1007/978-3-031-73030-6_19"
+          },
+          {
+            "title": "Flow Matching for Efficient and Scalable Data AssimilationSubmitted to the editors September 27, 2025.",
+            "url": "https://arxiv.org/html/2508.13313v3"
+          },
+          {
+            "title": "One-step Language Modeling via Continuous Denoising",
+            "url": "https://arxiv.org/html/2602.16813v1"
+          },
+          {
+            "title": "purrception: variational flow matching",
+            "url": "https://arxiv.org/pdf/2510.01478"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about flow matching, diffusion models, and related concepts. Here's what the search revealed:\n\n## Flow Matching and Diffusion Models\n\nThe mathematical foundations include ordinary and stochastic differential equations, with core algorithms for flow matching and denoising diffusion models. Diffusion models follow a fixed stochastic process and learn to reverse it, while flow matching directly learns a velocity field that can transform distributions along flexible paths.\n\n## Training Compatibility and Computational Improvements\n\nFlow Matching circumvents the computational bottleneck by first designing a probability path that interpolates between a prior and the data distribution, and then directly learning a time-dependent vector field whose integral trajectories realize this path. This addresses efficiency concerns in the training process.\n\n## Stochastic Processes and Denoising\n\nDiffusion models and flow matching are equivalent for the common special case that the source distribution used with flow matching corresponds to a Gaussian, and after training a flow matching model, you can use either a stochastic or deterministic sampling method.\n\n## Recent Developments\n\nRecent research has explored various extensions including continuous variants that remove the need for alternating steps and demonstrate connections to consistency constraint-based methods. Additionally, adaptations of variational flow matching to vector-quantized latents can use categorical posteriors while transporting probability in the continuous embedding space.\n\nThe search results primarily show 2025-2026 research focusing on the theoretical foundations and practical implementations of these generative modeling approaches."
+    ],
+    "durationSeconds": 7.033349772000001
+  },
+  "sourceToolAssistantUUID": "b7ce0947-2c25-42f4-81b9-28e5909392cd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37 · 2026-05-13T06:36:50.469Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, Kong et al. 2505.18227 is confirmed. Now let me check a critical technical concern: VIB insertion into flow matching architectures. π₀ uses flow matching for action generation. Inserting a stochastic VIB into a flow matching pipeline is non-trivial — two sources of stochasticity interacting could be problematic. Let me search for this more specifically.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a71d87d1-7149-4b42-a3cb-80552c7eecaf",
+  "isSidechain": false,
+  "requestId": "req_011Caz75nwY7k2ar3yL6fCgm",
+  "type": "assistant",
+  "uuid": "6ab9ee15-6d6e-4ae4-bf07-41d52798cb84",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WCnN45ESqCBwH4QnjyCvAv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 884,
+      "cache_creation_input_tokens": 934,
+      "cache_read_input_tokens": 33496,
+      "output_tokens": 264,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 934,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 884,
+          "output_tokens": 264,
+          "cache_read_input_tokens": 33496,
+          "cache_creation_input_tokens": 934,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 934
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38 · 2026-05-13T06:36:50.976Z_
+
+Now let me search for a critical technical concern — the compatibility of VIB with flow matching architectures.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6ab9ee15-6d6e-4ae4-bf07-41d52798cb84",
+  "isSidechain": false,
+  "requestId": "req_011Caz75nwY7k2ar3yL6fCgm",
+  "type": "assistant",
+  "uuid": "a6d167eb-7c99-4b96-8521-13cabf300516",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WCnN45ESqCBwH4QnjyCvAv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 884,
+      "cache_creation_input_tokens": 934,
+      "cache_read_input_tokens": 33496,
+      "output_tokens": 264,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 934,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 884,
+          "output_tokens": 264,
+          "cache_read_input_tokens": 33496,
+          "cache_creation_input_tokens": 934,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 934
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-13T06:36:51.467Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011UDs4Squo4QCYaGFc8BzTv`</summary>
+
+```json
+{
+  "query": "variational information bottleneck flow matching action generation robot compatibility challenge"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a6d167eb-7c99-4b96-8521-13cabf300516",
+  "isSidechain": false,
+  "requestId": "req_011Caz75nwY7k2ar3yL6fCgm",
+  "type": "assistant",
+  "uuid": "c3f78aa0-e919-416f-895c-284cba5377fc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WCnN45ESqCBwH4QnjyCvAv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 884,
+      "cache_creation_input_tokens": 934,
+      "cache_read_input_tokens": 33496,
+      "output_tokens": 264,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 934,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 884,
+          "output_tokens": 264,
+          "cache_read_input_tokens": 33496,
+          "cache_creation_input_tokens": 934,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 934
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-13T06:36:52.833Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Jy65FrCkLttqVYEUmtMdCj`</summary>
+
+```json
+{
+  "query": "BC-IB \"rethinking latent redundancy\" behavior cloning ICML 2025 arXiv 2502.02853 OOD robustness"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c3f78aa0-e919-416f-895c-284cba5377fc",
+  "isSidechain": false,
+  "requestId": "req_011Caz75nwY7k2ar3yL6fCgm",
+  "type": "assistant",
+  "uuid": "a23ecbc1-c3d9-4637-9095-ef73a062664d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WCnN45ESqCBwH4QnjyCvAv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 884,
+      "cache_creation_input_tokens": 934,
+      "cache_read_input_tokens": 33496,
+      "output_tokens": 264,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 934,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 884,
+          "output_tokens": 264,
+          "cache_read_input_tokens": 33496,
+          "cache_creation_input_tokens": 934,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 934
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-13T06:36:59.345Z_
+
+<details><summary>↩ Tool result · `toolu_011UDs4Squo4QCYaGFc8BzTv`</summary>
+
+```text
+Web search results for query: "variational information bottleneck flow matching action generation robot compatibility challenge"
+
+Links: [{"title":"Boosting Action-Information via a Variational Bottleneck on Unlabelled Robot Videos","url":"https://arxiv.org/html/2508.08743v1"},{"title":"[1810.00821] Variational Discriminator Bottleneck: Improving Imitation Learning, Inverse RL, and GANs by Constraining Information Flow","url":"https://arxiv.org/abs/1810.00821"},{"title":"Variational Discriminator Bottleneck: Improving Imitation Learning, Inverse RL, and GANs by Constraining Information Flow","url":"https://xbpeng.github.io/projects/VDB/index.html"},{"title":"A2A: Action-to-Action Flow Matching","url":"https://lorenzo-0-0.github.io/A2A_Flow_Matching/"},{"title":"VFP: Variational Flow-Matching Policy for Multi-Modal Robot Manipulation","url":"https://arxiv.org/html/2508.01622"},{"title":"ActionSink: Toward Precise Robot Manipulation with Dynamic Integration of Action Flow","url":"https://arxiv.org/html/2508.03218"},{"title":"Variational Discriminator Bottleneck: Improving Imitation Learning, Inverse RL, and GANs by Constraining Information Flow | OpenReview","url":"https://openreview.net/forum?id=HyxPx3R9tm"},{"title":"[2602.07322] Action-to-Action Flow Matching","url":"https://arxiv.org/abs/2602.07322"},{"title":"Generative Artificial Intelligence in Robotic Manipulation: A Survey","url":"https://arxiv.org/html/2503.03464v1"},{"title":"Pure Vision Language Action (VLA) Models: A Comprehensive Survey","url":"https://arxiv.org/html/2509.19012v1"}]
+
+Based on the search results, I found several relevant papers and resources related to your query about variational information bottleneck, flow matching, and action generation in robotics:
+
+## Key Papers and Findings
+
+**Variational Information Bottleneck for Robot Action Learning:**
+
+A recent approach uses a Variational Information Bottleneck (VIB) formulation tailored to latent-action extraction, explicitly maximizing the mutual information between latent actions and true actions by leveraging the variational information-bottleneck to extract action-relevant representations while discarding task-irrelevant information. This VIB framework yields higher mutual information and achieves superior performance across a range of robotic tasks.
+
+**Flow Matching for Action Generation:**
+
+Flow-matching-based policies have recently emerged as a promising approach for learning-based robot manipulation, offering significant acceleration in action sampling compared to diffusion-based policies, though conventional flow-matching methods struggle with multi-modality and often collapse to averaged or ambiguous behaviors in complex manipulation tasks, which the Variational Flow-Matching Policy (VFP) addresses by introducing a variational latent prior for mode-aware action generation.
+
+A major bottleneck for real-time robot control is that the standard practice of sampling from random Gaussian noise requires multiple iterative steps to produce clean actions, leading to high inference latency, which Action-to-Action flow matching (A2A) addresses by shifting from random sampling to initialization informed by the previous proprioceptive action.
+
+**Broader Challenges:**
+
+Robotic manipulation faces critical bottlenecks, including significant challenges in insufficient data and inefficient data acquisition, long-horizon and complex task planning, and the multi-modality reasoning ability for robust policy learning performance across diverse environments.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c3f78aa0-e919-416f-895c-284cba5377fc",
+  "isSidechain": false,
+  "promptId": "d00fd39b-05e8-4d12-acea-1a8fbd608c3e",
+  "type": "user",
+  "uuid": "0bf84ba2-2bcf-406b-b373-4c1103264cfa",
+  "toolUseResult": {
+    "query": "variational information bottleneck flow matching action generation robot compatibility challenge",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0169igFRSQFUuUhE2NwGBEvu",
+        "content": [
+          {
+            "title": "Boosting Action-Information via a Variational Bottleneck on Unlabelled Robot Videos",
+            "url": "https://arxiv.org/html/2508.08743v1"
+          },
+          {
+            "title": "[1810.00821] Variational Discriminator Bottleneck: Improving Imitation Learning, Inverse RL, and GANs by Constraining Information Flow",
+            "url": "https://arxiv.org/abs/1810.00821"
+          },
+          {
+            "title": "Variational Discriminator Bottleneck: Improving Imitation Learning, Inverse RL, and GANs by Constraining Information Flow",
+            "url": "https://xbpeng.github.io/projects/VDB/index.html"
+          },
+          {
+            "title": "A2A: Action-to-Action Flow Matching",
+            "url": "https://lorenzo-0-0.github.io/A2A_Flow_Matching/"
+          },
+          {
+            "title": "VFP: Variational Flow-Matching Policy for Multi-Modal Robot Manipulation",
+            "url": "https://arxiv.org/html/2508.01622"
+          },
+          {
+            "title": "ActionSink: Toward Precise Robot Manipulation with Dynamic Integration of Action Flow",
+            "url": "https://arxiv.org/html/2508.03218"
+          },
+          {
+            "title": "Variational Discriminator Bottleneck: Improving Imitation Learning, Inverse RL, and GANs by Constraining Information Flow | OpenReview",
+            "url": "https://openreview.net/forum?id=HyxPx3R9tm"
+          },
+          {
+            "title": "[2602.07322] Action-to-Action Flow Matching",
+            "url": "https://arxiv.org/abs/2602.07322"
+          },
+          {
+            "title": "Generative Artificial Intelligence in Robotic Manipulation: A Survey",
+            "url": "https://arxiv.org/html/2503.03464v1"
+          },
+          {
+            "title": "Pure Vision Language Action (VLA) Models: A Comprehensive Survey",
+            "url": "https://arxiv.org/html/2509.19012v1"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant papers and resources related to your query about variational information bottleneck, flow matching, and action generation in robotics:\n\n## Key Papers and Findings\n\n**Variational Information Bottleneck for Robot Action Learning:**\n\nA recent approach uses a Variational Information Bottleneck (VIB) formulation tailored to latent-action extraction, explicitly maximizing the mutual information between latent actions and true actions by leveraging the variational information-bottleneck to extract action-relevant representations while discarding task-irrelevant information. This VIB framework yields higher mutual information and achieves superior performance across a range of robotic tasks.\n\n**Flow Matching for Action Generation:**\n\nFlow-matching-based policies have recently emerged as a promising approach for learning-based robot manipulation, offering significant acceleration in action sampling compared to diffusion-based policies, though conventional flow-matching methods struggle with multi-modality and often collapse to averaged or ambiguous behaviors in complex manipulation tasks, which the Variational Flow-Matching Policy (VFP) addresses by introducing a variational latent prior for mode-aware action generation.\n\nA major bottleneck for real-time robot control is that the standard practice of sampling from random Gaussian noise requires multiple iterative steps to produce clean actions, leading to high inference latency, which Action-to-Action flow matching (A2A) addresses by shifting from random sampling to initialization informed by the previous proprioceptive action.\n\n**Broader Challenges:**\n\nRobotic manipulation faces critical bottlenecks, including significant challenges in insufficient data and inefficient data acquisition, long-horizon and complex task planning, and the multi-modality reasoning ability for robust policy learning performance across diverse environments."
+    ],
+    "durationSeconds": 7.875877365000007
+  },
+  "sourceToolAssistantUUID": "c3f78aa0-e919-416f-895c-284cba5377fc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-13T06:36:59.626Z_
+
+<details><summary>↩ Tool result · `toolu_01Jy65FrCkLttqVYEUmtMdCj`</summary>
+
+```text
+Web search results for query: "BC-IB "rethinking latent redundancy" behavior cloning ICML 2025 arXiv 2502.02853 OOD robustness"
+
+Links: [{"title":"[2502.02853] Rethinking Latent Redundancy in Behavior Cloning: An Information Bottleneck Approach for Robot Manipulation","url":"https://arxiv.org/abs/2502.02853"},{"title":"GitHub - BaiShuanghao/BC-IB: [ICML 2025] Rethinking Latent Redundancy in Behavior Cloning: An Information Bottleneck Approach for Robot Manipulation","url":"https://github.com/BaiShuanghao/BC-IB"},{"title":"Rethinking Latent Redundancy in Behavior Cloning: An Information Bottleneck Approach for Robot Manipulation","url":"https://arxiv.org/html/2502.02853v5"},{"title":"BC-IB for Robot Manipulation - GitHub Pages","url":"https://baishuanghao.github.io/BC-IB.github.io/"},{"title":"Rethinking Latent Representations in Behavior Cloning: An Information Bottleneck Approach for Robot Manipulation","url":"https://arxiv.org/html/2502.02853v1"},{"title":"Rethinking Latent Redundancy in Behavior Cloning: An Information Bottleneck Approach for Robot Manipulation | OpenReview","url":"https://openreview.net/forum?id=N2Dey442PJ"},{"title":"[Literature Review] Rethinking Latent Representations in Behavior Cloning: An Information Bottleneck Approach for Robot Manipulation","url":"https://www.themoonlight.io/en/review/rethinking-latent-representations-in-behavior-cloning-an-information-bottleneck-approach-for-robot-manipulation"},{"title":"ICML Poster Rethinking Latent Redundancy in Behavior Cloning: An Information Bottleneck Approach for Robot Manipulation","url":"https://icml.cc/virtual/2025/poster/45521"},{"title":"Rethinking Latent Redundancy in Behavior Cloning: An Information Bottleneck Approach for Robot Manipulation","url":"https://proceedings.mlr.press/v267/bai25e.html"},{"title":"Computer Science Feb 2025","url":"https://arxiv.org/list/cs/2025-02?skip=1225&show=2000"}]
+
+Based on the search results, I found the paper you're looking for:
+
+## BC-IB: Rethinking Latent Redundancy in Behavior Cloning
+
+The paper "Rethinking Latent Redundancy in Behavior Cloning: An Information Bottleneck Approach for Robot Manipulation" by Bai, Shuanghao and colleagues was published on arXiv as preprint 2502.02853 in 2025, and it was accepted to ICML 2025.
+
+**Key Concepts:**
+
+Behavior Cloning (BC) is a widely adopted visual imitation learning method in robot manipulation, and current BC approaches enhance generalization by leveraging large datasets and incorporating additional visual and textual modalities. However, these methods overlook whether the learned representations contain redundant information and lack a solid theoretical foundation to guide the learning process.
+
+**The Approach:**
+
+The authors adopt an information-theoretic perspective and introduce mutual information to quantify and mitigate redundancy in latent representations, incorporating the Information Bottleneck (IB) principle into BC to provide a structured framework for compressing irrelevant information while preserving task-relevant features.
+
+**Validation:**
+
+This work presents the first comprehensive study on redundancy in latent representations across various methods, backbones, and experimental settings, with extensive experiments and analyses on the CortexBench and LIBERO benchmarks demonstrating significant performance improvements with IB.
+
+The code and resources are available on GitHub under the repository authored by Bai, Shuanghao and colleagues.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a23ecbc1-c3d9-4637-9095-ef73a062664d",
+  "isSidechain": false,
+  "promptId": "d00fd39b-05e8-4d12-acea-1a8fbd608c3e",
+  "type": "user",
+  "uuid": "8c23b397-67e0-4bc0-9a2d-6937574e05ab",
+  "toolUseResult": {
+    "query": "BC-IB \"rethinking latent redundancy\" behavior cloning ICML 2025 arXiv 2502.02853 OOD robustness",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01MkEhYoX1f4tK8jq5qQBUEa",
+        "content": [
+          {
+            "title": "[2502.02853] Rethinking Latent Redundancy in Behavior Cloning: An Information Bottleneck Approach for Robot Manipulation",
+            "url": "https://arxiv.org/abs/2502.02853"
+          },
+          {
+            "title": "GitHub - BaiShuanghao/BC-IB: [ICML 2025] Rethinking Latent Redundancy in Behavior Cloning: An Information Bottleneck Approach for Robot Manipulation",
+            "url": "https://github.com/BaiShuanghao/BC-IB"
+          },
+          {
+            "title": "Rethinking Latent Redundancy in Behavior Cloning: An Information Bottleneck Approach for Robot Manipulation",
+            "url": "https://arxiv.org/html/2502.02853v5"
+          },
+          {
+            "title": "BC-IB for Robot Manipulation - GitHub Pages",
+            "url": "https://baishuanghao.github.io/BC-IB.github.io/"
+          },
+          {
+            "title": "Rethinking Latent Representations in Behavior Cloning: An Information Bottleneck Approach for Robot Manipulation",
+            "url": "https://arxiv.org/html/2502.02853v1"
+          },
+          {
+            "title": "Rethinking Latent Redundancy in Behavior Cloning: An Information Bottleneck Approach for Robot Manipulation | OpenReview",
+            "url": "https://openreview.net/forum?id=N2Dey442PJ"
+          },
+          {
+            "title": "[Literature Review] Rethinking Latent Representations in Behavior Cloning: An Information Bottleneck Approach for Robot Manipulation",
+            "url": "https://www.themoonlight.io/en/review/rethinking-latent-representations-in-behavior-cloning-an-information-bottleneck-approach-for-robot-manipulation"
+          },
+          {
+            "title": "ICML Poster Rethinking Latent Redundancy in Behavior Cloning: An Information Bottleneck Approach for Robot Manipulation",
+            "url": "https://icml.cc/virtual/2025/poster/45521"
+          },
+          {
+            "title": "Rethinking Latent Redundancy in Behavior Cloning: An Information Bottleneck Approach for Robot Manipulation",
+            "url": "https://proceedings.mlr.press/v267/bai25e.html"
+          },
+          {
+            "title": "Computer Science Feb 2025",
+            "url": "https://arxiv.org/list/cs/2025-02?skip=1225&show=2000"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for:\n\n## BC-IB: Rethinking Latent Redundancy in Behavior Cloning\n\nThe paper \"Rethinking Latent Redundancy in Behavior Cloning: An Information Bottleneck Approach for Robot Manipulation\" by Bai, Shuanghao and colleagues was published on arXiv as preprint 2502.02853 in 2025, and it was accepted to ICML 2025.\n\n**Key Concepts:**\n\nBehavior Cloning (BC) is a widely adopted visual imitation learning method in robot manipulation, and current BC approaches enhance generalization by leveraging large datasets and incorporating additional visual and textual modalities. However, these methods overlook whether the learned representations contain redundant information and lack a solid theoretical foundation to guide the learning process.\n\n**The Approach:**\n\nThe authors adopt an information-theoretic perspective and introduce mutual information to quantify and mitigate redundancy in latent representations, incorporating the Information Bottleneck (IB) principle into BC to provide a structured framework for compressing irrelevant information while preserving task-relevant features.\n\n**Validation:**\n\nThis work presents the first comprehensive study on redundancy in latent representations across various methods, backbones, and experimental settings, with extensive experiments and analyses on the CortexBench and LIBERO benchmarks demonstrating significant performance improvements with IB.\n\nThe code and resources are available on GitHub under the repository authored by Bai, Shuanghao and colleagues."
+    ],
+    "durationSeconds": 6.791379667999994
+  },
+  "sourceToolAssistantUUID": "a23ecbc1-c3d9-4637-9095-ef73a062664d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-13T06:37:05.746Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01L1QzFZaeymQkWrABysWQsL`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2502.02853",
+  "prompt": "Read the abstract and introduction carefully. I need to know: 1) Does BC-IB evaluate out-of-distribution robustness at all? 2) What β values do they sweep? 3) Do they trace rate-distortion frontiers? 4) What model sizes do they use? 5) Do they explicitly mention that OOD robustness is 'insufficiently studied' or future work? 6) Do they apply IB at the visual token level or at the latent fusion level? Report exact quotes if possible."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8c23b397-67e0-4bc0-9a2d-6937574e05ab",
+  "isSidechain": false,
+  "requestId": "req_011Caz76sTBHkhjpWA4jBMrL",
+  "type": "assistant",
+  "uuid": "7c73b60c-41ea-4295-8120-b606a60d7234",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JvgZ4iSe8NL41YRjTfowZP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3085,
+      "cache_read_input_tokens": 34430,
+      "output_tokens": 261,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3085,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 261,
+          "cache_read_input_tokens": 34430,
+          "cache_creation_input_tokens": 3085,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3085
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-13T06:37:06.630Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016Dm1RrMpCyrWCeTvaWxcjS`</summary>
+
+```json
+{
+  "query": "\"compression\" \"adversarial amplifier\" \"decision space reduction\" arXiv 2604.06954 Evans 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7c73b60c-41ea-4295-8120-b606a60d7234",
+  "isSidechain": false,
+  "requestId": "req_011Caz76sTBHkhjpWA4jBMrL",
+  "type": "assistant",
+  "uuid": "523fd7cc-0069-4f88-b59a-6e1572fc170e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JvgZ4iSe8NL41YRjTfowZP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3085,
+      "cache_read_input_tokens": 34430,
+      "output_tokens": 261,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3085,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 261,
+          "cache_read_input_tokens": 34430,
+          "cache_creation_input_tokens": 3085,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3085
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-13T06:37:08.863Z_
+
+<details><summary>↩ Tool result · `toolu_01L1QzFZaeymQkWrABysWQsL`</summary>
+
+```text
+Based on the web page content provided, I can only access the abstract and metadata of the paper. The abstract does not contain sufficient detail to answer most of your specific questions:
+
+1) **OOD robustness evaluation**: Not mentioned in the abstract.
+
+2) **β values swept**: Not specified in the abstract.
+
+3) **Rate-distortion frontiers**: Not discussed in the abstract.
+
+4) **Model sizes**: Not provided in the abstract.
+
+5) **OOD robustness as future work**: The abstract states the work "overlook whether the learned representations contain redundant information" but does not explicitly address OOD robustness as insufficiently studied or future work.
+
+6) **IB application level**: Not detailed in the abstract. The abstract only mentions applying "the Information Bottleneck (IB) principle into BC" generally.
+
+To answer your questions accurately, I would need access to the full paper PDF or HTML version. The web page provides links to these ([View PDF](/pdf/2502.02853) and [HTML (experimental)](https://arxiv.org/html/2502.02853v5)), but the actual content is not included in what you've provided.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7c73b60c-41ea-4295-8120-b606a60d7234",
+  "isSidechain": false,
+  "promptId": "d00fd39b-05e8-4d12-acea-1a8fbd608c3e",
+  "type": "user",
+  "uuid": "323ef8f7-706d-460c-92f1-1e417bab8f94",
+  "toolUseResult": {
+    "bytes": 47870,
+    "code": 200,
+    "codeText": "OK",
+    "result": "Based on the web page content provided, I can only access the abstract and metadata of the paper. The abstract does not contain sufficient detail to answer most of your specific questions:\n\n1) **OOD robustness evaluation**: Not mentioned in the abstract.\n\n2) **β values swept**: Not specified in the abstract.\n\n3) **Rate-distortion frontiers**: Not discussed in the abstract.\n\n4) **Model sizes**: Not provided in the abstract.\n\n5) **OOD robustness as future work**: The abstract states the work \"overlook whether the learned representations contain redundant information\" but does not explicitly address OOD robustness as insufficiently studied or future work.\n\n6) **IB application level**: Not detailed in the abstract. The abstract only mentions applying \"the Information Bottleneck (IB) principle into BC\" generally.\n\nTo answer your questions accurately, I would need access to the full paper PDF or HTML version. The web page provides links to these ([View PDF](/pdf/2502.02853) and [HTML (experimental)](https://arxiv.org/html/2502.02853v5)), but the actual content is not included in what you've provided.",
+    "durationMs": 3112,
+    "url": "https://arxiv.org/abs/2502.02853"
+  },
+  "sourceToolAssistantUUID": "7c73b60c-41ea-4295-8120-b606a60d7234",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 46_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "323ef8f7-706d-460c-92f1-1e417bab8f94",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 47_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify VLA visual compression phase transitions",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 48 · 2026-05-13T06:37:11.445Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-13T06:37:11.445Z",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "content": "&lt;task-notification>\n&lt;task-id>a88d788590e01909c&lt;/task-id>\n&lt;tool-use-id>toolu_01XYsjKR1asLNX3V6TUFhMqA&lt;/tool-use-id>\n&lt;output-file>/tmp/claude-1000/-/45183731-1e2f-4b44-81c9-d3cd33b5498d/tasks/a88d788590e01909c.output&lt;/output-file>\n&lt;status>completed&lt;/status>\n&lt;summary>Agent \"Verify venue deadlines and costs\" completed&lt;/summary>\n&lt;result>Here are my detailed findings for each item:\n\n---\n\n## 1. Venue Deadlines\n\n**AAAI 2027:** The conference will be held February 16-23, 2027, in Montreal, Quebec, Canada. The exact submission deadline has not been officially announced yet, but based on historical patterns, it is expected around **July-August 2026**. Since today is May 13, 2026, the AAAI 2027 deadline is almost certainly after today. **Verdict: Safe -- deadline is in the future.**\n\n**ICLR 2027:** No official dates have been announced for ICLR 2027. The most recent data is for ICLR 2026, which had a paper submission deadline of September 24, 2025. If the pattern holds, ICLR 2027's deadline would fall around **September-October 2026**, well after today. **Verdict: Very likely safe, but unconfirmed since ICLR 2027 hasn't been announced yet.**\n\n**CoRL 2027:** No official dates for CoRL 2027. CoRL 2026 will be held November 9-12, 2026 in Austin, Texas, with submission deadlines of May 25 (abstract) and May 28 (full paper) 2026. If CoRL 2027 follows the same annual pattern, its submission deadline would be around **May 2027**. **Verdict: Very likely safe, but unconfirmed. Note that CoRL 2026's deadline is imminent (May 25/28, 2026) -- if the plan was to submit to CoRL 2026, that is only ~2 weeks away.**\n\n---\n\n## 2. GPU Cost Verification: A100 80GB at ~$1.50/hr\n\nThe claim of ~$1.50/hr for A100 80GB spot pricing is **realistic and well within the observed range**. Current 2026 data shows:\n\n- Spot pricing on Vast.ai: **$1.00-$1.80/hr** for A100 80GB\n- On-demand prices range from $1.07/hr (Spheron) to $3.43/hr depending on provider\n- SynpixCloud offers A100 80GB at $1.39/hr on-demand\n- Some providers offer as low as $0.13/hr for heavily discounted spot instances\n\n**Verdict: $1.50/hr is a reasonable and realistic estimate for A100 80GB spot pricing.**\n\n---\n\n## 3. OpenPI Codebase\n\n**Confirmed publicly available.** The repository is at [github.com/Physical-Intelligence/openpi](https://github.com/Physical-Intelligence/openpi). Key details:\n\n- Published by Physical Intelligence\n- Contains three model types: pi0 (flow-based VLA), pi0-FAST (autoregressive VLA), and pi0.5 (upgraded version)\n- Provides base model checkpoints pre-trained on 10k+ hours of robot data\n- Includes code for fine-tuning on custom tasks and platforms\n- The training configuration is accessible at `src/openpi/training/config.py`\n\n**Regarding ease of inserting a VIB layer:** The codebase is structured with a clear training pipeline and modular configuration system. The training config and model architecture are exposed in Python source files, which would make it feasible to insert a Variational Information Bottleneck (VIB) layer into the network architecture. However, difficulty would depend on exactly where in the architecture the VIB layer is inserted (e.g., between the vision encoder and the action decoder).\n\n**Verdict: Confirmed public and modifiable. Inserting a VIB layer is architecturally feasible.**\n\n---\n\n## 4. LIBERO-90 Benchmark\n\n**Confirmed to exist and is accessible.** Key details:\n\n- LIBERO is a benchmark suite published at NeurIPS 2023 for lifelong robot learning\n- LIBERO-90 consists of 90 short-horizon manipulation tasks (a subset of LIBERO-100)\n- Built on the robosuite/MuJoCo framework\n- The full benchmark contains 130 language-annotated manipulation tasks organized into 5 evaluation suites\n- LIBERO-90 is used for pretraining; LIBERO-10 is used for downstream lifelong learning evaluation\n- Code is available at [github.com/Lifelong-Robot-Learning/LIBERO](https://github.com/Lifelong-Robot-Learning/LIBERO)\n- Also integrated into HuggingFace LeRobot\n\n**Verdict: Confirmed -- well-established, publicly accessible benchmark.**\n\n---\n\n## 5. MetaWorld ML-45\n\n**Confirmed to exist.** Key details:\n\n- MetaWorld is an open-source simulated benchmark for meta-RL and multi-task learning with 50 distinct robotic manipulation tasks\n- ML-45 is the most difficult meta-learning setting: 45 meta-training tasks + 5 held-out test tasks\n- Tests few-shot adaptation to new tasks without task ID as input\n- Maintained by the Farama Foundation at [github.com/Farama-Foundation/Metaworld](https://github.com/Farama-Foundation/Metaworld)\n- Originally published by Tianhe Yu et al.\n\n**Verdict: Confirmed -- well-established, publicly accessible benchmark.**\n\n---\n\n## 6. arXiv 2509.26327 -- \"A Generalized Information Bottleneck Theory of Deep Learning\"\n\n**Confirmed to exist.** Key details:\n\n- **Title:** \"A Generalized Information Bottleneck Theory of Deep Learning\"\n- **Authors:** Charles Westphal, Stephen Hailes, and Mirco Musolesi\n- **Submitted:** September 30, 2025; last revised January 30, 2026\n- **Status:** Was under review as a conference paper at ICLR 2026\n- Introduces a Generalized Information Bottleneck (GIB) framework using synergy (average interaction information) to reformulate the IB principle\n- Addresses limitations of the original IB theory including infinite compression terms and feature-wise decomposition\n\n**Verdict: Confirmed -- the paper exists and the arXiv ID is correct.**\n\n---\n\n## 7. arXiv 2603.01568 -- \"Rate-Distortion Signatures\" by Caglar (2026)\n\n**Confirmed to exist.** Key details:\n\n- **Title:** \"Rate-Distortion Signatures of Generalization and Information Trade-offs\"\n- **Authors:** Leyla Roksan Caglar, Pedro A.M. Mediano, and Baihan Lin\n- **Submitted:** March 2, 2026\n- Introduces a rate-distortion-theoretic framework treating stimulus-response behavior as an effective communication channel\n- Derives RD frontiers from confusion matrices with two geometric signatures (slope beta and curvature kappa)\n- Applied to human psychophysics and 18 deep vision models\n\n**Verdict: Confirmed -- the paper exists, the arXiv ID is correct, the author \"Caglar\" matches (Leyla Roksan Caglar), and it is indeed from 2026.**\n\n---\n\n## Summary\n\n| Item | Status |\n|------|--------|\n| AAAI 2027 deadline after today | Very likely yes (expected Jul-Aug 2026), not yet officially announced |\n| ICLR 2027 deadline after today | Very likely yes (expected Sep-Oct 2026), not yet announced |\n| CoRL 2027 deadline after today | Very likely yes (expected ~May 2027), not yet announced. **Note: CoRL 2026 deadline is May 25/28, 2026** |\n| A100 ~$1.50/hr spot pricing | Confirmed realistic |\n| OpenPI codebase public + modifiable | Confirmed |\n| LIBERO-90 benchmark | Confirmed, publicly accessible |\n| MetaWorld ML-45 | Confirmed, publicly accessible |\n| arXiv 2509.26327 (GIB) | Confirmed |\n| arXiv 2603.01568 (Rate-Distortion) | Confirmed |\n\nAll items check out. The only caveat is that the 2027 conference deadlines are not yet officially posted, but based on historical patterns they will all fall after May 13, 2026.\n\nSources:\n- [AAAI Conference](https://aaai.org/conference/aaai/)\n- [AAAI 2027 Deadline Tracker](https://www.getpaperpilot.com/deadlines/aaai-2027.html)\n- [ICLR 2026 Dates](https://iclr.cc/Conferences/2026/Dates)\n- [AI &amp; ML Conference Deadlines 2026-2027](https://trybibby.com/conference-deadlines)\n- [CoRL 2026](https://www.corl.org/)\n- [GPU Cloud Pricing Comparison 2026 - Spheron](https://www.spheron.network/blog/gpu-cloud-pricing-comparison-2026/)\n- [A100 Cloud Pricing: Compare 38+ Providers](https://getdeploying.com/gpus/nvidia-a100)\n- [SynpixCloud GPU Pricing 2026](https://www.synpixcloud.com/blog/cloud-gpu-pricing-comparison-2026)\n- [Physical-Intelligence/openpi on GitHub](https://github.com/Physical-Intelligence/openpi)\n- [Open Sourcing pi0 - Physical Intelligence Blog](https://www.pi.website/blog/openpi)\n- [LIBERO on GitHub](https://github.com/Lifelong-Robot-Learning/LIBERO)\n- [LIBERO NeurIPS 2023 Paper](https://papers.neurips.cc/paper_files/paper/2023/file/8c3c666820ea055a77726d66fc7d447f-Paper-Datasets_and_Benchmarks.pdf)\n- [Meta-World](https://meta-world.github.io/)\n- [Farama-Foundation/Metaworld on GitHub](https://github.com/Farama-Foundation/Metaworld)\n- [arXiv 2509.26327 - Generalized Information Bottleneck](https://arxiv.org/abs/2509.26327)\n- [arXiv 2603.01568 - Rate-Distortion Signatures](https://arxiv.org/abs/2603.01568)&lt;/result>\n&lt;usage>&lt;total_tokens>17089&lt;/total_tokens>&lt;tool_uses>10&lt;/tool_uses>&lt;duration_ms>70339&lt;/duration_ms>&lt;/usage>\n&lt;/task-notification>"
+}
+```
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-13T06:37:12.199Z_
+
+<details><summary>↩ Tool result · `toolu_016Dm1RrMpCyrWCeTvaWxcjS`</summary>
+
+```text
+Web search results for query: ""compression" "adversarial amplifier" "decision space reduction" arXiv 2604.06954 Evans 2026"
+
+Links: [{"title":"[2604.06954v1] Compression as an Adversarial Amplifier Through Decision Space Reduction","url":"https://arxiv.org/abs/2604.06954v1"},{"title":"[2604.06954] Compression as an Adversarial Amplifier Through Decision Space Reduction","url":"https://arxiv.org/abs/2604.06954"},{"title":"Compression as an Adversarial Amplifier Through Decision Space Reduction","url":"https://arxiv.org/html/2604.06954"},{"title":"[1902.03538] Model Compression with Adversarial Robustness: A Unified Optimization Framework","url":"https://arxiv.org/abs/1902.03538"},{"title":"[2308.08160] Benchmarking Adversarial Robustness of Compressed Deep Learning Models","url":"https://arxiv.org/abs/2308.08160"},{"title":"Model Compression with Adversarial Robustness: A Uniﬁed Optimization Framework","url":"https://arxiv.org/pdf/1902.03538"},{"title":"Multi-scale architectures matter: Examining the adversarial robustness of flow-based lossless compression - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0031320323009391"},{"title":"[2406.16200] Feature compression is the root cause of adversarial fragility in neural network classifiers","url":"https://arxiv.org/abs/2406.16200"},{"title":"[2604.28176] Defending Quantum Classifiers against Adversarial Perturbations through Quantum Autoencoders","url":"https://arxiv.org/abs/2604.28176"},{"title":"[2411.13383] Adversarial Diffusion Compression for Real-World Image Super-Resolution","url":"https://arxiv.org/abs/2411.13383"}]
+
+I found the paper you're looking for! Here's what I found:
+
+The paper "Compression as an Adversarial Amplifier Through Decision Space Reduction" was submitted on April 8, 2026, by authors Lewis Evans, Harkrishan Jandu, Zihan Ye, Yang Lu, and Shreyank N Gowda.
+
+The paper studies an adversarial setting where attacks are applied directly in compressed representations, showing that compression can act as an adversarial amplifier for deep image classifiers. Under identical nominal perturbation budgets, compression-aware attacks are substantially more effective than their pixel-space counterparts.
+
+Image compression is routinely applied by social media platforms and resource-constrained systems prior to inference, yet despite its prevalence, the impact of compression on adversarial robustness remains poorly understood.
+
+The paper is available on arXiv at: https://arxiv.org/abs/2604.06954
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "523fd7cc-0069-4f88-b59a-6e1572fc170e",
+  "isSidechain": false,
+  "promptId": "d00fd39b-05e8-4d12-acea-1a8fbd608c3e",
+  "type": "user",
+  "uuid": "0d4e1934-c364-4eb5-92b1-ae92d21d0447",
+  "toolUseResult": {
+    "query": "\"compression\" \"adversarial amplifier\" \"decision space reduction\" arXiv 2604.06954 Evans 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01LU29FC1B7VQHZkUeXYzQoQ",
+        "content": [
+          {
+            "title": "[2604.06954v1] Compression as an Adversarial Amplifier Through Decision Space Reduction",
+            "url": "https://arxiv.org/abs/2604.06954v1"
+          },
+          {
+            "title": "[2604.06954] Compression as an Adversarial Amplifier Through Decision Space Reduction",
+            "url": "https://arxiv.org/abs/2604.06954"
+          },
+          {
+            "title": "Compression as an Adversarial Amplifier Through Decision Space Reduction",
+            "url": "https://arxiv.org/html/2604.06954"
+          },
+          {
+            "title": "[1902.03538] Model Compression with Adversarial Robustness: A Unified Optimization Framework",
+            "url": "https://arxiv.org/abs/1902.03538"
+          },
+          {
+            "title": "[2308.08160] Benchmarking Adversarial Robustness of Compressed Deep Learning Models",
+            "url": "https://arxiv.org/abs/2308.08160"
+          },
+          {
+            "title": "Model Compression with Adversarial Robustness: A Uniﬁed Optimization Framework",
+            "url": "https://arxiv.org/pdf/1902.03538"
+          },
+          {
+            "title": "Multi-scale architectures matter: Examining the adversarial robustness of flow-based lossless compression - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S0031320323009391"
+          },
+          {
+            "title": "[2406.16200] Feature compression is the root cause of adversarial fragility in neural network classifiers",
+            "url": "https://arxiv.org/abs/2406.16200"
+          },
+          {
+            "title": "[2604.28176] Defending Quantum Classifiers against Adversarial Perturbations through Quantum Autoencoders",
+            "url": "https://arxiv.org/abs/2604.28176"
+          },
+          {
+            "title": "[2411.13383] Adversarial Diffusion Compression for Real-World Image Super-Resolution",
+            "url": "https://arxiv.org/abs/2411.13383"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here's what I found:\n\nThe paper \"Compression as an Adversarial Amplifier Through Decision Space Reduction\" was submitted on April 8, 2026, by authors Lewis Evans, Harkrishan Jandu, Zihan Ye, Yang Lu, and Shreyank N Gowda.\n\nThe paper studies an adversarial setting where attacks are applied directly in compressed representations, showing that compression can act as an adversarial amplifier for deep image classifiers. Under identical nominal perturbation budgets, compression-aware attacks are substantially more effective than their pixel-space counterparts.\n\nImage compression is routinely applied by social media platforms and resource-constrained systems prior to inference, yet despite its prevalence, the impact of compression on adversarial robustness remains poorly understood.\n\nThe paper is available on arXiv at: https://arxiv.org/abs/2604.06954"
+    ],
+    "durationSeconds": 5.566184378999998
+  },
+  "sourceToolAssistantUUID": "523fd7cc-0069-4f88-b59a-6e1572fc170e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 50 · 2026-05-13T06:37:12.205Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "remove",
+  "timestamp": "2026-05-13T06:37:12.205Z",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 51 · 2026-05-13T06:37:12.205Z_
+
+```json
+{
+  "parentUuid": "0d4e1934-c364-4eb5-92b1-ae92d21d0447",
+  "isSidechain": false,
+  "attachment": {
+    "type": "queued_command",
+    "prompt": "&lt;task-notification>\n&lt;task-id>a88d788590e01909c&lt;/task-id>\n&lt;tool-use-id>toolu_01XYsjKR1asLNX3V6TUFhMqA&lt;/tool-use-id>\n&lt;output-file>/tmp/claude-1000/-/45183731-1e2f-4b44-81c9-d3cd33b5498d/tasks/a88d788590e01909c.output&lt;/output-file>\n&lt;status>completed&lt;/status>\n&lt;summary>Agent \"Verify venue deadlines and costs\" completed&lt;/summary>\n&lt;result>Here are my detailed findings for each item:\n\n---\n\n## 1. Venue Deadlines\n\n**AAAI 2027:** The conference will be held February 16-23, 2027, in Montreal, Quebec, Canada. The exact submission deadline has not been officially announced yet, but based on historical patterns, it is expected around **July-August 2026**. Since today is May 13, 2026, the AAAI 2027 deadline is almost certainly after today. **Verdict: Safe -- deadline is in the future.**\n\n**ICLR 2027:** No official dates have been announced for ICLR 2027. The most recent data is for ICLR 2026, which had a paper submission deadline of September 24, 2025. If the pattern holds, ICLR 2027's deadline would fall around **September-October 2026**, well after today. **Verdict: Very likely safe, but unconfirmed since ICLR 2027 hasn't been announced yet.**\n\n**CoRL 2027:** No official dates for CoRL 2027. CoRL 2026 will be held November 9-12, 2026 in Austin, Texas, with submission deadlines of May 25 (abstract) and May 28 (full paper) 2026. If CoRL 2027 follows the same annual pattern, its submission deadline would be around **May 2027**. **Verdict: Very likely safe, but unconfirmed. Note that CoRL 2026's deadline is imminent (May 25/28, 2026) -- if the plan was to submit to CoRL 2026, that is only ~2 weeks away.**\n\n---\n\n## 2. GPU Cost Verification: A100 80GB at ~$1.50/hr\n\nThe claim of ~$1.50/hr for A100 80GB spot pricing is **realistic and well within the observed range**. Current 2026 data shows:\n\n- Spot pricing on Vast.ai: **$1.00-$1.80/hr** for A100 80GB\n- On-demand prices range from $1.07/hr (Spheron) to $3.43/hr depending on provider\n- SynpixCloud offers A100 80GB at $1.39/hr on-demand\n- Some providers offer as low as $0.13/hr for heavily discounted spot instances\n\n**Verdict: $1.50/hr is a reasonable and realistic estimate for A100 80GB spot pricing.**\n\n---\n\n## 3. OpenPI Codebase\n\n**Confirmed publicly available.** The repository is at [github.com/Physical-Intelligence/openpi](https://github.com/Physical-Intelligence/openpi). Key details:\n\n- Published by Physical Intelligence\n- Contains three model types: pi0 (flow-based VLA), pi0-FAST (autoregressive VLA), and pi0.5 (upgraded version)\n- Provides base model checkpoints pre-trained on 10k+ hours of robot data\n- Includes code for fine-tuning on custom tasks and platforms\n- The training configuration is accessible at `src/openpi/training/config.py`\n\n**Regarding ease of inserting a VIB layer:** The codebase is structured with a clear training pipeline and modular configuration system. The training config and model architecture are exposed in Python source files, which would make it feasible to insert a Variational Information Bottleneck (VIB) layer into the network architecture. However, difficulty would depend on exactly where in the architecture the VIB layer is inserted (e.g., between the vision encoder and the action decoder).\n\n**Verdict: Confirmed public and modifiable. Inserting a VIB layer is architecturally feasible.**\n\n---\n\n## 4. LIBERO-90 Benchmark\n\n**Confirmed to exist and is accessible.** Key details:\n\n- LIBERO is a benchmark suite published at NeurIPS 2023 for lifelong robot learning\n- LIBERO-90 consists of 90 short-horizon manipulation tasks (a subset of LIBERO-100)\n- Built on the robosuite/MuJoCo framework\n- The full benchmark contains 130 language-annotated manipulation tasks organized into 5 evaluation suites\n- LIBERO-90 is used for pretraining; LIBERO-10 is used for downstream lifelong learning evaluation\n- Code is available at [github.com/Lifelong-Robot-Learning/LIBERO](https://github.com/Lifelong-Robot-Learning/LIBERO)\n- Also integrated into HuggingFace LeRobot\n\n**Verdict: Confirmed -- well-established, publicly accessible benchmark.**\n\n---\n\n## 5. MetaWorld ML-45\n\n**Confirmed to exist.** Key details:\n\n- MetaWorld is an open-source simulated benchmark for meta-RL and multi-task learning with 50 distinct robotic manipulation tasks\n- ML-45 is the most difficult meta-learning setting: 45 meta-training tasks + 5 held-out test tasks\n- Tests few-shot adaptation to new tasks without task ID as input\n- Maintained by the Farama Foundation at [github.com/Farama-Foundation/Metaworld](https://github.com/Farama-Foundation/Metaworld)\n- Originally published by Tianhe Yu et al.\n\n**Verdict: Confirmed -- well-established, publicly accessible benchmark.**\n\n---\n\n## 6. arXiv 2509.26327 -- \"A Generalized Information Bottleneck Theory of Deep Learning\"\n\n**Confirmed to exist.** Key details:\n\n- **Title:** \"A Generalized Information Bottleneck Theory of Deep Learning\"\n- **Authors:** Charles Westphal, Stephen Hailes, and Mirco Musolesi\n- **Submitted:** September 30, 2025; last revised January 30, 2026\n- **Status:** Was under review as a conference paper at ICLR 2026\n- Introduces a Generalized Information Bottleneck (GIB) framework using synergy (average interaction information) to reformulate the IB principle\n- Addresses limitations of the original IB theory including infinite compression terms and feature-wise decomposition\n\n**Verdict: Confirmed -- the paper exists and the arXiv ID is correct.**\n\n---\n\n## 7. arXiv 2603.01568 -- \"Rate-Distortion Signatures\" by Caglar (2026)\n\n**Confirmed to exist.** Key details:\n\n- **Title:** \"Rate-Distortion Signatures of Generalization and Information Trade-offs\"\n- **Authors:** Leyla Roksan Caglar, Pedro A.M. Mediano, and Baihan Lin\n- **Submitted:** March 2, 2026\n- Introduces a rate-distortion-theoretic framework treating stimulus-response behavior as an effective communication channel\n- Derives RD frontiers from confusion matrices with two geometric signatures (slope beta and curvature kappa)\n- Applied to human psychophysics and 18 deep vision models\n\n**Verdict: Confirmed -- the paper exists, the arXiv ID is correct, the author \"Caglar\" matches (Leyla Roksan Caglar), and it is indeed from 2026.**\n\n---\n\n## Summary\n\n| Item | Status |\n|------|--------|\n| AAAI 2027 deadline after today | Very likely yes (expected Jul-Aug 2026), not yet officially announced |\n| ICLR 2027 deadline after today | Very likely yes (expected Sep-Oct 2026), not yet announced |\n| CoRL 2027 deadline after today | Very likely yes (expected ~May 2027), not yet announced. **Note: CoRL 2026 deadline is May 25/28, 2026** |\n| A100 ~$1.50/hr spot pricing | Confirmed realistic |\n| OpenPI codebase public + modifiable | Confirmed |\n| LIBERO-90 benchmark | Confirmed, publicly accessible |\n| MetaWorld ML-45 | Confirmed, publicly accessible |\n| arXiv 2509.26327 (GIB) | Confirmed |\n| arXiv 2603.01568 (Rate-Distortion) | Confirmed |\n\nAll items check out. The only caveat is that the 2027 conference deadlines are not yet officially posted, but based on historical patterns they will all fall after May 13, 2026.\n\nSources:\n- [AAAI Conference](https://aaai.org/conference/aaai/)\n- [AAAI 2027 Deadline Tracker](https://www.getpaperpilot.com/deadlines/aaai-2027.html)\n- [ICLR 2026 Dates](https://iclr.cc/Conferences/2026/Dates)\n- [AI &amp; ML Conference Deadlines 2026-2027](https://trybibby.com/conference-deadlines)\n- [CoRL 2026](https://www.corl.org/)\n- [GPU Cloud Pricing Comparison 2026 - Spheron](https://www.spheron.network/blog/gpu-cloud-pricing-comparison-2026/)\n- [A100 Cloud Pricing: Compare 38+ Providers](https://getdeploying.com/gpus/nvidia-a100)\n- [SynpixCloud GPU Pricing 2026](https://www.synpixcloud.com/blog/cloud-gpu-pricing-comparison-2026)\n- [Physical-Intelligence/openpi on GitHub](https://github.com/Physical-Intelligence/openpi)\n- [Open Sourcing pi0 - Physical Intelligence Blog](https://www.pi.website/blog/openpi)\n- [LIBERO on GitHub](https://github.com/Lifelong-Robot-Learning/LIBERO)\n- [LIBERO NeurIPS 2023 Paper](https://papers.neurips.cc/paper_files/paper/2023/file/8c3c666820ea055a77726d66fc7d447f-Paper-Datasets_and_Benchmarks.pdf)\n- [Meta-World](https://meta-world.github.io/)\n- [Farama-Foundation/Metaworld on GitHub](https://github.com/Farama-Foundation/Metaworld)\n- [arXiv 2509.26327 - Generalized Information Bottleneck](https://arxiv.org/abs/2509.26327)\n- [arXiv 2603.01568 - Rate-Distortion Signatures](https://arxiv.org/abs/2603.01568)&lt;/result>\n&lt;usage>&lt;total_tokens>17089&lt;/total_tokens>&lt;tool_uses>10&lt;/tool_uses>&lt;duration_ms>70339&lt;/duration_ms>&lt;/usage>\n&lt;/task-notification>",
+    "commandMode": "task-notification"
+  },
+  "type": "attachment",
+  "uuid": "ee28ffe7-3aaf-48a7-b3a3-15af3dc211ea",
+  "timestamp": "2026-05-13T06:37:12.205Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 52 · 2026-05-13T06:37:15.699Z_
+
+Good — venue agent completed. Venues confirmed reasonable. Now let me fetch the BC-IB paper's full content to verify key claims about its scope.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ee28ffe7-3aaf-48a7-b3a3-15af3dc211ea",
+  "isSidechain": false,
+  "requestId": "req_011Caz77oDxWgLZKMPnrGTTS",
+  "type": "assistant",
+  "uuid": "b32105ec-47b0-4b9f-b0e8-2e6ff9508fb8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BvZnCPeeQGcBZj5t9ZQNpd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4086,
+      "cache_read_input_tokens": 37515,
+      "output_tokens": 469,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4086,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 469,
+          "cache_read_input_tokens": 37515,
+          "cache_creation_input_tokens": 4086,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4086
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-13T06:37:21.511Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_019gs1WnvYLHeKnyWXR7gNGD`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2502.02853v5",
+  "prompt": "Read the full paper carefully. I need to know:\n1) Does BC-IB evaluate out-of-distribution (OOD) robustness? Or only in-distribution performance?\n2) What β values do they sweep? How many β values?\n3) Do they trace systematic rate-distortion frontiers?\n4) What model architectures/sizes do they use? (BC-MLP, BC-RNN, BC-Transformer, or larger VLA models?)\n5) Do they explicitly mention that OOD robustness is future work or 'insufficiently studied'?\n6) Is the IB applied at the visual token level or at the latent fusion level?\n7) What benchmarks do they use?\n8) What is their mutual information estimation method (MINE or something else)?\nReport exact quotes where possible."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b32105ec-47b0-4b9f-b0e8-2e6ff9508fb8",
+  "isSidechain": false,
+  "requestId": "req_011Caz77oDxWgLZKMPnrGTTS",
+  "type": "assistant",
+  "uuid": "f03a06e6-00b0-4129-991c-55d0099bf1a7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BvZnCPeeQGcBZj5t9ZQNpd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4086,
+      "cache_read_input_tokens": 37515,
+      "output_tokens": 469,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4086,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 469,
+          "cache_read_input_tokens": 37515,
+          "cache_creation_input_tokens": 4086,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4086
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-13T06:37:24.720Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01P4tfrVoEBkRuCMnxXjPdA6`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2604.06954",
+  "prompt": "Read the abstract and any available content carefully. I need to know:\n1) What exactly does this paper prove about compression and adversarial robustness?\n2) Does it apply to learned compression or only fixed codecs (JPEG, PCA)?\n3) Does it address classification only, or also regression/continuous outputs?\n4) What is the 'decision space reduction' mechanism?\n5) Does it provide any theoretical bounds?\nReport the key findings and any limitations mentioned."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f03a06e6-00b0-4129-991c-55d0099bf1a7",
+  "isSidechain": false,
+  "requestId": "req_011Caz77oDxWgLZKMPnrGTTS",
+  "type": "assistant",
+  "uuid": "65498c3b-3b11-44a7-8d31-61be03a83a8b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BvZnCPeeQGcBZj5t9ZQNpd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4086,
+      "cache_read_input_tokens": 37515,
+      "output_tokens": 469,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4086,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 469,
+          "cache_read_input_tokens": 37515,
+          "cache_creation_input_tokens": 4086,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4086
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-13T06:37:29.087Z_
+
+<details><summary>↩ Tool result · `toolu_01P4tfrVoEBkRuCMnxXjPdA6`</summary>
+
+```text
+# Summary of arXiv:2604.06954
+
+## Key Findings
+
+The paper demonstrates that **image compression amplifies adversarial vulnerability** in deep classifiers. When attacks target compressed representations directly using identical perturbation budgets, they prove substantially more potent than pixel-space attacks.
+
+## Mechanism
+
+The authors attribute this vulnerability to "decision space reduction, whereby compression induces a non-invertible, information-losing transformation that contracts classification margins and increases sensitivity to perturbations." Essentially, compression narrows the decision boundaries that classifiers operate within.
+
+## Scope Limitations
+
+Based on the abstract provided:
+
+1. **Compression type**: The abstract does not specify whether findings apply to learned compression, fixed codecs (JPEG, etc.), or both. This distinction remains unclear from available content.
+
+2. **Task scope**: The research explicitly focuses on "deep image classifiers," indicating **classification tasks only**. Regression or continuous outputs are not addressed.
+
+3. **Theoretical bounds**: The abstract mentions "extensive experiments across standard benchmarks" but does not reference theoretical bounds or formal guarantees.
+
+## Critical Gap
+
+The paper identifies a "critical vulnerability in compression-in-the-loop deployment settings"—relevant wherever images are compressed before inference (social media platforms, resource-constrained systems). However, specific mitigation strategies are not discussed in the abstract.
+
+**Note**: Code release was promised but availability cannot be confirmed from this page.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "65498c3b-3b11-44a7-8d31-61be03a83a8b",
+  "isSidechain": false,
+  "promptId": "d00fd39b-05e8-4d12-acea-1a8fbd608c3e",
+  "type": "user",
+  "uuid": "433da77f-aa18-49fc-a371-7201da297c5b",
+  "toolUseResult": {
+    "bytes": 45630,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Summary of arXiv:2604.06954\n\n## Key Findings\n\nThe paper demonstrates that **image compression amplifies adversarial vulnerability** in deep classifiers. When attacks target compressed representations directly using identical perturbation budgets, they prove substantially more potent than pixel-space attacks.\n\n## Mechanism\n\nThe authors attribute this vulnerability to \"decision space reduction, whereby compression induces a non-invertible, information-losing transformation that contracts classification margins and increases sensitivity to perturbations.\" Essentially, compression narrows the decision boundaries that classifiers operate within.\n\n## Scope Limitations\n\nBased on the abstract provided:\n\n1. **Compression type**: The abstract does not specify whether findings apply to learned compression, fixed codecs (JPEG, etc.), or both. This distinction remains unclear from available content.\n\n2. **Task scope**: The research explicitly focuses on \"deep image classifiers,\" indicating **classification tasks only**. Regression or continuous outputs are not addressed.\n\n3. **Theoretical bounds**: The abstract mentions \"extensive experiments across standard benchmarks\" but does not reference theoretical bounds or formal guarantees.\n\n## Critical Gap\n\nThe paper identifies a \"critical vulnerability in compression-in-the-loop deployment settings\"—relevant wherever images are compressed before inference (social media platforms, resource-constrained systems). However, specific mitigation strategies are not discussed in the abstract.\n\n**Note**: Code release was promised but availability cannot be confirmed from this page.",
+    "durationMs": 4365,
+    "url": "https://arxiv.org/abs/2604.06954"
+  },
+  "sourceToolAssistantUUID": "65498c3b-3b11-44a7-8d31-61be03a83a8b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 56_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "433da77f-aa18-49fc-a371-7201da297c5b",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 57_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify VLA visual compression phase transitions",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d"
+}
+```
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-13T06:37:30.458Z_
+
+<details><summary>↩ Tool result · `toolu_019gs1WnvYLHeKnyWXR7gNGD`</summary>
+
+```text
+# BC-IB Evaluation Analysis
+
+## 1) OOD Robustness Evaluation
+**No, BC-IB does not explicitly evaluate OOD robustness.** The paper only reports in-distribution performance on standard benchmarks. Notably, the authors acknowledge this limitation:
+
+> "its robustness to domain shifts, including changes in environment and task configurations, remains insufficiently studied"
+
+They explicitly state this as future work in Section 6 (Limitations and Discussion).
+
+## 2) β (Beta) Values Swept
+The authors test **4 beta values**: "1e-4, 1e-3, 5e-3, 1e-2" as shown in Figure 5. However, they note that "across all experiments, β around 1e-4 consistently yields stable improvements," suggesting β≈1e-4 as their preferred setting rather than extensive sweeping.
+
+## 3) Rate-Distortion Frontiers
+**No systematic rate-distortion frontiers are traced.** The paper does not present explicit compression-task performance tradeoff curves. Figure 5 shows performance vs. individual β values, but this is not a formal rate-distortion analysis.
+
+## 4) Model Architectures Used
+The paper evaluates **lightweight architectures only**:
+- BC-MLP (spatial fusion with ResNet)
+- BC-RNN (temporal fusion)
+- BC-Transformer (temporal fusion)
+- BC-VILT (vision-language transformer)
+- ResNet-18, ViT-S, ViT-B as encoders
+
+The authors acknowledge: "Most of our experiments are conducted using relatively lightweight architectures" and note that large VLA models (RT-2, etc.) were not systematically evaluated due to "high computational and time requirements."
+
+## 5) OOD Robustness as Future Work
+**Yes, explicitly stated.** From Section 6:
+
+> "its robustness to domain shifts...remains insufficiently studied. We hope this work inspires future research"
+
+## 6) IB Application Level
+IB is applied at the **latent fusion level, not visual tokens.** Equation (4) shows features are concatenated post-extraction: "xt=concat(Enco(ot),Encs(st),Encl(l))" forming input X, then Z=F(X) through the fusion module.
+
+## 7) Benchmarks
+- **CortexBench**: 14 tasks (Adroit, Meta-World, DMControl, TriFinger)
+- **LIBERO**: 40 tasks across 4 suites (Goal, Object, Spatial, Long)
+- **Real-world**: UR5 arm with 2 tabletop tasks
+
+## 8) Mutual Information Estimation Method
+**MINE (Mutual Information Neural Estimation).** Section 3.2 details the approach using the Donsker-Varadhan representation with a discriminator network Tθ.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f03a06e6-00b0-4129-991c-55d0099bf1a7",
+  "isSidechain": false,
+  "promptId": "d00fd39b-05e8-4d12-acea-1a8fbd608c3e",
+  "type": "user",
+  "uuid": "920cb4e7-4159-4244-b95b-f150232747c0",
+  "toolUseResult": {
+    "bytes": 717160,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# BC-IB Evaluation Analysis\n\n## 1) OOD Robustness Evaluation\n**No, BC-IB does not explicitly evaluate OOD robustness.** The paper only reports in-distribution performance on standard benchmarks. Notably, the authors acknowledge this limitation:\n\n> \"its robustness to domain shifts, including changes in environment and task configurations, remains insufficiently studied\"\n\nThey explicitly state this as future work in Section 6 (Limitations and Discussion).\n\n## 2) β (Beta) Values Swept\nThe authors test **4 beta values**: \"1e-4, 1e-3, 5e-3, 1e-2\" as shown in Figure 5. However, they note that \"across all experiments, β around 1e-4 consistently yields stable improvements,\" suggesting β≈1e-4 as their preferred setting rather than extensive sweeping.\n\n## 3) Rate-Distortion Frontiers\n**No systematic rate-distortion frontiers are traced.** The paper does not present explicit compression-task performance tradeoff curves. Figure 5 shows performance vs. individual β values, but this is not a formal rate-distortion analysis.\n\n## 4) Model Architectures Used\nThe paper evaluates **lightweight architectures only**:\n- BC-MLP (spatial fusion with ResNet)\n- BC-RNN (temporal fusion)\n- BC-Transformer (temporal fusion)\n- BC-VILT (vision-language transformer)\n- ResNet-18, ViT-S, ViT-B as encoders\n\nThe authors acknowledge: \"Most of our experiments are conducted using relatively lightweight architectures\" and note that large VLA models (RT-2, etc.) were not systematically evaluated due to \"high computational and time requirements.\"\n\n## 5) OOD Robustness as Future Work\n**Yes, explicitly stated.** From Section 6:\n\n> \"its robustness to domain shifts...remains insufficiently studied. We hope this work inspires future research\"\n\n## 6) IB Application Level\nIB is applied at the **latent fusion level, not visual tokens.** Equation (4) shows features are concatenated post-extraction: \"xt=concat(Enco(ot),Encs(st),Encl(l))\" forming input X, then Z=F(X) through the fusion module.\n\n## 7) Benchmarks\n- **CortexBench**: 14 tasks (Adroit, Meta-World, DMControl, TriFinger)\n- **LIBERO**: 40 tasks across 4 suites (Goal, Object, Spatial, Long)\n- **Real-world**: UR5 arm with 2 tabletop tasks\n\n## 8) Mutual Information Estimation Method\n**MINE (Mutual Information Neural Estimation).** Section 3.2 details the approach using the Donsker-Varadhan representation with a discriminator network Tθ.",
+    "durationMs": 8940,
+    "url": "https://arxiv.org/html/2502.02853v5"
+  },
+  "sourceToolAssistantUUID": "f03a06e6-00b0-4129-991c-55d0099bf1a7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 59 · 2026-05-13T06:37:30.462Z_
+
+```json
+{
+  "parentUuid": "920cb4e7-4159-4244-b95b-f150232747c0",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "83463a63-a433-4b7f-82c1-bd9da567c146",
+  "timestamp": "2026-05-13T06:37:30.462Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 60 · 2026-05-13T06:37:40.080Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Excellent. Now I have detailed information about BC-IB. Let me verify the key claims made in the revised idea:
+
+1. BC-IB applies IB at latent fusion level, not visual tokens ✓
+2. BC-IB uses 4 β values (1e-4 to 1e-2) ✓
+3. BC-IB uses MINE estimation ✓
+4. BC-IB evaluates only in-distribution ✓ (explicitly says OOD is "insufficiently studied")
+5. BC-IB uses lightweight architectures, not large VLAs ✓
+
+The idea's characterization of BC-IB is accurate.
+
+
+Now I'm checking Evans et al. and confirming they focus on image classification rather than continuous outputs, which aligns with what the idea states. But I need to dig into some technical concerns: whether VIB and flow matching are actually compatible, whether phase transitions in IB have prior work, and what competing approaches might be missing from the citations.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "83463a63-a433-4b7f-82c1-bd9da567c146",
+  "isSidechain": false,
+  "requestId": "req_011Caz799HykbsVv7M28FmaG",
+  "type": "assistant",
+  "uuid": "f085e072-1878-4628-bb49-a5c83bd443b0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EVjFvp3WDewvwif6fPcAin",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 339,
+      "cache_creation_input_tokens": 1282,
+      "cache_read_input_tokens": 41601,
+      "output_tokens": 387,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1282,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 339,
+          "output_tokens": 387,
+          "cache_read_input_tokens": 41601,
+          "cache_creation_input_tokens": 1282,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1282
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-13T06:37:40.095Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TnyvDhpxxMWPPaE8mwGymw`</summary>
+
+```json
+{
+  "query": "\"information bottleneck\" \"phase transition\" compression generalization critical threshold neural networks"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f085e072-1878-4628-bb49-a5c83bd443b0",
+  "isSidechain": false,
+  "requestId": "req_011Caz799HykbsVv7M28FmaG",
+  "type": "assistant",
+  "uuid": "a86ef486-1be3-48b5-9121-7b09028a4105",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EVjFvp3WDewvwif6fPcAin",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 339,
+      "cache_creation_input_tokens": 1282,
+      "cache_read_input_tokens": 41601,
+      "output_tokens": 387,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1282,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 339,
+          "output_tokens": 387,
+          "cache_read_input_tokens": 41601,
+          "cache_creation_input_tokens": 1282,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1282
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62 · 2026-05-13T06:37:40.104Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FBoqWqsxmtTezqqpdFYsP2`</summary>
+
+```json
+{
+  "query": "VIB variational information bottleneck flow matching diffusion policy compatibility stochastic noise interaction"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a86ef486-1be3-48b5-9121-7b09028a4105",
+  "isSidechain": false,
+  "requestId": "req_011Caz799HykbsVv7M28FmaG",
+  "type": "assistant",
+  "uuid": "e272562e-6a42-4c86-8a7b-e0c9b3518ec7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EVjFvp3WDewvwif6fPcAin",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 339,
+      "cache_creation_input_tokens": 1282,
+      "cache_read_input_tokens": 41601,
+      "output_tokens": 387,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1282,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 339,
+          "output_tokens": 387,
+          "cache_read_input_tokens": 41601,
+          "cache_creation_input_tokens": 1282,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1282
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-13T06:37:47.111Z_
+
+<details><summary>↩ Tool result · `toolu_01FBoqWqsxmtTezqqpdFYsP2`</summary>
+
+```text
+Web search results for query: "VIB variational information bottleneck flow matching diffusion policy compatibility stochastic noise interaction"
+
+Links: [{"title":"[1612.00410] Deep Variational Information Bottleneck","url":"https://arxiv.org/abs/1612.00410"},{"title":"Deep Variational Information Bottleneck | OpenReview","url":"https://openreview.net/forum?id=HyxQzBceg"},{"title":"GitHub - udeepam/vib: Theory and PyTorch implementation of Deep Variational Information Bottleneck · GitHub","url":"https://github.com/udeepam/vib"},{"title":"Deep Variational Information Bottleneck - ADS","url":"https://ui.adsabs.harvard.edu/abs/2016arXiv161200410A/abstract"},{"title":"DEEP VARIATIONAL INFORMATION BOTTLENECK","url":"https://openreview.net/pdf?id=HyxQzBceg"},{"title":"A Variational Information Bottleneck (VIB) Based Method to Compress Sequential Networks for Human... | Towards Data Science","url":"https://towardsdatascience.com/a-variational-information-bottleneck-vib-based-method-to-compress-sequential-networks-for-human-b559d3a50e30/"},{"title":"GitHub - 1Konny/VIB-pytorch: Pytorch implementation of Deep Variational Information Bottleneck","url":"https://github.com/1Konny/VIB-pytorch"},{"title":"A Variational Information Bottleneck Based Method to Compress Sequential","url":"https://openaccess.thecvf.com/content/WACV2021/papers/Srivastava_A_Variational_Information_Bottleneck_Based_Method_to_Compress_Sequential_Networks_WACV_2021_paper.pdf"},{"title":"Revisiting the Variational Information Bottleneck | OpenReview","url":"https://openreview.net/forum?id=w10KdRwcMk"},{"title":"GitHub - alexalemi/vib_demo · GitHub","url":"https://github.com/alexalemi/vib_demo"}]
+
+Based on the search results, I found information about the Variational Information Bottleneck (VIB) framework. Here's what I discovered:
+
+## Variational Information Bottleneck (VIB)
+
+The variational approach allows parameterizing the information bottleneck model using a neural network and leveraging the reparameterization trick for efficient training, called "Deep Variational Information Bottleneck" or Deep VIB.
+
+Models trained with the VIB objective outperform those trained with other forms of regularization, in terms of generalization performance and robustness to adversarial attack.
+
+## Applications
+
+The VIB framework has been applied in various contexts:
+
+- The Variational Information Bottlenecking framework casts learning as an optimization problem where the goal is to learn compressed representations that have least information regarding input while retaining all relevant information needed for learning the target.
+
+- VIB theory-based pruning approaches limit information flow through sequential cells of RNNs to a small subset, combined with group-lasso regularization techniques that significantly improve compression.
+
+However, my search results focused primarily on the foundational VIB work and its applications to compression and robustness. The specific topics you mentioned—flow matching, diffusion policy compatibility, and stochastic noise interaction—were not prominently covered in these results. For a more targeted response to those specific aspects, you might need a more specialized search in robotics or reinforcement learning literature.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e272562e-6a42-4c86-8a7b-e0c9b3518ec7",
+  "isSidechain": false,
+  "promptId": "d00fd39b-05e8-4d12-acea-1a8fbd608c3e",
+  "type": "user",
+  "uuid": "ab58ab8e-a002-4ad2-b11a-993bbeb90abe",
+  "toolUseResult": {
+    "query": "VIB variational information bottleneck flow matching diffusion policy compatibility stochastic noise interaction",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01T2ZxfBih1TpB2wDxA1yE7N",
+        "content": [
+          {
+            "title": "[1612.00410] Deep Variational Information Bottleneck",
+            "url": "https://arxiv.org/abs/1612.00410"
+          },
+          {
+            "title": "Deep Variational Information Bottleneck | OpenReview",
+            "url": "https://openreview.net/forum?id=HyxQzBceg"
+          },
+          {
+            "title": "GitHub - udeepam/vib: Theory and PyTorch implementation of Deep Variational Information Bottleneck · GitHub",
+            "url": "https://github.com/udeepam/vib"
+          },
+          {
+            "title": "Deep Variational Information Bottleneck - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2016arXiv161200410A/abstract"
+          },
+          {
+            "title": "DEEP VARIATIONAL INFORMATION BOTTLENECK",
+            "url": "https://openreview.net/pdf?id=HyxQzBceg"
+          },
+          {
+            "title": "A Variational Information Bottleneck (VIB) Based Method to Compress Sequential Networks for Human... | Towards Data Science",
+            "url": "https://towardsdatascience.com/a-variational-information-bottleneck-vib-based-method-to-compress-sequential-networks-for-human-b559d3a50e30/"
+          },
+          {
+            "title": "GitHub - 1Konny/VIB-pytorch: Pytorch implementation of Deep Variational Information Bottleneck",
+            "url": "https://github.com/1Konny/VIB-pytorch"
+          },
+          {
+            "title": "A Variational Information Bottleneck Based Method to Compress Sequential",
+            "url": "https://openaccess.thecvf.com/content/WACV2021/papers/Srivastava_A_Variational_Information_Bottleneck_Based_Method_to_Compress_Sequential_Networks_WACV_2021_paper.pdf"
+          },
+          {
+            "title": "Revisiting the Variational Information Bottleneck | OpenReview",
+            "url": "https://openreview.net/forum?id=w10KdRwcMk"
+          },
+          {
+            "title": "GitHub - alexalemi/vib_demo · GitHub",
+            "url": "https://github.com/alexalemi/vib_demo"
+          }
+        ]
+      },
+      "Based on the search results, I found information about the Variational Information Bottleneck (VIB) framework. Here's what I discovered:\n\n## Variational Information Bottleneck (VIB)\n\nThe variational approach allows parameterizing the information bottleneck model using a neural network and leveraging the reparameterization trick for efficient training, called \"Deep Variational Information Bottleneck\" or Deep VIB.\n\nModels trained with the VIB objective outperform those trained with other forms of regularization, in terms of generalization performance and robustness to adversarial attack.\n\n## Applications\n\nThe VIB framework has been applied in various contexts:\n\n- The Variational Information Bottlenecking framework casts learning as an optimization problem where the goal is to learn compressed representations that have least information regarding input while retaining all relevant information needed for learning the target.\n\n- VIB theory-based pruning approaches limit information flow through sequential cells of RNNs to a small subset, combined with group-lasso regularization techniques that significantly improve compression.\n\nHowever, my search results focused primarily on the foundational VIB work and its applications to compression and robustness. The specific topics you mentioned—flow matching, diffusion policy compatibility, and stochastic noise interaction—were not prominently covered in these results. For a more targeted response to those specific aspects, you might need a more specialized search in robotics or reinforcement learning literature."
+    ],
+    "durationSeconds": 7.004539917000017
+  },
+  "sourceToolAssistantUUID": "e272562e-6a42-4c86-8a7b-e0c9b3518ec7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-13T06:37:47.287Z_
+
+<details><summary>↩ Tool result · `toolu_01TnyvDhpxxMWPPaE8mwGymw`</summary>
+
+```text
+Web search results for query: ""information bottleneck" "phase transition" compression generalization critical threshold neural networks"
+
+Links: [{"title":"On Neural Networks Fitting, Compression, and Generalization Behavior via Information-Bottleneck-like Approaches - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC10377965/"},{"title":"J. Stat. Mech. (2019) 124020 On the information bottleneck theory","url":"https://artemyk.github.io/assets/pdf/papers/Saxe%20et%20al_2019_On%20the%20information%20bottleneck%20theory%20of%20deep%20learning.pdf"},{"title":"On the Information Bottleneck Theory of Deep Learning | OpenReview","url":"https://openreview.net/forum?id=ry_WPG-A-"},{"title":"Information bottleneck method - Wikipedia","url":"https://en.wikipedia.org/wiki/Information_bottleneck_method"},{"title":"Decoding the Information Bottleneck: A Deep Dive into Neural Network Learning Dynamics | by Mehmet Emre Akbulut | Medium","url":"https://medium.com/@memreakbulut/decoding-the-information-bottleneck-a-deep-dive-into-neural-network-learning-dynamics-8cb02aff37e2"},{"title":"Memorization-Compression Cycles Improve Generalization","url":"https://arxiv.org/html/2505.08727"},{"title":"A GENERALIZED INFORMATION BOTTLENECK THEORY OF DEEP LEARNING","url":"https://arxiv.org/pdf/2509.26327"},{"title":"Published as a conference paper at ICLR 2018 ON THE INFORMATION BOTTLENECK","url":"https://openreview.net/pdf?id=ry_WPG-A-"},{"title":"[1503.02406] Deep Learning and the Information Bottleneck Principle","url":"https://arxiv.org/abs/1503.02406"},{"title":"On Neural Networks Fitting, Compression, and Generalization Behavior via Information-Bottleneck-like Approaches","url":"https://www.mdpi.com/1099-4300/25/7/1063"}]
+
+Based on the search results, here's what I found regarding the information bottleneck theory, phase transitions, and compression-generalization relationships in neural networks:
+
+## Core Theory
+
+The information bottleneck (IB) principle analyzes Deep Neural Networks via mutual information between the layers and the input and output variables. The theory makes three specific claims: that deep networks undergo two distinct phases consisting of an initial fitting phase and a subsequent compression phase; that the compression phase is causally related to excellent generalization performance; and that the compression phase occurs due to the diffusion-like behavior of stochastic gradient descent.
+
+## Contested Claims
+
+However, these claims have been significantly challenged. Research demonstrates that none of these claims hold true in the general case: double-sided saturating nonlinearities like tanh yield a compression phase, but this is not universal across activation functions, and there is no evident causal connection between compression and generalization.
+
+The compression observed arises primarily due to the double-saturating tanh activation function used, while the ReLU activation function, often the nonlinearity of choice in practice, does not exhibit a compression phase.
+
+## Recent Refinements
+
+More recent work has attempted to reconcile these findings. Empirical observations show an emergent memorization–compression cycle during language model pretraining, with researchers proposing Gated Phase Transition (GAPT), a training algorithm that adaptively switches between memorization and compression phases.
+
+Additionally, the Generalized Information Bottleneck (GIB) framework explicitly accounts for synergistic interactions between features, with analysis demonstrating that synergistic functions achieve better generalization.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a86ef486-1be3-48b5-9121-7b09028a4105",
+  "isSidechain": false,
+  "promptId": "d00fd39b-05e8-4d12-acea-1a8fbd608c3e",
+  "type": "user",
+  "uuid": "9c08f6c3-9743-472b-baa1-ca12ec621400",
+  "toolUseResult": {
+    "query": "\"information bottleneck\" \"phase transition\" compression generalization critical threshold neural networks",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01EjDV2HiAnQ6uCyEHcdtvHy",
+        "content": [
+          {
+            "title": "On Neural Networks Fitting, Compression, and Generalization Behavior via Information-Bottleneck-like Approaches - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10377965/"
+          },
+          {
+            "title": "J. Stat. Mech. (2019) 124020 On the information bottleneck theory",
+            "url": "https://artemyk.github.io/assets/pdf/papers/Saxe%20et%20al_2019_On%20the%20information%20bottleneck%20theory%20of%20deep%20learning.pdf"
+          },
+          {
+            "title": "On the Information Bottleneck Theory of Deep Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=ry_WPG-A-"
+          },
+          {
+            "title": "Information bottleneck method - Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/Information_bottleneck_method"
+          },
+          {
+            "title": "Decoding the Information Bottleneck: A Deep Dive into Neural Network Learning Dynamics | by Mehmet Emre Akbulut | Medium",
+            "url": "https://medium.com/@memreakbulut/decoding-the-information-bottleneck-a-deep-dive-into-neural-network-learning-dynamics-8cb02aff37e2"
+          },
+          {
+            "title": "Memorization-Compression Cycles Improve Generalization",
+            "url": "https://arxiv.org/html/2505.08727"
+          },
+          {
+            "title": "A GENERALIZED INFORMATION BOTTLENECK THEORY OF DEEP LEARNING",
+            "url": "https://arxiv.org/pdf/2509.26327"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2018 ON THE INFORMATION BOTTLENECK",
+            "url": "https://openreview.net/pdf?id=ry_WPG-A-"
+          },
+          {
+            "title": "[1503.02406] Deep Learning and the Information Bottleneck Principle",
+            "url": "https://arxiv.org/abs/1503.02406"
+          },
+          {
+            "title": "On Neural Networks Fitting, Compression, and Generalization Behavior via Information-Bottleneck-like Approaches",
+            "url": "https://www.mdpi.com/1099-4300/25/7/1063"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found regarding the information bottleneck theory, phase transitions, and compression-generalization relationships in neural networks:\n\n## Core Theory\n\nThe information bottleneck (IB) principle analyzes Deep Neural Networks via mutual information between the layers and the input and output variables. The theory makes three specific claims: that deep networks undergo two distinct phases consisting of an initial fitting phase and a subsequent compression phase; that the compression phase is causally related to excellent generalization performance; and that the compression phase occurs due to the diffusion-like behavior of stochastic gradient descent.\n\n## Contested Claims\n\nHowever, these claims have been significantly challenged. Research demonstrates that none of these claims hold true in the general case: double-sided saturating nonlinearities like tanh yield a compression phase, but this is not universal across activation functions, and there is no evident causal connection between compression and generalization.\n\nThe compression observed arises primarily due to the double-saturating tanh activation function used, while the ReLU activation function, often the nonlinearity of choice in practice, does not exhibit a compression phase.\n\n## Recent Refinements\n\nMore recent work has attempted to reconcile these findings. Empirical observations show an emergent memorization–compression cycle during language model pretraining, with researchers proposing Gated Phase Transition (GAPT), a training algorithm that adaptively switches between memorization and compression phases.\n\nAdditionally, the Generalized Information Bottleneck (GIB) framework explicitly accounts for synergistic interactions between features, with analysis demonstrating that synergistic functions achieve better generalization."
+    ],
+    "durationSeconds": 7.188866050000011
+  },
+  "sourceToolAssistantUUID": "a86ef486-1be3-48b5-9121-7b09028a4105",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 65 · 2026-05-13T06:38:10.720Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-13T06:38:10.720Z",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "content": "&lt;task-notification>\n&lt;task-id>af05a12dcaf864aed&lt;/task-id>\n&lt;tool-use-id>toolu_0178gT2CVZZjL2WdT4nwHws8&lt;/tool-use-id>\n&lt;output-file>/tmp/claude-1000/-/45183731-1e2f-4b44-81c9-d3cd33b5498d/tasks/af05a12dcaf864aed.output&lt;/output-file>\n&lt;status>completed&lt;/status>\n&lt;summary>Agent \"Verify BC-IB and core references\" completed&lt;/summary>\n&lt;result>I now have comprehensive findings for all five queries. Here is my detailed report:\n\n---\n\n## Verification Report: ML Research Idea References\n\n### 1. BC-IB (Information Bottleneck for Behavior Cloning) -- ICML 2025\n\n**Verdict: CONFIRMED to exist.**\n\n- **Full title:** \"Rethinking Latent Redundancy in Behavior Cloning: An Information Bottleneck Approach for Robot Manipulation\"\n- **Authors:** Shuanghao Bai, Wanqi Zhou, Pengxiang Ding, Wei Zhao, Donglin Wang, Badong Chen\n- **Venue:** ICML 2025 (confirmed via both OpenReview and ICML virtual site)\n- **arXiv:** 2502.02853\n- **What it does:** Incorporates the Information Bottleneck (IB) principle into Behavior Cloning (BC) to compress task-irrelevant information in latent representations while preserving task-relevant features. It provides the first comprehensive study on redundancy in latent representations across various BC methods, backbones, and experimental settings.\n- **Beta values swept:** The paper sweeps beta in {1e-4, 1e-3, 5e-3, 1e-2}. The Lagrange multiplier ranges from 1e-4 to 1e-2. Beta around 1e-4 consistently yields stable improvements.\n- **OOD robustness:** The paper does **NOT** comprehensively evaluate OOD robustness. The authors explicitly acknowledge this as a limitation: \"its robustness to domain shifts, including changes in environment and task configurations, remains insufficiently studied.\" There is only limited generalization evidence from real-world experiments with \"unseen object-bowl combinations.\"\n- **Benchmarks:** CortexBench and LIBERO.\n\n**Key takeaway for your idea:** BC-IB is the closest prior work but has a significant gap -- it does not study OOD robustness, which is exactly the angle your proposed idea targets. This is a genuine open question.\n\n---\n\n### 2. \"Compression as an Adversarial Amplifier\" (arXiv 2604.06954)\n\n**Verdict: CONFIRMED to exist.**\n\n- **Full title:** \"Compression as an Adversarial Amplifier Through Decision Space Reduction\"\n- **Authors:** Lewis Evans, Harkrishan Jandu, Zihan Ye, Yang Lu, Shreyank N Gowda\n- **arXiv:** 2604.06954 (submitted April 8, 2026)\n- **What it proves:** Three core theoretical/empirical results:\n  1. Attacks formulated directly in compressed domains significantly outperform pixel-space adversarial methods under equivalent perturbation budgets.\n  2. Compression induces a non-invertible, information-losing transformation that **contracts classification margins** and increases sensitivity to perturbations (they call this \"decision space reduction\").\n  3. This margin contraction creates a critical vulnerability in compression-in-the-loop deployment settings.\n- **Scope:** Focuses on image classification, not robotics/VLA specifically.\n\n**Key takeaway for your idea:** This paper provides theoretical grounding that compression can hurt robustness by contracting margins. If your idea cites this to motivate why naive visual token compression in VLAs could degrade OOD robustness, the reference checks out.\n\n---\n\n### 3. OneWM-VLA (arXiv 2605.07931)\n\n**Verdict: CONFIRMED to exist.**\n\n- **Full title:** \"One Token Per Frame: Reconsidering Visual Bandwidth in World Models for VLA Policy\"\n- **Authors:** Zuojin Tang, Shengchao Yuan, Xiaoxin Bai, Zhiyuan Jin, De Ma, Gang Pan, Bin Liu\n- **arXiv:** 2605.07931v1\n- **Architecture:** Uses Adaptive Attention Pooling to compress each camera view into a **single semantic token per frame**, then produces latent streams and action trajectories under a unified flow-matching objective (no separate decoder). Built on a pi-0 (2B) backbone with 14.71M LoRA parameters.\n- **Key results:**\n  - MetaWorld MT50: 47.9% --&gt; 61.3% success rate\n  - LIBERO-Long: 85.2% --&gt; 95.6%\n  - Real robot (Fold Cloth, deformable): 20.0% --&gt; 60.0%\n- **Main claim:** Per-frame visual bandwidth can be reduced to a single token without compromising long-horizon performance.\n\n**Key takeaway for your idea:** This is a very recent paper (May 2025) showing extreme visual token compression works for VLA performance. However, it does not study whether this compression helps or hurts OOD generalization -- again supporting the gap your idea aims to fill.\n\n---\n\n### 4. LIBERO-Plus (CVPR 2026)\n\n**Verdict: CONFIRMED to exist at CVPR 2026.**\n\n- **Full title:** \"LIBERO-Plus: A Progressive Robustness Benchmark for Visual-Language-Action Models\"\n- **Authors:** Senyu Fei, Siyin Wang, Junhao Shi, Zihao Dai, Jikun Cai, Pengfang Qian, Li Ji, Xinzhe He, Shiduo Zhang, Zhaoye Fei, Jinlan Fu, Jingjing Gong, Xipeng Qiu\n- **arXiv:** 2510.13626 (preprint from Oct 2025), confirmed as a **CVPR 2026 poster** via the CVPR virtual site.\n- **What it shows:** Introduces controlled perturbations across **7 dimensions** (object layout, camera viewpoints, robot initial states, language instructions, lighting, background textures, sensor noise) with a fine-grained difficulty scale from L1 to L5, totaling 10,030 tasks.\n- **Key findings:**\n  - VLA models show **extreme sensitivity** to camera viewpoints and robot initial states, with performance dropping from **95% to below 30%** under modest perturbations.\n  - Models are **largely insensitive to language variations** -- further experiments reveal models tend to ignore language instructions completely.\n  - High benchmark scores do not equate to true competency.\n\n**Key takeaway for your idea:** This is a validated benchmark you could use to evaluate OOD robustness of VLAs under compression. The reference is accurate.\n\n---\n\n### 5. Has anyone already done \"variational information bottleneck + VLA + visual token compression for generalization\"?\n\n**Verdict: Not exactly, but there is closely related work.**\n\nThe specific combination proposed (using VIB to understand/improve generalization under visual token compression in VLAs) does **not** appear to have been done. However, several related pieces exist:\n\n- **BC-IB (ICML 2025):** Applies IB to behavior cloning latent representations, but does NOT study visual token compression specifically, and does NOT evaluate OOD robustness.\n- **CRAFT (arXiv 2602.12532):** Applies VIB to VLA models, but for a different purpose -- regulating multimodal information balance during contact-rich manipulation (forcing the model to attend to force signals). It uses VIB after the vision-language encoder with a curriculum annealing schedule. This is about **modality balancing**, not about understanding generalization under visual token compression.\n- **Compressor-VLA (arXiv 2511.18950):** Performs instruction-guided visual token compression for VLAs, achieving 3x compression with competitive performance, but does NOT use an information bottleneck framework and does NOT study OOD robustness.\n- **CAGE (arXiv 2601.21531):** Studies adversarial robustness under visual token compression, but for LVLMs (not VLAs), and focuses on adversarial attacks rather than IB-based generalization theory.\n- **VIB-Probe (arXiv 2601.05547):** Uses VIB for detecting hallucinations in vision-language models, not for action models or robustness.\n\n**Key takeaway for your idea:** The specific research gap -- using the information bottleneck framework to theoretically and empirically understand how visual token compression affects OOD generalization in VLA models -- appears to be genuinely open. CRAFT is the closest work but addresses a fundamentally different question (modality balancing for force-aware manipulation, not compression-generalization tradeoffs).\n\n---\n\n## Summary Table\n\n| Reference | Exists? | Key Detail Verified? | Notes |\n|---|---|---|---|\n| BC-IB (ICML 2025) | Yes | Beta: {1e-4, 1e-3, 5e-3, 1e-2}; No OOD evaluation | Authors acknowledge OOD gap as limitation |\n| arXiv 2604.06954 | Yes | Proves compression contracts margins | Image classification scope, not robotics |\n| OneWM-VLA (2605.07931) | Yes | 1 token/frame, strong results | No OOD/generalization study |\n| LIBERO-Plus (CVPR 2026) | Yes | 95% -&gt; &lt;30% under perturbations | Confirmed CVPR 2026 poster |\n| VIB for VLA visual compression | No exact match | CRAFT is closest but different goal | Proposed idea appears novel |\n\nSources:\n- [BC-IB (arXiv)](https://arxiv.org/abs/2502.02853)\n- [BC-IB (ICML 2025 poster)](https://icml.cc/virtual/2025/poster/45521)\n- [BC-IB (OpenReview)](https://openreview.net/forum?id=N2Dey442PJ)\n- [Compression as Adversarial Amplifier (arXiv 2604.06954)](https://arxiv.org/abs/2604.06954)\n- [OneWM-VLA (arXiv 2605.07931)](https://arxiv.org/abs/2605.07931v1)\n- [LIBERO-Plus (arXiv)](https://arxiv.org/abs/2510.13626)\n- [LIBERO-Plus (CVPR 2026 poster)](https://cvpr.thecvf.com/virtual/2026/poster/38735)\n- [CRAFT (arXiv 2602.12532)](https://arxiv.org/html/2602.12532)\n- [Compressor-VLA (arXiv 2511.18950)](https://arxiv.org/abs/2511.18950)\n- [Visual Token Compression Robustness (arXiv 2601.21531)](https://arxiv.org/abs/2601.21531)\n- [VIB-Probe (arXiv 2601.05547)](https://arxiv.org/abs/2601.05547)&lt;/result>\n&lt;usage>&lt;total_tokens>23408&lt;/total_tokens>&lt;tool_uses>18&lt;/tool_uses>&lt;duration_ms>154802&lt;/duration_ms>&lt;/usage>\n&lt;/task-notification>"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 66_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "9c08f6c3-9743-472b-baa1-ca12ec621400",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 67_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify VLA visual compression phase transitions",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d"
+}
+```
+
+---
+
+### Assistant
+
+_source line 68 · 2026-05-13T06:38:59.915Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Important finding: The IB "phase transition" concept (fitting → compression) has been significantly contested in the literature. Saxe et al. (ICLR 2018) showed that the compression phase doesn't hold universally — it depends on the activation function (tanh vs ReLU). The proposal claims to identify a "phase transition" in the IB sense, but this phase transition in the proposal is about a different thing — it's about a critical β* where compression transitions from helpful (filtering irrelevant features) to harmful (discarding task-critical info). This is not the same as the Shwartz-Ziv/Tishby fitting-compression phase transition. Let me check whether this is clearly differentiated.
+
+
+Actually, I realize the proposal's "phase transition" is really about the shape of the rate-distortion frontier — specifically where OOD performance degrades faster than ID performance at a critical β* threshold. This is distinct from the training dynamics debate, so the contested nature of IB learning phases doesn't directly undermine the proposal. That said, calling this a "phase transition" is a strong claim that assumes sharp, discontinuous behavior at β*, when it could just be a smooth crossover. The proposal would need to empirically demonstrate that sharpness rather than assuming it.
+
+Now I'm concerned about whether VIB's stochastic bottleneck will play nicely with flow matching. The action head in π₀ learns a velocity field that transforms noise into actions through ODE integration, while VIB introduces stochastic sampling from the visual representation. The tension is whether that added noise from the bottleneck destabilizes the flow matching training, since you're trying to learn a smooth velocity field while simultaneously pushing information through a stochastic compression layer. v_θ(x_t, t) - u_t||² (conditional flow matching objective)
+
+Inserting VIB between visual encoder and action head:
+- Visual features v → VIB → z ~ q(z|v) → action head → velocity field → actions
+- Loss = flow matching loss + β * KL(q(z|v) || r(z))
+
+The concern is that the VIB introduces stochastic noise into the conditioning of the flow matching objective. During training, the velocity field is conditioned on z which is itself stochastic. This could create issues:
+1. The flow matching objective already involves noise (in x_t = t * x₁ + (1-t) * x₀). Adding more stochasticity via VIB could destabilize training.
+2. The gradients through the VIB require reparameterization, which is standard, but the interaction with the flow matching gradients could lead to high variance.
+
+At high β values, the VIB bottleneck compresses z toward the prior, potentially losing the informative conditioning that flow matching needs to learn meaningful velocity fields. The proposal acknowledges this tension with β warmup schedules, but the interplay between two stochastic sources feels like a more fundamental challenge than the risk notes suggest. That said, there's real precedent here — latent diffusion models and variational flow-matching policies have successfully combined VAEs with flow matching, so it's not an insurmountable problem.
+
+Now I should check whether the agents have finished their analysis. I'm also realizing there's a conceptual issue with how the proposal engages with Evans et al.'s margin contraction results. Those results apply to classification, not continuous action prediction, and the notion of "margin contraction" doesn't translate cleanly to action spaces. The proposal frames a significant part of its narrative around escaping Evans et al.'s regime, but the domains are different enough that the comparison may not hold up — the theoretical grounding here feels somewhat superficial.
+
+Let me wait for the remaining agents to complete their work, then I can synthesize the overall assessment.
+
+The user is asking whether token pruning or augmentation in VLAs can improve generalization, with emphasis on theoretical justification. The proposal tackles this through an information bottleneck lens: compression creates a phase transition at a critical β* value, where below that threshold compression acts as regularization by filtering task-irrelevant information and improving generalization, while above it compression damages performance by removing task-critical details.
+
+However, I'm realizing the theoretical contribution here is somewhat limited. The core work is applying existing VIB theory to VLA tokens and empirically characterizing how the rate-distortion frontier shifts—that's methodologically sound but not fundamentally new theory. The connection to Evans et al.'s margin contraction provides some theoretical grounding, but there's a domain mismatch that weakens it. The proposal identifies empirical scaling laws around β* rather than deriving new theoretical bounds or proofs.
+
+The user specifically requested "多从理论角度" (more theoretical perspective), and while the IB framework provides formal structure, the actual contribution leans heavily empirical—tracing RD curves, identifying phase transitions through experiments, and characterizing how task properties affect β*. This might not fully satisfy someone looking for deeper theoretical insights into why compression helps generalization.
+
+That said, the shift toward "empirically characterize and provide scaling relationships" (from round 1 feedback) is more realistic about what's achievable. Now I should check how well the revision addressed the earlier concerns—the venue timeline was fixed, BC-IB is properly cited and distinguished, and the confusion matrix issue was resolved.
+
+Looking at the checklist, all seven round 1 issues have been handled. But there are still some lingering technical risks worth considering: the VIB and flow matching interaction could be trickier than the 1-2 weeks of debugging suggests, and the assumption of a sharp phase transition might not hold up empirically.
+
+There's also a mismatch between what the user asked for—theoretical analysis—and what's being delivered, which is mostly empirical work using information bottleneck as a conceptual lens. On the practical side, I'm uncertain whether VIB will scale as cleanly to a 2B model as it did on the lightweight architectures in BC-IB, since larger models have more representational flexibility. And the MetaWorld evaluation needs clarification: if π₀ wasn't trained on MetaWorld, would they need to fine-tune it first, or are they planning something else?
+
+Looking at the scoring now: novelty sits around 3.5 because while applying VIB to visual tokens and tracing rate-distortion curves is a fresh combination, each piece is established—VIB itself, information bottleneck for manipulation, visual compression for VLAs. The "phase transition" framing might be overselling what could be a gradual crossover. Feasibility lands at 3.0 to 3.5 due to several technical uncertainties: how VIB interacts with flow matching, whether a 15-point β sweep across full LIBERO-Plus is computationally realistic, the MetaWorld setup ambiguity, and whether the phase transition actually emerges as a clean phenomenon. The resource estimate seems plausible but tight. The writing itself is strong and well-organized at a 4.0, though it cuts off mid-sentence.
+
+For impact, the real value would be understanding when compression helps versus hurts VLA generalization, and potentially deriving a practical recipe for predicting optimal compression given task properties. But there's a risk the empirical findings flatten into smooth tradeoffs rather than the compelling phase transition story. I should hold off on a final assessment until seeing what the other reviewers think.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9c08f6c3-9743-472b-baa1-ca12ec621400",
+  "isSidechain": false,
+  "requestId": "req_011Caz7APCB2bZ5fRa93pvWN",
+  "type": "assistant",
+  "uuid": "8b6e36a5-f776-4f49-9619-01655f8c5d27",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DSWQw4D9nYebqPvuoKwiKh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 915,
+      "cache_creation_input_tokens": 1680,
+      "cache_read_input_tokens": 42883,
+      "output_tokens": 2740,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1680,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 915,
+          "output_tokens": 2740,
+          "cache_read_input_tokens": 42883,
+          "cache_creation_input_tokens": 1680,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1680
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-13T06:38:59.940Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CV4Mb6VFszkZafCJmJcyBQ`</summary>
+
+```json
+{
+  "query": "VFP variational flow matching policy robot manipulation arXiv 2508"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8b6e36a5-f776-4f49-9619-01655f8c5d27",
+  "isSidechain": false,
+  "requestId": "req_011Caz7APCB2bZ5fRa93pvWN",
+  "type": "assistant",
+  "uuid": "24cd3ac2-abd3-4e62-bbba-7fccf28fadd8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DSWQw4D9nYebqPvuoKwiKh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 915,
+      "cache_creation_input_tokens": 1680,
+      "cache_read_input_tokens": 42883,
+      "output_tokens": 2740,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1680,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 915,
+          "output_tokens": 2740,
+          "cache_read_input_tokens": 42883,
+          "cache_creation_input_tokens": 1680,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1680
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70 · 2026-05-13T06:39:00.105Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_017ExREAei8VziFw1hMK8eQw`</summary>
+
+```json
+{
+  "query": "LUVC \"low-frequency\" visual tokens robustness noise VLA 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "24cd3ac2-abd3-4e62-bbba-7fccf28fadd8",
+  "isSidechain": false,
+  "requestId": "req_011Caz7APCB2bZ5fRa93pvWN",
+  "type": "assistant",
+  "uuid": "f81676dd-62f3-4a0d-9848-a479343bd356",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DSWQw4D9nYebqPvuoKwiKh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 915,
+      "cache_creation_input_tokens": 1680,
+      "cache_read_input_tokens": 42883,
+      "output_tokens": 2740,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1680,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 915,
+          "output_tokens": 2740,
+          "cache_read_input_tokens": 42883,
+          "cache_creation_input_tokens": 1680,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1680
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-13T06:39:06.853Z_
+
+<details><summary>↩ Tool result · `toolu_01CV4Mb6VFszkZafCJmJcyBQ`</summary>
+
+```text
+Web search results for query: "VFP variational flow matching policy robot manipulation arXiv 2508"
+
+Links: [{"title":"VFP: Variational Flow-Matching Policy for Multi-Modal Robot Manipulation","url":"https://arxiv.org/html/2508.01622v1"},{"title":"[2508.01622] VFP: Variational Flow-Matching Policy for Multi-Modal Robot Manipulation","url":"https://arxiv.org/abs/2508.01622"},{"title":"Computer Science Aug 2025","url":"https://www.arxiv.org/list/cs/2025-08?skip=850&show=25"},{"title":"VFP: Variational Flow-Matching Policy for Multi-Modal Robot Manipulation | alphaXiv","url":"https://www.alphaxiv.org/overview/2508.01622v1"},{"title":"(PDF) VFP: Variational Flow-Matching Policy for Multi-Modal Robot Manipulation","url":"https://www.researchgate.net/publication/394292501_VFP_Variational_Flow-Matching_Policy_for_Multi-Modal_Robot_Manipulation"},{"title":"VFP: Variational Flow-Matching Policy for Multi-Modal Robot ...","url":"https://bytez.com/docs/arxiv/2508.01622/paper"},{"title":"CoFreeVLA: Collision-Free Dual-Arm Manipulation via Vision-Language-Action Model and Risk Estimation","url":"https://arxiv.org/html/2601.21712v1"},{"title":"Flow Matching for Tabular Data Synthesis","url":"https://arxiv.org/pdf/2512.00698"},{"title":"Variational Flow Matching (VFM)","url":"https://www.emergentmind.com/topics/variational-flow-matching-vfp"},{"title":"Flow Policy Gradients for Robot Control","url":"https://arxiv.org/html/2602.02481v1"}]
+
+Based on the search results, here's what I found about VFP:
+
+## Overview
+
+VFP (Variational Flow-Matching Policy) introduces a variational latent prior for mode-aware action generation and effectively captures both task-level and trajectory-level multi-modality.
+
+## Problem It Addresses
+
+Flow-matching-based policies have recently emerged as a promising approach for learning-based robot manipulation, offering significant acceleration in action sampling compared to diffusion-based policies. However, conventional flow-matching methods struggle with multi-modality, often collapsing to averaged or ambiguous behaviors in complex manipulation tasks.
+
+## Key Technical Components
+
+The key idea of VFP is to use a variational latent prior to capture the inherent multi-modality in expert demonstrations, while employing a flow-matching model as a conditional decoder that generates actions specific to each mode. 
+
+Additionally, VFP further incorporates Kantorovich Optimal Transport (K-OT) for distribution-level alignment and utilizes a Mixture-of-Experts (MoE) decoder for mode specialization and efficient inference.
+
+## Performance Results
+
+VFP was evaluated on 41 simulated tasks and 3 real-robot tasks, with results showing that VFP achieves a 49% relative improvement in task success rate over standard flow-based baselines in simulation, and further outperforms them on real-robot tasks, while still maintaining fast inference and a compact model size.
+
+The paper was published on arXiv on August 3, 2025 (arXiv:2508.01622).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "24cd3ac2-abd3-4e62-bbba-7fccf28fadd8",
+  "isSidechain": false,
+  "promptId": "d00fd39b-05e8-4d12-acea-1a8fbd608c3e",
+  "type": "user",
+  "uuid": "8e0e727e-3fa6-4a96-851f-beb74e702035",
+  "toolUseResult": {
+    "query": "VFP variational flow matching policy robot manipulation arXiv 2508",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01RvSzChxkPhwnmz8gueiofB",
+        "content": [
+          {
+            "title": "VFP: Variational Flow-Matching Policy for Multi-Modal Robot Manipulation",
+            "url": "https://arxiv.org/html/2508.01622v1"
+          },
+          {
+            "title": "[2508.01622] VFP: Variational Flow-Matching Policy for Multi-Modal Robot Manipulation",
+            "url": "https://arxiv.org/abs/2508.01622"
+          },
+          {
+            "title": "Computer Science Aug 2025",
+            "url": "https://www.arxiv.org/list/cs/2025-08?skip=850&show=25"
+          },
+          {
+            "title": "VFP: Variational Flow-Matching Policy for Multi-Modal Robot Manipulation | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2508.01622v1"
+          },
+          {
+            "title": "(PDF) VFP: Variational Flow-Matching Policy for Multi-Modal Robot Manipulation",
+            "url": "https://www.researchgate.net/publication/394292501_VFP_Variational_Flow-Matching_Policy_for_Multi-Modal_Robot_Manipulation"
+          },
+          {
+            "title": "VFP: Variational Flow-Matching Policy for Multi-Modal Robot ...",
+            "url": "https://bytez.com/docs/arxiv/2508.01622/paper"
+          },
+          {
+            "title": "CoFreeVLA: Collision-Free Dual-Arm Manipulation via Vision-Language-Action Model and Risk Estimation",
+            "url": "https://arxiv.org/html/2601.21712v1"
+          },
+          {
+            "title": "Flow Matching for Tabular Data Synthesis",
+            "url": "https://arxiv.org/pdf/2512.00698"
+          },
+          {
+            "title": "Variational Flow Matching (VFM)",
+            "url": "https://www.emergentmind.com/topics/variational-flow-matching-vfp"
+          },
+          {
+            "title": "Flow Policy Gradients for Robot Control",
+            "url": "https://arxiv.org/html/2602.02481v1"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about VFP:\n\n## Overview\n\nVFP (Variational Flow-Matching Policy) introduces a variational latent prior for mode-aware action generation and effectively captures both task-level and trajectory-level multi-modality.\n\n## Problem It Addresses\n\nFlow-matching-based policies have recently emerged as a promising approach for learning-based robot manipulation, offering significant acceleration in action sampling compared to diffusion-based policies. However, conventional flow-matching methods struggle with multi-modality, often collapsing to averaged or ambiguous behaviors in complex manipulation tasks.\n\n## Key Technical Components\n\nThe key idea of VFP is to use a variational latent prior to capture the inherent multi-modality in expert demonstrations, while employing a flow-matching model as a conditional decoder that generates actions specific to each mode. \n\nAdditionally, VFP further incorporates Kantorovich Optimal Transport (K-OT) for distribution-level alignment and utilizes a Mixture-of-Experts (MoE) decoder for mode specialization and efficient inference.\n\n## Performance Results\n\nVFP was evaluated on 41 simulated tasks and 3 real-robot tasks, with results showing that VFP achieves a 49% relative improvement in task success rate over standard flow-based baselines in simulation, and further outperforms them on real-robot tasks, while still maintaining fast inference and a compact model size.\n\nThe paper was published on arXiv on August 3, 2025 (arXiv:2508.01622)."
+    ],
+    "durationSeconds": 6.907341006000002
+  },
+  "sourceToolAssistantUUID": "24cd3ac2-abd3-4e62-bbba-7fccf28fadd8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 72_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "8e0e727e-3fa6-4a96-851f-beb74e702035",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 73_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify VLA visual compression phase transitions",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d"
+}
+```
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-13T06:39:07.314Z_
+
+<details><summary>↩ Tool result · `toolu_017ExREAei8VziFw1hMK8eQw`</summary>
+
+```text
+Web search results for query: "LUVC "low-frequency" visual tokens robustness noise VLA 2025"
+
+Links: [{"title":"Towards Lossless Ultimate Vision Token Compression for VLMs","url":"https://arxiv.org/html/2512.09010"},{"title":"Published as a conference paper at ICLR 2026 ON ROBUSTNESS","url":"https://arxiv.org/pdf/2510.00037v4"},{"title":"On Robustness of Vision-Language-Action Model against Multi-Modal Perturbations","url":"https://arxiv.org/html/2510.00037v4"},{"title":"LUVC: Lossless Ultimate Vision Compression","url":"https://www.emergentmind.com/topics/lossless-ultimate-vision-tokens-compression-luvc"},{"title":"VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models","url":"https://arxiv.org/html/2603.22991v1"},{"title":"ON ROBUSTNESS OF VISION-LANGUAGE-ACTION ...","url":"https://openreview.net/pdf/4c9de20f29e6aad53dfd1f3b339230208e43a2ff.pdf"},{"title":"[2512.09010] Towards Lossless Ultimate Vision Token Compression for VLMs","url":"https://arxiv.org/abs/2512.09010"},{"title":"Exploring the Robustness of Vision-Language-Action Models against Sensor Attacks | Proceedings of the 2025 Workshop on Large AI Systems and Models with Privacy and Security Analysis","url":"https://dl.acm.org/doi/10.1145/3733800.3763262"},{"title":"In-depth Robustness Analysis for Vision-Language-Action Models | OpenReview","url":"https://openreview.net/forum?id=6mEfYoMRpF"},{"title":"How brittle are the VLA models in robotics | by Yanan Chen | Medium","url":"https://medium.com/@yananchen1116/how-brittle-are-the-vla-models-in-robotics-66ab85286ecf"}]
+
+I found relevant results for your search query about LUVC (Lossless Ultimate Vision Token Compression). Here's what the search revealed:
+
+## LUVC Overview
+
+LUVC extends token compression to the visual encoder through a computationally efficient Orthogonal Iterative Merger (OIM) and eliminates noisy tokens through a Spectrum Pruning Unit (SPU) equipped with a carefully crafted low-pass filter in LLM.
+
+## Low-Frequency Visual Tokens and Noise Robustness
+
+The low-frequency component is central to LUVC's approach to robustness. Visual token spectrum exhibits robustness against position bias, which provides reliable grounding for stable pruning unlike attention weights. Existing research has empirically verified the inherent high-frequency attenuation property in Transformer architectures during forward propagation, providing additional theoretical support for the frequency-based SPU.
+
+## Performance and Robustness
+
+LUVC achieves a 2× speedup inference in language model with negligible accuracy degradation, and the training-free characteristic enables immediate deployment across multiple VLMs. LUVC maintains stable accuracy as the pruning starting layer shifts forward, in stark contrast to algorithms like VTW, which exhibit catastrophic performance collapse when pruning is applied to early-stage layers, validating the stability and layer-agnostic robustness of LUVC.
+
+The research demonstrates that LUVC's frequency-based approach using low-pass filtering provides a more robust foundation for visual token compression in Vision Language Models compared to attention-based alternatives.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f81676dd-62f3-4a0d-9848-a479343bd356",
+  "isSidechain": false,
+  "promptId": "d00fd39b-05e8-4d12-acea-1a8fbd608c3e",
+  "type": "user",
+  "uuid": "a60be100-ee63-4752-be3a-6c5ccceabef1",
+  "toolUseResult": {
+    "query": "LUVC \"low-frequency\" visual tokens robustness noise VLA 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_015zsMumqSyntdDi43Q915wn",
+        "content": [
+          {
+            "title": "Towards Lossless Ultimate Vision Token Compression for VLMs",
+            "url": "https://arxiv.org/html/2512.09010"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026 ON ROBUSTNESS",
+            "url": "https://arxiv.org/pdf/2510.00037v4"
+          },
+          {
+            "title": "On Robustness of Vision-Language-Action Model against Multi-Modal Perturbations",
+            "url": "https://arxiv.org/html/2510.00037v4"
+          },
+          {
+            "title": "LUVC: Lossless Ultimate Vision Compression",
+            "url": "https://www.emergentmind.com/topics/lossless-ultimate-vision-tokens-compression-luvc"
+          },
+          {
+            "title": "VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2603.22991v1"
+          },
+          {
+            "title": "ON ROBUSTNESS OF VISION-LANGUAGE-ACTION ...",
+            "url": "https://openreview.net/pdf/4c9de20f29e6aad53dfd1f3b339230208e43a2ff.pdf"
+          },
+          {
+            "title": "[2512.09010] Towards Lossless Ultimate Vision Token Compression for VLMs",
+            "url": "https://arxiv.org/abs/2512.09010"
+          },
+          {
+            "title": "Exploring the Robustness of Vision-Language-Action Models against Sensor Attacks | Proceedings of the 2025 Workshop on Large AI Systems and Models with Privacy and Security Analysis",
+            "url": "https://dl.acm.org/doi/10.1145/3733800.3763262"
+          },
+          {
+            "title": "In-depth Robustness Analysis for Vision-Language-Action Models | OpenReview",
+            "url": "https://openreview.net/forum?id=6mEfYoMRpF"
+          },
+          {
+            "title": "How brittle are the VLA models in robotics | by Yanan Chen | Medium",
+            "url": "https://medium.com/@yananchen1116/how-brittle-are-the-vla-models-in-robotics-66ab85286ecf"
+          }
+        ]
+      },
+      "I found relevant results for your search query about LUVC (Lossless Ultimate Vision Token Compression). Here's what the search revealed:\n\n## LUVC Overview\n\nLUVC extends token compression to the visual encoder through a computationally efficient Orthogonal Iterative Merger (OIM) and eliminates noisy tokens through a Spectrum Pruning Unit (SPU) equipped with a carefully crafted low-pass filter in LLM.\n\n## Low-Frequency Visual Tokens and Noise Robustness\n\nThe low-frequency component is central to LUVC's approach to robustness. Visual token spectrum exhibits robustness against position bias, which provides reliable grounding for stable pruning unlike attention weights. Existing research has empirically verified the inherent high-frequency attenuation property in Transformer architectures during forward propagation, providing additional theoretical support for the frequency-based SPU.\n\n## Performance and Robustness\n\nLUVC achieves a 2× speedup inference in language model with negligible accuracy degradation, and the training-free characteristic enables immediate deployment across multiple VLMs. LUVC maintains stable accuracy as the pruning starting layer shifts forward, in stark contrast to algorithms like VTW, which exhibit catastrophic performance collapse when pruning is applied to early-stage layers, validating the stability and layer-agnostic robustness of LUVC.\n\nThe research demonstrates that LUVC's frequency-based approach using low-pass filtering provides a more robust foundation for visual token compression in Vision Language Models compared to attention-based alternatives."
+    ],
+    "durationSeconds": 7.204913708999986
+  },
+  "sourceToolAssistantUUID": "f81676dd-62f3-4a0d-9848-a479343bd356",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 75 · 2026-05-13T06:39:07.318Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "remove",
+  "timestamp": "2026-05-13T06:39:07.318Z",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 76 · 2026-05-13T06:39:07.318Z_
+
+```json
+{
+  "parentUuid": "a60be100-ee63-4752-be3a-6c5ccceabef1",
+  "isSidechain": false,
+  "attachment": {
+    "type": "queued_command",
+    "prompt": "&lt;task-notification>\n&lt;task-id>af05a12dcaf864aed&lt;/task-id>\n&lt;tool-use-id>toolu_0178gT2CVZZjL2WdT4nwHws8&lt;/tool-use-id>\n&lt;output-file>/tmp/claude-1000/-/45183731-1e2f-4b44-81c9-d3cd33b5498d/tasks/af05a12dcaf864aed.output&lt;/output-file>\n&lt;status>completed&lt;/status>\n&lt;summary>Agent \"Verify BC-IB and core references\" completed&lt;/summary>\n&lt;result>I now have comprehensive findings for all five queries. Here is my detailed report:\n\n---\n\n## Verification Report: ML Research Idea References\n\n### 1. BC-IB (Information Bottleneck for Behavior Cloning) -- ICML 2025\n\n**Verdict: CONFIRMED to exist.**\n\n- **Full title:** \"Rethinking Latent Redundancy in Behavior Cloning: An Information Bottleneck Approach for Robot Manipulation\"\n- **Authors:** Shuanghao Bai, Wanqi Zhou, Pengxiang Ding, Wei Zhao, Donglin Wang, Badong Chen\n- **Venue:** ICML 2025 (confirmed via both OpenReview and ICML virtual site)\n- **arXiv:** 2502.02853\n- **What it does:** Incorporates the Information Bottleneck (IB) principle into Behavior Cloning (BC) to compress task-irrelevant information in latent representations while preserving task-relevant features. It provides the first comprehensive study on redundancy in latent representations across various BC methods, backbones, and experimental settings.\n- **Beta values swept:** The paper sweeps beta in {1e-4, 1e-3, 5e-3, 1e-2}. The Lagrange multiplier ranges from 1e-4 to 1e-2. Beta around 1e-4 consistently yields stable improvements.\n- **OOD robustness:** The paper does **NOT** comprehensively evaluate OOD robustness. The authors explicitly acknowledge this as a limitation: \"its robustness to domain shifts, including changes in environment and task configurations, remains insufficiently studied.\" There is only limited generalization evidence from real-world experiments with \"unseen object-bowl combinations.\"\n- **Benchmarks:** CortexBench and LIBERO.\n\n**Key takeaway for your idea:** BC-IB is the closest prior work but has a significant gap -- it does not study OOD robustness, which is exactly the angle your proposed idea targets. This is a genuine open question.\n\n---\n\n### 2. \"Compression as an Adversarial Amplifier\" (arXiv 2604.06954)\n\n**Verdict: CONFIRMED to exist.**\n\n- **Full title:** \"Compression as an Adversarial Amplifier Through Decision Space Reduction\"\n- **Authors:** Lewis Evans, Harkrishan Jandu, Zihan Ye, Yang Lu, Shreyank N Gowda\n- **arXiv:** 2604.06954 (submitted April 8, 2026)\n- **What it proves:** Three core theoretical/empirical results:\n  1. Attacks formulated directly in compressed domains significantly outperform pixel-space adversarial methods under equivalent perturbation budgets.\n  2. Compression induces a non-invertible, information-losing transformation that **contracts classification margins** and increases sensitivity to perturbations (they call this \"decision space reduction\").\n  3. This margin contraction creates a critical vulnerability in compression-in-the-loop deployment settings.\n- **Scope:** Focuses on image classification, not robotics/VLA specifically.\n\n**Key takeaway for your idea:** This paper provides theoretical grounding that compression can hurt robustness by contracting margins. If your idea cites this to motivate why naive visual token compression in VLAs could degrade OOD robustness, the reference checks out.\n\n---\n\n### 3. OneWM-VLA (arXiv 2605.07931)\n\n**Verdict: CONFIRMED to exist.**\n\n- **Full title:** \"One Token Per Frame: Reconsidering Visual Bandwidth in World Models for VLA Policy\"\n- **Authors:** Zuojin Tang, Shengchao Yuan, Xiaoxin Bai, Zhiyuan Jin, De Ma, Gang Pan, Bin Liu\n- **arXiv:** 2605.07931v1\n- **Architecture:** Uses Adaptive Attention Pooling to compress each camera view into a **single semantic token per frame**, then produces latent streams and action trajectories under a unified flow-matching objective (no separate decoder). Built on a pi-0 (2B) backbone with 14.71M LoRA parameters.\n- **Key results:**\n  - MetaWorld MT50: 47.9% --&gt; 61.3% success rate\n  - LIBERO-Long: 85.2% --&gt; 95.6%\n  - Real robot (Fold Cloth, deformable): 20.0% --&gt; 60.0%\n- **Main claim:** Per-frame visual bandwidth can be reduced to a single token without compromising long-horizon performance.\n\n**Key takeaway for your idea:** This is a very recent paper (May 2025) showing extreme visual token compression works for VLA performance. However, it does not study whether this compression helps or hurts OOD generalization -- again supporting the gap your idea aims to fill.\n\n---\n\n### 4. LIBERO-Plus (CVPR 2026)\n\n**Verdict: CONFIRMED to exist at CVPR 2026.**\n\n- **Full title:** \"LIBERO-Plus: A Progressive Robustness Benchmark for Visual-Language-Action Models\"\n- **Authors:** Senyu Fei, Siyin Wang, Junhao Shi, Zihao Dai, Jikun Cai, Pengfang Qian, Li Ji, Xinzhe He, Shiduo Zhang, Zhaoye Fei, Jinlan Fu, Jingjing Gong, Xipeng Qiu\n- **arXiv:** 2510.13626 (preprint from Oct 2025), confirmed as a **CVPR 2026 poster** via the CVPR virtual site.\n- **What it shows:** Introduces controlled perturbations across **7 dimensions** (object layout, camera viewpoints, robot initial states, language instructions, lighting, background textures, sensor noise) with a fine-grained difficulty scale from L1 to L5, totaling 10,030 tasks.\n- **Key findings:**\n  - VLA models show **extreme sensitivity** to camera viewpoints and robot initial states, with performance dropping from **95% to below 30%** under modest perturbations.\n  - Models are **largely insensitive to language variations** -- further experiments reveal models tend to ignore language instructions completely.\n  - High benchmark scores do not equate to true competency.\n\n**Key takeaway for your idea:** This is a validated benchmark you could use to evaluate OOD robustness of VLAs under compression. The reference is accurate.\n\n---\n\n### 5. Has anyone already done \"variational information bottleneck + VLA + visual token compression for generalization\"?\n\n**Verdict: Not exactly, but there is closely related work.**\n\nThe specific combination proposed (using VIB to understand/improve generalization under visual token compression in VLAs) does **not** appear to have been done. However, several related pieces exist:\n\n- **BC-IB (ICML 2025):** Applies IB to behavior cloning latent representations, but does NOT study visual token compression specifically, and does NOT evaluate OOD robustness.\n- **CRAFT (arXiv 2602.12532):** Applies VIB to VLA models, but for a different purpose -- regulating multimodal information balance during contact-rich manipulation (forcing the model to attend to force signals). It uses VIB after the vision-language encoder with a curriculum annealing schedule. This is about **modality balancing**, not about understanding generalization under visual token compression.\n- **Compressor-VLA (arXiv 2511.18950):** Performs instruction-guided visual token compression for VLAs, achieving 3x compression with competitive performance, but does NOT use an information bottleneck framework and does NOT study OOD robustness.\n- **CAGE (arXiv 2601.21531):** Studies adversarial robustness under visual token compression, but for LVLMs (not VLAs), and focuses on adversarial attacks rather than IB-based generalization theory.\n- **VIB-Probe (arXiv 2601.05547):** Uses VIB for detecting hallucinations in vision-language models, not for action models or robustness.\n\n**Key takeaway for your idea:** The specific research gap -- using the information bottleneck framework to theoretically and empirically understand how visual token compression affects OOD generalization in VLA models -- appears to be genuinely open. CRAFT is the closest work but addresses a fundamentally different question (modality balancing for force-aware manipulation, not compression-generalization tradeoffs).\n\n---\n\n## Summary Table\n\n| Reference | Exists? | Key Detail Verified? | Notes |\n|---|---|---|---|\n| BC-IB (ICML 2025) | Yes | Beta: {1e-4, 1e-3, 5e-3, 1e-2}; No OOD evaluation | Authors acknowledge OOD gap as limitation |\n| arXiv 2604.06954 | Yes | Proves compression contracts margins | Image classification scope, not robotics |\n| OneWM-VLA (2605.07931) | Yes | 1 token/frame, strong results | No OOD/generalization study |\n| LIBERO-Plus (CVPR 2026) | Yes | 95% -&gt; &lt;30% under perturbations | Confirmed CVPR 2026 poster |\n| VIB for VLA visual compression | No exact match | CRAFT is closest but different goal | Proposed idea appears novel |\n\nSources:\n- [BC-IB (arXiv)](https://arxiv.org/abs/2502.02853)\n- [BC-IB (ICML 2025 poster)](https://icml.cc/virtual/2025/poster/45521)\n- [BC-IB (OpenReview)](https://openreview.net/forum?id=N2Dey442PJ)\n- [Compression as Adversarial Amplifier (arXiv 2604.06954)](https://arxiv.org/abs/2604.06954)\n- [OneWM-VLA (arXiv 2605.07931)](https://arxiv.org/abs/2605.07931v1)\n- [LIBERO-Plus (arXiv)](https://arxiv.org/abs/2510.13626)\n- [LIBERO-Plus (CVPR 2026 poster)](https://cvpr.thecvf.com/virtual/2026/poster/38735)\n- [CRAFT (arXiv 2602.12532)](https://arxiv.org/html/2602.12532)\n- [Compressor-VLA (arXiv 2511.18950)](https://arxiv.org/abs/2511.18950)\n- [Visual Token Compression Robustness (arXiv 2601.21531)](https://arxiv.org/abs/2601.21531)\n- [VIB-Probe (arXiv 2601.05547)](https://arxiv.org/abs/2601.05547)&lt;/result>\n&lt;usage>&lt;total_tokens>23408&lt;/total_tokens>&lt;tool_uses>18&lt;/tool_uses>&lt;duration_ms>154802&lt;/duration_ms>&lt;/usage>\n&lt;/task-notification>",
+    "commandMode": "task-notification"
+  },
+  "type": "attachment",
+  "uuid": "6d2d3b8e-b5e8-4177-8cc6-f8e72449c173",
+  "timestamp": "2026-05-13T06:39:07.318Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 77 · 2026-05-13T06:39:15.797Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Excellent! I now have important information:
+
+1. **CRAFT (arXiv 2602.12532)**: This paper applies VIB to VLA models! It uses VIB after the vision-language encoder with a curriculum annealing schedule, for regulating multimodal information balance during contact-rich manipulation. This is a very relevant work that the proposal does NOT cite. However, CRAFT is about modality balancing (forcing attention to force signals), not about understanding compression-generalization tradeoffs. Still, the technical approach (VIB + VLA) is very similar and should be cited.
+
+
+2. **VFP (arXiv 2508.01622)**: This work demonstrates that variational latent priors work well with flow matching in robot manipulation, which suggests VIB and flow matching are compatible approaches. Let me dig deeper into CRAFT to see exactly what it's doing.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6d2d3b8e-b5e8-4177-8cc6-f8e72449c173",
+  "isSidechain": false,
+  "requestId": "req_011Caz7GHNMFbkk7WaJyGNUL",
+  "type": "assistant",
+  "uuid": "a2837536-983c-4808-8376-41778f3abd21",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WS6cb4NvrWmxdk1P7k7efe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8335,
+      "cache_read_input_tokens": 44563,
+      "output_tokens": 513,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8335,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 513,
+          "cache_read_input_tokens": 44563,
+          "cache_creation_input_tokens": 8335,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8335
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 78 · 2026-05-13T06:39:15.798Z_
+
+Important finding: CRAFT (arXiv 2602.12532) applies VIB to VLA models. Let me investigate this further.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a2837536-983c-4808-8376-41778f3abd21",
+  "isSidechain": false,
+  "requestId": "req_011Caz7GHNMFbkk7WaJyGNUL",
+  "type": "assistant",
+  "uuid": "59c11442-e54f-44a1-84c2-0d6cf5bc6b0b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WS6cb4NvrWmxdk1P7k7efe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8335,
+      "cache_read_input_tokens": 44563,
+      "output_tokens": 513,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8335,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 513,
+          "cache_read_input_tokens": 44563,
+          "cache_creation_input_tokens": 8335,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8335
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-13T06:39:19.128Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01GsiC35qqAHq7EsFtVmQt4g`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2602.12532",
+  "prompt": "Read this paper carefully. I need to know:\n1) What exactly does CRAFT do? How does it use VIB in a VLA model?\n2) Where is the VIB inserted - at the visual token level or after the vision-language encoder?\n3) Does it study OOD generalization or only in-distribution performance?\n4) Does it trace rate-distortion frontiers?\n5) What VLA architecture does it use?\n6) What benchmarks does it use?\n7) How does it handle β scheduling?\nReport key details and exact quotes if possible."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "59c11442-e54f-44a1-84c2-0d6cf5bc6b0b",
+  "isSidechain": false,
+  "requestId": "req_011Caz7GHNMFbkk7WaJyGNUL",
+  "type": "assistant",
+  "uuid": "52dbaa65-ef3a-4c36-86b5-bdf2520f66b2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WS6cb4NvrWmxdk1P7k7efe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8335,
+      "cache_read_input_tokens": 44563,
+      "output_tokens": 513,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8335,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 513,
+          "cache_read_input_tokens": 44563,
+          "cache_creation_input_tokens": 8335,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8335
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 80 · 2026-05-13T06:39:19.391Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Vt5FtK7cd6oU574a67FvD4`</summary>
+
+```json
+{
+  "query": "CRAFT VIB VLA \"contact-rich\" force manipulation arXiv 2602.12532 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "52dbaa65-ef3a-4c36-86b5-bdf2520f66b2",
+  "isSidechain": false,
+  "requestId": "req_011Caz7GHNMFbkk7WaJyGNUL",
+  "type": "assistant",
+  "uuid": "378208df-b18d-4126-8085-d29d14e08073",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WS6cb4NvrWmxdk1P7k7efe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8335,
+      "cache_read_input_tokens": 44563,
+      "output_tokens": 513,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8335,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 513,
+          "cache_read_input_tokens": 44563,
+          "cache_creation_input_tokens": 8335,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8335
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 81 · 2026-05-13T06:39:26.594Z_
+
+<details><summary>↩ Tool result · `toolu_01Vt5FtK7cd6oU574a67FvD4`</summary>
+
+```text
+Web search results for query: "CRAFT VIB VLA "contact-rich" force manipulation arXiv 2602.12532 2026"
+
+Links: [{"title":"CRAFT: Adapting VLA Models to Contact-rich Manipulation via Force-aware Curriculum Fine-tuning","url":"https://arxiv.org/html/2602.12532"},{"title":"[2602.12532] CRAFT: Adapting VLA Models to Contact-rich Manipulation via Force-aware Curriculum Fine-tuning","url":"https://arxiv.org/abs/2602.12532"},{"title":"[2505.22159] ForceVLA: Enhancing VLA Models with a Force-aware MoE for Contact-rich Manipulation","url":"https://arxiv.org/abs/2505.22159"},{"title":"[2602.23648] FAVLA: A Force-Adaptive Fast-Slow VLA model for Contact-Rich Robotic Manipulation","url":"https://arxiv.org/abs/2602.23648"},{"title":"ForceVLA: Enhancing VLA Models with a Force-aware MoE for Contact-rich Manipulation","url":"https://arxiv.org/html/2505.22159v1"},{"title":"HapticVLA: Contact-Rich Manipulation via Vision-Language-Action Model without Inference-Time Tactile Sensing","url":"https://arxiv.org/html/2603.15257v1"},{"title":"FAVLA: A Force-Adaptive Fast–Slow VLA model for Contact-Rich Robotic Manipulation","url":"https://arxiv.org/html/2602.23648"},{"title":"FD-VLA: Force-Distilled Vision-Language-Action Model for Contact-Rich Manipulation","url":"https://arxiv.org/html/2602.02142"},{"title":"[2602.02142] FD-VLA: Force-Distilled Vision-Language-Action Model for Contact-Rich Manipulation","url":"https://arxiv.org/abs/2602.02142"},{"title":"ForceVLA: Enhancing VLA Models with a Force-aware ...","url":"https://openreview.net/pdf/f2c61f8b6264a4b3e7b4a7a87c0a7f09e8cc9b48.pdf"}]
+
+Based on the search results, I found information about the paper you requested:
+
+CRAFT: Adapting VLA Models to Contact-rich Manipulation via Force-aware Curriculum Fine-tuning (arXiv:2602.12532) is a research paper that addresses a key challenge in robotic manipulation.
+
+Vision-Language-Action (VLA) models have shown a strong capability in enabling robots to execute general instructions, yet they struggle with contact-rich manipulation tasks, where success requires precise alignment, stable contact maintenance, and effective handling of deformable objects.
+
+The paper proposes CRAFT as a solution to this problem. CRAFT is a lightweight and model-agnostic framework for adapting pretrained VLA models to contact-rich manipulation that introduces a variational information bottleneck (VIB) after the vision–language encoder to temporarily restrict the information flow from visual and language embeddings.
+
+Within a curriculum fine-tuning scheme, the VIB initially imposes a strong Kullback–Leibler (KL) penalty that suppresses high-entropy visual and language signals, compelling the policy to focus on low-entropy force inputs and thereby acquire stable, contact-aware behaviors, and as training progresses, the weight of the VIB regularization is gradually annealed, releasing the bottleneck and allowing the model to reincorporate rich perceptual information while retaining the previously learned force-sensitive representations.
+
+Real-world experiments demonstrate that CRAFT consistently improves task success, generalizes to unseen objects and novel task variations, and adapts effectively across diverse VLA architectures, enabling robust and generalizable contact-rich manipulation.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "378208df-b18d-4126-8085-d29d14e08073",
+  "isSidechain": false,
+  "promptId": "d00fd39b-05e8-4d12-acea-1a8fbd608c3e",
+  "type": "user",
+  "uuid": "5af13615-d207-4354-80b6-272e749779a5",
+  "toolUseResult": {
+    "query": "CRAFT VIB VLA \"contact-rich\" force manipulation arXiv 2602.12532 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01W59YVcGoPWgh7Y9PVjynJU",
+        "content": [
+          {
+            "title": "CRAFT: Adapting VLA Models to Contact-rich Manipulation via Force-aware Curriculum Fine-tuning",
+            "url": "https://arxiv.org/html/2602.12532"
+          },
+          {
+            "title": "[2602.12532] CRAFT: Adapting VLA Models to Contact-rich Manipulation via Force-aware Curriculum Fine-tuning",
+            "url": "https://arxiv.org/abs/2602.12532"
+          },
+          {
+            "title": "[2505.22159] ForceVLA: Enhancing VLA Models with a Force-aware MoE for Contact-rich Manipulation",
+            "url": "https://arxiv.org/abs/2505.22159"
+          },
+          {
+            "title": "[2602.23648] FAVLA: A Force-Adaptive Fast-Slow VLA model for Contact-Rich Robotic Manipulation",
+            "url": "https://arxiv.org/abs/2602.23648"
+          },
+          {
+            "title": "ForceVLA: Enhancing VLA Models with a Force-aware MoE for Contact-rich Manipulation",
+            "url": "https://arxiv.org/html/2505.22159v1"
+          },
+          {
+            "title": "HapticVLA: Contact-Rich Manipulation via Vision-Language-Action Model without Inference-Time Tactile Sensing",
+            "url": "https://arxiv.org/html/2603.15257v1"
+          },
+          {
+            "title": "FAVLA: A Force-Adaptive Fast–Slow VLA model for Contact-Rich Robotic Manipulation",
+            "url": "https://arxiv.org/html/2602.23648"
+          },
+          {
+            "title": "FD-VLA: Force-Distilled Vision-Language-Action Model for Contact-Rich Manipulation",
+            "url": "https://arxiv.org/html/2602.02142"
+          },
+          {
+            "title": "[2602.02142] FD-VLA: Force-Distilled Vision-Language-Action Model for Contact-Rich Manipulation",
+            "url": "https://arxiv.org/abs/2602.02142"
+          },
+          {
+            "title": "ForceVLA: Enhancing VLA Models with a Force-aware ...",
+            "url": "https://openreview.net/pdf/f2c61f8b6264a4b3e7b4a7a87c0a7f09e8cc9b48.pdf"
+          }
+        ]
+      },
+      "Based on the search results, I found information about the paper you requested:\n\nCRAFT: Adapting VLA Models to Contact-rich Manipulation via Force-aware Curriculum Fine-tuning (arXiv:2602.12532) is a research paper that addresses a key challenge in robotic manipulation.\n\nVision-Language-Action (VLA) models have shown a strong capability in enabling robots to execute general instructions, yet they struggle with contact-rich manipulation tasks, where success requires precise alignment, stable contact maintenance, and effective handling of deformable objects.\n\nThe paper proposes CRAFT as a solution to this problem. CRAFT is a lightweight and model-agnostic framework for adapting pretrained VLA models to contact-rich manipulation that introduces a variational information bottleneck (VIB) after the vision–language encoder to temporarily restrict the information flow from visual and language embeddings.\n\nWithin a curriculum fine-tuning scheme, the VIB initially imposes a strong Kullback–Leibler (KL) penalty that suppresses high-entropy visual and language signals, compelling the policy to focus on low-entropy force inputs and thereby acquire stable, contact-aware behaviors, and as training progresses, the weight of the VIB regularization is gradually annealed, releasing the bottleneck and allowing the model to reincorporate rich perceptual information while retaining the previously learned force-sensitive representations.\n\nReal-world experiments demonstrate that CRAFT consistently improves task success, generalizes to unseen objects and novel task variations, and adapts effectively across diverse VLA architectures, enabling robust and generalizable contact-rich manipulation."
+    ],
+    "durationSeconds": 7.198071854999988
+  },
+  "sourceToolAssistantUUID": "378208df-b18d-4126-8085-d29d14e08073",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-13T06:39:27.227Z_
+
+<details><summary>↩ Tool result · `toolu_01GsiC35qqAHq7EsFtVmQt4g`</summary>
+
+```text
+# CRAFT Paper Summary
+
+## 1) What CRAFT Does and VIB Usage
+
+CRAFT adapts Vision-Language-Action (VLA) models to contact-rich manipulation by using a Variational Information Bottleneck (VIB) module to regulate multimodal information flow. The framework "inserts a variational information bottleneck after vision and language embeddings to regulate their information entropy," forcing the model to prioritize force signals early in training before progressively restoring visual and language contributions.
+
+## 2) VIB Insertion Location
+
+The VIB is applied **after the vision-language encoder**. Specifically, it compresses "the fused visual and language embeddings F_V and F_L into compact latent features" through KL divergence regularization. The paper states the VIB "module is added after the pretrained vision–language encoder to regulate the information content of high-entropy visual and language modalities."
+
+## 3) Out-of-Distribution Generalization
+
+Yes, CRAFT explicitly studies OOD generalization. The paper includes a dedicated "Generalization Studies" section (IV-C) testing "object-level variants" (different cartons, plasticine colors) and "task-level variants" (socket placement height changes, whiteboard angles). Results show "an average increase from 22.50% to 58.75%, corresponding to a remarkable 36.25% improvement."
+
+## 4) Rate-Distortion Frontiers
+
+The paper does **not** trace rate-distortion frontiers. It focuses on task performance metrics and success rates rather than information-theoretic rate-distortion analysis.
+
+## 5) VLA Architectures
+
+CRAFT demonstrates applicability across two architectures: **π₀** (flow-based) and **RDT** (diffusion-based). The paper emphasizes "CRAFT is designed as a lightweight, plug-and-play finetuning module" compatible with diverse VLA frameworks.
+
+## 6) Benchmarks
+
+CRAFT evaluates on five real-world contact-rich tasks:
+- USB Insertion
+- Flip Carton
+- Wipe Whiteboard
+- Rolling Plasticine
+- Shaft-to-Hole Insertion
+
+No standard robotics benchmarks (like MuJoCo or simulation environments) are used; evaluation is purely real-world.
+
+## 7) β Scheduling (VIB Weight Schedule)
+
+CRAFT uses exponential decay for VIB weight scheduling: "λ_VIB(t) = λ_init · exp(-t/T_decay)" where λ_init is initial weight and T_decay controls reintegration speed. This enforces "strong information compression during the early training phase" before "progressively reducing the regularization."
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "52dbaa65-ef3a-4c36-86b5-bdf2520f66b2",
+  "isSidechain": false,
+  "promptId": "d00fd39b-05e8-4d12-acea-1a8fbd608c3e",
+  "type": "user",
+  "uuid": "50d43421-45a6-4c85-bc40-7e9eed6973bd",
+  "toolUseResult": {
+    "bytes": 160675,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# CRAFT Paper Summary\n\n## 1) What CRAFT Does and VIB Usage\n\nCRAFT adapts Vision-Language-Action (VLA) models to contact-rich manipulation by using a Variational Information Bottleneck (VIB) module to regulate multimodal information flow. The framework \"inserts a variational information bottleneck after vision and language embeddings to regulate their information entropy,\" forcing the model to prioritize force signals early in training before progressively restoring visual and language contributions.\n\n## 2) VIB Insertion Location\n\nThe VIB is applied **after the vision-language encoder**. Specifically, it compresses \"the fused visual and language embeddings F_V and F_L into compact latent features\" through KL divergence regularization. The paper states the VIB \"module is added after the pretrained vision–language encoder to regulate the information content of high-entropy visual and language modalities.\"\n\n## 3) Out-of-Distribution Generalization\n\nYes, CRAFT explicitly studies OOD generalization. The paper includes a dedicated \"Generalization Studies\" section (IV-C) testing \"object-level variants\" (different cartons, plasticine colors) and \"task-level variants\" (socket placement height changes, whiteboard angles). Results show \"an average increase from 22.50% to 58.75%, corresponding to a remarkable 36.25% improvement.\"\n\n## 4) Rate-Distortion Frontiers\n\nThe paper does **not** trace rate-distortion frontiers. It focuses on task performance metrics and success rates rather than information-theoretic rate-distortion analysis.\n\n## 5) VLA Architectures\n\nCRAFT demonstrates applicability across two architectures: **π₀** (flow-based) and **RDT** (diffusion-based). The paper emphasizes \"CRAFT is designed as a lightweight, plug-and-play finetuning module\" compatible with diverse VLA frameworks.\n\n## 6) Benchmarks\n\nCRAFT evaluates on five real-world contact-rich tasks:\n- USB Insertion\n- Flip Carton\n- Wipe Whiteboard\n- Rolling Plasticine\n- Shaft-to-Hole Insertion\n\nNo standard robotics benchmarks (like MuJoCo or simulation environments) are used; evaluation is purely real-world.\n\n## 7) β Scheduling (VIB Weight Schedule)\n\nCRAFT uses exponential decay for VIB weight scheduling: \"λ_VIB(t) = λ_init · exp(-t/T_decay)\" where λ_init is initial weight and T_decay controls reintegration speed. This enforces \"strong information compression during the early training phase\" before \"progressively reducing the regularization.\"",
+    "durationMs": 8096,
+    "url": "https://arxiv.org/html/2602.12532"
+  },
+  "sourceToolAssistantUUID": "52dbaa65-ef3a-4c36-86b5-bdf2520f66b2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 83_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "50d43421-45a6-4c85-bc40-7e9eed6973bd",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 84_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify VLA visual compression phase transitions",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 85 · 2026-05-13T06:39:56.016Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-13T06:39:56.016Z",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "content": "&lt;task-notification>\n&lt;task-id>a1a2f23d5446ee3f0&lt;/task-id>\n&lt;tool-use-id>toolu_01K3Da4t6vzgVw2qkYXXw3Sc&lt;/tool-use-id>\n&lt;output-file>/tmp/claude-1000/-/45183731-1e2f-4b44-81c9-d3cd33b5498d/tasks/a1a2f23d5446ee3f0.output&lt;/output-file>\n&lt;status>completed&lt;/status>\n&lt;summary>Agent \"Search competing work and novelty\" completed&lt;/summary>\n&lt;result>Now I have comprehensive results. Let me compile the full report.\n\n---\n\nHere is a comprehensive report of all findings across the 8 search queries, organized by relevance to the proposed VIB-for-VLA research idea.\n\n---\n\n## CRITICALLY RELEVANT: Direct Overlap with the Proposed Idea\n\n### 1. BC-IB: Information Bottleneck for Behavior Cloning (ICML 2025)\n\n**This is the single most relevant competing work.** The paper \"Rethinking Latent Redundancy in Behavior Cloning: An Information Bottleneck Approach for Robot Manipulation\" by Bai et al. (ICML 2025) directly applies the Information Bottleneck principle to behavior cloning for robot manipulation.\n\n- **What it does:** Applies IB between multimodal features (vision + proprioception + language) and the latent representation before the policy head. Uses MLP policy heads (not diffusion/flow-matching).\n- **Beta sweep:** Explores beta in {1e-4, 1e-3, 5e-3, 1e-2}, finds 1e-4 works best -- but does NOT trace a full rate-distortion frontier.\n- **OOD gap:** The paper explicitly acknowledges \"its robustness to domain shifts, such as environmental or task variations, remains underexplored\" in the limitations.\n- **Benchmarks:** CortexBench and LIBERO.\n- **Key finding:** Minimizing redundancy in latent representations significantly improves generalization, highlighting considerable redundancy in current robot trajectory datasets.\n- **Difference from proposed work:** BC-IB uses MLP policy heads, not flow-matching VLAs like pi0. It does not trace rate-distortion frontiers. It does not study OOD. The proposed work is specifically about VIB between visual encoder and action module in a pi0/openpi 2B architecture with systematic beta sweeps -- but BC-IB establishes the core premise that IB helps robot manipulation.\n\nPaper: [https://arxiv.org/abs/2502.02853](https://arxiv.org/abs/2502.02853) / [ICML 2025 proceedings](https://proceedings.mlr.press/v267/bai25e.html) / [GitHub](https://github.com/BaiShuanghao/BC-IB)\n\n---\n\n## HIGHLY RELEVANT: VLA Token Compression/Pruning (The Efficiency Landscape)\n\nThere is an enormous and rapidly growing literature on visual token compression for VLAs, published in 2025-2026. None of these use information bottleneck theory or trace rate-distortion frontiers, but they all study the core tension between compression and performance that the proposed work investigates from an information-theoretic angle.\n\n### 2. GridS (ICML 2026) -- CONFIRMED TO EXIST\n\"See What Matters: Differentiable Grid Sample Pruning for Generalizable Vision-Language-Action Model\" by Feng et al. This is a poster at ICML 2026. It performs task-aware continuous resampling of visual tokens, achieves &lt;10% token retention with 76% FLOPs reduction and no degradation. The title emphasizes \"Generalizable\" but does not use IB theory or study OOD explicitly.\nLink: [https://icml.cc/virtual/2026/poster/65010](https://icml.cc/virtual/2026/poster/65010)\n\n### 3. LightVLA (ICRA 2026) -- CONFIRMED TO EXIST\nBy Jiang et al. (LiAuto). First adaptive differentiable token pruning for VLAs. Uses Gumbel softmax for differentiable selection. Reduces FLOPs by 59.1%, latency by 38.2%, improves success rate by 2.6-2.9% on LIBERO. Based on OpenVLA-OFT (7B). Does NOT study OOD or IB.\nLink: [https://github.com/LiAutoAD/LightVLA](https://github.com/LiAutoAD/LightVLA) / [https://arxiv.org/html/2509.12594v1](https://arxiv.org/html/2509.12594v1)\n\n### 4. VLA-Pruner -- CONFIRMED TO EXIST\nBy Liu et al. Temporal-aware dual-level visual token pruning. Reveals the dual-system property of VLA inference (prefill vs. decode attention patterns). Training-free, plug-and-play, up to 1.99x speedup. Does NOT study OOD or IB.\nLink: [https://arxiv.org/abs/2511.16449](https://arxiv.org/abs/2511.16449)\n\n### 5. Compressor-VLA -- CONFIRMED TO EXIST\nBy Gao et al. Instruction-guided token compression with two modules (Semantic Task Compressor + Spatial Refinement Compressor). Reduces FLOPs by 59%, tokens by 3x. Does NOT study OOD or IB.\nLink: [https://arxiv.org/abs/2511.18950](https://arxiv.org/abs/2511.18950)\n\n### 6. Additional VLA Compression Papers (all confirmed):\n- **VLA-IAP** (arXiv Mar 2026): Training-free interaction-aligned pruning. 97.8% success, 1.25x speedup. [https://arxiv.org/abs/2603.22991](https://arxiv.org/abs/2603.22991)\n- **DTP** (arXiv Jan 2026): Distracting token pruning. Finds negative correlation between attention to task-irrelevant regions and success rate. [https://arxiv.org/abs/2601.16065](https://arxiv.org/abs/2601.16065)\n- **SP-VLA** (arXiv Jun 2025): Joint model scheduling + token pruning. 1.5-2.4x lossless acceleration. [https://arxiv.org/abs/2506.12723](https://arxiv.org/abs/2506.12723)\n- **VLA-ADP** (arXiv Sep 2025): Action-aware dynamic pruning. 1.35x speedup, 25.8% success rate improvement. [https://arxiv.org/abs/2509.22093](https://arxiv.org/abs/2509.22093)\n- **BFA++** (arXiv Feb 2026): Hierarchical multi-view token pruning. [https://arxiv.org/abs/2602.20566](https://arxiv.org/abs/2602.20566)\n- **EfficientVLA** (arXiv Jun 2025): Training-free acceleration combining layer pruning, token selection, and diffusion caching. 1.93x speedup. [https://arxiv.org/abs/2506.10100](https://arxiv.org/abs/2506.10100)\n- **VLA-Cache** (NeurIPS 2025): Adaptive token caching across frames. 1.7x speedup. [https://arxiv.org/abs/2502.02175](https://arxiv.org/abs/2502.02175)\n- **FastDriveVLA** (AAAI 2026): Reconstruction-based token pruning for autonomous driving VLAs. 7.5x compute reduction. [https://arxiv.org/abs/2507.23318](https://arxiv.org/abs/2507.23318)\n- **TEAM-VLA** (arXiv Dec 2025): Token expand-merge compression. [https://arxiv.org/abs/2512.09927](https://arxiv.org/abs/2512.09927)\n- **OneWM-VLA** (arXiv May 2026): Compresses to a single token per frame for world-model-augmented VLAs on pi0 (2B). [https://arxiv.org/abs/2605.07931](https://arxiv.org/abs/2605.07931)\n\n**Key observation for the proposed work:** None of these ~12 papers use information bottleneck theory. They are all heuristic or learned pruning/compression methods. The proposed work's theoretical IB framing and rate-distortion frontier tracing would be genuinely novel in this space. However, the proposed work MUST cite and differentiate from this large body of work.\n\n---\n\n## HIGHLY RELEVANT: Robustness Concerns with Token Compression\n\n### 7. \"Less Is More -- Until It Breaks\" (arXiv Jan 2026)\nThis paper reveals that visual token compression fundamentally undermines robustness of large vision-language models. Vulnerabilities are state-specific -- they emerge only under compression and disappear without it. Instability in token importance ranking is identified as the root cause. This is about VLMs, not VLAs, but the finding is directly relevant to the proposed work's thesis that compression can hurt OOD.\nLink: [https://arxiv.org/abs/2601.12042](https://arxiv.org/abs/2601.12042)\n\n### 8. Adversarial Robustness of LVLMs under Token Compression (arXiv Jan 2026)\nA companion work studying adversarial attacks specifically targeting compression-induced vulnerabilities (CAGE attack).\nLink: [https://arxiv.org/abs/2601.21531](https://arxiv.org/abs/2601.21531)\n\n---\n\n## RELEVANT: Information Bottleneck Theory Foundations\n\n### 9. Phase Transitions in IB (ICLR 2020) -- CONFIRMED TO EXIST\n\"Phase Transitions for the Information Bottleneck in Representation Learning\" by Wu, Fischer et al. Shows sudden jumps in prediction accuracy with increasing beta, derives conditions using calculus of variations connecting to Fisher information matrix. Each transition = learning a new class. Validated on MNIST and CIFAR10. This is the key prior work for the \"phase transition\" aspect of the proposed idea.\nLink: [https://arxiv.org/abs/2001.01878](https://arxiv.org/abs/2001.01878)\n\n### 10. Generalized Information Bottleneck (NeurIPS 2025)\nBy Westphal et al. Reformulates IB through synergy, shows compression phases across architectures including ReLU (where standard IB fails), aligns with adversarial robustness. General theory, not VLA-specific.\nLink: [https://arxiv.org/abs/2509.26327](https://arxiv.org/abs/2509.26327)\n\n### 11. Flexible Variational Information Bottleneck (FVIB) (2024-2025)\nBy Kudo et al. Enables sweeping all beta values in a single training run via a Taylor approximation of the VIB objective. This is directly relevant to the proposed work's methodology of sweeping beta to trace RD frontiers -- FVIB could be used as a more efficient method for doing so.\nLink: [https://arxiv.org/abs/2402.01238](https://arxiv.org/abs/2402.01238)\n\n### 12. Deep Learning and the IB Principle (Tishby, 2015)\nThe foundational work. Link: [https://arxiv.org/abs/1503.02406](https://arxiv.org/abs/1503.02406)\n\n### 13. Debate on IB Theory (ICLR 2018)\n\"On the Information Bottleneck Theory of Deep Learning\" -- shows compression phase arises from tanh activations, not ReLU. Important caveat for the proposed work.\nLink: [https://openreview.net/forum?id=ry_WPG-A-](https://openreview.net/forum?id=ry_WPG-A-)\n\n### 14. IBTM: IB-Inspired Token Merging for Vision Transformers (ICLR 2025 submission)\nDerives a variational upper bound for IB loss and uses it to guide token merging in ViTs. Achieves efficient compression with maintained/improved accuracy. General vision, not VLA.\nLink: [https://openreview.net/forum?id=Jwgw3znxT3](https://openreview.net/forum?id=Jwgw3znxT3)\n\n### 15. DCS-Transformer: IB-Based Channel Selection (ICML 2024)\nVisual transformer with differentiable channel selection motivated by IB reduction. Derives variational upper bound for IB loss. General vision.\nLink: [https://proceedings.mlr.press/v235/wang24ak.html](https://proceedings.mlr.press/v235/wang24ak.html)\n\n---\n\n## RELEVANT: Rate-Distortion Theory + Generalization\n\n### 16. Rate-Distortion Signatures of Generalization (arXiv Mar 2026)\nBy Caglar et al. Proposes RD framework treating stimulus-response as information channel. Derives RD frontiers from confusion matrices with two geometric signatures (slope, curvature). Finds humans have smoother trade-offs while DNNs are steeper/more brittle. This is the closest work to tracing RD frontiers for understanding generalization differences, though it is applied to vision models, not robot policies.\nLink: [https://arxiv.org/abs/2603.01568](https://arxiv.org/abs/2603.01568)\n\n### 17. Capacity-Limited Actor-Critic (ICLR 2019)\nBy Lerch &amp; Sims. Maps capacity-limited RL to rate-distortion theory. Shows capacity-constrained agents generalize better to novel environments. This is the key prior work connecting RD theory to policy generalization.\nLink: [https://openreview.net/forum?id=ByxAOoR5K7](https://openreview.net/forum?id=ByxAOoR5K7)\n\n### 18. Rate-Distortion Theoretic Generalization Bounds (NeurIPS 2022)\nProves generalization bounds through rate-distortion theory, linking generalization to rate-distortion dimension.\nLink: [https://proceedings.neurips.cc/paper_files/paper/2022/file/7c61aa6a4dcf12042fe12a31d49d6390-Paper-Conference.pdf](https://proceedings.neurips.cc/paper_files/paper/2022/file/7c61aa6a4dcf12042fe12a31d49d6390-Paper-Conference.pdf)\n\n---\n\n## RELEVANT: VIB in Robotics/RL (Non-VLA)\n\n### 19. Multimodal Information Bottleneck for Deep RL (Neural Networks, 2024)\nProposes MIB for learning task-relevant joint representations from egocentric images + proprioception. Shows zero-shot robustness to unseen noise. Directly relevant as it applies IB to multimodal robot representations, though in RL not imitation learning.\nLink: [https://arxiv.org/abs/2410.17551](https://arxiv.org/abs/2410.17551)\n\n### 20. VIB-Regularized Deep RL for Robotic Skill Adaptation (Sensors, 2023)\nMeta-RL with VIB for robotic locomotion. Improves sample efficiency 200-5000x on new tasks. State-based, not visual.\nLink: [https://www.mdpi.com/1424-8220/23/2/762](https://www.mdpi.com/1424-8220/23/2/762)\n\n### 21. IBAC: Information Bottleneck Actor-Critic (NeurIPS 2019)\nUses VIB in the agent architecture to learn compressed representations for better generalization in noisy, low-data regimes.\nLink: [https://papers.neurips.cc/paper/9546-generalization-in-reinforcement-learning-with-selective-noise-injection-and-information-bottleneck.pdf](https://papers.neurips.cc/paper/9546-generalization-in-reinforcement-learning-with-selective-noise-injection-and-information-bottleneck.pdf)\n\n---\n\n## NEGATIVE RESULTS (Items Not Found)\n\n- **\"GridS VLA ICML 2026\"**: CONFIRMED to exist (see above).\n- **\"LightVLA\"**: CONFIRMED to exist (see above).\n- **\"VLA-Pruner\"**: CONFIRMED to exist (see above).\n- **\"Compressor-VLA\"**: CONFIRMED to exist (see above).\n- **\"pi0 openpi VLA information bottleneck\"**: NO direct work found applying IB specifically to pi0/openpi. The closest is BC-IB (ICML 2025), which applies IB to behavior cloning but uses MLP policy heads, not flow-matching VLAs.\n\n---\n\n## SUMMARY OF KEY GAPS AND RECOMMENDATIONS\n\n**The proposed idea's main vulnerability is BC-IB (ICML 2025).** This paper already demonstrates that IB improves behavior cloning for robot manipulation, using the same theoretical framework. The proposed work must clearly differentiate by emphasizing: (a) application to flow-matching VLAs (pi0) rather than MLP policies, (b) systematic beta sweeps tracing full RD frontiers, and (c) OOD evaluation -- which BC-IB explicitly leaves as a limitation.\n\n**The proposed idea fills a genuine gap.** Despite ~12+ papers on VLA token compression in 2025-2026, NONE use information-theoretic frameworks. They are all heuristic. The IB/RD framing would be novel in this space.\n\n**Methodological opportunity:** FVIB (Kudo et al., 2024) enables sweeping all beta values in a single training run -- this could dramatically reduce the computational cost of tracing RD frontiers and should be considered as a methodology.\n\n**Important caution from the literature:** The \"Less Is More -- Until It Breaks\" paper (Jan 2026) shows compression introduces state-specific robustness vulnerabilities in VLMs. The IB framework's principled compression might mitigate this compared to heuristic pruning, which would be a strong selling point.\n\n**Phase transition work is well-established.** The ICLR 2020 paper already characterizes IB phase transitions in representation learning. The proposed work should cite this and frame its contribution as discovering where these transitions occur specifically in VLA visual representations.&lt;/result>\n&lt;usage>&lt;total_tokens>47344&lt;/total_tokens>&lt;tool_uses>47&lt;/tool_uses>&lt;duration_ms>244749&lt;/duration_ms>&lt;/usage>\n&lt;/task-notification>"
+}
+```
+
+---
+
+### Assistant
+
+_source line 86 · 2026-05-13T06:40:00.998Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+This is a critical finding. CRAFT (arXiv 2602.12532, Feb 2026) is highly relevant work that the proposal does NOT cite:
+
+1. CRAFT applies VIB to VLA models (specifically π₀ and RDT) — the same base architecture the proposal targets
+2. CRAFT inserts VIB after vision-language encoder — similar location to the proposal
+3. CRAFT studies generalization (to unseen objects and novel task variations) — partially overlapping with the proposal's goals
+4. CRAFT uses exponential decay for VIB weight scheduling — related to the proposal's β sweep
+
+
+5. While CRAFT uses VIB as a curriculum tool to force learning from force signals before relaxing the bottleneck, whereas the proposal aims to trace rate-distortion frontiers and understand when compression helps or hurts OOD generalization, CRAFT still validates that VIB integrates successfully with π₀'s flow-matching architecture and improves generalization in VLAs — both of which reduce technical risk and support the proposal's core approach.
+
+6. However, this also raises a novelty concern: since CRAFT has already demonstrated VIB + flow matching integration, simply inserting VIB into π₀ is no longer a novel technical contribution, so the proposal needs to differentiate itself by systematically tracing RD frontiers across perturbation types rather than just applying VIB as a curriculum tool.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "50d43421-45a6-4c85-bc40-7e9eed6973bd",
+  "isSidechain": false,
+  "requestId": "req_011Caz7HkYW9c59sRXyAKkJp",
+  "type": "assistant",
+  "uuid": "a1e9bb0e-fd10-4b99-ad9a-b766975a3724",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WMF9FmHFPPSoTKTkP7e5Zm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 958,
+      "cache_creation_input_tokens": 1161,
+      "cache_read_input_tokens": 52898,
+      "output_tokens": 697,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1161,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 958,
+          "output_tokens": 697,
+          "cache_read_input_tokens": 52898,
+          "cache_creation_input_tokens": 1161,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1161
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 87 · 2026-05-13T06:40:01.003Z_
+
+Critical finding: **CRAFT (arXiv 2602.12532)** already applies VIB to π₀ and demonstrates generalization improvements. This is a major omission from the proposal. Let me now check the remaining agent's results.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a1e9bb0e-fd10-4b99-ad9a-b766975a3724",
+  "isSidechain": false,
+  "requestId": "req_011Caz7HkYW9c59sRXyAKkJp",
+  "type": "assistant",
+  "uuid": "d53881dc-3c09-4f95-8036-e74970aee60a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WMF9FmHFPPSoTKTkP7e5Zm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 958,
+      "cache_creation_input_tokens": 1161,
+      "cache_read_input_tokens": 52898,
+      "output_tokens": 697,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1161,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 958,
+          "output_tokens": 697,
+          "cache_read_input_tokens": 52898,
+          "cache_creation_input_tokens": 1161,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1161
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 88 · 2026-05-13T06:40:01.916Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01C36FWi7NL7yM2fqzMW3fMX`</summary>
+
+```json
+{
+  "query": "GridS ICML 2026 \"grid sample\" VLA visual token pruning generalization"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d53881dc-3c09-4f95-8036-e74970aee60a",
+  "isSidechain": false,
+  "requestId": "req_011Caz7HkYW9c59sRXyAKkJp",
+  "type": "assistant",
+  "uuid": "59555ecc-b7f3-4dd7-b98a-0dce44939a08",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WMF9FmHFPPSoTKTkP7e5Zm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 958,
+      "cache_creation_input_tokens": 1161,
+      "cache_read_input_tokens": 52898,
+      "output_tokens": 697,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1161,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 958,
+          "output_tokens": 697,
+          "cache_read_input_tokens": 52898,
+          "cache_creation_input_tokens": 1161,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1161
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89 · 2026-05-13T06:40:02.601Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CuPWT4JJsmNDZgiwGKUBpx`</summary>
+
+```json
+{
+  "query": "TEAM-VLA token efficient VLA 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "59555ecc-b7f3-4dd7-b98a-0dce44939a08",
+  "isSidechain": false,
+  "requestId": "req_011Caz7HkYW9c59sRXyAKkJp",
+  "type": "assistant",
+  "uuid": "486efbb7-6821-4e13-9655-9ca47714462b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WMF9FmHFPPSoTKTkP7e5Zm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 958,
+      "cache_creation_input_tokens": 1161,
+      "cache_read_input_tokens": 52898,
+      "output_tokens": 697,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1161,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 958,
+          "output_tokens": 697,
+          "cache_read_input_tokens": 52898,
+          "cache_creation_input_tokens": 1161,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1161
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-13T06:40:07.314Z_
+
+<details><summary>↩ Tool result · `toolu_01C36FWi7NL7yM2fqzMW3fMX`</summary>
+
+```text
+Web search results for query: "GridS ICML 2026 "grid sample" VLA visual token pruning generalization"
+
+Links: [{"title":"ICML Poster See What Matters: Differentiable Grid Sample Pruning for Generalizable Vision-Language-Action Model","url":"https://icml.cc/virtual/2026/poster/65010"},{"title":"GitHub - ZLKong/Awesome-Collection-Token-Reduction: A collection of token reduction (token pruning, merging, clustering, etc.) techniques for ML/AI · GitHub","url":"https://github.com/ZLKong/Awesome-Collection-Token-Reduction"},{"title":"VLA-Pruner: Temporal-Aware Dual-Level Visual Token Pruning for Efficient Vision-Language-Action Inference","url":"https://arxiv.org/html/2511.16449"},{"title":"VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models","url":"https://arxiv.org/html/2603.22991v1"},{"title":"GitHub - cvsp-lab/AgilePruner: [ICLR 2026] AgilePruner: An Empirical Study of Attention and Diversity for Adaptive Visual Token Pruning in Large Vision-Language Models · GitHub","url":"https://github.com/cvsp-lab/AgilePruner"},{"title":"GitHub - daixiangzi/Awesome-Token-Compress: A paper list of some recent works about Token Compress for Vit and VLM · GitHub","url":"https://github.com/daixiangzi/Awesome-Token-Compress"},{"title":"SpecPrune-VLA: Accelerating Vision-Language-Action Models via Action-Aware Self-Speculative Pruning","url":"https://arxiv.org/html/2509.05614"},{"title":"[2511.16449] VLA-Pruner: Temporal-Aware Dual-Level Visual Token Pruning for Efficient Vision-Language-Action Inference","url":"https://arxiv.org/abs/2511.16449"},{"title":"[2603.22991v1] VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models","url":"https://arxiv.org/abs/2603.22991v1"},{"title":"[2603.22991] VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models","url":"https://arxiv.org/abs/2603.22991"}]
+
+Based on the search results, I found information about GridS at ICML 2026:
+
+GridS (Differentiable Grid Sampler) is a plug-and-play module that performs task-aware, continuous resampling of visual tokens in VLA (Vision-Language-Action) models. 
+
+Vision-Language-Action models show promise in robotics manipulation but their high computational cost hinders real-time deployment. Existing token pruning methods face a trade-off where aggressive compression discards critical geometric details like contact points, limiting the achievable compression rate and speedup.
+
+GridS addresses this by rethinking compression as geometry-aware, continuous token resampling. It adaptively predicts a minimal set of salient coordinates and extracts features via differentiable interpolation, preserving essential spatial information while achieving drastic compression.
+
+The work appears to be presented as a poster at ICML 2026, titled "See What Matters: Differentiable Grid Sample Pruning for Generalizable Vision-Language-Action Model."
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "59555ecc-b7f3-4dd7-b98a-0dce44939a08",
+  "isSidechain": false,
+  "promptId": "d00fd39b-05e8-4d12-acea-1a8fbd608c3e",
+  "type": "user",
+  "uuid": "47349c64-d89a-4d4d-9dbd-a3a8236f11e2",
+  "toolUseResult": {
+    "query": "GridS ICML 2026 \"grid sample\" VLA visual token pruning generalization",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Mt5TJTpNVnvFfsCBFhP6p6",
+        "content": [
+          {
+            "title": "ICML Poster See What Matters: Differentiable Grid Sample Pruning for Generalizable Vision-Language-Action Model",
+            "url": "https://icml.cc/virtual/2026/poster/65010"
+          },
+          {
+            "title": "GitHub - ZLKong/Awesome-Collection-Token-Reduction: A collection of token reduction (token pruning, merging, clustering, etc.) techniques for ML/AI · GitHub",
+            "url": "https://github.com/ZLKong/Awesome-Collection-Token-Reduction"
+          },
+          {
+            "title": "VLA-Pruner: Temporal-Aware Dual-Level Visual Token Pruning for Efficient Vision-Language-Action Inference",
+            "url": "https://arxiv.org/html/2511.16449"
+          },
+          {
+            "title": "VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2603.22991v1"
+          },
+          {
+            "title": "GitHub - cvsp-lab/AgilePruner: [ICLR 2026] AgilePruner: An Empirical Study of Attention and Diversity for Adaptive Visual Token Pruning in Large Vision-Language Models · GitHub",
+            "url": "https://github.com/cvsp-lab/AgilePruner"
+          },
+          {
+            "title": "GitHub - daixiangzi/Awesome-Token-Compress: A paper list of some recent works about Token Compress for Vit and VLM · GitHub",
+            "url": "https://github.com/daixiangzi/Awesome-Token-Compress"
+          },
+          {
+            "title": "SpecPrune-VLA: Accelerating Vision-Language-Action Models via Action-Aware Self-Speculative Pruning",
+            "url": "https://arxiv.org/html/2509.05614"
+          },
+          {
+            "title": "[2511.16449] VLA-Pruner: Temporal-Aware Dual-Level Visual Token Pruning for Efficient Vision-Language-Action Inference",
+            "url": "https://arxiv.org/abs/2511.16449"
+          },
+          {
+            "title": "[2603.22991v1] VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2603.22991v1"
+          },
+          {
+            "title": "[2603.22991] VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2603.22991"
+          }
+        ]
+      },
+      "Based on the search results, I found information about GridS at ICML 2026:\n\nGridS (Differentiable Grid Sampler) is a plug-and-play module that performs task-aware, continuous resampling of visual tokens in VLA (Vision-Language-Action) models. \n\nVision-Language-Action models show promise in robotics manipulation but their high computational cost hinders real-time deployment. Existing token pruning methods face a trade-off where aggressive compression discards critical geometric details like contact points, limiting the achievable compression rate and speedup.\n\nGridS addresses this by rethinking compression as geometry-aware, continuous token resampling. It adaptively predicts a minimal set of salient coordinates and extracts features via differentiable interpolation, preserving essential spatial information while achieving drastic compression.\n\nThe work appears to be presented as a poster at ICML 2026, titled \"See What Matters: Differentiable Grid Sample Pruning for Generalizable Vision-Language-Action Model.\""
+    ],
+    "durationSeconds": 5.393045771999983
+  },
+  "sourceToolAssistantUUID": "59555ecc-b7f3-4dd7-b98a-0dce44939a08",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 91 · 2026-05-13T06:40:12.147Z_
+
+<details><summary>↩ Tool result · `toolu_01CuPWT4JJsmNDZgiwGKUBpx`</summary>
+
+```text
+Web search results for query: "TEAM-VLA token efficient VLA 2025 2026"
+
+Links: [{"title":"Breakdown of the \"FastDriveVLA\" — AI-Led L4 Autonomous Driving from XPENG & Peking University - CleanTechnica","url":"https://cleantechnica.com/2025/12/29/breakdown-of-the-fastdrivevla-ai-led-l4-autonomous-driving-from-xpeng-peking-university/"},{"title":"[2512.09927] Token Expand-Merge: Training-Free Token Compression for Vision-Language-Action Models","url":"https://arxiv.org/abs/2512.09927"},{"title":"Token Expand-Merge: Training-Free Compression Accelerates Billion-Parameter Vision-Language-Action Model Inference","url":"https://quantumzeitgeist.com/training-token-expand-merge-free-compression-accelerates-billion-parameter/"},{"title":"Vision-language-action model - Wikipedia","url":"https://en.wikipedia.org/wiki/Vision-language-action_model"},{"title":"XPENG-Peking University Collaborative Research Accepted by AAAI 2026:","url":"https://www.xpeng.com/news/019b649d31c59b49d00d8a028c720027"},{"title":"What Can RL Bring to VLA Generalization? An Empirical Study","url":"https://arxiv.org/html/2505.19789v4"},{"title":"Volleyball League of America - The professional league we've all been waiting for.","url":"https://www.usavla.com/"},{"title":"GitHub - Jasper-aaa/TEAM-VLA: This is the official pytorch implementation of TEAM-VLA","url":"https://github.com/Jasper-aaa/TEAM-VLA"},{"title":"Token Expand-Merge: Training-Free Token Compression for Vision-Language-Action Models","url":"https://arxiv.org/html/2512.09927"},{"title":"VLA-Cache: Efficient Vision-Language-Action Manipulation via Adaptive Token Caching | OpenReview","url":"https://openreview.net/forum?id=QZYZ0Xm58q"}]
+
+Based on the search results, here's what I found about TEAM-VLA:
+
+## TEAM-VLA: Token Expand-Merge Vision-Language-Action Model
+
+TEAM-VLA (Token Expand-Merge-VLA) is a training-free token compression framework for Vision-Language-Action models that achieves a balanced trade-off between efficiency and effectiveness, without any retraining or parameter updates.
+
+### How It Works
+
+TEAM-VLA introduces a dynamic token expansion mechanism that identifies and samples additional informative tokens in the spatial vicinity of attention-highlighted regions. These expanded tokens are then selectively merged in deeper layers under action-aware guidance, effectively reducing redundancy while maintaining semantic coherence.
+
+### Performance Results
+
+Extensive experiments on LIBERO benchmark demonstrate that TEAM-VLA consistently improves inference speed while maintaining or even surpassing the task success rate of full VLA models. More specifically, TEAM-VLA reduces the inference time of OpenVLA-OFT by over 1.5×, achieving a 99.2% success rate with a latency of 68.1 milliseconds, compared to 97.6% and 109 milliseconds for the original OpenVLA-OFT.
+
+The method yields a 7.7% higher success rate than EfficientVLA, while incurring only an additional 1.5 milliseconds of inference time.
+
+### Key Advantages
+
+TEAM-VLA operates without relying on historical frame information, offering greater flexibility and adaptability.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "486efbb7-6821-4e13-9655-9ca47714462b",
+  "isSidechain": false,
+  "promptId": "d00fd39b-05e8-4d12-acea-1a8fbd608c3e",
+  "type": "user",
+  "uuid": "870bb6de-72ed-4c7b-bfd4-0d0f267b28a9",
+  "toolUseResult": {
+    "query": "TEAM-VLA token efficient VLA 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FPCXWt9soZUHghYzyWPF5r",
+        "content": [
+          {
+            "title": "Breakdown of the \"FastDriveVLA\" — AI-Led L4 Autonomous Driving from XPENG & Peking University - CleanTechnica",
+            "url": "https://cleantechnica.com/2025/12/29/breakdown-of-the-fastdrivevla-ai-led-l4-autonomous-driving-from-xpeng-peking-university/"
+          },
+          {
+            "title": "[2512.09927] Token Expand-Merge: Training-Free Token Compression for Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2512.09927"
+          },
+          {
+            "title": "Token Expand-Merge: Training-Free Compression Accelerates Billion-Parameter Vision-Language-Action Model Inference",
+            "url": "https://quantumzeitgeist.com/training-token-expand-merge-free-compression-accelerates-billion-parameter/"
+          },
+          {
+            "title": "Vision-language-action model - Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/Vision-language-action_model"
+          },
+          {
+            "title": "XPENG-Peking University Collaborative Research Accepted by AAAI 2026:",
+            "url": "https://www.xpeng.com/news/019b649d31c59b49d00d8a028c720027"
+          },
+          {
+            "title": "What Can RL Bring to VLA Generalization? An Empirical Study",
+            "url": "https://arxiv.org/html/2505.19789v4"
+          },
+          {
+            "title": "Volleyball League of America - The professional league we've all been waiting for.",
+            "url": "https://www.usavla.com/"
+          },
+          {
+            "title": "GitHub - Jasper-aaa/TEAM-VLA: This is the official pytorch implementation of TEAM-VLA",
+            "url": "https://github.com/Jasper-aaa/TEAM-VLA"
+          },
+          {
+            "title": "Token Expand-Merge: Training-Free Token Compression for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2512.09927"
+          },
+          {
+            "title": "VLA-Cache: Efficient Vision-Language-Action Manipulation via Adaptive Token Caching | OpenReview",
+            "url": "https://openreview.net/forum?id=QZYZ0Xm58q"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about TEAM-VLA:\n\n## TEAM-VLA: Token Expand-Merge Vision-Language-Action Model\n\nTEAM-VLA (Token Expand-Merge-VLA) is a training-free token compression framework for Vision-Language-Action models that achieves a balanced trade-off between efficiency and effectiveness, without any retraining or parameter updates.\n\n### How It Works\n\nTEAM-VLA introduces a dynamic token expansion mechanism that identifies and samples additional informative tokens in the spatial vicinity of attention-highlighted regions. These expanded tokens are then selectively merged in deeper layers under action-aware guidance, effectively reducing redundancy while maintaining semantic coherence.\n\n### Performance Results\n\nExtensive experiments on LIBERO benchmark demonstrate that TEAM-VLA consistently improves inference speed while maintaining or even surpassing the task success rate of full VLA models. More specifically, TEAM-VLA reduces the inference time of OpenVLA-OFT by over 1.5×, achieving a 99.2% success rate with a latency of 68.1 milliseconds, compared to 97.6% and 109 milliseconds for the original OpenVLA-OFT.\n\nThe method yields a 7.7% higher success rate than EfficientVLA, while incurring only an additional 1.5 milliseconds of inference time.\n\n### Key Advantages\n\nTEAM-VLA operates without relying on historical frame information, offering greater flexibility and adaptability."
+    ],
+    "durationSeconds": 9.542814646999991
+  },
+  "sourceToolAssistantUUID": "486efbb7-6821-4e13-9655-9ca47714462b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 92 · 2026-05-13T06:40:12.172Z_
+
+```json
+{
+  "parentUuid": "870bb6de-72ed-4c7b-bfd4-0d0f267b28a9",
+  "isSidechain": false,
+  "attachment": {
+    "type": "queued_command",
+    "prompt": "&lt;task-notification>\n&lt;task-id>a1a2f23d5446ee3f0&lt;/task-id>\n&lt;tool-use-id>toolu_01K3Da4t6vzgVw2qkYXXw3Sc&lt;/tool-use-id>\n&lt;output-file>/tmp/claude-1000/-/45183731-1e2f-4b44-81c9-d3cd33b5498d/tasks/a1a2f23d5446ee3f0.output&lt;/output-file>\n&lt;status>completed&lt;/status>\n&lt;summary>Agent \"Search competing work and novelty\" completed&lt;/summary>\n&lt;result>Now I have comprehensive results. Let me compile the full report.\n\n---\n\nHere is a comprehensive report of all findings across the 8 search queries, organized by relevance to the proposed VIB-for-VLA research idea.\n\n---\n\n## CRITICALLY RELEVANT: Direct Overlap with the Proposed Idea\n\n### 1. BC-IB: Information Bottleneck for Behavior Cloning (ICML 2025)\n\n**This is the single most relevant competing work.** The paper \"Rethinking Latent Redundancy in Behavior Cloning: An Information Bottleneck Approach for Robot Manipulation\" by Bai et al. (ICML 2025) directly applies the Information Bottleneck principle to behavior cloning for robot manipulation.\n\n- **What it does:** Applies IB between multimodal features (vision + proprioception + language) and the latent representation before the policy head. Uses MLP policy heads (not diffusion/flow-matching).\n- **Beta sweep:** Explores beta in {1e-4, 1e-3, 5e-3, 1e-2}, finds 1e-4 works best -- but does NOT trace a full rate-distortion frontier.\n- **OOD gap:** The paper explicitly acknowledges \"its robustness to domain shifts, such as environmental or task variations, remains underexplored\" in the limitations.\n- **Benchmarks:** CortexBench and LIBERO.\n- **Key finding:** Minimizing redundancy in latent representations significantly improves generalization, highlighting considerable redundancy in current robot trajectory datasets.\n- **Difference from proposed work:** BC-IB uses MLP policy heads, not flow-matching VLAs like pi0. It does not trace rate-distortion frontiers. It does not study OOD. The proposed work is specifically about VIB between visual encoder and action module in a pi0/openpi 2B architecture with systematic beta sweeps -- but BC-IB establishes the core premise that IB helps robot manipulation.\n\nPaper: [https://arxiv.org/abs/2502.02853](https://arxiv.org/abs/2502.02853) / [ICML 2025 proceedings](https://proceedings.mlr.press/v267/bai25e.html) / [GitHub](https://github.com/BaiShuanghao/BC-IB)\n\n---\n\n## HIGHLY RELEVANT: VLA Token Compression/Pruning (The Efficiency Landscape)\n\nThere is an enormous and rapidly growing literature on visual token compression for VLAs, published in 2025-2026. None of these use information bottleneck theory or trace rate-distortion frontiers, but they all study the core tension between compression and performance that the proposed work investigates from an information-theoretic angle.\n\n### 2. GridS (ICML 2026) -- CONFIRMED TO EXIST\n\"See What Matters: Differentiable Grid Sample Pruning for Generalizable Vision-Language-Action Model\" by Feng et al. This is a poster at ICML 2026. It performs task-aware continuous resampling of visual tokens, achieves &lt;10% token retention with 76% FLOPs reduction and no degradation. The title emphasizes \"Generalizable\" but does not use IB theory or study OOD explicitly.\nLink: [https://icml.cc/virtual/2026/poster/65010](https://icml.cc/virtual/2026/poster/65010)\n\n### 3. LightVLA (ICRA 2026) -- CONFIRMED TO EXIST\nBy Jiang et al. (LiAuto). First adaptive differentiable token pruning for VLAs. Uses Gumbel softmax for differentiable selection. Reduces FLOPs by 59.1%, latency by 38.2%, improves success rate by 2.6-2.9% on LIBERO. Based on OpenVLA-OFT (7B). Does NOT study OOD or IB.\nLink: [https://github.com/LiAutoAD/LightVLA](https://github.com/LiAutoAD/LightVLA) / [https://arxiv.org/html/2509.12594v1](https://arxiv.org/html/2509.12594v1)\n\n### 4. VLA-Pruner -- CONFIRMED TO EXIST\nBy Liu et al. Temporal-aware dual-level visual token pruning. Reveals the dual-system property of VLA inference (prefill vs. decode attention patterns). Training-free, plug-and-play, up to 1.99x speedup. Does NOT study OOD or IB.\nLink: [https://arxiv.org/abs/2511.16449](https://arxiv.org/abs/2511.16449)\n\n### 5. Compressor-VLA -- CONFIRMED TO EXIST\nBy Gao et al. Instruction-guided token compression with two modules (Semantic Task Compressor + Spatial Refinement Compressor). Reduces FLOPs by 59%, tokens by 3x. Does NOT study OOD or IB.\nLink: [https://arxiv.org/abs/2511.18950](https://arxiv.org/abs/2511.18950)\n\n### 6. Additional VLA Compression Papers (all confirmed):\n- **VLA-IAP** (arXiv Mar 2026): Training-free interaction-aligned pruning. 97.8% success, 1.25x speedup. [https://arxiv.org/abs/2603.22991](https://arxiv.org/abs/2603.22991)\n- **DTP** (arXiv Jan 2026): Distracting token pruning. Finds negative correlation between attention to task-irrelevant regions and success rate. [https://arxiv.org/abs/2601.16065](https://arxiv.org/abs/2601.16065)\n- **SP-VLA** (arXiv Jun 2025): Joint model scheduling + token pruning. 1.5-2.4x lossless acceleration. [https://arxiv.org/abs/2506.12723](https://arxiv.org/abs/2506.12723)\n- **VLA-ADP** (arXiv Sep 2025): Action-aware dynamic pruning. 1.35x speedup, 25.8% success rate improvement. [https://arxiv.org/abs/2509.22093](https://arxiv.org/abs/2509.22093)\n- **BFA++** (arXiv Feb 2026): Hierarchical multi-view token pruning. [https://arxiv.org/abs/2602.20566](https://arxiv.org/abs/2602.20566)\n- **EfficientVLA** (arXiv Jun 2025): Training-free acceleration combining layer pruning, token selection, and diffusion caching. 1.93x speedup. [https://arxiv.org/abs/2506.10100](https://arxiv.org/abs/2506.10100)\n- **VLA-Cache** (NeurIPS 2025): Adaptive token caching across frames. 1.7x speedup. [https://arxiv.org/abs/2502.02175](https://arxiv.org/abs/2502.02175)\n- **FastDriveVLA** (AAAI 2026): Reconstruction-based token pruning for autonomous driving VLAs. 7.5x compute reduction. [https://arxiv.org/abs/2507.23318](https://arxiv.org/abs/2507.23318)\n- **TEAM-VLA** (arXiv Dec 2025): Token expand-merge compression. [https://arxiv.org/abs/2512.09927](https://arxiv.org/abs/2512.09927)\n- **OneWM-VLA** (arXiv May 2026): Compresses to a single token per frame for world-model-augmented VLAs on pi0 (2B). [https://arxiv.org/abs/2605.07931](https://arxiv.org/abs/2605.07931)\n\n**Key observation for the proposed work:** None of these ~12 papers use information bottleneck theory. They are all heuristic or learned pruning/compression methods. The proposed work's theoretical IB framing and rate-distortion frontier tracing would be genuinely novel in this space. However, the proposed work MUST cite and differentiate from this large body of work.\n\n---\n\n## HIGHLY RELEVANT: Robustness Concerns with Token Compression\n\n### 7. \"Less Is More -- Until It Breaks\" (arXiv Jan 2026)\nThis paper reveals that visual token compression fundamentally undermines robustness of large vision-language models. Vulnerabilities are state-specific -- they emerge only under compression and disappear without it. Instability in token importance ranking is identified as the root cause. This is about VLMs, not VLAs, but the finding is directly relevant to the proposed work's thesis that compression can hurt OOD.\nLink: [https://arxiv.org/abs/2601.12042](https://arxiv.org/abs/2601.12042)\n\n### 8. Adversarial Robustness of LVLMs under Token Compression (arXiv Jan 2026)\nA companion work studying adversarial attacks specifically targeting compression-induced vulnerabilities (CAGE attack).\nLink: [https://arxiv.org/abs/2601.21531](https://arxiv.org/abs/2601.21531)\n\n---\n\n## RELEVANT: Information Bottleneck Theory Foundations\n\n### 9. Phase Transitions in IB (ICLR 2020) -- CONFIRMED TO EXIST\n\"Phase Transitions for the Information Bottleneck in Representation Learning\" by Wu, Fischer et al. Shows sudden jumps in prediction accuracy with increasing beta, derives conditions using calculus of variations connecting to Fisher information matrix. Each transition = learning a new class. Validated on MNIST and CIFAR10. This is the key prior work for the \"phase transition\" aspect of the proposed idea.\nLink: [https://arxiv.org/abs/2001.01878](https://arxiv.org/abs/2001.01878)\n\n### 10. Generalized Information Bottleneck (NeurIPS 2025)\nBy Westphal et al. Reformulates IB through synergy, shows compression phases across architectures including ReLU (where standard IB fails), aligns with adversarial robustness. General theory, not VLA-specific.\nLink: [https://arxiv.org/abs/2509.26327](https://arxiv.org/abs/2509.26327)\n\n### 11. Flexible Variational Information Bottleneck (FVIB) (2024-2025)\nBy Kudo et al. Enables sweeping all beta values in a single training run via a Taylor approximation of the VIB objective. This is directly relevant to the proposed work's methodology of sweeping beta to trace RD frontiers -- FVIB could be used as a more efficient method for doing so.\nLink: [https://arxiv.org/abs/2402.01238](https://arxiv.org/abs/2402.01238)\n\n### 12. Deep Learning and the IB Principle (Tishby, 2015)\nThe foundational work. Link: [https://arxiv.org/abs/1503.02406](https://arxiv.org/abs/1503.02406)\n\n### 13. Debate on IB Theory (ICLR 2018)\n\"On the Information Bottleneck Theory of Deep Learning\" -- shows compression phase arises from tanh activations, not ReLU. Important caveat for the proposed work.\nLink: [https://openreview.net/forum?id=ry_WPG-A-](https://openreview.net/forum?id=ry_WPG-A-)\n\n### 14. IBTM: IB-Inspired Token Merging for Vision Transformers (ICLR 2025 submission)\nDerives a variational upper bound for IB loss and uses it to guide token merging in ViTs. Achieves efficient compression with maintained/improved accuracy. General vision, not VLA.\nLink: [https://openreview.net/forum?id=Jwgw3znxT3](https://openreview.net/forum?id=Jwgw3znxT3)\n\n### 15. DCS-Transformer: IB-Based Channel Selection (ICML 2024)\nVisual transformer with differentiable channel selection motivated by IB reduction. Derives variational upper bound for IB loss. General vision.\nLink: [https://proceedings.mlr.press/v235/wang24ak.html](https://proceedings.mlr.press/v235/wang24ak.html)\n\n---\n\n## RELEVANT: Rate-Distortion Theory + Generalization\n\n### 16. Rate-Distortion Signatures of Generalization (arXiv Mar 2026)\nBy Caglar et al. Proposes RD framework treating stimulus-response as information channel. Derives RD frontiers from confusion matrices with two geometric signatures (slope, curvature). Finds humans have smoother trade-offs while DNNs are steeper/more brittle. This is the closest work to tracing RD frontiers for understanding generalization differences, though it is applied to vision models, not robot policies.\nLink: [https://arxiv.org/abs/2603.01568](https://arxiv.org/abs/2603.01568)\n\n### 17. Capacity-Limited Actor-Critic (ICLR 2019)\nBy Lerch &amp; Sims. Maps capacity-limited RL to rate-distortion theory. Shows capacity-constrained agents generalize better to novel environments. This is the key prior work connecting RD theory to policy generalization.\nLink: [https://openreview.net/forum?id=ByxAOoR5K7](https://openreview.net/forum?id=ByxAOoR5K7)\n\n### 18. Rate-Distortion Theoretic Generalization Bounds (NeurIPS 2022)\nProves generalization bounds through rate-distortion theory, linking generalization to rate-distortion dimension.\nLink: [https://proceedings.neurips.cc/paper_files/paper/2022/file/7c61aa6a4dcf12042fe12a31d49d6390-Paper-Conference.pdf](https://proceedings.neurips.cc/paper_files/paper/2022/file/7c61aa6a4dcf12042fe12a31d49d6390-Paper-Conference.pdf)\n\n---\n\n## RELEVANT: VIB in Robotics/RL (Non-VLA)\n\n### 19. Multimodal Information Bottleneck for Deep RL (Neural Networks, 2024)\nProposes MIB for learning task-relevant joint representations from egocentric images + proprioception. Shows zero-shot robustness to unseen noise. Directly relevant as it applies IB to multimodal robot representations, though in RL not imitation learning.\nLink: [https://arxiv.org/abs/2410.17551](https://arxiv.org/abs/2410.17551)\n\n### 20. VIB-Regularized Deep RL for Robotic Skill Adaptation (Sensors, 2023)\nMeta-RL with VIB for robotic locomotion. Improves sample efficiency 200-5000x on new tasks. State-based, not visual.\nLink: [https://www.mdpi.com/1424-8220/23/2/762](https://www.mdpi.com/1424-8220/23/2/762)\n\n### 21. IBAC: Information Bottleneck Actor-Critic (NeurIPS 2019)\nUses VIB in the agent architecture to learn compressed representations for better generalization in noisy, low-data regimes.\nLink: [https://papers.neurips.cc/paper/9546-generalization-in-reinforcement-learning-with-selective-noise-injection-and-information-bottleneck.pdf](https://papers.neurips.cc/paper/9546-generalization-in-reinforcement-learning-with-selective-noise-injection-and-information-bottleneck.pdf)\n\n---\n\n## NEGATIVE RESULTS (Items Not Found)\n\n- **\"GridS VLA ICML 2026\"**: CONFIRMED to exist (see above).\n- **\"LightVLA\"**: CONFIRMED to exist (see above).\n- **\"VLA-Pruner\"**: CONFIRMED to exist (see above).\n- **\"Compressor-VLA\"**: CONFIRMED to exist (see above).\n- **\"pi0 openpi VLA information bottleneck\"**: NO direct work found applying IB specifically to pi0/openpi. The closest is BC-IB (ICML 2025), which applies IB to behavior cloning but uses MLP policy heads, not flow-matching VLAs.\n\n---\n\n## SUMMARY OF KEY GAPS AND RECOMMENDATIONS\n\n**The proposed idea's main vulnerability is BC-IB (ICML 2025).** This paper already demonstrates that IB improves behavior cloning for robot manipulation, using the same theoretical framework. The proposed work must clearly differentiate by emphasizing: (a) application to flow-matching VLAs (pi0) rather than MLP policies, (b) systematic beta sweeps tracing full RD frontiers, and (c) OOD evaluation -- which BC-IB explicitly leaves as a limitation.\n\n**The proposed idea fills a genuine gap.** Despite ~12+ papers on VLA token compression in 2025-2026, NONE use information-theoretic frameworks. They are all heuristic. The IB/RD framing would be novel in this space.\n\n**Methodological opportunity:** FVIB (Kudo et al., 2024) enables sweeping all beta values in a single training run -- this could dramatically reduce the computational cost of tracing RD frontiers and should be considered as a methodology.\n\n**Important caution from the literature:** The \"Less Is More -- Until It Breaks\" paper (Jan 2026) shows compression introduces state-specific robustness vulnerabilities in VLMs. The IB framework's principled compression might mitigate this compared to heuristic pruning, which would be a strong selling point.\n\n**Phase transition work is well-established.** The ICLR 2020 paper already characterizes IB phase transitions in representation learning. The proposed work should cite this and frame its contribution as discovering where these transitions occur specifically in VLA visual representations.&lt;/result>\n&lt;usage>&lt;total_tokens>47344&lt;/total_tokens>&lt;tool_uses>47&lt;/tool_uses>&lt;duration_ms>244749&lt;/duration_ms>&lt;/usage>\n&lt;/task-notification>",
+    "commandMode": "task-notification"
+  },
+  "type": "attachment",
+  "uuid": "a77f0d34-959e-4c86-a921-5fa524d1e78f",
+  "timestamp": "2026-05-13T06:40:12.172Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 93 · 2026-05-13T06:40:12.173Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "remove",
+  "timestamp": "2026-05-13T06:40:12.173Z",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 94 · 2026-05-13T06:40:12.172Z_
+
+```json
+{
+  "parentUuid": "a77f0d34-959e-4c86-a921-5fa524d1e78f",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "93f0e17f-b7d7-4631-a788-8c383c829d74",
+  "timestamp": "2026-05-13T06:40:12.172Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 95_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "93f0e17f-b7d7-4631-a788-8c383c829d74",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 96_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify VLA visual compression phase transitions",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d"
+}
+```
+
+---
+
+### Assistant
+
+_source line 97 · 2026-05-13T06:41:04.954Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have very comprehensive information from all three agents and my own searches. Let me compile the full review.
+
+### Key findings:
+
+**CRITICAL OMISSION: CRAFT (arXiv 2602.12532)**
+- Applies VIB to π₀ and RDT VLA architectures
+- Inserts VIB after vision-language encoder  
+- Studies generalization to unseen objects and task variants
+- Uses exponential decay for VIB weight scheduling
+- The proposal does NOT cite this paper
+- However, CRAFT's goal is fundamentally different: modality balancing for contact-rich tasks vs. understanding compression-generalization tradeoffs
+  
+**IMPORTANT OMISSION: Phase Transitions in IB (ICLR 2020, Wu & Fischer)**
+- This work already characterized phase transitions in information bottleneck for representation learning, showing sudden jumps in prediction accuracy as β increases
+- The proposal's framing around phase transitions isn't novel and should acknowledge this prior work while positioning its contribution as identifying where these transitions manifest specifically in VLA visual representations under distribution shift
+
+**IMPORTANT OMISSION: FVIB (Flexible Variational Information Bottleneck)**
+- Enables sweeping all β values in a single training run through Taylor approximation, which could substantially reduce the computational overhead of the proposed approach
+
+**IMPORTANT OMISSION: IBAC and capacity-limited actor-critic frameworks**
+- These establish theoretical precedent for connecting information-theoretic principles to policy generalization
+
+**IMPORTANT OMISSION: "Less Is More — Until It Breaks"**
+- Directly shows how compression creates state-specific vulnerabilities in vision language models, which aligns with the proposal's core thesis
+
+**IMPORTANT OMISSION: VFP**
+- Demonstrates the feasibility of combining variational information bottleneck with flow matching for robotic control tasks
+
+I've verified all references exist and the BC-IB characterization holds up.
+
+Now I'm noticing a tension in the technical approach: CRAFT already showed that VIB works with flow matching on the policy, which reduces the technical novelty of applying VIB to π₀. The phase transition claim also seems like it might be overselling the effect.
+
+The theoretical contribution is the main gap here—the proposal frames token pruning through information bottleneck theory but doesn't derive new theoretical results, relying instead on empirical measurements of the information-distortion frontier and phase transitions. That's interesting but doesn't fully address the user's request for theoretical analysis of why pruning improves generalization.
+
+There's also uncertainty about whether the clean behavior observed on smaller models will transfer to a 2B parameter VLA, and the phase transition concept itself isn't new since it's been studied in prior work.
+
+Now I'm reviewing how the earlier concerns were addressed—the conference targets were updated, BC-IB is properly differentiated with specific comparisons, the confusion matrix issue was resolved by switching to continuous RD analysis with KL divergence, and several key papers like Evans et al. are now cited and discussed in depth.
+
+But there are some critical gaps emerging. CRAFT directly applies VIB to vision-language architectures and shows generalization improvements, which is a major omission given the novelty claims. Phase transitions in information bottleneck have already been studied in prior work, so I need to clarify how this extends to VLA visual representations under distribution shift. FVIB offers efficient β-sweeping methodology that could reduce computational overhead. And there are still some missing citations to track down.
+
+The bigger concern is that the proposal leans heavily on empirical validation when the user explicitly requested more theoretical analysis. The information bottleneck framing is there, but the theoretical depth feels insufficient. Looking at the novelty score, the VIB and VLA combination was partially demonstrated by CRAFT, phase transitions aren't new, and while the specific combination of VIB with systematic rate-distortion frontier exploration has merit, it's not enough to push beyond a 3/5 novelty rating.
+
+On feasibility, the 15 β sweeps across full LIBERO-Plus evaluation with 7 perturbation types at 5 levels each is computationally expensive, and there's real uncertainty about whether the phase transition will manifest cleanly. CRAFT does reduce technical risk by showing VIB + π₀ works, but the MetaWorld ML-45 setup needs clarification. The writing is clear and well-structured with good differentiation from BC-IB, though it's missing key citations like CRAFT and phase transition literature.
+
+For impact, understanding the compression-generalization tradeoff is genuinely valuable, and a practical recipe for bandwidth selection would be useful. But there's a risk the contribution becomes just an empirical sweep showing smooth tradeoffs rather than the compelling phase transition narrative the user envisioned. The user wanted theoretical analysis, and this is mostly empirical.
+
+Averaging the scores puts this at 3.5, below the 4.0 threshold. The core idea is solid but needs revision—specifically, CRAFT must be cited to properly contextualize novelty, the phase transition framing should be adjusted given prior work, and the theoretical contribution could be strengthened.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "93f0e17f-b7d7-4631-a788-8c383c829d74",
+  "isSidechain": false,
+  "requestId": "req_011Caz7M4eGfM3XadynDroLa",
+  "type": "assistant",
+  "uuid": "3771988c-2b96-4092-bf78-4cd483bc6c38",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YC4jkA7ag6wD22NHRHMTMX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8288,
+      "cache_read_input_tokens": 54059,
+      "output_tokens": 2142,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8288,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2142,
+          "cache_read_input_tokens": 54059,
+          "cache_creation_input_tokens": 8288,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8288
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 98 · 2026-05-13T06:41:04.955Z_
+
+All three agents have completed. Let me now do a final check on the phase transition prior work that was identified.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3771988c-2b96-4092-bf78-4cd483bc6c38",
+  "isSidechain": false,
+  "requestId": "req_011Caz7M4eGfM3XadynDroLa",
+  "type": "assistant",
+  "uuid": "6ec4dce1-aa13-4475-adb6-0aabe77a979a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YC4jkA7ag6wD22NHRHMTMX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8288,
+      "cache_read_input_tokens": 54059,
+      "output_tokens": 2142,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8288,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2142,
+          "cache_read_input_tokens": 54059,
+          "cache_creation_input_tokens": 8288,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8288
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 99 · 2026-05-13T06:41:05.473Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01Y96ztfgEa387CfuvcnG5iw`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2001.01878",
+  "prompt": "Read the abstract. This should be about phase transitions in the information bottleneck for representation learning. What exactly does it show? Does it demonstrate sudden jumps in prediction accuracy as beta increases? Is it about learned representations or IB theory?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6ec4dce1-aa13-4475-adb6-0aabe77a979a",
+  "isSidechain": false,
+  "requestId": "req_011Caz7M4eGfM3XadynDroLa",
+  "type": "assistant",
+  "uuid": "37f34ea8-fde5-4f22-8034-ca265619a6c1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YC4jkA7ag6wD22NHRHMTMX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8288,
+      "cache_read_input_tokens": 54059,
+      "output_tokens": 2142,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8288,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2142,
+          "cache_read_input_tokens": 54059,
+          "cache_creation_input_tokens": 8288,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8288
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-13T06:41:10.092Z_
+
+<details><summary>↩ Tool result · `toolu_01Y96ztfgEa387CfuvcnG5iw`</summary>
+
+```text
+# Phase Transitions in the Information Bottleneck
+
+Based on the abstract, this paper demonstrates **both sudden jumps in prediction accuracy and theoretical insights about representation learning**.
+
+## Key Findings
+
+The research shows that "sudden jumps of dI(Y; Z)/dβ and prediction accuracy are observed with increasing β," confirming the empirical phenomena of abrupt changes as the compression-prediction tradeoff parameter increases.
+
+## Theoretical Contribution
+
+Rather than focusing solely on empirical observations, the work provides theoretical grounding by introducing a formal definition of IB phase transitions as "a qualitative change of the IB loss landscape." The authors derive practical conditions using calculus of variations and connect these to the Fisher information matrix.
+
+## Practical Insights
+
+The theory reveals that phase transitions correspond to discovering new classes and represent instances where the model finds "maximum (nonlinear) correlation between X and Y orthogonal to the learned representation," drawing parallels with canonical-correlation analysis in linear contexts.
+
+## Validation
+
+The paper validates predictions against real datasets (MNIST, CIFAR10), demonstrating that the theoretical framework accurately predicts when new classes begin being learned and their relative difficulty levels.
+
+This represents a convergence of **both empirical phenomena and theoretical explanation** for understanding representation learning dynamics.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "37f34ea8-fde5-4f22-8034-ca265619a6c1",
+  "isSidechain": false,
+  "promptId": "d00fd39b-05e8-4d12-acea-1a8fbd608c3e",
+  "type": "user",
+  "uuid": "18db7517-44e8-4794-813d-9a47b3e919c9",
+  "toolUseResult": {
+    "bytes": 48564,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Phase Transitions in the Information Bottleneck\n\nBased on the abstract, this paper demonstrates **both sudden jumps in prediction accuracy and theoretical insights about representation learning**.\n\n## Key Findings\n\nThe research shows that \"sudden jumps of dI(Y; Z)/dβ and prediction accuracy are observed with increasing β,\" confirming the empirical phenomena of abrupt changes as the compression-prediction tradeoff parameter increases.\n\n## Theoretical Contribution\n\nRather than focusing solely on empirical observations, the work provides theoretical grounding by introducing a formal definition of IB phase transitions as \"a qualitative change of the IB loss landscape.\" The authors derive practical conditions using calculus of variations and connect these to the Fisher information matrix.\n\n## Practical Insights\n\nThe theory reveals that phase transitions correspond to discovering new classes and represent instances where the model finds \"maximum (nonlinear) correlation between X and Y orthogonal to the learned representation,\" drawing parallels with canonical-correlation analysis in linear contexts.\n\n## Validation\n\nThe paper validates predictions against real datasets (MNIST, CIFAR10), demonstrating that the theoretical framework accurately predicts when new classes begin being learned and their relative difficulty levels.\n\nThis represents a convergence of **both empirical phenomena and theoretical explanation** for understanding representation learning dynamics.",
+    "durationMs": 4614,
+    "url": "https://arxiv.org/abs/2001.01878"
+  },
+  "sourceToolAssistantUUID": "37f34ea8-fde5-4f22-8034-ca265619a6c1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 101 · 2026-05-13T06:41:32.374Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+This confirms that IB phase transitions have been formally studied. The paper by Wu & Fischer (ICLR 2020, arXiv 2001.01878) provides both theoretical conditions and empirical validation for phase transitions in the IB. The proposal's claim about "phase transitions" in VLA compression is not fundamentally new — it extends existing IB phase transition theory to a new domain (VLA visual representations under OOD).
+
+Now let me compile my final review.
+
+Let me think carefully about each score:
+
+**Novelty: 3/5**
+Positives:
+- No one has traced systematic IB-based RD frontiers for VLA visual tokens under OOD conditions
+
+
+- The IB framing stands out among the 12+ VLA token compression papers I've reviewed
+- Pushing from in-distribution IB work to OOD evaluation is a meaningful extension
+
+Negatives:
+- CRAFT already applied VIB to π₀ for generalization, which overlaps with this approach
+- IB phase transitions are established theory from 2020 — applying them here isn't conceptually novel
+- BC-IB demonstrated IB's utility for robot manipulation previously
+- The technical execution is straightforward: add VIB, vary β, evaluate performance
+
+**Feasibility: 3.5/5**
+
+The existing work validates that VIB works with π₀ flow matching, and the baseline components are proven. OpenPI is accessible, and the computational estimates are reasonable. However, sweeping 15 β values across LIBERO-Plus's full evaluation matrix—7 perturbation types at 5 difficulty levels per β—creates 525 separate evaluation runs, which is computationally prohibitive. The phase transition might manifest as a gradual shift rather than a sharp boundary, potentially undermining the core narrative. There are also open questions about whether π₀ needs fine-tuning for MetaWorld, and adding adversarial PGD attacks on visual inputs at each operating point introduces additional experimental complexity.
+
+**Clarity: 4/5**
+The writing is clear and well-structured, with good differentiation from prior work.
+
+**Impact: 3.5/5**
+The core question about when compression helps or hurts VLA generalization is valuable, but the impact hinges on whether I can derive clean theoretical insights or just empirical patterns. If the answer is task-dependent without deeper characterization, the contribution feels incremental. The user specifically requested theoretical analysis, and this is primarily empirical work.
+
+**Verdict: revise**
+
+The main gaps are missing citations for CRAFT and phase transition work. I should consider using FVIB for more efficient β sweeping and strengthen the theoretical contribution to align with what the user asked for.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "18db7517-44e8-4794-813d-9a47b3e919c9",
+  "isSidechain": false,
+  "requestId": "req_011Caz7RLMBzqWf58bwLacq2",
+  "type": "assistant",
+  "uuid": "e0ad6500-2065-4b66-ac68-6699f223b805",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TY7voSE7A4dREsPGrueUbi",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2422,
+      "cache_read_input_tokens": 62347,
+      "output_tokens": 3018,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2422,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3018,
+          "cache_read_input_tokens": 62347,
+          "cache_creation_input_tokens": 2422,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2422
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 102 · 2026-05-13T06:42:24.383Z_
+
+Now I have comprehensive evidence to issue my review. Let me synthesize all findings.
+
+**Key findings from my independent investigation:**
+
+1. **CRAFT (arXiv 2602.12532, Feb 2026)** — a critical omission. This paper already applies VIB to π₀ and RDT architectures, studies generalization to unseen objects/tasks, and uses curriculum β scheduling. Not cited in the proposal.
+
+2. **IB Phase Transitions (ICLR 2020, arXiv 2001.01878)** — formal theory and empirical validation of phase transitions in the information bottleneck already exists. The "phase transition" framing isn't new.
+
+3. **FVIB (arXiv 2402.01238)** — enables sweeping all β values in a single training run, which could dramatically reduce the proposed 15-point sweep cost.
+
+4. All cited references verified as existing and accurately characterized.
+
+5. BC-IB's scope confirmed exactly as described: latent-level IB, 4 β values, no OOD evaluation, explicitly acknowledges OOD as "insufficiently studied."
+
+6. Venues and cost estimates are realistic.
+
+```json
+{
+  "verdict": "revise",
+  "scores": {
+    "novelty": {"score": 3, "rationale": "CRAFT (arXiv 2602.12532, Feb 2026) already applies VIB to π₀ with generalization evaluation, and IB phase transitions were formally characterized at ICLR 2020 (arXiv 2001.01878). The specific combination of systematic RD frontier tracing under OOD for VLAs remains novel, but both key components (VIB+π₀ and IB phase transitions) have prior art."},
+    "feasibility": {"score": 3, "rationale": "CRAFT's successful VIB+π₀ integration validates technical feasibility, but the experimental scope (15 β values × 7 perturbation types × 5 difficulty levels = 525 evaluation conditions) is very ambitious for the resource budget. The 'phase transition' may manifest as a smooth crossover rather than a sharp threshold, undermining the core narrative."},
+    "clarity": {"score": 4, "rationale": "Well-structured proposal with clear differentiation from BC-IB and engagement with Evans et al. All round 1 issues competently addressed. The continuous-output RD analysis replacing confusion matrices is well-motivated."},
+    "impact": {"score": 3, "rationale": "Understanding the compression-generalization tradeoff is valuable, but the contribution is primarily empirical (sweeping β, measuring outcomes) rather than the theoretical analysis the user specifically requested. If the phase transition is smooth rather than sharp, the main finding reduces to 'more compression eventually hurts OOD more than ID' — a somewhat expected result."}
+  },
+  "issues": [
+    "CRITICAL — CRAFT (arXiv 2602.12532, Feb 2026, 'Adapting VLA Models to Contact-rich Manipulation via Force-aware Curriculum Fine-tuning') applies VIB to π₀ and RDT VLA architectures, inserts VIB after the vision-language encoder, uses curriculum β scheduling (exponential decay), and demonstrates generalization to unseen objects and task variants (22.5% → 58.75% OOD improvement). This is a major omission that directly impacts novelty: 'inserting VIB into π₀' is no longer a novel technical contribution. Must be cited and explicitly differentiated.",
+    "MAJOR — IB phase transitions have been formally studied: 'Phase Transitions for the Information Bottleneck in Representation Learning' (Wu & Fischer, ICLR 2020, arXiv 2001.01878) derives theoretical conditions for phase transitions using calculus of variations, connects them to the Fisher information matrix, and validates on MNIST/CIFAR10. The proposal's 'phase transition' framing is not a new concept — it must cite this work and reframe the contribution as discovering WHERE these transitions occur in VLA visual representations under OOD conditions, not as discovering THAT phase transitions exist.",
+    "MAJOR — The proposal's theoretical depth is insufficient given the user's explicit requirement for '多从理论角度分析为何能增强' (theoretical analysis of WHY compression can enhance generalization). The current proposal is primarily empirical: insert VIB, sweep β, measure outcomes. The IB formalism is used as a framing device, not as a source of new theoretical results. No new bounds, no new theorems, no analytical characterization of when compression helps. The 'approximate scaling relationships' are curve-fitting, not theory.",
+    "MAJOR — FVIB (Flexible Variational Information Bottleneck, arXiv 2402.01238, Kudo et al.) enables sweeping all β values in a single training run via Taylor approximation of the VIB objective. This could dramatically reduce the computational cost of the proposed 15-point β sweep and should be considered as methodology. Not citing or considering this is a missed opportunity that also affects the cost estimates.",
+    "MINOR — Several relevant works are missing from the landscape: (a) VFP (arXiv 2508.01622) — variational flow-matching policy, establishing precedent for variational components + flow matching in robot manipulation; (b) IBAC (NeurIPS 2019) — information bottleneck actor-critic for generalization; (c) 'Less Is More — Until It Breaks' (arXiv 2601.12042) — shows compression introduces state-specific robustness vulnerabilities in VLMs; (d) Capacity-Limited Actor-Critic (ICLR 2019, Lerch & Sims) — directly maps capacity-limited RL to rate-distortion theory and shows capacity-constrained agents generalize better.",
+    "MINOR — MetaWorld ML-45 evaluation needs clarification: π₀ was not pre-trained on MetaWorld tasks. Would this require fine-tuning π₀ on MetaWorld from scratch? If so, this adds significant compute cost and may produce a model that doesn't represent real VLA capabilities. Consider whether LIBERO-90 + LIBERO-Plus alone provides sufficient evaluation coverage.",
+    "MINOR — The adversarial robustness evaluation (PGD attacks at each β operating point) adds significant complexity. Evans et al.'s results are about classification margins with fixed codecs — the connection to continuous action prediction under learned compression is tenuous enough that the PGD evaluation may produce inconclusive results. Consider making this a secondary contribution rather than a core claim."
+  ],
+  "feedback": "The revision competently addressed all round 1 issues, but independent verification reveals three significant gaps:\n\n1. **Cite and differentiate from CRAFT (arXiv 2602.12532)**. CRAFT already demonstrates VIB + π₀ works and shows generalization improvements. Your differentiators should be: (a) CRAFT uses VIB as a curriculum tool (compress → release) for modality balancing, while you use VIB at fixed β values to trace systematic RD frontiers; (b) CRAFT targets force modality prioritization in contact-rich tasks, while you target understanding visual compression-generalization tradeoffs; (c) CRAFT does not trace RD frontiers or evaluate across systematic perturbation types (LIBERO-Plus). Note: CRAFT's existence actually HELPS your feasibility story — it validates VIB + flow matching integration on π₀.\n\n2. **Cite IB phase transitions (ICLR 2020, arXiv 2001.01878)** and reframe. You are not discovering that phase transitions exist in IB — this was shown in 2020. Your contribution is characterizing WHERE these transitions occur in VLA visual representations under distribution shift, and how the critical β* shifts with task/perturbation characteristics. Frame it as 'applying the known IB phase transition framework to a new and practically important domain' rather than as a discovery.\n\n3. **Strengthen theoretical contribution** to match the user's requirement for theoretical analysis. Consider: (a) Derive generalization bounds that depend on the compression rate R, using existing rate-distortion generalization theory (NeurIPS 2022); (b) Provide a formal argument connecting the IB's selective compression property to OOD robustness — e.g., show that minimizing I(V;Z) while preserving I(Z;A) removes features that vary across environments (task-irrelevant) while preserving invariant action-relevant features; (c) Connect to the invariant representation learning literature (IRM, CIRL) to provide theoretical grounding for why IB compression at the right level acts as a domain-invariant feature selector.\n\n4. **Consider FVIB (arXiv 2402.01238)** for efficient β sweeping — training 15 separate models is expensive; FVIB could enable the full RD frontier from fewer training runs.\n\n5. **Simplify the experimental scope**: Drop MetaWorld ML-45 (unclear π₀ compatibility) and make PGD adversarial evaluation a secondary analysis. Focus on LIBERO-90 + LIBERO-Plus as the primary testbed — this alone provides sufficient breadth (7 perturbation types × 5 difficulty levels) for a strong paper.",
+  "reason": "CRAFT (Feb 2026) already applies VIB to π₀ with generalization evaluation, IB phase transitions have established prior art (ICLR 2020), and the theoretical depth is insufficient for the user's stated requirement — all fixable issues that warrant revision."
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e0ad6500-2065-4b66-ac68-6699f223b805",
+  "isSidechain": false,
+  "requestId": "req_011Caz7RLMBzqWf58bwLacq2",
+  "type": "assistant",
+  "uuid": "e0ee0c9e-9515-4534-9ed0-d601569b9f84",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TY7voSE7A4dREsPGrueUbi",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2422,
+      "cache_read_input_tokens": 62347,
+      "output_tokens": 3018,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2422,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3018,
+          "cache_read_input_tokens": 62347,
+          "cache_creation_input_tokens": 2422,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2422
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 103_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "e0ee0c9e-9515-4534-9ed0-d601569b9f84",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 104_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify VLA visual compression phase transitions",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 105_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "e0ee0c9e-9515-4534-9ed0-d601569b9f84",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 106_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify VLA visual compression phase transitions",
+  "sessionId": "45183731-1e2f-4b44-81c9-d3cd33b5498d"
+}
+```
+
+---

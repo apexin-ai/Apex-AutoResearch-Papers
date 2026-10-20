@@ -1,0 +1,1373 @@
+{
+  "schema_version": "1.0",
+  "id": "2a9b6c272452e270d49e",
+  "project": "provenance_weight_training--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: I need to verify three specific claims: 1. **IntervenGen venue**: The reviewer says IntervenGen was published at IROS 20",
+  "task_key": "agent-a970585f0933593e3",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-3/agent-a970585f0933593e3.jsonl",
+    "occurrence": 1,
+    "bytes": 62798,
+    "sha256": "53e475eb6a003823c019025450fa6b8cdc34a617c327fcd073d86e90f79a7df4"
+  },
+  "statistics": {
+    "messages": 28,
+    "user_turns": 1,
+    "tool_calls": 10,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 6,
+      "tool_call": 10,
+      "tool_result": 10
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-10T20:22:10.462Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "I need to verify three specific claims:\n\n1. **IntervenGen venue**: The reviewer says IntervenGen was published at IROS 2024 (IEEE IROS, DOI:10.1109/IROS58592.2024.10801523), NOT CoRL 2024. Use WebSearch to search \"IntervenGen interventional data generation robot IROS 2024\" and verify the correct venue.\n\n2. **RESample venue**: The reviewer says RESample was submitted to IROS 2026, NOT ICRA 2026. Use WebSearch to search \"RESample robust data augmentation exploratory sampling IROS 2026 arXiv:2510.17640\" and verify.\n\n3. **Isaac Lab Arena task name**: The reviewer says the G1 loco-manipulation task in Isaac Lab Arena is registered as 'g1_locomanip_pnp', not 'box-transport-to-bin'. Use WebSearch to search \"Isaac Lab Arena g1_locomanip_pnp\" and \"Isaac Lab Arena G1 loco-manipulation task name\" to verify.\n\nReport your findings for each."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "676d09f0-84fb-420c-a1c3-117a23af4186",
+            "agentId": "a970585f0933593e3",
+            "type": "user",
+            "uuid": "d40957c1-3770-49ba-b885-7c2343b0b4ac",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "04fbc83f-1e39-4fc9-b438-6d1f89d1bdb0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-10T20:22:10.465Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "d40957c1-3770-49ba-b885-7c2343b0b4ac",
+                "isSidechain": true,
+                "agentId": "a970585f0933593e3",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "df0b1807-fa6d-4671-9dd0-79346872558d",
+                "timestamp": "2026-05-10T20:22:10.465Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/",
+                "sessionId": "04fbc83f-1e39-4fc9-b438-6d1f89d1bdb0",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-10T20:22:15.805Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll search for all three claims simultaneously."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "df0b1807-fa6d-4671-9dd0-79346872558d",
+            "isSidechain": true,
+            "agentId": "a970585f0933593e3",
+            "requestId": "req_011CauWbnHbVp7cb7Bw86XaC",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "56c55695-fe30-4cc9-9749-934ade36ee2a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "04fbc83f-1e39-4fc9-b438-6d1f89d1bdb0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01BKG5nHEoWksU1RPyMXaS79",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 803,
+                "cache_read_input_tokens": 7946,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 803,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-10T20:22:16.195Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TUcTHLMSmPKGyhJbnE1y3A",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "56c55695-fe30-4cc9-9749-934ade36ee2a",
+            "isSidechain": true,
+            "agentId": "a970585f0933593e3",
+            "requestId": "req_011CauWbnHbVp7cb7Bw86XaC",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "559ac502-6f61-427e-8df5-bc7c98303eee",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "04fbc83f-1e39-4fc9-b438-6d1f89d1bdb0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01BKG5nHEoWksU1RPyMXaS79",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 803,
+                "cache_read_input_tokens": 7946,
+                "output_tokens": 85,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 803
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 85,
+                    "cache_read_input_tokens": 7946,
+                    "cache_creation_input_tokens": 803,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 803,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-10T20:22:16.198Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01TUcTHLMSmPKGyhJbnE1y3A",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "559ac502-6f61-427e-8df5-bc7c98303eee",
+            "isSidechain": true,
+            "promptId": "676d09f0-84fb-420c-a1c3-117a23af4186",
+            "agentId": "a970585f0933593e3",
+            "type": "user",
+            "uuid": "2583b21c-7670-45ac-b8e8-7f0355cb2235",
+            "sourceToolAssistantUUID": "559ac502-6f61-427e-8df5-bc7c98303eee",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "04fbc83f-1e39-4fc9-b438-6d1f89d1bdb0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-10T20:22:17.586Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll run all three searches in parallel."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2583b21c-7670-45ac-b8e8-7f0355cb2235",
+            "isSidechain": true,
+            "agentId": "a970585f0933593e3",
+            "requestId": "req_011CauWcD8Kw1yU8mfgYUsgA",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "5a77e6da-e411-4701-8ba7-10c25ec8086b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "04fbc83f-1e39-4fc9-b438-6d1f89d1bdb0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01DSdtrtJwWgsWZi8PT7HJCS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1401,
+                "cache_read_input_tokens": 8749,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1401,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-10T20:22:18.600Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Af6uXKK3KBL5qccRSaj4Ad",
+              "name": "WebSearch",
+              "input": {
+                "query": "IntervenGen interventional data generation robot IROS 2024"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5a77e6da-e411-4701-8ba7-10c25ec8086b",
+            "isSidechain": true,
+            "agentId": "a970585f0933593e3",
+            "requestId": "req_011CauWcD8Kw1yU8mfgYUsgA",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "57a94899-d545-4e8b-a2d2-2a036f65a69d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "04fbc83f-1e39-4fc9-b438-6d1f89d1bdb0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01DSdtrtJwWgsWZi8PT7HJCS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1401,
+                "cache_read_input_tokens": 8749,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1401,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-10T20:22:19.913Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EmEwPgqMGmVb5TYVAdbQb3",
+              "name": "WebSearch",
+              "input": {
+                "query": "RESample robust data augmentation exploratory sampling IROS 2026 arXiv:2510.17640"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "57a94899-d545-4e8b-a2d2-2a036f65a69d",
+            "isSidechain": true,
+            "agentId": "a970585f0933593e3",
+            "requestId": "req_011CauWcD8Kw1yU8mfgYUsgA",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "dfaaf8b5-4949-4ea9-9a68-c8fae9d52c96",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "04fbc83f-1e39-4fc9-b438-6d1f89d1bdb0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01DSdtrtJwWgsWZi8PT7HJCS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1401,
+                "cache_read_input_tokens": 8749,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1401,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-10T20:22:20.337Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KD4MdR6BBwrP9x3hrFcQ97",
+              "name": "WebSearch",
+              "input": {
+                "query": "Isaac Lab Arena g1_locomanip_pnp"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dfaaf8b5-4949-4ea9-9a68-c8fae9d52c96",
+            "isSidechain": true,
+            "agentId": "a970585f0933593e3",
+            "requestId": "req_011CauWcD8Kw1yU8mfgYUsgA",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "51447891-a71a-4535-b52c-cb234d5fd2b5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "04fbc83f-1e39-4fc9-b438-6d1f89d1bdb0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01DSdtrtJwWgsWZi8PT7HJCS",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1401,
+                "cache_read_input_tokens": 8749,
+                "output_tokens": 182,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1401
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 182,
+                    "cache_read_input_tokens": 8749,
+                    "cache_creation_input_tokens": 1401,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1401,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-10T20:22:25.390Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Af6uXKK3KBL5qccRSaj4Ad",
+              "type": "tool_result",
+              "content": "Web search results for query: \"IntervenGen interventional data generation robot IROS 2024\"\n\nLinks: [{\"title\":\"IntervenGen: Interventional Data Generation for Robust ...\",\"url\":\"https://autolab.berkeley.edu/assets/publications/media/IROS24_2512_FI.pdf\"},{\"title\":\"Interventional Data Generation for Robust and Data-Efficient Robot Imitation Learning | Research\",\"url\":\"https://research.nvidia.com/publication/2024-10_interventional-data-generation-robust-and-data-efficient-robot-imitation\"},{\"title\":\"[2405.01472] IntervenGen: Interventional Data Generation for Robust and Data-Efficient Robot Imitation Learning\",\"url\":\"https://arxiv.org/abs/2405.01472\"},{\"title\":\"IntervenGen: Interventional Data Generation for\",\"url\":\"https://arxiv.org/pdf/2405.01472\"},{\"title\":\"IntervenGen: Interventional Data Generation for Robust and Data-Efficient Robot Imitation Learning | Request PDF\",\"url\":\"https://www.researchgate.net/publication/387422420_IntervenGen_Interventional_Data_Generation_for_Robust_and_Data-Efficient_Robot_Imitation_Learning\"},{\"title\":\"IntervenGen: Interventional Data Generation for Robust and Data-Efficient Robot Imitation Learning | IEEE Conference Publication | IEEE Xplore\",\"url\":\"https://ieeexplore.ieee.org/document/10801523/;jsessionid=EFB0C7767E07AACB152729E75576F106\"},{\"title\":\"IntervenGen: Robust Robot Imitation Learning\",\"url\":\"https://www.emergentmind.com/papers/2405.01472\"},{\"title\":\"IntervenGen\",\"url\":\"https://sites.google.com/view/intervengen2024\"},{\"title\":\"IntervenGen: Interventional Data Generation for Robust and Data-Efficient Robot Imitation Learning | AI Research Paper Details\",\"url\":\"https://www.aimodels.fyi/papers/arxiv/intervengen-interventional-data-generation-robust-data-efficient\"},{\"title\":\"Interventional Data Generation for Robust and Data-Efficient Robot Imitation Learning | OpenReview\",\"url\":\"https://openreview.net/forum?id=ckFRoOaA3n\"}]\n\nI found comprehensive information about IntervenGen. Here's what the search results show:\n\n## IntervenGen Overview\n\nIntervenGen (I-Gen) is a novel data generation system that autonomously produces a large set of corrective interventions with rich coverage of the state space from a small number of human interventions.\n\n## Presented at IROS 2024\n\nThe research was presented at the IEEE/RSJ International Conference on Intelligent Robots and Systems on October 14, 2024, by researchers from UC Berkeley, NVIDIA, and other institutions including Ryan Hoque, Ajay Mandlekar, Caelan Garrett, Ken Goldberg, and Dieter Fox.\n\n## Key Approach\n\nThe IntervenGen system trains a policy on the current dataset, rolls it out for interventional data collection with human teleoperation, synthesizes new interventions with closed-loop policy execution and open-loop trajectory replay, and returns the new synthetic dataset.\n\n## Performance Results\n\nThe system was applied to 4 simulated environments and 1 physical environment with object pose estimation error and showed it can increase policy robustness by up to 39x with only 10 human interventions.\n\n## Key Advantages\n\nIntervenGen generates interventional data rather than full demonstrations, relaxes the assumption of precise object pose knowledge, and integrates closed-loop policy execution that allows the robot to visit novel states during the data generation process.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "57a94899-d545-4e8b-a2d2-2a036f65a69d",
+            "isSidechain": true,
+            "promptId": "676d09f0-84fb-420c-a1c3-117a23af4186",
+            "agentId": "a970585f0933593e3",
+            "type": "user",
+            "uuid": "b776f799-f6cf-4f22-9d8a-eeac0898eda6",
+            "sourceToolAssistantUUID": "57a94899-d545-4e8b-a2d2-2a036f65a69d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "04fbc83f-1e39-4fc9-b438-6d1f89d1bdb0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-10T20:22:25.861Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EmEwPgqMGmVb5TYVAdbQb3",
+              "type": "tool_result",
+              "content": "Web search results for query: \"RESample robust data augmentation exploratory sampling IROS 2026 arXiv:2510.17640\"\n\nLinks: [{\"title\":\"[2510.17640] RESample: A Robust Data Augmentation Framework via Exploratory Sampling for Robotic Manipulation\",\"url\":\"https://arxiv.org/abs/2510.17640\"},{\"title\":\"RESample: A Robust Data Augmentation Framework via Exploratory Sampling for Robotic Manipulation\",\"url\":\"https://arxiv.org/html/2510.17640v1\"},{\"title\":\"Machine Learning Oct 2025\",\"url\":\"https://arxiv.org/list/cs.LG/2025-10?skip=4175&show=250\"},{\"title\":\"RESample: A Robust Data Augmentation Framework via Exploratory Sampling for Robotic Manipulation | Request PDF\",\"url\":\"https://www.researchgate.net/publication/396715309_RESample_A_Robust_Data_Augmentation_Framework_via_Exploratory_Sampling_for_Robotic_Manipulation\"},{\"title\":\"[Literature Review] RESample: A Robust Data Augmentation Framework via Exploratory Sampling for Robotic Manipulation\",\"url\":\"https://www.themoonlight.io/en/review/resample-a-robust-data-augmentation-framework-via-exploratory-sampling-for-robotic-manipulation\"},{\"title\":\"[2510.11571] Robust Online Sampling from Possibly Moving Target Distributions\",\"url\":\"https://arxiv.org/abs/2510.11571\"},{\"title\":\"Improving Out-of-Distribution Robustness via Selective Augmentation | OpenReview\",\"url\":\"https://openreview.net/forum?id=zXne1klXIQ\"},{\"title\":\"[2601.21506] IROS: A Dual-Process Architecture for Real-Time VLM-Based Indoor Navigation\",\"url\":\"https://arxiv.org/abs/2601.21506\"},{\"title\":\"A Comprehensive Survey on Data Augmentation\",\"url\":\"https://arxiv.org/html/2405.09591v4\"},{\"title\":\"Improving Out-of-Distribution Robustness via Selective Augmentation\",\"url\":\"https://proceedings.mlr.press/v162/yao22b/yao22b.pdf\"}]\n\nI found information about the paper you're searching for. Here's what the search revealed:\n\nRESample: A Robust Data Augmentation Framework via Exploratory Sampling for Robotic Manipulation is a paper with arXiv ID 2510.17640. \n\nThe paper introduces RESample, a robust data augmentation framework designed to address the challenges of Out-Of-Distribution (OOD) states in robotic manipulation policies learned via imitation learning (IL), specifically for Vision-Language-Action (VLA) models. RESample tackles this by automatically generating OOD data through an exploratory sampling mechanism.\n\nThe framework leverages offline reinforcement learning to obtain an action-value network that accurately identifies sub-optimal actions under the current manipulation policy.\n\nAccording to the arXiv listing, the paper has 9 pages and 7 figures, and was submitted to ICRA 2026 (not IROS 2026 as mentioned in your query).\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dfaaf8b5-4949-4ea9-9a68-c8fae9d52c96",
+            "isSidechain": true,
+            "promptId": "676d09f0-84fb-420c-a1c3-117a23af4186",
+            "agentId": "a970585f0933593e3",
+            "type": "user",
+            "uuid": "3603456e-b1a9-49fb-aeca-bad0a4d4a4e8",
+            "sourceToolAssistantUUID": "dfaaf8b5-4949-4ea9-9a68-c8fae9d52c96",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "04fbc83f-1e39-4fc9-b438-6d1f89d1bdb0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-10T20:22:29.703Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KD4MdR6BBwrP9x3hrFcQ97",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Isaac Lab Arena g1_locomanip_pnp\"\n\nLinks: [{\"title\":\"NVIDIA IsaacLab Arena & LeRobot · Hugging Face\",\"url\":\"https://huggingface.co/docs/lerobot/envhub_isaaclab_arena\"},{\"title\":\"Adds Arena G1 locomanipulation retargeters by rwiltz · Pull Request #4140 · isaac-sim/IsaacLab\",\"url\":\"https://github.com/isaac-sim/IsaacLab/pull/4140\"},{\"title\":\"Welcome to Isaac Lab Arena! — isaaclab_arena 0.2\",\"url\":\"https://isaac-sim.github.io/IsaacLab-Arena/main/index.html\"},{\"title\":\"GitHub - isaac-sim/IsaacLab-Arena: Isaac Lab - Arena is a robotics simulation framework that enhances NVIDIA Isaac Lab by providing a composable, scalable system for creating diverse simulation environments and evaluating robot learning policies. The framework enables developers to rapidly prototype and test robotic tasks with various robot embodiments, objects, and environments. · GitHub\",\"url\":\"https://github.com/isaac-sim/IsaacLab-Arena\"},{\"title\":\"Release Notes — Isaac Lab Documentation\",\"url\":\"https://isaac-sim.github.io/IsaacLab/main/source/refs/release_notes.html\"},{\"title\":\"ERROR: No module named 'isaaclab' with \\\"./docker/run_docker.sh -g\\\" · Issue #396 · isaac-sim/IsaacLab-Arena\",\"url\":\"https://github.com/isaac-sim/IsaacLab-Arena/issues/396\"},{\"title\":\"Adds Locomanipulation Environment with G1 for Mimic workflow by michaellin6 · Pull Request #3150 · isaac-sim/IsaacLab\",\"url\":\"https://github.com/isaac-sim/IsaacLab/pull/3150\"},{\"title\":\"Rheo - NVIDIA Isaac for Healthcare\",\"url\":\"https://isaac-for-healthcare.github.io/workflows/rheo/\"},{\"title\":\"Isaac Lab-Arena | NVIDIA Developer\",\"url\":\"https://developer.nvidia.com/isaac/lab-arena\"},{\"title\":\"Isaac Lab: A GPU-Accelerated Simulation Framework for Multi-Modal Robot Learning\",\"url\":\"https://arxiv.org/html/2511.04831v1\"}]\n\nBased on the web search results, here's what I found about **Isaac Lab Arena g1_locomanip_pnp**:\n\n## Overview\n\nIsaac Lab Arena integrates with NVIDIA IsaacLab to provide humanoid embodiments like GR1, G1, and Galileo with manipulation & loco-manipulation tasks including pick-and-place, button pressing, and more, with GPU-accelerated rollouts and RTX rendering capabilities.\n\n## The g1_locomanip_pnp Environment\n\n`g1_locomanip_pnp` is a specific environment configuration for locomanipulation tasks. It can be run with parameters like `--env.environment=g1_locomanip_pnp`, `--env.embodiment=gr1_pink`, `--env.object=cracker_box` to test environment loading with multiple parallel environments enabled.\n\nThe G1 humanoid robot performs a locomanipulation task of transporting a box to a tray.\n\n## Related Technology\n\nArena G1 locomanipulation retargeters were added to IsaacLab, and a new G1 humanoid environment was created combining RL-based locomotion with IK-based manipulation.\n\nIsaac Lab - Arena is a robotics simulation framework that enhances NVIDIA Isaac Lab by providing a composable, scalable system for creating diverse simulation environments and evaluating robot learning policies, enabling developers to rapidly prototype and test robotic tasks.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "51447891-a71a-4535-b52c-cb234d5fd2b5",
+            "isSidechain": true,
+            "promptId": "676d09f0-84fb-420c-a1c3-117a23af4186",
+            "agentId": "a970585f0933593e3",
+            "type": "user",
+            "uuid": "c7ccbfdb-e974-4090-adb6-e1a8d4665f5d",
+            "sourceToolAssistantUUID": "51447891-a71a-4535-b52c-cb234d5fd2b5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "04fbc83f-1e39-4fc9-b438-6d1f89d1bdb0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-10T20:22:34.080Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me do a follow-up search on claim 3 to get more specifics on the task name, and also dig into the RESample submission target more precisely."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c7ccbfdb-e974-4090-adb6-e1a8d4665f5d",
+            "isSidechain": true,
+            "agentId": "a970585f0933593e3",
+            "requestId": "req_011CauWdCXPMP1qJoxcDvmt2",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "dccab69a-0529-4925-b700-fa789780261b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "04fbc83f-1e39-4fc9-b438-6d1f89d1bdb0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01SnU7zUkfGzy6Ef3MfciyXr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2847,
+                "cache_read_input_tokens": 10150,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2847,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-10T20:22:34.995Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018NVggHzHDmNmc5uiMUH6XX",
+              "name": "WebSearch",
+              "input": {
+                "query": "Isaac Lab Arena G1 loco-manipulation task name \"box-transport-to-bin\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dccab69a-0529-4925-b700-fa789780261b",
+            "isSidechain": true,
+            "agentId": "a970585f0933593e3",
+            "requestId": "req_011CauWdCXPMP1qJoxcDvmt2",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "3aebb8dc-a856-4645-8d4e-fc7a9fe4d598",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "04fbc83f-1e39-4fc9-b438-6d1f89d1bdb0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01SnU7zUkfGzy6Ef3MfciyXr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2847,
+                "cache_read_input_tokens": 10150,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2847,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-10T20:22:35.582Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018ZMnU8qvrE6xkK9e8GDVBt",
+              "name": "WebSearch",
+              "input": {
+                "query": "arXiv 2510.17640 RESample ICRA 2026 submission venue"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3aebb8dc-a856-4645-8d4e-fc7a9fe4d598",
+            "isSidechain": true,
+            "agentId": "a970585f0933593e3",
+            "requestId": "req_011CauWdCXPMP1qJoxcDvmt2",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "90eb12bc-dd6e-4f12-b528-a2e178f7cd1f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "04fbc83f-1e39-4fc9-b438-6d1f89d1bdb0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01SnU7zUkfGzy6Ef3MfciyXr",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2847,
+                "cache_read_input_tokens": 10150,
+                "output_tokens": 166,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2847
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 166,
+                    "cache_read_input_tokens": 10150,
+                    "cache_creation_input_tokens": 2847,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2847,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-10T20:22:39.806Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018ZMnU8qvrE6xkK9e8GDVBt",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arXiv 2510.17640 RESample ICRA 2026 submission venue\"\n\nLinks: [{\"title\":\"[2510.17640] RESample: A Robust Data Augmentation Framework via Exploratory Sampling for Robotic Manipulation\",\"url\":\"https://arxiv.org/abs/2510.17640\"},{\"title\":\"RESample: A Robust Data Augmentation Framework via Exploratory Sampling for Robotic Manipulation\",\"url\":\"https://arxiv.org/html/2510.17640\"},{\"title\":\"Machine Learning Oct 2025\",\"url\":\"https://arxiv.org/list/cs.LG/2025-10?skip=4225&show=2000\"},{\"title\":\"Empowering Iterative Graph Alignment Using Heat Diffusion This manuscript has been submitted to and is currently under review for the IEEE International Conference on Data Engineering (ICDE) 2026.\",\"url\":\"https://arxiv.org/html/2506.17640\"},{\"title\":\"ICRA 2026 Papers - Submission closed - IEEE ICRA 2026\",\"url\":\"https://2026.ieee-icra.org/contribute/call-for-icra-2026-papers-now-accepting-submissions/\"},{\"title\":\"GitHub - zezhishao/DailyArXiv: Daily ArXiv Papers. · GitHub\",\"url\":\"https://github.com/zezhishao/DailyArXiv\"},{\"title\":\"GitHub - ZZongzheng0918/Dexora: ICRA 2026: Dexora: Open-source VLA for High-DoF Bimanual Dexterity\",\"url\":\"https://github.com/ZZongzheng0918/Dexora\"},{\"title\":\"Call for ICRA 2025 Papers - Now Accepting Submissions - IEEE ICRA 2025\",\"url\":\"https://2025.ieee-icra.org/announcements/paper-submissions/\"},{\"title\":\"Arxiv\",\"url\":\"https://arxiv.org/pdf/2506.04646\"},{\"title\":\"Robotics Apr 2026\",\"url\":\"https://arxiv.org/list/cs.RO/current\"}]\n\nBased on the search results, I found the information about arXiv paper 2510.17640 and its submission venue:\n\nThe paper \"RESample: A Robust Data Augmentation Framework via Exploratory Sampling for Robotic Manipulation\" (arXiv 2510.17640) has been submitted to ICRA 2026. \n\nThe paper proposes an automated OOD data augmentation framework named RESample through exploratory sampling that leverages offline reinforcement learning to obtain an action-value network, samples potential OOD states from trajectories via rollout, and uses an exploratory sampling mechanism to incorporate these action proxies into the training dataset.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "90eb12bc-dd6e-4f12-b528-a2e178f7cd1f",
+            "isSidechain": true,
+            "promptId": "676d09f0-84fb-420c-a1c3-117a23af4186",
+            "agentId": "a970585f0933593e3",
+            "type": "user",
+            "uuid": "8735020f-ea52-443f-a588-2bba558b1e21",
+            "sourceToolAssistantUUID": "90eb12bc-dd6e-4f12-b528-a2e178f7cd1f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "04fbc83f-1e39-4fc9-b438-6d1f89d1bdb0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-10T20:22:39.875Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018NVggHzHDmNmc5uiMUH6XX",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Isaac Lab Arena G1 loco-manipulation task name \"box-transport-to-bin\"\"\n\nLinks: [{\"title\":\"Welcome to Isaac Lab Arena! — isaaclab_arena 0.2\",\"url\":\"https://isaac-sim.github.io/IsaacLab-Arena/main/index.html\"},{\"title\":\"GitHub - isaac-sim/IsaacLab-Arena: Isaac Lab - Arena is a robotics simulation framework that enhances NVIDIA Isaac Lab by providing a composable, scalable system for creating diverse simulation environments and evaluating robot learning policies. The framework enables developers to rapidly prototype and test robotic tasks with various robot embodiments, objects, and environments. · GitHub\",\"url\":\"https://github.com/isaac-sim/IsaacLab-Arena\"},{\"title\":\"[Important] Isaac Lab Development Update · isaac-sim/IsaacLab · Discussion #4339\",\"url\":\"https://github.com/isaac-sim/IsaacLab/discussions/4339\"},{\"title\":\"NVIDIA IsaacLab Arena & LeRobot · Hugging Face\",\"url\":\"https://huggingface.co/docs/lerobot/envhub_isaaclab_arena\"},{\"title\":\"Redirecting to the latest Isaac Lab documentation\",\"url\":\"https://isaac-sim.github.io/IsaacLab/\"},{\"title\":\"Streamline Robot Learning with Whole-Body Control and Enhanced Teleoperation in NVIDIA Isaac Lab 2.3 | NVIDIA Technical Blog\",\"url\":\"https://developer.nvidia.com/blog/streamline-robot-learning-with-whole-body-control-and-enhanced-teleoperation-in-nvidia-isaac-lab-2-3/\"},{\"title\":\"Isaac Lab-Arena | NVIDIA Developer\",\"url\":\"https://developer.nvidia.com/isaac/lab-arena\"},{\"title\":\"Release Notes — Isaac Lab Documentation\",\"url\":\"https://isaac-sim.github.io/IsaacLab/main/source/refs/release_notes.html\"},{\"title\":\"IsaacLab-Arena/docker/Dockerfile.isaaclab_arena at release/0.1.1 · isaac-sim/IsaacLab-Arena\",\"url\":\"https://github.com/isaac-sim/IsaacLab-Arena/blob/release/0.1.1/docker/Dockerfile.isaaclab_arena\"},{\"title\":\"nvidia/isaaclab-arena-envs · Hugging Face\",\"url\":\"https://huggingface.co/nvidia/isaaclab-arena-envs\"}]\n\nBased on the search results, I found relevant information about Isaac Lab Arena and G1 locomanipulation tasks.\n\nIsaac Lab Arena includes a G1 humanoid robot performing a locomanipulation task of transporting a box to a tray. This aligns with the \"box-transport-to-bin\" task name you mentioned.\n\nThe search results show that Arena G1 locomanipulation retargeters were added as part of recent improvements to Isaac Lab, and a new G1 humanoid environment was introduced combining RL-based locomotion with IK-based manipulation, with a full robot navigation stack integrated to augment demonstrations with randomization of tabletop pick/place locations, destination and ground obstacles.\n\nThe \"box-transport-to-bin\" task appears to be one of the G1 locomanipulation tasks available in Isaac Lab Arena's framework for evaluating robot learning policies.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3aebb8dc-a856-4645-8d4e-fc7a9fe4d598",
+            "isSidechain": true,
+            "promptId": "676d09f0-84fb-420c-a1c3-117a23af4186",
+            "agentId": "a970585f0933593e3",
+            "type": "user",
+            "uuid": "380b69d9-65e6-4694-af03-e71ec4407b4f",
+            "sourceToolAssistantUUID": "3aebb8dc-a856-4645-8d4e-fc7a9fe4d598",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "04fbc83f-1e39-4fc9-b438-6d1f89d1bdb0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-10T20:22:42.438Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me do one more targeted search to get a definitive answer on the Isaac Lab Arena task name, checking the actual documentation or source code."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "380b69d9-65e6-4694-af03-e71ec4407b4f",
+            "isSidechain": true,
+            "agentId": "a970585f0933593e3",
+            "requestId": "req_011CauWdwvLMvoD9ftXBjWzF",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b3883480-659a-486e-8494-2021ab4673f1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "04fbc83f-1e39-4fc9-b438-6d1f89d1bdb0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_013sG8X3BdqaTVN4vtipXyjW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 716,
+                "cache_creation_input_tokens": 1000,
+                "cache_read_input_tokens": 12997,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1000,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-10T20:22:43.226Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011dsoDm3fLTsWoACPimfBKc",
+              "name": "WebSearch",
+              "input": {
+                "query": "site:huggingface.co OR site:isaac-sim.github.io \"g1_locomanip_pnp\" task registered name"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b3883480-659a-486e-8494-2021ab4673f1",
+            "isSidechain": true,
+            "agentId": "a970585f0933593e3",
+            "requestId": "req_011CauWdwvLMvoD9ftXBjWzF",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "9fa14230-4434-47f5-939e-03c2dc276a75",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "04fbc83f-1e39-4fc9-b438-6d1f89d1bdb0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_013sG8X3BdqaTVN4vtipXyjW",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 716,
+                "cache_creation_input_tokens": 1000,
+                "cache_read_input_tokens": 12997,
+                "output_tokens": 114,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1000
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 716,
+                    "output_tokens": 114,
+                    "cache_read_input_tokens": 12997,
+                    "cache_creation_input_tokens": 1000,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1000,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-10T20:22:47.554Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011dsoDm3fLTsWoACPimfBKc",
+              "type": "tool_result",
+              "content": "Web search results for query: \"site:huggingface.co OR site:isaac-sim.github.io \"g1_locomanip_pnp\" task registered name\"\n\nLinks: [{\"title\":\"nvidia/Arena-G1-Loco-Manipulation-Task · Datasets at Hugging Face\",\"url\":\"https://huggingface.co/datasets/nvidia/Arena-G1-Loco-Manipulation-Task\"},{\"title\":\"Unitree G1 · Hugging Face\",\"url\":\"https://huggingface.co/docs/lerobot/unitree_g1\"},{\"title\":\"Fine-tuning GR00T for Chess Setup on Unitree G1 - Models - Hugging Face Forums\",\"url\":\"https://discuss.huggingface.co/t/fine-tuning-gr00t-for-chess-setup-on-unitree-g1/172323\"},{\"title\":\"BlinkDL/rwkv7-g1 · Hugging Face\",\"url\":\"https://huggingface.co/BlinkDL/rwkv7-g1\"},{\"title\":\"The Tasks Manager\",\"url\":\"https://huggingface.co/docs/optimum/exporters/task_manager\"},{\"title\":\"GRPO Trainer · Hugging Face\",\"url\":\"https://huggingface.co/docs/trl/main/en/grpo_trainer\"},{\"title\":\"Agents - Guided tour\",\"url\":\"https://huggingface.co/docs/smolagents/en/guided_tour\"},{\"title\":\"loubnabnl/dummy_data_clean · Datasets at Hugging Face\",\"url\":\"https://huggingface.co/datasets/loubnabnl/dummy_data_clean/viewer\"},{\"title\":\"nnet/WavLM.py · ASLP-lab/LLaSE-G1 at 1c37d30503df6450665055e7ca653b32f19d3e80\",\"url\":\"https://huggingface.co/ASLP-lab/LLaSE-G1/blob/1c37d30503df6450665055e7ca653b32f19d3e80/nnet/WavLM.py\"},{\"title\":\"amannagrawall002/github-issues · Datasets at Hugging Face\",\"url\":\"https://huggingface.co/datasets/amannagrawall002/github-issues/viewer/default/train?p=6\"}]\n\nThe search results show information about the Arena-G1-Loco-Manipulation-Task dataset on Hugging Face, but don't provide the specific registered task name \"g1_locomanip_pnp\". The Arena-G1-Loco-Manipulation-Task dataset is a multimodal collection of trajectories generated in Isaac Lab that supports humanoid (G1) loco-manipulation tasks, but the search results don't contain explicit information about the task being registered under the name \"g1_locomanip_pnp\" on either of the specified sites (huggingface.co or isaac-sim.github.io).\n\nThe results indicate the task exists but don't specifically confirm the registered task name you're looking for. You may need to check the actual Isaac Lab documentation or source code repositories directly for more detailed task registration information.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9fa14230-4434-47f5-939e-03c2dc276a75",
+            "isSidechain": true,
+            "promptId": "676d09f0-84fb-420c-a1c3-117a23af4186",
+            "agentId": "a970585f0933593e3",
+            "type": "user",
+            "uuid": "2dfb11a2-6c61-44d7-893e-68f7d4ac7de8",
+            "sourceToolAssistantUUID": "9fa14230-4434-47f5-939e-03c2dc276a75",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "04fbc83f-1e39-4fc9-b438-6d1f89d1bdb0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-10T20:22:49.354Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015M3wfY5adPRQ4Vh7MFSeEN",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebFetch",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2dfb11a2-6c61-44d7-893e-68f7d4ac7de8",
+            "isSidechain": true,
+            "agentId": "a970585f0933593e3",
+            "requestId": "req_011CauWeWnmNiM8PBEm8LtPh",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "299c1b26-0650-4df5-a526-eb35719692f8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "04fbc83f-1e39-4fc9-b438-6d1f89d1bdb0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01FoVJJnuGkKuRfX2YBudxPX",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1628,
+                "cache_read_input_tokens": 13997,
+                "output_tokens": 76,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1628
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 76,
+                    "cache_read_input_tokens": 13997,
+                    "cache_creation_input_tokens": 1628,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1628,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-10T20:22:49.357Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_015M3wfY5adPRQ4Vh7MFSeEN",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebFetch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "299c1b26-0650-4df5-a526-eb35719692f8",
+            "isSidechain": true,
+            "promptId": "676d09f0-84fb-420c-a1c3-117a23af4186",
+            "agentId": "a970585f0933593e3",
+            "type": "user",
+            "uuid": "a65be483-8d7f-410c-9803-21b41e62e22d",
+            "sourceToolAssistantUUID": "299c1b26-0650-4df5-a526-eb35719692f8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "04fbc83f-1e39-4fc9-b438-6d1f89d1bdb0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-10T20:22:52.066Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me fetch the Isaac Lab Arena documentation and the arXiv page for RESample directly."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a65be483-8d7f-410c-9803-21b41e62e22d",
+            "isSidechain": true,
+            "agentId": "a970585f0933593e3",
+            "requestId": "req_011CauWeehmez8XxHXJxkFfi",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "2e788aa6-594a-4e6c-96db-dd580b2a4e67",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "04fbc83f-1e39-4fc9-b438-6d1f89d1bdb0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01E9gdkqko9jaXwPjwu4ozC9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 595,
+                "cache_read_input_tokens": 15625,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 595,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-10T20:22:53.469Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013TKjJZuF6NbzhJ6oGJJqc8",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://huggingface.co/docs/lerobot/envhub_isaaclab_arena",
+                "prompt": "What is the registered task name for the G1 loco-manipulation task? Is it 'g1_locomanip_pnp' or 'box-transport-to-bin' or something else? List all task names mentioned."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2e788aa6-594a-4e6c-96db-dd580b2a4e67",
+            "isSidechain": true,
+            "agentId": "a970585f0933593e3",
+            "requestId": "req_011CauWeehmez8XxHXJxkFfi",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "2f579d85-36b8-4fb6-851e-23ea989f8d91",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "04fbc83f-1e39-4fc9-b438-6d1f89d1bdb0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01E9gdkqko9jaXwPjwu4ozC9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 595,
+                "cache_read_input_tokens": 15625,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 595,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-10T20:22:54.016Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013TKjJZuF6NbzhJ6oGJJqc8",
+              "type": "tool_result",
+              "content": "# NVIDIA IsaacLab Arena & LeRobot\n\nLeRobot EnvHub now supports **GPU-accelerated simulation** with IsaacLab Arena for policy evaluation at scale.\nTrain and evaluate imitation learning policies with high-fidelity simulation — all integrated into the LeRobot ecosystem.\n\n[IsaacLab Arena](https://github.com/isaac-sim/IsaacLab-Arena) integrates with NVIDIA IsaacLab to provide:\n\n- 🤖 **Humanoid embodiments**: GR1, G1, Galileo with various configurations\n- 🎯 **Manipulation & loco-manipulation tasks**: Door opening, pick-and-place, button pressing, and more\n- ⚡ **GPU-accelerated rollouts**: Parallel environment execution on NVIDIA GPUs\n- 🖼️ **RTX Rendering**: Evaluate vision-based policies with realistic rendering, reflections and refractions\n- 📦 **LeRobot-compatible datasets**: Ready for training with GR00T N1x, PI0, SmolVLA, ACT, and Diffusion policies\n- 🔄 **EnvHub integration**: Load environments from HuggingFace EnvHub with one line\n\n## Installation\n\n### Prerequisites\n\nHardware requirements are shared with Isaac Sim, and are detailed in [Isaac Sim Requirements](https://docs.isaacsim.omniverse.nvidia.com/5.1.0/installation/requirements.html).\n\n- NVIDIA GPU with CUDA support\n- NVIDIA driver compatible with IsaacSim 5.1.0\n- Linux (Ubuntu 22.04 / 24.04)\n\n### Setup\n\n```bash\n# 1. Create conda environment\nconda create -y -n lerobot-arena python=3.11\nconda activate lerobot-arena\nconda install -y -c conda-forge ffmpeg=7.1.1\n\n# 2. Install Isaac Sim 5.1.0\npip install \"isaacsim[all,extscache]==5.1.0\" --extra-index-url https://pypi.nvidia.com\n\n# Accept NVIDIA EULA (required)\nexport ACCEPT_EULA=Y\nexport PRIVACY_CONSENT=Y\n\n# 3. Install IsaacLab 2.3.0\ngit clone https://github.com/isaac-sim/IsaacLab.git\ncd IsaacLab\ngit checkout v2.3.0\n./isaaclab.sh -i\ncd ..\n\n# 4. Install IsaacLab Arena\ngit clone https://github.com/isaac-sim/IsaacLab-Arena.git\ncd IsaacLab-Arena\ngit checkout release/0.1.1\npip install -e .\ncd ..\n\n# 5. Install LeRobot\ngit clone https://github.com/huggingface/lerobot.git\ncd lerobot\npip install -e .\ncd ..\n\n# 6. Install additional dependencies\npip install onnxruntime==1.23.2 lightwheel-sdk==1.0.1 vuer[all]==0.0.70 qpsolvers==4.8.1\npip install numpy==1.26.0 # Isaac Sim 5.1 depends on numpy==1.26.0, this will be fixed in next release\n```\n\n## Evaluating Policies\n\n### Pre-trained Policies\n\nThe following trained policies are available:\n\n| Policy                      | Architecture | Task          | Link                                                                     |\n| :-------------------------- | :----------- | :------------ | :----------------------------------------------------------------------- |\n| pi05-arena-gr1-microwave    | PI0.5        | GR1 Microwave | [HuggingFace](https://huggingface.co/nvidia/pi05-arena-gr1-microwave)    |\n| smolvla-arena-gr1-microwave | SmolVLA      | GR1 Microwave | [HuggingFace](https://huggingface.co/nvidia/smolvla-arena-gr1-microwave) |\n\n### Evaluate SmolVLA\n\n```bash\npip install -e \".[smolvla]\"\npip install numpy==1.26.0 # revert numpy to version 1.26\n```\n\n```bash\nlerobot-eval \\\n    --policy.path=nvidia/smolvla-arena-gr1-microwave \\\n    --env.type=isaaclab_arena \\\n    --env.hub_path=nvidia/isaaclab-arena-envs \\\n    --rename_map='{\"observation.images.robot_pov_cam_rgb\": \"observation.images.robot_pov_cam\"}' \\\n    --policy.device=cuda \\\n    --env.environment=gr1_microwave \\\n    --env.embodiment=gr1_pink \\\n    --env.object=mustard_bottle \\\n    --env.headless=false \\\n    --env.enable_cameras=true \\\n    --env.video=true \\\n    --env.video_length=10 \\\n    --env.video_interval=15 \\\n    --env.state_keys=robot_joint_pos \\\n    --env.camera_keys=robot_pov_cam_rgb \\\n    --trust_remote_code=True \\\n    --eval.batch_size=1\n```\n\n### Evaluate PI0.5\n\n```bash\npip install -e \".[pi]\"\npip install numpy==1.26.0 # revert numpy to version 1.26\n```\n\nPI0.5 requires disabling torch compile for evaluation:\n\n```bash\nTORCH_COMPILE_DISABLE=1 TORCHINDUCTOR_DISABLE=1 lerobot-eval \\\n    --policy.path=nvidia/pi05-arena-gr1-microwave \\\n    --env.type=isaaclab_arena \\\n    --env.hub_path=nvidia/isaaclab-arena-envs \\\n    --rename_map='{\"observation.images.robot_pov_cam_rgb\": \"observation.images.robot_pov_cam\"}' \\\n    --policy.device=cuda \\\n    --env.environment=gr1_microwave \\\n    --env.embodiment=gr1_pink \\\n    --env.object=mustard_bottle \\\n    --env.headless=false \\\n    --env.enable_cameras=true \\\n    --env.video=true \\\n    --env.video_length=15 \\\n    --env.video_interval=15 \\\n    --env.state_keys=robot_joint_pos \\\n    --env.camera_keys=robot_pov_cam_rgb \\\n    --trust_remote_code=True \\\n    --eval.batch_size=1\n```\n\n  To change the number of parallel environments, use the ```--eval.batch_size```\n  flag.\n\n### What to Expect\n\nDuring evaluation, you will see a progress bar showing the running success rate:\n\n```\nStepping through eval batches:   8%|██████▍    | 4/50 [00:45/__/videos/_/eval_episode_.mp4\n```\n\nFor example:\n\n```\noutputs/eval/2026-01-02/14-38-01_isaaclab_arena_smolvla/videos/gr1_microwave_0/eval_episode_0.mp4\n```\n\n## Training Policies\n\nTo learn more about training policies with LeRobot, please refer to the training documentation:\n\n- [SmolVLA](./smolvla)\n- [Pi0.5](./pi05)\n- [GR00T N1.5](./groot)\n\nSample IsaacLab Arena datasets are available on HuggingFace Hub for experimentation:\n\n| Dataset                                                                                                   | Description                | Frames |\n| :-------------------------------------------------------------------------------------------------------- | :------------------------- | :----- |\n| [Arena-GR1-Manipulation-Task](https://huggingface.co/datasets/nvidia/Arena-GR1-Manipulation-Task-v3)      | GR1 microwave manipulation | ~4K    |\n| [Arena-G1-Loco-Manipulation-Task](https://huggingface.co/datasets/nvidia/Arena-G1-Loco-Manipulation-Task) | G1 loco-manipulation       | ~4K    |\n\n## Environment Configuration\n\n### Full Configuration Options\n\n```python\nfrom lerobot.envs.configs import IsaaclabArenaEnv\n\nconfig = IsaaclabArenaEnv(\n    # Environment selection\n    environment=\"gr1_microwave\",      # Task environment\n    embodiment=\"gr1_pink\",            # Robot embodiment\n    object=\"power_drill\",             # Object to manipulate\n\n    # Simulation settings\n    episode_length=300,               # Max steps per episode\n    headless=True,                    # Run without GUI\n    device=\"cuda:0\",                  # GPU device\n    seed=42,                          # Random seed\n\n    # Observation configuration\n    state_keys=\"robot_joint_pos\",     # State observation keys (comma-separated)\n    camera_keys=\"robot_pov_cam_rgb\",  # Camera observation keys (comma-separated)\n    state_dim=54,                     # Expected state dimension\n    action_dim=36,                    # Expected action dimension\n    camera_height=512,                # Camera image height\n    camera_width=512,                 # Camera image width\n    enable_cameras=True,              # Enable camera observations\n\n    # Video recording\n    video=False,                      # Enable video recording\n    video_length=100,                 # Frames per video\n    video_interval=200,               # Steps between recordings\n\n    # Advanced\n    mimic=False,                      # Enable mimic mode\n    teleop_device=None,               # Teleoperation device\n    disable_fabric=False,             # Disable fabric optimization\n    enable_pinocchio=True,            # Enable Pinocchio for IK\n)\n```\n\n### Using Environment Hub directly for advanced usage\n\nCreate a file called `test_env_load_arena.py` or [download from the EnvHub](https://huggingface.co/nvidia/isaaclab-arena-envs/blob/main/tests/test_env_load_arena.py):\n\n```python\nimport logging\nfrom dataclasses import asdict\nfrom pprint import pformat\nimport torch\nimport tqdm\nfrom lerobot.configs import parser\nfrom lerobot.configs.eval import EvalPipelineConfig\n\n@parser.wrap()\ndef main(cfg: EvalPipelineConfig):\n    \"\"\"Run random action rollout for IsaacLab Arena environment.\"\"\"\n    logging.info(pformat(asdict(cfg)))\n\n    from lerobot.envs.factory import make_env\n\n    env_dict = make_env(\n        cfg.env,\n        n_envs=cfg.env.num_envs,\n        trust_remote_code=True,\n    )\n    env = next(iter(env_dict.values()))[0]\n    env.reset()\n    for _ in tqdm.tqdm(range(cfg.env.episode_length)):\n        with torch.inference_mode():\n            actions = env.action_space.sample()\n            obs, rewards, terminated, truncated, info = env.step(actions)\n            if terminated.any() or truncated.any():\n                obs, info = env.reset()\n    env.close()\n\nif __name__ == \"__main__\":\n    main()\n```\n\nRun with:\n\n```bash\npython test_env_load_arena.py \\\n    --env.environment=g1_locomanip_pnp \\\n    --env.embodiment=gr1_pink \\\n    --env.object=cracker_box \\\n    --env.num_envs=4 \\\n    --env.enable_cameras=true \\\n    --env.seed=1000 \\\n    --env.video=true \\\n    --env.video_length=10 \\\n    --env.video_interval=15 \\\n    --env.headless=false \\\n    --env.hub_path=nvidia/isaaclab-arena-envs \\\n    --env.type=isaaclab_arena\n```\n\n## Creating New Environments\n\nFirst create a new IsaacLab Arena environment by following the [IsaacLab Arena Documentation](https://isaac-sim.github.io/IsaacLab-Arena/release/0.1.1/index.html).\n\nClone our EnvHub repo:\n\n```bash\ngit clone https://huggingface.co/nvidia/isaaclab-arena-envs\n```\n\nModify the `example_envs.yaml` file based on your new environment.\n[Upload](./envhub#step-3-upload-to-the-hub) your modified repo to HuggingFace EnvHub.\n\n  Your IsaacLab Arena environment code must be locally available during\n  evaluation. Users can clone your environment repository separately, or you can\n  bundle the environment code and assets directly in your EnvHub repo.\n\nThen, when evaluating, use your new environment:\n\n```bash\nlerobot-eval \\\n    --env.hub_path=/isaaclab-arena-envs \\\n    --env.environment= \\\n    ...other flags...\n```\n\nWe look forward to your contributions!\n\n## Troubleshooting\n\n### CUDA out of memory\n\nReduce `batch_size` or use a GPU with more VRAM:\n\n```bash\n--eval.batch_size=1\n```\n\n### EULA not accepted\n\nSet environment variables before running:\n\n```bash\nexport ACCEPT_EULA=Y\nexport PRIVACY_CONSENT=Y\n```\n\n### Video recording not working\n\nEnable cameras when running headless:\n\n```bash\n--env.video=true --env.enable_cameras=true --env.headless=true\n```\n\n### Policy output dimension mismatch\n\nEnsure `action_dim` matches your policy:\n\n```bash\n--env.action_dim=36\n```\n\n### libGLU.so.1 Errors during Isaac Sim initialization\n\nEnsure you have the following dependencies installed, this is likely to happen on headless machines.\n\n```bash\nsudo apt update && sudo apt install -y libglu1-mesa libxt6\n```\n\n## See Also\n\n- [EnvHub Documentation](./envhub.mdx) - General EnvHub usage\n- [IsaacLab Arena GitHub](https://github.com/isaac-sim/IsaacLab-Arena)\n- [IsaacLab Documentation](https://isaac-sim.github.io/IsaacLab/)\n\n## Lightwheel LW-BenchHub\n\n[Lightwheel](https://www.lightwheel.ai) is bringing `Lightwheel-Libero-Tasks` and `Lightwheel-RoboCasa-Tasks` with 268 tasks to the LeRobot ecosystem.\nLW-BenchHub collects and generates large-scale datasets via teleoperation that comply with the LeRobot specification, enabling out-of-the-box training and evaluation workflows.\nWith the unified interface provided by EnvHub, developers can quickly build end-to-end experimental pipelines.\n\n### Install\n\nAssuming you followed the [Installation](#installation) steps, you can install LW-BenchHub with:\n\n```bash\nconda install pinocchio -c conda-forge -y\npip install numpy==1.26.0 # revert numpy to version 1.26\n\nsudo apt-get install git-lfs && git lfs install\n\ngit clone https://github.com/LightwheelAI/lw_benchhub\ngit lfs pull # Ensure LFS files (e.g., .usd assets) are downloaded\n\ncd lw_benchhub\npip install -e .\n```\n\nFor more detailed instructions, please refer to the [LW-BenchHub Documentation](https://docs.lightwheel.net/lw_benchhub/usage/Installation).\n\n### Lightwheel Tasks Dataset\n\nLW-BenchHub datasets are available on HuggingFace Hub:\n\n| Dataset                                                                                                       | Description             | Tasks | Frames |\n| :------------------------------------------------------------------------------------------------------------ | :---------------------- | :---- | :----- |\n| [Lightwheel-Tasks-X7S](https://huggingface.co/datasets/LightwheelAI/Lightwheel-Tasks-X7S)                     | X7S LIBERO and RoboCasa | 117   | ~10.3M |\n| [Lightwheel-Tasks-Double-Piper](https://huggingface.co/datasets/LightwheelAI/Lightwheel-Tasks-Double-Piper)   | Double-Piper LIBERO     | 130   | ~6.0M  |\n| [Lightwheel-Tasks-G1-Controller](https://huggingface.co/datasets/LightwheelAI/Lightwheel-Tasks-G1-Controller) | G1-Controller LIBERO    | 62    | ~2.7M  |\n| [Lightwheel-Tasks-G1-WBC](https://huggingface.co/datasets/LightwheelAI/Lightwheel-Tasks-G1-WBC)               | G1-WBC RoboCasa         | 32    | ~1.5M  |\n\nFor training policies, refer to the [Training Policies](#training-policies) section.\n\n### Evaluating Policies\n\n#### Pre-trained Policies\n\nThe following trained policies are available:\n\n| Policy                   | Architecture | Task                           | Layout     | Robot           | Link                                                                                  |\n| :----------------------- | :----------- | :----------------------------- | :--------- | :-------------- | :------------------------------------------------------------------------------------ |\n| smolvla-double-piper-pnp | SmolVLA      | L90K1PutTheBlackBowlOnThePlate | libero-1-1 | DoublePiper-Abs | [HuggingFace](https://huggingface.co/LightwheelAI/smolvla-double-piper-pnp/tree/main) |\n\n#### Evaluate SmolVLA\n\n```bash\nlerobot-eval \\\n  --policy.path=LightwheelAI/smolvla-double-piper-pnp \\\n  --env.type=isaaclab_arena \\\n  --rename_map='{\"observation.images.left_hand_camera_rgb\": \"observation.images.left_hand\", \"observation.images.right_hand_camera_rgb\": \"observation.images.right_hand\", \"observation.images.first_person_camera_rgb\": \"observation.images.first_person\"}' \\\n  --env.hub_path=LightwheelAI/lw_benchhub_env \\\n  --env.kwargs='{\"config_path\": \"configs/envhub/example.yml\"}' \\\n  --trust_remote_code=true \\\n  --env.state_keys=joint_pos \\\n  --env.action_dim=12 \\\n  --env.camera_keys=left_hand_camera_rgb,right_hand_camera_rgb,first_person_camera_rgb \\\n  --policy.device=cuda \\\n  --eval.batch_size=10 \\\n  --eval.n_episodes=100\n```\n\n### Environment Configuration\n\nEvaluation can be quickly launched by modifying the `robot`, `task`, and `layout` settings in the configuration file.\n\n#### Full Configuration Options\n\n```yml\n# =========================\n# Basic Settings\n# =========================\ndisable_fabric: false\ndevice: cuda:0\nsensitivity: 1.0\nstep_hz: 50\nenable_cameras: true\nexecute_mode: eval\nepisode_length_s: 20.0 # Episode length in seconds, increase if episodes timeout during eval\n\n# =========================\n# Robot Settings\n# =========================\nrobot: DoublePiper-Abs # Robot type, DoublePiper-Abs, X7S-Abs, G1-Controller or G1-Controller-DecoupledWBC\nrobot_scale: 1.0\n\n# =========================\n# Task & Scene Settings\n# =========================\ntask: L90K1PutTheBlackBowlOnThePlate # Task name\nscene_backend: robocasa\ntask_backend: robocasa\ndebug_assets: null\nlayout: libero-1-1 # Layout and style ID\nsources:\n  - objaverse\n  - lightwheel\n  - aigen_objs\nobject_projects: []\nusd_simplify: false\nseed: 42\n\n# =========================\n# Object Placement Retry Settings\n# =========================\nmax_scene_retry: 4\nmax_object_placement_retry: 3\n\nresample_objects_placement_on_reset: true\nresample_robot_placement_on_reset: true\n\n# =========================\n# Replay Configuration Settings\n# =========================\nreplay_cfgs:\n  add_camera_to_observation: true\n  render_resolution: [640, 480]\n```\n\n### See Also\n\n- [LW-BenchHub GitHub](https://github.com/LightwheelAI/LW-BenchHub)\n- [LW-BenchHub Documentation](https://docs.lightwheel.net/lw_benchhub/)\n\n"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2f579d85-36b8-4fb6-851e-23ea989f8d91",
+            "isSidechain": true,
+            "promptId": "676d09f0-84fb-420c-a1c3-117a23af4186",
+            "agentId": "a970585f0933593e3",
+            "type": "user",
+            "uuid": "95a74b0d-ef97-4322-9a29-1c9ce3c7088a",
+            "sourceToolAssistantUUID": "2f579d85-36b8-4fb6-851e-23ea989f8d91",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "04fbc83f-1e39-4fc9-b438-6d1f89d1bdb0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-10T20:22:54.453Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0155j87fojrx1FVs6HJ422ud",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/abs/2510.17640",
+                "prompt": "What conference or venue is this paper submitted to or published at? Is it ICRA 2026 or IROS 2026?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "95a74b0d-ef97-4322-9a29-1c9ce3c7088a",
+            "isSidechain": true,
+            "agentId": "a970585f0933593e3",
+            "requestId": "req_011CauWeehmez8XxHXJxkFfi",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b57b1cae-7980-4cd4-ab23-52754c2d5867",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "04fbc83f-1e39-4fc9-b438-6d1f89d1bdb0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01E9gdkqko9jaXwPjwu4ozC9",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 595,
+                "cache_read_input_tokens": 15625,
+                "output_tokens": 260,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 595
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 260,
+                    "cache_read_input_tokens": 15625,
+                    "cache_creation_input_tokens": 595,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 595,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-10T20:22:55.689Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0155j87fojrx1FVs6HJ422ud",
+              "type": "tool_result",
+              "content": "Based on the content provided, this paper is submitted to **IROS 2026**, not ICRA 2026.\n\nThe submission history clearly states: \"8 pages, submitted to IROS2026\""
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b57b1cae-7980-4cd4-ab23-52754c2d5867",
+            "isSidechain": true,
+            "promptId": "676d09f0-84fb-420c-a1c3-117a23af4186",
+            "agentId": "a970585f0933593e3",
+            "type": "user",
+            "uuid": "4a7d56ed-4b37-43d7-93cc-687c462a6300",
+            "sourceToolAssistantUUID": "b57b1cae-7980-4cd4-ab23-52754c2d5867",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "04fbc83f-1e39-4fc9-b438-6d1f89d1bdb0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-10T20:23:10.817Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I now have all the information needed. Here are the findings for each claim:\n\n---\n\n**Claim 1: IntervenGen venue — IROS 2024**\n\nThe reviewer's claim is CORRECT. IntervenGen was published at IEEE IROS 2024, with DOI 10.1109/IROS58592.2024.10801523. This is confirmed by the IEEE Xplore listing, the NVIDIA Research publication page, the UC Berkeley AutoLab PDF (titled \"IROS24_2512_FI.pdf\"), and the OpenReview entry. It was not published at CoRL 2024.\n\n---\n\n**Claim 2: RESample venue — IROS 2026**\n\nThe reviewer's claim is CORRECT. The arXiv abstract page for arXiv:2510.17640 explicitly states \"8 pages, submitted to IROS2026.\" It is NOT submitted to ICRA 2026. The initial WebSearch AI summary was incorrect on this point; the direct page fetch from arxiv.org confirms IROS 2026.\n\n---\n\n**Claim 3: Isaac Lab Arena G1 loco-manipulation task name — 'g1_locomanip_pnp'**\n\nThe reviewer's claim is CORRECT. The official Hugging Face LeRobot documentation for IsaacLab Arena (https://huggingface.co/docs/lerobot/envhub_isaaclab_arena) shows an example command that explicitly uses `--env.environment=g1_locomanip_pnp` for the G1 loco-manipulation pick-and-place task. The name 'box-transport-to-bin' does not appear anywhere in the official documentation or search results as a registered task identifier.\n\n---\n\n**Summary:**\nAll three reviewer claims are verified as correct:\n1. IntervenGen is at IROS 2024 (confirmed via IEEE Xplore DOI 10.1109/IROS58592.2024.10801523).\n2. RESample (arXiv:2510.17640) is submitted to IROS 2026, not ICRA 2026.\n3. The G1 loco-manipulation task in Isaac Lab Arena is registered as `g1_locomanip_pnp`, not 'box-transport-to-bin'.\n\nSources:\n- [IntervenGen on IEEE Xplore](https://ieeexplore.ieee.org/document/10801523/)\n- [IntervenGen NVIDIA Research](https://research.nvidia.com/publication/2024-10_interventional-data-generation-robust-and-data-efficient-robot-imitation)\n- [IntervenGen on arXiv](https://arxiv.org/abs/2405.01472)\n- [RESample on arXiv (2510.17640)](https://arxiv.org/abs/2510.17640)\n- [NVIDIA IsaacLab Arena & LeRobot (Hugging Face docs)](https://huggingface.co/docs/lerobot/envhub_isaaclab_arena)\n- [IsaacLab-Arena GitHub](https://github.com/isaac-sim/IsaacLab-Arena)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4a7d56ed-4b37-43d7-93cc-687c462a6300",
+            "isSidechain": true,
+            "agentId": "a970585f0933593e3",
+            "requestId": "req_011CauWf7XZQKsjEtnfSbAVh",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "401f9dbf-751e-448a-b452-e1e5900aa7cf",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "04fbc83f-1e39-4fc9-b438-6d1f89d1bdb0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_017B6HGZomJVTzf99kYwc9Q7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5445,
+                "cache_read_input_tokens": 16220,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 5445,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000028"
+        }
+      ],
+      "message_count": 28
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-i-need-to-verify-three-specific-claims-1-intervengen-venue-the-reviewer-says-i.md"
+}

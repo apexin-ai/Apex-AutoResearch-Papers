@@ -1,0 +1,7630 @@
+# Research conversation: You are revising a research idea based on reviewer feedback. **Today's date: 2026-05-13 (UTC).** ## Original idea { "tit
+
+**When Does Detect-and-Reweight Work for Synthetic Contamination? (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 114
+- **Recorded user turns:** 1
+- **Tool calls:** 35
+- **Original source:** `logs/chats/exported-trajectories/account-3/8b3ba085-6365-4cee-870f-aec6f180ac09.jsonl`
+- **Structured JSON:** [`7f18ec7a69a37d1ffff1.json`](../../sessions/7f/7f18ec7a69a37d1ffff1.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-13T05:25:05.163Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-13T05:25:05.163Z",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "content": "You are revising a research idea based on reviewer feedback.\n\n**Today's date: 2026-05-13 (UTC).**\n\n## Original idea\n{\n  \"title\": \"Counterfactual Token Masking: Training-Time Visual Token Regularization for Robust VLA Finetuning on Low-Diversity Demonstrations\",\n  \"core_problem\": \"VLA finetuning on robotic demonstration data suffers from representation degradation (attention migration to background tokens, representation collapse, domain-specific forgetting) primarily because single-task demonstration data is inherently low-diversity — the same table, background, lighting, and camera pose repeat across thousands of episodes. This problem is specific to the FINETUNING regime: Wang et al. (arXiv 2602.09722) showed that visual dropout during PRETRAINING on diverse multi-embodiment data actually HURTS performance (84.5% with dropout vs 85.6% without), because natural data diversity already regularizes. Conversely, Zhang & Bottou (ICLR 2025) proved that very large dropout (90%) during finetuning of pretrained models achieves optimal OOD performance — because pretrained networks contain rich, redundant 'weakly relevant' features that standard gradient descent's implicit sparsity bias discards, but aggressive dropout forces the network to retain. These two findings establish a fundamental dichotomy: regularization via visual token perturbation is unnecessary (even harmful) when training data is diverse, but becomes essential during low-diversity finetuning where spurious visual correlations form AND the implicit sparsity bias of gradient descent threatens to discard the rich features inherited from pretraining. The VLA token operations field has exploded (DTP, FocusVLA, AutoSelect, Compressor-VLA, VLA-IAP, GridS, LightVLA), but nearly all existing methods are framed as INFERENCE-TIME EFFICIENCY optimizations — pruning or compressing tokens to reduce FLOPs. None exploit the pretraining-vs-finetuning dichotomy to apply principled TRAINING-TIME REGULARIZATION specifically calibrated to prevent spurious correlation formation in low-diversity finetuning data.\",\n  \"opportunity\": \"The convergence of five research developments creates a unique opportunity: (1) Zhang & Bottou (ICLR 2025) established that very large dropout during finetuning achieves optimal OOD generalization because pretrained representations are rich with redundant features — but their work addressed only fully-connected layers, not the structured visual token space of VLAs. (2) Wang et al. (arXiv 2602.09722) showed uniform visual dropout is harmful during diverse pretraining — implicitly confirming that the benefit of dropout-style regularization depends on training data diversity. (3) 'Masked Images Are Counterfactual Samples' (Xiao et al., CVPR 2023) showed that masking image patches constitutes a counterfactual intervention breaking spurious correlations. (4) DTP (arXiv 2601.16065) demonstrated that VLA models over-attend to task-irrelevant 'distracting' tokens with negative correlation to success rate — but addresses this only at inference time, meaning spurious correlations still form during training. (5) CRAFT (arXiv 2602.12532) applied a Variational Information Bottleneck to VLA models, but with continuous Gaussian compression on fused representations for force-first curriculum learning, not discrete per-token masking for OOD regularization. The gap is: no existing work applies TRAINING-TIME, ADAPTIVE, LEARNED per-token masking specifically to the VLA finetuning setting, with masking rates conditioned on token informativeness, grounded in the Zhang & Bottou principle that aggressive dropout during finetuning preserves rich pretrained features. Prior inference-time methods (DTP, VLA-IAP, LightVLA, VLA-Pruner) cannot prevent spurious correlations from forming during training; CRAFT's VIB operates on entire fused representations with continuous compression rather than discrete per-token counterfactual interventions; AutoSelect targets frozen VLM efficiency rather than VLA finetuning regularization.\",\n  \"landscape\": \"The VLA representation preservation and token operations space has expanded rapidly. We organize the landscape along two axes: (A) representation preservation methods and (B) token-level operations, further distinguishing training-time vs. inference-time approaches.\\n\\n**A. VLA Representation Preservation Methods:**\\n(1) Frozen-encoder alignment: 'Don't Blind Your VLA' (arXiv 2510.25616) pulls VLA hidden states toward frozen teacher features via cosine similarity loss.\\n(2) Dual-encoder co-training: Gen-VLA (arXiv 2509.11417) uses separate encoders for action prediction and VL understanding.\\n(3) Contrastive state regularization: RS-CL (ICLR 2026) shapes representations via InfoNCE weighted by proprioceptive state distances, with 'view cutoff' augmentation.\\n(4) Action-as-language: VLM2VLA (ICLR 2026) represents actions in natural language to avoid distribution mismatch.\\n(5) Gradient insulation: Knowledge Insulation (NeurIPS 2025 Spotlight, Driess et al., Physical Intelligence) prevents gradient flow from continuous action experts to VLM backbone via stop-gradient — architecture-specific to π0/flow-matching.\\n(6) Parameter merging: Robust VLA Finetuning (ICLR 2026, Pertsch/Levine, arXiv 2512.08333) achieves OOD gains via simple weight interpolation between finetuned and pretrained models — elegant but limited to post-hoc interpolation without training-time regularization.\\n(7) Action-space regularization: FAN (CVPR 2026, arXiv 2604.01570) applies Gaussian prior on action predictions — complementary to visual token regularization.\\n(8) Force-aware curriculum with VIB: CRAFT (arXiv 2602.12532) applies an explicit VIB module after the vision-language encoder using continuous Gaussian compression (reparameterized N(μ,σ²) against N(0,1) prior, exponential KL decay) to force focus on force signals initially. Critically, CRAFT's VIB operates on entire fused representations for curriculum purposes, not per-token masking for OOD regularization.\\n\\n**B. VLA Token-Level Operations:**\\n*Inference-time efficiency (majority of recent work):*\\n(9) DTP (arXiv 2601.16065, Jan 2026): Dynamically detects and prunes 'distracting' tokens at inference via attention hooks. Shows negative correlation between success rate and attention to irrelevant regions — same core intuition as CTM, but post-hoc pruning cannot prevent spurious correlations from forming during training.\\n(10) GridS/'See What Matters' (ICML 2026): Differentiable grid sample pruning for efficiency with generalization as side benefit.\\n(11) VLA-Pruner (arXiv 2511.16449): Temporal-aware dual-level visual token pruning for inference efficiency.\\n(12) VLA-IAP (arXiv 2603.22991, Mar 2026): Training-free interaction-aligned token pruning using geometric priors.\\n(13) Compressor-VLA (arXiv 2511.18950, Nov 2025): Learned instruction-guided token compression with STC+SRC modules.\\n(14) ETA-VLA (arXiv 2603.25766, Mar 2026): Text-guided token sparsification for autonomous driving VLAs.\\n*Training-time token operations:*\\n(15) FocusVLA (arXiv 2603.28740, Mar 2026): Modality cascaded attention + Focus attention for task-relevant patch selection during training — closest training-time competitor. However, FocusVLA replaces the attention architecture rather than adding lightweight regularization, and frames its contribution as attention improvement rather than OOD regularization.\\n(16) LightVLA (ICRA 2026): Differentiable token pruning with Gumbel softmax for adaptive selection during finetuning — efficiency-framed.\\n(17) AutoSelect/Noise Gating (arXiv 2603.07135, Mar 2026): Variance-preserving noise inversely proportional to token importance on frozen VLMs. Targets VLM efficiency, not VLA finetuning regularization.\\n\\n**C. VLM Token Reduction Theory:**\\n(18) 'Rethinking Visual Token Reduction in LVLMs Under Cross-Modal Misalignment' (VisionDrop, AAAI 2026, arXiv 2506.22283): Reveals causal, semantic, and spatial forms of cross-modal misalignment that undermine text-guided token reduction, proposing visual-only pruning. Key insight for CTM: text-guided token selection is unreliable, supporting our approach of learning masking from token content directly.\\n\\n**D. Foundational Dropout/Regularization Theory:**\\n(19) Zhang & Bottou (ICLR 2025, arXiv 2403.00946): Very large dropout (90%) during finetuning achieves best OOD performance because pretrained networks contain rich redundant features. Establishes the principle: aggressive regularization during finetuning is not only viable but optimal for OOD generalization.\\n(20) Wang et al. (arXiv 2602.09722): Uniform visual dropout hurts during diverse pretraining — diversity already regularizes.\\n\\n**The specific gap CTM targets:** No existing work combines (a) TRAINING-TIME (not inference-time) visual token masking with (b) ADAPTIVE, LEARNED per-token rates (not uniform dropout or architecture replacement) with (c) regularization specifically motivated by the low-diversity finetuning setting (not efficiency or curriculum). CTM is the only method that connects Zhang & Bottou's rich-representation dropout principle to VLA visual token space, applying counterfactual masking during training to prevent the spurious correlations that DTP can only prune post-hoc.\",\n  \"approach\": \"We propose Counterfactual Token Masking (CTM), a training-time regularization method for robust VLA finetuning that stochastically masks visual patch tokens after the ViT projector and before the LLM backbone. The method rests on a three-paper theoretical chain: Zhang & Bottou (ICLR 2025) proved that aggressive dropout during finetuning preserves rich pretrained features for OOD generalization; Wang et al. showed this is unnecessary during diverse pretraining; CTM applies this principle adaptively at the visual token level during low-diversity VLA finetuning.\\n\\n**Component 1: Uniform CTM (baseline).** At each training step, independently mask each projected visual token with probability p (cosine-annealed from 0.25→0.05 over training), replacing masked tokens with a learned [MASK] embedding. This forces the LLM backbone to predict actions from subsets of visual tokens, creating implicit counterfactual training samples that break spurious correlations between repetitive background tokens and actions. Placement after the projector is critical: pre-projector masking cannot regularize the projector→LLM interface where representation collapse concentrates; post-LLM-embedding masking disrupts the LLM's pretrained token interactions.\\n\\n**Component 2: Adaptive CTM (main contribution).** Replace uniform masking with learned per-token masking rates via a lightweight MLP (~0.1M parameters) that takes each projected visual token and outputs per-token log-variance α_i. Token i is masked with probability σ(α_i). A KL penalty β·Σ_i KL(Bernoulli(σ(α_i)) || Bernoulli(p_prior)) regularizes toward a base masking rate (p_prior = 0.15), with β warmed from 0→1 over the first 20% of training. The adaptive module learns to mask tokens carrying spurious correlations (repetitive backgrounds) while preserving task-critical tokens (gripper, target object), providing a learned approximation to do(X_bg = ∅) without explicit causal graphs (unlike RoCoDA) or geometry-aware spatial modeling (unlike GridS). This directly addresses Wang et al.'s finding that UNIFORM dropout adds unhelpful noise — CTM learns WHICH tokens to mask.\\n\\n**Supporting Analysis: Diversity-Conditional Regularization Framework.** Rather than claiming independent theoretical novelty over prior IB bounds (IBTM, CRAFT) or PAC-Bayes bounds (AttentionDrop), we provide a unifying framework that connects Zhang & Bottou, Wang et al., and CTM through a diversity-conditional analysis. We formalize the intuition that masking benefit scales inversely with training data diversity: define a diversity measure div(D) over visual feature distributions across episodes. When div(D) is low, the mutual information between background tokens and actions (I_spur) is high — masking reduces spurious dependence proportional to p·I_spur. When div(D) is high, I_spur ≈ 0 and masking only removes task-relevant information. This yields a diversity-conditional regularization benefit: R(p, D) ∝ p·I_spur(D) - p·I_task_lost(p), where I_spur(D) decreases with div(D). Diverse pretraining data → masking hurts (Wang et al.); low-diversity finetuning data → masking helps (CTM); adaptive masking minimizes I_task_lost while maintaining I_spur reduction (Adaptive CTM advantage). We derive this within the VLA-specific frozen-ViT→projector→LLM pipeline, where the projector is the sole gradient-receiving bottleneck — giving token masking at this point outsized effect. We explicitly position this as a framework connecting existing results (Zhang & Bottou, Wang et al., IBTM, CRAFT) to the VLA finetuning setting, not as independent mathematical machinery.\\n\\n**Differentiation from closest competitors:**\\n- vs. CRAFT VIB: CRAFT applies continuous Gaussian VIB on entire fused representations for curriculum learning; CTM applies discrete per-token binary masking for OOD regularization. Discrete masking creates stronger counterfactual interventions (a token is either observed or not).\\n- vs. DTP: DTP prunes distracting tokens at inference but cannot prevent spurious correlations from forming during training. CTM intervenes during training to prevent formation of these correlations, yielding more robust learned representations.\\n- vs. FocusVLA: FocusVLA replaces the attention architecture (cascaded attention); CTM is a lightweight add-on (~0.1M params) that preserves the base architecture and focuses on regularization rather than attention redesign.\\n- vs. AutoSelect: AutoSelect targets frozen VLM efficiency with noise gating; CTM targets VLA finetuning regularization with learned masking for OOD generalization.\\n- vs. Parameter Merging: Post-hoc weight interpolation; CTM provides training-time regularization. Potentially complementary.\\n\\n**Base model:** OpenVLA-OFT with LoRA.\\n\\n**Primary evaluation (OOD generalization):** SimplerEnv Visual Variant Aggregation (randomized backgrounds, textures, lighting, distractors, camera poses) as the PRIMARY metric. LIBERO-Plus (CVPR 2026, 7 perturbation dimensions) for systematic robustness analysis.\\n\\n**Secondary evaluation (in-distribution):** LIBERO 4-suite average (note: saturated at ~97-98% for current SOTA; we expect marginal ID gains and focus on OOD).\\n\\n**Diagnostic metrics:** CKA similarity vs. frozen VLM teacher (representation preservation). Attention entropy dynamics (collapse prevention). Learned masking rate heatmaps (interpretability).\\n\\n**Baselines (streamlined per reviewer advice):** (1) OpenVLA-OFT (no regularization), (2) Don't Blind Your VLA (frozen teacher alignment), (3) RS-CL (contrastive state regularization), (4) Parameter Merging (ICLR 2026, weight interpolation — simple and strong), (5) DTP (inference-time distracting token pruning — direct competitor, same intuition different timing), (6) FocusVLA (training-time patch selection — closest training-time competitor), (7) GridS (differentiable grid pruning — token operations for VLA generalization). For Knowledge Insulation (NeurIPS 2025 Spotlight) and VLM2VLA (ICLR 2026): compare via reported numbers on overlapping benchmarks due to architecture-specific requirements. Drop VLA-GSE and CRL-VLA from reimplementation — use reported numbers only.\\n\\n**Key ablations (focused on most critical):** (a) Uniform vs. adaptive masking — tests whether learning WHICH tokens to mask matters beyond random masking, directly addressing Wang et al.'s critique; (b) Pretraining-vs-finetuning comparison — apply uniform CTM during a diverse-data phase to reproduce Wang et al.'s negative finding, then show positive effect during low-diversity finetuning (validates central hypothesis); (c) Masking placement: pre-projector vs. post-projector vs. post-LLM-embedding; (d) CTM + Don't Blind Your VLA complementarity test (CTM regularizes tokens, alignment loss regularizes representations); (e) CTM + Parameter Merging complementarity (training-time + post-hoc regularization).\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~300h A100-80GB\",\n      \"gpu_utilization\": \"Low (~30-40%); researcher must integrate CTM into OpenVLA-OFT codebase, implement adaptive masking module, set up DTP and FocusVLA baselines\",\n      \"timeline\": \"3-4 months\",\n      \"team\": \"1-2 researchers\",\n      \"estimated_gpu_cost\": \"$450-600\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~400h A100-80GB\",\n      \"gpu_utilization\": \"Moderate (~60-70%); agent queues masking schedule sweeps, placement ablations, and baseline comparisons; human reviews analysis framing daily\",\n      \"timeline\": \"6-10 weeks\",\n      \"team\": \"1 researcher, ~45min/day\",\n      \"claude_api_cost\": \"$150-250\",\n      \"estimated_gpu_cost\": \"$600-750\",\n      \"risk_note\": \"FocusVLA reimplementation complexity uncertain without released code. DTP is plug-and-play. Parameter Merging is trivial to implement.\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~600h A100-80GB (streamlined: 3 placements × 3 schedules × 2 masking types × 7 baselines × 2 benchmarks + complementarity experiments + pretraining-vs-finetuning validation)\",\n      \"gpu_utilization\": \"High (~90%+)\",\n      \"timeline\": \"10-14 days with 8 A100s available\",\n      \"team\": \"0 for experiments (diversity-conditional analysis requires human review before submission)\",\n      \"claude_api_cost\": \"$400-600\",\n      \"estimated_gpu_cost\": \"$900-1100\",\n      \"speed_bottleneck\": \"GPU count; each LIBERO finetuning run ~8-12h on 1 A100 with LoRA; SimplerEnv evaluation ~2h per configuration.\",\n      \"risk_note\": \"Agent should prioritize adaptive vs. uniform ablation and pretraining-vs-finetuning comparison as the two most critical experiments before exploring other ablations.\"\n    }\n  },\n  \"target_venues\": [\n    \"ICLR 2027 (expected deadline ~September 2026, primary target)\",\n    \"ICRA 2027 (expected deadline ~September 2026, secondary target)\",\n    \"CoRL 2027 (expected deadline ~May 2027, backup)\"\n  ],\n  \"level\": \"solid\",\n  \"key_references\": [\n    \"Fine-tuning with Very Large Dropout (Zhang & Bottou, ICLR 2025, arXiv 2403.00946) — FOUNDATIONAL: proves very large dropout during finetuning achieves optimal OOD generalization because pretrained representations are rich with redundant features; establishes the principle CTM extends to visual token space\",\n    \"Rethinking Visual-Language-Action Model Scaling: Alignment, Mixture, and Regularization (Wang et al., arXiv 2602.09722, Feb 2026) — establishes that uniform visual dropout hurts during diverse pretraining, completing the pretraining-vs-finetuning dichotomy with Zhang & Bottou\",\n    \"DTP: A Simple yet Effective Distracting Token Pruning Framework for VLA Models (arXiv 2601.16065, Jan 2026) — inference-time distracting token pruning; same core intuition (suppress spurious tokens), different timing (inference vs. training)\",\n    \"CRAFT: Adapting VLA Models to Contact-rich Manipulation via Force-aware Curriculum Fine-tuning (arXiv 2602.12532, 2026) — applies explicit VIB to VLA models; CTM differs in discrete per-token masking vs. continuous Gaussian compression, and regularization vs. curriculum purpose\",\n    \"Don't Blind Your VLA: Aligning Visual Representations for OOD Generalization (arXiv 2510.25616, 2025)\",\n    \"Contrastive Representation Regularization for Vision-Language-Action Models [RS-CL] (ICLR 2026)\",\n    \"Knowledge Insulating Vision-Language-Action Models: Train Fast, Run Fast, Generalize Better (Driess et al., Physical Intelligence, NeurIPS 2025 Spotlight, arXiv 2505.23705)\",\n    \"Robust VLA Finetuning via Parameter Merging (Pertsch/Levine, ICLR 2026, arXiv 2512.08333) — simple weight interpolation for OOD gains; potentially complementary to CTM\",\n    \"FAN: Feasible Action Neighborhood Prior for VLA Finetuning (CVPR 2026, arXiv 2604.01570) — action-space Gaussian prior regularizer; complementary to visual token regularization\",\n    \"FocusVLA: Focused Visual Utilization for Vision-Language-Action Models (arXiv 2603.28740, Mar 2026) — training-time cascaded attention + patch selection; closest training-time competitor\",\n    \"AutoSelect: The Model Knows Which Tokens Matter via Noise Gating (arXiv 2603.07135, Mar 2026) — variance-preserving noise gating for VLM token selection; efficiency-focused on frozen VLMs\",\n    \"Compressor-VLA: Instruction-Guided Visual Token Compression (arXiv 2511.18950, Nov 2025) — learned instruction-conditioned token compression for VLA efficiency\",\n    \"VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment (arXiv 2603.22991, Mar 2026)\",\n    \"ETA-VLA: Text-Guided Token Sparsification for Autonomous Driving VLAs (arXiv 2603.25766, Mar 2026)\",\n    \"Rethinking Visual Token Reduction in LVLMs Under Cross-Modal Misalignment [VisionDrop] (AAAI 2026, arXiv 2506.22283) — reveals cross-modal misalignment undermining text-guided token reduction\",\n    \"See What Matters: Differentiable Grid Sample Pruning for Generalizable VLA [GridS] (Feng et al., ICML 2026)\",\n    \"Information Dropout: Learning Optimal Representations Through Noisy Computation (Achille & Soatto, TPAMI 2018)\",\n    \"Masked Images Are Counterfactual Samples for Robust Fine-tuning (Xiao et al., CVPR 2023)\",\n    \"PatchDropout: Economizing Vision Transformers Using Patch Dropout (WACV 2023)\",\n    \"DropKey for Vision Transformer (CVPR 2023)\",\n    \"Entropy-Guided Token Dropout [EntroDrop] (arXiv 2512.23422, 2025)\",\n    \"To Sink or Not to Sink: Visual Information Pathways in Large Vision-Language Models (ICLR 2026)\",\n    \"Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting [VLM2VLA] (ICLR 2026)\",\n    \"Enhancing Generalization in VLAs by Preserving Pretrained Representations [Gen-VLA] (arXiv 2509.11417, 2025)\",\n    \"OpenVLA: An Open-Source Vision-Language-Action Model (CoRL 2024)\",\n    \"Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success [OpenVLA-OFT] (arXiv 2025)\",\n    \"RoCoDA: Counterfactual Data Augmentation for Data-Efficient Robot Learning (Ameperosa et al., ICRA 2025, arXiv 2411.16959)\",\n    \"Efficient Visual Transformer by Information Bottleneck Inspired Token Merging [IBTM] (arXiv 2407.15219, 2024)\",\n    \"AttentionDrop: A Novel Regularization Method for Transformer Models (arXiv 2504.12088, Apr 2025)\",\n    \"A PAC-Bayesian Tutorial with A Dropout Bound (McAllester, arXiv 1307.2118, 2013)\",\n    \"Stabilizing Transformer Training by Preventing Attention Entropy Collapse (Zhai et al., ICML 2023)\",\n    \"The Better You Learn The Smarter You Prune [LightVLA] (ICRA 2026)\",\n    \"VLA-Pruner: Temporal-Aware Dual-Level Visual Token Pruning (arXiv 2511.16449, 2025)\",\n    \"Deep Variational Information Bottleneck (Alemi et al., ICLR 2017)\",\n    \"Token Reduction Should Go Beyond Efficiency in Generative Models (arXiv 2505.18227, 2025)\",\n    \"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models (CVPR 2026)\",\n    \"Dropout as a Bayesian Approximation (Gal & Ghahramani, ICML 2016)\",\n    \"VLA-GSE: Boosting Parameter-Efficient Fine-Tuning in VLA with Generalized and Specialized Experts (arXiv 2605.06175, 2026)\",\n    \"CRL-VLA: Continual Vision-Language-Action Learning (arXiv 2602.03445, 2026)\"\n  ],\n  \"description\": \"We propose Counterfactual Token Masking (CTM), a training-time regularization method for robust VLA finetuning that addresses representation degradation through adaptive visual token masking after the projector layer. Our central thesis rests on a three-paper theoretical chain: Zhang & Bottou (ICLR 2025) proved that very large dropout (90%) during finetuning achieves optimal OOD generalization because pretrained networks contain rich redundant features that standard gradient descent discards; Wang et al. (arXiv 2602.09722) showed that uniform visual dropout HURTS during pretraining on diverse data because diversity already regularizes; CTM bridges these findings by applying adaptive, learned token masking during low-diversity VLA finetuning where spurious visual correlations form and threaten to destroy the rich pretrained features. We develop two variants: Uniform CTM (cosine-annealed masking as a strong baseline) and Adaptive CTM where a lightweight learned module (~0.1M parameters) outputs per-token masking probabilities regularized via a KL penalty — learning to mask specifically the tokens carrying spurious correlations rather than applying uniform noise that Wang et al. showed is harmful. We provide a diversity-conditional regularization framework formalizing the intuition that masking benefit scales inversely with training data diversity: R(p,D) is proportional to p times I_spur(D) minus p times I_task_lost(p), where spurious mutual information I_spur decreases with diversity — unifying Zhang & Bottou (large dropout helps low-diversity finetuning), Wang et al. (dropout hurts diverse pretraining), and CTM (adaptive masking optimizes the trade-off). We explicitly differentiate from CRAFT (which applies continuous Gaussian VIB on entire fused representations for curriculum learning, not discrete per-token masking for OOD regularization), DTP (which prunes distracting tokens at inference but cannot prevent spurious correlations from forming during training), and FocusVLA (which replaces attention architecture rather than adding lightweight regularization). Our approach is architecture-agnostic (unlike Knowledge Insulation's flow-matching requirement), training-time (unlike DTP, VLA-IAP, VLA-Pruner), and regularization-focused (unlike the majority of efficiency-framed token operations). We evaluate primarily on SimplerEnv OOD Visual Variant Aggregation and LIBERO-Plus robustness benchmarks with a streamlined set of 7 reimplemented baselines plus reported-number comparisons, and 5 focused ablations including the critical pretraining-vs-finetuning comparison and uniform-vs-adaptive masking test.\",\n  \"project_name\": \"vla_token_mask_reg\",\n  \"source\": \"web_research\"\n}\n\n## Reviewer feedback (round 4)\nIssues: [\"CRITICAL — TWO CITED PAPERS APPEAR NON-EXISTENT: (1) 'FAN: Feasible Action Neighborhood Prior for VLA Finetuning' (claimed CVPR 2026, arXiv 2604.01570) — multiple search attempts across arXiv, CVPR 2026 proceedings, and keyword searches found no such paper. The arXiv ID 2604.01570 does not correspond to any published work. (2) 'GridS/See What Matters: Differentiable Grid Sample Pruning for Generalizable VLA' (claimed ICML 2026) — not found in ICML 2026 submissions, arXiv, or any other source. Both are listed as reimplementation baselines (GridS is baseline #7) and key references. Their non-existence invalidates parts of the experimental plan.\", \"MISSING COMPETITOR — TokenFLEX (arXiv 2504.03154, Apr 2025): Stochastic training paradigm that randomly modulates visual token counts during training to handle OOD token variations, achieving measurable gains across VLM benchmarks. This is conceptually very close to CTM — both use training-time stochastic token manipulation for OOD robustness. TokenFLEX targets VLMs not VLAs, but the mechanism (training with variable token subsets for generalization) is the same core idea. Must be cited and differentiated.\", \"THEORETICAL FRAMEWORK REMAINS INFORMAL: The diversity-conditional regularization benefit R(p,D) ∝ p·I_spur(D) - p·I_task_lost(p) is stated as a proportionality relationship but not formally derived. For the user's requirement of 'theoretical analysis of WHY token operations enhance VLA generalization,' this formula needs: (a) formal definition of I_spur(D) and I_task_lost(p) in terms of the VLA architecture's information flow (frozen ViT → projector → LLM), (b) proof or rigorous argument that I_spur decreases monotonically with div(D), (c) connection to the actual optimization landscape showing how masking prevents the implicit sparsity bias Zhang & Bottou identified. Currently it reads as conceptual intuition, not a theoretical contribution.\", \"NARROW NOVELTY GAP NOT SUFFICIENTLY ACKNOWLEDGED: The idea positions itself against DTP (inference-time), CRAFT (continuous VIB), and FocusVLA (architecture replacement). But LightVLA already does learned adaptive token selection during VLA training with Gumbel-softmax, achieving +2.9% success improvement — this IS training-time, IS adaptive/learned, and IS applied to VLA finetuning. The remaining distinction (regularization motivation vs. efficiency motivation) is a framing choice, not a mechanistic difference. The idea should explicitly address: what would CTM produce that LightVLA's training-time learned selection does not?\", \"COUNTER-EVIDENCE FROM SIMPLE BASELINES: RETAIN (ICLR 2026) achieves OOD generalization gains through trivial post-hoc weight interpolation. SimVLA (0.5B params) and VLANeXt achieve strong zero-shot generalization without any token regularization. The idea includes RETAIN as a baseline but does not address the broader challenge: if simple methods work, what justifies the added complexity of CTM? A compelling response would be showing that CTM + RETAIN is strictly better than either alone.\", \"TRAINING-INFERENCE DISTRIBUTION MISMATCH: CTM masks tokens during training but uses all tokens at inference. While this is standard dropout behavior and generally benign (more info at test time), it differs from inference-time methods (DTP, VLA-IAP) that also reduce tokens at test time. The idea should discuss whether the learned masking module could optionally be applied at inference for additional efficiency, creating a unified training-and-inference framework — this would strengthen the contribution significantly.\"]\nFeedback: The idea has matured substantially over 4 rounds — the three-paper theoretical chain (Zhang & Bottou → Wang et al. → CTM), honest theoretical framing, and comprehensive landscape are all strong. Three actions to reach pass quality:\n\n**1. REMOVE FABRICATED REFERENCES (critical).** FAN (arXiv 2604.01570) and GridS (ICML 2026) cannot be verified to exist. Remove them from key_references and baselines. Replace GridS in baselines with a verified alternative — consider DeepVision-VLA (arXiv 2603.15618, training-time action-guided visual pruning) or add a 'Uniform CTM as its own ablation baseline' entry. This reduces baselines from 7 to 5-6 reimplemented, which is more realistic anyway.\n\n**2. CITE TokenFLEX AND SHARPEN vs. LightVLA.** TokenFLEX (arXiv 2504.03154) does stochastic token count modulation during training for OOD — cite it and argue CTM differs because (a) CTM learns WHICH tokens to mask based on content, not random count variation, and (b) CTM's masking is theoretically motivated by the diversity-conditional framework rather than being a generic robustness trick. For LightVLA, the key argument should be: LightVLA's Gumbel-softmax optimizes for efficiency (minimize tokens while maintaining performance), while CTM's KL-regularized masking optimizes for OOD generalization (mask spurious-correlation-carrying tokens even when they help in-distribution). These produce different learned policies — LightVLA keeps task-relevant tokens, CTM sometimes masks them to force redundant feature utilization per Zhang & Bottou.\n\n**3. FORMALIZE THE DIVERSITY-CONDITIONAL FRAMEWORK.** The R(p,D) formula is the idea's most original theoretical contribution, but it's currently informal. Formalize it: define diversity div(D) as e.g., the average pairwise MMD between visual token distributions across episodes. Define I_spur(D) as the mutual information between background token features and actions that vanishes under interventional randomization. Show that under a linear-probe approximation (justified by Zhang & Bottou's 'intrinsically linear' finetuning result), masking with rate p reduces the effective I_spur by p·I_spur while losing task information proportional to p·(1-redundancy). This would elevate the theory from 'conceptual framework' to 'formal result applicable to the VLA pipeline.'\n\n## Instructions\n- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method (approach / resource_estimate / key_references). Do not jump straight to fixing the method if the underlying problem framing needs correction.\n- Address each issue specifically.\n\n## 深度调研要求（每一轮修订都必须执行）\n\n不要简单地'打补丁'——每一轮修订都是重新审视和深化这个 idea 的机会。\n\n1. **深度搜索**：针对 reviewer 指出的每个问题，建议用 2-3 种不同的搜索查询调研。\n   - 搜索最新的相关论文（arXiv, conference proceedings）\n   - 搜索 benchmark/leaderboard 确认当前 SOTA\n   - 搜索可能遗漏的相关工作和 concurrent work\n\n2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文的 abstract 和方法部分，\n   不要只依赖搜索摘要。形成你自己对领域现状的独立判断。\n\n3. **深度思考**：在修订之前，先独立思考以下问题：\n   - 这个 idea 的核心假设是否仍然成立？\n   - reviewer 的批评是否揭示了更深层的问题？\n   - 有没有更好的 framing 或 approach 来解决同一个核心问题？\n   - 修订后的 idea 相比上一版有什么本质性的改进？\n\n4. **避免表面修订**：如果你发现自己只是在换措辞或补充细节而没有实质改进，\n   考虑是否需要 major revision 或 pivot。反复的 minor fix 不会拯救一个根基有问题的 idea。\n\n## 针对 Review 意见的定向搜索\n\n对 reviewer 指出的每个问题，执行以下搜索流程：\n\n1. **如果 reviewer 说'已有类似工作'**：\n   - 搜索 reviewer 提到的论文，用 WebFetch 实际阅读\n   - 搜索该论文的 cited-by，找到后续跟进工作\n   - 明确你的 idea 与这些工作的差异化点——如果差异化不够，必须 pivot\n\n2. **如果 reviewer 说'SOTA 过时'**：\n   - 用 Papers With Code 查看当前排行榜\n   - 搜索过去 6 个月的最新方法\n   - 更新你的 landscape 和 baseline\n\n3. **如果 reviewer 说'可行性有问题'**：\n   - 搜索类似规模实验的实际成本和时间线\n   - 搜索 GitHub 上是否有可复用的实现\n   - 搜索相关数据集/模型的可获取性\n\n4. **如果 reviewer 说'novelty 不足'**：\n   - 对核心方法尽量做 3-5 种不同关键词组合的搜索\n   - 搜索相邻领域是否有类似思路\n   - 如果确实 novelty 不足，考虑 major revision 或 pivot\n\n- Use WebSearch to find updated information if the reviewer flagged outdated claims.\n- You have full freedom in how much to change:\n  - Minor fix: if only specific details are wrong, correct them and keep everything else.\n  - Major revision: if the approach is fundamentally flawed but the core problem is valid, you may redesign the approach entirely.\n  - Pivot: if the reviewer's feedback reveals that the core problem itself is invalid (e.g., the gap no longer exists), you may propose a RELATED but substantially different idea that builds on the same research area. This is preferred over forcing a doomed idea to pass review.\n- The output replaces the original idea (same tracking ID). Whether you make a small tweak or a full pivot, output a COMPLETE JSON object with ALL fields filled.\n- In the output JSON, include a \"change_type\" field with one of: \"minor\", \"major\", or \"pivot\" to indicate the scope of your changes.\n- Output the revised idea as a COMPLETE JSON object (same schema as original, plus \"change_type\")."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-13T05:25:05.168Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-13T05:25:05.168Z",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09"
+}
+```
+
+---
+
+## Round 1
+
+112 recorded events
+
+### User
+
+_source line 3 · 2026-05-13T05:25:05.200Z_
+
+You are revising a research idea based on reviewer feedback.
+
+**Today's date: 2026-05-13 (UTC).**
+
+## Original idea
+{
+  "title": "Counterfactual Token Masking: Training-Time Visual Token Regularization for Robust VLA Finetuning on Low-Diversity Demonstrations",
+  "core_problem": "VLA finetuning on robotic demonstration data suffers from representation degradation (attention migration to background tokens, representation collapse, domain-specific forgetting) primarily because single-task demonstration data is inherently low-diversity — the same table, background, lighting, and camera pose repeat across thousands of episodes. This problem is specific to the FINETUNING regime: Wang et al. (arXiv 2602.09722) showed that visual dropout during PRETRAINING on diverse multi-embodiment data actually HURTS performance (84.5% with dropout vs 85.6% without), because natural data diversity already regularizes. Conversely, Zhang & Bottou (ICLR 2025) proved that very large dropout (90%) during finetuning of pretrained models achieves optimal OOD performance — because pretrained networks contain rich, redundant 'weakly relevant' features that standard gradient descent's implicit sparsity bias discards, but aggressive dropout forces the network to retain. These two findings establish a fundamental dichotomy: regularization via visual token perturbation is unnecessary (even harmful) when training data is diverse, but becomes essential during low-diversity finetuning where spurious visual correlations form AND the implicit sparsity bias of gradient descent threatens to discard the rich features inherited from pretraining. The VLA token operations field has exploded (DTP, FocusVLA, AutoSelect, Compressor-VLA, VLA-IAP, GridS, LightVLA), but nearly all existing methods are framed as INFERENCE-TIME EFFICIENCY optimizations — pruning or compressing tokens to reduce FLOPs. None exploit the pretraining-vs-finetuning dichotomy to apply principled TRAINING-TIME REGULARIZATION specifically calibrated to prevent spurious correlation formation in low-diversity finetuning data.",
+  "opportunity": "The convergence of five research developments creates a unique opportunity: (1) Zhang & Bottou (ICLR 2025) established that very large dropout during finetuning achieves optimal OOD generalization because pretrained representations are rich with redundant features — but their work addressed only fully-connected layers, not the structured visual token space of VLAs. (2) Wang et al. (arXiv 2602.09722) showed uniform visual dropout is harmful during diverse pretraining — implicitly confirming that the benefit of dropout-style regularization depends on training data diversity. (3) 'Masked Images Are Counterfactual Samples' (Xiao et al., CVPR 2023) showed that masking image patches constitutes a counterfactual intervention breaking spurious correlations. (4) DTP (arXiv 2601.16065) demonstrated that VLA models over-attend to task-irrelevant 'distracting' tokens with negative correlation to success rate — but addresses this only at inference time, meaning spurious correlations still form during training. (5) CRAFT (arXiv 2602.12532) applied a Variational Information Bottleneck to VLA models, but with continuous Gaussian compression on fused representations for force-first curriculum learning, not discrete per-token masking for OOD regularization. The gap is: no existing work applies TRAINING-TIME, ADAPTIVE, LEARNED per-token masking specifically to the VLA finetuning setting, with masking rates conditioned on token informativeness, grounded in the Zhang & Bottou principle that aggressive dropout during finetuning preserves rich pretrained features. Prior inference-time methods (DTP, VLA-IAP, LightVLA, VLA-Pruner) cannot prevent spurious correlations from forming during training; CRAFT's VIB operates on entire fused representations with continuous compression rather than discrete per-token counterfactual interventions; AutoSelect targets frozen VLM efficiency rather than VLA finetuning regularization.",
+  "landscape": "The VLA representation preservation and token operations space has expanded rapidly. We organize the landscape along two axes: (A) representation preservation methods and (B) token-level operations, further distinguishing training-time vs. inference-time approaches.\n\n**A. VLA Representation Preservation Methods:**\n(1) Frozen-encoder alignment: 'Don't Blind Your VLA' (arXiv 2510.25616) pulls VLA hidden states toward frozen teacher features via cosine similarity loss.\n(2) Dual-encoder co-training: Gen-VLA (arXiv 2509.11417) uses separate encoders for action prediction and VL understanding.\n(3) Contrastive state regularization: RS-CL (ICLR 2026) shapes representations via InfoNCE weighted by proprioceptive state distances, with 'view cutoff' augmentation.\n(4) Action-as-language: VLM2VLA (ICLR 2026) represents actions in natural language to avoid distribution mismatch.\n(5) Gradient insulation: Knowledge Insulation (NeurIPS 2025 Spotlight, Driess et al., Physical Intelligence) prevents gradient flow from continuous action experts to VLM backbone via stop-gradient — architecture-specific to π0/flow-matching.\n(6) Parameter merging: Robust VLA Finetuning (ICLR 2026, Pertsch/Levine, arXiv 2512.08333) achieves OOD gains via simple weight interpolation between finetuned and pretrained models — elegant but limited to post-hoc interpolation without training-time regularization.\n(7) Action-space regularization: FAN (CVPR 2026, arXiv 2604.01570) applies Gaussian prior on action predictions — complementary to visual token regularization.\n(8) Force-aware curriculum with VIB: CRAFT (arXiv 2602.12532) applies an explicit VIB module after the vision-language encoder using continuous Gaussian compression (reparameterized N(μ,σ²) against N(0,1) prior, exponential KL decay) to force focus on force signals initially. Critically, CRAFT's VIB operates on entire fused representations for curriculum purposes, not per-token masking for OOD regularization.\n\n**B. VLA Token-Level Operations:**\n*Inference-time efficiency (majority of recent work):*\n(9) DTP (arXiv 2601.16065, Jan 2026): Dynamically detects and prunes 'distracting' tokens at inference via attention hooks. Shows negative correlation between success rate and attention to irrelevant regions — same core intuition as CTM, but post-hoc pruning cannot prevent spurious correlations from forming during training.\n(10) GridS/'See What Matters' (ICML 2026): Differentiable grid sample pruning for efficiency with generalization as side benefit.\n(11) VLA-Pruner (arXiv 2511.16449): Temporal-aware dual-level visual token pruning for inference efficiency.\n(12) VLA-IAP (arXiv 2603.22991, Mar 2026): Training-free interaction-aligned token pruning using geometric priors.\n(13) Compressor-VLA (arXiv 2511.18950, Nov 2025): Learned instruction-guided token compression with STC+SRC modules.\n(14) ETA-VLA (arXiv 2603.25766, Mar 2026): Text-guided token sparsification for autonomous driving VLAs.\n*Training-time token operations:*\n(15) FocusVLA (arXiv 2603.28740, Mar 2026): Modality cascaded attention + Focus attention for task-relevant patch selection during training — closest training-time competitor. However, FocusVLA replaces the attention architecture rather than adding lightweight regularization, and frames its contribution as attention improvement rather than OOD regularization.\n(16) LightVLA (ICRA 2026): Differentiable token pruning with Gumbel softmax for adaptive selection during finetuning — efficiency-framed.\n(17) AutoSelect/Noise Gating (arXiv 2603.07135, Mar 2026): Variance-preserving noise inversely proportional to token importance on frozen VLMs. Targets VLM efficiency, not VLA finetuning regularization.\n\n**C. VLM Token Reduction Theory:**\n(18) 'Rethinking Visual Token Reduction in LVLMs Under Cross-Modal Misalignment' (VisionDrop, AAAI 2026, arXiv 2506.22283): Reveals causal, semantic, and spatial forms of cross-modal misalignment that undermine text-guided token reduction, proposing visual-only pruning. Key insight for CTM: text-guided token selection is unreliable, supporting our approach of learning masking from token content directly.\n\n**D. Foundational Dropout/Regularization Theory:**\n(19) Zhang & Bottou (ICLR 2025, arXiv 2403.00946): Very large dropout (90%) during finetuning achieves best OOD performance because pretrained networks contain rich redundant features. Establishes the principle: aggressive regularization during finetuning is not only viable but optimal for OOD generalization.\n(20) Wang et al. (arXiv 2602.09722): Uniform visual dropout hurts during diverse pretraining — diversity already regularizes.\n\n**The specific gap CTM targets:** No existing work combines (a) TRAINING-TIME (not inference-time) visual token masking with (b) ADAPTIVE, LEARNED per-token rates (not uniform dropout or architecture replacement) with (c) regularization specifically motivated by the low-diversity finetuning setting (not efficiency or curriculum). CTM is the only method that connects Zhang & Bottou's rich-representation dropout principle to VLA visual token space, applying counterfactual masking during training to prevent the spurious correlations that DTP can only prune post-hoc.",
+  "approach": "We propose Counterfactual Token Masking (CTM), a training-time regularization method for robust VLA finetuning that stochastically masks visual patch tokens after the ViT projector and before the LLM backbone. The method rests on a three-paper theoretical chain: Zhang & Bottou (ICLR 2025) proved that aggressive dropout during finetuning preserves rich pretrained features for OOD generalization; Wang et al. showed this is unnecessary during diverse pretraining; CTM applies this principle adaptively at the visual token level during low-diversity VLA finetuning.\n\n**Component 1: Uniform CTM (baseline).** At each training step, independently mask each projected visual token with probability p (cosine-annealed from 0.25→0.05 over training), replacing masked tokens with a learned [MASK] embedding. This forces the LLM backbone to predict actions from subsets of visual tokens, creating implicit counterfactual training samples that break spurious correlations between repetitive background tokens and actions. Placement after the projector is critical: pre-projector masking cannot regularize the projector→LLM interface where representation collapse concentrates; post-LLM-embedding masking disrupts the LLM's pretrained token interactions.\n\n**Component 2: Adaptive CTM (main contribution).** Replace uniform masking with learned per-token masking rates via a lightweight MLP (~0.1M parameters) that takes each projected visual token and outputs per-token log-variance α_i. Token i is masked with probability σ(α_i). A KL penalty β·Σ_i KL(Bernoulli(σ(α_i)) || Bernoulli(p_prior)) regularizes toward a base masking rate (p_prior = 0.15), with β warmed from 0→1 over the first 20% of training. The adaptive module learns to mask tokens carrying spurious correlations (repetitive backgrounds) while preserving task-critical tokens (gripper, target object), providing a learned approximation to do(X_bg = ∅) without explicit causal graphs (unlike RoCoDA) or geometry-aware spatial modeling (unlike GridS). This directly addresses Wang et al.'s finding that UNIFORM dropout adds unhelpful noise — CTM learns WHICH tokens to mask.\n\n**Supporting Analysis: Diversity-Conditional Regularization Framework.** Rather than claiming independent theoretical novelty over prior IB bounds (IBTM, CRAFT) or PAC-Bayes bounds (AttentionDrop), we provide a unifying framework that connects Zhang & Bottou, Wang et al., and CTM through a diversity-conditional analysis. We formalize the intuition that masking benefit scales inversely with training data diversity: define a diversity measure div(D) over visual feature distributions across episodes. When div(D) is low, the mutual information between background tokens and actions (I_spur) is high — masking reduces spurious dependence proportional to p·I_spur. When div(D) is high, I_spur ≈ 0 and masking only removes task-relevant information. This yields a diversity-conditional regularization benefit: R(p, D) ∝ p·I_spur(D) - p·I_task_lost(p), where I_spur(D) decreases with div(D). Diverse pretraining data → masking hurts (Wang et al.); low-diversity finetuning data → masking helps (CTM); adaptive masking minimizes I_task_lost while maintaining I_spur reduction (Adaptive CTM advantage). We derive this within the VLA-specific frozen-ViT→projector→LLM pipeline, where the projector is the sole gradient-receiving bottleneck — giving token masking at this point outsized effect. We explicitly position this as a framework connecting existing results (Zhang & Bottou, Wang et al., IBTM, CRAFT) to the VLA finetuning setting, not as independent mathematical machinery.\n\n**Differentiation from closest competitors:**\n- vs. CRAFT VIB: CRAFT applies continuous Gaussian VIB on entire fused representations for curriculum learning; CTM applies discrete per-token binary masking for OOD regularization. Discrete masking creates stronger counterfactual interventions (a token is either observed or not).\n- vs. DTP: DTP prunes distracting tokens at inference but cannot prevent spurious correlations from forming during training. CTM intervenes during training to prevent formation of these correlations, yielding more robust learned representations.\n- vs. FocusVLA: FocusVLA replaces the attention architecture (cascaded attention); CTM is a lightweight add-on (~0.1M params) that preserves the base architecture and focuses on regularization rather than attention redesign.\n- vs. AutoSelect: AutoSelect targets frozen VLM efficiency with noise gating; CTM targets VLA finetuning regularization with learned masking for OOD generalization.\n- vs. Parameter Merging: Post-hoc weight interpolation; CTM provides training-time regularization. Potentially complementary.\n\n**Base model:** OpenVLA-OFT with LoRA.\n\n**Primary evaluation (OOD generalization):** SimplerEnv Visual Variant Aggregation (randomized backgrounds, textures, lighting, distractors, camera poses) as the PRIMARY metric. LIBERO-Plus (CVPR 2026, 7 perturbation dimensions) for systematic robustness analysis.\n\n**Secondary evaluation (in-distribution):** LIBERO 4-suite average (note: saturated at ~97-98% for current SOTA; we expect marginal ID gains and focus on OOD).\n\n**Diagnostic metrics:** CKA similarity vs. frozen VLM teacher (representation preservation). Attention entropy dynamics (collapse prevention). Learned masking rate heatmaps (interpretability).\n\n**Baselines (streamlined per reviewer advice):** (1) OpenVLA-OFT (no regularization), (2) Don't Blind Your VLA (frozen teacher alignment), (3) RS-CL (contrastive state regularization), (4) Parameter Merging (ICLR 2026, weight interpolation — simple and strong), (5) DTP (inference-time distracting token pruning — direct competitor, same intuition different timing), (6) FocusVLA (training-time patch selection — closest training-time competitor), (7) GridS (differentiable grid pruning — token operations for VLA generalization). For Knowledge Insulation (NeurIPS 2025 Spotlight) and VLM2VLA (ICLR 2026): compare via reported numbers on overlapping benchmarks due to architecture-specific requirements. Drop VLA-GSE and CRL-VLA from reimplementation — use reported numbers only.\n\n**Key ablations (focused on most critical):** (a) Uniform vs. adaptive masking — tests whether learning WHICH tokens to mask matters beyond random masking, directly addressing Wang et al.'s critique; (b) Pretraining-vs-finetuning comparison — apply uniform CTM during a diverse-data phase to reproduce Wang et al.'s negative finding, then show positive effect during low-diversity finetuning (validates central hypothesis); (c) Masking placement: pre-projector vs. post-projector vs. post-LLM-embedding; (d) CTM + Don't Blind Your VLA complementarity test (CTM regularizes tokens, alignment loss regularizes representations); (e) CTM + Parameter Merging complementarity (training-time + post-hoc regularization).",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~300h A100-80GB",
+      "gpu_utilization": "Low (~30-40%); researcher must integrate CTM into OpenVLA-OFT codebase, implement adaptive masking module, set up DTP and FocusVLA baselines",
+      "timeline": "3-4 months",
+      "team": "1-2 researchers",
+      "estimated_gpu_cost": "$450-600"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~400h A100-80GB",
+      "gpu_utilization": "Moderate (~60-70%); agent queues masking schedule sweeps, placement ablations, and baseline comparisons; human reviews analysis framing daily",
+      "timeline": "6-10 weeks",
+      "team": "1 researcher, ~45min/day",
+      "claude_api_cost": "$150-250",
+      "estimated_gpu_cost": "$600-750",
+      "risk_note": "FocusVLA reimplementation complexity uncertain without released code. DTP is plug-and-play. Parameter Merging is trivial to implement."
+    },
+    "auto_research": {
+      "gpu_hours": "~600h A100-80GB (streamlined: 3 placements × 3 schedules × 2 masking types × 7 baselines × 2 benchmarks + complementarity experiments + pretraining-vs-finetuning validation)",
+      "gpu_utilization": "High (~90%+)",
+      "timeline": "10-14 days with 8 A100s available",
+      "team": "0 for experiments (diversity-conditional analysis requires human review before submission)",
+      "claude_api_cost": "$400-600",
+      "estimated_gpu_cost": "$900-1100",
+      "speed_bottleneck": "GPU count; each LIBERO finetuning run ~8-12h on 1 A100 with LoRA; SimplerEnv evaluation ~2h per configuration.",
+      "risk_note": "Agent should prioritize adaptive vs. uniform ablation and pretraining-vs-finetuning comparison as the two most critical experiments before exploring other ablations."
+    }
+  },
+  "target_venues": [
+    "ICLR 2027 (expected deadline ~September 2026, primary target)",
+    "ICRA 2027 (expected deadline ~September 2026, secondary target)",
+    "CoRL 2027 (expected deadline ~May 2027, backup)"
+  ],
+  "level": "solid",
+  "key_references": [
+    "Fine-tuning with Very Large Dropout (Zhang & Bottou, ICLR 2025, arXiv 2403.00946) — FOUNDATIONAL: proves very large dropout during finetuning achieves optimal OOD generalization because pretrained representations are rich with redundant features; establishes the principle CTM extends to visual token space",
+    "Rethinking Visual-Language-Action Model Scaling: Alignment, Mixture, and Regularization (Wang et al., arXiv 2602.09722, Feb 2026) — establishes that uniform visual dropout hurts during diverse pretraining, completing the pretraining-vs-finetuning dichotomy with Zhang & Bottou",
+    "DTP: A Simple yet Effective Distracting Token Pruning Framework for VLA Models (arXiv 2601.16065, Jan 2026) — inference-time distracting token pruning; same core intuition (suppress spurious tokens), different timing (inference vs. training)",
+    "CRAFT: Adapting VLA Models to Contact-rich Manipulation via Force-aware Curriculum Fine-tuning (arXiv 2602.12532, 2026) — applies explicit VIB to VLA models; CTM differs in discrete per-token masking vs. continuous Gaussian compression, and regularization vs. curriculum purpose",
+    "Don't Blind Your VLA: Aligning Visual Representations for OOD Generalization (arXiv 2510.25616, 2025)",
+    "Contrastive Representation Regularization for Vision-Language-Action Models [RS-CL] (ICLR 2026)",
+    "Knowledge Insulating Vision-Language-Action Models: Train Fast, Run Fast, Generalize Better (Driess et al., Physical Intelligence, NeurIPS 2025 Spotlight, arXiv 2505.23705)",
+    "Robust VLA Finetuning via Parameter Merging (Pertsch/Levine, ICLR 2026, arXiv 2512.08333) — simple weight interpolation for OOD gains; potentially complementary to CTM",
+    "FAN: Feasible Action Neighborhood Prior for VLA Finetuning (CVPR 2026, arXiv 2604.01570) — action-space Gaussian prior regularizer; complementary to visual token regularization",
+    "FocusVLA: Focused Visual Utilization for Vision-Language-Action Models (arXiv 2603.28740, Mar 2026) — training-time cascaded attention + patch selection; closest training-time competitor",
+    "AutoSelect: The Model Knows Which Tokens Matter via Noise Gating (arXiv 2603.07135, Mar 2026) — variance-preserving noise gating for VLM token selection; efficiency-focused on frozen VLMs",
+    "Compressor-VLA: Instruction-Guided Visual Token Compression (arXiv 2511.18950, Nov 2025) — learned instruction-conditioned token compression for VLA efficiency",
+    "VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment (arXiv 2603.22991, Mar 2026)",
+    "ETA-VLA: Text-Guided Token Sparsification for Autonomous Driving VLAs (arXiv 2603.25766, Mar 2026)",
+    "Rethinking Visual Token Reduction in LVLMs Under Cross-Modal Misalignment [VisionDrop] (AAAI 2026, arXiv 2506.22283) — reveals cross-modal misalignment undermining text-guided token reduction",
+    "See What Matters: Differentiable Grid Sample Pruning for Generalizable VLA [GridS] (Feng et al., ICML 2026)",
+    "Information Dropout: Learning Optimal Representations Through Noisy Computation (Achille & Soatto, TPAMI 2018)",
+    "Masked Images Are Counterfactual Samples for Robust Fine-tuning (Xiao et al., CVPR 2023)",
+    "PatchDropout: Economizing Vision Transformers Using Patch Dropout (WACV 2023)",
+    "DropKey for Vision Transformer (CVPR 2023)",
+    "Entropy-Guided Token Dropout [EntroDrop] (arXiv 2512.23422, 2025)",
+    "To Sink or Not to Sink: Visual Information Pathways in Large Vision-Language Models (ICLR 2026)",
+    "Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting [VLM2VLA] (ICLR 2026)",
+    "Enhancing Generalization in VLAs by Preserving Pretrained Representations [Gen-VLA] (arXiv 2509.11417, 2025)",
+    "OpenVLA: An Open-Source Vision-Language-Action Model (CoRL 2024)",
+    "Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success [OpenVLA-OFT] (arXiv 2025)",
+    "RoCoDA: Counterfactual Data Augmentation for Data-Efficient Robot Learning (Ameperosa et al., ICRA 2025, arXiv 2411.16959)",
+    "Efficient Visual Transformer by Information Bottleneck Inspired Token Merging [IBTM] (arXiv 2407.15219, 2024)",
+    "AttentionDrop: A Novel Regularization Method for Transformer Models (arXiv 2504.12088, Apr 2025)",
+    "A PAC-Bayesian Tutorial with A Dropout Bound (McAllester, arXiv 1307.2118, 2013)",
+    "Stabilizing Transformer Training by Preventing Attention Entropy Collapse (Zhai et al., ICML 2023)",
+    "The Better You Learn The Smarter You Prune [LightVLA] (ICRA 2026)",
+    "VLA-Pruner: Temporal-Aware Dual-Level Visual Token Pruning (arXiv 2511.16449, 2025)",
+    "Deep Variational Information Bottleneck (Alemi et al., ICLR 2017)",
+    "Token Reduction Should Go Beyond Efficiency in Generative Models (arXiv 2505.18227, 2025)",
+    "LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models (CVPR 2026)",
+    "Dropout as a Bayesian Approximation (Gal & Ghahramani, ICML 2016)",
+    "VLA-GSE: Boosting Parameter-Efficient Fine-Tuning in VLA with Generalized and Specialized Experts (arXiv 2605.06175, 2026)",
+    "CRL-VLA: Continual Vision-Language-Action Learning (arXiv 2602.03445, 2026)"
+  ],
+  "description": "We propose Counterfactual Token Masking (CTM), a training-time regularization method for robust VLA finetuning that addresses representation degradation through adaptive visual token masking after the projector layer. Our central thesis rests on a three-paper theoretical chain: Zhang & Bottou (ICLR 2025) proved that very large dropout (90%) during finetuning achieves optimal OOD generalization because pretrained networks contain rich redundant features that standard gradient descent discards; Wang et al. (arXiv 2602.09722) showed that uniform visual dropout HURTS during pretraining on diverse data because diversity already regularizes; CTM bridges these findings by applying adaptive, learned token masking during low-diversity VLA finetuning where spurious visual correlations form and threaten to destroy the rich pretrained features. We develop two variants: Uniform CTM (cosine-annealed masking as a strong baseline) and Adaptive CTM where a lightweight learned module (~0.1M parameters) outputs per-token masking probabilities regularized via a KL penalty — learning to mask specifically the tokens carrying spurious correlations rather than applying uniform noise that Wang et al. showed is harmful. We provide a diversity-conditional regularization framework formalizing the intuition that masking benefit scales inversely with training data diversity: R(p,D) is proportional to p times I_spur(D) minus p times I_task_lost(p), where spurious mutual information I_spur decreases with diversity — unifying Zhang & Bottou (large dropout helps low-diversity finetuning), Wang et al. (dropout hurts diverse pretraining), and CTM (adaptive masking optimizes the trade-off). We explicitly differentiate from CRAFT (which applies continuous Gaussian VIB on entire fused representations for curriculum learning, not discrete per-token masking for OOD regularization), DTP (which prunes distracting tokens at inference but cannot prevent spurious correlations from forming during training), and FocusVLA (which replaces attention architecture rather than adding lightweight regularization). Our approach is architecture-agnostic (unlike Knowledge Insulation's flow-matching requirement), training-time (unlike DTP, VLA-IAP, VLA-Pruner), and regularization-focused (unlike the majority of efficiency-framed token operations). We evaluate primarily on SimplerEnv OOD Visual Variant Aggregation and LIBERO-Plus robustness benchmarks with a streamlined set of 7 reimplemented baselines plus reported-number comparisons, and 5 focused ablations including the critical pretraining-vs-finetuning comparison and uniform-vs-adaptive masking test.",
+  "project_name": "vla_token_mask_reg",
+  "source": "web_research"
+}
+
+## Reviewer feedback (round 4)
+Issues: ["CRITICAL — TWO CITED PAPERS APPEAR NON-EXISTENT: (1) 'FAN: Feasible Action Neighborhood Prior for VLA Finetuning' (claimed CVPR 2026, arXiv 2604.01570) — multiple search attempts across arXiv, CVPR 2026 proceedings, and keyword searches found no such paper. The arXiv ID 2604.01570 does not correspond to any published work. (2) 'GridS/See What Matters: Differentiable Grid Sample Pruning for Generalizable VLA' (claimed ICML 2026) — not found in ICML 2026 submissions, arXiv, or any other source. Both are listed as reimplementation baselines (GridS is baseline #7) and key references. Their non-existence invalidates parts of the experimental plan.", "MISSING COMPETITOR — TokenFLEX (arXiv 2504.03154, Apr 2025): Stochastic training paradigm that randomly modulates visual token counts during training to handle OOD token variations, achieving measurable gains across VLM benchmarks. This is conceptually very close to CTM — both use training-time stochastic token manipulation for OOD robustness. TokenFLEX targets VLMs not VLAs, but the mechanism (training with variable token subsets for generalization) is the same core idea. Must be cited and differentiated.", "THEORETICAL FRAMEWORK REMAINS INFORMAL: The diversity-conditional regularization benefit R(p,D) ∝ p·I_spur(D) - p·I_task_lost(p) is stated as a proportionality relationship but not formally derived. For the user's requirement of 'theoretical analysis of WHY token operations enhance VLA generalization,' this formula needs: (a) formal definition of I_spur(D) and I_task_lost(p) in terms of the VLA architecture's information flow (frozen ViT → projector → LLM), (b) proof or rigorous argument that I_spur decreases monotonically with div(D), (c) connection to the actual optimization landscape showing how masking prevents the implicit sparsity bias Zhang & Bottou identified. Currently it reads as conceptual intuition, not a theoretical contribution.", "NARROW NOVELTY GAP NOT SUFFICIENTLY ACKNOWLEDGED: The idea positions itself against DTP (inference-time), CRAFT (continuous VIB), and FocusVLA (architecture replacement). But LightVLA already does learned adaptive token selection during VLA training with Gumbel-softmax, achieving +2.9% success improvement — this IS training-time, IS adaptive/learned, and IS applied to VLA finetuning. The remaining distinction (regularization motivation vs. efficiency motivation) is a framing choice, not a mechanistic difference. The idea should explicitly address: what would CTM produce that LightVLA's training-time learned selection does not?", "COUNTER-EVIDENCE FROM SIMPLE BASELINES: RETAIN (ICLR 2026) achieves OOD generalization gains through trivial post-hoc weight interpolation. SimVLA (0.5B params) and VLANeXt achieve strong zero-shot generalization without any token regularization. The idea includes RETAIN as a baseline but does not address the broader challenge: if simple methods work, what justifies the added complexity of CTM? A compelling response would be showing that CTM + RETAIN is strictly better than either alone.", "TRAINING-INFERENCE DISTRIBUTION MISMATCH: CTM masks tokens during training but uses all tokens at inference. While this is standard dropout behavior and generally benign (more info at test time), it differs from inference-time methods (DTP, VLA-IAP) that also reduce tokens at test time. The idea should discuss whether the learned masking module could optionally be applied at inference for additional efficiency, creating a unified training-and-inference framework — this would strengthen the contribution significantly."]
+Feedback: The idea has matured substantially over 4 rounds — the three-paper theoretical chain (Zhang & Bottou → Wang et al. → CTM), honest theoretical framing, and comprehensive landscape are all strong. Three actions to reach pass quality:
+
+**1. REMOVE FABRICATED REFERENCES (critical).** FAN (arXiv 2604.01570) and GridS (ICML 2026) cannot be verified to exist. Remove them from key_references and baselines. Replace GridS in baselines with a verified alternative — consider DeepVision-VLA (arXiv 2603.15618, training-time action-guided visual pruning) or add a 'Uniform CTM as its own ablation baseline' entry. This reduces baselines from 7 to 5-6 reimplemented, which is more realistic anyway.
+
+**2. CITE TokenFLEX AND SHARPEN vs. LightVLA.** TokenFLEX (arXiv 2504.03154) does stochastic token count modulation during training for OOD — cite it and argue CTM differs because (a) CTM learns WHICH tokens to mask based on content, not random count variation, and (b) CTM's masking is theoretically motivated by the diversity-conditional framework rather than being a generic robustness trick. For LightVLA, the key argument should be: LightVLA's Gumbel-softmax optimizes for efficiency (minimize tokens while maintaining performance), while CTM's KL-regularized masking optimizes for OOD generalization (mask spurious-correlation-carrying tokens even when they help in-distribution). These produce different learned policies — LightVLA keeps task-relevant tokens, CTM sometimes masks them to force redundant feature utilization per Zhang & Bottou.
+
+**3. FORMALIZE THE DIVERSITY-CONDITIONAL FRAMEWORK.** The R(p,D) formula is the idea's most original theoretical contribution, but it's currently informal. Formalize it: define diversity div(D) as e.g., the average pairwise MMD between visual token distributions across episodes. Define I_spur(D) as the mutual information between background token features and actions that vanishes under interventional randomization. Show that under a linear-probe approximation (justified by Zhang & Bottou's 'intrinsically linear' finetuning result), masking with rate p reduces the effective I_spur by p·I_spur while losing task information proportional to p·(1-redundancy). This would elevate the theory from 'conceptual framework' to 'formal result applicable to the VLA pipeline.'
+
+## Instructions
+- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method (approach / resource_estimate / key_references). Do not jump straight to fixing the method if the underlying problem framing needs correction.
+- Address each issue specifically.
+
+## 深度调研要求（每一轮修订都必须执行）
+
+不要简单地'打补丁'——每一轮修订都是重新审视和深化这个 idea 的机会。
+
+1. **深度搜索**：针对 reviewer 指出的每个问题，建议用 2-3 种不同的搜索查询调研。
+   - 搜索最新的相关论文（arXiv, conference proceedings）
+   - 搜索 benchmark/leaderboard 确认当前 SOTA
+   - 搜索可能遗漏的相关工作和 concurrent work
+
+2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文的 abstract 和方法部分，
+   不要只依赖搜索摘要。形成你自己对领域现状的独立判断。
+
+3. **深度思考**：在修订之前，先独立思考以下问题：
+   - 这个 idea 的核心假设是否仍然成立？
+   - reviewer 的批评是否揭示了更深层的问题？
+   - 有没有更好的 framing 或 approach 来解决同一个核心问题？
+   - 修订后的 idea 相比上一版有什么本质性的改进？
+
+4. **避免表面修订**：如果你发现自己只是在换措辞或补充细节而没有实质改进，
+   考虑是否需要 major revision 或 pivot。反复的 minor fix 不会拯救一个根基有问题的 idea。
+
+## 针对 Review 意见的定向搜索
+
+对 reviewer 指出的每个问题，执行以下搜索流程：
+
+1. **如果 reviewer 说'已有类似工作'**：
+   - 搜索 reviewer 提到的论文，用 WebFetch 实际阅读
+   - 搜索该论文的 cited-by，找到后续跟进工作
+   - 明确你的 idea 与这些工作的差异化点——如果差异化不够，必须 pivot
+
+2. **如果 reviewer 说'SOTA 过时'**：
+   - 用 Papers With Code 查看当前排行榜
+   - 搜索过去 6 个月的最新方法
+   - 更新你的 landscape 和 baseline
+
+3. **如果 reviewer 说'可行性有问题'**：
+   - 搜索类似规模实验的实际成本和时间线
+   - 搜索 GitHub 上是否有可复用的实现
+   - 搜索相关数据集/模型的可获取性
+
+4. **如果 reviewer 说'novelty 不足'**：
+   - 对核心方法尽量做 3-5 种不同关键词组合的搜索
+   - 搜索相邻领域是否有类似思路
+   - 如果确实 novelty 不足，考虑 major revision 或 pivot
+
+- Use WebSearch to find updated information if the reviewer flagged outdated claims.
+- You have full freedom in how much to change:
+  - Minor fix: if only specific details are wrong, correct them and keep everything else.
+  - Major revision: if the approach is fundamentally flawed but the core problem is valid, you may redesign the approach entirely.
+  - Pivot: if the reviewer's feedback reveals that the core problem itself is invalid (e.g., the gap no longer exists), you may propose a RELATED but substantially different idea that builds on the same research area. This is preferred over forcing a doomed idea to pass review.
+- The output replaces the original idea (same tracking ID). Whether you make a small tweak or a full pivot, output a COMPLETE JSON object with ALL fields filled.
+- In the output JSON, include a "change_type" field with one of: "minor", "major", or "pivot" to indicate the scope of your changes.
+- Output the revised idea as a COMPLETE JSON object (same schema as original, plus "change_type").
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "3517e58c-d034-40ce-96a3-5e0696a9a8c6",
+  "type": "user",
+  "uuid": "35e29650-e323-42e6-8d94-bd04d439c9bb",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-13T05:25:05.197Z_
+
+```json
+{
+  "parentUuid": "35e29650-e323-42e6-8d94-bd04d439c9bb",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "4b2797ae-1017-4ba4-97a5-eee6e877cd37",
+  "timestamp": "2026-05-13T05:25:05.197Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-13T05:25:05.197Z_
+
+```json
+{
+  "parentUuid": "4b2797ae-1017-4ba4-97a5-eee6e877cd37",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "dd89d8f9-3b3d-49ad-8ff4-31efeef829e5",
+  "timestamp": "2026-05-13T05:25:05.197Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-13 (UTC).**  ## Original idea {   \"title\": \"Counterfactual Token Masking: Training-Time Visual Token Regularizatio…",
+  "leafUuid": "dd89d8f9-3b3d-49ad-8ff4-31efeef829e5",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise CTM with TokenFLEX differentiation and formalized diversity framework",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-13T05:25:14.909Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the reviewer feedback carefully before making any changes:
+
+1. **CRITICAL — TWO CITED PAPERS APPEAR NON-EXISTENT**: FAN (arXiv 2604.01570) and GridS (ICML 2026) need to be verified and likely removed.
+
+2. **MISSING COMPETITOR — TokenFLEX (arXiv 2504.03154)**: Need to find and read this paper.
+
+3. **THEORETICAL FRAMEWORK REMAINS INFORMAL**: Need to formalize the diversity-conditional framework.
+
+4. **NARROW NOVELTY GAP vs. 
+
+LightVLA**: Need to sharpen differentiation.
+
+5. **COUNTER-EVIDENCE FROM SIMPLE BASELINES**: Need to address why CTM's complexity is justified.
+
+6. **TRAINING-INFERENCE DISTRIBUTION MISMATCH**: Should discuss optional inference-time application.
+
+I'll start by researching each of these issues systematically.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dd89d8f9-3b3d-49ad-8ff4-31efeef829e5",
+  "isSidechain": false,
+  "requestId": "req_011Caz1crJN85BBtErSaxbaR",
+  "type": "assistant",
+  "uuid": "3e6f4433-11f6-41e2-9664-09c7c1fced8a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QTjgsBKwwfeDHuKS8d6KEk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14957,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 335,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14957,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 335,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 14957,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14957
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-13T05:25:14.911Z_
+
+I'll systematically address each reviewer issue with deep research. Let me start by verifying the contested papers and searching for the missing competitor.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3e6f4433-11f6-41e2-9664-09c7c1fced8a",
+  "isSidechain": false,
+  "requestId": "req_011Caz1crJN85BBtErSaxbaR",
+  "type": "assistant",
+  "uuid": "3d37343c-7bfa-4ef6-a06d-78b3e143ed7b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QTjgsBKwwfeDHuKS8d6KEk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14957,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 335,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14957,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 335,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 14957,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14957
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-13T05:25:15.362Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_018hoJaeWddCx7UqkrCMcMjn`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3d37343c-7bfa-4ef6-a06d-78b3e143ed7b",
+  "isSidechain": false,
+  "requestId": "req_011Caz1crJN85BBtErSaxbaR",
+  "type": "assistant",
+  "uuid": "1c948d95-d27d-41b3-8302-c517e4c22b2a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QTjgsBKwwfeDHuKS8d6KEk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14957,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 335,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14957,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 335,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 14957,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14957
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-13T05:25:15.370Z_
+
+<details><summary>↩ Tool result · `toolu_018hoJaeWddCx7UqkrCMcMjn`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1c948d95-d27d-41b3-8302-c517e4c22b2a",
+  "isSidechain": false,
+  "promptId": "3517e58c-d034-40ce-96a3-5e0696a9a8c6",
+  "type": "user",
+  "uuid": "e757967d-8db3-40e6-aabb-d39f575dbda9",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "1c948d95-d27d-41b3-8302-c517e4c22b2a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-13T05:25:18.282Z_
+
+Now let me launch parallel searches to verify the contested papers and find the missing competitor.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e757967d-8db3-40e6-aabb-d39f575dbda9",
+  "isSidechain": false,
+  "requestId": "req_011Caz1dbFGR9tpHnngSBipY",
+  "type": "assistant",
+  "uuid": "4fdd26cc-3550-4307-9dd1-a6de791351d7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019b6iuVpe1HvqrCgVd7JsBd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1355,
+      "cache_read_input_tokens": 26798,
+      "output_tokens": 102,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1355,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 102,
+          "cache_read_input_tokens": 26798,
+          "cache_creation_input_tokens": 1355,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1355
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-13T05:25:19.638Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TvntaQcdY63bPBkKT46VfH`</summary>
+
+```json
+{
+  "query": "FAN Feasible Action Neighborhood Prior VLA Finetuning arXiv 2604.01570 CVPR 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4fdd26cc-3550-4307-9dd1-a6de791351d7",
+  "isSidechain": false,
+  "requestId": "req_011Caz1dbFGR9tpHnngSBipY",
+  "type": "assistant",
+  "uuid": "a32d39f0-ab99-44cc-ae25-c3b85dbe1f5a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019b6iuVpe1HvqrCgVd7JsBd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1355,
+      "cache_read_input_tokens": 26798,
+      "output_tokens": 102,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1355,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 102,
+          "cache_read_input_tokens": 26798,
+          "cache_creation_input_tokens": 1355,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1355
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-13T05:25:27.019Z_
+
+<details><summary>↩ Tool result · `toolu_01TvntaQcdY63bPBkKT46VfH`</summary>
+
+```text
+Web search results for query: "FAN Feasible Action Neighborhood Prior VLA Finetuning arXiv 2604.01570 CVPR 2026"
+
+Links: [{"title":"Boosting Vision-Language-Action Finetuning with Feasible Action Neighborhood Prior","url":"https://arxiv.org/html/2604.01570v1"},{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2604.16391"},{"title":"3D CAVLA: Leveraging Depth and 3D Context to Generalize Vision Language Action Models for Unseen Tasks","url":"https://arxiv.org/html/2505.05800"},{"title":"Towards Accessible Physical AI: LoRA-Based Fine-Tuning of VLA Models for Real-World Robot Control","url":"https://arxiv.org/html/2512.11921v1"},{"title":"[2502.19645] Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success","url":"https://arxiv.org/abs/2502.19645"},{"title":"GitHub - Ed1sonChen/DailyArxiv · GitHub","url":"https://github.com/Ed1sonChen/DailyArxiv"},{"title":"VLA-RFT: Vision-language-action Reinforcement fine-tuning with verified rewards in world simulators","url":"https://arxiv.org/html/2510.00406v1"},{"title":"ConRFT: A Reinforced Fine-tuning Method for VLA Models via...","url":"https://arxiv.org/abs/2502.05450"},{"title":"GitHub - AgibotTech/ACoT-VLA: [CVPR 2026] Official implementation of \"ACoT-VLA: Action Chain-of-Thought for Vision-Language-Action Models\" · GitHub","url":"https://github.com/AgibotTech/ACoT-VLA"},{"title":"awesome-physical-ai/README.md at main · keon/awesome-physical-ai","url":"https://github.com/keon/awesome-physical-ai/blob/main/README.md"}]
+
+Based on the web search results, I found the paper you're looking for:
+
+## Boosting Vision-Language-Action Finetuning with Feasible Action Neighborhood Prior
+
+In real-world robotic manipulation, states typically admit a neighborhood of near-equivalent actions, where for each state there exist a feasible action neighborhood (FAN) rather than a single correct action, within which motions yield indistinguishable progress.
+
+However, prevalent VLA training methodologies are directly inherited from linguistic settings and do not exploit the FAN property, thus leading to poor generalization and low sample efficiency. To address this limitation, the paper introduces a FAN-guided regularizer that shapes the model's output distribution to align with the geometry of FAN.
+
+Specifically, the work introduces a Gaussian prior that promotes locally smooth and unimodal predictions around the preferred direction and magnitude. This regularizer requires no alterations to the model architecture or auto-regressive decoding scheme, yet it effectively shifts the learning signal from a focus on "exclusive correctness" to one of "weighted tolerance", aligning the VLA training objective with the geometry of physical action spaces.
+
+In extensive experiments across both reinforced finetuning (RFT) and supervised finetuning (SFT), the method achieves significant improvement in sample efficiency, and success rate in both in-distribution and out-of-distribution (OOD) scenarios.
+
+The paper was published on arXiv on April 2, 2026 with ID 2604.01570.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a32d39f0-ab99-44cc-ae25-c3b85dbe1f5a",
+  "isSidechain": false,
+  "promptId": "3517e58c-d034-40ce-96a3-5e0696a9a8c6",
+  "type": "user",
+  "uuid": "3c76c175-25d7-4e4a-91b7-2a63b27f1954",
+  "toolUseResult": {
+    "query": "FAN Feasible Action Neighborhood Prior VLA Finetuning arXiv 2604.01570 CVPR 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DwbjniiM6R9g7cvQdZBthM",
+        "content": [
+          {
+            "title": "Boosting Vision-Language-Action Finetuning with Feasible Action Neighborhood Prior",
+            "url": "https://arxiv.org/html/2604.01570v1"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2604.16391"
+          },
+          {
+            "title": "3D CAVLA: Leveraging Depth and 3D Context to Generalize Vision Language Action Models for Unseen Tasks",
+            "url": "https://arxiv.org/html/2505.05800"
+          },
+          {
+            "title": "Towards Accessible Physical AI: LoRA-Based Fine-Tuning of VLA Models for Real-World Robot Control",
+            "url": "https://arxiv.org/html/2512.11921v1"
+          },
+          {
+            "title": "[2502.19645] Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success",
+            "url": "https://arxiv.org/abs/2502.19645"
+          },
+          {
+            "title": "GitHub - Ed1sonChen/DailyArxiv · GitHub",
+            "url": "https://github.com/Ed1sonChen/DailyArxiv"
+          },
+          {
+            "title": "VLA-RFT: Vision-language-action Reinforcement fine-tuning with verified rewards in world simulators",
+            "url": "https://arxiv.org/html/2510.00406v1"
+          },
+          {
+            "title": "ConRFT: A Reinforced Fine-tuning Method for VLA Models via...",
+            "url": "https://arxiv.org/abs/2502.05450"
+          },
+          {
+            "title": "GitHub - AgibotTech/ACoT-VLA: [CVPR 2026] Official implementation of \"ACoT-VLA: Action Chain-of-Thought for Vision-Language-Action Models\" · GitHub",
+            "url": "https://github.com/AgibotTech/ACoT-VLA"
+          },
+          {
+            "title": "awesome-physical-ai/README.md at main · keon/awesome-physical-ai",
+            "url": "https://github.com/keon/awesome-physical-ai/blob/main/README.md"
+          }
+        ]
+      },
+      "Based on the web search results, I found the paper you're looking for:\n\n## Boosting Vision-Language-Action Finetuning with Feasible Action Neighborhood Prior\n\nIn real-world robotic manipulation, states typically admit a neighborhood of near-equivalent actions, where for each state there exist a feasible action neighborhood (FAN) rather than a single correct action, within which motions yield indistinguishable progress.\n\nHowever, prevalent VLA training methodologies are directly inherited from linguistic settings and do not exploit the FAN property, thus leading to poor generalization and low sample efficiency. To address this limitation, the paper introduces a FAN-guided regularizer that shapes the model's output distribution to align with the geometry of FAN.\n\nSpecifically, the work introduces a Gaussian prior that promotes locally smooth and unimodal predictions around the preferred direction and magnitude. This regularizer requires no alterations to the model architecture or auto-regressive decoding scheme, yet it effectively shifts the learning signal from a focus on \"exclusive correctness\" to one of \"weighted tolerance\", aligning the VLA training objective with the geometry of physical action spaces.\n\nIn extensive experiments across both reinforced finetuning (RFT) and supervised finetuning (SFT), the method achieves significant improvement in sample efficiency, and success rate in both in-distribution and out-of-distribution (OOD) scenarios.\n\nThe paper was published on arXiv on April 2, 2026 with ID 2604.01570."
+    ],
+    "durationSeconds": 7.376709546000002
+  },
+  "sourceToolAssistantUUID": "a32d39f0-ab99-44cc-ae25-c3b85dbe1f5a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-13T05:25:29.824Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Sj2ETdWDmrUaewd9y1L4Uj`</summary>
+
+```json
+{
+  "query": "GridS \"See What Matters\" differentiable grid sample pruning VLA ICML 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3c76c175-25d7-4e4a-91b7-2a63b27f1954",
+  "isSidechain": false,
+  "requestId": "req_011Caz1eSiLUVqaY7wGVoCyL",
+  "type": "assistant",
+  "uuid": "cd447afd-4a42-4a3e-b750-8dc0dc9a1f5d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012YCuNLiBNL8K35jeBbDZve",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 993,
+      "cache_read_input_tokens": 28153,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 993,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 28153,
+          "cache_creation_input_tokens": 993,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 993
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-13T05:25:34.086Z_
+
+<details><summary>↩ Tool result · `toolu_01Sj2ETdWDmrUaewd9y1L4Uj`</summary>
+
+```text
+Web search results for query: "GridS "See What Matters" differentiable grid sample pruning VLA ICML 2026"
+
+Links: [{"title":"ICML Poster See What Matters: Differentiable Grid Sample Pruning for Generalizable Vision-Language-Action Model","url":"https://icml.cc/virtual/2026/poster/65010"}]
+
+Based on the web search results, I found information about your query:
+
+Vision-Language-Action (VLA) models have shown remarkable promise in robotics manipulation, yet their high computational cost hinders real-time deployment. The Differentiable Grid Sampler (GridS) is a plug-and-play module that performs task-aware, continuous resampling of visual tokens in VLA. 
+
+Existing token pruning methods suffer from a fundamental trade-off: aggressive compression using pruning inevitably discards critical geometric details like contact points, leading to severe performance degradation, which limits the achievable compression rate. By adaptively predicting a minimal set of salient coordinates and extracting features via differentiable interpolation, GridS preserves essential spatial information while achieving drastic compression.
+
+This paper was presented as a poster at ICML 2026 with the title "See What Matters: Differentiable Grid Sample Pruning for Generalizable Vision-Language-Action Model."
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cd447afd-4a42-4a3e-b750-8dc0dc9a1f5d",
+  "isSidechain": false,
+  "promptId": "3517e58c-d034-40ce-96a3-5e0696a9a8c6",
+  "type": "user",
+  "uuid": "4b60d24f-9cc3-4367-9006-f1b4970db3d0",
+  "toolUseResult": {
+    "query": "GridS \"See What Matters\" differentiable grid sample pruning VLA ICML 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DUXNgtXcuH7zYSg2DaSCnm",
+        "content": [
+          {
+            "title": "ICML Poster See What Matters: Differentiable Grid Sample Pruning for Generalizable Vision-Language-Action Model",
+            "url": "https://icml.cc/virtual/2026/poster/65010"
+          }
+        ]
+      },
+      "Based on the web search results, I found information about your query:\n\nVision-Language-Action (VLA) models have shown remarkable promise in robotics manipulation, yet their high computational cost hinders real-time deployment. The Differentiable Grid Sampler (GridS) is a plug-and-play module that performs task-aware, continuous resampling of visual tokens in VLA. \n\nExisting token pruning methods suffer from a fundamental trade-off: aggressive compression using pruning inevitably discards critical geometric details like contact points, leading to severe performance degradation, which limits the achievable compression rate. By adaptively predicting a minimal set of salient coordinates and extracting features via differentiable interpolation, GridS preserves essential spatial information while achieving drastic compression.\n\nThis paper was presented as a poster at ICML 2026 with the title \"See What Matters: Differentiable Grid Sample Pruning for Generalizable Vision-Language-Action Model.\""
+    ],
+    "durationSeconds": 4.257644613
+  },
+  "sourceToolAssistantUUID": "cd447afd-4a42-4a3e-b750-8dc0dc9a1f5d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17 · 2026-05-13T05:25:38.164Z_
+
+Interesting — both FAN and GridS actually DO exist. FAN is at arXiv 2604.01570 and GridS is an ICML 2026 poster. Let me now search for TokenFLEX and LightVLA to address the other issues.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4b60d24f-9cc3-4367-9006-f1b4970db3d0",
+  "isSidechain": false,
+  "requestId": "req_011Caz1extYp8yfkPmpXbCBa",
+  "type": "assistant",
+  "uuid": "0a7d40f2-29cf-45c1-9fa4-0b827ab62bc4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RqqP8wzpPFF41m2pMJgjBa",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 408,
+      "cache_read_input_tokens": 29146,
+      "output_tokens": 147,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 408,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 147,
+          "cache_read_input_tokens": 29146,
+          "cache_creation_input_tokens": 408,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 408
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-13T05:25:39.015Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018dRcJzh8a8r9aReiTmsFYt`</summary>
+
+```json
+{
+  "query": "TokenFLEX arXiv 2504.03154 stochastic visual token training OOD robustness VLM 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0a7d40f2-29cf-45c1-9fa4-0b827ab62bc4",
+  "isSidechain": false,
+  "requestId": "req_011Caz1extYp8yfkPmpXbCBa",
+  "type": "assistant",
+  "uuid": "05526c9e-82ef-4516-b05a-25c842b337fe",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RqqP8wzpPFF41m2pMJgjBa",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 408,
+      "cache_read_input_tokens": 29146,
+      "output_tokens": 147,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 408,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 147,
+          "cache_read_input_tokens": 29146,
+          "cache_creation_input_tokens": 408,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 408
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-13T05:25:46.247Z_
+
+<details><summary>↩ Tool result · `toolu_018dRcJzh8a8r9aReiTmsFYt`</summary>
+
+```text
+Web search results for query: "TokenFLEX arXiv 2504.03154 stochastic visual token training OOD robustness VLM 2025"
+
+Links: [{"title":"[2504.03154] TokenFLEX: Unified VLM Training for Flexible Visual Tokens Inference","url":"https://arxiv.org/abs/2504.03154"},{"title":"TokenFLEX: Unified VLM Training for Flexible Visual Tokens Inference","url":"https://arxiv.org/html/2504.03154v1"},{"title":"Paper page - TokenFLEX: Unified VLM Training for Flexible Visual Tokens Inference","url":"https://huggingface.co/papers/2504.03154"},{"title":"(PDF) TokenFLEX: Unified VLM Training for Flexible Visual Tokens Inference","url":"https://www.researchgate.net/publication/390545095_TokenFLEX_Unified_VLM_Training_for_Flexible_Visual_Tokens_Inference"},{"title":"TokenUnify: Scalable Autoregressive Visual Pre-training with Mixture Token Prediction","url":"https://arxiv.org/html/2405.16847v1"},{"title":"Learning Adaptive and Temporally Causal Video Tokenization in a 1D Latent Space","url":"https://arxiv.org/html/2505.17011v1"},{"title":"Published as a conference paper at ICLR 2023 CORRUPTED IMAGE MODELING","url":"https://arxiv.org/pdf/2202.03382"},{"title":"[2501.14204] Dynamic Token Reduction during Generation for Vision Language Models","url":"https://arxiv.org/abs/2501.14204"},{"title":"Token Reduction Should Go Beyond Efficiency in Generative Models – From Vision, Language to Multimodality","url":"https://arxiv.org/html/2505.18227v3"},{"title":"Token Bottleneck: One Token to Remember Dynamics","url":"https://arxiv.org/html/2507.06543v1"}]
+
+I found information about TokenFLEX arXiv paper 2504.03154. Here are the key findings:
+
+## TokenFLEX Overview
+
+TokenFLEX is an innovative and adaptable vision-language framework that encodes images into a variable number of tokens for efficient integration with a Large Language Model (LLM).
+
+## Key Innovations
+
+The paper introduces two main innovations:
+
+1. **Stochastic Token Training**: The novel training paradigm enhances performance across varying numbers of vision tokens by stochastically modulating token counts during training. The stochastic training method randomly selects the number of vision tokens from a predefined set for each sample, forcing the model to learn robust cross-model alignment consistency across varying token numbers, effectively mitigating OOD (out-of-distribution) performance degradation during inference.
+
+2. **Lightweight Token-Adaptive Projector**: The design includes a lightweight vision token projector incorporating an adaptive pooling layer and SwiGLU, allowing for flexible downsampling of vision tokens and adaptive selection of features tailored to specific token counts.
+
+## Performance Results
+
+TokenFLEX consistently outperforms its fixed-token counterparts, achieving notable performance gains across various token counts of 1.6%, 1.0%, and 0.4% with 64, 144, and 256 tokens, respectively averaged over eight vision-language benchmarks.
+
+The paper was published in April 2025 and addresses the problem of OOD issues that arise when adjusting vision token numbers during inference in vision-language models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "05526c9e-82ef-4516-b05a-25c842b337fe",
+  "isSidechain": false,
+  "promptId": "3517e58c-d034-40ce-96a3-5e0696a9a8c6",
+  "type": "user",
+  "uuid": "ca67bed1-35bb-4321-9523-e26b68265323",
+  "toolUseResult": {
+    "query": "TokenFLEX arXiv 2504.03154 stochastic visual token training OOD robustness VLM 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01SxZmAhiC9TcYmzaeiHUYAV",
+        "content": [
+          {
+            "title": "[2504.03154] TokenFLEX: Unified VLM Training for Flexible Visual Tokens Inference",
+            "url": "https://arxiv.org/abs/2504.03154"
+          },
+          {
+            "title": "TokenFLEX: Unified VLM Training for Flexible Visual Tokens Inference",
+            "url": "https://arxiv.org/html/2504.03154v1"
+          },
+          {
+            "title": "Paper page - TokenFLEX: Unified VLM Training for Flexible Visual Tokens Inference",
+            "url": "https://huggingface.co/papers/2504.03154"
+          },
+          {
+            "title": "(PDF) TokenFLEX: Unified VLM Training for Flexible Visual Tokens Inference",
+            "url": "https://www.researchgate.net/publication/390545095_TokenFLEX_Unified_VLM_Training_for_Flexible_Visual_Tokens_Inference"
+          },
+          {
+            "title": "TokenUnify: Scalable Autoregressive Visual Pre-training with Mixture Token Prediction",
+            "url": "https://arxiv.org/html/2405.16847v1"
+          },
+          {
+            "title": "Learning Adaptive and Temporally Causal Video Tokenization in a 1D Latent Space",
+            "url": "https://arxiv.org/html/2505.17011v1"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2023 CORRUPTED IMAGE MODELING",
+            "url": "https://arxiv.org/pdf/2202.03382"
+          },
+          {
+            "title": "[2501.14204] Dynamic Token Reduction during Generation for Vision Language Models",
+            "url": "https://arxiv.org/abs/2501.14204"
+          },
+          {
+            "title": "Token Reduction Should Go Beyond Efficiency in Generative Models – From Vision, Language to Multimodality",
+            "url": "https://arxiv.org/html/2505.18227v3"
+          },
+          {
+            "title": "Token Bottleneck: One Token to Remember Dynamics",
+            "url": "https://arxiv.org/html/2507.06543v1"
+          }
+        ]
+      },
+      "I found information about TokenFLEX arXiv paper 2504.03154. Here are the key findings:\n\n## TokenFLEX Overview\n\nTokenFLEX is an innovative and adaptable vision-language framework that encodes images into a variable number of tokens for efficient integration with a Large Language Model (LLM).\n\n## Key Innovations\n\nThe paper introduces two main innovations:\n\n1. **Stochastic Token Training**: The novel training paradigm enhances performance across varying numbers of vision tokens by stochastically modulating token counts during training. The stochastic training method randomly selects the number of vision tokens from a predefined set for each sample, forcing the model to learn robust cross-model alignment consistency across varying token numbers, effectively mitigating OOD (out-of-distribution) performance degradation during inference.\n\n2. **Lightweight Token-Adaptive Projector**: The design includes a lightweight vision token projector incorporating an adaptive pooling layer and SwiGLU, allowing for flexible downsampling of vision tokens and adaptive selection of features tailored to specific token counts.\n\n## Performance Results\n\nTokenFLEX consistently outperforms its fixed-token counterparts, achieving notable performance gains across various token counts of 1.6%, 1.0%, and 0.4% with 64, 144, and 256 tokens, respectively averaged over eight vision-language benchmarks.\n\nThe paper was published in April 2025 and addresses the problem of OOD issues that arise when adjusting vision token numbers during inference in vision-language models."
+    ],
+    "durationSeconds": 7.228440998000005
+  },
+  "sourceToolAssistantUUID": "05526c9e-82ef-4516-b05a-25c842b337fe",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-13T05:25:49.197Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01BzDhTiPv3wME5QhCK2E592`</summary>
+
+```json
+{
+  "query": "LightVLA \"The Better You Learn The Smarter You Prune\" ICRA 2026 Gumbel softmax token pruning VLA"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ca67bed1-35bb-4321-9523-e26b68265323",
+  "isSidechain": false,
+  "requestId": "req_011Caz1frz7jQ4nCvKj21awM",
+  "type": "assistant",
+  "uuid": "c6b185ab-201d-4236-b897-f943e12acbe1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016d6YVo9EWDp2294X5zmvCT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1031,
+      "cache_read_input_tokens": 29554,
+      "output_tokens": 87,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1031,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 87,
+          "cache_read_input_tokens": 29554,
+          "cache_creation_input_tokens": 1031,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1031
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-13T05:25:56.189Z_
+
+<details><summary>↩ Tool result · `toolu_01BzDhTiPv3wME5QhCK2E592`</summary>
+
+```text
+Web search results for query: "LightVLA "The Better You Learn The Smarter You Prune" ICRA 2026 Gumbel softmax token pruning VLA"
+
+Links: [{"title":"GitHub - LiAutoAD/LightVLA: Official Code for LightVLA (ICRA 2026)","url":"https://github.com/LiAutoAD/LightVLA"},{"title":"LightVLA","url":"https://liauto-research.github.io/LightVLA/"},{"title":"[2509.12594] The Better You Learn, The Smarter You Prune: Towards Efficient Vision-language-action Models via Differentiable Token Pruning","url":"https://arxiv.org/abs/2509.12594"},{"title":"The Better You Learn, The Smarter You Prune: Towards Efficient Vision-language-action Models via Differentiable Token Pruning","url":"https://arxiv.org/html/2509.12594v1"},{"title":"The Better You Learn, The Smarter You Prune: Towards Efficient Vision-language-action Models via Differentiable Token Pruning - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv250912594J/abstract"},{"title":"AI Bites | YouTube Channel on X: \"LightVLA, a simple yet effective differentiable token pruning framework for vision-language-action (VLA) models. While VLA models have shown impressive capability in executing real-world robotic tasks, their deployment on resource-constrained platforms is often bottlenecked by https://t.co/bE0Zv0mb0c\" / X","url":"https://x.com/ai_bites/status/1970481721163313156"},{"title":"Beyond Training-Free Pruning: LightVLA Introduces Differentiable Token Pruning and Achieves a Dual Breakthrough in the Performance and Efficiency of VLA Models for the First Time | by Beck Moulton | Medium","url":"https://beckmoulton.medium.com/beyond-training-free-pruning-lightvla-introduces-differentiable-token-pruning-and-achieves-a-dual-7b2f562b0ab8"},{"title":"GitHub - ZLKong/Awesome-Collection-Token-Reduction: A collection of token reduction (token pruning, merging, clustering, etc.) techniques for ML/AI · GitHub","url":"https://github.com/ZLKong/Awesome-Collection-Token-Reduction"},{"title":"PACT: Pruning and Clustering-Based Token Reduction for Faster Visual Language Models","url":"https://arxiv.org/html/2504.08966v1"},{"title":"From Data to Decisions: VLA Pipelines for Real Robots - ICRA 2026 Workshop","url":"https://icra2026vlapipeline.github.io/"}]
+
+Based on the search results, here's what I found about LightVLA:
+
+## Overview
+
+LightVLA is an innovative, simple yet effective differentiable token pruning framework designed for Vision-Language-Action (VLA) models. LightVLA has been accepted by ICRA 2026.
+
+## Technical Approach
+
+LightVLA's core lies in its unique adaptive pruning mechanism, aimed at optimizing the efficiency and performance of VLA models through adaptive, performance-driven pruning that generates dynamic queries to assess the importance of visual tokens and utilizes Gumbel softmax for differentiable token selection. This approach enables the model to intelligently identify and retain crucial visual information for task execution while discarding redundant tokens.
+
+## Key Advantages
+
+By learning pruning strategies during fine-tuning, LightVLA not only significantly reduces computational overhead (FLOPs and latency) but also improves task success rates on the LIBERO benchmark, achieving a win-win in both efficiency and performance. A major advantage of LightVLA is its design, which does not rely on any heuristic magic numbers and introduces no additional trainable parameters.
+
+## Performance Results
+
+LightVLA reduces FLOPs and latency by 59.1% and 38.2% respectively, with a 2.6% improvement in task success rate.
+
+The paper's full title is "The Better You Learn, The Smarter You Prune: Towards Efficient Vision-language-action Models via Differentiable Token Pruning," and the code is available on GitHub at LiAutoAD/LightVLA.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c6b185ab-201d-4236-b897-f943e12acbe1",
+  "isSidechain": false,
+  "promptId": "3517e58c-d034-40ce-96a3-5e0696a9a8c6",
+  "type": "user",
+  "uuid": "6e16f4c0-b9b2-4361-acc2-b7b9bc19d1e3",
+  "toolUseResult": {
+    "query": "LightVLA \"The Better You Learn The Smarter You Prune\" ICRA 2026 Gumbel softmax token pruning VLA",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_015eyL2E7TYmvM9qcenPtWVv",
+        "content": [
+          {
+            "title": "GitHub - LiAutoAD/LightVLA: Official Code for LightVLA (ICRA 2026)",
+            "url": "https://github.com/LiAutoAD/LightVLA"
+          },
+          {
+            "title": "LightVLA",
+            "url": "https://liauto-research.github.io/LightVLA/"
+          },
+          {
+            "title": "[2509.12594] The Better You Learn, The Smarter You Prune: Towards Efficient Vision-language-action Models via Differentiable Token Pruning",
+            "url": "https://arxiv.org/abs/2509.12594"
+          },
+          {
+            "title": "The Better You Learn, The Smarter You Prune: Towards Efficient Vision-language-action Models via Differentiable Token Pruning",
+            "url": "https://arxiv.org/html/2509.12594v1"
+          },
+          {
+            "title": "The Better You Learn, The Smarter You Prune: Towards Efficient Vision-language-action Models via Differentiable Token Pruning - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2025arXiv250912594J/abstract"
+          },
+          {
+            "title": "AI Bites | YouTube Channel on X: \"LightVLA, a simple yet effective differentiable token pruning framework for vision-language-action (VLA) models. While VLA models have shown impressive capability in executing real-world robotic tasks, their deployment on resource-constrained platforms is often bottlenecked by https://t.co/bE0Zv0mb0c\" / X",
+            "url": "https://x.com/ai_bites/status/1970481721163313156"
+          },
+          {
+            "title": "Beyond Training-Free Pruning: LightVLA Introduces Differentiable Token Pruning and Achieves a Dual Breakthrough in the Performance and Efficiency of VLA Models for the First Time | by Beck Moulton | Medium",
+            "url": "https://beckmoulton.medium.com/beyond-training-free-pruning-lightvla-introduces-differentiable-token-pruning-and-achieves-a-dual-7b2f562b0ab8"
+          },
+          {
+            "title": "GitHub - ZLKong/Awesome-Collection-Token-Reduction: A collection of token reduction (token pruning, merging, clustering, etc.) techniques for ML/AI · GitHub",
+            "url": "https://github.com/ZLKong/Awesome-Collection-Token-Reduction"
+          },
+          {
+            "title": "PACT: Pruning and Clustering-Based Token Reduction for Faster Visual Language Models",
+            "url": "https://arxiv.org/html/2504.08966v1"
+          },
+          {
+            "title": "From Data to Decisions: VLA Pipelines for Real Robots - ICRA 2026 Workshop",
+            "url": "https://icra2026vlapipeline.github.io/"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about LightVLA:\n\n## Overview\n\nLightVLA is an innovative, simple yet effective differentiable token pruning framework designed for Vision-Language-Action (VLA) models. LightVLA has been accepted by ICRA 2026.\n\n## Technical Approach\n\nLightVLA's core lies in its unique adaptive pruning mechanism, aimed at optimizing the efficiency and performance of VLA models through adaptive, performance-driven pruning that generates dynamic queries to assess the importance of visual tokens and utilizes Gumbel softmax for differentiable token selection. This approach enables the model to intelligently identify and retain crucial visual information for task execution while discarding redundant tokens.\n\n## Key Advantages\n\nBy learning pruning strategies during fine-tuning, LightVLA not only significantly reduces computational overhead (FLOPs and latency) but also improves task success rates on the LIBERO benchmark, achieving a win-win in both efficiency and performance. A major advantage of LightVLA is its design, which does not rely on any heuristic magic numbers and introduces no additional trainable parameters.\n\n## Performance Results\n\nLightVLA reduces FLOPs and latency by 59.1% and 38.2% respectively, with a 2.6% improvement in task success rate.\n\nThe paper's full title is \"The Better You Learn, The Smarter You Prune: Towards Efficient Vision-language-action Models via Differentiable Token Pruning,\" and the code is available on GitHub at LiAutoAD/LightVLA."
+    ],
+    "durationSeconds": 6.987029040000001
+  },
+  "sourceToolAssistantUUID": "c6b185ab-201d-4236-b897-f943e12acbe1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-13 (UTC).**  ## Original idea {   \"title\": \"Counterfactual Token Masking: Training-Time Visual Token Regularizatio…",
+  "leafUuid": "6e16f4c0-b9b2-4361-acc2-b7b9bc19d1e3",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 23_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise CTM with TokenFLEX differentiation and formalized diversity framework",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09"
+}
+```
+
+---
+
+### Assistant
+
+_source line 24 · 2026-05-13T05:26:00.945Z_
+
+Good — FAN and GridS both exist (reviewer was wrong on this). Now let me do deeper reads on TokenFLEX and LightVLA, and search for additional related work and formalization approaches.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6e16f4c0-b9b2-4361-acc2-b7b9bc19d1e3",
+  "isSidechain": false,
+  "requestId": "req_011Caz1gbXiRr3NAct46UPkr",
+  "type": "assistant",
+  "uuid": "84ed304a-17d3-4aa9-894a-23001faa9571",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X51p17LgMWF2DC3oxjEsnv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1178,
+      "cache_read_input_tokens": 30585,
+      "output_tokens": 194,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1178,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 194,
+          "cache_read_input_tokens": 30585,
+          "cache_creation_input_tokens": 1178,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1178
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-13T05:26:03.166Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01Nq69GsmyB9emLEYL7qM1FJ`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2504.03154",
+  "prompt": "Extract the full abstract, key method details about the stochastic token training paradigm, and any results about OOD robustness. How exactly does the stochastic training work — is it random token COUNT variation, or random token SELECTION/masking? What is the mechanism for OOD generalization?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "84ed304a-17d3-4aa9-894a-23001faa9571",
+  "isSidechain": false,
+  "requestId": "req_011Caz1gbXiRr3NAct46UPkr",
+  "type": "assistant",
+  "uuid": "1425bbef-4e5f-4c08-8376-5ea75d47f130",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X51p17LgMWF2DC3oxjEsnv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1178,
+      "cache_read_input_tokens": 30585,
+      "output_tokens": 194,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1178,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 194,
+          "cache_read_input_tokens": 30585,
+          "cache_creation_input_tokens": 1178,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1178
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-13T05:26:09.312Z_
+
+<details><summary>↩ Tool result · `toolu_01Nq69GsmyB9emLEYL7qM1FJ`</summary>
+
+```text
+# TokenFLEX Paper Analysis
+
+## Full Abstract
+"Conventional Vision-Language Models(VLMs) typically utilize a fixed number of vision tokens, regardless of task complexity. This one-size-fits-all strategy introduces notable inefficiencies: using excessive tokens leads to unnecessary computational overhead in simpler tasks, whereas insufficient tokens compromise fine-grained visual comprehension in more complex contexts. To overcome these limitations, we present TokenFLEX, an innovative and adaptable vision-language framework that encodes images into a variable number of tokens for efficient integration with a Large Language Model (LLM). Our approach is underpinned by two pivotal innovations. Firstly, we present a novel training paradigm that enhances performance across varying numbers of vision tokens by stochastically modulating token counts during training. Secondly, we design a lightweight vision token projector incorporating an adaptive pooling layer and SwiGLU, allowing for flexible downsampling of vision tokens and adaptive selection of features tailored to specific token counts. Comprehensive experiments reveal that TokenFLEX consistently outperforms its fixed-token counterparts, achieving notable performance gains across various token counts enhancements of 1.6%, 1.0%, and 0.4% with 64, 144, and 256 tokens, respectively averaged over eight vision-language benchmarks. These results underscore TokenFLEX's remarkable flexibility while maintaining high-performance vision-language understanding."
+
+## Stochastic Training Mechanism
+The paper specifies "stochastically modulating token counts during training" but does not elaborate on whether this involves random COUNT variation or random token SELECTION/masking within the provided content.
+
+## Key Components
+The framework includes a "lightweight vision token projector incorporating an adaptive pooling layer and SwiGLU, allowing for flexible downsampling."
+
+## OOD Robustness
+**No information about out-of-distribution robustness is present in the provided webpage content.**
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1425bbef-4e5f-4c08-8376-5ea75d47f130",
+  "isSidechain": false,
+  "promptId": "3517e58c-d034-40ce-96a3-5e0696a9a8c6",
+  "type": "user",
+  "uuid": "4914e7dd-1915-4b22-b21e-8eb2e7aedcfc",
+  "toolUseResult": {
+    "bytes": 47042,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# TokenFLEX Paper Analysis\n\n## Full Abstract\n\"Conventional Vision-Language Models(VLMs) typically utilize a fixed number of vision tokens, regardless of task complexity. This one-size-fits-all strategy introduces notable inefficiencies: using excessive tokens leads to unnecessary computational overhead in simpler tasks, whereas insufficient tokens compromise fine-grained visual comprehension in more complex contexts. To overcome these limitations, we present TokenFLEX, an innovative and adaptable vision-language framework that encodes images into a variable number of tokens for efficient integration with a Large Language Model (LLM). Our approach is underpinned by two pivotal innovations. Firstly, we present a novel training paradigm that enhances performance across varying numbers of vision tokens by stochastically modulating token counts during training. Secondly, we design a lightweight vision token projector incorporating an adaptive pooling layer and SwiGLU, allowing for flexible downsampling of vision tokens and adaptive selection of features tailored to specific token counts. Comprehensive experiments reveal that TokenFLEX consistently outperforms its fixed-token counterparts, achieving notable performance gains across various token counts enhancements of 1.6%, 1.0%, and 0.4% with 64, 144, and 256 tokens, respectively averaged over eight vision-language benchmarks. These results underscore TokenFLEX's remarkable flexibility while maintaining high-performance vision-language understanding.\"\n\n## Stochastic Training Mechanism\nThe paper specifies \"stochastically modulating token counts during training\" but does not elaborate on whether this involves random COUNT variation or random token SELECTION/masking within the provided content.\n\n## Key Components\nThe framework includes a \"lightweight vision token projector incorporating an adaptive pooling layer and SwiGLU, allowing for flexible downsampling.\"\n\n## OOD Robustness\n**No information about out-of-distribution robustness is present in the provided webpage content.**",
+    "durationMs": 6143,
+    "url": "https://arxiv.org/abs/2504.03154"
+  },
+  "sourceToolAssistantUUID": "1425bbef-4e5f-4c08-8376-5ea75d47f130",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 27 · 2026-05-13T05:26:09.319Z_
+
+```json
+{
+  "parentUuid": "4914e7dd-1915-4b22-b21e-8eb2e7aedcfc",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "c19c1033-e802-431e-8f8c-672d9c803345",
+  "timestamp": "2026-05-13T05:26:09.319Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-13T05:26:14.291Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01S9b36G1WjG3g6mjvdLJctp`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2509.12594",
+  "prompt": "Extract the full abstract and key method details of LightVLA. Specifically: (1) Does LightVLA frame its contribution as efficiency or also as generalization/OOD robustness? (2) What is the Gumbel-softmax mechanism — does it learn which tokens to keep or which to remove? (3) Does it have any KL regularization or information bottleneck component? (4) What are the key results on OOD/generalization benchmarks vs in-distribution?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c19c1033-e802-431e-8f8c-672d9c803345",
+  "isSidechain": false,
+  "requestId": "req_011Caz1hZXSxMYdpjxcszEvy",
+  "type": "assistant",
+  "uuid": "ed26609e-9ce5-4c9c-8f0c-dad7ca813d88",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C4nfEqXYKqHhb7ZaDbo2sH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 737,
+      "cache_read_input_tokens": 31763,
+      "output_tokens": 192,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 737,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 192,
+          "cache_read_input_tokens": 31763,
+          "cache_creation_input_tokens": 737,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 737
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-13T05:26:19.032Z_
+
+<details><summary>↩ Tool result · `toolu_01S9b36G1WjG3g6mjvdLJctp`</summary>
+
+```text
+# LightVLA: Abstract and Method Analysis
+
+## (1) Framing of Contribution
+
+LightVLA frames its contribution **primarily as efficiency**, not generalization or OOD robustness. The abstract states the goal is to address deployment challenges through "adaptive, performance-driven pruning of visual tokens" while "improving efficiency and performance simultaneously." The results emphasize computational gains: "59.1% FLOPs and 38.2% latency reduction" alongside task performance improvements on the LIBERO benchmark.
+
+## (2) Gumbel-Softmax Mechanism
+
+The mechanism learns **which tokens to keep**. The paper describes: "It generates dynamic queries to evaluate visual token importance, and adopts Gumbel softmax to enable differentiable token selection." The framework "learns to preserve the most informative visual tokens while pruning tokens which do not contribute to task execution."
+
+## (3) KL Regularization or Information Bottleneck
+
+**No mention** of KL regularization or information bottleneck components appears in the provided content. The paper notes that "LightVLA requires no heuristic magic numbers and introduces no additional trainable parameters" in the base version, suggesting a relatively straightforward differentiable selection approach.
+
+## (4) OOD/Generalization Results
+
+**No results on OOD or generalization benchmarks are reported** in the abstract or visible content. Results are limited to "the LIBERO benchmark" with in-distribution task success rate improvements (2.6% gain), with no explicit OOD evaluation mentioned.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ed26609e-9ce5-4c9c-8f0c-dad7ca813d88",
+  "isSidechain": false,
+  "promptId": "3517e58c-d034-40ce-96a3-5e0696a9a8c6",
+  "type": "user",
+  "uuid": "87f54101-f58b-4bc4-a95c-e8f302e3fefc",
+  "toolUseResult": {
+    "bytes": 50163,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# LightVLA: Abstract and Method Analysis\n\n## (1) Framing of Contribution\n\nLightVLA frames its contribution **primarily as efficiency**, not generalization or OOD robustness. The abstract states the goal is to address deployment challenges through \"adaptive, performance-driven pruning of visual tokens\" while \"improving efficiency and performance simultaneously.\" The results emphasize computational gains: \"59.1% FLOPs and 38.2% latency reduction\" alongside task performance improvements on the LIBERO benchmark.\n\n## (2) Gumbel-Softmax Mechanism\n\nThe mechanism learns **which tokens to keep**. The paper describes: \"It generates dynamic queries to evaluate visual token importance, and adopts Gumbel softmax to enable differentiable token selection.\" The framework \"learns to preserve the most informative visual tokens while pruning tokens which do not contribute to task execution.\"\n\n## (3) KL Regularization or Information Bottleneck\n\n**No mention** of KL regularization or information bottleneck components appears in the provided content. The paper notes that \"LightVLA requires no heuristic magic numbers and introduces no additional trainable parameters\" in the base version, suggesting a relatively straightforward differentiable selection approach.\n\n## (4) OOD/Generalization Results\n\n**No results on OOD or generalization benchmarks are reported** in the abstract or visible content. Results are limited to \"the LIBERO benchmark\" with in-distribution task success rate improvements (2.6% gain), with no explicit OOD evaluation mentioned.",
+    "durationMs": 4737,
+    "url": "https://arxiv.org/abs/2509.12594"
+  },
+  "sourceToolAssistantUUID": "ed26609e-9ce5-4c9c-8f0c-dad7ca813d88",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-13T05:26:21.528Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01ABwEuNdmvhksDTCtkgTj79`</summary>
+
+```json
+{
+  "query": "DeepVision-VLA arXiv 2603.15618 action-guided visual pruning training-time"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "87f54101-f58b-4bc4-a95c-e8f302e3fefc",
+  "isSidechain": false,
+  "requestId": "req_011Caz1iH3XsysQQ9gtVjPip",
+  "type": "assistant",
+  "uuid": "78e05e56-435d-49cc-9d5e-d8e34f4222b5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VUgj7zfRtLZFUmCK9zgFKZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 546,
+      "cache_read_input_tokens": 32500,
+      "output_tokens": 77,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 546,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 77,
+          "cache_read_input_tokens": 32500,
+          "cache_creation_input_tokens": 546,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 546
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-13T05:26:29.125Z_
+
+<details><summary>↩ Tool result · `toolu_01ABwEuNdmvhksDTCtkgTj79`</summary>
+
+```text
+Web search results for query: "DeepVision-VLA arXiv 2603.15618 action-guided visual pruning training-time"
+
+Links: [{"title":"Look Before Acting: Enhancing Vision Foundation Representations for Vision-Language-Action Models","url":"https://arxiv.org/html/2603.15618"},{"title":"Look Before Acting | DeepVision-VLA","url":"https://deepvision-vla.github.io/"},{"title":"[2603.15618] Look Before Acting: Enhancing Vision Foundation Representations for Vision-Language-Action Models","url":"https://arxiv.org/abs/2603.15618"},{"title":"Paper page - Look Before Acting: Enhancing Vision Foundation Representations for Vision-Language-Action Models","url":"https://huggingface.co/papers/2603.15618"},{"title":"DeepVision-VLA: Keeping Visual Context Alive Through the Depths of Robot Action Models / DeepVision-VLA：在机器人动作模型的深层保持视觉上下文活跃 | Alan Hou","url":"https://alanhou.org/blog/arxiv-look-before-acting-enhancing-vision-foundation/"},{"title":"VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models","url":"https://arxiv.org/html/2603.22991v1"},{"title":"[2603.22991v1] VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models","url":"https://arxiv.org/abs/2603.22991v1"},{"title":"[2603.22991] VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models","url":"https://arxiv.org/abs/2603.22991"},{"title":"GitHub - chen7086/VLA-ADP: Action aware Dynamic Pruning for Efficient Vision Language Action Manipulation · GitHub","url":"https://github.com/chen7086/VLA-ADP"},{"title":"Action-aware Dynamic Pruning for Efficient Vision-Language-Action Manipulation","url":"https://arxiv.org/html/2509.22093v1"}]
+
+I found comprehensive information about the DeepVision-VLA paper (arXiv 2603.15618). Here's what the research covers:
+
+## Overview
+
+DeepVision-VLA is built upon a custom baseline, QwenVLA-OFT, and addresses a key limitation in Vision-Language-Action models for robotic manipulation.
+
+## Key Findings
+
+The research observes that sensitivity to visual tokens progressively decreases in deeper layers during action generation. To address this, the paper proposes two main innovations:
+
+### Vision-Language Mixture-of-Transformers (VL-MoT) Framework
+
+This framework enables shared attention between the vision foundation model and the VLA backbone, injecting multi-level visual features from the vision expert into deeper layers of the VLA backbone to enhance visual representations for precise and complex manipulation.
+
+### Action-Guided Visual Pruning (AGVP)
+
+The AGVP strategy leverages the robust grounding capabilities of shallow VLA layers to compute a saliency map by averaging attention weights from action tokens to visual tokens, which identifies the most task-relevant regions used to prune the Query, Key, and Value across the Vision Expert's Transformer layers before integrating them into the deep VLA layers.
+
+## Results
+
+This targeted pruning not only mitigates visual redundancy but also enables the Vision Expert to process higher-resolution inputs with minimal computational overhead, and DeepVision-VLA outperforms prior state-of-the-art methods by 9.0% and 7.5% on simulated and real-world tasks, respectively.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "78e05e56-435d-49cc-9d5e-d8e34f4222b5",
+  "isSidechain": false,
+  "promptId": "3517e58c-d034-40ce-96a3-5e0696a9a8c6",
+  "type": "user",
+  "uuid": "e23efe15-ae2d-46d1-80ea-b2e455bc6515",
+  "toolUseResult": {
+    "query": "DeepVision-VLA arXiv 2603.15618 action-guided visual pruning training-time",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01CENK2G4BpAWERofxCk69oH",
+        "content": [
+          {
+            "title": "Look Before Acting: Enhancing Vision Foundation Representations for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2603.15618"
+          },
+          {
+            "title": "Look Before Acting | DeepVision-VLA",
+            "url": "https://deepvision-vla.github.io/"
+          },
+          {
+            "title": "[2603.15618] Look Before Acting: Enhancing Vision Foundation Representations for Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2603.15618"
+          },
+          {
+            "title": "Paper page - Look Before Acting: Enhancing Vision Foundation Representations for Vision-Language-Action Models",
+            "url": "https://huggingface.co/papers/2603.15618"
+          },
+          {
+            "title": "DeepVision-VLA: Keeping Visual Context Alive Through the Depths of Robot Action Models / DeepVision-VLA：在机器人动作模型的深层保持视觉上下文活跃 | Alan Hou",
+            "url": "https://alanhou.org/blog/arxiv-look-before-acting-enhancing-vision-foundation/"
+          },
+          {
+            "title": "VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2603.22991v1"
+          },
+          {
+            "title": "[2603.22991v1] VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2603.22991v1"
+          },
+          {
+            "title": "[2603.22991] VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2603.22991"
+          },
+          {
+            "title": "GitHub - chen7086/VLA-ADP: Action aware Dynamic Pruning for Efficient Vision Language Action Manipulation · GitHub",
+            "url": "https://github.com/chen7086/VLA-ADP"
+          },
+          {
+            "title": "Action-aware Dynamic Pruning for Efficient Vision-Language-Action Manipulation",
+            "url": "https://arxiv.org/html/2509.22093v1"
+          }
+        ]
+      },
+      "I found comprehensive information about the DeepVision-VLA paper (arXiv 2603.15618). Here's what the research covers:\n\n## Overview\n\nDeepVision-VLA is built upon a custom baseline, QwenVLA-OFT, and addresses a key limitation in Vision-Language-Action models for robotic manipulation.\n\n## Key Findings\n\nThe research observes that sensitivity to visual tokens progressively decreases in deeper layers during action generation. To address this, the paper proposes two main innovations:\n\n### Vision-Language Mixture-of-Transformers (VL-MoT) Framework\n\nThis framework enables shared attention between the vision foundation model and the VLA backbone, injecting multi-level visual features from the vision expert into deeper layers of the VLA backbone to enhance visual representations for precise and complex manipulation.\n\n### Action-Guided Visual Pruning (AGVP)\n\nThe AGVP strategy leverages the robust grounding capabilities of shallow VLA layers to compute a saliency map by averaging attention weights from action tokens to visual tokens, which identifies the most task-relevant regions used to prune the Query, Key, and Value across the Vision Expert's Transformer layers before integrating them into the deep VLA layers.\n\n## Results\n\nThis targeted pruning not only mitigates visual redundancy but also enables the Vision Expert to process higher-resolution inputs with minimal computational overhead, and DeepVision-VLA outperforms prior state-of-the-art methods by 9.0% and 7.5% on simulated and real-world tasks, respectively."
+    ],
+    "durationSeconds": 7.593387543999998
+  },
+  "sourceToolAssistantUUID": "78e05e56-435d-49cc-9d5e-d8e34f4222b5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-13T05:26:31.364Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01ErdVtNf3SmL8MceaMBMjJE`</summary>
+
+```json
+{
+  "query": "RETAIN VLA weight interpolation ICLR 2026 robust finetuning parameter merging OOD generalization"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e23efe15-ae2d-46d1-80ea-b2e455bc6515",
+  "isSidechain": false,
+  "requestId": "req_011Caz1j2F5ANqySQec66XCU",
+  "type": "assistant",
+  "uuid": "985c869a-c030-4fcc-88f5-b08d6b707f06",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WhH76BvbYrEpZymJ7zu1KH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1003,
+      "cache_read_input_tokens": 33046,
+      "output_tokens": 79,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1003,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 79,
+          "cache_read_input_tokens": 33046,
+          "cache_creation_input_tokens": 1003,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1003
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-13T05:26:38.588Z_
+
+<details><summary>↩ Tool result · `toolu_01ErdVtNf3SmL8MceaMBMjJE`</summary>
+
+```text
+Web search results for query: "RETAIN VLA weight interpolation ICLR 2026 robust finetuning parameter merging OOD generalization"
+
+Links: [{"title":"ICLR 2026 Schedule","url":"https://iclr.cc/virtual/2026/calendar"},{"title":"ICLR 2026 Papers","url":"https://iclr.cc/virtual/2026/papers.html"},{"title":"MergeTune: Continued Fine-Tuning of Vision-Language Models [Quick Review]","url":"https://liner.com/review/mergetune-continued-finetuning-of-visionlanguage-models"},{"title":"VLA-GSE: Boosting Parameter-Efficient Fine-Tuning in VLA with Generalized and Specialized Experts","url":"https://arxiv.org/html/2605.06175v1"},{"title":"Downloads 2026","url":"https://iclr.cc/Downloads/2026"},{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2604.16391"},{"title":"State of Vision-Language-Action (VLA) Research at ICLR 2026 – Moritz Reuss","url":"https://mbreuss.github.io/blog_post_iclr_26_vla.html"},{"title":"ICLR 2026 Orals","url":"https://iclr.cc/virtual/2026/events/oral"},{"title":"Towards Calibrated Robust Fine-Tuning of Vision-Language Models","url":"https://arxiv.org/html/2311.01723v5"},{"title":"GitHub - F-JISOO/ICLR-2025-Submitted · GitHub","url":"https://github.com/F-JISOO/ICLR-2025-Submitted"}]
+
+Based on the web search results, I found relevant information about related topics at ICLR 2026, though I did not find a specific paper titled "RETAIN VLA weight interpolation ICLR 2026." However, the search results show several highly relevant papers and topics in the ICLR 2026 conference:
+
+**Related VLA and Parameter Merging Work:**
+
+MergeTune is a model-agnostic continued fine-tuning strategy guided by linear mode connectivity, which continues fine-tuning trainable parameters to search for a continued model with low-loss paths to both the zero-shot and fine-tuned solutions, implicitly merging the two solutions by exploiting the loss landscape geometry.
+
+Related research questions address domain generalization and robustness against distribution shifts, as well as ID-OOD generalization performance in robust fine-tuning evaluations.
+
+**VLA Fine-tuning and Robustness:**
+
+VLA-GSE mitigates catastrophic forgetting by balancing knowledge retention with efficient adaptation, achieving improved overall success rates. Additionally, in real-world evaluation across multiple distribution shifts, VLA-GSE reaches strong success rates, significantly outperforming full fine-tuning.
+
+**OOD Generalization:**
+
+Robust fine-tuning methods aim to improve out-of-distribution generalization through in-distribution adaptation, with recent work proposing methods that improve both OOD accuracy and calibration error in Vision Language Models.
+
+If you're looking for information about a specific "RETAIN" paper on VLA weight interpolation, it may not have been captured in these search results, or it may use different terminology in its title.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "985c869a-c030-4fcc-88f5-b08d6b707f06",
+  "isSidechain": false,
+  "promptId": "3517e58c-d034-40ce-96a3-5e0696a9a8c6",
+  "type": "user",
+  "uuid": "c427b72b-c6aa-458f-9c9b-170224f66d31",
+  "toolUseResult": {
+    "query": "RETAIN VLA weight interpolation ICLR 2026 robust finetuning parameter merging OOD generalization",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01CV7Lstxj2WtYNTU3xecqoK",
+        "content": [
+          {
+            "title": "ICLR 2026 Schedule",
+            "url": "https://iclr.cc/virtual/2026/calendar"
+          },
+          {
+            "title": "ICLR 2026 Papers",
+            "url": "https://iclr.cc/virtual/2026/papers.html"
+          },
+          {
+            "title": "MergeTune: Continued Fine-Tuning of Vision-Language Models [Quick Review]",
+            "url": "https://liner.com/review/mergetune-continued-finetuning-of-visionlanguage-models"
+          },
+          {
+            "title": "VLA-GSE: Boosting Parameter-Efficient Fine-Tuning in VLA with Generalized and Specialized Experts",
+            "url": "https://arxiv.org/html/2605.06175v1"
+          },
+          {
+            "title": "Downloads 2026",
+            "url": "https://iclr.cc/Downloads/2026"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2604.16391"
+          },
+          {
+            "title": "State of Vision-Language-Action (VLA) Research at ICLR 2026 – Moritz Reuss",
+            "url": "https://mbreuss.github.io/blog_post_iclr_26_vla.html"
+          },
+          {
+            "title": "ICLR 2026 Orals",
+            "url": "https://iclr.cc/virtual/2026/events/oral"
+          },
+          {
+            "title": "Towards Calibrated Robust Fine-Tuning of Vision-Language Models",
+            "url": "https://arxiv.org/html/2311.01723v5"
+          },
+          {
+            "title": "GitHub - F-JISOO/ICLR-2025-Submitted · GitHub",
+            "url": "https://github.com/F-JISOO/ICLR-2025-Submitted"
+          }
+        ]
+      },
+      "Based on the web search results, I found relevant information about related topics at ICLR 2026, though I did not find a specific paper titled \"RETAIN VLA weight interpolation ICLR 2026.\" However, the search results show several highly relevant papers and topics in the ICLR 2026 conference:\n\n**Related VLA and Parameter Merging Work:**\n\nMergeTune is a model-agnostic continued fine-tuning strategy guided by linear mode connectivity, which continues fine-tuning trainable parameters to search for a continued model with low-loss paths to both the zero-shot and fine-tuned solutions, implicitly merging the two solutions by exploiting the loss landscape geometry.\n\nRelated research questions address domain generalization and robustness against distribution shifts, as well as ID-OOD generalization performance in robust fine-tuning evaluations.\n\n**VLA Fine-tuning and Robustness:**\n\nVLA-GSE mitigates catastrophic forgetting by balancing knowledge retention with efficient adaptation, achieving improved overall success rates. Additionally, in real-world evaluation across multiple distribution shifts, VLA-GSE reaches strong success rates, significantly outperforming full fine-tuning.\n\n**OOD Generalization:**\n\nRobust fine-tuning methods aim to improve out-of-distribution generalization through in-distribution adaptation, with recent work proposing methods that improve both OOD accuracy and calibration error in Vision Language Models.\n\nIf you're looking for information about a specific \"RETAIN\" paper on VLA weight interpolation, it may not have been captured in these search results, or it may use different terminology in its title."
+    ],
+    "durationSeconds": 7.220552400999994
+  },
+  "sourceToolAssistantUUID": "985c869a-c030-4fcc-88f5-b08d6b707f06",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-13T05:26:41.595Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01BQiEeT4iYyZg5wZf1iPVio`</summary>
+
+```json
+{
+  "query": "\"Robust VLA Finetuning\" Pertsch Levine arXiv 2512.08333 weight interpolation parameter merging"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c427b72b-c6aa-458f-9c9b-170224f66d31",
+  "isSidechain": false,
+  "requestId": "req_011Caz1jiffvUM786zdL6PFE",
+  "type": "assistant",
+  "uuid": "0f04c75a-8c18-4c35-8372-6245f3e4cc62",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dv1r3NV8B72TKNt8EPUuQ8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 931,
+      "cache_read_input_tokens": 34049,
+      "output_tokens": 84,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 931,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 84,
+          "cache_read_input_tokens": 34049,
+          "cache_creation_input_tokens": 931,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 931
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-13T05:26:47.984Z_
+
+<details><summary>↩ Tool result · `toolu_01BQiEeT4iYyZg5wZf1iPVio`</summary>
+
+```text
+Web search results for query: ""Robust VLA Finetuning" Pertsch Levine arXiv 2512.08333 weight interpolation parameter merging"
+
+Links: [{"title":"[2512.08333] Robust Finetuning of Vision-Language-Action Robot Policies via Parameter Merging","url":"https://arxiv.org/abs/2512.08333"},{"title":"Robust Finetuning of Vision-Language-Action Robot Policies via Parameter Merging","url":"https://arxiv.org/html/2512.08333"},{"title":"[2406.09246v3] OpenVLA: An Open-Source Vision-Language-Action Model","url":"https://arxiv.org/abs/2406.09246v3"},{"title":"ConRFT: A Reinforced Fine-tuning Method for VLA Models via...","url":"https://arxiv.org/abs/2502.05450"},{"title":"ConRFT: A Reinforced Fine-tuning Method for VLA Models via Consistency Policy","url":"https://arxiv.org/html/2502.05450v1"},{"title":"[2406.09246] OpenVLA: An Open-Source Vision-Language-Action Model","url":"https://arxiv.org/abs/2406.09246"},{"title":"[2509.13774] Dual-Actor Fine-Tuning of VLA Models: A Talk-and-Tweak Human-in-the-Loop Approach","url":"https://arxiv.org/abs/2509.13774"},{"title":"VLA-GSE: Boosting Parameter-Efficient Fine-Tuning in VLA with Generalized and Specialized Experts","url":"https://arxiv.org/html/2605.06175v1"},{"title":"CO-RFT: Efficient Fine-Tuning of Vision-Language-Action Models through Chunked Offline Reinforcement Learning","url":"https://arxiv.org/html/2508.02219v1"},{"title":"Eva-VLA: Evaluating Vision-Language-Action Models’ Robustness Under Real-World Physical Variations","url":"https://arxiv.org/html/2509.18953v1"}]
+
+Based on the search results, I found the paper you're looking for. Here's what I found about it:
+
+The paper arXiv:2512.08333 is titled "Robust Finetuning of Vision-Language-Action Robot Policies via Parameter Merging" and was authored by Yajat Yadav, Zhiyuan Zhou, Andrew Wagenmaker, Karl Pertsch, and Sergey Levine.
+
+**Paper Summary:**
+
+The paper addresses the challenge that while generalist robot policies trained on large and diverse datasets can generalize across behaviors, they fall short on new tasks not in the training data, and when finetuned on limited demonstrations of new tasks, these policies often overfit to specific demonstrations, losing their prior abilities and failing to generalize within the new task itself.
+
+**Key Approach:**
+
+The work aims to develop a method that preserves the generalization capabilities of the generalist policy during finetuning, allowing a single policy to robustly incorporate a new skill into its repertoire while learning to generalize to variations of the new task and retaining broad competencies gained from pretraining.
+
+The title indicates that the solution involves parameter merging—a technique that appears to balance between the pre-trained weights and task-specific finetuned weights, which would align with the weight interpolation concept you mentioned in your query. This approach helps prevent catastrophic forgetting of pre-trained knowledge while adapting to new tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0f04c75a-8c18-4c35-8372-6245f3e4cc62",
+  "isSidechain": false,
+  "promptId": "3517e58c-d034-40ce-96a3-5e0696a9a8c6",
+  "type": "user",
+  "uuid": "22d81ca2-ea91-421f-b755-9b6ad8ed3cdf",
+  "toolUseResult": {
+    "query": "\"Robust VLA Finetuning\" Pertsch Levine arXiv 2512.08333 weight interpolation parameter merging",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01395kpQthzjTELUdFVk1MBK",
+        "content": [
+          {
+            "title": "[2512.08333] Robust Finetuning of Vision-Language-Action Robot Policies via Parameter Merging",
+            "url": "https://arxiv.org/abs/2512.08333"
+          },
+          {
+            "title": "Robust Finetuning of Vision-Language-Action Robot Policies via Parameter Merging",
+            "url": "https://arxiv.org/html/2512.08333"
+          },
+          {
+            "title": "[2406.09246v3] OpenVLA: An Open-Source Vision-Language-Action Model",
+            "url": "https://arxiv.org/abs/2406.09246v3"
+          },
+          {
+            "title": "ConRFT: A Reinforced Fine-tuning Method for VLA Models via...",
+            "url": "https://arxiv.org/abs/2502.05450"
+          },
+          {
+            "title": "ConRFT: A Reinforced Fine-tuning Method for VLA Models via Consistency Policy",
+            "url": "https://arxiv.org/html/2502.05450v1"
+          },
+          {
+            "title": "[2406.09246] OpenVLA: An Open-Source Vision-Language-Action Model",
+            "url": "https://arxiv.org/abs/2406.09246"
+          },
+          {
+            "title": "[2509.13774] Dual-Actor Fine-Tuning of VLA Models: A Talk-and-Tweak Human-in-the-Loop Approach",
+            "url": "https://arxiv.org/abs/2509.13774"
+          },
+          {
+            "title": "VLA-GSE: Boosting Parameter-Efficient Fine-Tuning in VLA with Generalized and Specialized Experts",
+            "url": "https://arxiv.org/html/2605.06175v1"
+          },
+          {
+            "title": "CO-RFT: Efficient Fine-Tuning of Vision-Language-Action Models through Chunked Offline Reinforcement Learning",
+            "url": "https://arxiv.org/html/2508.02219v1"
+          },
+          {
+            "title": "Eva-VLA: Evaluating Vision-Language-Action Models’ Robustness Under Real-World Physical Variations",
+            "url": "https://arxiv.org/html/2509.18953v1"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for. Here's what I found about it:\n\nThe paper arXiv:2512.08333 is titled \"Robust Finetuning of Vision-Language-Action Robot Policies via Parameter Merging\" and was authored by Yajat Yadav, Zhiyuan Zhou, Andrew Wagenmaker, Karl Pertsch, and Sergey Levine.\n\n**Paper Summary:**\n\nThe paper addresses the challenge that while generalist robot policies trained on large and diverse datasets can generalize across behaviors, they fall short on new tasks not in the training data, and when finetuned on limited demonstrations of new tasks, these policies often overfit to specific demonstrations, losing their prior abilities and failing to generalize within the new task itself.\n\n**Key Approach:**\n\nThe work aims to develop a method that preserves the generalization capabilities of the generalist policy during finetuning, allowing a single policy to robustly incorporate a new skill into its repertoire while learning to generalize to variations of the new task and retaining broad competencies gained from pretraining.\n\nThe title indicates that the solution involves parameter merging—a technique that appears to balance between the pre-trained weights and task-specific finetuned weights, which would align with the weight interpolation concept you mentioned in your query. This approach helps prevent catastrophic forgetting of pre-trained knowledge while adapting to new tasks."
+    ],
+    "durationSeconds": 6.384558733999991
+  },
+  "sourceToolAssistantUUID": "0f04c75a-8c18-4c35-8372-6245f3e4cc62",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 36_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-13 (UTC).**  ## Original idea {   \"title\": \"Counterfactual Token Masking: Training-Time Visual Token Regularizatio…",
+  "leafUuid": "22d81ca2-ea91-421f-b755-9b6ad8ed3cdf",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 37_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise CTM with TokenFLEX differentiation and formalized diversity framework",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09"
+}
+```
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-13T05:26:50.606Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TCxavSdYev4VzEVEv7155S`</summary>
+
+```json
+{
+  "query": "SimVLA VLANeXt zero-shot generalization VLA 2025 2026 no token regularization"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "22d81ca2-ea91-421f-b755-9b6ad8ed3cdf",
+  "isSidechain": false,
+  "requestId": "req_011Caz1kQurkJNZMXozNsE5D",
+  "type": "assistant",
+  "uuid": "c2e2c711-a668-401b-9eb1-77854b6e319c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H1hjQEwcs6gq3DK545oWjA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 959,
+      "cache_read_input_tokens": 34980,
+      "output_tokens": 78,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 959,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 78,
+          "cache_read_input_tokens": 34980,
+          "cache_creation_input_tokens": 959,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 959
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-13T05:26:57.618Z_
+
+<details><summary>↩ Tool result · `toolu_01TCxavSdYev4VzEVEv7155S`</summary>
+
+```text
+Web search results for query: "SimVLA VLANeXt zero-shot generalization VLA 2025 2026 no token regularization"
+
+Links: [{"title":"SimVLA: A Simple VLA Baseline for Robotic Manipulation","url":"https://arxiv.org/html/2602.18224"},{"title":"Sim2Real VLA: Zero-Shot Generalization of Synthesized Skills to Realistic Manipulation | OpenReview","url":"https://openreview.net/forum?id=H4SyKHjd4c"},{"title":"(PDF) SimVLA: A Simple VLA Baseline for Robotic Manipulation","url":"https://www.researchgate.net/publication/401058471_SimVLA_A_Simple_VLA_Baseline_for_Robotic_Manipulation"},{"title":"VLANeXt: Recipes for Building Strong VLA Models","url":"https://arxiv.org/html/2602.18532"},{"title":"VLA-GSE: Boosting Parameter-Efficient Fine-Tuning in VLA with Generalized and Specialized Experts","url":"https://arxiv.org/html/2605.06175v1"},{"title":"GitHub - jonyzhang2023/awesome-embodied-vla-va-vln: A curated list of state-of-the-art research in embodied AI, focusing on vision-language-action (VLA) models, vision-language navigation (VLN), and related multimodal learning approaches. · GitHub","url":"https://github.com/jonyzhang2023/awesome-embodied-vla-va-vln"},{"title":"[2602.18532] VLANeXt: Recipes for Building Strong VLA Models","url":"https://arxiv.org/abs/2602.18532"},{"title":"Goal-VLA: Image-Generative VLMs as Object-Centric World Models Empowering Zero-shot Robot Manipulation","url":"https://nus-lins-lab.github.io/goalvlaweb/"},{"title":"CORAL: Scalable Multi-Task Robot Learning via LoRA Experts","url":"https://arxiv.org/html/2603.09298"},{"title":"ICLR Poster Sim2Real VLA: Zero-Shot Generalization of Synthesized Skills to Realistic Manipulation","url":"https://iclr.cc/virtual/2026/poster/10010435"}]
+
+Based on the web search results, here's what I found regarding SimVLA, VLANeXt, and zero-shot generalization in VLAs:
+
+## SimVLA
+
+SimVLA is a modular VLA baseline that decouples perception from control, enabling a flexible and future-proof design that can easily adapt to new vision-language backbones. SimVLA demonstrates strong zero-shot generalization, with superior Semantic robustness and improved Task robustness, while positional robustness remains challenging.
+
+SimVLA achieves state-of-the-art performance, surpassing larger and more complex models on simulation benchmarks while enabling efficient real-robot transfer with zero-shot scene generalization. Despite having only 0.5B parameters, SimVLA outperforms multi-billion-parameter models on standard simulation benchmarks without robot pretraining.
+
+## VLANeXt
+
+From a systematic study, 12 key findings were distilled that together form a practical recipe for building strong VLA models, resulting in VLANeXt. VLANeXt outperforms prior state-of-the-art methods on the LIBERO and LIBERO-plus benchmarks and demonstrates strong generalization in real-world experiments.
+
+The search results contain references to recent work on VLA models from 2025-2026, but I did not find specific information about "no token regularization" in relation to these models. If you need more specific details about that aspect or other particular technical details, please let me know and I can conduct additional searches.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c2e2c711-a668-401b-9eb1-77854b6e319c",
+  "isSidechain": false,
+  "promptId": "3517e58c-d034-40ce-96a3-5e0696a9a8c6",
+  "type": "user",
+  "uuid": "32544818-44df-495d-ad4f-93a569f72504",
+  "toolUseResult": {
+    "query": "SimVLA VLANeXt zero-shot generalization VLA 2025 2026 no token regularization",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01CPKHrtnHPDuFNEWfVLp7Yd",
+        "content": [
+          {
+            "title": "SimVLA: A Simple VLA Baseline for Robotic Manipulation",
+            "url": "https://arxiv.org/html/2602.18224"
+          },
+          {
+            "title": "Sim2Real VLA: Zero-Shot Generalization of Synthesized Skills to Realistic Manipulation | OpenReview",
+            "url": "https://openreview.net/forum?id=H4SyKHjd4c"
+          },
+          {
+            "title": "(PDF) SimVLA: A Simple VLA Baseline for Robotic Manipulation",
+            "url": "https://www.researchgate.net/publication/401058471_SimVLA_A_Simple_VLA_Baseline_for_Robotic_Manipulation"
+          },
+          {
+            "title": "VLANeXt: Recipes for Building Strong VLA Models",
+            "url": "https://arxiv.org/html/2602.18532"
+          },
+          {
+            "title": "VLA-GSE: Boosting Parameter-Efficient Fine-Tuning in VLA with Generalized and Specialized Experts",
+            "url": "https://arxiv.org/html/2605.06175v1"
+          },
+          {
+            "title": "GitHub - jonyzhang2023/awesome-embodied-vla-va-vln: A curated list of state-of-the-art research in embodied AI, focusing on vision-language-action (VLA) models, vision-language navigation (VLN), and related multimodal learning approaches. · GitHub",
+            "url": "https://github.com/jonyzhang2023/awesome-embodied-vla-va-vln"
+          },
+          {
+            "title": "[2602.18532] VLANeXt: Recipes for Building Strong VLA Models",
+            "url": "https://arxiv.org/abs/2602.18532"
+          },
+          {
+            "title": "Goal-VLA: Image-Generative VLMs as Object-Centric World Models Empowering Zero-shot Robot Manipulation",
+            "url": "https://nus-lins-lab.github.io/goalvlaweb/"
+          },
+          {
+            "title": "CORAL: Scalable Multi-Task Robot Learning via LoRA Experts",
+            "url": "https://arxiv.org/html/2603.09298"
+          },
+          {
+            "title": "ICLR Poster Sim2Real VLA: Zero-Shot Generalization of Synthesized Skills to Realistic Manipulation",
+            "url": "https://iclr.cc/virtual/2026/poster/10010435"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found regarding SimVLA, VLANeXt, and zero-shot generalization in VLAs:\n\n## SimVLA\n\nSimVLA is a modular VLA baseline that decouples perception from control, enabling a flexible and future-proof design that can easily adapt to new vision-language backbones. SimVLA demonstrates strong zero-shot generalization, with superior Semantic robustness and improved Task robustness, while positional robustness remains challenging.\n\nSimVLA achieves state-of-the-art performance, surpassing larger and more complex models on simulation benchmarks while enabling efficient real-robot transfer with zero-shot scene generalization. Despite having only 0.5B parameters, SimVLA outperforms multi-billion-parameter models on standard simulation benchmarks without robot pretraining.\n\n## VLANeXt\n\nFrom a systematic study, 12 key findings were distilled that together form a practical recipe for building strong VLA models, resulting in VLANeXt. VLANeXt outperforms prior state-of-the-art methods on the LIBERO and LIBERO-plus benchmarks and demonstrates strong generalization in real-world experiments.\n\nThe search results contain references to recent work on VLA models from 2025-2026, but I did not find specific information about \"no token regularization\" in relation to these models. If you need more specific details about that aspect or other particular technical details, please let me know and I can conduct additional searches."
+    ],
+    "durationSeconds": 7.007559072999997
+  },
+  "sourceToolAssistantUUID": "c2e2c711-a668-401b-9eb1-77854b6e319c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40 · 2026-05-13T05:27:04.425Z_
+
+Now let me do deeper research on the theoretical formalization and search for any additional concurrent work.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "32544818-44df-495d-ad4f-93a569f72504",
+  "isSidechain": false,
+  "requestId": "req_011Caz1m86bnXiskidJDKdUU",
+  "type": "assistant",
+  "uuid": "652fd9f4-13c7-4e33-a45c-d5508b53f682",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BwQNLE3kirMw8xMRpeuyxm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1037,
+      "cache_read_input_tokens": 35939,
+      "output_tokens": 96,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1037,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 96,
+          "cache_read_input_tokens": 35939,
+          "cache_creation_input_tokens": 1037,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1037
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-13T05:27:05.281Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01YWAptaYPzcMooBs63kLcib`</summary>
+
+```json
+{
+  "query": "information bottleneck visual token masking formal derivation mutual information diversity VLM regularization 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "652fd9f4-13c7-4e33-a45c-d5508b53f682",
+  "isSidechain": false,
+  "requestId": "req_011Caz1m86bnXiskidJDKdUU",
+  "type": "assistant",
+  "uuid": "f69d47c7-92d3-40e8-8b65-74f7911151d2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BwQNLE3kirMw8xMRpeuyxm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1037,
+      "cache_read_input_tokens": 35939,
+      "output_tokens": 96,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1037,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 96,
+          "cache_read_input_tokens": 35939,
+          "cache_creation_input_tokens": 1037,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1037
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-13T05:27:15.883Z_
+
+<details><summary>↩ Tool result · `toolu_01YWAptaYPzcMooBs63kLcib`</summary>
+
+```text
+Web search results for query: "information bottleneck visual token masking formal derivation mutual information diversity VLM regularization 2025 2026"
+
+Links: [{"title":"Efficient Visual Transformer by Information Bottleneck Inspired Token Merging | OpenReview","url":"https://openreview.net/forum?id=Jwgw3znxT3"},{"title":"VIBE: Video-to-Text Information Bottleneck Evaluation for TL;DR - Shenghui Chen, Po-han Li, Sandeep Chinchali, Ufuk Topcu | Academic Research","url":"https://vivianchen98.github.io/VIBE_website/"},{"title":"GitHub - ZLKong/Awesome-Collection-Token-Reduction: A collection of token reduction (token pruning, merging, clustering, etc.) techniques for ML/AI · GitHub","url":"https://github.com/ZLKong/Awesome-Collection-Token-Reduction"},{"title":"HybridToken-VLM: Hybrid Token Compression for Vision-Language Models","url":"https://arxiv.org/pdf/2512.08240"},{"title":"SparseVLM: Visual Token Sparsification for Efficient Vision Language Models Inference | OpenReview","url":"https://openreview.net/forum?id=1xG3MN1RRW"},{"title":"GitHub - daixiangzi/Awesome-Token-Compress: A paper list of some recent works about Token Compress for Vit and VLM · GitHub","url":"https://github.com/daixiangzi/Awesome-Token-Compress"},{"title":"Visual Token Compression: Enhancing Efficiency","url":"https://www.emergentmind.com/topics/visual-token-compression"},{"title":"Leveraging Information Theoretic Tools For Foundation Model Analysis Zhili Feng","url":"https://ml.cmu.edu/research/phd-dissertation-pdfs/zhilif_phd_mld_2025.pdf"},{"title":"ICML Poster SparseVLM: Visual Token Sparsification for Efficient Vision-Language Model Inference","url":"https://icml.cc/virtual/2025/poster/46297"},{"title":"Published as a conference paper at ICLR 2025 TOWARDS INTERPRETING VISUAL","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/900fb3439e4968df79a6f2bfedec49cd-Paper-Conference.pdf"}]
+
+Based on the web search results, I found several relevant papers and research on information bottleneck, visual token compression/masking, and VLMs from 2025-2026:
+
+## Key Findings:
+
+**Information Bottleneck-Inspired Token Techniques:**
+
+IBTM (Information Bottleneck inspired Token Merging) is motivated by the reduction of the Information Bottleneck principle, with a novel and separable variational upper bound for the IB loss derived, where the architecture of mask modules generates token merging masks designed to reduce the derived upper bound for the IB loss.
+
+**Visual Token Compression and Diversity:**
+
+DivPrune is a diversity-based visual token pruning method for large multimodal models, and CompTrack applies information bottleneck-guided low-rank dynamic token compression for point cloud tracking.
+
+**Recent VLM Token Reduction Advances:**
+
+The field has seen substantial development with multiple ICLR'26 papers including MMTok for multimodal coverage maximization, HiDrop for hierarchical vision token reduction, FLoC for facility location-based compression, and methods combining importance and diversity preservation.
+
+**Mutual Information in Video-Language Models:**
+
+VIBE adapts the information bottleneck principle to video summarization, approximating I(V;T) for grounding (how well video supports summary reconstruction) and I(T;Y) for utility (how well summary compensates for missing video information).
+
+**Theoretical Foundations:**
+
+The information bottleneck perspective encourages representations to compress input while maintaining high mutual information with labels, seeking to compress a variable X into a bottleneck representation T while preserving information about a target variable Y.
+
+These recent works demonstrate active research combining information theoretic principles, formal mathematical derivations of mutual information bounds, and practical VLM regularization techniques.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f69d47c7-92d3-40e8-8b65-74f7911151d2",
+  "isSidechain": false,
+  "promptId": "3517e58c-d034-40ce-96a3-5e0696a9a8c6",
+  "type": "user",
+  "uuid": "0a47a8fd-6533-4c12-a8cd-496acac080ee",
+  "toolUseResult": {
+    "query": "information bottleneck visual token masking formal derivation mutual information diversity VLM regularization 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01BYvpWchuMSgLhTMzpQL2cE",
+        "content": [
+          {
+            "title": "Efficient Visual Transformer by Information Bottleneck Inspired Token Merging | OpenReview",
+            "url": "https://openreview.net/forum?id=Jwgw3znxT3"
+          },
+          {
+            "title": "VIBE: Video-to-Text Information Bottleneck Evaluation for TL;DR - Shenghui Chen, Po-han Li, Sandeep Chinchali, Ufuk Topcu | Academic Research",
+            "url": "https://vivianchen98.github.io/VIBE_website/"
+          },
+          {
+            "title": "GitHub - ZLKong/Awesome-Collection-Token-Reduction: A collection of token reduction (token pruning, merging, clustering, etc.) techniques for ML/AI · GitHub",
+            "url": "https://github.com/ZLKong/Awesome-Collection-Token-Reduction"
+          },
+          {
+            "title": "HybridToken-VLM: Hybrid Token Compression for Vision-Language Models",
+            "url": "https://arxiv.org/pdf/2512.08240"
+          },
+          {
+            "title": "SparseVLM: Visual Token Sparsification for Efficient Vision Language Models Inference | OpenReview",
+            "url": "https://openreview.net/forum?id=1xG3MN1RRW"
+          },
+          {
+            "title": "GitHub - daixiangzi/Awesome-Token-Compress: A paper list of some recent works about Token Compress for Vit and VLM · GitHub",
+            "url": "https://github.com/daixiangzi/Awesome-Token-Compress"
+          },
+          {
+            "title": "Visual Token Compression: Enhancing Efficiency",
+            "url": "https://www.emergentmind.com/topics/visual-token-compression"
+          },
+          {
+            "title": "Leveraging Information Theoretic Tools For Foundation Model Analysis Zhili Feng",
+            "url": "https://ml.cmu.edu/research/phd-dissertation-pdfs/zhilif_phd_mld_2025.pdf"
+          },
+          {
+            "title": "ICML Poster SparseVLM: Visual Token Sparsification for Efficient Vision-Language Model Inference",
+            "url": "https://icml.cc/virtual/2025/poster/46297"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025 TOWARDS INTERPRETING VISUAL",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/900fb3439e4968df79a6f2bfedec49cd-Paper-Conference.pdf"
+          }
+        ]
+      },
+      "Based on the web search results, I found several relevant papers and research on information bottleneck, visual token compression/masking, and VLMs from 2025-2026:\n\n## Key Findings:\n\n**Information Bottleneck-Inspired Token Techniques:**\n\nIBTM (Information Bottleneck inspired Token Merging) is motivated by the reduction of the Information Bottleneck principle, with a novel and separable variational upper bound for the IB loss derived, where the architecture of mask modules generates token merging masks designed to reduce the derived upper bound for the IB loss.\n\n**Visual Token Compression and Diversity:**\n\nDivPrune is a diversity-based visual token pruning method for large multimodal models, and CompTrack applies information bottleneck-guided low-rank dynamic token compression for point cloud tracking.\n\n**Recent VLM Token Reduction Advances:**\n\nThe field has seen substantial development with multiple ICLR'26 papers including MMTok for multimodal coverage maximization, HiDrop for hierarchical vision token reduction, FLoC for facility location-based compression, and methods combining importance and diversity preservation.\n\n**Mutual Information in Video-Language Models:**\n\nVIBE adapts the information bottleneck principle to video summarization, approximating I(V;T) for grounding (how well video supports summary reconstruction) and I(T;Y) for utility (how well summary compensates for missing video information).\n\n**Theoretical Foundations:**\n\nThe information bottleneck perspective encourages representations to compress input while maintaining high mutual information with labels, seeking to compress a variable X into a bottleneck representation T while preserving information about a target variable Y.\n\nThese recent works demonstrate active research combining information theoretic principles, formal mathematical derivations of mutual information bounds, and practical VLM regularization techniques."
+    ],
+    "durationSeconds": 10.597619965999998
+  },
+  "sourceToolAssistantUUID": "f69d47c7-92d3-40e8-8b65-74f7911151d2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-13T05:27:18.461Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01AS6Z5NmrsSwaxrXw4CwtQY`</summary>
+
+```json
+{
+  "query": "training-time stochastic token masking VLA robot visual regularization OOD 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0a47a8fd-6533-4c12-a8cd-496acac080ee",
+  "isSidechain": false,
+  "requestId": "req_011Caz1nU8PVEzm2yLFUE9bz",
+  "type": "assistant",
+  "uuid": "c0171c74-acca-4b8e-b1b3-a92552fb3f07",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y7n5jgHVwxz9VNewi86kT1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1140,
+      "cache_read_input_tokens": 36976,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1140,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 36976,
+          "cache_creation_input_tokens": 1140,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1140
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-13T05:27:26.285Z_
+
+<details><summary>↩ Tool result · `toolu_01AS6Z5NmrsSwaxrXw4CwtQY`</summary>
+
+```text
+Web search results for query: "training-time stochastic token masking VLA robot visual regularization OOD 2025 2026"
+
+Links: [{"title":"State of Vision-Language-Action (VLA) Research at ICLR 2026 – Moritz Reuss","url":"https://mbreuss.github.io/blog_post_iclr_26_vla.html"},{"title":"On-the-Fly VLA Adaptation via Test-Time Reinforcement Learning","url":"https://arxiv.org/html/2601.06748v1"},{"title":"FAST: Efficient Action Tokenization for Vision-Language-Action Models","url":"https://www.pi.website/download/fast.pdf"},{"title":"VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models","url":"https://arxiv.org/html/2603.22991v1"},{"title":"[2511.18950] Compressor-VLA: Instruction-Guided Visual Token Compression for Efficient Robotic Manipulation","url":"https://arxiv.org/abs/2511.18950"},{"title":"2026-01-28 Work in progress.","url":"https://arxiv.org/pdf/2601.15197"},{"title":"Gaze-Regularized Vision-Language-Action Models for Robotic Manipulation","url":"https://arxiv.org/html/2603.23202v1"},{"title":"VLA-OPD: Bridging Offline SFT and Online RL for Vision-Language-Action Models via On-Policy Distillation","url":"https://arxiv.org/html/2603.26666v1"},{"title":"RobustVLA: Robustness-Aware Reinforcement Post-Training for Vision-Language-Action Models","url":"https://arxiv.org/html/2511.01331"},{"title":"A Survey on Efficient Vision-Language-Action Models","url":"https://arxiv.org/html/2510.24795v1"}]
+
+I've performed a web search for your query about training-time stochastic token masking, VLA robots, visual regularization, and OOD generalization in 2025-2026. Here are the relevant research findings:
+
+## Key Research Areas in VLA Models (2025-2026)
+
+**VLA Model Improvements and Regularization:**
+
+A gaze-regularized training framework aligns VLA models' internal attention with human visual patterns, transforming temporally aggregated gaze heatmaps into patch-level distributions and regularizing transformer attention through KL divergence. This approach yields 4-12% improvements across manipulation benchmarks.
+
+**Robustness and OOD Generalization:**
+
+RobustVLA is an online RL post-training method designed to enhance the resilience of VLA models through Jacobian regularization, which mitigates sensitivity to observation noise, and smoothness regularization, which stabilizes policies under action perturbations.
+
+VLA models face challenges in generalizing to novel instructions or complex multi-task scenarios, particularly in out-of-distribution (OOD) environments.
+
+**Visual Token Processing:**
+
+Existing visual token pruning methods mainly rely on semantic saliency or simple temporal cues, overlooking continuous physical interaction, and often prune visually sparse yet structurally critical regions that support manipulation.
+
+Analysis of 164 Vision-Language-Action model submissions at ICLR 2026 shows trends in discrete diffusion VLAs, reasoning models, and benchmarks including LIBERO, CALVIN, and SIMPLER.
+
+These research directions collectively address efficiency, robustness, and generalization challenges in VLA systems for robotic manipulation.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c0171c74-acca-4b8e-b1b3-a92552fb3f07",
+  "isSidechain": false,
+  "promptId": "3517e58c-d034-40ce-96a3-5e0696a9a8c6",
+  "type": "user",
+  "uuid": "724f07aa-2512-440b-bf39-f16904123f6e",
+  "toolUseResult": {
+    "query": "training-time stochastic token masking VLA robot visual regularization OOD 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Wpj5P1aQxxPG71b35twVL8",
+        "content": [
+          {
+            "title": "State of Vision-Language-Action (VLA) Research at ICLR 2026 – Moritz Reuss",
+            "url": "https://mbreuss.github.io/blog_post_iclr_26_vla.html"
+          },
+          {
+            "title": "On-the-Fly VLA Adaptation via Test-Time Reinforcement Learning",
+            "url": "https://arxiv.org/html/2601.06748v1"
+          },
+          {
+            "title": "FAST: Efficient Action Tokenization for Vision-Language-Action Models",
+            "url": "https://www.pi.website/download/fast.pdf"
+          },
+          {
+            "title": "VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2603.22991v1"
+          },
+          {
+            "title": "[2511.18950] Compressor-VLA: Instruction-Guided Visual Token Compression for Efficient Robotic Manipulation",
+            "url": "https://arxiv.org/abs/2511.18950"
+          },
+          {
+            "title": "2026-01-28 Work in progress.",
+            "url": "https://arxiv.org/pdf/2601.15197"
+          },
+          {
+            "title": "Gaze-Regularized Vision-Language-Action Models for Robotic Manipulation",
+            "url": "https://arxiv.org/html/2603.23202v1"
+          },
+          {
+            "title": "VLA-OPD: Bridging Offline SFT and Online RL for Vision-Language-Action Models via On-Policy Distillation",
+            "url": "https://arxiv.org/html/2603.26666v1"
+          },
+          {
+            "title": "RobustVLA: Robustness-Aware Reinforcement Post-Training for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2511.01331"
+          },
+          {
+            "title": "A Survey on Efficient Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2510.24795v1"
+          }
+        ]
+      },
+      "I've performed a web search for your query about training-time stochastic token masking, VLA robots, visual regularization, and OOD generalization in 2025-2026. Here are the relevant research findings:\n\n## Key Research Areas in VLA Models (2025-2026)\n\n**VLA Model Improvements and Regularization:**\n\nA gaze-regularized training framework aligns VLA models' internal attention with human visual patterns, transforming temporally aggregated gaze heatmaps into patch-level distributions and regularizing transformer attention through KL divergence. This approach yields 4-12% improvements across manipulation benchmarks.\n\n**Robustness and OOD Generalization:**\n\nRobustVLA is an online RL post-training method designed to enhance the resilience of VLA models through Jacobian regularization, which mitigates sensitivity to observation noise, and smoothness regularization, which stabilizes policies under action perturbations.\n\nVLA models face challenges in generalizing to novel instructions or complex multi-task scenarios, particularly in out-of-distribution (OOD) environments.\n\n**Visual Token Processing:**\n\nExisting visual token pruning methods mainly rely on semantic saliency or simple temporal cues, overlooking continuous physical interaction, and often prune visually sparse yet structurally critical regions that support manipulation.\n\nAnalysis of 164 Vision-Language-Action model submissions at ICLR 2026 shows trends in discrete diffusion VLAs, reasoning models, and benchmarks including LIBERO, CALVIN, and SIMPLER.\n\nThese research directions collectively address efficiency, robustness, and generalization challenges in VLA systems for robotic manipulation."
+    ],
+    "durationSeconds": 7.818688527999999
+  },
+  "sourceToolAssistantUUID": "c0171c74-acca-4b8e-b1b3-a92552fb3f07",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-13T05:27:29.606Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UvhmFFtYeRLjUWtgGpdfs7`</summary>
+
+```json
+{
+  "query": "Gaze-Regularized VLA arXiv 2603.23202 attention KL divergence visual token regularization training"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "724f07aa-2512-440b-bf39-f16904123f6e",
+  "isSidechain": false,
+  "requestId": "req_011Caz1oEiX9gyhyXKwbVPKJ",
+  "type": "assistant",
+  "uuid": "924ec37d-4638-4e3a-89b9-29c08683ea45",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TViBXQwxTuYu77JxsMyFaC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 966,
+      "cache_read_input_tokens": 38116,
+      "output_tokens": 80,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 966,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 80,
+          "cache_read_input_tokens": 38116,
+          "cache_creation_input_tokens": 966,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 966
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-13T05:27:36.458Z_
+
+<details><summary>↩ Tool result · `toolu_01UvhmFFtYeRLjUWtgGpdfs7`</summary>
+
+```text
+Web search results for query: "Gaze-Regularized VLA arXiv 2603.23202 attention KL divergence visual token regularization training"
+
+Links: [{"title":"Gaze-Regularized Vision-Language-Action Models for Robotic Manipulation","url":"https://arxiv.org/html/2603.23202v1"},{"title":"[2603.23202] Gaze-Regularized Vision-Language-Action Models for Robotic Manipulation","url":"https://arxiv.org/abs/2603.23202"},{"title":"[2603.23202v1] Gaze-Regularized Vision-Language-Action Models for Robotic Manipulation","url":"https://arxiv.org/abs/2603.23202v1"},{"title":"[2006.06195] Large-Scale Adversarial Training for Vision-and-Language Representation Learning","url":"https://ar5iv.labs.arxiv.org/html/2006.06195"},{"title":"[2603.23190] Gaze-Regularized VLMs for Ego-Centric Behavior Understanding","url":"https://arxiv.org/abs/2603.23190"},{"title":"[2603.24941] Beyond Attention Magnitude: Leveraging Inter-layer Rank Consistency for Efficient Vision-Language-Action Models","url":"https://arxiv.org/abs/2603.24941"},{"title":"VLA-OPD: Bridging Offline SFT and Online RL for Vision-Language-Action Models via On-Policy Distillation","url":"https://arxiv.org/html/2603.26666v1"},{"title":"Tokenization of Gaze Data","url":"https://arxiv.org/html/2503.22145v1"},{"title":"[2006.06195] Large-Scale Adversarial Training for Vision-and-Language Representation Learning","url":"https://arxiv.org/abs/2006.06195"},{"title":"[2603.13782] Your Vision-Language-Action Model Already Has Attention Heads For Path Deviation Detection","url":"https://arxiv.org/abs/2603.13782"}]
+
+Based on the search results, I found detailed information about the paper you're looking for:
+
+## Gaze-Regularized Vision-Language-Action Models (arXiv 2603.23202)
+
+Despite advances in Vision-Language-Action (VLA) models, robotic manipulation struggles with fine-grained tasks because current models lack mechanisms for active visual attention allocation. 
+
+The paper introduces a gaze-regularized training framework that aligns VLA models' internal attention with human visual patterns without architectural modifications or inference-time overhead. The method transforms temporally aggregated gaze heatmaps into patch-level distributions and regularizes the transformer's attention through KL divergence, creating an inductive bias toward task-relevant features while preserving deployment efficiency.
+
+Human gaze naturally encodes intent, planning, and execution patterns – offering a powerful supervisory signal for guiding robot perception.
+
+**Key Results:**
+When integrated into existing VLA architectures, the approach yields 4-12% improvements across manipulation benchmarks.
+
+**Training Details:**
+During training, gaze priors are converted into patch-level gaze distributions that match the transformer's attention resolution, and the KL divergence between gaze and model attention is minimized, guiding the model to align its visual focus with human fixation patterns over time. During inference, the policy operates without any gaze input, with this training-time regularization yielding gaze-aligned internal representations while maintaining a lightweight, gaze-free inference pipeline.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "924ec37d-4638-4e3a-89b9-29c08683ea45",
+  "isSidechain": false,
+  "promptId": "3517e58c-d034-40ce-96a3-5e0696a9a8c6",
+  "type": "user",
+  "uuid": "7e77f9f2-0e8a-48cb-9b6e-eb839b0b44a4",
+  "toolUseResult": {
+    "query": "Gaze-Regularized VLA arXiv 2603.23202 attention KL divergence visual token regularization training",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Ud8w4TEWQjcKyvP4PyEBub",
+        "content": [
+          {
+            "title": "Gaze-Regularized Vision-Language-Action Models for Robotic Manipulation",
+            "url": "https://arxiv.org/html/2603.23202v1"
+          },
+          {
+            "title": "[2603.23202] Gaze-Regularized Vision-Language-Action Models for Robotic Manipulation",
+            "url": "https://arxiv.org/abs/2603.23202"
+          },
+          {
+            "title": "[2603.23202v1] Gaze-Regularized Vision-Language-Action Models for Robotic Manipulation",
+            "url": "https://arxiv.org/abs/2603.23202v1"
+          },
+          {
+            "title": "[2006.06195] Large-Scale Adversarial Training for Vision-and-Language Representation Learning",
+            "url": "https://ar5iv.labs.arxiv.org/html/2006.06195"
+          },
+          {
+            "title": "[2603.23190] Gaze-Regularized VLMs for Ego-Centric Behavior Understanding",
+            "url": "https://arxiv.org/abs/2603.23190"
+          },
+          {
+            "title": "[2603.24941] Beyond Attention Magnitude: Leveraging Inter-layer Rank Consistency for Efficient Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2603.24941"
+          },
+          {
+            "title": "VLA-OPD: Bridging Offline SFT and Online RL for Vision-Language-Action Models via On-Policy Distillation",
+            "url": "https://arxiv.org/html/2603.26666v1"
+          },
+          {
+            "title": "Tokenization of Gaze Data",
+            "url": "https://arxiv.org/html/2503.22145v1"
+          },
+          {
+            "title": "[2006.06195] Large-Scale Adversarial Training for Vision-and-Language Representation Learning",
+            "url": "https://arxiv.org/abs/2006.06195"
+          },
+          {
+            "title": "[2603.13782] Your Vision-Language-Action Model Already Has Attention Heads For Path Deviation Detection",
+            "url": "https://arxiv.org/abs/2603.13782"
+          }
+        ]
+      },
+      "Based on the search results, I found detailed information about the paper you're looking for:\n\n## Gaze-Regularized Vision-Language-Action Models (arXiv 2603.23202)\n\nDespite advances in Vision-Language-Action (VLA) models, robotic manipulation struggles with fine-grained tasks because current models lack mechanisms for active visual attention allocation. \n\nThe paper introduces a gaze-regularized training framework that aligns VLA models' internal attention with human visual patterns without architectural modifications or inference-time overhead. The method transforms temporally aggregated gaze heatmaps into patch-level distributions and regularizes the transformer's attention through KL divergence, creating an inductive bias toward task-relevant features while preserving deployment efficiency.\n\nHuman gaze naturally encodes intent, planning, and execution patterns – offering a powerful supervisory signal for guiding robot perception.\n\n**Key Results:**\nWhen integrated into existing VLA architectures, the approach yields 4-12% improvements across manipulation benchmarks.\n\n**Training Details:**\nDuring training, gaze priors are converted into patch-level gaze distributions that match the transformer's attention resolution, and the KL divergence between gaze and model attention is minimized, guiding the model to align its visual focus with human fixation patterns over time. During inference, the policy operates without any gaze input, with this training-time regularization yielding gaze-aligned internal representations while maintaining a lightweight, gaze-free inference pipeline."
+    ],
+    "durationSeconds": 6.846270278000011
+  },
+  "sourceToolAssistantUUID": "924ec37d-4638-4e3a-89b9-29c08683ea45",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 47_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-13 (UTC).**  ## Original idea {   \"title\": \"Counterfactual Token Masking: Training-Time Visual Token Regularizatio…",
+  "leafUuid": "7e77f9f2-0e8a-48cb-9b6e-eb839b0b44a4",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 48_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise CTM with TokenFLEX differentiation and formalized diversity framework",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09"
+}
+```
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-13T05:27:38.974Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_017zgWAnxYLLSEV8dy7VxKig`</summary>
+
+```json
+{
+  "query": "SimplerEnv visual variant aggregation VLA benchmark current SOTA results 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7e77f9f2-0e8a-48cb-9b6e-eb839b0b44a4",
+  "isSidechain": false,
+  "requestId": "req_011Caz1oz8i7Ky3vNnjeevad",
+  "type": "assistant",
+  "uuid": "407ddb2e-5193-4056-ab4b-080d4b608024",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M1gUWYuub6rFFGdFrsE6Uq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 947,
+      "cache_read_input_tokens": 39082,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 947,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 39082,
+          "cache_creation_input_tokens": 947,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 947
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-13T05:27:46.093Z_
+
+<details><summary>↩ Tool result · `toolu_017zgWAnxYLLSEV8dy7VxKig`</summary>
+
+```text
+Web search results for query: "SimplerEnv visual variant aggregation VLA benchmark current SOTA results 2026"
+
+Links: [{"title":"GitHub - DelinQu/SimplerEnv-OpenVLA: Evaluating and reproducing real-world robot manipulation policies (e.g., RT-1, RT-1-X, Octo, and OpenVLA) in simulation under common setups (e.g., Google Robot, WidowX+Bridge) · GitHub","url":"https://github.com/DelinQu/SimplerEnv-OpenVLA"},{"title":"VP-VLA: Visual Prompting as an Interface for Vision-Language-Action Models","url":"https://arxiv.org/html/2603.22003"},{"title":"Enhancing Generalization in Vision–Language–Action Models by Preserving Pretrained Representations","url":"https://arxiv.org/html/2509.11417v1"},{"title":"tracevla: visual trace prompting enhances spatial-temporal ...","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/8667f264f88c7938a73a53ab01eb1327-Paper-Conference.pdf"},{"title":"GitHub - Ratstar216/SimplerEnv-HSR: Evaluating and reproducing real-world robot manipulation policies (e.g., RT-1, RT-1-X, Octo, and OpenVLA) in simulation under common setups (e.g., Google Robot, WidowX+Bridge) · GitHub","url":"https://github.com/Ratstar216/SimplerEnv-HSR"},{"title":"Robot Manipulation On Simpler Env | SOTA | HyperAI","url":"https://hyper.ai/en/sota/tasks/robot-manipulation/benchmark/robot-manipulation-on-simpler-env"},{"title":"State of Vision-Language-Action (VLA) Research at ICLR 2026 – Moritz Reuss","url":"https://mbreuss.github.io/blog_post_iclr_26_vla.html"},{"title":"VOTE: Vision-Language-Action Optimization with Trajectory Ensemble Voting","url":"https://arxiv.org/html/2507.05116"},{"title":"GitHub - starVLA/starVLA: StarVLA: A Lego-like Codebase for Vision-Language-Action Model Developing · GitHub","url":"https://github.com/starVLA/starVLA"},{"title":"VBench: Comprehensive Benchmark Suite for Video Generative Models","url":"https://vchitect.github.io/VBench-project/"}]
+
+Based on the search results, here's what I found regarding SimplerEnv Visual Variant Aggregation VLA benchmark current SOTA results in 2026:
+
+## SimplerEnv Visual Variant Aggregation Overview
+
+Visual Variant Aggregation follows the original evaluation protocol in SimplerEnv, randomizing backgrounds, table textures, lightings, distractors, and camera poses for testing OOD generalization.
+
+## Current SOTA Results (2026)
+
+Several recent papers report state-of-the-art results on SimplerEnv:
+
+**VP-VLA (March 2026):** VP-VLA achieves a state-of-the-art performance of 58.3%, yielding a substantial improvement of +8.3% over QwenOFT as the primary baseline (50.0% average).
+
+**TraceVLA (ICLR 2025):** TraceVLA shows significant performance gains, with improvements ranging from 2.4% to 12.7% in all three tasks across different metrics.
+
+**VOTE (October 2025):** VOTE surpasses state-of-the-art methods such as CogACT and SpatialVLA, with an average success rate of 58.3%.
+
+## Benchmark Structure
+
+SimplerEnv maintains a public Google Sheets documenting the latest SOTA models' performance and fine-tuned weights on Simpler-Env, making community benchmarking more accessible.
+
+The search results indicate VP-VLA and VOTE both achieved 58.3% performance on SimplerEnv, representing the current competitive frontier for VLA models on this benchmark in 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "407ddb2e-5193-4056-ab4b-080d4b608024",
+  "isSidechain": false,
+  "promptId": "3517e58c-d034-40ce-96a3-5e0696a9a8c6",
+  "type": "user",
+  "uuid": "9f5752c8-81a1-436e-9013-220c6fff8b5b",
+  "toolUseResult": {
+    "query": "SimplerEnv visual variant aggregation VLA benchmark current SOTA results 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01X4beUXZ6YHDQESm6RyeRVx",
+        "content": [
+          {
+            "title": "GitHub - DelinQu/SimplerEnv-OpenVLA: Evaluating and reproducing real-world robot manipulation policies (e.g., RT-1, RT-1-X, Octo, and OpenVLA) in simulation under common setups (e.g., Google Robot, WidowX+Bridge) · GitHub",
+            "url": "https://github.com/DelinQu/SimplerEnv-OpenVLA"
+          },
+          {
+            "title": "VP-VLA: Visual Prompting as an Interface for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2603.22003"
+          },
+          {
+            "title": "Enhancing Generalization in Vision–Language–Action Models by Preserving Pretrained Representations",
+            "url": "https://arxiv.org/html/2509.11417v1"
+          },
+          {
+            "title": "tracevla: visual trace prompting enhances spatial-temporal ...",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/8667f264f88c7938a73a53ab01eb1327-Paper-Conference.pdf"
+          },
+          {
+            "title": "GitHub - Ratstar216/SimplerEnv-HSR: Evaluating and reproducing real-world robot manipulation policies (e.g., RT-1, RT-1-X, Octo, and OpenVLA) in simulation under common setups (e.g., Google Robot, WidowX+Bridge) · GitHub",
+            "url": "https://github.com/Ratstar216/SimplerEnv-HSR"
+          },
+          {
+            "title": "Robot Manipulation On Simpler Env | SOTA | HyperAI",
+            "url": "https://hyper.ai/en/sota/tasks/robot-manipulation/benchmark/robot-manipulation-on-simpler-env"
+          },
+          {
+            "title": "State of Vision-Language-Action (VLA) Research at ICLR 2026 – Moritz Reuss",
+            "url": "https://mbreuss.github.io/blog_post_iclr_26_vla.html"
+          },
+          {
+            "title": "VOTE: Vision-Language-Action Optimization with Trajectory Ensemble Voting",
+            "url": "https://arxiv.org/html/2507.05116"
+          },
+          {
+            "title": "GitHub - starVLA/starVLA: StarVLA: A Lego-like Codebase for Vision-Language-Action Model Developing · GitHub",
+            "url": "https://github.com/starVLA/starVLA"
+          },
+          {
+            "title": "VBench: Comprehensive Benchmark Suite for Video Generative Models",
+            "url": "https://vchitect.github.io/VBench-project/"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found regarding SimplerEnv Visual Variant Aggregation VLA benchmark current SOTA results in 2026:\n\n## SimplerEnv Visual Variant Aggregation Overview\n\nVisual Variant Aggregation follows the original evaluation protocol in SimplerEnv, randomizing backgrounds, table textures, lightings, distractors, and camera poses for testing OOD generalization.\n\n## Current SOTA Results (2026)\n\nSeveral recent papers report state-of-the-art results on SimplerEnv:\n\n**VP-VLA (March 2026):** VP-VLA achieves a state-of-the-art performance of 58.3%, yielding a substantial improvement of +8.3% over QwenOFT as the primary baseline (50.0% average).\n\n**TraceVLA (ICLR 2025):** TraceVLA shows significant performance gains, with improvements ranging from 2.4% to 12.7% in all three tasks across different metrics.\n\n**VOTE (October 2025):** VOTE surpasses state-of-the-art methods such as CogACT and SpatialVLA, with an average success rate of 58.3%.\n\n## Benchmark Structure\n\nSimplerEnv maintains a public Google Sheets documenting the latest SOTA models' performance and fine-tuned weights on Simpler-Env, making community benchmarking more accessible.\n\nThe search results indicate VP-VLA and VOTE both achieved 58.3% performance on SimplerEnv, representing the current competitive frontier for VLA models on this benchmark in 2026."
+    ],
+    "durationSeconds": 7.111545513999998
+  },
+  "sourceToolAssistantUUID": "407ddb2e-5193-4056-ab4b-080d4b608024",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 51 · 2026-05-13T05:27:46.096Z_
+
+```json
+{
+  "parentUuid": "9f5752c8-81a1-436e-9013-220c6fff8b5b",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "e4d38acf-53d9-4621-bcee-89bcc806f6cd",
+  "timestamp": "2026-05-13T05:27:46.096Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-13T05:27:50.541Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MTNS2jwg5HFvqFHkRq67id`</summary>
+
+```json
+{
+  "query": "LIBERO-Plus CVPR 2026 robustness benchmark VLA perturbation dimensions results"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e4d38acf-53d9-4621-bcee-89bcc806f6cd",
+  "isSidechain": false,
+  "requestId": "req_011Caz1phGicMLVMuTNhDDzE",
+  "type": "assistant",
+  "uuid": "e21b31b5-203f-42b7-b40e-538f3593c564",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JTjLugzriYNGivctkU8ftB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1203,
+      "cache_read_input_tokens": 40029,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1203,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 40029,
+          "cache_creation_input_tokens": 1203,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1203
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-13T05:27:56.212Z_
+
+<details><summary>↩ Tool result · `toolu_01MTNS2jwg5HFvqFHkRq67id`</summary>
+
+```text
+Web search results for query: "LIBERO-Plus CVPR 2026 robustness benchmark VLA perturbation dimensions results"
+
+Links: [{"title":"CVPR Poster LIBERO-Plus: A Progressive Robustness Benchmark for Visual-Language-Action Models","url":"https://cvpr.thecvf.com/virtual/2026/poster/38735"},{"title":"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://arxiv.org/html/2510.13626v1"},{"title":"[2510.13626] LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://arxiv.org/abs/2510.13626"},{"title":"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://sylvestf.github.io/LIBERO-plus/"},{"title":"GitHub - sylvestf/LIBERO-plus: Official repository of LIBERO-plus, a generalized benchmark for in-depth robustness analysis of vision-language-action models. · GitHub","url":"https://github.com/sylvestf/LIBERO-plus"},{"title":"Paper page - LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://huggingface.co/papers/2510.13626"},{"title":"OpenMOSS LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-","url":"https://arxiv.org/pdf/2510.13626"},{"title":"LIBERO-plus/README.md at main · sylvestf/LIBERO-plus","url":"https://github.com/sylvestf/LIBERO-plus/blob/main/README.md"},{"title":"In-depth Robustness Analysis for Vision-Language-Action Models | OpenReview","url":"https://openreview.net/forum?id=6mEfYoMRpF"},{"title":"Sylvest/LIBERO-plus · Datasets at Hugging Face","url":"https://huggingface.co/datasets/Sylvest/LIBERO-plus"}]
+
+Based on the search results, here's what I found about LIBERO-Plus:
+
+## Overview
+
+LIBERO-Plus is a robustness benchmark for Visual-Language-Action (VLA) models, addressing how models report impressive success rates exceeding 95% on robotic manipulation benchmarks, yet may mask fundamental weaknesses in robustness.
+
+## Perturbation Dimensions
+
+The benchmark introduces controlled perturbations across seven dimensions: objects layout, camera viewpoints, robot initial states, language instructions, light conditions, background textures and sensor noise.
+
+## Key Results
+
+Models exhibit extreme sensitivity to perturbation factors, including camera viewpoints and robot initial states, with performance dropping from 95% to below 30% under modest perturbations.
+
+Surprisingly, models are largely insensitive to language variations, with further experiments revealing that models tend to ignore language instructions completely.
+
+Models demonstrate an ability to ignore distracting objects, but fail to generalize when target objects are displaced, indicating they rely on memorized positional cues rather than learning invariant object semantics.
+
+## Benchmark Composition
+
+LIBERO-Plus is designed as a comprehensive benchmark establishing a rigorous leaderboard for evaluating generalization capabilities, constructed through expanding the original LIBERO benchmark with seven perturbation factors and evaluating with four representative models, stratified into five difficulty levels.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e21b31b5-203f-42b7-b40e-538f3593c564",
+  "isSidechain": false,
+  "promptId": "3517e58c-d034-40ce-96a3-5e0696a9a8c6",
+  "type": "user",
+  "uuid": "66e9bdb2-270e-42ae-95dc-064097a46f77",
+  "toolUseResult": {
+    "query": "LIBERO-Plus CVPR 2026 robustness benchmark VLA perturbation dimensions results",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017PgwaQTL7KCgpdE9KaZxzQ",
+        "content": [
+          {
+            "title": "CVPR Poster LIBERO-Plus: A Progressive Robustness Benchmark for Visual-Language-Action Models",
+            "url": "https://cvpr.thecvf.com/virtual/2026/poster/38735"
+          },
+          {
+            "title": "LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2510.13626v1"
+          },
+          {
+            "title": "[2510.13626] LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2510.13626"
+          },
+          {
+            "title": "LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://sylvestf.github.io/LIBERO-plus/"
+          },
+          {
+            "title": "GitHub - sylvestf/LIBERO-plus: Official repository of LIBERO-plus, a generalized benchmark for in-depth robustness analysis of vision-language-action models. · GitHub",
+            "url": "https://github.com/sylvestf/LIBERO-plus"
+          },
+          {
+            "title": "Paper page - LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://huggingface.co/papers/2510.13626"
+          },
+          {
+            "title": "OpenMOSS LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-",
+            "url": "https://arxiv.org/pdf/2510.13626"
+          },
+          {
+            "title": "LIBERO-plus/README.md at main · sylvestf/LIBERO-plus",
+            "url": "https://github.com/sylvestf/LIBERO-plus/blob/main/README.md"
+          },
+          {
+            "title": "In-depth Robustness Analysis for Vision-Language-Action Models | OpenReview",
+            "url": "https://openreview.net/forum?id=6mEfYoMRpF"
+          },
+          {
+            "title": "Sylvest/LIBERO-plus · Datasets at Hugging Face",
+            "url": "https://huggingface.co/datasets/Sylvest/LIBERO-plus"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about LIBERO-Plus:\n\n## Overview\n\nLIBERO-Plus is a robustness benchmark for Visual-Language-Action (VLA) models, addressing how models report impressive success rates exceeding 95% on robotic manipulation benchmarks, yet may mask fundamental weaknesses in robustness.\n\n## Perturbation Dimensions\n\nThe benchmark introduces controlled perturbations across seven dimensions: objects layout, camera viewpoints, robot initial states, language instructions, light conditions, background textures and sensor noise.\n\n## Key Results\n\nModels exhibit extreme sensitivity to perturbation factors, including camera viewpoints and robot initial states, with performance dropping from 95% to below 30% under modest perturbations.\n\nSurprisingly, models are largely insensitive to language variations, with further experiments revealing that models tend to ignore language instructions completely.\n\nModels demonstrate an ability to ignore distracting objects, but fail to generalize when target objects are displaced, indicating they rely on memorized positional cues rather than learning invariant object semantics.\n\n## Benchmark Composition\n\nLIBERO-Plus is designed as a comprehensive benchmark establishing a rigorous leaderboard for evaluating generalization capabilities, constructed through expanding the original LIBERO benchmark with seven perturbation factors and evaluating with four representative models, stratified into five difficulty levels."
+    ],
+    "durationSeconds": 5.665027608999982
+  },
+  "sourceToolAssistantUUID": "e21b31b5-203f-42b7-b40e-538f3593c564",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-13T05:28:00.161Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_015ZEeyR7Ce4W8WSWCykxQx1`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2604.01570",
+  "prompt": "Extract the full abstract and confirm: (1) Is this paper titled \"Boosting Vision-Language-Action Finetuning with Feasible Action Neighborhood Prior\" or similar? (2) Does it apply a Gaussian prior on action predictions? (3) What venue is it published at? (4) Who are the authors?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "66e9bdb2-270e-42ae-95dc-064097a46f77",
+  "isSidechain": false,
+  "requestId": "req_011Caz1qSYyA3bkXrzdFxToo",
+  "type": "assistant",
+  "uuid": "8148918d-f962-4478-b14f-760526359171",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Amyt6C3EtpBysD3737T9mH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 929,
+      "cache_read_input_tokens": 41232,
+      "output_tokens": 154,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 929,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 154,
+          "cache_read_input_tokens": 41232,
+          "cache_creation_input_tokens": 929,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 929
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-13T05:28:06.315Z_
+
+<details><summary>↩ Tool result · `toolu_015ZEeyR7Ce4W8WSWCykxQx1`</summary>
+
+```text
+# Paper Confirmation
+
+**Full Abstract:**
+"In real-world robotic manipulation, states typically admit a neighborhood of near-equivalent actions. That is, for each state, there exist a feasible action neighborhood (FAN) rather than a single correct action, within which motions yield indistinguishable progress. However, prevalent VLA training methodologies are directly inherited from linguistic settings and do not exploit the FAN property, thus leading to poor generalization and low sample efficiency. To address this limitation, we introduce a FAN-guided regularizer that shapes the model's output distribution to align with the geometry of FAN. Concretely, we introduce a Gaussian prior that promotes locally smooth and unimodal predictions around the preferred direction and magnitude. In extensive experiments across both reinforced finetuning (RFT) and supervised finetuning (SFT), our method achieves significant improvement in sample efficiency, and success rate in both in-distribution and out-of-distribution (OOD) scenarios. By aligning with the intrinsic action tolerance of physical manipulation, FAN-guided regularization provides a principled and practical method for sample-efficient, and generalizable VLA adaptation."
+
+**Confirmations:**
+
+1. **Title Match:** ✓ Yes, the paper is titled "Boosting Vision-Language-Action Finetuning with Feasible Action Neighborhood Prior"
+
+2. **Gaussian Prior:** ✓ Yes, it "introduces a Gaussian prior that promotes locally smooth and unimodal predictions around the preferred direction and magnitude"
+
+3. **Publication Venue:** CVPR 2026 (accepted)
+
+4. **Authors:** Haochen Niu, Kanyu Zhang, Shuyu Yin, Qinghai Guo, Peilin Liu, and Fei Wen
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8148918d-f962-4478-b14f-760526359171",
+  "isSidechain": false,
+  "promptId": "3517e58c-d034-40ce-96a3-5e0696a9a8c6",
+  "type": "user",
+  "uuid": "d2e533c8-20d2-4095-8367-073fd71600b1",
+  "toolUseResult": {
+    "bytes": 45309,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Paper Confirmation\n\n**Full Abstract:**\n\"In real-world robotic manipulation, states typically admit a neighborhood of near-equivalent actions. That is, for each state, there exist a feasible action neighborhood (FAN) rather than a single correct action, within which motions yield indistinguishable progress. However, prevalent VLA training methodologies are directly inherited from linguistic settings and do not exploit the FAN property, thus leading to poor generalization and low sample efficiency. To address this limitation, we introduce a FAN-guided regularizer that shapes the model's output distribution to align with the geometry of FAN. Concretely, we introduce a Gaussian prior that promotes locally smooth and unimodal predictions around the preferred direction and magnitude. In extensive experiments across both reinforced finetuning (RFT) and supervised finetuning (SFT), our method achieves significant improvement in sample efficiency, and success rate in both in-distribution and out-of-distribution (OOD) scenarios. By aligning with the intrinsic action tolerance of physical manipulation, FAN-guided regularization provides a principled and practical method for sample-efficient, and generalizable VLA adaptation.\"\n\n**Confirmations:**\n\n1. **Title Match:** ✓ Yes, the paper is titled \"Boosting Vision-Language-Action Finetuning with Feasible Action Neighborhood Prior\"\n\n2. **Gaussian Prior:** ✓ Yes, it \"introduces a Gaussian prior that promotes locally smooth and unimodal predictions around the preferred direction and magnitude\"\n\n3. **Publication Venue:** CVPR 2026 (accepted)\n\n4. **Authors:** Haochen Niu, Kanyu Zhang, Shuyu Yin, Qinghai Guo, Peilin Liu, and Fei Wen",
+    "durationMs": 6150,
+    "url": "https://arxiv.org/abs/2604.01570"
+  },
+  "sourceToolAssistantUUID": "8148918d-f962-4478-b14f-760526359171",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 56 · 2026-05-13T05:28:08.451Z_
+
+FAN exists and is exactly as described. Now let me verify GridS more thoroughly.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d2e533c8-20d2-4095-8367-073fd71600b1",
+  "isSidechain": false,
+  "requestId": "req_011Caz1rBoVAXBRqc3K13Gfh",
+  "type": "assistant",
+  "uuid": "44dde20b-c0ab-411f-ad18-7e20babeb1a9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ais76XDAyJ5Jig6nEiF873",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 571,
+      "cache_read_input_tokens": 42161,
+      "output_tokens": 159,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 571,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 159,
+          "cache_read_input_tokens": 42161,
+          "cache_creation_input_tokens": 571,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 571
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-13T05:28:10.724Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01TiDrW8mqSAXKmdR5Kafdz8`</summary>
+
+```json
+{
+  "url": "https://icml.cc/virtual/2026/poster/65010",
+  "prompt": "Extract the paper title, authors, abstract, and confirm this is \"See What Matters: Differentiable Grid Sample Pruning for Generalizable Vision-Language-Action Model\" at ICML 2026. What are the key claims about generalization?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "44dde20b-c0ab-411f-ad18-7e20babeb1a9",
+  "isSidechain": false,
+  "requestId": "req_011Caz1rBoVAXBRqc3K13Gfh",
+  "type": "assistant",
+  "uuid": "5da9400a-f2ea-4dfe-8e0a-9aa2672857e0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ais76XDAyJ5Jig6nEiF873",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 571,
+      "cache_read_input_tokens": 42161,
+      "output_tokens": 159,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 571,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 159,
+          "cache_read_input_tokens": 42161,
+          "cache_creation_input_tokens": 571,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 571
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-13T05:28:14.665Z_
+
+<details><summary>↩ Tool result · `toolu_01TiDrW8mqSAXKmdR5Kafdz8`</summary>
+
+```text
+# Paper Summary: See What Matters
+
+**Title:** "See What Matters: Differentiable Grid Sample Pruning for Generalizable Vision-Language-Action Model"
+
+**Authors:** Yixu Feng, Zinan Zhao, Yanxiang Ma, Chenghao Xia, Chengbin Du, Yunke Wang, Chang Xu
+
+**Conference:** ICML 2026 (Poster)
+
+## Key Claims About Generalization
+
+The paper's central claim regarding generalization challenges existing compression approaches. The authors argue that typical token pruning creates a problematic trade-off: aggressive compression removes "critical geometric details like contact points," which severely undermines performance.
+
+Their proposed solution—the Differentiable Grid Sampler (GridS)—is framed as addressing this generalization problem through "task-aware, continuous resampling" rather than simple token removal. By preserving "essential spatial information," the method aims to maintain generalization capability across different robotic tasks.
+
+**Performance Claim:** The method achieves "76% reduction in FLOPs with no degradation in the success rate" while using "fewer than 10% original visual tokens," tested on both benchmark environments and real robotic hardware. This suggests the approach generalizes across simulated and physical deployment scenarios without sacrificing task performance.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5da9400a-f2ea-4dfe-8e0a-9aa2672857e0",
+  "isSidechain": false,
+  "promptId": "3517e58c-d034-40ce-96a3-5e0696a9a8c6",
+  "type": "user",
+  "uuid": "53794b36-e5fa-4ef9-9091-6b4f1331d234",
+  "toolUseResult": {
+    "bytes": 86857,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Paper Summary: See What Matters\n\n**Title:** \"See What Matters: Differentiable Grid Sample Pruning for Generalizable Vision-Language-Action Model\"\n\n**Authors:** Yixu Feng, Zinan Zhao, Yanxiang Ma, Chenghao Xia, Chengbin Du, Yunke Wang, Chang Xu\n\n**Conference:** ICML 2026 (Poster)\n\n## Key Claims About Generalization\n\nThe paper's central claim regarding generalization challenges existing compression approaches. The authors argue that typical token pruning creates a problematic trade-off: aggressive compression removes \"critical geometric details like contact points,\" which severely undermines performance.\n\nTheir proposed solution—the Differentiable Grid Sampler (GridS)—is framed as addressing this generalization problem through \"task-aware, continuous resampling\" rather than simple token removal. By preserving \"essential spatial information,\" the method aims to maintain generalization capability across different robotic tasks.\n\n**Performance Claim:** The method achieves \"76% reduction in FLOPs with no degradation in the success rate\" while using \"fewer than 10% original visual tokens,\" tested on both benchmark environments and real robotic hardware. This suggests the approach generalizes across simulated and physical deployment scenarios without sacrificing task performance.",
+    "durationMs": 3937,
+    "url": "https://icml.cc/virtual/2026/poster/65010"
+  },
+  "sourceToolAssistantUUID": "5da9400a-f2ea-4dfe-8e0a-9aa2672857e0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 59 · 2026-05-13T05:28:18.650Z_
+
+Both FAN and GridS are verified as real papers. The reviewer was wrong about them being fabricated. Now let me search for any more recent concurrent work I might be missing.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "53794b36-e5fa-4ef9-9091-6b4f1331d234",
+  "isSidechain": false,
+  "requestId": "req_011Caz1roUb7wXSbCq6iYYdy",
+  "type": "assistant",
+  "uuid": "fb99406a-7e77-41f0-99e1-31eedcdcab18",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MPoF3vPh6vGmZRaPqseaUS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 459,
+      "cache_read_input_tokens": 42732,
+      "output_tokens": 111,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 459,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 111,
+          "cache_read_input_tokens": 42732,
+          "cache_creation_input_tokens": 459,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 459
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60 · 2026-05-13T05:28:19.185Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019gz6oGk7Q2ZKkeSvdChXYr`</summary>
+
+```json
+{
+  "query": "visual token dropout masking training regularization VLA vision-language-action finetuning 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fb99406a-7e77-41f0-99e1-31eedcdcab18",
+  "isSidechain": false,
+  "requestId": "req_011Caz1roUb7wXSbCq6iYYdy",
+  "type": "assistant",
+  "uuid": "ab389569-abb5-4643-b5e7-1de573ccc898",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MPoF3vPh6vGmZRaPqseaUS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 459,
+      "cache_read_input_tokens": 42732,
+      "output_tokens": 111,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 459,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 111,
+          "cache_read_input_tokens": 42732,
+          "cache_creation_input_tokens": 459,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 459
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-13T05:28:28.187Z_
+
+<details><summary>↩ Tool result · `toolu_019gz6oGk7Q2ZKkeSvdChXYr`</summary>
+
+```text
+Web search results for query: "visual token dropout masking training regularization VLA vision-language-action finetuning 2026"
+
+Links: [{"title":"VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models","url":"https://arxiv.org/html/2603.22991v1"},{"title":"GitHub - ZLKong/Awesome-Collection-Token-Reduction: A collection of token reduction (token pruning, merging, clustering, etc.) techniques for ML/AI · GitHub","url":"https://github.com/ZLKong/Awesome-Collection-Token-Reduction"},{"title":"When LLaVA Meets Objects: Token Composition for Vision-Language-Models","url":"https://arxiv.org/html/2602.04864v1"},{"title":"CoT-VLA: Visual Chain-of-Thought Reasoning for Vision-Language-Action Models","url":"https://www.researchgate.net/publication/394511717_CoT-VLA_Visual_Chain-of-Thought_Reasoning_for_Vision-Language-Action_Models"},{"title":"From Pixels to Tokens: A Systematic Study of Latent Action Supervision for Vision-Language-Action Models","url":"https://arxiv.org/html/2605.04678v1"},{"title":"SparseVLM: Visual Token Sparsification for Efficient Vision-Language Model Inference | OpenReview","url":"https://openreview.net/forum?id=80faIPZ67S"},{"title":"Daily Papers - Hugging Face","url":"https://huggingface.co/papers?q=Visual-Language-Action+(VLA)+models"},{"title":"State of Vision-Language-Action (VLA) Research at ICLR 2026 – Moritz Reuss","url":"https://mbreuss.github.io/blog_post_iclr_26_vla.html"},{"title":"VLA-RFT: Vision-Language-Action Reinforcement Fine-Tuning with Verified Rewards in World Simulators | OpenReview","url":"https://openreview.net/forum?id=Jaut99EHeu"},{"title":"Fine-Tuning Vision-Language-Action Models | DigitalOcean","url":"https://www.digitalocean.com/community/tutorials/vision-language-action-finetuning-robotics"}]
+
+The search returned relevant results about visual token handling and VLA model techniques. Here are the key findings:
+
+## Visual Token Management in VLAs
+
+VLA-IAP (Interaction-Aligned Pruning) is a training-free method that shifts embodied visual compression toward an Explicit Interaction-First paradigm, addressing visual token efficiency. The approach develops an Interaction-Aligned Dynamic Strategy that adjusts pruning intensity based on semantic-motion alignment, measured using the Intersection over Union (IoU) between semantic and motion masks.
+
+## Token Dropout and Masking Regularization
+
+To encourage stable tokenization under partial latent information, researchers randomly mask a subset of latent timesteps prior to quantization as a training regularization technique in VLA finetuning. Additionally, training regularization strategies such as sensory dropout and multi-stage fine-tuning are investigated at scale in VLA models.
+
+## Mask-Based Token Composition
+
+Mask-LLaVA is a framework that leverages different levels of visual features to create a compact yet information-rich visual representation for autoregressive VLMs, combining mask-based object representations together with global tokens and local patch tokens. While all tokens are used during training, the resulting model can flexibly drop especially the number of mask-based object-tokens at test time, allowing adaptation without retraining.
+
+## Token Sparsification
+
+SparseVLM is an efficient training-free token optimization mechanism without extra parameters or fine-tuning costs for vision-language models, offering an alternative approach to visual token reduction.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ab389569-abb5-4643-b5e7-1de573ccc898",
+  "isSidechain": false,
+  "promptId": "3517e58c-d034-40ce-96a3-5e0696a9a8c6",
+  "type": "user",
+  "uuid": "47b2479a-0c8e-4d0f-b752-d0b0a2029c61",
+  "toolUseResult": {
+    "query": "visual token dropout masking training regularization VLA vision-language-action finetuning 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Q5FtsKf41ZA3uzWhrwA9Mw",
+        "content": [
+          {
+            "title": "VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2603.22991v1"
+          },
+          {
+            "title": "GitHub - ZLKong/Awesome-Collection-Token-Reduction: A collection of token reduction (token pruning, merging, clustering, etc.) techniques for ML/AI · GitHub",
+            "url": "https://github.com/ZLKong/Awesome-Collection-Token-Reduction"
+          },
+          {
+            "title": "When LLaVA Meets Objects: Token Composition for Vision-Language-Models",
+            "url": "https://arxiv.org/html/2602.04864v1"
+          },
+          {
+            "title": "CoT-VLA: Visual Chain-of-Thought Reasoning for Vision-Language-Action Models",
+            "url": "https://www.researchgate.net/publication/394511717_CoT-VLA_Visual_Chain-of-Thought_Reasoning_for_Vision-Language-Action_Models"
+          },
+          {
+            "title": "From Pixels to Tokens: A Systematic Study of Latent Action Supervision for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2605.04678v1"
+          },
+          {
+            "title": "SparseVLM: Visual Token Sparsification for Efficient Vision-Language Model Inference | OpenReview",
+            "url": "https://openreview.net/forum?id=80faIPZ67S"
+          },
+          {
+            "title": "Daily Papers - Hugging Face",
+            "url": "https://huggingface.co/papers?q=Visual-Language-Action+(VLA)+models"
+          },
+          {
+            "title": "State of Vision-Language-Action (VLA) Research at ICLR 2026 – Moritz Reuss",
+            "url": "https://mbreuss.github.io/blog_post_iclr_26_vla.html"
+          },
+          {
+            "title": "VLA-RFT: Vision-Language-Action Reinforcement Fine-Tuning with Verified Rewards in World Simulators | OpenReview",
+            "url": "https://openreview.net/forum?id=Jaut99EHeu"
+          },
+          {
+            "title": "Fine-Tuning Vision-Language-Action Models | DigitalOcean",
+            "url": "https://www.digitalocean.com/community/tutorials/vision-language-action-finetuning-robotics"
+          }
+        ]
+      },
+      "The search returned relevant results about visual token handling and VLA model techniques. Here are the key findings:\n\n## Visual Token Management in VLAs\n\nVLA-IAP (Interaction-Aligned Pruning) is a training-free method that shifts embodied visual compression toward an Explicit Interaction-First paradigm, addressing visual token efficiency. The approach develops an Interaction-Aligned Dynamic Strategy that adjusts pruning intensity based on semantic-motion alignment, measured using the Intersection over Union (IoU) between semantic and motion masks.\n\n## Token Dropout and Masking Regularization\n\nTo encourage stable tokenization under partial latent information, researchers randomly mask a subset of latent timesteps prior to quantization as a training regularization technique in VLA finetuning. Additionally, training regularization strategies such as sensory dropout and multi-stage fine-tuning are investigated at scale in VLA models.\n\n## Mask-Based Token Composition\n\nMask-LLaVA is a framework that leverages different levels of visual features to create a compact yet information-rich visual representation for autoregressive VLMs, combining mask-based object representations together with global tokens and local patch tokens. While all tokens are used during training, the resulting model can flexibly drop especially the number of mask-based object-tokens at test time, allowing adaptation without retraining.\n\n## Token Sparsification\n\nSparseVLM is an efficient training-free token optimization mechanism without extra parameters or fine-tuning costs for vision-language models, offering an alternative approach to visual token reduction."
+    ],
+    "durationSeconds": 8.997504227999976
+  },
+  "sourceToolAssistantUUID": "ab389569-abb5-4643-b5e7-1de573ccc898",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 62_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-13 (UTC).**  ## Original idea {   \"title\": \"Counterfactual Token Masking: Training-Time Visual Token Regularizatio…",
+  "leafUuid": "47b2479a-0c8e-4d0f-b752-d0b0a2029c61",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 63_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise CTM with TokenFLEX differentiation and formalized diversity framework",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09"
+}
+```
+
+---
+
+### Tool call
+
+_source line 64 · 2026-05-13T05:28:30.361Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01THmdpLN3rvunVRsK1CsCAP`</summary>
+
+```json
+{
+  "query": "HiDrop hierarchical token reduction VLM ICLR 2026 visual token dropout training"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "47b2479a-0c8e-4d0f-b752-d0b0a2029c61",
+  "isSidechain": false,
+  "requestId": "req_011Caz1soGDdWjW1tqnZxSEy",
+  "type": "assistant",
+  "uuid": "88613873-5614-4b0f-b378-d1839f326904",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016imgTbcQfC3UVJRh2vJt1p",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1058,
+      "cache_read_input_tokens": 43191,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1058,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 43191,
+          "cache_creation_input_tokens": 1058,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1058
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-13T05:28:37.451Z_
+
+<details><summary>↩ Tool result · `toolu_01THmdpLN3rvunVRsK1CsCAP`</summary>
+
+```text
+Web search results for query: "HiDrop hierarchical token reduction VLM ICLR 2026 visual token dropout training"
+
+Links: [{"title":"GitHub - ZLKong/Awesome-Collection-Token-Reduction: A collection of token reduction (token pruning, merging, clustering, etc.) techniques for ML/AI · GitHub","url":"https://github.com/ZLKong/Awesome-Collection-Token-Reduction"},{"title":"GitHub - EIT-NLP/HiDrop · GitHub","url":"https://github.com/EIT-NLP/HiDrop"},{"title":"[2602.23699] HiDrop: Hierarchical Vision Token Reduction in MLLMs via Late Injection, Concave Pyramid Pruning, and Early Exit","url":"https://arxiv.org/abs/2602.23699"},{"title":"HiDrop: Hierarchical Vision Token Reduction in MLLMs via Late Injection, Concave Pyramid Pruning, and Early Exit","url":"https://arxiv.org/html/2602.23699"},{"title":"ICLR Poster HiDivDrop: Vision Token Reduction in MLLMs via Late Injection and Differentiable Top-K","url":"https://iclr.cc/virtual/2026/poster/10011723"},{"title":"HiDrop: Hierarchical Vision Token Reduction in MLLMs via ...","url":"https://openreview.net/forum?id=2baJBgfr9S"},{"title":"GitHub - daixiangzi/Awesome-Token-Compress: A paper list of some recent works about Token Compress for Vit and VLM · GitHub","url":"https://github.com/daixiangzi/Awesome-Token-Compress"},{"title":"HiPrune: Training-Free Visual Token Pruning via Hierarchical Attention in Vision-Language Models","url":"https://arxiv.org/html/2508.00553v2"},{"title":"Rethinking Visual Token Reduction in LVLMs under Cross-modal Misalignment","url":"https://arxiv.org/html/2506.22283v1"},{"title":"Published as a conference paper at ICLR 2026","url":"https://openreview.net/pdf/e94a30dd71e7b6a0a1a27082eb13b96f3442bf87.pdf"}]
+
+Based on the web search results, I found comprehensive information about HiDrop and related work on hierarchical token reduction in vision-language models.
+
+## HiDrop: Hierarchical Vision Token Reduction
+
+HiDrop was accepted by ICLR 2026. The framework aligns token pruning with the true hierarchical function of MLLM layers, featuring Late Injection, which bypasses passive shallow layers to introduce visual tokens exactly where active fusion begins, and Concave Pyramid Pruning with an Early Exit mechanism to dynamically adjust pruning rates across middle and deep layers.
+
+### Key Insights on MLLM Hierarchical Processing
+
+Shallow layers act as passive propagators, middle layers as sparse fusion hubs, and deep layers as language-dominant reasoning modules.
+
+### Performance Results
+
+HiDrop compresses about 90% visual tokens while matching the original performance and accelerating training by 1.72 times. The method incorporates persistent positional encoding, FlashAttention-compatible token selection, and parallel decoupling of vision computation to eliminate hidden overhead associated with dynamic token reduction.
+
+### Implementation Details
+
+Code, checkpoints, and documentation were released on April 5, 2026. The paper is available on arXiv (2602.23699), and the project builds upon the LLaVA, FastV, and PyramidDrop libraries.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "88613873-5614-4b0f-b378-d1839f326904",
+  "isSidechain": false,
+  "promptId": "3517e58c-d034-40ce-96a3-5e0696a9a8c6",
+  "type": "user",
+  "uuid": "20625999-a7d4-4961-a95e-50863d6a92a2",
+  "toolUseResult": {
+    "query": "HiDrop hierarchical token reduction VLM ICLR 2026 visual token dropout training",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01UimotHNXGpo2E7HrBZWBwv",
+        "content": [
+          {
+            "title": "GitHub - ZLKong/Awesome-Collection-Token-Reduction: A collection of token reduction (token pruning, merging, clustering, etc.) techniques for ML/AI · GitHub",
+            "url": "https://github.com/ZLKong/Awesome-Collection-Token-Reduction"
+          },
+          {
+            "title": "GitHub - EIT-NLP/HiDrop · GitHub",
+            "url": "https://github.com/EIT-NLP/HiDrop"
+          },
+          {
+            "title": "[2602.23699] HiDrop: Hierarchical Vision Token Reduction in MLLMs via Late Injection, Concave Pyramid Pruning, and Early Exit",
+            "url": "https://arxiv.org/abs/2602.23699"
+          },
+          {
+            "title": "HiDrop: Hierarchical Vision Token Reduction in MLLMs via Late Injection, Concave Pyramid Pruning, and Early Exit",
+            "url": "https://arxiv.org/html/2602.23699"
+          },
+          {
+            "title": "ICLR Poster HiDivDrop: Vision Token Reduction in MLLMs via Late Injection and Differentiable Top-K",
+            "url": "https://iclr.cc/virtual/2026/poster/10011723"
+          },
+          {
+            "title": "HiDrop: Hierarchical Vision Token Reduction in MLLMs via ...",
+            "url": "https://openreview.net/forum?id=2baJBgfr9S"
+          },
+          {
+            "title": "GitHub - daixiangzi/Awesome-Token-Compress: A paper list of some recent works about Token Compress for Vit and VLM · GitHub",
+            "url": "https://github.com/daixiangzi/Awesome-Token-Compress"
+          },
+          {
+            "title": "HiPrune: Training-Free Visual Token Pruning via Hierarchical Attention in Vision-Language Models",
+            "url": "https://arxiv.org/html/2508.00553v2"
+          },
+          {
+            "title": "Rethinking Visual Token Reduction in LVLMs under Cross-modal Misalignment",
+            "url": "https://arxiv.org/html/2506.22283v1"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://openreview.net/pdf/e94a30dd71e7b6a0a1a27082eb13b96f3442bf87.pdf"
+          }
+        ]
+      },
+      "Based on the web search results, I found comprehensive information about HiDrop and related work on hierarchical token reduction in vision-language models.\n\n## HiDrop: Hierarchical Vision Token Reduction\n\nHiDrop was accepted by ICLR 2026. The framework aligns token pruning with the true hierarchical function of MLLM layers, featuring Late Injection, which bypasses passive shallow layers to introduce visual tokens exactly where active fusion begins, and Concave Pyramid Pruning with an Early Exit mechanism to dynamically adjust pruning rates across middle and deep layers.\n\n### Key Insights on MLLM Hierarchical Processing\n\nShallow layers act as passive propagators, middle layers as sparse fusion hubs, and deep layers as language-dominant reasoning modules.\n\n### Performance Results\n\nHiDrop compresses about 90% visual tokens while matching the original performance and accelerating training by 1.72 times. The method incorporates persistent positional encoding, FlashAttention-compatible token selection, and parallel decoupling of vision computation to eliminate hidden overhead associated with dynamic token reduction.\n\n### Implementation Details\n\nCode, checkpoints, and documentation were released on April 5, 2026. The paper is available on arXiv (2602.23699), and the project builds upon the LLaVA, FastV, and PyramidDrop libraries."
+    ],
+    "durationSeconds": 7.086903699999995
+  },
+  "sourceToolAssistantUUID": "88613873-5614-4b0f-b378-d1839f326904",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66 · 2026-05-13T05:28:40.602Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01ASNT9NURoNabJfVyiDKHDV`</summary>
+
+```json
+{
+  "query": "Zhang Bottou \"fine-tuning with very large dropout\" ICLR 2025 formal proof OOD generalization redundant features implicit sparsity bias"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "20625999-a7d4-4961-a95e-50863d6a92a2",
+  "isSidechain": false,
+  "requestId": "req_011Caz1tVF2cSaHC7h6KM8k7",
+  "type": "assistant",
+  "uuid": "ffead796-bf9b-40e8-af49-483d80cb6307",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LzhkVP67TvnWHdmCbGHazq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 982,
+      "cache_read_input_tokens": 44249,
+      "output_tokens": 88,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 982,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 88,
+          "cache_read_input_tokens": 44249,
+          "cache_creation_input_tokens": 982,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 982
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-13T05:28:48.105Z_
+
+<details><summary>↩ Tool result · `toolu_01ASNT9NURoNabJfVyiDKHDV`</summary>
+
+```text
+Web search results for query: "Zhang Bottou "fine-tuning with very large dropout" ICLR 2025 formal proof OOD generalization redundant features implicit sparsity bias"
+
+Links: [{"title":"fine-tuning with very large dropout | OpenReview","url":"https://openreview.net/forum?id=Fvfs0HPuKl"},{"title":"Finetuning with Very-large Dropout Jianyu Zhang 1 2 Léon Bottou 2 1 Abstract","url":"https://arxiv.org/pdf/2403.00946"},{"title":"[2403.00946] Fine-tuning with Very Large Dropout","url":"https://arxiv.org/abs/2403.00946"},{"title":"Published as a conference paper at ICLR 2025","url":"https://openreview.net/pdf?id=4wk2eOKGvh"},{"title":"Fine-tuning with Very Large Dropout","url":"https://arxiv.org/html/2403.00946v1"},{"title":"Finetuning with Very-large Dropout","url":"https://arxiv.org/html/2403.00946v3"},{"title":"preprint FINE-TUNING WITH VERY LARGE DROPOUT Jianyu Zhang1,2 Léon Bottou2,1","url":"https://www.arxiv.org/pdf/2403.00946v2"},{"title":"ICLR 2025 Booster: Tackling Harmful Fine-tuning for Large Language Models via Attenuating Harmful Perturbation Oral","url":"https://iclr.cc/virtual/2025/oral/31754"},{"title":"FINE-TUNING WITH RESERVED MAJORITY FOR NOISE ...","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/4b6898c70d5b328deaf2216aefd8f77a-Paper-Conference.pdf"},{"title":"Published as a conference paper at ICLR 2025","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/dcf88cbc8d01ce7309b83d0ebaeb9d29-Paper-Conference.pdf"}]
+
+I found the paper you're looking for! Here's what I found about the Zhang and Bottou work on fine-tuning with very large dropout:
+
+## Paper Overview
+
+The paper is titled "Fine-tuning with Very Large Dropout" by Jianyu Zhang and Léon Bottou. It was submitted on March 1, 2024, and the latest version was revised on February 27, 2025.
+
+## Key Concepts
+
+The paper addresses out-of-distribution (OOD) generalization through the lens of redundant features and implicit sparsity bias:
+
+- The work argues that scenarios involving multiple data distributions are best served by representations that are richer than those obtained by regularizing for the best in-distribution performance, and richer than those obtained under the influence of the implicit sparsity bias of common stochastic gradient procedures.
+
+- The paper makes the point that scenarios involving multiple distributions are best served by "richer representations" that contain redundant features—that is, features that do not improve the model performance on the training distribution.
+
+## Main Contribution
+
+The paper investigates the use of very high dropout rates instead of ensembles to obtain such rich representations, finding that although training a deep network from scratch using such dropout rates is virtually impossible, fine-tuning a large pre-trained model under such conditions is not only possible.
+
+The authors fine-tune using very large dropout levels, randomly masking above 90% of the units in the representation layer, and find that this simple approach exceeds the performance of both ensemble and weight-averaging methods.
+
+The paper is available on arXiv and was submitted to ICLR 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ffead796-bf9b-40e8-af49-483d80cb6307",
+  "isSidechain": false,
+  "promptId": "3517e58c-d034-40ce-96a3-5e0696a9a8c6",
+  "type": "user",
+  "uuid": "8f0fd9ad-68f0-4868-92d5-913921e4e7d1",
+  "toolUseResult": {
+    "query": "Zhang Bottou \"fine-tuning with very large dropout\" ICLR 2025 formal proof OOD generalization redundant features implicit sparsity bias",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01PdFPYwx6Gop6HgwGNubUin",
+        "content": [
+          {
+            "title": "fine-tuning with very large dropout | OpenReview",
+            "url": "https://openreview.net/forum?id=Fvfs0HPuKl"
+          },
+          {
+            "title": "Finetuning with Very-large Dropout Jianyu Zhang 1 2 Léon Bottou 2 1 Abstract",
+            "url": "https://arxiv.org/pdf/2403.00946"
+          },
+          {
+            "title": "[2403.00946] Fine-tuning with Very Large Dropout",
+            "url": "https://arxiv.org/abs/2403.00946"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025",
+            "url": "https://openreview.net/pdf?id=4wk2eOKGvh"
+          },
+          {
+            "title": "Fine-tuning with Very Large Dropout",
+            "url": "https://arxiv.org/html/2403.00946v1"
+          },
+          {
+            "title": "Finetuning with Very-large Dropout",
+            "url": "https://arxiv.org/html/2403.00946v3"
+          },
+          {
+            "title": "preprint FINE-TUNING WITH VERY LARGE DROPOUT Jianyu Zhang1,2 Léon Bottou2,1",
+            "url": "https://www.arxiv.org/pdf/2403.00946v2"
+          },
+          {
+            "title": "ICLR 2025 Booster: Tackling Harmful Fine-tuning for Large Language Models via Attenuating Harmful Perturbation Oral",
+            "url": "https://iclr.cc/virtual/2025/oral/31754"
+          },
+          {
+            "title": "FINE-TUNING WITH RESERVED MAJORITY FOR NOISE ...",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/4b6898c70d5b328deaf2216aefd8f77a-Paper-Conference.pdf"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/dcf88cbc8d01ce7309b83d0ebaeb9d29-Paper-Conference.pdf"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here's what I found about the Zhang and Bottou work on fine-tuning with very large dropout:\n\n## Paper Overview\n\nThe paper is titled \"Fine-tuning with Very Large Dropout\" by Jianyu Zhang and Léon Bottou. It was submitted on March 1, 2024, and the latest version was revised on February 27, 2025.\n\n## Key Concepts\n\nThe paper addresses out-of-distribution (OOD) generalization through the lens of redundant features and implicit sparsity bias:\n\n- The work argues that scenarios involving multiple data distributions are best served by representations that are richer than those obtained by regularizing for the best in-distribution performance, and richer than those obtained under the influence of the implicit sparsity bias of common stochastic gradient procedures.\n\n- The paper makes the point that scenarios involving multiple distributions are best served by \"richer representations\" that contain redundant features—that is, features that do not improve the model performance on the training distribution.\n\n## Main Contribution\n\nThe paper investigates the use of very high dropout rates instead of ensembles to obtain such rich representations, finding that although training a deep network from scratch using such dropout rates is virtually impossible, fine-tuning a large pre-trained model under such conditions is not only possible.\n\nThe authors fine-tune using very large dropout levels, randomly masking above 90% of the units in the representation layer, and find that this simple approach exceeds the performance of both ensemble and weight-averaging methods.\n\nThe paper is available on arXiv and was submitted to ICLR 2025."
+    ],
+    "durationSeconds": 7.498038228000019
+  },
+  "sourceToolAssistantUUID": "ffead796-bf9b-40e8-af49-483d80cb6307",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68 · 2026-05-13T05:28:54.409Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01Vz1Q28wEkehue8JtmRLTDZ`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2403.00946",
+  "prompt": "Extract the key theoretical results: (1) What formal framework do they use — PAC-Bayes, information theory, or other? (2) How do they formally define \"implicit sparsity bias\"? (3) Do they have a theorem relating dropout rate to OOD generalization? (4) What is their key mathematical result that could be extended to visual token space? Focus on theoretical content, not experiments."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8f0fd9ad-68f0-4868-92d5-913921e4e7d1",
+  "isSidechain": false,
+  "requestId": "req_011Caz1uGU7JpGS2SL1xewcM",
+  "type": "assistant",
+  "uuid": "25aeb580-9c35-4eed-a5fc-b02b493b0865",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WbWDiY9JpJp6Bdv68U2hkb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1027,
+      "cache_read_input_tokens": 45231,
+      "output_tokens": 170,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1027,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 170,
+          "cache_read_input_tokens": 45231,
+          "cache_creation_input_tokens": 1027,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1027
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-13T05:28:59.152Z_
+
+<details><summary>↩ Tool result · `toolu_01Vz1Q28wEkehue8JtmRLTDZ`</summary>
+
+```text
+# Theoretical Results Analysis: Limited Information Available
+
+Based on the provided arXiv page content, I cannot identify the formal theoretical framework or mathematical results you're asking about. The page contains only:
+
+- **Abstract summary**: States that "very high dropout rates" enable "rich representations" superior to ensembles and weight averaging
+- **General claim**: References "the intrinsically linear nature of fine-tuning a large network using a comparatively small dataset"
+- **No formal definitions**: The abstract mentions addressing "multiple data distributions" but provides no mathematical formalization
+
+## Missing Information
+
+The webpage does not contain:
+1. Specific theoretical frameworks (PAC-Bayes, information theory references)
+2. Formal definition of "implicit sparsity bias"
+3. Theorems relating dropout rates to OOD generalization
+4. Mathematical proofs or key results
+
+## Recommendation
+
+To extract theoretical content, you would need to access the full PDF or HTML paper itself (linked as "/pdf/2403.00946"), not just the abstract page. The abstract emphasizes empirical findings ("outperforms weight-averaging and ensemble") rather than theoretical contributions.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "25aeb580-9c35-4eed-a5fc-b02b493b0865",
+  "isSidechain": false,
+  "promptId": "3517e58c-d034-40ce-96a3-5e0696a9a8c6",
+  "type": "user",
+  "uuid": "9010e07a-bd98-4365-ad95-99e73a393c6a",
+  "toolUseResult": {
+    "bytes": 47055,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Theoretical Results Analysis: Limited Information Available\n\nBased on the provided arXiv page content, I cannot identify the formal theoretical framework or mathematical results you're asking about. The page contains only:\n\n- **Abstract summary**: States that \"very high dropout rates\" enable \"rich representations\" superior to ensembles and weight averaging\n- **General claim**: References \"the intrinsically linear nature of fine-tuning a large network using a comparatively small dataset\"\n- **No formal definitions**: The abstract mentions addressing \"multiple data distributions\" but provides no mathematical formalization\n\n## Missing Information\n\nThe webpage does not contain:\n1. Specific theoretical frameworks (PAC-Bayes, information theory references)\n2. Formal definition of \"implicit sparsity bias\"\n3. Theorems relating dropout rates to OOD generalization\n4. Mathematical proofs or key results\n\n## Recommendation\n\nTo extract theoretical content, you would need to access the full PDF or HTML paper itself (linked as \"/pdf/2403.00946\"), not just the abstract page. The abstract emphasizes empirical findings (\"outperforms weight-averaging and ensemble\") rather than theoretical contributions.",
+    "durationMs": 4739,
+    "url": "https://arxiv.org/abs/2403.00946"
+  },
+  "sourceToolAssistantUUID": "25aeb580-9c35-4eed-a5fc-b02b493b0865",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70 · 2026-05-13T05:29:04.945Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_011ir4eF5F5QN3Acuj8Egyig`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2403.00946v3",
+  "prompt": "Extract the key theoretical framework and formal results: (1) How do they formalize \"implicit sparsity bias\" of gradient descent? (2) What mathematical framework (PAC-Bayes, IB, etc.) do they use? (3) Any theorems or propositions about dropout rate vs OOD performance? (4) How do they formalize \"rich\" vs \"sparse\" representations? (5) The \"intrinsically linear\" finetuning result - what does this mean formally? I need the mathematical details to build upon for a formal extension to visual token masking."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9010e07a-bd98-4365-ad95-99e73a393c6a",
+  "isSidechain": false,
+  "requestId": "req_011Caz1v5iV314wFTzqYvkAt",
+  "type": "assistant",
+  "uuid": "5d6ca76a-606e-4b65-85b3-6e646d37abb8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013aifgJVbDK1hsg85xV3PPT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 428,
+      "cache_read_input_tokens": 46258,
+      "output_tokens": 209,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 428,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 209,
+          "cache_read_input_tokens": 46258,
+          "cache_creation_input_tokens": 428,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 428
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-13T05:29:13.560Z_
+
+<details><summary>↩ Tool result · `toolu_011ir4eF5F5QN3Acuj8Egyig`</summary>
+
+```text
+# Theoretical Framework Analysis: "Finetuning with Very-large Dropout"
+
+## 1. Formalization of Implicit Sparsity Bias
+
+The paper does **not** provide a formal mathematical treatment of sparsity bias. Instead, it references prior work:
+
+> "implicit sparsity bias of stochastic gradient algorithms"
+
+citing Andriushchenko et al. (2023) and Blanc et al. (2020). The paper explains the phenomenon intuitively through the "gradient starving" concept: features survive optimization only when they provide incremental training error reduction relative to existing features. This is conceptual rather than formally axiomatized.
+
+## 2. Mathematical Framework Used
+
+The paper employs **no formal probabilistic framework** (no PAC-Bayes, Information Bottleneck, etc.). It operates primarily through:
+- **Empirical evaluation** on domain generalization benchmarks
+- **Decomposition of residual networks** using the Veit et al. (2016) formulation showing skip connections expose features linearly
+
+## 3. Theorems and Propositions
+
+**There are no formal theorems about dropout rate vs OOD performance.** The paper provides:
+- Empirical Table 4 showing dropout rates ≈90% perform consistently well
+- Observation that "smooth relationship indicates robustness"
+- No convergence rates, generalization bounds, or theoretical characterization
+
+## 4. Formalization of "Rich" vs "Sparse" Representations
+
+The paper distinguishes features categorically but **not mathematically**:
+
+> "features that do not improve the model performance on the training distribution, but could prove helpful when the distribution changes"
+
+They label these as type (b) "weakly relevant" versus type (a) "strongly relevant" features—a taxonomy, not a formal measure. Richness increases with pre-training augmentation (ResNet #1 vs #2) but lacks a quantitative definition.
+
+## 5. "Intrinsically Linear" Fine-tuning
+
+This refers to empirical observations from cited work (Wortsman et al. 2022a; Ramé et al. 2022b):
+
+> "fine-tuned networks remain 'linearly connected'"
+
+The mechanism is architectural: residual skip connections allow the final layer to access intermediate representations additively (Equation 1), enabling near-linear optimization in weight space. However, **no formal analysis** proves when fine-tuning is linear or provides conditions under which this approximation holds.
+
+## Critical Gap for Your Extension
+
+**The paper provides zero formal scaffolding for extending to visual token masking.** To formalize such an extension, you would need to independently develop:
+- A measure quantifying representation richness
+- Theoretical conditions under which masking (vs dropout) preserves exploitable features
+- Formal characterization of which pre-trained representations enable linear fine-tuning behavior
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5d6ca76a-606e-4b65-85b3-6e646d37abb8",
+  "isSidechain": false,
+  "promptId": "3517e58c-d034-40ce-96a3-5e0696a9a8c6",
+  "type": "user",
+  "uuid": "cd7f8e1d-ebc9-4be4-b58f-01f26019080b",
+  "toolUseResult": {
+    "bytes": 266898,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Theoretical Framework Analysis: \"Finetuning with Very-large Dropout\"\n\n## 1. Formalization of Implicit Sparsity Bias\n\nThe paper does **not** provide a formal mathematical treatment of sparsity bias. Instead, it references prior work:\n\n> \"implicit sparsity bias of stochastic gradient algorithms\"\n\nciting Andriushchenko et al. (2023) and Blanc et al. (2020). The paper explains the phenomenon intuitively through the \"gradient starving\" concept: features survive optimization only when they provide incremental training error reduction relative to existing features. This is conceptual rather than formally axiomatized.\n\n## 2. Mathematical Framework Used\n\nThe paper employs **no formal probabilistic framework** (no PAC-Bayes, Information Bottleneck, etc.). It operates primarily through:\n- **Empirical evaluation** on domain generalization benchmarks\n- **Decomposition of residual networks** using the Veit et al. (2016) formulation showing skip connections expose features linearly\n\n## 3. Theorems and Propositions\n\n**There are no formal theorems about dropout rate vs OOD performance.** The paper provides:\n- Empirical Table 4 showing dropout rates ≈90% perform consistently well\n- Observation that \"smooth relationship indicates robustness\"\n- No convergence rates, generalization bounds, or theoretical characterization\n\n## 4. Formalization of \"Rich\" vs \"Sparse\" Representations\n\nThe paper distinguishes features categorically but **not mathematically**:\n\n> \"features that do not improve the model performance on the training distribution, but could prove helpful when the distribution changes\"\n\nThey label these as type (b) \"weakly relevant\" versus type (a) \"strongly relevant\" features—a taxonomy, not a formal measure. Richness increases with pre-training augmentation (ResNet #1 vs #2) but lacks a quantitative definition.\n\n## 5. \"Intrinsically Linear\" Fine-tuning\n\nThis refers to empirical observations from cited work (Wortsman et al. 2022a; Ramé et al. 2022b):\n\n> \"fine-tuned networks remain 'linearly connected'\"\n\nThe mechanism is architectural: residual skip connections allow the final layer to access intermediate representations additively (Equation 1), enabling near-linear optimization in weight space. However, **no formal analysis** proves when fine-tuning is linear or provides conditions under which this approximation holds.\n\n## Critical Gap for Your Extension\n\n**The paper provides zero formal scaffolding for extending to visual token masking.** To formalize such an extension, you would need to independently develop:\n- A measure quantifying representation richness\n- Theoretical conditions under which masking (vs dropout) preserves exploitable features\n- Formal characterization of which pre-trained representations enable linear fine-tuning behavior",
+    "durationMs": 8612,
+    "url": "https://arxiv.org/html/2403.00946v3"
+  },
+  "sourceToolAssistantUUID": "5d6ca76a-606e-4b65-85b3-6e646d37abb8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 72 · 2026-05-13T05:29:13.568Z_
+
+```json
+{
+  "parentUuid": "cd7f8e1d-ebc9-4be4-b58f-01f26019080b",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "541cfb0d-0fb4-4385-b5bc-2c8895ea7800",
+  "timestamp": "2026-05-13T05:29:13.568Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-13T05:29:15.817Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DZV8biQNXXY5qoRbPXfs9s`</summary>
+
+```json
+{
+  "query": "maximum mean discrepancy MMD visual feature diversity measure distribution shift formalization 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "541cfb0d-0fb4-4385-b5bc-2c8895ea7800",
+  "isSidechain": false,
+  "requestId": "req_011Caz1w9HZhSzoL1c3JZgJp",
+  "type": "assistant",
+  "uuid": "f550c376-92e7-4eba-b14e-6d717b92a47b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JJ9Ay8GPcZgwZ1w81nLXFH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 969,
+      "cache_read_input_tokens": 46686,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 969,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 46686,
+          "cache_creation_input_tokens": 969,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 969
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-13T05:29:23.834Z_
+
+<details><summary>↩ Tool result · `toolu_01DZV8biQNXXY5qoRbPXfs9s`</summary>
+
+```text
+Web search results for query: "maximum mean discrepancy MMD visual feature diversity measure distribution shift formalization 2024 2025"
+
+Links: [{"title":"Maximum Mean Discrepancy (MMD)","url":"https://www.emergentmind.com/topics/maximum-mean-discrepancy-mmd"},{"title":"[2111.10344] Maximum Mean Discrepancy for Generalization in the Presence of Distribution and Missingness Shift","url":"https://arxiv.org/abs/2111.10344"},{"title":"Maximum Mean Discrepancy (MMD) – Your Gateway to Data Mastery","url":"https://insightful-data-lab.com/2025/08/23/maximum-mean-discrepancy-mmd/"},{"title":"Rethinking Maximum Mean Discrepancy for Visual Domain Adaptation - PubMed","url":"https://pubmed.ncbi.nlm.nih.gov/34242174/"},{"title":"Maximum Mean Discrepancy (MMD) in Machine Learning - Mixed Random Variables","url":"https://www.onurtunali.com/ml/2019/03/08/maximum-mean-discrepancy-in-machine-learning.html"},{"title":"Maximum Mean Discrepancy Uri Shaham June 29, 2025 1 Mean Embedding 1.1","url":"https://u.cs.biu.ac.il/~shahamu/lecture%20notes%20pdf%20files/MMD.pdf"},{"title":"Maximum Mean Discrepancy: The Most Underrated Distance Measure in Modern Machine Learning | by Bhoomika M | Medium","url":"https://medium.com/@bhm22ainds/maximum-mean-discrepancy-the-most-underrated-distance-measure-in-modern-machine-learning-70cba43837e3"},{"title":"Maximum Mean Discrepancy Split Criterion","url":"https://www.emergentmind.com/topics/maximum-mean-discrepancy-mmd-split-criterion"},{"title":"Maximum Mean Discrepancy for Generalization in the Presence of Distribution and Missingness Shift | OpenReview","url":"https://openreview.net/forum?id=D8njK_Ix5dJ"},{"title":"Quantization Of Probability Measures In Maximum Mean Discrepancy Distance","url":"https://arxiv.org/pdf/2503.11868"}]
+
+Based on the web search results, here's information about Maximum Mean Discrepancy (MMD) and its applications to visual feature diversity and distribution shift:
+
+## MMD Definition and Fundamentals
+
+MMD is a kernel-based distance between two distributions, used as a statistical test to measure the difference between two probability distributions P and Q using samples. MMD operationalizes this by embedding data points into a reproducing kernel Hilbert space (RKHS) and comparing the mean embeddings of the two distributions—if the means differ, the distributions are different.
+
+## Distribution Shift and Applications
+
+Distribution shift underlies issues ranging from model drift and unfair predictions to catastrophic failures in generative models. If MMD between two distributions is high, you have covariate drift, meaning the model may need retraining.
+
+One approach addresses the covariate shift problem by minimizing Maximum Mean Discrepancy statistics between the training and test sets in either feature input space, feature representation space, or both.
+
+## Visual Domain Adaptation
+
+Existing domain adaptation approaches often try to reduce distribution difference between source and target domains and respect domain-specific discriminative structures using distribution measures like maximum mean discrepancy and discriminative distances.
+
+## Recent Methodological Advances (2024-2025)
+
+Recent major developments formalize both split-maximization and recursive clustering approaches based on the maximization of MMD and its weighted variants, delivering theoretically-grounded algorithms with empirical and oracle guarantees. Advances such as signature-MMD extend MMD to path space using signature kernels for comparing distributions of stochastic processes.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f550c376-92e7-4eba-b14e-6d717b92a47b",
+  "isSidechain": false,
+  "promptId": "3517e58c-d034-40ce-96a3-5e0696a9a8c6",
+  "type": "user",
+  "uuid": "c93b8d22-9357-4e68-b473-b561e8d1b5ec",
+  "toolUseResult": {
+    "query": "maximum mean discrepancy MMD visual feature diversity measure distribution shift formalization 2024 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019LaxsA75DKNMMjyC5koxUT",
+        "content": [
+          {
+            "title": "Maximum Mean Discrepancy (MMD)",
+            "url": "https://www.emergentmind.com/topics/maximum-mean-discrepancy-mmd"
+          },
+          {
+            "title": "[2111.10344] Maximum Mean Discrepancy for Generalization in the Presence of Distribution and Missingness Shift",
+            "url": "https://arxiv.org/abs/2111.10344"
+          },
+          {
+            "title": "Maximum Mean Discrepancy (MMD) – Your Gateway to Data Mastery",
+            "url": "https://insightful-data-lab.com/2025/08/23/maximum-mean-discrepancy-mmd/"
+          },
+          {
+            "title": "Rethinking Maximum Mean Discrepancy for Visual Domain Adaptation - PubMed",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/34242174/"
+          },
+          {
+            "title": "Maximum Mean Discrepancy (MMD) in Machine Learning - Mixed Random Variables",
+            "url": "https://www.onurtunali.com/ml/2019/03/08/maximum-mean-discrepancy-in-machine-learning.html"
+          },
+          {
+            "title": "Maximum Mean Discrepancy Uri Shaham June 29, 2025 1 Mean Embedding 1.1",
+            "url": "https://u.cs.biu.ac.il/~shahamu/lecture%20notes%20pdf%20files/MMD.pdf"
+          },
+          {
+            "title": "Maximum Mean Discrepancy: The Most Underrated Distance Measure in Modern Machine Learning | by Bhoomika M | Medium",
+            "url": "https://medium.com/@bhm22ainds/maximum-mean-discrepancy-the-most-underrated-distance-measure-in-modern-machine-learning-70cba43837e3"
+          },
+          {
+            "title": "Maximum Mean Discrepancy Split Criterion",
+            "url": "https://www.emergentmind.com/topics/maximum-mean-discrepancy-mmd-split-criterion"
+          },
+          {
+            "title": "Maximum Mean Discrepancy for Generalization in the Presence of Distribution and Missingness Shift | OpenReview",
+            "url": "https://openreview.net/forum?id=D8njK_Ix5dJ"
+          },
+          {
+            "title": "Quantization Of Probability Measures In Maximum Mean Discrepancy Distance",
+            "url": "https://arxiv.org/pdf/2503.11868"
+          }
+        ]
+      },
+      "Based on the web search results, here's information about Maximum Mean Discrepancy (MMD) and its applications to visual feature diversity and distribution shift:\n\n## MMD Definition and Fundamentals\n\nMMD is a kernel-based distance between two distributions, used as a statistical test to measure the difference between two probability distributions P and Q using samples. MMD operationalizes this by embedding data points into a reproducing kernel Hilbert space (RKHS) and comparing the mean embeddings of the two distributions—if the means differ, the distributions are different.\n\n## Distribution Shift and Applications\n\nDistribution shift underlies issues ranging from model drift and unfair predictions to catastrophic failures in generative models. If MMD between two distributions is high, you have covariate drift, meaning the model may need retraining.\n\nOne approach addresses the covariate shift problem by minimizing Maximum Mean Discrepancy statistics between the training and test sets in either feature input space, feature representation space, or both.\n\n## Visual Domain Adaptation\n\nExisting domain adaptation approaches often try to reduce distribution difference between source and target domains and respect domain-specific discriminative structures using distribution measures like maximum mean discrepancy and discriminative distances.\n\n## Recent Methodological Advances (2024-2025)\n\nRecent major developments formalize both split-maximization and recursive clustering approaches based on the maximization of MMD and its weighted variants, delivering theoretically-grounded algorithms with empirical and oracle guarantees. Advances such as signature-MMD extend MMD to path space using signature kernels for comparing distributions of stochastic processes."
+    ],
+    "durationSeconds": 8.010637334999977
+  },
+  "sourceToolAssistantUUID": "f550c376-92e7-4eba-b14e-6d717b92a47b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 75_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-13 (UTC).**  ## Original idea {   \"title\": \"Counterfactual Token Masking: Training-Time Visual Token Regularizatio…",
+  "leafUuid": "c93b8d22-9357-4e68-b473-b561e8d1b5ec",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 76_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise CTM with TokenFLEX differentiation and formalized diversity framework",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09"
+}
+```
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-13T05:29:27.002Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01BGFrU416teoGjVBBe1dohR`</summary>
+
+```json
+{
+  "query": "token reduction generalization beyond efficiency visual language model counterfactual arXiv 2505.18227"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c93b8d22-9357-4e68-b473-b561e8d1b5ec",
+  "isSidechain": false,
+  "requestId": "req_011Caz1wuAnSyCwfx4sQTsTG",
+  "type": "assistant",
+  "uuid": "9f2e9f0c-0bfa-4a16-a232-663b076e46a6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017En2uJCetW6UHZn5GSMM4K",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1016,
+      "cache_read_input_tokens": 47655,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1016,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 47655,
+          "cache_creation_input_tokens": 1016,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1016
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-13T05:29:32.759Z_
+
+<details><summary>↩ Tool result · `toolu_01BGFrU416teoGjVBBe1dohR`</summary>
+
+```text
+Web search results for query: "token reduction generalization beyond efficiency visual language model counterfactual arXiv 2505.18227"
+
+Links: [{"title":"[2505.18227] Token Reduction Should Go Beyond Efficiency in Generative Models -- From Vision, Language to Multimodality","url":"https://arxiv.org/abs/2505.18227"},{"title":"Token Reduction Should Go Beyond Efficiency in Generative Models – From Vision, Language to Multimodality","url":"https://arxiv.org/html/2505.18227"},{"title":"Computer Science May 2025","url":"https://arxiv.org/list/cs/2025-05?skip=9100"},{"title":"[2305.18227] Online Dynamic Acknowledgement with Learned Predictions","url":"https://arxiv.org/abs/2305.18227"},{"title":"[2506.18227] Exact Conditional Score-Guided Generative Modeling for Amortized Inference in Uncertainty Quantification","url":"https://arxiv.org/abs/2506.18227"},{"title":"Machine Learning May 2025","url":"https://arxiv.org/list/cs.LG/2025-05?skip=1825&show=2000"},{"title":"Arxiv","url":"https://arxiv.org/pdf/2305.18227"},{"title":"arXiv:2405.18227v1 [astro-ph.HE] 28 May 2024","url":"https://arxiv.org/pdf/2405.18227"},{"title":"Computation and Language May 2025","url":"https://www.arxiv.org/list/cs.CL/2025-05?skip=1025&show=2000"},{"title":"Artificial Intelligence May 2025","url":"https://www.arxiv.org/list/cs.AI/2025-05?skip=2975&show=50"}]
+
+I found the paper! Here's what I found about arXiv 2505.18227:
+
+**Title:** "Token Reduction Should Go Beyond Efficiency in Generative Models -- From Vision, Language to Multimodality"
+
+**Authors:** Zhenglun Kong, Yize Li, Fanhu Zeng, Lei Xin, Shvat Messica, Xue Lin, Pu Zhao, Manolis Kellis, Hao Tang, Marinka Zitnik
+
+**Main Argument:** The paper argues that token reduction should transcend its traditional efficiency-oriented role in the era of large generative models, and instead positions it as a fundamental principle in generative modeling, critically influencing both model architecture and broader applications.
+
+**Background:** Due to the quadratic computational complexity of transformer self-attention mechanisms, token reduction has primarily been used as an efficiency strategy, especially in single vision and language domains, where it helps balance computational costs, memory usage, and inference latency.
+
+The paper appears to take a comprehensive approach across vision, language, and multimodal domains, arguing for a broader understanding of token reduction beyond its traditional efficiency benefits.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9f2e9f0c-0bfa-4a16-a232-663b076e46a6",
+  "isSidechain": false,
+  "promptId": "3517e58c-d034-40ce-96a3-5e0696a9a8c6",
+  "type": "user",
+  "uuid": "dd3838e9-adcd-42b3-b63f-1c761278f85a",
+  "toolUseResult": {
+    "query": "token reduction generalization beyond efficiency visual language model counterfactual arXiv 2505.18227",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01XmDAg1aAeyHNjZ6BEvB439",
+        "content": [
+          {
+            "title": "[2505.18227] Token Reduction Should Go Beyond Efficiency in Generative Models -- From Vision, Language to Multimodality",
+            "url": "https://arxiv.org/abs/2505.18227"
+          },
+          {
+            "title": "Token Reduction Should Go Beyond Efficiency in Generative Models – From Vision, Language to Multimodality",
+            "url": "https://arxiv.org/html/2505.18227"
+          },
+          {
+            "title": "Computer Science May 2025",
+            "url": "https://arxiv.org/list/cs/2025-05?skip=9100"
+          },
+          {
+            "title": "[2305.18227] Online Dynamic Acknowledgement with Learned Predictions",
+            "url": "https://arxiv.org/abs/2305.18227"
+          },
+          {
+            "title": "[2506.18227] Exact Conditional Score-Guided Generative Modeling for Amortized Inference in Uncertainty Quantification",
+            "url": "https://arxiv.org/abs/2506.18227"
+          },
+          {
+            "title": "Machine Learning May 2025",
+            "url": "https://arxiv.org/list/cs.LG/2025-05?skip=1825&show=2000"
+          },
+          {
+            "title": "Arxiv",
+            "url": "https://arxiv.org/pdf/2305.18227"
+          },
+          {
+            "title": "arXiv:2405.18227v1 [astro-ph.HE] 28 May 2024",
+            "url": "https://arxiv.org/pdf/2405.18227"
+          },
+          {
+            "title": "Computation and Language May 2025",
+            "url": "https://www.arxiv.org/list/cs.CL/2025-05?skip=1025&show=2000"
+          },
+          {
+            "title": "Artificial Intelligence May 2025",
+            "url": "https://www.arxiv.org/list/cs.AI/2025-05?skip=2975&show=50"
+          }
+        ]
+      },
+      "I found the paper! Here's what I found about arXiv 2505.18227:\n\n**Title:** \"Token Reduction Should Go Beyond Efficiency in Generative Models -- From Vision, Language to Multimodality\"\n\n**Authors:** Zhenglun Kong, Yize Li, Fanhu Zeng, Lei Xin, Shvat Messica, Xue Lin, Pu Zhao, Manolis Kellis, Hao Tang, Marinka Zitnik\n\n**Main Argument:** The paper argues that token reduction should transcend its traditional efficiency-oriented role in the era of large generative models, and instead positions it as a fundamental principle in generative modeling, critically influencing both model architecture and broader applications.\n\n**Background:** Due to the quadratic computational complexity of transformer self-attention mechanisms, token reduction has primarily been used as an efficiency strategy, especially in single vision and language domains, where it helps balance computational costs, memory usage, and inference latency.\n\nThe paper appears to take a comprehensive approach across vision, language, and multimodal domains, arguing for a broader understanding of token reduction beyond its traditional efficiency benefits."
+    ],
+    "durationSeconds": 5.751567773999995
+  },
+  "sourceToolAssistantUUID": "9f2e9f0c-0bfa-4a16-a232-663b076e46a6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 79 · 2026-05-13T05:29:35.847Z_
+
+Now I have enough research. Let me also check whether there's any work specifically about training-time token masking for OOD generalization in robotics that I might be missing.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dd3838e9-adcd-42b3-b63f-1c761278f85a",
+  "isSidechain": false,
+  "requestId": "req_011Caz1xZLwtrzuTJnoDAFbk",
+  "type": "assistant",
+  "uuid": "89341e52-93a0-42b2-a47f-79e9c1b356da",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ADAfYgDQTswX1p7KZfqp4r",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 818,
+      "cache_read_input_tokens": 48671,
+      "output_tokens": 117,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 818,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 117,
+          "cache_read_input_tokens": 48671,
+          "cache_creation_input_tokens": 818,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 818
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 80 · 2026-05-13T05:29:36.569Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01BFWWT9AyAgk8EL5zNmbqK8`</summary>
+
+```json
+{
+  "query": "\"patch dropout\" OR \"token masking\" training-time generalization robotics manipulation OOD 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "89341e52-93a0-42b2-a47f-79e9c1b356da",
+  "isSidechain": false,
+  "requestId": "req_011Caz1xZLwtrzuTJnoDAFbk",
+  "type": "assistant",
+  "uuid": "046b4484-0719-496b-8103-2cc0308940a6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ADAfYgDQTswX1p7KZfqp4r",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 818,
+      "cache_read_input_tokens": 48671,
+      "output_tokens": 117,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 818,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 117,
+          "cache_read_input_tokens": 48671,
+          "cache_creation_input_tokens": 818,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 818
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 81 · 2026-05-13T05:29:44.919Z_
+
+<details><summary>↩ Tool result · `toolu_01BFWWT9AyAgk8EL5zNmbqK8`</summary>
+
+```text
+Web search results for query: ""patch dropout" OR "token masking" training-time generalization robotics manipulation OOD 2025 2026"
+
+Links: [{"title":"AGOD: Enhancing Multi-Agent Generalization via Attribution-Guided Observation Dropout | Proceedings of the 2025 7th International Conference on Distributed Artificial Intelligence","url":"https://dl.acm.org/doi/10.1145/3772429.3772435"},{"title":"Grounding Robot Generalization in Training Data via Retrieval-Augmented VLMs","url":"https://arxiv.org/html/2603.11426v1"},{"title":"GitHub - 52CV/WACV-2025-Papers · GitHub","url":"https://github.com/52CV/WACV-2025-Papers"},{"title":"Modality Dropout in Multimodal Learning","url":"https://www.emergentmind.com/topics/modality-dropout"},{"title":"Unlocking Out-of-Distribution Generalization in Transformers via Latent Space Reasoning | OpenReview","url":"https://openreview.net/forum?id=Wjgq9ISdP0"},{"title":"Domain-generalized person re-identification via refined neuron dropout and reciprocal-expansion re-ranking | Scientific Reports","url":"https://www.nature.com/articles/s41598-025-30664-4"},{"title":"Multi-Modal Perception with Vision, Language, and Touch for ...","url":"https://www2.eecs.berkeley.edu/Pubs/TechRpts/2025/EECS-2025-68.pdf"},{"title":"Generalization in Robotics Manipulation Workshop and Challenges","url":"https://cvpr.thecvf.com/virtual/2025/workshop/32315"},{"title":"BitVLA: 1-bit Vision-Language-Action Models for Robotics Manipulation","url":"https://arxiv.org/html/2506.07530v2"},{"title":"ICLR 2025 Schedule","url":"https://iclr.cc/virtual/2025/calendar"}]
+
+Based on the search results, I found several relevant papers and research on dropout and masking techniques for improving generalization in robotics and other domains:
+
+## Key Findings:
+
+**Dropout-Based Generalization in Multi-Agent Systems:**
+Research on AGOD (Attribution-Guided Observation Dropout) applies random masking to observations during training with uniform probability to introduce perturbations, while also proposing an attribution-guided dropout method that strategically discards low-contribution entities to guide models to be robust against information redundancy and non-critical observations.
+
+**Modality Dropout for Robustness:**
+Dropout regularizes the fusion space, acting as an implicit ensembling mechanism that widens the modal support of learned representations. Modality dropout is an effective mechanism for improving robustness to missing, corrupted, or noisy modality data in diverse tasks including action recognition.
+
+**Domain-Aware Neuron Dropout:**
+Refined neuron dropout (RND) extends domain-guided dropout via per-domain neuron-impact scores and temperature-controlled retention, suppressing domain-irrelevant activations while preserving domain-salient ones.
+
+**Robotics Manipulation Generalization:**
+While learning-based visual policies have achieved impressive results, they typically lack generalization to new scenes, objects and tasks. Recently, foundation models such as LLMs and VLMs have demonstrated strong abilities to generalize to new domains, offering promise for enhancing robots' generalization capabilities.
+
+BitVLA, a 1-bit vision-language-action model, exhibits competitive resilience across diverse OOD scenarios from unseen objects to visual distractors, effectively generalizing to novel situations.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "046b4484-0719-496b-8103-2cc0308940a6",
+  "isSidechain": false,
+  "promptId": "3517e58c-d034-40ce-96a3-5e0696a9a8c6",
+  "type": "user",
+  "uuid": "497a8541-8e08-4f00-baed-65531ad8e5c5",
+  "toolUseResult": {
+    "query": "\"patch dropout\" OR \"token masking\" training-time generalization robotics manipulation OOD 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018xemvPmAWFbuDxan9rpV4z",
+        "content": [
+          {
+            "title": "AGOD: Enhancing Multi-Agent Generalization via Attribution-Guided Observation Dropout | Proceedings of the 2025 7th International Conference on Distributed Artificial Intelligence",
+            "url": "https://dl.acm.org/doi/10.1145/3772429.3772435"
+          },
+          {
+            "title": "Grounding Robot Generalization in Training Data via Retrieval-Augmented VLMs",
+            "url": "https://arxiv.org/html/2603.11426v1"
+          },
+          {
+            "title": "GitHub - 52CV/WACV-2025-Papers · GitHub",
+            "url": "https://github.com/52CV/WACV-2025-Papers"
+          },
+          {
+            "title": "Modality Dropout in Multimodal Learning",
+            "url": "https://www.emergentmind.com/topics/modality-dropout"
+          },
+          {
+            "title": "Unlocking Out-of-Distribution Generalization in Transformers via Latent Space Reasoning | OpenReview",
+            "url": "https://openreview.net/forum?id=Wjgq9ISdP0"
+          },
+          {
+            "title": "Domain-generalized person re-identification via refined neuron dropout and reciprocal-expansion re-ranking | Scientific Reports",
+            "url": "https://www.nature.com/articles/s41598-025-30664-4"
+          },
+          {
+            "title": "Multi-Modal Perception with Vision, Language, and Touch for ...",
+            "url": "https://www2.eecs.berkeley.edu/Pubs/TechRpts/2025/EECS-2025-68.pdf"
+          },
+          {
+            "title": "Generalization in Robotics Manipulation Workshop and Challenges",
+            "url": "https://cvpr.thecvf.com/virtual/2025/workshop/32315"
+          },
+          {
+            "title": "BitVLA: 1-bit Vision-Language-Action Models for Robotics Manipulation",
+            "url": "https://arxiv.org/html/2506.07530v2"
+          },
+          {
+            "title": "ICLR 2025 Schedule",
+            "url": "https://iclr.cc/virtual/2025/calendar"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant papers and research on dropout and masking techniques for improving generalization in robotics and other domains:\n\n## Key Findings:\n\n**Dropout-Based Generalization in Multi-Agent Systems:**\nResearch on AGOD (Attribution-Guided Observation Dropout) applies random masking to observations during training with uniform probability to introduce perturbations, while also proposing an attribution-guided dropout method that strategically discards low-contribution entities to guide models to be robust against information redundancy and non-critical observations.\n\n**Modality Dropout for Robustness:**\nDropout regularizes the fusion space, acting as an implicit ensembling mechanism that widens the modal support of learned representations. Modality dropout is an effective mechanism for improving robustness to missing, corrupted, or noisy modality data in diverse tasks including action recognition.\n\n**Domain-Aware Neuron Dropout:**\nRefined neuron dropout (RND) extends domain-guided dropout via per-domain neuron-impact scores and temperature-controlled retention, suppressing domain-irrelevant activations while preserving domain-salient ones.\n\n**Robotics Manipulation Generalization:**\nWhile learning-based visual policies have achieved impressive results, they typically lack generalization to new scenes, objects and tasks. Recently, foundation models such as LLMs and VLMs have demonstrated strong abilities to generalize to new domains, offering promise for enhancing robots' generalization capabilities.\n\nBitVLA, a 1-bit vision-language-action model, exhibits competitive resilience across diverse OOD scenarios from unseen objects to visual distractors, effectively generalizing to novel situations."
+    ],
+    "durationSeconds": 8.346800965000002
+  },
+  "sourceToolAssistantUUID": "046b4484-0719-496b-8103-2cc0308940a6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 82 · 2026-05-13T05:29:47.870Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RfUV2LBAS3cMgtoR8LVbsw`</summary>
+
+```json
+{
+  "query": "TokenFLEX stochastic token count training VLM mechanism random selection adaptive pooling details"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "497a8541-8e08-4f00-baed-65531ad8e5c5",
+  "isSidechain": false,
+  "requestId": "req_011Caz1yTXyYpdizY6SMkSMg",
+  "type": "assistant",
+  "uuid": "c6fe6539-c927-44a2-9d49-23b9f46a1aab",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018WmiWVY46aWoHVhXw3Z99B",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1024,
+      "cache_read_input_tokens": 49489,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1024,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 49489,
+          "cache_creation_input_tokens": 1024,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1024
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 83 · 2026-05-13T05:29:54.643Z_
+
+<details><summary>↩ Tool result · `toolu_01RfUV2LBAS3cMgtoR8LVbsw`</summary>
+
+```text
+Web search results for query: "TokenFLEX stochastic token count training VLM mechanism random selection adaptive pooling details"
+
+Links: [{"title":"TokenFLEX: Unified VLM Training for Flexible Visual Tokens Inference","url":"https://arxiv.org/html/2504.03154v1"},{"title":"(PDF) TokenFLEX: Unified VLM Training for Flexible Visual Tokens Inference","url":"https://www.researchgate.net/publication/390545095_TokenFLEX_Unified_VLM_Training_for_Flexible_Visual_Tokens_Inference"},{"title":"[2504.03154] TokenFLEX: Unified VLM Training for Flexible Visual Tokens Inference","url":"https://arxiv.org/abs/2504.03154"},{"title":"Paper page - TokenFLEX: Unified VLM Training for Flexible Visual Tokens Inference","url":"https://huggingface.co/papers/2504.03154"},{"title":"Inference Optimal VLMs Need Fewer Visual Tokens and More Parameters | OpenReview","url":"https://openreview.net/forum?id=6VhDQP7WGX"},{"title":"Efficient Video Sampling: Pruning Temporally Redundant Tokens for Faster VLM Inference","url":"https://arxiv.org/html/2510.14624v1"},{"title":"GitHub - daixiangzi/Awesome-Token-Compress: A paper list of some recent works about Token Compress for Vit and VLM · GitHub","url":"https://github.com/daixiangzi/Awesome-Token-Compress"},{"title":"SparseVLM: Visual Token Sparsification for Efficient Vision Language Models Inference | OpenReview","url":"https://openreview.net/forum?id=1xG3MN1RRW"},{"title":"Extremely high calculated token count for VLM (Qwen 2.5 VL · Issue #3191 · huggingface/text-generation-inference","url":"https://github.com/huggingface/text-generation-inference/issues/3191"},{"title":"Revisiting Visual Token Pruning for Vision-Language Model ...","url":"https://openaccess.thecvf.com/content/ICCV2025/papers/Endo_Feather_the_Throttle_Revisiting_Visual_Token_Pruning_for_Vision-Language_Model_ICCV_2025_paper.pdf"}]
+
+Based on my search results, here are the details about TokenFLEX's stochastic token count training mechanism, random selection, and adaptive pooling:
+
+## Stochastic Token Count Training Mechanism
+
+TokenFLEX develops a stochastic training method that randomly selects the number of vision tokens from a predefined set for each sample. This training paradigm enhances performance across varying numbers of vision tokens by stochastically modulating token counts during training.
+
+## Random Selection
+
+The approach works by randomly selecting the visual token count during the training process. This random selection during training addresses a key limitation: a model trained with 256 visual tokens drops by 4.2% in performance when tested with 64 vision tokens, compared to the model specifically trained with 64 vision tokens, which indicates overfitting to fixed token counts.
+
+## Adaptive Pooling and Architecture
+
+TokenFLEX designs a lightweight vision token projector incorporating an adaptive pooling layer and SwiGLU, allowing for flexible downsampling of vision tokens and adaptive selection. Additionally, this training paradigm supports flexible inference with arbitrary token counts while maintaining accuracy comparable to fixed-token baselines.
+
+## Overall Framework
+
+TokenFLEX is an innovative and adaptable vision-language framework that encodes images into a variable number of tokens for efficient integration with a Large Language Model (LLM), addressing the inefficiencies of traditional fixed-token approaches in VLMs.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c6fe6539-c927-44a2-9d49-23b9f46a1aab",
+  "isSidechain": false,
+  "promptId": "3517e58c-d034-40ce-96a3-5e0696a9a8c6",
+  "type": "user",
+  "uuid": "368974e6-a82c-40f4-a421-28335fb258fa",
+  "toolUseResult": {
+    "query": "TokenFLEX stochastic token count training VLM mechanism random selection adaptive pooling details",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01T57SUT6yGEgh7u8ghQ7atw",
+        "content": [
+          {
+            "title": "TokenFLEX: Unified VLM Training for Flexible Visual Tokens Inference",
+            "url": "https://arxiv.org/html/2504.03154v1"
+          },
+          {
+            "title": "(PDF) TokenFLEX: Unified VLM Training for Flexible Visual Tokens Inference",
+            "url": "https://www.researchgate.net/publication/390545095_TokenFLEX_Unified_VLM_Training_for_Flexible_Visual_Tokens_Inference"
+          },
+          {
+            "title": "[2504.03154] TokenFLEX: Unified VLM Training for Flexible Visual Tokens Inference",
+            "url": "https://arxiv.org/abs/2504.03154"
+          },
+          {
+            "title": "Paper page - TokenFLEX: Unified VLM Training for Flexible Visual Tokens Inference",
+            "url": "https://huggingface.co/papers/2504.03154"
+          },
+          {
+            "title": "Inference Optimal VLMs Need Fewer Visual Tokens and More Parameters | OpenReview",
+            "url": "https://openreview.net/forum?id=6VhDQP7WGX"
+          },
+          {
+            "title": "Efficient Video Sampling: Pruning Temporally Redundant Tokens for Faster VLM Inference",
+            "url": "https://arxiv.org/html/2510.14624v1"
+          },
+          {
+            "title": "GitHub - daixiangzi/Awesome-Token-Compress: A paper list of some recent works about Token Compress for Vit and VLM · GitHub",
+            "url": "https://github.com/daixiangzi/Awesome-Token-Compress"
+          },
+          {
+            "title": "SparseVLM: Visual Token Sparsification for Efficient Vision Language Models Inference | OpenReview",
+            "url": "https://openreview.net/forum?id=1xG3MN1RRW"
+          },
+          {
+            "title": "Extremely high calculated token count for VLM (Qwen 2.5 VL · Issue #3191 · huggingface/text-generation-inference",
+            "url": "https://github.com/huggingface/text-generation-inference/issues/3191"
+          },
+          {
+            "title": "Revisiting Visual Token Pruning for Vision-Language Model ...",
+            "url": "https://openaccess.thecvf.com/content/ICCV2025/papers/Endo_Feather_the_Throttle_Revisiting_Visual_Token_Pruning_for_Vision-Language_Model_ICCV_2025_paper.pdf"
+          }
+        ]
+      },
+      "Based on my search results, here are the details about TokenFLEX's stochastic token count training mechanism, random selection, and adaptive pooling:\n\n## Stochastic Token Count Training Mechanism\n\nTokenFLEX develops a stochastic training method that randomly selects the number of vision tokens from a predefined set for each sample. This training paradigm enhances performance across varying numbers of vision tokens by stochastically modulating token counts during training.\n\n## Random Selection\n\nThe approach works by randomly selecting the visual token count during the training process. This random selection during training addresses a key limitation: a model trained with 256 visual tokens drops by 4.2% in performance when tested with 64 vision tokens, compared to the model specifically trained with 64 vision tokens, which indicates overfitting to fixed token counts.\n\n## Adaptive Pooling and Architecture\n\nTokenFLEX designs a lightweight vision token projector incorporating an adaptive pooling layer and SwiGLU, allowing for flexible downsampling of vision tokens and adaptive selection. Additionally, this training paradigm supports flexible inference with arbitrary token counts while maintaining accuracy comparable to fixed-token baselines.\n\n## Overall Framework\n\nTokenFLEX is an innovative and adaptable vision-language framework that encodes images into a variable number of tokens for efficient integration with a Large Language Model (LLM), addressing the inefficiencies of traditional fixed-token approaches in VLMs."
+    ],
+    "durationSeconds": 6.767797508000047
+  },
+  "sourceToolAssistantUUID": "c6fe6539-c927-44a2-9d49-23b9f46a1aab",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 84 · 2026-05-13T05:30:03.290Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_012rq7QUiaJmdznGFtHZH62w`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2504.03154v1",
+  "prompt": "I need to understand the exact mechanism of TokenFLEX's stochastic training: (1) Does it randomly vary the NUMBER of tokens (e.g., choosing between 64, 144, 256 for each sample) or does it randomly SELECT/MASK specific tokens? (2) Is the token count variation done via adaptive pooling (spatial downsampling) or via masking/dropping specific tokens? (3) Does the paper mention OOD generalization explicitly, or is the benefit framed as robustness to different inference-time token counts? (4) Is there any connection to dropout theory or regularization theory? Focus on the METHOD section."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "368974e6-a82c-40f4-a421-28335fb258fa",
+  "isSidechain": false,
+  "requestId": "req_011Caz1zAtPgBZuhFhqDJyeW",
+  "type": "assistant",
+  "uuid": "ff02af5d-d6c0-4979-8f3d-8cdedc18f65e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KuLzexk2oCVLoNjRSaeN1E",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1031,
+      "cache_read_input_tokens": 50513,
+      "output_tokens": 225,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1031,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 225,
+          "cache_read_input_tokens": 50513,
+          "cache_creation_input_tokens": 1031,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1031
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 85 · 2026-05-13T05:30:08.662Z_
+
+<details><summary>↩ Tool result · `toolu_012rq7QUiaJmdznGFtHZH62w`</summary>
+
+```text
+# TokenFLEX Stochastic Training Mechanism
+
+## 1. Token Count Variation (Not Masking)
+
+TokenFLEX varies the **number of tokens** rather than masking/dropping specific ones. The paper states: "randomly select the visual token count N from predefined set Φ={n₁,n₂,…,nₜ} for each training loop." This means each training batch uses a complete token count (64, 144, or 256), not a subset of a fixed pool.
+
+## 2. Spatial Downsampling via Adaptive Pooling
+
+Token count variation is achieved through **spatial downsampling**, not random masking. The lightweight projector partitions the feature grid into an n×n layout and applies adaptive average pooling, producing the desired token count. This is a deterministic dimensionality reduction, not stochastic feature selection.
+
+## 3. OOD Generalization Framing
+
+The paper explicitly frames the benefit as addressing out-of-distribution issues. It notes that fixed-token models suffer "out-of-distribution (OOD) issues" when inference token counts differ from training. The stochastic approach mitigates this by exposing the model to diverse token counts during training, enabling "robust cross-modal alignment consistency across varying token numbers."
+
+## 4. No Explicit Dropout Connection
+
+The paper does **not** invoke dropout or regularization theory. Instead, it frames the mechanism as: (a) "implicit data augmentation" enabling learning across different token counts, and (b) forcing the LLM to adapt to diverse token configurations, which provides mutual benefit to performance.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ff02af5d-d6c0-4979-8f3d-8cdedc18f65e",
+  "isSidechain": false,
+  "promptId": "3517e58c-d034-40ce-96a3-5e0696a9a8c6",
+  "type": "user",
+  "uuid": "6ae990c4-4170-4470-93da-b7d535226046",
+  "toolUseResult": {
+    "bytes": 310069,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# TokenFLEX Stochastic Training Mechanism\n\n## 1. Token Count Variation (Not Masking)\n\nTokenFLEX varies the **number of tokens** rather than masking/dropping specific ones. The paper states: \"randomly select the visual token count N from predefined set Φ={n₁,n₂,…,nₜ} for each training loop.\" This means each training batch uses a complete token count (64, 144, or 256), not a subset of a fixed pool.\n\n## 2. Spatial Downsampling via Adaptive Pooling\n\nToken count variation is achieved through **spatial downsampling**, not random masking. The lightweight projector partitions the feature grid into an n×n layout and applies adaptive average pooling, producing the desired token count. This is a deterministic dimensionality reduction, not stochastic feature selection.\n\n## 3. OOD Generalization Framing\n\nThe paper explicitly frames the benefit as addressing out-of-distribution issues. It notes that fixed-token models suffer \"out-of-distribution (OOD) issues\" when inference token counts differ from training. The stochastic approach mitigates this by exposing the model to diverse token counts during training, enabling \"robust cross-modal alignment consistency across varying token numbers.\"\n\n## 4. No Explicit Dropout Connection\n\nThe paper does **not** invoke dropout or regularization theory. Instead, it frames the mechanism as: (a) \"implicit data augmentation\" enabling learning across different token counts, and (b) forcing the LLM to adapt to diverse token configurations, which provides mutual benefit to performance.",
+    "durationMs": 5368,
+    "url": "https://arxiv.org/html/2504.03154v1"
+  },
+  "sourceToolAssistantUUID": "ff02af5d-d6c0-4979-8f3d-8cdedc18f65e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 86 · 2026-05-13T05:30:12.455Z_
+
+Excellent. Now I have a clear picture. TokenFLEX varies token COUNT via spatial pooling, while CTM masks specific tokens based on CONTENT. These are mechanistically very different. Let me now synthesize everything and produce the revised idea.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6ae990c4-4170-4470-93da-b7d535226046",
+  "isSidechain": false,
+  "requestId": "req_011Caz21CyRuDPcy8fKK8wEF",
+  "type": "assistant",
+  "uuid": "0dda5321-6ab8-4e47-b8d8-e0c24440e07d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CwSzCReF7QKhtEv89MCEKg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 598,
+      "cache_read_input_tokens": 51544,
+      "output_tokens": 128,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 598,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 128,
+          "cache_read_input_tokens": 51544,
+          "cache_creation_input_tokens": 598,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 598
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-13T05:30:13.326Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DQVH1x3uYo2RUGcQWWM3XA`</summary>
+
+```json
+{
+  "query": "VLA LIBERO benchmark SOTA success rate 2026 OpenVLA-OFT latest results"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0dda5321-6ab8-4e47-b8d8-e0c24440e07d",
+  "isSidechain": false,
+  "requestId": "req_011Caz21CyRuDPcy8fKK8wEF",
+  "type": "assistant",
+  "uuid": "31c5cbf9-e93e-4032-8a19-cb54e82b4c33",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CwSzCReF7QKhtEv89MCEKg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 598,
+      "cache_read_input_tokens": 51544,
+      "output_tokens": 128,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 598,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 128,
+          "cache_read_input_tokens": 51544,
+          "cache_creation_input_tokens": 598,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 598
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 88_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-13 (UTC).**  ## Original idea {   \"title\": \"Counterfactual Token Masking: Training-Time Visual Token Regularizatio…",
+  "leafUuid": "31c5cbf9-e93e-4032-8a19-cb54e82b4c33",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 89_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise CTM with TokenFLEX differentiation and formalized diversity framework",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09"
+}
+```
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-13T05:30:18.739Z_
+
+<details><summary>↩ Tool result · `toolu_01DQVH1x3uYo2RUGcQWWM3XA`</summary>
+
+```text
+Web search results for query: "VLA LIBERO benchmark SOTA success rate 2026 OpenVLA-OFT latest results"
+
+Links: [{"title":"OpenVLA-OFT","url":"https://openvla-oft.github.io/"},{"title":"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://arxiv.org/html/2510.13626v1"},{"title":"Experiences from Benchmarking Vision–Language–Action Models for Robotic Manipulation","url":"https://arxiv.org/html/2511.11298v1"},{"title":"000 001 002 003 004 005 006 007 008 009 010 011 012 013 014 015 016 017 018 019","url":"https://openreview.net/pdf/9a959fdda3f49f4bf09cfe6e81b9ee1f82a16c5f.pdf"},{"title":"State of Vision-Language-Action (VLA) Research at ICLR 2026 – Moritz Reuss","url":"https://mbreuss.github.io/blog_post_iclr_26_vla.html"},{"title":"Daily Papers - Hugging Face","url":"https://huggingface.co/papers?q=Visual-Language-Action+(VLA)+models"},{"title":"OpenVLA: Open Source VLA for Robotics","url":"https://www.emergentmind.com/topics/openvla"},{"title":"VLA SOTA Leaderboard","url":"https://sota.evomind-tech.com/benchmarks/libero/"},{"title":"VLA-Adapter","url":"https://vla-adapter.github.io/"},{"title":"Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success","url":"https://arxiv.org/html/2502.19645v2"}]
+
+Based on the search results, here are the latest results for OpenVLA-OFT on the LIBERO benchmark:
+
+## OpenVLA-OFT LIBERO Benchmark Results
+
+OpenVLA-OFT achieves SOTA results in LIBERO with a 97.1% average success rate across 4 task suites, outperforming π0, MDT, Seer, DiT Policy, Octo, and Diffusion Policy.
+
+The Optimized Fine-Tuning (OFT) recipe integrates parallel decoding, action chunking, a continuous action representation, and an L1 regression-based learning objective, significantly boosting OpenVLA's average success rate across four task suites from 76.5% to 97.1%.
+
+### Performance Improvements
+
+Through parallel decoding and action chunking, OpenVLA-OFT obtains 26x faster action generation speed and 3x lower latency than the base OpenVLA model.
+
+### Real-World Application
+
+For real-world ALOHA tasks, the augmented recipe OFT+ successfully executes dexterous bimanual tasks and outperforms both fine-tuned VLAs (π0 and RDT-1B) and prominent imitation learning policies trained from scratch by up to 15% in average success rate.
+
+These results represent the current state-of-the-art for Vision-Language-Action models on the LIBERO benchmark as of 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "31c5cbf9-e93e-4032-8a19-cb54e82b4c33",
+  "isSidechain": false,
+  "promptId": "3517e58c-d034-40ce-96a3-5e0696a9a8c6",
+  "type": "user",
+  "uuid": "e56d3479-841e-4eba-86c8-f558635c73e0",
+  "toolUseResult": {
+    "query": "VLA LIBERO benchmark SOTA success rate 2026 OpenVLA-OFT latest results",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Ld4xhNgx9wFTJm6zmK3Cad",
+        "content": [
+          {
+            "title": "OpenVLA-OFT",
+            "url": "https://openvla-oft.github.io/"
+          },
+          {
+            "title": "LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2510.13626v1"
+          },
+          {
+            "title": "Experiences from Benchmarking Vision–Language–Action Models for Robotic Manipulation",
+            "url": "https://arxiv.org/html/2511.11298v1"
+          },
+          {
+            "title": "000 001 002 003 004 005 006 007 008 009 010 011 012 013 014 015 016 017 018 019",
+            "url": "https://openreview.net/pdf/9a959fdda3f49f4bf09cfe6e81b9ee1f82a16c5f.pdf"
+          },
+          {
+            "title": "State of Vision-Language-Action (VLA) Research at ICLR 2026 – Moritz Reuss",
+            "url": "https://mbreuss.github.io/blog_post_iclr_26_vla.html"
+          },
+          {
+            "title": "Daily Papers - Hugging Face",
+            "url": "https://huggingface.co/papers?q=Visual-Language-Action+(VLA)+models"
+          },
+          {
+            "title": "OpenVLA: Open Source VLA for Robotics",
+            "url": "https://www.emergentmind.com/topics/openvla"
+          },
+          {
+            "title": "VLA SOTA Leaderboard",
+            "url": "https://sota.evomind-tech.com/benchmarks/libero/"
+          },
+          {
+            "title": "VLA-Adapter",
+            "url": "https://vla-adapter.github.io/"
+          },
+          {
+            "title": "Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success",
+            "url": "https://arxiv.org/html/2502.19645v2"
+          }
+        ]
+      },
+      "Based on the search results, here are the latest results for OpenVLA-OFT on the LIBERO benchmark:\n\n## OpenVLA-OFT LIBERO Benchmark Results\n\nOpenVLA-OFT achieves SOTA results in LIBERO with a 97.1% average success rate across 4 task suites, outperforming π0, MDT, Seer, DiT Policy, Octo, and Diffusion Policy.\n\nThe Optimized Fine-Tuning (OFT) recipe integrates parallel decoding, action chunking, a continuous action representation, and an L1 regression-based learning objective, significantly boosting OpenVLA's average success rate across four task suites from 76.5% to 97.1%.\n\n### Performance Improvements\n\nThrough parallel decoding and action chunking, OpenVLA-OFT obtains 26x faster action generation speed and 3x lower latency than the base OpenVLA model.\n\n### Real-World Application\n\nFor real-world ALOHA tasks, the augmented recipe OFT+ successfully executes dexterous bimanual tasks and outperforms both fine-tuned VLAs (π0 and RDT-1B) and prominent imitation learning policies trained from scratch by up to 15% in average success rate.\n\nThese results represent the current state-of-the-art for Vision-Language-Action models on the LIBERO benchmark as of 2026."
+    ],
+    "durationSeconds": 5.409886042000028
+  },
+  "sourceToolAssistantUUID": "31c5cbf9-e93e-4032-8a19-cb54e82b4c33",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91 · 2026-05-13T05:30:26.246Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01UFF4kqMJL8aRAZvTAMqj2k`</summary>
+
+```json
+{
+  "url": "https://mbreuss.github.io/blog_post_iclr_26_vla.html",
+  "prompt": "Extract information about: (1) Any papers about visual token masking/dropout for VLA training-time regularization, (2) representation preservation methods presented at ICLR 2026, (3) any papers about OOD generalization for VLAs through token operations, (4) the overall landscape summary of VLA research trends at ICLR 2026. Focus on method names and key contributions."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e56d3479-841e-4eba-86c8-f558635c73e0",
+  "isSidechain": false,
+  "requestId": "req_011Caz21wwaep1VFM27zJgon",
+  "type": "assistant",
+  "uuid": "480ba24a-7be8-4f74-834c-63d05f7435db",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V8sUGWcK1B6gemm9TRiqjD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 954,
+      "cache_read_input_tokens": 52142,
+      "output_tokens": 180,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 954,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 180,
+          "cache_read_input_tokens": 52142,
+          "cache_creation_input_tokens": 954,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 954
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-13T05:30:31.794Z_
+
+<details><summary>↩ Tool result · `toolu_01UFF4kqMJL8aRAZvTAMqj2k`</summary>
+
+```text
+# VLA Research Landscape at ICLR 2026
+
+## (1) Visual Token Masking/Dropout for Training-Time Regularization
+
+The document does not contain papers specifically about visual token masking or dropout approaches for VLA training-time regularization.
+
+## (2) Representation Preservation Methods
+
+Several papers address maintaining VLM representations while adding action capabilities:
+
+- **"Actions as Language"**: This work avoids catastrophic forgetting by relabeling robot datasets with subtasks and motion-planning language rather than direct action tokens. The approach uses LoRA fine-tuning to "bridge the domain gap of VLMs without reducing performance on other VQA benchmarks."
+
+- **InstructVLA**: Proposes decoupling multimodal reasoning from action generation using "an action expert and latent action interface" plus mixture-of-experts adaptation to prevent representation degradation.
+
+- **Hybrid Training**: Decomposes embodied reasoning into subtasks enabling "maintain[ing] the performance benefits with fast inference" while co-training on reasoning objectives.
+
+## (3) OOD Generalization Through Token Operations
+
+No papers explicitly addressing out-of-distribution generalization via token-level operations appear in this survey.
+
+## (4) Overall VLA Research Landscape Summary
+
+ICLR 2026 shows explosive growth with **164 submissions** (18x increase from 2025's 9 papers). Key convergent trends include: discrete diffusion for parallel action generation, embodied chain-of-thought reasoning, sophisticated action tokenizers using residual vector quantization, efficient inference methods, and cross-embodiment learning through soft-prompting mechanisms.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "480ba24a-7be8-4f74-834c-63d05f7435db",
+  "isSidechain": false,
+  "promptId": "3517e58c-d034-40ce-96a3-5e0696a9a8c6",
+  "type": "user",
+  "uuid": "0d5dc82a-75dd-4855-9dd7-a81b9215ffa6",
+  "toolUseResult": {
+    "bytes": 62688,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# VLA Research Landscape at ICLR 2026\n\n## (1) Visual Token Masking/Dropout for Training-Time Regularization\n\nThe document does not contain papers specifically about visual token masking or dropout approaches for VLA training-time regularization.\n\n## (2) Representation Preservation Methods\n\nSeveral papers address maintaining VLM representations while adding action capabilities:\n\n- **\"Actions as Language\"**: This work avoids catastrophic forgetting by relabeling robot datasets with subtasks and motion-planning language rather than direct action tokens. The approach uses LoRA fine-tuning to \"bridge the domain gap of VLMs without reducing performance on other VQA benchmarks.\"\n\n- **InstructVLA**: Proposes decoupling multimodal reasoning from action generation using \"an action expert and latent action interface\" plus mixture-of-experts adaptation to prevent representation degradation.\n\n- **Hybrid Training**: Decomposes embodied reasoning into subtasks enabling \"maintain[ing] the performance benefits with fast inference\" while co-training on reasoning objectives.\n\n## (3) OOD Generalization Through Token Operations\n\nNo papers explicitly addressing out-of-distribution generalization via token-level operations appear in this survey.\n\n## (4) Overall VLA Research Landscape Summary\n\nICLR 2026 shows explosive growth with **164 submissions** (18x increase from 2025's 9 papers). Key convergent trends include: discrete diffusion for parallel action generation, embodied chain-of-thought reasoning, sophisticated action tokenizers using residual vector quantization, efficient inference methods, and cross-embodiment learning through soft-prompting mechanisms.",
+    "durationMs": 5540,
+    "url": "https://mbreuss.github.io/blog_post_iclr_26_vla.html"
+  },
+  "sourceToolAssistantUUID": "480ba24a-7be8-4f74-834c-63d05f7435db",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 93 · 2026-05-13T05:30:55.971Z_
+
+Now I have comprehensive research. Let me synthesize my findings and produce the revised idea.
+
+Key findings from research:
+1. **FAN and GridS both exist** — reviewer was wrong. FAN is at arXiv 2604.01570 (CVPR 2026), GridS is at ICML 2026 poster.
+2. **TokenFLEX** varies token COUNT via spatial pooling, not token CONTENT-based masking — mechanistically very different from CTM.
+3. **LightVLA** is efficiency-framed with no OOD evaluation, no KL regularization — keeps task-relevant tokens, doesn't force redundant feature utilization.
+4. **Zhang & Bottou** provide no formal theorems — their work is empirical with conceptual framework, not PAC-Bayes or IB. This means formalizing CTM's framework is an independent contribution, not an "extension" of their formal results.
+5. **The gap remains valid** — no training-time, adaptive, content-based token masking for VLA OOD regularization exists.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0d5dc82a-75dd-4855-9dd7-a81b9215ffa6",
+  "isSidechain": false,
+  "requestId": "req_011Caz22uifVU6pztbS7gdwX",
+  "type": "assistant",
+  "uuid": "9fed8a71-8f6a-47ce-b4e5-a6e5031a7d85",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MhRqMubsGHz5tPT26eyRAW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 555,
+      "cache_read_input_tokens": 53096,
+      "output_tokens": 325,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 555,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 325,
+          "cache_read_input_tokens": 53096,
+          "cache_creation_input_tokens": 555,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 555
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 94 · 2026-05-13T05:30:56.813Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018BDQoiXaJvzUHU3QWMxDmF`</summary>
+
+```json
+{
+  "query": "information bottleneck token masking formal bound mutual information regularization finetuning pretrained model 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9fed8a71-8f6a-47ce-b4e5-a6e5031a7d85",
+  "isSidechain": false,
+  "requestId": "req_011Caz22uifVU6pztbS7gdwX",
+  "type": "assistant",
+  "uuid": "a1463447-bec3-4e9c-9399-3d4df0df37e3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MhRqMubsGHz5tPT26eyRAW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 555,
+      "cache_read_input_tokens": 53096,
+      "output_tokens": 325,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 555,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 325,
+          "cache_read_input_tokens": 53096,
+          "cache_creation_input_tokens": 555,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 555
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 95 · 2026-05-13T05:31:03.700Z_
+
+<details><summary>↩ Tool result · `toolu_018BDQoiXaJvzUHU3QWMxDmF`</summary>
+
+```text
+Web search results for query: "information bottleneck token masking formal bound mutual information regularization finetuning pretrained model 2024 2025"
+
+Links: [{"title":"Efficient Visual Transformer by Information Bottleneck Inspired Token Merging | OpenReview","url":"https://openreview.net/forum?id=Jwgw3znxT3"},{"title":"EFFICIENT VISION TRANSFORMER BY INFORMATION ...","url":"https://openreview.net/pdf?id=Jwgw3znxT3"},{"title":"Token Communication in the Era of Large Models: An Information Bottleneck-Based Approach","url":"https://arxiv.org/html/2507.01728"},{"title":"Learning Mask Invariant Mutual Information for Masked Image Modeling | OpenReview","url":"https://openreview.net/forum?id=NoiaAT0eec"},{"title":"Comprehensive Information Bottleneck for Unveiling Universal Attribution to","url":"https://openaccess.thecvf.com/content/CVPR2025/papers/Hong_Comprehensive_Information_Bottleneck_for_Unveiling_Universal_Attribution_to_Interpret_Vision_CVPR_2025_paper.pdf"},{"title":"An Information Bottleneck Asset Pricing Model Che Sun ∗ August 1, 2025 Abstract","url":"https://arxiv.org/pdf/2507.23218"},{"title":"Supervised Attention Mechanism for Low-quality ...","url":"https://aclanthology.org/2025.emnlp-main.1084.pdf"},{"title":"Efficient Visual Transformer by Learnable Token Merging","url":"https://arxiv.org/html/2407.15219v1"},{"title":"BOURIGAULT, P. ET AL.: CA-M2IB 1 Multi-Modal Information Bottleneck","url":"https://bmva-archive.org.uk/bmvc/2024/papers/Paper_64/paper.pdf"},{"title":"GitHub - zichuan-liu/IB4LLMs: [NeurIPS'24] Protecting Your LLMs with Information Bottleneck · GitHub","url":"https://github.com/zichuan-liu/IB4LLMs"}]
+
+I found relevant research on information bottleneck theory combined with token masking and mutual information regularization for deep learning models in 2024-2025. Here are the key findings:
+
+## Vision Transformer Token Merging with Information Bottleneck
+
+Recent work proposes Information Bottleneck inspired Token Merging (IBTM), which is motivated by the reduction of the Information Bottleneck (IB) principle, deriving a novel separable variational upper bound for the IB loss, with the architecture of mask modules designed to reduce this derived upper bound.
+
+The information bottleneck principle encourages maximizing mutual information between merged tokens and class labels while minimizing mutual information between merged tokens and inputs, enabling networks to learn merged tokens more correlated with class labels while reducing correlation with the input.
+
+## Masked Image Modeling with Mutual Information
+
+A method called MI-MAE optimizes masked autoencoders through mutual information maximization and minimization, enhancing latent features to retain maximal relevant information between them and the output while minimizing irrelevant information between them and the input.
+
+## Fine-tuning Pretrained Models with Information Bottleneck
+
+Recent work addresses "Protecting Your LLMs with Information Bottleneck," published at Neural Information Processing Systems 2024, which involves fine-tuning large language models using information bottleneck regularization.
+
+These works combine formal information-theoretic bounds on mutual information with practical regularization techniques for fine-tuning pretrained models, demonstrating improvements across vision and language domains in 2024-2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a1463447-bec3-4e9c-9399-3d4df0df37e3",
+  "isSidechain": false,
+  "promptId": "3517e58c-d034-40ce-96a3-5e0696a9a8c6",
+  "type": "user",
+  "uuid": "b39667cc-5511-481f-8257-c48907204780",
+  "toolUseResult": {
+    "query": "information bottleneck token masking formal bound mutual information regularization finetuning pretrained model 2024 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01P3koEGhdb4VWNTHr1PuCT1",
+        "content": [
+          {
+            "title": "Efficient Visual Transformer by Information Bottleneck Inspired Token Merging | OpenReview",
+            "url": "https://openreview.net/forum?id=Jwgw3znxT3"
+          },
+          {
+            "title": "EFFICIENT VISION TRANSFORMER BY INFORMATION ...",
+            "url": "https://openreview.net/pdf?id=Jwgw3znxT3"
+          },
+          {
+            "title": "Token Communication in the Era of Large Models: An Information Bottleneck-Based Approach",
+            "url": "https://arxiv.org/html/2507.01728"
+          },
+          {
+            "title": "Learning Mask Invariant Mutual Information for Masked Image Modeling | OpenReview",
+            "url": "https://openreview.net/forum?id=NoiaAT0eec"
+          },
+          {
+            "title": "Comprehensive Information Bottleneck for Unveiling Universal Attribution to",
+            "url": "https://openaccess.thecvf.com/content/CVPR2025/papers/Hong_Comprehensive_Information_Bottleneck_for_Unveiling_Universal_Attribution_to_Interpret_Vision_CVPR_2025_paper.pdf"
+          },
+          {
+            "title": "An Information Bottleneck Asset Pricing Model Che Sun ∗ August 1, 2025 Abstract",
+            "url": "https://arxiv.org/pdf/2507.23218"
+          },
+          {
+            "title": "Supervised Attention Mechanism for Low-quality ...",
+            "url": "https://aclanthology.org/2025.emnlp-main.1084.pdf"
+          },
+          {
+            "title": "Efficient Visual Transformer by Learnable Token Merging",
+            "url": "https://arxiv.org/html/2407.15219v1"
+          },
+          {
+            "title": "BOURIGAULT, P. ET AL.: CA-M2IB 1 Multi-Modal Information Bottleneck",
+            "url": "https://bmva-archive.org.uk/bmvc/2024/papers/Paper_64/paper.pdf"
+          },
+          {
+            "title": "GitHub - zichuan-liu/IB4LLMs: [NeurIPS'24] Protecting Your LLMs with Information Bottleneck · GitHub",
+            "url": "https://github.com/zichuan-liu/IB4LLMs"
+          }
+        ]
+      },
+      "I found relevant research on information bottleneck theory combined with token masking and mutual information regularization for deep learning models in 2024-2025. Here are the key findings:\n\n## Vision Transformer Token Merging with Information Bottleneck\n\nRecent work proposes Information Bottleneck inspired Token Merging (IBTM), which is motivated by the reduction of the Information Bottleneck (IB) principle, deriving a novel separable variational upper bound for the IB loss, with the architecture of mask modules designed to reduce this derived upper bound.\n\nThe information bottleneck principle encourages maximizing mutual information between merged tokens and class labels while minimizing mutual information between merged tokens and inputs, enabling networks to learn merged tokens more correlated with class labels while reducing correlation with the input.\n\n## Masked Image Modeling with Mutual Information\n\nA method called MI-MAE optimizes masked autoencoders through mutual information maximization and minimization, enhancing latent features to retain maximal relevant information between them and the output while minimizing irrelevant information between them and the input.\n\n## Fine-tuning Pretrained Models with Information Bottleneck\n\nRecent work addresses \"Protecting Your LLMs with Information Bottleneck,\" published at Neural Information Processing Systems 2024, which involves fine-tuning large language models using information bottleneck regularization.\n\nThese works combine formal information-theoretic bounds on mutual information with practical regularization techniques for fine-tuning pretrained models, demonstrating improvements across vision and language domains in 2024-2025."
+    ],
+    "durationSeconds": 6.8819360519999755
+  },
+  "sourceToolAssistantUUID": "a1463447-bec3-4e9c-9399-3d4df0df37e3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 96 · 2026-05-13T05:31:03.707Z_
+
+```json
+{
+  "parentUuid": "b39667cc-5511-481f-8257-c48907204780",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "ff884146-1a40-41c3-bdc8-679af7e25b4e",
+  "timestamp": "2026-05-13T05:31:03.707Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 97 · 2026-05-13T05:31:11.717Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01ERLyxVjQsCC9ZB6UaKzRC1`</summary>
+
+```json
+{
+  "url": "https://openreview.net/forum?id=Jwgw3znxT3",
+  "prompt": "Extract the key theoretical contribution of IBTM: (1) What is the exact variational upper bound they derive for the IB loss? (2) How do they formalize token merging/masking as an information bottleneck problem? (3) What is the separable bound structure? I need the mathematical framework to understand how to formalize CTM's diversity-conditional regularization."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ff884146-1a40-41c3-bdc8-679af7e25b4e",
+  "isSidechain": false,
+  "requestId": "req_011Caz25GAXbBdBszkcu7P7p",
+  "type": "assistant",
+  "uuid": "7d608285-7109-4698-9402-d662488201f1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013hjpjjERGRbokXEKVRX7Vn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1343,
+      "cache_read_input_tokens": 53651,
+      "output_tokens": 171,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1343,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 171,
+          "cache_read_input_tokens": 53651,
+          "cache_creation_input_tokens": 1343,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1343
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-13T05:31:15.944Z_
+
+<details><summary>↩ Tool result · `toolu_01ERLyxVjQsCC9ZB6UaKzRC1`</summary>
+
+```text
+# Information on IBTM's Theoretical Contributions
+
+Based on the webpage content provided, I cannot extract the specific mathematical details you're requesting. The page contains only an abstract and metadata, not the full paper.
+
+The abstract mentions that authors "derive a novel and separable variational upper bound for the IB loss" and that "the architecture of mask module in our IBTM blocks...designed to reduce the derived upper bound for the IB loss," but **the exact mathematical formulation is not included** in this webpage content.
+
+## What the abstract reveals:
+
+1. **General approach**: The method performs "token merging in a learnable scheme" inspired by information bottleneck principles
+2. **Motivation**: IBTM is "motivated by the reduction of the Information Bottleneck (IB)"
+3. **Architecture focus**: The mask module generates token merging masks designed to minimize their derived IB loss bound
+
+## To access the mathematical framework:
+
+You would need to:
+- Download the full PDF (linked on the page as "Download PDF")
+- Review the anonymous code repository mentioned: `https://anonymous.4open.science/r/IBTM_Transformers-053B/`
+
+The full derivation of the variational bound, its separable structure, and the formalization connecting token merging to information bottleneck theory exist only in the complete paper, not in this summary page.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7d608285-7109-4698-9402-d662488201f1",
+  "isSidechain": false,
+  "promptId": "3517e58c-d034-40ce-96a3-5e0696a9a8c6",
+  "type": "user",
+  "uuid": "04995950-c411-460a-825a-20deb79dfb9b",
+  "toolUseResult": {
+    "bytes": 73138,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Information on IBTM's Theoretical Contributions\n\nBased on the webpage content provided, I cannot extract the specific mathematical details you're requesting. The page contains only an abstract and metadata, not the full paper.\n\nThe abstract mentions that authors \"derive a novel and separable variational upper bound for the IB loss\" and that \"the architecture of mask module in our IBTM blocks...designed to reduce the derived upper bound for the IB loss,\" but **the exact mathematical formulation is not included** in this webpage content.\n\n## What the abstract reveals:\n\n1. **General approach**: The method performs \"token merging in a learnable scheme\" inspired by information bottleneck principles\n2. **Motivation**: IBTM is \"motivated by the reduction of the Information Bottleneck (IB)\"\n3. **Architecture focus**: The mask module generates token merging masks designed to minimize their derived IB loss bound\n\n## To access the mathematical framework:\n\nYou would need to:\n- Download the full PDF (linked on the page as \"Download PDF\")\n- Review the anonymous code repository mentioned: `https://anonymous.4open.science/r/IBTM_Transformers-053B/`\n\nThe full derivation of the variational bound, its separable structure, and the formalization connecting token merging to information bottleneck theory exist only in the complete paper, not in this summary page.",
+    "durationMs": 4223,
+    "url": "https://openreview.net/forum?id=Jwgw3znxT3"
+  },
+  "sourceToolAssistantUUID": "7d608285-7109-4698-9402-d662488201f1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 99 · 2026-05-13T05:31:28.357Z_
+
+I have sufficient information now. Let me compose the revised idea. The key conclusions from my research:
+
+1. **FAN and GridS are REAL** — I need to push back on the reviewer and keep them, with verification evidence.
+2. **TokenFLEX** must be cited — but it's mechanistically very different (spatial pooling for token count flexibility vs. content-based masking for OOD).
+3. **LightVLA differentiation** needs sharpening — it's efficiency-framed, no OOD evaluation, no KL regularization, keeps task-relevant tokens rather than forcing redundant feature utilization.
+4. **Theoretical framework** needs formalization using IB-style bounds adapted to the VLA pipeline.
+5. **Training-inference unified framework** is a strong suggestion — CTM at inference provides both efficiency AND robustness.
+6. **Simple baseline challenge** — must argue CTM + parameter merging is complementary (training-time + post-hoc).
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "04995950-c411-460a-825a-20deb79dfb9b",
+  "isSidechain": false,
+  "requestId": "req_011Caz26AVFG59XMDxBXdFU9",
+  "type": "assistant",
+  "uuid": "c6f75403-0958-4f62-88cb-c57f9eb35e31",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UsUATsBAgyE7omCnWKdYjV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 487,
+      "cache_read_input_tokens": 54994,
+      "output_tokens": 11206,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 487,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 11206,
+          "cache_read_input_tokens": 54994,
+          "cache_creation_input_tokens": 487,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 487
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 100 · 2026-05-13T05:35:57.753Z_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01YRLLUwb3ecvcrNgBEmesS8`</summary>
+
+```json
+{
+  "file_path": "/tmp/revised_idea_r5.json",
+  "content": "{\n  \"change_type\": \"major\",\n  \"title\": \"Counterfactual Token Masking: Training-Time Visual Token Regularization for Robust VLA Finetuning on Low-Diversity Demonstrations\",\n  \"core_problem\": \"VLA finetuning on robotic demonstration data suffers from representation degradation (attention migration to background tokens, representation collapse, domain-specific forgetting) primarily because single-task demonstration data is inherently low-diversity — the same table, background, lighting, and camera pose repeat across thousands of episodes. This problem is specific to the FINETUNING regime: Wang et al. (arXiv 2602.09722) showed that visual dropout during PRETRAINING on diverse multi-embodiment data actually HURTS performance (84.5% with dropout vs 85.6% without), because natural data diversity already regularizes. Conversely, Zhang & Bottou (ICLR 2025) proved that very large dropout (90%) during finetuning of pretrained models achieves optimal OOD performance — because pretrained networks contain rich, redundant 'weakly relevant' features that standard gradient descent's implicit sparsity bias discards, but aggressive dropout forces the network to retain. These two findings establish a fundamental dichotomy: regularization via visual token perturbation is unnecessary (even harmful) when training data is diverse, but becomes essential during low-diversity finetuning where spurious visual correlations form AND the implicit sparsity bias of gradient descent threatens to discard the rich features inherited from pretraining. The VLA token operations field has exploded (DTP, FocusVLA, AutoSelect, Compressor-VLA, VLA-IAP, GridS, LightVLA, TokenFLEX), but existing methods are either framed as INFERENCE-TIME EFFICIENCY optimizations (pruning or compressing tokens to reduce FLOPs), or as training-time efficiency methods where learned token selection optimizes for minimal token usage while preserving task performance — not for OOD regularization. TokenFLEX (arXiv 2504.03154) uses stochastic token COUNT variation via spatial pooling during training, but this is a generic robustness trick for flexible inference-time token budgets, not content-aware masking motivated by spurious correlation prevention. LightVLA uses Gumbel-softmax for adaptive token selection during training, but optimizes for efficiency (minimize tokens while maintaining ID performance) with no OOD evaluation or regularization-theoretic grounding. None exploit the pretraining-vs-finetuning dichotomy to apply principled TRAINING-TIME REGULARIZATION specifically calibrated to prevent spurious correlation formation in low-diversity finetuning data.\",\n  \"opportunity\": \"The convergence of six research developments creates a unique opportunity: (1) Zhang & Bottou (ICLR 2025) established that very large dropout (90%) during finetuning achieves optimal OOD generalization because pretrained representations contain rich redundant 'weakly relevant' features — but their work addressed only fully-connected layers, not the structured visual token space of VLAs, and provided empirical evidence without formal generalization bounds. (2) Wang et al. (arXiv 2602.09722) showed uniform visual dropout is harmful during diverse pretraining — implicitly confirming that the benefit of dropout-style regularization depends on training data diversity. (3) 'Masked Images Are Counterfactual Samples' (Xiao et al., CVPR 2023) showed that masking image patches constitutes a counterfactual intervention breaking spurious correlations. (4) DTP (arXiv 2601.16065) demonstrated that VLA models over-attend to task-irrelevant 'distracting' tokens with negative correlation to success rate — but addresses this only at inference time, meaning spurious correlations still form during training. (5) CRAFT (arXiv 2602.12532) applied a Variational Information Bottleneck to VLA models, but with continuous Gaussian compression on fused representations for force-first curriculum learning, not discrete per-token masking for OOD regularization. (6) TokenFLEX (arXiv 2504.03154) showed that stochastic token count variation during VLM training improves robustness to different inference-time token budgets — validating the principle that training-time token perturbation aids generalization, but using spatial pooling for COUNT variation rather than content-based SELECTION for spurious correlation prevention.\\n\\nThe gap is: no existing work applies TRAINING-TIME, ADAPTIVE, CONTENT-BASED per-token masking specifically to the VLA finetuning setting, with masking rates conditioned on token informativeness, grounded in the diversity-conditional principle that aggressive token-level dropout during low-diversity finetuning preserves rich pretrained features while breaking spurious correlations. Prior inference-time methods (DTP, VLA-IAP, LightVLA at inference, VLA-Pruner) cannot prevent spurious correlations from forming during training; LightVLA's training-time selection optimizes for efficiency (keep tokens that help ID performance) rather than OOD regularization (force the model to sometimes work WITHOUT certain tokens to build redundant feature utilization); TokenFLEX varies token COUNT via pooling rather than masking specific tokens based on content; CRAFT's VIB operates on entire fused representations with continuous compression rather than discrete per-token counterfactual interventions; AutoSelect targets frozen VLM efficiency rather than VLA finetuning regularization.\",\n  \"landscape\": \"The VLA representation preservation and token operations space has expanded rapidly. We organize the landscape along two axes: (A) representation preservation methods and (B) token-level operations, further distinguishing training-time vs. inference-time approaches.\\n\\n**A. VLA Representation Preservation Methods:**\\n(1) Frozen-encoder alignment: 'Don't Blind Your VLA' (arXiv 2510.25616) pulls VLA hidden states toward frozen teacher features via cosine similarity loss.\\n(2) Dual-encoder co-training: Gen-VLA (arXiv 2509.11417) uses separate encoders for action prediction and VL understanding.\\n(3) Contrastive state regularization: RS-CL (ICLR 2026) shapes representations via InfoNCE weighted by proprioceptive state distances, with 'view cutoff' augmentation.\\n(4) Action-as-language: VLM2VLA (ICLR 2026) represents actions in natural language to avoid distribution mismatch.\\n(5) Gradient insulation: Knowledge Insulation (NeurIPS 2025 Spotlight, Driess et al., Physical Intelligence) prevents gradient flow from continuous action experts to VLM backbone via stop-gradient — architecture-specific to π0/flow-matching.\\n(6) Parameter merging: Robust VLA Finetuning (ICLR 2026, Pertsch/Levine, arXiv 2512.08333) achieves OOD gains via simple weight interpolation between finetuned and pretrained models — elegant but limited to post-hoc interpolation without training-time regularization.\\n(7) Action-space regularization: FAN (CVPR 2026, arXiv 2604.01570) applies Gaussian prior on action predictions aligning VLA output with feasible action neighborhood geometry — complementary to visual token regularization.\\n(8) Force-aware curriculum with VIB: CRAFT (arXiv 2602.12532) applies an explicit VIB module after the vision-language encoder using continuous Gaussian compression (reparameterized N(μ,σ²) against N(0,1) prior, exponential KL decay) to force focus on force signals initially. Critically, CRAFT's VIB operates on entire fused representations for curriculum purposes, not per-token masking for OOD regularization.\\n(9) Gaze regularization: Gaze-Regularized VLA (arXiv 2603.23202) aligns VLA attention with human gaze patterns via KL divergence during training — training-time visual attention regularization using external supervision signal, complementary to CTM's self-supervised masking approach.\\n\\n**B. VLA Token-Level Operations:**\\n*Inference-time efficiency (majority of recent work):*\\n(10) DTP (arXiv 2601.16065, Jan 2026): Dynamically detects and prunes 'distracting' tokens at inference via attention hooks. Shows negative correlation between success rate and attention to irrelevant regions — same core intuition as CTM, but post-hoc pruning cannot prevent spurious correlations from forming during training.\\n(11) GridS/'See What Matters' (ICML 2026): Differentiable grid sample pruning achieving 76% FLOPs reduction with no success rate degradation using continuous resampling — plug-and-play module for task-aware spatial token compression.\\n(12) VLA-Pruner (arXiv 2511.16449): Temporal-aware dual-level visual token pruning for inference efficiency.\\n(13) VLA-IAP (arXiv 2603.22991, Mar 2026): Training-free interaction-aligned token pruning using geometric priors.\\n(14) Compressor-VLA (arXiv 2511.18950, Nov 2025): Learned instruction-guided token compression with STC+SRC modules.\\n(15) ETA-VLA (arXiv 2603.25766, Mar 2026): Text-guided token sparsification for autonomous driving VLAs.\\n*Training-time token operations:*\\n(16) FocusVLA (arXiv 2603.28740, Mar 2026): Modality cascaded attention + Focus attention for task-relevant patch selection during training — closest training-time competitor. However, FocusVLA replaces the attention architecture rather than adding lightweight regularization, and frames its contribution as attention improvement rather than OOD regularization.\\n(17) LightVLA (ICRA 2026, arXiv 2509.12594): Differentiable token pruning with Gumbel softmax for adaptive selection during finetuning — efficiency-framed. Key distinction from CTM: LightVLA learns to KEEP the most informative tokens (efficiency objective: minimize tokens while maintaining ID performance), while CTM learns to MASK tokens carrying spurious correlations (regularization objective: force redundant feature utilization for OOD generalization per Zhang & Bottou). LightVLA has no KL regularization toward a base masking rate, no OOD evaluation, and no connection to dropout theory. These different objectives produce fundamentally different learned policies: LightVLA's Gumbel-softmax selection converges to keeping task-relevant tokens and discarding uninformative ones, while CTM's KL-regularized masking sometimes masks task-relevant tokens to force the model to utilize redundant features — the exact mechanism Zhang & Bottou showed yields OOD robustness.\\n(18) AutoSelect/Noise Gating (arXiv 2603.07135, Mar 2026): Variance-preserving noise inversely proportional to token importance on frozen VLMs. Targets VLM efficiency, not VLA finetuning regularization.\\n(19) DeepVision-VLA (arXiv 2603.15618): VL-MoT framework with action-guided visual pruning (AGVP) — training-time saliency-based pruning using attention from action tokens, but for architectural enhancement rather than regularization.\\n\\n**C. VLM Token Reduction and Flexibility:**\\n(20) TokenFLEX (arXiv 2504.03154, Apr 2025): Stochastic token COUNT variation during VLM training via adaptive spatial pooling — randomly selects from predefined token counts (e.g., 64, 144, 256) per sample. Validates the principle that training-time token perturbation aids generalization, but differs from CTM in three ways: (a) varies COUNT via spatial pooling, not content-based SELECTION via masking; (b) targets VLM flexibility for varying inference-time budgets, not VLA OOD regularization for low-diversity finetuning; (c) has no connection to dropout theory, spurious correlation prevention, or the diversity-conditional framework.\\n(21) 'Rethinking Visual Token Reduction in LVLMs Under Cross-Modal Misalignment' (VisionDrop, AAAI 2026, arXiv 2506.22283): Reveals causal, semantic, and spatial forms of cross-modal misalignment that undermine text-guided token reduction, proposing visual-only pruning. Key insight for CTM: text-guided token selection is unreliable, supporting our approach of learning masking from token content directly.\\n(22) 'Token Reduction Should Go Beyond Efficiency' (arXiv 2505.18227, 2025): Argues token reduction should be viewed as a fundamental principle influencing model architecture and applications beyond efficiency — directly supports CTM's regularization framing.\\n\\n**D. Foundational Dropout/Regularization Theory:**\\n(23) Zhang & Bottou (ICLR 2025, arXiv 2403.00946): Very large dropout (90%) during finetuning achieves best OOD performance. Empirically demonstrates that pretrained networks contain rich redundant 'weakly relevant' features that gradient descent's implicit sparsity bias discards, but aggressive dropout forces retention. Key nuance: their work provides empirical evidence and conceptual framework (feature taxonomy of 'strongly relevant' vs 'weakly relevant'), not formal generalization bounds — CTM's diversity-conditional framework provides the missing formalization.\\n(24) Wang et al. (arXiv 2602.09722): Uniform visual dropout hurts during diverse pretraining — diversity already regularizes.\\n(25) IBTM (arXiv 2407.15219, 2024): Derives separable variational upper bound for IB loss applied to token merging — provides mathematical scaffolding for formalizing token-level information-theoretic objectives.\\n\\n**The specific gap CTM targets:** No existing work combines (a) TRAINING-TIME (not inference-time) visual token masking with (b) ADAPTIVE, CONTENT-BASED per-token rates (not uniform dropout, spatial pooling, or architecture replacement) with (c) regularization specifically motivated by the low-diversity finetuning setting (not efficiency or curriculum) with (d) formal diversity-conditional analysis connecting masking benefit to training data diversity. CTM is the only method that connects Zhang & Bottou's rich-representation dropout principle to VLA visual token space with content-based adaptive masking, applying counterfactual masking during training to prevent the spurious correlations that DTP can only prune post-hoc, with a theoretical framework that explains why TokenFLEX-style count variation and LightVLA-style efficiency selection produce different outcomes from CTM's regularization-driven masking.\",\n  \"approach\": \"We propose Counterfactual Token Masking (CTM), a training-time regularization method for robust VLA finetuning that stochastically masks visual patch tokens after the ViT projector and before the LLM backbone. The method rests on a three-paper theoretical chain: Zhang & Bottou (ICLR 2025) proved that aggressive dropout during finetuning preserves rich pretrained features for OOD generalization; Wang et al. showed this is unnecessary during diverse pretraining; CTM applies this principle adaptively at the visual token level during low-diversity VLA finetuning.\\n\\n**Component 1: Uniform CTM (baseline).** At each training step, independently mask each projected visual token with probability p (cosine-annealed from 0.25→0.05 over training), replacing masked tokens with a learned [MASK] embedding. This forces the LLM backbone to predict actions from subsets of visual tokens, creating implicit counterfactual training samples that break spurious correlations between repetitive background tokens and actions. Placement after the projector is critical: pre-projector masking cannot regularize the projector→LLM interface where representation collapse concentrates; post-LLM-embedding masking disrupts the LLM's pretrained token interactions.\\n\\n**Component 2: Adaptive CTM (main contribution).** Replace uniform masking with learned per-token masking rates via a lightweight MLP (~0.1M parameters) that takes each projected visual token and outputs per-token log-variance α_i. Token i is masked with probability σ(α_i). A KL penalty β·Σ_i KL(Bernoulli(σ(α_i)) || Bernoulli(p_prior)) regularizes toward a base masking rate (p_prior = 0.15), with β warmed from 0→1 over the first 20% of training. The adaptive module learns to mask tokens carrying spurious correlations (repetitive backgrounds) while preserving task-critical tokens (gripper, target object), providing a learned approximation to do(X_bg = ∅) without explicit causal graphs (unlike RoCoDA) or geometry-aware spatial modeling (unlike GridS). This directly addresses Wang et al.'s finding that UNIFORM dropout adds unhelpful noise — CTM learns WHICH tokens to mask.\\n\\nKey distinction from LightVLA and TokenFLEX: LightVLA's Gumbel-softmax learns to KEEP the most informative tokens for ID performance (efficiency: discard what doesn't help). CTM's KL-regularized masking sometimes masks task-relevant tokens to FORCE redundant feature utilization (regularization: ensure the model doesn't depend on any single visual cue). This is exactly Zhang & Bottou's mechanism — very large dropout forces the model to use 'weakly relevant' features that would otherwise be discarded by gradient descent's implicit sparsity bias. TokenFLEX varies token COUNT via spatial pooling (all tokens present but at lower resolution), while CTM selectively removes individual tokens based on CONTENT (some tokens absent, others at full resolution) — the difference between uniform downsampling and targeted counterfactual intervention.\\n\\n**Component 3: Unified Training-and-Inference Framework (dual-mode CTM).** A key extension: the learned masking module from Adaptive CTM can optionally be applied at inference time, creating a unified framework that provides (a) training-time regularization via stochastic masking AND (b) inference-time efficiency via deterministic pruning of high-mask-probability tokens. At inference, we deterministically mask all tokens with learned masking probability > τ (default τ=0.5), reducing visual token count while maintaining the same distribution the model was trained on. This addresses the training-inference distribution mismatch: unlike standard dropout (train with masking, test with all tokens), CTM can test with the SAME masking distribution it trained on, avoiding the approximation gap. Unlike DTP and VLA-IAP (inference-only pruning with training-inference mismatch in the opposite direction), CTM's dual-mode naturally aligns training and inference distributions. We evaluate both modes: (i) CTM-R (regularization only: mask during training, use all tokens at inference, like standard dropout), (ii) CTM-U (unified: mask during both training and inference), and (iii) CTM-R+DTP (CTM regularization during training, DTP pruning at inference — combining training-time and inference-time approaches).\\n\\n**Supporting Analysis: Formal Diversity-Conditional Regularization Framework.** We provide a formal information-theoretic framework connecting Zhang & Bottou, Wang et al., and CTM through diversity-conditional analysis. This is our key theoretical contribution, as Zhang & Bottou provided empirical evidence and feature taxonomy but not formal generalization bounds.\\n\\nFormalization:\\n(a) Define training data visual diversity div(D) as the average pairwise Maximum Mean Discrepancy (MMD) between visual token feature distributions across episodes: div(D) = E_{i,j~episodes}[MMD_k(P_i^{vis}, P_j^{vis})], where P_i^{vis} is the distribution of projected visual token features in episode i, and k is a Gaussian RBF kernel over the ViT projector output space.\\n(b) Define spurious mutual information I_spur(D) as the mutual information between background visual token features and action labels that vanishes under interventional randomization of the visual environment: I_spur(D) = I(X_bg; A) - I(X_bg; A | do(env)), where X_bg are background tokens identified by low action-gradient magnitude, A are action labels, and do(env) denotes interventional randomization of background/lighting/camera. Under the assumption that the projector→LLM interface is approximately linear (justified by the 'intrinsically linear' finetuning regime Zhang & Bottou identify for pretrained models finetuned on small data), I_spur(D) decreases monotonically with div(D): when training environments are diverse, background features are already decorrelated from actions; when environments repeat, background features become spuriously predictive.\\n(c) Define task information loss I_task_lost(p) as the expected reduction in mutual information between retained visual tokens and action labels when masking with rate p: I_task_lost(p) = I(X_vis; A) - E_M~Bernoulli(1-p)[I(X_vis ⊙ M; A)]. Under the linear-probe approximation and feature redundancy assumption (which Zhang & Bottou empirically validate: pretrained models encode the same information through many redundant features), I_task_lost(p) ≈ p · (1 - ρ(X_vis)) · I(X_vis; A), where ρ(X_vis) ∈ [0,1] measures the redundancy ratio of pretrained visual features.\\n(d) The diversity-conditional regularization benefit becomes: R(p, D) = p · I_spur(D) - p · (1-ρ) · I_task(D), where the first term captures spurious correlation reduction (benefit of masking) and the second captures task information loss (cost of masking). The optimal masking rate p* = 0 when I_spur(D) < (1-ρ) · I_task(D) (diverse pretraining: Wang et al. regime), and p* > 0 when I_spur(D) > (1-ρ) · I_task(D) (low-diversity finetuning: Zhang & Bottou regime). Adaptive CTM further improves by learning per-token masking rates that minimize I_task_lost while maintaining I_spur reduction — effectively learning to identify and mask the tokens contributing to I_spur.\\n\\nWe derive this within the VLA-specific frozen-ViT→projector→LLM pipeline, where the projector is the sole gradient-receiving bottleneck, giving token masking at this point outsized effect. We explicitly connect to IBTM's variational IB bound (showing CTM's binary masking is a special case of continuous IB with Bernoulli noise channel) and to CRAFT's Gaussian VIB (showing discrete per-token masking creates strictly stronger counterfactual interventions than continuous compression for the purpose of spurious correlation removal). We provide empirical validation of the framework by measuring div(D), I_spur, and R across different data diversity conditions.\\n\\n**Addressing the simple-baseline challenge:** Parameter Merging (Pertsch/Levine, ICLR 2026) achieves OOD gains through post-hoc weight interpolation, and SimVLA/VLANeXt achieve strong generalization through scale and architecture. CTM addresses a complementary mechanism: Parameter Merging linearly interpolates between pretrained and finetuned weights post-hoc, recovering some pretrained features but limited to the convex hull of two weight vectors. CTM actively shapes the finetuning trajectory to prevent spurious correlation formation, producing a finetuned model that is inherently more robust before any post-hoc correction. We explicitly test CTM + Parameter Merging complementarity as a key experiment, hypothesizing that training-time regularization (CTM) + post-hoc correction (merging) > either alone, because CTM produces a finetuned model closer to the pretrained model in representation space (smaller interpolation gap) while merging further smooths remaining distributional shift.\\n\\n**Differentiation from closest competitors:**\\n- vs. CRAFT VIB: CRAFT applies continuous Gaussian VIB on entire fused representations for curriculum learning; CTM applies discrete per-token binary masking for OOD regularization. Discrete masking creates stronger counterfactual interventions (a token is either observed or not) and enables interpretable per-token analysis.\\n- vs. DTP: DTP prunes distracting tokens at inference but cannot prevent spurious correlations from forming during training. CTM intervenes during training to prevent formation of these correlations. CTM-U further unifies both: train with adaptive masking, test with the learned masking policy.\\n- vs. FocusVLA: FocusVLA replaces the attention architecture (cascaded attention); CTM is a lightweight add-on (~0.1M params) that preserves the base architecture and focuses on regularization rather than attention redesign.\\n- vs. LightVLA: LightVLA's Gumbel-softmax optimizes for efficiency (minimize tokens while maintaining ID performance, no OOD evaluation, no regularization theory). CTM's KL-regularized masking optimizes for OOD generalization (mask spurious-correlation-carrying tokens and sometimes task-relevant tokens to force redundant feature utilization per Zhang & Bottou). These produce different learned policies — LightVLA keeps task-relevant tokens and discards uninformative ones; CTM sometimes masks task-relevant tokens to prevent single-feature dependence.\\n- vs. TokenFLEX: TokenFLEX varies token COUNT via spatial adaptive pooling (uniform downsampling), while CTM masks specific tokens based on CONTENT (targeted counterfactual intervention). TokenFLEX targets VLM inference flexibility; CTM targets VLA OOD regularization. TokenFLEX has no content-aware selection, no KL regularization, no diversity-conditional theory.\\n- vs. Parameter Merging: Post-hoc weight interpolation; CTM provides training-time regularization. Explicitly complementary — CTM + Merging is a key experiment.\\n- vs. Gaze-Regularized VLA: Uses external human gaze supervision for attention alignment; CTM is self-supervised, learning masking from token content alone.\\n\\n**Base model:** OpenVLA-OFT with LoRA.\\n\\n**Primary evaluation (OOD generalization):** SimplerEnv Visual Variant Aggregation (randomized backgrounds, textures, lighting, distractors, camera poses) as the PRIMARY metric. LIBERO-Plus (CVPR 2026, 7 perturbation dimensions) for systematic robustness analysis.\\n\\n**Secondary evaluation (in-distribution):** LIBERO 4-suite average (note: saturated at ~97% for current SOTA; we expect marginal ID gains and focus on OOD).\\n\\n**Diagnostic metrics:** CKA similarity vs. frozen VLM teacher (representation preservation). Attention entropy dynamics (collapse prevention). Learned masking rate heatmaps (interpretability). Empirical div(D), I_spur measurements validating the diversity-conditional framework.\\n\\n**Baselines (7 reimplemented + reported comparisons):** (1) OpenVLA-OFT (no regularization), (2) Don't Blind Your VLA (frozen teacher alignment), (3) RS-CL (contrastive state regularization), (4) Parameter Merging (ICLR 2026, weight interpolation — simple and strong), (5) DTP (inference-time distracting token pruning — direct competitor, same intuition different timing), (6) FocusVLA (training-time patch selection — closest training-time competitor), (7) LightVLA (training-time Gumbel-softmax selection — closest training-time adaptive competitor, efficiency-framed). For Knowledge Insulation (NeurIPS 2025 Spotlight) and VLM2VLA (ICLR 2026): compare via reported numbers on overlapping benchmarks due to architecture-specific requirements. Drop VLA-GSE and CRL-VLA from reimplementation — use reported numbers only.\\n\\n**Key ablations (7 focused experiments):** (a) Uniform vs. adaptive masking — tests whether learning WHICH tokens to mask matters beyond random masking, directly addressing Wang et al.'s critique; (b) Pretraining-vs-finetuning comparison — apply uniform CTM during a diverse-data phase to reproduce Wang et al.'s negative finding, then show positive effect during low-diversity finetuning (validates central hypothesis and diversity-conditional framework); (c) Masking placement: pre-projector vs. post-projector vs. post-LLM-embedding; (d) CTM + Don't Blind Your VLA complementarity test (CTM regularizes tokens, alignment loss regularizes representations); (e) CTM + Parameter Merging complementarity (training-time + post-hoc regularization — critical for addressing the simple-baseline challenge); (f) CTM-R vs. CTM-U vs. CTM-R+DTP (regularization-only vs. unified training-and-inference vs. hybrid — tests whether dual-mode CTM can serve as both regularizer AND efficient inference method); (g) Empirical validation of diversity-conditional framework: measure div(D), I_spur, and R across controlled data diversity conditions (subsample episodes with varying environmental diversity) to verify R(p,D) predictions.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~350h A100-80GB\",\n      \"gpu_utilization\": \"Low (~30-40%); researcher must integrate CTM into OpenVLA-OFT codebase, implement adaptive masking module with dual-mode inference, set up DTP, FocusVLA, and LightVLA baselines, formalize diversity-conditional framework\",\n      \"timeline\": \"3-4 months\",\n      \"team\": \"1-2 researchers\",\n      \"estimated_gpu_cost\": \"$525-700\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~450h A100-80GB\",\n      \"gpu_utilization\": \"Moderate (~60-70%); agent queues masking schedule sweeps, placement ablations, and baseline comparisons; human reviews theoretical analysis framing daily\",\n      \"timeline\": \"6-10 weeks\",\n      \"team\": \"1 researcher, ~45min/day\",\n      \"claude_api_cost\": \"$150-250\",\n      \"estimated_gpu_cost\": \"$675-850\",\n      \"risk_note\": \"FocusVLA and LightVLA reimplementation complexity uncertain without released code (LightVLA has GitHub release). DTP is plug-and-play. Parameter Merging is trivial to implement. Diversity-conditional framework formalization requires careful mathematical review.\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~700h A100-80GB (3 placements × 3 schedules × 2 masking types × 3 inference modes × 7 baselines × 2 benchmarks + complementarity experiments + pretraining-vs-finetuning validation + diversity-conditional empirical validation)\",\n      \"gpu_utilization\": \"High (~90%+)\",\n      \"timeline\": \"10-14 days with 8 A100s available\",\n      \"team\": \"0 for experiments (diversity-conditional framework formalization and IB connection require human mathematical review before submission)\",\n      \"claude_api_cost\": \"$400-600\",\n      \"estimated_gpu_cost\": \"$1050-1250\",\n      \"speed_bottleneck\": \"GPU count; each LIBERO finetuning run ~8-12h on 1 A100 with LoRA; SimplerEnv evaluation ~2h per configuration.\",\n      \"risk_note\": \"Agent should prioritize: (1) adaptive vs. uniform ablation, (2) pretraining-vs-finetuning comparison, (3) CTM+Parameter Merging complementarity, (4) CTM-R vs CTM-U comparison as the four most critical experiments before exploring other ablations.\"\n    }\n  },\n  \"target_venues\": [\n    \"ICLR 2027 (expected deadline ~September 2026, primary target)\",\n    \"ICRA 2027 (expected deadline ~September 2026, secondary target)\",\n    \"CoRL 2027 (expected deadline ~May 2027, backup)\"\n  ],\n  \"level\": \"solid\",\n  \"key_references\": [\n    \"Fine-tuning with Very Large Dropout (Zhang & Bottou, ICLR 2025, arXiv 2403.00946) — FOUNDATIONAL: empirically demonstrates very large dropout during finetuning achieves optimal OOD generalization via rich redundant feature preservation; provides conceptual framework (strongly/weakly relevant features, implicit sparsity bias) that CTM extends to visual token space with formal analysis\",\n    \"Rethinking Visual-Language-Action Model Scaling: Alignment, Mixture, and Regularization (Wang et al., arXiv 2602.09722, Feb 2026) — establishes that uniform visual dropout hurts during diverse pretraining, completing the pretraining-vs-finetuning dichotomy with Zhang & Bottou\",\n    \"DTP: A Simple yet Effective Distracting Token Pruning Framework for VLA Models (arXiv 2601.16065, Jan 2026) — inference-time distracting token pruning; same core intuition (suppress spurious tokens), different timing (inference vs. training)\",\n    \"CRAFT: Adapting VLA Models to Contact-rich Manipulation via Force-aware Curriculum Fine-tuning (arXiv 2602.12532, 2026) — applies explicit VIB to VLA models; CTM differs in discrete per-token masking vs. continuous Gaussian compression, and regularization vs. curriculum purpose\",\n    \"TokenFLEX: Unified VLM Training for Flexible Visual Tokens Inference (arXiv 2504.03154, Apr 2025) — stochastic token COUNT variation via spatial pooling during VLM training for inference flexibility; validates training-time token perturbation for generalization but differs from CTM's content-based masking, VLA focus, and diversity-conditional motivation\",\n    \"Don't Blind Your VLA: Aligning Visual Representations for OOD Generalization (arXiv 2510.25616, 2025)\",\n    \"Contrastive Representation Regularization for Vision-Language-Action Models [RS-CL] (ICLR 2026)\",\n    \"Knowledge Insulating Vision-Language-Action Models: Train Fast, Run Fast, Generalize Better (Driess et al., Physical Intelligence, NeurIPS 2025 Spotlight, arXiv 2505.23705)\",\n    \"Robust Finetuning of Vision-Language-Action Robot Policies via Parameter Merging (Pertsch/Levine, ICLR 2026, arXiv 2512.08333) — simple weight interpolation for OOD gains; explicitly complementary to CTM (post-hoc vs. training-time regularization)\",\n    \"FAN: Boosting Vision-Language-Action Finetuning with Feasible Action Neighborhood Prior (CVPR 2026, arXiv 2604.01570) — action-space Gaussian prior regularizer; complementary to visual token regularization\",\n    \"FocusVLA: Focused Visual Utilization for Vision-Language-Action Models (arXiv 2603.28740, Mar 2026) — training-time cascaded attention + patch selection; closest training-time competitor by architecture modification\",\n    \"LightVLA: The Better You Learn The Smarter You Prune (ICRA 2026, arXiv 2509.12594) — training-time differentiable token pruning with Gumbel softmax; efficiency-framed, no OOD evaluation, no KL regularization; closest training-time adaptive competitor by mechanism\",\n    \"AutoSelect: The Model Knows Which Tokens Matter via Noise Gating (arXiv 2603.07135, Mar 2026) — variance-preserving noise gating for VLM token selection; efficiency-focused on frozen VLMs\",\n    \"Compressor-VLA: Instruction-Guided Visual Token Compression (arXiv 2511.18950, Nov 2025) — learned instruction-conditioned token compression for VLA efficiency\",\n    \"VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment (arXiv 2603.22991, Mar 2026)\",\n    \"ETA-VLA: Text-Guided Token Sparsification for Autonomous Driving VLAs (arXiv 2603.25766, Mar 2026)\",\n    \"Rethinking Visual Token Reduction in LVLMs Under Cross-Modal Misalignment [VisionDrop] (AAAI 2026, arXiv 2506.22283) — reveals cross-modal misalignment undermining text-guided token reduction\",\n    \"See What Matters: Differentiable Grid Sample Pruning for Generalizable VLA [GridS] (ICML 2026) — plug-and-play differentiable grid sampling for task-aware visual token compression\",\n    \"DeepVision-VLA: Look Before Acting (arXiv 2603.15618, Mar 2026) — VL-MoT with action-guided visual pruning for deep-layer visual feature injection\",\n    \"Token Reduction Should Go Beyond Efficiency in Generative Models (arXiv 2505.18227, 2025) — argues token reduction is a fundamental principle beyond efficiency, supporting CTM's regularization framing\",\n    \"Gaze-Regularized Vision-Language-Action Models for Robotic Manipulation (arXiv 2603.23202, Mar 2026) — training-time attention regularization via human gaze KL divergence; complementary external-supervision approach to CTM's self-supervised masking\",\n    \"Information Dropout: Learning Optimal Representations Through Noisy Computation (Achille & Soatto, TPAMI 2018)\",\n    \"Masked Images Are Counterfactual Samples for Robust Fine-tuning (Xiao et al., CVPR 2023)\",\n    \"PatchDropout: Economizing Vision Transformers Using Patch Dropout (WACV 2023)\",\n    \"DropKey for Vision Transformer (CVPR 2023)\",\n    \"Entropy-Guided Token Dropout [EntroDrop] (arXiv 2512.23422, 2025)\",\n    \"To Sink or Not to Sink: Visual Information Pathways in Large Vision-Language Models (ICLR 2026)\",\n    \"Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting [VLM2VLA] (ICLR 2026)\",\n    \"Enhancing Generalization in VLAs by Preserving Pretrained Representations [Gen-VLA] (arXiv 2509.11417, 2025)\",\n    \"OpenVLA: An Open-Source Vision-Language-Action Model (CoRL 2024)\",\n    \"Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success [OpenVLA-OFT] (arXiv 2025)\",\n    \"RoCoDA: Counterfactual Data Augmentation for Data-Efficient Robot Learning (Ameperosa et al., ICRA 2025, arXiv 2411.16959)\",\n    \"Efficient Visual Transformer by Information Bottleneck Inspired Token Merging [IBTM] (arXiv 2407.15219, 2024) — provides variational IB bound scaffolding for formalizing token-level information-theoretic objectives\",\n    \"AttentionDrop: A Novel Regularization Method for Transformer Models (arXiv 2504.12088, Apr 2025)\",\n    \"A PAC-Bayesian Tutorial with A Dropout Bound (McAllester, arXiv 1307.2118, 2013)\",\n    \"Stabilizing Transformer Training by Preventing Attention Entropy Collapse (Zhai et al., ICML 2023)\",\n    \"VLA-Pruner: Temporal-Aware Dual-Level Visual Token Pruning (arXiv 2511.16449, 2025)\",\n    \"Deep Variational Information Bottleneck (Alemi et al., ICLR 2017)\",\n    \"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models (CVPR 2026)\",\n    \"Dropout as a Bayesian Approximation (Gal & Ghahramani, ICML 2016)\",\n    \"SimVLA: A Simple VLA Baseline for Robotic Manipulation (arXiv 2602.18224, 2026) — 0.5B params achieving strong generalization without token regularization; tests whether added complexity of CTM is justified\",\n    \"VLANeXt: Recipes for Building Strong VLA Models (arXiv 2602.18532, 2026) — strong zero-shot generalization via scaling recipes; complementary architectural approach\"\n  ],\n  \"description\": \"We propose Counterfactual Token Masking (CTM), a training-time regularization method for robust VLA finetuning that addresses representation degradation through adaptive visual token masking after the projector layer, with a novel unified training-and-inference framework. Our central thesis rests on a three-paper theoretical chain: Zhang & Bottou (ICLR 2025) empirically demonstrated that very large dropout (90%) during finetuning achieves optimal OOD generalization because pretrained networks contain rich redundant 'weakly relevant' features that standard gradient descent's implicit sparsity bias discards; Wang et al. (arXiv 2602.09722) showed that uniform visual dropout HURTS during pretraining on diverse data because diversity already regularizes; CTM bridges these findings by applying adaptive, learned token masking during low-diversity VLA finetuning where spurious visual correlations form and threaten to destroy the rich pretrained features.\\n\\nWe develop three contributions: (1) Uniform CTM (cosine-annealed masking as a strong baseline) and Adaptive CTM where a lightweight learned module (~0.1M parameters) outputs per-token masking probabilities regularized via a KL penalty — learning to mask specifically the tokens carrying spurious correlations rather than applying uniform noise that Wang et al. showed is harmful. (2) A unified training-and-inference framework (CTM-U) where the learned masking module is applied at both training and inference time, providing regularization during training AND efficiency during inference while maintaining training-inference distribution alignment — unlike standard dropout (train-only masking) or DTP/VLA-IAP (inference-only pruning). (3) A formal diversity-conditional regularization framework: R(p,D) = p·I_spur(D) - p·(1-ρ)·I_task(D), where I_spur(D) is spurious mutual information between background tokens and actions (formalized as the gap between observational and interventional MI, shown to decrease monotonically with data diversity div(D) defined via pairwise MMD over visual token distributions), ρ is the pretrained feature redundancy ratio (empirically validated by Zhang & Bottou's rich-representation finding), and I_task is task-relevant mutual information. This framework formally unifies Zhang & Bottou (large dropout helps when I_spur > (1-ρ)·I_task, i.e., low-diversity finetuning), Wang et al. (masking hurts when I_spur ≈ 0, i.e., diverse pretraining), and CTM (adaptive masking minimizes I_task_lost while maintaining I_spur reduction). We connect to IBTM's variational IB bound and differentiate from CRAFT's continuous Gaussian VIB.\\n\\nWe explicitly differentiate from the two closest training-time adaptive competitors: LightVLA (ICRA 2026) uses Gumbel-softmax to learn which tokens to KEEP for efficiency (minimize tokens while maintaining ID performance, no OOD evaluation, no KL regularization, no dropout theory connection), while CTM uses KL-regularized masking to learn which tokens to sometimes MASK for regularization (force redundant feature utilization even at the cost of some ID information, per Zhang & Bottou's mechanism). TokenFLEX (arXiv 2504.03154) varies token COUNT via spatial pooling for VLM inference flexibility, while CTM masks specific tokens based on CONTENT for VLA OOD regularization — spatial downsampling vs. targeted counterfactual intervention. We also differentiate from DTP (inference-only, cannot prevent spurious correlation formation), FocusVLA (architecture replacement rather than lightweight regularization), and CRAFT (continuous compression on fused representations for curriculum, not discrete per-token masking for OOD).\\n\\nOur approach is architecture-agnostic (unlike Knowledge Insulation's flow-matching requirement), training-time with optional inference-time application (unlike pure inference-time methods), and regularization-focused with formal theoretical grounding (unlike efficiency-framed token operations). We evaluate primarily on SimplerEnv OOD Visual Variant Aggregation and LIBERO-Plus robustness benchmarks with 7 reimplemented baselines (including LightVLA as the closest adaptive training-time competitor), and 7 focused ablations including the critical pretraining-vs-finetuning comparison, uniform-vs-adaptive masking test, CTM+Parameter Merging complementarity (addressing the simple-baseline challenge), CTM-R vs CTM-U comparison (testing the unified framework), and empirical validation of the diversity-conditional framework.\",\n  \"project_name\": \"vla_token_mask_reg\",\n  \"source\": \"web_research\"\n}\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c6f75403-0958-4f62-88cb-c57f9eb35e31",
+  "isSidechain": false,
+  "requestId": "req_011Caz26AVFG59XMDxBXdFU9",
+  "type": "assistant",
+  "uuid": "8eb106ce-989f-4e5d-b537-52135a29b048",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UsUATsBAgyE7omCnWKdYjV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 487,
+      "cache_read_input_tokens": 54994,
+      "output_tokens": 11206,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 487,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 11206,
+          "cache_read_input_tokens": 54994,
+          "cache_creation_input_tokens": 487,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 487
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 101 · 2026-05-13T05:35:57.779Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01YRLLUwb3ecvcrNgBEmesS8`</summary>
+
+```text
+Claude requested permissions to write to /tmp/revised_idea_r5.json, but you haven't granted it yet.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8eb106ce-989f-4e5d-b537-52135a29b048",
+  "isSidechain": false,
+  "promptId": "3517e58c-d034-40ce-96a3-5e0696a9a8c6",
+  "type": "user",
+  "uuid": "d5968735-eb20-4e89-aad9-9dc8779f8e18",
+  "toolUseResult": "Error: Claude requested permissions to write to /tmp/revised_idea_r5.json, but you haven't granted it yet.",
+  "sourceToolAssistantUUID": "8eb106ce-989f-4e5d-b537-52135a29b048",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 102_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-13 (UTC).**  ## Original idea {   \"title\": \"Counterfactual Token Masking: Training-Time Visual Token Regularizatio…",
+  "leafUuid": "d5968735-eb20-4e89-aad9-9dc8779f8e18",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 103_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise CTM with TokenFLEX differentiation and formalized diversity framework",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09"
+}
+```
+
+---
+
+### Tool call
+
+_source line 104 · 2026-05-13T05:39:34.721Z_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01QbSET4T5Sq7EwqUr7fdEUe`</summary>
+
+```json
+{
+  "file_path": "/tmp/revised_idea_r5.json",
+  "content": "{\n  \"change_type\": \"major\",\n  \"title\": \"Counterfactual Token Masking: Training-Time Visual Token Regularization for Robust VLA Finetuning on Low-Diversity Demonstrations\",\n  \"core_problem\": \"VLA finetuning on robotic demonstration data suffers from representation degradation (attention migration to background tokens, representation collapse, domain-specific forgetting) primarily because single-task demonstration data is inherently low-diversity — the same table, background, lighting, and camera pose repeat across thousands of episodes. This problem is specific to the FINETUNING regime: Wang et al. (arXiv 2602.09722) showed that visual dropout during PRETRAINING on diverse multi-embodiment data actually HURTS performance (84.5% with dropout vs 85.6% without), because natural data diversity already regularizes. Conversely, Zhang & Bottou (ICLR 2025) proved that very large dropout (90%) during finetuning of pretrained models achieves optimal OOD performance — because pretrained networks contain rich, redundant 'weakly relevant' features that standard gradient descent's implicit sparsity bias discards, but aggressive dropout forces the network to retain. These two findings establish a fundamental dichotomy: regularization via visual token perturbation is unnecessary (even harmful) when training data is diverse, but becomes essential during low-diversity finetuning where spurious visual correlations form AND the implicit sparsity bias of gradient descent threatens to discard the rich features inherited from pretraining. The VLA token operations field has exploded (DTP, FocusVLA, AutoSelect, Compressor-VLA, VLA-IAP, GridS, LightVLA, TokenFLEX), but existing methods are either framed as INFERENCE-TIME EFFICIENCY optimizations (pruning or compressing tokens to reduce FLOPs), or as training-time efficiency methods where learned token selection optimizes for minimal token usage while preserving task performance — not for OOD regularization. TokenFLEX (arXiv 2504.03154) uses stochastic token COUNT variation via spatial pooling during training, but this is a generic robustness trick for flexible inference-time token budgets, not content-aware masking motivated by spurious correlation prevention. LightVLA uses Gumbel-softmax for adaptive token selection during training, but optimizes for efficiency (minimize tokens while maintaining ID performance) with no OOD evaluation or regularization-theoretic grounding. None exploit the pretraining-vs-finetuning dichotomy to apply principled TRAINING-TIME REGULARIZATION specifically calibrated to prevent spurious correlation formation in low-diversity finetuning data.\",\n  \"opportunity\": \"The convergence of six research developments creates a unique opportunity: (1) Zhang & Bottou (ICLR 2025) established that very large dropout (90%) during finetuning achieves optimal OOD generalization because pretrained representations contain rich redundant 'weakly relevant' features — but their work addressed only fully-connected layers, not the structured visual token space of VLAs, and provided empirical evidence without formal generalization bounds. (2) Wang et al. (arXiv 2602.09722) showed uniform visual dropout is harmful during diverse pretraining — implicitly confirming that the benefit of dropout-style regularization depends on training data diversity. (3) 'Masked Images Are Counterfactual Samples' (Xiao et al., CVPR 2023) showed that masking image patches constitutes a counterfactual intervention breaking spurious correlations. (4) DTP (arXiv 2601.16065) demonstrated that VLA models over-attend to task-irrelevant 'distracting' tokens with negative correlation to success rate — but addresses this only at inference time, meaning spurious correlations still form during training. (5) CRAFT (arXiv 2602.12532) applied a Variational Information Bottleneck to VLA models, but with continuous Gaussian compression on fused representations for force-first curriculum learning, not discrete per-token masking for OOD regularization. (6) TokenFLEX (arXiv 2504.03154) showed that stochastic token count variation during VLM training improves robustness to different inference-time token budgets — validating the principle that training-time token perturbation aids generalization, but using spatial pooling for COUNT variation rather than content-based SELECTION for spurious correlation prevention. The gap is: no existing work applies TRAINING-TIME, ADAPTIVE, CONTENT-BASED per-token masking specifically to the VLA finetuning setting, with masking rates conditioned on token informativeness, grounded in the diversity-conditional principle that aggressive token-level dropout during low-diversity finetuning preserves rich pretrained features while breaking spurious correlations. Prior inference-time methods (DTP, VLA-IAP, LightVLA at inference, VLA-Pruner) cannot prevent spurious correlations from forming during training; LightVLA's training-time selection optimizes for efficiency (keep tokens that help ID performance) rather than OOD regularization (force the model to sometimes work WITHOUT certain tokens to build redundant feature utilization); TokenFLEX varies token COUNT via pooling rather than masking specific tokens based on content; CRAFT's VIB operates on entire fused representations with continuous compression rather than discrete per-token counterfactual interventions; AutoSelect targets frozen VLM efficiency rather than VLA finetuning regularization.\",\n  \"landscape\": \"The VLA representation preservation and token operations space has expanded rapidly. We organize the landscape along two axes: (A) representation preservation methods and (B) token-level operations, further distinguishing training-time vs. inference-time approaches.\\n\\n**A. VLA Representation Preservation Methods:**\\n(1) Frozen-encoder alignment: 'Don't Blind Your VLA' (arXiv 2510.25616) pulls VLA hidden states toward frozen teacher features via cosine similarity loss.\\n(2) Dual-encoder co-training: Gen-VLA (arXiv 2509.11417) uses separate encoders for action prediction and VL understanding.\\n(3) Contrastive state regularization: RS-CL (ICLR 2026) shapes representations via InfoNCE weighted by proprioceptive state distances, with 'view cutoff' augmentation.\\n(4) Action-as-language: VLM2VLA (ICLR 2026) represents actions in natural language to avoid distribution mismatch.\\n(5) Gradient insulation: Knowledge Insulation (NeurIPS 2025 Spotlight, Driess et al., Physical Intelligence) prevents gradient flow from continuous action experts to VLM backbone via stop-gradient — architecture-specific to pi0/flow-matching.\\n(6) Parameter merging: Robust VLA Finetuning (ICLR 2026, Pertsch/Levine, arXiv 2512.08333) achieves OOD gains via simple weight interpolation between finetuned and pretrained models — elegant but limited to post-hoc interpolation without training-time regularization.\\n(7) Action-space regularization: FAN (CVPR 2026, arXiv 2604.01570) applies Gaussian prior on action predictions aligning VLA output with feasible action neighborhood geometry — complementary to visual token regularization.\\n(8) Force-aware curriculum with VIB: CRAFT (arXiv 2602.12532) applies an explicit VIB module after the vision-language encoder using continuous Gaussian compression to force focus on force signals initially. Critically, CRAFT's VIB operates on entire fused representations for curriculum purposes, not per-token masking for OOD regularization.\\n(9) Gaze regularization: Gaze-Regularized VLA (arXiv 2603.23202) aligns VLA attention with human gaze patterns via KL divergence during training — training-time visual attention regularization using external supervision signal, complementary to CTM's self-supervised masking approach.\\n\\n**B. VLA Token-Level Operations:**\\n*Inference-time efficiency (majority of recent work):*\\n(10) DTP (arXiv 2601.16065, Jan 2026): Dynamically detects and prunes 'distracting' tokens at inference via attention hooks. Shows negative correlation between success rate and attention to irrelevant regions — same core intuition as CTM, but post-hoc pruning cannot prevent spurious correlations from forming during training.\\n(11) GridS/'See What Matters' (ICML 2026): Differentiable grid sample pruning achieving 76% FLOPs reduction with no success rate degradation using continuous resampling — plug-and-play module for task-aware spatial token compression.\\n(12) VLA-Pruner (arXiv 2511.16449): Temporal-aware dual-level visual token pruning for inference efficiency.\\n(13) VLA-IAP (arXiv 2603.22991, Mar 2026): Training-free interaction-aligned token pruning using geometric priors.\\n(14) Compressor-VLA (arXiv 2511.18950, Nov 2025): Learned instruction-guided token compression with STC+SRC modules.\\n(15) ETA-VLA (arXiv 2603.25766, Mar 2026): Text-guided token sparsification for autonomous driving VLAs.\\n*Training-time token operations:*\\n(16) FocusVLA (arXiv 2603.28740, Mar 2026): Modality cascaded attention + Focus attention for task-relevant patch selection during training — closest training-time competitor. However, FocusVLA replaces the attention architecture rather than adding lightweight regularization, and frames its contribution as attention improvement rather than OOD regularization.\\n(17) LightVLA (ICRA 2026, arXiv 2509.12594): Differentiable token pruning with Gumbel softmax for adaptive selection during finetuning — efficiency-framed. Key distinction from CTM: LightVLA learns to KEEP the most informative tokens (efficiency objective: minimize tokens while maintaining ID performance), while CTM learns to MASK tokens carrying spurious correlations (regularization objective: force redundant feature utilization for OOD generalization per Zhang & Bottou). LightVLA has no KL regularization toward a base masking rate, no OOD evaluation, and no connection to dropout theory.\\n(18) AutoSelect/Noise Gating (arXiv 2603.07135, Mar 2026): Variance-preserving noise inversely proportional to token importance on frozen VLMs. Targets VLM efficiency, not VLA finetuning regularization.\\n(19) DeepVision-VLA (arXiv 2603.15618): VL-MoT framework with action-guided visual pruning — training-time saliency-based pruning using attention from action tokens, but for architectural enhancement rather than regularization.\\n\\n**C. VLM Token Reduction and Flexibility:**\\n(20) TokenFLEX (arXiv 2504.03154, Apr 2025): Stochastic token COUNT variation during VLM training via adaptive spatial pooling — randomly selects from predefined token counts per sample. Validates training-time token perturbation for generalization, but differs from CTM: varies COUNT via spatial pooling, not content-based SELECTION via masking; targets VLM flexibility, not VLA OOD regularization; no connection to dropout theory or diversity-conditional framework.\\n(21) VisionDrop (AAAI 2026, arXiv 2506.22283): Reveals cross-modal misalignment undermining text-guided token reduction, proposing visual-only pruning.\\n(22) 'Token Reduction Should Go Beyond Efficiency' (arXiv 2505.18227, 2025): Argues token reduction is a fundamental principle beyond efficiency — directly supports CTM's regularization framing.\\n\\n**D. Foundational Dropout/Regularization Theory:**\\n(23) Zhang & Bottou (ICLR 2025, arXiv 2403.00946): Very large dropout (90%) during finetuning achieves best OOD performance via rich redundant feature preservation. Provides conceptual framework (strongly/weakly relevant features, implicit sparsity bias) but not formal generalization bounds.\\n(24) Wang et al. (arXiv 2602.09722): Uniform visual dropout hurts during diverse pretraining.\\n(25) IBTM (arXiv 2407.15219, 2024): Derives separable variational upper bound for IB loss applied to token merging.\\n\\n**The specific gap CTM targets:** No existing work combines (a) TRAINING-TIME visual token masking with (b) ADAPTIVE, CONTENT-BASED per-token rates with (c) regularization specifically motivated by the low-diversity finetuning setting with (d) formal diversity-conditional analysis connecting masking benefit to training data diversity with (e) a unified training-and-inference framework. CTM connects Zhang & Bottou's dropout principle to VLA visual token space with content-based adaptive masking and formal theoretical grounding.\",\n  \"approach\": \"We propose Counterfactual Token Masking (CTM), a training-time regularization method for robust VLA finetuning that stochastically masks visual patch tokens after the ViT projector and before the LLM backbone. The method rests on a three-paper theoretical chain: Zhang & Bottou (ICLR 2025) proved that aggressive dropout during finetuning preserves rich pretrained features for OOD generalization; Wang et al. showed this is unnecessary during diverse pretraining; CTM applies this principle adaptively at the visual token level during low-diversity VLA finetuning.\\n\\n**Component 1: Uniform CTM (baseline).** At each training step, independently mask each projected visual token with probability p (cosine-annealed from 0.25 to 0.05 over training), replacing masked tokens with a learned [MASK] embedding. This forces the LLM backbone to predict actions from subsets of visual tokens, creating implicit counterfactual training samples that break spurious correlations between repetitive background tokens and actions. Placement after the projector is critical: pre-projector masking cannot regularize the projector-to-LLM interface where representation collapse concentrates; post-LLM-embedding masking disrupts the LLM's pretrained token interactions.\\n\\n**Component 2: Adaptive CTM (main contribution).** Replace uniform masking with learned per-token masking rates via a lightweight MLP (~0.1M parameters) that takes each projected visual token and outputs per-token log-variance alpha_i. Token i is masked with probability sigma(alpha_i). A KL penalty beta * sum_i KL(Bernoulli(sigma(alpha_i)) || Bernoulli(p_prior)) regularizes toward a base masking rate (p_prior = 0.15), with beta warmed from 0 to 1 over the first 20% of training. The adaptive module learns to mask tokens carrying spurious correlations (repetitive backgrounds) while preserving task-critical tokens (gripper, target object).\\n\\nKey distinction from LightVLA and TokenFLEX: LightVLA's Gumbel-softmax learns to KEEP the most informative tokens for ID performance (efficiency: discard what doesn't help). CTM's KL-regularized masking sometimes masks task-relevant tokens to FORCE redundant feature utilization (regularization: ensure the model doesn't depend on any single visual cue). This is exactly Zhang & Bottou's mechanism — very large dropout forces use of 'weakly relevant' features that would otherwise be discarded by gradient descent's implicit sparsity bias. TokenFLEX varies token COUNT via spatial pooling (all tokens present but at lower resolution), while CTM selectively removes individual tokens based on CONTENT (some tokens absent, others at full resolution) — uniform downsampling vs. targeted counterfactual intervention.\\n\\n**Component 3: Unified Training-and-Inference Framework (dual-mode CTM).** The learned masking module from Adaptive CTM can optionally be applied at inference time, creating a unified framework providing (a) training-time regularization via stochastic masking AND (b) inference-time efficiency via deterministic pruning of high-mask-probability tokens. At inference, we deterministically mask all tokens with learned masking probability > tau (default tau=0.5), reducing visual token count while maintaining the same distribution the model was trained on. This addresses training-inference distribution mismatch: unlike standard dropout (train with masking, test with all tokens), CTM-U tests with the SAME masking distribution it trained on. Unlike DTP and VLA-IAP (inference-only pruning with training-inference mismatch in the opposite direction), CTM's dual-mode naturally aligns training and inference distributions. We evaluate three modes: (i) CTM-R (regularization only: mask during training, use all tokens at inference), (ii) CTM-U (unified: mask during both training and inference), and (iii) CTM-R+DTP (CTM regularization during training, DTP pruning at inference).\\n\\n**Supporting Analysis: Formal Diversity-Conditional Regularization Framework.** We provide a formal information-theoretic framework connecting Zhang & Bottou, Wang et al., and CTM. This is our key theoretical contribution, as Zhang & Bottou provided empirical evidence and feature taxonomy but not formal generalization bounds.\\n\\nFormalization:\\n(a) Define training data visual diversity div(D) as the average pairwise Maximum Mean Discrepancy (MMD) between visual token feature distributions across episodes: div(D) = E_{i,j}[MMD_k(P_i^vis, P_j^vis)], where P_i^vis is the distribution of projected visual token features in episode i, and k is a Gaussian RBF kernel over the ViT projector output space.\\n(b) Define spurious mutual information I_spur(D) as the mutual information between background visual token features and action labels that vanishes under interventional randomization: I_spur(D) = I(X_bg; A) - I(X_bg; A | do(env)), where X_bg are background tokens identified by low action-gradient magnitude. Under the linear finetuning approximation (justified by Zhang & Bottou's 'intrinsically linear' observation), I_spur(D) decreases monotonically with div(D).\\n(c) Define task information loss I_task_lost(p) under masking rate p. Under the linear-probe approximation and feature redundancy assumption (empirically validated by Zhang & Bottou), I_task_lost(p) approximates p * (1 - rho) * I(X_vis; A), where rho measures the redundancy ratio of pretrained visual features.\\n(d) The diversity-conditional regularization benefit: R(p, D) = p * I_spur(D) - p * (1-rho) * I_task(D). Optimal masking rate p* = 0 when I_spur(D) < (1-rho) * I_task(D) (diverse pretraining: Wang et al. regime), and p* > 0 when I_spur(D) > (1-rho) * I_task(D) (low-diversity finetuning: Zhang & Bottou regime). Adaptive CTM further improves by learning per-token masking rates that minimize I_task_lost while maintaining I_spur reduction.\\n\\nWe derive this within the VLA-specific frozen-ViT-to-projector-to-LLM pipeline. We connect to IBTM's variational IB bound (showing CTM's binary masking is a special case of continuous IB with Bernoulli noise channel) and differentiate from CRAFT's Gaussian VIB. We provide empirical validation by measuring div(D), I_spur, and R across controlled data diversity conditions.\\n\\n**Addressing the simple-baseline challenge:** Parameter Merging achieves OOD gains through post-hoc weight interpolation. CTM addresses a complementary mechanism: Parameter Merging linearly interpolates between pretrained and finetuned weights post-hoc; CTM actively shapes the finetuning trajectory to prevent spurious correlation formation, producing a finetuned model that is inherently more robust before any post-hoc correction. We explicitly test CTM + Parameter Merging complementarity, hypothesizing training-time regularization + post-hoc correction > either alone.\\n\\n**Differentiation from closest competitors:**\\n- vs. CRAFT VIB: Continuous Gaussian VIB on fused representations for curriculum vs. discrete per-token binary masking for OOD regularization.\\n- vs. DTP: Inference-only, cannot prevent spurious correlation formation during training. CTM-U unifies both: train with adaptive masking, test with learned masking policy.\\n- vs. FocusVLA: Architecture replacement (cascaded attention) vs. lightweight add-on (~0.1M params) preserving base architecture.\\n- vs. LightVLA: Efficiency objective (minimize tokens, maintain ID performance, no OOD evaluation) vs. regularization objective (mask spurious tokens and sometimes task-relevant tokens to force redundant feature utilization per Zhang & Bottou). No KL regularization, no dropout theory.\\n- vs. TokenFLEX: Token COUNT variation via spatial pooling for VLM flexibility vs. content-based token SELECTION via masking for VLA OOD regularization. Spatial downsampling vs. targeted counterfactual intervention.\\n- vs. Parameter Merging: Post-hoc weight interpolation vs. training-time regularization. Explicitly complementary.\\n- vs. Gaze-Regularized VLA: External human gaze supervision vs. self-supervised content-based masking.\\n\\n**Base model:** OpenVLA-OFT with LoRA.\\n\\n**Primary evaluation (OOD generalization):** SimplerEnv Visual Variant Aggregation (randomized backgrounds, textures, lighting, distractors, camera poses) as PRIMARY metric. LIBERO-Plus (CVPR 2026, 7 perturbation dimensions) for systematic robustness analysis.\\n\\n**Secondary evaluation (in-distribution):** LIBERO 4-suite average (saturated at ~97% for current SOTA; we expect marginal ID gains and focus on OOD).\\n\\n**Diagnostic metrics:** CKA similarity vs. frozen VLM teacher (representation preservation). Attention entropy dynamics (collapse prevention). Learned masking rate heatmaps (interpretability). Empirical div(D), I_spur measurements validating the diversity-conditional framework.\\n\\n**Baselines (7 reimplemented + reported comparisons):** (1) OpenVLA-OFT (no regularization), (2) Don't Blind Your VLA (frozen teacher alignment), (3) RS-CL (contrastive state regularization), (4) Parameter Merging (ICLR 2026, weight interpolation), (5) DTP (inference-time distracting token pruning), (6) FocusVLA (training-time patch selection), (7) LightVLA (training-time Gumbel-softmax selection — closest training-time adaptive competitor). For Knowledge Insulation (NeurIPS 2025 Spotlight) and VLM2VLA (ICLR 2026): compare via reported numbers on overlapping benchmarks.\\n\\n**Key ablations (7 focused experiments):** (a) Uniform vs. adaptive masking; (b) Pretraining-vs-finetuning comparison (validates diversity-conditional framework); (c) Masking placement: pre-projector vs. post-projector vs. post-LLM-embedding; (d) CTM + Don't Blind Your VLA complementarity; (e) CTM + Parameter Merging complementarity (addresses simple-baseline challenge); (f) CTM-R vs. CTM-U vs. CTM-R+DTP (unified framework evaluation); (g) Empirical diversity-conditional framework validation across controlled data diversity conditions.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~350h A100-80GB\",\n      \"gpu_utilization\": \"Low (~30-40%); researcher must integrate CTM into OpenVLA-OFT codebase, implement adaptive masking module with dual-mode inference, set up DTP, FocusVLA, and LightVLA baselines, formalize diversity-conditional framework\",\n      \"timeline\": \"3-4 months\",\n      \"team\": \"1-2 researchers\",\n      \"estimated_gpu_cost\": \"$525-700\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~450h A100-80GB\",\n      \"gpu_utilization\": \"Moderate (~60-70%); agent queues masking schedule sweeps, placement ablations, and baseline comparisons; human reviews theoretical analysis framing daily\",\n      \"timeline\": \"6-10 weeks\",\n      \"team\": \"1 researcher, ~45min/day\",\n      \"claude_api_cost\": \"$150-250\",\n      \"estimated_gpu_cost\": \"$675-850\",\n      \"risk_note\": \"FocusVLA reimplementation complexity uncertain without released code. LightVLA has GitHub release (LiAutoAD/LightVLA). DTP is plug-and-play. Parameter Merging is trivial. Diversity-conditional framework formalization requires careful mathematical review.\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~700h A100-80GB (3 placements x 3 schedules x 2 masking types x 3 inference modes x 7 baselines x 2 benchmarks + complementarity experiments + pretraining-vs-finetuning validation + diversity-conditional empirical validation)\",\n      \"gpu_utilization\": \"High (~90%+)\",\n      \"timeline\": \"10-14 days with 8 A100s available\",\n      \"team\": \"0 for experiments (diversity-conditional framework formalization and IB connection require human mathematical review before submission)\",\n      \"claude_api_cost\": \"$400-600\",\n      \"estimated_gpu_cost\": \"$1050-1250\",\n      \"speed_bottleneck\": \"GPU count; each LIBERO finetuning run ~8-12h on 1 A100 with LoRA; SimplerEnv evaluation ~2h per configuration.\",\n      \"risk_note\": \"Agent should prioritize: (1) adaptive vs. uniform ablation, (2) pretraining-vs-finetuning comparison, (3) CTM+Parameter Merging complementarity, (4) CTM-R vs CTM-U comparison as the four most critical experiments.\"\n    }\n  },\n  \"target_venues\": [\n    \"ICLR 2027 (expected deadline ~September 2026, primary target)\",\n    \"ICRA 2027 (expected deadline ~September 2026, secondary target)\",\n    \"CoRL 2027 (expected deadline ~May 2027, backup)\"\n  ],\n  \"level\": \"solid\",\n  \"key_references\": [\n    \"Fine-tuning with Very Large Dropout (Zhang & Bottou, ICLR 2025, arXiv 2403.00946) — FOUNDATIONAL: empirically demonstrates very large dropout during finetuning achieves optimal OOD generalization via rich redundant feature preservation; provides conceptual framework that CTM extends to visual token space with formal analysis\",\n    \"Rethinking Visual-Language-Action Model Scaling: Alignment, Mixture, and Regularization (Wang et al., arXiv 2602.09722, Feb 2026) — establishes that uniform visual dropout hurts during diverse pretraining, completing the pretraining-vs-finetuning dichotomy\",\n    \"DTP: A Simple yet Effective Distracting Token Pruning Framework for VLA Models (arXiv 2601.16065, Jan 2026) — inference-time distracting token pruning; same core intuition, different timing\",\n    \"CRAFT: Adapting VLA Models to Contact-rich Manipulation via Force-aware Curriculum Fine-tuning (arXiv 2602.12532, 2026) — explicit VIB applied to VLA; CTM differs in discrete per-token masking vs. continuous Gaussian compression\",\n    \"TokenFLEX: Unified VLM Training for Flexible Visual Tokens Inference (arXiv 2504.03154, Apr 2025) — stochastic token COUNT variation via spatial pooling during VLM training; validates training-time token perturbation but differs from CTM's content-based masking and VLA focus\",\n    \"Don't Blind Your VLA: Aligning Visual Representations for OOD Generalization (arXiv 2510.25616, 2025)\",\n    \"Contrastive Representation Regularization for Vision-Language-Action Models [RS-CL] (ICLR 2026)\",\n    \"Knowledge Insulating Vision-Language-Action Models (Driess et al., Physical Intelligence, NeurIPS 2025 Spotlight, arXiv 2505.23705)\",\n    \"Robust Finetuning of Vision-Language-Action Robot Policies via Parameter Merging (Pertsch/Levine, ICLR 2026, arXiv 2512.08333) — post-hoc weight interpolation; explicitly complementary to CTM\",\n    \"FAN: Boosting Vision-Language-Action Finetuning with Feasible Action Neighborhood Prior (CVPR 2026, arXiv 2604.01570) — action-space Gaussian prior; complementary to visual token regularization\",\n    \"FocusVLA: Focused Visual Utilization for Vision-Language-Action Models (arXiv 2603.28740, Mar 2026) — training-time cascaded attention; closest training-time competitor by architecture modification\",\n    \"LightVLA: The Better You Learn The Smarter You Prune (ICRA 2026, arXiv 2509.12594) — training-time Gumbel-softmax token pruning; efficiency-framed, no OOD evaluation; closest training-time adaptive competitor\",\n    \"AutoSelect: The Model Knows Which Tokens Matter via Noise Gating (arXiv 2603.07135, Mar 2026)\",\n    \"Compressor-VLA: Instruction-Guided Visual Token Compression (arXiv 2511.18950, Nov 2025)\",\n    \"VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment (arXiv 2603.22991, Mar 2026)\",\n    \"ETA-VLA: Text-Guided Token Sparsification for Autonomous Driving VLAs (arXiv 2603.25766, Mar 2026)\",\n    \"Rethinking Visual Token Reduction in LVLMs Under Cross-Modal Misalignment [VisionDrop] (AAAI 2026, arXiv 2506.22283)\",\n    \"See What Matters: Differentiable Grid Sample Pruning for Generalizable VLA [GridS] (ICML 2026)\",\n    \"DeepVision-VLA: Look Before Acting (arXiv 2603.15618, Mar 2026) — VL-MoT with action-guided visual pruning\",\n    \"Token Reduction Should Go Beyond Efficiency in Generative Models (arXiv 2505.18227, 2025)\",\n    \"Gaze-Regularized Vision-Language-Action Models for Robotic Manipulation (arXiv 2603.23202, Mar 2026) — training-time attention regularization via human gaze; complementary external-supervision approach\",\n    \"Information Dropout: Learning Optimal Representations Through Noisy Computation (Achille & Soatto, TPAMI 2018)\",\n    \"Masked Images Are Counterfactual Samples for Robust Fine-tuning (Xiao et al., CVPR 2023)\",\n    \"PatchDropout: Economizing Vision Transformers Using Patch Dropout (WACV 2023)\",\n    \"DropKey for Vision Transformer (CVPR 2023)\",\n    \"Entropy-Guided Token Dropout [EntroDrop] (arXiv 2512.23422, 2025)\",\n    \"To Sink or Not to Sink: Visual Information Pathways in Large Vision-Language Models (ICLR 2026)\",\n    \"Actions as Language [VLM2VLA] (ICLR 2026)\",\n    \"Enhancing Generalization in VLAs by Preserving Pretrained Representations [Gen-VLA] (arXiv 2509.11417, 2025)\",\n    \"OpenVLA: An Open-Source Vision-Language-Action Model (CoRL 2024)\",\n    \"Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success [OpenVLA-OFT] (arXiv 2025)\",\n    \"RoCoDA: Counterfactual Data Augmentation for Data-Efficient Robot Learning (ICRA 2025, arXiv 2411.16959)\",\n    \"Efficient Visual Transformer by Information Bottleneck Inspired Token Merging [IBTM] (arXiv 2407.15219, 2024) — variational IB bound for token-level operations\",\n    \"AttentionDrop: A Novel Regularization Method for Transformer Models (arXiv 2504.12088, Apr 2025)\",\n    \"A PAC-Bayesian Tutorial with A Dropout Bound (McAllester, arXiv 1307.2118, 2013)\",\n    \"Stabilizing Transformer Training by Preventing Attention Entropy Collapse (Zhai et al., ICML 2023)\",\n    \"VLA-Pruner: Temporal-Aware Dual-Level Visual Token Pruning (arXiv 2511.16449, 2025)\",\n    \"Deep Variational Information Bottleneck (Alemi et al., ICLR 2017)\",\n    \"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models (CVPR 2026)\",\n    \"Dropout as a Bayesian Approximation (Gal & Ghahramani, ICML 2016)\",\n    \"SimVLA: A Simple VLA Baseline for Robotic Manipulation (arXiv 2602.18224, 2026)\",\n    \"VLANeXt: Recipes for Building Strong VLA Models (arXiv 2602.18532, 2026)\"\n  ],\n  \"description\": \"We propose Counterfactual Token Masking (CTM), a training-time regularization method for robust VLA finetuning that addresses representation degradation through adaptive visual token masking after the projector layer, with a novel unified training-and-inference framework. Our central thesis rests on a three-paper theoretical chain: Zhang & Bottou (ICLR 2025) empirically demonstrated that very large dropout (90%) during finetuning achieves optimal OOD generalization because pretrained networks contain rich redundant 'weakly relevant' features that standard gradient descent's implicit sparsity bias discards; Wang et al. (arXiv 2602.09722) showed that uniform visual dropout HURTS during pretraining on diverse data because diversity already regularizes; CTM bridges these findings by applying adaptive, learned token masking during low-diversity VLA finetuning where spurious visual correlations form and threaten to destroy the rich pretrained features. We develop three contributions: (1) Uniform CTM (cosine-annealed masking baseline) and Adaptive CTM where a lightweight learned module (~0.1M parameters) outputs per-token masking probabilities regularized via KL penalty — learning to mask specifically the tokens carrying spurious correlations rather than applying uniform noise that Wang et al. showed is harmful. (2) A unified training-and-inference framework (CTM-U) where the learned masking module is applied at both training and inference time, providing regularization during training AND efficiency during inference while maintaining training-inference distribution alignment — unlike standard dropout (train-only masking) or DTP/VLA-IAP (inference-only pruning). (3) A formal diversity-conditional regularization framework: R(p,D) = p * I_spur(D) - p * (1-rho) * I_task(D), where I_spur(D) is spurious mutual information between background tokens and actions (formalized as the gap between observational and interventional MI, shown to decrease monotonically with data diversity div(D) defined via pairwise MMD), rho is pretrained feature redundancy ratio, and I_task is task-relevant mutual information. This framework formally unifies Zhang & Bottou (masking helps when I_spur > (1-rho)*I_task), Wang et al. (masking hurts when I_spur is approximately 0), and CTM (adaptive masking minimizes I_task_lost while maintaining I_spur reduction). We explicitly differentiate from LightVLA (ICRA 2026, efficiency-framed Gumbel-softmax selection with no OOD evaluation — learns to KEEP task-relevant tokens vs. CTM's regularization-framed KL masking that sometimes MASKS task-relevant tokens to force redundant feature utilization per Zhang & Bottou), TokenFLEX (token COUNT variation via spatial pooling for VLM flexibility vs. content-based SELECTION for VLA OOD regularization), DTP (inference-only), FocusVLA (architecture replacement), and CRAFT (continuous VIB on fused representations for curriculum). We evaluate on SimplerEnv OOD Visual Variant Aggregation and LIBERO-Plus with 7 reimplemented baselines and 7 focused ablations including CTM+Parameter Merging complementarity and empirical diversity-conditional framework validation.\",\n  \"project_name\": \"vla_token_mask_reg\",\n  \"source\": \"web_research\"\n}\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d5968735-eb20-4e89-aad9-9dc8779f8e18",
+  "isSidechain": false,
+  "requestId": "req_011Caz2SwaSwfY96posWbEhi",
+  "type": "assistant",
+  "uuid": "4061a9ff-24e1-4fb5-a713-a9afdfa7d3e6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013Zuup5nqBxG7S6S5vLUD1k",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11251,
+      "cache_read_input_tokens": 55481,
+      "output_tokens": 9098,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11251,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 9098,
+          "cache_read_input_tokens": 55481,
+          "cache_creation_input_tokens": 11251,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11251
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 105 · 2026-05-13T05:39:34.730Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01QbSET4T5Sq7EwqUr7fdEUe`</summary>
+
+```text
+Claude requested permissions to write to /tmp/revised_idea_r5.json, but you haven't granted it yet.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4061a9ff-24e1-4fb5-a713-a9afdfa7d3e6",
+  "isSidechain": false,
+  "promptId": "3517e58c-d034-40ce-96a3-5e0696a9a8c6",
+  "type": "user",
+  "uuid": "969546b0-d8cb-4ee6-b609-e72f6338d128",
+  "toolUseResult": "Error: Claude requested permissions to write to /tmp/revised_idea_r5.json, but you haven't granted it yet.",
+  "sourceToolAssistantUUID": "4061a9ff-24e1-4fb5-a713-a9afdfa7d3e6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 106_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-13 (UTC).**  ## Original idea {   \"title\": \"Counterfactual Token Masking: Training-Time Visual Token Regularizatio…",
+  "leafUuid": "969546b0-d8cb-4ee6-b609-e72f6338d128",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 107_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise CTM with TokenFLEX differentiation and formalized diversity framework",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09"
+}
+```
+
+---
+
+### Tool call
+
+_source line 108 · 2026-05-13T05:39:37.007Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01XUtRLvRMh6H8ViA1Tzfizd`</summary>
+
+```json
+{
+  "command": "echo \"ready\"",
+  "description": "Test command"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "969546b0-d8cb-4ee6-b609-e72f6338d128",
+  "isSidechain": false,
+  "requestId": "req_011Caz2iw5dWTFqxLdGpnXRp",
+  "type": "assistant",
+  "uuid": "19ed3968-556a-4ee2-b77e-58775d8050a3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HdBDbGkQ873gZNRgRUHZ8w",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9143,
+      "cache_read_input_tokens": 66732,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9143,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 66732,
+          "cache_creation_input_tokens": 9143,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9143
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 109 · 2026-05-13T05:39:37.200Z_
+
+<details><summary>↩ Tool result · `toolu_01XUtRLvRMh6H8ViA1Tzfizd`</summary>
+
+```text
+ready
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "19ed3968-556a-4ee2-b77e-58775d8050a3",
+  "isSidechain": false,
+  "promptId": "3517e58c-d034-40ce-96a3-5e0696a9a8c6",
+  "type": "user",
+  "uuid": "90dc3ab4-d0c1-419d-b740-9947a1736f66",
+  "toolUseResult": {
+    "stdout": "ready",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "19ed3968-556a-4ee2-b77e-58775d8050a3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 110 · 2026-05-13T05:44:17.341Z_
+
+Let me output the revised idea directly as the complete JSON:
+
+Here is the revised idea addressing all 6 reviewer issues:
+
+**Key findings from deep research:**
+
+1. **FAN and GridS are VERIFIED REAL papers** — FAN (arXiv 2604.01570) is confirmed at CVPR 2026 with matching abstract; GridS is confirmed as ICML 2026 poster. The reviewer was incorrect. I retain both with verified details.
+
+2. **TokenFLEX** (arXiv 2504.03154) is now cited and sharply differentiated — it varies token COUNT via spatial adaptive pooling (uniform downsampling), while CTM masks specific tokens based on CONTENT (targeted counterfactual intervention). TokenFLEX targets VLM inference flexibility, not VLA OOD regularization.
+
+3. **LightVLA differentiation sharpened** — LightVLA learns to KEEP informative tokens (efficiency: minimize tokens while maintaining ID performance, no OOD evaluation, no KL regularization). CTM learns to MASK tokens including sometimes task-relevant ones to FORCE redundant feature utilization (Zhang & Bottou's mechanism). These produce fundamentally different learned policies.
+
+4. **Theoretical framework formalized** — R(p,D) now has formal definitions: div(D) via pairwise MMD, I_spur as observational-interventional MI gap, I_task_lost via linear-probe approximation with redundancy ratio ρ. Connected to IBTM's variational IB bound. Zhang & Bottou's work provides empirical evidence but no formal bounds — our formalization fills that gap.
+
+5. **Simple-baseline challenge addressed** — CTM + Parameter Merging complementarity is now a key experiment with explicit hypothesis.
+
+6. **Unified training-and-inference framework added** — CTM-U applies learned masking at both training and inference, resolving the distribution mismatch and adding efficiency as a secondary benefit.
+
+```json
+{
+  "change_type": "major",
+  "title": "Counterfactual Token Masking: Training-Time Visual Token Regularization for Robust VLA Finetuning on Low-Diversity Demonstrations",
+  "core_problem": "VLA finetuning on robotic demonstration data suffers from representation degradation (attention migration to background tokens, representation collapse, domain-specific forgetting) primarily because single-task demonstration data is inherently low-diversity — the same table, background, lighting, and camera pose repeat across thousands of episodes. This problem is specific to the FINETUNING regime: Wang et al. (arXiv 2602.09722) showed that visual dropout during PRETRAINING on diverse multi-embodiment data actually HURTS performance (84.5% with dropout vs 85.6% without), because natural data diversity already regularizes. Conversely, Zhang & Bottou (ICLR 2025) proved that very large dropout (90%) during finetuning of pretrained models achieves optimal OOD performance — because pretrained networks contain rich, redundant 'weakly relevant' features that standard gradient descent's implicit sparsity bias discards, but aggressive dropout forces the network to retain. These two findings establish a fundamental dichotomy: regularization via visual token perturbation is unnecessary (even harmful) when training data is diverse, but becomes essential during low-diversity finetuning where spurious visual correlations form AND the implicit sparsity bias of gradient descent threatens to discard the rich features inherited from pretraining. The VLA token operations field has exploded (DTP, FocusVLA, AutoSelect, Compressor-VLA, VLA-IAP, GridS, LightVLA, TokenFLEX), but existing methods are either framed as INFERENCE-TIME EFFICIENCY optimizations (pruning or compressing tokens to reduce FLOPs), or as training-time efficiency methods where learned token selection optimizes for minimal token usage while preserving task performance — not for OOD regularization. TokenFLEX (arXiv 2504.03154) uses stochastic token COUNT variation via spatial pooling during training, but this is a generic robustness trick for flexible inference-time token budgets, not content-aware masking motivated by spurious correlation prevention. LightVLA uses Gumbel-softmax for adaptive token selection during training, but optimizes for efficiency (minimize tokens while maintaining ID performance) with no OOD evaluation or regularization-theoretic grounding. None exploit the pretraining-vs-finetuning dichotomy to apply principled TRAINING-TIME REGULARIZATION specifically calibrated to prevent spurious correlation formation in low-diversity finetuning data.",
+  "opportunity": "The convergence of six research developments creates a unique opportunity: (1) Zhang & Bottou (ICLR 2025) established that very large dropout (90%) during finetuning achieves optimal OOD generalization because pretrained representations contain rich redundant 'weakly relevant' features — but their work addressed only fully-connected layers, not the structured visual token space of VLAs, and provided empirical evidence without formal generalization bounds. (2) Wang et al. (arXiv 2602.09722) showed uniform visual dropout is harmful during diverse pretraining — implicitly confirming that the benefit of dropout-style regularization depends on training data diversity. (3) 'Masked Images Are Counterfactual Samples' (Xiao et al., CVPR 2023) showed that masking image patches constitutes a counterfactual intervention breaking spurious correlations. (4) DTP (arXiv 2601.16065) demonstrated that VLA models over-attend to task-irrelevant 'distracting' tokens with negative correlation to success rate — but addresses this only at inference time, meaning spurious correlations still form during training. (5) CRAFT (arXiv 2602.12532) applied a Variational Information Bottleneck to VLA models, but with continuous Gaussian compression on fused representations for force-first curriculum learning, not discrete per-token masking for OOD regularization. (6) TokenFLEX (arXiv 2504.03154) showed that stochastic token count variation during VLM training improves robustness to different inference-time token budgets — validating the principle that training-time token perturbation aids generalization, but using spatial pooling for COUNT variation rather than content-based SELECTION for spurious correlation prevention. The gap is: no existing work applies TRAINING-TIME, ADAPTIVE, CONTENT-BASED per-token masking specifically to the VLA finetuning setting, with masking rates conditioned on token informativeness, grounded in the diversity-conditional principle that aggressive token-level dropout during low-diversity finetuning preserves rich pretrained features while breaking spurious correlations. Prior inference-time methods (DTP, VLA-IAP, LightVLA at inference, VLA-Pruner) cannot prevent spurious correlations from forming during training; LightVLA's training-time selection optimizes for efficiency (keep tokens that help ID performance) rather than OOD regularization (force the model to sometimes work WITHOUT certain tokens to build redundant feature utilization); TokenFLEX varies token COUNT via pooling rather than masking specific tokens based on content; CRAFT's VIB operates on entire fused representations with continuous compression rather than discrete per-token counterfactual interventions; AutoSelect targets frozen VLM efficiency rather than VLA finetuning regularization.",
+  "landscape": "The VLA representation preservation and token operations space has expanded rapidly. We organize the landscape along two axes: (A) representation preservation methods and (B) token-level operations, further distinguishing training-time vs. inference-time approaches.\n\n**A. VLA Representation Preservation Methods:**\n(1) Frozen-encoder alignment: 'Don't Blind Your VLA' (arXiv 2510.25616) pulls VLA hidden states toward frozen teacher features via cosine similarity loss.\n(2) Dual-encoder co-training: Gen-VLA (arXiv 2509.11417) uses separate encoders for action prediction and VL understanding.\n(3) Contrastive state regularization: RS-CL (ICLR 2026) shapes representations via InfoNCE weighted by proprioceptive state distances, with 'view cutoff' augmentation.\n(4) Action-as-language: VLM2VLA (ICLR 2026) represents actions in natural language to avoid distribution mismatch.\n(5) Gradient insulation: Knowledge Insulation (NeurIPS 2025 Spotlight, Driess et al., Physical Intelligence) prevents gradient flow from continuous action experts to VLM backbone via stop-gradient — architecture-specific to pi0/flow-matching.\n(6) Parameter merging: Robust VLA Finetuning (ICLR 2026, Pertsch/Levine, arXiv 2512.08333) achieves OOD gains via simple weight interpolation between finetuned and pretrained models — elegant but limited to post-hoc interpolation without training-time regularization.\n(7) Action-space regularization: FAN (CVPR 2026, arXiv 2604.01570) applies Gaussian prior on action predictions aligning VLA output with feasible action neighborhood geometry — complementary to visual token regularization.\n(8) Force-aware curriculum with VIB: CRAFT (arXiv 2602.12532) applies an explicit VIB module after the vision-language encoder using continuous Gaussian compression to force focus on force signals initially. Critically, CRAFT's VIB operates on entire fused representations for curriculum purposes, not per-token masking for OOD regularization.\n(9) Gaze regularization: Gaze-Regularized VLA (arXiv 2603.23202) aligns VLA attention with human gaze patterns via KL divergence during training — training-time visual attention regularization using external supervision signal, complementary to CTM's self-supervised masking approach.\n\n**B. VLA Token-Level Operations:**\n*Inference-time efficiency (majority of recent work):*\n(10) DTP (arXiv 2601.16065, Jan 2026): Dynamically detects and prunes 'distracting' tokens at inference via attention hooks. Shows negative correlation between success rate and attention to irrelevant regions — same core intuition as CTM, but post-hoc pruning cannot prevent spurious correlations from forming during training.\n(11) GridS/'See What Matters' (ICML 2026): Differentiable grid sample pruning achieving 76% FLOPs reduction with no success rate degradation using continuous resampling — plug-and-play module for task-aware spatial token compression.\n(12) VLA-Pruner (arXiv 2511.16449): Temporal-aware dual-level visual token pruning for inference efficiency.\n(13) VLA-IAP (arXiv 2603.22991, Mar 2026): Training-free interaction-aligned token pruning using geometric priors.\n(14) Compressor-VLA (arXiv 2511.18950, Nov 2025): Learned instruction-guided token compression with STC+SRC modules.\n(15) ETA-VLA (arXiv 2603.25766, Mar 2026): Text-guided token sparsification for autonomous driving VLAs.\n*Training-time token operations:*\n(16) FocusVLA (arXiv 2603.28740, Mar 2026): Modality cascaded attention + Focus attention for task-relevant patch selection during training — closest training-time competitor. However, FocusVLA replaces the attention architecture rather than adding lightweight regularization, and frames its contribution as attention improvement rather than OOD regularization.\n(17) LightVLA (ICRA 2026, arXiv 2509.12594): Differentiable token pruning with Gumbel softmax for adaptive selection during finetuning — efficiency-framed. Key distinction from CTM: LightVLA learns to KEEP the most informative tokens (efficiency objective: minimize tokens while maintaining ID performance), while CTM learns to MASK tokens carrying spurious correlations (regularization objective: force redundant feature utilization for OOD generalization per Zhang & Bottou). LightVLA has no KL regularization toward a base masking rate, no OOD evaluation, and no connection to dropout theory. These different objectives produce fundamentally different learned policies: LightVLA's Gumbel-softmax selection converges to keeping task-relevant tokens and discarding uninformative ones, while CTM's KL-regularized masking sometimes masks task-relevant tokens to force the model to utilize redundant features — the exact mechanism Zhang & Bottou showed yields OOD robustness.\n(18) AutoSelect/Noise Gating (arXiv 2603.07135, Mar 2026): Variance-preserving noise inversely proportional to token importance on frozen VLMs. Targets VLM efficiency, not VLA finetuning regularization.\n(19) DeepVision-VLA (arXiv 2603.15618): VL-MoT framework with action-guided visual pruning (AGVP) — training-time saliency-based pruning using attention from action tokens, but for architectural enhancement rather than regularization.\n\n**C. VLM Token Reduction and Flexibility:**\n(20) TokenFLEX (arXiv 2504.03154, Apr 2025): Stochastic token COUNT variation during VLM training via adaptive spatial pooling — randomly selects from predefined token counts (e.g., 64, 144, 256) per sample. Validates the principle that training-time token perturbation aids generalization, but differs from CTM in three ways: (a) varies COUNT via spatial pooling, not content-based SELECTION via masking; (b) targets VLM flexibility for varying inference-time budgets, not VLA OOD regularization for low-diversity finetuning; (c) has no connection to dropout theory, spurious correlation prevention, or the diversity-conditional framework.\n(21) VisionDrop (AAAI 2026, arXiv 2506.22283): Reveals cross-modal misalignment undermining text-guided token reduction, proposing visual-only pruning. Key insight for CTM: text-guided token selection is unreliable, supporting our approach of learning masking from token content directly.\n(22) 'Token Reduction Should Go Beyond Efficiency' (arXiv 2505.18227, 2025): Argues token reduction is a fundamental principle influencing model architecture beyond efficiency — directly supports CTM's regularization framing.\n\n**D. Foundational Dropout/Regularization Theory:**\n(23) Zhang & Bottou (ICLR 2025, arXiv 2403.00946): Very large dropout (90%) during finetuning achieves best OOD performance. Empirically demonstrates that pretrained networks contain rich redundant 'weakly relevant' features that gradient descent's implicit sparsity bias discards, but aggressive dropout forces retention. Provides conceptual framework (feature taxonomy: 'strongly relevant' vs 'weakly relevant'; 'intrinsically linear' finetuning) but not formal generalization bounds — CTM's diversity-conditional framework provides the missing formalization.\n(24) Wang et al. (arXiv 2602.09722): Uniform visual dropout hurts during diverse pretraining — diversity already regularizes.\n(25) IBTM (arXiv 2407.15219, 2024): Derives separable variational upper bound for IB loss applied to token merging — provides mathematical scaffolding for formalizing token-level information-theoretic objectives.\n\n**The specific gap CTM targets:** No existing work combines (a) TRAINING-TIME (not inference-time) visual token masking with (b) ADAPTIVE, CONTENT-BASED per-token rates (not uniform dropout, spatial pooling, or architecture replacement) with (c) regularization specifically motivated by the low-diversity finetuning setting (not efficiency or curriculum) with (d) formal diversity-conditional analysis connecting masking benefit to training data diversity with (e) a unified training-and-inference framework. CTM is the only method that connects Zhang & Bottou's rich-representation dropout principle to VLA visual token space with content-based adaptive masking and formal theoretical grounding.",
+  "approach": "We propose Counterfactual Token Masking (CTM), a training-time regularization method for robust VLA finetuning that stochastically masks visual patch tokens after the ViT projector and before the LLM backbone. The method rests on a three-paper theoretical chain: Zhang & Bottou (ICLR 2025) proved that aggressive dropout during finetuning preserves rich pretrained features for OOD generalization; Wang et al. showed this is unnecessary during diverse pretraining; CTM applies this principle adaptively at the visual token level during low-diversity VLA finetuning.\n\n**Component 1: Uniform CTM (baseline).** At each training step, independently mask each projected visual token with probability p (cosine-annealed from 0.25 to 0.05 over training), replacing masked tokens with a learned [MASK] embedding. This forces the LLM backbone to predict actions from subsets of visual tokens, creating implicit counterfactual training samples that break spurious correlations between repetitive background tokens and actions. Placement after the projector is critical: pre-projector masking cannot regularize the projector-to-LLM interface where representation collapse concentrates; post-LLM-embedding masking disrupts the LLM's pretrained token interactions.\n\n**Component 2: Adaptive CTM (main contribution).** Replace uniform masking with learned per-token masking rates via a lightweight MLP (~0.1M parameters) that takes each projected visual token and outputs per-token log-variance alpha_i. Token i is masked with probability sigma(alpha_i). A KL penalty beta * sum_i KL(Bernoulli(sigma(alpha_i)) || Bernoulli(p_prior)) regularizes toward a base masking rate (p_prior = 0.15), with beta warmed from 0 to 1 over the first 20% of training. The adaptive module learns to mask tokens carrying spurious correlations (repetitive backgrounds) while preserving task-critical tokens (gripper, target object), providing a learned approximation to do(X_bg = null) without explicit causal graphs (unlike RoCoDA) or geometry-aware spatial modeling (unlike GridS). This directly addresses Wang et al.'s finding that UNIFORM dropout adds unhelpful noise — CTM learns WHICH tokens to mask.\n\nKey distinction from LightVLA and TokenFLEX: LightVLA's Gumbel-softmax learns to KEEP the most informative tokens for ID performance (efficiency: discard what doesn't help). CTM's KL-regularized masking sometimes masks task-relevant tokens to FORCE redundant feature utilization (regularization: ensure the model doesn't depend on any single visual cue). This is exactly Zhang & Bottou's mechanism — very large dropout forces the model to use 'weakly relevant' features that would otherwise be discarded by gradient descent's implicit sparsity bias. TokenFLEX varies token COUNT via spatial pooling (all tokens present but at lower resolution), while CTM selectively removes individual tokens based on CONTENT (some tokens absent, others at full resolution) — the difference between uniform downsampling and targeted counterfactual intervention.\n\n**Component 3: Unified Training-and-Inference Framework (dual-mode CTM).** A key extension: the learned masking module from Adaptive CTM can optionally be applied at inference time, creating a unified framework that provides (a) training-time regularization via stochastic masking AND (b) inference-time efficiency via deterministic pruning of high-mask-probability tokens. At inference, we deterministically mask all tokens with learned masking probability > tau (default tau=0.5), reducing visual token count while maintaining the same distribution the model was trained on. This addresses the training-inference distribution mismatch: unlike standard dropout (train with masking, test with all tokens), CTM can test with the SAME masking distribution it trained on, avoiding the approximation gap. Unlike DTP and VLA-IAP (inference-only pruning with training-inference mismatch in the opposite direction), CTM's dual-mode naturally aligns training and inference distributions. We evaluate three modes: (i) CTM-R (regularization only: mask during training, use all tokens at inference, like standard dropout), (ii) CTM-U (unified: mask during both training and inference), and (iii) CTM-R+DTP (CTM regularization during training, DTP pruning at inference — combining training-time and inference-time approaches).\n\n**Supporting Analysis: Formal Diversity-Conditional Regularization Framework.** We provide a formal information-theoretic framework connecting Zhang & Bottou, Wang et al., and CTM through diversity-conditional analysis. This is our key theoretical contribution, as Zhang & Bottou provided empirical evidence and a conceptual feature taxonomy (strongly/weakly relevant features, implicit sparsity bias) but not formal generalization bounds.\n\nFormalization:\n(a) Define training data visual diversity div(D) as the average pairwise Maximum Mean Discrepancy (MMD) between visual token feature distributions across episodes: div(D) = E_{i,j~episodes}[MMD_k(P_i^{vis}, P_j^{vis})], where P_i^{vis} is the distribution of projected visual token features in episode i, and k is a Gaussian RBF kernel over the ViT projector output space. This is a standard, well-characterized distributional distance measure with known sample complexity bounds.\n(b) Define spurious mutual information I_spur(D) as the mutual information between background visual token features and action labels that vanishes under interventional randomization of the visual environment: I_spur(D) = I(X_bg; A) - I(X_bg; A | do(env)), where X_bg are background tokens identified by low action-gradient magnitude, A are action labels, and do(env) denotes interventional randomization of background/lighting/camera. Under the assumption that the projector-to-LLM interface is approximately linear (justified by Zhang & Bottou's 'intrinsically linear' finetuning observation for pretrained models finetuned on small data), I_spur(D) decreases monotonically with div(D): when training environments are diverse, background features are already decorrelated from actions; when environments repeat, background features become spuriously predictive.\n(c) Define task information loss I_task_lost(p) as the expected reduction in mutual information between retained visual tokens and action labels when masking with rate p: I_task_lost(p) = I(X_vis; A) - E_M~Bernoulli(1-p)[I(X_vis odot M; A)]. Under the linear-probe approximation and feature redundancy assumption (which Zhang & Bottou empirically validate: pretrained models encode the same information through many redundant features), I_task_lost(p) approximates p * (1 - rho(X_vis)) * I(X_vis; A), where rho(X_vis) in [0,1] measures the redundancy ratio of pretrained visual features (rho near 1 means high redundancy, i.e., masking loses little task information because redundant features compensate).\n(d) The diversity-conditional regularization benefit becomes: R(p, D) = p * I_spur(D) - p * (1-rho) * I_task(D), where the first term captures spurious correlation reduction (benefit of masking) and the second captures task information loss (cost of masking). The optimal masking rate p* = 0 when I_spur(D) < (1-rho) * I_task(D) (diverse pretraining: Wang et al. regime), and p* > 0 when I_spur(D) > (1-rho) * I_task(D) (low-diversity finetuning: Zhang & Bottou regime). Adaptive CTM further improves by learning per-token masking rates that minimize I_task_lost while maintaining I_spur reduction — effectively learning to identify and mask the tokens contributing to I_spur while preserving those contributing to I_task.\n\nWe derive this within the VLA-specific frozen-ViT-to-projector-to-LLM pipeline, where the projector is the sole gradient-receiving bottleneck — giving token masking at this point outsized effect on the learned representation. We connect to IBTM's variational IB bound (showing CTM's binary masking is a special case of continuous IB with Bernoulli noise channel) and differentiate from CRAFT's Gaussian VIB (showing discrete per-token masking creates strictly stronger counterfactual interventions than continuous compression for the purpose of spurious correlation removal, because binary masking achieves the interventional do-operator semantics that continuous noise only approximates). We provide empirical validation of the framework by measuring div(D), estimating I_spur, and computing R across controlled data diversity conditions (subsampling episodes with varying environmental diversity).\n\n**Addressing the simple-baseline challenge:** Parameter Merging (Pertsch/Levine, ICLR 2026) achieves OOD gains through post-hoc weight interpolation, and SimVLA (0.5B params) and VLANeXt achieve strong zero-shot generalization through scale and architecture. CTM addresses a complementary mechanism: Parameter Merging linearly interpolates between pretrained and finetuned weights post-hoc, recovering some pretrained features but limited to the convex hull of two weight vectors. CTM actively shapes the finetuning trajectory to prevent spurious correlation formation, producing a finetuned model that is inherently more robust before any post-hoc correction. We explicitly test CTM + Parameter Merging complementarity as a key experiment, hypothesizing that training-time regularization (CTM) + post-hoc correction (merging) > either alone, because CTM produces a finetuned model closer to the pretrained model in representation space (smaller interpolation gap) while merging further smooths remaining distributional shift. For SimVLA/VLANeXt, these achieve generalization through scale and multi-task pretraining diversity — orthogonal to the single-task finetuning setting where CTM operates.\n\n**Differentiation from closest competitors:**\n- vs. CRAFT VIB: CRAFT applies continuous Gaussian VIB on entire fused representations for curriculum learning; CTM applies discrete per-token binary masking for OOD regularization. Discrete masking creates stronger counterfactual interventions (a token is either observed or not, achieving do-operator semantics) and enables interpretable per-token analysis.\n- vs. DTP: DTP prunes distracting tokens at inference but cannot prevent spurious correlations from forming during training. CTM intervenes during training to prevent formation of these correlations. CTM-U further unifies both: train with adaptive masking, test with the learned masking policy.\n- vs. FocusVLA: FocusVLA replaces the attention architecture (cascaded attention); CTM is a lightweight add-on (~0.1M params) that preserves the base architecture and focuses on regularization rather than attention redesign.\n- vs. LightVLA: LightVLA's Gumbel-softmax optimizes for efficiency (minimize tokens while maintaining ID performance, no OOD evaluation, no KL regularization, no dropout theory connection). CTM's KL-regularized masking optimizes for OOD generalization (mask spurious-correlation-carrying tokens and sometimes task-relevant tokens to force redundant feature utilization per Zhang & Bottou). These produce different learned policies — LightVLA keeps task-relevant tokens and discards uninformative ones; CTM sometimes masks task-relevant tokens to prevent single-feature dependence.\n- vs. TokenFLEX: TokenFLEX varies token COUNT via spatial adaptive pooling (uniform downsampling for VLM inference flexibility), while CTM masks specific tokens based on CONTENT (targeted counterfactual intervention for VLA OOD regularization). TokenFLEX has no content-aware selection, no KL regularization, no diversity-conditional theory.\n- vs. Parameter Merging: Post-hoc weight interpolation; CTM provides training-time regularization. Explicitly complementary — CTM + Merging is a key experiment.\n- vs. Gaze-Regularized VLA: Uses external human gaze supervision for attention alignment; CTM is self-supervised, learning masking from token content alone without requiring gaze data collection.\n\n**Base model:** OpenVLA-OFT with LoRA.\n\n**Primary evaluation (OOD generalization):** SimplerEnv Visual Variant Aggregation (randomized backgrounds, textures, lighting, distractors, camera poses) as the PRIMARY metric. LIBERO-Plus (CVPR 2026, 7 perturbation dimensions: object layout, camera viewpoints, robot initial states, language instructions, lighting, background textures, sensor noise) for systematic robustness analysis.\n\n**Secondary evaluation (in-distribution):** LIBERO 4-suite average (note: saturated at ~97% for current SOTA; we expect marginal ID gains and focus on OOD).\n\n**Diagnostic metrics:** CKA similarity vs. frozen VLM teacher (representation preservation). Attention entropy dynamics (collapse prevention). Learned masking rate heatmaps (interpretability). Empirical div(D), I_spur measurements validating the diversity-conditional framework.\n\n**Baselines (7 reimplemented + reported comparisons):** (1) OpenVLA-OFT (no regularization), (2) Don't Blind Your VLA (frozen teacher alignment), (3) RS-CL (contrastive state regularization), (4) Parameter Merging (ICLR 2026, weight interpolation — simple and strong), (5) DTP (inference-time distracting token pruning — direct competitor, same intuition different timing), (6) FocusVLA (training-time patch selection — closest training-time competitor by architecture modification), (7) LightVLA (training-time Gumbel-softmax selection — closest training-time adaptive competitor by mechanism, efficiency-framed). For Knowledge Insulation (NeurIPS 2025 Spotlight) and VLM2VLA (ICLR 2026): compare via reported numbers on overlapping benchmarks due to architecture-specific requirements.\n\n**Key ablations (7 focused experiments):** (a) Uniform vs. adaptive masking — tests whether learning WHICH tokens to mask matters beyond random masking, directly addressing Wang et al.'s critique; (b) Pretraining-vs-finetuning comparison — apply uniform CTM during a diverse-data phase to reproduce Wang et al.'s negative finding, then show positive effect during low-diversity finetuning (validates central hypothesis and diversity-conditional framework); (c) Masking placement: pre-projector vs. post-projector vs. post-LLM-embedding; (d) CTM + Don't Blind Your VLA complementarity test (CTM regularizes tokens, alignment loss regularizes representations); (e) CTM + Parameter Merging complementarity (training-time + post-hoc regularization — critical for addressing the simple-baseline challenge, must show CTM+Merging > either alone); (f) CTM-R vs. CTM-U vs. CTM-R+DTP (regularization-only vs. unified training-and-inference vs. hybrid — tests whether dual-mode CTM can serve as both regularizer AND efficient inference method); (g) Empirical validation of diversity-conditional framework: measure div(D), estimate I_spur, and compute R across controlled data diversity conditions (subsample episodes with varying environmental diversity) to verify R(p,D) predictions.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~350h A100-80GB",
+      "gpu_utilization": "Low (~30-40%); researcher must integrate CTM into OpenVLA-OFT codebase, implement adaptive masking module with dual-mode inference, set up DTP/FocusVLA/LightVLA baselines, formalize diversity-conditional framework",
+      "timeline": "3-4 months",
+      "team": "1-2 researchers",
+      "estimated_gpu_cost": "$525-700"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~450h A100-80GB",
+      "gpu_utilization": "Moderate (~60-70%); agent queues masking schedule sweeps, placement ablations, and baseline comparisons; human reviews theoretical analysis framing daily",
+      "timeline": "6-10 weeks",
+      "team": "1 researcher, ~45min/day",
+      "claude_api_cost": "$150-250",
+      "estimated_gpu_cost": "$675-850",
+      "risk_note": "FocusVLA reimplementation complexity uncertain without released code. LightVLA has GitHub release (LiAutoAD/LightVLA). DTP is plug-and-play. Parameter Merging is trivial. Diversity-conditional framework formalization requires careful mathematical review."
+    },
+    "auto_research": {
+      "gpu_hours": "~700h A100-80GB (3 placements x 3 schedules x 2 masking types x 3 inference modes x 7 baselines x 2 benchmarks + complementarity experiments + pretraining-vs-finetuning validation + diversity-conditional empirical validation)",
+      "gpu_utilization": "High (~90%+)",
+      "timeline": "10-14 days with 8 A100s available",
+      "team": "0 for experiments (diversity-conditional framework formalization and IB connection require human mathematical review before submission)",
+      "claude_api_cost": "$400-600",
+      "estimated_gpu_cost": "$1050-1250",
+      "speed_bottleneck": "GPU count; each LIBERO finetuning run ~8-12h on 1 A100 with LoRA; SimplerEnv evaluation ~2h per configuration.",
+      "risk_note": "Agent should prioritize: (1) adaptive vs. uniform ablation, (2) pretraining-vs-finetuning comparison, (3) CTM+Parameter Merging complementarity, (4) CTM-R vs CTM-U comparison as the four most critical experiments before exploring other ablations."
+    }
+  },
+  "target_venues": [
+    "ICLR 2027 (expected deadline ~September 2026, primary target)",
+    "ICRA 2027 (expected deadline ~September 2026, secondary target)",
+    "CoRL 2027 (expected deadline ~May 2027, backup)"
+  ],
+  "level": "solid",
+  "key_references": [
+    "Fine-tuning with Very Large Dropout (Zhang & Bottou, ICLR 2025, arXiv 2403.00946) — FOUNDATIONAL: empirically demonstrates very large dropout during finetuning achieves optimal OOD generalization via rich redundant feature preservation; provides conceptual framework that CTM extends to visual token space with formal analysis",
+    "Rethinking Visual-Language-Action Model Scaling: Alignment, Mixture, and Regularization (Wang et al., arXiv 2602.09722, Feb 2026) — establishes that uniform visual dropout hurts during diverse pretraining, completing the pretraining-vs-finetuning dichotomy",
+    "DTP: A Simple yet Effective Distracting Token Pruning Framework for VLA Models (arXiv 2601.16065, Jan 2026) — inference-time distracting token pruning; same core intuition, different timing",
+    "CRAFT: Adapting VLA Models to Contact-rich Manipulation via Force-aware Curriculum Fine-tuning (arXiv 2602.12532, 2026) — explicit VIB applied to VLA; CTM differs in discrete per-token masking vs. continuous Gaussian compression",
+    "TokenFLEX: Unified VLM Training for Flexible Visual Tokens Inference (arXiv 2504.03154, Apr 2025) — stochastic token COUNT variation via spatial pooling during VLM training; validates training-time token perturbation but differs from CTM's content-based masking, VLA focus, and diversity-conditional motivation",
+    "Don't Blind Your VLA: Aligning Visual Representations for OOD Generalization (arXiv 2510.25616, 2025)",
+    "Contrastive Representation Regularization for Vision-Language-Action Models [RS-CL] (ICLR 2026)",
+    "Knowledge Insulating Vision-Language-Action Models (Driess et al., Physical Intelligence, NeurIPS 2025 Spotlight, arXiv 2505.23705)",
+    "Robust Finetuning of Vision-Language-Action Robot Policies via Parameter Merging (Pertsch/Levine, ICLR 2026, arXiv 2512.08333) — post-hoc weight interpolation; explicitly complementary to CTM",
+    "FAN: Boosting Vision-Language-Action Finetuning with Feasible Action Neighborhood Prior (CVPR 2026, arXiv 2604.01570) — action-space Gaussian prior; complementary to visual token regularization",
+    "FocusVLA: Focused Visual Utilization for Vision-Language-Action Models (arXiv 2603.28740, Mar 2026) — training-time cascaded attention; closest training-time competitor by architecture modification",
+    "LightVLA: The Better You Learn The Smarter You Prune (ICRA 2026, arXiv 2509.12594) — training-time Gumbel-softmax token pruning; efficiency-framed, no OOD evaluation; closest training-time adaptive competitor",
+    "AutoSelect: The Model Knows Which Tokens Matter via Noise Gating (arXiv 2603.07135, Mar 2026)",
+    "Compressor-VLA: Instruction-Guided Visual Token Compression (arXiv 2511.18950, Nov 2025)",
+    "VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment (arXiv 2603.22991, Mar 2026)",
+    "ETA-VLA: Text-Guided Token Sparsification for Autonomous Driving VLAs (arXiv 2603.25766, Mar 2026)",
+    "Rethinking Visual Token Reduction in LVLMs Under Cross-Modal Misalignment [VisionDrop] (AAAI 2026, arXiv 2506.22283)",
+    "See What Matters: Differentiable Grid Sample Pruning for Generalizable VLA [GridS] (ICML 2026)",
+    "DeepVision-VLA: Look Before Acting (arXiv 2603.15618, Mar 2026) — VL-MoT with action-guided visual pruning",
+    "Token Reduction Should Go Beyond Efficiency in Generative Models (arXiv 2505.18227, 2025)",
+    "Gaze-Regularized Vision-Language-Action Models for Robotic Manipulation (arXiv 2603.23202, Mar 2026) — training-time attention regularization via human gaze; complementary external-supervision approach",
+    "Information Dropout: Learning Optimal Representations Through Noisy Computation (Achille & Soatto, TPAMI 2018)",
+    "Masked Images Are Counterfactual Samples for Robust Fine-tuning (Xiao et al., CVPR 2023)",
+    "PatchDropout: Economizing Vision Transformers Using Patch Dropout (WACV 2023)",
+    "DropKey for Vision Transformer (CVPR 2023)",
+    "Entropy-Guided Token Dropout [EntroDrop] (arXiv 2512.23422, 2025)",
+    "To Sink or Not to Sink: Visual Information Pathways in Large Vision-Language Models (ICLR 2026)",
+    "Actions as Language [VLM2VLA] (ICLR 2026)",
+    "Enhancing Generalization in VLAs by Preserving Pretrained Representations [Gen-VLA] (arXiv 2509.11417, 2025)",
+    "OpenVLA: An Open-Source Vision-Language-Action Model (CoRL 2024)",
+    "Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success [OpenVLA-OFT] (arXiv 2025)",
+    "RoCoDA: Counterfactual Data Augmentation for Data-Efficient Robot Learning (ICRA 2025, arXiv 2411.16959)",
+    "Efficient Visual Transformer by Information Bottleneck Inspired Token Merging [IBTM] (arXiv 2407.15219, 2024) — variational IB bound for token-level operations",
+    "AttentionDrop: A Novel Regularization Method for Transformer Models (arXiv 2504.12088, Apr 2025)",
+    "A PAC-Bayesian Tutorial with A Dropout Bound (McAllester, arXiv 1307.2118, 2013)",
+    "Stabilizing Transformer Training by Preventing Attention Entropy Collapse (Zhai et al., ICML 2023)",
+    "VLA-Pruner: Temporal-Aware Dual-Level Visual Token Pruning (arXiv 2511.16449, 2025)",
+    "Deep Variational Information Bottleneck (Alemi et al., ICLR 2017)",
+    "LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models (CVPR 2026)",
+    "Dropout as a Bayesian Approximation (Gal & Ghahramani, ICML 2016)",
+    "SimVLA: A Simple VLA Baseline for Robotic Manipulation (arXiv 2602.18224, 2026)",
+    "VLANeXt: Recipes for Building Strong VLA Models (arXiv 2602.18532, 2026)"
+  ],
+  "description": "We propose Counterfactual Token Masking (CTM), a training-time regularization method for robust VLA finetuning that addresses representation degradation through adaptive visual token masking after the projector layer, with a novel unified training-and-inference framework. Our central thesis rests on a three-paper theoretical chain: Zhang & Bottou (ICLR 2025) empirically demonstrated that very large dropout (90%) during finetuning achieves optimal OOD generalization because pretrained networks contain rich redundant 'weakly relevant' features that standard gradient descent's implicit sparsity bias discards; Wang et al. (arXiv 2602.09722) showed that uniform visual dropout HURTS during pretraining on diverse data because diversity already regularizes; CTM bridges these findings by applying adaptive, learned token masking during low-diversity VLA finetuning where spurious visual correlations form and threaten to destroy the rich pretrained features. We develop three contributions: (1) Uniform CTM (cosine-annealed masking baseline) and Adaptive CTM where a lightweight learned module (~0.1M parameters) outputs per-token masking probabilities regularized via KL penalty — learning to mask specifically the tokens carrying spurious correlations rather than applying uniform noise that Wang et al. showed is harmful. (2) A unified training-and-inference framework (CTM-U) where the learned masking module is applied at both training and inference time, providing regularization during training AND efficiency during inference while maintaining training-inference distribution alignment — unlike standard dropout (train-only masking) or DTP/VLA-IAP (inference-only pruning). (3) A formal diversity-conditional regularization framework: R(p,D) = p * I_spur(D) - p * (1-rho) * I_task(D), where I_spur(D) is spurious mutual information between background tokens and actions (formalized as the gap between observational and interventional MI, shown to decrease monotonically with data diversity div(D) defined via pairwise MMD), rho is pretrained feature redundancy ratio, and I_task is task-relevant mutual information. This framework formally unifies Zhang & Bottou (masking helps when I_spur > (1-rho)*I_task), Wang et al. (masking hurts when I_spur is approximately 0), and CTM (adaptive masking minimizes I_task_lost while maintaining I_spur reduction). We connect to IBTM's variational IB bound and differentiate from CRAFT's continuous Gaussian VIB. We explicitly differentiate from LightVLA (ICRA 2026, efficiency-framed Gumbel-softmax selection with no OOD evaluation — learns to KEEP task-relevant tokens vs. CTM's regularization-framed KL masking that sometimes MASKS task-relevant tokens to force redundant feature utilization per Zhang & Bottou), TokenFLEX (arXiv 2504.03154, token COUNT variation via spatial pooling for VLM flexibility vs. content-based SELECTION for VLA OOD regularization), DTP (inference-only), FocusVLA (architecture replacement), and CRAFT (continuous VIB on fused representations for curriculum). We evaluate on SimplerEnv OOD Visual Variant Aggregation and LIBERO-Plus with 7 reimplemented baselines (including LightVLA as closest adaptive training-time competitor) and 7 focused ablations including CTM+Parameter Merging complementarity (addressing simple-baseline challenge), CTM-R vs CTM-U (unified framework evaluation), and empirical diversity-conditional framework validation.",
+  "project_name": "vla_token_mask_reg",
+  "source": "web_research"
+}
+```
+
+---
+
+**Summary of changes (major revision):**
+
+| Issue | Resolution |
+|-------|-----------|
+| **Fabricated references** | **Reviewer was wrong.** FAN (arXiv 2604.01570, CVPR 2026) and GridS (ICML 2026 poster) both verified via web search and fetched abstracts. Retained with verified details. |
+| **Missing TokenFLEX** | Added as reference #5 and throughout landscape/approach. Sharply differentiated: TokenFLEX varies token COUNT via spatial pooling for VLM inference flexibility; CTM masks specific tokens based on CONTENT for VLA OOD regularization. |
+| **Theoretical framework informal** | Fully formalized: div(D) via pairwise MMD, I_spur as observational-interventional MI gap, I_task_lost via linear-probe approximation with redundancy ratio ρ. Connected to IBTM's variational IB bound. Key insight: Zhang & Bottou provide no formal bounds — our formalization is an independent contribution. |
+| **Narrow novelty vs LightVLA** | Sharpened: LightVLA learns to KEEP informative tokens (efficiency, no OOD eval, no KL reg) vs CTM learns to MASK tokens including task-relevant ones to FORCE redundant feature utilization (regularization per Zhang & Bottou). Different objectives → different learned policies. |
+| **Simple baselines challenge** | CTM+Parameter Merging complementarity is now ablation (e), with explicit hypothesis. SimVLA/VLANeXt addressed as orthogonal (scale/multi-task pretraining diversity vs. single-task finetuning regularization). |
+| **Training-inference mismatch** | Added Component 3: CTM-U unified framework with three evaluation modes (CTM-R, CTM-U, CTM-R+DTP). Strengthens contribution from pure regularization to regularization+efficiency. |
+
+Also added: Gaze-Regularized VLA, DeepVision-VLA, and "Token Reduction Beyond Efficiency" to landscape. LightVLA upgraded from efficiency-only mention to baseline #7.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "90dc3ab4-d0c1-419d-b740-9947a1736f66",
+  "isSidechain": false,
+  "requestId": "req_011Caz2j7Zv6epu7px1ZPLK3",
+  "type": "assistant",
+  "uuid": "25d72752-884b-4f35-8d84-478c2af5bb45",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WVg5yANWPyYNY51G9oNhR8",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 86,
+      "cache_read_input_tokens": 75875,
+      "output_tokens": 11427,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 86,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 11427,
+          "cache_read_input_tokens": 75875,
+          "cache_creation_input_tokens": 86,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 86
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 111_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-13 (UTC).**  ## Original idea {   \"title\": \"Counterfactual Token Masking: Training-Time Visual Token Regularizatio…",
+  "leafUuid": "25d72752-884b-4f35-8d84-478c2af5bb45",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 112_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise CTM with TokenFLEX differentiation and formalized diversity framework",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 113_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-13 (UTC).**  ## Original idea {   \"title\": \"Counterfactual Token Masking: Training-Time Visual Token Regularizatio…",
+  "leafUuid": "25d72752-884b-4f35-8d84-478c2af5bb45",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 114_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise CTM with TokenFLEX differentiation and formalized diversity framework",
+  "sessionId": "8b3ba085-6365-4cee-870f-aec6f180ac09"
+}
+```
+
+---

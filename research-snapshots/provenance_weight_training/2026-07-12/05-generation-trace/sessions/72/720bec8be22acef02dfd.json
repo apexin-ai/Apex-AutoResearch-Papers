@@ -1,0 +1,1700 @@
+{
+  "schema_version": "1.0",
+  "id": "720bec8be22acef02dfd",
+  "project": "provenance_weight_training--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: I need to extract specific experiment data from a large JSON registry file. The file is at: /home/ubuntu/.claude-account",
+  "task_key": "agent-add9e33b65cc0f6cc",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-3/agent-add9e33b65cc0f6cc.jsonl",
+    "occurrence": 1,
+    "bytes": 81535,
+    "sha256": "03543dcc5173f213a9fae17ba1fea989ac2771f89187eb27d69e163130a393cd"
+  },
+  "statistics": {
+    "messages": 31,
+    "user_turns": 1,
+    "tool_calls": 11,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 7,
+      "tool_call": 11,
+      "tool_result": 11
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T02:50:40.707Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "I need to extract specific experiment data from a large JSON registry file. The file is at:\n/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training--claude-sessions-agent-0dcc82db/fa6b86df-96af-487a-8f60-5e846598b211/tool-results/mcp-agent-ml-research-read_registry-1779331805083.txt\n\nThe file is JSON with schema: {result: string} where result is a JSON string that needs to be parsed.\n\nI need you to:\n1. First probe the structure with jq (type/length/keys)\n2. Extract ALL experiments whose IDs contain \"ngram\" - return their FULL data (all fields)\n3. Also extract experiments: gpt2_adaptive_seed123, gpt2_adaptive_seed456, adaptive_tau08_scratch_seed42 - return their full data\n4. List all experiments with status \"RUNNING\"\n5. List all workers currently referenced\n\nReturn the complete JSON for each matching experiment. Be thorough - I need all fields."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "81aa97b5-7ab3-4784-9310-f6aca7e148e9",
+            "agentId": "add9e33b65cc0f6cc",
+            "type": "user",
+            "uuid": "2b3e4afd-ddea-4883-bbbf-3c47c862b2da",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/agent_0dcc82db",
+            "sessionId": "fa6b86df-96af-487a-8f60-5e846598b211",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-21T02:50:40.715Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "2b3e4afd-ddea-4883-bbbf-3c47c862b2da",
+                "isSidechain": true,
+                "agentId": "add9e33b65cc0f6cc",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__allocate_and_submit",
+                    "mcp__agent-ml-research__append_idea",
+                    "mcp__agent-ml-research__approve_worker",
+                    "mcp__agent-ml-research__auto_build_provenance",
+                    "mcp__agent-ml-research__backup_project_to_s3",
+                    "mcp__agent-ml-research__cancel_worker",
+                    "mcp__agent-ml-research__check_job_status",
+                    "mcp__agent-ml-research__check_paper_consistency",
+                    "mcp__agent-ml-research__check_provenance_completeness",
+                    "mcp__agent-ml-research__cleanup_pdf_images",
+                    "mcp__agent-ml-research__compute_coverage_matrix",
+                    "mcp__agent-ml-research__detect_image",
+                    "mcp__agent-ml-research__distill_papers",
+                    "mcp__agent-ml-research__edit_paper_section",
+                    "mcp__agent-ml-research__feishu_read_tum_pending_key",
+                    "mcp__agent-ml-research__feishu_send_alert",
+                    "mcp__agent-ml-research__feishu_send_approval_card",
+                    "mcp__agent-ml-research__feishu_send_result_card",
+                    "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+                    "mcp__agent-ml-research__fetch_wandb_metrics",
+                    "mcp__agent-ml-research__get_baseline_metrics",
+                    "mcp__agent-ml-research__get_distill_status",
+                    "mcp__agent-ml-research__get_gpu_health",
+                    "mcp__agent-ml-research__get_image_info",
+                    "mcp__agent-ml-research__get_matrix_value",
+                    "mcp__agent-ml-research__get_project_resource_usage",
+                    "mcp__agent-ml-research__get_tum_config",
+                    "mcp__agent-ml-research__get_worker_status",
+                    "mcp__agent-ml-research__impact_analysis",
+                    "mcp__agent-ml-research__kill_job",
+                    "mcp__agent-ml-research__list_artifacts",
+                    "mcp__agent-ml-research__list_available_gpus",
+                    "mcp__agent-ml-research__list_constraints",
+                    "mcp__agent-ml-research__list_s3_backups",
+                    "mcp__agent-ml-research__list_workers",
+                    "mcp__agent-ml-research__load_project_config",
+                    "mcp__agent-ml-research__main_agent_post_to_director",
+                    "mcp__agent-ml-research__matrix_gap_analysis",
+                    "mcp__agent-ml-research__pdf_to_images",
+                    "mcp__agent-ml-research__poll_cron",
+                    "mcp__agent-ml-research__poll_secret_request",
+                    "mcp__agent-ml-research__read_experiment_plan_with_status",
+                    "mcp__agent-ml-research__read_matrix",
+                    "mcp__agent-ml-research__read_mistakes",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__read_roadmap",
+                    "mcp__agent-ml-research__reconcile_crons",
+                    "mcp__agent-ml-research__register_artifact",
+                    "mcp__agent-ml-research__register_cron",
+                    "mcp__agent-ml-research__request_secret",
+                    "mcp__agent-ml-research__save_project_file",
+                    "mcp__agent-ml-research__send_progress",
+                    "mcp__agent-ml-research__spawn_worker",
+                    "mcp__agent-ml-research__submit_on_allocated",
+                    "mcp__agent-ml-research__submit_training_job",
+                    "mcp__agent-ml-research__sync_matrix_status",
+                    "mcp__agent-ml-research__tail_training_logs",
+                    "mcp__agent-ml-research__update_baseline",
+                    "mcp__agent-ml-research__update_matrix",
+                    "mcp__agent-ml-research__update_registry",
+                    "mcp__agent-ml-research__verify_references",
+                    "mcp__agent-ml-research__write_paper_section"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__allocate_and_submit",
+                    "mcp__agent-ml-research__append_idea",
+                    "mcp__agent-ml-research__approve_worker",
+                    "mcp__agent-ml-research__auto_build_provenance",
+                    "mcp__agent-ml-research__backup_project_to_s3",
+                    "mcp__agent-ml-research__cancel_worker",
+                    "mcp__agent-ml-research__check_job_status",
+                    "mcp__agent-ml-research__check_paper_consistency",
+                    "mcp__agent-ml-research__check_provenance_completeness",
+                    "mcp__agent-ml-research__cleanup_pdf_images",
+                    "mcp__agent-ml-research__compute_coverage_matrix",
+                    "mcp__agent-ml-research__detect_image",
+                    "mcp__agent-ml-research__distill_papers",
+                    "mcp__agent-ml-research__edit_paper_section",
+                    "mcp__agent-ml-research__feishu_read_tum_pending_key",
+                    "mcp__agent-ml-research__feishu_send_alert",
+                    "mcp__agent-ml-research__feishu_send_approval_card",
+                    "mcp__agent-ml-research__feishu_send_result_card",
+                    "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+                    "mcp__agent-ml-research__fetch_wandb_metrics",
+                    "mcp__agent-ml-research__get_baseline_metrics",
+                    "mcp__agent-ml-research__get_distill_status",
+                    "mcp__agent-ml-research__get_gpu_health",
+                    "mcp__agent-ml-research__get_image_info",
+                    "mcp__agent-ml-research__get_matrix_value",
+                    "mcp__agent-ml-research__get_project_resource_usage",
+                    "mcp__agent-ml-research__get_tum_config",
+                    "mcp__agent-ml-research__get_worker_status",
+                    "mcp__agent-ml-research__impact_analysis",
+                    "mcp__agent-ml-research__kill_job",
+                    "mcp__agent-ml-research__list_artifacts",
+                    "mcp__agent-ml-research__list_available_gpus",
+                    "mcp__agent-ml-research__list_constraints",
+                    "mcp__agent-ml-research__list_s3_backups",
+                    "mcp__agent-ml-research__list_workers",
+                    "mcp__agent-ml-research__load_project_config",
+                    "mcp__agent-ml-research__main_agent_post_to_director",
+                    "mcp__agent-ml-research__matrix_gap_analysis",
+                    "mcp__agent-ml-research__pdf_to_images",
+                    "mcp__agent-ml-research__poll_cron",
+                    "mcp__agent-ml-research__poll_secret_request",
+                    "mcp__agent-ml-research__read_experiment_plan_with_status",
+                    "mcp__agent-ml-research__read_matrix",
+                    "mcp__agent-ml-research__read_mistakes",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__read_roadmap",
+                    "mcp__agent-ml-research__reconcile_crons",
+                    "mcp__agent-ml-research__register_artifact",
+                    "mcp__agent-ml-research__register_cron",
+                    "mcp__agent-ml-research__request_secret",
+                    "mcp__agent-ml-research__save_project_file",
+                    "mcp__agent-ml-research__send_progress",
+                    "mcp__agent-ml-research__spawn_worker",
+                    "mcp__agent-ml-research__submit_on_allocated",
+                    "mcp__agent-ml-research__submit_training_job",
+                    "mcp__agent-ml-research__sync_matrix_status",
+                    "mcp__agent-ml-research__tail_training_logs",
+                    "mcp__agent-ml-research__update_baseline",
+                    "mcp__agent-ml-research__update_matrix",
+                    "mcp__agent-ml-research__update_registry",
+                    "mcp__agent-ml-research__verify_references",
+                    "mcp__agent-ml-research__write_paper_section"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "45b433bb-f9b4-41ee-8e5b-9aff3506eb5a",
+                "timestamp": "2026-05-21T02:50:40.715Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/agent_0dcc82db",
+                "sessionId": "fa6b86df-96af-487a-8f60-5e846598b211",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-21T02:50:43.217Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nI'll start by probing the file structure and then extract the requested data."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "45b433bb-f9b4-41ee-8e5b-9aff3506eb5a",
+            "isSidechain": true,
+            "agentId": "add9e33b65cc0f6cc",
+            "requestId": "req_011CbExKEeyssVPeZBRiU8jr",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "85c2ecce-84e1-41c6-9568-1fc97e6dc1a3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/agent_0dcc82db",
+            "sessionId": "fa6b86df-96af-487a-8f60-5e846598b211",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01W4xMTf4C5iifbU7ojjvQxY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 28813,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 28813,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-21T02:50:44.359Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PZoGZkm1sjZ9T5pZytXoRs",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training--claude-sessions-agent-0dcc82db/fa6b86df-96af-487a-8f60-5e846598b211/tool-results/mcp-agent-ml-research-read_registry-1779331805083.txt",
+                "limit": 5
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "85c2ecce-84e1-41c6-9568-1fc97e6dc1a3",
+            "isSidechain": true,
+            "agentId": "add9e33b65cc0f6cc",
+            "requestId": "req_011CbExKEeyssVPeZBRiU8jr",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "a4909818-c9d8-432f-be95-a5588d44c5c0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/agent_0dcc82db",
+            "sessionId": "fa6b86df-96af-487a-8f60-5e846598b211",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01W4xMTf4C5iifbU7ojjvQxY",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 28813,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 187,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 28813
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 187,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 28813,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 28813,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-21T02:50:44.681Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "File content (55018 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+              "is_error": true,
+              "tool_use_id": "toolu_01PZoGZkm1sjZ9T5pZytXoRs"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a4909818-c9d8-432f-be95-a5588d44c5c0",
+            "isSidechain": true,
+            "promptId": "81aa97b5-7ab3-4784-9310-f6aca7e148e9",
+            "agentId": "add9e33b65cc0f6cc",
+            "type": "user",
+            "uuid": "c2306dc8-0769-4500-98f3-901060b65ac9",
+            "toolUseResult": "Error: File content (55018 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+            "sourceToolAssistantUUID": "a4909818-c9d8-432f-be95-a5588d44c5c0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/agent_0dcc82db",
+            "sessionId": "fa6b86df-96af-487a-8f60-5e846598b211",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T02:50:52.476Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file is large. Let me use bash with jq to probe and extract the data efficiently."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c2306dc8-0769-4500-98f3-901060b65ac9",
+            "isSidechain": true,
+            "agentId": "add9e33b65cc0f6cc",
+            "requestId": "req_011CbExKXbhjL5MtSMpDsQCX",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "a48572e3-0342-40f3-a2f6-6038d01dd6be",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/agent_0dcc82db",
+            "sessionId": "fa6b86df-96af-487a-8f60-5e846598b211",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Y5VQZ2QnXx3fsvBeRKRdsn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1089,
+                "cache_read_input_tokens": 28813,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1089,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-21T02:50:56.092Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SQpE5yBLz94dpgGeyQQB31",
+              "name": "Bash",
+              "input": {
+                "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training--claude-sessions-agent-0dcc82db/fa6b86df-96af-487a-8f60-5e846598b211/tool-results/mcp-agent-ml-research-read_registry-1779331805083.txt\"\n# Probe top-level structure\ncat \"$FILE\" | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nprint('Top-level type:', type(data).__name__)\nprint('Top-level keys:', list(data.keys()) if isinstance(data, dict) else 'N/A')\nif 'result' in data:\n    inner = json.loads(data['result'])\n    print('Inner type:', type(inner).__name__)\n    if isinstance(inner, dict):\n        print('Inner keys:', list(inner.keys())[:20])\n        print('Total inner keys:', len(inner.keys()))\n\"\n",
+                "description": "Probe JSON structure of the registry file"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a48572e3-0342-40f3-a2f6-6038d01dd6be",
+            "isSidechain": true,
+            "agentId": "add9e33b65cc0f6cc",
+            "requestId": "req_011CbExKXbhjL5MtSMpDsQCX",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "075a7557-7063-40db-bc87-8a86463a3749",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/agent_0dcc82db",
+            "sessionId": "fa6b86df-96af-487a-8f60-5e846598b211",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Y5VQZ2QnXx3fsvBeRKRdsn",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1089,
+                "cache_read_input_tokens": 28813,
+                "output_tokens": 352,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1089
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 352,
+                    "cache_read_input_tokens": 28813,
+                    "cache_creation_input_tokens": 1089,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1089,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-21T02:50:56.312Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SQpE5yBLz94dpgGeyQQB31",
+              "type": "tool_result",
+              "content": "Top-level type: dict\nTop-level keys: ['result']\nInner type: dict\nInner keys: ['success', 'data', 'error', 'metadata']\nTotal inner keys: 4",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "075a7557-7063-40db-bc87-8a86463a3749",
+            "isSidechain": true,
+            "promptId": "81aa97b5-7ab3-4784-9310-f6aca7e148e9",
+            "agentId": "add9e33b65cc0f6cc",
+            "type": "user",
+            "uuid": "402f967c-5d59-41f2-b466-72ccb5e6995a",
+            "sourceToolAssistantUUID": "075a7557-7063-40db-bc87-8a86463a3749",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/agent_0dcc82db",
+            "sessionId": "fa6b86df-96af-487a-8f60-5e846598b211",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T02:51:02.057Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QH3FmiBAECcupLGMnxAcd8",
+              "name": "Bash",
+              "input": {
+                "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training--claude-sessions-agent-0dcc82db/fa6b86df-96af-487a-8f60-5e846598b211/tool-results/mcp-agent-ml-research-read_registry-1779331805083.txt\"\ncat \"$FILE\" | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\ninner = json.loads(data['result'])\nprint('success:', inner.get('success'))\nprint('error:', inner.get('error'))\nprint('metadata:', json.dumps(inner.get('metadata'), indent=2))\nd = inner.get('data', {})\nprint('data type:', type(d).__name__)\nif isinstance(d, dict):\n    print('data keys:', list(d.keys())[:10])\n    print('total experiments:', len(d.keys()))\n    # Show all experiment IDs\n    print('ALL experiment IDs:')\n    for k in sorted(d.keys()):\n        print(f'  {k}')\n\"\n",
+                "description": "Probe inner structure and list all experiment IDs"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "402f967c-5d59-41f2-b466-72ccb5e6995a",
+            "isSidechain": true,
+            "agentId": "add9e33b65cc0f6cc",
+            "requestId": "req_011CbExLPKtxfxrM2c81wxQa",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "595e5f3b-c96f-4f87-8d6c-a7ab1335038e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/agent_0dcc82db",
+            "sessionId": "fa6b86df-96af-487a-8f60-5e846598b211",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HqCqjk75EVuxkx9KRkxJq3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 410,
+                "cache_read_input_tokens": 29902,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 410,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-21T02:51:02.154Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QH3FmiBAECcupLGMnxAcd8",
+              "type": "tool_result",
+              "content": "success: True\nerror: None\nmetadata: {\n  \"elapsed_seconds\": 0.7223\n}\ndata type: dict\ndata keys: ['experiments', 'count', 'total', 'baseline']\ntotal experiments: 4\nALL experiment IDs:\n  baseline\n  count\n  experiments\n  total",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "595e5f3b-c96f-4f87-8d6c-a7ab1335038e",
+            "isSidechain": true,
+            "promptId": "81aa97b5-7ab3-4784-9310-f6aca7e148e9",
+            "agentId": "add9e33b65cc0f6cc",
+            "type": "user",
+            "uuid": "94b1e5d0-d658-4480-970b-7285d8e19cef",
+            "sourceToolAssistantUUID": "595e5f3b-c96f-4f87-8d6c-a7ab1335038e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/agent_0dcc82db",
+            "sessionId": "fa6b86df-96af-487a-8f60-5e846598b211",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-21T02:51:08.694Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015RsnrrzyE4jWJ3E3WNJPTz",
+              "name": "Bash",
+              "input": {
+                "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training--claude-sessions-agent-0dcc82db/fa6b86df-96af-487a-8f60-5e846598b211/tool-results/mcp-agent-ml-research-read_registry-1779331805083.txt\"\ncat \"$FILE\" | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\ninner = json.loads(data['result'])\nd = inner['data']\nprint('count:', d.get('count'))\nprint('total:', d.get('total'))\nprint('baseline type:', type(d.get('baseline')).__name__)\nexps = d.get('experiments', {})\nprint('experiments type:', type(exps).__name__)\nif isinstance(exps, dict):\n    print('num experiments:', len(exps))\n    print('experiment IDs:')\n    for k in sorted(exps.keys()):\n        print(f'  {k}')\nelif isinstance(exps, list):\n    print('num experiments:', len(exps))\n    # check first element\n    if exps:\n        first = exps[0]\n        print('first element type:', type(first).__name__)\n        if isinstance(first, dict):\n            print('first element keys:', list(first.keys()))\n            print('first element id:', first.get('id', first.get('exp_id', 'N/A')))\n\"\n",
+                "description": "Inspect experiments structure and list all experiment IDs"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "94b1e5d0-d658-4480-970b-7285d8e19cef",
+            "isSidechain": true,
+            "agentId": "add9e33b65cc0f6cc",
+            "requestId": "req_011CbExLpopxzGebKYPnXeaj",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "75bfc590-50b9-4e08-ab8f-5806ec3185fb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/agent_0dcc82db",
+            "sessionId": "fa6b86df-96af-487a-8f60-5e846598b211",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DKDc2zNtSqpmE8tHtFGmai",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 448,
+                "cache_read_input_tokens": 30312,
+                "output_tokens": 454,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 448
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 454,
+                    "cache_read_input_tokens": 30312,
+                    "cache_creation_input_tokens": 448,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 448,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-21T02:51:08.794Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015RsnrrzyE4jWJ3E3WNJPTz",
+              "type": "tool_result",
+              "content": "count: 208\ntotal: 208\nbaseline type: NoneType\nexperiments type: dict\nnum experiments: 208\nexperiment IDs:\n  adaptive_1_7b_planb_control\n  adaptive_1_7b_seed123\n  adaptive_1_7b_seed42\n  adaptive_1_7b_seed42_r2\n  adaptive_1_7b_seed42_v3\n  adaptive_1_7b_seed42_v4\n  adaptive_1_7b_seed42_v5\n  adaptive_1_7b_seed456\n  adaptive_fix_seed123\n  adaptive_fix_seed42\n  adaptive_fix_seed456\n  adaptive_fromscratch_seed42\n  adaptive_ood_seed123\n  adaptive_ood_seed456\n  adaptive_rho06_tau07_seed123\n  adaptive_rho06_tau07_seed42\n  adaptive_rho06_tau07_seed456\n  adaptive_seed123\n  adaptive_seed42\n  adaptive_seed456\n  adaptive_tau08_scratch_seed42\n  adaptive_v2_seed123\n  adaptive_v2_seed42\n  adaptive_v2_seed456\n  baseline_qwen3_0.6b\n  batch_adaptive_tau_rho04_seed42\n  batch_adaptive_tau_rho06_r2\n  batch_adaptive_tau_rho06_r3\n  batch_adaptive_tau_rho06_r5\n  batch_adaptive_tau_rho06_seed42\n  batchsize16_nmin8_r2\n  batchsize16_nmin8_r3\n  batchsize16_nmin8_seed42\n  bs8_auto_nmin_r2\n  bs8_auto_nmin_r3\n  bs8_auto_nmin_r5\n  bs8_auto_nmin_seed42\n  bs8_nmin2_seed42\n  bs8_nmin2_seed42_r2\n  bs8_seed42\n  contamination_60_adaptive_seed123_tau08\n  contamination_60_adaptive_seed42_tau08\n  contamination_60_adaptive_seed456\n  contamination_60_ess_only_seed123\n  contamination_60_ess_only_seed42\n  contamination_60_ess_only_seed456\n  contamination_60_grid_b0_3_seed42\n  contamination_60_grid_b0_5_seed42\n  contamination_60_random_seed123\n  contamination_60_random_seed42\n  contamination_60_random_seed456\n  contamination_60_seed123\n  contamination_60_seed42\n  contamination_60_seed42_r2\n  contamination_60_tau06_seed42\n  contamination_60_tau07_seed42\n  contamination_60_uniform_seed123\n  contamination_60_uniform_seed42\n  contamination_60_uniform_seed456\n  datagen_synthetic_4gpu\n  detect_remove_baseline_seed42\n  detect_remove_q01_epoch_matched_seed42\n  detect_remove_q01_seed42\n  detect_remove_q02_seed42\n  detect_remove_q03_epoch_matched_seed42\n  detect_remove_q03_seed123\n  detect_remove_q03_seed42\n  detect_remove_q03_seed42_r2\n  detect_remove_q03_seed456\n  detect_remove_q04_seed42\n  detect_remove_q05_epoch_matched\n  detect_remove_q05_epoch_matched_seed42\n  detect_remove_q05_seed123\n  detect_remove_q05_seed456\n  detect_remove_q06_seed42\n  detect_remove_q07_epoch_matched_seed42\n  detect_remove_q07_seed42\n  detect_remove_q07_seed42_r2\n  detect_remove_q08_seed42\n  detect_remove_q09_epoch_matched_seed42\n  detect_remove_q09_seed42\n  detector_modernbert\n  detector_tfidf_lr\n  diagnostic_contamination100\n  env_probe_41312\n  env_probe_41312_v2\n  epoch_matched_dr_seed123\n  epoch_matched_dr_seed456\n  ess_only_seed123\n  ess_only_seed123_r2\n  ess_only_seed42\n  ess_only_seed456\n  ess_only_seed456_r2\n  eval_adaptive_1_7b\n  eval_adaptive_1_7b_seed123\n  eval_adaptive_1_7b_v2\n  eval_epoch_matched_seed123\n  eval_epoch_matched_seed456\n  eval_ngram_adaptive\n  eval_ngram_uniform\n  eval_q01_final\n  eval_q01_final_v2\n  eval_q03_r2\n  eval_q04\n  eval_q06\n  eval_q07_final\n  eval_rho06_batch_v5\n  eval_rho06_batch_v6\n  eval_rho06_batch_v7\n  eval_uniform_1_7b_resumed\n  eval_uniform_1_7b_seed123\n  eval_uniform_1_7b_v2\n  eval_uniform_1_7b_v3\n  golden_ratio_seed42\n  gpt2_adaptive_seed123\n  gpt2_adaptive_seed42\n  gpt2_adaptive_seed456\n  gpt2_uniform_seed42\n  grid_b0_1_seed123\n  grid_b0_1_seed42\n  grid_b0_1_seed456\n  grid_b0_2_seed123\n  grid_b0_2_seed42\n  grid_b0_2_seed456\n  grid_b0_3_seed123\n  grid_b0_3_seed123_r2\n  grid_b0_3_seed42\n  grid_b0_3_seed456\n  grid_b0_3_seed456_r2\n  grid_b0_5_seed123\n  grid_b0_5_seed456\n  grid_b1_0_seed123\n  grid_b1_0_seed456\n  grid_b1_5_seed123\n  grid_b1_5_seed456\n  grid_b2_0_seed123\n  grid_b2_0_seed456\n  grid_b3_0_seed123\n  grid_b3_0_seed456\n  grid_b5_0_seed123\n  grid_b5_0_seed456\n  grid_b_low_seed42\n  grid_b_low_seed42_r2\n  grid_b_low_seed42_r3\n  grid_b_low_serial_seed42\n  grid_b_seed42_batch\n  hybrid_rho04_seed42\n  hybrid_rho06_seed42\n  llama3b_adaptive_seed42\n  llama3b_uniform_seed42\n  ngram_adaptive_seed123\n  ngram_adaptive_seed42\n  ngram_uniform_seed42\n  nmin1_seed42\n  nmin4_seed42\n  nmin5_seed42\n  p0_contamination_60_datagen\n  qwen06b_uniform_seed42\n  random_reweight_seed123\n  random_reweight_seed123_r2\n  random_reweight_seed123_r3\n  random_reweight_seed123_r4\n  random_reweight_seed123_r5\n  random_reweight_seed42\n  random_reweight_seed456\n  random_reweight_v2_seed42\n  rho02_adaptive_tau08_seed42\n  rho02_adaptive_tau09_r2\n  rho02_adaptive_tau09_r3\n  rho02_adaptive_tau09_r4\n  rho02_adaptive_tau09_r5\n  rho02_adaptive_tau09_seed42\n  rho02_uniform_seed42\n  rho06_tau07_seed123\n  rho06_tau07_seed42\n  rho06_tau07_seed456\n  status_check_41312\n  tau07_downstream_eval\n  tau07_seed123\n  tau07_seed42\n  tau07_seed456\n  tau_0.6_seed42\n  tau_05_nmin2_seed42\n  tau_05_seed42\n  tau_06_nmin2_seed42\n  tau_06_seed42\n  tau_07_nmin2_seed42\n  tau_07_seed42\n  tau_095_nmin2_seed42\n  tau_095_seed42\n  tau_09_nmin2_seed42\n  tau_09_seed42\n  threshold_q03_seed42\n  threshold_q07_seed42\n  uniform_1_7b_seed123\n  uniform_1_7b_seed42\n  uniform_1_7b_seed42_r2\n  uniform_1_7b_seed42_v3\n  uniform_1_7b_seed42_v4\n  uniform_1_7b_seed42_v5\n  uniform_1_7b_seed456\n  uniform_ood_seed123\n  uniform_ood_seed456\n  uniform_seed123\n  uniform_seed42\n  uniform_seed42_downstream\n  uniform_seed456\n  w2_distribution_matching_eval",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "75bfc590-50b9-4e08-ab8f-5806ec3185fb",
+            "isSidechain": true,
+            "promptId": "81aa97b5-7ab3-4784-9310-f6aca7e148e9",
+            "agentId": "add9e33b65cc0f6cc",
+            "type": "user",
+            "uuid": "33cf51ea-f0f5-4d76-8efb-128068636e8a",
+            "sourceToolAssistantUUID": "75bfc590-50b9-4e08-ab8f-5806ec3185fb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/agent_0dcc82db",
+            "sessionId": "fa6b86df-96af-487a-8f60-5e846598b211",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-21T02:51:11.594Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have the full picture. Let me extract all the requested data in parallel."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "33cf51ea-f0f5-4d76-8efb-128068636e8a",
+            "isSidechain": true,
+            "agentId": "add9e33b65cc0f6cc",
+            "requestId": "req_011CbExMJi7dkLWzirQG8vPs",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "3bead033-59b0-4392-8bfb-11df7cc28398",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/agent_0dcc82db",
+            "sessionId": "fa6b86df-96af-487a-8f60-5e846598b211",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017XtRytj4dJS2e8kArifmM9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2764,
+                "cache_read_input_tokens": 30760,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2764,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-21T02:51:14.589Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018VzdxVKnYzzPsyvKSZE5Xm",
+              "name": "Bash",
+              "input": {
+                "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training--claude-sessions-agent-0dcc82db/fa6b86df-96af-487a-8f60-5e846598b211/tool-results/mcp-agent-ml-research-read_registry-1779331805083.txt\"\ncat \"$FILE\" | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\ninner = json.loads(data['result'])\nexps = inner['data']['experiments']\n\n# 1. All experiments with 'ngram' in ID\nngram_exps = {k: v for k, v in exps.items() if 'ngram' in k.lower()}\nprint('=== NGRAM EXPERIMENTS ===')\nprint(json.dumps(ngram_exps, indent=2, ensure_ascii=False))\n\"\n",
+                "description": "Extract all ngram experiments"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3bead033-59b0-4392-8bfb-11df7cc28398",
+            "isSidechain": true,
+            "agentId": "add9e33b65cc0f6cc",
+            "requestId": "req_011CbExMJi7dkLWzirQG8vPs",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "617de1a9-4db6-4397-904f-308cff90a073",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/agent_0dcc82db",
+            "sessionId": "fa6b86df-96af-487a-8f60-5e846598b211",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017XtRytj4dJS2e8kArifmM9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2764,
+                "cache_read_input_tokens": 30760,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2764,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-21T02:51:14.680Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018VzdxVKnYzzPsyvKSZE5Xm",
+              "type": "tool_result",
+              "content": "=== NGRAM EXPERIMENTS ===\n{\n  \"ngram_adaptive_seed123\": {\n    \"status\": \"DONE\",\n    \"created_at\": \"2026-05-20T22:16:21.156Z\",\n    \"updated_at\": \"2026-05-21T02:19:10.605Z\",\n    \"hypothesis\": \"N-gram PPL detector (statistical, AUC=0.73) + adaptive weighting, seed=123. Second seed for detector ablation to confirm ngram_adaptive_seed42 pattern (PPL=17.82). Tests consistency of method with weak statistical detector.\",\n    \"parent\": \"ngram_adaptive_seed42\",\n    \"metrics\": {\n      \"eval_ppl_holdout\": 17.823,\n      \"eval_loss_holdout\": 2.8805,\n      \"eval_holdout_tokens\": 4077068,\n      \"train_loss\": 9.289,\n      \"total_steps\": 6103\n    },\n    \"conclusion\": \"negative\"\n  },\n  \"eval_ngram_uniform\": {\n    \"status\": \"DONE\",\n    \"created_at\": \"2026-05-18T19:15:52.785Z\",\n    \"updated_at\": \"2026-05-20T04:04:40.459Z\",\n    \"metrics\": {\n      \"loss\": 2.8733,\n      \"perplexity\": 17.69,\n      \"tokens\": 4077068,\n      \"eval_data\": \"data/human/eval_holdout.jsonl\",\n      \"max_docs\": 5000,\n      \"max_length\": 2048,\n      \"checkpoint\": \"ngram_uniform_seed42/final\"\n    },\n    \"hypothesis\": \"Uniform n-gram weighting treats all documents equally regardless of n-gram rarity, serving as a baseline to compare against adaptive weighting for held-out human text perplexity.\",\n    \"conclusion\": \"success\"\n  },\n  \"eval_ngram_adaptive\": {\n    \"status\": \"DONE\",\n    \"created_at\": \"2026-05-18T19:15:51.010Z\",\n    \"updated_at\": \"2026-05-20T04:02:52.006Z\",\n    \"metrics\": {\n      \"loss\": 2.8803,\n      \"perplexity\": 17.82,\n      \"tokens\": 4077068,\n      \"eval_data\": \"data/human/eval_holdout.jsonl\",\n      \"max_docs\": 5000,\n      \"max_length\": 2048,\n      \"checkpoint\": \"ngram_adaptive_seed42/final\"\n    },\n    \"conclusion\": \"success\",\n    \"hypothesis\": \"N-gram adaptive weighting assigns higher weights to documents with rare n-gram patterns, which should yield lower perplexity on held-out human text compared to uniform weighting by better capturing the distribution of natural language.\"\n  },\n  \"ngram_adaptive_seed42\": {\n    \"status\": \"DONE\",\n    \"created_at\": \"2026-05-18T14:14:23.226Z\",\n    \"updated_at\": \"2026-05-19T00:08:31.642Z\",\n    \"hypothesis\": \"Multi-detector validation: adaptive weighting with n-gram PPL detector (statistical, AUC=0.73) produces lower PPL than uniform, demonstrating method works with fundamentally different detector type (not just neural classifier). Complementary to q_score (Spearman r=-0.36). Part of D079 Line A.\",\n    \"conclusion\": \"negative\",\n    \"metrics\": {\n      \"eval_ppl_holdout\": 17.82,\n      \"eval_loss_holdout\": 2.8803\n    }\n  },\n  \"ngram_uniform_seed42\": {\n    \"status\": \"DONE\",\n    \"created_at\": \"2026-05-18T14:14:25.095Z\",\n    \"updated_at\": \"2026-05-19T00:08:24.320Z\",\n    \"hypothesis\": \"Uniform baseline for n-gram detector comparison. Control condition: uniform weighting on ngram-scored data. Expected to perform worse than ngram_adaptive, confirming adaptive advantage generalizes across detectors.\",\n    \"conclusion\": \"success\",\n    \"metrics\": {\n      \"eval_ppl_holdout\": 17.69,\n      \"eval_loss_holdout\": 2.8733\n    }\n  }\n}",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "617de1a9-4db6-4397-904f-308cff90a073",
+            "isSidechain": true,
+            "promptId": "81aa97b5-7ab3-4784-9310-f6aca7e148e9",
+            "agentId": "add9e33b65cc0f6cc",
+            "type": "user",
+            "uuid": "e8bb040a-9503-485a-905b-23fcaaf6bf0c",
+            "sourceToolAssistantUUID": "617de1a9-4db6-4397-904f-308cff90a073",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/agent_0dcc82db",
+            "sessionId": "fa6b86df-96af-487a-8f60-5e846598b211",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-21T02:51:17.392Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016nX7ECzwkEVtXVmwSjjmnY",
+              "name": "Bash",
+              "input": {
+                "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training--claude-sessions-agent-0dcc82db/fa6b86df-96af-487a-8f60-5e846598b211/tool-results/mcp-agent-ml-research-read_registry-1779331805083.txt\"\ncat \"$FILE\" | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\ninner = json.loads(data['result'])\nexps = inner['data']['experiments']\n\n# 2. Specific experiments\ntargets = ['gpt2_adaptive_seed123', 'gpt2_adaptive_seed456', 'adaptive_tau08_scratch_seed42']\nresult = {}\nfor t in targets:\n    if t in exps:\n        result[t] = exps[t]\n    else:\n        result[t] = 'NOT FOUND'\nprint('=== SPECIFIC EXPERIMENTS ===')\nprint(json.dumps(result, indent=2, ensure_ascii=False))\n\"\n",
+                "description": "Extract specific named experiments"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e8bb040a-9503-485a-905b-23fcaaf6bf0c",
+            "isSidechain": true,
+            "agentId": "add9e33b65cc0f6cc",
+            "requestId": "req_011CbExMJi7dkLWzirQG8vPs",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "14c8bd64-accd-4fea-ae0d-83d48ceb7968",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/agent_0dcc82db",
+            "sessionId": "fa6b86df-96af-487a-8f60-5e846598b211",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017XtRytj4dJS2e8kArifmM9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2764,
+                "cache_read_input_tokens": 30760,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2764,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-21T02:51:17.478Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016nX7ECzwkEVtXVmwSjjmnY",
+              "type": "tool_result",
+              "content": "=== SPECIFIC EXPERIMENTS ===\n{\n  \"gpt2_adaptive_seed123\": {\n    \"status\": \"RUNNING\",\n    \"created_at\": \"2026-05-20T18:34:08.013Z\",\n    \"updated_at\": \"2026-05-21T01:18:30.860Z\",\n    \"hypothesis\": \"GPT-2 PPL detector (AUC=0.913) + adaptive weighting, seed=123. Second seed for detector ablation to confirm gpt2_adaptive_seed42 pattern (PPL=17.79, worse than TF-IDF but still meaningful reweighting). If consistent, supports claim that method works across detector quality levels.\",\n    \"parent\": \"gpt2_adaptive_seed42\"\n  },\n  \"gpt2_adaptive_seed456\": {\n    \"status\": \"RUNNING\",\n    \"created_at\": \"2026-05-21T00:44:29.948Z\",\n    \"updated_at\": \"2026-05-21T01:18:33.096Z\",\n    \"hypothesis\": \"GPT-2 PPL detector (AUC=0.913) + adaptive weighting, seed=456. Third seed for detector ablation to complete 3-seed set with gpt2_adaptive_seed42 (PPL=17.79) and gpt2_adaptive_seed123. Tests reproducibility of method with medium-quality detector.\",\n    \"parent\": \"gpt2_adaptive_seed42\"\n  },\n  \"adaptive_tau08_scratch_seed42\": {\n    \"status\": \"RUNNING\",\n    \"created_at\": \"2026-05-20T17:17:50.273Z\",\n    \"updated_at\": \"2026-05-21T01:21:26.492Z\",\n    \"hypothesis\": \"From-scratch adaptive (τ=0.8, ρ=0.4, n_min=2, seed=42, Qwen3-0.6B). Replaces resume-checkpoint adaptive_fix_seed42 to complete 3-seed from-scratch set with adaptive_ood_seed123/456. Enables symmetric 3-seed OOD comparison: τ=0.7 3-seed vs τ=0.8 3-seed.\",\n    \"parent\": \"adaptive_fix_seed42\"\n  }\n}",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "14c8bd64-accd-4fea-ae0d-83d48ceb7968",
+            "isSidechain": true,
+            "promptId": "81aa97b5-7ab3-4784-9310-f6aca7e148e9",
+            "agentId": "add9e33b65cc0f6cc",
+            "type": "user",
+            "uuid": "9effeb93-9a93-44dd-9efc-73aaca888dc6",
+            "sourceToolAssistantUUID": "14c8bd64-accd-4fea-ae0d-83d48ceb7968",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/agent_0dcc82db",
+            "sessionId": "fa6b86df-96af-487a-8f60-5e846598b211",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-21T02:51:19.887Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XCWWaoAS4cgRGpYSK8AtDL",
+              "name": "Bash",
+              "input": {
+                "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training--claude-sessions-agent-0dcc82db/fa6b86df-96af-487a-8f60-5e846598b211/tool-results/mcp-agent-ml-research-read_registry-1779331805083.txt\"\ncat \"$FILE\" | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\ninner = json.loads(data['result'])\nexps = inner['data']['experiments']\n\n# 3. All RUNNING experiments\nrunning = {k: v for k, v in exps.items() if v.get('status') == 'RUNNING'}\nprint('=== RUNNING EXPERIMENTS ===')\nprint(f'Count: {len(running)}')\nprint(json.dumps(running, indent=2, ensure_ascii=False))\n\"\n",
+                "description": "Extract all RUNNING experiments"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9effeb93-9a93-44dd-9efc-73aaca888dc6",
+            "isSidechain": true,
+            "agentId": "add9e33b65cc0f6cc",
+            "requestId": "req_011CbExMJi7dkLWzirQG8vPs",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "d5d8e3f0-7f39-4be6-808b-2b24a6b61042",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/agent_0dcc82db",
+            "sessionId": "fa6b86df-96af-487a-8f60-5e846598b211",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017XtRytj4dJS2e8kArifmM9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2764,
+                "cache_read_input_tokens": 30760,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2764,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-21T02:51:19.972Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XCWWaoAS4cgRGpYSK8AtDL",
+              "type": "tool_result",
+              "content": "=== RUNNING EXPERIMENTS ===\nCount: 3\n{\n  \"adaptive_tau08_scratch_seed42\": {\n    \"status\": \"RUNNING\",\n    \"created_at\": \"2026-05-20T17:17:50.273Z\",\n    \"updated_at\": \"2026-05-21T01:21:26.492Z\",\n    \"hypothesis\": \"From-scratch adaptive (τ=0.8, ρ=0.4, n_min=2, seed=42, Qwen3-0.6B). Replaces resume-checkpoint adaptive_fix_seed42 to complete 3-seed from-scratch set with adaptive_ood_seed123/456. Enables symmetric 3-seed OOD comparison: τ=0.7 3-seed vs τ=0.8 3-seed.\",\n    \"parent\": \"adaptive_fix_seed42\"\n  },\n  \"gpt2_adaptive_seed456\": {\n    \"status\": \"RUNNING\",\n    \"created_at\": \"2026-05-21T00:44:29.948Z\",\n    \"updated_at\": \"2026-05-21T01:18:33.096Z\",\n    \"hypothesis\": \"GPT-2 PPL detector (AUC=0.913) + adaptive weighting, seed=456. Third seed for detector ablation to complete 3-seed set with gpt2_adaptive_seed42 (PPL=17.79) and gpt2_adaptive_seed123. Tests reproducibility of method with medium-quality detector.\",\n    \"parent\": \"gpt2_adaptive_seed42\"\n  },\n  \"gpt2_adaptive_seed123\": {\n    \"status\": \"RUNNING\",\n    \"created_at\": \"2026-05-20T18:34:08.013Z\",\n    \"updated_at\": \"2026-05-21T01:18:30.860Z\",\n    \"hypothesis\": \"GPT-2 PPL detector (AUC=0.913) + adaptive weighting, seed=123. Second seed for detector ablation to confirm gpt2_adaptive_seed42 pattern (PPL=17.79, worse than TF-IDF but still meaningful reweighting). If consistent, supports claim that method works across detector quality levels.\",\n    \"parent\": \"gpt2_adaptive_seed42\"\n  }\n}",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d5d8e3f0-7f39-4be6-808b-2b24a6b61042",
+            "isSidechain": true,
+            "promptId": "81aa97b5-7ab3-4784-9310-f6aca7e148e9",
+            "agentId": "add9e33b65cc0f6cc",
+            "type": "user",
+            "uuid": "ad833a97-a1b7-4963-98bb-fb9ced53f700",
+            "sourceToolAssistantUUID": "d5d8e3f0-7f39-4be6-808b-2b24a6b61042",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/agent_0dcc82db",
+            "sessionId": "fa6b86df-96af-487a-8f60-5e846598b211",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-21T02:51:24.000Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01A4kZZywLfWjHZSRNGCNHHn",
+              "name": "Bash",
+              "input": {
+                "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training--claude-sessions-agent-0dcc82db/fa6b86df-96af-487a-8f60-5e846598b211/tool-results/mcp-agent-ml-research-read_registry-1779331805083.txt\"\ncat \"$FILE\" | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\ninner = json.loads(data['result'])\nexps = inner['data']['experiments']\n\n# 4. All workers referenced\nworkers = set()\nfor k, v in exps.items():\n    if isinstance(v, dict):\n        # Check common worker fields\n        for field in ['worker', 'worker_id', 'workers', 'assigned_worker', 'spawned_by']:\n            val = v.get(field)\n            if val:\n                if isinstance(val, list):\n                    workers.update(str(w) for w in val)\n                else:\n                    workers.add(str(val))\n        # Also check spec\n        spec = v.get('spec', {})\n        if isinstance(spec, dict):\n            for field in ['worker', 'worker_id']:\n                val = spec.get(field)\n                if val:\n                    workers.add(str(val))\n\nprint('=== WORKERS REFERENCED ===')\nprint(f'Count: {len(workers)}')\nfor w in sorted(workers):\n    print(f'  {w}')\n\"\n",
+                "description": "Extract all referenced workers"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ad833a97-a1b7-4963-98bb-fb9ced53f700",
+            "isSidechain": true,
+            "agentId": "add9e33b65cc0f6cc",
+            "requestId": "req_011CbExMJi7dkLWzirQG8vPs",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "a60ed177-3649-42dd-9c0c-d016b8ccda84",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/agent_0dcc82db",
+            "sessionId": "fa6b86df-96af-487a-8f60-5e846598b211",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017XtRytj4dJS2e8kArifmM9",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2764,
+                "cache_read_input_tokens": 30760,
+                "output_tokens": 1394,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2764
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1394,
+                    "cache_read_input_tokens": 30760,
+                    "cache_creation_input_tokens": 2764,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2764,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-21T02:51:24.085Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01A4kZZywLfWjHZSRNGCNHHn",
+              "type": "tool_result",
+              "content": "=== WORKERS REFERENCED ===\nCount: 0",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a60ed177-3649-42dd-9c0c-d016b8ccda84",
+            "isSidechain": true,
+            "promptId": "81aa97b5-7ab3-4784-9310-f6aca7e148e9",
+            "agentId": "add9e33b65cc0f6cc",
+            "type": "user",
+            "uuid": "7b1f4201-18b1-492e-a5a0-23940ae241c6",
+            "sourceToolAssistantUUID": "a60ed177-3649-42dd-9c0c-d016b8ccda84",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/agent_0dcc82db",
+            "sessionId": "fa6b86df-96af-487a-8f60-5e846598b211",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-21T02:51:29.548Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Workers weren't stored in the obvious fields. Let me search more broadly for worker references."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7b1f4201-18b1-492e-a5a0-23940ae241c6",
+            "isSidechain": true,
+            "agentId": "add9e33b65cc0f6cc",
+            "requestId": "req_011CbExNaNULrENMjGFeF2kG",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "a907904e-d73b-4a86-9b78-73bfebfdb26e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/agent_0dcc82db",
+            "sessionId": "fa6b86df-96af-487a-8f60-5e846598b211",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015Ak66NCB8pXr98iC1GreeW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3812,
+                "cache_read_input_tokens": 33524,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3812,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-21T02:51:38.079Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QvpjrapP2xR9Peiru2UA1d",
+              "name": "Bash",
+              "input": {
+                "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training--claude-sessions-agent-0dcc82db/fa6b86df-96af-487a-8f60-5e846598b211/tool-results/mcp-agent-ml-research-read_registry-1779331805083.txt\"\ncat \"$FILE\" | python3 -c \"\nimport json, sys\n\ndata = json.load(sys.stdin)\ninner = json.loads(data['result'])\nexps = inner['data']['experiments']\n\n# Deep search for any key containing 'worker' at any nesting level\ndef find_worker_refs(obj, path=''):\n    results = []\n    if isinstance(obj, dict):\n        for k, v in obj.items():\n            if 'worker' in k.lower():\n                results.append((path + '.' + k, v))\n            results.extend(find_worker_refs(v, path + '.' + k))\n    elif isinstance(obj, list):\n        for i, v in enumerate(obj):\n            results.extend(find_worker_refs(v, path + f'[{i}]'))\n    elif isinstance(obj, str) and 'worker' in obj.lower():\n        results.append((path + ' (value)', obj))\n    return results\n\nall_refs = []\nfor exp_id, exp_data in exps.items():\n    refs = find_worker_refs(exp_data, exp_id)\n    if refs:\n        all_refs.extend(refs)\n\nif all_refs:\n    print(f'Found {len(all_refs)} worker references:')\n    for path, val in all_refs:\n        print(f'  {path}: {val}')\nelse:\n    print('No worker references found in any experiment field.')\n\n# Also check: what fields do experiments have? Sample a few\nprint()\nprint('=== SAMPLE EXPERIMENT FIELD KEYS ===')\nsampled = 0\nfor exp_id, exp_data in exps.items():\n    if isinstance(exp_data, dict):\n        print(f'{exp_id}: {sorted(exp_data.keys())}')\n        sampled += 1\n        if sampled >= 5:\n            break\n\n# Check ALL unique keys across all experiments\nprint()\nprint('=== ALL UNIQUE FIELD KEYS ACROSS ALL EXPERIMENTS ===')\nall_keys = set()\nfor exp_data in exps.values():\n    if isinstance(exp_data, dict):\n        all_keys.update(exp_data.keys())\n        # also spec sub-keys\n        if 'spec' in exp_data and isinstance(exp_data['spec'], dict):\n            all_keys.update('spec.' + k for k in exp_data['spec'].keys())\nprint(sorted(all_keys))\n\"\n",
+                "description": "Deep search for worker references and enumerate all field keys"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a907904e-d73b-4a86-9b78-73bfebfdb26e",
+            "isSidechain": true,
+            "agentId": "add9e33b65cc0f6cc",
+            "requestId": "req_011CbExNaNULrENMjGFeF2kG",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "417c362b-41d8-4a10-84e0-50e393129d2c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/agent_0dcc82db",
+            "sessionId": "fa6b86df-96af-487a-8f60-5e846598b211",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015Ak66NCB8pXr98iC1GreeW",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3812,
+                "cache_read_input_tokens": 33524,
+                "output_tokens": 795,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 3812
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 795,
+                    "cache_read_input_tokens": 33524,
+                    "cache_creation_input_tokens": 3812,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 3812,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-21T02:51:38.188Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QvpjrapP2xR9Peiru2UA1d",
+              "type": "tool_result",
+              "content": "Found 4 worker references:\n  epoch_matched_dr_seed123.notes (value): 失败原因: EXIT_CODE=127 (command not found)，训练在 step ~201/2532 后中断。wall_clock=2321s 但日志仅记录到 ~7min。已派 Worker worker_diagnose_epoch_matched_dr_seed123_20260518T145604 深查。\n  hybrid_rho06_seed42.metrics.eval_source (value): rho06_tau07_seed42 eval worker - evaluated hybrid checkpoint by mistake\n  llama3b_adaptive_seed42.notes (value): 诊断中: cron 报 process dead 5× + no W&B，但 memory.md 有 PPL=10.58 结论。疑似训练完成但监控缺失。Worker worker_diagnose_llama3b_adaptive_seed42_20260517T140045 正在 SSH 确认。日志文件 /root/runs/provenance_weight_training/llama3b_adaptive_seed42.log 不存在。\n  grid_b_low_seed42_r3.notes (value): Worker 提交时未指定 GPU，导致与 cuda:0 上的 contamination_60_seed42_r2 冲突。PID 258500 在启动后秒级崩溃。grid_b_low 需在 GPU 释放后单独提交（每个 b 值独立实验或硬编码脚本 + 显式 CUDA_VISIBLE_DEVICES）。\n\n=== SAMPLE EXPERIMENT FIELD KEYS ===\nngram_adaptive_seed123: ['conclusion', 'created_at', 'hypothesis', 'metrics', 'parent', 'status', 'updated_at']\nadaptive_tau08_scratch_seed42: ['created_at', 'hypothesis', 'parent', 'status', 'updated_at']\ngpt2_adaptive_seed456: ['created_at', 'hypothesis', 'parent', 'status', 'updated_at']\ngpt2_adaptive_seed123: ['created_at', 'hypothesis', 'parent', 'status', 'updated_at']\nadaptive_1_7b_seed456: ['conclusion', 'created_at', 'hypothesis', 'metrics', 'parent', 'status', 'updated_at']\n\n=== ALL UNIQUE FIELD KEYS ACROSS ALL EXPERIMENTS ===\n['conclusion', 'created_at', 'hypothesis', 'metrics', 'notes', 'parent', 'status', 'updated_at']",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "417c362b-41d8-4a10-84e0-50e393129d2c",
+            "isSidechain": true,
+            "promptId": "81aa97b5-7ab3-4784-9310-f6aca7e148e9",
+            "agentId": "add9e33b65cc0f6cc",
+            "type": "user",
+            "uuid": "73749979-c449-42c3-957a-bdc90f053509",
+            "sourceToolAssistantUUID": "417c362b-41d8-4a10-84e0-50e393129d2c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/agent_0dcc82db",
+            "sessionId": "fa6b86df-96af-487a-8f60-5e846598b211",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-21T02:51:42.219Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No dedicated worker field exists in the registry. Workers are only mentioned in freetext `notes`. Let me get the complete data for the ngram experiments with their full `spec` sub-objects (if any exist deeper), and also extract all worker mentions from notes."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "73749979-c449-42c3-957a-bdc90f053509",
+            "isSidechain": true,
+            "agentId": "add9e33b65cc0f6cc",
+            "requestId": "req_011CbExPUQKziMQ8ArGFGCNs",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "2ae8a3c6-731f-4cd8-ad00-f92be47fee5b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/agent_0dcc82db",
+            "sessionId": "fa6b86df-96af-487a-8f60-5e846598b211",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BpQFuj43ryCTsaxiNdafuP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1456,
+                "cache_read_input_tokens": 37336,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1456,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-21T02:51:48.268Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016LriuSrquX33Dts7gynsyK",
+              "name": "Bash",
+              "input": {
+                "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training--claude-sessions-agent-0dcc82db/fa6b86df-96af-487a-8f60-5e846598b211/tool-results/mcp-agent-ml-research-read_registry-1779331805083.txt\"\ncat \"$FILE\" | python3 -c \"\nimport json, sys, re\n\ndata = json.load(sys.stdin)\ninner = json.loads(data['result'])\nexps = inner['data']['experiments']\n\n# Extract all worker IDs mentioned in notes\nworker_pattern = re.compile(r'[Ww]orker\\s+(worker_\\w+)')\nworker_refs = {}\nfor exp_id, exp_data in exps.items():\n    if isinstance(exp_data, dict):\n        notes = exp_data.get('notes', '')\n        if notes:\n            matches = worker_pattern.findall(notes)\n            if matches:\n                worker_refs[exp_id] = matches\n\nprint('=== WORKER REFERENCES EXTRACTED FROM NOTES ===')\nall_workers = set()\nfor exp_id, workers in worker_refs.items():\n    for w in workers:\n        all_workers.add(w)\n    print(f'  {exp_id}: {workers}')\n\nprint()\nprint('=== UNIQUE WORKERS ===')\nfor w in sorted(all_workers):\n    print(f'  {w}')\n\n# Also get ALL experiments that have notes (for completeness)\nprint()\nprint('=== ALL EXPERIMENTS WITH NOTES ===')\nfor exp_id, exp_data in sorted(exps.items()):\n    if isinstance(exp_data, dict) and exp_data.get('notes'):\n        print(f'  {exp_id}: {exp_data[\\\"notes\\\"][:200]}')\n\"\n",
+                "description": "Extract all worker IDs from notes fields"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2ae8a3c6-731f-4cd8-ad00-f92be47fee5b",
+            "isSidechain": true,
+            "agentId": "add9e33b65cc0f6cc",
+            "requestId": "req_011CbExPUQKziMQ8ArGFGCNs",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "9a1e287e-d5b6-441b-8611-2fdc1b9e8ed8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/agent_0dcc82db",
+            "sessionId": "fa6b86df-96af-487a-8f60-5e846598b211",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BpQFuj43ryCTsaxiNdafuP",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1456,
+                "cache_read_input_tokens": 37336,
+                "output_tokens": 605,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1456
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 605,
+                    "cache_read_input_tokens": 37336,
+                    "cache_creation_input_tokens": 1456,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1456,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-21T02:51:48.399Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016LriuSrquX33Dts7gynsyK",
+              "type": "tool_result",
+              "content": "=== WORKER REFERENCES EXTRACTED FROM NOTES ===\n  epoch_matched_dr_seed123: ['worker_diagnose_epoch_matched_dr_seed123_20260518T145604']\n  llama3b_adaptive_seed42: ['worker_diagnose_llama3b_adaptive_seed42_20260517T140045']\n\n=== UNIQUE WORKERS ===\n  worker_diagnose_epoch_matched_dr_seed123_20260518T145604\n  worker_diagnose_llama3b_adaptive_seed42_20260517T140045\n\n=== ALL EXPERIMENTS WITH NOTES ===\n  adaptive_fix_seed123: 最终清理后重提交。从 checkpoint-1500 恢复，无 inline eval。PID=126944\n  adaptive_fix_seed42: 最终清理后重提交。从 checkpoint-1500 恢复，无 inline eval。PID=126801\n  adaptive_fix_seed456: 最终清理后重提交。从 checkpoint-1000 恢复，无 inline eval。PID=127285\n  adaptive_seed123: ⚠️ success 仅指训练完成无报错。MVP 假设验证待 held-out eval perplexity 结果。\n  adaptive_seed42: ⚠️ success 仅指训练完成无报错。MVP 假设验证待 held-out eval perplexity 结果。\n  adaptive_seed456: ⚠️ success 仅指训练完成无报错。MVP 假设验证待 held-out eval perplexity 结果。\n  adaptive_v2_seed123: D012 修正：取消 v2（含 EMA），改用 adaptive_fix（仅修 n_min=2，无 EMA）\n  adaptive_v2_seed42: D012 修正：取消 v2（含 EMA），改用 adaptive_fix（仅修 n_min=2，无 EMA）\n  adaptive_v2_seed456: D012 修正：取消 v2（含 EMA），改用 adaptive_fix（仅修 n_min=2，无 EMA）\n  baseline_qwen3_0.6b: Baseline PPL=22.9654 (loss=3.1340), tokens=4,077,068, time=249s. Weight SHA256=f47f71177f32bcd101b7573ec9171e6a57f4f4d31148d38e382306f42996874b. Pretrained weights confirmed (std ~0.02-0.03, layernorm\n  batchsize16_nmin8_seed42: westd-47453 permanently down (2026-05-17). Experiment was queued on 47453 (launcher PID 375555) waiting for GPU, never actually ran. Data lost. Needs migration to westd-30476.\n  bs8_nmin2_seed42: OOM failed: GPU 2 was occupied by zombie PID 236702 (old bs8_seed42). Superseded by bs8_nmin2_seed42_r2. Config: n_min=2, bs=8, grad_accum=2, tau=0.8, adaptive, seed=42.\n  bs8_nmin2_seed42_r2: 训练完成 6103/6103 steps, train_loss=5.4065. EXIT_CODE=129 (SIGHUP) 发生在训练完成后 W&B finalization 阶段，不影响结果。Checkpoint 验证通过。Eval PPL=17.73 > uniform avg 17.694 (+0.036), 与 ESS-only 水平相当(~17.72)。**NEGATIVE but \n  bs8_seed42: Killed at 1% (71/6103 steps). Wrong config: n_min=4 matches same ESS/bs ratio as n_min=2/bs=4. Director instructed restart with n_min=2 + bs=8 for wider ESS dynamic range [2,8]. Replaced by bs8_nmin2_\n  contamination_60_ess_only_seed42: ρ=0.6 ESS-only PPL=17.77 ≈ uniform (17.766), max-intervention 在高 contamination 下完全失效。vs ρ=0.4 ESS-only avg 17.723 → ρ增加0.2导致+0.047退化。关键对比: dual(17.74) < ESS-only(17.77), Claim 1 在 ρ=0.6 下仍成立(gap=0.03,\n  contamination_60_grid_b0_5_seed42: 训练完成 6103/6103 steps。EXIT_CODE=129 (SIGHUP) 发生在训练完成后（与 contamination_60_uniform_seed42 同一模式）。WANDB_MODE=disabled 导致 cron 误判为 failed。实际 success，等 eval PPL。\n  contamination_60_seed42: 数据验证通过: scored_data_60.jsonl 371,499行/907MB, synthetic=222900/human=148599, actual ρ=0.6。q_score: mean=0.6243, std=0.3703, median=0.7753。字段: text/depth/source_model/prompt_tokens/generated_tokens/deco\n  contamination_60_tau06_seed42: D045 第二数据点。GPU 队列: cuda:2 (ess_only 完成后)。脚本: scripts/run_contamination_60_tau06.sh。优先级最高。\n  contamination_60_tau07_seed42: D045 最高优先级。cuda:0, PID=282223, ρ=0.6 τ=0.7 (formula τ=1-ρ×0.5)。参数确认: tau=0.7, n_min=2, ρ=0.6, data=scored_data_60.jsonl (371499 samples)。\n\n**结果分析**: PPL=17.73。vs τ=0.8(17.74): -0.01 改善，formula 方向正确。vs\n  contamination_60_uniform_seed42: 训练实际已完成 (6103/6103 steps, 3:35:04)。模型已保存到 output/models/contamination_60_uniform_seed42/final。EXIT_CODE=129 (SIGHUP) 发生在训练完成后。WANDB_MODE=disabled 导致 cron 误判为 failed。train_loss=7.649 (avg), train_runti\n  detect_remove_baseline_seed42: 完成时 conclusion 指引: b=0 throughout; adaptive degenerates to uniform post-filtering. detect-and-remove alone sufficient — adaptive adds no value on already-clean data. 写论文时注意: filtered subset (~153K) 训练\n  detect_remove_q05_epoch_matched_seed42: Content-level 1 epoch: 153K samples × ~540 avg tokens = ~83M tokens → max_steps=2533. NOT Trainer epoch (9607 steps/315M tokens).\n  detect_remove_q07_epoch_matched_seed42: 首次运行 EXIT_CODE=1 失败(~70min)，自动重试后训练完成(3047 steps, 6425s, EXIT_CODE=0)。Model saved to /root/autodl-tmp/output/models/detect_remove_q07_epoch_matched_seed42/final。等待 eval holdout PPL。\n  detector_modernbert: Superseded by TF-IDF detector (detector_tfidf_lr). Never ran — cancelled at QUEUED stage.\n  diagnostic_contamination100: Director 指令 kill：GPU 2/3 显存打满影响 grid-b seed123 训练速度。诊断实验等 grid-b round 1 完成后重跑。\n  epoch_matched_dr_seed123: 失败原因: EXIT_CODE=127 (command not found)，训练在 step ~201/2532 后中断。wall_clock=2321s 但日志仅记录到 ~7min。已派 Worker worker_diagnose_epoch_matched_dr_seed123_20260518T145604 深查。\n  grid_b0_1_seed42: PPL=17.657, between uniform(17.694) and b=0.3(17.640). b=0.1 provides minimal but positive improvement over uniform, consistent with near-uniform weighting at low b.\n  grid_b0_2_seed42: Director 预算修正砍掉：b=0.1 和 b=0.3 两点足够推断趋势，b=0.2 不再需要。→ D042 修正：grid_b0_2 重新加入，排在 grid_b0_1/b0_3 之后的下一个空 GPU。\n  grid_b0_5_seed456: 重提交成功（retry_count=1）。原 OOM 因 cuda:1 残留 eval 进程。已清理 exit marker，日志重定向正常。step 56/6103, ETA ~3.5h。\n  grid_b2_0_seed456: checkpoint_artifact: true. D026 决策：seed456 b≥2.0 的 PPL 异常高（checkpoint 问题），论文只报 2-seed 数据。\n  grid_b3_0_seed123: 训练完成，eval 未执行（should_evaluate=false，缺少 --eval_data_path 和 --eval_steps）。Checkpoint: /root/provenance_weight_training/output/models/grid_b3_0_seed123/final/ (model.safetensors 1.19GB)。需补跑 eval。\n  grid_b3_0_seed456: checkpoint_artifact: true. D026 决策：seed456 b≥2.0 的 PPL 异常高（checkpoint 问题），论文只报 2-seed 数据。\n  grid_b5_0_seed123: PID 94717 已确认存活（SSH 验证 2026-05-14T11:39）。旧 PID 92798 已 kill，cron 重新注册。\n  grid_b5_0_seed456: checkpoint_artifact: true. D026 决策：seed456 b≥2.0 的 PPL 异常高（checkpoint 问题），论文只报 2-seed 数据。\n  grid_b_low_seed42: cron框架误杀(infrastructure bug)。根因: WANDB_MODE=disabled + tmux wrapper PID 不匹配，reconcile_crons 判定进程死亡并发送 SIGTERM。训练实际曾完成 3 个 b 值(8477/8477×3)，但第二次重启后在 step 431 被杀，所有 checkpoint 目录丢失(grid_b0_1/0_2/0_3_see\n  grid_b_low_seed42_r2: 失败根因：bash -c \"...\" 双引号内的 $b 被外层 shell 提前展开为空字符串，导致 --grid_b_value 收到空参数，argparse 报错 \"expected one argument\" 立即退出。日志首行 \"Training grid b= ===\" 确认 $b 为空。修复方法：将 $b 转义为 \\$b（如 \\$b 和 \\${b}），或改用 bash -c '...'\n  grid_b_low_seed42_r3: Worker 提交时未指定 GPU，导致与 cuda:0 上的 contamination_60_seed42_r2 冲突。PID 258500 在启动后秒级崩溃。grid_b_low 需在 GPU 释放后单独提交（每个 b 值独立实验或硬编码脚本 + 显式 CUDA_VISIBLE_DEVICES）。\n  grid_b_low_serial_seed42: R4 killed: cuda:2 GPU冲突，与contamination_60_ess_only_seed42双进程占满显存(93042/97887 MiB)，仅完成48/6103步。第3次因GPU冲突失败(R3=cuda:0撞contamination_60, R4=cuda:2撞ess_only)。PID 265617已确认死亡，cuda:2显存恢复至~46.5GB，ess_only速度从\n  llama3b_adaptive_seed42: 诊断中: cron 报 process dead 5× + no W&B，但 memory.md 有 PPL=10.58 结论。疑似训练完成但监控缺失。Worker worker_diagnose_llama3b_adaptive_seed42_20260517T140045 正在 SSH 确认。日志文件 /root/runs/provenance_weight_training/llama3b_\n  nmin1_seed42: 训练完成(EXIT_CODE=0, 4h50m)。PPL=17.789，比 adaptive_fix(n_min=2, 17.650) 差 +0.139，比 uniform(17.690) 差 +0.099。n_min=1 导致极端 b* 分布：46.7% batch b*≥2，p75=20.0(上限)，mean=7.197。ESS 约束几乎失效，over-downweighting 明显。con\n  nmin4_seed42: Mid-training check @step 2036/6103: b=0.0, ess=4.0 (=n_min), weighted_loss==unweighted_loss — confirms b*=0 degenerates to uniform weighting as theoretically predicted. Eval commands prepared for post\n  nmin5_seed42: D047 砍掉，GPU 预算不够。\n  random_reweight_seed42: 根因诊断：实际只跑~500步(8%)，\"6092/8477\"是eval进度条非training。WANDB_MODE=offline写~150MB到30GB根分区→磁盘满→OOM killer在eval期间杀进程→save从未执行→零checkpoint。修复：WANDB_MODE=disabled + output_dir改数据盘。v2脚本已dry-run验证通过。\n  rho02_adaptive_tau09_seed42: Retry: first attempt failed due to CUDA_VISIBLE_DEVICES=-1 in script overriding submit_training_job env. Fixed by removing export line from script. PID 367604.\n  tau_0.6_seed42: 废弃: exp_id 含点号不合法，已用 tau_06_seed42 替代\n  tau_06_seed42: PPL=17.681 劣于 τ=0.8 baseline (17.650)，conclusion=negative。概念修正：τ 越低 → α_eff 下界越松 → b* 更小 → 降权力度更弱（非更激进）。正确因果链：τ 越高 → α_eff 下界越严 → min-intervention 需要更大 b* 才能满足约束 → 降权力度更强。\n  tau_095_nmin2_seed42: D048: 原始 tau_095_seed42 已确认 n_min=2，数据干净。二次 killed，不重跑。\n  tau_09_nmin2_seed42: D048: 原始 tau_09_seed42 已确认 n_min=2，数据干净。二次 killed，不重跑。\n  threshold_q03_seed42: Training completed successfully. 6103/6103 steps, train_loss=11.24, runtime=45076s (~12.5h). Model saved to output/models/threshold_q03_seed42/final (1.19GB safetensors). WANDB_MODE=disabled, offline \n  threshold_q07_seed42: Resume r2 failed: ValueError \"Your setup doesn't support bf16/gpu\" — all 4x GPUs were occupied by other processes when resume script launched. Training stuck at step 5999, checkpoint-5500 intact. Need\n  uniform_1_7b_seed42: 失败原因: FileNotFoundError — checkpoint-3000/trainer_state.json 缺失，resume 崩溃 | 已有成果: checkpoint-3000 存在但不完整 | 建议: 找有效 checkpoint 重 resume 或从头训练",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9a1e287e-d5b6-441b-8611-2fdc1b9e8ed8",
+            "isSidechain": true,
+            "promptId": "81aa97b5-7ab3-4784-9310-f6aca7e148e9",
+            "agentId": "add9e33b65cc0f6cc",
+            "type": "user",
+            "uuid": "5a3f217b-fbec-4823-bd62-992e52388803",
+            "sourceToolAssistantUUID": "9a1e287e-d5b6-441b-8611-2fdc1b9e8ed8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/agent_0dcc82db",
+            "sessionId": "fa6b86df-96af-487a-8f60-5e846598b211",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-21T02:51:53.229Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have all the data. Let me also get the full data for the ngram experiments including any additional fields that might exist in their `metrics` sub-objects, to make sure nothing is truncated."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5a3f217b-fbec-4823-bd62-992e52388803",
+            "isSidechain": true,
+            "agentId": "add9e33b65cc0f6cc",
+            "requestId": "req_011CbExQE1fo7ipzxnSHPzDE",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "880fcf18-6ab6-4e84-8461-d292f253dbad",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/agent_0dcc82db",
+            "sessionId": "fa6b86df-96af-487a-8f60-5e846598b211",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VaqPTtQY6kuVeepGkRxPMv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4917,
+                "cache_read_input_tokens": 38792,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4917,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-21T02:51:58.982Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TrNC8K7UBpoMHZrK37u3eK",
+              "name": "Bash",
+              "input": {
+                "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training--claude-sessions-agent-0dcc82db/fa6b86df-96af-487a-8f60-5e846598b211/tool-results/mcp-agent-ml-research-read_registry-1779331805083.txt\"\ncat \"$FILE\" | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\ninner = json.loads(data['result'])\nexps = inner['data']['experiments']\n\n# Status distribution\nstatus_counts = {}\nfor exp_data in exps.values():\n    s = exp_data.get('status', 'UNKNOWN')\n    status_counts[s] = status_counts.get(s, 0) + 1\nprint('=== STATUS DISTRIBUTION ===')\nfor s, c in sorted(status_counts.items()):\n    print(f'  {s}: {c}')\n\"\n",
+                "description": "Get status distribution across all experiments"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "880fcf18-6ab6-4e84-8461-d292f253dbad",
+            "isSidechain": true,
+            "agentId": "add9e33b65cc0f6cc",
+            "requestId": "req_011CbExQE1fo7ipzxnSHPzDE",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "336084b1-8169-4b92-a0e3-2d3372edcdb0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/agent_0dcc82db",
+            "sessionId": "fa6b86df-96af-487a-8f60-5e846598b211",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VaqPTtQY6kuVeepGkRxPMv",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4917,
+                "cache_read_input_tokens": 38792,
+                "output_tokens": 372,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 4917
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 372,
+                    "cache_read_input_tokens": 38792,
+                    "cache_creation_input_tokens": 4917,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 4917,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-21T02:51:59.067Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TrNC8K7UBpoMHZrK37u3eK",
+              "type": "tool_result",
+              "content": "=== STATUS DISTRIBUTION ===\n  DONE: 187\n  PREPARING: 18\n  RUNNING: 3",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "336084b1-8169-4b92-a0e3-2d3372edcdb0",
+            "isSidechain": true,
+            "promptId": "81aa97b5-7ab3-4784-9310-f6aca7e148e9",
+            "agentId": "add9e33b65cc0f6cc",
+            "type": "user",
+            "uuid": "836332a0-8358-40f2-bdff-e554a20baf18",
+            "sourceToolAssistantUUID": "336084b1-8169-4b92-a0e3-2d3372edcdb0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/agent_0dcc82db",
+            "sessionId": "fa6b86df-96af-487a-8f60-5e846598b211",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-21T02:52:41.916Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here is the complete extraction:\n\n---\n\n## 1. File Structure\n\n- Top-level: `{result: string}` where result is JSON string\n- Parsed inner: `{success: true, data: {experiments: {...}, count: 208, total: 208, baseline: null}, error: null, metadata: {elapsed_seconds: 0.7223}}`\n- 208 experiments total. Each experiment has fields from this set: `conclusion`, `created_at`, `hypothesis`, `metrics`, `notes`, `parent`, `status`, `updated_at`\n\n---\n\n## 2. All \"ngram\" Experiments (5 total)\n\n**ngram_adaptive_seed42**\n```json\n{\n  \"status\": \"DONE\",\n  \"created_at\": \"2026-05-18T14:14:23.226Z\",\n  \"updated_at\": \"2026-05-19T00:08:31.642Z\",\n  \"hypothesis\": \"Multi-detector validation: adaptive weighting with n-gram PPL detector (statistical, AUC=0.73) produces lower PPL than uniform, demonstrating method works with fundamentally different detector type (not just neural classifier). Complementary to q_score (Spearman r=-0.36). Part of D079 Line A.\",\n  \"conclusion\": \"negative\",\n  \"metrics\": {\n    \"eval_ppl_holdout\": 17.82,\n    \"eval_loss_holdout\": 2.8803\n  }\n}\n```\n\n**ngram_adaptive_seed123**\n```json\n{\n  \"status\": \"DONE\",\n  \"created_at\": \"2026-05-20T22:16:21.156Z\",\n  \"updated_at\": \"2026-05-21T02:19:10.605Z\",\n  \"hypothesis\": \"N-gram PPL detector (statistical, AUC=0.73) + adaptive weighting, seed=123. Second seed for detector ablation to confirm ngram_adaptive_seed42 pattern (PPL=17.82). Tests consistency of method with weak statistical detector.\",\n  \"parent\": \"ngram_adaptive_seed42\",\n  \"metrics\": {\n    \"eval_ppl_holdout\": 17.823,\n    \"eval_loss_holdout\": 2.8805,\n    \"eval_holdout_tokens\": 4077068,\n    \"train_loss\": 9.289,\n    \"total_steps\": 6103\n  },\n  \"conclusion\": \"negative\"\n}\n```\n\n**ngram_uniform_seed42**\n```json\n{\n  \"status\": \"DONE\",\n  \"created_at\": \"2026-05-18T14:14:25.095Z\",\n  \"updated_at\": \"2026-05-19T00:08:24.320Z\",\n  \"hypothesis\": \"Uniform baseline for n-gram detector comparison. Control condition: uniform weighting on ngram-scored data. Expected to perform worse than ngram_adaptive, confirming adaptive advantage generalizes across detectors.\",\n  \"conclusion\": \"success\",\n  \"metrics\": {\n    \"eval_ppl_holdout\": 17.69,\n    \"eval_loss_holdout\": 2.8733\n  }\n}\n```\n\n**eval_ngram_adaptive**\n```json\n{\n  \"status\": \"DONE\",\n  \"created_at\": \"2026-05-18T19:15:51.010Z\",\n  \"updated_at\": \"2026-05-20T04:02:52.006Z\",\n  \"metrics\": {\n    \"loss\": 2.8803,\n    \"perplexity\": 17.82,\n    \"tokens\": 4077068,\n    \"eval_data\": \"data/human/eval_holdout.jsonl\",\n    \"max_docs\": 5000,\n    \"max_length\": 2048,\n    \"checkpoint\": \"ngram_adaptive_seed42/final\"\n  },\n  \"conclusion\": \"success\",\n  \"hypothesis\": \"N-gram adaptive weighting assigns higher weights to documents with rare n-gram patterns, which should yield lower perplexity on held-out human text compared to uniform weighting by better capturing the distribution of natural language.\"\n}\n```\n\n**eval_ngram_uniform**\n```json\n{\n  \"status\": \"DONE\",\n  \"created_at\": \"2026-05-18T19:15:52.785Z\",\n  \"updated_at\": \"2026-05-20T04:04:40.459Z\",\n  \"metrics\": {\n    \"loss\": 2.8733,\n    \"perplexity\": 17.69,\n    \"tokens\": 4077068,\n    \"eval_data\": \"data/human/eval_holdout.jsonl\",\n    \"max_docs\": 5000,\n    \"max_length\": 2048,\n    \"checkpoint\": \"ngram_uniform_seed42/final\"\n  },\n  \"hypothesis\": \"Uniform n-gram weighting treats all documents equally regardless of n-gram rarity, serving as a baseline to compare against adaptive weighting for held-out human text perplexity.\",\n  \"conclusion\": \"success\"\n}\n```\n\n---\n\n## 3. Specific Named Experiments\n\n**gpt2_adaptive_seed123**\n```json\n{\n  \"status\": \"RUNNING\",\n  \"created_at\": \"2026-05-20T18:34:08.013Z\",\n  \"updated_at\": \"2026-05-21T01:18:30.860Z\",\n  \"hypothesis\": \"GPT-2 PPL detector (AUC=0.913) + adaptive weighting, seed=123. Second seed for detector ablation to confirm gpt2_adaptive_seed42 pattern (PPL=17.79, worse than TF-IDF but still meaningful reweighting). If consistent, supports claim that method works across detector quality levels.\",\n  \"parent\": \"gpt2_adaptive_seed42\"\n}\n```\n\n**gpt2_adaptive_seed456**\n```json\n{\n  \"status\": \"RUNNING\",\n  \"created_at\": \"2026-05-21T00:44:29.948Z\",\n  \"updated_at\": \"2026-05-21T01:18:33.096Z\",\n  \"hypothesis\": \"GPT-2 PPL detector (AUC=0.913) + adaptive weighting, seed=456. Third seed for detector ablation to complete 3-seed set with gpt2_adaptive_seed42 (PPL=17.79) and gpt2_adaptive_seed123. Tests reproducibility of method with medium-quality detector.\",\n  \"parent\": \"gpt2_adaptive_seed42\"\n}\n```\n\n**adaptive_tau08_scratch_seed42**\n```json\n{\n  \"status\": \"RUNNING\",\n  \"created_at\": \"2026-05-20T17:17:50.273Z\",\n  \"updated_at\": \"2026-05-21T01:21:26.492Z\",\n  \"hypothesis\": \"From-scratch adaptive (τ=0.8, ρ=0.4, n_min=2, seed=42, Qwen3-0.6B). Replaces resume-checkpoint adaptive_fix_seed42 to complete 3-seed from-scratch set with adaptive_ood_seed123/456. Enables symmetric 3-seed OOD comparison: τ=0.7 3-seed vs τ=0.8 3-seed.\",\n  \"parent\": \"adaptive_fix_seed42\"\n}\n```\n\n---\n\n## 4. All RUNNING Experiments (3 total)\n\n| Experiment ID | Created | Parent |\n|---|---|---|\n| `adaptive_tau08_scratch_seed42` | 2026-05-20T17:17:50Z | adaptive_fix_seed42 |\n| `gpt2_adaptive_seed123` | 2026-05-20T18:34:08Z | gpt2_adaptive_seed42 |\n| `gpt2_adaptive_seed456` | 2026-05-21T00:44:29Z | gpt2_adaptive_seed42 |\n\nNone of the 3 RUNNING experiments have metrics or conclusion yet.\n\n---\n\n## 5. Workers Referenced\n\nThe registry has no dedicated `worker` field. Workers appear only in freetext `notes` of 2 experiments:\n\n| Worker ID | Referenced In | Context |\n|---|---|---|\n| `worker_diagnose_epoch_matched_dr_seed123_20260518T145604` | epoch_matched_dr_seed123 | Diagnosing EXIT_CODE=127 failure |\n| `worker_diagnose_llama3b_adaptive_seed42_20260517T140045` | llama3b_adaptive_seed42 | Diagnosing cron reporting process dead while memory.md shows PPL=10.58 |\n\n---\n\n## Summary Statistics\n\n- **208** total experiments\n- **187** DONE, **3** RUNNING, **18** PREPARING\n- **5** experiments match \"ngram\" in their ID\n- All 3 requested named experiments were found (all RUNNING)\n- Only 2 worker IDs appear in the entire registry, both in diagnostic notes"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "836332a0-8358-40f2-bdff-e554a20baf18",
+            "isSidechain": true,
+            "agentId": "add9e33b65cc0f6cc",
+            "requestId": "req_011CbExR1d57WbT5LQ1E9ZFe",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "1b192cd8-fdc3-4159-91ce-b694fb00bd58",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/agent_0dcc82db",
+            "sessionId": "fa6b86df-96af-487a-8f60-5e846598b211",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01K2VzSpohy5aYjsmmM3jT34",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 411,
+                "cache_read_input_tokens": 43709,
+                "output_tokens": 2205,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 411
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2205,
+                    "cache_read_input_tokens": 43709,
+                    "cache_creation_input_tokens": 411,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 411,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000031"
+        }
+      ],
+      "message_count": 31
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-i-need-to-extract-specific-experiment-data-from-a-large-json-registry-file-the-copy-2.md"
+}

@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0",
+  "id": "9b9f52f2d8e0696ae552",
+  "project": "provenance_weight_training--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: provenance_weight_training ## 运行环境 - 服务器名: westd-30476 - SSH 账户: root（调用 ssh_execute / submit_tr",
+  "task_key": "9548c56b-5335-4a67-8364-e171ff60a254",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-3/9548c56b-5335-4a67-8364-e171ff60a254.jsonl",
+    "occurrence": 1,
+    "bytes": 1269933,
+    "sha256": "02803ba5e631ad04dd569399535d3031e75f9dd15305cb43802ba92526d97480"
+  },
+  "statistics": {
+    "messages": 847,
+    "user_turns": 1,
+    "tool_calls": 308,
+    "roles": {
+      "record": 117,
+      "user": 1,
+      "assistant": 113,
+      "tool_call": 308,
+      "tool_result": 308
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "9b9f52f2d8e0696ae552-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 845,
+      "chunks": [
+        {
+          "path": "9b9f52f2d8e0696ae552-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "9b9f52f2d8e0696ae552-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "9b9f52f2d8e0696ae552-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "9b9f52f2d8e0696ae552-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "9b9f52f2d8e0696ae552-part-0005.json",
+          "message_count": 127
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-provenance-weight-training-westd-30476-ssh-root-ssh-execute-su-copy-44.md"
+}

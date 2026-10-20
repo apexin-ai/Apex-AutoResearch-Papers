@@ -1,0 +1,965 @@
+{
+  "schema_version": "1.0",
+  "id": "4fe6c02f793e7dd2d624",
+  "project": "provenance_weight_training--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Use WebSearch to verify: 1. The EMNLP 2026 ARR submission deadline — is it May 25, 2026? 2. Does EMNLP 2026 have a speci",
+  "task_key": "agent-a6d53ffdc7c9c7a88",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-3/agent-a6d53ffdc7c9c7a88.jsonl",
+    "occurrence": 1,
+    "bytes": 36055,
+    "sha256": "f7e1d93b143192d7ce3712a055b4917144e76f66ef976e5540a2de62bab1efe1"
+  },
+  "statistics": {
+    "messages": 20,
+    "user_turns": 1,
+    "tool_calls": 7,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 4,
+      "tool_call": 7,
+      "tool_result": 7
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-12T00:29:50.047Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Use WebSearch to verify:\n\n1. The EMNLP 2026 ARR submission deadline — is it May 25, 2026?\n2. Does EMNLP 2026 have a special theme on \"New Missions for NLP Research\" that explicitly calls for work on data contamination, synthetic data feedback loops, and data governance?\n3. What is the general timeline for EMNLP 2026?\n\nSearch for \"EMNLP 2026 submission deadline\", \"EMNLP 2026 call for papers\", \"ARR 2026 May deadline\", and \"EMNLP 2026 special theme\".\n\nReport findings concisely."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "6d30b030-33dc-4c7d-ad55-0f5c19192022",
+            "agentId": "a6d53ffdc7c9c7a88",
+            "type": "user",
+            "uuid": "8de9d7a5-3a05-47c6-950f-62a43f144215",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "29ad655f-fa0c-457e-83f8-8620db8c5bc8",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-12T00:29:50.049Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "8de9d7a5-3a05-47c6-950f-62a43f144215",
+                "isSidechain": true,
+                "agentId": "a6d53ffdc7c9c7a88",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "04188474-c66b-41b0-9c9f-01d7a50141f4",
+                "timestamp": "2026-05-12T00:29:50.049Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/",
+                "sessionId": "29ad655f-fa0c-457e-83f8-8620db8c5bc8",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-12T00:30:08.717Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nI'll search for information on EMNLP 2026 using multiple queries in parallel."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "04188474-c66b-41b0-9c9f-01d7a50141f4",
+            "isSidechain": true,
+            "agentId": "a6d53ffdc7c9c7a88",
+            "requestId": "req_011CawjJ4RU8G3RX9EQ7JJsc",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "421ac0c8-a1f4-4570-8293-7b6ce0bd28ae",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "29ad655f-fa0c-457e-83f8-8620db8c5bc8",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016hLMoBHLGzMiRKie2JTSmR",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 706,
+                "cache_read_input_tokens": 8223,
+                "output_tokens": 98,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 706
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 98,
+                    "cache_read_input_tokens": 8223,
+                    "cache_creation_input_tokens": 706,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 706,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-12T00:30:08.802Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LELhbL7c7VhQN7rwjgG4VM",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "421ac0c8-a1f4-4570-8293-7b6ce0bd28ae",
+            "isSidechain": true,
+            "agentId": "a6d53ffdc7c9c7a88",
+            "requestId": "req_011CawjJ4RU8G3RX9EQ7JJsc",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "9fffe58d-d307-4831-94f8-917f9ad314ee",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "29ad655f-fa0c-457e-83f8-8620db8c5bc8",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016hLMoBHLGzMiRKie2JTSmR",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 706,
+                "cache_read_input_tokens": 8223,
+                "output_tokens": 98,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 706
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 98,
+                    "cache_read_input_tokens": 8223,
+                    "cache_creation_input_tokens": 706,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 706,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-12T00:30:08.805Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01LELhbL7c7VhQN7rwjgG4VM",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9fffe58d-d307-4831-94f8-917f9ad314ee",
+            "isSidechain": true,
+            "promptId": "6d30b030-33dc-4c7d-ad55-0f5c19192022",
+            "agentId": "a6d53ffdc7c9c7a88",
+            "type": "user",
+            "uuid": "c4b8abdb-1b8b-425c-9052-a614718f3836",
+            "sourceToolAssistantUUID": "9fffe58d-d307-4831-94f8-917f9ad314ee",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "29ad655f-fa0c-457e-83f8-8620db8c5bc8",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-12T00:30:13.406Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nNow let me run all four searches in parallel."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c4b8abdb-1b8b-425c-9052-a614718f3836",
+            "isSidechain": true,
+            "agentId": "a6d53ffdc7c9c7a88",
+            "requestId": "req_011CawjKUwPHpgmghcRqtYfL",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "6538dec0-39da-4dbb-ab53-8c1cfc3de404",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "29ad655f-fa0c-457e-83f8-8620db8c5bc8",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KwnbQhSkM1fQ9MMJmyJ8da",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1415,
+                "cache_read_input_tokens": 8929,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1415,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-12T00:30:13.900Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KoREVAoZgfGtVBK5cgCJ7m",
+              "name": "WebSearch",
+              "input": {
+                "query": "EMNLP 2026 submission deadline"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6538dec0-39da-4dbb-ab53-8c1cfc3de404",
+            "isSidechain": true,
+            "agentId": "a6d53ffdc7c9c7a88",
+            "requestId": "req_011CawjKUwPHpgmghcRqtYfL",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "ec6d0ec0-1ef3-4c1d-bb63-8c12c82c77d9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "29ad655f-fa0c-457e-83f8-8620db8c5bc8",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KwnbQhSkM1fQ9MMJmyJ8da",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1415,
+                "cache_read_input_tokens": 8929,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1415,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-12T00:30:14.374Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WSHiwFyE6whcocF5Hg4nDs",
+              "name": "WebSearch",
+              "input": {
+                "query": "EMNLP 2026 call for papers"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ec6d0ec0-1ef3-4c1d-bb63-8c12c82c77d9",
+            "isSidechain": true,
+            "agentId": "a6d53ffdc7c9c7a88",
+            "requestId": "req_011CawjKUwPHpgmghcRqtYfL",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "4ef9b928-4d29-4636-8374-83b02a6952f3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "29ad655f-fa0c-457e-83f8-8620db8c5bc8",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KwnbQhSkM1fQ9MMJmyJ8da",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1415,
+                "cache_read_input_tokens": 8929,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1415,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-12T00:30:14.381Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015Ta8jcoG49E1wtoaj3QWYD",
+              "name": "WebSearch",
+              "input": {
+                "query": "ARR 2026 May deadline"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4ef9b928-4d29-4636-8374-83b02a6952f3",
+            "isSidechain": true,
+            "agentId": "a6d53ffdc7c9c7a88",
+            "requestId": "req_011CawjKUwPHpgmghcRqtYfL",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b5e6b79c-28d0-4ff0-bdf9-ef140b3fa304",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "29ad655f-fa0c-457e-83f8-8620db8c5bc8",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KwnbQhSkM1fQ9MMJmyJ8da",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1415,
+                "cache_read_input_tokens": 8929,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1415,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-12T00:30:14.768Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YJDaWAdXihU7uK7FgrqSHv",
+              "name": "WebSearch",
+              "input": {
+                "query": "EMNLP 2026 special theme"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b5e6b79c-28d0-4ff0-bdf9-ef140b3fa304",
+            "isSidechain": true,
+            "agentId": "a6d53ffdc7c9c7a88",
+            "requestId": "req_011CawjKUwPHpgmghcRqtYfL",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "9db0eaff-aada-464e-9e05-729bba4ce79c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "29ad655f-fa0c-457e-83f8-8620db8c5bc8",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KwnbQhSkM1fQ9MMJmyJ8da",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1415,
+                "cache_read_input_tokens": 8929,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1415,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-12T00:30:17.888Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KoREVAoZgfGtVBK5cgCJ7m",
+              "type": "tool_result",
+              "content": "Web search results for query: \"EMNLP 2026 submission deadline\"\n\nLinks: [{\"title\":\"The 2026 Conference on Empirical Methods in Natural Language Processing - EMNLP 2026\",\"url\":\"https://2026.emnlp.org/\"},{\"title\":\"2026 *ACL Conference Dates | Computational Linguistics\",\"url\":\"https://submissions.cljournal.org/index.php/cljournal/announcement/view/14\"},{\"title\":\"EMNLP 2026 Conference | OpenReview\",\"url\":\"https://openreview.net/group?id=EMNLP%2F2026%2FConference\"},{\"title\":\"AI Conference Deadlines\",\"url\":\"https://mlciv.com/ai-deadlines/\"},{\"title\":\"EMNLP 2026 (@emnlpmeeting) / Posts / X\",\"url\":\"https://x.com/emnlpmeeting\"},{\"title\":\"Update EMNLP 2026 conference dates and deadlines · huggingface/ai-deadlines at 2754f67\",\"url\":\"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/2754f67c0550847973789522a0a082dd5443b5c0\"},{\"title\":\"Dates and Venues\",\"url\":\"http://aclrollingreview.org/dates\"},{\"title\":\"Joint Call for Tutorial Proposals (EMNLP/AACL-IJCNLP 2026) | ACL Member Portal\",\"url\":\"https://www.aclweb.org/portal/content/joint-call-tutorial-proposals-emnlpaacl-ijcnlp-2026\"},{\"title\":\"LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)\",\"url\":\"https://linguistlist.org/issues/37/972/\"},{\"title\":\"emnlp 2026 - AI Conference Deadlines\",\"url\":\"https://mlciv.com/ai-deadlines/conference/?id=emnlp26\"}]\n\nBased on the search results, here's the key information about EMNLP 2026 submission deadlines:\n\n## Main Submission Deadline\n\nThe ARR submission deadline for long and short papers is May 25, 2026.\n\n## Important Related Dates\n\nThe reviewer registration deadline for all authors is May 27, 2026.\n\nThe author response and author-reviewer discussion period runs from July 7-13, 2026.\n\nThe EMNLP commitment deadline is August 2, 2026, and notification of acceptance is August 20, 2026.\n\n## General Information\n\nEMNLP 2026 will be held in Budapest, Hungary from October 24-29, 2026. At the time of submission to ARR, authors will be asked to select a preferred venue (e.g., EMNLP 2026).\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ec6d0ec0-1ef3-4c1d-bb63-8c12c82c77d9",
+            "isSidechain": true,
+            "promptId": "6d30b030-33dc-4c7d-ad55-0f5c19192022",
+            "agentId": "a6d53ffdc7c9c7a88",
+            "type": "user",
+            "uuid": "d5c6e91e-f5de-4788-b274-386c43007cbb",
+            "sourceToolAssistantUUID": "ec6d0ec0-1ef3-4c1d-bb63-8c12c82c77d9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "29ad655f-fa0c-457e-83f8-8620db8c5bc8",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-12T00:30:17.987Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015Ta8jcoG49E1wtoaj3QWYD",
+              "type": "tool_result",
+              "content": "Web search results for query: \"ARR 2026 May deadline\"\n\nLinks: [{\"title\":\"Dates and Venues\",\"url\":\"http://aclrollingreview.org/dates\"},{\"title\":\"Main Conference - ACL 2026\",\"url\":\"https://2026.aclweb.org/calls/main_conference_papers/\"},{\"title\":\"Call for Main Conference Papers -\",\"url\":\"https://2026.eacl.org/calls/papers/\"},{\"title\":\"EMNLP 2026 on X: \\\"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\\\" / X\",\"url\":\"https://x.com/emnlpmeeting/status/2029508292637061462\"},{\"title\":\"AI Conference Deadlines\",\"url\":\"https://mlciv.com/ai-deadlines/\"},{\"title\":\"ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"https://aclrollingreview.org/\"},{\"title\":\"AACL 2026 on X: \\\"🚨AACL-IJCNLP 2026 will be held in Hengqin, China from November 6-10, 2026. The CFP is now out! ARR submission deadline (long &amp; short papers): May 25, 2026! #NLProc #NLP Dates and full CFP here: https://t.co/4ON2H5M7zQ @aadi_joshi @kta84912 https://t.co/9ZKWmY7Jvv\\\" / X\",\"url\":\"https://x.com/aaclmeeting/status/2041832211599733075\"},{\"title\":\"*SEM 2026: Commitment Link for ARR-Reviewed Papers (Deadline: 10 April 2026) | ACL Member Portal\",\"url\":\"https://www.aclweb.org/portal/content/sem-2026-commitment-link-arr-reviewed-papers-deadline-10-april-2026\"},{\"title\":\"EMNLP 2026 on X: \\\"The updated ARR schedule has now been posted! As per the call for papers, the submission deadline for EMNLP 2025 will be May 19th https://t.co/kvTZ8LPxam #EMNLP2025\\\" / X\",\"url\":\"https://x.com/emnlpmeeting/status/1892259536137785419\"},{\"title\":\"ACLRollingReview (@ReviewAcl) / Posts / X\",\"url\":\"https://x.com/ReviewAcl\"}]\n\nBased on the search results, there are several important ARR (ACL Rolling Review) deadlines in May 2026:\n\nEMNLP 2026 has an ARR submission deadline of May 25, 2026, and AACL 2026 also has an ARR submission deadline of May 25, 2026 for long and short papers.\n\nThese are the submission deadlines for papers that will be reviewed through the ACL Rolling Review system and considered for acceptance at these two major NLP conferences.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b5e6b79c-28d0-4ff0-bdf9-ef140b3fa304",
+            "isSidechain": true,
+            "promptId": "6d30b030-33dc-4c7d-ad55-0f5c19192022",
+            "agentId": "a6d53ffdc7c9c7a88",
+            "type": "user",
+            "uuid": "9eca8c55-bbc2-4173-9fdd-792d4b479db5",
+            "sourceToolAssistantUUID": "b5e6b79c-28d0-4ff0-bdf9-ef140b3fa304",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "29ad655f-fa0c-457e-83f8-8620db8c5bc8",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-12T00:30:20.844Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WSHiwFyE6whcocF5Hg4nDs",
+              "type": "tool_result",
+              "content": "Web search results for query: \"EMNLP 2026 call for papers\"\n\nLinks: [{\"title\":\"Call for Main Conference Papers - EMNLP 2026\",\"url\":\"https://2026.emnlp.org/calls/main_conference_papers/\"},{\"title\":\"Call for workshops: EMNLP & AACL\",\"url\":\"https://groups.google.com/g/ml-news/c/W-fucfhVto4\"},{\"title\":\"EMNLP 2026 : The 2026 Conference on Empirical Methods in N\",\"url\":\"https://callforpaper.org/call-for-papers-emnlp-2026\"},{\"title\":\"EMNLP 2026 on X: \\\"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\\\" / X\",\"url\":\"https://x.com/emnlpmeeting/status/2029508292637061462\"},{\"title\":\"Call for Bids to Host EMNLP 2025 or 2026 - SIGDAT\",\"url\":\"https://sigdat.org/calls/bids2025\"},{\"title\":\"2026 *ACL Conference Dates | Computational Linguistics\",\"url\":\"https://submissions.cljournal.org/index.php/cljournal/announcement/view/14\"},{\"title\":\"Joint Call for Tutorial Proposals (EMNLP/AACL-IJCNLP 2026) | ACL Member Portal\",\"url\":\"https://www.aclweb.org/portal/content/joint-call-tutorial-proposals-emnlpaacl-ijcnlp-2026\"},{\"title\":\"EMNLP 2026 (@emnlpmeeting) / Posts / X\",\"url\":\"https://x.com/emnlpmeeting?lang=en\"},{\"title\":\"emnlp 2026 - AI Conference Deadlines\",\"url\":\"https://mlciv.com/ai-deadlines/conference/?id=emnlp26\"},{\"title\":\"EMNLP 2026 on X: \\\"📢 Please note a critical update to the original #EMNLP2026 Call for Papers: since EMNLP and AACL share the ARR May cycle, authors will need to explicitly select a target conference at submission time. This choice will be binding! For more details see: https://t.co/0u1wbX9fT6\\\" / X\",\"url\":\"https://x.com/emnlpmeeting/status/2047754845919031450\"}]\n\nHere are the key details from the EMNLP 2026 Call for Papers:\n\n## Overview\nEMNLP 2026 invites the submission of long and short papers featuring substantial, original, and unpublished research on empirical methods for Natural Language Processing. The conference will be held as a hybrid conference, and physically held in Budapest, Hungary from October 24th to October 29th, 2026.\n\n## Important Dates\nThe ARR submission deadline for long and short papers is May 25, 2026, with a reviewer registration deadline for all authors on May 27, 2026. The meta review will be released on July 30, 2026, with the EMNLP commitment deadline on August 2, 2026, and notification of acceptance on August 20, 2026.\n\n## Submission Process\nAuthors will need to explicitly declare which conference they intend to commit to at submission time when submitting to the ARR 2026 May cycle, as it is aligned with AACL 2026. This choice will be binding for EMNLP 2026. Dual submissions are not allowed.\n\n## Special Theme\nThe EMNLP 2026 special theme invites papers that articulate, test, and advance visions for NLP in this era.\n\n## Reviewer Requirements\nAll authors are expected to sign up to review, or serve as an Area Chair or Senior Area Chair, with assignments subsequently based on qualifications.\n\nFor the complete call for papers, visit: https://2026.emnlp.org/calls/main_conference_papers/\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4ef9b928-4d29-4636-8374-83b02a6952f3",
+            "isSidechain": true,
+            "promptId": "6d30b030-33dc-4c7d-ad55-0f5c19192022",
+            "agentId": "a6d53ffdc7c9c7a88",
+            "type": "user",
+            "uuid": "8b929ec1-787d-4519-9dfb-c995bdfa5760",
+            "sourceToolAssistantUUID": "4ef9b928-4d29-4636-8374-83b02a6952f3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "29ad655f-fa0c-457e-83f8-8620db8c5bc8",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-12T00:30:21.622Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01YJDaWAdXihU7uK7FgrqSHv",
+              "type": "tool_result",
+              "content": "Web search results for query: \"EMNLP 2026 special theme\"\n\nLinks: [{\"title\":\"Call for Main Conference Papers - EMNLP 2026\",\"url\":\"https://2026.emnlp.org/calls/main_conference_papers/\"},{\"title\":\"EMNLP 2026 : The 2026 Conference on Empirical Methods in N\",\"url\":\"https://callforpaper.org/call-for-papers-emnlp-2026\"},{\"title\":\"LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)\",\"url\":\"https://linguistlist.org/issues/37/972/\"},{\"title\":\"EMNLP 2026 on X: \\\"The center of gravity in NLP is shifting. 🌍 This year's #EMNLP2026 Special Theme is \\\"New Missions for NLP Research.\\\" We welcome empirical, theoretical, or position and survey papers that reframe our collective research goals. Find out more: https://t.co/6dttoXBb3B\\\" / X\",\"url\":\"https://x.com/emnlpmeeting/status/2029509201580446135\"},{\"title\":\"GitHub - acl-org/emnlp-2026: Repository for the EMNLP 2026 conference · GitHub\",\"url\":\"https://github.com/acl-org/emnlp-2026\"},{\"title\":\"EMNLP 2026: Conference on Empirical Methods in Natural Language Processing\",\"url\":\"https://www.myhuiban.com/conference/424?lang=en_us\"},{\"title\":\"EMNLP 2026 Conference | OpenReview\",\"url\":\"https://openreview.net/group?id=EMNLP%2F2026%2FConference\"},{\"title\":\"EMNLP (@emnlpmeeting.bsky.social) — Bluesky\",\"url\":\"https://bsky.app/profile/emnlpmeeting.bsky.social\"},{\"title\":\"Confs: 2026 Conference on Empirical Methods in Natural ...\",\"url\":\"https://www.facebook.com/linguistlist/posts/confs-2026-conference-on-empirical-methods-in-natural-language-processing-emnlp-/1351983883622556/\"},{\"title\":\"EMNLP: Empirical Methods in Natural Language Processing 2027 2026 2025 ...\",\"url\":\"http://www.wikicfp.com/cfp/program?id=883\"}]\n\nBased on the search results, here's information about the EMNLP 2026 special theme:\n\n\"New Missions for NLP Research\" is the special theme for EMNLP 2026.\n\nThe theme reflects how large language models have rapidly shifted from research prototypes to widely used infrastructure, changing the center of gravity of NLP research, as progress can no longer be measured only by fractional improvements in benchmark scores.\n\nThe special theme invites papers that articulate, test, and advance visions for NLP in this era, welcoming work that reflects on the mission(s) of NLP research, reframes collective research goals, proposes new evaluation and scientific methodologies, and builds bridges across multiple disciplines.\n\nSubmissions may be empirical, theoretical, or position and survey papers, but should be grounded in clear claims, strong evidence, and actionable insights.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9db0eaff-aada-464e-9e05-729bba4ce79c",
+            "isSidechain": true,
+            "promptId": "6d30b030-33dc-4c7d-ad55-0f5c19192022",
+            "agentId": "a6d53ffdc7c9c7a88",
+            "type": "user",
+            "uuid": "492dc8b6-b971-4294-af23-930abe0155fc",
+            "sourceToolAssistantUUID": "9db0eaff-aada-464e-9e05-729bba4ce79c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "29ad655f-fa0c-457e-83f8-8620db8c5bc8",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-12T00:30:24.918Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me get more detail on the specific sub-topics of the special theme."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "492dc8b6-b971-4294-af23-930abe0155fc",
+            "isSidechain": true,
+            "agentId": "a6d53ffdc7c9c7a88",
+            "requestId": "req_011CawjLPSmHvkN6HdGdCUsp",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "f4b6a47f-936f-42c7-acf5-fc3923962483",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "29ad655f-fa0c-457e-83f8-8620db8c5bc8",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019EMLFY6JTp2u9diMjxQgY7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3759,
+                "cache_read_input_tokens": 10344,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3759,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-12T00:30:25.989Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0186EHhTWgxzrn6LJFZDfk3q",
+              "name": "WebSearch",
+              "input": {
+                "query": "EMNLP 2026 \"New Missions for NLP Research\" data contamination synthetic data feedback loops data governance"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f4b6a47f-936f-42c7-acf5-fc3923962483",
+            "isSidechain": true,
+            "agentId": "a6d53ffdc7c9c7a88",
+            "requestId": "req_011CawjLPSmHvkN6HdGdCUsp",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "4db86c08-b3b2-4e76-8a67-1f01a28ccd11",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "29ad655f-fa0c-457e-83f8-8620db8c5bc8",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019EMLFY6JTp2u9diMjxQgY7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3759,
+                "cache_read_input_tokens": 10344,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3759,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-12T00:30:26.046Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CYLjX7MHX9oMHfM7AjhgWS",
+              "name": "WebSearch",
+              "input": {
+                "query": "site:2026.emnlp.org special theme \"New Missions for NLP Research\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4db86c08-b3b2-4e76-8a67-1f01a28ccd11",
+            "isSidechain": true,
+            "agentId": "a6d53ffdc7c9c7a88",
+            "requestId": "req_011CawjLPSmHvkN6HdGdCUsp",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "417a3b79-36e1-4df4-94ac-8cbd511fd4bf",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "29ad655f-fa0c-457e-83f8-8620db8c5bc8",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019EMLFY6JTp2u9diMjxQgY7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3759,
+                "cache_read_input_tokens": 10344,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3759,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-12T00:30:29.501Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CYLjX7MHX9oMHfM7AjhgWS",
+              "type": "tool_result",
+              "content": "Web search results for query: \"site:2026.emnlp.org special theme \"New Missions for NLP Research\"\"\n\nLinks: [{\"title\":\"Call for Tutorials - EMNLP 2026\",\"url\":\"https://2026.emnlp.org/calls/tutorials/\"}]\n\nThe search found a result from the EMNLP 2026 website. The special theme for EMNLP is \"New Missions for NLP Research\". \n\nTutorial proposals that align with this special theme are welcome, and proposers should explain why their proposal aligns with it. EMNLP 2026 will be held as a hybrid conference physically in Budapest, Hungary from October 24th to October 29th, 2026.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "417a3b79-36e1-4df4-94ac-8cbd511fd4bf",
+            "isSidechain": true,
+            "promptId": "6d30b030-33dc-4c7d-ad55-0f5c19192022",
+            "agentId": "a6d53ffdc7c9c7a88",
+            "type": "user",
+            "uuid": "fab49a65-3b74-4303-92a2-9f2e8a494fe7",
+            "sourceToolAssistantUUID": "417a3b79-36e1-4df4-94ac-8cbd511fd4bf",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "29ad655f-fa0c-457e-83f8-8620db8c5bc8",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-12T00:30:32.745Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0186EHhTWgxzrn6LJFZDfk3q",
+              "type": "tool_result",
+              "content": "Web search results for query: \"EMNLP 2026 \"New Missions for NLP Research\" data contamination synthetic data feedback loops data governance\"\n\nLinks: [{\"title\":\"Call for Main Conference Papers - EMNLP 2026\",\"url\":\"https://2026.emnlp.org/calls/main_conference_papers/\"},{\"title\":\"LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)\",\"url\":\"https://linguistlist.org/issues/37/972/\"},{\"title\":\"EMNLP: Empirical Methods in Natural Language Processing 2027 2026 2025 ...\",\"url\":\"http://www.wikicfp.com/cfp/program?id=883\"},{\"title\":\"(PDF) NLP Evaluation in trouble: On the Need to Measure LLM Data Contamination for each Benchmark\",\"url\":\"https://www.researchgate.net/publication/376393345_NLP_Evaluation_in_trouble_On_the_Need_to_Measure_LLM_Data_Contamination_for_each_Benchmark\"},{\"title\":\"EMNLP 2026 on X: \\\"The center of gravity in NLP is shifting. 🌍 This year's #EMNLP2026 Special Theme is \\\"New Missions for NLP Research.\\\" We welcome empirical, theoretical, or position and survey papers that reframe our collective research goals. Find out more: https://t.co/6dttoXBb3B\\\" / X\",\"url\":\"https://x.com/emnlpmeeting/status/2029509201580446135\"},{\"title\":\"GitHub - pengr/LLM-Synthetic-Data: A live reading list for LLM data synthesis (Updated to July, 2025). · GitHub\",\"url\":\"https://github.com/pengr/LLM-Synthetic-Data\"},{\"title\":\"Allen School News » Allen School researchers earn EMNLP Best Paper Award for making Internet-scale texts efficiently searchable with infini-gram mini\",\"url\":\"https://news.cs.washington.edu/2026/01/29/allen-school-researchers-earn-emnlp-best-paper-award/\"},{\"title\":\"EMNLP 2026 on X: \\\"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\\\" / X\",\"url\":\"https://x.com/emnlpmeeting/status/2029508292637061462\"},{\"title\":\"EMNLP 2026: Conference on Empirical Methods in Natural Language Processing\",\"url\":\"https://www.myhuiban.com/conference/424?lang=en_us\"},{\"title\":\"EMNLP Papers 2024 - Emory NLP\",\"url\":\"https://www.linkedin.com/posts/emorynlp_emnlp-papers-2024-emory-nlp-activity-7246962103108997120-V5zk\"}]\n\nBased on the search results, here's what I found about EMNLP 2026 and the \"New Missions for NLP Research\" special theme:\n\n## EMNLP 2026 Special Theme: \"New Missions for NLP Research\"\n\nEMNLP 2026 features a special theme called \"New Missions for NLP Research.\" Large language models have rapidly shifted from research prototypes to widely used infrastructure, and this new reality is changing the center of gravity of NLP research. When strong general-purpose models are increasingly available through open releases and commercial platforms, the field faces a more foundational question: What are the missions of NLP research now, and what kinds of contributions most advance that mission?\n\n## Data Governance and Related Topics\n\nThe conference specifically welcomes research on data scarcity and limits, contamination, and the consequences of synthetic data feedback loops, and new approaches to data creation, documentation, governance, and consent.\n\nThe EMNLP 2026 special theme invites papers that articulate, test, and advance visions for NLP in this era, welcoming work that reflects on the mission(s) of NLP research, reframes collective research goals, proposes new evaluation and scientific methodologies, and builds bridges across multiple disciplines.\n\n## Submission Information\n\nThe First Call for Papers for EMNLP 2026 is officially out, welcoming long and short papers featuring original research on empirical methods for NLP, with an ARR submission deadline of May 25, 2026.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4db86c08-b3b2-4e76-8a67-1f01a28ccd11",
+            "isSidechain": true,
+            "promptId": "6d30b030-33dc-4c7d-ad55-0f5c19192022",
+            "agentId": "a6d53ffdc7c9c7a88",
+            "type": "user",
+            "uuid": "753404e0-fb32-47d1-8883-4f401da9646b",
+            "sourceToolAssistantUUID": "4db86c08-b3b2-4e76-8a67-1f01a28ccd11",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "29ad655f-fa0c-457e-83f8-8620db8c5bc8",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-12T00:30:49.223Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here are the findings for all three questions:\n\n---\n\n**1. ARR Submission Deadline: May 25, 2026 -- CONFIRMED.**\n\nThe ARR submission deadline for EMNLP 2026 long and short papers is indeed **May 25, 2026**. The reviewer registration deadline for all authors follows two days later on May 27, 2026. Note that this ARR May cycle is shared with AACL-IJCNLP 2026, and authors must explicitly select their target conference at submission time (this choice is binding).\n\n**2. Special Theme on \"New Missions for NLP Research\" -- CONFIRMED, including those specific topics.**\n\nThe special theme is titled **\"New Missions for NLP Research.\"** The call for papers **explicitly** welcomes research on:\n- **Data contamination**\n- **Synthetic data feedback loops** (specifically: \"the consequences of synthetic data feedback loops\")\n- **Data governance** (specifically: \"new approaches to data creation, documentation, governance, and consent\")\n- Data scarcity and limits\n\nThe theme broadly invites empirical, theoretical, or position/survey papers that reflect on what the missions of NLP research should be now that strong general-purpose LLMs are widely available, and asks contributors to reframe collective research goals, propose new evaluation methodologies, and build bridges across disciplines.\n\n**3. General Timeline for EMNLP 2026:**\n\n| Milestone | Date |\n|---|---|\n| ARR submission deadline (long & short papers) | May 25, 2026 |\n| Reviewer registration deadline (all authors) | May 27, 2026 |\n| Author response & author-reviewer discussion | July 7--13, 2026 |\n| Meta-review release | July 30, 2026 |\n| EMNLP commitment deadline | August 2, 2026 |\n| Notification of acceptance | August 20, 2026 |\n| Conference (Budapest, Hungary) | October 24--29, 2026 |\n\nThe conference will be held as a **hybrid** event, physically in **Budapest, Hungary**.\n\nSources:\n- [EMNLP 2026 Official Website](https://2026.emnlp.org/)\n- [Call for Main Conference Papers - EMNLP 2026](https://2026.emnlp.org/calls/main_conference_papers/)\n- [EMNLP 2026 First Call for Papers (X/Twitter)](https://x.com/emnlpmeeting/status/2029508292637061462)\n- [EMNLP 2026 Special Theme Announcement (X/Twitter)](https://x.com/emnlpmeeting/status/2029509201580446135)\n- [EMNLP 2026 ARR Target Conference Update (X/Twitter)](https://x.com/emnlpmeeting/status/2047754845919031450)\n- [ARR Dates and Venues](http://aclrollingreview.org/dates)\n- [2026 *ACL Conference Dates](https://submissions.cljournal.org/index.php/cljournal/announcement/view/14)\n- [LINGUIST List - EMNLP 2026](https://linguistlist.org/issues/37/972/)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "753404e0-fb32-47d1-8883-4f401da9646b",
+            "isSidechain": true,
+            "agentId": "a6d53ffdc7c9c7a88",
+            "requestId": "req_011CawjMCwGTz3RqEc7wWkiv",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "284313e6-87c5-4911-a271-8b861301aa09",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "29ad655f-fa0c-457e-83f8-8620db8c5bc8",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015NPEY3M6fVt2YiCzNiFATV",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 222,
+                "cache_creation_input_tokens": 1426,
+                "cache_read_input_tokens": 14103,
+                "output_tokens": 781,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1426
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 222,
+                    "output_tokens": 781,
+                    "cache_read_input_tokens": 14103,
+                    "cache_creation_input_tokens": 1426,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1426,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000020"
+        }
+      ],
+      "message_count": 20
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-use-websearch-to-verify-1-the-emnlp-2026-arr-submission-deadline-is-it-may-25.md"
+}

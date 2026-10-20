@@ -1,0 +1,2015 @@
+{
+  "schema_version": "1.0",
+  "id": "31b109b7af8b95b87b25",
+  "project": "provenance_weight_training--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: In /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml, find the metrics ",
+  "task_key": "agent-a71f0d77acb236de8",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-3/agent-a71f0d77acb236de8.jsonl",
+    "occurrence": 1,
+    "bytes": 112742,
+    "sha256": "6bd068fa71f4fb3ab7e6f15b809c750de2ac731c125545369d18e51287209169"
+  },
+  "statistics": {
+    "messages": 40,
+    "user_turns": 1,
+    "tool_calls": 15,
+    "roles": {
+      "user": 1,
+      "assistant": 9,
+      "tool_call": 15,
+      "tool_result": 15
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T22:11:04.003Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "In /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml, find the metrics (especially eval_ppl or eval_ppl_holdout) for these experiments:\n1. adaptive_fix_seed42\n2. adaptive_fix_seed123\n3. adaptive_fix_seed456\n4. grid_b0_5_seed42\n5. grid_b0_5_seed123\n6. grid_b0_5_seed456\n7. uniform_seed42\n8. uniform_seed123\n9. uniform_seed456\n\nFor each, report the experiment ID, eval PPL value, and any other metrics you see. I need the exact numbers to verify paper claims. Search breadth: medium."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "9401e3e8-f174-4ab3-9fab-32fa13628f5e",
+            "agentId": "a71f0d77acb236de8",
+            "type": "user",
+            "uuid": "37acfa07-81b9-46ea-8568-7144a7b24e76",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/reviewer_331b5651",
+            "sessionId": "d7303618-d2a1-4c0a-b0c3-8a0e6f11dd9d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "fluffy-sleeping-biscuit"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T22:11:06.446Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll search for these experiments in the registry.yaml file and extract the metrics you need."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "37acfa07-81b9-46ea-8568-7144a7b24e76",
+            "isSidechain": true,
+            "agentId": "a71f0d77acb236de8",
+            "requestId": "req_011Cb57wyZAu9PYwRmsxtsCW",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "5066d14f-9264-4d00-a666-ff3220d13380",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/reviewer_331b5651",
+            "sessionId": "d7303618-d2a1-4c0a-b0c3-8a0e6f11dd9d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "fluffy-sleeping-biscuit",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_019NpGWSRKB35DJfhGzqFBVw",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 20780,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 104,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 20780
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 104,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 20780,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 20780,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T22:11:06.503Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016Wr35Mjv2i2u8S6FLejUmA",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5066d14f-9264-4d00-a666-ff3220d13380",
+            "isSidechain": true,
+            "agentId": "a71f0d77acb236de8",
+            "requestId": "req_011Cb57wyZAu9PYwRmsxtsCW",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "d69a6ba4-2f9b-4b48-a273-34f60b84f8d0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/reviewer_331b5651",
+            "sessionId": "d7303618-d2a1-4c0a-b0c3-8a0e6f11dd9d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "fluffy-sleeping-biscuit",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_019NpGWSRKB35DJfhGzqFBVw",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 20780,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 104,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 20780
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 104,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 20780,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 20780,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T22:11:06.903Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "File content (41989 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+              "is_error": true,
+              "tool_use_id": "toolu_016Wr35Mjv2i2u8S6FLejUmA"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d69a6ba4-2f9b-4b48-a273-34f60b84f8d0",
+            "isSidechain": true,
+            "promptId": "9401e3e8-f174-4ab3-9fab-32fa13628f5e",
+            "agentId": "a71f0d77acb236de8",
+            "type": "user",
+            "uuid": "946f2a2e-2c4b-43d3-843a-0546b284f115",
+            "toolUseResult": "Error: File content (41989 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+            "sourceToolAssistantUUID": "d69a6ba4-2f9b-4b48-a273-34f60b84f8d0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/reviewer_331b5651",
+            "sessionId": "d7303618-d2a1-4c0a-b0c3-8a0e6f11dd9d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "fluffy-sleeping-biscuit"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T22:11:08.259Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file is large. Let me search for the specific experiment names using grep to locate them in the registry."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "946f2a2e-2c4b-43d3-843a-0546b284f115",
+            "isSidechain": true,
+            "agentId": "a71f0d77acb236de8",
+            "requestId": "req_011Cb57xBq7QBc8iCv1aj58Q",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "b7f6bf55-6d3b-4edb-ad43-74eb793966f4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/reviewer_331b5651",
+            "sessionId": "d7303618-d2a1-4c0a-b0c3-8a0e6f11dd9d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "fluffy-sleeping-biscuit",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01DL6kbeD9LkSdcn2qpQ8Xeg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 999,
+                "cache_read_input_tokens": 20780,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 999,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T22:11:09.177Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NHWk3wTYWj4ZToRLN2oBbY",
+              "name": "Grep",
+              "input": {
+                "pattern": "adaptive_fix_seed42|adaptive_fix_seed123|adaptive_fix_seed456|grid_b0_5_seed42|grid_b0_5_seed123|grid_b0_5_seed456|uniform_seed42|uniform_seed123|uniform_seed456",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml",
+                "output_mode": "content",
+                "context": 10
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b7f6bf55-6d3b-4edb-ad43-74eb793966f4",
+            "isSidechain": true,
+            "agentId": "a71f0d77acb236de8",
+            "requestId": "req_011Cb57xBq7QBc8iCv1aj58Q",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "c6afa74b-9a7c-41a1-8149-46ba4805af2c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/reviewer_331b5651",
+            "sessionId": "d7303618-d2a1-4c0a-b0c3-8a0e6f11dd9d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "fluffy-sleeping-biscuit",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01DL6kbeD9LkSdcn2qpQ8Xeg",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 999,
+                "cache_read_input_tokens": 20780,
+                "output_tokens": 223,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 999
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 223,
+                    "cache_read_input_tokens": 20780,
+                    "cache_creation_input_tokens": 999,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 999,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T22:11:09.194Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NHWk3wTYWj4ZToRLN2oBbY",
+              "type": "tool_result",
+              "content": "14-      model_name: Qwen/Qwen3-0.6B\n15-      seed: 42/1042/2042/3042\n16-      hypothesis: 4-GPU parallel generation produces 132M synthetic tokens in ~2.5h\n17-      gpu: cuda:0,1,2,3\n18-      checkpoint_path: /root/provenance_weight_training/data/synthetic/shard_{0,1,2,3}/\n19-      log_path: /root/provenance_weight_training/data/synthetic/gen_gpu{0,1,2,3}.log\n20-      total_docs: 340992\n21-      total_tokens: 132033764\n22-    conclusion: success\n23-    completed_at: '2026-05-13T21:50:46.682Z'\n24:  uniform_seed42:\n25-    status: DONE\n26-    retry_count: 0\n27-    created_at: '2026-05-13T22:17:51.722Z'\n28-    updated_at: '2026-05-15T16:42:55.867Z'\n29-    spec:\n30-      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n31-        base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/provenance_weight_training\n32-        && python training/pretrain_weighted.py --data_path data/mixed_data.jsonl\n33:        --output_dir output/models/uniform_seed42 --weighting_method uniform --model_name\n34-        models/Qwen/Qwen3-0.6B --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps\n35-        4 --max_length 2048 --learning_rate 5e-5 --seed 42 --logging_steps 10 --save_steps\n36-        500 --eval_steps 500 --save_total_limit 2 --save_only_model --resume_from_checkpoint\n37:        output/models/uniform_seed42/checkpoint-500\"\n38-      server: westd-47453\n39-      gpu:\n40-      - cuda:1\n41-      pid: '47603'\n42:      log_path: ~/runs/provenance_weight_training/uniform_seed42.log\n43-      submitted_at: '2026-05-13T23:23:53.026Z'\n44-      submitted_via: submit_training_job\n45-      backend: tmux\n46-      account: root\n47-      data_path: /root/provenance_weight_training/data/mixed_data.jsonl\n48-      data_count: 371499\n49-      model_name: Qwen/Qwen3-0.6B\n50-      seed: 42\n51:      checkpoint_path: /root/provenance_weight_training/output/models/uniform_seed42/final/\n52-      wall_clock_seconds: 12352.2\n53-      gpu_hours: 3.43\n54-    hypothesis: Uniform weighting baseline (no provenance information) for comparison\n55-      with grid-b and adaptive methods\n56-    conclusion: success\n57-    metrics:\n58-      train_loss: 7.3104\n59-      total_steps: 6103\n60-      train_duration_s: 11946\n61-      eval_ppl_holdout: 17.6939\n62-      eval_loss_holdout: 2.8732\n63-      eval_holdout_tokens: 4077068\n64-      eval_method: eval_perplexity.py (sliding window, stride=1024, max_docs=5000,\n65-        fp16)\n66-      eval_note: unified post-hoc eval 2026-05-15; was 17.69/4080000 from inline eval\n67-    completed_at: '2026-05-14T02:49:45.269Z'\n68:  uniform_seed123:\n69-    status: DONE\n70-    retry_count: 0\n71-    created_at: '2026-05-13T22:17:53.217Z'\n72-    updated_at: '2026-05-15T16:42:57.800Z'\n73-    spec:\n74-      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n75-        base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/provenance_weight_training\n76-        && python training/pretrain_weighted.py --data_path data/mixed_data.jsonl\n77:        --output_dir output/models/uniform_seed123 --weighting_method uniform --model_name\n78-        models/Qwen/Qwen3-0.6B --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps\n79-        4 --max_length 2048 --learning_rate 5e-5 --seed 123 --logging_steps 10 --save_steps\n80-        500 --eval_steps 500 --save_total_limit 2 --save_only_model --resume_from_checkpoint\n81:        output/models/uniform_seed123/checkpoint-500\"\n82-      server: westd-47453\n83-      gpu:\n84-      - cuda:2\n85-      pid: '47749'\n86:      log_path: ~/runs/provenance_weight_training/uniform_seed123.log\n87-      submitted_at: '2026-05-13T23:23:55.904Z'\n88-      submitted_via: submit_training_job\n89-      backend: tmux\n90-      account: root\n91-      data_path: /root/provenance_weight_training/data/mixed_data.jsonl\n92-      data_count: 371499\n93-      model_name: Qwen/Qwen3-0.6B\n94-      seed: 123\n95:      checkpoint_path: /root/provenance_weight_training/output/models/uniform_seed123/final/\n96-      wall_clock_seconds: 12350.8\n97-      gpu_hours: 3.43\n98-    hypothesis: Uniform weighting baseline (no provenance information) for comparison\n99-      with grid-b and adaptive methods\n100-    conclusion: success\n101-    metrics:\n102-      train_loss: 7.3121\n103-      total_steps: 6103\n104-      train_duration_s: 11994\n105-      eval_ppl_holdout: 17.6861\n106-      eval_loss_holdout: 2.8728\n107-      eval_holdout_tokens: 4077068\n108-      eval_method: eval_perplexity.py (sliding window, stride=1024, max_docs=5000,\n109-        fp16)\n110-      eval_note: unified post-hoc eval 2026-05-15; was 17.69/4080000 from inline eval\n111-    completed_at: '2026-05-14T02:49:46.681Z'\n112:  uniform_seed456:\n113-    status: DONE\n114-    retry_count: 0\n115-    created_at: '2026-05-13T22:17:55.165Z'\n116-    updated_at: '2026-05-15T16:42:59.635Z'\n117-    spec:\n118-      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n119-        base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/provenance_weight_training\n120-        && python training/pretrain_weighted.py --data_path data/mixed_data.jsonl\n121:        --output_dir output/models/uniform_seed456 --weighting_method uniform --model_name\n122-        models/Qwen/Qwen3-0.6B --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps\n123-        4 --max_length 2048 --learning_rate 5e-5 --seed 456 --logging_steps 10 --save_steps\n124-        500 --eval_steps 500 --save_total_limit 2 --save_only_model --resume_from_checkpoint\n125:        output/models/uniform_seed456/checkpoint-500\"\n126-      server: westd-47453\n127-      gpu:\n128-      - cuda:3\n129-      pid: '47890'\n130:      log_path: ~/runs/provenance_weight_training/uniform_seed456.log\n131-      submitted_at: '2026-05-13T23:23:58.435Z'\n132-      submitted_via: submit_training_job\n133-      backend: tmux\n134-      account: root\n135-      data_path: /root/provenance_weight_training/data/mixed_data.jsonl\n136-      data_count: 371499\n137-      model_name: Qwen/Qwen3-0.6B\n138-      seed: 456\n139:      checkpoint_path: /root/provenance_weight_training/output/models/uniform_seed456/final/\n140-      wall_clock_seconds: 12349.2\n141-      gpu_hours: 3.43\n142-    hypothesis: Uniform weighting baseline (no provenance information) for comparison\n143-      with grid-b and adaptive methods\n144-    conclusion: success\n145-    metrics:\n146-      train_loss: 7.2895\n147-      total_steps: 6103\n148-      train_duration_s: 11974\n149-      eval_ppl_holdout: 17.7015\n--\n432-      alpha_eff_range: 0.09-0.80 (capped at tau)\n433-      eval_ppl_holdout: 17.6419\n434-      eval_loss_holdout: 2.8703\n435-      eval_holdout_tokens: 4077068\n436-      eval_method: eval_perplexity.py (sliding window, stride=1024, max_docs=5000,\n437-        fp16)\n438-      eval_note: unified post-hoc eval 2026-05-15; was 17.64/4080000 from inline eval\n439-    conclusion: success\n440-    completed_at: '2026-05-14T06:59:07.123Z'\n441-    notes: ⚠️ success 仅指训练完成无报错。MVP 假设验证待 held-out eval perplexity 结果。\n442:  grid_b0_5_seed123:\n443-    status: DONE\n444-    retry_count: 0\n445-    created_at: '2026-05-14T02:52:42.314Z'\n446-    updated_at: '2026-05-14T10:42:12.465Z'\n447-    spec:\n448-      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n449-        base && cd /root/provenance_weight_training && python training/pretrain_weighted.py\n450:        --data_path data/scored_data.jsonl --output_dir output/models/grid_b0_5_seed123\n451-        --weighting_method grid --grid_b_value 0.5 --model_name models/Qwen/Qwen3-0.6B\n452-        --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps\n453-        4 --max_length 2048 --learning_rate 5e-5 --seed 123 --logging_steps 10 --save_steps\n454-        500 --eval_steps 500 --save_total_limit 2 --save_only_model --contamination_ratio\n455-        0.4\"\n456-      server: westd-47453\n457-      gpu:\n458-      - cuda:1\n459-      pid: '68163'\n460:      log_path: ~/runs/provenance_weight_training/grid_b0_5_seed123.log\n461-      submitted_at: '2026-05-14T06:53:43.648Z'\n462-      submitted_via: submit_training_job\n463-      backend: tmux\n464-      account: root\n465-      data_path: /root/provenance_weight_training/data/scored_data.jsonl\n466-      data_count: 371499\n467-      model_name: Qwen/Qwen3-0.6B\n468-      seed: 123\n469:      checkpoint_path: /root/provenance_weight_training/output/models/grid_b0_5_seed123/final/\n470-      wall_clock_seconds: 13678.0\n471-      gpu_hours: 3.8\n472-    reproduce:\n473-      finished_at: '2026-05-14T10:33:23.511Z'\n474-    extra:\n475-      hook_events:\n476-      - event: on_complete\n477-        action: agent\n478-        ts: '2026-05-14T10:33:24.806181+00:00'\n479-    metrics:\n--\n686-      train_loss: 10.8468\n687-      total_steps: 6103\n688-      train_runtime_s: 14434\n689-      gpu_hours: 4.01\n690-      eval_ppl_holdout: 17.8039\n691-      eval_loss: 2.8794\n692-      eval_holdout_tokens: 4077068\n693-    conclusion: success\n694-    checkpoint_path: /root/provenance_weight_training/output/models/grid_b5_0_seed123/final/\n695-    log_path: ~/runs/provenance_weight_training/grid_b5_0_seed123.log\n696:  grid_b0_5_seed456:\n697-    status: DONE\n698-    retry_count: 1\n699-    created_at: '2026-05-14T06:58:17.956Z'\n700-    updated_at: '2026-05-15T01:03:04.640Z'\n701-    hypothesis: Grid-b weighting with b=0.5, seed=456, for multi-seed validation of\n702-      best-b baseline\n703-    server: westd-47453\n704-    gpu: cuda:1\n705-    account: root\n706-    reproduce:\n707-      server: westd-47453\n708-      gpu: cuda:1\n709-      started_at: '2026-05-14T21:10:43.728Z'\n710-      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n711-        base && cd /root/provenance_weight_training && WANDB_MODE=disabled python\n712-        training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir\n713:        output/models/grid_b0_5_seed456 --weighting_method grid --grid_b_value 0.5\n714-        --model_name models/Qwen/Qwen3-0.6B --num_train_tokens 200000000 --batch_size\n715-        4 --gradient_accumulation_steps 4 --max_length 2048 --learning_rate 5e-5 --seed\n716-        456 --logging_steps 10 --save_steps 500 --save_total_limit 2 --save_only_model\n717-        --contamination_ratio 0.4\"\n718-      finished_at: '2026-05-15T00:57:32.591Z'\n719-      training_hours: 3.78\n720-    failure_reason: ''\n721-    completed_at: '2026-05-14T21:13:26.329Z'\n722-    extra:\n723-      hook_events:\n--\n732-        notes: '失败原因: CUDA OOM at step 0 — GPU 0 被 3 个进程挤爆（PID 138525: 68.61GiB +\n733-          PID 139132: 19.21GiB + 本进程 7.08GiB > 94.97GiB）。实验分配 cuda:1 但进程实际跑在 GPU 0\n734-          上，疑 CUDA_VISIBLE_DEVICES 未正确注入或有残留进程干扰。已有成果: 无（0% 进度）。建议: 清理 GPU 0 残留进程后在\n735-          cuda:1 上重新提交，补充 --eval_data_path 和 --eval_steps 参数。'\n736-    notes: 重提交成功（retry_count=1）。原 OOM 因 cuda:1 残留 eval 进程。已清理 exit marker，日志重定向正常。step\n737-      56/6103, ETA ~3.5h。\n738-    spec:\n739-      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n740-        base && cd /root/provenance_weight_training && WANDB_MODE=disabled python\n741-        training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir\n742:        output/models/grid_b0_5_seed456 --weighting_method grid --grid_b_value 0.5\n743-        --model_name models/Qwen/Qwen3-0.6B --num_train_tokens 200000000 --batch_size\n744-        4 --gradient_accumulation_steps 4 --max_length 2048 --learning_rate 5e-5 --seed\n745-        456 --logging_steps 10 --save_steps 500 --save_total_limit 2 --save_only_model\n746-        --contamination_ratio 0.4\"\n747-      server: westd-47453\n748-      gpu:\n749-      - cuda:1\n750-      pid: '144400'\n751:      log_path: ~/runs/provenance_weight_training/grid_b0_5_seed456.log\n752-      submitted_at: '2026-05-14T21:20:21.115Z'\n753-      submitted_via: submit_training_job\n754-      backend: tmux\n755-      account: root\n756-      data_path: /root/provenance_weight_training/data/scored_data.jsonl\n\n[Showing results with pagination = limit: 250]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c6afa74b-9a7c-41a1-8149-46ba4805af2c",
+            "isSidechain": true,
+            "promptId": "9401e3e8-f174-4ab3-9fab-32fa13628f5e",
+            "agentId": "a71f0d77acb236de8",
+            "type": "user",
+            "uuid": "9057e1cd-3169-438c-8963-075eba3d44d4",
+            "sourceToolAssistantUUID": "c6afa74b-9a7c-41a1-8149-46ba4805af2c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/reviewer_331b5651",
+            "sessionId": "d7303618-d2a1-4c0a-b0c3-8a0e6f11dd9d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "fluffy-sleeping-biscuit"
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T22:11:10.983Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Good progress. Now let me search for the remaining experiments (grid_b0_5_seed42 and adaptive_fix experiments)."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9057e1cd-3169-438c-8963-075eba3d44d4",
+            "isSidechain": true,
+            "agentId": "a71f0d77acb236de8",
+            "requestId": "req_011Cb57xMqNMRQZMt7Cu9hJ2",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "c3d03374-ef98-485d-af89-e6597b9cf63c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/reviewer_331b5651",
+            "sessionId": "d7303618-d2a1-4c0a-b0c3-8a0e6f11dd9d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "fluffy-sleeping-biscuit",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_016fK8nkMujh2bzQmzorRscv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 4967,
+                "cache_read_input_tokens": 21779,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4967,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T22:11:11.955Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Sdy5euNWbXhSBFuJuzvErL",
+              "name": "Grep",
+              "input": {
+                "pattern": "grid_b0_5_seed42|adaptive_fix_seed",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml",
+                "output_mode": "content",
+                "context": 10
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c3d03374-ef98-485d-af89-e6597b9cf63c",
+            "isSidechain": true,
+            "agentId": "a71f0d77acb236de8",
+            "requestId": "req_011Cb57xMqNMRQZMt7Cu9hJ2",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "43b7e167-6306-4b09-8773-318a0a00a743",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/reviewer_331b5651",
+            "sessionId": "d7303618-d2a1-4c0a-b0c3-8a0e6f11dd9d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "fluffy-sleeping-biscuit",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_016fK8nkMujh2bzQmzorRscv",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 4967,
+                "cache_read_input_tokens": 21779,
+                "output_tokens": 179,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 4967
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 6,
+                    "output_tokens": 179,
+                    "cache_read_input_tokens": 21779,
+                    "cache_creation_input_tokens": 4967,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 4967,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T22:11:12.003Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Sdy5euNWbXhSBFuJuzvErL",
+              "type": "tool_result",
+              "content": "1138-    notes: D012 修正：取消 v2（含 EMA），改用 adaptive_fix（仅修 n_min=2，无 EMA）\n1139-  adaptive_v2_seed456:\n1140-    status: PREPARING\n1141-    retry_count: 0\n1142-    created_at: '2026-05-14T13:27:19.549Z'\n1143-    updated_at: '2026-05-14T13:32:26.136Z'\n1144-    hypothesis: 'Adaptive v2 (n_min fix: 3→2, no EMA) maintains or improves seed456\n1145-      performance (baseline adaptive PPL=17.64)'\n1146-    conclusion: killed\n1147-    notes: D012 修正：取消 v2（含 EMA），改用 adaptive_fix（仅修 n_min=2，无 EMA）\n1148:  adaptive_fix_seed42:\n1149-    status: DONE\n1150-    retry_count: 2\n1151-    created_at: '2026-05-14T13:32:30.463Z'\n1152-    updated_at: '2026-05-15T16:43:17.126Z'\n1153-    hypothesis: 'D012 n_min fix (3→2, batch_size//2): adaptive b* with corrected ESS\n1154-      constraint achieves meaningful improvement over uniform baseline (PPL=17.69)\n1155-      for seed=42. Parent: adaptive_seed42 (PPL=17.69, n_min=3 bug)'\n1156-    parent: adaptive_seed42\n1157-    notes: 最终清理后重提交。从 checkpoint-1500 恢复，无 inline eval。PID=126801\n1158-    failure_reason: ''\n--\n1165-      - event: on_failed\n1166-        action: agent\n1167-        ts: '2026-05-14T17:38:26.312269+00:00'\n1168-      - event: on_complete\n1169-        action: agent\n1170-        ts: '2026-05-14T20:39:45.953045+00:00'\n1171-    spec:\n1172-      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n1173-        base && cd /root/provenance_weight_training && WANDB_MODE=disabled python\n1174-        training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir\n1175:        output/models/adaptive_fix_seed42 --model_name models/Qwen/Qwen3-0.6B --weighting_method\n1176-        adaptive --contamination_ratio 0.4 --num_train_tokens 200000000 --batch_size\n1177-        4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed\n1178-        42 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 --save_only_model\n1179:        --resume_from_checkpoint output/models/adaptive_fix_seed42/checkpoint-1500\"\n1180-      server: westd-47453\n1181-      gpu:\n1182-      - cuda:1\n1183-      pid: '126796'\n1184:      log_path: ~/runs/provenance_weight_training/adaptive_fix_seed42.log\n1185-      submitted_at: '2026-05-14T17:47:21.683Z'\n1186-      submitted_via: submit_training_job\n1187-      backend: tmux\n1188-      account: root\n1189-      wall_clock_seconds: 12053.2\n1190-      gpu_hours: 3.35\n1191-    reproduce:\n1192-      finished_at: '2026-05-14T20:39:44.942Z'\n1193-    conclusion: success\n1194-    metrics:\n--\n1210-      b_star_std: 1.933\n1211-      b_star_min: 0\n1212-      b_star_max: 20\n1213-      b_star_p25: 0.54\n1214-      b_star_p75: 1.512\n1215-      b_star_pct_below_0.5: 20.9\n1216-      b_star_pct_0.5_to_1: 35.7\n1217-      b_star_pct_1_to_2: 27.3\n1218-      b_star_pct_above_2: 16.1\n1219-      b_star_note: Training-only records (eval checkpoint records with b*=0 excluded)\n1220:    checkpoint_path: output/models/adaptive_fix_seed42/final\n1221:  adaptive_fix_seed123:\n1222-    status: DONE\n1223-    retry_count: 0\n1224-    created_at: '2026-05-14T13:32:31.409Z'\n1225-    updated_at: '2026-05-15T16:43:21.914Z'\n1226-    hypothesis: 'D012 n_min fix (3→2, batch_size//2): adaptive b* with corrected ESS\n1227-      constraint maintains or improves seed123 performance (baseline adaptive PPL=17.63,\n1228-      uniform PPL=17.69)'\n1229-    parent: adaptive_seed123\n1230-    notes: 最终清理后重提交。从 checkpoint-1500 恢复，无 inline eval。PID=126944\n1231-    failure_reason: ''\n1232-    conclusion: success\n1233-    spec:\n1234-      command: python run_clm_weighted.py --weighting_method adaptive --n_min 2 --no_ema\n1235-        --resume_from_checkpoint checkpoint-1500\n1236-      server: westd-47453\n1237-      gpu:\n1238-      - cuda:2\n1239-      pid: '126939'\n1240:      log_path: ~/runs/provenance_weight_training/adaptive_fix_seed123.log\n1241-      submitted_at: '2026-05-14T17:47:28.582Z'\n1242-      submitted_via: submit_training_job\n1243-      backend: tmux\n1244-      account: root\n1245-      data_path: /root/provenance_weight_training/data/scored_data.jsonl\n1246-      data_count: 371499\n1247-      model_name: Qwen3-0.6B\n1248-      seed: 123\n1249-      checkpoint_source: checkpoint-1500 (D012 fix)\n1250-      eval_data: /root/provenance_weight_training/data/human/eval_holdout.jsonl\n--\n1254-      finished_at: '2026-05-14T20:41:22.910Z'\n1255-    completed_at: ''\n1256-    extra:\n1257-      hook_events:\n1258-      - event: on_failed\n1259-        action: agent\n1260-        ts: '2026-05-14T17:38:38.735034+00:00'\n1261-      - event: on_complete\n1262-        action: agent\n1263-        ts: '2026-05-14T20:41:26.828424+00:00'\n1264:    checkpoint_path: /root/provenance_weight_training/output/models/adaptive_fix_seed123/final\n1265:    log_path: ~/runs/provenance_weight_training/adaptive_fix_seed123.log\n1266-    metrics:\n1267-      eval_ppl_holdout: 17.6432\n1268-      eval_loss_holdout: 2.8704\n1269-      eval_loss: 2.8704\n1270-      eval_holdout_tokens: 4077068\n1271-      eval_tokens: 4077068\n1272-      eval_method: eval_perplexity.py (sliding window, stride=1024, max_docs=5000,\n1273-        fp16)\n1274-      eval_note: unified post-hoc eval 2026-05-15; was 17.643/4077068\n1275-      train_loss_weighted: 7.517\n--\n1284-      b_star_pct_below_0.5: 20.9\n1285-      b_star_pct_0.5_to_1: 35.7\n1286-      b_star_pct_1_to_2: 27.3\n1287-      b_star_pct_2_to_5: 6.3\n1288-      b_star_pct_above_5: 1.9\n1289-      b_star_count: 25906\n1290-      b_star_p25: 0.54\n1291-      b_star_p75: 1.52\n1292-      b_star_pct_above_2: 16.1\n1293-      b_star_note: Training-only records (eval checkpoint records with b*=0 excluded)\n1294:  adaptive_fix_seed456:\n1295-    status: DONE\n1296-    retry_count: 0\n1297-    created_at: '2026-05-14T13:32:31.779Z'\n1298-    updated_at: '2026-05-15T16:43:25.930Z'\n1299-    hypothesis: 'D012 n_min fix (3→2, batch_size//2): adaptive b* with corrected ESS\n1300-      constraint maintains or improves seed456 performance (baseline adaptive PPL=17.64,\n1301-      uniform PPL=17.70)'\n1302-    parent: adaptive_seed456\n1303-    notes: 最终清理后重提交。从 checkpoint-1000 恢复，无 inline eval。PID=127285\n1304-    spec:\n1305-      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n1306-        base && cd /root/provenance_weight_training && WANDB_MODE=disabled python\n1307-        training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir\n1308:        output/models/adaptive_fix_seed456 --model_name models/Qwen/Qwen3-0.6B --weighting_method\n1309-        adaptive --contamination_ratio 0.4 --num_train_tokens 200000000 --batch_size\n1310-        4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed\n1311-        456 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 --save_only_model\n1312:        --resume_from_checkpoint output/models/adaptive_fix_seed456/checkpoint-1000\"\n1313-      server: westd-47453\n1314-      gpu:\n1315-      - cuda:3\n1316-      pid: '127280'\n1317:      log_path: ~/runs/provenance_weight_training/adaptive_fix_seed456.log\n1318-      submitted_at: '2026-05-14T17:47:33.774Z'\n1319-      submitted_via: submit_training_job\n1320-      backend: tmux\n1321-      account: root\n1322-      wall_clock_seconds: 12040.6\n1323-      gpu_hours: 3.34\n1324-    server: westd-47453\n1325-    gpu: cuda:3\n1326-    account: root\n1327-    pid: '115066'\n1328:    log_path: ~/runs/provenance_weight_training/adaptive_fix_seed456.log\n1329-    reproduce:\n1330-      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n1331-        base && cd /root/provenance_weight_training && WANDB_MODE=disabled python\n1332-        training/pretrain_weighted.py --data_path data/scored_data.jsonl --eval_data_path\n1333:        data/human/eval_holdout.jsonl --output_dir output/models/adaptive_fix_seed456\n1334-        --model_name models/Qwen/Qwen3-0.6B --weighting_method adaptive --contamination_ratio\n1335-        0.4 --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps\n1336-        4 --learning_rate 5e-5 --max_length 2048 --seed 456 --eval_steps 500 --save_steps\n1337-        500 --logging_steps 10 --bf16 --save_total_limit 3 --save_only_model\"\n1338-      finished_at: '2026-05-14T21:00:17.106Z'\n1339-    failure_reason: ''\n1340-    conclusion: success\n1341-    completed_at: ''\n1342-    extra:\n1343-      hook_events:\n--\n1366-      b_star_std: 1.993\n1367-      b_star_min: 0\n1368-      b_star_max: 20\n1369-      b_star_p25: 0.54\n1370-      b_star_p75: 1.52\n1371-      b_star_pct_below_0.5: 20.9\n1372-      b_star_pct_0.5_to_1: 35.7\n1373-      b_star_pct_1_to_2: 27.3\n1374-      b_star_pct_above_2: 16.1\n1375-      b_star_note: Training-only records (eval checkpoint records with b*=0 excluded)\n1376:    checkpoint_path: output/models/adaptive_fix_seed456/final\n1377-  grid_b_low_seed42:\n1378-    status: DONE\n1379-    retry_count: 1\n1380-    created_at: '2026-05-15T01:18:54.793Z'\n1381-    updated_at: '2026-05-15T09:33:21.503Z'\n1382-    hypothesis: Grid-b extension to b<0.5 (b=0.1/0.2/0.3 serial), seed42, confirming\n1383-      whether grid-best lies at b=0.5 or below\n1384-    failure_reason: process dead 5× with no sentinel/W&B — auto-resolved as failed\n1385-    completed_at: '2026-05-15T05:23:13.303Z'\n1386-    extra:\n--\n1615-    conclusion: success\n1616-    completed_at: '2026-05-15T14:36:40.056Z'\n1617-  tau_0.6_seed42:\n1618-    status: DONE\n1619-    retry_count: 0\n1620-    created_at: '2026-05-15T09:58:48.894Z'\n1621-    updated_at: '2026-05-15T12:39:47.541Z'\n1622-    hypothesis: 'τ sensitivity sweep: τ=0.6 (lower α_eff threshold) may allow more\n1623-      aggressive downweighting, testing if PPL improves or degrades vs τ=0.8 baseline\n1624-      (adaptive_fix PPL=17.65). Key evidence for Claim 3 (τ as robust empirical hyperparameter).'\n1625:    parent: adaptive_fix_seed42\n1626-    conclusion: killed\n1627-    notes: '废弃: exp_id 含点号不合法，已用 tau_06_seed42 替代'\n1628-    completed_at: '2026-05-15T12:39:47.541Z'\n1629-  tau_06_seed42:\n1630-    status: DONE\n1631-    retry_count: 0\n1632-    created_at: '2026-05-15T10:01:37.442Z'\n1633-    updated_at: '2026-05-15T17:09:55.541Z'\n1634-    hypothesis: 'τ sensitivity sweep: τ=0.6 (lower α_eff threshold) may allow more\n1635-      aggressive downweighting, testing if PPL improves or degrades vs τ=0.8 baseline\n1636-      (adaptive_fix PPL=17.65). Key evidence for Claim 3 (τ as robust empirical hyperparameter).'\n1637:    parent: adaptive_fix_seed42\n1638-    server: westd-47453\n1639-    gpu: cuda:3\n1640-    account: root\n1641-    reproduce:\n1642-      server: westd-47453\n1643-      gpu: cuda:3\n1644-      started_at: '2026-05-15T10:01:53.614Z'\n1645-      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n1646-        base && cd /root/provenance_weight_training && WANDB_MODE=disabled python\n1647-        training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir\n--\n1671-      backend: tmux\n1672-      account: root\n1673-      wall_clock_seconds: 13972.6\n1674-      gpu_hours: 3.88\n1675-      tau: 0.6\n1676-      seed: 42\n1677-      rho: 0.4\n1678-      model: Qwen3-0.6B\n1679-      tokens: 200M\n1680-      method: adaptive\n1681:      parent: adaptive_fix_seed42\n1682-      checkpoint_path: /root/provenance_weight_training/output/models/tau_0.6_seed42/final\n1683-      eval_results_path: /root/provenance_weight_training/output/eval/posthoc_eval_tau_06_seed42.json\n1684-    pid: '195746'\n1685-    log_path: ~/runs/provenance_weight_training/tau_06_seed42.log\n\n[Showing results with pagination = limit: 250]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "43b7e167-6306-4b09-8773-318a0a00a743",
+            "isSidechain": true,
+            "promptId": "9401e3e8-f174-4ab3-9fab-32fa13628f5e",
+            "agentId": "a71f0d77acb236de8",
+            "type": "user",
+            "uuid": "885740d2-1c86-4814-a54a-df92767ad5da",
+            "sourceToolAssistantUUID": "43b7e167-6306-4b09-8773-318a0a00a743",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/reviewer_331b5651",
+            "sessionId": "d7303618-d2a1-4c0a-b0c3-8a0e6f11dd9d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "fluffy-sleeping-biscuit"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T22:11:13.655Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Good! Now let me search for grid_b0_5_seed42 metrics more specifically."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "885740d2-1c86-4814-a54a-df92767ad5da",
+            "isSidechain": true,
+            "agentId": "a71f0d77acb236de8",
+            "requestId": "req_011Cb57xZemiXJtDZBeYgFFQ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "73a71556-c877-451b-bbee-4b24f80bf58c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/reviewer_331b5651",
+            "sessionId": "d7303618-d2a1-4c0a-b0c3-8a0e6f11dd9d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "fluffy-sleeping-biscuit",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01G6gocR8YsR9LY6aBRp2ejQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 4902,
+                "cache_read_input_tokens": 26746,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4902,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T22:11:14.616Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01D2MKSnkLKpsZ1xTRxh7P9g",
+              "name": "Grep",
+              "input": {
+                "pattern": "grid_b0_5_seed42:",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml",
+                "output_mode": "content",
+                "context": 80
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "73a71556-c877-451b-bbee-4b24f80bf58c",
+            "isSidechain": true,
+            "agentId": "a71f0d77acb236de8",
+            "requestId": "req_011Cb57xZemiXJtDZBeYgFFQ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "a1045337-202f-4686-8e34-dd55d6b9cf5f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/reviewer_331b5651",
+            "sessionId": "d7303618-d2a1-4c0a-b0c3-8a0e6f11dd9d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "fluffy-sleeping-biscuit",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01G6gocR8YsR9LY6aBRp2ejQ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 4902,
+                "cache_read_input_tokens": 26746,
+                "output_tokens": 166,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 4902
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 6,
+                    "output_tokens": 166,
+                    "cache_read_input_tokens": 26746,
+                    "cache_creation_input_tokens": 4902,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 4902,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T22:11:14.655Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01D2MKSnkLKpsZ1xTRxh7P9g",
+              "type": "tool_result",
+              "content": "2311-      actual ρ=0.6。q_score: mean=0.6243, std=0.3703, median=0.7753。字段: text/depth/source_model/prompt_tokens/generated_tokens/decoding/q_score。符号链接\n2312-      scored_data_rho06.jsonl → scored_data_60.jsonl。配置基于 adaptive_fix_seed42，改 data_path\n2313-      + contamination_ratio=0.6。\n2314-\n2315-\n2316-      **失败诊断**: GPU 分配冲突——实验被分配到 cuda:2，但 bs8_nmin2_seed42_r2 (pid=238714) 已在 cuda:2\n2317-      运行，占用 79.78 GiB 显存。启动 24 秒即 OOM。非代码问题，需在空闲 GPU 上重试。'\n2318-    server: westd-47453\n2319-    gpu: cuda:2\n2320-    account: root\n2321-    reproduce:\n2322-      server: westd-47453\n2323-      gpu: cuda:2\n2324-      started_at: '2026-05-15T21:23:32.567Z'\n2325-      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n2326-        base && cd /root/provenance_weight_training && python training/pretrain_weighted.py\n2327-        --data_path data/scored_data_60.jsonl --output_dir output/models/contamination_60_seed42\n2328-        --model_name models/Qwen/Qwen3-0.6B --weighting_method adaptive --contamination_ratio\n2329-        0.6 --num_train_tokens 200000000 --n_min 2 --tau 0.8 --batch_size 4 --gradient_accumulation_steps\n2330-        4 --learning_rate 5e-5 --max_length 2048 --seed 42 --logging_steps 10 --save_steps\n2331-        500 --save_total_limit 3 --save_only_model --bf16\"\n2332-      finished_at: '2026-05-15T21:23:56.641Z'\n2333-      training_hours: 0.01\n2334-    pid: '249588'\n2335-    log_path: ~/runs/provenance_weight_training/contamination_60_seed42.log\n2336-    failure_reason: 'CUDA OOM: CUDA out of memory. Tried to allocate 48.00 MiB. GPU\n2337-      0 has a total capacity of 94.97 GiB of which 34.81 MiB is free. Process 238719\n2338-      has 79.78 GiB memory in use. Including non-PyTorch memory, this process has\n2339-      15.14 GiB memory in use. Of the allocated '\n2340-    conclusion: failed\n2341-    completed_at: '2026-05-15T21:23:57.827Z'\n2342-    extra:\n2343-      hook_events:\n2344-      - event: on_failed\n2345-        action: agent\n2346-        ts: '2026-05-15T21:23:59.292519+00:00'\n2347-  contamination_60_uniform_seed42:\n2348-    status: RUNNING\n2349-    retry_count: 0\n2350-    created_at: '2026-05-15T20:19:24.785Z'\n2351-    updated_at: '2026-05-15T21:26:24.091Z'\n2352-    hypothesis: 'ρ=0.6 uniform baseline: no reweighting on 60% contamination data.\n2353-      Establishes baseline PPL degradation at higher contamination for comparison\n2354-      with adaptive and grid methods.'\n2355-    spec:\n2356-      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n2357-        base && cd /root/provenance_weight_training && WANDB_MODE=disabled python\n2358-        training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir\n2359-        output/models/contamination_60_uniform_seed42 --model_name models/Qwen/Qwen3-0.6B\n2360-        --weighting_method uniform --contamination_ratio 0.6 --num_train_tokens 200000000\n2361-        --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length\n2362-        2048 --seed 42 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit\n2363-        3 --save_only_model\"\n2364-      server: westd-47453\n2365-      gpu:\n2366-      - cuda:1\n2367-      pid: '250074'\n2368-      log_path: ~/runs/provenance_weight_training/contamination_60_uniform_seed42.log\n2369-      submitted_at: '2026-05-15T21:26:23.538Z'\n2370-      submitted_via: submit_training_job\n2371-      backend: tmux\n2372-      account: root\n2373-    parent: uniform_seed42\n2374-    server: westd-47453\n2375-    gpu: cuda:1\n2376-    account: root\n2377-    reproduce:\n2378-      server: westd-47453\n2379-      gpu: cuda:1\n2380-      started_at: '2026-05-15T21:19:46.484Z'\n2381-      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n2382-        base && cd /root/provenance_weight_training && WANDB_MODE=disabled python\n2383-        training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir\n2384-        output/models/contamination_60_uniform_seed42 --model_name models/Qwen/Qwen3-0.6B\n2385-        --weighting_method uniform --contamination_ratio 0.6 --num_train_tokens 200000000\n2386-        --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length\n2387-        2048 --seed 42 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit\n2388-        3 --save_only_model\"\n2389-    pid: '250074'\n2390-    log_path: ~/runs/provenance_weight_training/contamination_60_uniform_seed42.log\n2391:  contamination_60_grid_b0_5_seed42:\n2392-    status: RUNNING\n2393-    retry_count: 0\n2394-    created_at: '2026-05-15T20:19:25.407Z'\n2395-    updated_at: '2026-05-15T21:50:38.650Z'\n2396-    hypothesis: 'ρ=0.6 grid-best (b=0.5) baseline: fixed b=0.5 on 60% contamination.\n2397-      Tests if grid-optimal b from ρ=0.4 transfers to higher contamination, or if\n2398-      adaptive b* adapts better.'\n2399-    spec:\n2400-      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n2401-        base && cd /root/provenance_weight_training && WANDB_MODE=disabled python\n2402-        training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir\n2403-        output/models/contamination_60_grid_b0_5_seed42 --model_name models/Qwen/Qwen3-0.6B\n2404-        --weighting_method grid --grid_b_value 0.5 --contamination_ratio 0.6 --num_train_tokens\n2405-        200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5\n2406-        --max_length 2048 --seed 42 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit\n2407-        3 --save_only_model\"\n2408-      server: westd-47453\n2409-      gpu:\n2410-      - cuda:3\n2411-      pid: '255781'\n2412-      log_path: ~/runs/provenance_weight_training/contamination_60_grid_b0_5_seed42.log\n2413-      submitted_at: '2026-05-15T21:49:22.242Z'\n2414-      submitted_via: submit_training_job\n2415-      backend: tmux\n2416-      account: root\n2417-      data_path: /root/provenance_weight_training/data/scored_data_60.jsonl\n2418-      data_count: 371499\n2419-      model_name: Qwen/Qwen3-0.6B\n2420-      seed: 42\n2421-      checkpoint_source: N/A\n2422-      eval_data: N/A\n2423-    parent: grid_b0_5_seed456\n2424-    server: westd-47453\n2425-    gpu:\n2426-    - cuda:3\n2427-  grid_b_low_seed42_r2:\n2428-    status: DONE\n2429-    retry_count: 0\n2430-    created_at: '2026-05-15T20:19:36.129Z'\n2431-    updated_at: '2026-05-15T21:55:52.896Z'\n2432-    hypothesis: Low-b grid sweep (b=0.1, 0.2, 0.3) on ρ=0.4 data, seed42. Confirms\n2433-      behavior in b<0.5 region — expect minimal reweighting effect and PPL close to\n2434-      uniform. Establishes that b=0.5 is already near the lower useful bound.\n2435-    spec:\n2436-      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n2437-        base && cd /root/provenance_weight_training && for b in 0.1 0.2 0.3; do echo\n2438-        '=== Training grid b='$b' ===' && WANDB_MODE=disabled python training/pretrain_weighted.py\n2439-        --data_path data/scored_data.jsonl --output_dir output/models/grid_b_low_b${b}_seed42\n2440-        --weighting_method grid --grid_b_value $b --model_name models/Qwen/Qwen3-0.6B\n2441-        --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps\n2442-        4 --max_length 2048 --learning_rate 5e-5 --seed 42 --logging_steps 10 --save_steps\n2443-        500 --save_total_limit 2 --save_only_model --contamination_ratio 0.4 --bf16\n2444-        || exit 1; done\"\n2445-      server: westd-47453\n2446-      gpu:\n2447-      - cuda:0\n2448-      pid: '256582'\n2449-      log_path: ~/runs/provenance_weight_training/grid_b_low_seed42_r2.log\n2450-      submitted_at: '2026-05-15T21:50:10.451Z'\n2451-      submitted_via: submit_training_job\n2452-      backend: tmux\n2453-      account: root\n2454-      wall_clock_seconds: 24.1\n2455-      gpu_hours: 0.01\n2456-    parent: grid_b_seed42_batch\n2457-    server: westd-47453\n2458-    gpu:\n2459-    - cuda:0\n2460-    reproduce:\n2461-      finished_at: '2026-05-15T21:50:31.477Z'\n2462-    failure_reason: EXIT_CODE=1 (generic error — check log tail)\n2463-    conclusion: failed\n2464-    completed_at: '2026-05-15T21:50:34.583Z'\n2465-    extra:\n2466-      hook_events:\n2467-      - event: on_failed\n2468-        action: agent\n2469-        ts: '2026-05-15T21:50:36.985471+00:00'\n2470-    notes: 失败根因：bash -c \"...\" 双引号内的 $b 被外层 shell 提前展开为空字符串，导致 --grid_b_value 收到空参数，argparse\n2471-      报错 \"expected one argument\" 立即退出。日志首行 \"Training grid b= ===\" 确认 $b 为空。修复方法：将"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a1045337-202f-4686-8e34-dd55d6b9cf5f",
+            "isSidechain": true,
+            "promptId": "9401e3e8-f174-4ab3-9fab-32fa13628f5e",
+            "agentId": "a71f0d77acb236de8",
+            "type": "user",
+            "uuid": "cfa36302-328b-4720-be1f-907037147bfe",
+            "sourceToolAssistantUUID": "a1045337-202f-4686-8e34-dd55d6b9cf5f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/reviewer_331b5651",
+            "sessionId": "d7303618-d2a1-4c0a-b0c3-8a0e6f11dd9d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "fluffy-sleeping-biscuit"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T22:11:16.282Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me search more specifically for grid_b0_5_seed42 with the main experiments section:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cfa36302-328b-4720-be1f-907037147bfe",
+            "isSidechain": true,
+            "agentId": "a71f0d77acb236de8",
+            "requestId": "req_011Cb57xkyuQRCd8aEGKPbo8",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "48545bac-d983-4998-9c1d-0a81a5a1bbf3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/reviewer_331b5651",
+            "sessionId": "d7303618-d2a1-4c0a-b0c3-8a0e6f11dd9d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "fluffy-sleeping-biscuit",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Kdy4UFqT79b7NHRGHnSjVS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 3620,
+                "cache_read_input_tokens": 31648,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3620,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T22:11:17.208Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015LBgyTAZk49JPGapHH5k8A",
+              "name": "Grep",
+              "input": {
+                "pattern": "^  grid_b0_5_seed42:",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml",
+                "output_mode": "content",
+                "context": 80
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "48545bac-d983-4998-9c1d-0a81a5a1bbf3",
+            "isSidechain": true,
+            "agentId": "a71f0d77acb236de8",
+            "requestId": "req_011Cb57xkyuQRCd8aEGKPbo8",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "690cbbf3-7445-418a-8a65-bc07e6687b7c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/reviewer_331b5651",
+            "sessionId": "d7303618-d2a1-4c0a-b0c3-8a0e6f11dd9d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "fluffy-sleeping-biscuit",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Kdy4UFqT79b7NHRGHnSjVS",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 3620,
+                "cache_read_input_tokens": 31648,
+                "output_tokens": 169,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 3620
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 6,
+                    "output_tokens": 169,
+                    "cache_read_input_tokens": 31648,
+                    "cache_creation_input_tokens": 3620,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 3620,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T22:11:17.220Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015LBgyTAZk49JPGapHH5k8A",
+              "type": "tool_result",
+              "content": "No matches found"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "690cbbf3-7445-418a-8a65-bc07e6687b7c",
+            "isSidechain": true,
+            "promptId": "9401e3e8-f174-4ab3-9fab-32fa13628f5e",
+            "agentId": "a71f0d77acb236de8",
+            "type": "user",
+            "uuid": "a570305a-1a97-4d47-bfa6-1a5a5de4789a",
+            "sourceToolAssistantUUID": "690cbbf3-7445-418a-8a65-bc07e6687b7c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/reviewer_331b5651",
+            "sessionId": "d7303618-d2a1-4c0a-b0c3-8a0e6f11dd9d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "fluffy-sleeping-biscuit"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T22:11:19.367Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me search for grid_b0_5_seed42 with a broader context to find it:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a570305a-1a97-4d47-bfa6-1a5a5de4789a",
+            "isSidechain": true,
+            "agentId": "a71f0d77acb236de8",
+            "requestId": "req_011Cb57xx4QkJ4Yu4sEbYJJu",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "59d18bd3-938d-4194-bae9-eb2e0232442e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/reviewer_331b5651",
+            "sessionId": "d7303618-d2a1-4c0a-b0c3-8a0e6f11dd9d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "fluffy-sleeping-biscuit",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01DQMWiCh4FcioAUaeKBh5BF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 288,
+                "cache_read_input_tokens": 35268,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 288,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T22:11:19.667Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SpgqiWPJnWFz1sYXMVUVYC",
+              "name": "Bash",
+              "input": {
+                "command": "grep -n \"grid_b0_5_seed42\" /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml | head -20"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "59d18bd3-938d-4194-bae9-eb2e0232442e",
+            "isSidechain": true,
+            "agentId": "a71f0d77acb236de8",
+            "requestId": "req_011Cb57xx4QkJ4Yu4sEbYJJu",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "6957b51d-57fc-4d26-9915-979db55fc2a6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/reviewer_331b5651",
+            "sessionId": "d7303618-d2a1-4c0a-b0c3-8a0e6f11dd9d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "fluffy-sleeping-biscuit",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01DQMWiCh4FcioAUaeKBh5BF",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 288,
+                "cache_read_input_tokens": 35268,
+                "output_tokens": 124,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 288
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 124,
+                    "cache_read_input_tokens": 35268,
+                    "cache_creation_input_tokens": 288,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 288,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T22:11:19.830Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SpgqiWPJnWFz1sYXMVUVYC",
+              "type": "tool_result",
+              "content": "2391:  contamination_60_grid_b0_5_seed42:\n2403:        output/models/contamination_60_grid_b0_5_seed42 --model_name models/Qwen/Qwen3-0.6B\n2412:      log_path: ~/runs/provenance_weight_training/contamination_60_grid_b0_5_seed42.log",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6957b51d-57fc-4d26-9915-979db55fc2a6",
+            "isSidechain": true,
+            "promptId": "9401e3e8-f174-4ab3-9fab-32fa13628f5e",
+            "agentId": "a71f0d77acb236de8",
+            "type": "user",
+            "uuid": "cf3372bd-8c24-4ff6-b3d6-99795c22c32d",
+            "sourceToolAssistantUUID": "6957b51d-57fc-4d26-9915-979db55fc2a6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/reviewer_331b5651",
+            "sessionId": "d7303618-d2a1-4c0a-b0c3-8a0e6f11dd9d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "fluffy-sleeping-biscuit"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T22:11:21.968Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The grid_b0_5_seed42 appears to only exist as a contamination variant. Let me search for the base grid_b0_5 variants more carefully:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cf3372bd-8c24-4ff6-b3d6-99795c22c32d",
+            "isSidechain": true,
+            "agentId": "a71f0d77acb236de8",
+            "requestId": "req_011Cb57y96RsmBvY8vidwMo2",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "5a7df499-7425-45de-957d-54eeab6deefd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/reviewer_331b5651",
+            "sessionId": "d7303618-d2a1-4c0a-b0c3-8a0e6f11dd9d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "fluffy-sleeping-biscuit",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01HBxG7fTXuyaB4Kuz3jHyiU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 233,
+                "cache_read_input_tokens": 35556,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 233,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T22:11:22.324Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FEqEx6PuA995RfxJPe1bL9",
+              "name": "Bash",
+              "input": {
+                "command": "grep -n \"^  grid_b0_5\" /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5a7df499-7425-45de-957d-54eeab6deefd",
+            "isSidechain": true,
+            "agentId": "a71f0d77acb236de8",
+            "requestId": "req_011Cb57y96RsmBvY8vidwMo2",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "5e056b47-826b-4588-8678-686ab2f2eaa6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/reviewer_331b5651",
+            "sessionId": "d7303618-d2a1-4c0a-b0c3-8a0e6f11dd9d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "fluffy-sleeping-biscuit",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01HBxG7fTXuyaB4Kuz3jHyiU",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 233,
+                "cache_read_input_tokens": 35556,
+                "output_tokens": 135,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 233
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 135,
+                    "cache_read_input_tokens": 35556,
+                    "cache_creation_input_tokens": 233,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 233,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T22:11:22.375Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FEqEx6PuA995RfxJPe1bL9",
+              "type": "tool_result",
+              "content": "442:  grid_b0_5_seed123:\n696:  grid_b0_5_seed456:",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5e056b47-826b-4588-8678-686ab2f2eaa6",
+            "isSidechain": true,
+            "promptId": "9401e3e8-f174-4ab3-9fab-32fa13628f5e",
+            "agentId": "a71f0d77acb236de8",
+            "type": "user",
+            "uuid": "27dede91-3318-4bd4-b141-ee505696b74b",
+            "sourceToolAssistantUUID": "5e056b47-826b-4588-8678-686ab2f2eaa6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/reviewer_331b5651",
+            "sessionId": "d7303618-d2a1-4c0a-b0c3-8a0e6f11dd9d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "fluffy-sleeping-biscuit"
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T22:11:24.444Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "So grid_b0_5_seed42 doesn't exist as a base experiment. Let me gather the metrics for the experiments that do exist. Let me read the specific sections for each experiment to get all the metrics."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "27dede91-3318-4bd4-b141-ee505696b74b",
+            "isSidechain": true,
+            "agentId": "a71f0d77acb236de8",
+            "requestId": "req_011Cb57yKyHPGmwFrUxjEbLe",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "bfb33365-d43e-4d85-898e-112bdf96236a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/reviewer_331b5651",
+            "sessionId": "d7303618-d2a1-4c0a-b0c3-8a0e6f11dd9d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "fluffy-sleeping-biscuit",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01ADpRcPmVGNyqUaoBhMJp3K",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 174,
+                "cache_read_input_tokens": 35789,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 174,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T22:11:24.915Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011HWVvBWBs5eoRPtpaYMmV3",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml",
+                "offset": 24,
+                "limit": 80
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bfb33365-d43e-4d85-898e-112bdf96236a",
+            "isSidechain": true,
+            "agentId": "a71f0d77acb236de8",
+            "requestId": "req_011Cb57yKyHPGmwFrUxjEbLe",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "c375628d-bd38-4e7b-b8f9-2e5c070cbfbc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/reviewer_331b5651",
+            "sessionId": "d7303618-d2a1-4c0a-b0c3-8a0e6f11dd9d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "fluffy-sleeping-biscuit",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01ADpRcPmVGNyqUaoBhMJp3K",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 174,
+                "cache_read_input_tokens": 35789,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 174,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T22:11:24.922Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011HWVvBWBs5eoRPtpaYMmV3",
+              "type": "tool_result",
+              "content": "24\t  uniform_seed42:\n25\t    status: DONE\n26\t    retry_count: 0\n27\t    created_at: '2026-05-13T22:17:51.722Z'\n28\t    updated_at: '2026-05-15T16:42:55.867Z'\n29\t    spec:\n30\t      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n31\t        base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/provenance_weight_training\n32\t        && python training/pretrain_weighted.py --data_path data/mixed_data.jsonl\n33\t        --output_dir output/models/uniform_seed42 --weighting_method uniform --model_name\n34\t        models/Qwen/Qwen3-0.6B --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps\n35\t        4 --max_length 2048 --learning_rate 5e-5 --seed 42 --logging_steps 10 --save_steps\n36\t        500 --eval_steps 500 --save_total_limit 2 --save_only_model --resume_from_checkpoint\n37\t        output/models/uniform_seed42/checkpoint-500\"\n38\t      server: westd-47453\n39\t      gpu:\n40\t      - cuda:1\n41\t      pid: '47603'\n42\t      log_path: ~/runs/provenance_weight_training/uniform_seed42.log\n43\t      submitted_at: '2026-05-13T23:23:53.026Z'\n44\t      submitted_via: submit_training_job\n45\t      backend: tmux\n46\t      account: root\n47\t      data_path: /root/provenance_weight_training/data/mixed_data.jsonl\n48\t      data_count: 371499\n49\t      model_name: Qwen/Qwen3-0.6B\n50\t      seed: 42\n51\t      checkpoint_path: /root/provenance_weight_training/output/models/uniform_seed42/final/\n52\t      wall_clock_seconds: 12352.2\n53\t      gpu_hours: 3.43\n54\t    hypothesis: Uniform weighting baseline (no provenance information) for comparison\n55\t      with grid-b and adaptive methods\n56\t    conclusion: success\n57\t    metrics:\n58\t      train_loss: 7.3104\n59\t      total_steps: 6103\n60\t      train_duration_s: 11946\n61\t      eval_ppl_holdout: 17.6939\n62\t      eval_loss_holdout: 2.8732\n63\t      eval_holdout_tokens: 4077068\n64\t      eval_method: eval_perplexity.py (sliding window, stride=1024, max_docs=5000,\n65\t        fp16)\n66\t      eval_note: unified post-hoc eval 2026-05-15; was 17.69/4080000 from inline eval\n67\t    completed_at: '2026-05-14T02:49:45.269Z'\n68\t  uniform_seed123:\n69\t    status: DONE\n70\t    retry_count: 0\n71\t    created_at: '2026-05-13T22:17:53.217Z'\n72\t    updated_at: '2026-05-15T16:42:57.800Z'\n73\t    spec:\n74\t      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n75\t        base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/provenance_weight_training\n76\t        && python training/pretrain_weighted.py --data_path data/mixed_data.jsonl\n77\t        --output_dir output/models/uniform_seed123 --weighting_method uniform --model_name\n78\t        models/Qwen/Qwen3-0.6B --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps\n79\t        4 --max_length 2048 --learning_rate 5e-5 --seed 123 --logging_steps 10 --save_steps\n80\t        500 --eval_steps 500 --save_total_limit 2 --save_only_model --resume_from_checkpoint\n81\t        output/models/uniform_seed123/checkpoint-500\"\n82\t      server: westd-47453\n83\t      gpu:\n84\t      - cuda:2\n85\t      pid: '47749'\n86\t      log_path: ~/runs/provenance_weight_training/uniform_seed123.log\n87\t      submitted_at: '2026-05-13T23:23:55.904Z'\n88\t      submitted_via: submit_training_job\n89\t      backend: tmux\n90\t      account: root\n91\t      data_path: /root/provenance_weight_training/data/mixed_data.jsonl\n92\t      data_count: 371499\n93\t      model_name: Qwen/Qwen3-0.6B\n94\t      seed: 123\n95\t      checkpoint_path: /root/provenance_weight_training/output/models/uniform_seed123/final/\n96\t      wall_clock_seconds: 12350.8\n97\t      gpu_hours: 3.43\n98\t    hypothesis: Uniform weighting baseline (no provenance information) for comparison\n99\t      with grid-b and adaptive methods\n100\t    conclusion: success\n101\t    metrics:\n102\t      train_loss: 7.3121\n103\t      total_steps: 6103"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c375628d-bd38-4e7b-b8f9-2e5c070cbfbc",
+            "isSidechain": true,
+            "promptId": "9401e3e8-f174-4ab3-9fab-32fa13628f5e",
+            "agentId": "a71f0d77acb236de8",
+            "type": "user",
+            "uuid": "60611d47-a0ed-40b0-8547-3a3f25c8f450",
+            "sourceToolAssistantUUID": "c375628d-bd38-4e7b-b8f9-2e5c070cbfbc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/reviewer_331b5651",
+            "sessionId": "d7303618-d2a1-4c0a-b0c3-8a0e6f11dd9d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "fluffy-sleeping-biscuit"
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T22:11:25.281Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FYD171qSCvsS9p8WXjTuVu",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml",
+                "offset": 68,
+                "limit": 50
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "60611d47-a0ed-40b0-8547-3a3f25c8f450",
+            "isSidechain": true,
+            "agentId": "a71f0d77acb236de8",
+            "requestId": "req_011Cb57yKyHPGmwFrUxjEbLe",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "d2075594-5518-4134-b3d4-8fbbf2fd3312",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/reviewer_331b5651",
+            "sessionId": "d7303618-d2a1-4c0a-b0c3-8a0e6f11dd9d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "fluffy-sleeping-biscuit",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01ADpRcPmVGNyqUaoBhMJp3K",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 174,
+                "cache_read_input_tokens": 35789,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 174,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T22:11:25.287Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FYD171qSCvsS9p8WXjTuVu",
+              "type": "tool_result",
+              "content": "68\t  uniform_seed123:\n69\t    status: DONE\n70\t    retry_count: 0\n71\t    created_at: '2026-05-13T22:17:53.217Z'\n72\t    updated_at: '2026-05-15T16:42:57.800Z'\n73\t    spec:\n74\t      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n75\t        base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/provenance_weight_training\n76\t        && python training/pretrain_weighted.py --data_path data/mixed_data.jsonl\n77\t        --output_dir output/models/uniform_seed123 --weighting_method uniform --model_name\n78\t        models/Qwen/Qwen3-0.6B --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps\n79\t        4 --max_length 2048 --learning_rate 5e-5 --seed 123 --logging_steps 10 --save_steps\n80\t        500 --eval_steps 500 --save_total_limit 2 --save_only_model --resume_from_checkpoint\n81\t        output/models/uniform_seed123/checkpoint-500\"\n82\t      server: westd-47453\n83\t      gpu:\n84\t      - cuda:2\n85\t      pid: '47749'\n86\t      log_path: ~/runs/provenance_weight_training/uniform_seed123.log\n87\t      submitted_at: '2026-05-13T23:23:55.904Z'\n88\t      submitted_via: submit_training_job\n89\t      backend: tmux\n90\t      account: root\n91\t      data_path: /root/provenance_weight_training/data/mixed_data.jsonl\n92\t      data_count: 371499\n93\t      model_name: Qwen/Qwen3-0.6B\n94\t      seed: 123\n95\t      checkpoint_path: /root/provenance_weight_training/output/models/uniform_seed123/final/\n96\t      wall_clock_seconds: 12350.8\n97\t      gpu_hours: 3.43\n98\t    hypothesis: Uniform weighting baseline (no provenance information) for comparison\n99\t      with grid-b and adaptive methods\n100\t    conclusion: success\n101\t    metrics:\n102\t      train_loss: 7.3121\n103\t      total_steps: 6103\n104\t      train_duration_s: 11994\n105\t      eval_ppl_holdout: 17.6861\n106\t      eval_loss_holdout: 2.8728\n107\t      eval_holdout_tokens: 4077068\n108\t      eval_method: eval_perplexity.py (sliding window, stride=1024, max_docs=5000,\n109\t        fp16)\n110\t      eval_note: unified post-hoc eval 2026-05-15; was 17.69/4080000 from inline eval\n111\t    completed_at: '2026-05-14T02:49:46.681Z'\n112\t  uniform_seed456:\n113\t    status: DONE\n114\t    retry_count: 0\n115\t    created_at: '2026-05-13T22:17:55.165Z'\n116\t    updated_at: '2026-05-15T16:42:59.635Z'\n117\t    spec:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d2075594-5518-4134-b3d4-8fbbf2fd3312",
+            "isSidechain": true,
+            "promptId": "9401e3e8-f174-4ab3-9fab-32fa13628f5e",
+            "agentId": "a71f0d77acb236de8",
+            "type": "user",
+            "uuid": "3edd04be-8f32-48bf-a844-95b8b01ab8b0",
+            "sourceToolAssistantUUID": "d2075594-5518-4134-b3d4-8fbbf2fd3312",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/reviewer_331b5651",
+            "sessionId": "d7303618-d2a1-4c0a-b0c3-8a0e6f11dd9d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "fluffy-sleeping-biscuit"
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T22:11:25.500Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015XEkvkuPPp96LpbzjY1Low",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml",
+                "offset": 112,
+                "limit": 50
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3edd04be-8f32-48bf-a844-95b8b01ab8b0",
+            "isSidechain": true,
+            "agentId": "a71f0d77acb236de8",
+            "requestId": "req_011Cb57yKyHPGmwFrUxjEbLe",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "21156d54-2e4e-4025-8959-335138d68070",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/reviewer_331b5651",
+            "sessionId": "d7303618-d2a1-4c0a-b0c3-8a0e6f11dd9d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "fluffy-sleeping-biscuit",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01ADpRcPmVGNyqUaoBhMJp3K",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 174,
+                "cache_read_input_tokens": 35789,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 174,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T22:11:25.506Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015XEkvkuPPp96LpbzjY1Low",
+              "type": "tool_result",
+              "content": "112\t  uniform_seed456:\n113\t    status: DONE\n114\t    retry_count: 0\n115\t    created_at: '2026-05-13T22:17:55.165Z'\n116\t    updated_at: '2026-05-15T16:42:59.635Z'\n117\t    spec:\n118\t      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n119\t        base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/provenance_weight_training\n120\t        && python training/pretrain_weighted.py --data_path data/mixed_data.jsonl\n121\t        --output_dir output/models/uniform_seed456 --weighting_method uniform --model_name\n122\t        models/Qwen/Qwen3-0.6B --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps\n123\t        4 --max_length 2048 --learning_rate 5e-5 --seed 456 --logging_steps 10 --save_steps\n124\t        500 --eval_steps 500 --save_total_limit 2 --save_only_model --resume_from_checkpoint\n125\t        output/models/uniform_seed456/checkpoint-500\"\n126\t      server: westd-47453\n127\t      gpu:\n128\t      - cuda:3\n129\t      pid: '47890'\n130\t      log_path: ~/runs/provenance_weight_training/uniform_seed456.log\n131\t      submitted_at: '2026-05-13T23:23:58.435Z'\n132\t      submitted_via: submit_training_job\n133\t      backend: tmux\n134\t      account: root\n135\t      data_path: /root/provenance_weight_training/data/mixed_data.jsonl\n136\t      data_count: 371499\n137\t      model_name: Qwen/Qwen3-0.6B\n138\t      seed: 456\n139\t      checkpoint_path: /root/provenance_weight_training/output/models/uniform_seed456/final/\n140\t      wall_clock_seconds: 12349.2\n141\t      gpu_hours: 3.43\n142\t    hypothesis: Uniform weighting baseline (no provenance information) for comparison\n143\t      with grid-b and adaptive methods\n144\t    conclusion: success\n145\t    metrics:\n146\t      train_loss: 7.2895\n147\t      total_steps: 6103\n148\t      train_duration_s: 11974\n149\t      eval_ppl_holdout: 17.7015\n150\t      eval_loss_holdout: 2.8737\n151\t      eval_holdout_tokens: 4077068\n152\t      eval_method: eval_perplexity.py (sliding window, stride=1024, max_docs=5000,\n153\t        fp16)\n154\t      eval_note: unified post-hoc eval 2026-05-15; was 17.70/4080000 from inline eval\n155\t    completed_at: '2026-05-14T02:49:47.621Z'\n156\t  detector_modernbert:\n157\t    status: DONE\n158\t    retry_count: 0\n159\t    created_at: '2026-05-13T22:40:06.106Z'\n160\t    updated_at: '2026-05-15T15:51:50.219Z'\n161\t    conclusion: killed"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "21156d54-2e4e-4025-8959-335138d68070",
+            "isSidechain": true,
+            "promptId": "9401e3e8-f174-4ab3-9fab-32fa13628f5e",
+            "agentId": "a71f0d77acb236de8",
+            "type": "user",
+            "uuid": "93d64856-d05f-4f56-a33b-4d0351dc2afe",
+            "sourceToolAssistantUUID": "21156d54-2e4e-4025-8959-335138d68070",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/reviewer_331b5651",
+            "sessionId": "d7303618-d2a1-4c0a-b0c3-8a0e6f11dd9d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "fluffy-sleeping-biscuit"
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-15T22:11:25.912Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FyTpuQqehFGt5N6pA4QR5e",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml",
+                "offset": 442,
+                "limit": 80
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "93d64856-d05f-4f56-a33b-4d0351dc2afe",
+            "isSidechain": true,
+            "agentId": "a71f0d77acb236de8",
+            "requestId": "req_011Cb57yKyHPGmwFrUxjEbLe",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "07aeee42-6d47-4675-9f82-5335aca9b71d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/reviewer_331b5651",
+            "sessionId": "d7303618-d2a1-4c0a-b0c3-8a0e6f11dd9d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "fluffy-sleeping-biscuit",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01ADpRcPmVGNyqUaoBhMJp3K",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 174,
+                "cache_read_input_tokens": 35789,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 174,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-15T22:11:25.925Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FyTpuQqehFGt5N6pA4QR5e",
+              "type": "tool_result",
+              "content": "442\t  grid_b0_5_seed123:\n443\t    status: DONE\n444\t    retry_count: 0\n445\t    created_at: '2026-05-14T02:52:42.314Z'\n446\t    updated_at: '2026-05-14T10:42:12.465Z'\n447\t    spec:\n448\t      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n449\t        base && cd /root/provenance_weight_training && python training/pretrain_weighted.py\n450\t        --data_path data/scored_data.jsonl --output_dir output/models/grid_b0_5_seed123\n451\t        --weighting_method grid --grid_b_value 0.5 --model_name models/Qwen/Qwen3-0.6B\n452\t        --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps\n453\t        4 --max_length 2048 --learning_rate 5e-5 --seed 123 --logging_steps 10 --save_steps\n454\t        500 --eval_steps 500 --save_total_limit 2 --save_only_model --contamination_ratio\n455\t        0.4\"\n456\t      server: westd-47453\n457\t      gpu:\n458\t      - cuda:1\n459\t      pid: '68163'\n460\t      log_path: ~/runs/provenance_weight_training/grid_b0_5_seed123.log\n461\t      submitted_at: '2026-05-14T06:53:43.648Z'\n462\t      submitted_via: submit_training_job\n463\t      backend: tmux\n464\t      account: root\n465\t      data_path: /root/provenance_weight_training/data/scored_data.jsonl\n466\t      data_count: 371499\n467\t      model_name: Qwen/Qwen3-0.6B\n468\t      seed: 123\n469\t      checkpoint_path: /root/provenance_weight_training/output/models/grid_b0_5_seed123/final/\n470\t      wall_clock_seconds: 13678.0\n471\t      gpu_hours: 3.8\n472\t    reproduce:\n473\t      finished_at: '2026-05-14T10:33:23.511Z'\n474\t    extra:\n475\t      hook_events:\n476\t      - event: on_complete\n477\t        action: agent\n478\t        ts: '2026-05-14T10:33:24.806181+00:00'\n479\t    metrics:\n480\t      eval_ppl_holdout: 17.638\n481\t      eval_loss: 2.87\n482\t      eval_holdout_tokens: 4077068\n483\t      train_loss: 9.601\n484\t      total_steps: 6103\n485\t      train_runtime_s: 13104\n486\t      gpu_hours: 3.8\n487\t    conclusion: success\n488\t    completed_at: '2026-05-14T10:41:41.614Z'\n489\t  grid_b1_0_seed123:\n490\t    status: DONE\n491\t    retry_count: 0\n492\t    created_at: '2026-05-14T02:52:42.784Z'\n493\t    updated_at: '2026-05-14T10:54:12.453Z'\n494\t    spec:\n495\t      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n496\t        base && cd /root/provenance_weight_training && python training/pretrain_weighted.py\n497\t        --data_path data/scored_data.jsonl --output_dir output/models/grid_b1_0_seed123\n498\t        --weighting_method grid --grid_b_value 1.0 --model_name models/Qwen/Qwen3-0.6B\n499\t        --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps\n500\t        4 --max_length 2048 --learning_rate 5e-5 --seed 123 --logging_steps 10 --save_steps\n501\t        500 --eval_steps 500 --save_total_limit 2 --save_only_model --contamination_ratio\n502\t        0.4\"\n503\t      server: westd-47453\n504\t      gpu:\n505\t      - cuda:2\n506\t      pid: '68306'\n507\t      log_path: ~/runs/provenance_weight_training/grid_b1_0_seed123.log\n508\t      submitted_at: '2026-05-14T06:53:47.084Z'\n509\t      submitted_via: submit_training_job\n510\t      backend: tmux\n511\t      account: root\n512\t      data_path: /root/provenance_weight_training/data/scored_data.jsonl\n513\t      data_count: 371499\n514\t      model_name: Qwen/Qwen3-0.6B\n515\t      seed: 123\n516\t      checkpoint_path: /root/provenance_weight_training/output/models/grid_b1_0_seed123/final/\n517\t      wall_clock_seconds: 13950\n518\t      gpu_hours: 3.88\n519\t    reproduce:\n520\t      finished_at: '2026-05-14T10:46:17.839Z'\n521\t    extra:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "07aeee42-6d47-4675-9f82-5335aca9b71d",
+            "isSidechain": true,
+            "promptId": "9401e3e8-f174-4ab3-9fab-32fa13628f5e",
+            "agentId": "a71f0d77acb236de8",
+            "type": "user",
+            "uuid": "a50ac7e6-4b82-4ecb-90c8-3cc89790d02c",
+            "sourceToolAssistantUUID": "07aeee42-6d47-4675-9f82-5335aca9b71d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/reviewer_331b5651",
+            "sessionId": "d7303618-d2a1-4c0a-b0c3-8a0e6f11dd9d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "fluffy-sleeping-biscuit"
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-15T22:11:26.558Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UPqaPm6fmack7crABPsz8G",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml",
+                "offset": 696,
+                "limit": 80
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a50ac7e6-4b82-4ecb-90c8-3cc89790d02c",
+            "isSidechain": true,
+            "agentId": "a71f0d77acb236de8",
+            "requestId": "req_011Cb57yKyHPGmwFrUxjEbLe",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "10407c2b-3bc2-4585-a7b5-99fab3107e09",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/reviewer_331b5651",
+            "sessionId": "d7303618-d2a1-4c0a-b0c3-8a0e6f11dd9d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "fluffy-sleeping-biscuit",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01ADpRcPmVGNyqUaoBhMJp3K",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 174,
+                "cache_read_input_tokens": 35789,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 174,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-15T22:11:26.570Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UPqaPm6fmack7crABPsz8G",
+              "type": "tool_result",
+              "content": "696\t  grid_b0_5_seed456:\n697\t    status: DONE\n698\t    retry_count: 1\n699\t    created_at: '2026-05-14T06:58:17.956Z'\n700\t    updated_at: '2026-05-15T01:03:04.640Z'\n701\t    hypothesis: Grid-b weighting with b=0.5, seed=456, for multi-seed validation of\n702\t      best-b baseline\n703\t    server: westd-47453\n704\t    gpu: cuda:1\n705\t    account: root\n706\t    reproduce:\n707\t      server: westd-47453\n708\t      gpu: cuda:1\n709\t      started_at: '2026-05-14T21:10:43.728Z'\n710\t      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n711\t        base && cd /root/provenance_weight_training && WANDB_MODE=disabled python\n712\t        training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir\n713\t        output/models/grid_b0_5_seed456 --weighting_method grid --grid_b_value 0.5\n714\t        --model_name models/Qwen/Qwen3-0.6B --num_train_tokens 200000000 --batch_size\n715\t        4 --gradient_accumulation_steps 4 --max_length 2048 --learning_rate 5e-5 --seed\n716\t        456 --logging_steps 10 --save_steps 500 --save_total_limit 2 --save_only_model\n717\t        --contamination_ratio 0.4\"\n718\t      finished_at: '2026-05-15T00:57:32.591Z'\n719\t      training_hours: 3.78\n720\t    failure_reason: ''\n721\t    completed_at: '2026-05-14T21:13:26.329Z'\n722\t    extra:\n723\t      hook_events:\n724\t      - event: on_failed\n725\t        action: agent\n726\t        ts: '2026-05-14T21:13:27.262433+00:00'\n727\t      - event: on_complete\n728\t        action: agent\n729\t        ts: '2026-05-15T00:57:33.835977+00:00'\n730\t      previous_failure:\n731\t        conclusion: failed\n732\t        notes: '失败原因: CUDA OOM at step 0 — GPU 0 被 3 个进程挤爆（PID 138525: 68.61GiB +\n733\t          PID 139132: 19.21GiB + 本进程 7.08GiB > 94.97GiB）。实验分配 cuda:1 但进程实际跑在 GPU 0\n734\t          上，疑 CUDA_VISIBLE_DEVICES 未正确注入或有残留进程干扰。已有成果: 无（0% 进度）。建议: 清理 GPU 0 残留进程后在\n735\t          cuda:1 上重新提交，补充 --eval_data_path 和 --eval_steps 参数。'\n736\t    notes: 重提交成功（retry_count=1）。原 OOM 因 cuda:1 残留 eval 进程。已清理 exit marker，日志重定向正常。step\n737\t      56/6103, ETA ~3.5h。\n738\t    spec:\n739\t      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n740\t        base && cd /root/provenance_weight_training && WANDB_MODE=disabled python\n741\t        training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir\n742\t        output/models/grid_b0_5_seed456 --weighting_method grid --grid_b_value 0.5\n743\t        --model_name models/Qwen/Qwen3-0.6B --num_train_tokens 200000000 --batch_size\n744\t        4 --gradient_accumulation_steps 4 --max_length 2048 --learning_rate 5e-5 --seed\n745\t        456 --logging_steps 10 --save_steps 500 --save_total_limit 2 --save_only_model\n746\t        --contamination_ratio 0.4\"\n747\t      server: westd-47453\n748\t      gpu:\n749\t      - cuda:1\n750\t      pid: '144400'\n751\t      log_path: ~/runs/provenance_weight_training/grid_b0_5_seed456.log\n752\t      submitted_at: '2026-05-14T21:20:21.115Z'\n753\t      submitted_via: submit_training_job\n754\t      backend: tmux\n755\t      account: root\n756\t      data_path: /root/provenance_weight_training/data/scored_data.jsonl\n757\t      data_count: 371499\n758\t      model_name: Qwen/Qwen3-0.6B\n759\t      seed: 456\n760\t      wall_clock_seconds: 13363.5\n761\t      gpu_hours: 3.71\n762\t    pid: 145062\n763\t    log_path: ~/runs/provenance_weight_training/grid_b0_5_seed456.log\n764\t    metrics:\n765\t      train_loss: 9.5622\n766\t      total_steps: 6103\n767\t      train_runtime_s: 12953.96\n768\t      gpu_hours: 3.6\n769\t      train_samples_per_second: 7.538\n770\t      eval_loss: 2.8705\n771\t      eval_ppl_holdout: 17.65\n772\t      eval_holdout_tokens: 4077068\n773\t    checkpoint_path: output/models/grid_b0_5_seed456/final\n774\t    conclusion: success\n775\t  grid_b1_0_seed456:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "10407c2b-3bc2-4585-a7b5-99fab3107e09",
+            "isSidechain": true,
+            "promptId": "9401e3e8-f174-4ab3-9fab-32fa13628f5e",
+            "agentId": "a71f0d77acb236de8",
+            "type": "user",
+            "uuid": "3fccba2a-b64d-48c6-9d98-4f148fc47287",
+            "sourceToolAssistantUUID": "10407c2b-3bc2-4585-a7b5-99fab3107e09",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/reviewer_331b5651",
+            "sessionId": "d7303618-d2a1-4c0a-b0c3-8a0e6f11dd9d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "fluffy-sleeping-biscuit"
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-15T22:11:26.852Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01ErPS8ysw4UfgxDvso9dCK8",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml",
+                "offset": 1148,
+                "limit": 100
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3fccba2a-b64d-48c6-9d98-4f148fc47287",
+            "isSidechain": true,
+            "agentId": "a71f0d77acb236de8",
+            "requestId": "req_011Cb57yKyHPGmwFrUxjEbLe",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "1ba2e3de-2207-4882-bbe1-9518b3c555d9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/reviewer_331b5651",
+            "sessionId": "d7303618-d2a1-4c0a-b0c3-8a0e6f11dd9d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "fluffy-sleeping-biscuit",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01ADpRcPmVGNyqUaoBhMJp3K",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 174,
+                "cache_read_input_tokens": 35789,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 174,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-15T22:11:26.857Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01ErPS8ysw4UfgxDvso9dCK8",
+              "type": "tool_result",
+              "content": "1148\t  adaptive_fix_seed42:\n1149\t    status: DONE\n1150\t    retry_count: 2\n1151\t    created_at: '2026-05-14T13:32:30.463Z'\n1152\t    updated_at: '2026-05-15T16:43:17.126Z'\n1153\t    hypothesis: 'D012 n_min fix (3→2, batch_size//2): adaptive b* with corrected ESS\n1154\t      constraint achieves meaningful improvement over uniform baseline (PPL=17.69)\n1155\t      for seed=42. Parent: adaptive_seed42 (PPL=17.69, n_min=3 bug)'\n1156\t    parent: adaptive_seed42\n1157\t    notes: 最终清理后重提交。从 checkpoint-1500 恢复，无 inline eval。PID=126801\n1158\t    failure_reason: ''\n1159\t    completed_at: ''\n1160\t    extra:\n1161\t      previous_failure:\n1162\t        conclusion: failed\n1163\t        notes: D012 代码验证通过（n_min=max(2,batch_size//2), 无EMA, import OK）。等 GPU 释放后提交。\n1164\t      hook_events:\n1165\t      - event: on_failed\n1166\t        action: agent\n1167\t        ts: '2026-05-14T17:38:26.312269+00:00'\n1168\t      - event: on_complete\n1169\t        action: agent\n1170\t        ts: '2026-05-14T20:39:45.953045+00:00'\n1171\t    spec:\n1172\t      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n1173\t        base && cd /root/provenance_weight_training && WANDB_MODE=disabled python\n1174\t        training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir\n1175\t        output/models/adaptive_fix_seed42 --model_name models/Qwen/Qwen3-0.6B --weighting_method\n1176\t        adaptive --contamination_ratio 0.4 --num_train_tokens 200000000 --batch_size\n1177\t        4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed\n1178\t        42 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 --save_only_model\n1179\t        --resume_from_checkpoint output/models/adaptive_fix_seed42/checkpoint-1500\"\n1180\t      server: westd-47453\n1181\t      gpu:\n1182\t      - cuda:1\n1183\t      pid: '126796'\n1184\t      log_path: ~/runs/provenance_weight_training/adaptive_fix_seed42.log\n1185\t      submitted_at: '2026-05-14T17:47:21.683Z'\n1186\t      submitted_via: submit_training_job\n1187\t      backend: tmux\n1188\t      account: root\n1189\t      wall_clock_seconds: 12053.2\n1190\t      gpu_hours: 3.35\n1191\t    reproduce:\n1192\t      finished_at: '2026-05-14T20:39:44.942Z'\n1193\t    conclusion: success\n1194\t    metrics:\n1195\t      train_loss: 7.5167\n1196\t      train_runtime: 10304.37\n1197\t      train_samples_per_second: 9.476\n1198\t      train_steps_per_second: 0.592\n1199\t      total_steps: 6103\n1200\t      eval_ppl_holdout: 17.6527\n1201\t      eval_loss_holdout: 2.8709\n1202\t      eval_holdout_tokens: 4077068\n1203\t      eval_tokens: 4077068\n1204\t      eval_method: eval_perplexity.py (sliding window, stride=1024, max_docs=5000,\n1205\t        fp16)\n1206\t      eval_note: unified post-hoc eval 2026-05-15; was 17.65/4077068\n1207\t      b_star_count: 26458\n1208\t      b_star_mean: 1.399\n1209\t      b_star_median: 0.871\n1210\t      b_star_std: 1.933\n1211\t      b_star_min: 0\n1212\t      b_star_max: 20\n1213\t      b_star_p25: 0.54\n1214\t      b_star_p75: 1.512\n1215\t      b_star_pct_below_0.5: 20.9\n1216\t      b_star_pct_0.5_to_1: 35.7\n1217\t      b_star_pct_1_to_2: 27.3\n1218\t      b_star_pct_above_2: 16.1\n1219\t      b_star_note: Training-only records (eval checkpoint records with b*=0 excluded)\n1220\t    checkpoint_path: output/models/adaptive_fix_seed42/final\n1221\t  adaptive_fix_seed123:\n1222\t    status: DONE\n1223\t    retry_count: 0\n1224\t    created_at: '2026-05-14T13:32:31.409Z'\n1225\t    updated_at: '2026-05-15T16:43:21.914Z'\n1226\t    hypothesis: 'D012 n_min fix (3→2, batch_size//2): adaptive b* with corrected ESS\n1227\t      constraint maintains or improves seed123 performance (baseline adaptive PPL=17.63,\n1228\t      uniform PPL=17.69)'\n1229\t    parent: adaptive_seed123\n1230\t    notes: 最终清理后重提交。从 checkpoint-1500 恢复，无 inline eval。PID=126944\n1231\t    failure_reason: ''\n1232\t    conclusion: success\n1233\t    spec:\n1234\t      command: python run_clm_weighted.py --weighting_method adaptive --n_min 2 --no_ema\n1235\t        --resume_from_checkpoint checkpoint-1500\n1236\t      server: westd-47453\n1237\t      gpu:\n1238\t      - cuda:2\n1239\t      pid: '126939'\n1240\t      log_path: ~/runs/provenance_weight_training/adaptive_fix_seed123.log\n1241\t      submitted_at: '2026-05-14T17:47:28.582Z'\n1242\t      submitted_via: submit_training_job\n1243\t      backend: tmux\n1244\t      account: root\n1245\t      data_path: /root/provenance_weight_training/data/scored_data.jsonl\n1246\t      data_count: 371499\n1247\t      model_name: Qwen3-0.6B"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1ba2e3de-2207-4882-bbe1-9518b3c555d9",
+            "isSidechain": true,
+            "promptId": "9401e3e8-f174-4ab3-9fab-32fa13628f5e",
+            "agentId": "a71f0d77acb236de8",
+            "type": "user",
+            "uuid": "97c353b5-ab86-4f75-8a00-f8c42c1a1d3a",
+            "sourceToolAssistantUUID": "1ba2e3de-2207-4882-bbe1-9518b3c555d9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/reviewer_331b5651",
+            "sessionId": "d7303618-d2a1-4c0a-b0c3-8a0e6f11dd9d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "fluffy-sleeping-biscuit"
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-15T22:11:27.152Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01T7yDWw2YcBBNbkRpbu9enT",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml",
+                "offset": 1221,
+                "limit": 100
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "97c353b5-ab86-4f75-8a00-f8c42c1a1d3a",
+            "isSidechain": true,
+            "agentId": "a71f0d77acb236de8",
+            "requestId": "req_011Cb57yKyHPGmwFrUxjEbLe",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "c9a67e28-1b69-4fed-abe2-dd01dec26d46",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/reviewer_331b5651",
+            "sessionId": "d7303618-d2a1-4c0a-b0c3-8a0e6f11dd9d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "fluffy-sleeping-biscuit",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01ADpRcPmVGNyqUaoBhMJp3K",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 174,
+                "cache_read_input_tokens": 35789,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 174,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-15T22:11:27.159Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01T7yDWw2YcBBNbkRpbu9enT",
+              "type": "tool_result",
+              "content": "1221\t  adaptive_fix_seed123:\n1222\t    status: DONE\n1223\t    retry_count: 0\n1224\t    created_at: '2026-05-14T13:32:31.409Z'\n1225\t    updated_at: '2026-05-15T16:43:21.914Z'\n1226\t    hypothesis: 'D012 n_min fix (3→2, batch_size//2): adaptive b* with corrected ESS\n1227\t      constraint maintains or improves seed123 performance (baseline adaptive PPL=17.63,\n1228\t      uniform PPL=17.69)'\n1229\t    parent: adaptive_seed123\n1230\t    notes: 最终清理后重提交。从 checkpoint-1500 恢复，无 inline eval。PID=126944\n1231\t    failure_reason: ''\n1232\t    conclusion: success\n1233\t    spec:\n1234\t      command: python run_clm_weighted.py --weighting_method adaptive --n_min 2 --no_ema\n1235\t        --resume_from_checkpoint checkpoint-1500\n1236\t      server: westd-47453\n1237\t      gpu:\n1238\t      - cuda:2\n1239\t      pid: '126939'\n1240\t      log_path: ~/runs/provenance_weight_training/adaptive_fix_seed123.log\n1241\t      submitted_at: '2026-05-14T17:47:28.582Z'\n1242\t      submitted_via: submit_training_job\n1243\t      backend: tmux\n1244\t      account: root\n1245\t      data_path: /root/provenance_weight_training/data/scored_data.jsonl\n1246\t      data_count: 371499\n1247\t      model_name: Qwen3-0.6B\n1248\t      seed: 123\n1249\t      checkpoint_source: checkpoint-1500 (D012 fix)\n1250\t      eval_data: /root/provenance_weight_training/data/human/eval_holdout.jsonl\n1251\t      wall_clock_seconds: 10807.2\n1252\t      gpu_hours: 3.0\n1253\t    reproduce:\n1254\t      finished_at: '2026-05-14T20:41:22.910Z'\n1255\t    completed_at: ''\n1256\t    extra:\n1257\t      hook_events:\n1258\t      - event: on_failed\n1259\t        action: agent\n1260\t        ts: '2026-05-14T17:38:38.735034+00:00'\n1261\t      - event: on_complete\n1262\t        action: agent\n1263\t        ts: '2026-05-14T20:41:26.828424+00:00'\n1264\t    checkpoint_path: /root/provenance_weight_training/output/models/adaptive_fix_seed123/final\n1265\t    log_path: ~/runs/provenance_weight_training/adaptive_fix_seed123.log\n1266\t    metrics:\n1267\t      eval_ppl_holdout: 17.6432\n1268\t      eval_loss_holdout: 2.8704\n1269\t      eval_loss: 2.8704\n1270\t      eval_holdout_tokens: 4077068\n1271\t      eval_tokens: 4077068\n1272\t      eval_method: eval_perplexity.py (sliding window, stride=1024, max_docs=5000,\n1273\t        fp16)\n1274\t      eval_note: unified post-hoc eval 2026-05-15; was 17.643/4077068\n1275\t      train_loss_weighted: 7.517\n1276\t      train_runtime_s: 10347\n1277\t      total_steps: 6103\n1278\t      epoch: 0.26\n1279\t      b_star_mean: 1.431\n1280\t      b_star_median: 0.88\n1281\t      b_star_std: 2.029\n1282\t      b_star_min: 0\n1283\t      b_star_max: 20\n1284\t      b_star_pct_below_0.5: 20.9\n1285\t      b_star_pct_0.5_to_1: 35.7\n1286\t      b_star_pct_1_to_2: 27.3\n1287\t      b_star_pct_2_to_5: 6.3\n1288\t      b_star_pct_above_5: 1.9\n1289\t      b_star_count: 25906\n1290\t      b_star_p25: 0.54\n1291\t      b_star_p75: 1.52\n1292\t      b_star_pct_above_2: 16.1\n1293\t      b_star_note: Training-only records (eval checkpoint records with b*=0 excluded)\n1294\t  adaptive_fix_seed456:\n1295\t    status: DONE\n1296\t    retry_count: 0\n1297\t    created_at: '2026-05-14T13:32:31.779Z'\n1298\t    updated_at: '2026-05-15T16:43:25.930Z'\n1299\t    hypothesis: 'D012 n_min fix (3→2, batch_size//2): adaptive b* with corrected ESS\n1300\t      constraint maintains or improves seed456 performance (baseline adaptive PPL=17.64,\n1301\t      uniform PPL=17.70)'\n1302\t    parent: adaptive_seed456\n1303\t    notes: 最终清理后重提交。从 checkpoint-1000 恢复，无 inline eval。PID=127285\n1304\t    spec:\n1305\t      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n1306\t        base && cd /root/provenance_weight_training && WANDB_MODE=disabled python\n1307\t        training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir\n1308\t        output/models/adaptive_fix_seed456 --model_name models/Qwen/Qwen3-0.6B --weighting_method\n1309\t        adaptive --contamination_ratio 0.4 --num_train_tokens 200000000 --batch_size\n1310\t        4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed\n1311\t        456 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 --save_only_model\n1312\t        --resume_from_checkpoint output/models/adaptive_fix_seed456/checkpoint-1000\"\n1313\t      server: westd-47453\n1314\t      gpu:\n1315\t      - cuda:3\n1316\t      pid: '127280'\n1317\t      log_path: ~/runs/provenance_weight_training/adaptive_fix_seed456.log\n1318\t      submitted_at: '2026-05-14T17:47:33.774Z'\n1319\t      submitted_via: submit_training_job\n1320\t      backend: tmux"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c9a67e28-1b69-4fed-abe2-dd01dec26d46",
+            "isSidechain": true,
+            "promptId": "9401e3e8-f174-4ab3-9fab-32fa13628f5e",
+            "agentId": "a71f0d77acb236de8",
+            "type": "user",
+            "uuid": "55026415-7904-4af2-85d5-54e3ffb60bf7",
+            "sourceToolAssistantUUID": "c9a67e28-1b69-4fed-abe2-dd01dec26d46",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/reviewer_331b5651",
+            "sessionId": "d7303618-d2a1-4c0a-b0c3-8a0e6f11dd9d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "fluffy-sleeping-biscuit"
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-15T22:11:27.252Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QPXxAMVyAwPhaW7fB9rizi",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml",
+                "offset": 1294,
+                "limit": 100
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "55026415-7904-4af2-85d5-54e3ffb60bf7",
+            "isSidechain": true,
+            "agentId": "a71f0d77acb236de8",
+            "requestId": "req_011Cb57yKyHPGmwFrUxjEbLe",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "46eadce7-e362-4836-830e-4e56eea3d99b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/reviewer_331b5651",
+            "sessionId": "d7303618-d2a1-4c0a-b0c3-8a0e6f11dd9d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "fluffy-sleeping-biscuit",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01ADpRcPmVGNyqUaoBhMJp3K",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 174,
+                "cache_read_input_tokens": 35789,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 174,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-15T22:11:27.265Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QPXxAMVyAwPhaW7fB9rizi",
+              "type": "tool_result",
+              "content": "1294\t  adaptive_fix_seed456:\n1295\t    status: DONE\n1296\t    retry_count: 0\n1297\t    created_at: '2026-05-14T13:32:31.779Z'\n1298\t    updated_at: '2026-05-15T16:43:25.930Z'\n1299\t    hypothesis: 'D012 n_min fix (3→2, batch_size//2): adaptive b* with corrected ESS\n1300\t      constraint maintains or improves seed456 performance (baseline adaptive PPL=17.64,\n1301\t      uniform PPL=17.70)'\n1302\t    parent: adaptive_seed456\n1303\t    notes: 最终清理后重提交。从 checkpoint-1000 恢复，无 inline eval。PID=127285\n1304\t    spec:\n1305\t      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n1306\t        base && cd /root/provenance_weight_training && WANDB_MODE=disabled python\n1307\t        training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir\n1308\t        output/models/adaptive_fix_seed456 --model_name models/Qwen/Qwen3-0.6B --weighting_method\n1309\t        adaptive --contamination_ratio 0.4 --num_train_tokens 200000000 --batch_size\n1310\t        4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed\n1311\t        456 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 --save_only_model\n1312\t        --resume_from_checkpoint output/models/adaptive_fix_seed456/checkpoint-1000\"\n1313\t      server: westd-47453\n1314\t      gpu:\n1315\t      - cuda:3\n1316\t      pid: '127280'\n1317\t      log_path: ~/runs/provenance_weight_training/adaptive_fix_seed456.log\n1318\t      submitted_at: '2026-05-14T17:47:33.774Z'\n1319\t      submitted_via: submit_training_job\n1320\t      backend: tmux\n1321\t      account: root\n1322\t      wall_clock_seconds: 12040.6\n1323\t      gpu_hours: 3.34\n1324\t    server: westd-47453\n1325\t    gpu: cuda:3\n1326\t    account: root\n1327\t    pid: '115066'\n1328\t    log_path: ~/runs/provenance_weight_training/adaptive_fix_seed456.log\n1329\t    reproduce:\n1330\t      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n1331\t        base && cd /root/provenance_weight_training && WANDB_MODE=disabled python\n1332\t        training/pretrain_weighted.py --data_path data/scored_data.jsonl --eval_data_path\n1333\t        data/human/eval_holdout.jsonl --output_dir output/models/adaptive_fix_seed456\n1334\t        --model_name models/Qwen/Qwen3-0.6B --weighting_method adaptive --contamination_ratio\n1335\t        0.4 --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps\n1336\t        4 --learning_rate 5e-5 --max_length 2048 --seed 456 --eval_steps 500 --save_steps\n1337\t        500 --logging_steps 10 --bf16 --save_total_limit 3 --save_only_model\"\n1338\t      finished_at: '2026-05-14T21:00:17.106Z'\n1339\t    failure_reason: ''\n1340\t    conclusion: success\n1341\t    completed_at: ''\n1342\t    extra:\n1343\t      hook_events:\n1344\t      - event: on_failed\n1345\t        action: agent\n1346\t        ts: '2026-05-14T17:38:47.164099+00:00'\n1347\t      - event: on_complete\n1348\t        action: agent\n1349\t        ts: '2026-05-14T21:00:18.079813+00:00'\n1350\t    metrics:\n1351\t      train_loss: 8.3124\n1352\t      train_runtime: 11436.05\n1353\t      train_samples_per_second: 8.539\n1354\t      train_steps_per_second: 0.534\n1355\t      total_steps: 6103\n1356\t      eval_ppl_holdout: 17.6566\n1357\t      eval_loss_holdout: 2.8711\n1358\t      eval_holdout_tokens: 4077068\n1359\t      eval_tokens: 4077068\n1360\t      eval_method: eval_perplexity.py (sliding window, stride=1024, max_docs=5000,\n1361\t        fp16)\n1362\t      eval_note: unified post-hoc eval 2026-05-15; was 17.66/4077068\n1363\t      b_star_count: 26396\n1364\t      b_star_mean: 1.416\n1365\t      b_star_median: 0.88\n1366\t      b_star_std: 1.993\n1367\t      b_star_min: 0\n1368\t      b_star_max: 20\n1369\t      b_star_p25: 0.54\n1370\t      b_star_p75: 1.52\n1371\t      b_star_pct_below_0.5: 20.9\n1372\t      b_star_pct_0.5_to_1: 35.7\n1373\t      b_star_pct_1_to_2: 27.3\n1374\t      b_star_pct_above_2: 16.1\n1375\t      b_star_note: Training-only records (eval checkpoint records with b*=0 excluded)\n1376\t    checkpoint_path: output/models/adaptive_fix_seed456/final\n1377\t  grid_b_low_seed42:\n1378\t    status: DONE\n1379\t    retry_count: 1\n1380\t    created_at: '2026-05-15T01:18:54.793Z'\n1381\t    updated_at: '2026-05-15T09:33:21.503Z'\n1382\t    hypothesis: Grid-b extension to b<0.5 (b=0.1/0.2/0.3 serial), seed42, confirming\n1383\t      whether grid-best lies at b=0.5 or below\n1384\t    failure_reason: process dead 5× with no sentinel/W&B — auto-resolved as failed\n1385\t    completed_at: '2026-05-15T05:23:13.303Z'\n1386\t    extra:\n1387\t      previous_failure:\n1388\t        conclusion: failed\n1389\t      hook_events:\n1390\t      - event: on_failed\n1391\t        action: agent\n1392\t        ts: '2026-05-15T09:02:07.651872+00:00'\n1393\t    spec:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "46eadce7-e362-4836-830e-4e56eea3d99b",
+            "isSidechain": true,
+            "promptId": "9401e3e8-f174-4ab3-9fab-32fa13628f5e",
+            "agentId": "a71f0d77acb236de8",
+            "type": "user",
+            "uuid": "ee7d81bf-caf6-4b5e-a8f7-2e96fe3e7232",
+            "sourceToolAssistantUUID": "46eadce7-e362-4836-830e-4e56eea3d99b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/reviewer_331b5651",
+            "sessionId": "d7303618-d2a1-4c0a-b0c3-8a0e6f11dd9d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "fluffy-sleeping-biscuit"
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-15T22:11:34.442Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now I have all the metrics I need. Let me compile the results based on what I found:\n\n## Metrics Summary\n\nBased on the registry.yaml file, here are the eval PPL metrics for the experiments you requested:\n\n**Note:** grid_b0_5_seed42 does not exist as a base experiment. Only seed123 and seed456 variants were run.\n\n### Uniform Baseline (3/3 completed)\n\n1. **uniform_seed42**\n   - Exp ID: `uniform_seed42`\n   - eval_ppl_holdout: **17.6939**\n   - eval_loss_holdout: 2.8732\n   - train_loss: 7.3104\n   - Status: DONE\n\n2. **uniform_seed123**\n   - Exp ID: `uniform_seed123`\n   - eval_ppl_holdout: **17.6861**\n   - eval_loss_holdout: 2.8728\n   - train_loss: 7.3121\n   - Status: DONE\n\n3. **uniform_seed456**\n   - Exp ID: `uniform_seed456`\n   - eval_ppl_holdout: **17.7015**\n   - eval_loss_holdout: 2.8737\n   - train_loss: 7.2895\n   - Status: DONE\n\n### Grid-b=0.5 (2/3 completed - seed42 missing)\n\n4. **grid_b0_5_seed123**\n   - Exp ID: `grid_b0_5_seed123`\n   - eval_ppl_holdout: **17.638**\n   - eval_loss: 2.87\n   - train_loss: 9.601\n   - Status: DONE\n\n5. **grid_b0_5_seed456**\n   - Exp ID: `grid_b0_5_seed456`\n   - eval_ppl_holdout: **17.65**\n   - eval_loss: 2.8705\n   - train_loss: 9.5622\n   - Status: DONE\n\n### Adaptive Fix (3/3 completed)\n\n6. **adaptive_fix_seed42**\n   - Exp ID: `adaptive_fix_seed42`\n   - eval_ppl_holdout: **17.6527**\n   - eval_loss_holdout: 2.8709\n   - train_loss: 7.5167\n   - Status: DONE\n\n7. **adaptive_fix_seed123**\n   - Exp ID: `adaptive_fix_seed123`\n   - eval_ppl_holdout: **17.6432**\n   - eval_loss_holdout: 2.8704\n   - train_loss_weighted: 7.517\n   - Status: DONE\n\n8. **adaptive_fix_seed456**\n   - Exp ID: `adaptive_fix_seed456`\n   - eval_ppl_holdout: **17.6566**\n   - eval_loss_holdout: 2.8711\n   - train_loss: 8.3124\n   - Status: DONE\n\n### Summary\n\nAll experiments use the same eval method: `eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)` with unified post-hoc evaluation on 2026-05-15.\n\nThe adaptive_fix variants show consistent improvements over uniform baseline:\n- Uniform mean PPL: 17.6938\n- Grid-b=0.5 mean PPL: 17.6440 (seed123, 456 only)\n- Adaptive-fix mean PPL: 17.6508\n\n**Alert:** grid_b0_5_seed42 was not run as a base experiment, so you cannot verify paper claims for that seed variant directly."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ee7d81bf-caf6-4b5e-a8f7-2e96fe3e7232",
+            "isSidechain": true,
+            "agentId": "a71f0d77acb236de8",
+            "requestId": "req_011Cb57yiAmDMy4cquBcxaNG",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "79f4cff1-6eac-40f0-a55b-a1e84003e3fe",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/reviewer_331b5651",
+            "sessionId": "d7303618-d2a1-4c0a-b0c3-8a0e6f11dd9d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "fluffy-sleeping-biscuit",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_013rHQNvjeMvcS8VwjrkfQfE",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 12846,
+                "cache_read_input_tokens": 35963,
+                "output_tokens": 901,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 12846
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 901,
+                    "cache_read_input_tokens": 35963,
+                    "cache_creation_input_tokens": 12846,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 12846,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000040"
+        }
+      ],
+      "message_count": 40
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-in-home-ubuntu-agent-ml-research-idea-gen-0509-10-projects-provenance-weight-t.md"
+}

@@ -1,0 +1,5645 @@
+# Research conversation: You are revising a research idea based on reviewer feedback. **Today's date: 2026-05-13 (UTC).** ## Original idea { "tit
+
+**When Does Detect-and-Reweight Work for Synthetic Contamination? (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 87
+- **Recorded user turns:** 1
+- **Tool calls:** 21
+- **Original source:** `logs/chats/exported-trajectories/account-3/4d4fa002-2632-40bf-88ef-105a7427d40e.jsonl`
+- **Structured JSON:** [`1bcca83f85ef9bbc554c.json`](../../sessions/1b/1bcca83f85ef9bbc554c.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-13T06:54:41.357Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-13T06:54:41.357Z",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e",
+  "content": "You are revising a research idea based on reviewer feedback.\n\n**Today's date: 2026-05-13 (UTC).**\n\n## Original idea\n{\n  \"title\": \"Generalization-Optimal Visual Bandwidth for VLAs: Information Bottleneck Phase Transitions Under Distribution Shift\",\n  \"core_problem\": \"VLA systems use vastly different visual token counts (1 to 512 per frame), and concurrent work selects compression ratios heuristically or optimizes for in-distribution success. No principled framework characterizes WHEN visual compression helps vs. hurts out-of-distribution generalization — despite evidence that compression can both improve robustness (by filtering task-irrelevant noise) and amplify vulnerability (by contracting decision margins). While IB phase transitions are theoretically well-understood in classification (Wu & Fischer, ICLR 2020), their manifestation in continuous action prediction under distribution shift — and how their critical points depend on task and deployment characteristics — remains entirely uncharacterized.\",\n  \"opportunity\": \"The information bottleneck (IB) provides a formal framework for trading compression against task-relevant information preservation. Wu & Fischer (ICLR 2020) proved that IB exhibits phase transitions — critical β values where the representation undergoes qualitative changes — and connected these to the Fisher information matrix. However, this theory was developed for categorical classification on MNIST/CIFAR-10. We argue that VLA visual representations under distribution shift present a fundamentally more complex phase structure: the visual input is high-dimensional and multi-modal, the output is continuous (action trajectories), and the relevant/irrelevant feature partition shifts across environments. The opportunity is to extend known IB phase transition theory to this practically important domain, providing both (1) new theoretical results connecting IB compression rate to OOD generalization gaps in continuous action prediction, and (2) empirical characterization of how phase transition points shift with task complexity, perturbation type, and scene characteristics. This opportunity is sharpened by five concurrent developments: (a) CRAFT (arXiv 2602.12532) demonstrates that VIB integration with π₀'s flow-matching architecture is technically feasible and that curriculum β scheduling improves force-modality generalization — but uses VIB as a modality balancing tool, not for systematic RD frontier analysis or OOD characterization; (b) Li et al. (ICLR 2025) derive compute-optimal scaling laws for visual tokens vs. model size, but only for inference efficiency, not OOD generalization; (c) Bai et al. (ICML 2025, BC-IB) show IB at the latent fusion level improves in-distribution BC performance, but do not evaluate OOD robustness; (d) Evans et al. (arXiv 2604.06954) prove fixed codecs contract classification margins — raising whether learned IB can escape this regime; (e) Ahuja et al. (NeurIPS 2021) prove that the invariance principle alone is insufficient for OOD generalization and that an IB constraint is necessary — providing direct theoretical motivation for why IB-based compression should improve OOD robustness when calibrated correctly. Extending from compute-optimal to generalization-optimal visual bandwidth, and from classification-focused IB phase transition theory to continuous-output VLA representations under distribution shift, fills a clear and timely gap.\",\n  \"landscape\": \"**VLA visual compression methods**: OneWM-VLA (arXiv 2605.07931, May 2026) compresses each view into a single semantic token, achieving 95.6% on LIBERO-Long. LightVLA uses 78 tokens with +2.9% improvement. GridS (ICML 2026) uses <10% tokens. VLA-IAP achieves 97.8% with 1.54× speedup. Compressor-VLA achieves 97.3% with 59% FLOPs reduction. VLA-Pruner and TEAM-VLA learn compression heuristically. All optimize for in-distribution efficiency — none characterizes the OOD generalization tradeoff via information-theoretic analysis.\\n\\n**IB in robot learning**: CRAFT (arXiv 2602.12532, Feb 2026) is the closest work: it inserts VIB after the vision-language encoder of π₀ and RDT, using curriculum β scheduling (λ_VIB(t) = λ_init · exp(−t/T_decay)) to suppress high-entropy visual/language signals and prioritize force inputs during contact-rich manipulation. CRAFT demonstrates generalization to unseen objects and task variants (22.5% → 58.75% OOD improvement). However, CRAFT's VIB serves as a modality balancing tool — it compresses then releases visual information to prioritize force signals — rather than systematically characterizing compression-generalization tradeoffs. CRAFT does not trace RD frontiers, does not evaluate across systematic perturbation benchmarks (e.g., LIBERO-Plus), and does not analyze phase transitions. Its existence validates the technical feasibility of VIB + flow matching in π₀, strengthening our approach. BC-IB (ICML 2025) applies IB at the latent fusion level of small BC models with 4 β values, achieving in-distribution improvements on LIBERO, but operates on fused representations (not visual tokens), evaluates only in-distribution, and has not been applied to large VLAs. IBAC (NeurIPS 2019) applies IB to actor-critic RL, showing compression improves generalization in procedurally-generated environments. The Capacity-Limited Actor-Critic (Lerch & Sims, ICLR 2019 workshop) maps capacity-limited RL to rate-distortion theory, showing constrained agents generalize because they must discard environment-specific distinctions. VFP (arXiv 2508.01622) establishes precedent for variational components + flow matching in robot manipulation.\\n\\n**IB phase transition theory**: Wu & Fischer (ICLR 2020) derive theoretical conditions for IB phase transitions using calculus of variations, connect them to the Fisher information matrix, and validate on MNIST/CIFAR-10. Phase transitions correspond to the onset of learning new categorical classes. This theory is developed for classification — extension to continuous action prediction under distribution shift is non-trivial and unaddressed.\\n\\n**IB and OOD generalization theory**: Ahuja et al. (NeurIPS 2021) prove that invariance alone is insufficient for OOD generalization in classification, and that an IB constraint is additionally necessary. The Invariant Information Bottleneck (IIB, AAAI 2022) combines IB with invariance principles for domain generalization. Sefidgaran et al. (COLT 2022) establish rate-distortion theoretic generalization bounds linking compressibility, mutual information, and fractal dimensions. The Generalized IB theory (arXiv 2509.26327, 2025) shows synergistic representations achieve superior generalization. These provide theoretical scaffolding for connecting IB compression rate to OOD generalization gaps.\\n\\n**Compression and robustness**: LIBERO-Plus (CVPR 2026) reveals VLA models drop from 95% to below 30% under modest perturbations across 7 dimensions. Evans et al. (arXiv 2604.06954) prove fixed image compression contracts classification margins. 'Less Is More — Until It Breaks' (arXiv 2601.12042) shows compression introduces state-specific robustness vulnerabilities in VLMs via instability in token importance ranking. arXiv 2601.21531 shows compression-unaware robustness evaluations are overly optimistic. Kong et al. (arXiv 2505.18227) argue token reduction should influence generalization, but provide no formal framework.\\n\\n**Efficient IB optimization**: FVIB (arXiv 2402.01238) enables sweeping all β values for classification in a single training run via Taylor approximation. FVIB-R (Entropy, 2024) extends this to regression/continuous outputs using quadratic feature extraction, enabling β adjustment at evaluation time without retraining — directly relevant to our continuous action prediction setting.\\n\\nNo work combines: (i) theoretical analysis of how IB phase transitions manifest in continuous action prediction under distribution shift, (ii) systematic RD frontier tracing for VLA visual bandwidth, and (iii) empirical characterization of how critical compression thresholds shift with task/perturbation properties.\",\n  \"approach\": \"We formalize VLA visual bandwidth selection as an information bottleneck optimization and provide both theoretical analysis and empirical characterization of the compression-generalization tradeoff under distribution shift.\\n\\n**Theoretical Contribution (Pillar 1).** We derive new results connecting IB compression rate to OOD generalization in continuous action prediction:\\n\\n(a) *Generalization bound*. Building on the rate-distortion generalization framework of Sefidgaran et al. (COLT 2022), we derive a bound on the OOD generalization gap that decomposes into an in-distribution compression term (controlled by rate R = I(V;Z)) and an environment-shift term (measuring divergence between train/test visual distributions projected through the bottleneck). Formally: Gap_OOD ≤ f(R) + g(D_shift(P_train^Z || P_test^Z)), where f is monotonically decreasing in R (more compression → smaller in-distribution generalization error, as in standard IB theory) and g is monotonically increasing with the projected distribution shift. The key insight is that moderate compression reduces the projected shift D_shift by collapsing environment-specific visual variation, but excessive compression increases the action prediction error term — yielding a non-trivial optimum β*.\\n\\n(b) *IB as domain-invariant feature selector*. We extend the IIB framework (AAAI 2022) and Ahuja et al.'s (NeurIPS 2021) proof that IB + invariance is necessary for OOD generalization: minimizing I(V;Z) while preserving I(Z;A) preferentially removes visual features that vary across environments (camera angles, lighting, textures — high entropy, low action-relevance) while preserving features invariant to environment changes (object poses, gripper state — high action-relevance). We formalize this for the VLA setting by decomposing visual features into action-relevant invariant components and environment-specific nuisance components, showing that the IB objective with β in a specific range provably compresses the nuisance subspace while preserving the invariant subspace — escaping Evans et al.'s margin contraction result, which applies only to non-selective (fixed) compression.\\n\\n(c) *Phase transition characterization*. Following Wu & Fischer (ICLR 2020), we analyze the structure of IB phase transitions in the continuous-output setting. Unlike classification where transitions correspond to learning new classes, in continuous action prediction, transitions correspond to the inclusion/exclusion of visual feature subspaces. We derive conditions under which the critical β* depends on the ratio of environment-specific to action-relevant visual information, providing a theoretical prediction for how β* should shift with perturbation type and magnitude.\\n\\n**Empirical Methodology (Pillar 2).** We insert a learnable VIB between the visual encoder and action generation module of π₀ (2B params, via openpi), following CRAFT's validated approach for VIB + flow-matching integration but with fundamentally different purpose: systematic RD frontier analysis rather than curriculum-based modality balancing. The VIB parameterizes z ~ q(z|v) with training objective: L = E[||a_pred - a_true||²] + β · KL(q(z|v) || r(z)).\\n\\nCritically, we adopt FVIB-R methodology (Entropy, 2024) to enable efficient β sweeping: rather than training 15 separate models, we train a single model whose architecture supports post-hoc β adjustment at evaluation time, with the bottleneck layer parameterized to allow continuous β variation without retraining. We validate FVIB-R's continuous frontier against 5 discrete-β anchor models to confirm approximation fidelity. This reduces the core training cost from ~15× to ~3× a single training run (1 FVIB-R + 5 discrete anchors).\\n\\nWe evaluate on LIBERO-90 as the primary in-distribution benchmark, with LIBERO-Plus providing systematic OOD evaluation across 7 perturbation types (camera viewpoint, lighting, distractors, object layout, robot state, texture, sensor noise) × 5 difficulty levels. At each operating point on the RD frontier we measure: (1) effective rate via KL divergence upper bound on I(V;Z), (2) in-distribution task success rate, (3) OOD task success rate across all perturbation dimensions, and (4) the generalization gap Δ(β) = success_ID(β) - success_OOD(β).\\n\\n**Phase Transition Analysis (Pillar 3).** The central empirical analysis identifies the critical β* where the generalization gap begins to widen rapidly — indicating compression has shifted from filtering irrelevant features to discarding task-critical information. We characterize this by computing the slope and curvature of the OOD-distortion vs. rate curve. We then empirically characterize how β* shifts with: task horizon length, object diversity, perturbation type and magnitude, and visual scene complexity. We fit approximate scaling relationships and validate them against the theoretical predictions from Pillar 1, testing whether the predicted dependence of β* on the invariant/nuisance information ratio holds empirically.\\n\\n**Adversarial robustness (secondary analysis).** As a supplementary investigation, we measure adversarial robustness (untargeted PGD attacks on visual inputs) at selected β operating points to test whether the VIB's learned compression escapes Evans et al.'s margin contraction regime. This is positioned as a secondary contribution given the tenuous connection between classification margin theory and continuous action prediction.\\n\\n**Key differentiations**: From CRAFT — we trace systematic RD frontiers across continuous β values and evaluate under 7 systematic perturbation types, whereas CRAFT uses VIB as curriculum tool for force-modality prioritization with ad-hoc generalization tests. From BC-IB — we operate at visual-token level (not latent fusion), use a 2B VLA (not small BC models), trace continuous RD frontiers (not 4 discrete β values), and evaluate OOD (not in-distribution only). From Wu & Fischer — we extend IB phase transition theory from classification to continuous action prediction under distribution shift, characterizing how critical points depend on task/perturbation properties.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~350h A100 80GB (reduced from 600h via FVIB-R: 1 FVIB-R training + 5 discrete anchor models + LIBERO-Plus evaluation; no MetaWorld)\",\n      \"gpu_utilization\": \"Low (~30-35%). Human spends most wall-clock time on theoretical derivations, FVIB-R integration, and RD frontier analysis.\",\n      \"timeline\": \"3-4 months (theory development parallelized with implementation)\",\n      \"team\": \"1-2 researchers (1 with information theory / generalization bounds experience, 1 with VLA/robotics and openpi familiarity)\",\n      \"estimated_gpu_cost\": \"$525-$700 (at ~$1.50/hr A100 spot pricing)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~450h A100 80GB\",\n      \"gpu_utilization\": \"Moderate (~55-65%). Agent handles FVIB-R training, discrete anchor validation, and LIBERO-Plus evaluation pipeline.\",\n      \"timeline\": \"5-7 weeks\",\n      \"team\": \"1 researcher, ~45min/day review of RD frontier progress and theoretical development\",\n      \"claude_api_cost\": \"$300-$600 (~120-250 turns/week × 6 weeks × $0.10/turn Opus)\",\n      \"estimated_gpu_cost\": \"$675-$900\",\n      \"risk_note\": \"FVIB-R's quadratic feature extractor assumption may not hold for π₀'s architecture — the 5 discrete anchor models serve as ground truth to validate FVIB-R approximation quality. If FVIB-R fails, fall back to 10-12 discrete β training runs (~500h total). CRAFT's validated VIB + flow-matching integration de-risks the VIB insertion step.\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~800h A100 80GB (FVIB-R training, discrete anchor validation, comprehensive LIBERO-Plus evaluation, ablations across perturbation types)\",\n      \"gpu_utilization\": \"High (~85-90% utilization). Agent runs FVIB-R training, validates against anchor models, schedules parallel LIBERO-Plus evaluations.\",\n      \"timeline\": \"10-15 days with 4-6 concurrent A100s\",\n      \"team\": \"0 (only initial setup of openpi environment and LIBERO/LIBERO-Plus datasets)\",\n      \"claude_api_cost\": \"$400-$700 (~200-350 turns/day × 13 days × $0.10/turn)\",\n      \"estimated_gpu_cost\": \"$1,200-$1,600\",\n      \"speed_bottleneck\": \"GPU count (need 4-6 A100s); LIBERO-Plus evaluation across 7 perturbation types × 5 difficulty levels is the longest serial dependency (~8h per checkpoint for full evaluation).\",\n      \"risk_note\": \"Agent may need human guidance on theoretical derivation steps (generalization bound proofs). Theory work should be done in parallel by human researcher.\"\n    }\n  },\n  \"target_venues\": [\n    \"AAAI 2027 (deadline expected: Jul-Aug 2026)\",\n    \"ICLR 2027 (deadline expected: Sep-Oct 2026)\",\n    \"CoRL 2027 (deadline expected: May 2027, if additional development time needed)\"\n  ],\n  \"level\": \"strong\",\n  \"key_references\": [\n    \"CRAFT: Adapting VLA Models to Contact-rich Manipulation via Force-aware Curriculum Fine-tuning (arXiv 2602.12532, Feb 2026)\",\n    \"Phase Transitions for the Information Bottleneck in Representation Learning (Wu & Fischer, ICLR 2020, arXiv 2001.01878)\",\n    \"Invariance Principle Meets Information Bottleneck for Out-of-Distribution Generalization (Ahuja et al., NeurIPS 2021, arXiv 2106.06607)\",\n    \"Invariant Information Bottleneck for Domain Generalization (IIB, AAAI 2022, arXiv 2106.06333)\",\n    \"Rate-Distortion Theoretic Generalization Bounds for Stochastic Learning Algorithms (Sefidgaran et al., COLT 2022, arXiv 2203.02474)\",\n    \"Flexible Variational Information Bottleneck: Achieving Diverse Compression with a Single Training (FVIB, arXiv 2402.01238, Neurocomputing 2025)\",\n    \"Exploring the Trade-Off in the Variational Information Bottleneck for Regression with a Single Training Run (FVIB-R, Entropy 2024)\",\n    \"Rethinking Latent Redundancy in Behavior Cloning: An Information Bottleneck Approach for Robot Manipulation (BC-IB, ICML 2025, arXiv 2502.02853)\",\n    \"One Token Per Frame: Reconsidering Visual Bandwidth in World Models for VLA Policy (arXiv 2605.07931, 2026)\",\n    \"Inference Optimal VLMs Need Fewer Visual Tokens and More Parameters (Li et al., ICLR 2025, arXiv 2411.03312)\",\n    \"Compression as an Adversarial Amplifier Through Decision Space Reduction (Evans et al., arXiv 2604.06954, 2026)\",\n    \"Less Is More — Until It Breaks: Token Compression and Robustness in VLMs (arXiv 2601.12042, 2026)\",\n    \"On the Adversarial Robustness of Large Vision-Language Models under Visual Token Compression (arXiv 2601.21531, 2026)\",\n    \"A Generalized Information Bottleneck Theory of Deep Learning (arXiv 2509.26327, 2025)\",\n    \"Generalization in Reinforcement Learning with Selective Noise Injection and Information Bottleneck (IBAC, NeurIPS 2019)\",\n    \"Policy Generalization in Capacity-Limited Reinforcement Learning (Lerch & Sims, ICLR 2019 workshop)\",\n    \"VFP: Variational Flow-Matching Policy for Multi-Modal Robot Manipulation (arXiv 2508.01622, 2025)\",\n    \"LIBERO-Plus: A Progressive Robustness Benchmark for Visual-Language-Action Models (CVPR 2026)\",\n    \"Deep Variational Information Bottleneck (Alemi et al., arXiv 1612.00410, 2017)\",\n    \"Token Reduction Should Go Beyond Efficiency in Generative Models (Kong et al., arXiv 2505.18227, 2025)\",\n    \"Rate-Distortion Signatures of Generalization and Information Trade-offs (arXiv 2603.01568, 2026)\",\n    \"See What Matters: Differentiable Grid Sample Pruning for Generalizable VLA Model (ICML 2026)\",\n    \"The Better You Learn, The Smarter You Prune: Towards Efficient VLA Models via Differentiable Token Pruning (ICRA 2026)\",\n    \"Compressor-VLA: Instruction-Guided Visual Token Compression for Efficient Robotic Manipulation (arXiv 2511.18950, 2025)\"\n  ],\n  \"description\": \"We investigate when visual compression helps vs. hurts VLA generalization by combining new theoretical results with systematic information bottleneck rate-distortion frontier analysis under distribution shift. Our work has three pillars. First, we derive new generalization bounds connecting IB compression rate to OOD generalization gaps in continuous action prediction, extending rate-distortion generalization theory (Sefidgaran et al., COLT 2022) and the IB+invariance necessity result (Ahuja et al., NeurIPS 2021) to show that the VIB acts as a domain-invariant feature selector: moderate compression collapses environment-specific visual variation while preserving action-relevant invariant features, escaping the margin contraction regime of fixed codecs (Evans et al., 2026). We formalize conditions under which the critical compression threshold β* depends on the ratio of environment-specific to action-relevant visual information. Second, we empirically trace the full IB rate-distortion frontier for π₀ (2B, via openpi) on LIBERO-90 (in-distribution) and LIBERO-Plus (7 perturbation types × 5 difficulty levels, OOD), adopting FVIB-R methodology to enable continuous β sweeping from a single training run. We build on CRAFT's (arXiv 2602.12532) validated VIB + flow-matching integration but with fundamentally different purpose: systematic RD analysis rather than curriculum-based modality balancing. Third, we characterize the phase transition where OOD performance degrades faster than ID performance — extending Wu & Fischer's (ICLR 2020) classification-focused IB phase transition theory to continuous action prediction under distribution shift — and empirically map how β* shifts with task horizon, object diversity, perturbation type, and scene complexity, providing practitioners a principled bandwidth selection recipe backed by both theory and scaling relationships.\",\n  \"project_name\": \"rd_optimal_vla_bandwidth\",\n  \"source\": \"web_research\"\n}\n\n## Reviewer feedback (round 3)\nIssues: [\"MAJOR — Elastic Information Bottleneck (EIB, arXiv 2311.03955, 2024) is not cited despite providing a structurally similar error decomposition: target error = source empirical error + source generalization gap (SG, controlled by IB rate) + representation discrepancy (RD, measuring domain shift). The proposed bound Gap_OOD ≤ f(R) + g(D_shift(P_train^Z || P_test^Z)) has the same f(compression) + g(shift) structure. Must cite EIB and explicitly state what is new: extending from the general domain adaptation setting to continuous action prediction in VLAs, where (a) the distortion is MSE over action trajectories not 0-1 classification loss, (b) the compression is over visual tokens not generic features, and (c) the shift is structured across 7 perturbation dimensions.\", \"MAJOR — The phase transition characterization for continuous action prediction (Pillar 1c) is the most novel theoretical piece but remains the least mathematically specified. The proposal states transitions 'correspond to the inclusion/exclusion of visual feature subspaces' and 'critical β* depends on the ratio of environment-specific to action-relevant visual information,' but does not specify: (i) what mathematical framework will be used (calculus of variations à la Wu & Fischer? spectral analysis of the Fisher information for continuous outputs?), (ii) what the predicted phase structure looks like (how many transitions? smooth or sharp?), (iii) whether the invariant/nuisance decomposition can be formalized without access to the true causal structure. Given the user's explicit emphasis on theoretical analysis, this piece needs more depth.\", \"MINOR — Ahuja et al. (NeurIPS 2021) claim is overstated. The proposal says they 'prove that the invariance principle alone is insufficient for OOD generalization and that an IB constraint is necessary.' The actual result is more nuanced: IB is 'helpful in combination with invariance,' not proven strictly necessary in isolation. Moreover, their theory applies primarily to classification — they explicitly note that 'for linear classification tasks we need much stronger restrictions' than for regression. Since the proposal targets continuous action prediction (closer to regression), citing Ahuja as direct motivation requires acknowledging this gap.\", \"MINOR — The proposal should acknowledge that the generalization bound (Pillar 1a) is primarily an extension/instantiation of existing rate-distortion generalization theory (Sefidgaran et al., EIB) to a new domain, rather than framing it as 'deriving new results.' The genuinely new theoretical contributions are (1) the phase transition analysis for continuous outputs and (2) the argument that learned VIB escapes Evans et al.'s fixed-codec margin contraction. Being precise about what is novel theory vs. novel application strengthens the paper.\"]\nFeedback: The idea has matured significantly across two rounds and is close to passable. Two targeted revisions will bring it over the threshold:\n\n1. **Cite EIB (arXiv 2311.03955) and sharpen the theoretical novelty claim.** EIB already provides the f(compression) + g(shift) decomposition for domain adaptation. Your contribution is NOT the decomposition itself — it is (a) extending this to continuous action prediction where the distortion function, action space structure, and phase transition behavior are fundamentally different from classification, (b) the phase transition characterization showing WHERE the critical β* falls and HOW it shifts with task/perturbation properties, and (c) the argument that learned VIB compression escapes Evans et al.'s fixed-codec margin contraction. Frame Pillar 1a as 'instantiating and extending EIB-style bounds for continuous VLA action prediction,' and position Pillar 1c as the primary theoretical novelty.\n\n2. **Deepen the phase transition theory (Pillar 1c).** This is your strongest novelty claim and needs more mathematical substance. Specify: (a) You will use calculus of variations on the IB Lagrangian with MSE distortion (extending Wu & Fischer's approach from cross-entropy to MSE), analyzing second-order conditions for phase transitions. (b) In the continuous-output setting, phase transitions manifest as rank changes in the representation covariance matrix Σ_Z — each transition adds a new principal component to the bottleneck representation, corresponding to a visual feature subspace becoming action-relevant at that compression level. (c) The critical β* at which an environment-specific feature subspace enters the representation depends on the ratio of its action-relevance (measured by conditional mutual information with actions) to its cross-environment variance — formalizable if you assume a linear-Gaussian generative model as a tractable analytical case, with empirical validation on the full nonlinear VLA. This gives you a concrete theoretical prediction testable against the empirical RD frontier.\n\n3. **Correct the Ahuja et al. characterization.** Replace 'prove IB is necessary' with 'show that combining IB with invariance addresses key failures of invariance alone in classification.' Note that their results require stronger assumptions for classification than regression, and that your extension to continuous action prediction is a meaningful theoretical contribution.\n\n4. **Be transparent about the theory/application boundary.** Pillar 1a (generalization bound) is primarily an application of existing rate-distortion generalization theory to VLAs. Pillar 1b (IB as invariant feature selector) extends IIB to the VLA setting. Pillar 1c (phase transitions in continuous outputs) is genuinely new theory. Framing this honestly is stronger than overclaiming — reviewers will respect the clarity.\n\n## Instructions\n- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method (approach / resource_estimate / key_references). Do not jump straight to fixing the method if the underlying problem framing needs correction.\n- Address each issue specifically.\n\n## 深度调研要求（每一轮修订都必须执行）\n\n不要简单地'打补丁'——每一轮修订都是重新审视和深化这个 idea 的机会。\n\n1. **深度搜索**：针对 reviewer 指出的每个问题，建议用 2-3 种不同的搜索查询调研。\n   - 搜索最新的相关论文（arXiv, conference proceedings）\n   - 搜索 benchmark/leaderboard 确认当前 SOTA\n   - 搜索可能遗漏的相关工作和 concurrent work\n\n2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文的 abstract 和方法部分，\n   不要只依赖搜索摘要。形成你自己对领域现状的独立判断。\n\n3. **深度思考**：在修订之前，先独立思考以下问题：\n   - 这个 idea 的核心假设是否仍然成立？\n   - reviewer 的批评是否揭示了更深层的问题？\n   - 有没有更好的 framing 或 approach 来解决同一个核心问题？\n   - 修订后的 idea 相比上一版有什么本质性的改进？\n\n4. **避免表面修订**：如果你发现自己只是在换措辞或补充细节而没有实质改进，\n   考虑是否需要 major revision 或 pivot。反复的 minor fix 不会拯救一个根基有问题的 idea。\n\n## 针对 Review 意见的定向搜索\n\n对 reviewer 指出的每个问题，执行以下搜索流程：\n\n1. **如果 reviewer 说'已有类似工作'**：\n   - 搜索 reviewer 提到的论文，用 WebFetch 实际阅读\n   - 搜索该论文的 cited-by，找到后续跟进工作\n   - 明确你的 idea 与这些工作的差异化点——如果差异化不够，必须 pivot\n\n2. **如果 reviewer 说'SOTA 过时'**：\n   - 用 Papers With Code 查看当前排行榜\n   - 搜索过去 6 个月的最新方法\n   - 更新你的 landscape 和 baseline\n\n3. **如果 reviewer 说'可行性有问题'**：\n   - 搜索类似规模实验的实际成本和时间线\n   - 搜索 GitHub 上是否有可复用的实现\n   - 搜索相关数据集/模型的可获取性\n\n4. **如果 reviewer 说'novelty 不足'**：\n   - 对核心方法尽量做 3-5 种不同关键词组合的搜索\n   - 搜索相邻领域是否有类似思路\n   - 如果确实 novelty 不足，考虑 major revision 或 pivot\n\n- Use WebSearch to find updated information if the reviewer flagged outdated claims.\n- You have full freedom in how much to change:\n  - Minor fix: if only specific details are wrong, correct them and keep everything else.\n  - Major revision: if the approach is fundamentally flawed but the core problem is valid, you may redesign the approach entirely.\n  - Pivot: if the reviewer's feedback reveals that the core problem itself is invalid (e.g., the gap no longer exists), you may propose a RELATED but substantially different idea that builds on the same research area. This is preferred over forcing a doomed idea to pass review.\n- The output replaces the original idea (same tracking ID). Whether you make a small tweak or a full pivot, output a COMPLETE JSON object with ALL fields filled.\n- In the output JSON, include a \"change_type\" field with one of: \"minor\", \"major\", or \"pivot\" to indicate the scope of your changes.\n- Output the revised idea as a COMPLETE JSON object (same schema as original, plus \"change_type\")."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-13T06:54:41.363Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-13T06:54:41.363Z",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e"
+}
+```
+
+---
+
+## Round 1
+
+85 recorded events
+
+### User
+
+_source line 3 · 2026-05-13T06:54:41.413Z_
+
+You are revising a research idea based on reviewer feedback.
+
+**Today's date: 2026-05-13 (UTC).**
+
+## Original idea
+{
+  "title": "Generalization-Optimal Visual Bandwidth for VLAs: Information Bottleneck Phase Transitions Under Distribution Shift",
+  "core_problem": "VLA systems use vastly different visual token counts (1 to 512 per frame), and concurrent work selects compression ratios heuristically or optimizes for in-distribution success. No principled framework characterizes WHEN visual compression helps vs. hurts out-of-distribution generalization — despite evidence that compression can both improve robustness (by filtering task-irrelevant noise) and amplify vulnerability (by contracting decision margins). While IB phase transitions are theoretically well-understood in classification (Wu & Fischer, ICLR 2020), their manifestation in continuous action prediction under distribution shift — and how their critical points depend on task and deployment characteristics — remains entirely uncharacterized.",
+  "opportunity": "The information bottleneck (IB) provides a formal framework for trading compression against task-relevant information preservation. Wu & Fischer (ICLR 2020) proved that IB exhibits phase transitions — critical β values where the representation undergoes qualitative changes — and connected these to the Fisher information matrix. However, this theory was developed for categorical classification on MNIST/CIFAR-10. We argue that VLA visual representations under distribution shift present a fundamentally more complex phase structure: the visual input is high-dimensional and multi-modal, the output is continuous (action trajectories), and the relevant/irrelevant feature partition shifts across environments. The opportunity is to extend known IB phase transition theory to this practically important domain, providing both (1) new theoretical results connecting IB compression rate to OOD generalization gaps in continuous action prediction, and (2) empirical characterization of how phase transition points shift with task complexity, perturbation type, and scene characteristics. This opportunity is sharpened by five concurrent developments: (a) CRAFT (arXiv 2602.12532) demonstrates that VIB integration with π₀'s flow-matching architecture is technically feasible and that curriculum β scheduling improves force-modality generalization — but uses VIB as a modality balancing tool, not for systematic RD frontier analysis or OOD characterization; (b) Li et al. (ICLR 2025) derive compute-optimal scaling laws for visual tokens vs. model size, but only for inference efficiency, not OOD generalization; (c) Bai et al. (ICML 2025, BC-IB) show IB at the latent fusion level improves in-distribution BC performance, but do not evaluate OOD robustness; (d) Evans et al. (arXiv 2604.06954) prove fixed codecs contract classification margins — raising whether learned IB can escape this regime; (e) Ahuja et al. (NeurIPS 2021) prove that the invariance principle alone is insufficient for OOD generalization and that an IB constraint is necessary — providing direct theoretical motivation for why IB-based compression should improve OOD robustness when calibrated correctly. Extending from compute-optimal to generalization-optimal visual bandwidth, and from classification-focused IB phase transition theory to continuous-output VLA representations under distribution shift, fills a clear and timely gap.",
+  "landscape": "**VLA visual compression methods**: OneWM-VLA (arXiv 2605.07931, May 2026) compresses each view into a single semantic token, achieving 95.6% on LIBERO-Long. LightVLA uses 78 tokens with +2.9% improvement. GridS (ICML 2026) uses <10% tokens. VLA-IAP achieves 97.8% with 1.54× speedup. Compressor-VLA achieves 97.3% with 59% FLOPs reduction. VLA-Pruner and TEAM-VLA learn compression heuristically. All optimize for in-distribution efficiency — none characterizes the OOD generalization tradeoff via information-theoretic analysis.\n\n**IB in robot learning**: CRAFT (arXiv 2602.12532, Feb 2026) is the closest work: it inserts VIB after the vision-language encoder of π₀ and RDT, using curriculum β scheduling (λ_VIB(t) = λ_init · exp(−t/T_decay)) to suppress high-entropy visual/language signals and prioritize force inputs during contact-rich manipulation. CRAFT demonstrates generalization to unseen objects and task variants (22.5% → 58.75% OOD improvement). However, CRAFT's VIB serves as a modality balancing tool — it compresses then releases visual information to prioritize force signals — rather than systematically characterizing compression-generalization tradeoffs. CRAFT does not trace RD frontiers, does not evaluate across systematic perturbation benchmarks (e.g., LIBERO-Plus), and does not analyze phase transitions. Its existence validates the technical feasibility of VIB + flow matching in π₀, strengthening our approach. BC-IB (ICML 2025) applies IB at the latent fusion level of small BC models with 4 β values, achieving in-distribution improvements on LIBERO, but operates on fused representations (not visual tokens), evaluates only in-distribution, and has not been applied to large VLAs. IBAC (NeurIPS 2019) applies IB to actor-critic RL, showing compression improves generalization in procedurally-generated environments. The Capacity-Limited Actor-Critic (Lerch & Sims, ICLR 2019 workshop) maps capacity-limited RL to rate-distortion theory, showing constrained agents generalize because they must discard environment-specific distinctions. VFP (arXiv 2508.01622) establishes precedent for variational components + flow matching in robot manipulation.\n\n**IB phase transition theory**: Wu & Fischer (ICLR 2020) derive theoretical conditions for IB phase transitions using calculus of variations, connect them to the Fisher information matrix, and validate on MNIST/CIFAR-10. Phase transitions correspond to the onset of learning new categorical classes. This theory is developed for classification — extension to continuous action prediction under distribution shift is non-trivial and unaddressed.\n\n**IB and OOD generalization theory**: Ahuja et al. (NeurIPS 2021) prove that invariance alone is insufficient for OOD generalization in classification, and that an IB constraint is additionally necessary. The Invariant Information Bottleneck (IIB, AAAI 2022) combines IB with invariance principles for domain generalization. Sefidgaran et al. (COLT 2022) establish rate-distortion theoretic generalization bounds linking compressibility, mutual information, and fractal dimensions. The Generalized IB theory (arXiv 2509.26327, 2025) shows synergistic representations achieve superior generalization. These provide theoretical scaffolding for connecting IB compression rate to OOD generalization gaps.\n\n**Compression and robustness**: LIBERO-Plus (CVPR 2026) reveals VLA models drop from 95% to below 30% under modest perturbations across 7 dimensions. Evans et al. (arXiv 2604.06954) prove fixed image compression contracts classification margins. 'Less Is More — Until It Breaks' (arXiv 2601.12042) shows compression introduces state-specific robustness vulnerabilities in VLMs via instability in token importance ranking. arXiv 2601.21531 shows compression-unaware robustness evaluations are overly optimistic. Kong et al. (arXiv 2505.18227) argue token reduction should influence generalization, but provide no formal framework.\n\n**Efficient IB optimization**: FVIB (arXiv 2402.01238) enables sweeping all β values for classification in a single training run via Taylor approximation. FVIB-R (Entropy, 2024) extends this to regression/continuous outputs using quadratic feature extraction, enabling β adjustment at evaluation time without retraining — directly relevant to our continuous action prediction setting.\n\nNo work combines: (i) theoretical analysis of how IB phase transitions manifest in continuous action prediction under distribution shift, (ii) systematic RD frontier tracing for VLA visual bandwidth, and (iii) empirical characterization of how critical compression thresholds shift with task/perturbation properties.",
+  "approach": "We formalize VLA visual bandwidth selection as an information bottleneck optimization and provide both theoretical analysis and empirical characterization of the compression-generalization tradeoff under distribution shift.\n\n**Theoretical Contribution (Pillar 1).** We derive new results connecting IB compression rate to OOD generalization in continuous action prediction:\n\n(a) *Generalization bound*. Building on the rate-distortion generalization framework of Sefidgaran et al. (COLT 2022), we derive a bound on the OOD generalization gap that decomposes into an in-distribution compression term (controlled by rate R = I(V;Z)) and an environment-shift term (measuring divergence between train/test visual distributions projected through the bottleneck). Formally: Gap_OOD ≤ f(R) + g(D_shift(P_train^Z || P_test^Z)), where f is monotonically decreasing in R (more compression → smaller in-distribution generalization error, as in standard IB theory) and g is monotonically increasing with the projected distribution shift. The key insight is that moderate compression reduces the projected shift D_shift by collapsing environment-specific visual variation, but excessive compression increases the action prediction error term — yielding a non-trivial optimum β*.\n\n(b) *IB as domain-invariant feature selector*. We extend the IIB framework (AAAI 2022) and Ahuja et al.'s (NeurIPS 2021) proof that IB + invariance is necessary for OOD generalization: minimizing I(V;Z) while preserving I(Z;A) preferentially removes visual features that vary across environments (camera angles, lighting, textures — high entropy, low action-relevance) while preserving features invariant to environment changes (object poses, gripper state — high action-relevance). We formalize this for the VLA setting by decomposing visual features into action-relevant invariant components and environment-specific nuisance components, showing that the IB objective with β in a specific range provably compresses the nuisance subspace while preserving the invariant subspace — escaping Evans et al.'s margin contraction result, which applies only to non-selective (fixed) compression.\n\n(c) *Phase transition characterization*. Following Wu & Fischer (ICLR 2020), we analyze the structure of IB phase transitions in the continuous-output setting. Unlike classification where transitions correspond to learning new classes, in continuous action prediction, transitions correspond to the inclusion/exclusion of visual feature subspaces. We derive conditions under which the critical β* depends on the ratio of environment-specific to action-relevant visual information, providing a theoretical prediction for how β* should shift with perturbation type and magnitude.\n\n**Empirical Methodology (Pillar 2).** We insert a learnable VIB between the visual encoder and action generation module of π₀ (2B params, via openpi), following CRAFT's validated approach for VIB + flow-matching integration but with fundamentally different purpose: systematic RD frontier analysis rather than curriculum-based modality balancing. The VIB parameterizes z ~ q(z|v) with training objective: L = E[||a_pred - a_true||²] + β · KL(q(z|v) || r(z)).\n\nCritically, we adopt FVIB-R methodology (Entropy, 2024) to enable efficient β sweeping: rather than training 15 separate models, we train a single model whose architecture supports post-hoc β adjustment at evaluation time, with the bottleneck layer parameterized to allow continuous β variation without retraining. We validate FVIB-R's continuous frontier against 5 discrete-β anchor models to confirm approximation fidelity. This reduces the core training cost from ~15× to ~3× a single training run (1 FVIB-R + 5 discrete anchors).\n\nWe evaluate on LIBERO-90 as the primary in-distribution benchmark, with LIBERO-Plus providing systematic OOD evaluation across 7 perturbation types (camera viewpoint, lighting, distractors, object layout, robot state, texture, sensor noise) × 5 difficulty levels. At each operating point on the RD frontier we measure: (1) effective rate via KL divergence upper bound on I(V;Z), (2) in-distribution task success rate, (3) OOD task success rate across all perturbation dimensions, and (4) the generalization gap Δ(β) = success_ID(β) - success_OOD(β).\n\n**Phase Transition Analysis (Pillar 3).** The central empirical analysis identifies the critical β* where the generalization gap begins to widen rapidly — indicating compression has shifted from filtering irrelevant features to discarding task-critical information. We characterize this by computing the slope and curvature of the OOD-distortion vs. rate curve. We then empirically characterize how β* shifts with: task horizon length, object diversity, perturbation type and magnitude, and visual scene complexity. We fit approximate scaling relationships and validate them against the theoretical predictions from Pillar 1, testing whether the predicted dependence of β* on the invariant/nuisance information ratio holds empirically.\n\n**Adversarial robustness (secondary analysis).** As a supplementary investigation, we measure adversarial robustness (untargeted PGD attacks on visual inputs) at selected β operating points to test whether the VIB's learned compression escapes Evans et al.'s margin contraction regime. This is positioned as a secondary contribution given the tenuous connection between classification margin theory and continuous action prediction.\n\n**Key differentiations**: From CRAFT — we trace systematic RD frontiers across continuous β values and evaluate under 7 systematic perturbation types, whereas CRAFT uses VIB as curriculum tool for force-modality prioritization with ad-hoc generalization tests. From BC-IB — we operate at visual-token level (not latent fusion), use a 2B VLA (not small BC models), trace continuous RD frontiers (not 4 discrete β values), and evaluate OOD (not in-distribution only). From Wu & Fischer — we extend IB phase transition theory from classification to continuous action prediction under distribution shift, characterizing how critical points depend on task/perturbation properties.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~350h A100 80GB (reduced from 600h via FVIB-R: 1 FVIB-R training + 5 discrete anchor models + LIBERO-Plus evaluation; no MetaWorld)",
+      "gpu_utilization": "Low (~30-35%). Human spends most wall-clock time on theoretical derivations, FVIB-R integration, and RD frontier analysis.",
+      "timeline": "3-4 months (theory development parallelized with implementation)",
+      "team": "1-2 researchers (1 with information theory / generalization bounds experience, 1 with VLA/robotics and openpi familiarity)",
+      "estimated_gpu_cost": "$525-$700 (at ~$1.50/hr A100 spot pricing)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~450h A100 80GB",
+      "gpu_utilization": "Moderate (~55-65%). Agent handles FVIB-R training, discrete anchor validation, and LIBERO-Plus evaluation pipeline.",
+      "timeline": "5-7 weeks",
+      "team": "1 researcher, ~45min/day review of RD frontier progress and theoretical development",
+      "claude_api_cost": "$300-$600 (~120-250 turns/week × 6 weeks × $0.10/turn Opus)",
+      "estimated_gpu_cost": "$675-$900",
+      "risk_note": "FVIB-R's quadratic feature extractor assumption may not hold for π₀'s architecture — the 5 discrete anchor models serve as ground truth to validate FVIB-R approximation quality. If FVIB-R fails, fall back to 10-12 discrete β training runs (~500h total). CRAFT's validated VIB + flow-matching integration de-risks the VIB insertion step."
+    },
+    "auto_research": {
+      "gpu_hours": "~800h A100 80GB (FVIB-R training, discrete anchor validation, comprehensive LIBERO-Plus evaluation, ablations across perturbation types)",
+      "gpu_utilization": "High (~85-90% utilization). Agent runs FVIB-R training, validates against anchor models, schedules parallel LIBERO-Plus evaluations.",
+      "timeline": "10-15 days with 4-6 concurrent A100s",
+      "team": "0 (only initial setup of openpi environment and LIBERO/LIBERO-Plus datasets)",
+      "claude_api_cost": "$400-$700 (~200-350 turns/day × 13 days × $0.10/turn)",
+      "estimated_gpu_cost": "$1,200-$1,600",
+      "speed_bottleneck": "GPU count (need 4-6 A100s); LIBERO-Plus evaluation across 7 perturbation types × 5 difficulty levels is the longest serial dependency (~8h per checkpoint for full evaluation).",
+      "risk_note": "Agent may need human guidance on theoretical derivation steps (generalization bound proofs). Theory work should be done in parallel by human researcher."
+    }
+  },
+  "target_venues": [
+    "AAAI 2027 (deadline expected: Jul-Aug 2026)",
+    "ICLR 2027 (deadline expected: Sep-Oct 2026)",
+    "CoRL 2027 (deadline expected: May 2027, if additional development time needed)"
+  ],
+  "level": "strong",
+  "key_references": [
+    "CRAFT: Adapting VLA Models to Contact-rich Manipulation via Force-aware Curriculum Fine-tuning (arXiv 2602.12532, Feb 2026)",
+    "Phase Transitions for the Information Bottleneck in Representation Learning (Wu & Fischer, ICLR 2020, arXiv 2001.01878)",
+    "Invariance Principle Meets Information Bottleneck for Out-of-Distribution Generalization (Ahuja et al., NeurIPS 2021, arXiv 2106.06607)",
+    "Invariant Information Bottleneck for Domain Generalization (IIB, AAAI 2022, arXiv 2106.06333)",
+    "Rate-Distortion Theoretic Generalization Bounds for Stochastic Learning Algorithms (Sefidgaran et al., COLT 2022, arXiv 2203.02474)",
+    "Flexible Variational Information Bottleneck: Achieving Diverse Compression with a Single Training (FVIB, arXiv 2402.01238, Neurocomputing 2025)",
+    "Exploring the Trade-Off in the Variational Information Bottleneck for Regression with a Single Training Run (FVIB-R, Entropy 2024)",
+    "Rethinking Latent Redundancy in Behavior Cloning: An Information Bottleneck Approach for Robot Manipulation (BC-IB, ICML 2025, arXiv 2502.02853)",
+    "One Token Per Frame: Reconsidering Visual Bandwidth in World Models for VLA Policy (arXiv 2605.07931, 2026)",
+    "Inference Optimal VLMs Need Fewer Visual Tokens and More Parameters (Li et al., ICLR 2025, arXiv 2411.03312)",
+    "Compression as an Adversarial Amplifier Through Decision Space Reduction (Evans et al., arXiv 2604.06954, 2026)",
+    "Less Is More — Until It Breaks: Token Compression and Robustness in VLMs (arXiv 2601.12042, 2026)",
+    "On the Adversarial Robustness of Large Vision-Language Models under Visual Token Compression (arXiv 2601.21531, 2026)",
+    "A Generalized Information Bottleneck Theory of Deep Learning (arXiv 2509.26327, 2025)",
+    "Generalization in Reinforcement Learning with Selective Noise Injection and Information Bottleneck (IBAC, NeurIPS 2019)",
+    "Policy Generalization in Capacity-Limited Reinforcement Learning (Lerch & Sims, ICLR 2019 workshop)",
+    "VFP: Variational Flow-Matching Policy for Multi-Modal Robot Manipulation (arXiv 2508.01622, 2025)",
+    "LIBERO-Plus: A Progressive Robustness Benchmark for Visual-Language-Action Models (CVPR 2026)",
+    "Deep Variational Information Bottleneck (Alemi et al., arXiv 1612.00410, 2017)",
+    "Token Reduction Should Go Beyond Efficiency in Generative Models (Kong et al., arXiv 2505.18227, 2025)",
+    "Rate-Distortion Signatures of Generalization and Information Trade-offs (arXiv 2603.01568, 2026)",
+    "See What Matters: Differentiable Grid Sample Pruning for Generalizable VLA Model (ICML 2026)",
+    "The Better You Learn, The Smarter You Prune: Towards Efficient VLA Models via Differentiable Token Pruning (ICRA 2026)",
+    "Compressor-VLA: Instruction-Guided Visual Token Compression for Efficient Robotic Manipulation (arXiv 2511.18950, 2025)"
+  ],
+  "description": "We investigate when visual compression helps vs. hurts VLA generalization by combining new theoretical results with systematic information bottleneck rate-distortion frontier analysis under distribution shift. Our work has three pillars. First, we derive new generalization bounds connecting IB compression rate to OOD generalization gaps in continuous action prediction, extending rate-distortion generalization theory (Sefidgaran et al., COLT 2022) and the IB+invariance necessity result (Ahuja et al., NeurIPS 2021) to show that the VIB acts as a domain-invariant feature selector: moderate compression collapses environment-specific visual variation while preserving action-relevant invariant features, escaping the margin contraction regime of fixed codecs (Evans et al., 2026). We formalize conditions under which the critical compression threshold β* depends on the ratio of environment-specific to action-relevant visual information. Second, we empirically trace the full IB rate-distortion frontier for π₀ (2B, via openpi) on LIBERO-90 (in-distribution) and LIBERO-Plus (7 perturbation types × 5 difficulty levels, OOD), adopting FVIB-R methodology to enable continuous β sweeping from a single training run. We build on CRAFT's (arXiv 2602.12532) validated VIB + flow-matching integration but with fundamentally different purpose: systematic RD analysis rather than curriculum-based modality balancing. Third, we characterize the phase transition where OOD performance degrades faster than ID performance — extending Wu & Fischer's (ICLR 2020) classification-focused IB phase transition theory to continuous action prediction under distribution shift — and empirically map how β* shifts with task horizon, object diversity, perturbation type, and scene complexity, providing practitioners a principled bandwidth selection recipe backed by both theory and scaling relationships.",
+  "project_name": "rd_optimal_vla_bandwidth",
+  "source": "web_research"
+}
+
+## Reviewer feedback (round 3)
+Issues: ["MAJOR — Elastic Information Bottleneck (EIB, arXiv 2311.03955, 2024) is not cited despite providing a structurally similar error decomposition: target error = source empirical error + source generalization gap (SG, controlled by IB rate) + representation discrepancy (RD, measuring domain shift). The proposed bound Gap_OOD ≤ f(R) + g(D_shift(P_train^Z || P_test^Z)) has the same f(compression) + g(shift) structure. Must cite EIB and explicitly state what is new: extending from the general domain adaptation setting to continuous action prediction in VLAs, where (a) the distortion is MSE over action trajectories not 0-1 classification loss, (b) the compression is over visual tokens not generic features, and (c) the shift is structured across 7 perturbation dimensions.", "MAJOR — The phase transition characterization for continuous action prediction (Pillar 1c) is the most novel theoretical piece but remains the least mathematically specified. The proposal states transitions 'correspond to the inclusion/exclusion of visual feature subspaces' and 'critical β* depends on the ratio of environment-specific to action-relevant visual information,' but does not specify: (i) what mathematical framework will be used (calculus of variations à la Wu & Fischer? spectral analysis of the Fisher information for continuous outputs?), (ii) what the predicted phase structure looks like (how many transitions? smooth or sharp?), (iii) whether the invariant/nuisance decomposition can be formalized without access to the true causal structure. Given the user's explicit emphasis on theoretical analysis, this piece needs more depth.", "MINOR — Ahuja et al. (NeurIPS 2021) claim is overstated. The proposal says they 'prove that the invariance principle alone is insufficient for OOD generalization and that an IB constraint is necessary.' The actual result is more nuanced: IB is 'helpful in combination with invariance,' not proven strictly necessary in isolation. Moreover, their theory applies primarily to classification — they explicitly note that 'for linear classification tasks we need much stronger restrictions' than for regression. Since the proposal targets continuous action prediction (closer to regression), citing Ahuja as direct motivation requires acknowledging this gap.", "MINOR — The proposal should acknowledge that the generalization bound (Pillar 1a) is primarily an extension/instantiation of existing rate-distortion generalization theory (Sefidgaran et al., EIB) to a new domain, rather than framing it as 'deriving new results.' The genuinely new theoretical contributions are (1) the phase transition analysis for continuous outputs and (2) the argument that learned VIB escapes Evans et al.'s fixed-codec margin contraction. Being precise about what is novel theory vs. novel application strengthens the paper."]
+Feedback: The idea has matured significantly across two rounds and is close to passable. Two targeted revisions will bring it over the threshold:
+
+1. **Cite EIB (arXiv 2311.03955) and sharpen the theoretical novelty claim.** EIB already provides the f(compression) + g(shift) decomposition for domain adaptation. Your contribution is NOT the decomposition itself — it is (a) extending this to continuous action prediction where the distortion function, action space structure, and phase transition behavior are fundamentally different from classification, (b) the phase transition characterization showing WHERE the critical β* falls and HOW it shifts with task/perturbation properties, and (c) the argument that learned VIB compression escapes Evans et al.'s fixed-codec margin contraction. Frame Pillar 1a as 'instantiating and extending EIB-style bounds for continuous VLA action prediction,' and position Pillar 1c as the primary theoretical novelty.
+
+2. **Deepen the phase transition theory (Pillar 1c).** This is your strongest novelty claim and needs more mathematical substance. Specify: (a) You will use calculus of variations on the IB Lagrangian with MSE distortion (extending Wu & Fischer's approach from cross-entropy to MSE), analyzing second-order conditions for phase transitions. (b) In the continuous-output setting, phase transitions manifest as rank changes in the representation covariance matrix Σ_Z — each transition adds a new principal component to the bottleneck representation, corresponding to a visual feature subspace becoming action-relevant at that compression level. (c) The critical β* at which an environment-specific feature subspace enters the representation depends on the ratio of its action-relevance (measured by conditional mutual information with actions) to its cross-environment variance — formalizable if you assume a linear-Gaussian generative model as a tractable analytical case, with empirical validation on the full nonlinear VLA. This gives you a concrete theoretical prediction testable against the empirical RD frontier.
+
+3. **Correct the Ahuja et al. characterization.** Replace 'prove IB is necessary' with 'show that combining IB with invariance addresses key failures of invariance alone in classification.' Note that their results require stronger assumptions for classification than regression, and that your extension to continuous action prediction is a meaningful theoretical contribution.
+
+4. **Be transparent about the theory/application boundary.** Pillar 1a (generalization bound) is primarily an application of existing rate-distortion generalization theory to VLAs. Pillar 1b (IB as invariant feature selector) extends IIB to the VLA setting. Pillar 1c (phase transitions in continuous outputs) is genuinely new theory. Framing this honestly is stronger than overclaiming — reviewers will respect the clarity.
+
+## Instructions
+- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method (approach / resource_estimate / key_references). Do not jump straight to fixing the method if the underlying problem framing needs correction.
+- Address each issue specifically.
+
+## 深度调研要求（每一轮修订都必须执行）
+
+不要简单地'打补丁'——每一轮修订都是重新审视和深化这个 idea 的机会。
+
+1. **深度搜索**：针对 reviewer 指出的每个问题，建议用 2-3 种不同的搜索查询调研。
+   - 搜索最新的相关论文（arXiv, conference proceedings）
+   - 搜索 benchmark/leaderboard 确认当前 SOTA
+   - 搜索可能遗漏的相关工作和 concurrent work
+
+2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文的 abstract 和方法部分，
+   不要只依赖搜索摘要。形成你自己对领域现状的独立判断。
+
+3. **深度思考**：在修订之前，先独立思考以下问题：
+   - 这个 idea 的核心假设是否仍然成立？
+   - reviewer 的批评是否揭示了更深层的问题？
+   - 有没有更好的 framing 或 approach 来解决同一个核心问题？
+   - 修订后的 idea 相比上一版有什么本质性的改进？
+
+4. **避免表面修订**：如果你发现自己只是在换措辞或补充细节而没有实质改进，
+   考虑是否需要 major revision 或 pivot。反复的 minor fix 不会拯救一个根基有问题的 idea。
+
+## 针对 Review 意见的定向搜索
+
+对 reviewer 指出的每个问题，执行以下搜索流程：
+
+1. **如果 reviewer 说'已有类似工作'**：
+   - 搜索 reviewer 提到的论文，用 WebFetch 实际阅读
+   - 搜索该论文的 cited-by，找到后续跟进工作
+   - 明确你的 idea 与这些工作的差异化点——如果差异化不够，必须 pivot
+
+2. **如果 reviewer 说'SOTA 过时'**：
+   - 用 Papers With Code 查看当前排行榜
+   - 搜索过去 6 个月的最新方法
+   - 更新你的 landscape 和 baseline
+
+3. **如果 reviewer 说'可行性有问题'**：
+   - 搜索类似规模实验的实际成本和时间线
+   - 搜索 GitHub 上是否有可复用的实现
+   - 搜索相关数据集/模型的可获取性
+
+4. **如果 reviewer 说'novelty 不足'**：
+   - 对核心方法尽量做 3-5 种不同关键词组合的搜索
+   - 搜索相邻领域是否有类似思路
+   - 如果确实 novelty 不足，考虑 major revision 或 pivot
+
+- Use WebSearch to find updated information if the reviewer flagged outdated claims.
+- You have full freedom in how much to change:
+  - Minor fix: if only specific details are wrong, correct them and keep everything else.
+  - Major revision: if the approach is fundamentally flawed but the core problem is valid, you may redesign the approach entirely.
+  - Pivot: if the reviewer's feedback reveals that the core problem itself is invalid (e.g., the gap no longer exists), you may propose a RELATED but substantially different idea that builds on the same research area. This is preferred over forcing a doomed idea to pass review.
+- The output replaces the original idea (same tracking ID). Whether you make a small tweak or a full pivot, output a COMPLETE JSON object with ALL fields filled.
+- In the output JSON, include a "change_type" field with one of: "minor", "major", or "pivot" to indicate the scope of your changes.
+- Output the revised idea as a COMPLETE JSON object (same schema as original, plus "change_type").
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "b67246ae-6153-40d7-8130-9a3708fd54b2",
+  "type": "user",
+  "uuid": "cd626f3c-9e26-4a85-925e-f90782f2dc7f",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-13T06:54:41.409Z_
+
+```json
+{
+  "parentUuid": "cd626f3c-9e26-4a85-925e-f90782f2dc7f",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "a277328c-3cdb-40c0-a79b-94892b5325ca",
+  "timestamp": "2026-05-13T06:54:41.409Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-13T06:54:41.409Z_
+
+```json
+{
+  "parentUuid": "a277328c-3cdb-40c0-a79b-94892b5325ca",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "65e6bccf-df00-4360-ac3a-a8c119922a6d",
+  "timestamp": "2026-05-13T06:54:41.409Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-13 (UTC).**  ## Original idea {   \"title\": \"Generalization-Optimal Visual Bandwidth for VLAs: Information Bottlene…",
+  "leafUuid": "65e6bccf-df00-4360-ac3a-a8c119922a6d",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise phase transition theory and clarify novelty claims for VLA bandwidth optimization",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-13T06:54:49.969Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the reviewer feedback carefully before doing any research:
+
+1. **MAJOR — EIB (arXiv 2311.03955)**: Need to cite this paper which has a similar f(compression) + g(shift) decomposition. Must differentiate our contribution.
+
+2. **MAJOR — Phase transition characterization needs more math**: The reviewer wants specific mathematical frameworks - calculus of variations with MSE distortion, rank changes in representation covariance matrix, concrete predictions.
+
+3. **MINOR — Ahuja et al. overclaim**: Need to soften the "prove IB is necessary" claim.
+
+
+4. **MINOR — Theory/application boundary transparency**: I should be clearer about distinguishing what's genuinely novel theory versus what's a novel application of existing theory.
+
+Now I'm going to research the key papers mentioned, particularly EIB, and look for other relevant work in this space.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "65e6bccf-df00-4360-ac3a-a8c119922a6d",
+  "isSidechain": false,
+  "requestId": "req_011Caz8T9GrWx5jVNHApjPwi",
+  "type": "assistant",
+  "uuid": "c153553f-d37f-42e6-9278-fb58e75d248a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XTdFNfnvwWKC7ovhYvkc2M",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13290,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 321,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13290,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 321,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 13290,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13290
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-13T06:54:50.046Z_
+
+I'll research the key papers flagged by the reviewer, starting with the Elastic Information Bottleneck (EIB) and related work on IB phase transitions for continuous outputs.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c153553f-d37f-42e6-9278-fb58e75d248a",
+  "isSidechain": false,
+  "requestId": "req_011Caz8T9GrWx5jVNHApjPwi",
+  "type": "assistant",
+  "uuid": "7003d62c-0277-4f72-9fd9-e060b9693191",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XTdFNfnvwWKC7ovhYvkc2M",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13290,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 321,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13290,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 321,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 13290,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13290
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-13T06:54:50.143Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01VBu2KGXfoghA3FW4uhkgbU`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7003d62c-0277-4f72-9fd9-e060b9693191",
+  "isSidechain": false,
+  "requestId": "req_011Caz8T9GrWx5jVNHApjPwi",
+  "type": "assistant",
+  "uuid": "cde6effa-2595-44c1-94ba-8610f2a22f6f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XTdFNfnvwWKC7ovhYvkc2M",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13290,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 321,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13290,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 321,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 13290,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13290
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-13T06:54:50.149Z_
+
+<details><summary>↩ Tool result · `toolu_01VBu2KGXfoghA3FW4uhkgbU`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cde6effa-2595-44c1-94ba-8610f2a22f6f",
+  "isSidechain": false,
+  "promptId": "b67246ae-6153-40d7-8130-9a3708fd54b2",
+  "type": "user",
+  "uuid": "84ac5006-d8b9-4b5f-a7e3-9626cba8dc5f",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "cde6effa-2595-44c1-94ba-8610f2a22f6f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-13T06:54:52.975Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me now research the key papers and topics flagged by the reviewer. I'll do multiple searches in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "84ac5006-d8b9-4b5f-a7e3-9626cba8dc5f",
+  "isSidechain": false,
+  "requestId": "req_011Caz8TnYhtQLgnsNPMSZJs",
+  "type": "assistant",
+  "uuid": "fa6c9781-c8af-4824-9477-cb5506251606",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HU9eBHPRVXVFYAYMZVWDRs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1340,
+      "cache_read_input_tokens": 25131,
+      "output_tokens": 371,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1340,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 371,
+          "cache_read_input_tokens": 25131,
+          "cache_creation_input_tokens": 1340,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1340
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-13T06:54:53.503Z_
+
+Let me research the key papers and topics flagged by the reviewer in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fa6c9781-c8af-4824-9477-cb5506251606",
+  "isSidechain": false,
+  "requestId": "req_011Caz8TnYhtQLgnsNPMSZJs",
+  "type": "assistant",
+  "uuid": "24b6d2d9-7165-4339-8db8-8783c367048d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HU9eBHPRVXVFYAYMZVWDRs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1340,
+      "cache_read_input_tokens": 25131,
+      "output_tokens": 371,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1340,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 371,
+          "cache_read_input_tokens": 25131,
+          "cache_creation_input_tokens": 1340,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1340
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-13T06:54:55.815Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_0162ZSMQsKp8cnHQVZH8vpYt`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2311.03955",
+  "prompt": "Extract the full abstract, the main theoretical contributions, and the key equation/bound structure of the Elastic Information Bottleneck (EIB) paper. What is their error decomposition? How do they decompose target error into source terms and domain shift terms? What assumptions do they make? Is this for classification or also regression/continuous outputs?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "24b6d2d9-7165-4339-8db8-8783c367048d",
+  "isSidechain": false,
+  "requestId": "req_011Caz8TnYhtQLgnsNPMSZJs",
+  "type": "assistant",
+  "uuid": "4ce194b0-1b2e-4f7c-aff7-79516183e6f5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HU9eBHPRVXVFYAYMZVWDRs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1340,
+      "cache_read_input_tokens": 25131,
+      "output_tokens": 371,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1340,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 371,
+          "cache_read_input_tokens": 25131,
+          "cache_creation_input_tokens": 1340,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1340
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-13T06:54:56.306Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HCvYCbqmEjWvZz5wMss5MQ`</summary>
+
+```json
+{
+  "query": "Elastic Information Bottleneck domain adaptation cited by follow-up work 2024 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4ce194b0-1b2e-4f7c-aff7-79516183e6f5",
+  "isSidechain": false,
+  "requestId": "req_011Caz8TnYhtQLgnsNPMSZJs",
+  "type": "assistant",
+  "uuid": "0caee05e-998f-4219-a4c3-cb554694c73d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HU9eBHPRVXVFYAYMZVWDRs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1340,
+      "cache_read_input_tokens": 25131,
+      "output_tokens": 371,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1340,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 371,
+          "cache_read_input_tokens": 25131,
+          "cache_creation_input_tokens": 1340,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1340
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-13T06:54:56.841Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Deqc35xGJtG4rypgDZij9V`</summary>
+
+```json
+{
+  "query": "information bottleneck phase transitions continuous output regression MSE distortion calculus of variations"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0caee05e-998f-4219-a4c3-cb554694c73d",
+  "isSidechain": false,
+  "requestId": "req_011Caz8TnYhtQLgnsNPMSZJs",
+  "type": "assistant",
+  "uuid": "cf951248-4637-46ec-85d5-cd03bfb3d733",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HU9eBHPRVXVFYAYMZVWDRs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1340,
+      "cache_read_input_tokens": 25131,
+      "output_tokens": 371,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1340,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 371,
+          "cache_read_input_tokens": 25131,
+          "cache_creation_input_tokens": 1340,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1340
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-13T06:54:57.641Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0158H2g6mkwJyi43VgYYLfLB`</summary>
+
+```json
+{
+  "query": "Wu Fischer IB phase transitions representation covariance rank change spectral analysis 2020"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cf951248-4637-46ec-85d5-cd03bfb3d733",
+  "isSidechain": false,
+  "requestId": "req_011Caz8TnYhtQLgnsNPMSZJs",
+  "type": "assistant",
+  "uuid": "051b787d-6f17-47db-8118-81cd5c2109fe",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HU9eBHPRVXVFYAYMZVWDRs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1340,
+      "cache_read_input_tokens": 25131,
+      "output_tokens": 371,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1340,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 371,
+          "cache_read_input_tokens": 25131,
+          "cache_creation_input_tokens": 1340,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1340
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-13T06:55:00.360Z_
+
+<details><summary>↩ Tool result · `toolu_0162ZSMQsKp8cnHQVZH8vpYt`</summary>
+
+```text
+# Elastic Information Bottleneck (EIB) Paper Summary
+
+## Full Abstract
+The paper studies how information bottleneck methods generalize in transfer learning scenarios. It decomposes target error into three components: source empirical error, source generalization gap (SG), and representation discrepancy (RD). The authors prove that Deterministic Information Bottleneck (DIB) has tighter SG bounds than IB, but larger RD. To balance this trade-off, they propose EIB, which interpolates between IB and DIB regularizers and guarantees a Pareto frontier.
+
+## Error Decomposition
+The target error decomposes into:
+1. **Source empirical error** - training error on source domain
+2. **Source generalization gap (SG)** - gap between train and test on source
+3. **Representation discrepancy (RD)** - domain shift between source and target
+
+## Main Theoretical Contributions
+- Proves DIB's generalization gap is tighter than IB's
+- Shows DIB has larger representation discrepancy than IB
+- Demonstrates EIB creates a Pareto frontier balancing SG vs RD trade-off
+
+## Key Equations/Bounds
+The abstract does not provide explicit mathematical formulations—only qualitative comparisons of bound tightness between methods.
+
+## Assumptions & Scope
+The work assumes training and test data come from **different distributions** (transfer learning), addressing a limitation of prior IB/DIB work. The application domain appears to be **classification**, though the abstract doesn't explicitly exclude regression.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4ce194b0-1b2e-4f7c-aff7-79516183e6f5",
+  "isSidechain": false,
+  "promptId": "b67246ae-6153-40d7-8130-9a3708fd54b2",
+  "type": "user",
+  "uuid": "e4d0ee22-225f-402d-a1b1-87faaf404a98",
+  "toolUseResult": {
+    "bytes": 46466,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Elastic Information Bottleneck (EIB) Paper Summary\n\n## Full Abstract\nThe paper studies how information bottleneck methods generalize in transfer learning scenarios. It decomposes target error into three components: source empirical error, source generalization gap (SG), and representation discrepancy (RD). The authors prove that Deterministic Information Bottleneck (DIB) has tighter SG bounds than IB, but larger RD. To balance this trade-off, they propose EIB, which interpolates between IB and DIB regularizers and guarantees a Pareto frontier.\n\n## Error Decomposition\nThe target error decomposes into:\n1. **Source empirical error** - training error on source domain\n2. **Source generalization gap (SG)** - gap between train and test on source\n3. **Representation discrepancy (RD)** - domain shift between source and target\n\n## Main Theoretical Contributions\n- Proves DIB's generalization gap is tighter than IB's\n- Shows DIB has larger representation discrepancy than IB\n- Demonstrates EIB creates a Pareto frontier balancing SG vs RD trade-off\n\n## Key Equations/Bounds\nThe abstract does not provide explicit mathematical formulations—only qualitative comparisons of bound tightness between methods.\n\n## Assumptions & Scope\nThe work assumes training and test data come from **different distributions** (transfer learning), addressing a limitation of prior IB/DIB work. The application domain appears to be **classification**, though the abstract doesn't explicitly exclude regression.",
+    "durationMs": 4541,
+    "url": "https://arxiv.org/abs/2311.03955"
+  },
+  "sourceToolAssistantUUID": "4ce194b0-1b2e-4f7c-aff7-79516183e6f5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-13T06:55:03.594Z_
+
+<details><summary>↩ Tool result · `toolu_01HCvYCbqmEjWvZz5wMss5MQ`</summary>
+
+```text
+Web search results for query: "Elastic Information Bottleneck domain adaptation cited by follow-up work 2024 2025 2026"
+
+Links: [{"title":"Causally-Aware Information Bottleneck for Domain Adaptation","url":"https://arxiv.org/html/2601.04361v1"},{"title":"Elastic Information Bottleneck","url":"https://www.mdpi.com/2227-7390/10/18/3352"},{"title":"Information Bottleneck-Based Domain Adaptation for ...","url":"https://par.nsf.gov/servlets/purl/10632687"},{"title":"Causally-Aware Information Bottleneck for Domain Adapta- tion","url":"https://arxiv.org/pdf/2601.04361"},{"title":"[2601.04361] Causally-Aware Information Bottleneck for Domain Adaptation","url":"https://arxiv.org/abs/2601.04361"},{"title":"Scale-invariant information bottleneck for domain generalization - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0957417425032439"},{"title":"[2311.03955] Elastic Information Bottleneck","url":"https://arxiv.org/abs/2311.03955"},{"title":"GitHub - donghao51/Awesome-Multimodal-Adaptation: [TPAMI 2026] Advances in Multimodal Adaptation and Generalization: From Traditional Approaches to Foundation Models · GitHub","url":"https://github.com/donghao51/Awesome-Multimodal-Adaptation"},{"title":"Information Bottleneck Domain Adaptation with Privileged ...","url":"https://vision.csee.wvu.edu/~motiian/papers/IBDAPI.pdf"},{"title":"The Supervised Information Bottleneck","url":"https://www.mdpi.com/1099-4300/27/5/452"}]
+
+Based on the search results, I found relevant follow-up work that cites information bottleneck methods for domain adaptation in 2024-2026:
+
+## Key Follow-up Work Citing Information Bottleneck Methods
+
+**Recent Research Building on IB for Domain Adaptation:**
+
+Invariant Information Bottleneck (IIB) casts invariant causal prediction in mutual-information terms and regularizes I(Z;X) to avoid pseudo-invariant and geometrically skewed shortcuts, delivering tractable variational losses and consistent out-of-distribution gains (Li et al. 2022).
+
+A recent 2026 paper directly extending this work is a causally-aware information bottleneck approach that tackles domain adaptation in causal systems, where the target variable is observed in the source domain but entirely missing in the target domain.
+
+**Related Domain Generalization Approaches:**
+
+Unlike existing approaches such as IBIRM and IIB (Li et al., 2022), which rely solely on invariant information for prediction, newer methods adaptively capture global invariant information while preserving finer-grained details. This work appeared in September 2025.
+
+Additionally, a variational information bottleneck (VIB)-assisted domain adaptation approach proposes pre-training a VIB-based Quality of Service estimator using slice-specific inputs shared across source domain slices, which target domain slices can then deploy to predict QoS.
+
+These papers demonstrate the continued relevance of information bottleneck theory for addressing domain adaptation challenges through 2025-2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0caee05e-998f-4219-a4c3-cb554694c73d",
+  "isSidechain": false,
+  "promptId": "b67246ae-6153-40d7-8130-9a3708fd54b2",
+  "type": "user",
+  "uuid": "cbb759d7-658e-41c0-8b35-fd1e013e8f3d",
+  "toolUseResult": {
+    "query": "Elastic Information Bottleneck domain adaptation cited by follow-up work 2024 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VRVbXuBtoYCLY73DNnQLxk",
+        "content": [
+          {
+            "title": "Causally-Aware Information Bottleneck for Domain Adaptation",
+            "url": "https://arxiv.org/html/2601.04361v1"
+          },
+          {
+            "title": "Elastic Information Bottleneck",
+            "url": "https://www.mdpi.com/2227-7390/10/18/3352"
+          },
+          {
+            "title": "Information Bottleneck-Based Domain Adaptation for ...",
+            "url": "https://par.nsf.gov/servlets/purl/10632687"
+          },
+          {
+            "title": "Causally-Aware Information Bottleneck for Domain Adapta- tion",
+            "url": "https://arxiv.org/pdf/2601.04361"
+          },
+          {
+            "title": "[2601.04361] Causally-Aware Information Bottleneck for Domain Adaptation",
+            "url": "https://arxiv.org/abs/2601.04361"
+          },
+          {
+            "title": "Scale-invariant information bottleneck for domain generalization - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S0957417425032439"
+          },
+          {
+            "title": "[2311.03955] Elastic Information Bottleneck",
+            "url": "https://arxiv.org/abs/2311.03955"
+          },
+          {
+            "title": "GitHub - donghao51/Awesome-Multimodal-Adaptation: [TPAMI 2026] Advances in Multimodal Adaptation and Generalization: From Traditional Approaches to Foundation Models · GitHub",
+            "url": "https://github.com/donghao51/Awesome-Multimodal-Adaptation"
+          },
+          {
+            "title": "Information Bottleneck Domain Adaptation with Privileged ...",
+            "url": "https://vision.csee.wvu.edu/~motiian/papers/IBDAPI.pdf"
+          },
+          {
+            "title": "The Supervised Information Bottleneck",
+            "url": "https://www.mdpi.com/1099-4300/27/5/452"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant follow-up work that cites information bottleneck methods for domain adaptation in 2024-2026:\n\n## Key Follow-up Work Citing Information Bottleneck Methods\n\n**Recent Research Building on IB for Domain Adaptation:**\n\nInvariant Information Bottleneck (IIB) casts invariant causal prediction in mutual-information terms and regularizes I(Z;X) to avoid pseudo-invariant and geometrically skewed shortcuts, delivering tractable variational losses and consistent out-of-distribution gains (Li et al. 2022).\n\nA recent 2026 paper directly extending this work is a causally-aware information bottleneck approach that tackles domain adaptation in causal systems, where the target variable is observed in the source domain but entirely missing in the target domain.\n\n**Related Domain Generalization Approaches:**\n\nUnlike existing approaches such as IBIRM and IIB (Li et al., 2022), which rely solely on invariant information for prediction, newer methods adaptively capture global invariant information while preserving finer-grained details. This work appeared in September 2025.\n\nAdditionally, a variational information bottleneck (VIB)-assisted domain adaptation approach proposes pre-training a VIB-based Quality of Service estimator using slice-specific inputs shared across source domain slices, which target domain slices can then deploy to predict QoS.\n\nThese papers demonstrate the continued relevance of information bottleneck theory for addressing domain adaptation challenges through 2025-2026."
+    ],
+    "durationSeconds": 7.282699184000001
+  },
+  "sourceToolAssistantUUID": "0caee05e-998f-4219-a4c3-cb554694c73d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-13T06:55:03.958Z_
+
+<details><summary>↩ Tool result · `toolu_0158H2g6mkwJyi43VgYYLfLB`</summary>
+
+```text
+Web search results for query: "Wu Fischer IB phase transitions representation covariance rank change spectral analysis 2020"
+
+Links: [{"title":"[2001.01878] Phase Transitions for the Information Bottleneck in Representation Learning","url":"https://arxiv.org/abs/2001.01878"},{"title":"ICLR: Phase Transitions for the Information Bottleneck in Representation Learning","url":"https://iclr.cc/virtual_2020/poster_HJloElBYvB.html"},{"title":"PHASE TRANSITIONS FOR THE INFORMATION BOTTLE","url":"https://openreview.net/pdf?id=HJloElBYvB"},{"title":"Phase Transitions for the Information Bottleneck in Representation Learning | OpenReview","url":"https://openreview.net/forum?id=HJloElBYvB"},{"title":"(PDF) Phase Transitions for the Information Bottleneck in Representation Learning","url":"https://www.researchgate.net/publication/338488937_Phase_Transitions_for_the_Information_Bottleneck_in_Representation_Learning"},{"title":"Spiked Cross-Covariance Models Overview","url":"https://www.emergentmind.com/topics/spiked-cross-covariance-models"},{"title":"[1702.06435] Phase Transitions of Spectral Initialization for High-Dimensional Nonconvex Estimation","url":"https://ar5iv.labs.arxiv.org/html/1702.06435"},{"title":"Convergence of covariance and spectral density estimates for high-dimensional functional time series","url":"https://arxiv.org/html/2512.13310"},{"title":"Phase transitions and optimal algorithms in high- ...","url":"https://arxiv.org/pdf/1610.02918"},{"title":"The Spectral Edge Thesis: A Mathematical Framework for Intra-Signal Phase Transitions in Neural Network Training From Axioms to Flow Equations","url":"https://arxiv.org/html/2603.28964"}]
+
+Based on the web search results, I found relevant information about the paper you're looking for.
+
+The paper "Phase Transitions for the Information Bottleneck in Representation Learning" was authored by Tailin Wu and Ian Fischer (among others including Isaac Chuang and Max Tegmark), published in January 2020.
+
+The research focuses on understanding phase transitions in the Information Bottleneck (IB) framework. Using second-order calculus of variations, the authors derive a formula that provides a practical condition for IB phase transitions, and draw its connection with the Fisher information matrix for parameterized models.
+
+The work reveals that each IB phase transition is finding a component of maximum (nonlinear) correlation between X and Y orthogonal to the learned representation, in close analogy with canonical-correlation analysis (CCA) in linear settings.
+
+The paper introduces a definition for IB phase transitions as a qualitative change of the IB loss landscape, and shows that the transitions correspond to the onset of learning new classes. The theory and algorithm are verified to accurately predict phase transitions in categorical datasets, predict the onset of learning new classes and class difficulty in MNIST, and predict prominent phase transitions in CIFAR10.
+
+The paper is available on arXiv (2001.01878) and was presented at ICLR 2020.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "051b787d-6f17-47db-8118-81cd5c2109fe",
+  "isSidechain": false,
+  "promptId": "b67246ae-6153-40d7-8130-9a3708fd54b2",
+  "type": "user",
+  "uuid": "9a1adb98-001f-45a8-817d-e1eed484ce52",
+  "toolUseResult": {
+    "query": "Wu Fischer IB phase transitions representation covariance rank change spectral analysis 2020",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017YQTiyGfk1w6K5AUJNVgyU",
+        "content": [
+          {
+            "title": "[2001.01878] Phase Transitions for the Information Bottleneck in Representation Learning",
+            "url": "https://arxiv.org/abs/2001.01878"
+          },
+          {
+            "title": "ICLR: Phase Transitions for the Information Bottleneck in Representation Learning",
+            "url": "https://iclr.cc/virtual_2020/poster_HJloElBYvB.html"
+          },
+          {
+            "title": "PHASE TRANSITIONS FOR THE INFORMATION BOTTLE",
+            "url": "https://openreview.net/pdf?id=HJloElBYvB"
+          },
+          {
+            "title": "Phase Transitions for the Information Bottleneck in Representation Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=HJloElBYvB"
+          },
+          {
+            "title": "(PDF) Phase Transitions for the Information Bottleneck in Representation Learning",
+            "url": "https://www.researchgate.net/publication/338488937_Phase_Transitions_for_the_Information_Bottleneck_in_Representation_Learning"
+          },
+          {
+            "title": "Spiked Cross-Covariance Models Overview",
+            "url": "https://www.emergentmind.com/topics/spiked-cross-covariance-models"
+          },
+          {
+            "title": "[1702.06435] Phase Transitions of Spectral Initialization for High-Dimensional Nonconvex Estimation",
+            "url": "https://ar5iv.labs.arxiv.org/html/1702.06435"
+          },
+          {
+            "title": "Convergence of covariance and spectral density estimates for high-dimensional functional time series",
+            "url": "https://arxiv.org/html/2512.13310"
+          },
+          {
+            "title": "Phase transitions and optimal algorithms in high- ...",
+            "url": "https://arxiv.org/pdf/1610.02918"
+          },
+          {
+            "title": "The Spectral Edge Thesis: A Mathematical Framework for Intra-Signal Phase Transitions in Neural Network Training From Axioms to Flow Equations",
+            "url": "https://arxiv.org/html/2603.28964"
+          }
+        ]
+      },
+      "Based on the web search results, I found relevant information about the paper you're looking for.\n\nThe paper \"Phase Transitions for the Information Bottleneck in Representation Learning\" was authored by Tailin Wu and Ian Fischer (among others including Isaac Chuang and Max Tegmark), published in January 2020.\n\nThe research focuses on understanding phase transitions in the Information Bottleneck (IB) framework. Using second-order calculus of variations, the authors derive a formula that provides a practical condition for IB phase transitions, and draw its connection with the Fisher information matrix for parameterized models.\n\nThe work reveals that each IB phase transition is finding a component of maximum (nonlinear) correlation between X and Y orthogonal to the learned representation, in close analogy with canonical-correlation analysis (CCA) in linear settings.\n\nThe paper introduces a definition for IB phase transitions as a qualitative change of the IB loss landscape, and shows that the transitions correspond to the onset of learning new classes. The theory and algorithm are verified to accurately predict phase transitions in categorical datasets, predict the onset of learning new classes and class difficulty in MNIST, and predict prominent phase transitions in CIFAR10.\n\nThe paper is available on arXiv (2001.01878) and was presented at ICLR 2020."
+    ],
+    "durationSeconds": 6.314582678999999
+  },
+  "sourceToolAssistantUUID": "051b787d-6f17-47db-8118-81cd5c2109fe",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-13 (UTC).**  ## Original idea {   \"title\": \"Generalization-Optimal Visual Bandwidth for VLAs: Information Bottlene…",
+  "leafUuid": "9a1adb98-001f-45a8-817d-e1eed484ce52",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise phase transition theory and clarify novelty claims for VLA bandwidth optimization",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e"
+}
+```
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-13T06:55:04.722Z_
+
+<details><summary>↩ Tool result · `toolu_01Deqc35xGJtG4rypgDZij9V`</summary>
+
+```text
+Web search results for query: "information bottleneck phase transitions continuous output regression MSE distortion calculus of variations"
+
+Links: [{"title":"[2001.01878] Phase Transitions for the Information Bottleneck in Representation Learning","url":"https://arxiv.org/abs/2001.01878"},{"title":"ICLR: Phase Transitions for the Information Bottleneck in Representation Learning","url":"https://iclr.cc/virtual_2020/poster_HJloElBYvB.html"},{"title":"Phase Transitions for the Information Bottleneck in Representation Learning | OpenReview","url":"https://openreview.net/forum?id=HJloElBYvB"},{"title":"Information bottleneck method - Wikipedia","url":"https://en.wikipedia.org/wiki/Information_bottleneck_method"},{"title":"1 The Information Bottleneck Problem and Its Applications in Machine Learning","url":"https://arxiv.org/pdf/2004.14941"},{"title":"Information Bottleneck for Gaussian Variables","url":"https://jmlr.org/papers/volume6/chechik05a/chechik05a.pdf"},{"title":"PHASE TRANSITIONS FOR THE INFORMATION BOTTLE","url":"https://openreview.net/pdf?id=HJloElBYvB"},{"title":"A GENERALIZED INFORMATION BOTTLENECK THEORY OF DEEP LEARNING","url":"https://arxiv.org/pdf/2509.26327"},{"title":"Information Bottleneck","url":"https://www.emergentmind.com/topics/information-bottleneck"},{"title":"Cauchy-Schwarz Divergence Information Bottleneck for Regression","url":"https://arxiv.org/html/2404.17951v1"}]
+
+Based on the web search results, I found several highly relevant academic sources on information bottleneck phase transitions and related topics:
+
+## Key Findings
+
+**Phase Transitions in Information Bottleneck:**
+
+The Information Bottleneck (IB) objective exhibits multiple phase transitions where sudden jumps of prediction accuracy are observed with increasing β, defined on the encoding distribution p(z|x) for input X, target Y and representation Z.
+
+IB phase transitions are defined as a qualitative change of the IB loss landscape corresponding to the onset of learning new classes, and using second-order calculus of variations, a practical condition for IB phase transitions can be derived with connections to the Fisher information matrix.
+
+**Continuous Output and Gaussian Variables:**
+
+For jointly multivariate Gaussian variables, the problem becomes analytically tractable, allowing explicit optimization of the target function with respect to the mapping p(t|x) and obtaining a closed form solution of optimal dimensionality reduction. Gaussian variables exhibit dimension-related phase transitions, though the general solution for continuous T yields non-linear coupled eigenvalue problems.
+
+**MSE Loss and Distortion:**
+
+For regression cases, mutual information in the IB is expressed in terms of Kullback-Leibler divergence, which corresponds to prediction based on mean squared error (MSE) loss with Gaussian assumption. The use of MSE loss for continuous targets provides only approximate mutual information estimates.
+
+**Rate-Distortion Connection:**
+
+The information bottleneck can be viewed as a rate distortion problem with a distortion function measuring how well Y is predicted from a compressed representation, providing a general iterative algorithm for solving the information bottleneck trade-off.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cf951248-4637-46ec-85d5-cd03bfb3d733",
+  "isSidechain": false,
+  "promptId": "b67246ae-6153-40d7-8130-9a3708fd54b2",
+  "type": "user",
+  "uuid": "096210a0-b5a4-4dd7-8e62-5b215236e51d",
+  "toolUseResult": {
+    "query": "information bottleneck phase transitions continuous output regression MSE distortion calculus of variations",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01XTAdSY35rqvDLjQrHbGW2U",
+        "content": [
+          {
+            "title": "[2001.01878] Phase Transitions for the Information Bottleneck in Representation Learning",
+            "url": "https://arxiv.org/abs/2001.01878"
+          },
+          {
+            "title": "ICLR: Phase Transitions for the Information Bottleneck in Representation Learning",
+            "url": "https://iclr.cc/virtual_2020/poster_HJloElBYvB.html"
+          },
+          {
+            "title": "Phase Transitions for the Information Bottleneck in Representation Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=HJloElBYvB"
+          },
+          {
+            "title": "Information bottleneck method - Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/Information_bottleneck_method"
+          },
+          {
+            "title": "1 The Information Bottleneck Problem and Its Applications in Machine Learning",
+            "url": "https://arxiv.org/pdf/2004.14941"
+          },
+          {
+            "title": "Information Bottleneck for Gaussian Variables",
+            "url": "https://jmlr.org/papers/volume6/chechik05a/chechik05a.pdf"
+          },
+          {
+            "title": "PHASE TRANSITIONS FOR THE INFORMATION BOTTLE",
+            "url": "https://openreview.net/pdf?id=HJloElBYvB"
+          },
+          {
+            "title": "A GENERALIZED INFORMATION BOTTLENECK THEORY OF DEEP LEARNING",
+            "url": "https://arxiv.org/pdf/2509.26327"
+          },
+          {
+            "title": "Information Bottleneck",
+            "url": "https://www.emergentmind.com/topics/information-bottleneck"
+          },
+          {
+            "title": "Cauchy-Schwarz Divergence Information Bottleneck for Regression",
+            "url": "https://arxiv.org/html/2404.17951v1"
+          }
+        ]
+      },
+      "Based on the web search results, I found several highly relevant academic sources on information bottleneck phase transitions and related topics:\n\n## Key Findings\n\n**Phase Transitions in Information Bottleneck:**\n\nThe Information Bottleneck (IB) objective exhibits multiple phase transitions where sudden jumps of prediction accuracy are observed with increasing β, defined on the encoding distribution p(z|x) for input X, target Y and representation Z.\n\nIB phase transitions are defined as a qualitative change of the IB loss landscape corresponding to the onset of learning new classes, and using second-order calculus of variations, a practical condition for IB phase transitions can be derived with connections to the Fisher information matrix.\n\n**Continuous Output and Gaussian Variables:**\n\nFor jointly multivariate Gaussian variables, the problem becomes analytically tractable, allowing explicit optimization of the target function with respect to the mapping p(t|x) and obtaining a closed form solution of optimal dimensionality reduction. Gaussian variables exhibit dimension-related phase transitions, though the general solution for continuous T yields non-linear coupled eigenvalue problems.\n\n**MSE Loss and Distortion:**\n\nFor regression cases, mutual information in the IB is expressed in terms of Kullback-Leibler divergence, which corresponds to prediction based on mean squared error (MSE) loss with Gaussian assumption. The use of MSE loss for continuous targets provides only approximate mutual information estimates.\n\n**Rate-Distortion Connection:**\n\nThe information bottleneck can be viewed as a rate distortion problem with a distortion function measuring how well Y is predicted from a compressed representation, providing a general iterative algorithm for solving the information bottleneck trade-off."
+    ],
+    "durationSeconds": 7.876124573999998
+  },
+  "sourceToolAssistantUUID": "cf951248-4637-46ec-85d5-cd03bfb3d733",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24 · 2026-05-13T06:55:09.062Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I now have a basic understanding of the EIB paper and Wu & Fischer's work. Let me now dig deeper into:
+1. The actual EIB paper content (read the full paper)
+2. The Gaussian IB solution (which is relevant for the linear-Gaussian analytical case)
+3. The Cauchy-Schwarz IB for regression paper
+4. Any work on IB phase transitions beyond classification
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "096210a0-b5a4-4dd7-8e62-5b215236e51d",
+  "isSidechain": false,
+  "requestId": "req_011Caz8UriWJ2Dq3tUA5q6Zv",
+  "type": "assistant",
+  "uuid": "ef94fe32-a052-40c9-9c3a-9f30a87c7dc9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015WHzQzyBotmLtnZj1vTnnN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 829,
+      "cache_creation_input_tokens": 2446,
+      "cache_read_input_tokens": 26471,
+      "output_tokens": 626,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2446,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 829,
+          "output_tokens": 626,
+          "cache_read_input_tokens": 26471,
+          "cache_creation_input_tokens": 2446,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2446
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25 · 2026-05-13T06:55:09.956Z_
+
+Let me now dig deeper into the EIB paper, the Gaussian IB solution, and the Cauchy-Schwarz IB for regression — plus check for any recent work on IB for continuous/regression outputs.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ef94fe32-a052-40c9-9c3a-9f30a87c7dc9",
+  "isSidechain": false,
+  "requestId": "req_011Caz8UriWJ2Dq3tUA5q6Zv",
+  "type": "assistant",
+  "uuid": "51817462-b43e-4ace-9d0d-d96074c88dda",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015WHzQzyBotmLtnZj1vTnnN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 829,
+      "cache_creation_input_tokens": 2446,
+      "cache_read_input_tokens": 26471,
+      "output_tokens": 626,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2446,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 829,
+          "output_tokens": 626,
+          "cache_read_input_tokens": 26471,
+          "cache_creation_input_tokens": 2446,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2446
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-13T06:55:11.920Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01TcDviesN2kpNyuUz1CaX7Z`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2311.03955",
+  "prompt": "Extract the full abstract and introduction. What is the exact mathematical form of the error decomposition? What are SG and RD specifically? Does EIB handle regression/continuous outputs or only classification? What assumptions are made? What is the relationship between β and the SG vs RD trade-off?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "51817462-b43e-4ace-9d0d-d96074c88dda",
+  "isSidechain": false,
+  "requestId": "req_011Caz8UriWJ2Dq3tUA5q6Zv",
+  "type": "assistant",
+  "uuid": "87965fab-b53c-4336-862c-1571e61197bc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015WHzQzyBotmLtnZj1vTnnN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 829,
+      "cache_creation_input_tokens": 2446,
+      "cache_read_input_tokens": 26471,
+      "output_tokens": 626,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2446,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 829,
+          "output_tokens": 626,
+          "cache_read_input_tokens": 26471,
+          "cache_creation_input_tokens": 2446,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2446
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-13T06:55:16.475Z_
+
+<details><summary>↩ Tool result · `toolu_01TcDviesN2kpNyuUz1CaX7Z`</summary>
+
+```text
+# Analysis of "Elastic Information Bottleneck" (arXiv:2311.03955)
+
+## Available Content
+
+The webpage provides only the **abstract**, not the full introduction. The paper PDF would contain additional details not visible here.
+
+## Abstract (Key Points)
+
+The researchers present that target error decomposes into three components: source empirical error, source generalization gap (SG), and representation discrepancy (RD). They prove "DIB's SG bound is tighter than IB's while DIB's RD is larger than IB's."
+
+## Specific Technical Details
+
+**Mathematical form of error decomposition:** Not provided in the abstract—the exact equations would require accessing the PDF.
+
+**SG definition:** Source generalization gap—the difference between training and test performance on the source domain.
+
+**RD definition:** Representation discrepancy—the mismatch between source and target domain representations.
+
+**Classification vs. Regression:** Not specified in the abstract. The framework is presented generically without explicit restriction to classification tasks.
+
+**Key assumptions:** The abstract mentions that prior IB/DIB work assumes "training and test data are drawn from the same distribution," which EIB addresses through transfer learning scenarios.
+
+**β parameter relationship:** Not discussed in the provided excerpt. The role of any hyperparameter balancing SG and RD trade-off would appear in the full paper, not this abstract.
+
+## Recommendation
+
+To answer your remaining questions precisely, you would need to access the complete PDF at arxiv.org/pdf/2311.03955.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9267755c-7619-4516-a221-25168b8483da",
+  "isSidechain": false,
+  "promptId": "b67246ae-6153-40d7-8130-9a3708fd54b2",
+  "type": "user",
+  "uuid": "ed60690f-3183-4380-acba-b075c9dc3ba6",
+  "toolUseResult": {
+    "bytes": 46466,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Analysis of \"Elastic Information Bottleneck\" (arXiv:2311.03955)\n\n## Available Content\n\nThe webpage provides only the **abstract**, not the full introduction. The paper PDF would contain additional details not visible here.\n\n## Abstract (Key Points)\n\nThe researchers present that target error decomposes into three components: source empirical error, source generalization gap (SG), and representation discrepancy (RD). They prove \"DIB's SG bound is tighter than IB's while DIB's RD is larger than IB's.\"\n\n## Specific Technical Details\n\n**Mathematical form of error decomposition:** Not provided in the abstract—the exact equations would require accessing the PDF.\n\n**SG definition:** Source generalization gap—the difference between training and test performance on the source domain.\n\n**RD definition:** Representation discrepancy—the mismatch between source and target domain representations.\n\n**Classification vs. Regression:** Not specified in the abstract. The framework is presented generically without explicit restriction to classification tasks.\n\n**Key assumptions:** The abstract mentions that prior IB/DIB work assumes \"training and test data are drawn from the same distribution,\" which EIB addresses through transfer learning scenarios.\n\n**β parameter relationship:** Not discussed in the provided excerpt. The role of any hyperparameter balancing SG and RD trade-off would appear in the full paper, not this abstract.\n\n## Recommendation\n\nTo answer your remaining questions precisely, you would need to access the complete PDF at arxiv.org/pdf/2311.03955.",
+    "durationMs": 4550,
+    "url": "https://arxiv.org/abs/2311.03955"
+  },
+  "sourceToolAssistantUUID": "87965fab-b53c-4336-862c-1571e61197bc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-13T06:55:15.234Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01QPBFsrtJb5dnN2GFt82aX4`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2404.17951",
+  "prompt": "Extract the full abstract. What is the Cauchy-Schwarz Divergence Information Bottleneck for Regression? How does it handle continuous outputs differently from standard IB? What theoretical results do they provide for regression settings?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "87965fab-b53c-4336-862c-1571e61197bc",
+  "isSidechain": false,
+  "requestId": "req_011Caz8UriWJ2Dq3tUA5q6Zv",
+  "type": "assistant",
+  "uuid": "5faa9136-b4e8-4db6-b8d8-bd8bd734024b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015WHzQzyBotmLtnZj1vTnnN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 829,
+      "cache_creation_input_tokens": 2446,
+      "cache_read_input_tokens": 26471,
+      "output_tokens": 626,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2446,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 829,
+          "output_tokens": 626,
+          "cache_read_input_tokens": 26471,
+          "cache_creation_input_tokens": 2446,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2446
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-13T06:55:15.823Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01MZcQeTjBdqJ9gmVan47byR`</summary>
+
+```json
+{
+  "url": "https://jmlr.org/papers/volume6/chechik05a/chechik05a.pdf",
+  "prompt": "Extract the key theoretical results about the Gaussian Information Bottleneck. What is the analytical solution? How do phase transitions manifest for Gaussian variables? What is the role of eigenvalues/covariance structure in determining the phase transition points? How does dimensionality reduction relate to IB phase transitions in the Gaussian case?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5faa9136-b4e8-4db6-b8d8-bd8bd734024b",
+  "isSidechain": false,
+  "requestId": "req_011Caz8UriWJ2Dq3tUA5q6Zv",
+  "type": "assistant",
+  "uuid": "d6bb7585-8cc7-4bee-b23d-9a10cde653eb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015WHzQzyBotmLtnZj1vTnnN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 829,
+      "cache_creation_input_tokens": 2446,
+      "cache_read_input_tokens": 26471,
+      "output_tokens": 626,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2446,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 829,
+          "output_tokens": 626,
+          "cache_read_input_tokens": 26471,
+          "cache_creation_input_tokens": 2446,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2446
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-13T06:55:16.423Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XigPqfDQxd77bDiMW3RbwL`</summary>
+
+```json
+{
+  "query": "Ahuja et al NeurIPS 2021 invariance principle information bottleneck OOD generalization exact claims limitations regression"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d6bb7585-8cc7-4bee-b23d-9a10cde653eb",
+  "isSidechain": false,
+  "requestId": "req_011Caz8UriWJ2Dq3tUA5q6Zv",
+  "type": "assistant",
+  "uuid": "9267755c-7619-4516-a221-25168b8483da",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015WHzQzyBotmLtnZj1vTnnN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 829,
+      "cache_creation_input_tokens": 2446,
+      "cache_read_input_tokens": 26471,
+      "output_tokens": 626,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2446,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 829,
+          "output_tokens": 626,
+          "cache_read_input_tokens": 26471,
+          "cache_creation_input_tokens": 2446,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2446
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-13T06:55:20.761Z_
+
+<details><summary>↩ Tool result · `toolu_01QPBFsrtJb5dnN2GFt82aX4`</summary>
+
+```text
+# Cauchy-Schwarz Divergence Information Bottleneck for Regression
+
+## Full Abstract
+
+"The information bottleneck (IB) approach is popular to improve the generalization, robustness and explainability of deep neural networks. Essentially, it aims to find a minimum sufficient representation **t** by striking a trade-off between a compression term I(**x**;**t**) and a prediction term I(y;**t**), where I(·;·) refers to the mutual information (MI). MI is for the IB for the most part expressed in terms of the Kullback-Leibler (KL) divergence, which in the regression case corresponds to prediction based on mean squared error (MSE) loss with Gaussian assumption and compression approximated by variational inference. In this paper, we study the IB principle for the regression problem and develop a new way to parameterize the IB with deep neural networks by exploiting favorable properties of the Cauchy-Schwarz (CS) divergence. By doing so, we move away from MSE-based regression and ease estimation by avoiding variational approximations or distributional assumptions."
+
+## Key Differences for Continuous Outputs
+
+The method departs from traditional approaches by replacing KL divergence formulations. Rather than assuming Gaussian distributions and relying on MSE-based losses, the Cauchy-Schwarz variant eliminates the need for variational approximations or specific distributional constraints, making it more flexible for regression tasks.
+
+## Theoretical Contributions
+
+The paper demonstrates "improved generalization ability" and provides "strong adversarial robustness guarantees." Empirically, solutions consistently achieve optimal compression-prediction trade-offs visualized in the information plane across six regression benchmarks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5faa9136-b4e8-4db6-b8d8-bd8bd734024b",
+  "isSidechain": false,
+  "promptId": "b67246ae-6153-40d7-8130-9a3708fd54b2",
+  "type": "user",
+  "uuid": "0fd32881-8e4e-4568-bddb-2bcc904c9ff7",
+  "toolUseResult": {
+    "bytes": 48503,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Cauchy-Schwarz Divergence Information Bottleneck for Regression\n\n## Full Abstract\n\n\"The information bottleneck (IB) approach is popular to improve the generalization, robustness and explainability of deep neural networks. Essentially, it aims to find a minimum sufficient representation **t** by striking a trade-off between a compression term I(**x**;**t**) and a prediction term I(y;**t**), where I(·;·) refers to the mutual information (MI). MI is for the IB for the most part expressed in terms of the Kullback-Leibler (KL) divergence, which in the regression case corresponds to prediction based on mean squared error (MSE) loss with Gaussian assumption and compression approximated by variational inference. In this paper, we study the IB principle for the regression problem and develop a new way to parameterize the IB with deep neural networks by exploiting favorable properties of the Cauchy-Schwarz (CS) divergence. By doing so, we move away from MSE-based regression and ease estimation by avoiding variational approximations or distributional assumptions.\"\n\n## Key Differences for Continuous Outputs\n\nThe method departs from traditional approaches by replacing KL divergence formulations. Rather than assuming Gaussian distributions and relying on MSE-based losses, the Cauchy-Schwarz variant eliminates the need for variational approximations or specific distributional constraints, making it more flexible for regression tasks.\n\n## Theoretical Contributions\n\nThe paper demonstrates \"improved generalization ability\" and provides \"strong adversarial robustness guarantees.\" Empirically, solutions consistently achieve optimal compression-prediction trade-offs visualized in the information plane across six regression benchmarks.",
+    "durationMs": 5525,
+    "url": "https://arxiv.org/abs/2404.17951"
+  },
+  "sourceToolAssistantUUID": "5faa9136-b4e8-4db6-b8d8-bd8bd734024b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-13T06:55:21.578Z_
+
+<details><summary>↩ Tool result · `toolu_01MZcQeTjBdqJ9gmVan47byR`</summary>
+
+```text
+# Gaussian Information Bottleneck: Key Theoretical Results
+
+I apologize, but the provided content appears to be a corrupted or improperly encoded PDF file. The text consists primarily of compressed binary data and is not readable in a meaningful way that would allow me to extract legitimate theoretical results about the Gaussian Information Bottleneck.
+
+To provide you with accurate information about:
+- Analytical solutions for Gaussian IB
+- Phase transition manifestations
+- The role of eigenvalues and covariance structure
+- Dimensionality reduction relationships
+
+I would need access to a properly formatted and readable document containing this research material.
+
+If you have access to the original PDF or a text version of the paper, I'd be happy to analyze it and extract the specific theoretical findings you're asking about. Alternatively, if you can provide the paper's title or authors, I could help you locate a readable version.
+
+[Binary content (application/pdf, 506.2KB) also saved to /home/ubuntu/.claude-account-3/projects/-/4d4fa002-2632-40bf-88ef-105a7427d40e/tool-results/webfetch-1778655317019-yfissl.pdf]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d6bb7585-8cc7-4bee-b23d-9a10cde653eb",
+  "isSidechain": false,
+  "promptId": "b67246ae-6153-40d7-8130-9a3708fd54b2",
+  "type": "user",
+  "uuid": "9f6b2b5c-1649-41f8-a727-60fe9a722e54",
+  "toolUseResult": {
+    "bytes": 518384,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Gaussian Information Bottleneck: Key Theoretical Results\n\nI apologize, but the provided content appears to be a corrupted or improperly encoded PDF file. The text consists primarily of compressed binary data and is not readable in a meaningful way that would allow me to extract legitimate theoretical results about the Gaussian Information Bottleneck.\n\nTo provide you with accurate information about:\n- Analytical solutions for Gaussian IB\n- Phase transition manifestations\n- The role of eigenvalues and covariance structure\n- Dimensionality reduction relationships\n\nI would need access to a properly formatted and readable document containing this research material.\n\nIf you have access to the original PDF or a text version of the paper, I'd be happy to analyze it and extract the specific theoretical findings you're asking about. Alternatively, if you can provide the paper's title or authors, I could help you locate a readable version.\n\n[Binary content (application/pdf, 506.2KB) also saved to /home/ubuntu/.claude-account-3/projects/-/4d4fa002-2632-40bf-88ef-105a7427d40e/tool-results/webfetch-1778655317019-yfissl.pdf]",
+    "durationMs": 5752,
+    "url": "https://jmlr.org/papers/volume6/chechik05a/chechik05a.pdf"
+  },
+  "sourceToolAssistantUUID": "d6bb7585-8cc7-4bee-b23d-9a10cde653eb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-13T06:55:23.873Z_
+
+<details><summary>↩ Tool result · `toolu_01XigPqfDQxd77bDiMW3RbwL`</summary>
+
+```text
+Web search results for query: "Ahuja et al NeurIPS 2021 invariance principle information bottleneck OOD generalization exact claims limitations regression"
+
+Links: [{"title":"Invariance Principle Meets Information Bottleneck for Out-of-Distribution Generalization","url":"https://proceedings.neurips.cc/paper/2021/hash/1c336b8080f82bcc2cd2499b4c57261d-Abstract.html"},{"title":"Invariance Principle Meets Information Bottleneck for Out-of ...","url":"https://proceedings.neurips.cc/paper/2021/file/1c336b8080f82bcc2cd2499b4c57261d-Supplemental.pdf"},{"title":"Invariance Principle Meets Information Bottleneck for Out-of-Distribution Generalization","url":"https://papers.nips.cc/paper/2021/hash/1c336b8080f82bcc2cd2499b4c57261d-Abstract.html"},{"title":"Invariance Principle Meets Information Bottleneck for Out-of ...","url":"https://openreview.net/pdf?id=jlchsFOLfeF"},{"title":"Invariance Principle Meets Information Bottleneck for Out-of-Distribution Generalization | OpenReview","url":"https://openreview.net/forum?id=jlchsFOLfeF"},{"title":"Invariance Principle meets Information Bottleneck for OOD generalization","url":"https://neurips.cc/media/neurips-2021/Slides/26541.pdf"},{"title":"[2106.06607] Invariance Principle Meets Information Bottleneck for Out-of-Distribution Generalization","url":"https://arxiv.org/abs/2106.06607"},{"title":"[PDF] Invariance Principle Meets Information Bottleneck for Out-of-Distribution Generalization | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Invariance-Principle-Meets-Information-Bottleneck-Ahuja-Caballero/4390d210bfd4cd7b646f13f287f44f9620a4f214"},{"title":"[2106.06607] Invariance Principle Meets Information Bottleneck for Out-of-Distribution Generalization","url":"https://export.arxiv.org/abs/2106.06607"},{"title":"The Missing Invariance Principle Found –","url":"https://proceedings.neurips.cc/paper_files/paper/2022/file/91b482312a0845ed86e244adbd9935e4-Paper-Conference.pdf"}]
+
+Based on the search results, I can provide you with information about the Ahuja et al. NeurIPS 2021 paper:
+
+## Overview
+
+The paper "Invariance Principle Meets Information Bottleneck for Out-of-Distribution Generalization" by Kartik Ahuja, Ethan Caballero, Dinghuai Zhang, Jean-Christophe Gagnon-Audet, Yoshua Bengio, Ioannis Mitliagkas, and Irina Rish was published at NeurIPS 2021.
+
+## Main Claims
+
+The paper makes several key theoretical claims:
+
+1. **Linear Regression vs. Classification**: The authors revisit fundamental assumptions in linear regression tasks where invariance-based approaches provably generalize OOD, and show that for linear classification tasks much stronger restrictions on distribution shifts are needed, or otherwise OOD generalization is impossible.
+
+2. **Insufficiency of Invariance Alone**: The paper shows that the invariance principle alone is insufficient, and proves that a form of the information bottleneck constraint along with invariance helps address key failures when invariant features capture all the information about the label.
+
+3. **Broader Applicability**: The information bottleneck constraint along with invariance also retains the existing success when invariant features do not capture all the information about the label.
+
+## Limitations and Criticisms
+
+The paper acknowledges that there have been criticisms of different aspects of IRM (e.g., failure of IRMv1 penalty in non-linear models, tuning issues), and since they use IRMv1 penalty in their proposed loss, these criticisms apply to their objective as well.
+
+Analyzing approximations of information bottleneck in high dimensions and their impact on OOD generalization is noted as important future work.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9267755c-7619-4516-a221-25168b8483da",
+  "isSidechain": false,
+  "promptId": "b67246ae-6153-40d7-8130-9a3708fd54b2",
+  "type": "user",
+  "uuid": "bb103dc0-6f13-4eef-8b5a-29cfc3eac7ab",
+  "toolUseResult": {
+    "query": "Ahuja et al NeurIPS 2021 invariance principle information bottleneck OOD generalization exact claims limitations regression",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01TuFaKdDgaokfQZ5SzpbHfW",
+        "content": [
+          {
+            "title": "Invariance Principle Meets Information Bottleneck for Out-of-Distribution Generalization",
+            "url": "https://proceedings.neurips.cc/paper/2021/hash/1c336b8080f82bcc2cd2499b4c57261d-Abstract.html"
+          },
+          {
+            "title": "Invariance Principle Meets Information Bottleneck for Out-of ...",
+            "url": "https://proceedings.neurips.cc/paper/2021/file/1c336b8080f82bcc2cd2499b4c57261d-Supplemental.pdf"
+          },
+          {
+            "title": "Invariance Principle Meets Information Bottleneck for Out-of-Distribution Generalization",
+            "url": "https://papers.nips.cc/paper/2021/hash/1c336b8080f82bcc2cd2499b4c57261d-Abstract.html"
+          },
+          {
+            "title": "Invariance Principle Meets Information Bottleneck for Out-of ...",
+            "url": "https://openreview.net/pdf?id=jlchsFOLfeF"
+          },
+          {
+            "title": "Invariance Principle Meets Information Bottleneck for Out-of-Distribution Generalization | OpenReview",
+            "url": "https://openreview.net/forum?id=jlchsFOLfeF"
+          },
+          {
+            "title": "Invariance Principle meets Information Bottleneck for OOD generalization",
+            "url": "https://neurips.cc/media/neurips-2021/Slides/26541.pdf"
+          },
+          {
+            "title": "[2106.06607] Invariance Principle Meets Information Bottleneck for Out-of-Distribution Generalization",
+            "url": "https://arxiv.org/abs/2106.06607"
+          },
+          {
+            "title": "[PDF] Invariance Principle Meets Information Bottleneck for Out-of-Distribution Generalization | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Invariance-Principle-Meets-Information-Bottleneck-Ahuja-Caballero/4390d210bfd4cd7b646f13f287f44f9620a4f214"
+          },
+          {
+            "title": "[2106.06607] Invariance Principle Meets Information Bottleneck for Out-of-Distribution Generalization",
+            "url": "https://export.arxiv.org/abs/2106.06607"
+          },
+          {
+            "title": "The Missing Invariance Principle Found –",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2022/file/91b482312a0845ed86e244adbd9935e4-Paper-Conference.pdf"
+          }
+        ]
+      },
+      "Based on the search results, I can provide you with information about the Ahuja et al. NeurIPS 2021 paper:\n\n## Overview\n\nThe paper \"Invariance Principle Meets Information Bottleneck for Out-of-Distribution Generalization\" by Kartik Ahuja, Ethan Caballero, Dinghuai Zhang, Jean-Christophe Gagnon-Audet, Yoshua Bengio, Ioannis Mitliagkas, and Irina Rish was published at NeurIPS 2021.\n\n## Main Claims\n\nThe paper makes several key theoretical claims:\n\n1. **Linear Regression vs. Classification**: The authors revisit fundamental assumptions in linear regression tasks where invariance-based approaches provably generalize OOD, and show that for linear classification tasks much stronger restrictions on distribution shifts are needed, or otherwise OOD generalization is impossible.\n\n2. **Insufficiency of Invariance Alone**: The paper shows that the invariance principle alone is insufficient, and proves that a form of the information bottleneck constraint along with invariance helps address key failures when invariant features capture all the information about the label.\n\n3. **Broader Applicability**: The information bottleneck constraint along with invariance also retains the existing success when invariant features do not capture all the information about the label.\n\n## Limitations and Criticisms\n\nThe paper acknowledges that there have been criticisms of different aspects of IRM (e.g., failure of IRMv1 penalty in non-linear models, tuning issues), and since they use IRMv1 penalty in their proposed loss, these criticisms apply to their objective as well.\n\nAnalyzing approximations of information bottleneck in high dimensions and their impact on OOD generalization is noted as important future work."
+    ],
+    "durationSeconds": 7.447517336999997
+  },
+  "sourceToolAssistantUUID": "9267755c-7619-4516-a221-25168b8483da",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 34 · 2026-05-13T06:55:23.878Z_
+
+```json
+{
+  "parentUuid": "bb103dc0-6f13-4eef-8b5a-29cfc3eac7ab",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "0bc3025c-e718-43e7-ba11-395c5e233ada",
+  "timestamp": "2026-05-13T06:55:23.878Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 35_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-13 (UTC).**  ## Original idea {   \"title\": \"Generalization-Optimal Visual Bandwidth for VLAs: Information Bottlene…",
+  "leafUuid": "0bc3025c-e718-43e7-ba11-395c5e233ada",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 36_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise phase transition theory and clarify novelty claims for VLA bandwidth optimization",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e"
+}
+```
+
+---
+
+### Assistant
+
+_source line 37 · 2026-05-13T06:55:27.124Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I now have a clearer picture of the Ahuja et al. paper's actual claims. Let me now fetch the EIB PDF directly to get the actual mathematical decomposition, and also search for the Gaussian IB phase transitions more specifically.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0bc3025c-e718-43e7-ba11-395c5e233ada",
+  "isSidechain": false,
+  "requestId": "req_011Caz8WGciH8nGHyyEFyhZv",
+  "type": "assistant",
+  "uuid": "02b87ba9-8045-498d-99df-36a8e16914d7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WFnfbpnGVcyJo2BzFV2gfA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3725,
+      "cache_read_input_tokens": 28917,
+      "output_tokens": 387,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3725,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 387,
+          "cache_read_input_tokens": 28917,
+          "cache_creation_input_tokens": 3725,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3725
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38 · 2026-05-13T06:55:28.054Z_
+
+Let me get more details on EIB's actual mathematical framework and also search for Gaussian IB phase transitions and recent IB work in robotics.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "02b87ba9-8045-498d-99df-36a8e16914d7",
+  "isSidechain": false,
+  "requestId": "req_011Caz8WGciH8nGHyyEFyhZv",
+  "type": "assistant",
+  "uuid": "2d3823fc-1e2b-4972-b19d-8894c7a0b016",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WFnfbpnGVcyJo2BzFV2gfA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3725,
+      "cache_read_input_tokens": 28917,
+      "output_tokens": 387,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3725,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 387,
+          "cache_read_input_tokens": 28917,
+          "cache_creation_input_tokens": 3725,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3725
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-13T06:55:30.145Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_016Cc7EXQ3WiUJ1LaCrXaSoS`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/pdf/2311.03955",
+  "prompt": "Extract the exact error decomposition theorem/equation. What is the mathematical form of the bound? How are SG (source generalization gap) and RD (representation discrepancy) defined formally? What is the EIB objective function? Does this paper consider regression/continuous outputs or only classification? What is the role of β in balancing SG vs RD?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2d3823fc-1e2b-4972-b19d-8894c7a0b016",
+  "isSidechain": false,
+  "requestId": "req_011Caz8WGciH8nGHyyEFyhZv",
+  "type": "assistant",
+  "uuid": "2ffa4d86-2905-457d-b37f-d1997bd16487",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WFnfbpnGVcyJo2BzFV2gfA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3725,
+      "cache_read_input_tokens": 28917,
+      "output_tokens": 387,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3725,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 387,
+          "cache_read_input_tokens": 28917,
+          "cache_creation_input_tokens": 3725,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3725
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-13T06:55:30.935Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XQYXszuN7hX8KT3tTjmWZc`</summary>
+
+```json
+{
+  "query": "Gaussian information bottleneck phase transitions eigenvalue covariance matrix dimensionality reduction Chechik 2005"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2ffa4d86-2905-457d-b37f-d1997bd16487",
+  "isSidechain": false,
+  "requestId": "req_011Caz8WGciH8nGHyyEFyhZv",
+  "type": "assistant",
+  "uuid": "5fb17228-b6ee-425b-bf23-a3ee500435db",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WFnfbpnGVcyJo2BzFV2gfA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3725,
+      "cache_read_input_tokens": 28917,
+      "output_tokens": 387,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3725,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 387,
+          "cache_read_input_tokens": 28917,
+          "cache_creation_input_tokens": 3725,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3725
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-13T06:55:31.463Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Uxwv5ppohKQS2nmw8vyNwa`</summary>
+
+```json
+{
+  "query": "\"information bottleneck\" \"continuous output\" OR \"regression\" \"phase transition\" OR \"rate distortion\" 2024 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5fb17228-b6ee-425b-bf23-a3ee500435db",
+  "isSidechain": false,
+  "requestId": "req_011Caz8WGciH8nGHyyEFyhZv",
+  "type": "assistant",
+  "uuid": "fe793d23-9e47-4ed0-8341-77228ee860ab",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WFnfbpnGVcyJo2BzFV2gfA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3725,
+      "cache_read_input_tokens": 28917,
+      "output_tokens": 387,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3725,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 387,
+          "cache_read_input_tokens": 28917,
+          "cache_creation_input_tokens": 3725,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3725
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-13T06:55:34.722Z_
+
+<details><summary>↩ Tool result · `toolu_016Cc7EXQ3WiUJ1LaCrXaSoS`</summary>
+
+```text
+# Error Decomposition Framework Analysis
+
+I cannot provide the requested information because the provided content is a PDF document rendered as binary/compressed stream data (FlateDecode encoded streams). The actual text content is not accessible in the format supplied.
+
+To extract the specific mathematical formulations you're asking about—including:
+- The error decomposition theorem/equation and bound form
+- Formal definitions of SG (source generalization gap) and RD (representation discrepancy)
+- The EIB objective function
+- Whether the framework addresses regression vs. classification
+- The role of parameter β in balancing trade-offs
+
+—I would need the document content in readable text format (plain text, properly decoded PDF text, or document excerpts).
+
+**Recommendation**: Please provide either:
+1. The text-extracted version of the PDF
+2. Specific page numbers with readable content
+3. Direct quotations of the relevant sections
+4. The paper's abstract or introduction in accessible format
+
+This will allow me to accurately identify and explain these theoretical components within the 125-character quotation constraint you've specified.
+
+[Binary content (application/pdf, 2.6MB) also saved to /home/ubuntu/.claude-account-3/projects/-/4d4fa002-2632-40bf-88ef-105a7427d40e/tool-results/webfetch-1778655330327-bsb62i.pdf]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2ffa4d86-2905-457d-b37f-d1997bd16487",
+  "isSidechain": false,
+  "promptId": "b67246ae-6153-40d7-8130-9a3708fd54b2",
+  "type": "user",
+  "uuid": "bd3066bc-0cd6-451e-84b4-ac9fee8cb460",
+  "toolUseResult": {
+    "bytes": 2747161,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Error Decomposition Framework Analysis\n\nI cannot provide the requested information because the provided content is a PDF document rendered as binary/compressed stream data (FlateDecode encoded streams). The actual text content is not accessible in the format supplied.\n\nTo extract the specific mathematical formulations you're asking about—including:\n- The error decomposition theorem/equation and bound form\n- Formal definitions of SG (source generalization gap) and RD (representation discrepancy)\n- The EIB objective function\n- Whether the framework addresses regression vs. classification\n- The role of parameter β in balancing trade-offs\n\n—I would need the document content in readable text format (plain text, properly decoded PDF text, or document excerpts).\n\n**Recommendation**: Please provide either:\n1. The text-extracted version of the PDF\n2. Specific page numbers with readable content\n3. Direct quotations of the relevant sections\n4. The paper's abstract or introduction in accessible format\n\nThis will allow me to accurately identify and explain these theoretical components within the 125-character quotation constraint you've specified.\n\n[Binary content (application/pdf, 2.6MB) also saved to /home/ubuntu/.claude-account-3/projects/-/4d4fa002-2632-40bf-88ef-105a7427d40e/tool-results/webfetch-1778655330327-bsb62i.pdf]",
+    "durationMs": 4571,
+    "url": "https://arxiv.org/pdf/2311.03955"
+  },
+  "sourceToolAssistantUUID": "2ffa4d86-2905-457d-b37f-d1997bd16487",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-13T06:55:38.287Z_
+
+<details><summary>↩ Tool result · `toolu_01XQYXszuN7hX8KT3tTjmWZc`</summary>
+
+```text
+Web search results for query: "Gaussian information bottleneck phase transitions eigenvalue covariance matrix dimensionality reduction Chechik 2005"
+
+Links: [{"title":"Information Bottleneck for Gaussian Variables","url":"https://jmlr.org/papers/volume6/chechik05a/chechik05a.pdf"},{"title":"Journal of Machine Learning Research 6 (2005) 165–188","url":"https://jmlr.csail.mit.edu/papers/volume6/chechik05a/chechik05a.pdf"},{"title":"Information Bottleneck for Gaussian Variables","url":"https://jmlr.csail.mit.edu/papers/v6/chechik05a.html"},{"title":"Information bottleneck for Gaussian variables — Tel Aviv University","url":"https://cris.tau.ac.il/en/publications/information-bottleneck-for-gaussian-variables"},{"title":"Information Bottleneck for Gaussian Variables Gal Chechik∗ Amir Globerson∗","url":"https://proceedings.neurips.cc/paper_files/paper/2003/file/7e05d6f828574fbc975a896b25bb011e-Paper.pdf"},{"title":"Sparse meta-Gaussian information bottleneck M´elanie Rey MELANIE.REY@UNIBAS.CH","url":"http://proceedings.mlr.press/v32/rey14.pdf"},{"title":"Predictive Coding and the Slowness Principle: An Information ...","url":"https://itb.biologie.hu-berlin.de/~sprekeler/data/paper/CreutzigSprekeler08.pdf"},{"title":"Gaussian Information Bottleneck 1 Information Bottleneck for Gaussian Variables","url":"http://robotics.stanford.edu/~gal/Papers/For_Aliza/chechik_JMLR2004.pdf"},{"title":"Gaussian Information Bottleneck and the Non-Perturbative Renormalization Group - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC8967309/"},{"title":"[2303.17762] Generalized Information Bottleneck for Gaussian Variables","url":"https://arxiv.org/abs/2303.17762"}]
+
+The web search has returned highly relevant results about the Chechik et al. 2005 paper on the Gaussian Information Bottleneck. Here's a summary of the key findings:
+
+## Information Bottleneck for Gaussian Variables (Chechik et al. 2005)
+
+The problem is analytically tractable when X and Y are joint multivariate Gaussian variables, allowing one to explicitly optimize the target function with respect to the mapping p(t|x) and obtain a closed form solution of the optimal dimensionality reduction.
+
+### Phase Transitions and Eigenvalues
+
+In Gaussian IB, the compression tradeoff parameter uniquely determines the dimension, as well as the scale of each eigenvector, through a cascade of structural phase transitions. The analysis provides a complete analytic expression of the preserved information as a function of the compression (the "information-curve"), in terms of the eigenvalue spectrum of the data.
+
+### Covariance Matrices and Optimal Representation
+
+The goal of GIB is to compress the variable X via a stochastic transformation into another variable T, while preserving information about Y, where Σx, Σy are the covariance matrices of X, Y and Σxy is their cross-covariance matrix. The obtained optimal representation is a noisy linear projection to eigenvectors of the normalized regression matrix Σx|yΣx⁻¹, which is also the basis obtained in canonical correlation analysis.
+
+### Critical Phase Transitions
+
+The critical bottleneck values β_i are given by (1 − λ_i)⁻¹, where λ_i are the eigenvalues of the canonical correlation matrix, with each eigenvalue λ_i characterizing the amount of information that the ith collective mode carries about the relevance variable Y.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5fb17228-b6ee-425b-bf23-a3ee500435db",
+  "isSidechain": false,
+  "promptId": "b67246ae-6153-40d7-8130-9a3708fd54b2",
+  "type": "user",
+  "uuid": "d03aff6c-89d4-4b44-8a78-2fc765e8603c",
+  "toolUseResult": {
+    "query": "Gaussian information bottleneck phase transitions eigenvalue covariance matrix dimensionality reduction Chechik 2005",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Pmj6P8ud43ZiB1FqEbi5F3",
+        "content": [
+          {
+            "title": "Information Bottleneck for Gaussian Variables",
+            "url": "https://jmlr.org/papers/volume6/chechik05a/chechik05a.pdf"
+          },
+          {
+            "title": "Journal of Machine Learning Research 6 (2005) 165–188",
+            "url": "https://jmlr.csail.mit.edu/papers/volume6/chechik05a/chechik05a.pdf"
+          },
+          {
+            "title": "Information Bottleneck for Gaussian Variables",
+            "url": "https://jmlr.csail.mit.edu/papers/v6/chechik05a.html"
+          },
+          {
+            "title": "Information bottleneck for Gaussian variables — Tel Aviv University",
+            "url": "https://cris.tau.ac.il/en/publications/information-bottleneck-for-gaussian-variables"
+          },
+          {
+            "title": "Information Bottleneck for Gaussian Variables Gal Chechik∗ Amir Globerson∗",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2003/file/7e05d6f828574fbc975a896b25bb011e-Paper.pdf"
+          },
+          {
+            "title": "Sparse meta-Gaussian information bottleneck M´elanie Rey MELANIE.REY@UNIBAS.CH",
+            "url": "http://proceedings.mlr.press/v32/rey14.pdf"
+          },
+          {
+            "title": "Predictive Coding and the Slowness Principle: An Information ...",
+            "url": "https://itb.biologie.hu-berlin.de/~sprekeler/data/paper/CreutzigSprekeler08.pdf"
+          },
+          {
+            "title": "Gaussian Information Bottleneck 1 Information Bottleneck for Gaussian Variables",
+            "url": "http://robotics.stanford.edu/~gal/Papers/For_Aliza/chechik_JMLR2004.pdf"
+          },
+          {
+            "title": "Gaussian Information Bottleneck and the Non-Perturbative Renormalization Group - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8967309/"
+          },
+          {
+            "title": "[2303.17762] Generalized Information Bottleneck for Gaussian Variables",
+            "url": "https://arxiv.org/abs/2303.17762"
+          }
+        ]
+      },
+      "The web search has returned highly relevant results about the Chechik et al. 2005 paper on the Gaussian Information Bottleneck. Here's a summary of the key findings:\n\n## Information Bottleneck for Gaussian Variables (Chechik et al. 2005)\n\nThe problem is analytically tractable when X and Y are joint multivariate Gaussian variables, allowing one to explicitly optimize the target function with respect to the mapping p(t|x) and obtain a closed form solution of the optimal dimensionality reduction.\n\n### Phase Transitions and Eigenvalues\n\nIn Gaussian IB, the compression tradeoff parameter uniquely determines the dimension, as well as the scale of each eigenvector, through a cascade of structural phase transitions. The analysis provides a complete analytic expression of the preserved information as a function of the compression (the \"information-curve\"), in terms of the eigenvalue spectrum of the data.\n\n### Covariance Matrices and Optimal Representation\n\nThe goal of GIB is to compress the variable X via a stochastic transformation into another variable T, while preserving information about Y, where Σx, Σy are the covariance matrices of X, Y and Σxy is their cross-covariance matrix. The obtained optimal representation is a noisy linear projection to eigenvectors of the normalized regression matrix Σx|yΣx⁻¹, which is also the basis obtained in canonical correlation analysis.\n\n### Critical Phase Transitions\n\nThe critical bottleneck values β_i are given by (1 − λ_i)⁻¹, where λ_i are the eigenvalues of the canonical correlation matrix, with each eigenvalue λ_i characterizing the amount of information that the ith collective mode carries about the relevance variable Y."
+    ],
+    "durationSeconds": 7.346337313000004
+  },
+  "sourceToolAssistantUUID": "5fb17228-b6ee-425b-bf23-a3ee500435db",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-13T06:55:42.008Z_
+
+<details><summary>↩ Tool result · `toolu_01Uxwv5ppohKQS2nmw8vyNwa`</summary>
+
+```text
+Web search results for query: ""information bottleneck" "continuous output" OR "regression" "phase transition" OR "rate distortion" 2024 2025 2026"
+
+Links: [{"title":"Information Bottleneck","url":"https://www.emergentmind.com/topics/information-bottleneck"},{"title":"Theory and Application of the Information Bottleneck Method","url":"https://www.mdpi.com/1099-4300/26/3/187"},{"title":"An Information Bottleneck Asset Pricing Model Che Sun ∗ August 1, 2025 Abstract","url":"https://arxiv.org/pdf/2507.23218"},{"title":"[2509.26327] A Generalized Information Bottleneck Theory of Deep Learning","url":"https://arxiv.org/abs/2509.26327"},{"title":"Information bottleneck method - Wikipedia","url":"https://en.wikipedia.org/wiki/Information_bottleneck_method"},{"title":"PHASE TRANSITIONS FOR THE INFORMATION BOTTLE","url":"https://openreview.net/pdf?id=HJloElBYvB"},{"title":"The Information Bottleneck’s Ordinary Differential Equation: First-Order Root Tracking for the Information Bottleneck - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC10606645/"},{"title":"[1503.02406] Deep Learning and the Information Bottleneck Principle","url":"https://arxiv.org/abs/1503.02406"},{"title":"(PDF) Is the Information Bottleneck Robust Enough ...","url":"https://www.arxiv.org/pdf/2512.10573"},{"title":"IB-UQ: Information bottleneck based uncertainty quantification for neural function regression and neural operator learning - ScienceDirect","url":"https://www.sciencedirect.com/science/article/pii/S0021999124003383"}]
+
+I've performed the web search for your query about information bottleneck, continuous output, regression, phase transitions, and rate distortion from 2024-2026. Here are the key findings:
+
+## Recent Research Highlights
+
+**Phase Transitions in Information Bottleneck:**
+Phase transitions, where key quantities change discontinuously with varying relative strength in the two-term trade-off, have been observed in many different learning domains, for multiple learning objectives.
+
+**Computational Advances:**
+Recent methods yield provably convergent solutions with dramatically improved computational efficiency, as established through descent arguments and Pinsker's inequality (Chen et al., 2024). Additionally, nonlinear IB and mapping-based neural estimation approaches introduce nonparametric mutual information bounds and reformulations that collapse the IB optimization to a single-variable minimization, offering consistent and tight computation of the IB curve even in high-dimensional tasks such as MNIST classification (Chen et al., 26 Jul 2025).
+
+**Generalized IB Theory:**
+A Generalized Information Bottleneck (GIB) framework reformulates the original IB principle through the lens of synergy, with theoretical and empirical evidence demonstrating that synergistic functions achieve superior generalization compared to their non-synergistic counterparts.
+
+**Rate-Distortion Connection:**
+The Information Bottleneck is a method of lossy compression of relevant information, and its rate-distortion curve describes the fundamental tradeoff between input compression and the preservation of relevant information embedded in the input.
+
+**Robustness Studies (2025):**
+Recent work explores information bottleneck robustness to noise, with studies (Xie et al. 2023; Pensia, Jog, and Loh 2020) improving resilience to input noise.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fe793d23-9e47-4ed0-8341-77228ee860ab",
+  "isSidechain": false,
+  "promptId": "b67246ae-6153-40d7-8130-9a3708fd54b2",
+  "type": "user",
+  "uuid": "7a7b84cb-6ed0-4da6-a2b9-9055e42fb372",
+  "toolUseResult": {
+    "query": "\"information bottleneck\" \"continuous output\" OR \"regression\" \"phase transition\" OR \"rate distortion\" 2024 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01U1iYj8KASMwK3YbPcppbwj",
+        "content": [
+          {
+            "title": "Information Bottleneck",
+            "url": "https://www.emergentmind.com/topics/information-bottleneck"
+          },
+          {
+            "title": "Theory and Application of the Information Bottleneck Method",
+            "url": "https://www.mdpi.com/1099-4300/26/3/187"
+          },
+          {
+            "title": "An Information Bottleneck Asset Pricing Model Che Sun ∗ August 1, 2025 Abstract",
+            "url": "https://arxiv.org/pdf/2507.23218"
+          },
+          {
+            "title": "[2509.26327] A Generalized Information Bottleneck Theory of Deep Learning",
+            "url": "https://arxiv.org/abs/2509.26327"
+          },
+          {
+            "title": "Information bottleneck method - Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/Information_bottleneck_method"
+          },
+          {
+            "title": "PHASE TRANSITIONS FOR THE INFORMATION BOTTLE",
+            "url": "https://openreview.net/pdf?id=HJloElBYvB"
+          },
+          {
+            "title": "The Information Bottleneck’s Ordinary Differential Equation: First-Order Root Tracking for the Information Bottleneck - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10606645/"
+          },
+          {
+            "title": "[1503.02406] Deep Learning and the Information Bottleneck Principle",
+            "url": "https://arxiv.org/abs/1503.02406"
+          },
+          {
+            "title": "(PDF) Is the Information Bottleneck Robust Enough ...",
+            "url": "https://www.arxiv.org/pdf/2512.10573"
+          },
+          {
+            "title": "IB-UQ: Information bottleneck based uncertainty quantification for neural function regression and neural operator learning - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/pii/S0021999124003383"
+          }
+        ]
+      },
+      "I've performed the web search for your query about information bottleneck, continuous output, regression, phase transitions, and rate distortion from 2024-2026. Here are the key findings:\n\n## Recent Research Highlights\n\n**Phase Transitions in Information Bottleneck:**\nPhase transitions, where key quantities change discontinuously with varying relative strength in the two-term trade-off, have been observed in many different learning domains, for multiple learning objectives.\n\n**Computational Advances:**\nRecent methods yield provably convergent solutions with dramatically improved computational efficiency, as established through descent arguments and Pinsker's inequality (Chen et al., 2024). Additionally, nonlinear IB and mapping-based neural estimation approaches introduce nonparametric mutual information bounds and reformulations that collapse the IB optimization to a single-variable minimization, offering consistent and tight computation of the IB curve even in high-dimensional tasks such as MNIST classification (Chen et al., 26 Jul 2025).\n\n**Generalized IB Theory:**\nA Generalized Information Bottleneck (GIB) framework reformulates the original IB principle through the lens of synergy, with theoretical and empirical evidence demonstrating that synergistic functions achieve superior generalization compared to their non-synergistic counterparts.\n\n**Rate-Distortion Connection:**\nThe Information Bottleneck is a method of lossy compression of relevant information, and its rate-distortion curve describes the fundamental tradeoff between input compression and the preservation of relevant information embedded in the input.\n\n**Robustness Studies (2025):**\nRecent work explores information bottleneck robustness to noise, with studies (Xie et al. 2023; Pensia, Jog, and Loh 2020) improving resilience to input noise."
+    ],
+    "durationSeconds": 10.542119604
+  },
+  "sourceToolAssistantUUID": "fe793d23-9e47-4ed0-8341-77228ee860ab",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45 · 2026-05-13T06:55:50.609Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Excellent! Now I have a crucial finding: the Gaussian IB (Chechik et al. 2005) already provides the analytical framework for phase transitions in continuous variables. The critical β values are given by β_i = (1 - λ_i)^(-1), where λ_i are eigenvalues of the canonical correlation matrix. Each phase transition corresponds to a new eigenvector being included in the representation — i.e., a rank change in the representation covariance matrix.
+
+This is exactly what the reviewer suggested for Pillar 1c: "phase transitions manifest as rank changes in the representation covariance matrix Σ_Z." And the Gaussian IB gives us the analytical tractable case to work with.
+
+
+Now I need to track down a few key papers: the Causally-Aware IB as a follow-up to EIB, any recent work connecting IB to vision-language models or robot policies, and the IB ODE paper for tracking continuous β dynamics.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7a7b84cb-6ed0-4da6-a2b9-9055e42fb372",
+  "isSidechain": false,
+  "requestId": "req_011Caz8XcSMYMwcMfhiHBXSV",
+  "type": "assistant",
+  "uuid": "666fba99-e937-4c60-b784-b3ceed3a60ea",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Jkycz15oQznpHnX7i8qP8b",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2645,
+      "cache_read_input_tokens": 32642,
+      "output_tokens": 610,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2645,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 610,
+          "cache_read_input_tokens": 32642,
+          "cache_creation_input_tokens": 2645,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2645
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46 · 2026-05-13T06:55:50.618Z_
+
+Now let me search for a few more critical references — the IB ODE paper for continuous β tracking and any recent IB + robotics work.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "666fba99-e937-4c60-b784-b3ceed3a60ea",
+  "isSidechain": false,
+  "requestId": "req_011Caz8XcSMYMwcMfhiHBXSV",
+  "type": "assistant",
+  "uuid": "b39a950b-a3b7-43ab-abd2-1785e2e7baa8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Jkycz15oQznpHnX7i8qP8b",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2645,
+      "cache_read_input_tokens": 32642,
+      "output_tokens": 610,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2645,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 610,
+          "cache_read_input_tokens": 32642,
+          "cache_creation_input_tokens": 2645,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2645
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-13T06:55:52.626Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01QCEL4A85CKH9aCc7BvmoLw`</summary>
+
+```json
+{
+  "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10606645/",
+  "prompt": "Extract the abstract and key contribution of the IB ODE (Ordinary Differential Equation) paper. How does it track IB solutions as β varies continuously? What are the first-order root tracking methods? Is this relevant to sweeping β values efficiently?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b39a950b-a3b7-43ab-abd2-1785e2e7baa8",
+  "isSidechain": false,
+  "requestId": "req_011Caz8XcSMYMwcMfhiHBXSV",
+  "type": "assistant",
+  "uuid": "3e476c9b-ec19-41b5-aa94-7cf269e3254e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Jkycz15oQznpHnX7i8qP8b",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2645,
+      "cache_read_input_tokens": 32642,
+      "output_tokens": 610,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2645,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 610,
+          "cache_read_input_tokens": 32642,
+          "cache_creation_input_tokens": 2645,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2645
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-13T06:55:54.822Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01GKiwQopYHHj6Ku8Hy3o1bi`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2601.04361",
+  "prompt": "Extract the abstract of the Causally-Aware Information Bottleneck for Domain Adaptation paper. How does it relate to or extend the Elastic Information Bottleneck? Does it cite EIB? What is its contribution beyond EIB?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3e476c9b-ec19-41b5-aa94-7cf269e3254e",
+  "isSidechain": false,
+  "requestId": "req_011Caz8XcSMYMwcMfhiHBXSV",
+  "type": "assistant",
+  "uuid": "41718a86-cae8-4c10-a7ba-7ea73e23f75f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Jkycz15oQznpHnX7i8qP8b",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2645,
+      "cache_read_input_tokens": 32642,
+      "output_tokens": 610,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2645,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 610,
+          "cache_read_input_tokens": 32642,
+          "cache_creation_input_tokens": 2645,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2645
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-13T06:55:54.827Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016k9sjP7x8MdzAcCMgHzynQ`</summary>
+
+```json
+{
+  "query": "Elastic Information Bottleneck arXiv 2311.03955 theorem error decomposition source generalization representation discrepancy formal bound"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "41718a86-cae8-4c10-a7ba-7ea73e23f75f",
+  "isSidechain": false,
+  "requestId": "req_011Caz8XcSMYMwcMfhiHBXSV",
+  "type": "assistant",
+  "uuid": "c6cb18e4-de7d-4f3b-9b59-b0b4cc84bafe",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Jkycz15oQznpHnX7i8qP8b",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2645,
+      "cache_read_input_tokens": 32642,
+      "output_tokens": 610,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2645,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 610,
+          "cache_read_input_tokens": 32642,
+          "cache_creation_input_tokens": 2645,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2645
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 50_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-13 (UTC).**  ## Original idea {   \"title\": \"Generalization-Optimal Visual Bandwidth for VLAs: Information Bottlene…",
+  "leafUuid": "c6cb18e4-de7d-4f3b-9b59-b0b4cc84bafe",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 51_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise phase transition theory and clarify novelty claims for VLA bandwidth optimization",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e"
+}
+```
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-13T06:56:00.483Z_
+
+<details><summary>↩ Tool result · `toolu_01GKiwQopYHHj6Ku8Hy3o1bi`</summary>
+
+```text
+# Analysis of the Paper
+
+## Abstract
+
+The paper addresses domain adaptation in causal systems where "the target variable is observed in the source domain but is entirely missing in the target domain." The authors propose learning a "compact, mechanism-stable representation" that retains predictive information while removing spurious variation.
+
+## Regarding Elastic Information Bottleneck (EIB)
+
+Based on the content provided, I cannot determine whether this paper cites the Elastic Information Bottleneck or how it relates to that specific work. The abstract and webpage excerpt do not mention EIB or provide citations listing.
+
+## Key Contributions
+
+The paper's main contributions, as presented, include:
+
+1. **For linear Gaussian models**: A closed-form solution using Gaussian Information Bottleneck (GIB) that reduces to "a canonical correlation analysis (CCA)-style projection"
+
+2. **For nonlinear/non-Gaussian data**: A Variational Information Bottleneck (VIB) encoder-predictor approach that scales to high dimensions and works in zero-shot transfer settings
+
+3. **Practical toolkit**: The authors describe their approach as "a unified, lightweight toolkit for causal domain adaptation" with demonstrated performance on both synthetic and real datasets
+
+The work appears to uniquely integrate causal reasoning with information bottleneck principles for domain adaptation, though the full technical comparison with prior work would require reviewing the complete paper.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "41718a86-cae8-4c10-a7ba-7ea73e23f75f",
+  "isSidechain": false,
+  "promptId": "b67246ae-6153-40d7-8130-9a3708fd54b2",
+  "type": "user",
+  "uuid": "a553c5e3-79be-45ed-a400-ac6363d54bd0",
+  "toolUseResult": {
+    "bytes": 45362,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Analysis of the Paper\n\n## Abstract\n\nThe paper addresses domain adaptation in causal systems where \"the target variable is observed in the source domain but is entirely missing in the target domain.\" The authors propose learning a \"compact, mechanism-stable representation\" that retains predictive information while removing spurious variation.\n\n## Regarding Elastic Information Bottleneck (EIB)\n\nBased on the content provided, I cannot determine whether this paper cites the Elastic Information Bottleneck or how it relates to that specific work. The abstract and webpage excerpt do not mention EIB or provide citations listing.\n\n## Key Contributions\n\nThe paper's main contributions, as presented, include:\n\n1. **For linear Gaussian models**: A closed-form solution using Gaussian Information Bottleneck (GIB) that reduces to \"a canonical correlation analysis (CCA)-style projection\"\n\n2. **For nonlinear/non-Gaussian data**: A Variational Information Bottleneck (VIB) encoder-predictor approach that scales to high dimensions and works in zero-shot transfer settings\n\n3. **Practical toolkit**: The authors describe their approach as \"a unified, lightweight toolkit for causal domain adaptation\" with demonstrated performance on both synthetic and real datasets\n\nThe work appears to uniquely integrate causal reasoning with information bottleneck principles for domain adaptation, though the full technical comparison with prior work would require reviewing the complete paper.",
+    "durationMs": 5657,
+    "url": "https://arxiv.org/abs/2601.04361"
+  },
+  "sourceToolAssistantUUID": "41718a86-cae8-4c10-a7ba-7ea73e23f75f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-13T06:56:01.208Z_
+
+<details><summary>↩ Tool result · `toolu_016k9sjP7x8MdzAcCMgHzynQ`</summary>
+
+```text
+Web search results for query: "Elastic Information Bottleneck arXiv 2311.03955 theorem error decomposition source generalization representation discrepancy formal bound"
+
+Links: [{"title":"[2311.03955] Elastic Information Bottleneck","url":"https://arxiv.org/abs/2311.03955"},{"title":"Elastic Information Bottleneck","url":"https://arxiv.org/pdf/2311.03955"},{"title":"Computer Science Nov 2023","url":"http://arxiv.org/list/cs/2023-11?skip=1650&show=50"},{"title":"Elastic Information Bottleneck","url":"https://www.mdpi.com/2227-7390/10/18/3352"},{"title":"Elastic Information Bottleneck","url":"https://ideas.repec.org/a/gam/jmathe/v10y2022i18p3352-d915793.html"},{"title":"GitHub - ZIYU-DEEP/Awesome-Information-Bottleneck: This is a curated list for Information Bottleneck Principle, in memory of Professor Naftali Tishby. · GitHub","url":"https://github.com/ZIYU-DEEP/Awesome-Information-Bottleneck"},{"title":"(PDF) Is the Information Bottleneck Robust Enough ...","url":"https://www.arxiv.org/pdf/2512.10573"},{"title":"[2311.04896] Machine-learning optimized measurements of chaotic dynamical systems via the information bottleneck","url":"https://arxiv.org/abs/2311.04896"},{"title":"The Supervised Information Bottleneck","url":"https://www.mdpi.com/1099-4300/27/5/452"},{"title":"[physics/0004057] The information bottleneck method","url":"https://arxiv.org/abs/physics/0004057"}]
+
+Based on the search results, here's information about the paper arXiv 2311.03955 "Elastic Information Bottleneck":
+
+## Overview
+
+The paper introduces the Elastic Information Bottleneck, where Information Bottleneck is an information-theoretic principle of representation learning that aims to learn a maximally compressed representation that preserves as much information about labels as possible.
+
+## Main Theoretical Contribution
+
+The study focuses on the generalization abilities within a transfer learning scenario, where the target error could be decomposed into three components including source empirical error and source generalization. This directly addresses the theoretical analysis of error decomposition you mentioned in your query.
+
+## Key Results
+
+Comparing IB and DIB on these terms, the paper proves that DIB's SG (source generalization) bound is tighter than IB's while DIB's RD (representation discrepancy) is larger than IB's. This provides the formal bounds on source generalization and representation discrepancy that you referenced.
+
+## The Proposed Method
+
+To balance the trade-off between SG and RD, the paper proposes an elastic information bottleneck (EIB) to interpolate between the IB and DIB regularizers, which guarantees a Pareto frontier within the IB framework.
+
+Simulations and real data experiments show that EIB achieves better domain adaptation results than IB and DIB, validating the theoretical findings.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c6cb18e4-de7d-4f3b-9b59-b0b4cc84bafe",
+  "isSidechain": false,
+  "promptId": "b67246ae-6153-40d7-8130-9a3708fd54b2",
+  "type": "user",
+  "uuid": "363e702d-4231-4cea-9477-c5190aa7ff96",
+  "toolUseResult": {
+    "query": "Elastic Information Bottleneck arXiv 2311.03955 theorem error decomposition source generalization representation discrepancy formal bound",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018SaXSS5c9v8DoSzrgeRzjm",
+        "content": [
+          {
+            "title": "[2311.03955] Elastic Information Bottleneck",
+            "url": "https://arxiv.org/abs/2311.03955"
+          },
+          {
+            "title": "Elastic Information Bottleneck",
+            "url": "https://arxiv.org/pdf/2311.03955"
+          },
+          {
+            "title": "Computer Science Nov 2023",
+            "url": "http://arxiv.org/list/cs/2023-11?skip=1650&show=50"
+          },
+          {
+            "title": "Elastic Information Bottleneck",
+            "url": "https://www.mdpi.com/2227-7390/10/18/3352"
+          },
+          {
+            "title": "Elastic Information Bottleneck",
+            "url": "https://ideas.repec.org/a/gam/jmathe/v10y2022i18p3352-d915793.html"
+          },
+          {
+            "title": "GitHub - ZIYU-DEEP/Awesome-Information-Bottleneck: This is a curated list for Information Bottleneck Principle, in memory of Professor Naftali Tishby. · GitHub",
+            "url": "https://github.com/ZIYU-DEEP/Awesome-Information-Bottleneck"
+          },
+          {
+            "title": "(PDF) Is the Information Bottleneck Robust Enough ...",
+            "url": "https://www.arxiv.org/pdf/2512.10573"
+          },
+          {
+            "title": "[2311.04896] Machine-learning optimized measurements of chaotic dynamical systems via the information bottleneck",
+            "url": "https://arxiv.org/abs/2311.04896"
+          },
+          {
+            "title": "The Supervised Information Bottleneck",
+            "url": "https://www.mdpi.com/1099-4300/27/5/452"
+          },
+          {
+            "title": "[physics/0004057] The information bottleneck method",
+            "url": "https://arxiv.org/abs/physics/0004057"
+          }
+        ]
+      },
+      "Based on the search results, here's information about the paper arXiv 2311.03955 \"Elastic Information Bottleneck\":\n\n## Overview\n\nThe paper introduces the Elastic Information Bottleneck, where Information Bottleneck is an information-theoretic principle of representation learning that aims to learn a maximally compressed representation that preserves as much information about labels as possible.\n\n## Main Theoretical Contribution\n\nThe study focuses on the generalization abilities within a transfer learning scenario, where the target error could be decomposed into three components including source empirical error and source generalization. This directly addresses the theoretical analysis of error decomposition you mentioned in your query.\n\n## Key Results\n\nComparing IB and DIB on these terms, the paper proves that DIB's SG (source generalization) bound is tighter than IB's while DIB's RD (representation discrepancy) is larger than IB's. This provides the formal bounds on source generalization and representation discrepancy that you referenced.\n\n## The Proposed Method\n\nTo balance the trade-off between SG and RD, the paper proposes an elastic information bottleneck (EIB) to interpolate between the IB and DIB regularizers, which guarantees a Pareto frontier within the IB framework.\n\nSimulations and real data experiments show that EIB achieves better domain adaptation results than IB and DIB, validating the theoretical findings."
+    ],
+    "durationSeconds": 6.378077362999989
+  },
+  "sourceToolAssistantUUID": "c6cb18e4-de7d-4f3b-9b59-b0b4cc84bafe",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-13T06:56:01.494Z_
+
+<details><summary>↩ Tool result · `toolu_01QCEL4A85CKH9aCc7BvmoLw`</summary>
+
+```text
+# Information Bottleneck ODE: Summary and Contributions
+
+## Abstract Overview
+
+The paper addresses the challenge of solving Information Bottleneck (IB) problems numerically by deriving the "IB's first-order Ordinary Differential Equation, which describes the dynamics underlying its optimal tradeoff curve." Rather than approaching solutions from suboptimal directions, this method enables tracking along the optimal curve by understanding bifurcations where solutions qualitatively change.
+
+## Key Contribution: The IB ODE
+
+The core innovation involves specializing an implicit ODE framework to the IB context. As stated in the work: "one may compute an optimal IB root once and then follow its evolution along the IB curve." This allows researchers to compute implicit derivatives at IB roots without iterating the Blahut-Arimoto algorithm repeatedly.
+
+## Tracking Method
+
+The approach uses **implicit derivatives** derived from the IB operator's Jacobian matrix. When an optimal root exists as a differentiable function of β (the Lagrange multiplier), the ODE provides the rate of change: dlogp/dβ. The paper implements this via:
+
+1. **Euler's Method**: Simple stepping along the ODE trajectory
+2. **Modified Approach**: Adding BA-IB iterations post-step to improve accuracy from first-order to approximately second-order convergence
+
+## Relevance to β-Sweeping
+
+Yes, this directly addresses efficient β-sweeping. The method avoids expensive BA-IB iterations at each grid point by:
+
+- Computing exact derivatives once at known solutions
+- Using analytical guidance rather than iterative convergence
+- Demonstrating comparable or superior error rates versus "reverse deterministic annealing with BA-IB"
+
+The approximations shown in Figure 1 remain "visually indistinguishable from the true IB curve, even on relatively few grid points," suggesting practical efficiency gains.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3e476c9b-ec19-41b5-aa94-7cf269e3254e",
+  "isSidechain": false,
+  "promptId": "b67246ae-6153-40d7-8130-9a3708fd54b2",
+  "type": "user",
+  "uuid": "e281eb31-0900-42c3-bd45-6c3784f6f483",
+  "toolUseResult": {
+    "bytes": 1084521,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Information Bottleneck ODE: Summary and Contributions\n\n## Abstract Overview\n\nThe paper addresses the challenge of solving Information Bottleneck (IB) problems numerically by deriving the \"IB's first-order Ordinary Differential Equation, which describes the dynamics underlying its optimal tradeoff curve.\" Rather than approaching solutions from suboptimal directions, this method enables tracking along the optimal curve by understanding bifurcations where solutions qualitatively change.\n\n## Key Contribution: The IB ODE\n\nThe core innovation involves specializing an implicit ODE framework to the IB context. As stated in the work: \"one may compute an optimal IB root once and then follow its evolution along the IB curve.\" This allows researchers to compute implicit derivatives at IB roots without iterating the Blahut-Arimoto algorithm repeatedly.\n\n## Tracking Method\n\nThe approach uses **implicit derivatives** derived from the IB operator's Jacobian matrix. When an optimal root exists as a differentiable function of β (the Lagrange multiplier), the ODE provides the rate of change: dlogp/dβ. The paper implements this via:\n\n1. **Euler's Method**: Simple stepping along the ODE trajectory\n2. **Modified Approach**: Adding BA-IB iterations post-step to improve accuracy from first-order to approximately second-order convergence\n\n## Relevance to β-Sweeping\n\nYes, this directly addresses efficient β-sweeping. The method avoids expensive BA-IB iterations at each grid point by:\n\n- Computing exact derivatives once at known solutions\n- Using analytical guidance rather than iterative convergence\n- Demonstrating comparable or superior error rates versus \"reverse deterministic annealing with BA-IB\"\n\nThe approximations shown in Figure 1 remain \"visually indistinguishable from the true IB curve, even on relatively few grid points,\" suggesting practical efficiency gains.",
+    "durationMs": 8863,
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10606645/"
+  },
+  "sourceToolAssistantUUID": "3e476c9b-ec19-41b5-aa94-7cf269e3254e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 55 · 2026-05-13T06:56:07.184Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a solid understanding of the EIB paper. Let me also note that the Gaussian IB (Chechik et al., 2005) is very important for the phase transition analysis. The critical β values are β_i = (1 - λ_i)^(-1) where λ_i are eigenvalues of the canonical correlation matrix. Each phase transition corresponds to adding a new eigenvector (dimension) to the representation — this is exactly the "rank change in the representation covariance matrix" that the reviewer suggested.
+
+Let me now search for a couple more things:
+1. The actual Ahuja et al. paper to get the exact claims about regression vs classification
+
+
+2. Whether there's any existing work connecting information bottleneck theory to flow matching or diffusion-based policy learning
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e281eb31-0900-42c3-bd45-6c3784f6f483",
+  "isSidechain": false,
+  "requestId": "req_011Caz8Z3SnUCH9dVbAm7eG7",
+  "type": "assistant",
+  "uuid": "84c7858b-a1ff-43cd-a8d0-b48dc5c0b6b5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KuAj3WZ3xqmdYeAaTHftLd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1149,
+      "cache_creation_input_tokens": 1058,
+      "cache_read_input_tokens": 35287,
+      "output_tokens": 401,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1058,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1149,
+          "output_tokens": 401,
+          "cache_read_input_tokens": 35287,
+          "cache_creation_input_tokens": 1058,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1058
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 56 · 2026-05-13T06:56:07.264Z_
+
+Let me fetch the Ahuja et al. paper directly and do one more search on recent IB + flow matching work.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "84c7858b-a1ff-43cd-a8d0-b48dc5c0b6b5",
+  "isSidechain": false,
+  "requestId": "req_011Caz8Z3SnUCH9dVbAm7eG7",
+  "type": "assistant",
+  "uuid": "3396df4a-6f8d-403d-aef5-3e0164ca1109",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KuAj3WZ3xqmdYeAaTHftLd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1149,
+      "cache_creation_input_tokens": 1058,
+      "cache_read_input_tokens": 35287,
+      "output_tokens": 401,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1058,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1149,
+          "output_tokens": 401,
+          "cache_read_input_tokens": 35287,
+          "cache_creation_input_tokens": 1058,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1058
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-13T06:56:09.646Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01S4moN9B4e6iHb9g9Jv8GFV`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2106.06607",
+  "prompt": "Extract the full abstract. What are the exact claims about when IB is necessary vs helpful? What do they say specifically about classification vs regression? What are the limitations they acknowledge? Do they say IB is \"necessary\" or \"helpful in combination with invariance\"?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3396df4a-6f8d-403d-aef5-3e0164ca1109",
+  "isSidechain": false,
+  "requestId": "req_011Caz8Z3SnUCH9dVbAm7eG7",
+  "type": "assistant",
+  "uuid": "ed8b309c-7db2-419a-867f-485f8e3b724a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KuAj3WZ3xqmdYeAaTHftLd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1149,
+      "cache_creation_input_tokens": 1058,
+      "cache_read_input_tokens": 35287,
+      "output_tokens": 401,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1058,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1149,
+          "output_tokens": 401,
+          "cache_read_input_tokens": 35287,
+          "cache_creation_input_tokens": 1058,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1058
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58 · 2026-05-13T06:56:09.887Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01AEL6H8jj2QUCneQqaV7Sg6`</summary>
+
+```json
+{
+  "query": "variational information bottleneck flow matching diffusion policy continuous action robot manipulation 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ed8b309c-7db2-419a-867f-485f8e3b724a",
+  "isSidechain": false,
+  "requestId": "req_011Caz8Z3SnUCH9dVbAm7eG7",
+  "type": "assistant",
+  "uuid": "692725b6-0a38-46cc-9f3b-914b3540b2b4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KuAj3WZ3xqmdYeAaTHftLd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1149,
+      "cache_creation_input_tokens": 1058,
+      "cache_read_input_tokens": 35287,
+      "output_tokens": 401,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1058,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1149,
+          "output_tokens": 401,
+          "cache_read_input_tokens": 35287,
+          "cache_creation_input_tokens": 1058,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1058
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-13T06:56:13.737Z_
+
+<details><summary>↩ Tool result · `toolu_01S4moN9B4e6iHb9g9Jv8GFV`</summary>
+
+```text
+# Summary of Key Claims
+
+## Full Abstract
+The paper examines how the invariance principle addresses out-of-distribution generalization. It shows that for linear classification tasks, stronger distribution shift restrictions are needed compared to regression. The authors prove that "invariance principle alone is insufficient" and that "a form of the information bottleneck constraint along with invariance helps address key failures."
+
+## IB Necessity vs. Helpfulness
+The authors characterize IB as **helpful in combination**, not strictly necessary. They state it "helps address key failures when invariant features capture all the information about the label" while also maintaining success in other scenarios.
+
+## Classification vs. Regression
+The paper explicitly contrasts the two:
+- **Regression**: Invariance-based approaches provably generalize OOD
+- **Classification**: Much stricter distribution shift restrictions are required, or OOD generalization becomes impossible
+
+## Acknowledged Limitations
+The paper doesn't explicitly list limitations in the abstract, but it identifies a core failure mode: when invariant (causal) features contain all label information, invariance alone fails. This is the specific problem their combined approach targets.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ed8b309c-7db2-419a-867f-485f8e3b724a",
+  "isSidechain": false,
+  "promptId": "b67246ae-6153-40d7-8130-9a3708fd54b2",
+  "type": "user",
+  "uuid": "f98fa933-c71a-48d4-a362-fe7323ea1626",
+  "toolUseResult": {
+    "bytes": 49050,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Summary of Key Claims\n\n## Full Abstract\nThe paper examines how the invariance principle addresses out-of-distribution generalization. It shows that for linear classification tasks, stronger distribution shift restrictions are needed compared to regression. The authors prove that \"invariance principle alone is insufficient\" and that \"a form of the information bottleneck constraint along with invariance helps address key failures.\"\n\n## IB Necessity vs. Helpfulness\nThe authors characterize IB as **helpful in combination**, not strictly necessary. They state it \"helps address key failures when invariant features capture all the information about the label\" while also maintaining success in other scenarios.\n\n## Classification vs. Regression\nThe paper explicitly contrasts the two:\n- **Regression**: Invariance-based approaches provably generalize OOD\n- **Classification**: Much stricter distribution shift restrictions are required, or OOD generalization becomes impossible\n\n## Acknowledged Limitations\nThe paper doesn't explicitly list limitations in the abstract, but it identifies a core failure mode: when invariant (causal) features contain all label information, invariance alone fails. This is the specific problem their combined approach targets.",
+    "durationMs": 4088,
+    "url": "https://arxiv.org/abs/2106.06607"
+  },
+  "sourceToolAssistantUUID": "ed8b309c-7db2-419a-867f-485f8e3b724a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-13T06:56:17.601Z_
+
+<details><summary>↩ Tool result · `toolu_01AEL6H8jj2QUCneQqaV7Sg6`</summary>
+
+```text
+Web search results for query: "variational information bottleneck flow matching diffusion policy continuous action robot manipulation 2025 2026"
+
+Links: [{"title":"Frontiers | Diffusion models for robotic manipulation: a survey","url":"https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1606247/full"},{"title":"Abstracting Robot Manipulation Skills via Mixture-of- ...","url":"https://arxiv.org/pdf/2601.21251"},{"title":"On-Device Diffusion Transformer Policy for Efficient Robot Manipulation","url":"https://openaccess.thecvf.com/content/ICCV2025/papers/Wu_On-Device_Diffusion_Transformer_Policy_for_Efficient_Robot_Manipulation_ICCV_2025_paper.pdf"},{"title":"VFP: Variational Flow-Matching Policy for Multi-Modal Robot Manipulation","url":"https://arxiv.org/pdf/2508.01622"},{"title":"[2303.04137] Diffusion Policy: Visuomotor Policy Learning via Action Diffusion","url":"https://arxiv.org/abs/2303.04137"},{"title":"2026-01-28 Work in progress.","url":"https://arxiv.org/pdf/2601.15197"},{"title":"Diffusion policy: Visuomotor policy learning via action diffusion - Cheng Chi, Zhenjia Xu, Siyuan Feng, Eric Cousineau, Yilun Du, Benjamin Burchfiel, Russ Tedrake, Shuran Song, 2025","url":"https://journals.sagepub.com/doi/full/10.1177/02783649241273668"},{"title":"Diffusion models for robotic manipulation: a survey - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC12454101/"},{"title":"Flow Policy Gradients for Robot Control","url":"https://arxiv.org/html/2602.02481v1"},{"title":"[2508.01622] VFP: Variational Flow-Matching Policy for Multi-Modal Robot Manipulation","url":"https://arxiv.org/abs/2508.01622"}]
+
+I found several relevant research papers on your topic. Here's a summary of the search results:
+
+## Key Papers Found
+
+**1. VFP: Variational Flow-Matching Policy for Multi-Modal Robot Manipulation**
+The Variational Flow-Matching Policy (VFP) introduces a variational latent prior for mode-aware action generation and effectively captures both task-level and trajectory-level multi-modality. VFP further incorporates Kantorovich Optimal Transport (K-OT) for distribution-level alignment and utilizes a Mixture-of-Experts (MoE) decoder for mode specialization and efficient inference. Results show that VFP achieves a 49% relative improvement in task success rate over standard flow-based baselines in simulation, and further outperforms them on real-robot tasks, while still maintaining fast inference and a compact model size.
+
+**2. Diffusion Models for Robotic Manipulation: A Survey**
+Diffusion generative models have recently emerged as a promising approach in robotics, especially in robot manipulations. Diffusion models leverage a probabilistic framework, and they stand out with their ability to model multi-modal distributions and their robustness to high-dimensional input and output spaces. This survey provides a comprehensive review of state-of-the-art diffusion models in robotic manipulation, including grasp learning, trajectory planning, and data augmentation.
+
+**3. Skill Mixture-of-Experts Policy (SMP)**
+The paper introduces a diffusion-based mixture-of-experts policy that performs skill abstraction in a locally whitened action space. They develop a principled variational objective that combines reconstruction in the whitened basis and gate regularization, and distill a state-only router.
+
+**4. Flow Policy Gradients for Robot Control**
+Flow matching policy gradients—a recent framework that bypasses likelihood computation—can be made effective for training and fine-tuning more expressive policies in challenging robot control settings. The work introduces an improved objective that enables success in legged locomotion, humanoid motion tracking, and manipulation tasks, as well as robust sim-to-real transfer on two humanoid robots.
+
+These papers directly address the intersection of variational methods, flow matching, diffusion-based policies, and continuous action robot manipulation from 2025-2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "692725b6-0a38-46cc-9f3b-914b3540b2b4",
+  "isSidechain": false,
+  "promptId": "b67246ae-6153-40d7-8130-9a3708fd54b2",
+  "type": "user",
+  "uuid": "86ab8b59-5d49-4809-a925-3867dcb68d50",
+  "toolUseResult": {
+    "query": "variational information bottleneck flow matching diffusion policy continuous action robot manipulation 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NeXdUazp5LhR5uWqZEu3q7",
+        "content": [
+          {
+            "title": "Frontiers | Diffusion models for robotic manipulation: a survey",
+            "url": "https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1606247/full"
+          },
+          {
+            "title": "Abstracting Robot Manipulation Skills via Mixture-of- ...",
+            "url": "https://arxiv.org/pdf/2601.21251"
+          },
+          {
+            "title": "On-Device Diffusion Transformer Policy for Efficient Robot Manipulation",
+            "url": "https://openaccess.thecvf.com/content/ICCV2025/papers/Wu_On-Device_Diffusion_Transformer_Policy_for_Efficient_Robot_Manipulation_ICCV_2025_paper.pdf"
+          },
+          {
+            "title": "VFP: Variational Flow-Matching Policy for Multi-Modal Robot Manipulation",
+            "url": "https://arxiv.org/pdf/2508.01622"
+          },
+          {
+            "title": "[2303.04137] Diffusion Policy: Visuomotor Policy Learning via Action Diffusion",
+            "url": "https://arxiv.org/abs/2303.04137"
+          },
+          {
+            "title": "2026-01-28 Work in progress.",
+            "url": "https://arxiv.org/pdf/2601.15197"
+          },
+          {
+            "title": "Diffusion policy: Visuomotor policy learning via action diffusion - Cheng Chi, Zhenjia Xu, Siyuan Feng, Eric Cousineau, Yilun Du, Benjamin Burchfiel, Russ Tedrake, Shuran Song, 2025",
+            "url": "https://journals.sagepub.com/doi/full/10.1177/02783649241273668"
+          },
+          {
+            "title": "Diffusion models for robotic manipulation: a survey - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12454101/"
+          },
+          {
+            "title": "Flow Policy Gradients for Robot Control",
+            "url": "https://arxiv.org/html/2602.02481v1"
+          },
+          {
+            "title": "[2508.01622] VFP: Variational Flow-Matching Policy for Multi-Modal Robot Manipulation",
+            "url": "https://arxiv.org/abs/2508.01622"
+          }
+        ]
+      },
+      "I found several relevant research papers on your topic. Here's a summary of the search results:\n\n## Key Papers Found\n\n**1. VFP: Variational Flow-Matching Policy for Multi-Modal Robot Manipulation**\nThe Variational Flow-Matching Policy (VFP) introduces a variational latent prior for mode-aware action generation and effectively captures both task-level and trajectory-level multi-modality. VFP further incorporates Kantorovich Optimal Transport (K-OT) for distribution-level alignment and utilizes a Mixture-of-Experts (MoE) decoder for mode specialization and efficient inference. Results show that VFP achieves a 49% relative improvement in task success rate over standard flow-based baselines in simulation, and further outperforms them on real-robot tasks, while still maintaining fast inference and a compact model size.\n\n**2. Diffusion Models for Robotic Manipulation: A Survey**\nDiffusion generative models have recently emerged as a promising approach in robotics, especially in robot manipulations. Diffusion models leverage a probabilistic framework, and they stand out with their ability to model multi-modal distributions and their robustness to high-dimensional input and output spaces. This survey provides a comprehensive review of state-of-the-art diffusion models in robotic manipulation, including grasp learning, trajectory planning, and data augmentation.\n\n**3. Skill Mixture-of-Experts Policy (SMP)**\nThe paper introduces a diffusion-based mixture-of-experts policy that performs skill abstraction in a locally whitened action space. They develop a principled variational objective that combines reconstruction in the whitened basis and gate regularization, and distill a state-only router.\n\n**4. Flow Policy Gradients for Robot Control**\nFlow matching policy gradients—a recent framework that bypasses likelihood computation—can be made effective for training and fine-tuning more expressive policies in challenging robot control settings. The work introduces an improved objective that enables success in legged locomotion, humanoid motion tracking, and manipulation tasks, as well as robust sim-to-real transfer on two humanoid robots.\n\nThese papers directly address the intersection of variational methods, flow matching, diffusion-based policies, and continuous action robot manipulation from 2025-2026."
+    ],
+    "durationSeconds": 7.710399413000006
+  },
+  "sourceToolAssistantUUID": "692725b6-0a38-46cc-9f3b-914b3540b2b4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 61 · 2026-05-13T06:56:17.606Z_
+
+```json
+{
+  "parentUuid": "86ab8b59-5d49-4809-a925-3867dcb68d50",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "b4ce9d21-7a04-4b2f-b23f-ff9c4f444875",
+  "timestamp": "2026-05-13T06:56:17.606Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 62_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-13 (UTC).**  ## Original idea {   \"title\": \"Generalization-Optimal Visual Bandwidth for VLAs: Information Bottlene…",
+  "leafUuid": "b4ce9d21-7a04-4b2f-b23f-ff9c4f444875",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 63_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise phase transition theory and clarify novelty claims for VLA bandwidth optimization",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e"
+}
+```
+
+---
+
+### Assistant
+
+_source line 64 · 2026-05-13T06:56:48.739Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a very clear picture. Let me also check whether there are any other papers I should be aware of — specifically around the EIB's formal theorem and the Generalized IB (arXiv 2303.17762) for Gaussian variables.
+
+Let me also double-check the EIB paper to make sure I understand it properly. The key point is:
+
+1. EIB decomposes target error into: source empirical error + source generalization gap (SG) + representation discrepancy (RD)
+
+
+2. DIB achieves tighter SG but at the cost of larger RD, while EIB finds the optimal balance between these two competing factors.
+
+This maps directly onto our bound where the compression rate controls the generalization gap and the distribution shift controls the representation discrepancy. The reviewer is right that we need to acknowledge EIB and clarify that our novelty lies in extending their framework to continuous action prediction with MSE loss over trajectories and visual token compression, rather than claiming the decomposition itself.
+
+Now I'm working through the phase transition theory for our setting. In the Gaussian case, I can use the analytical framework from Chechik et al. where each critical inverse temperature triggers a new dimension in the representation. For our continuous action prediction problem, I'm modeling the visual features as decomposing into action-relevant and environment-specific components, and analyzing how the cross-covariance structure between visual inputs and actions determines the information-theoretic trade-offs.
+
+The key insight is that environment-specific features with high action-relevance in training but low action-relevance in test environments get filtered out by the information bottleneck because their large cross-environment variance suppresses their eigenvalue in the canonical correlation matrix. This creates a regime where we can select for invariant features while rejecting spurious ones—exactly what the reviewer was pointing toward with the action-relevance to cross-environment variance ratio.
+
+For the nonlinear case, I'm extending this through the calculus of variations approach, where phase transitions correspond to when the Fisher information matrix for action prediction makes a new feature direction worth including. With MSE distortion instead of classification, the transitions reflect when visual features reduce prediction error enough to justify their compression cost, rather than learning discrete classes.
+
+I should check the Generalized Information Bottleneck for Gaussian Variables paper to see if it provides additional theoretical grounding here.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b4ce9d21-7a04-4b2f-b23f-ff9c4f444875",
+  "isSidechain": false,
+  "requestId": "req_011Caz8aEJRDr7V3Pw6aXDkm",
+  "type": "assistant",
+  "uuid": "495d8923-2e6a-446a-bc80-d4f511ebd379",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QndwXasjeoseyUbPUfaZpA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3041,
+      "cache_read_input_tokens": 36345,
+      "output_tokens": 1375,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3041,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1375,
+          "cache_read_input_tokens": 36345,
+          "cache_creation_input_tokens": 3041,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3041
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 65 · 2026-05-13T06:56:48.747Z_
+
+Let me do one final set of searches to ensure completeness before synthesizing the revision.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "495d8923-2e6a-446a-bc80-d4f511ebd379",
+  "isSidechain": false,
+  "requestId": "req_011Caz8aEJRDr7V3Pw6aXDkm",
+  "type": "assistant",
+  "uuid": "ea813e8a-389f-4905-9fc5-1b62f8a47e3d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QndwXasjeoseyUbPUfaZpA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3041,
+      "cache_read_input_tokens": 36345,
+      "output_tokens": 1375,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3041,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1375,
+          "cache_read_input_tokens": 36345,
+          "cache_creation_input_tokens": 3041,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3041
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66 · 2026-05-13T06:56:48.760Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_013NhKgeqQmvuoe7Vx6h2ZAo`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2303.17762",
+  "prompt": "Extract the abstract and key contributions. What is the Generalized Information Bottleneck for Gaussian Variables? How does it extend the classical Gaussian IB? Does it analyze phase transitions or eigenvalue structure?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ea813e8a-389f-4905-9fc5-1b62f8a47e3d",
+  "isSidechain": false,
+  "requestId": "req_011Caz8aEJRDr7V3Pw6aXDkm",
+  "type": "assistant",
+  "uuid": "6cab4ebd-fecd-44a8-ae86-e63cc67d60d7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QndwXasjeoseyUbPUfaZpA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3041,
+      "cache_read_input_tokens": 36345,
+      "output_tokens": 1375,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3041,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1375,
+          "cache_read_input_tokens": 36345,
+          "cache_creation_input_tokens": 3041,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3041
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-13T06:56:48.769Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HcmaQEmwxgGqfdXe3YyykW`</summary>
+
+```json
+{
+  "query": "information bottleneck MSE loss continuous action prediction second order variation phase transition condition Fisher information"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6cab4ebd-fecd-44a8-ae86-e63cc67d60d7",
+  "isSidechain": false,
+  "requestId": "req_011Caz8aEJRDr7V3Pw6aXDkm",
+  "type": "assistant",
+  "uuid": "10580857-9f26-4762-90d9-26ae385c51b7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QndwXasjeoseyUbPUfaZpA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3041,
+      "cache_read_input_tokens": 36345,
+      "output_tokens": 1375,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3041,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1375,
+          "cache_read_input_tokens": 36345,
+          "cache_creation_input_tokens": 3041,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3041
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68 · 2026-05-13T06:56:48.775Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01R9Yv6HdJ8WCDeP78n6qfX6`</summary>
+
+```json
+{
+  "query": "EIB elastic information bottleneck Pareto frontier transfer learning 2023 theorem formal bound classification regression"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "10580857-9f26-4762-90d9-26ae385c51b7",
+  "isSidechain": false,
+  "requestId": "req_011Caz8aEJRDr7V3Pw6aXDkm",
+  "type": "assistant",
+  "uuid": "bf374aae-626a-4e87-825e-8d9d3207add6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QndwXasjeoseyUbPUfaZpA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3041,
+      "cache_read_input_tokens": 36345,
+      "output_tokens": 1375,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3041,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1375,
+          "cache_read_input_tokens": 36345,
+          "cache_creation_input_tokens": 3041,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3041
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-13T06:56:53.556Z_
+
+<details><summary>↩ Tool result · `toolu_013NhKgeqQmvuoe7Vx6h2ZAo`</summary>
+
+```text
+# Generalized Information Bottleneck for Gaussian Variables
+
+## Abstract Summary
+
+The paper addresses computational limitations of the Information Bottleneck (IB) method by proposing a generalized approach. As stated: "The information bottleneck (IB) method offers an attractive framework for understanding representation learning, however its applications are often limited by its computational intractability."
+
+## Key Contributions
+
+**Extension Beyond Classical IB:**
+Rather than relying solely on mutual information, the authors replace it with alternative correlation measures derived from Renyi and Jeffreys divergences. This enables exact analytical solutions for Gaussian correlated variables—a significant advancement over the typically intractable original IB problem.
+
+**Phase Transitions:**
+Yes, the work explicitly analyzes structural transitions. The research "reveals a series of structural transitions, similar to those previously observed in the original IB case." Notably, these transitions occur at identical critical tradeoff parameters across all three formulations (original, Renyi, and Jeffreys), despite producing different representations.
+
+**Practical Insights:**
+A compelling finding is that alternative divergence-based IB solutions "perform well under the original IB objective," suggesting these generalized formulations may serve as practical proxies for approximating solutions to the computationally intractable original problem.
+
+The work bridges theory and application by providing closed-form analytical results while maintaining meaningful connections to the original IB framework.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6cab4ebd-fecd-44a8-ae86-e63cc67d60d7",
+  "isSidechain": false,
+  "promptId": "b67246ae-6153-40d7-8130-9a3708fd54b2",
+  "type": "user",
+  "uuid": "e7c8509c-08a3-41eb-8463-4ed4d183b17d",
+  "toolUseResult": {
+    "bytes": 46774,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Generalized Information Bottleneck for Gaussian Variables\n\n## Abstract Summary\n\nThe paper addresses computational limitations of the Information Bottleneck (IB) method by proposing a generalized approach. As stated: \"The information bottleneck (IB) method offers an attractive framework for understanding representation learning, however its applications are often limited by its computational intractability.\"\n\n## Key Contributions\n\n**Extension Beyond Classical IB:**\nRather than relying solely on mutual information, the authors replace it with alternative correlation measures derived from Renyi and Jeffreys divergences. This enables exact analytical solutions for Gaussian correlated variables—a significant advancement over the typically intractable original IB problem.\n\n**Phase Transitions:**\nYes, the work explicitly analyzes structural transitions. The research \"reveals a series of structural transitions, similar to those previously observed in the original IB case.\" Notably, these transitions occur at identical critical tradeoff parameters across all three formulations (original, Renyi, and Jeffreys), despite producing different representations.\n\n**Practical Insights:**\nA compelling finding is that alternative divergence-based IB solutions \"perform well under the original IB objective,\" suggesting these generalized formulations may serve as practical proxies for approximating solutions to the computationally intractable original problem.\n\nThe work bridges theory and application by providing closed-form analytical results while maintaining meaningful connections to the original IB framework.",
+    "durationMs": 4791,
+    "url": "https://arxiv.org/abs/2303.17762"
+  },
+  "sourceToolAssistantUUID": "6cab4ebd-fecd-44a8-ae86-e63cc67d60d7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-13T06:56:55.107Z_
+
+<details><summary>↩ Tool result · `toolu_01R9Yv6HdJ8WCDeP78n6qfX6`</summary>
+
+```text
+Web search results for query: "EIB elastic information bottleneck Pareto frontier transfer learning 2023 theorem formal bound classification regression"
+
+Links: [{"title":"Elastic Information Bottleneck","url":"https://www.mdpi.com/2227-7390/10/18/3352"},{"title":"[2311.03955] Elastic Information Bottleneck","url":"https://arxiv.org/abs/2311.03955"},{"title":"Elastic Information Bottleneck","url":"https://ideas.repec.org/a/gam/jmathe/v10y2022i18p3352-d915793.html"},{"title":"Information Bottleneck","url":"https://www.emergentmind.com/topics/information-bottleneck"},{"title":"GitHub - nyyxxx/elastic-information-bottleneck","url":"https://github.com/nyyxxx/elastic-information-bottleneck"},{"title":"Information Bottleneck Loss","url":"https://www.emergentmind.com/topics/information-bottleneck-loss"},{"title":"Pareto-Optimal Clustering with the Primal Deterministic Information Bottleneck","url":"https://www.mdpi.com/1099-4300/24/6/771"},{"title":"How Does Information Bottleneck Help Deep Learning?","url":"https://proceedings.mlr.press/v202/kawaguchi23a/kawaguchi23a.pdf"},{"title":"Information Bottleneck-Enhanced Reinforcement Learning for Solving Operation Research Problems","url":"https://www.mdpi.com/1424-8220/25/24/7572"},{"title":"(PDF) Information Bottleneck: Theory and Applications in Deep Learning","url":"https://www.researchgate.net/publication/347633182_Information_Bottleneck_Theory_and_Applications_in_Deep_Learning"}]
+
+I found relevant results about the Elastic Information Bottleneck (EIB) and its connection to Pareto frontiers and transfer learning. Here's what the search revealed:
+
+## Key Findings
+
+The elastic information bottleneck (EIB) proposes to interpolate between the IB and DIB regularizers, which guarantees a Pareto frontier within the IB framework.
+
+### Transfer Learning Context
+
+In transfer learning scenarios, the target error can be decomposed into three components: source empirical error, source generalization gap (SG), and representation discrepancy (RD). DIB's source generalization gap bound is tighter than IB's while DIB's representation discrepancy is larger than IB's.
+
+### Theoretical Bounds
+
+EIB is a linear combination of IB and DIB, which covers IB and DIB as special cases. The Elastic Information Bottleneck introduces a convex regularizer where alpha traces a continuum of Pareto-optimal objectives between generalization and domain adaptation robustness.
+
+### Applications
+
+EIB achieves better accuracy than IB and DIB on classification tasks. Simulations and real data experiments show that EIB has the ability to achieve better domain adaptation results than IB and DIB.
+
+### Publication
+
+The research appears to have been published in 2023, with an arXiv version dated November 7, 2023.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bf374aae-626a-4e87-825e-8d9d3207add6",
+  "isSidechain": false,
+  "promptId": "b67246ae-6153-40d7-8130-9a3708fd54b2",
+  "type": "user",
+  "uuid": "47fbe977-e252-4a5f-976a-d489218d6187",
+  "toolUseResult": {
+    "query": "EIB elastic information bottleneck Pareto frontier transfer learning 2023 theorem formal bound classification regression",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0146NBVtsDPiAKF6QugrGYyy",
+        "content": [
+          {
+            "title": "Elastic Information Bottleneck",
+            "url": "https://www.mdpi.com/2227-7390/10/18/3352"
+          },
+          {
+            "title": "[2311.03955] Elastic Information Bottleneck",
+            "url": "https://arxiv.org/abs/2311.03955"
+          },
+          {
+            "title": "Elastic Information Bottleneck",
+            "url": "https://ideas.repec.org/a/gam/jmathe/v10y2022i18p3352-d915793.html"
+          },
+          {
+            "title": "Information Bottleneck",
+            "url": "https://www.emergentmind.com/topics/information-bottleneck"
+          },
+          {
+            "title": "GitHub - nyyxxx/elastic-information-bottleneck",
+            "url": "https://github.com/nyyxxx/elastic-information-bottleneck"
+          },
+          {
+            "title": "Information Bottleneck Loss",
+            "url": "https://www.emergentmind.com/topics/information-bottleneck-loss"
+          },
+          {
+            "title": "Pareto-Optimal Clustering with the Primal Deterministic Information Bottleneck",
+            "url": "https://www.mdpi.com/1099-4300/24/6/771"
+          },
+          {
+            "title": "How Does Information Bottleneck Help Deep Learning?",
+            "url": "https://proceedings.mlr.press/v202/kawaguchi23a/kawaguchi23a.pdf"
+          },
+          {
+            "title": "Information Bottleneck-Enhanced Reinforcement Learning for Solving Operation Research Problems",
+            "url": "https://www.mdpi.com/1424-8220/25/24/7572"
+          },
+          {
+            "title": "(PDF) Information Bottleneck: Theory and Applications in Deep Learning",
+            "url": "https://www.researchgate.net/publication/347633182_Information_Bottleneck_Theory_and_Applications_in_Deep_Learning"
+          }
+        ]
+      },
+      "I found relevant results about the Elastic Information Bottleneck (EIB) and its connection to Pareto frontiers and transfer learning. Here's what the search revealed:\n\n## Key Findings\n\nThe elastic information bottleneck (EIB) proposes to interpolate between the IB and DIB regularizers, which guarantees a Pareto frontier within the IB framework.\n\n### Transfer Learning Context\n\nIn transfer learning scenarios, the target error can be decomposed into three components: source empirical error, source generalization gap (SG), and representation discrepancy (RD). DIB's source generalization gap bound is tighter than IB's while DIB's representation discrepancy is larger than IB's.\n\n### Theoretical Bounds\n\nEIB is a linear combination of IB and DIB, which covers IB and DIB as special cases. The Elastic Information Bottleneck introduces a convex regularizer where alpha traces a continuum of Pareto-optimal objectives between generalization and domain adaptation robustness.\n\n### Applications\n\nEIB achieves better accuracy than IB and DIB on classification tasks. Simulations and real data experiments show that EIB has the ability to achieve better domain adaptation results than IB and DIB.\n\n### Publication\n\nThe research appears to have been published in 2023, with an arXiv version dated November 7, 2023."
+    ],
+    "durationSeconds": 6.329857820000004
+  },
+  "sourceToolAssistantUUID": "bf374aae-626a-4e87-825e-8d9d3207add6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-13T06:56:56.288Z_
+
+<details><summary>↩ Tool result · `toolu_01HcmaQEmwxgGqfdXe3YyykW`</summary>
+
+```text
+Web search results for query: "information bottleneck MSE loss continuous action prediction second order variation phase transition condition Fisher information"
+
+Links: [{"title":"ICLR: Phase Transitions for the Information Bottleneck in Representation Learning","url":"https://iclr.cc/virtual_2020/poster_HJloElBYvB.html"},{"title":"Phase Transitions for the Information Bottleneck in Representation Learning | OpenReview","url":"https://openreview.net/forum?id=HJloElBYvB"},{"title":"[2001.01878] Phase Transitions for the Information Bottleneck in Representation Learning","url":"https://arxiv.org/abs/2001.01878"},{"title":"PHASE TRANSITIONS FOR THE INFORMATION BOTTLE","url":"https://openreview.net/pdf?id=HJloElBYvB"},{"title":"Information bottleneck method - Wikipedia","url":"https://en.wikipedia.org/wiki/Information_bottleneck_method"},{"title":"Optimal prediction with resource constraints using the information bottleneck - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC7971903/"},{"title":"Deterministic Discovery of the Critical β* in the Information Bottleneck | by Faruk Alpay | Medium","url":"https://lightcapai.medium.com/deterministic-discovery-of-the-critical-%CE%B2-in-the-information-bottleneck-58559a362c38"},{"title":"On the Information Bottleneck Problems: Models, Connections, Applications and Information Theoretic Views - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC7516564/"},{"title":"How Does Information Bottleneck Help Deep Learning?","url":"https://proceedings.mlr.press/v202/kawaguchi23a/kawaguchi23a.pdf"},{"title":"1 The Information Bottleneck Problem and Its Applications in Machine Learning","url":"https://arxiv.org/pdf/2004.14941"}]
+
+Based on the search results, I found highly relevant research on phase transitions in the information bottleneck framework:
+
+## Key Findings
+
+The research studies phase transitions in the Information Bottleneck (IB) objective IB_β[p(z|x)] = I(X; Z) − βI(Y; Z), where sudden jumps in dI(Y; Z)/dβ and prediction accuracy are observed. Using second-order calculus of variations, researchers derived a formula that provides practical conditions for IB phase transitions and drew connections with the Fisher information matrix for parameterized models.
+
+IB phase transitions are defined as qualitative changes of the IB loss landscape, and show that these transitions correspond to the onset of learning new classes.
+
+## Related Concepts
+
+There is numerical evidence that models trained to maximize mutual information, or equivalently minimize the error's entropy, often outperform ones trained using mean-square error (MSE) and higher-order statistics.
+
+In continuous domains, a phase transition occurs along the information bottleneck curve, where the optimal predictive compression changes from a one-dimensional representation to a two-dimensional one.
+
+Tailin Wu and Ian Fischer (2020) derived a condition based on second-order variations (related to the Fisher information) to predict IB phase transitions and proposed an algorithm to find critical β values.
+
+The search results primarily reference the influential work "Phase Transitions for the Information Bottleneck in Representation Learning" which directly addresses the mathematical framework connecting second-order variations, Fisher information, and phase transition conditions in the information bottleneck framework.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "10580857-9f26-4762-90d9-26ae385c51b7",
+  "isSidechain": false,
+  "promptId": "b67246ae-6153-40d7-8130-9a3708fd54b2",
+  "type": "user",
+  "uuid": "f53e0890-c703-4f92-84d3-5ffc329be786",
+  "toolUseResult": {
+    "query": "information bottleneck MSE loss continuous action prediction second order variation phase transition condition Fisher information",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01AkxExTPbdvUcY9Njjgcd9H",
+        "content": [
+          {
+            "title": "ICLR: Phase Transitions for the Information Bottleneck in Representation Learning",
+            "url": "https://iclr.cc/virtual_2020/poster_HJloElBYvB.html"
+          },
+          {
+            "title": "Phase Transitions for the Information Bottleneck in Representation Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=HJloElBYvB"
+          },
+          {
+            "title": "[2001.01878] Phase Transitions for the Information Bottleneck in Representation Learning",
+            "url": "https://arxiv.org/abs/2001.01878"
+          },
+          {
+            "title": "PHASE TRANSITIONS FOR THE INFORMATION BOTTLE",
+            "url": "https://openreview.net/pdf?id=HJloElBYvB"
+          },
+          {
+            "title": "Information bottleneck method - Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/Information_bottleneck_method"
+          },
+          {
+            "title": "Optimal prediction with resource constraints using the information bottleneck - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7971903/"
+          },
+          {
+            "title": "Deterministic Discovery of the Critical β* in the Information Bottleneck | by Faruk Alpay | Medium",
+            "url": "https://lightcapai.medium.com/deterministic-discovery-of-the-critical-%CE%B2-in-the-information-bottleneck-58559a362c38"
+          },
+          {
+            "title": "On the Information Bottleneck Problems: Models, Connections, Applications and Information Theoretic Views - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7516564/"
+          },
+          {
+            "title": "How Does Information Bottleneck Help Deep Learning?",
+            "url": "https://proceedings.mlr.press/v202/kawaguchi23a/kawaguchi23a.pdf"
+          },
+          {
+            "title": "1 The Information Bottleneck Problem and Its Applications in Machine Learning",
+            "url": "https://arxiv.org/pdf/2004.14941"
+          }
+        ]
+      },
+      "Based on the search results, I found highly relevant research on phase transitions in the information bottleneck framework:\n\n## Key Findings\n\nThe research studies phase transitions in the Information Bottleneck (IB) objective IB_β[p(z|x)] = I(X; Z) − βI(Y; Z), where sudden jumps in dI(Y; Z)/dβ and prediction accuracy are observed. Using second-order calculus of variations, researchers derived a formula that provides practical conditions for IB phase transitions and drew connections with the Fisher information matrix for parameterized models.\n\nIB phase transitions are defined as qualitative changes of the IB loss landscape, and show that these transitions correspond to the onset of learning new classes.\n\n## Related Concepts\n\nThere is numerical evidence that models trained to maximize mutual information, or equivalently minimize the error's entropy, often outperform ones trained using mean-square error (MSE) and higher-order statistics.\n\nIn continuous domains, a phase transition occurs along the information bottleneck curve, where the optimal predictive compression changes from a one-dimensional representation to a two-dimensional one.\n\nTailin Wu and Ian Fischer (2020) derived a condition based on second-order variations (related to the Fisher information) to predict IB phase transitions and proposed an algorithm to find critical β values.\n\nThe search results primarily reference the influential work \"Phase Transitions for the Information Bottleneck in Representation Learning\" which directly addresses the mathematical framework connecting second-order variations, Fisher information, and phase transition conditions in the information bottleneck framework."
+    ],
+    "durationSeconds": 7.5153473959999975
+  },
+  "sourceToolAssistantUUID": "10580857-9f26-4762-90d9-26ae385c51b7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 72_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-13 (UTC).**  ## Original idea {   \"title\": \"Generalization-Optimal Visual Bandwidth for VLAs: Information Bottlene…",
+  "leafUuid": "f53e0890-c703-4f92-84d3-5ffc329be786",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 73_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise phase transition theory and clarify novelty claims for VLA bandwidth optimization",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e"
+}
+```
+
+---
+
+### Assistant
+
+_source line 74 · 2026-05-13T06:57:16.084Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a comprehensive understanding. Let me also note that there's apparently an earlier "Elastic Information Bottleneck" paper from 2022 in Mathematics (MDPI), and then the arXiv 2311.03955 from 2023 which seems to be a different paper. Let me check if they are the same or different works.
+
+Actually, looking more carefully:
+- The MDPI paper (Mathematics 2022) seems to be the original EIB publication
+- arXiv 2311.03955 (2023) appears to be the transfer learning focused version
+
+
+- The reviewer cited the 2023 version, so that's the one I should reference.
+
+Now I'm working through what's genuinely novel here. The EIB framework already decomposes target error into source empirical error plus terms controlled by information rate and domain shift, which has the same structure as our bound. What we're actually contributing is extending this to continuous action prediction with MSE distortion, applying it specifically to visual token compression, and analyzing how structured perturbations affect the bound.
+
+For the phase transition analysis, I need to ground this mathematically using the calculus of variations on the IB Lagrangian with MSE distortion—extending prior work that focused on cross-entropy to the continuous output case. In this setting, phase transitions correspond to rank changes in the latent covariance matrix, where each transition introduces a new principal component. I can build on Gaussian IB theory to show that the critical inverse temperature depends on the ratio between action-relevance and cross-environment variance, then validate this with both a tractable linear-Gaussian model and empirical results on the full VLA setting.
+
+Now I'm clarifying the scope of our contributions relative to prior work. Ahuja et al. showed that invariance alone fails in classification, and we're extending their insight to continuous action prediction by combining IB with invariance—that's a meaningful contribution rather than a direct application. I also need to be precise about what's novel versus what's an instantiation of existing theory: the generalization bounds and invariant feature selection are applications of prior frameworks to VLA, but the phase transition analysis in continuous outputs and the argument about escaping margin contraction are genuinely new theoretical results.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f53e0890-c703-4f92-84d3-5ffc329be786",
+  "isSidechain": false,
+  "requestId": "req_011Caz8d5hKzYxSmCR9QVoHV",
+  "type": "assistant",
+  "uuid": "d9846b74-e587-4478-a270-c79e38c4eae6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YFuSgPGP5fF7bZAbjHrpTn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 808,
+      "cache_creation_input_tokens": 2590,
+      "cache_read_input_tokens": 39386,
+      "output_tokens": 9117,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2590,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 808,
+          "output_tokens": 9117,
+          "cache_read_input_tokens": 39386,
+          "cache_creation_input_tokens": 2590,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2590
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 75 · 2026-05-13T06:57:20.739Z_
+
+Now I have a thorough understanding of all the key papers and the theoretical landscape. Let me synthesize the revision. The key findings from my research:
+
+1. **EIB (arXiv 2311.03955)**: Decomposes target error into source empirical error + SG (controlled by IB rate) + RD (domain shift). Same f(compression) + g(shift) structure. Must cite and differentiate.
+
+2. **Gaussian IB (Chechik et al., 2005)**: Provides the analytical framework for phase transitions: critical β_i = (1 - λ_i)^(-1) where λ_i are eigenvalues of the canonical correlation matrix. Each transition = rank change in representation covariance. This is the tractable analytical case for Pillar 1c.
+
+3. **Ahuja et al.**: Says IB is "helpful in combination with invariance" — not "necessary." Notes regression is easier than classification for invariance-based OOD generalization.
+
+4. **IB ODE (Geiping & Goldblum, 2023)**: Provides continuous β tracking via first-order ODEs — complementary to FVIB-R.
+
+5. **CS-DIB (arXiv 2404.17951)**: Alternative IB formulation for regression avoiding Gaussian assumptions.
+
+Now I'll compose the complete revised idea.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d9846b74-e587-4478-a270-c79e38c4eae6",
+  "isSidechain": false,
+  "requestId": "req_011Caz8d5hKzYxSmCR9QVoHV",
+  "type": "assistant",
+  "uuid": "147256af-675e-444e-a0d6-b898a3ca4d19",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YFuSgPGP5fF7bZAbjHrpTn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 808,
+      "cache_creation_input_tokens": 2590,
+      "cache_read_input_tokens": 39386,
+      "output_tokens": 9117,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2590,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 808,
+          "output_tokens": 9117,
+          "cache_read_input_tokens": 39386,
+          "cache_creation_input_tokens": 2590,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2590
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76 · 2026-05-13T07:00:22.963Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01NfJsqmAKYACsZ52Vtcd5Bu`</summary>
+
+```json
+{
+  "description": "Draft revised research idea JSON",
+  "prompt": "I need you to help me compose a large JSON object. I'll give you all the content and you should output ONLY the JSON. Do not write any code or files — just output the complete JSON as text in your response.\n\nHere is the complete revised research idea JSON. Please format it properly as valid JSON with all fields:\n\n{\n  \"change_type\": \"minor\",\n  \"title\": \"Generalization-Optimal Visual Bandwidth for VLAs: Information Bottleneck Phase Transitions Under Distribution Shift\",\n  \"core_problem\": \"VLA systems use vastly different visual token counts (1 to 512 per frame), and concurrent work selects compression ratios heuristically or optimizes for in-distribution success. No principled framework characterizes WHEN visual compression helps vs. hurts out-of-distribution generalization — despite evidence that compression can both improve robustness (by filtering task-irrelevant noise) and amplify vulnerability (by contracting decision margins). While IB phase transitions are well-understood for classification (Wu & Fischer, ICLR 2020) and the Elastic Information Bottleneck (EIB, arXiv 2311.03955) provides an f(compression) + g(shift) error decomposition for domain adaptation, neither addresses continuous action prediction in VLAs, where the distortion is MSE over action trajectories, compression operates over visual tokens, and the distribution shift is structured across multiple perturbation dimensions. The Gaussian IB (Chechik et al., JMLR 2005) shows that phase transitions in continuous variables correspond to rank changes in the representation covariance — each transition adds a principal component at a critical β determined by the eigenvalue spectrum — but this has never been connected to OOD generalization in high-dimensional visuomotor control.\",\n  \"opportunity\": \"The information bottleneck (IB) provides a formal framework for trading compression against task-relevant information preservation. Three established theoretical results create a well-defined gap that our work fills: (1) Wu & Fischer (ICLR 2020) derive conditions for IB phase transitions using calculus of variations on the IB Lagrangian with cross-entropy loss, connecting phase transitions to the Fisher information matrix — but only for categorical classification on MNIST/CIFAR-10. (2) The Elastic Information Bottleneck (EIB, arXiv 2311.03955, 2023) decomposes target error into source empirical error + source generalization gap (SG, controlled by IB compression rate) + representation discrepancy (RD, measuring domain shift), establishing that IB and DIB trade off SG vs. RD and that the EIB objective traces a Pareto frontier — but in a general domain adaptation setting without analyzing the MSE-distortion structure of continuous action prediction or the eigenvalue-driven phase structure that governs which visual features enter the representation at which compression level. (3) The Gaussian IB (Chechik et al., JMLR 2005) derives closed-form solutions showing that phase transitions occur at critical β_i = (1 − λ_i)^(−1) where λ_i are eigenvalues of the canonical correlation matrix, with each transition adding a dimension to the representation — but this has not been applied to characterize OOD generalization or connected to the invariant/nuisance decomposition relevant to robotic deployment.\\n\\nOur opportunity is to bridge these three lines: instantiate EIB-style generalization bounds for continuous VLA action prediction (where the distortion function, action space structure, and shift structure are fundamentally different from classification), and then derive genuinely new phase transition theory showing WHERE the critical β* falls and HOW it shifts with task and perturbation properties. The Gaussian IB's eigenvalue-driven phase structure provides the analytical scaffold: in the VLA setting, each eigenvalue encodes a visual feature subspace's action-relevance relative to its cross-environment variance, and the phase transition sequence determines the order in which invariant vs. environment-specific features enter the representation.\\n\\nThis opportunity is sharpened by five concurrent developments: (a) CRAFT (arXiv 2602.12532) demonstrates VIB integration with π₀'s flow-matching architecture and curriculum β scheduling for force-modality generalization — but uses VIB as a modality balancing tool, not for systematic RD frontier analysis or phase transition characterization; (b) Li et al. (ICLR 2025) derive compute-optimal scaling laws for visual tokens vs. model size, but only for inference efficiency, not OOD generalization; (c) BC-IB (ICML 2025) shows IB at the latent fusion level improves in-distribution BC performance with 4 discrete β values, but does not evaluate OOD robustness or trace continuous RD frontiers; (d) Evans et al. (arXiv 2604.06954) prove fixed codecs contract classification margins — raising whether learned IB can escape this regime; (e) Ahuja et al. (NeurIPS 2021) show that combining IB with invariance addresses key failures of invariance alone in classification settings, though they note that invariance-based approaches already generalize more readily for regression tasks — making our extension to continuous action prediction a meaningful theoretical contribution rather than a direct application.\",\n  \"landscape\": \"**VLA visual compression methods**: OneWM-VLA (arXiv 2605.07931, May 2026) compresses each view into a single semantic token, achieving 95.6% on LIBERO-Long. LightVLA uses 78 tokens with +2.9% improvement. GridS (ICML 2026) uses <10% tokens. VLA-IAP achieves 97.8% with 1.54× speedup. Compressor-VLA achieves 97.3% with 59% FLOPs reduction. VLA-Pruner and TEAM-VLA learn compression heuristically. All optimize for in-distribution efficiency — none characterizes the OOD generalization tradeoff via information-theoretic analysis.\\n\\n**IB in robot learning**: CRAFT (arXiv 2602.12532, Feb 2026) is the closest work: it inserts VIB after the vision-language encoder of π₀ and RDT, using curriculum β scheduling (λ_VIB(t) = λ_init · exp(−t/T_decay)) to suppress high-entropy visual/language signals and prioritize force inputs during contact-rich manipulation. CRAFT demonstrates generalization to unseen objects and task variants (22.5% → 58.75% OOD improvement). However, CRAFT's VIB serves as a modality balancing tool — it compresses then releases visual information to prioritize force signals — rather than systematically characterizing compression-generalization tradeoffs. CRAFT does not trace RD frontiers, does not evaluate across systematic perturbation benchmarks (e.g., LIBERO-Plus), and does not analyze phase transitions. Its existence validates the technical feasibility of VIB + flow matching in π₀, strengthening our approach. BC-IB (ICML 2025) applies IB at the latent fusion level of small BC models with 4 β values, achieving in-distribution improvements on LIBERO, but operates on fused representations (not visual tokens), evaluates only in-distribution, and has not been applied to large VLAs. IBAC (NeurIPS 2019) applies IB to actor-critic RL, showing compression improves generalization in procedurally-generated environments. The Capacity-Limited Actor-Critic (Lerch & Sims, ICLR 2019 workshop) maps capacity-limited RL to rate-distortion theory. VFP (arXiv 2508.01622) establishes precedent for variational components + flow matching in robot manipulation.\\n\\n**IB phase transition theory**: Wu & Fischer (ICLR 2020) derive theoretical conditions for IB phase transitions using second-order calculus of variations on the IB Lagrangian with cross-entropy loss, connecting them to the Fisher information matrix. Phase transitions correspond to the onset of learning new categorical classes. The Gaussian IB (Chechik et al., JMLR 2005) provides the analytical tractable case for continuous variables: phase transitions occur at critical β_i = (1 − λ_i)^(−1) where λ_i are eigenvalues of the canonical correlation matrix Σ_{x|y}Σ_x^(−1), with each transition adding a new principal component to the representation (a rank change in Σ_Z). The optimal representation is a noisy linear projection onto eigenvectors of the normalized regression matrix. The Generalized IB for Gaussian Variables (arXiv 2303.17762) shows that structural transitions occur at identical critical β values across Rényi and Jeffreys divergence formulations, suggesting the phase structure is a fundamental property of the compression-relevance tradeoff. Extension to continuous action prediction under distribution shift is non-trivial and unaddressed.\\n\\n**IB and OOD generalization theory**: The Elastic Information Bottleneck (EIB, arXiv 2311.03955, 2023) decomposes target error into source empirical error + source generalization gap (SG) + representation discrepancy (RD), proving that DIB has tighter SG but larger RD than IB, and proposing an interpolation that traces a Pareto frontier. This provides the f(compression) + g(shift) decomposition structure. Ahuja et al. (NeurIPS 2021) show that combining IB with invariance addresses key failures of invariance alone — specifically when invariant features capture all label information — though they note that invariance-based approaches generalize more readily for regression than classification, requiring stronger distributional restrictions for the latter. The Invariant Information Bottleneck (IIB, AAAI 2022) combines IB with invariance principles for domain generalization. Sefidgaran et al. (COLT 2022) establish rate-distortion theoretic generalization bounds linking compressibility, mutual information, and fractal dimensions. The Cauchy-Schwarz Divergence IB (CS-DIB, arXiv 2404.17951) addresses IB for regression by replacing KL divergence with Cauchy-Schwarz divergence, avoiding Gaussian assumptions while providing adversarial robustness guarantees. The Generalized IB theory (arXiv 2509.26327, 2025) shows synergistic representations achieve superior generalization.\\n\\n**Compression and robustness**: LIBERO-Plus (CVPR 2026) reveals VLA models drop from 95% to below 30% under modest perturbations across 7 dimensions. Evans et al. (arXiv 2604.06954) prove fixed image compression contracts classification margins. 'Less Is More — Until It Breaks' (arXiv 2601.12042) shows compression introduces state-specific robustness vulnerabilities in VLMs. Kong et al. (arXiv 2505.18227) argue token reduction should influence generalization, but provide no formal framework.\\n\\n**Efficient IB optimization**: FVIB (arXiv 2402.01238) enables sweeping all β values for classification in a single training run via Taylor approximation. FVIB-R (Entropy, 2024) extends this to regression/continuous outputs using quadratic feature extraction, enabling β adjustment at evaluation time without retraining. The IB ODE (Geiping & Goldblum, Entropy 2023) derives first-order ordinary differential equations for tracking optimal IB solutions as β varies continuously, providing theoretical foundation for continuous β sweeping.\\n\\nNo work combines: (i) instantiation and extension of EIB-style generalization bounds for continuous VLA action prediction, (ii) new phase transition theory for continuous outputs showing how critical β* depends on the eigenvalue spectrum of invariant vs. nuisance feature subspaces, (iii) systematic RD frontier tracing under structured OOD perturbation, and (iv) empirical characterization of how phase transition points shift with task/perturbation properties.\",\n  \"approach\": \"We formalize VLA visual bandwidth selection as an information bottleneck optimization and provide both theoretical analysis and empirical characterization of the compression-generalization tradeoff under distribution shift.\\n\\n**Theoretical Contribution (Pillar 1): Generalization Bounds and Phase Transitions.**\\n\\n(a) *Generalization bound (extension of existing theory to VLA domain).* We instantiate and extend the EIB error decomposition (arXiv 2311.03955) for continuous VLA action prediction. EIB decomposes target error into source empirical error + source generalization gap (SG, controlled by IB compression rate R = I(V;Z)) + representation discrepancy (RD, measuring domain shift through the bottleneck). Our contribution is NOT the decomposition structure itself — it is extending this to the VLA setting where: (i) the distortion is MSE over continuous action trajectories rather than 0-1 classification loss, requiring re-derivation of the SG bound under MSE distortion; (ii) the compression operates over visual tokens specifically, with the rate R measuring visual information retained; (iii) the distribution shift is structured across 7 perturbation dimensions (camera, lighting, distractors, layout, robot state, texture, noise), allowing us to decompose the RD term by perturbation type. Formally: Gap_OOD(β) ≤ SG(R(β)) + RD(β, P_train, P_test), where SG decreases with compression (standard IB) and RD initially decreases with compression (collapsing environment-specific variation) but eventually increases (losing action-relevant information) — yielding a non-trivial optimum β*. We are transparent that this pillar primarily applies existing rate-distortion generalization machinery to a new domain.\\n\\n(b) *IB as domain-invariant feature selector (extension of IIB to VLA setting).* We extend the IIB framework (AAAI 2022) to VLA visual representations: minimizing I(V;Z) while preserving I(Z;A) preferentially compresses visual features with high cross-environment variance and low action-relevance while preserving invariant features. We note that Ahuja et al. (NeurIPS 2021) show IB combined with invariance addresses failures of invariance alone in classification; since they observe that invariance generalizes more readily for regression, our extension to continuous action prediction (closer to regression) is a meaningful contribution requiring different analytical treatment — specifically, the invariant/nuisance decomposition for visual features must account for the continuous action manifold structure rather than discrete class boundaries. We formalize this decomposition to show learned VIB compression can escape Evans et al.'s fixed-codec margin contraction by selectively compressing the nuisance subspace while preserving the invariant subspace.\\n\\n(c) *Phase transition characterization for continuous action prediction (genuinely new theory — primary theoretical novelty).* This is our strongest novel contribution. We extend Wu & Fischer's (ICLR 2020) calculus of variations framework from cross-entropy to MSE distortion, analyzing second-order conditions for phase transitions in continuous-output IB.\\n\\nThe mathematical framework proceeds as follows:\\n\\n(i) *Analytical tractable case: linear-Gaussian model.* Following Chechik et al. (JMLR 2005), we decompose the visual feature covariance into action-relevant invariant components and environment-specific nuisance components. In this setting, phase transitions manifest as rank changes in the representation covariance matrix Σ_Z — each transition adds a new principal component corresponding to a visual feature subspace becoming action-relevant at that compression level. The critical β values follow from the eigenvalue spectrum: β_i = (1 − λ_i)^(−1), where λ_i are eigenvalues of the canonical correlation matrix between visual features V and actions A. Crucially, for visual features that vary across environments, the effective eigenvalue λ_i reflects the ratio of the feature's action-relevance (conditional mutual information I(V_i; A | V_{\\\\i})) to its cross-environment variance (measured by the between-environment covariance). Features with high action-relevance relative to cross-environment variance enter the representation at lower β (earlier in the compression-relaxation path); environment-specific features with low action-relevance/variance ratio enter at higher β. The generalization-optimal β* lies in the gap between these two groups of transitions.\\n\\n(ii) *Extension to nonlinear case.* We apply second-order calculus of variations to the IB Lagrangian L = E[||a_pred − a_true||²] + β · I(V;Z), deriving the condition for phase transitions as the point where the second variation of L becomes negative along a new direction in the representation space. Unlike classification where the Fisher information involves softmax probabilities, for MSE distortion the relevant quantity is the Jacobian of the action prediction mapping ∂a/∂z, yielding a phase transition condition that depends on the singular value spectrum of this Jacobian. We derive the prediction that phase transitions in continuous action prediction are smoother than in classification (due to the continuous nature of action error vs. discrete class boundaries) but still exhibit identifiable critical points where the effective representation dimension changes.\\n\\n(iii) *Theoretical prediction.* The central testable prediction: β* at which OOD generalization gap begins to widen rapidly depends on the ratio of total environment-specific visual information to total action-relevant invariant information. For perturbation types that primarily affect action-irrelevant visual features (e.g., texture, lighting), β* is higher (more compression is safe); for perturbation types that affect action-relevant features (e.g., camera viewpoint changing spatial relationships), β* is lower (compression quickly becomes harmful). This prediction is falsifiable against the empirical RD frontier.\\n\\n**Empirical Methodology (Pillar 2).** We insert a learnable VIB between the visual encoder and action generation module of π₀ (2B params, via openpi), following CRAFT's validated approach for VIB + flow-matching integration but with fundamentally different purpose: systematic RD frontier analysis rather than curriculum-based modality balancing. The VIB parameterizes z ~ q(z|v) with training objective: L = E[||a_pred − a_true||²] + β · KL(q(z|v) || r(z)).\\n\\nWe adopt FVIB-R methodology (Entropy, 2024) to enable efficient β sweeping: train a single model whose architecture supports post-hoc β adjustment at evaluation time, with the bottleneck layer parameterized to allow continuous β variation without retraining. We validate FVIB-R's continuous frontier against 5 discrete-β anchor models to confirm approximation fidelity. This reduces the core training cost from ~15× to ~3× a single training run.\\n\\nWe evaluate on LIBERO-90 as the primary in-distribution benchmark, with LIBERO-Plus providing systematic OOD evaluation across 7 perturbation types × 5 difficulty levels. At each operating point on the RD frontier we measure: (1) effective rate via KL divergence upper bound on I(V;Z), (2) in-distribution task success rate, (3) OOD task success rate across all perturbation dimensions, and (4) the generalization gap Δ(β) = success_ID(β) − success_OOD(β).\\n\\n**Phase Transition Analysis (Pillar 3).** The central empirical analysis identifies critical β values where the generalization gap exhibits rapid change — indicating compression has shifted from filtering irrelevant features to discarding task-critical information. We characterize this by computing the slope and curvature of the OOD-distortion vs. rate curve, and by tracking the effective rank of the bottleneck representation (monitoring when new dimensions become active) to directly test the eigenvalue-driven phase transition prediction from Pillar 1c.\\n\\nWe then empirically characterize how β* shifts with: task horizon length, object diversity, perturbation type and magnitude, and visual scene complexity. We fit approximate scaling relationships and validate them against the theoretical predictions, testing whether (a) β* is higher for perturbation types affecting action-irrelevant features (texture, lighting) vs. action-relevant features (camera viewpoint, object layout), and (b) the predicted dependence on the invariant/nuisance information ratio holds empirically.\\n\\n**Adversarial robustness (secondary analysis).** As a supplementary investigation, we measure adversarial robustness (untargeted PGD attacks on visual inputs) at selected β operating points to test whether the VIB's learned compression escapes Evans et al.'s margin contraction regime. This is positioned as a secondary contribution.\\n\\n**Key differentiations**: From EIB — we instantiate the f(compression) + g(shift) framework for continuous VLA action prediction with MSE distortion and structured perturbation, and add the phase transition analysis (absent in EIB). From CRAFT — we trace systematic RD frontiers across continuous β values and evaluate under 7 systematic perturbation types, whereas CRAFT uses VIB as curriculum tool for force-modality prioritization. From BC-IB — we operate at visual-token level (not latent fusion), use a 2B VLA (not small BC models), trace continuous RD frontiers (not 4 discrete β values), and evaluate OOD (not in-distribution only). From Wu & Fischer — we extend IB phase transition theory from cross-entropy classification to MSE continuous action prediction under distribution shift, providing the eigenvalue-based characterization of how critical points depend on invariant/nuisance feature structure. From Gaussian IB (Chechik et al.) — we connect the eigenvalue-driven phase structure to OOD generalization and the invariant/nuisance decomposition, rather than treating it as pure compression theory.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~350h A100 80GB (reduced from 600h via FVIB-R: 1 FVIB-R training + 5 discrete anchor models + LIBERO-Plus evaluation)\",\n      \"gpu_utilization\": \"Low (~30-35%). Human spends most wall-clock time on theoretical derivations, FVIB-R integration, and RD frontier analysis.\",\n      \"timeline\": \"3-4 months (theory development parallelized with implementation)\",\n      \"team\": \"1-2 researchers (1 with information theory / generalization bounds experience, 1 with VLA/robotics and openpi familiarity)\",\n      \"estimated_gpu_cost\": \"$525-$700 (at ~$1.50/hr A100 spot pricing)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~450h A100 80GB\",\n      \"gpu_utilization\": \"Moderate (~55-65%). Agent handles FVIB-R training, discrete anchor validation, and LIBERO-Plus evaluation pipeline.\",\n      \"timeline\": \"5-7 weeks\",\n      \"team\": \"1 researcher, ~45min/day review of RD frontier progress and theoretical development\",\n      \"claude_api_cost\": \"$300-$600 (~120-250 turns/week × 6 weeks × $0.10/turn Opus)\",\n      \"estimated_gpu_cost\": \"$675-$900\",\n      \"risk_note\": \"FVIB-R's quadratic feature extractor assumption may not hold for π₀'s architecture — the 5 discrete anchor models serve as ground truth to validate FVIB-R approximation quality. If FVIB-R fails, fall back to 10-12 discrete β training runs (~500h total). CRAFT's validated VIB + flow-matching integration de-risks the VIB insertion step.\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~800h A100 80GB (FVIB-R training, discrete anchor validation, comprehensive LIBERO-Plus evaluation, ablations across perturbation types)\",\n      \"gpu_utilization\": \"High (~85-90% utilization). Agent runs FVIB-R training, validates against anchor models, schedules parallel LIBERO-Plus evaluations.\",\n      \"timeline\": \"10-15 days with 4-6 concurrent A100s\",\n      \"team\": \"0 (only initial setup of openpi environment and LIBERO/LIBERO-Plus datasets)\",\n      \"claude_api_cost\": \"$400-$700 (~200-350 turns/day × 13 days × $0.10/turn)\",\n      \"estimated_gpu_cost\": \"$1,200-$1,600\",\n      \"speed_bottleneck\": \"GPU count (need 4-6 A100s); LIBERO-Plus evaluation across 7 perturbation types × 5 difficulty levels is the longest serial dependency (~8h per checkpoint for full evaluation).\",\n      \"risk_note\": \"Agent may need human guidance on theoretical derivation steps (generalization bound proofs). Theory work should be done in parallel by human researcher.\"\n    }\n  },\n  \"target_venues\": [\n    \"AAAI 2027 (deadline expected: Jul-Aug 2026)\",\n    \"ICLR 2027 (deadline expected: Sep-Oct 2026)\",\n    \"CoRL 2027 (deadline expected: May 2027, if additional development time needed)\"\n  ],\n  \"level\": \"strong\",\n  \"key_references\": [\n    \"Elastic Information Bottleneck (EIB, arXiv 2311.03955, 2023)\",\n    \"CRAFT: Adapting VLA Models to Contact-rich Manipulation via Force-aware Curriculum Fine-tuning (arXiv 2602.12532, Feb 2026)\",\n    \"Phase Transitions for the Information Bottleneck in Representation Learning (Wu & Fischer, ICLR 2020, arXiv 2001.01878)\",\n    \"Information Bottleneck for Gaussian Variables (Chechik et al., JMLR 2005)\",\n    \"Invariance Principle Meets Information Bottleneck for Out-of-Distribution Generalization (Ahuja et al., NeurIPS 2021, arXiv 2106.06607)\",\n    \"Invariant Information Bottleneck for Domain Generalization (IIB, AAAI 2022, arXiv 2106.06333)\",\n    \"Rate-Distortion Theoretic Generalization Bounds for Stochastic Learning Algorithms (Sefidgaran et al., COLT 2022, arXiv 2203.02474)\",\n    \"Flexible Variational Information Bottleneck: Achieving Diverse Compression with a Single Training (FVIB, arXiv 2402.01238, Neurocomputing 2025)\",\n    \"Exploring the Trade-Off in the Variational Information Bottleneck for Regression with a Single Training Run (FVIB-R, Entropy 2024)\",\n    \"Rethinking Latent Redundancy in Behavior Cloning: An Information Bottleneck Approach for Robot Manipulation (BC-IB, ICML 2025, arXiv 2502.02853)\",\n    \"Cauchy-Schwarz Divergence Information Bottleneck for Regression (CS-DIB, arXiv 2404.17951, 2024)\",\n    \"Generalized Information Bottleneck for Gaussian Variables (arXiv 2303.17762, 2023)\",\n    \"One Token Per Frame: Reconsidering Visual Bandwidth in World Models for VLA Policy (arXiv 2605.07931, 2026)\",\n    \"Inference Optimal VLMs Need Fewer Visual Tokens and More Parameters (Li et al., ICLR 2025, arXiv 2411.03312)\",\n    \"Compression as an Adversarial Amplifier Through Decision Space Reduction (Evans et al., arXiv 2604.06954, 2026)\",\n    \"Less Is More — Until It Breaks: Token Compression and Robustness in VLMs (arXiv 2601.12042, 2026)\",\n    \"On the Adversarial Robustness of Large Vision-Language Models under Visual Token Compression (arXiv 2601.21531, 2026)\",\n    \"A Generalized Information Bottleneck Theory of Deep Learning (arXiv 2509.26327, 2025)\",\n    \"Generalization in Reinforcement Learning with Selective Noise Injection and Information Bottleneck (IBAC, NeurIPS 2019)\",\n    \"Policy Generalization in Capacity-Limited Reinforcement Learning (Lerch & Sims, ICLR 2019 workshop)\",\n    \"VFP: Variational Flow-Matching Policy for Multi-Modal Robot Manipulation (arXiv 2508.01622, 2025)\",\n    \"LIBERO-Plus: A Progressive Robustness Benchmark for Visual-Language-Action Models (CVPR 2026)\",\n    \"Deep Variational Information Bottleneck (Alemi et al., arXiv 1612.00410, 2017)\",\n    \"Token Reduction Should Go Beyond Efficiency in Generative Models (Kong et al., arXiv 2505.18227, 2025)\",\n    \"Rate-Distortion Signatures of Generalization and Information Trade-offs (arXiv 2603.01568, 2026)\",\n    \"See What Matters: Differentiable Grid Sample Pruning for Generalizable VLA Model (ICML 2026)\",\n    \"The Better You Learn, The Smarter You Prune: Towards Efficient VLA Models via Differentiable Token Pruning (ICRA 2026)\",\n    \"Compressor-VLA: Instruction-Guided Visual Token Compression for Efficient Robotic Manipulation (arXiv 2511.18950, 2025)\",\n    \"The Information Bottleneck's Ordinary Differential Equation: First-Order Root Tracking (Geiping & Goldblum, Entropy 2023)\",\n    \"Causally-Aware Information Bottleneck for Domain Adaptation (arXiv 2601.04361, 2026)\"\n  ],\n  \"description\": \"We investigate when visual compression helps vs. hurts VLA generalization by combining theoretical analysis with systematic information bottleneck rate-distortion frontier analysis under distribution shift. Our work has three pillars of increasing theoretical novelty.\\n\\nFirst (application of existing theory to new domain), we instantiate and extend the Elastic Information Bottleneck's (EIB, arXiv 2311.03955) f(compression) + g(shift) error decomposition for continuous VLA action prediction — where the distortion is MSE over action trajectories (not 0-1 classification loss), the compression operates over visual tokens (not generic features), and the distribution shift is structured across 7 perturbation dimensions. We are transparent that this pillar applies existing rate-distortion generalization machinery to a new domain, with the technical contribution being the re-derivation under MSE distortion and structured perturbation decomposition.\\n\\nSecond (extension of existing framework), we extend the Invariant Information Bottleneck (IIB, AAAI 2022) to show VIB acts as a domain-invariant feature selector for VLA visual representations, selectively compressing environment-specific variation while preserving action-relevant invariant features — escaping the margin contraction regime of fixed codecs (Evans et al., 2026). We note that Ahuja et al. (NeurIPS 2021) show IB combined with invariance addresses failures of invariance alone in classification; since they observe invariance generalizes more readily for regression, our extension to continuous action prediction requires different analytical treatment of the invariant/nuisance decomposition.\\n\\nThird (genuinely new theory — primary novelty), we derive phase transition theory for continuous-output IB under distribution shift, extending Wu & Fischer's (ICLR 2020) calculus of variations framework from cross-entropy to MSE distortion. Building on the Gaussian IB's (Chechik et al., JMLR 2005) analytical result that phase transitions occur at β_i = (1 − λ_i)^(−1) as rank changes in the representation covariance Σ_Z, we analyze the linear-Gaussian case where visual features decompose into invariant and nuisance subspaces, deriving that the critical β* depends on the ratio of each feature subspace's action-relevance to its cross-environment variance. For the nonlinear case, we apply second-order calculus of variations to the MSE-distortion IB Lagrangian, showing that phase transitions correspond to sign changes of the second variation along directions determined by the singular value spectrum of the action prediction Jacobian ∂a/∂z. This yields the testable prediction that β* is higher for perturbation types affecting action-irrelevant features (texture, lighting) and lower for perturbation types affecting action-relevant features (camera viewpoint, object layout).\\n\\nEmpirically, we trace the full IB rate-distortion frontier for π₀ (2B, via openpi) on LIBERO-90 (in-distribution) and LIBERO-Plus (7 perturbation types × 5 difficulty levels, OOD), adopting FVIB-R methodology for continuous β sweeping. We build on CRAFT's validated VIB + flow-matching integration but with fundamentally different purpose: systematic RD analysis rather than curriculum-based modality balancing. We empirically validate the phase transition predictions by tracking effective representation rank across β values and mapping how β* shifts with task horizon, object diversity, perturbation type, and scene complexity.\",\n  \"project_name\": \"rd_optimal_vla_bandwidth\",\n  \"source\": \"web_research\"\n}\n\nPlease output this as a single, properly formatted, valid JSON object. Make sure all the newlines within string values are properly escaped as \\n. Do not add any commentary — just the JSON.\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "147256af-675e-444e-a0d6-b898a3ca4d19",
+  "isSidechain": false,
+  "requestId": "req_011Caz8d5hKzYxSmCR9QVoHV",
+  "type": "assistant",
+  "uuid": "090a9f6d-6ce2-4341-ae03-63102f55eb3c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YFuSgPGP5fF7bZAbjHrpTn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 808,
+      "cache_creation_input_tokens": 2590,
+      "cache_read_input_tokens": 39386,
+      "output_tokens": 9117,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2590,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 808,
+          "output_tokens": 9117,
+          "cache_read_input_tokens": 39386,
+          "cache_creation_input_tokens": 2590,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2590
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 77_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-13 (UTC).**  ## Original idea {   \"title\": \"Generalization-Optimal Visual Bandwidth for VLAs: Information Bottlene…",
+  "leafUuid": "090a9f6d-6ce2-4341-ae03-63102f55eb3c",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 78_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise phase transition theory and clarify novelty claims for VLA bandwidth optimization",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e"
+}
+```
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-13T07:02:33.836Z_
+
+<details><summary>↩ Tool result · `toolu_01NfJsqmAKYACsZ52Vtcd5Bu`</summary>
+
+````text
+
+
+```json
+{
+  "change_type": "minor",
+  "title": "Generalization-Optimal Visual Bandwidth for VLAs: Information Bottleneck Phase Transitions Under Distribution Shift",
+  "core_problem": "VLA systems use vastly different visual token counts (1 to 512 per frame), and concurrent work selects compression ratios heuristically or optimizes for in-distribution success. No principled framework characterizes WHEN visual compression helps vs. hurts out-of-distribution generalization — despite evidence that compression can both improve robustness (by filtering task-irrelevant noise) and amplify vulnerability (by contracting decision margins). While IB phase transitions are well-understood for classification (Wu & Fischer, ICLR 2020) and the Elastic Information Bottleneck (EIB, arXiv 2311.03955) provides an f(compression) + g(shift) error decomposition for domain adaptation, neither addresses continuous action prediction in VLAs, where the distortion is MSE over action trajectories, compression operates over visual tokens, and the distribution shift is structured across multiple perturbation dimensions. The Gaussian IB (Chechik et al., JMLR 2005) shows that phase transitions in continuous variables correspond to rank changes in the representation covariance — each transition adds a principal component at a critical β determined by the eigenvalue spectrum — but this has never been connected to OOD generalization in high-dimensional visuomotor control.",
+  "opportunity": "The information bottleneck (IB) provides a formal framework for trading compression against task-relevant information preservation. Three established theoretical results create a well-defined gap that our work fills: (1) Wu & Fischer (ICLR 2020) derive conditions for IB phase transitions using calculus of variations on the IB Lagrangian with cross-entropy loss, connecting phase transitions to the Fisher information matrix — but only for categorical classification on MNIST/CIFAR-10. (2) The Elastic Information Bottleneck (EIB, arXiv 2311.03955, 2023) decomposes target error into source empirical error + source generalization gap (SG, controlled by IB compression rate) + representation discrepancy (RD, measuring domain shift), establishing that IB and DIB trade off SG vs. RD and that the EIB objective traces a Pareto frontier — but in a general domain adaptation setting without analyzing the MSE-distortion structure of continuous action prediction or the eigenvalue-driven phase structure that governs which visual features enter the representation at which compression level. (3) The Gaussian IB (Chechik et al., JMLR 2005) derives closed-form solutions showing that phase transitions occur at critical β_i = (1 − λ_i)^(−1) where λ_i are eigenvalues of the canonical correlation matrix, with each transition adding a dimension to the representation — but this has not been applied to characterize OOD generalization or connected to the invariant/nuisance decomposition relevant to robotic deployment.\n\nOur opportunity is to bridge these three lines: instantiate EIB-style generalization bounds for continuous VLA action prediction (where the distortion function, action space structure, and shift structure are fundamentally different from classification), and then derive genuinely new phase transition theory showing WHERE the critical β* falls and HOW it shifts with task and perturbation properties. The Gaussian IB's eigenvalue-driven phase structure provides the analytical scaffold: in the VLA setting, each eigenvalue encodes a visual feature subspace's action-relevance relative to its cross-environment variance, and the phase transition sequence determines the order in which invariant vs. environment-specific features enter the representation.\n\nThis opportunity is sharpened by five concurrent developments: (a) CRAFT (arXiv 2602.12532) demonstrates VIB integration with π₀'s flow-matching architecture and curriculum β scheduling for force-modality generalization — but uses VIB as a modality balancing tool, not for systematic RD frontier analysis or phase transition characterization; (b) Li et al. (ICLR 2025) derive compute-optimal scaling laws for visual tokens vs. model size, but only for inference efficiency, not OOD generalization; (c) BC-IB (ICML 2025) shows IB at the latent fusion level improves in-distribution BC performance with 4 discrete β values, but does not evaluate OOD robustness or trace continuous RD frontiers; (d) Evans et al. (arXiv 2604.06954) prove fixed codecs contract classification margins — raising whether learned IB can escape this regime; (e) Ahuja et al. (NeurIPS 2021) show that combining IB with invariance addresses key failures of invariance alone in classification settings, though they note that invariance-based approaches already generalize more readily for regression tasks — making our extension to continuous action prediction a meaningful theoretical contribution rather than a direct application.",
+  "landscape": "**VLA visual compression methods**: OneWM-VLA (arXiv 2605.07931, May 2026) compresses each view into a single semantic token, achieving 95.6% on LIBERO-Long. LightVLA uses 78 tokens with +2.9% improvement. GridS (ICML 2026) uses <10% tokens. VLA-IAP achieves 97.8% with 1.54× speedup. Compressor-VLA achieves 97.3% with 59% FLOPs reduction. VLA-Pruner and TEAM-VLA learn compression heuristically. All optimize for in-distribution efficiency — none characterizes the OOD generalization tradeoff via information-theoretic analysis.\n\n**IB in robot learning**: CRAFT (arXiv 2602.12532, Feb 2026) is the closest work: it inserts VIB after the vision-language encoder of π₀ and RDT, using curriculum β scheduling (λ_VIB(t) = λ_init · exp(−t/T_decay)) to suppress high-entropy visual/language signals and prioritize force inputs during contact-rich manipulation. CRAFT demonstrates generalization to unseen objects and task variants (22.5% → 58.75% OOD improvement). However, CRAFT's VIB serves as a modality balancing tool — it compresses then releases visual information to prioritize force signals — rather than systematically characterizing compression-generalization tradeoffs. CRAFT does not trace RD frontiers, does not evaluate across systematic perturbation benchmarks (e.g., LIBERO-Plus), and does not analyze phase transitions. Its existence validates the technical feasibility of VIB + flow matching in π₀, strengthening our approach. BC-IB (ICML 2025) applies IB at the latent fusion level of small BC models with 4 β values, achieving in-distribution improvements on LIBERO, but operates on fused representations (not visual tokens), evaluates only in-distribution, and has not been applied to large VLAs. IBAC (NeurIPS 2019) applies IB to actor-critic RL, showing compression improves generalization in procedurally-generated environments. The Capacity-Limited Actor-Critic (Lerch & Sims, ICLR 2019 workshop) maps capacity-limited RL to rate-distortion theory. VFP (arXiv 2508.01622) establishes precedent for variational components + flow matching in robot manipulation.\n\n**IB phase transition theory**: Wu & Fischer (ICLR 2020) derive theoretical conditions for IB phase transitions using second-order calculus of variations on the IB Lagrangian with cross-entropy loss, connecting them to the Fisher information matrix. Phase transitions correspond to the onset of learning new categorical classes. The Gaussian IB (Chechik et al., JMLR 2005) provides the analytical tractable case for continuous variables: phase transitions occur at critical β_i = (1 − λ_i)^(−1) where λ_i are eigenvalues of the canonical correlation matrix Σ_{x|y}Σ_x^(−1), with each transition adding a new principal component to the representation (a rank change in Σ_Z). The optimal representation is a noisy linear projection onto eigenvectors of the normalized regression matrix. The Generalized IB for Gaussian Variables (arXiv 2303.17762) shows that structural transitions occur at identical critical β values across Rényi and Jeffreys divergence formulations, suggesting the phase structure is a fundamental property of the compression-relevance tradeoff. Extension to continuous action prediction under distribution shift is non-trivial and unaddressed.\n\n**IB and OOD generalization theory**: The Elastic Information Bottleneck (EIB, arXiv 2311.03955, 2023) decomposes target error into source empirical error + source generalization gap (SG) + representation discrepancy (RD), proving that DIB has tighter SG but larger RD than IB, and proposing an interpolation that traces a Pareto frontier. This provides the f(compression) + g(shift) decomposition structure. Ahuja et al. (NeurIPS 2021) show that combining IB with invariance addresses key failures of invariance alone — specifically when invariant features capture all label information — though they note that invariance-based approaches generalize more readily for regression than classification, requiring stronger distributional restrictions for the latter. The Invariant Information Bottleneck (IIB, AAAI 2022) combines IB with invariance principles for domain generalization. Sefidgaran et al. (COLT 2022) establish rate-distortion theoretic generalization bounds linking compressibility, mutual information, and fractal dimensions. The Cauchy-Schwarz Divergence IB (CS-DIB, arXiv 2404.17951) addresses IB for regression by replacing KL divergence with Cauchy-Schwarz divergence, avoiding Gaussian assumptions while providing adversarial robustness guarantees. The Generalized IB theory (arXiv 2509.26327, 2025) shows synergistic representations achieve superior generalization.\n\n**Compression and robustness**: LIBERO-Plus (CVPR 2026) reveals VLA models drop from 95% to below 30% under modest perturbations across 7 dimensions. Evans et al. (arXiv 2604.06954) prove fixed image compression contracts classification margins. 'Less Is More — Until It Breaks' (arXiv 2601.12042) shows compression introduces state-specific robustness vulnerabilities in VLMs. Kong et al. (arXiv 2505.18227) argue token reduction should influence generalization, but provide no formal framework.\n\n**Efficient IB optimization**: FVIB (arXiv 2402.01238) enables sweeping all β values for classification in a single training run via Taylor approximation. FVIB-R (Entropy, 2024) extends this to regression/continuous outputs using quadratic feature extraction, enabling β adjustment at evaluation time without retraining. The IB ODE (Geiping & Goldblum, Entropy 2023) derives first-order ordinary differential equations for tracking optimal IB solutions as β varies continuously, providing theoretical foundation for continuous β sweeping.\n\nNo work combines: (i) instantiation and extension of EIB-style generalization bounds for continuous VLA action prediction, (ii) new phase transition theory for continuous outputs showing how critical β* depends on the eigenvalue spectrum of invariant vs. nuisance feature subspaces, (iii) systematic RD frontier tracing under structured OOD perturbation, and (iv) empirical characterization of how phase transition points shift with task/perturbation properties.",
+  "approach": "We formalize VLA visual bandwidth selection as an information bottleneck optimization and provide both theoretical analysis and empirical characterization of the compression-generalization tradeoff under distribution shift.\n\n**Theoretical Contribution (Pillar 1): Generalization Bounds and Phase Transitions.**\n\n(a) *Generalization bound (extension of existing theory to VLA domain).* We instantiate and extend the EIB error decomposition (arXiv 2311.03955) for continuous VLA action prediction. EIB decomposes target error into source empirical error + source generalization gap (SG, controlled by IB compression rate R = I(V;Z)) + representation discrepancy (RD, measuring domain shift through the bottleneck). Our contribution is NOT the decomposition structure itself — it is extending this to the VLA setting where: (i) the distortion is MSE over continuous action trajectories rather than 0-1 classification loss, requiring re-derivation of the SG bound under MSE distortion; (ii) the compression operates over visual tokens specifically, with the rate R measuring visual information retained; (iii) the distribution shift is structured across 7 perturbation dimensions (camera, lighting, distractors, layout, robot state, texture, noise), allowing us to decompose the RD term by perturbation type. Formally: Gap_OOD(β) ≤ SG(R(β)) + RD(β, P_train, P_test), where SG decreases with compression (standard IB) and RD initially decreases with compression (collapsing environment-specific variation) but eventually increases (losing action-relevant information) — yielding a non-trivial optimum β*. We are transparent that this pillar primarily applies existing rate-distortion generalization machinery to a new domain.\n\n(b) *IB as domain-invariant feature selector (extension of IIB to VLA setting).* We extend the IIB framework (AAAI 2022) to VLA visual representations: minimizing I(V;Z) while preserving I(Z;A) preferentially compresses visual features with high cross-environment variance and low action-relevance while preserving invariant features. We note that Ahuja et al. (NeurIPS 2021) show IB combined with invariance addresses failures of invariance alone in classification; since they observe that invariance generalizes more readily for regression, our extension to continuous action prediction (closer to regression) is a meaningful contribution requiring different analytical treatment — specifically, the invariant/nuisance decomposition for visual features must account for the continuous action manifold structure rather than discrete class boundaries. We formalize this decomposition to show learned VIB compression can escape Evans et al.'s fixed-codec margin contraction by selectively compressing the nuisance subspace while preserving the invariant subspace.\n\n(c) *Phase transition characterization for continuous action prediction (genuinely new theory — primary theoretical novelty).* This is our strongest novel contribution. We extend Wu & Fischer's (ICLR 2020) calculus of variations framework from cross-entropy to MSE distortion, analyzing second-order conditions for phase transitions in continuous-output IB.\n\nThe mathematical framework proceeds as follows:\n\n(i) *Analytical tractable case: linear-Gaussian model.* Following Chechik et al. (JMLR 2005), we decompose the visual feature covariance into action-relevant invariant components and environment-specific nuisance components. In this setting, phase transitions manifest as rank changes in the representation covariance matrix Σ_Z — each transition adds a new principal component corresponding to a visual feature subspace becoming action-relevant at that compression level. The critical β values follow from the eigenvalue spectrum: β_i = (1 − λ_i)^(−1), where λ_i are eigenvalues of the canonical correlation matrix between visual features V and actions A. Crucially, for visual features that vary across environments, the effective eigenvalue λ_i reflects the ratio of the feature's action-relevance (conditional mutual information I(V_i; A | V_{\\i})) to its cross-environment variance (measured by the between-environment covariance). Features with high action-relevance relative to cross-environment variance enter the representation at lower β (earlier in the compression-relaxation path); environment-specific features with low action-relevance/variance ratio enter at higher β. The generalization-optimal β* lies in the gap between these two groups of transitions.\n\n(ii) *Extension to nonlinear case.* We apply second-order calculus of variations to the IB Lagrangian L = E[||a_pred − a_true||²] + β · I(V;Z), deriving the condition for phase transitions as the point where the second variation of L becomes negative along a new direction in the representation space. Unlike classification where the Fisher information involves softmax probabilities, for MSE distortion the relevant quantity is the Jacobian of the action prediction mapping ∂a/∂z, yielding a phase transition condition that depends on the singular value spectrum of this Jacobian. We derive the prediction that phase transitions in continuous action prediction are smoother than in classification (due to the continuous nature of action error vs. discrete class boundaries) but still exhibit identifiable critical points where the effective representation dimension changes.\n\n(iii) *Theoretical prediction.* The central testable prediction: β* at which OOD generalization gap begins to widen rapidly depends on the ratio of total environment-specific visual information to total action-relevant invariant information. For perturbation types that primarily affect action-irrelevant visual features (e.g., texture, lighting), β* is higher (more compression is safe); for perturbation types that affect action-relevant features (e.g., camera viewpoint changing spatial relationships), β* is lower (compression quickly becomes harmful). This prediction is falsifiable against the empirical RD frontier.\n\n**Empirical Methodology (Pillar 2).** We insert a learnable VIB between the visual encoder and action generation module of π₀ (2B params, via openpi), following CRAFT's validated approach for VIB + flow-matching integration but with fundamentally different purpose: systematic RD frontier analysis rather than curriculum-based modality balancing. The VIB parameterizes z ~ q(z|v) with training objective: L = E[||a_pred − a_true||²] + β · KL(q(z|v) || r(z)).\n\nWe adopt FVIB-R methodology (Entropy, 2024) to enable efficient β sweeping: train a single model whose architecture supports post-hoc β adjustment at evaluation time, with the bottleneck layer parameterized to allow continuous β variation without retraining. We validate FVIB-R's continuous frontier against 5 discrete-β anchor models to confirm approximation fidelity. This reduces the core training cost from ~15× to ~3× a single training run.\n\nWe evaluate on LIBERO-90 as the primary in-distribution benchmark, with LIBERO-Plus providing systematic OOD evaluation across 7 perturbation types × 5 difficulty levels. At each operating point on the RD frontier we measure: (1) effective rate via KL divergence upper bound on I(V;Z), (2) in-distribution task success rate, (3) OOD task success rate across all perturbation dimensions, and (4) the generalization gap Δ(β) = success_ID(β) − success_OOD(β).\n\n**Phase Transition Analysis (Pillar 3).** The central empirical analysis identifies critical β values where the generalization gap exhibits rapid change — indicating compression has shifted from filtering irrelevant features to discarding task-critical information. We characterize this by computing the slope and curvature of the OOD-distortion vs. rate curve, and by tracking the effective rank of the bottleneck representation (monitoring when new dimensions become active) to directly test the eigenvalue-driven phase transition prediction from Pillar 1c.\n\nWe then empirically characterize how β* shifts with: task horizon length, object diversity, perturbation type and magnitude, and visual scene complexity. We fit approximate scaling relationships and validate them against the theoretical predictions, testing whether (a) β* is higher for perturbation types affecting action-irrelevant features (texture, lighting) vs. action-relevant features (camera viewpoint, object layout), and (b) the predicted dependence on the invariant/nuisance information ratio holds empirically.\n\n**Adversarial robustness (secondary analysis).** As a supplementary investigation, we measure adversarial robustness (untargeted PGD attacks on visual inputs) at selected β operating points to test whether the VIB's learned compression escapes Evans et al.'s margin contraction regime. This is positioned as a secondary contribution.\n\n**Key differentiations**: From EIB — we instantiate the f(compression) + g(shift) framework for continuous VLA action prediction with MSE distortion and structured perturbation, and add the phase transition analysis (absent in EIB). From CRAFT — we trace systematic RD frontiers across continuous β values and evaluate under 7 systematic perturbation types, whereas CRAFT uses VIB as curriculum tool for force-modality prioritization. From BC-IB — we operate at visual-token level (not latent fusion), use a 2B VLA (not small BC models), trace continuous RD frontiers (not 4 discrete β values), and evaluate OOD (not in-distribution only). From Wu & Fischer — we extend IB phase transition theory from cross-entropy classification to MSE continuous action prediction under distribution shift, providing the eigenvalue-based characterization of how critical points depend on invariant/nuisance feature structure. From Gaussian IB (Chechik et al.) — we connect the eigenvalue-driven phase structure to OOD generalization and the invariant/nuisance decomposition, rather than treating it as pure compression theory.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~350h A100 80GB (reduced from 600h via FVIB-R: 1 FVIB-R training + 5 discrete anchor models + LIBERO-Plus evaluation)",
+      "gpu_utilization": "Low (~30-35%). Human spends most wall-clock time on theoretical derivations, FVIB-R integration, and RD frontier analysis.",
+      "timeline": "3-4 months (theory development parallelized with implementation)",
+      "team": "1-2 researchers (1 with information theory / generalization bounds experience, 1 with VLA/robotics and openpi familiarity)",
+      "estimated_gpu_cost": "$525-$700 (at ~$1.50/hr A100 spot pricing)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~450h A100 80GB",
+      "gpu_utilization": "Moderate (~55-65%). Agent handles FVIB-R training, discrete anchor validation, and LIBERO-Plus evaluation pipeline.",
+      "timeline": "5-7 weeks",
+      "team": "1 researcher, ~45min/day review of RD frontier progress and theoretical development",
+      "claude_api_cost": "$300-$600 (~120-250 turns/week × 6 weeks × $0.10/turn Opus)",
+      "estimated_gpu_cost": "$675-$900",
+      "risk_note": "FVIB-R's quadratic feature extractor assumption may not hold for π₀'s architecture — the 5 discrete anchor models serve as ground truth to validate FVIB-R approximation quality. If FVIB-R fails, fall back to 10-12 discrete β training runs (~500h total). CRAFT's validated VIB + flow-matching integration de-risks the VIB insertion step."
+    },
+    "auto_research": {
+      "gpu_hours": "~800h A100 80GB (FVIB-R training, discrete anchor validation, comprehensive LIBERO-Plus evaluation, ablations across perturbation types)",
+      "gpu_utilization": "High (~85-90% utilization). Agent runs FVIB-R training, validates against anchor models, schedules parallel LIBERO-Plus evaluations.",
+      "timeline": "10-15 days with 4-6 concurrent A100s",
+      "team": "0 (only initial setup of openpi environment and LIBERO/LIBERO-Plus datasets)",
+      "claude_api_cost": "$400-$700 (~200-350 turns/day × 13 days × $0.10/turn)",
+      "estimated_gpu_cost": "$1,200-$1,600",
+      "speed_bottleneck": "GPU count (need 4-6 A100s); LIBERO-Plus evaluation across 7 perturbation types × 5 difficulty levels is the longest serial dependency (~8h per checkpoint for full evaluation).",
+      "risk_note": "Agent may need human guidance on theoretical derivation steps (generalization bound proofs). Theory work should be done in parallel by human researcher."
+    }
+  },
+  "target_venues": [
+    "AAAI 2027 (deadline expected: Jul-Aug 2026)",
+    "ICLR 2027 (deadline expected: Sep-Oct 2026)",
+    "CoRL 2027 (deadline expected: May 2027, if additional development time needed)"
+  ],
+  "level": "strong",
+  "key_references": [
+    "Elastic Information Bottleneck (EIB, arXiv 2311.03955, 2023)",
+    "CRAFT: Adapting VLA Models to Contact-rich Manipulation via Force-aware Curriculum Fine-tuning (arXiv 2602.12532, Feb 2026)",
+    "Phase Transitions for the Information Bottleneck in Representation Learning (Wu & Fischer, ICLR 2020, arXiv 2001.01878)",
+    "Information Bottleneck for Gaussian Variables (Chechik et al., JMLR 2005)",
+    "Invariance Principle Meets Information Bottleneck for Out-of-Distribution Generalization (Ahuja et al., NeurIPS 2021, arXiv 2106.06607)",
+    "Invariant Information Bottleneck for Domain Generalization (IIB, AAAI 2022, arXiv 2106.06333)",
+    "Rate-Distortion Theoretic Generalization Bounds for Stochastic Learning Algorithms (Sefidgaran et al., COLT 2022, arXiv 2203.02474)",
+    "Flexible Variational Information Bottleneck: Achieving Diverse Compression with a Single Training (FVIB, arXiv 2402.01238, Neurocomputing 2025)",
+    "Exploring the Trade-Off in the Variational Information Bottleneck for Regression with a Single Training Run (FVIB-R, Entropy 2024)",
+    "Rethinking Latent Redundancy in Behavior Cloning: An Information Bottleneck Approach for Robot Manipulation (BC-IB, ICML 2025, arXiv 2502.02853)",
+    "Cauchy-Schwarz Divergence Information Bottleneck for Regression (CS-DIB, arXiv 2404.17951, 2024)",
+    "Generalized Information Bottleneck for Gaussian Variables (arXiv 2303.17762, 2023)",
+    "One Token Per Frame: Reconsidering Visual Bandwidth in World Models for VLA Policy (arXiv 2605.07931, 2026)",
+    "Inference Optimal VLMs Need Fewer Visual Tokens and More Parameters (Li et al., ICLR 2025, arXiv 2411.03312)",
+    "Compression as an Adversarial Amplifier Through Decision Space Reduction (Evans et al., arXiv 2604.06954, 2026)",
+    "Less Is More — Until It Breaks: Token Compression and Robustness in VLMs (arXiv 2601.12042, 2026)",
+    "On the Adversarial Robustness of Large Vision-Language Models under Visual Token Compression (arXiv 2601.21531, 2026)",
+    "A Generalized Information Bottleneck Theory of Deep Learning (arXiv 2509.26327, 2025)",
+    "Generalization in Reinforcement Learning with Selective Noise Injection and Information Bottleneck (IBAC, NeurIPS 2019)",
+    "Policy Generalization in Capacity-Limited Reinforcement Learning (Lerch & Sims, ICLR 2019 workshop)",
+    "VFP: Variational Flow-Matching Policy for Multi-Modal Robot Manipulation (arXiv 2508.01622, 2025)",
+    "LIBERO-Plus: A Progressive Robustness Benchmark for Visual-Language-Action Models (CVPR 2026)",
+    "Deep Variational Information Bottleneck (Alemi et al., arXiv 1612.00410, 2017)",
+    "Token Reduction Should Go Beyond Efficiency in Generative Models (Kong et al., arXiv 2505.18227, 2025)",
+    "Rate-Distortion Signatures of Generalization and Information Trade-offs (arXiv 2603.01568, 2026)",
+    "See What Matters: Differentiable Grid Sample Pruning for Generalizable VLA Model (ICML 2026)",
+    "The Better You Learn, The Smarter You Prune: Towards Efficient VLA Models via Differentiable Token Pruning (ICRA 2026)",
+    "Compressor-VLA: Instruction-Guided Visual Token Compression for Efficient Robotic Manipulation (arXiv 2511.18950, 2025)",
+    "The Information Bottleneck's Ordinary Differential Equation: First-Order Root Tracking (Geiping & Goldblum, Entropy 2023)",
+    "Causally-Aware Information Bottleneck for Domain Adaptation (arXiv 2601.04361, 2026)"
+  ],
+  "description": "We investigate when visual compression helps vs. hurts VLA generalization by combining theoretical analysis with systematic information bottleneck rate-distortion frontier analysis under distribution shift. Our work has three pillars of increasing theoretical novelty.\n\nFirst (application of existing theory to new domain), we instantiate and extend the Elastic Information Bottleneck's (EIB, arXiv 2311.03955) f(compression) + g(shift) error decomposition for continuous VLA action prediction — where the distortion is MSE over action trajectories (not 0-1 classification loss), the compression operates over visual tokens (not generic features), and the distribution shift is structured across 7 perturbation dimensions. We are transparent that this pillar applies existing rate-distortion generalization machinery to a new domain, with the technical contribution being the re-derivation under MSE distortion and structured perturbation decomposition.\n\nSecond (extension of existing framework), we extend the Invariant Information Bottleneck (IIB, AAAI 2022) to show VIB acts as a domain-invariant feature selector for VLA visual representations, selectively compressing environment-specific variation while preserving action-relevant invariant features — escaping the margin contraction regime of fixed codecs (Evans et al., 2026). We note that Ahuja et al. (NeurIPS 2021) show IB combined with invariance addresses failures of invariance alone in classification; since they observe invariance generalizes more readily for regression, our extension to continuous action prediction requires different analytical treatment of the invariant/nuisance decomposition.\n\nThird (genuinely new theory — primary novelty), we derive phase transition theory for continuous-output IB under distribution shift, extending Wu & Fischer's (ICLR 2020) calculus of variations framework from cross-entropy to MSE distortion. Building on the Gaussian IB's (Chechik et al., JMLR 2005) analytical result that phase transitions occur at β_i = (1 − λ_i)^(−1) as rank changes in the representation covariance Σ_Z, we analyze the linear-Gaussian case where visual features decompose into invariant and nuisance subspaces, deriving that the critical β* depends on the ratio of each feature subspace's action-relevance to its cross-environment variance. For the nonlinear case, we apply second-order calculus of variations to the MSE-distortion IB Lagrangian, showing that phase transitions correspond to sign changes of the second variation along directions determined by the singular value spectrum of the action prediction Jacobian ∂a/∂z. This yields the testable prediction that β* is higher for perturbation types affecting action-irrelevant features (texture, lighting) and lower for perturbation types affecting action-relevant features (camera viewpoint, object layout).\n\nEmpirically, we trace the full IB rate-distortion frontier for π₀ (2B, via openpi) on LIBERO-90 (in-distribution) and LIBERO-Plus (7 perturbation types × 5 difficulty levels, OOD), adopting FVIB-R methodology for continuous β sweeping. We build on CRAFT's validated VIB + flow-matching integration but with fundamentally different purpose: systematic RD analysis rather than curriculum-based modality balancing. We empirically validate the phase transition predictions by tracking effective representation rank across β values and mapping how β* shifts with task horizon, object diversity, perturbation type, and scene complexity.",
+  "project_name": "rd_optimal_vla_bandwidth",
+  "source": "web_research"
+}
+```
+
+agentId: af73cd6fa39e3d1d1 (use SendMessage with to: 'af73cd6fa39e3d1d1' to continue this agent)
+&lt;usage>total_tokens: 24674
+tool_uses: 0
+duration_ms: 130864&lt;/usage>
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "parentUuid": "090a9f6d-6ce2-4341-ae03-63102f55eb3c",
+  "isSidechain": false,
+  "promptId": "b67246ae-6153-40d7-8130-9a3708fd54b2",
+  "type": "user",
+  "uuid": "9b43b315-59e3-4396-8dc9-eb79bae631f4",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "I need you to help me compose a large JSON object. I'll give you all the content and you should output ONLY the JSON. Do not write any code or files — just output the complete JSON as text in your response.\n\nHere is the complete revised research idea JSON. Please format it properly as valid JSON with all fields:\n\n{\n  \"change_type\": \"minor\",\n  \"title\": \"Generalization-Optimal Visual Bandwidth for VLAs: Information Bottleneck Phase Transitions Under Distribution Shift\",\n  \"core_problem\": \"VLA systems use vastly different visual token counts (1 to 512 per frame), and concurrent work selects compression ratios heuristically or optimizes for in-distribution success. No principled framework characterizes WHEN visual compression helps vs. hurts out-of-distribution generalization — despite evidence that compression can both improve robustness (by filtering task-irrelevant noise) and amplify vulnerability (by contracting decision margins). While IB phase transitions are well-understood for classification (Wu & Fischer, ICLR 2020) and the Elastic Information Bottleneck (EIB, arXiv 2311.03955) provides an f(compression) + g(shift) error decomposition for domain adaptation, neither addresses continuous action prediction in VLAs, where the distortion is MSE over action trajectories, compression operates over visual tokens, and the distribution shift is structured across multiple perturbation dimensions. The Gaussian IB (Chechik et al., JMLR 2005) shows that phase transitions in continuous variables correspond to rank changes in the representation covariance — each transition adds a principal component at a critical β determined by the eigenvalue spectrum — but this has never been connected to OOD generalization in high-dimensional visuomotor control.\",\n  \"opportunity\": \"The information bottleneck (IB) provides a formal framework for trading compression against task-relevant information preservation. Three established theoretical results create a well-defined gap that our work fills: (1) Wu & Fischer (ICLR 2020) derive conditions for IB phase transitions using calculus of variations on the IB Lagrangian with cross-entropy loss, connecting phase transitions to the Fisher information matrix — but only for categorical classification on MNIST/CIFAR-10. (2) The Elastic Information Bottleneck (EIB, arXiv 2311.03955, 2023) decomposes target error into source empirical error + source generalization gap (SG, controlled by IB compression rate) + representation discrepancy (RD, measuring domain shift), establishing that IB and DIB trade off SG vs. RD and that the EIB objective traces a Pareto frontier — but in a general domain adaptation setting without analyzing the MSE-distortion structure of continuous action prediction or the eigenvalue-driven phase structure that governs which visual features enter the representation at which compression level. (3) The Gaussian IB (Chechik et al., JMLR 2005) derives closed-form solutions showing that phase transitions occur at critical β_i = (1 − λ_i)^(−1) where λ_i are eigenvalues of the canonical correlation matrix, with each transition adding a dimension to the representation — but this has not been applied to characterize OOD generalization or connected to the invariant/nuisance decomposition relevant to robotic deployment.\\n\\nOur opportunity is to bridge these three lines: instantiate EIB-style generalization bounds for continuous VLA action prediction (where the distortion function, action space structure, and shift structure are fundamentally different from classification), and then derive genuinely new phase transition theory showing WHERE the critical β* falls and HOW it shifts with task and perturbation properties. The Gaussian IB's eigenvalue-driven phase structure provides the analytical scaffold: in the VLA setting, each eigenvalue encodes a visual feature subspace's action-relevance relative to its cross-environment variance, and the phase transition sequence determines the order in which invariant vs. environment-specific features enter the representation.\\n\\nThis opportunity is sharpened by five concurrent developments: (a) CRAFT (arXiv 2602.12532) demonstrates VIB integration with π₀'s flow-matching architecture and curriculum β scheduling for force-modality generalization — but uses VIB as a modality balancing tool, not for systematic RD frontier analysis or phase transition characterization; (b) Li et al. (ICLR 2025) derive compute-optimal scaling laws for visual tokens vs. model size, but only for inference efficiency, not OOD generalization; (c) BC-IB (ICML 2025) shows IB at the latent fusion level improves in-distribution BC performance with 4 discrete β values, but does not evaluate OOD robustness or trace continuous RD frontiers; (d) Evans et al. (arXiv 2604.06954) prove fixed codecs contract classification margins — raising whether learned IB can escape this regime; (e) Ahuja et al. (NeurIPS 2021) show that combining IB with invariance addresses key failures of invariance alone in classification settings, though they note that invariance-based approaches already generalize more readily for regression tasks — making our extension to continuous action prediction a meaningful theoretical contribution rather than a direct application.\",\n  \"landscape\": \"**VLA visual compression methods**: OneWM-VLA (arXiv 2605.07931, May 2026) compresses each view into a single semantic token, achieving 95.6% on LIBERO-Long. LightVLA uses 78 tokens with +2.9% improvement. GridS (ICML 2026) uses <10% tokens. VLA-IAP achieves 97.8% with 1.54× speedup. Compressor-VLA achieves 97.3% with 59% FLOPs reduction. VLA-Pruner and TEAM-VLA learn compression heuristically. All optimize for in-distribution efficiency — none characterizes the OOD generalization tradeoff via information-theoretic analysis.\\n\\n**IB in robot learning**: CRAFT (arXiv 2602.12532, Feb 2026) is the closest work: it inserts VIB after the vision-language encoder of π₀ and RDT, using curriculum β scheduling (λ_VIB(t) = λ_init · exp(−t/T_decay)) to suppress high-entropy visual/language signals and prioritize force inputs during contact-rich manipulation. CRAFT demonstrates generalization to unseen objects and task variants (22.5% → 58.75% OOD improvement). However, CRAFT's VIB serves as a modality balancing tool — it compresses then releases visual information to prioritize force signals — rather than systematically characterizing compression-generalization tradeoffs. CRAFT does not trace RD frontiers, does not evaluate across systematic perturbation benchmarks (e.g., LIBERO-Plus), and does not analyze phase transitions. Its existence validates the technical feasibility of VIB + flow matching in π₀, strengthening our approach. BC-IB (ICML 2025) applies IB at the latent fusion level of small BC models with 4 β values, achieving in-distribution improvements on LIBERO, but operates on fused representations (not visual tokens), evaluates only in-distribution, and has not been applied to large VLAs. IBAC (NeurIPS 2019) applies IB to actor-critic RL, showing compression improves generalization in procedurally-generated environments. The Capacity-Limited Actor-Critic (Lerch & Sims, ICLR 2019 workshop) maps capacity-limited RL to rate-distortion theory. VFP (arXiv 2508.01622) establishes precedent for variational components + flow matching in robot manipulation.\\n\\n**IB phase transition theory**: Wu & Fischer (ICLR 2020) derive theoretical conditions for IB phase transitions using second-order calculus of variations on the IB Lagrangian with cross-entropy loss, connecting them to the Fisher information matrix. Phase transitions correspond to the onset of learning new categorical classes. The Gaussian IB (Chechik et al., JMLR 2005) provides the analytical tractable case for continuous variables: phase transitions occur at critical β_i = (1 − λ_i)^(−1) where λ_i are eigenvalues of the canonical correlation matrix Σ_{x|y}Σ_x^(−1), with each transition adding a new principal component to the representation (a rank change in Σ_Z). The optimal representation is a noisy linear projection onto eigenvectors of the normalized regression matrix. The Generalized IB for Gaussian Variables (arXiv 2303.17762) shows that structural transitions occur at identical critical β values across Rényi and Jeffreys divergence formulations, suggesting the phase structure is a fundamental property of the compression-relevance tradeoff. Extension to continuous action prediction under distribution shift is non-trivial and unaddressed.\\n\\n**IB and OOD generalization theory**: The Elastic Information Bottleneck (EIB, arXiv 2311.03955, 2023) decomposes target error into source empirical error + source generalization gap (SG) + representation discrepancy (RD), proving that DIB has tighter SG but larger RD than IB, and proposing an interpolation that traces a Pareto frontier. This provides the f(compression) + g(shift) decomposition structure. Ahuja et al. (NeurIPS 2021) show that combining IB with invariance addresses key failures of invariance alone — specifically when invariant features capture all label information — though they note that invariance-based approaches generalize more readily for regression than classification, requiring stronger distributional restrictions for the latter. The Invariant Information Bottleneck (IIB, AAAI 2022) combines IB with invariance principles for domain generalization. Sefidgaran et al. (COLT 2022) establish rate-distortion theoretic generalization bounds linking compressibility, mutual information, and fractal dimensions. The Cauchy-Schwarz Divergence IB (CS-DIB, arXiv 2404.17951) addresses IB for regression by replacing KL divergence with Cauchy-Schwarz divergence, avoiding Gaussian assumptions while providing adversarial robustness guarantees. The Generalized IB theory (arXiv 2509.26327, 2025) shows synergistic representations achieve superior generalization.\\n\\n**Compression and robustness**: LIBERO-Plus (CVPR 2026) reveals VLA models drop from 95% to below 30% under modest perturbations across 7 dimensions. Evans et al. (arXiv 2604.06954) prove fixed image compression contracts classification margins. 'Less Is More — Until It Breaks' (arXiv 2601.12042) shows compression introduces state-specific robustness vulnerabilities in VLMs. Kong et al. (arXiv 2505.18227) argue token reduction should influence generalization, but provide no formal framework.\\n\\n**Efficient IB optimization**: FVIB (arXiv 2402.01238) enables sweeping all β values for classification in a single training run via Taylor approximation. FVIB-R (Entropy, 2024) extends this to regression/continuous outputs using quadratic feature extraction, enabling β adjustment at evaluation time without retraining. The IB ODE (Geiping & Goldblum, Entropy 2023) derives first-order ordinary differential equations for tracking optimal IB solutions as β varies continuously, providing theoretical foundation for continuous β sweeping.\\n\\nNo work combines: (i) instantiation and extension of EIB-style generalization bounds for continuous VLA action prediction, (ii) new phase transition theory for continuous outputs showing how critical β* depends on the eigenvalue spectrum of invariant vs. nuisance feature subspaces, (iii) systematic RD frontier tracing under structured OOD perturbation, and (iv) empirical characterization of how phase transition points shift with task/perturbation properties.\",\n  \"approach\": \"We formalize VLA visual bandwidth selection as an information bottleneck optimization and provide both theoretical analysis and empirical characterization of the compression-generalization tradeoff under distribution shift.\\n\\n**Theoretical Contribution (Pillar 1): Generalization Bounds and Phase Transitions.**\\n\\n(a) *Generalization bound (extension of existing theory to VLA domain).* We instantiate and extend the EIB error decomposition (arXiv 2311.03955) for continuous VLA action prediction. EIB decomposes target error into source empirical error + source generalization gap (SG, controlled by IB compression rate R = I(V;Z)) + representation discrepancy (RD, measuring domain shift through the bottleneck). Our contribution is NOT the decomposition structure itself — it is extending this to the VLA setting where: (i) the distortion is MSE over continuous action trajectories rather than 0-1 classification loss, requiring re-derivation of the SG bound under MSE distortion; (ii) the compression operates over visual tokens specifically, with the rate R measuring visual information retained; (iii) the distribution shift is structured across 7 perturbation dimensions (camera, lighting, distractors, layout, robot state, texture, noise), allowing us to decompose the RD term by perturbation type. Formally: Gap_OOD(β) ≤ SG(R(β)) + RD(β, P_train, P_test), where SG decreases with compression (standard IB) and RD initially decreases with compression (collapsing environment-specific variation) but eventually increases (losing action-relevant information) — yielding a non-trivial optimum β*. We are transparent that this pillar primarily applies existing rate-distortion generalization machinery to a new domain.\\n\\n(b) *IB as domain-invariant feature selector (extension of IIB to VLA setting).* We extend the IIB framework (AAAI 2022) to VLA visual representations: minimizing I(V;Z) while preserving I(Z;A) preferentially compresses visual features with high cross-environment variance and low action-relevance while preserving invariant features. We note that Ahuja et al. (NeurIPS 2021) show IB combined with invariance addresses failures of invariance alone in classification; since they observe that invariance generalizes more readily for regression, our extension to continuous action prediction (closer to regression) is a meaningful contribution requiring different analytical treatment — specifically, the invariant/nuisance decomposition for visual features must account for the continuous action manifold structure rather than discrete class boundaries. We formalize this decomposition to show learned VIB compression can escape Evans et al.'s fixed-codec margin contraction by selectively compressing the nuisance subspace while preserving the invariant subspace.\\n\\n(c) *Phase transition characterization for continuous action prediction (genuinely new theory — primary theoretical novelty).* This is our strongest novel contribution. We extend Wu & Fischer's (ICLR 2020) calculus of variations framework from cross-entropy to MSE distortion, analyzing second-order conditions for phase transitions in continuous-output IB.\\n\\nThe mathematical framework proceeds as follows:\\n\\n(i) *Analytical tractable case: linear-Gaussian model.* Following Chechik et al. (JMLR 2005), we decompose the visual feature covariance into action-relevant invariant components and environment-specific nuisance components. In this setting, phase transitions manifest as rank changes in the representation covariance matrix Σ_Z — each transition adds a new principal component corresponding to a visual feature subspace becoming action-relevant at that compression level. The critical β values follow from the eigenvalue spectrum: β_i = (1 − λ_i)^(−1), where λ_i are eigenvalues of the canonical correlation matrix between visual features V and actions A. Crucially, for visual features that vary across environments, the effective eigenvalue λ_i reflects the ratio of the feature's action-relevance (conditional mutual information I(V_i; A | V_{\\\\i})) to its cross-environment variance (measured by the between-environment covariance). Features with high action-relevance relative to cross-environment variance enter the representation at lower β (earlier in the compression-relaxation path); environment-specific features with low action-relevance/variance ratio enter at higher β. The generalization-optimal β* lies in the gap between these two groups of transitions.\\n\\n(ii) *Extension to nonlinear case.* We apply second-order calculus of variations to the IB Lagrangian L = E[||a_pred − a_true||²] + β · I(V;Z), deriving the condition for phase transitions as the point where the second variation of L becomes negative along a new direction in the representation space. Unlike classification where the Fisher information involves softmax probabilities, for MSE distortion the relevant quantity is the Jacobian of the action prediction mapping ∂a/∂z, yielding a phase transition condition that depends on the singular value spectrum of this Jacobian. We derive the prediction that phase transitions in continuous action prediction are smoother than in classification (due to the continuous nature of action error vs. discrete class boundaries) but still exhibit identifiable critical points where the effective representation dimension changes.\\n\\n(iii) *Theoretical prediction.* The central testable prediction: β* at which OOD generalization gap begins to widen rapidly depends on the ratio of total environment-specific visual information to total action-relevant invariant information. For perturbation types that primarily affect action-irrelevant visual features (e.g., texture, lighting), β* is higher (more compression is safe); for perturbation types that affect action-relevant features (e.g., camera viewpoint changing spatial relationships), β* is lower (compression quickly becomes harmful). This prediction is falsifiable against the empirical RD frontier.\\n\\n**Empirical Methodology (Pillar 2).** We insert a learnable VIB between the visual encoder and action generation module of π₀ (2B params, via openpi), following CRAFT's validated approach for VIB + flow-matching integration but with fundamentally different purpose: systematic RD frontier analysis rather than curriculum-based modality balancing. The VIB parameterizes z ~ q(z|v) with training objective: L = E[||a_pred − a_true||²] + β · KL(q(z|v) || r(z)).\\n\\nWe adopt FVIB-R methodology (Entropy, 2024) to enable efficient β sweeping: train a single model whose architecture supports post-hoc β adjustment at evaluation time, with the bottleneck layer parameterized to allow continuous β variation without retraining. We validate FVIB-R's continuous frontier against 5 discrete-β anchor models to confirm approximation fidelity. This reduces the core training cost from ~15× to ~3× a single training run.\\n\\nWe evaluate on LIBERO-90 as the primary in-distribution benchmark, with LIBERO-Plus providing systematic OOD evaluation across 7 perturbation types × 5 difficulty levels. At each operating point on the RD frontier we measure: (1) effective rate via KL divergence upper bound on I(V;Z), (2) in-distribution task success rate, (3) OOD task success rate across all perturbation dimensions, and (4) the generalization gap Δ(β) = success_ID(β) − success_OOD(β).\\n\\n**Phase Transition Analysis (Pillar 3).** The central empirical analysis identifies critical β values where the generalization gap exhibits rapid change — indicating compression has shifted from filtering irrelevant features to discarding task-critical information. We characterize this by computing the slope and curvature of the OOD-distortion vs. rate curve, and by tracking the effective rank of the bottleneck representation (monitoring when new dimensions become active) to directly test the eigenvalue-driven phase transition prediction from Pillar 1c.\\n\\nWe then empirically characterize how β* shifts with: task horizon length, object diversity, perturbation type and magnitude, and visual scene complexity. We fit approximate scaling relationships and validate them against the theoretical predictions, testing whether (a) β* is higher for perturbation types affecting action-irrelevant features (texture, lighting) vs. action-relevant features (camera viewpoint, object layout), and (b) the predicted dependence on the invariant/nuisance information ratio holds empirically.\\n\\n**Adversarial robustness (secondary analysis).** As a supplementary investigation, we measure adversarial robustness (untargeted PGD attacks on visual inputs) at selected β operating points to test whether the VIB's learned compression escapes Evans et al.'s margin contraction regime. This is positioned as a secondary contribution.\\n\\n**Key differentiations**: From EIB — we instantiate the f(compression) + g(shift) framework for continuous VLA action prediction with MSE distortion and structured perturbation, and add the phase transition analysis (absent in EIB). From CRAFT — we trace systematic RD frontiers across continuous β values and evaluate under 7 systematic perturbation types, whereas CRAFT uses VIB as curriculum tool for force-modality prioritization. From BC-IB — we operate at visual-token level (not latent fusion), use a 2B VLA (not small BC models), trace continuous RD frontiers (not 4 discrete β values), and evaluate OOD (not in-distribution only). From Wu & Fischer — we extend IB phase transition theory from cross-entropy classification to MSE continuous action prediction under distribution shift, providing the eigenvalue-based characterization of how critical points depend on invariant/nuisance feature structure. From Gaussian IB (Chechik et al.) — we connect the eigenvalue-driven phase structure to OOD generalization and the invariant/nuisance decomposition, rather than treating it as pure compression theory.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~350h A100 80GB (reduced from 600h via FVIB-R: 1 FVIB-R training + 5 discrete anchor models + LIBERO-Plus evaluation)\",\n      \"gpu_utilization\": \"Low (~30-35%). Human spends most wall-clock time on theoretical derivations, FVIB-R integration, and RD frontier analysis.\",\n      \"timeline\": \"3-4 months (theory development parallelized with implementation)\",\n      \"team\": \"1-2 researchers (1 with information theory / generalization bounds experience, 1 with VLA/robotics and openpi familiarity)\",\n      \"estimated_gpu_cost\": \"$525-$700 (at ~$1.50/hr A100 spot pricing)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~450h A100 80GB\",\n      \"gpu_utilization\": \"Moderate (~55-65%). Agent handles FVIB-R training, discrete anchor validation, and LIBERO-Plus evaluation pipeline.\",\n      \"timeline\": \"5-7 weeks\",\n      \"team\": \"1 researcher, ~45min/day review of RD frontier progress and theoretical development\",\n      \"claude_api_cost\": \"$300-$600 (~120-250 turns/week × 6 weeks × $0.10/turn Opus)\",\n      \"estimated_gpu_cost\": \"$675-$900\",\n      \"risk_note\": \"FVIB-R's quadratic feature extractor assumption may not hold for π₀'s architecture — the 5 discrete anchor models serve as ground truth to validate FVIB-R approximation quality. If FVIB-R fails, fall back to 10-12 discrete β training runs (~500h total). CRAFT's validated VIB + flow-matching integration de-risks the VIB insertion step.\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~800h A100 80GB (FVIB-R training, discrete anchor validation, comprehensive LIBERO-Plus evaluation, ablations across perturbation types)\",\n      \"gpu_utilization\": \"High (~85-90% utilization). Agent runs FVIB-R training, validates against anchor models, schedules parallel LIBERO-Plus evaluations.\",\n      \"timeline\": \"10-15 days with 4-6 concurrent A100s\",\n      \"team\": \"0 (only initial setup of openpi environment and LIBERO/LIBERO-Plus datasets)\",\n      \"claude_api_cost\": \"$400-$700 (~200-350 turns/day × 13 days × $0.10/turn)\",\n      \"estimated_gpu_cost\": \"$1,200-$1,600\",\n      \"speed_bottleneck\": \"GPU count (need 4-6 A100s); LIBERO-Plus evaluation across 7 perturbation types × 5 difficulty levels is the longest serial dependency (~8h per checkpoint for full evaluation).\",\n      \"risk_note\": \"Agent may need human guidance on theoretical derivation steps (generalization bound proofs). Theory work should be done in parallel by human researcher.\"\n    }\n  },\n  \"target_venues\": [\n    \"AAAI 2027 (deadline expected: Jul-Aug 2026)\",\n    \"ICLR 2027 (deadline expected: Sep-Oct 2026)\",\n    \"CoRL 2027 (deadline expected: May 2027, if additional development time needed)\"\n  ],\n  \"level\": \"strong\",\n  \"key_references\": [\n    \"Elastic Information Bottleneck (EIB, arXiv 2311.03955, 2023)\",\n    \"CRAFT: Adapting VLA Models to Contact-rich Manipulation via Force-aware Curriculum Fine-tuning (arXiv 2602.12532, Feb 2026)\",\n    \"Phase Transitions for the Information Bottleneck in Representation Learning (Wu & Fischer, ICLR 2020, arXiv 2001.01878)\",\n    \"Information Bottleneck for Gaussian Variables (Chechik et al., JMLR 2005)\",\n    \"Invariance Principle Meets Information Bottleneck for Out-of-Distribution Generalization (Ahuja et al., NeurIPS 2021, arXiv 2106.06607)\",\n    \"Invariant Information Bottleneck for Domain Generalization (IIB, AAAI 2022, arXiv 2106.06333)\",\n    \"Rate-Distortion Theoretic Generalization Bounds for Stochastic Learning Algorithms (Sefidgaran et al., COLT 2022, arXiv 2203.02474)\",\n    \"Flexible Variational Information Bottleneck: Achieving Diverse Compression with a Single Training (FVIB, arXiv 2402.01238, Neurocomputing 2025)\",\n    \"Exploring the Trade-Off in the Variational Information Bottleneck for Regression with a Single Training Run (FVIB-R, Entropy 2024)\",\n    \"Rethinking Latent Redundancy in Behavior Cloning: An Information Bottleneck Approach for Robot Manipulation (BC-IB, ICML 2025, arXiv 2502.02853)\",\n    \"Cauchy-Schwarz Divergence Information Bottleneck for Regression (CS-DIB, arXiv 2404.17951, 2024)\",\n    \"Generalized Information Bottleneck for Gaussian Variables (arXiv 2303.17762, 2023)\",\n    \"One Token Per Frame: Reconsidering Visual Bandwidth in World Models for VLA Policy (arXiv 2605.07931, 2026)\",\n    \"Inference Optimal VLMs Need Fewer Visual Tokens and More Parameters (Li et al., ICLR 2025, arXiv 2411.03312)\",\n    \"Compression as an Adversarial Amplifier Through Decision Space Reduction (Evans et al., arXiv 2604.06954, 2026)\",\n    \"Less Is More — Until It Breaks: Token Compression and Robustness in VLMs (arXiv 2601.12042, 2026)\",\n    \"On the Adversarial Robustness of Large Vision-Language Models under Visual Token Compression (arXiv 2601.21531, 2026)\",\n    \"A Generalized Information Bottleneck Theory of Deep Learning (arXiv 2509.26327, 2025)\",\n    \"Generalization in Reinforcement Learning with Selective Noise Injection and Information Bottleneck (IBAC, NeurIPS 2019)\",\n    \"Policy Generalization in Capacity-Limited Reinforcement Learning (Lerch & Sims, ICLR 2019 workshop)\",\n    \"VFP: Variational Flow-Matching Policy for Multi-Modal Robot Manipulation (arXiv 2508.01622, 2025)\",\n    \"LIBERO-Plus: A Progressive Robustness Benchmark for Visual-Language-Action Models (CVPR 2026)\",\n    \"Deep Variational Information Bottleneck (Alemi et al., arXiv 1612.00410, 2017)\",\n    \"Token Reduction Should Go Beyond Efficiency in Generative Models (Kong et al., arXiv 2505.18227, 2025)\",\n    \"Rate-Distortion Signatures of Generalization and Information Trade-offs (arXiv 2603.01568, 2026)\",\n    \"See What Matters: Differentiable Grid Sample Pruning for Generalizable VLA Model (ICML 2026)\",\n    \"The Better You Learn, The Smarter You Prune: Towards Efficient VLA Models via Differentiable Token Pruning (ICRA 2026)\",\n    \"Compressor-VLA: Instruction-Guided Visual Token Compression for Efficient Robotic Manipulation (arXiv 2511.18950, 2025)\",\n    \"The Information Bottleneck's Ordinary Differential Equation: First-Order Root Tracking (Geiping & Goldblum, Entropy 2023)\",\n    \"Causally-Aware Information Bottleneck for Domain Adaptation (arXiv 2601.04361, 2026)\"\n  ],\n  \"description\": \"We investigate when visual compression helps vs. hurts VLA generalization by combining theoretical analysis with systematic information bottleneck rate-distortion frontier analysis under distribution shift. Our work has three pillars of increasing theoretical novelty.\\n\\nFirst (application of existing theory to new domain), we instantiate and extend the Elastic Information Bottleneck's (EIB, arXiv 2311.03955) f(compression) + g(shift) error decomposition for continuous VLA action prediction — where the distortion is MSE over action trajectories (not 0-1 classification loss), the compression operates over visual tokens (not generic features), and the distribution shift is structured across 7 perturbation dimensions. We are transparent that this pillar applies existing rate-distortion generalization machinery to a new domain, with the technical contribution being the re-derivation under MSE distortion and structured perturbation decomposition.\\n\\nSecond (extension of existing framework), we extend the Invariant Information Bottleneck (IIB, AAAI 2022) to show VIB acts as a domain-invariant feature selector for VLA visual representations, selectively compressing environment-specific variation while preserving action-relevant invariant features — escaping the margin contraction regime of fixed codecs (Evans et al., 2026). We note that Ahuja et al. (NeurIPS 2021) show IB combined with invariance addresses failures of invariance alone in classification; since they observe invariance generalizes more readily for regression, our extension to continuous action prediction requires different analytical treatment of the invariant/nuisance decomposition.\\n\\nThird (genuinely new theory — primary novelty), we derive phase transition theory for continuous-output IB under distribution shift, extending Wu & Fischer's (ICLR 2020) calculus of variations framework from cross-entropy to MSE distortion. Building on the Gaussian IB's (Chechik et al., JMLR 2005) analytical result that phase transitions occur at β_i = (1 − λ_i)^(−1) as rank changes in the representation covariance Σ_Z, we analyze the linear-Gaussian case where visual features decompose into invariant and nuisance subspaces, deriving that the critical β* depends on the ratio of each feature subspace's action-relevance to its cross-environment variance. For the nonlinear case, we apply second-order calculus of variations to the MSE-distortion IB Lagrangian, showing that phase transitions correspond to sign changes of the second variation along directions determined by the singular value spectrum of the action prediction Jacobian ∂a/∂z. This yields the testable prediction that β* is higher for perturbation types affecting action-irrelevant features (texture, lighting) and lower for perturbation types affecting action-relevant features (camera viewpoint, object layout).\\n\\nEmpirically, we trace the full IB rate-distortion frontier for π₀ (2B, via openpi) on LIBERO-90 (in-distribution) and LIBERO-Plus (7 perturbation types × 5 difficulty levels, OOD), adopting FVIB-R methodology for continuous β sweeping. We build on CRAFT's validated VIB + flow-matching integration but with fundamentally different purpose: systematic RD analysis rather than curriculum-based modality balancing. We empirically validate the phase transition predictions by tracking effective representation rank across β values and mapping how β* shifts with task horizon, object diversity, perturbation type, and scene complexity.\",\n  \"project_name\": \"rd_optimal_vla_bandwidth\",\n  \"source\": \"web_research\"\n}\n\nPlease output this as a single, properly formatted, valid JSON object. Make sure all the newlines within string values are properly escaped as \\n. Do not add any commentary — just the JSON.\n",
+    "agentId": "af73cd6fa39e3d1d1",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "\n\n```json\n{\n  \"change_type\": \"minor\",\n  \"title\": \"Generalization-Optimal Visual Bandwidth for VLAs: Information Bottleneck Phase Transitions Under Distribution Shift\",\n  \"core_problem\": \"VLA systems use vastly different visual token counts (1 to 512 per frame), and concurrent work selects compression ratios heuristically or optimizes for in-distribution success. No principled framework characterizes WHEN visual compression helps vs. hurts out-of-distribution generalization — despite evidence that compression can both improve robustness (by filtering task-irrelevant noise) and amplify vulnerability (by contracting decision margins). While IB phase transitions are well-understood for classification (Wu & Fischer, ICLR 2020) and the Elastic Information Bottleneck (EIB, arXiv 2311.03955) provides an f(compression) + g(shift) error decomposition for domain adaptation, neither addresses continuous action prediction in VLAs, where the distortion is MSE over action trajectories, compression operates over visual tokens, and the distribution shift is structured across multiple perturbation dimensions. The Gaussian IB (Chechik et al., JMLR 2005) shows that phase transitions in continuous variables correspond to rank changes in the representation covariance — each transition adds a principal component at a critical β determined by the eigenvalue spectrum — but this has never been connected to OOD generalization in high-dimensional visuomotor control.\",\n  \"opportunity\": \"The information bottleneck (IB) provides a formal framework for trading compression against task-relevant information preservation. Three established theoretical results create a well-defined gap that our work fills: (1) Wu & Fischer (ICLR 2020) derive conditions for IB phase transitions using calculus of variations on the IB Lagrangian with cross-entropy loss, connecting phase transitions to the Fisher information matrix — but only for categorical classification on MNIST/CIFAR-10. (2) The Elastic Information Bottleneck (EIB, arXiv 2311.03955, 2023) decomposes target error into source empirical error + source generalization gap (SG, controlled by IB compression rate) + representation discrepancy (RD, measuring domain shift), establishing that IB and DIB trade off SG vs. RD and that the EIB objective traces a Pareto frontier — but in a general domain adaptation setting without analyzing the MSE-distortion structure of continuous action prediction or the eigenvalue-driven phase structure that governs which visual features enter the representation at which compression level. (3) The Gaussian IB (Chechik et al., JMLR 2005) derives closed-form solutions showing that phase transitions occur at critical β_i = (1 − λ_i)^(−1) where λ_i are eigenvalues of the canonical correlation matrix, with each transition adding a dimension to the representation — but this has not been applied to characterize OOD generalization or connected to the invariant/nuisance decomposition relevant to robotic deployment.\\n\\nOur opportunity is to bridge these three lines: instantiate EIB-style generalization bounds for continuous VLA action prediction (where the distortion function, action space structure, and shift structure are fundamentally different from classification), and then derive genuinely new phase transition theory showing WHERE the critical β* falls and HOW it shifts with task and perturbation properties. The Gaussian IB's eigenvalue-driven phase structure provides the analytical scaffold: in the VLA setting, each eigenvalue encodes a visual feature subspace's action-relevance relative to its cross-environment variance, and the phase transition sequence determines the order in which invariant vs. environment-specific features enter the representation.\\n\\nThis opportunity is sharpened by five concurrent developments: (a) CRAFT (arXiv 2602.12532) demonstrates VIB integration with π₀'s flow-matching architecture and curriculum β scheduling for force-modality generalization — but uses VIB as a modality balancing tool, not for systematic RD frontier analysis or phase transition characterization; (b) Li et al. (ICLR 2025) derive compute-optimal scaling laws for visual tokens vs. model size, but only for inference efficiency, not OOD generalization; (c) BC-IB (ICML 2025) shows IB at the latent fusion level improves in-distribution BC performance with 4 discrete β values, but does not evaluate OOD robustness or trace continuous RD frontiers; (d) Evans et al. (arXiv 2604.06954) prove fixed codecs contract classification margins — raising whether learned IB can escape this regime; (e) Ahuja et al. (NeurIPS 2021) show that combining IB with invariance addresses key failures of invariance alone in classification settings, though they note that invariance-based approaches already generalize more readily for regression tasks — making our extension to continuous action prediction a meaningful theoretical contribution rather than a direct application.\",\n  \"landscape\": \"**VLA visual compression methods**: OneWM-VLA (arXiv 2605.07931, May 2026) compresses each view into a single semantic token, achieving 95.6% on LIBERO-Long. LightVLA uses 78 tokens with +2.9% improvement. GridS (ICML 2026) uses <10% tokens. VLA-IAP achieves 97.8% with 1.54× speedup. Compressor-VLA achieves 97.3% with 59% FLOPs reduction. VLA-Pruner and TEAM-VLA learn compression heuristically. All optimize for in-distribution efficiency — none characterizes the OOD generalization tradeoff via information-theoretic analysis.\\n\\n**IB in robot learning**: CRAFT (arXiv 2602.12532, Feb 2026) is the closest work: it inserts VIB after the vision-language encoder of π₀ and RDT, using curriculum β scheduling (λ_VIB(t) = λ_init · exp(−t/T_decay)) to suppress high-entropy visual/language signals and prioritize force inputs during contact-rich manipulation. CRAFT demonstrates generalization to unseen objects and task variants (22.5% → 58.75% OOD improvement). However, CRAFT's VIB serves as a modality balancing tool — it compresses then releases visual information to prioritize force signals — rather than systematically characterizing compression-generalization tradeoffs. CRAFT does not trace RD frontiers, does not evaluate across systematic perturbation benchmarks (e.g., LIBERO-Plus), and does not analyze phase transitions. Its existence validates the technical feasibility of VIB + flow matching in π₀, strengthening our approach. BC-IB (ICML 2025) applies IB at the latent fusion level of small BC models with 4 β values, achieving in-distribution improvements on LIBERO, but operates on fused representations (not visual tokens), evaluates only in-distribution, and has not been applied to large VLAs. IBAC (NeurIPS 2019) applies IB to actor-critic RL, showing compression improves generalization in procedurally-generated environments. The Capacity-Limited Actor-Critic (Lerch & Sims, ICLR 2019 workshop) maps capacity-limited RL to rate-distortion theory. VFP (arXiv 2508.01622) establishes precedent for variational components + flow matching in robot manipulation.\\n\\n**IB phase transition theory**: Wu & Fischer (ICLR 2020) derive theoretical conditions for IB phase transitions using second-order calculus of variations on the IB Lagrangian with cross-entropy loss, connecting them to the Fisher information matrix. Phase transitions correspond to the onset of learning new categorical classes. The Gaussian IB (Chechik et al., JMLR 2005) provides the analytical tractable case for continuous variables: phase transitions occur at critical β_i = (1 − λ_i)^(−1) where λ_i are eigenvalues of the canonical correlation matrix Σ_{x|y}Σ_x^(−1), with each transition adding a new principal component to the representation (a rank change in Σ_Z). The optimal representation is a noisy linear projection onto eigenvectors of the normalized regression matrix. The Generalized IB for Gaussian Variables (arXiv 2303.17762) shows that structural transitions occur at identical critical β values across Rényi and Jeffreys divergence formulations, suggesting the phase structure is a fundamental property of the compression-relevance tradeoff. Extension to continuous action prediction under distribution shift is non-trivial and unaddressed.\\n\\n**IB and OOD generalization theory**: The Elastic Information Bottleneck (EIB, arXiv 2311.03955, 2023) decomposes target error into source empirical error + source generalization gap (SG) + representation discrepancy (RD), proving that DIB has tighter SG but larger RD than IB, and proposing an interpolation that traces a Pareto frontier. This provides the f(compression) + g(shift) decomposition structure. Ahuja et al. (NeurIPS 2021) show that combining IB with invariance addresses key failures of invariance alone — specifically when invariant features capture all label information — though they note that invariance-based approaches generalize more readily for regression than classification, requiring stronger distributional restrictions for the latter. The Invariant Information Bottleneck (IIB, AAAI 2022) combines IB with invariance principles for domain generalization. Sefidgaran et al. (COLT 2022) establish rate-distortion theoretic generalization bounds linking compressibility, mutual information, and fractal dimensions. The Cauchy-Schwarz Divergence IB (CS-DIB, arXiv 2404.17951) addresses IB for regression by replacing KL divergence with Cauchy-Schwarz divergence, avoiding Gaussian assumptions while providing adversarial robustness guarantees. The Generalized IB theory (arXiv 2509.26327, 2025) shows synergistic representations achieve superior generalization.\\n\\n**Compression and robustness**: LIBERO-Plus (CVPR 2026) reveals VLA models drop from 95% to below 30% under modest perturbations across 7 dimensions. Evans et al. (arXiv 2604.06954) prove fixed image compression contracts classification margins. 'Less Is More — Until It Breaks' (arXiv 2601.12042) shows compression introduces state-specific robustness vulnerabilities in VLMs. Kong et al. (arXiv 2505.18227) argue token reduction should influence generalization, but provide no formal framework.\\n\\n**Efficient IB optimization**: FVIB (arXiv 2402.01238) enables sweeping all β values for classification in a single training run via Taylor approximation. FVIB-R (Entropy, 2024) extends this to regression/continuous outputs using quadratic feature extraction, enabling β adjustment at evaluation time without retraining. The IB ODE (Geiping & Goldblum, Entropy 2023) derives first-order ordinary differential equations for tracking optimal IB solutions as β varies continuously, providing theoretical foundation for continuous β sweeping.\\n\\nNo work combines: (i) instantiation and extension of EIB-style generalization bounds for continuous VLA action prediction, (ii) new phase transition theory for continuous outputs showing how critical β* depends on the eigenvalue spectrum of invariant vs. nuisance feature subspaces, (iii) systematic RD frontier tracing under structured OOD perturbation, and (iv) empirical characterization of how phase transition points shift with task/perturbation properties.\",\n  \"approach\": \"We formalize VLA visual bandwidth selection as an information bottleneck optimization and provide both theoretical analysis and empirical characterization of the compression-generalization tradeoff under distribution shift.\\n\\n**Theoretical Contribution (Pillar 1): Generalization Bounds and Phase Transitions.**\\n\\n(a) *Generalization bound (extension of existing theory to VLA domain).* We instantiate and extend the EIB error decomposition (arXiv 2311.03955) for continuous VLA action prediction. EIB decomposes target error into source empirical error + source generalization gap (SG, controlled by IB compression rate R = I(V;Z)) + representation discrepancy (RD, measuring domain shift through the bottleneck). Our contribution is NOT the decomposition structure itself — it is extending this to the VLA setting where: (i) the distortion is MSE over continuous action trajectories rather than 0-1 classification loss, requiring re-derivation of the SG bound under MSE distortion; (ii) the compression operates over visual tokens specifically, with the rate R measuring visual information retained; (iii) the distribution shift is structured across 7 perturbation dimensions (camera, lighting, distractors, layout, robot state, texture, noise), allowing us to decompose the RD term by perturbation type. Formally: Gap_OOD(β) ≤ SG(R(β)) + RD(β, P_train, P_test), where SG decreases with compression (standard IB) and RD initially decreases with compression (collapsing environment-specific variation) but eventually increases (losing action-relevant information) — yielding a non-trivial optimum β*. We are transparent that this pillar primarily applies existing rate-distortion generalization machinery to a new domain.\\n\\n(b) *IB as domain-invariant feature selector (extension of IIB to VLA setting).* We extend the IIB framework (AAAI 2022) to VLA visual representations: minimizing I(V;Z) while preserving I(Z;A) preferentially compresses visual features with high cross-environment variance and low action-relevance while preserving invariant features. We note that Ahuja et al. (NeurIPS 2021) show IB combined with invariance addresses failures of invariance alone in classification; since they observe that invariance generalizes more readily for regression, our extension to continuous action prediction (closer to regression) is a meaningful contribution requiring different analytical treatment — specifically, the invariant/nuisance decomposition for visual features must account for the continuous action manifold structure rather than discrete class boundaries. We formalize this decomposition to show learned VIB compression can escape Evans et al.'s fixed-codec margin contraction by selectively compressing the nuisance subspace while preserving the invariant subspace.\\n\\n(c) *Phase transition characterization for continuous action prediction (genuinely new theory — primary theoretical novelty).* This is our strongest novel contribution. We extend Wu & Fischer's (ICLR 2020) calculus of variations framework from cross-entropy to MSE distortion, analyzing second-order conditions for phase transitions in continuous-output IB.\\n\\nThe mathematical framework proceeds as follows:\\n\\n(i) *Analytical tractable case: linear-Gaussian model.* Following Chechik et al. (JMLR 2005), we decompose the visual feature covariance into action-relevant invariant components and environment-specific nuisance components. In this setting, phase transitions manifest as rank changes in the representation covariance matrix Σ_Z — each transition adds a new principal component corresponding to a visual feature subspace becoming action-relevant at that compression level. The critical β values follow from the eigenvalue spectrum: β_i = (1 − λ_i)^(−1), where λ_i are eigenvalues of the canonical correlation matrix between visual features V and actions A. Crucially, for visual features that vary across environments, the effective eigenvalue λ_i reflects the ratio of the feature's action-relevance (conditional mutual information I(V_i; A | V_{\\\\i})) to its cross-environment variance (measured by the between-environment covariance). Features with high action-relevance relative to cross-environment variance enter the representation at lower β (earlier in the compression-relaxation path); environment-specific features with low action-relevance/variance ratio enter at higher β. The generalization-optimal β* lies in the gap between these two groups of transitions.\\n\\n(ii) *Extension to nonlinear case.* We apply second-order calculus of variations to the IB Lagrangian L = E[||a_pred − a_true||²] + β · I(V;Z), deriving the condition for phase transitions as the point where the second variation of L becomes negative along a new direction in the representation space. Unlike classification where the Fisher information involves softmax probabilities, for MSE distortion the relevant quantity is the Jacobian of the action prediction mapping ∂a/∂z, yielding a phase transition condition that depends on the singular value spectrum of this Jacobian. We derive the prediction that phase transitions in continuous action prediction are smoother than in classification (due to the continuous nature of action error vs. discrete class boundaries) but still exhibit identifiable critical points where the effective representation dimension changes.\\n\\n(iii) *Theoretical prediction.* The central testable prediction: β* at which OOD generalization gap begins to widen rapidly depends on the ratio of total environment-specific visual information to total action-relevant invariant information. For perturbation types that primarily affect action-irrelevant visual features (e.g., texture, lighting), β* is higher (more compression is safe); for perturbation types that affect action-relevant features (e.g., camera viewpoint changing spatial relationships), β* is lower (compression quickly becomes harmful). This prediction is falsifiable against the empirical RD frontier.\\n\\n**Empirical Methodology (Pillar 2).** We insert a learnable VIB between the visual encoder and action generation module of π₀ (2B params, via openpi), following CRAFT's validated approach for VIB + flow-matching integration but with fundamentally different purpose: systematic RD frontier analysis rather than curriculum-based modality balancing. The VIB parameterizes z ~ q(z|v) with training objective: L = E[||a_pred − a_true||²] + β · KL(q(z|v) || r(z)).\\n\\nWe adopt FVIB-R methodology (Entropy, 2024) to enable efficient β sweeping: train a single model whose architecture supports post-hoc β adjustment at evaluation time, with the bottleneck layer parameterized to allow continuous β variation without retraining. We validate FVIB-R's continuous frontier against 5 discrete-β anchor models to confirm approximation fidelity. This reduces the core training cost from ~15× to ~3× a single training run.\\n\\nWe evaluate on LIBERO-90 as the primary in-distribution benchmark, with LIBERO-Plus providing systematic OOD evaluation across 7 perturbation types × 5 difficulty levels. At each operating point on the RD frontier we measure: (1) effective rate via KL divergence upper bound on I(V;Z), (2) in-distribution task success rate, (3) OOD task success rate across all perturbation dimensions, and (4) the generalization gap Δ(β) = success_ID(β) − success_OOD(β).\\n\\n**Phase Transition Analysis (Pillar 3).** The central empirical analysis identifies critical β values where the generalization gap exhibits rapid change — indicating compression has shifted from filtering irrelevant features to discarding task-critical information. We characterize this by computing the slope and curvature of the OOD-distortion vs. rate curve, and by tracking the effective rank of the bottleneck representation (monitoring when new dimensions become active) to directly test the eigenvalue-driven phase transition prediction from Pillar 1c.\\n\\nWe then empirically characterize how β* shifts with: task horizon length, object diversity, perturbation type and magnitude, and visual scene complexity. We fit approximate scaling relationships and validate them against the theoretical predictions, testing whether (a) β* is higher for perturbation types affecting action-irrelevant features (texture, lighting) vs. action-relevant features (camera viewpoint, object layout), and (b) the predicted dependence on the invariant/nuisance information ratio holds empirically.\\n\\n**Adversarial robustness (secondary analysis).** As a supplementary investigation, we measure adversarial robustness (untargeted PGD attacks on visual inputs) at selected β operating points to test whether the VIB's learned compression escapes Evans et al.'s margin contraction regime. This is positioned as a secondary contribution.\\n\\n**Key differentiations**: From EIB — we instantiate the f(compression) + g(shift) framework for continuous VLA action prediction with MSE distortion and structured perturbation, and add the phase transition analysis (absent in EIB). From CRAFT — we trace systematic RD frontiers across continuous β values and evaluate under 7 systematic perturbation types, whereas CRAFT uses VIB as curriculum tool for force-modality prioritization. From BC-IB — we operate at visual-token level (not latent fusion), use a 2B VLA (not small BC models), trace continuous RD frontiers (not 4 discrete β values), and evaluate OOD (not in-distribution only). From Wu & Fischer — we extend IB phase transition theory from cross-entropy classification to MSE continuous action prediction under distribution shift, providing the eigenvalue-based characterization of how critical points depend on invariant/nuisance feature structure. From Gaussian IB (Chechik et al.) — we connect the eigenvalue-driven phase structure to OOD generalization and the invariant/nuisance decomposition, rather than treating it as pure compression theory.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~350h A100 80GB (reduced from 600h via FVIB-R: 1 FVIB-R training + 5 discrete anchor models + LIBERO-Plus evaluation)\",\n      \"gpu_utilization\": \"Low (~30-35%). Human spends most wall-clock time on theoretical derivations, FVIB-R integration, and RD frontier analysis.\",\n      \"timeline\": \"3-4 months (theory development parallelized with implementation)\",\n      \"team\": \"1-2 researchers (1 with information theory / generalization bounds experience, 1 with VLA/robotics and openpi familiarity)\",\n      \"estimated_gpu_cost\": \"$525-$700 (at ~$1.50/hr A100 spot pricing)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~450h A100 80GB\",\n      \"gpu_utilization\": \"Moderate (~55-65%). Agent handles FVIB-R training, discrete anchor validation, and LIBERO-Plus evaluation pipeline.\",\n      \"timeline\": \"5-7 weeks\",\n      \"team\": \"1 researcher, ~45min/day review of RD frontier progress and theoretical development\",\n      \"claude_api_cost\": \"$300-$600 (~120-250 turns/week × 6 weeks × $0.10/turn Opus)\",\n      \"estimated_gpu_cost\": \"$675-$900\",\n      \"risk_note\": \"FVIB-R's quadratic feature extractor assumption may not hold for π₀'s architecture — the 5 discrete anchor models serve as ground truth to validate FVIB-R approximation quality. If FVIB-R fails, fall back to 10-12 discrete β training runs (~500h total). CRAFT's validated VIB + flow-matching integration de-risks the VIB insertion step.\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~800h A100 80GB (FVIB-R training, discrete anchor validation, comprehensive LIBERO-Plus evaluation, ablations across perturbation types)\",\n      \"gpu_utilization\": \"High (~85-90% utilization). Agent runs FVIB-R training, validates against anchor models, schedules parallel LIBERO-Plus evaluations.\",\n      \"timeline\": \"10-15 days with 4-6 concurrent A100s\",\n      \"team\": \"0 (only initial setup of openpi environment and LIBERO/LIBERO-Plus datasets)\",\n      \"claude_api_cost\": \"$400-$700 (~200-350 turns/day × 13 days × $0.10/turn)\",\n      \"estimated_gpu_cost\": \"$1,200-$1,600\",\n      \"speed_bottleneck\": \"GPU count (need 4-6 A100s); LIBERO-Plus evaluation across 7 perturbation types × 5 difficulty levels is the longest serial dependency (~8h per checkpoint for full evaluation).\",\n      \"risk_note\": \"Agent may need human guidance on theoretical derivation steps (generalization bound proofs). Theory work should be done in parallel by human researcher.\"\n    }\n  },\n  \"target_venues\": [\n    \"AAAI 2027 (deadline expected: Jul-Aug 2026)\",\n    \"ICLR 2027 (deadline expected: Sep-Oct 2026)\",\n    \"CoRL 2027 (deadline expected: May 2027, if additional development time needed)\"\n  ],\n  \"level\": \"strong\",\n  \"key_references\": [\n    \"Elastic Information Bottleneck (EIB, arXiv 2311.03955, 2023)\",\n    \"CRAFT: Adapting VLA Models to Contact-rich Manipulation via Force-aware Curriculum Fine-tuning (arXiv 2602.12532, Feb 2026)\",\n    \"Phase Transitions for the Information Bottleneck in Representation Learning (Wu & Fischer, ICLR 2020, arXiv 2001.01878)\",\n    \"Information Bottleneck for Gaussian Variables (Chechik et al., JMLR 2005)\",\n    \"Invariance Principle Meets Information Bottleneck for Out-of-Distribution Generalization (Ahuja et al., NeurIPS 2021, arXiv 2106.06607)\",\n    \"Invariant Information Bottleneck for Domain Generalization (IIB, AAAI 2022, arXiv 2106.06333)\",\n    \"Rate-Distortion Theoretic Generalization Bounds for Stochastic Learning Algorithms (Sefidgaran et al., COLT 2022, arXiv 2203.02474)\",\n    \"Flexible Variational Information Bottleneck: Achieving Diverse Compression with a Single Training (FVIB, arXiv 2402.01238, Neurocomputing 2025)\",\n    \"Exploring the Trade-Off in the Variational Information Bottleneck for Regression with a Single Training Run (FVIB-R, Entropy 2024)\",\n    \"Rethinking Latent Redundancy in Behavior Cloning: An Information Bottleneck Approach for Robot Manipulation (BC-IB, ICML 2025, arXiv 2502.02853)\",\n    \"Cauchy-Schwarz Divergence Information Bottleneck for Regression (CS-DIB, arXiv 2404.17951, 2024)\",\n    \"Generalized Information Bottleneck for Gaussian Variables (arXiv 2303.17762, 2023)\",\n    \"One Token Per Frame: Reconsidering Visual Bandwidth in World Models for VLA Policy (arXiv 2605.07931, 2026)\",\n    \"Inference Optimal VLMs Need Fewer Visual Tokens and More Parameters (Li et al., ICLR 2025, arXiv 2411.03312)\",\n    \"Compression as an Adversarial Amplifier Through Decision Space Reduction (Evans et al., arXiv 2604.06954, 2026)\",\n    \"Less Is More — Until It Breaks: Token Compression and Robustness in VLMs (arXiv 2601.12042, 2026)\",\n    \"On the Adversarial Robustness of Large Vision-Language Models under Visual Token Compression (arXiv 2601.21531, 2026)\",\n    \"A Generalized Information Bottleneck Theory of Deep Learning (arXiv 2509.26327, 2025)\",\n    \"Generalization in Reinforcement Learning with Selective Noise Injection and Information Bottleneck (IBAC, NeurIPS 2019)\",\n    \"Policy Generalization in Capacity-Limited Reinforcement Learning (Lerch & Sims, ICLR 2019 workshop)\",\n    \"VFP: Variational Flow-Matching Policy for Multi-Modal Robot Manipulation (arXiv 2508.01622, 2025)\",\n    \"LIBERO-Plus: A Progressive Robustness Benchmark for Visual-Language-Action Models (CVPR 2026)\",\n    \"Deep Variational Information Bottleneck (Alemi et al., arXiv 1612.00410, 2017)\",\n    \"Token Reduction Should Go Beyond Efficiency in Generative Models (Kong et al., arXiv 2505.18227, 2025)\",\n    \"Rate-Distortion Signatures of Generalization and Information Trade-offs (arXiv 2603.01568, 2026)\",\n    \"See What Matters: Differentiable Grid Sample Pruning for Generalizable VLA Model (ICML 2026)\",\n    \"The Better You Learn, The Smarter You Prune: Towards Efficient VLA Models via Differentiable Token Pruning (ICRA 2026)\",\n    \"Compressor-VLA: Instruction-Guided Visual Token Compression for Efficient Robotic Manipulation (arXiv 2511.18950, 2025)\",\n    \"The Information Bottleneck's Ordinary Differential Equation: First-Order Root Tracking (Geiping & Goldblum, Entropy 2023)\",\n    \"Causally-Aware Information Bottleneck for Domain Adaptation (arXiv 2601.04361, 2026)\"\n  ],\n  \"description\": \"We investigate when visual compression helps vs. hurts VLA generalization by combining theoretical analysis with systematic information bottleneck rate-distortion frontier analysis under distribution shift. Our work has three pillars of increasing theoretical novelty.\\n\\nFirst (application of existing theory to new domain), we instantiate and extend the Elastic Information Bottleneck's (EIB, arXiv 2311.03955) f(compression) + g(shift) error decomposition for continuous VLA action prediction — where the distortion is MSE over action trajectories (not 0-1 classification loss), the compression operates over visual tokens (not generic features), and the distribution shift is structured across 7 perturbation dimensions. We are transparent that this pillar applies existing rate-distortion generalization machinery to a new domain, with the technical contribution being the re-derivation under MSE distortion and structured perturbation decomposition.\\n\\nSecond (extension of existing framework), we extend the Invariant Information Bottleneck (IIB, AAAI 2022) to show VIB acts as a domain-invariant feature selector for VLA visual representations, selectively compressing environment-specific variation while preserving action-relevant invariant features — escaping the margin contraction regime of fixed codecs (Evans et al., 2026). We note that Ahuja et al. (NeurIPS 2021) show IB combined with invariance addresses failures of invariance alone in classification; since they observe invariance generalizes more readily for regression, our extension to continuous action prediction requires different analytical treatment of the invariant/nuisance decomposition.\\n\\nThird (genuinely new theory — primary novelty), we derive phase transition theory for continuous-output IB under distribution shift, extending Wu & Fischer's (ICLR 2020) calculus of variations framework from cross-entropy to MSE distortion. Building on the Gaussian IB's (Chechik et al., JMLR 2005) analytical result that phase transitions occur at β_i = (1 − λ_i)^(−1) as rank changes in the representation covariance Σ_Z, we analyze the linear-Gaussian case where visual features decompose into invariant and nuisance subspaces, deriving that the critical β* depends on the ratio of each feature subspace's action-relevance to its cross-environment variance. For the nonlinear case, we apply second-order calculus of variations to the MSE-distortion IB Lagrangian, showing that phase transitions correspond to sign changes of the second variation along directions determined by the singular value spectrum of the action prediction Jacobian ∂a/∂z. This yields the testable prediction that β* is higher for perturbation types affecting action-irrelevant features (texture, lighting) and lower for perturbation types affecting action-relevant features (camera viewpoint, object layout).\\n\\nEmpirically, we trace the full IB rate-distortion frontier for π₀ (2B, via openpi) on LIBERO-90 (in-distribution) and LIBERO-Plus (7 perturbation types × 5 difficulty levels, OOD), adopting FVIB-R methodology for continuous β sweeping. We build on CRAFT's validated VIB + flow-matching integration but with fundamentally different purpose: systematic RD analysis rather than curriculum-based modality balancing. We empirically validate the phase transition predictions by tracking effective representation rank across β values and mapping how β* shifts with task horizon, object diversity, perturbation type, and scene complexity.\",\n  \"project_name\": \"rd_optimal_vla_bandwidth\",\n  \"source\": \"web_research\"\n}\n```"
+      }
+    ],
+    "totalDurationMs": 130864,
+    "totalTokens": 24674,
+    "totalToolUseCount": 0,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 8549,
+      "cache_read_input_tokens": 8223,
+      "output_tokens": 7900,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 8549
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 7900,
+          "cache_read_input_tokens": 8223,
+          "cache_creation_input_tokens": 8549,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 8549,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  },
+  "sourceToolAssistantUUID": "090a9f6d-6ce2-4341-ae03-63102f55eb3c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+````
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 80_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-13 (UTC).**  ## Original idea {   \"title\": \"Generalization-Optimal Visual Bandwidth for VLAs: Information Bottlene…",
+  "leafUuid": "9b43b315-59e3-4396-8dc9-eb79bae631f4",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 81_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise phase transition theory and clarify novelty claims for VLA bandwidth optimization",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e"
+}
+```
+
+---
+
+### Assistant
+
+_source line 82 · 2026-05-13T07:02:48.136Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The agent has returned the complete JSON. Let me verify it looks correct and present it to the user. Let me review the key changes made to address each reviewer issue:
+
+1. **EIB citation (MAJOR)**: ✅ EIB is now cited throughout — in core_problem, opportunity, landscape, and approach. Pillar 1a is explicitly framed as "instantiation and extension of EIB-style bounds" rather than claiming a novel decomposition.
+
+2. **Phase transition theory depth (MAJOR)**: ✅ Pillar 1c now specifies:
+   - The linear-Gaussian case using Chechik et al.'s framework with the explicit β_i formula
+   - How rank changes in the covariance matrix drive the phase transition mechanism
+   - A nonlinear extension using second-order calculus of variations on the MSE-distortion IB Lagrangian
+   - Analysis of the singular value spectrum from the action prediction Jacobian
+   - A concrete testable prediction about how β* varies depending on the perturbation type
+
+3. **Ahuja et al. correction (MINOR)**: ✅ Changed
+
+I've reframed the IB necessity claim to focus on how combining IB with invariance constraints addresses specific limitations of invariance alone in classification tasks, and noted that regression presents a simpler case.
+
+4. **Theory/application boundary (MINOR)**: ✅ Three pillars are now clearly delineated:
+   - Pillar 1a: applying existing theory to a new domain
+   - Pillar 1b: extending an existing framework
+   - Pillar 1c: developing genuinely new theory as the primary theoretical contribution
+
+I've also incorporated several new references including the Elastic Information Bottleneck, Chechik et al.'s Gaussian IB work, recent generalizations for Gaussian variables, CS-DIB for regression, and the IB ODE framework.
+
+I'm adding the final references on causally-aware IB and verifying the JSON structure is complete and ready to present.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9b43b315-59e3-4396-8dc9-eb79bae631f4",
+  "isSidechain": false,
+  "requestId": "req_011Caz93xuzKYmviYCRgma6d",
+  "type": "assistant",
+  "uuid": "8270be0f-f20e-4ece-9093-1497e7dbf5fd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Lgw5g7yKMRzq83X64aV8Vg",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17905,
+      "cache_read_input_tokens": 41976,
+      "output_tokens": 9104,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 17905,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 9104,
+          "cache_read_input_tokens": 41976,
+          "cache_creation_input_tokens": 17905,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 17905
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 83 · 2026-05-13T07:05:44.054Z_
+
+Here is the revised research idea addressing all four reviewer issues:
+
+```json
+{
+  "change_type": "minor",
+  "title": "Generalization-Optimal Visual Bandwidth for VLAs: Information Bottleneck Phase Transitions Under Distribution Shift",
+  "core_problem": "VLA systems use vastly different visual token counts (1 to 512 per frame), and concurrent work selects compression ratios heuristically or optimizes for in-distribution success. No principled framework characterizes WHEN visual compression helps vs. hurts out-of-distribution generalization — despite evidence that compression can both improve robustness (by filtering task-irrelevant noise) and amplify vulnerability (by contracting decision margins). While IB phase transitions are well-understood for classification (Wu & Fischer, ICLR 2020) and the Elastic Information Bottleneck (EIB, arXiv 2311.03955) provides an f(compression) + g(shift) error decomposition for domain adaptation, neither addresses continuous action prediction in VLAs, where the distortion is MSE over action trajectories, compression operates over visual tokens, and the distribution shift is structured across multiple perturbation dimensions. The Gaussian IB (Chechik et al., JMLR 2005) shows that phase transitions in continuous variables correspond to rank changes in the representation covariance — each transition adds a principal component at a critical β determined by the eigenvalue spectrum — but this has never been connected to OOD generalization in high-dimensional visuomotor control.",
+  "opportunity": "The information bottleneck (IB) provides a formal framework for trading compression against task-relevant information preservation. Three established theoretical results create a well-defined gap that our work fills: (1) Wu & Fischer (ICLR 2020) derive conditions for IB phase transitions using calculus of variations on the IB Lagrangian with cross-entropy loss, connecting phase transitions to the Fisher information matrix — but only for categorical classification on MNIST/CIFAR-10. (2) The Elastic Information Bottleneck (EIB, arXiv 2311.03955, 2023) decomposes target error into source empirical error + source generalization gap (SG, controlled by IB compression rate) + representation discrepancy (RD, measuring domain shift), establishing that IB and DIB trade off SG vs. RD and that the EIB objective traces a Pareto frontier — but in a general domain adaptation setting without analyzing the MSE-distortion structure of continuous action prediction or the eigenvalue-driven phase structure that governs which visual features enter the representation at which compression level. (3) The Gaussian IB (Chechik et al., JMLR 2005) derives closed-form solutions showing that phase transitions occur at critical β_i = (1 − λ_i)^(−1) where λ_i are eigenvalues of the canonical correlation matrix, with each transition adding a dimension to the representation — but this has not been applied to characterize OOD generalization or connected to the invariant/nuisance decomposition relevant to robotic deployment.\n\nOur opportunity is to bridge these three lines: instantiate EIB-style generalization bounds for continuous VLA action prediction (where the distortion function, action space structure, and shift structure are fundamentally different from classification), and then derive genuinely new phase transition theory showing WHERE the critical β* falls and HOW it shifts with task and perturbation properties. The Gaussian IB's eigenvalue-driven phase structure provides the analytical scaffold: in the VLA setting, each eigenvalue encodes a visual feature subspace's action-relevance relative to its cross-environment variance, and the phase transition sequence determines the order in which invariant vs. environment-specific features enter the representation.\n\nThis opportunity is sharpened by five concurrent developments: (a) CRAFT (arXiv 2602.12532) demonstrates VIB integration with π₀'s flow-matching architecture and curriculum β scheduling for force-modality generalization — but uses VIB as a modality balancing tool, not for systematic RD frontier analysis or phase transition characterization; (b) Li et al. (ICLR 2025) derive compute-optimal scaling laws for visual tokens vs. model size, but only for inference efficiency, not OOD generalization; (c) BC-IB (ICML 2025) shows IB at the latent fusion level improves in-distribution BC performance with 4 discrete β values, but does not evaluate OOD robustness or trace continuous RD frontiers; (d) Evans et al. (arXiv 2604.06954) prove fixed codecs contract classification margins — raising whether learned IB can escape this regime; (e) Ahuja et al. (NeurIPS 2021) show that combining IB with invariance addresses key failures of invariance alone in classification settings, though they note that invariance-based approaches already generalize more readily for regression tasks — making our extension to continuous action prediction a meaningful theoretical contribution rather than a direct application.",
+  "landscape": "**VLA visual compression methods**: OneWM-VLA (arXiv 2605.07931, May 2026) compresses each view into a single semantic token, achieving 95.6% on LIBERO-Long. LightVLA uses 78 tokens with +2.9% improvement. GridS (ICML 2026) uses <10% tokens. VLA-IAP achieves 97.8% with 1.54× speedup. Compressor-VLA achieves 97.3% with 59% FLOPs reduction. VLA-Pruner and TEAM-VLA learn compression heuristically. All optimize for in-distribution efficiency — none characterizes the OOD generalization tradeoff via information-theoretic analysis.\n\n**IB in robot learning**: CRAFT (arXiv 2602.12532, Feb 2026) is the closest work: it inserts VIB after the vision-language encoder of π₀ and RDT, using curriculum β scheduling (λ_VIB(t) = λ_init · exp(−t/T_decay)) to suppress high-entropy visual/language signals and prioritize force inputs during contact-rich manipulation. CRAFT demonstrates generalization to unseen objects and task variants (22.5% → 58.75% OOD improvement). However, CRAFT's VIB serves as a modality balancing tool — it compresses then releases visual information to prioritize force signals — rather than systematically characterizing compression-generalization tradeoffs. CRAFT does not trace RD frontiers, does not evaluate across systematic perturbation benchmarks (e.g., LIBERO-Plus), and does not analyze phase transitions. Its existence validates the technical feasibility of VIB + flow matching in π₀, strengthening our approach. BC-IB (ICML 2025) applies IB at the latent fusion level of small BC models with 4 β values, achieving in-distribution improvements on LIBERO, but operates on fused representations (not visual tokens), evaluates only in-distribution, and has not been applied to large VLAs. IBAC (NeurIPS 2019) applies IB to actor-critic RL, showing compression improves generalization in procedurally-generated environments. The Capacity-Limited Actor-Critic (Lerch & Sims, ICLR 2019 workshop) maps capacity-limited RL to rate-distortion theory. VFP (arXiv 2508.01622) establishes precedent for variational components + flow matching in robot manipulation.\n\n**IB phase transition theory**: Wu & Fischer (ICLR 2020) derive theoretical conditions for IB phase transitions using second-order calculus of variations on the IB Lagrangian with cross-entropy loss, connecting them to the Fisher information matrix. Phase transitions correspond to the onset of learning new categorical classes. The Gaussian IB (Chechik et al., JMLR 2005) provides the analytical tractable case for continuous variables: phase transitions occur at critical β_i = (1 − λ_i)^(−1) where λ_i are eigenvalues of the canonical correlation matrix Σ_{x|y}Σ_x^(−1), with each transition adding a new principal component to the representation (a rank change in Σ_Z). The optimal representation is a noisy linear projection onto eigenvectors of the normalized regression matrix. The Generalized IB for Gaussian Variables (arXiv 2303.17762) shows that structural transitions occur at identical critical β values across Rényi and Jeffreys divergence formulations, suggesting the phase structure is a fundamental property of the compression-relevance tradeoff. Extension to continuous action prediction under distribution shift is non-trivial and unaddressed.\n\n**IB and OOD generalization theory**: The Elastic Information Bottleneck (EIB, arXiv 2311.03955, 2023) decomposes target error into source empirical error + source generalization gap (SG) + representation discrepancy (RD), proving that DIB has tighter SG but larger RD than IB, and proposing an interpolation that traces a Pareto frontier. This provides the f(compression) + g(shift) decomposition structure. Ahuja et al. (NeurIPS 2021) show that combining IB with invariance addresses key failures of invariance alone — specifically when invariant features capture all label information — though they note that invariance-based approaches generalize more readily for regression than classification, requiring stronger distributional restrictions for the latter. The Invariant Information Bottleneck (IIB, AAAI 2022) combines IB with invariance principles for domain generalization. Sefidgaran et al. (COLT 2022) establish rate-distortion theoretic generalization bounds linking compressibility, mutual information, and fractal dimensions. The Cauchy-Schwarz Divergence IB (CS-DIB, arXiv 2404.17951) addresses IB for regression by replacing KL divergence with Cauchy-Schwarz divergence, avoiding Gaussian assumptions while providing adversarial robustness guarantees. The Generalized IB theory (arXiv 2509.26327, 2025) shows synergistic representations achieve superior generalization.\n\n**Compression and robustness**: LIBERO-Plus (CVPR 2026) reveals VLA models drop from 95% to below 30% under modest perturbations across 7 dimensions. Evans et al. (arXiv 2604.06954) prove fixed image compression contracts classification margins. 'Less Is More — Until It Breaks' (arXiv 2601.12042) shows compression introduces state-specific robustness vulnerabilities in VLMs. Kong et al. (arXiv 2505.18227) argue token reduction should influence generalization, but provide no formal framework.\n\n**Efficient IB optimization**: FVIB (arXiv 2402.01238) enables sweeping all β values for classification in a single training run via Taylor approximation. FVIB-R (Entropy, 2024) extends this to regression/continuous outputs using quadratic feature extraction, enabling β adjustment at evaluation time without retraining. The IB ODE (Geiping & Goldblum, Entropy 2023) derives first-order ordinary differential equations for tracking optimal IB solutions as β varies continuously, providing theoretical foundation for continuous β sweeping.\n\nNo work combines: (i) instantiation and extension of EIB-style generalization bounds for continuous VLA action prediction, (ii) new phase transition theory for continuous outputs showing how critical β* depends on the eigenvalue spectrum of invariant vs. nuisance feature subspaces, (iii) systematic RD frontier tracing under structured OOD perturbation, and (iv) empirical characterization of how phase transition points shift with task/perturbation properties.",
+  "approach": "We formalize VLA visual bandwidth selection as an information bottleneck optimization and provide both theoretical analysis and empirical characterization of the compression-generalization tradeoff under distribution shift.\n\n**Theoretical Contribution (Pillar 1): Generalization Bounds and Phase Transitions.**\n\n(a) *Generalization bound (extension of existing theory to VLA domain).* We instantiate and extend the EIB error decomposition (arXiv 2311.03955) for continuous VLA action prediction. EIB decomposes target error into source empirical error + source generalization gap (SG, controlled by IB compression rate R = I(V;Z)) + representation discrepancy (RD, measuring domain shift through the bottleneck). Our contribution is NOT the decomposition structure itself — it is extending this to the VLA setting where: (i) the distortion is MSE over continuous action trajectories rather than 0-1 classification loss, requiring re-derivation of the SG bound under MSE distortion; (ii) the compression operates over visual tokens specifically, with the rate R measuring visual information retained; (iii) the distribution shift is structured across 7 perturbation dimensions (camera, lighting, distractors, layout, robot state, texture, noise), allowing us to decompose the RD term by perturbation type. Formally: Gap_OOD(β) ≤ SG(R(β)) + RD(β, P_train, P_test), where SG decreases with compression (standard IB) and RD initially decreases with compression (collapsing environment-specific variation) but eventually increases (losing action-relevant information) — yielding a non-trivial optimum β*. We are transparent that this pillar primarily applies existing rate-distortion generalization machinery to a new domain.\n\n(b) *IB as domain-invariant feature selector (extension of IIB to VLA setting).* We extend the IIB framework (AAAI 2022) to VLA visual representations: minimizing I(V;Z) while preserving I(Z;A) preferentially compresses visual features with high cross-environment variance and low action-relevance while preserving invariant features. We note that Ahuja et al. (NeurIPS 2021) show IB combined with invariance addresses failures of invariance alone in classification; since they observe that invariance generalizes more readily for regression, our extension to continuous action prediction (closer to regression) is a meaningful contribution requiring different analytical treatment — specifically, the invariant/nuisance decomposition for visual features must account for the continuous action manifold structure rather than discrete class boundaries. We formalize this decomposition to show learned VIB compression can escape Evans et al.'s fixed-codec margin contraction by selectively compressing the nuisance subspace while preserving the invariant subspace.\n\n(c) *Phase transition characterization for continuous action prediction (genuinely new theory — primary theoretical novelty).* This is our strongest novel contribution. We extend Wu & Fischer's (ICLR 2020) calculus of variations framework from cross-entropy to MSE distortion, analyzing second-order conditions for phase transitions in continuous-output IB.\n\nThe mathematical framework proceeds as follows:\n\n(i) *Analytical tractable case: linear-Gaussian model.* Following Chechik et al. (JMLR 2005), we decompose the visual feature covariance into action-relevant invariant components and environment-specific nuisance components. In this setting, phase transitions manifest as rank changes in the representation covariance matrix Σ_Z — each transition adds a new principal component corresponding to a visual feature subspace becoming action-relevant at that compression level. The critical β values follow from the eigenvalue spectrum: β_i = (1 − λ_i)^(−1), where λ_i are eigenvalues of the canonical correlation matrix between visual features V and actions A. Crucially, for visual features that vary across environments, the effective eigenvalue λ_i reflects the ratio of the feature's action-relevance (conditional mutual information I(V_i; A | V_{\\i})) to its cross-environment variance (measured by the between-environment covariance). Features with high action-relevance relative to cross-environment variance enter the representation at lower β (earlier in the compression-relaxation path); environment-specific features with low action-relevance/variance ratio enter at higher β. The generalization-optimal β* lies in the gap between these two groups of transitions.\n\n(ii) *Extension to nonlinear case.* We apply second-order calculus of variations to the IB Lagrangian L = E[||a_pred − a_true||²] + β · I(V;Z), deriving the condition for phase transitions as the point where the second variation of L becomes negative along a new direction in the representation space. Unlike classification where the Fisher information involves softmax probabilities, for MSE distortion the relevant quantity is the Jacobian of the action prediction mapping ∂a/∂z, yielding a phase transition condition that depends on the singular value spectrum of this Jacobian. We derive the prediction that phase transitions in continuous action prediction are smoother than in classification (due to the continuous nature of action error vs. discrete class boundaries) but still exhibit identifiable critical points where the effective representation dimension changes.\n\n(iii) *Theoretical prediction.* The central testable prediction: β* at which OOD generalization gap begins to widen rapidly depends on the ratio of total environment-specific visual information to total action-relevant invariant information. For perturbation types that primarily affect action-irrelevant visual features (e.g., texture, lighting), β* is higher (more compression is safe); for perturbation types that affect action-relevant features (e.g., camera viewpoint changing spatial relationships), β* is lower (compression quickly becomes harmful). This prediction is falsifiable against the empirical RD frontier.\n\n**Empirical Methodology (Pillar 2).** We insert a learnable VIB between the visual encoder and action generation module of π₀ (2B params, via openpi), following CRAFT's validated approach for VIB + flow-matching integration but with fundamentally different purpose: systematic RD frontier analysis rather than curriculum-based modality balancing. The VIB parameterizes z ~ q(z|v) with training objective: L = E[||a_pred − a_true||²] + β · KL(q(z|v) || r(z)).\n\nWe adopt FVIB-R methodology (Entropy, 2024) to enable efficient β sweeping: train a single model whose architecture supports post-hoc β adjustment at evaluation time, with the bottleneck layer parameterized to allow continuous β variation without retraining. We validate FVIB-R's continuous frontier against 5 discrete-β anchor models to confirm approximation fidelity. This reduces the core training cost from ~15× to ~3× a single training run.\n\nWe evaluate on LIBERO-90 as the primary in-distribution benchmark, with LIBERO-Plus providing systematic OOD evaluation across 7 perturbation types × 5 difficulty levels. At each operating point on the RD frontier we measure: (1) effective rate via KL divergence upper bound on I(V;Z), (2) in-distribution task success rate, (3) OOD task success rate across all perturbation dimensions, and (4) the generalization gap Δ(β) = success_ID(β) − success_OOD(β).\n\n**Phase Transition Analysis (Pillar 3).** The central empirical analysis identifies critical β values where the generalization gap exhibits rapid change — indicating compression has shifted from filtering irrelevant features to discarding task-critical information. We characterize this by computing the slope and curvature of the OOD-distortion vs. rate curve, and by tracking the effective rank of the bottleneck representation (monitoring when new dimensions become active) to directly test the eigenvalue-driven phase transition prediction from Pillar 1c.\n\nWe then empirically characterize how β* shifts with: task horizon length, object diversity, perturbation type and magnitude, and visual scene complexity. We fit approximate scaling relationships and validate them against the theoretical predictions, testing whether (a) β* is higher for perturbation types affecting action-irrelevant features (texture, lighting) vs. action-relevant features (camera viewpoint, object layout), and (b) the predicted dependence on the invariant/nuisance information ratio holds empirically.\n\n**Adversarial robustness (secondary analysis).** As a supplementary investigation, we measure adversarial robustness (untargeted PGD attacks on visual inputs) at selected β operating points to test whether the VIB's learned compression escapes Evans et al.'s margin contraction regime. This is positioned as a secondary contribution.\n\n**Key differentiations**: From EIB — we instantiate the f(compression) + g(shift) framework for continuous VLA action prediction with MSE distortion and structured perturbation, and add the phase transition analysis (absent in EIB). From CRAFT — we trace systematic RD frontiers across continuous β values and evaluate under 7 systematic perturbation types, whereas CRAFT uses VIB as curriculum tool for force-modality prioritization. From BC-IB — we operate at visual-token level (not latent fusion), use a 2B VLA (not small BC models), trace continuous RD frontiers (not 4 discrete β values), and evaluate OOD (not in-distribution only). From Wu & Fischer — we extend IB phase transition theory from cross-entropy classification to MSE continuous action prediction under distribution shift, providing the eigenvalue-based characterization of how critical points depend on invariant/nuisance feature structure. From Gaussian IB (Chechik et al.) — we connect the eigenvalue-driven phase structure to OOD generalization and the invariant/nuisance decomposition, rather than treating it as pure compression theory.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~350h A100 80GB (reduced from 600h via FVIB-R: 1 FVIB-R training + 5 discrete anchor models + LIBERO-Plus evaluation)",
+      "gpu_utilization": "Low (~30-35%). Human spends most wall-clock time on theoretical derivations, FVIB-R integration, and RD frontier analysis.",
+      "timeline": "3-4 months (theory development parallelized with implementation)",
+      "team": "1-2 researchers (1 with information theory / generalization bounds experience, 1 with VLA/robotics and openpi familiarity)",
+      "estimated_gpu_cost": "$525-$700 (at ~$1.50/hr A100 spot pricing)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~450h A100 80GB",
+      "gpu_utilization": "Moderate (~55-65%). Agent handles FVIB-R training, discrete anchor validation, and LIBERO-Plus evaluation pipeline.",
+      "timeline": "5-7 weeks",
+      "team": "1 researcher, ~45min/day review of RD frontier progress and theoretical development",
+      "claude_api_cost": "$300-$600 (~120-250 turns/week × 6 weeks × $0.10/turn Opus)",
+      "estimated_gpu_cost": "$675-$900",
+      "risk_note": "FVIB-R's quadratic feature extractor assumption may not hold for π₀'s architecture — the 5 discrete anchor models serve as ground truth to validate FVIB-R approximation quality. If FVIB-R fails, fall back to 10-12 discrete β training runs (~500h total). CRAFT's validated VIB + flow-matching integration de-risks the VIB insertion step."
+    },
+    "auto_research": {
+      "gpu_hours": "~800h A100 80GB (FVIB-R training, discrete anchor validation, comprehensive LIBERO-Plus evaluation, ablations across perturbation types)",
+      "gpu_utilization": "High (~85-90% utilization). Agent runs FVIB-R training, validates against anchor models, schedules parallel LIBERO-Plus evaluations.",
+      "timeline": "10-15 days with 4-6 concurrent A100s",
+      "team": "0 (only initial setup of openpi environment and LIBERO/LIBERO-Plus datasets)",
+      "claude_api_cost": "$400-$700 (~200-350 turns/day × 13 days × $0.10/turn)",
+      "estimated_gpu_cost": "$1,200-$1,600",
+      "speed_bottleneck": "GPU count (need 4-6 A100s); LIBERO-Plus evaluation across 7 perturbation types × 5 difficulty levels is the longest serial dependency (~8h per checkpoint for full evaluation).",
+      "risk_note": "Agent may need human guidance on theoretical derivation steps (generalization bound proofs). Theory work should be done in parallel by human researcher."
+    }
+  },
+  "target_venues": [
+    "AAAI 2027 (deadline expected: Jul-Aug 2026)",
+    "ICLR 2027 (deadline expected: Sep-Oct 2026)",
+    "CoRL 2027 (deadline expected: May 2027, if additional development time needed)"
+  ],
+  "level": "strong",
+  "key_references": [
+    "Elastic Information Bottleneck (EIB, arXiv 2311.03955, 2023)",
+    "CRAFT: Adapting VLA Models to Contact-rich Manipulation via Force-aware Curriculum Fine-tuning (arXiv 2602.12532, Feb 2026)",
+    "Phase Transitions for the Information Bottleneck in Representation Learning (Wu & Fischer, ICLR 2020, arXiv 2001.01878)",
+    "Information Bottleneck for Gaussian Variables (Chechik et al., JMLR 2005)",
+    "Invariance Principle Meets Information Bottleneck for Out-of-Distribution Generalization (Ahuja et al., NeurIPS 2021, arXiv 2106.06607)",
+    "Invariant Information Bottleneck for Domain Generalization (IIB, AAAI 2022, arXiv 2106.06333)",
+    "Rate-Distortion Theoretic Generalization Bounds for Stochastic Learning Algorithms (Sefidgaran et al., COLT 2022, arXiv 2203.02474)",
+    "Flexible Variational Information Bottleneck: Achieving Diverse Compression with a Single Training (FVIB, arXiv 2402.01238, Neurocomputing 2025)",
+    "Exploring the Trade-Off in the Variational Information Bottleneck for Regression with a Single Training Run (FVIB-R, Entropy 2024)",
+    "Rethinking Latent Redundancy in Behavior Cloning: An Information Bottleneck Approach for Robot Manipulation (BC-IB, ICML 2025, arXiv 2502.02853)",
+    "Cauchy-Schwarz Divergence Information Bottleneck for Regression (CS-DIB, arXiv 2404.17951, 2024)",
+    "Generalized Information Bottleneck for Gaussian Variables (arXiv 2303.17762, 2023)",
+    "One Token Per Frame: Reconsidering Visual Bandwidth in World Models for VLA Policy (arXiv 2605.07931, 2026)",
+    "Inference Optimal VLMs Need Fewer Visual Tokens and More Parameters (Li et al., ICLR 2025, arXiv 2411.03312)",
+    "Compression as an Adversarial Amplifier Through Decision Space Reduction (Evans et al., arXiv 2604.06954, 2026)",
+    "Less Is More — Until It Breaks: Token Compression and Robustness in VLMs (arXiv 2601.12042, 2026)",
+    "On the Adversarial Robustness of Large Vision-Language Models under Visual Token Compression (arXiv 2601.21531, 2026)",
+    "A Generalized Information Bottleneck Theory of Deep Learning (arXiv 2509.26327, 2025)",
+    "Generalization in Reinforcement Learning with Selective Noise Injection and Information Bottleneck (IBAC, NeurIPS 2019)",
+    "Policy Generalization in Capacity-Limited Reinforcement Learning (Lerch & Sims, ICLR 2019 workshop)",
+    "VFP: Variational Flow-Matching Policy for Multi-Modal Robot Manipulation (arXiv 2508.01622, 2025)",
+    "LIBERO-Plus: A Progressive Robustness Benchmark for Visual-Language-Action Models (CVPR 2026)",
+    "Deep Variational Information Bottleneck (Alemi et al., arXiv 1612.00410, 2017)",
+    "Token Reduction Should Go Beyond Efficiency in Generative Models (Kong et al., arXiv 2505.18227, 2025)",
+    "Rate-Distortion Signatures of Generalization and Information Trade-offs (arXiv 2603.01568, 2026)",
+    "See What Matters: Differentiable Grid Sample Pruning for Generalizable VLA Model (ICML 2026)",
+    "The Better You Learn, The Smarter You Prune: Towards Efficient VLA Models via Differentiable Token Pruning (ICRA 2026)",
+    "Compressor-VLA: Instruction-Guided Visual Token Compression for Efficient Robotic Manipulation (arXiv 2511.18950, 2025)",
+    "The Information Bottleneck's Ordinary Differential Equation: First-Order Root Tracking (Geiping & Goldblum, Entropy 2023)",
+    "Causally-Aware Information Bottleneck for Domain Adaptation (arXiv 2601.04361, 2026)"
+  ],
+  "description": "We investigate when visual compression helps vs. hurts VLA generalization by combining theoretical analysis with systematic information bottleneck rate-distortion frontier analysis under distribution shift. Our work has three pillars of increasing theoretical novelty.\n\nFirst (application of existing theory to new domain), we instantiate and extend the Elastic Information Bottleneck's (EIB, arXiv 2311.03955) f(compression) + g(shift) error decomposition for continuous VLA action prediction — where the distortion is MSE over action trajectories (not 0-1 classification loss), the compression operates over visual tokens (not generic features), and the distribution shift is structured across 7 perturbation dimensions. We are transparent that this pillar applies existing rate-distortion generalization machinery to a new domain, with the technical contribution being the re-derivation under MSE distortion and structured perturbation decomposition.\n\nSecond (extension of existing framework), we extend the Invariant Information Bottleneck (IIB, AAAI 2022) to show VIB acts as a domain-invariant feature selector for VLA visual representations, selectively compressing environment-specific variation while preserving action-relevant invariant features — escaping the margin contraction regime of fixed codecs (Evans et al., 2026). We note that Ahuja et al. (NeurIPS 2021) show IB combined with invariance addresses failures of invariance alone in classification; since they observe invariance generalizes more readily for regression, our extension to continuous action prediction requires different analytical treatment of the invariant/nuisance decomposition.\n\nThird (genuinely new theory — primary novelty), we derive phase transition theory for continuous-output IB under distribution shift, extending Wu & Fischer's (ICLR 2020) calculus of variations framework from cross-entropy to MSE distortion. Building on the Gaussian IB's (Chechik et al., JMLR 2005) analytical result that phase transitions occur at β_i = (1 − λ_i)^(−1) as rank changes in the representation covariance Σ_Z, we analyze the linear-Gaussian case where visual features decompose into invariant and nuisance subspaces, deriving that the critical β* depends on the ratio of each feature subspace's action-relevance to its cross-environment variance. For the nonlinear case, we apply second-order calculus of variations to the MSE-distortion IB Lagrangian, showing that phase transitions correspond to sign changes of the second variation along directions determined by the singular value spectrum of the action prediction Jacobian ∂a/∂z. This yields the testable prediction that β* is higher for perturbation types affecting action-irrelevant features (texture, lighting) and lower for perturbation types affecting action-relevant features (camera viewpoint, object layout).\n\nEmpirically, we trace the full IB rate-distortion frontier for π₀ (2B, via openpi) on LIBERO-90 (in-distribution) and LIBERO-Plus (7 perturbation types × 5 difficulty levels, OOD), adopting FVIB-R methodology for continuous β sweeping. We build on CRAFT's validated VIB + flow-matching integration but with fundamentally different purpose: systematic RD analysis rather than curriculum-based modality balancing. We empirically validate the phase transition predictions by tracking effective representation rank across β values and mapping how β* shifts with task horizon, object diversity, perturbation type, and scene complexity.",
+  "project_name": "rd_optimal_vla_bandwidth",
+  "source": "web_research"
+}
+```
+
+## Summary of changes addressing each reviewer issue
+
+**Issue 1 (MAJOR — EIB citation):** EIB (arXiv 2311.03955) is now cited throughout core_problem, opportunity, landscape, and approach. Pillar 1a is explicitly framed as "instantiation and extension of EIB-style bounds" — NOT claiming the f(compression) + g(shift) decomposition as novel. The differentiation is clearly stated: extending to MSE distortion over continuous action trajectories, visual token compression, structured 7-dimension perturbation, and adding the phase transition analysis absent from EIB.
+
+**Issue 2 (MAJOR — Phase transition theory depth):** Pillar 1c now specifies the full mathematical framework:
+- *Linear-Gaussian analytical case*: Uses Chechik et al.'s (JMLR 2005) Gaussian IB framework where β_i = (1 − λ_i)^(−1), with phase transitions as rank changes in Σ_Z. The invariant/nuisance decomposition is formalized through eigenvalues encoding action-relevance/cross-environment-variance ratios.
+- *Nonlinear extension*: Second-order calculus of variations on the MSE-distortion IB Lagrangian, with phase transition conditions depending on the singular value spectrum of the action prediction Jacobian ∂a/∂z.
+- *Concrete testable prediction*: β* is higher for action-irrelevant perturbations (texture, lighting), lower for action-relevant perturbations (camera viewpoint, layout).
+
+**Issue 3 (MINOR — Ahuja et al.):** Changed from "prove IB is necessary" to "show that combining IB with invariance addresses key failures of invariance alone in classification." Added the explicit note that they observe invariance generalizes more readily for regression, making our extension to continuous action prediction a meaningful contribution requiring different treatment.
+
+**Issue 4 (MINOR — Theory/application boundary):** Three pillars are now explicitly labeled with honesty about novelty level:
+- Pillar 1a: "application of existing theory to new domain" — "we are transparent that this pillar primarily applies existing machinery"
+- Pillar 1b: "extension of IIB to VLA setting"
+- Pillar 1c: "genuinely new theory — primary theoretical novelty"
+
+**New references added:** EIB (arXiv 2311.03955), Gaussian IB (Chechik et al., JMLR 2005), Generalized IB for Gaussian Variables (arXiv 2303.17762), CS-DIB for regression (arXiv 2404.17951), IB ODE (Entropy 2023), Causally-Aware IB (arXiv 2601.04361).
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8270be0f-f20e-4ece-9093-1497e7dbf5fd",
+  "isSidechain": false,
+  "requestId": "req_011Caz93xuzKYmviYCRgma6d",
+  "type": "assistant",
+  "uuid": "30db1d1a-b0a6-40ac-9112-86246bdef814",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Lgw5g7yKMRzq83X64aV8Vg",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17905,
+      "cache_read_input_tokens": 41976,
+      "output_tokens": 9104,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 17905,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 9104,
+          "cache_read_input_tokens": 41976,
+          "cache_creation_input_tokens": 17905,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 17905
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 84_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-13 (UTC).**  ## Original idea {   \"title\": \"Generalization-Optimal Visual Bandwidth for VLAs: Information Bottlene…",
+  "leafUuid": "30db1d1a-b0a6-40ac-9112-86246bdef814",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 85_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise phase transition theory and clarify novelty claims for VLA bandwidth optimization",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 86_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-13 (UTC).**  ## Original idea {   \"title\": \"Generalization-Optimal Visual Bandwidth for VLAs: Information Bottlene…",
+  "leafUuid": "30db1d1a-b0a6-40ac-9112-86246bdef814",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 87_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise phase transition theory and clarify novelty claims for VLA bandwidth optimization",
+  "sessionId": "4d4fa002-2632-40bf-88ef-105a7427d40e"
+}
+```
+
+---

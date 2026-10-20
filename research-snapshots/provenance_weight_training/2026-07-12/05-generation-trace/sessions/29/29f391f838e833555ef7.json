@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "id": "29f391f838e833555ef7",
+  "project": "provenance_weight_training--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> 服务器 westd-41312，conda base 环境。项目路径 /root/provenance_weight_training。Checkpoint 路径可能在 /root/autodl-tmp/pr",
+  "task_key": "b5b3c779-6155-40be-86aa-93cca3b26992",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-3/b5b3c779-6155-40be-86aa-93cca3b26992.jsonl",
+    "occurrence": 1,
+    "bytes": 719491,
+    "sha256": "7fc3b00d47786d873a194bb169396b3ce8834c27e979f2d7df54557bc56dfef8"
+  },
+  "statistics": {
+    "messages": 456,
+    "user_turns": 1,
+    "tool_calls": 172,
+    "roles": {
+      "record": 65,
+      "user": 1,
+      "assistant": 46,
+      "tool_call": 172,
+      "tool_result": 172
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "29f391f838e833555ef7-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 454,
+      "chunks": [
+        {
+          "path": "29f391f838e833555ef7-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "29f391f838e833555ef7-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "29f391f838e833555ef7-part-0003.json",
+          "message_count": 96
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-westd-41312-conda-base-root-provenance-weight-trainingcheckpoint.md"
+}

@@ -1,0 +1,4820 @@
+# Research conversation: I'm reviewing a paper idea about "failure-guided procedural data generation for humanoid robots." The key novelty claim 
+
+**When Does Detect-and-Reweight Work for Synthetic Contamination? (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 76
+- **Recorded user turns:** 1
+- **Tool calls:** 33
+- **Original source:** `logs/chats/exported-trajectories/account-3/agent-a74092bde9cd2f2a5.jsonl`
+- **Structured JSON:** [`86e115cd41d12d14d681.json`](../../sessions/86/86e115cd41d12d14d681.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+76 recorded events
+
+### User
+
+_source line 1 · 2026-05-10T19:40:47.015Z_
+
+I'm reviewing a paper idea about "failure-guided procedural data generation for humanoid robots." The key novelty claim is: decomposing humanoid policy failures into kinematic subsystem contributions (balance, locomotion, manipulation, coordination) and using this decomposition to parameterize procedural demo generation.
+
+I need you to do an exhaustive search for competing/overlapping work that the authors may have missed. Search for:
+
+1. "failure guided data generation robotics 2025 2026" 
+2. "failure aware data augmentation robot learning"
+3. "targeted data generation policy improvement robotics"
+4. "active data collection robot failure"
+5. "curriculum learning humanoid robotics failure"
+6. "kinematic decomposition humanoid robot learning"
+7. "failure analysis robot policy improvement data"
+8. "self-improving robot data pipeline 2025 2026"
+9. "humanoid loco-manipulation data generation 2025 2026"
+10. "procedural demonstration generation humanoid"
+
+For each search, report the most relevant papers found (title, venue, year, and 1-2 sentence description of relevance). Flag any paper that seems to significantly overlap with the proposed idea.
+
+Use WebSearch for all queries. Be thorough - this is adversarial review.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": true,
+  "promptId": "822627e6-0b1b-4ac9-84a8-84712d5faee2",
+  "agentId": "a74092bde9cd2f2a5",
+  "type": "user",
+  "uuid": "d0c2da93-f389-4100-bcfa-d4d44c06baba",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-10T19:40:47.020Z_
+
+```json
+{
+  "parentUuid": "d0c2da93-f389-4100-bcfa-d4d44c06baba",
+  "isSidechain": true,
+  "agentId": "a74092bde9cd2f2a5",
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "TaskStop",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "TaskStop",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "6ac97bf3-2f85-45ac-bd13-bcb6914b9869",
+  "timestamp": "2026-05-10T19:40:47.020Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 3 · 2026-05-10T19:40:49.585Z_
+
+
+
+I'll conduct an exhaustive literature search across all 10 queries. Let me start by loading the WebSearch tool schema.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6ac97bf3-2f85-45ac-bd13-bcb6914b9869",
+  "isSidechain": true,
+  "agentId": "a74092bde9cd2f2a5",
+  "requestId": "req_011CauTSiT4RK6KFsF3ppKQ6",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "f05c90aa-ef7a-4c2d-8fb5-08b0aa433658",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0131SaKDcDaThUNLwykP7XZw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 806,
+      "cache_read_input_tokens": 7164,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 806,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-10T19:40:49.816Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01MDajS5xdonKP1WpQYZhywp`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f05c90aa-ef7a-4c2d-8fb5-08b0aa433658",
+  "isSidechain": true,
+  "agentId": "a74092bde9cd2f2a5",
+  "requestId": "req_011CauTSiT4RK6KFsF3ppKQ6",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "a01d9f4f-a14b-4b03-8764-2c6642555976",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0131SaKDcDaThUNLwykP7XZw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 806,
+      "cache_read_input_tokens": 7164,
+      "output_tokens": 103,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 806
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 103,
+          "cache_read_input_tokens": 7164,
+          "cache_creation_input_tokens": 806,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 806,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-10T19:40:49.818Z_
+
+<details><summary>↩ Tool result · `toolu_01MDajS5xdonKP1WpQYZhywp`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a01d9f4f-a14b-4b03-8764-2c6642555976",
+  "isSidechain": true,
+  "promptId": "822627e6-0b1b-4ac9-84a8-84712d5faee2",
+  "agentId": "a74092bde9cd2f2a5",
+  "type": "user",
+  "uuid": "b527f9ca-427d-491d-ba41-46d416e2c2af",
+  "sourceToolAssistantUUID": "a01d9f4f-a14b-4b03-8764-2c6642555976",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 6 · 2026-05-10T19:40:52.449Z_
+
+
+
+Now let me run all 10 searches in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b527f9ca-427d-491d-ba41-46d416e2c2af",
+  "isSidechain": true,
+  "agentId": "a74092bde9cd2f2a5",
+  "requestId": "req_011CauTSvaZtULFYR3xXyBMw",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "176ece73-319b-40c6-929b-351aee0af3af",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016bGgqdpQsViEVo4SyheSUT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1420,
+      "cache_read_input_tokens": 7970,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1420,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-10T19:40:52.730Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01YSi7VMPWvTiaxd5WNTvcjs`</summary>
+
+```json
+{
+  "query": "failure guided data generation robotics 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "176ece73-319b-40c6-929b-351aee0af3af",
+  "isSidechain": true,
+  "agentId": "a74092bde9cd2f2a5",
+  "requestId": "req_011CauTSvaZtULFYR3xXyBMw",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "2fb8918e-422a-4aac-a019-694dcd700709",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016bGgqdpQsViEVo4SyheSUT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1420,
+      "cache_read_input_tokens": 7970,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1420,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-10T19:40:53.345Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Bqgq2kZczV7SY72zHQCEsF`</summary>
+
+```json
+{
+  "query": "failure aware data augmentation robot learning"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2fb8918e-422a-4aac-a019-694dcd700709",
+  "isSidechain": true,
+  "agentId": "a74092bde9cd2f2a5",
+  "requestId": "req_011CauTSvaZtULFYR3xXyBMw",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "c0527f0f-6eef-4fcf-955e-6a785d7b81d6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016bGgqdpQsViEVo4SyheSUT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1420,
+      "cache_read_input_tokens": 7970,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1420,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-10T19:40:53.875Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015vEHC72ScUpeXeQ3nTFN6N`</summary>
+
+```json
+{
+  "query": "targeted data generation policy improvement robotics"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c0527f0f-6eef-4fcf-955e-6a785d7b81d6",
+  "isSidechain": true,
+  "agentId": "a74092bde9cd2f2a5",
+  "requestId": "req_011CauTSvaZtULFYR3xXyBMw",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "8aeed661-29c7-425f-9539-047f8bc43e01",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016bGgqdpQsViEVo4SyheSUT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1420,
+      "cache_read_input_tokens": 7970,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1420,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-10T19:40:54.262Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01BiVPdFDzNSAvk4PWAfw9Pj`</summary>
+
+```json
+{
+  "query": "active data collection robot failure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8aeed661-29c7-425f-9539-047f8bc43e01",
+  "isSidechain": true,
+  "agentId": "a74092bde9cd2f2a5",
+  "requestId": "req_011CauTSvaZtULFYR3xXyBMw",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "2df11ba9-da10-4ba3-bbec-4c1cfe5d94df",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016bGgqdpQsViEVo4SyheSUT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1420,
+      "cache_read_input_tokens": 7970,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1420,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-10T19:40:54.371Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015RTHEdBZKbszHkNhwUB7XW`</summary>
+
+```json
+{
+  "query": "curriculum learning humanoid robotics failure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2df11ba9-da10-4ba3-bbec-4c1cfe5d94df",
+  "isSidechain": true,
+  "agentId": "a74092bde9cd2f2a5",
+  "requestId": "req_011CauTSvaZtULFYR3xXyBMw",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "f3a1c530-5117-4ade-b9f8-54b89e932bbc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016bGgqdpQsViEVo4SyheSUT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1420,
+      "cache_read_input_tokens": 7970,
+      "output_tokens": 239,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1420
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 239,
+          "cache_read_input_tokens": 7970,
+          "cache_creation_input_tokens": 1420,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1420,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-10T19:40:59.493Z_
+
+<details><summary>↩ Tool result · `toolu_01YSi7VMPWvTiaxd5WNTvcjs`</summary>
+
+```text
+Web search results for query: "failure guided data generation robotics 2025 2026"
+
+Links: [{"title":"CoRL 2026 - Call for Papers","url":"https://www.corl.org/contributions/call-for-papers"},{"title":"Robotics trends and predictions for 2025 - Niryo","url":"https://niryo.com/robotics-trends-for-2025/"},{"title":"Robotics call for proposals - Spring 2026 (2026) | Granted AI","url":"https://grantedai.com/grants/robotics-call-for-proposals-spring-2026-amazon-research-awards-ara-df713ed4"},{"title":"Robotics in 2026: Predicting The Top 7 Trends of The Year | Elad Inbar","url":"https://www.robotlab.com/group/blog/robotics-in-2026-predicting-the-top-7-trends-of-the-year/"},{"title":"Video Generation Models in Robotics: Applications, Research Challenges, Future Directions","url":"https://arxiv.org/html/2601.07823v1"},{"title":"Frontiers | Artificial intelligence and robotics in predictive maintenance: a comprehensive review","url":"https://www.frontiersin.org/journals/mechanical-engineering/articles/10.3389/fmech.2025.1722114/full"},{"title":"Humanoid Robotics Challenges [2026]","url":"https://blog.robozaps.com/b/challenges-in-humanoid-robotics"},{"title":"Enhancing Human-Robot Collaborative Transportation of ...","url":"https://sites.gc.sjtu.edu.cn/youyibi/wp-content/uploads/sites/3/2025/09/AEI-2026.pdf"},{"title":"Hybrid real-synthetic dataset framework for robotic hazard detection in industrial environments | Scientific Reports","url":"https://www.nature.com/articles/s41598-025-33603-5"},{"title":"Top 5 Global Robotics Trends 2026 - International Federation of Robotics","url":"https://ifr.org/ifr-press-releases/news/top-5-global-robotics-trends-2026"}]
+
+Based on the web search results, here are the key findings related to failure guided data generation in robotics for 2025-2026:
+
+## Video Generation Models for Synthetic Failure Data
+
+Video models can synthesize failure video trajectories that endow robot policies with corrective behaviors for more robustness. This represents a significant approach to failure-guided data generation, where synthetic failure scenarios are generated to train more robust robot control policies.
+
+## Data Generation and Robotics Research
+
+Automatic robotic data generation for learning methods in robotics is recognized as a key research area, with CoRL being a selective, single-track international conference addressing theory and practice of machine learning for robots.
+
+## Addressing Data Generation Challenges
+
+Video models enable cost-effective robot data generation, which is particularly important in imitation learning. While data scaling has proven to be a critical recipe for advancing robot policy performance, collecting expert demonstration data is incredibly expensive, and video models facilitate scalable data generation without relying on human supervision.
+
+## Industrial Safety Application
+
+A recent example of data generation in robotics includes RoboFusion, an integrated framework that combines Autonomous Mobile Robots (AMRs), fixed sensing nodes, and a novel hybrid dataset generation pipeline for data-driven industrial safety.
+
+The search results suggest that failure-guided data generation through synthetic video models and hybrid dataset frameworks is an active area of robotics research in 2025-2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2fb8918e-422a-4aac-a019-694dcd700709",
+  "isSidechain": true,
+  "promptId": "822627e6-0b1b-4ac9-84a8-84712d5faee2",
+  "agentId": "a74092bde9cd2f2a5",
+  "type": "user",
+  "uuid": "66919bd4-acef-4a1c-8471-287fedda45f5",
+  "sourceToolAssistantUUID": "2fb8918e-422a-4aac-a019-694dcd700709",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-10T19:41:00.235Z_
+
+<details><summary>↩ Tool result · `toolu_01Bqgq2kZczV7SY72zHQCEsF`</summary>
+
+```text
+Web search results for query: "failure aware data augmentation robot learning"
+
+Links: [{"title":"RESample: A Robust Data Augmentation Framework via Exploratory Sampling for Robotic Manipulation","url":"https://arxiv.org/html/2510.17640v1"},{"title":"RoboTwin 2.0: A Scalable Data Generator and Benchmark with Strong","url":"https://robogen-iros.github.io/accepted/9_RoboTwin_2_0_A_Scalable_Data.pdf"},{"title":"[2510.17640] RESample: A Robust Data Augmentation Framework via Exploratory Sampling for Robotic Manipulation","url":"https://arxiv.org/abs/2510.17640"},{"title":"Large language model assisted fine-grained knowledge graph construction for robotic fault diagnosis - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S1474034625000278"},{"title":"Error-Aware Imitation Learning from Teleoperation Data for Mobile Manipulation","url":"https://proceedings.mlr.press/v164/wong22a/wong22a.pdf"},{"title":"A deep semantics-aware data augmentation method for fault localization - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0950584924000144"},{"title":"Behind a “Failed” Robot Learning Project: Dataset Engineering, Training, and Inference…","url":"https://medium.com/@hehu2280/behind-a-failed-robot-learning-project-dataset-engineering-training-and-inference-efc1c2bd10e8"},{"title":"Instruct Where the Model Fails: Generative Data Augmentation via","url":"https://ojs.aaai.org/index.php/AAAI/article/view/32640/34795"},{"title":"Corrective Augmentation for Robotics via Novel-View Synthesis","url":"https://openaccess.thecvf.com/content/CVPR2023/papers/Zhou_NeRF_in_the_Palm_of_Your_Hand_Corrective_Augmentation_for_CVPR_2023_paper.pdf"},{"title":"Scaling Robot Learning with Semantic Data Augmentation ...","url":"https://www.roboticsproceedings.org/rss19/p027.pdf"}]
+
+The web search results provide several relevant papers and research on failure-aware and failure-focused data augmentation in robot learning. Here are the key findings:
+
+## Key Results
+
+**RESample Framework** - One of the most relevant results is an automated OOD (out-of-distribution) data augmentation framework named RESample through exploratory sampling. Existing imitation learning datasets contain only successful trajectories and lack failure or recovery data, especially for out-of-distribution states where the robot deviates from the main policy due to minor perturbations or errors, leading VLA models to struggle with states deviating from the training distribution.
+
+The RESample approach addresses this by leveraging offline reinforcement learning to obtain an action-value network that accurately identifies sub-optimal actions, and sampling potential OOD states from trajectories via rollout with an exploratory sampling mechanism.
+
+**Error-Aware Imitation Learning** - Another relevant work focuses on training performant IL task policies and augmenting these policies with a learned error detector model that can accurately detect when the agent is in a failure state.
+
+**Corrective Augmentation** - An offline data augmentation technique for imitation learning leverages neural radiance fields (NeRFs) to synthetically inject corrective noise into visual demonstrations, using NeRFs to generate perturbed viewpoints while simultaneously calculating the corrective actions.
+
+These approaches represent different strategies for incorporating failure awareness into robot learning through data augmentation, addressing the challenge that standard imitation learning datasets typically lack failure recovery examples.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c0527f0f-6eef-4fcf-955e-6a785d7b81d6",
+  "isSidechain": true,
+  "promptId": "822627e6-0b1b-4ac9-84a8-84712d5faee2",
+  "agentId": "a74092bde9cd2f2a5",
+  "type": "user",
+  "uuid": "94d1b4e1-112d-40e6-889a-818d92c3d1c1",
+  "sourceToolAssistantUUID": "c0527f0f-6eef-4fcf-955e-6a785d7b81d6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-10T19:41:01.081Z_
+
+<details><summary>↩ Tool result · `toolu_01BiVPdFDzNSAvk4PWAfw9Pj`</summary>
+
+```text
+Web search results for query: "active data collection robot failure"
+
+Links: [{"title":"So You Think You Can Scale Up Autonomous Robot Data Collection?","url":"https://arxiv.org/html/2411.01813v1"},{"title":"Efficient Data Collection for Robotic Manipulation via Compositional Generalization","url":"https://iliad.stanford.edu/robot-data-comp/"},{"title":"Why Data, Not Models, Is the Real Bottleneck in Robotics","url":"https://www.labellerr.com/blog/robot-training-datasets-collection/"},{"title":"Behind a “Failed” Robot Learning Project: Dataset Engineering, Training, and Inference…","url":"https://medium.com/@hehu2280/behind-a-failed-robot-learning-project-dataset-engineering-training-and-inference-efc1c2bd10e8"},{"title":"Active Sensing Data Collection with Autonomous Mobile Robots","url":"https://www.cs.cmu.edu/~mmv/papers/16icra-WanVelSes.pdf"},{"title":"The Rise of Real-World Robotics—and the Data Behind It | Label Studio","url":"https://labelstud.io/blog/the-rise-of-real-world-robotics-and-the-data-behind-it/"},{"title":"Fault detection and state estimation in robotic automatic control using machine learning - ScienceDirect","url":"https://www.sciencedirect.com/science/article/pii/S2590005623000231"},{"title":"The data gap that’s holding back robotics | IBM","url":"https://www.ibm.com/think/news/the-data-gap-holding-back-robotics"},{"title":"[2411.01813] So You Think You Can Scale Up Autonomous Robot Data Collection?","url":"https://arxiv.org/abs/2411.01813"},{"title":"Building AI Data for the Robotics Industry to Train Robots","url":"https://objectways.com/blog/building-ai-data-for-the-robotics-industry-to-train-robots/"}]
+
+I found several relevant results about active data collection and robot failure. Here's what the search reveals:
+
+## Key Findings:
+
+**Active Learning from Robot Failures**
+
+One approach inspired by active learning methods is to use autonomous failure data to generate a distribution of failure states to intelligently query a user. Adding targeted human data helps much more than equivalent amounts of random human data, targeted autonomous data, or random autonomous data.
+
+**Challenges in Autonomous Data Collection**
+
+Autonomous IL approaches do not deliver on the promise to scale up autonomous data collection in the real world, and when scaled up to realistic settings, face much of the same scaling challenges as prior attempts in RL in terms of environment design. While autonomous data collection can modestly improve performance, simply collecting more human data often provides significantly more improvement.
+
+**Real-World Data Collection Systems**
+
+Data collection is a systems engineering problem involving control stability, hardware quirks, timing guarantees, and careful human-in-the-loop design. One robotic arm suffered hardware failure and became unusable, forcing researchers to abandon the dual-arm setup entirely.
+
+**Using Failure Data for Learning**
+
+Failure data is important because it highlights mistakes and weak points, and robots use this data to improve performance over time.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2df11ba9-da10-4ba3-bbec-4c1cfe5d94df",
+  "isSidechain": true,
+  "promptId": "822627e6-0b1b-4ac9-84a8-84712d5faee2",
+  "agentId": "a74092bde9cd2f2a5",
+  "type": "user",
+  "uuid": "4d70e784-aaeb-47d3-b3c7-2cc24c02d587",
+  "sourceToolAssistantUUID": "2df11ba9-da10-4ba3-bbec-4c1cfe5d94df",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-10T19:41:01.775Z_
+
+<details><summary>↩ Tool result · `toolu_015RTHEdBZKbszHkNhwUB7XW`</summary>
+
+```text
+Web search results for query: "curriculum learning humanoid robotics failure"
+
+Links: [{"title":"GitHub - YanjieZe/awesome-humanoid-robot-learning: A Paper List for Humanoid Robot Learning. · GitHub","url":"https://github.com/YanjieZe/awesome-humanoid-robot-learning"},{"title":"Learning Robust Humanoid Control via Curriculum and Policy ...","url":"https://www2.eecs.berkeley.edu/Pubs/TechRpts/2025/EECS-2025-87.pdf"},{"title":"Observing a robot peer’s failures facilitates students’ classroom learning | Science Robotics","url":"https://www.science.org/doi/10.1126/scirobotics.adu5257"},{"title":"Frontiers | Incremental learning of humanoid robot behavior from natural interaction and large language models","url":"https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2024.1455375/full"},{"title":"Curriculum Learning for Robot Manipulation using Deep ...","url":"https://www.doc.ic.ac.uk/~ejohns/Documents/diego_mendoza_barrenechea_thesis.pdf"},{"title":"GitHub - jonyzhang2023/awesome-humanoid-learning: Humanoid Robots Resources · GitHub","url":"https://github.com/jonyzhang2023/awesome-humanoid-learning"},{"title":"Humanoid Robotics Challenges [2026]","url":"https://blog.robozaps.com/b/challenges-in-humanoid-robotics"},{"title":"Learning Getting-Up Policies for Real-World Humanoid Robots","url":"https://arxiv.org/html/2502.12152v1"},{"title":"CurricuLLM: Automatic Task Curricula Design for Learning Complex","url":"https://hybrid-robotics.berkeley.edu/publications/ICRA2025_CurricuLLM.pdf"},{"title":"Research Thesis Sim-to-Real Transfer for Locomotion Tasks on Legged","url":"https://hulks.de/_files/PA_Luis-Scheuch.pdf"}]
+
+I've performed a web search for "curriculum learning humanoid robotics failure." Here are the key findings:
+
+## Recent Research Findings
+
+One notable recent work is HiFAR: Multi-Stage Curriculum Learning for High-Dynamics Humanoid Fall Recovery, which directly addresses curriculum learning applied to humanoid robot fall recovery scenarios.
+
+A two-stage approach integrates a hard-to-easy task-solving curriculum with an easy-to-hard Sim2Real curriculum, both of which are crucial for successful learning. This approach has been demonstrated in learning getting-up policies for humanoid robots.
+
+## Curriculum Learning in Humanoid Robotics
+
+Curriculum learning, inspired by the structured approach of human learning, aims to train models in a meaningful sequence, gradually enhancing the complexity of the training data or the tasks themselves.
+
+CurricuLLM has been evaluated in higher dimension humanoid control problems and deployed to Berkeley Humanoid to validate policies in real-world settings.
+
+## Failure Modes and Challenges
+
+AI-driven control systems can encounter unexpected states, sensor misreadings, or computation timeouts that cause the robot to freeze or fall. Additionally, current AI struggles with edge cases, novel environments, and the unpredictability of physical work.
+
+The search results reveal that curriculum learning is an active area of research in humanoid robotics, particularly for addressing complex tasks and failure recovery scenarios.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f3a1c530-5117-4ade-b9f8-54b89e932bbc",
+  "isSidechain": true,
+  "promptId": "822627e6-0b1b-4ac9-84a8-84712d5faee2",
+  "agentId": "a74092bde9cd2f2a5",
+  "type": "user",
+  "uuid": "5899362f-0e06-48be-ab0b-46ebd89784ad",
+  "sourceToolAssistantUUID": "f3a1c530-5117-4ade-b9f8-54b89e932bbc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-10T19:41:01.894Z_
+
+<details><summary>↩ Tool result · `toolu_015vEHC72ScUpeXeQ3nTFN6N`</summary>
+
+```text
+Web search results for query: "targeted data generation policy improvement robotics"
+
+Links: [{"title":"Control Your Robot: A Unified System for Robot Control and Policy Deployment","url":"https://arxiv.org/html/2509.23823v1"},{"title":"Ctrl-World: A Controllable Generative World Model for Robot Manipulation","url":"https://arxiv.org/html/2510.10125v1"},{"title":"RoboTwin 2.0: A Scalable Data Generator and Benchmark with Strong","url":"https://robogen-iros.github.io/accepted/9_RoboTwin_2_0_A_Scalable_Data.pdf"},{"title":"RoboTwin 2.0: A Scalable Data Generator and Benchmark with Strong Domain Randomization for Robust Bimanual Robotic Manipulation | OpenReview","url":"https://openreview.net/forum?id=vAPIIscwc7"},{"title":"A technique for more effective multipurpose robots | MIT News | Massachusetts Institute of Technology","url":"https://news.mit.edu/2024/technique-for-more-effective-multipurpose-robots-0603"},{"title":"RoboTwin-OD: Object Dataset for Robotic Manipulation","url":"https://www.emergentmind.com/topics/robotwin-od"},{"title":"Scaling Robot Learning with Semantic Data Augmentation ...","url":"https://www.roboticsproceedings.org/rss19/p027.pdf"},{"title":"Real2Render2Real: Scaling Robot Data Without Dynamics ...","url":"https://autolab.berkeley.edu/assets/publications/media/2025-04-CoRL-Max-R2R2R2-Submitted.pdf"},{"title":"Diffusion Trajectory-guided Policy: A Novel Framework for Long-Horizon Robot Manipulation | OpenReview","url":"https://openreview.net/forum?id=VaoeAi5CW8"},{"title":"Compose Your Policies! Improving Diffusion-based or Flow-based Robot Policies via Test-time Distribution-level Composition","url":"https://arxiv.org/html/2510.01068"}]
+
+I found several relevant research papers and projects related to targeted data generation for policy improvement in robotics. Here's a summary of what the search revealed:
+
+## Key Research Areas
+
+**1. Controllable World Models for Policy Improvement**
+
+Recent work on Ctrl-World demonstrates targeted policy improvement through synthetic trajectories, enabling policies to be evaluated and improved through targeted synthetic data that boosts success rates.
+
+**2. Synthetic Data Generation at Scale**
+
+RoboTwin 2.0 is a scalable framework for automated diverse synthetic data generation that utilizes multimodal large language models to synthesize task-execution code with simulation-in-the-loop refinement. Vision-language-action models trained with this synthetic data achieve 367% performance improvements in the few-shot setting and 228% improvements in the zero-shot setting, relative to a 10-demo real-only baseline.
+
+**3. Policy Deployment and Data Collection Bottlenecks**
+
+Adaptation of embodied intelligence models to novel environments demands extensive, targeted data collection and fine-tuning. Recent frameworks like "Control Your Robot" address this by providing a data-to-deployment pipeline that encompasses multi-modal data acquisition, unified data formatting, model fine-tuning, and inference deployment, forming a coherent pipeline that facilitates efficient adaptation from controlled experimental setups to real-world robotic environments.
+
+**4. Domain Randomization for Robustness**
+
+Extensive domain randomization built on high-fidelity data leads to substantial sim-to-real transfer gains and improved policy generalization for robotic tasks.
+
+These approaches collectively address the challenge of efficiently generating targeted data to improve robot manipulation policies.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8aeed661-29c7-425f-9539-047f8bc43e01",
+  "isSidechain": true,
+  "promptId": "822627e6-0b1b-4ac9-84a8-84712d5faee2",
+  "agentId": "a74092bde9cd2f2a5",
+  "type": "user",
+  "uuid": "6631f7bb-9edb-4365-b262-ad6d19dcae00",
+  "sourceToolAssistantUUID": "8aeed661-29c7-425f-9539-047f8bc43e01",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17 · 2026-05-10T19:41:04.056Z_
+
+Good, now let me run the remaining 5 searches.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6631f7bb-9edb-4365-b262-ad6d19dcae00",
+  "isSidechain": true,
+  "agentId": "a74092bde9cd2f2a5",
+  "requestId": "req_011CauTTpYx12jM6CATrQhmH",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "fa986c69-397a-4e93-9115-88f350f8ac27",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SDSKwsxtGhRrbCjxf4anBx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1675,
+      "cache_creation_input_tokens": 3014,
+      "cache_read_input_tokens": 9390,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3014,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-10T19:41:04.534Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01BY8SqiEdrxF76xQ6P39MpB`</summary>
+
+```json
+{
+  "query": "kinematic decomposition humanoid robot learning subsystem"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fa986c69-397a-4e93-9115-88f350f8ac27",
+  "isSidechain": true,
+  "agentId": "a74092bde9cd2f2a5",
+  "requestId": "req_011CauTTpYx12jM6CATrQhmH",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "b21a465d-e9a2-4caf-bbcc-1c50222c2a35",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SDSKwsxtGhRrbCjxf4anBx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1675,
+      "cache_creation_input_tokens": 3014,
+      "cache_read_input_tokens": 9390,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3014,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-10T19:41:05.009Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018d2akqgfq9ttdq6sSdNZju`</summary>
+
+```json
+{
+  "query": "failure analysis robot policy improvement data generation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b21a465d-e9a2-4caf-bbcc-1c50222c2a35",
+  "isSidechain": true,
+  "agentId": "a74092bde9cd2f2a5",
+  "requestId": "req_011CauTTpYx12jM6CATrQhmH",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "f4ad54ae-79d4-4308-9f7f-50a3982bc4cf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SDSKwsxtGhRrbCjxf4anBx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1675,
+      "cache_creation_input_tokens": 3014,
+      "cache_read_input_tokens": 9390,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3014,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-10T19:41:05.954Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01E5DRJUfuU9fotcTjpfJTJd`</summary>
+
+```json
+{
+  "query": "self-improving robot data pipeline 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f4ad54ae-79d4-4308-9f7f-50a3982bc4cf",
+  "isSidechain": true,
+  "agentId": "a74092bde9cd2f2a5",
+  "requestId": "req_011CauTTpYx12jM6CATrQhmH",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "b259b094-be9c-447b-8f09-85cd3bb680e7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SDSKwsxtGhRrbCjxf4anBx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1675,
+      "cache_creation_input_tokens": 3014,
+      "cache_read_input_tokens": 9390,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3014,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-10T19:41:06.431Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RpVASS3oe7dcFmGtWPz4Px`</summary>
+
+```json
+{
+  "query": "humanoid loco-manipulation data generation 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b259b094-be9c-447b-8f09-85cd3bb680e7",
+  "isSidechain": true,
+  "agentId": "a74092bde9cd2f2a5",
+  "requestId": "req_011CauTTpYx12jM6CATrQhmH",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "2d57ae52-844d-48e2-85d2-2f494fbdac31",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SDSKwsxtGhRrbCjxf4anBx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1675,
+      "cache_creation_input_tokens": 3014,
+      "cache_read_input_tokens": 9390,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3014,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-10T19:41:06.790Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015TaJ6oMxXamW7tTccCqt55`</summary>
+
+```json
+{
+  "query": "procedural demonstration generation humanoid robot"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2d57ae52-844d-48e2-85d2-2f494fbdac31",
+  "isSidechain": true,
+  "agentId": "a74092bde9cd2f2a5",
+  "requestId": "req_011CauTTpYx12jM6CATrQhmH",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "6f6023dd-6bc9-4b07-a9c8-747231a1ee65",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SDSKwsxtGhRrbCjxf4anBx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1675,
+      "cache_creation_input_tokens": 3014,
+      "cache_read_input_tokens": 9390,
+      "output_tokens": 251,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 3014
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1675,
+          "output_tokens": 251,
+          "cache_read_input_tokens": 9390,
+          "cache_creation_input_tokens": 3014,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 3014,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-10T19:41:11.630Z_
+
+<details><summary>↩ Tool result · `toolu_01BY8SqiEdrxF76xQ6P39MpB`</summary>
+
+```text
+Web search results for query: "kinematic decomposition humanoid robot learning subsystem"
+
+Links: [{"title":"Human-Humanoid Robots Cross-Embodiment Behavior-Skill Transfer Using Decomposed Adversarial Learning from Demonstration","url":"https://arxiv.org/html/2412.15166v1"},{"title":"1 General Robot Kinematics Decomposition without Intermediate Markers","url":"https://h2t.iar.kit.edu/pdf/Ulbrich2012a.pdf"},{"title":"GitHub - YanjieZe/awesome-humanoid-robot-learning: A Paper List for Humanoid Robot Learning. · GitHub","url":"https://github.com/YanjieZe/awesome-humanoid-robot-learning"},{"title":"Decomposition - Sensorimotor learning in robotics","url":"https://1library.net/article/decomposition-sensorimotor-learning-in-robotics.zpx82x0q"},{"title":"1 General Robot Kinematics Decomposition without Intermediate Markers","url":"https://www.iri.upc.edu/files/scidoc/1316-General-Robot-Kinematics-Decomposition-without-Intermediate-Markers.pdf"},{"title":"Learning Soccer Skills for Humanoid Robots: A Progressive Perception-Action Framework","url":"https://arxiv.org/html/2602.05310v1"},{"title":"[2412.15166] Human-Humanoid Robots Cross-Embodiment Behavior-Skill Transfer Using Decomposed Adversarial Learning from Demonstration","url":"https://arxiv.org/abs/2412.15166"},{"title":"Inverse Kinematics for Neuro-Robotic Grasping with Humanoid Embodied Agents","url":"https://arxiv.org/html/2404.08825v1"},{"title":"Conceptual Design and Kinematic Analysis of Humanoid ...","url":"https://indjst.org/download-article.php?Article_Unique_Id=INDJST8532&Full_Text_Pdf_Download=True"},{"title":"arXiv:2506.13751v2 [cs.RO] 19 Jun 2025 LeVERB: Humanoid Whole-Body Control","url":"https://people.eecs.berkeley.edu/~sastry/pubs/Pdfs%20of%202025/XueLeVERB2025.pdf"}]
+
+Based on the search results, here's what I found about kinematic decomposition in humanoid robot learning:
+
+## Overview
+
+Decomposition techniques are an effective way to address complexity problems by virtually dividing the robot into two or more subchains with fewer degrees of freedom each.
+
+## Key Benefits
+
+Through the combination of kinematic retargeting and decomposed imitation learning, the framework allows generalized skills to be transferred across multiple humanoid platforms, while accounting for their unique configurations and dynamic properties. Decomposition not only simplifies the coordination of multi-joint systems but also significantly reduces the amount of data required to learn complex loco-manipulation tasks.
+
+## Addressing the Degrees of Freedom Problem
+
+When the number of input dimensions increases, the number of training samples required to learn the model grows exponentially, making the construction of a sensorimotor map that covers the whole configuration space intractable on a humanoid robot with many degrees of freedom. Decomposition techniques have proved to be an effective means to solve this problem by reducing the amount of training samples to about twice its square root in the case of one single decomposition.
+
+## Learning Subsystems
+
+The model learns behavior primitives from human demonstrations through adversarial imitation, and the complex robot structures are decomposed into functional components, each trained independently and dynamically coordinated.
+
+This approach has become particularly relevant for modern humanoid robot learning, where managing the complexity of many degrees of freedom while minimizing data requirements is a critical challenge.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b21a465d-e9a2-4caf-bbcc-1c50222c2a35",
+  "isSidechain": true,
+  "promptId": "822627e6-0b1b-4ac9-84a8-84712d5faee2",
+  "agentId": "a74092bde9cd2f2a5",
+  "type": "user",
+  "uuid": "8ac445cf-11b7-4acf-aed9-959c3df7a07c",
+  "sourceToolAssistantUUID": "b21a465d-e9a2-4caf-bbcc-1c50222c2a35",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-10T19:41:12.989Z_
+
+<details><summary>↩ Tool result · `toolu_018d2akqgfq9ttdq6sSdNZju`</summary>
+
+```text
+Web search results for query: "failure analysis robot policy improvement data generation"
+
+Links: [{"title":"RoboFail: Analyzing Failures in Robot Learning Policies","url":"https://arxiv.org/html/2412.02818v1"},{"title":"RoboFAC: A Comprehensive Framework for Robotic Failure Analysis and Correction","url":"https://arxiv.org/pdf/2505.12224"},{"title":"RoboTwin 2.0: A Scalable Data Generator and Benchmark with Strong","url":"https://robogen-iros.github.io/accepted/9_RoboTwin_2_0_A_Scalable_Data.pdf"},{"title":"Guardian: Detecting Robotic Planning and Execution Errors","url":"https://arxiv.org/pdf/2512.01946"},{"title":"Failure Prediction at Runtime for Generative Robot Policies Ralf Römer1,∗","url":"https://openreview.net/pdf/24f35a3e58e1007b57f508079297fad1cfe3c46f.pdf"},{"title":"(PDF) RoboFail: Analyzing Failures in Robot Learning Policies","url":"https://www.researchgate.net/publication/386455218_RoboFail_Analyzing_Failures_in_Robot_Learning_Policies"},{"title":"[2510.09459] Failure Prediction at Runtime for Generative Robot Policies","url":"https://arxiv.org/abs/2510.09459"},{"title":"RACER: Rich Language-Guided Failure Recovery Policies for Imitation Learning","url":"https://arxiv.org/html/2409.14674v1"},{"title":"GitHub - simpler-env/SimplerEnv: Evaluating and reproducing real-world robot manipulation policies (e.g., RT-1, RT-1-X, Octo) in simulation under common setups (e.g., Google Robot, WidowX+Bridge) (CoRL 2024) · GitHub","url":"https://github.com/simpler-env/SimplerEnv"},{"title":"I-FailSense: Towards General Robotic Failure Detection with","url":"https://arxiv.org/pdf/2509.16072"}]
+
+Based on the search results, here are some key findings on failure analysis, robot policy improvement, and data generation:
+
+## Major Research Frameworks
+
+RoboFail employs a reinforcement learning-based approach to identify and quantify failure modes in robotic policies through systematic environment modifications and probabilistic analysis. Through reward-driven learning, RL agents actively seek configurations that maximize the probability of failure, and RL does not require a fully labeled dataset—it iteratively refines its policy through interaction with the environment.
+
+## Comprehensive Frameworks for Failure Analysis and Correction
+
+The RoboFAC model can perform task understanding, failure analysis and failure correction. A multimodal large model (RoboFAC model) is capable of performing robotic task understanding, failure analysis, and failure correction based on robot video, achieving state-of-the-art performance and outperforming GPT-4o by 34.1% on the benchmark.
+
+## Data Generation Approaches
+
+A scalable data generation pipeline automatically augments expert demonstrations with failure recovery trajectories and fine-grained language annotations for training. An automated method derives planning and execution failures directly from successful demonstrations, avoiding manual failure collection.
+
+The system produces structured logs that record trial outcomes and labels failure cases by cause, and a vision-language model monitors trials and performs per-frame analysis to assess stepwise success and localize failures.
+
+## Policy Improvement Through Failure Analysis
+
+FIPER is a framework for failure prediction at runtime for generative IL policies that identifies two key indicators of impending failure: out-of-distribution observations detected via random network distillation and high uncertainty in generated actions.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f4ad54ae-79d4-4308-9f7f-50a3982bc4cf",
+  "isSidechain": true,
+  "promptId": "822627e6-0b1b-4ac9-84a8-84712d5faee2",
+  "agentId": "a74092bde9cd2f2a5",
+  "type": "user",
+  "uuid": "216c1a5f-86c6-43b8-a3f0-6f18fc02e434",
+  "sourceToolAssistantUUID": "f4ad54ae-79d4-4308-9f7f-50a3982bc4cf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-10T19:41:14.075Z_
+
+<details><summary>↩ Tool result · `toolu_015TaJ6oMxXamW7tTccCqt55`</summary>
+
+```text
+Web search results for query: "procedural demonstration generation humanoid robot"
+
+Links: [{"title":"GitHub - YanjieZe/awesome-humanoid-robot-learning: A Paper List for Humanoid Robot Learning. · GitHub","url":"https://github.com/YanjieZe/awesome-humanoid-robot-learning"},{"title":"Generating Humanoid Robot Motions based on a Procedural Animation IK Rig Method | IEEE Conference Publication | IEEE Xplore","url":"https://ieeexplore.ieee.org/document/9708820/"},{"title":"Building a Synthetic Motion Generation Pipeline for Humanoid Robot Learning | NVIDIA Technical Blog","url":"https://developer.nvidia.com/blog/building-a-synthetic-motion-generation-pipeline-for-humanoid-robot-learning/"},{"title":"Humanoid Robot ARMAR-7 Masters Learning from Human Demonstration","url":"https://www.originofbots.com/news/humanoid-robot-armar-7-masters-learning-from-human-demonstration"},{"title":"DemoGen: Synthetic Demonstration Generation","url":"https://www.roboticsproceedings.org/rss21/p157.pdf"},{"title":"Humanoid Robot Developer Program","url":"https://developer.nvidia.com/humanoid-robot-program"},{"title":"Real2Gen: Imitation Learning from a Single Human Demonstration with","url":"https://openreview.net/pdf?id=TYtYTHTlel"},{"title":"Humanoid robot - Wikipedia","url":"https://en.wikipedia.org/wiki/Humanoid_robot"},{"title":"Use Case: NVIDIA Computing Platforms for Humanoid Robots","url":"https://www.nvidia.com/en-us/use-cases/humanoid-robots/"},{"title":"Humanoid Manipulation Interface: Humanoid Whole-Body Manipulation from Robot-Free Demonstrations","url":"https://arxiv.org/html/2602.06643v1"}]
+
+Based on the search results, here's what I found about procedural demonstration generation for humanoid robots:
+
+## Key Approaches and Technologies
+
+A motion generation method for humanoid robots is based on procedural animation with inverse-kinematics (IK) rig methods, commonly used in video games and computer graphics.
+
+## Synthetic Data Generation
+
+Several frameworks are addressing demonstration generation at scale:
+
+**NVIDIA Isaac GR00T-Mimic Blueprint**: This system generates large synthetic trajectory data sets from just a few human demonstrations, producing a large number of synthetic motion trajectories from a small number of human demonstrations. In practice, NVIDIA was able to generate 780K synthetic trajectories in 11 hours, equivalent to 6.5K hours of human demonstration data, and improved GR00T N1 performance by 40% when combined with real data.
+
+**Real2Gen and Procedural Simulation**: Recent research explores scaling robot learning data through generative or procedural simulations, enabling robots to learn from human demonstrations more efficiently.
+
+**Humanoid Manipulation Interface (HuMI)**: This approach uses a human-in-the-loop adaptation mechanism via an online IK preview interface, where operators can adjust their demonstrations on the fly to satisfy both feasibility and task constraints.
+
+## Applications
+
+The NVIDIA Isaac GR00T-Dreams blueprint generates vast amounts of synthetic trajectory data using NVIDIA Cosmos world foundation models, prompted by a single image and language instructions, enabling robots to learn new tasks in unfamiliar environments without needing specific teleoperation data.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6f6023dd-6bc9-4b07-a9c8-747231a1ee65",
+  "isSidechain": true,
+  "promptId": "822627e6-0b1b-4ac9-84a8-84712d5faee2",
+  "agentId": "a74092bde9cd2f2a5",
+  "type": "user",
+  "uuid": "d883d265-6ed6-4714-a4c3-0937e1b46f87",
+  "sourceToolAssistantUUID": "6f6023dd-6bc9-4b07-a9c8-747231a1ee65",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-10T19:41:14.757Z_
+
+<details><summary>↩ Tool result · `toolu_01RpVASS3oe7dcFmGtWPz4Px`</summary>
+
+```text
+Web search results for query: "humanoid loco-manipulation data generation 2025 2026"
+
+Links: [{"title":"GitHub - OpenDriveLab/WholebodyVLA: [ICLR 2026] Towards Unified Latent VLA for Whole-body Loco-manipulation Control · GitHub","url":"https://github.com/OpenDriveLab/WholebodyVLA"},{"title":"GitHub - YanjieZe/awesome-humanoid-robot-learning: A Paper List for Humanoid Robot Learning. · GitHub","url":"https://github.com/YanjieZe/awesome-humanoid-robot-learning"},{"title":"GitHub - visualmimic/VisualMimic: [arXiv 2025] VisualMimic: Visual Humanoid Loco-Manipulation via Motion Tracking and Generation · GitHub","url":"https://github.com/visualmimic/VisualMimic"},{"title":"[2509.26633] OmniRetarget: Interaction-Preserving Data Generation for Humanoid Whole-Body Loco-Manipulation and Scene Interaction","url":"https://arxiv.org/abs/2509.26633"},{"title":"Robust Visuomotor Control for Humanoid Loco-Manipulation Using Hybrid Reinforcement Learning - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC12292580/"},{"title":"(PDF) OmniRetarget: Interaction-Preserving Data Generation for Humanoid Whole-Body Loco-Manipulation and Scene Interaction","url":"https://www.researchgate.net/publication/396049126_OmniRetarget_Interaction-Preserving_Data_Generation_for_Humanoid_Whole-Body_Loco-Manipulation_and_Scene_Interaction"},{"title":"Streamline Robot Learning with Whole-Body Control and Enhanced Teleoperation in NVIDIA Isaac Lab 2.3 | NVIDIA Technical Blog","url":"https://developer.nvidia.com/blog/streamline-robot-learning-with-whole-body-control-and-enhanced-teleoperation-in-nvidia-isaac-lab-2-3/"},{"title":"Robust Visuomotor Control for Humanoid Loco-Manipulation Using Hybrid Reinforcement Learning","url":"https://www.mdpi.com/2313-7673/10/7/469"},{"title":"Advancements in humanoid robot dynamics and learning-based locomotion control methods","url":"https://www.oaepublish.com/articles/ir.2025.32"},{"title":"Opportunities challenges and roadmap for humanoid robots in construction | Scientific Reports","url":"https://www.nature.com/articles/s41598-025-30252-6"}]
+
+Based on the search results, here's what I found about humanoid loco-manipulation data generation research in 2025-2026:
+
+## Recent Research Developments
+
+Key 2025 projects include TWIST2, a scalable humanoid data collection system, and OmniRetarget, which enables interaction-preserving data generation for humanoid whole-body loco-manipulation and scene interaction.
+
+OmniRetarget uses an interaction mesh that explicitly models and preserves spatial and contact relationships between an agent, terrain, and manipulated objects, generating kinematically feasible trajectories by minimizing Laplacian deformation between human and robot meshes while enforcing kinematic constraints.
+
+The OmniRetarget approach generated over 8-hour trajectories and enabled proprioceptive RL policies to successfully execute long-horizon (up to 30 seconds) parkour and loco-manipulation skills on a Unitree G1 humanoid.
+
+## Supporting Tools and Infrastructure
+
+NVIDIA's Isaac Lab 2.3 accelerates robot learning by enhancing humanoid control, expanding teleoperation for easier data collection, and automating the generation of complex manipulation and locomotion data. The update expands teleoperation by supporting devices like Meta Quest VR and Manus gloves to accelerate demonstration dataset creation, and includes a motion planner-based workflow for generating manipulation task data.
+
+## Academic Research
+
+VisualMimic, published on arXiv in 2025, focuses on visual humanoid loco-manipulation via motion tracking and generation. Additional 2025-2026 works are focusing on reinforcement learning approaches and various specialized skills for whole-body humanoid control.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2d57ae52-844d-48e2-85d2-2f494fbdac31",
+  "isSidechain": true,
+  "promptId": "822627e6-0b1b-4ac9-84a8-84712d5faee2",
+  "agentId": "a74092bde9cd2f2a5",
+  "type": "user",
+  "uuid": "4a3e0ba4-5a4f-41d3-9b7d-07d77d9acd4e",
+  "sourceToolAssistantUUID": "2d57ae52-844d-48e2-85d2-2f494fbdac31",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-10T19:41:17.412Z_
+
+<details><summary>↩ Tool result · `toolu_01E5DRJUfuU9fotcTjpfJTJd`</summary>
+
+```text
+Web search results for query: "self-improving robot data pipeline 2025 2026"
+
+Links: [{"title":"A modular, multi-sensor crawler robot for adaptive pipeline inspection: design and experimental validation | Scientific Reports","url":"https://www.nature.com/articles/s41598-025-32719-y"},{"title":"Build and Orchestrate End-to-End SDG Workflows with NVIDIA Isaac Sim and NVIDIA OSMO | NVIDIA Technical Blog","url":"https://developer.nvidia.com/blog/build-synthetic-data-pipelines-to-train-smarter-robots-with-nvidia-isaac-sim/"},{"title":"Simulation-based pipeline tailors training data for dexterous robots | MIT News | Massachusetts Institute of Technology","url":"https://news.mit.edu/2025/simulation-based-pipeline-tailors-training-data-dexterous-robots-0711"},{"title":"Frontiers | Artificial intelligence and robotics in predictive maintenance: a comprehensive review","url":"https://www.frontiersin.org/journals/mechanical-engineering/articles/10.3389/fmech.2025.1722114/full"},{"title":"State of Robotics 2026 Report: $38B Market, 12 Humanoids, VLA Adoption | Silicon Valley Robotics Center","url":"https://www.roboticscenter.ai/state-of-robotics-2026"},{"title":"Robotics Trends 2026: What's Hot, What's Working, and What's Next | RoboCloud Hub","url":"https://robocloud-dashboard.vercel.app/learn/blog/robotics-trends-2026"},{"title":"Best Robot Learning Datasets 2026 | Silicon Valley Robotics Center","url":"https://www.roboticscenter.ai/datasets/best-2026"},{"title":"Opportunities challenges and roadmap for humanoid robots in construction | Scientific Reports","url":"https://www.nature.com/articles/s41598-025-30252-6"},{"title":"10 Egocentric Datasets Reshaping Robotics and AI in 2026","url":"https://www.labellerr.com/blog/egocentric-datasets-robotics/"},{"title":"Top 10 Robotics Trends [2026] | StartUs Insights","url":"https://www.startus-insights.com/innovators-guide/robotics-trends/"}]
+
+Based on the search results, here are the key findings about self-improving robot data pipelines in 2025-2026:
+
+## Data Pipeline Infrastructure
+
+Several companies have raised at valuations above $1B on the premise that the "picks and shovels" of the robotics AI wave — training infrastructure, policy evaluation, data pipelines — will be more valuable than any single robot application. Companies in this category received a combined $2.1B in 2025.
+
+## Cost and Data Collection
+
+The average cost per hour of high-quality teleoperation data — captured, labeled, and packaged into a standardized dataset format — fell from approximately $340/hour in early 2024 to $136/hour by Q4 2025. This dramatic cost reduction is making self-improving systems more economically viable.
+
+## Synthetic Data Generation
+
+NVIDIA OSMO manages multistage workflows across heterogeneous compute environments, and scaling sim-to-real transfer is achieved by augmenting MobilityGen-generated datasets through NVIDIA Cosmos Transfer foundation models, which apply photorealistic, diffusion-based video augmentation via LLM-guided prompts.
+
+## Foundation Models and Generalization
+
+PhysicsGen turned just 24 human demonstrations into thousands of simulated ones, and the digital robot executed tasks at 81 percent accuracy by training on PhysicsGen's massive dataset, a 60 percent improvement from a baseline that only learned from human demonstrations.
+
+## Emerging Egocentric Data Trend
+
+Build AI released Egocentric-1M on April 8, 2026, with roughly 1 million hours, dwarfing every prior dataset combined, with progression from 10K hours in November 2025, to 100K in December, to 1M in April 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b259b094-be9c-447b-8f09-85cd3bb680e7",
+  "isSidechain": true,
+  "promptId": "822627e6-0b1b-4ac9-84a8-84712d5faee2",
+  "agentId": "a74092bde9cd2f2a5",
+  "type": "user",
+  "uuid": "967bbe67-b7a7-4b8f-a54b-3323b4603027",
+  "sourceToolAssistantUUID": "b259b094-be9c-447b-8f09-85cd3bb680e7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28 · 2026-05-10T19:41:19.580Z_
+
+Now let me do some targeted follow-up searches on the most relevant papers I've found to get more details.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "967bbe67-b7a7-4b8f-a54b-3323b4603027",
+  "isSidechain": true,
+  "agentId": "a74092bde9cd2f2a5",
+  "requestId": "req_011CauTUxMmwwgW6qs5JUerS",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "77a6ad15-8af2-4b5f-ab7d-9c0c566ab46d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012RyL3JdM75CL2xFcNes2HD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1929,
+      "cache_creation_input_tokens": 4819,
+      "cache_read_input_tokens": 12404,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4819,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-10T19:41:20.553Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012iTc7cNpVZSps9WuEuSErt`</summary>
+
+```json
+{
+  "query": "RoboFail analyzing failures robot learning policies decomposition 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "77a6ad15-8af2-4b5f-ab7d-9c0c566ab46d",
+  "isSidechain": true,
+  "agentId": "a74092bde9cd2f2a5",
+  "requestId": "req_011CauTUxMmwwgW6qs5JUerS",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "0e6794cc-6b4d-465d-8e68-55e7f4b4ddbd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012RyL3JdM75CL2xFcNes2HD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1929,
+      "cache_creation_input_tokens": 4819,
+      "cache_read_input_tokens": 12404,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4819,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-10T19:41:21.526Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01852KZ3e9TX5JbMQ5vsTnJs`</summary>
+
+```json
+{
+  "query": "RoboFAC failure analysis correction robot 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0e6794cc-6b4d-465d-8e68-55e7f4b4ddbd",
+  "isSidechain": true,
+  "agentId": "a74092bde9cd2f2a5",
+  "requestId": "req_011CauTUxMmwwgW6qs5JUerS",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "efc277a0-158e-46eb-bd98-1a26c8b82745",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012RyL3JdM75CL2xFcNes2HD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1929,
+      "cache_creation_input_tokens": 4819,
+      "cache_read_input_tokens": 12404,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4819,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-10T19:41:22.470Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01SqBtLa7B6p2Ba9KmzE7iYU`</summary>
+
+```json
+{
+  "query": "RESample robust data augmentation exploratory sampling robotic manipulation failure recovery"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "efc277a0-158e-46eb-bd98-1a26c8b82745",
+  "isSidechain": true,
+  "agentId": "a74092bde9cd2f2a5",
+  "requestId": "req_011CauTUxMmwwgW6qs5JUerS",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "5a26a5b6-1823-4b0e-92b6-0f1d676fb751",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012RyL3JdM75CL2xFcNes2HD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1929,
+      "cache_creation_input_tokens": 4819,
+      "cache_read_input_tokens": 12404,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4819,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-10T19:41:22.937Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WvkCPMa91SjTqkKjoQmn1k`</summary>
+
+```json
+{
+  "query": "DemoGen synthetic demonstration generation robotics RSS 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5a26a5b6-1823-4b0e-92b6-0f1d676fb751",
+  "isSidechain": true,
+  "agentId": "a74092bde9cd2f2a5",
+  "requestId": "req_011CauTUxMmwwgW6qs5JUerS",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "2387932c-a270-4610-9bb4-4fe59a093616",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012RyL3JdM75CL2xFcNes2HD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1929,
+      "cache_creation_input_tokens": 4819,
+      "cache_read_input_tokens": 12404,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4819,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-10T19:41:23.439Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QRniubZNcEst53ibQUcpRq`</summary>
+
+```json
+{
+  "query": "OmniRetarget interaction preserving data generation humanoid loco-manipulation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2387932c-a270-4610-9bb4-4fe59a093616",
+  "isSidechain": true,
+  "agentId": "a74092bde9cd2f2a5",
+  "requestId": "req_011CauTUxMmwwgW6qs5JUerS",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "27f80bfa-bc05-4b8e-8e59-5aadfb5208cc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012RyL3JdM75CL2xFcNes2HD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1929,
+      "cache_creation_input_tokens": 4819,
+      "cache_read_input_tokens": 12404,
+      "output_tokens": 283,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 4819
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1929,
+          "output_tokens": 283,
+          "cache_read_input_tokens": 12404,
+          "cache_creation_input_tokens": 4819,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 4819,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-10T19:41:28.463Z_
+
+<details><summary>↩ Tool result · `toolu_012iTc7cNpVZSps9WuEuSErt`</summary>
+
+```text
+Web search results for query: "RoboFail analyzing failures robot learning policies decomposition 2024"
+
+Links: [{"title":"RoboFail: Analyzing Failures in Robot Learning Policies","url":"https://arxiv.org/html/2412.02818v1"},{"title":"(PDF) RoboFail: Analyzing Failures in Robot Learning Policies","url":"https://www.researchgate.net/publication/386455218_RoboFail_Analyzing_Failures_in_Robot_Learning_Policies"},{"title":"RoboFail: Analyzing Failures in Robot Learning Policies | Cool Papers - Immersive Paper Discovery","url":"https://papers.cool/arxiv/2412.02818"},{"title":"RoboFAC: A Comprehensive Framework for Robotic Failure Analysis and Correction","url":"https://arxiv.org/pdf/2505.12224"},{"title":"Heatmap of normalized failure probabilities across models and... | Download Scientific Diagram","url":"https://www.researchgate.net/figure/Heatmap-of-normalized-failure-probabilities-across-models-and-environments-This_fig1_386455218"},{"title":"[2306.15724] REFLECT: Summarizing Robot Experiences for Failure Explanation and Correction","url":"https://arxiv.org/abs/2306.15724"},{"title":"[2510.09459] Failure Prediction at Runtime for Generative Robot Policies","url":"https://arxiv.org/abs/2510.09459"},{"title":"REFLECT: Summarizing Robot Experiences for FaiLure Explanation and CorrecTion","url":"https://proceedings.mlr.press/v229/liu23g/liu23g.pdf"},{"title":"Explainable AI for Robot Failures: Generating Explanations that","url":"https://arxiv.org/pdf/2101.01625"},{"title":"REFLECT: Summarizing Robot Experiences for Failure Explanation and Correction | alphaXiv","url":"https://www.alphaxiv.org/overview/2306.15724v4"}]
+
+Based on the search results, I found comprehensive information about RoboFail:
+
+## RoboFail: Analyzing Failures in Robot Learning Policies
+
+RoboFail is a method that proactively identifies failure mode probabilities in robot manipulation policies. Since exhaustively searching over a large space of failures is infeasible, researchers proposed a deep reinforcement learning-based framework called RoboFail.
+
+### Core Purpose and Functionality
+
+The framework is designed to detect scenarios prone to failure and quantify their likelihood, thus offering a structured approach to anticipate failures. By identifying these high-risk states in advance, RoboFail enables researchers and engineers to better understand the robustness limits of robot policies, contributing to the development of safer and more adaptable robotic systems.
+
+### The Problem It Addresses
+
+Despite being trained on increasingly large datasets, robot models often overfit to specific environments or datasets. Consequently, they excel within their training distribution but face challenges in generalizing to novel or unforeseen scenarios.
+
+### Framework Components
+
+The approach comprises three main components: environment design, reinforcement learning setup, and FM (failure mode) analysis. The framework involves a pre-trained robot policy undergoing rollouts while controlled perturbations simulate diverse scenarios, and a PPO-based reinforcement learning agent identifies configurations most likely to induce failures.
+
+### Evaluation
+
+Experiments evaluate the effectiveness of RoboFail in identifying failure modes across different robot manipulation policies tested with varying input modalities, specifically visual (image), proprioceptive, language, and combined multi-modal inputs.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0e6794cc-6b4d-465d-8e68-55e7f4b4ddbd",
+  "isSidechain": true,
+  "promptId": "822627e6-0b1b-4ac9-84a8-84712d5faee2",
+  "agentId": "a74092bde9cd2f2a5",
+  "type": "user",
+  "uuid": "0f8cbc68-e820-47e6-92d1-0bd3e26cc547",
+  "sourceToolAssistantUUID": "0e6794cc-6b4d-465d-8e68-55e7f4b4ddbd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-10T19:41:28.960Z_
+
+<details><summary>↩ Tool result · `toolu_01852KZ3e9TX5JbMQ5vsTnJs`</summary>
+
+```text
+Web search results for query: "RoboFAC failure analysis correction robot 2025"
+
+Links: [{"title":"RoboFAC: A Comprehensive Framework for Robotic Failure Analysis and Correction - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv250512224L/abstract"},{"title":"[2505.12224] RoboFAC: A Comprehensive Framework for Robotic Failure Analysis and Correction","url":"https://arxiv.org/abs/2505.12224"},{"title":"RoboFAC: A Comprehensive Framework for Robotic Failure Analysis and Correction","url":"https://arxiv.org/pdf/2505.12224"},{"title":"KITE: Keyframe-Indexed Tokenized Evidence for VLM-Based Robot Failure Analysis","url":"https://arxiv.org/html/2604.07034"},{"title":"[Literature Review] RoboFAC: A Comprehensive Framework for Robotic Failure Analysis and Correction","url":"https://www.themoonlight.io/en/review/robofac-a-comprehensive-framework-for-robotic-failure-analysis-and-correction"},{"title":"FailSafe: Reasoning and Recovery from Failures in Vision-Language-Action Models","url":"https://arxiv.org/pdf/2510.01642"},{"title":"RoboFail: Analyzing Failures in Robot Learning Policies","url":"https://arxiv.org/html/2412.02818v1"},{"title":"Fault Types and Diagnostic Methods of Manipulator Robots: A Review - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC11946664/"},{"title":"Real time fault diagnosis in industrial robotics using discrete and slantlet wavelet transformations | Scientific Reports","url":"https://www.nature.com/articles/s41598-025-09272-9"},{"title":"From Mystery to Mastery: Failure Diagnosis for Improving Manipulation Policies","url":"https://arxiv.org/html/2412.02818v2"}]
+
+Based on the search results, here's what I found about RoboFAC:
+
+## RoboFAC: Robotic Failure Analysis and Correction Framework
+
+RoboFAC (Robotic Failure Analysis and Correction) is a framework designed to address failure recovery in robotic systems.
+
+### Purpose and Problem
+Vision-Language-Action (VLA) models have advanced robotic manipulation by translating natural-language instructions and image information into sequential control actions, however, these models often underperform in open-world scenarios, as they are predominantly trained on successful expert demonstrations and exhibit a limited capacity for failure recovery.
+
+### Framework Components
+The RoboFAC dataset comprises 9,440 erroneous manipulation trajectories and 78,623 QA pairs across 16 diverse tasks and 53 scenes in both simulation and real-world environments. The RoboFAC model is capable of Task Understanding, Failure Analysis and Failure Correction.
+
+### Performance Results
+The RoboFAC model outperforms GPT-4o by 34.1% on the evaluation benchmark. When integrated into a control pipeline as an external critic for the VLA model, enabling it to provide recovery suggestions when the VLA model encounters failures, experiments on five real-world tasks demonstrate that the model improves the success rate by an average of 13.75%.
+
+### Correction Capabilities
+The RoboFAC model is capable of providing detailed correction suggestions for errors occurring in the video, including both high-level corrections and low-level corrections, where high-level correction offers explicit guidance by specifying the sequence of sub-tasks the model should execute to recover from the failure.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "efc277a0-158e-46eb-bd98-1a26c8b82745",
+  "isSidechain": true,
+  "promptId": "822627e6-0b1b-4ac9-84a8-84712d5faee2",
+  "agentId": "a74092bde9cd2f2a5",
+  "type": "user",
+  "uuid": "a4a6073a-c82c-47b7-b9d2-7b8d4b92687e",
+  "sourceToolAssistantUUID": "efc277a0-158e-46eb-bd98-1a26c8b82745",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-10T19:41:29.911Z_
+
+<details><summary>↩ Tool result · `toolu_01SqBtLa7B6p2Ba9KmzE7iYU`</summary>
+
+```text
+Web search results for query: "RESample robust data augmentation exploratory sampling robotic manipulation failure recovery"
+
+Links: [{"title":"[2510.17640] RESample: A Robust Data Augmentation Framework via Exploratory Sampling for Robotic Manipulation","url":"https://arxiv.org/abs/2510.17640"},{"title":"RESample: A Robust Data Augmentation Framework via Exploratory Sampling for Robotic Manipulation","url":"https://arxiv.org/html/2510.17640v1"},{"title":"RESample: A Robust Data Augmentation Framework via Exploratory Sampling for Robotic Manipulation | Request PDF","url":"https://www.researchgate.net/publication/396715309_RESample_A_Robust_Data_Augmentation_Framework_via_Exploratory_Sampling_for_Robotic_Manipulation"},{"title":"[Literature Review] RESample: A Robust Data Augmentation Framework via Exploratory Sampling for Robotic Manipulation","url":"https://www.themoonlight.io/en/review/resample-a-robust-data-augmentation-framework-via-exploratory-sampling-for-robotic-manipulation"},{"title":"Machine Learning Oct 2025","url":"https://arxiv.org/list/cs.LG/2025-10?skip=4175&show=250"},{"title":"[PDF] VLA-RL: Towards Masterful and General Robotic Manipulation with Scalable Reinforcement Learning | Semantic Scholar","url":"https://www.semanticscholar.org/paper/VLA-RL:-Towards-Masterful-and-General-Robotic-with-Lu-Guo/4a3e88d203564e547f5fb3f3d816a0b381492eae"},{"title":"Enhancing Video-Based Robot Failure Detection Using Task Knowledge","url":"https://arxiv.org/html/2508.18705"},{"title":"See, Plan, Rewind: Progress-Aware Vision-Language-Action Models for Robust Robotic Manipulation","url":"https://arxiv.org/html/2603.09292"},{"title":"TGM-VLA: Task-Guided Mixup for Sampling-Efficient and Robust Robotic Manipulation","url":"https://arxiv.org/html/2603.00615"},{"title":"Learning to Recover from Plan Execution Errors during Robot Manipulation: A Neuro-symbolic Approach","url":"https://arxiv.org/html/2405.18948"}]
+
+Based on the search results, here's what I found about RESample:
+
+## RESample: A Robust Data Augmentation Framework
+
+RESample is a robust data augmentation framework via exploratory sampling for robotic manipulation, designed to improve Vision-Language-Action models (VLAs) on complex robotic manipulation tasks through imitation learning.
+
+### The Core Problem
+
+Existing imitation learning datasets contain only successful trajectories and lack failure or recovery data, especially for out-of-distribution (OOD) states where the robot deviates from the main policy due to minor perturbations or errors, leading VLA models to struggle with states deviating from the training distribution.
+
+### Key Methodology
+
+RESample proposes an automated OOD data augmentation framework through exploratory sampling, leveraging offline reinforcement learning to obtain an action-value network that accurately identifies sub-optimal actions under the current manipulation policy, and sampling potential OOD states from trajectories via rollout with an exploratory sampling mechanism that adaptively incorporates these action proxies into the training dataset.
+
+### Outcomes
+
+The framework explicitly encourages VLAs to recover from OOD states and enhances their robustness against distributional shifts, with experiments on the LIBERO benchmark and real-world robotic manipulation tasks demonstrating that RESample consistently improves the stability and generalization ability of VLA models.
+
+The paper was submitted to ICRA 2026 by researchers including Yuquan Xue and colleagues.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5a26a5b6-1823-4b0e-92b6-0f1d676fb751",
+  "isSidechain": true,
+  "promptId": "822627e6-0b1b-4ac9-84a8-84712d5faee2",
+  "agentId": "a74092bde9cd2f2a5",
+  "type": "user",
+  "uuid": "b709538e-862e-4570-8dfe-75749159c005",
+  "sourceToolAssistantUUID": "5a26a5b6-1823-4b0e-92b6-0f1d676fb751",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-10T19:41:32.534Z_
+
+<details><summary>↩ Tool result · `toolu_01QRniubZNcEst53ibQUcpRq`</summary>
+
+```text
+Web search results for query: "OmniRetarget interaction preserving data generation humanoid loco-manipulation"
+
+Links: [{"title":"[2509.26633] OmniRetarget: Interaction-Preserving Data Generation for Humanoid Whole-Body Loco-Manipulation and Scene Interaction","url":"https://arxiv.org/abs/2509.26633"},{"title":"OmniRetarget: Interaction-Preserving Data Generation for Humanoid","url":"https://omniretarget.github.io/static/images/paper.pdf"},{"title":"OmniRetarget: Interaction-Preserving Data Generation for Humanoid Whole-Body Loco-Manipulation and Scene Interaction","url":"https://arxiv.org/html/2509.26633v1"},{"title":"[2509.26633v1] OmniRetarget: Interaction-Preserving Data Generation for Humanoid Whole-Body Loco-Manipulation and Scene Interaction","url":"https://arxiv.org/abs/2509.26633v1"},{"title":"OmniRetarget","url":"https://omniretarget.github.io/"},{"title":"omniretarget/OmniRetarget_Dataset · Datasets at Hugging Face","url":"https://huggingface.co/datasets/omniretarget/OmniRetarget_Dataset"},{"title":"OmniRetarget: Interaction-Preserving Data Generation for Humanoid Whole-Body Loco-Manipulation and Scene Interaction | alphaXiv","url":"https://www.alphaxiv.org/overview/2509.26633v2"},{"title":"(PDF) OmniRetarget: Interaction-Preserving Data Generation for Humanoid Whole-Body Loco-Manipulation and Scene Interaction","url":"https://www.researchgate.net/publication/396049126_OmniRetarget_Interaction-Preserving_Data_Generation_for_Humanoid_Whole-Body_Loco-Manipulation_and_Scene_Interaction"},{"title":"Paper page - OmniRetarget: Interaction-Preserving Data Generation for Humanoid Whole-Body Loco-Manipulation and Scene Interaction","url":"https://huggingface.co/papers/2509.26633"},{"title":"[Quick Review] OmniRetarget: Interaction-Preserving Data Generation for Humanoid\\n Whole-Body Loco-Manipulation and Scene Interaction","url":"https://liner.com/review/omniretarget-interactionpreserving-data-generation-for-humanoid-wholebody-locomanipulation-and-scene"}]
+
+Based on the search results, here's what I found about OmniRetarget:
+
+## Overview
+
+OmniRetarget is an interaction-preserving data generation engine based on an interaction mesh that explicitly models and preserves the crucial spatial and contact relationships between an agent, the terrain, and manipulated objects.
+
+## Problem It Addresses
+
+A dominant paradigm for teaching humanoid robots complex skills is to retarget human motions as kinematic references to train reinforcement learning (RL) policies. However, existing retargeting pipelines often struggle with the significant embodiment gap between humans and robots, producing physically implausible artifacts like foot-skating and penetration. More importantly, common retargeting methods neglect the rich human-object and human-environment interactions essential for expressive locomotion and loco-manipulation.
+
+## Key Technical Approach
+
+By minimizing the Laplacian deformation between the human and robot meshes while enforcing kinematic constraints, OmniRetarget generates kinematically feasible trajectories. Preserving task-relevant interactions enables efficient data augmentation, from a single demonstration to different robot embodiments, terrains, and object configurations.
+
+## Performance and Results
+
+OmniRetarget was evaluated by retargeting motions from OMOMO, LAFAN1, and in-house MoCap datasets, generating over 8-hour trajectories that achieve better kinematic constraint satisfaction and contact preservation than widely used baselines. Such high-quality data enables proprioceptive RL policies to successfully execute long-horizon (up to 30 seconds) parkour and loco-manipulation skills on a Unitree G1 humanoid, trained with only 5 reward terms and simple domain randomization shared by all tasks, without any learning curriculum.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "27f80bfa-bc05-4b8e-8e59-5aadfb5208cc",
+  "isSidechain": true,
+  "promptId": "822627e6-0b1b-4ac9-84a8-84712d5faee2",
+  "agentId": "a74092bde9cd2f2a5",
+  "type": "user",
+  "uuid": "8e4e759e-b456-4b8f-b863-ed1a3e411e35",
+  "sourceToolAssistantUUID": "27f80bfa-bc05-4b8e-8e59-5aadfb5208cc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-10T19:41:34.835Z_
+
+<details><summary>↩ Tool result · `toolu_01WvkCPMa91SjTqkKjoQmn1k`</summary>
+
+```text
+Web search results for query: "DemoGen synthetic demonstration generation robotics RSS 2025"
+
+Links: [{"title":"GitHub - TEA-Lab/DemoGen: [RSS25] Official implementation of DemoGen: Synthetic Demonstration Generation for Data-Efficient Visuomotor Policy Learning","url":"https://github.com/TEA-Lab/DemoGen"},{"title":"DemoGen | Synthetic Demonstration Generation for Data-Efficient Visuomotor Policy Learning","url":"https://demo-generation.github.io/"},{"title":"GitHub - gist-ailab/AILab-DemoGen: [RSS25] Official implementation of DemoGen: Synthetic Demonstration Generation for Data-Efficient Visuomotor Policy Learning","url":"https://github.com/gist-ailab/AILab-DemoGen"},{"title":"DemoGen: Synthetic Demonstration Generation for Data-Efficient...","url":"https://arxiv.org/abs/2502.16932"},{"title":"DemoGen: Synthetic Demonstration Generation for Data-Efficient Visuomotor Policy Learning","url":"https://arxiv.org/html/2502.16932v1"},{"title":"DemoGen: Synthetic Demonstration Generation","url":"https://www.roboticsproceedings.org/rss21/p157.pdf"},{"title":"[Literature Review] DemoGen: Synthetic Demonstration Generation for Data-Efficient Visuomotor Policy Learning","url":"https://www.themoonlight.io/en/review/demogen-synthetic-demonstration-generation-for-data-efficient-visuomotor-policy-learning"},{"title":"DemoGen: SYNTHETIC DEMONSTRATION GENERATION ...","url":"https://openreview.net/pdf/13b189e8b35f023af21603b6039aa9b1f83c0d2e.pdf"},{"title":"Xue 等 - 2025 - DemoGen Synthetic Demonstration Generation for Da","url":"https://www.scribd.com/document/900355111/Xue-%E7%AD%89-2025-DemoGen-Synthetic-Demonstration-Generation-for-Da"},{"title":"&lt;b>Huazhe Xu&lt;/b>","url":"http://hxu.rocks/publication.html"}]
+
+Based on the web search results, here's what I found about DemoGen for RSS 2025:
+
+## Overview
+
+DemoGen is a synthetic data generation approach designed for robotic manipulation. It is a low-cost, fully synthetic approach for automatic demonstration generation that uses only one human-collected demonstration per task to generate spatially augmented demonstrations by adapting the demonstrated action trajectory to novel object configurations.
+
+## Key Features
+
+Given only one human demonstration collected in the real world, DemoGen could produce hundreds of spatially-augmented synthetic demonstrations in few seconds. DemoGen has the potential to maintain the policy performance with over 20x reduced human effort for data collection.
+
+## Technical Approach
+
+DemoGen adapts actions in the source demonstration to novel object configurations by incorporating the ideas of Task and Motion Planning (TAMP), where the source trajectory is decomposed into object-centric motion segments moving in free space and skill segments involving on-object manipulation through contact. During generation, the skill segments are transformed as a whole, and the motion segments are replanned via motion planning.
+
+The corresponding visual observations are synthesized by choosing 3D point clouds as the modality and rearranging the objects and robot end-effectors in the scene via 3D editing.
+
+## Performance Results
+
+DemoGen significantly enhances policy performance across a diverse range of real-world manipulation tasks, showing its applicability even in challenging scenarios involving deformable objects, dexterous hand end-effectors, and bimanual platforms. The paper was accepted for Robotics: Science and Systems (RSS) 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2387932c-a270-4610-9bb4-4fe59a093616",
+  "isSidechain": true,
+  "promptId": "822627e6-0b1b-4ac9-84a8-84712d5faee2",
+  "agentId": "a74092bde9cd2f2a5",
+  "type": "user",
+  "uuid": "8625479a-4fc1-4efe-bd51-ff7bbd46915f",
+  "sourceToolAssistantUUID": "2387932c-a270-4610-9bb4-4fe59a093616",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39 · 2026-05-10T19:41:36.948Z_
+
+Let me now search for additional highly relevant papers that could overlap with the proposed idea.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8625479a-4fc1-4efe-bd51-ff7bbd46915f",
+  "isSidechain": true,
+  "agentId": "a74092bde9cd2f2a5",
+  "requestId": "req_011CauTWEoWgKN6dp2AJuW4w",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "f8932145-0432-48ec-a65c-908589a8955f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U4GMrnHezNL7D8hqNEhXh4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1082,
+      "cache_creation_input_tokens": 5925,
+      "cache_read_input_tokens": 17223,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 5925,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-10T19:41:37.654Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013nzgGxj1LftuyD3QYGqkBc`</summary>
+
+```json
+{
+  "query": "RACER rich language guided failure recovery imitation learning robotics"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f8932145-0432-48ec-a65c-908589a8955f",
+  "isSidechain": true,
+  "agentId": "a74092bde9cd2f2a5",
+  "requestId": "req_011CauTWEoWgKN6dp2AJuW4w",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "dd17b994-9380-4715-8137-3a415cb53552",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U4GMrnHezNL7D8hqNEhXh4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1082,
+      "cache_creation_input_tokens": 5925,
+      "cache_read_input_tokens": 17223,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 5925,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-10T19:41:38.378Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019M1yjVcK2AdUEAvHxTtsAV`</summary>
+
+```json
+{
+  "query": "PhysicsGen simulation demonstration generation robot learning 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dd17b994-9380-4715-8137-3a415cb53552",
+  "isSidechain": true,
+  "agentId": "a74092bde9cd2f2a5",
+  "requestId": "req_011CauTWEoWgKN6dp2AJuW4w",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "b8c56a8e-db3f-4ccb-99aa-de33026034c3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U4GMrnHezNL7D8hqNEhXh4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1082,
+      "cache_creation_input_tokens": 5925,
+      "cache_read_input_tokens": 17223,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 5925,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-10T19:41:39.304Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MbGnPAtMnRvD56dcsC2JNH`</summary>
+
+```json
+{
+  "query": "\"decomposed adversarial learning\" humanoid cross-embodiment behavior skill transfer"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b8c56a8e-db3f-4ccb-99aa-de33026034c3",
+  "isSidechain": true,
+  "agentId": "a74092bde9cd2f2a5",
+  "requestId": "req_011CauTWEoWgKN6dp2AJuW4w",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "eca367cd-1165-4c69-8e33-253111a7c18f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U4GMrnHezNL7D8hqNEhXh4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1082,
+      "cache_creation_input_tokens": 5925,
+      "cache_read_input_tokens": 17223,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 5925,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-10T19:41:40.332Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015pjLdLGNQZSrDreHeLXEua`</summary>
+
+```json
+{
+  "query": "CurricuLLM automatic task curricula humanoid robot learning failure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "eca367cd-1165-4c69-8e33-253111a7c18f",
+  "isSidechain": true,
+  "agentId": "a74092bde9cd2f2a5",
+  "requestId": "req_011CauTWEoWgKN6dp2AJuW4w",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "9a908786-b8ac-49cd-a5e2-3b6b4009f2d7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U4GMrnHezNL7D8hqNEhXh4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1082,
+      "cache_creation_input_tokens": 5925,
+      "cache_read_input_tokens": 17223,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 5925,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-10T19:41:41.058Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01D4pLVQJsFRSFqEtdiuzhGU`</summary>
+
+```json
+{
+  "query": "NVIDIA GR00T Mimic synthetic motion generation humanoid data pipeline"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9a908786-b8ac-49cd-a5e2-3b6b4009f2d7",
+  "isSidechain": true,
+  "agentId": "a74092bde9cd2f2a5",
+  "requestId": "req_011CauTWEoWgKN6dp2AJuW4w",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "2294cd97-b8e1-4d6e-af05-8039a7f4019b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U4GMrnHezNL7D8hqNEhXh4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1082,
+      "cache_creation_input_tokens": 5925,
+      "cache_read_input_tokens": 17223,
+      "output_tokens": 279,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 5925
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1082,
+          "output_tokens": 279,
+          "cache_read_input_tokens": 17223,
+          "cache_creation_input_tokens": 5925,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 5925,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-10T19:41:44.021Z_
+
+<details><summary>↩ Tool result · `toolu_013nzgGxj1LftuyD3QYGqkBc`</summary>
+
+```text
+Web search results for query: "RACER rich language guided failure recovery imitation learning robotics"
+
+Links: [{"title":"[2409.14674] RACER: Rich Language-Guided Failure Recovery Policies for Imitation Learning","url":"https://arxiv.org/abs/2409.14674"},{"title":"RACER: Rich Language-Guided Failure Recovery Policies for Imitation Learning","url":"https://rich-language-failure-recovery.github.io/"},{"title":"RACER: Rich Language-Guided Failure Recovery Policies for Imitation Learning","url":"https://arxiv.org/html/2409.14674v1"},{"title":"RACER: Rich Language-Guided Failure Recovery Policies for Imitation Learning | IEEE Conference Publication | IEEE Xplore","url":"https://ieeexplore.ieee.org/document/11127799/"},{"title":"GitHub - sled-group/RACER: [ICRA 2025] RACER: Rich Language-Guided Failure Recovery Policies for Imitation Learning","url":"https://github.com/sled-group/RACER"},{"title":"Paper page - RACER: Rich Language-Guided Failure Recovery Policies for Imitation Learning","url":"https://huggingface.co/papers/2409.14674"},{"title":"RACER: Rich Language-Guided Failure Recovery Policies for Imitation Learning - Paper Detail","url":"https://deeplearn.org/arxiv/529917/racer:-rich-language-guided-failure-recovery-policies-for-imitation-learning"},{"title":"(PDF) RACER: Rich Language-Guided Failure Recovery Policies for Imitation Learning","url":"https://www.researchgate.net/publication/384266546_RACER_Rich_Language-Guided_Failure_Recovery_Policies_for_Imitation_Learning"},{"title":"RACER: Rich Language-Guided Failure Recovery Policies for Imitation Learning | SLED Research Lab @ UMich","url":"https://sled.eecs.umich.edu/publication/dai-2024-racer/"},{"title":"RACER: Rich Language-Guided Failure Recovery Policies for ...","url":"https://www.emergentmind.com/papers/2409.14674"}]
+
+I found comprehensive information about RACER. Here's what the research shows:
+
+## Overview
+
+RACER (Rich languAge-guided failure reCovERy) is a supervisor-actor framework that combines failure recovery data with rich language descriptions to enhance robot control.
+
+## Framework Architecture
+
+RACER consists of a vision-language model (VLM) as the supervisor, which monitors and provides detailed instructions to analyze, correct, and guide robot actions at each step, and a language-conditioned visuomotor policy as the actor, responsible for generating the next appropriate action.
+
+## Key Innovation
+
+The research is the first to explore the role of rich language guidance in robot manipulation and demonstrates its importance in conjunction with failure recovery for robust control. Rich language instructions provide more comprehensive details for failure recovery, such as failure analysis, spatial movements, target object attributes, and the expected outcome, and can guide the policy with more accurate control while serving as a form of regularization to prevent overfitting and improve generalization.
+
+## Performance Results
+
+RACER outperforms the state-of-the-art Robotic View Transformer (RVT) on RLbench across various evaluation settings, including standard long-horizon tasks, dynamic goal-change tasks and zero-shot unseen tasks, achieving superior performance in both simulated and real world environments.
+
+## Data Pipeline
+
+The research proposes a scalable rich language-guided failure recovery data augmentation pipeline to collect new trajectories from expert demos.
+
+The research was published in September 2024, and the paper was accepted to ICRA 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "dd17b994-9380-4715-8137-3a415cb53552",
+  "isSidechain": true,
+  "promptId": "822627e6-0b1b-4ac9-84a8-84712d5faee2",
+  "agentId": "a74092bde9cd2f2a5",
+  "type": "user",
+  "uuid": "a2763e1b-90e4-41ef-8f96-5f2283a58761",
+  "sourceToolAssistantUUID": "dd17b994-9380-4715-8137-3a415cb53552",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-10T19:41:44.567Z_
+
+<details><summary>↩ Tool result · `toolu_019M1yjVcK2AdUEAvHxTtsAV`</summary>
+
+```text
+Web search results for query: "PhysicsGen simulation demonstration generation robot learning 2025"
+
+Links: [{"title":"New simulation system generates thousands of training examples for robotic hands and arms","url":"https://techxplore.com/news/2025-07-simulation-generates-thousands-examples-robotic.html"},{"title":"Simulation-based pipeline tailors training data for dexterous robots | MIT News | Massachusetts Institute of Technology","url":"https://news.mit.edu/2025/simulation-based-pipeline-tailors-training-data-dexterous-robots-0711"},{"title":"PhysicsGen","url":"https://lujieyang.github.io/physicsgen/"},{"title":"Simulation-based pipeline tailors training data for dexterous robots – MIT EECS","url":"https://www.eecs.mit.edu/simulation-based-pipeline-tailors-training-data-for-dexterous-robots/"},{"title":"Simulation-based pipeline tailors training data for dexterous robots | MIT CSAIL","url":"https://www.csail.mit.edu/news/simulation-based-pipeline-tailors-training-data-dexterous-robots"},{"title":"RoboGen: Towards Unleashing Infinite Data for Automated Robot Learning via Generative Simulation","url":"https://arxiv.org/html/2311.01455v3"},{"title":"Learning Physics from Pretrained Video Models: A Multimodal Continuous and Sequential World Interaction Models for Robotic Manipulation","url":"https://arxiv.org/html/2603.00110"},{"title":"DiffGen: Robot Demonstration Generation via Differentiable Physics Simulation, Differentiable Rendering, and Vision-Language Model","url":"https://arxiv.org/html/2405.07309v1"},{"title":"Physics Gen: Generating Thousands of Robotic Training Examples","url":"https://makersmuse.in/news/robotic-training-examples/"},{"title":"Simulation-based pipeline tailors training data for dexterous robots - MIT Schwarzman College of Computing","url":"https://computing.mit.edu/news/simulation-based-pipeline-tailors-training-data-for-dexterous-robots/"}]
+
+Based on the search results, here's what I found about PhysicsGen:
+
+## Overview
+
+PhysicsGen is a low-cost data generation pipeline that integrates physics-based simulation, human demonstrations, and model-based planning to efficiently generate large-scale, high-quality datasets for contact-rich robotic manipulation tasks.
+
+## How It Works
+
+The pipeline starts with a small number of embodiment-flexible human demonstrations collected in a virtual reality simulation environment and refines these demonstrations using optimization-based kinematic retargeting and trajectory optimization to adapt them across various robot embodiments and physical parameters.
+
+## Key Results
+
+PhysicsGen turned just 24 human demonstrations into thousands of simulated ones, helping both digital and real-world robots reorient objects. More specifically, PhysicsGen can multiply a few dozen virtual reality demonstrations into nearly 3,000 simulations per machine for mechanical companions like robotic arms and hands.
+
+The performance improvements are significant: The digital robot executed the task at a rate of 81 percent accuracy by training on PhysicsGen's massive dataset, a 60 percent improvement from a baseline that only learned from human demonstrations.
+
+## Future Directions
+
+The researchers plan to incorporate reinforcement learning to make PhysicsGen expand its dataset beyond human-provided examples and may augment their pipeline with advanced perception techniques to help a robot perceive and interpret their environment visually.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b8c56a8e-db3f-4ccb-99aa-de33026034c3",
+  "isSidechain": true,
+  "promptId": "822627e6-0b1b-4ac9-84a8-84712d5faee2",
+  "agentId": "a74092bde9cd2f2a5",
+  "type": "user",
+  "uuid": "7645bab7-d147-4303-9d85-caa0db7ecf78",
+  "sourceToolAssistantUUID": "b8c56a8e-db3f-4ccb-99aa-de33026034c3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-10T19:41:45.256Z_
+
+<details><summary>↩ Tool result · `toolu_01MbGnPAtMnRvD56dcsC2JNH`</summary>
+
+```text
+Web search results for query: ""decomposed adversarial learning" humanoid cross-embodiment behavior skill transfer"
+
+Links: [{"title":"[2412.15166] Human-Humanoid Robots Cross-Embodiment Behavior-Skill Transfer Using Decomposed Adversarial Learning from Demonstration","url":"https://arxiv.org/abs/2412.15166"},{"title":"Human-Humanoid Robots Cross-Embodiment Behavior-Skill Transfer Using Decomposed Adversarial Learning from Demonstration","url":"https://arxiv.org/html/2412.15166"},{"title":"Human–Humanoid Robots’ Cross-Embodiment Behavior-Skill Transfer Using Decomposed Adversarial Learning From Demonstration: HOTU, a Human–Humanoid Robots’ Skill Transfer Framework | IEEE Journals & Magazine | IEEE Xplore","url":"https://ieeexplore.ieee.org/document/10859269/;jsessionid=E811ED1CD673C72519ADC87673B8812F"},{"title":"[Literature Review] Human-Humanoid Robots Cross-Embodiment Behavior-Skill Transfer Using Decomposed Adversarial Learning from Demonstration","url":"https://www.themoonlight.io/en/review/human-humanoid-robots-cross-embodiment-behavior-skill-transfer-using-decomposed-adversarial-learning-from-demonstration"},{"title":"Human-Humanoid Robots Cross-Embodiment Behavior-Skill Transfer Using Decomposed Adversarial Learning from Demonstration | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/human-humanoid-robots-cross-embodiment-behavior-skill"},{"title":"GitHub - YanjieZe/awesome-humanoid-robot-learning: A Paper List for Humanoid Robot Learning. · GitHub","url":"https://github.com/YanjieZe/awesome-humanoid-robot-learning"},{"title":"Human-Humanoid Robots Cross-Embodiment Behavior-Skill Transfer","url":"https://calinon.ch/papers/Liu-RAM2025.pdf"},{"title":"[Literature Review] UniSkill: Imitating Human Videos via Cross-Embodiment Skill Representations","url":"https://www.themoonlight.io/en/review/uniskill-imitating-human-videos-via-cross-embodiment-skill-representations"},{"title":"Paper page - DexTrack: Towards Generalizable Neural Tracking Control for Dexterous Manipulation from Human References","url":"https://huggingface.co/papers/2502.09614"},{"title":"Zhipeng Dong","url":"https://www.catalyzex.com/author/Zhipeng%20Dong"}]
+
+Based on the search results, here's what I found about decomposed adversarial learning for humanoid cross-embodiment behavior skill transfer:
+
+## Overview
+
+This research, titled "Human-Humanoid Robots Cross-Embodiment Behavior-Skill Transfer Using Decomposed Adversarial Learning from Demonstration," addresses how humanoid robots can learn from human demonstrations and transfer skills across different robot platforms.
+
+## Key Approach
+
+The model learns behavior primitives from human demonstrations through adversarial imitation, and the complex robot structures are decomposed into functional components, each trained independently and dynamically coordinated. The framework reduces the data bottleneck by using a unified digital human model as a common prototype and bypassing the need for re-training on every new robot platform.
+
+## Main Challenges Addressed
+
+Learning these skills is challenging due to the high degrees of freedom of humanoid robots, and collecting sufficient training data is laborious. Given the rapid introduction of new humanoid platforms, a cross-embodiment framework that allows generalizable skill transfer is becoming increasingly critical.
+
+## Framework Components
+
+Task generalization is achieved through a human-object interaction graph, and skills are transferred to different robots via embodiment-specific kinematic motion retargeting and dynamic fine-tuning.
+
+## Validation
+
+The framework was validated on five humanoid robots with diverse configurations, demonstrating stable loco-manipulation and highlighting its effectiveness in reducing data requirements and increasing the efficiency of skill transfer across platforms.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "eca367cd-1165-4c69-8e33-253111a7c18f",
+  "isSidechain": true,
+  "promptId": "822627e6-0b1b-4ac9-84a8-84712d5faee2",
+  "agentId": "a74092bde9cd2f2a5",
+  "type": "user",
+  "uuid": "e323133a-69fe-45b5-89e8-08f5f5a0b3bf",
+  "sourceToolAssistantUUID": "eca367cd-1165-4c69-8e33-253111a7c18f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-10T19:41:47.033Z_
+
+<details><summary>↩ Tool result · `toolu_015pjLdLGNQZSrDreHeLXEua`</summary>
+
+```text
+Web search results for query: "CurricuLLM automatic task curricula humanoid robot learning failure"
+
+Links: [{"title":"CurricuLLM: Automatic Task Curricula Design for Learning Complex","url":"https://hybrid-robotics.berkeley.edu/publications/ICRA2025_CurricuLLM.pdf"},{"title":"CurricuLLM - ICON Lab - Negar Mehr","url":"https://iconlab.negarmehr.com/CurricuLLM/"},{"title":"[2409.18382] CurricuLLM: Automatic Task Curricula Design for Learning Complex Robot Skills using Large Language Models","url":"https://arxiv.org/abs/2409.18382"},{"title":"CurricuLLM: Automatic Task Curricula Design for Learning Complex Robot Skills using Large Language Models","url":"https://arxiv.org/html/2409.18382v2"},{"title":"CurricuLLM: Automatic Task Curricula Design for Learning Complex Robot Skills using Large Language Models | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/curricullm-automatic-task-curricula-design-learning-complex"},{"title":"CurricuLLM: Automatic Task Curricula Design for Learning Complex","url":"https://www.arxiv.org/pdf/2409.18382"},{"title":"CurricuLLM: Automatic Task Curricula Design for Learning Complex Robot Skills Using Large Language Models | IEEE Conference Publication | IEEE Xplore","url":"https://ieeexplore.ieee.org/abstract/document/11128783"},{"title":"GitHub - labicon/CurricuLLM: Official code repository for CurricuLLM: Automatic Task Curricula Design for Learning Complex Robot Skills using Large Language Models · GitHub","url":"https://github.com/labicon/CurricuLLM"},{"title":"CurricuLLM: Automatic Task Curricula Des...","url":"https://axi.lims.ac.uk/paper/2409.18382"},{"title":"CurricuLLM: Automatic Task Curricula Design for Learning ...","url":"https://iconlab.negarmehr.com/CurricuLLM/static/pdfs/CurricuLLM_poster.pdf"}]
+
+Based on the search results, here's information about CurricuLLM:
+
+## Overview
+
+CurricuLLM leverages the high-level planning and programming capabilities of LLMs for curriculum design, thereby enhancing the efficient learning of complex tasks.
+
+## The Problem It Addresses
+
+Designing effective curricula for a specific task often requires extensive domain knowledge and human intervention, which limits its applicability across various domains. This is particularly challenging because curriculum learning is a training mechanism in reinforcement learning (RL) that facilitates the achievement of complex policies by progressively increasing the task difficulty during training.
+
+## How CurricuLLM Works
+
+CurricuLLM consists of: (Step 1) Generating sequence of subtasks in natural language form, (Step 2) Translating natural language description of subtasks in executable task code, including the reward code and goal distribution code, and (Step 3) Evaluating trained policies based on trajectory rollout and subtask description.
+
+## Evaluation and Results
+
+CurricuLLM is evaluated in various robotics simulation environments, ranging from manipulation, navigation, and locomotion, to show that CurricuLLM can aid learning complex robot control tasks. For humanoid robots specifically, CurricuLLM achieved comparable results with the complex human-designed reward in terms of tracking error and failure rate. Additionally, the policy trained with CurricuLLM successfully follows the command in real-world.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9a908786-b8ac-49cd-a5e2-3b6b4009f2d7",
+  "isSidechain": true,
+  "promptId": "822627e6-0b1b-4ac9-84a8-84712d5faee2",
+  "agentId": "a74092bde9cd2f2a5",
+  "type": "user",
+  "uuid": "b672bb8a-31db-40cb-8494-0f7c90c32f3f",
+  "sourceToolAssistantUUID": "9a908786-b8ac-49cd-a5e2-3b6b4009f2d7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-10T19:41:48.817Z_
+
+<details><summary>↩ Tool result · `toolu_01D4pLVQJsFRSFqEtdiuzhGU`</summary>
+
+```text
+Web search results for query: "NVIDIA GR00T Mimic synthetic motion generation humanoid data pipeline"
+
+Links: [{"title":"Building a Synthetic Motion Generation Pipeline for Humanoid Robot Learning | NVIDIA Technical Blog","url":"https://developer.nvidia.com/blog/building-a-synthetic-motion-generation-pipeline-for-humanoid-robot-learning/"},{"title":"NVIDIA Announces Isaac GR00T Blueprint to Accelerate Humanoid Robotics Development | NVIDIA Blog","url":"https://blogs.nvidia.com/blog/isaac-gr00t-blueprint-humanoid-robotics/"},{"title":"Isaac GR00T - Generalist Robot 00 Technology | NVIDIA Developer","url":"https://developer.nvidia.com/isaac/gr00t"},{"title":"Advancing Humanoid Robot Sight and Skill Development with NVIDIA Project GR00T | NVIDIA Technical Blog","url":"https://developer.nvidia.com/blog/advancing-humanoid-robot-sight-and-skill-development-with-nvidia-project-gr00t/"},{"title":"Enhance Robot Learning with Synthetic Trajectory Data Generated by World Foundation Models | NVIDIA Technical Blog","url":"https://developer.nvidia.com/blog/enhance-robot-learning-with-synthetic-trajectory-data-generated-by-world-foundation-models/"},{"title":"Exploring NVIDIA Isaac GR00T — Marvik","url":"https://www.marvik.ai/blog/exploring-nvidia-isaac-gr00t"},{"title":"Synthetic Manipulation Motion Generation for Robotics Blueprint by NVIDIA | NVIDIA NIM","url":"https://build.nvidia.com/nvidia/isaac-gr00t-synthetic-manipulation/blueprintcard"},{"title":"Use Case: NVIDIA Computing Platforms for Humanoid Robots","url":"https://www.nvidia.com/en-us/use-cases/humanoid-robots/"},{"title":"NVIDIA Advances Robot Learning, Humanoid Development With New AI and Simulation Tools | NVIDIA Blog","url":"https://blogs.nvidia.com/blog/robot-learning-humanoid-development/"},{"title":"Building Generalist Humanoid Capabilities with NVIDIA Isaac GR00T N1.6 Using a Sim-to-Real Workflow | NVIDIA Technical Blog","url":"https://developer.nvidia.com/blog/building-generalist-humanoid-capabilities-with-nvidia-isaac-gr00t-n1-6-using-a-sim-to-real-workflow/"}]
+
+Here are the search results for NVIDIA GR00T Mimic synthetic motion generation humanoid data pipeline:
+
+## Overview
+
+NVIDIA Isaac GR00T is a research initiative and development platform for developing general-purpose robot foundation models and data pipelines to accelerate humanoid robotics research and development.
+
+## GR00T-Mimic Component
+
+Isaac GR00T-Mimic is used to extrapolate from a small set of human demonstrations to create a vast number of synthetic motion trajectories, involving annotating key points in the demonstrations and using interpolation to ensure that the synthetic trajectories are smooth and contextually appropriate.
+
+## Data Pipeline Workflow
+
+The blueprint uses tools like GR00T-Mimic to generate synthetic trajectories, NVIDIA Cosmos Transfer to augment the data with photorealism, and Isaac Lab to train robot policies using imitation learning.
+
+The workflow involves several stages:
+
+1. **Data Collection**: The approach involves gathering a limited number of human demonstrations in the physical world using extended reality (XR) and spatial computing devices like the Apple Vision Pro.
+
+2. **Motion Generation**: GR00T-Mimic uses the recorded demonstrations as input to generate additional synthetic motion trajectories in Isaac Lab, supporting both single-arm and bi-manual humanoid robot manipulation.
+
+3. **Scale and Results**: The system successfully generated 1K synthetic trajectories from limited demonstrations.
+
+## Integration with Other Tools
+
+The GR00T-Mimic workflow multiplies the captured human demonstration into a larger synthetic motion dataset, while the GR00T-Gen workflow, built on NVIDIA Omniverse and NVIDIA Cosmos platforms, exponentially expands this dataset through domain randomization and 3D upscaling.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2294cd97-b8e1-4d6e-af05-8039a7f4019b",
+  "isSidechain": true,
+  "promptId": "822627e6-0b1b-4ac9-84a8-84712d5faee2",
+  "agentId": "a74092bde9cd2f2a5",
+  "type": "user",
+  "uuid": "9817ab17-1e31-444d-b3c9-b4edf096177f",
+  "sourceToolAssistantUUID": "2294cd97-b8e1-4d6e-af05-8039a7f4019b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 50 · 2026-05-10T19:41:51.248Z_
+
+Let me do a few more targeted searches on closely overlapping work.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9817ab17-1e31-444d-b3c9-b4edf096177f",
+  "isSidechain": true,
+  "agentId": "a74092bde9cd2f2a5",
+  "requestId": "req_011CauTXGbCcXN29Codojhw1",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "ca91ca3f-eceb-4089-b8c6-62de9f3be446",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M2yZL3SjWMY7c5rNv8ck3t",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6105,
+      "cache_read_input_tokens": 23148,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 6105,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-10T19:41:52.119Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RUaTUBhhTHGKZwdW49WBP9`</summary>
+
+```json
+{
+  "query": "HiFAR multi-stage curriculum humanoid fall recovery 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ca91ca3f-eceb-4089-b8c6-62de9f3be446",
+  "isSidechain": true,
+  "agentId": "a74092bde9cd2f2a5",
+  "requestId": "req_011CauTXGbCcXN29Codojhw1",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "c5c079f2-9993-4af9-ba2c-6c14a6ac5cfc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M2yZL3SjWMY7c5rNv8ck3t",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6105,
+      "cache_read_input_tokens": 23148,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 6105,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-10T19:41:53.069Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01LY7dXQ2GfmhvYUWwFEekmN`</summary>
+
+```json
+{
+  "query": "FailSafe reasoning recovery failures VLA robot policy 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c5c079f2-9993-4af9-ba2c-6c14a6ac5cfc",
+  "isSidechain": true,
+  "agentId": "a74092bde9cd2f2a5",
+  "requestId": "req_011CauTXGbCcXN29Codojhw1",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "4b3cd273-6d1e-4f93-92af-ba88d18f9084",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M2yZL3SjWMY7c5rNv8ck3t",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6105,
+      "cache_read_input_tokens": 23148,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 6105,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-10T19:41:53.592Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011SFPhBSMw2bUtBHKpyqF7g`</summary>
+
+```json
+{
+  "query": "REFLECT summarizing robot experiences failure explanation correction CoRL"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4b3cd273-6d1e-4f93-92af-ba88d18f9084",
+  "isSidechain": true,
+  "agentId": "a74092bde9cd2f2a5",
+  "requestId": "req_011CauTXGbCcXN29Codojhw1",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "842a6853-a241-4223-89bc-df397523a1ad",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M2yZL3SjWMY7c5rNv8ck3t",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6105,
+      "cache_read_input_tokens": 23148,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 6105,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-10T19:41:54.545Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01S2F3LaVMfzsVWxs4KNWryq`</summary>
+
+```json
+{
+  "query": "\"corrective data\" robot imitation learning failure guided augmentation DAgger"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "842a6853-a241-4223-89bc-df397523a1ad",
+  "isSidechain": true,
+  "agentId": "a74092bde9cd2f2a5",
+  "requestId": "req_011CauTXGbCcXN29Codojhw1",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "5d0188f9-3dd3-4498-8561-6d13100f625a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M2yZL3SjWMY7c5rNv8ck3t",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6105,
+      "cache_read_input_tokens": 23148,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 6105,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-10T19:41:55.290Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XUTQDQU4SZwi7u3brsKJYu`</summary>
+
+```json
+{
+  "query": "VisualMimic visual humanoid loco-manipulation motion tracking generation 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5d0188f9-3dd3-4498-8561-6d13100f625a",
+  "isSidechain": true,
+  "agentId": "a74092bde9cd2f2a5",
+  "requestId": "req_011CauTXGbCcXN29Codojhw1",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "ca1edde1-b805-4db7-9278-4e8ec7cddf31",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M2yZL3SjWMY7c5rNv8ck3t",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6105,
+      "cache_read_input_tokens": 23148,
+      "output_tokens": 277,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 6105
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 277,
+          "cache_read_input_tokens": 23148,
+          "cache_creation_input_tokens": 6105,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 6105,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-10T19:41:58.306Z_
+
+<details><summary>↩ Tool result · `toolu_01RUaTUBhhTHGKZwdW49WBP9`</summary>
+
+```text
+Web search results for query: "HiFAR multi-stage curriculum humanoid fall recovery 2025"
+
+Links: [{"title":"[2502.20061] HiFAR: Multi-Stage Curriculum Learning for High-Dynamics Humanoid Fall Recovery","url":"https://arxiv.org/abs/2502.20061"},{"title":"HiFAR: Multi-Stage Curriculum Learning for High-Dynamics Humanoid Fall Recovery","url":"https://hi-far.github.io/"},{"title":"HiFAR: Multi-Stage Curriculum Learning for High-Dynamics Humanoid Fall Recovery","url":"https://arxiv.org/html/2502.20061"},{"title":"Papers with Code - HiFAR: Multi-Stage Curriculum Learning for High-Dynamics Humanoid Fall Recovery","url":"https://cs.paperswithcode.com/paper/hifar-multi-stage-curriculum-learning-for"},{"title":"Wang Yushi - Homepage","url":"https://yushi.ws/"},{"title":"Papers by Changsheng Luo","url":"https://www.aimodels.fyi/author-profile/Changsheng%20Luo-dc030fe2-d849-43af-96d3-f1f175326d32"},{"title":"Learning Getting-Up Policies for Real-World Humanoid Robots","url":"https://www.researchgate.net/publication/395376623_Learning_Getting-Up_Policies_for_Real-World_Humanoid_Robots"},{"title":"GitHub - Hi-FAR/HiFAR · GitHub","url":"https://github.com/Hi-FAR/HiFAR"},{"title":"GitHub - jonyzhang2023/awesome-humanoid-learning: Humanoid Robots Resources · GitHub","url":"https://github.com/jonyzhang2023/awesome-humanoid-learning"},{"title":"[Literature Review] HiFAR: Multi-Stage Curriculum Learning for High-Dynamics Humanoid Fall Recovery","url":"https://www.themoonlight.io/en/review/hifar-multi-stage-curriculum-learning-for-high-dynamics-humanoid-fall-recovery"}]
+
+Based on the search results, I found comprehensive information about HiFAR:
+
+## HiFAR: Multi-Stage Curriculum Learning for High-Dynamics Humanoid Fall Recovery
+
+HiFAR is a multi-stage curriculum learning framework that employs a staged learning approach progressively incorporating increasingly complex and high-dimensional recovery tasks, thereby facilitating the robot's acquisition of efficient and stable fall recovery strategies.
+
+### Problem Addressed
+
+Humanoid robots encounter considerable difficulties in autonomously recovering from falls, especially within dynamic and unstructured environments. Conventional control methodologies are often inadequate in addressing the complexities associated with high-dimensional dynamics and the contact-rich nature of fall recovery. Meanwhile, reinforcement learning techniques are hindered by issues related to sparse rewards, intricate collision scenarios, and discrepancies between simulation and real-world applications.
+
+### Framework Design
+
+The multi-stage curriculum learning framework is divided into two distinct stages: The initial stage concentrates on the development of a basic fall recovery policy. In this phase, the task is constrained to two-dimensional fall scenarios (e.g., supine and prone falls), with control limited to joints operating within specific planes.
+
+### Results
+
+The efficacy of the proposed method was assessed using a real humanoid robot, showcasing its capability to autonomously recover from a diverse range of falls with high success rates, rapid recovery times, robustness, and generalization. The paper was accepted to IEEE/RSJ International Conference on Intelligent Robots and Systems 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c5c079f2-9993-4af9-ba2c-6c14a6ac5cfc",
+  "isSidechain": true,
+  "promptId": "822627e6-0b1b-4ac9-84a8-84712d5faee2",
+  "agentId": "a74092bde9cd2f2a5",
+  "type": "user",
+  "uuid": "87ec5cd0-d283-478d-aa18-e70f73003c86",
+  "sourceToolAssistantUUID": "c5c079f2-9993-4af9-ba2c-6c14a6ac5cfc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-10T19:41:59.318Z_
+
+<details><summary>↩ Tool result · `toolu_011SFPhBSMw2bUtBHKpyqF7g`</summary>
+
+```text
+Web search results for query: "REFLECT summarizing robot experiences failure explanation correction CoRL"
+
+Links: [{"title":"GitHub - real-stanford/reflect: [CoRL 2023] REFLECT: Summarizing Robot Experiences for Failure Explanation and Correction · GitHub","url":"https://github.com/real-stanford/reflect"},{"title":"REFLECT: Summarizing Robot Experiences for Failure Explanation and Correction | OpenReview","url":"https://openreview.net/forum?id=8yTS_nAILxt"},{"title":"[2306.15724] REFLECT: Summarizing Robot Experiences for Failure Explanation and Correction","url":"https://arxiv.org/abs/2306.15724"},{"title":"REFLECT: Summarizing Robot Experiences for Failure Explanation and Correction","url":"https://robot-reflect.github.io/"},{"title":"REFLECT: Summarizing Robot Experiences for FaiLure Explanation and CorrecTion","url":"https://arxiv.org/html/2306.15724"},{"title":"REFLECT: Summarizing Robot Experiences for FaiLure Explanation and CorrecTion","url":"https://proceedings.mlr.press/v229/liu23g/liu23g.pdf"},{"title":"[PDF] REFLECT: Summarizing Robot Experiences for Failure Explanation and Correction | Semantic Scholar","url":"https://www.semanticscholar.org/paper/d9823ffa34f865fb1d0adef95d64a0c352ae125f"},{"title":"Paper page - REFLECT: Summarizing Robot Experiences for Failure Explanation and Correction","url":"https://huggingface.co/papers/2306.15724"},{"title":"Issues · real-stanford/reflect","url":"https://github.com/real-stanford/reflect/issues"},{"title":"(PDF) REFLECT: Summarizing Robot Experiences for Failure Explanation and Correction","url":"https://www.researchgate.net/publication/371943660_REFLECT_Summarizing_Robot_Experiences_for_Failure_Explanation_and_Correction"}]
+
+Based on the search results, here's what I found about REFLECT:
+
+## Overview
+
+REFLECT is a framework that leverages Large Language Models (LLMs) for robot failure explanation and correction, based on a summary of robot past experiences generated from multimodal sensory data.
+
+## Framework Architecture
+
+The REFLECT framework contains three modules: a hierarchical robot summary module that summarizes multisensory robot data with three levels of abstraction, a progressive failure explanation module that queries LLM to detect and explain the failure, and a failure correction planner that generates an executable correction plan.
+
+The hierarchical robot summary is composed of: a sensory-input summary that converts multisensory robot observations (RGB-D, sound, robot states) into task-informed scene graphs and audio summary; an event-based summary that generates captions for key event frames; a subgoal-based summary that contains the end frame of each subgoal.
+
+## Key Capabilities
+
+The failure explanation can further guide a language-based planner to correct the failure and complete the task. By evaluating on a variety of tasks in both simulation and real world, the LLM-based framework is able to generate informative failure explanations that assist successful correction planning.
+
+## Dataset and Publication
+
+To systematically evaluate REFLECT, a RoboFail dataset was created, which includes 100 failure demonstrations generated in the AI2THOR simulation and 30 real-world failure demonstrations collected with a UR5e robot arm. The work was published at CoRL 2023.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "842a6853-a241-4223-89bc-df397523a1ad",
+  "isSidechain": true,
+  "promptId": "822627e6-0b1b-4ac9-84a8-84712d5faee2",
+  "agentId": "a74092bde9cd2f2a5",
+  "type": "user",
+  "uuid": "7d936c6f-604c-447b-9072-0235ab2ba17a",
+  "sourceToolAssistantUUID": "842a6853-a241-4223-89bc-df397523a1ad",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-10T19:42:00.655Z_
+
+<details><summary>↩ Tool result · `toolu_01LY7dXQ2GfmhvYUWwFEekmN`</summary>
+
+```text
+Web search results for query: "FailSafe reasoning recovery failures VLA robot policy 2025"
+
+Links: [{"title":"[2510.01642] FailSafe: Reasoning and Recovery from Failures in Vision-Language-Action Models","url":"https://arxiv.org/abs/2510.01642"},{"title":"FailSafe: Reasoning and Recovery from Failures in Vision-Language-Action Models","url":"https://arxiv.org/pdf/2510.01642"},{"title":"[PDF] FailSafe: Reasoning and Recovery from Failures in Vision-Language-Action Models | Semantic Scholar","url":"https://www.semanticscholar.org/paper/FailSafe:-Reasoning-and-Recovery-from-Failures-in-Lin-Duan/af31bfbeb448afdd18af3a74da765ca75cfbb91c"},{"title":"VLA-Forget: Vision-Language-Action Unlearning for Embodied Foundation Models","url":"https://arxiv.org/html/2604.03956v2"},{"title":"RoboFAC: A Comprehensive Framework for Robotic Failure Analysis and Correction","url":"https://arxiv.org/html/2505.12224v4"},{"title":"SAFE: Multitask Failure Detection for Vision-Language-Action Models | OpenReview","url":"https://openreview.net/forum?id=XPyAukgsFf"},{"title":"SAFE: Multitask Failure Detection for Vision-Language-Action Models","url":"https://vla-safe.github.io/"},{"title":"[2506.09937] SAFE: Multitask Failure Detection for Vision-Language-Action Models","url":"https://arxiv.org/abs/2506.09937"},{"title":"A Human-in-the-Loop Confidence-Aware Failure Recovery Framework for Modular Robot Policies","url":"https://arxiv.org/html/2602.10289"},{"title":"MITSUBISHI ELECTRIC RESEARCH LABORATORIES https://www.merl.com","url":"https://www.merl.com/publications/docs/TR2025-068.pdf"}]
+
+I found research on FailSafe, a system for robotic failure detection and recovery. Here are the key findings:
+
+## FailSafe: Reasoning and Recovery from Failures in Vision-Language-Action Models
+
+Recent advances in robotic manipulation have integrated low-level robotic control into Vision-Language Models (VLMs), extending them into Vision-Language-Action (VLA) models. Although state-of-the-art VLAs achieve strong performance in downstream robotic applications, they still inevitably encounter failures during execution.
+
+### The Problem
+
+Enabling robots to reason and recover from unpredictable and abrupt failures remains a critical challenge. Existing robotic manipulation datasets, collected in either simulation or the real world, primarily provide only ground-truth trajectories, leaving robots unable to recover once failures occur.
+
+### The Solution
+
+FailSafe is a novel failure generation and recovery system that automatically produces diverse failure cases paired with recovery actions. FailSafe can be seamlessly applied to any manipulation task in any simulator, enabling scalable creation of failure action data.
+
+### Implementation & Results
+
+The researchers fine-tuned LLaVa-OneVision-7B (LLaVa-OV-7B) to build FailSafe-VLM. Experimental results show that FailSafe-VLM successfully helps robotic arms detect and recover from potential failures, improving the performance of three state-of-the-art VLA models (pi0-FAST, OpenVLA, OpenVLA-OFT) by up to 22.6% on average across several tasks in Maniskill.
+
+The search results were published in October 2025, making this recent research from 2025 as you requested.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4b3cd273-6d1e-4f93-92af-ba88d18f9084",
+  "isSidechain": true,
+  "promptId": "822627e6-0b1b-4ac9-84a8-84712d5faee2",
+  "agentId": "a74092bde9cd2f2a5",
+  "type": "user",
+  "uuid": "46f5ef62-960a-4825-a068-79b1fb303bf3",
+  "sourceToolAssistantUUID": "4b3cd273-6d1e-4f93-92af-ba88d18f9084",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-10T19:42:01.848Z_
+
+<details><summary>↩ Tool result · `toolu_01S2F3LaVMfzsVWxs4KNWryq`</summary>
+
+```text
+Web search results for query: ""corrective data" robot imitation learning failure guided augmentation DAgger"
+
+Links: [{"title":"Diffusion Meets DAgger: Supercharging Eye-in-hand Imitation Learning","url":"https://arxiv.org/html/2402.17768v1"},{"title":"WM-DAgger: Enabling Efficient Data Aggregation for Imitation Learning with World Models","url":"https://arxiv.org/html/2604.11351"},{"title":"DAgger - imitation","url":"https://imitation.readthedocs.io/en/latest/algorithms/dagger.html"},{"title":"HG-DAgger: Interactive Imitation Learning with Human Experts | Request PDF","url":"https://www.researchgate.net/publication/335140291_HG-DAgger_Interactive_Imitation_Learning_with_Human_Experts"},{"title":"Interventional Data Generation for Robust and ...","url":"https://openreview.net/pdf?id=ckFRoOaA3n"},{"title":"CHG-DAgger: Interactive Imitation Learning with Human-Policy Cooperative Control | OpenReview","url":"https://openreview.net/forum?id=nWiHRy3ZXy"},{"title":"What Matters in DAgger? An Empirical Study on Improving Real World Robot Learning with Human Corrections","url":"https://arxiv.org/html/2506.16685v1"},{"title":"CCIL: Continuity-based Data Augmentation for Corrective Imitation Learning","url":"https://arxiv.org/html/2310.12972"},{"title":"[PDF] HG-DAgger: Interactive Imitation Learning with Human Experts | Semantic Scholar","url":"https://www.semanticscholar.org/paper/HG-DAgger:-Interactive-Imitation-Learning-with-Kelly-Sidrane/c8482a7b09a13d08bed1da2348304125ccb1a30a"},{"title":"[2310.18247] Guided Data Augmentation for Offline Reinforcement Learning and Imitation Learning","url":"https://ar5iv.labs.arxiv.org/html/2310.18247"}]
+
+Based on the search results, I found several relevant papers and resources on corrective data, robot imitation learning failure, guided augmentation, and DAgger:
+
+## Key Findings:
+
+**DAgger Foundation:** DAgger (Dataset Aggregation) iteratively trains a policy using supervised learning on a dataset of observation-action pairs from expert demonstrations, runs the policy to gather observations, queries the expert for good actions on those observations, and adds the newly labeled observations to the dataset.
+
+**Corrective Data Augmentation Approaches:**
+
+1. **CCIL (Continuity-based Data Augmentation):** CCIL introduces corrective labels and proposes a novel framework that leverages local continuity in environmental dynamics to generate corrective labels, using expert data to train a dynamics model that exhibits local continuity while skipping discontinuous regions, which can augment imitation learning with corrective labels.
+
+2. **WM-DAgger:** WM-DAgger is a novel framework that leverages World Models to synthesize physically consistent recovery data for imitation learning, integrating a Corrective Action Synthesis Module and a Consistency-Guided Filtering Module.
+
+3. **Guided Data Augmentation (GuDA):** GuDA is a human-guided data augmentation framework that generates expert-quality augmented data, with the key insight that while it may be difficult to demonstrate required action sequences, a user can easily identify when an augmented trajectory segment represents task progress and impose simple rules on the process to automatically generate augmented samples.
+
+**Interactive Approaches:** Interactive imitation learning allows demonstrators to provide corrective supervision in situations where policies require assistance, either through an alternative approach where a human supervisor provides short corrective trajectories (interventions) in states where the robot policy needs assistance.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5d0188f9-3dd3-4498-8561-6d13100f625a",
+  "isSidechain": true,
+  "promptId": "822627e6-0b1b-4ac9-84a8-84712d5faee2",
+  "agentId": "a74092bde9cd2f2a5",
+  "type": "user",
+  "uuid": "f39727aa-655a-4c7a-bdc0-497312375156",
+  "sourceToolAssistantUUID": "5d0188f9-3dd3-4498-8561-6d13100f625a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-10T19:42:02.379Z_
+
+<details><summary>↩ Tool result · `toolu_01XUTQDQU4SZwi7u3brsKJYu`</summary>
+
+```text
+Web search results for query: "VisualMimic visual humanoid loco-manipulation motion tracking generation 2025"
+
+Links: [{"title":"VisualMimic","url":"https://visualmimic.github.io/"},{"title":"GitHub - visualmimic/VisualMimic: [arXiv 2025] VisualMimic: Visual Humanoid Loco-Manipulation via Motion Tracking and Generation · GitHub","url":"https://github.com/visualmimic/VisualMimic"},{"title":"[2509.20322] VisualMimic: Visual Humanoid Loco-Manipulation via Motion Tracking and Generation","url":"https://arxiv.org/abs/2509.20322"},{"title":"VisualMimic Visual Humanoid Loco-Manipulation via Motion Tracking and Generation","url":"https://arxiv.org/html/2509.20322v1"},{"title":"[2509.20322v1] VisualMimic: Visual Humanoid Loco-Manipulation via Motion Tracking and Generation","url":"https://arxiv.org/abs/2509.20322v1"},{"title":"VisualMimic: Visual Humanoid Loco-Manipulation via Motion Tracking and Generation - Paper Detail","url":"https://deeplearn.org/arxiv/639531/visualmimic:-visual-humanoid-loco-manipulation-via-motion-tracking-and-generation"},{"title":"(PDF) VisualMimic: Visual Humanoid Loco-Manipulation via Motion Tracking and Generation","url":"https://www.researchgate.net/publication/395807090_VisualMimic_Visual_Humanoid_Loco-Manipulation_via_Motion_Tracking_and_Generation"},{"title":"VisualMimic: Hierarchical Humanoid Loco-Manipulation","url":"https://www.emergentmind.com/papers/2509.20322"},{"title":"VisualMimic: Visual Humanoid Loco-Manipulation via ...","url":"https://arxiv.org/pdf/2509.20322"},{"title":"GitHub - YanjieZe/awesome-humanoid-robot-learning: A Paper List for Humanoid Robot Learning. · GitHub","url":"https://github.com/YanjieZe/awesome-humanoid-robot-learning"}]
+
+Based on the search results, here's what I found about VisualMimic:
+
+## Overview
+
+VisualMimic: Visual Humanoid Loco-Manipulation via Motion Tracking and Generation is a 2025 arXiv paper by researchers from Stanford University: Shaofeng Yin, Yanjie Ze, Hong-Xing Yu, C. Karen Liu, and Jiajun Wu.
+
+## Key Innovation
+
+VisualMimic is a visual sim-to-real framework that unifies egocentric vision with hierarchical whole-body control for humanoid robots. It combines a task-agnostic low-level keypoint tracker—trained from human motion data via a teacher-student scheme—with a task-specific high-level policy that generates keypoint commands from visual and proprioceptive input.
+
+## Capabilities
+
+VisualMimic enables zero-shot transfer of visuomotor policies trained in simulation to real humanoid robots, accomplishing a wide range of loco-manipulation tasks such as box lifting, pushing, football dribbling, and kicking. The policies also generalize robustly to outdoor environments.
+
+## Technical Details
+
+To ensure stable training, the framework injects noise into the low-level policy and clips high-level actions using human motion statistics.
+
+## Status
+
+The paper was accepted to IROS 2025, and code will be fully open-sourced after paper acceptance.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ca1edde1-b805-4db7-9278-4e8ec7cddf31",
+  "isSidechain": true,
+  "promptId": "822627e6-0b1b-4ac9-84a8-84712d5faee2",
+  "agentId": "a74092bde9cd2f2a5",
+  "type": "user",
+  "uuid": "3ff3db7d-3da9-4601-9622-d6957c6f4d59",
+  "sourceToolAssistantUUID": "ca1edde1-b805-4db7-9278-4e8ec7cddf31",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 61 · 2026-05-10T19:42:04.825Z_
+
+Let me do a final round of targeted searches for the most closely overlapping work.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3ff3db7d-3da9-4601-9622-d6957c6f4d59",
+  "isSidechain": true,
+  "agentId": "a74092bde9cd2f2a5",
+  "requestId": "req_011CauTYGaUnUFumTZCi7inJ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "30df1ecf-c170-40a8-92a0-6305784fe877",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BJ2a834w7EKWiAe6QpBcje",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4878,
+      "cache_read_input_tokens": 29253,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4878,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62 · 2026-05-10T19:42:05.841Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WWC96HSRkoLrbiHpu9VYfv`</summary>
+
+```json
+{
+  "query": "failure mode decomposition subsystem balance locomotion manipulation robot data collection 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "30df1ecf-c170-40a8-92a0-6305784fe877",
+  "isSidechain": true,
+  "agentId": "a74092bde9cd2f2a5",
+  "requestId": "req_011CauTYGaUnUFumTZCi7inJ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "b2b9c810-fd40-4508-a456-963c32fe2706",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BJ2a834w7EKWiAe6QpBcje",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4878,
+      "cache_read_input_tokens": 29253,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4878,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-10T19:42:06.775Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_017veuyocgWN89yPT4cPZvjx`</summary>
+
+```json
+{
+  "query": "autonomous improvement robot policy failure diagnosis targeted training data generation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b2b9c810-fd40-4508-a456-963c32fe2706",
+  "isSidechain": true,
+  "agentId": "a74092bde9cd2f2a5",
+  "requestId": "req_011CauTYGaUnUFumTZCi7inJ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "86d3378d-e7a9-481a-a21b-f2242963f911",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BJ2a834w7EKWiAe6QpBcje",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4878,
+      "cache_read_input_tokens": 29253,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4878,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64 · 2026-05-10T19:42:07.252Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Xz4E2Xffb8Vg6fwghJ5LRE`</summary>
+
+```json
+{
+  "query": "LeVERB humanoid whole-body control 2025 Berkeley"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "86d3378d-e7a9-481a-a21b-f2242963f911",
+  "isSidechain": true,
+  "agentId": "a74092bde9cd2f2a5",
+  "requestId": "req_011CauTYGaUnUFumTZCi7inJ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "b79554ce-1bbe-41c3-9f41-8fba2f79f4c0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BJ2a834w7EKWiAe6QpBcje",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4878,
+      "cache_read_input_tokens": 29253,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4878,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-10T19:42:08.114Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QEAJMvLTzj736jcg2DZQ4i`</summary>
+
+```json
+{
+  "query": "WholebodyVLA unified latent VLA loco-manipulation ICLR 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b79554ce-1bbe-41c3-9f41-8fba2f79f4c0",
+  "isSidechain": true,
+  "agentId": "a74092bde9cd2f2a5",
+  "requestId": "req_011CauTYGaUnUFumTZCi7inJ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "0756e4e8-c34d-498b-a570-aaaa8a325a81",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BJ2a834w7EKWiAe6QpBcje",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4878,
+      "cache_read_input_tokens": 29253,
+      "output_tokens": 237,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 4878
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 237,
+          "cache_read_input_tokens": 29253,
+          "cache_creation_input_tokens": 4878,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 4878,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-10T19:42:13.432Z_
+
+<details><summary>↩ Tool result · `toolu_01WWC96HSRkoLrbiHpu9VYfv`</summary>
+
+```text
+Web search results for query: "failure mode decomposition subsystem balance locomotion manipulation robot data collection 2024 2025"
+
+Links: [{"title":"Preprint WHOLEBODYVLA: TOWARDS UNIFIED LATENT VLA","url":"https://opendrivelab.com/WholeBodyVLA/static/pdf/WholeBodyVLA.pdf"},{"title":"ROBOVERSE: Towards a Unified Platform, Dataset and ...","url":"https://www.roboticsproceedings.org/rss21/p022.pdf"},{"title":"Robotics: Science and Systems 2024 Delft, Netherlands, July 15-July 19, 2024","url":"https://www.roboticsproceedings.org/rss20/p059.pdf"},{"title":"Humanoid Locomotion and Manipulation: Current Progress and Challenges in Control, Planning, and Learning *co-corresponding authors","url":"https://arxiv.org/html/2501.02116v1"},{"title":"GitHub - YanjieZe/Paper-List: A paper list of my history reading. Robotics, Learning, Vision. · GitHub","url":"https://github.com/YanjieZe/Paper-List"},{"title":"Advancements in humanoid robot dynamics and learning-based locomotion control methods","url":"https://www.oaepublish.com/articles/ir.2025.32"},{"title":"Frontiers | Enabling robustness to failure with modular field robots","url":"https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2024.1225297/full"},{"title":"REVIEW www.advmat.de Multimodal Soft Robotic Actuation and Locomotion","url":"https://www.gao.caltech.edu/uploads/2/6/7/2/26723767/advanced_materials_-_2024_-_yao_-_multimodal_soft_robotic_actuation_and_locomotion.pdf"},{"title":"Learning to Leap: Humanoid Robot Box Climbing with Reinforcement Learning","url":"https://robotics.shanghaitech.edu.cn/sites/default/data/2025-04/moma2024project-h1-manipulation.pdf"},{"title":"Imitation learning for legged robot locomotion: a survey - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC12702866/"}]
+
+I've completed the web search for your query about failure mode decomposition, subsystem balance, locomotion, manipulation, robot data collection in 2024-2025. Here are the key findings:
+
+## Research Areas Found
+
+**Humanoid Locomotion and Manipulation (2024-2025)**
+
+Recent work has introduced unified latent learning, enabling joint locomotion-manipulation learning from abundant low-cost action-free videos and alleviating the scarcity of teleoperation data. A loco-manipulation-oriented (LMO) RL policy has been proposed to mitigate decision-execution misalignment via a discrete command interface tailored for loco-manipulation.
+
+**Data Collection Challenges**
+
+Datasets that integrate humanoid locomotion with manipulation are almost nonexistent, and collecting such trajectories at scale, either via Motion Capture (MoCap) or teleoperation, is prohibitively expensive.
+
+**Robustness and Failure Handling**
+
+Research on modular robotic architecture has proposed two approaches to improving the robustness of remotely deployed robots: locomotion reconfigurability, which allows robots to shift instantaneous center of rotations and change locomotion style to enable continued operation with failed actuators, and design reconfigurability, where robots eject failed modules.
+
+**Learning Approaches**
+
+Current progress in humanoid robotics includes model-based planning and control that has been the backbone for three decades, with emerging learning-based methods focusing on reinforcement learning and imitation learning that enhance versatility of loco-manipulation skills.
+
+The search results primarily focus on locomotion-manipulation integration and robustness strategies rather than specific failure mode decomposition or subsystem balance analysis techniques.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b2b9c810-fd40-4508-a456-963c32fe2706",
+  "isSidechain": true,
+  "promptId": "822627e6-0b1b-4ac9-84a8-84712d5faee2",
+  "agentId": "a74092bde9cd2f2a5",
+  "type": "user",
+  "uuid": "050e7156-b38b-47a6-86d2-c63a3238678d",
+  "sourceToolAssistantUUID": "b2b9c810-fd40-4508-a456-963c32fe2706",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-10T19:42:14.230Z_
+
+<details><summary>↩ Tool result · `toolu_01Xz4E2Xffb8Vg6fwghJ5LRE`</summary>
+
+```text
+Web search results for query: "LeVERB humanoid whole-body control 2025 Berkeley"
+
+Links: [{"title":"arXiv:2506.13751v2 [cs.RO] 19 Jun 2025 LeVERB: Humanoid Whole-Body Control","url":"https://people.eecs.berkeley.edu/~sastry/pubs/Pdfs%20of%202025/XueLeVERB2025.pdf"},{"title":"[2506.13751] LeVERB: Humanoid Whole-Body Control with Latent Vision-Language Instruction","url":"https://arxiv.org/abs/2506.13751"},{"title":"LeVERB: Humanoid Whole-Body Control with Latent Vision-Language Instruction | OpenReview","url":"https://openreview.net/forum?id=dLgFqCaXNg"},{"title":"[2506.13751v1] LeVERB: Humanoid Whole-Body Control with Latent Vision-Language Instruction","url":"http://arxiv.org/abs/2506.13751v1"},{"title":"LeVERB: Humanoid Whole-Body Control with Latent Vision-Language Instruction","url":"https://arxiv.org/html/2506.13751v1"},{"title":"LeVERB: Humanoid Whole-Body Control with Latent Vision-Language Instruction - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv250613751X/abstract"},{"title":"LeVERB","url":"https://ember-lab-berkeley.github.io/LeVERB-Website/"},{"title":"LeVERB: Humanoid Whole-Body Control with Latent Vision-Language Instruction | alphaXiv","url":"https://www.alphaxiv.org/overview/2506.13751v2"},{"title":"GitHub - YanjieZe/awesome-humanoid-robot-learning: A Paper List for Humanoid Robot Learning. · GitHub","url":"https://github.com/YanjieZe/awesome-humanoid-robot-learning"},{"title":"GitHub - OpenDriveLab/WholebodyVLA: [ICLR 2026] Towards Unified Latent VLA for Whole-body Loco-manipulation Control · GitHub","url":"https://github.com/OpenDriveLab/WholebodyVLA"}]
+
+Based on the search results, here's what I found about LeVERB:
+
+## Overview
+
+LeVERB is a hierarchical latent instruction-following framework for humanoid vision-language whole-body control (WBC), the first of its kind.
+
+## Key Features
+
+Trained entirely on synthetic data, LeVERB enables flexible, instruction-driven humanoid behavior. It can follow commands grounded in both state-space objectives (e.g., "turn left", "walk straight") and visual goals (e.g., "go to the table in front", "sit on the green chair").
+
+## Architecture
+
+At the top level, a vision-language policy learns a latent action vocabulary from synthetically rendered kinematic demonstrations; at the low level, a reinforcement-learned WBC policy consumes these latent verbs to generate dynamics-level commands.
+
+## Benchmark
+
+The researchers introduced the first sim-to-real-ready, vision-language, closed-loop benchmark for humanoid WBC, comprising over 150 tasks from 10 categories.
+
+## Performance
+
+In their benchmark, LeVERB can zero-shot attain a 80% success rate on simple visual navigation tasks, and 58.5% success rate overall, outperforming naive hierarchical whole-body VLA implementation by 7.8 times.
+
+## Authors & Affiliation
+
+The research was conducted by authors from University of California Berkeley, Norwegian University of Science and Technology, Simon Fraser University, and Carnegie Mellon University.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b79554ce-1bbe-41c3-9f41-8fba2f79f4c0",
+  "isSidechain": true,
+  "promptId": "822627e6-0b1b-4ac9-84a8-84712d5faee2",
+  "agentId": "a74092bde9cd2f2a5",
+  "type": "user",
+  "uuid": "93c7964a-afa3-4253-99c4-3b9afb329451",
+  "sourceToolAssistantUUID": "b79554ce-1bbe-41c3-9f41-8fba2f79f4c0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-10T19:42:16.081Z_
+
+<details><summary>↩ Tool result · `toolu_017veuyocgWN89yPT4cPZvjx`</summary>
+
+```text
+Web search results for query: "autonomous improvement robot policy failure diagnosis targeted training data generation"
+
+Links: [{"title":"I-FailSense: Towards General Robotic Failure Detection with Vision-Language Models","url":"https://arxiv.org/html/2509.16072"},{"title":"RoboFail: Analyzing Failures in Robot Learning Policies","url":"https://arxiv.org/html/2412.02818v1"},{"title":"From Mystery to Mastery: Failure Diagnosis for Improving Manipulation Policies","url":"https://arxiv.org/html/2412.02818v2"},{"title":"Improving Robot Controller Transparency Through Autonomous Policy Explanation | Proceedings of the 2017 ACM/IEEE International Conference on Human-Robot Interaction","url":"https://dl.acm.org/doi/10.1145/2909824.3020233"},{"title":"Enhancing Robot Safety via MLLM-Based Semantic Interpretation of Failure Data","url":"https://arxiv.org/html/2506.06570v1"},{"title":"IntervenGen: Robust Robot Imitation Learning","url":"https://www.emergentmind.com/papers/2405.01472"},{"title":"Autonomous Improvement","url":"https://auto-improvement.github.io/"},{"title":"AutoEval: Autonomous Evaluation of Generalist Robot Manipulation Policies in the Real World","url":"https://arxiv.org/html/2503.24278v1"},{"title":"(PDF) RoboFail: Analyzing Failures in Robot Learning Policies","url":"https://www.researchgate.net/publication/386455218_RoboFail_Analyzing_Failures_in_Robot_Learning_Policies"},{"title":"I-FailSense: Towards General Robotic Failure Detection with","url":"https://arxiv.org/pdf/2509.16072"}]
+
+I've performed the web search and found several highly relevant papers and resources on autonomous improvement, robot policy failure diagnosis, and targeted training data generation. Here are the key findings:
+
+## Key Research Areas Found
+
+### 1. **RoboMD: Robot Manipulation Diagnosis Framework**
+RoboMD is a systematic framework designed to automatically identify failure modes arising from unanticipated environmental changes, leveraging deep RL with both discrete and continuous action spaces to identify vulnerabilities across diverse configurations and offer actionable insights for targeted policy improvements.
+
+### 2. **SOAR: Autonomous Improvement System**
+SOAR decouples language understanding from robotic control by separating language-conditioned policy into an image-goal conditioned policy and a language-conditioned image subgoal generator, allowing autonomously collected data to be used to improve the policy with self-supervised learning algorithm. The system enabled collection of over 30,000 autonomous trajectories across more than 50 scenes within just a few weeks, achieving 2x improvement in multiple language skills.
+
+### 3. **Semantic Failure Analysis with MLLMs**
+Recent approaches automatically discover semantically meaningful failure modes from perception recordings without supervision, distilling them into human-understandable clusters that support targeted data collection, policy fine-tuning, and real-time semantic failure detection.
+
+### 4. **AutoEval: Autonomous Evaluation System**
+AutoEval is a system for autonomous evaluation of generalist robot policies in the real world that can substantially improve throughput by enabling robots to "evaluate themselves" 24/7.
+
+These systems collectively address policy failure diagnosis and targeted training data generation through autonomous methods that can improve robotic policies without extensive human intervention.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "86d3378d-e7a9-481a-a21b-f2242963f911",
+  "isSidechain": true,
+  "promptId": "822627e6-0b1b-4ac9-84a8-84712d5faee2",
+  "agentId": "a74092bde9cd2f2a5",
+  "type": "user",
+  "uuid": "bae9ffe6-eafb-4a16-8733-2099dfbb2181",
+  "sourceToolAssistantUUID": "86d3378d-e7a9-481a-a21b-f2242963f911",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-10T19:42:17.185Z_
+
+<details><summary>↩ Tool result · `toolu_01QEAJMvLTzj736jcg2DZQ4i`</summary>
+
+```text
+Web search results for query: "WholebodyVLA unified latent VLA loco-manipulation ICLR 2026"
+
+Links: [{"title":"GitHub - OpenDriveLab/WholebodyVLA: [ICLR 2026] Towards Unified Latent VLA for Whole-body Loco-manipulation Control · GitHub","url":"https://github.com/OpenDriveLab/WholebodyVLA"},{"title":"WholeBodyVLA: Towards Unified Latent VLA for Whole-body Loco-manipulation Control | OpenReview","url":"https://openreview.net/forum?id=OCJmVjyzN7"},{"title":"WholebodyVLA/README.md at main · OpenDriveLab/WholebodyVLA","url":"https://github.com/OpenDriveLab/WholebodyVLA/blob/main/README.md"},{"title":"[2512.11047] WholeBodyVLA: Towards Unified Latent VLA for Whole-Body Loco-Manipulation Control","url":"https://arxiv.org/abs/2512.11047"},{"title":"WHOLEBODYVLA: TOWARDS UNIFIED LATENT VLA","url":"https://openreview.net/pdf/579ba365d7c59e61b47f4b8efa00c06c9b2e22ea.pdf"},{"title":"Pull requests · OpenDriveLab/WholebodyVLA","url":"https://github.com/OpenDriveLab/WholebodyVLA/pulls"},{"title":"Preprint WHOLEBODYVLA: TOWARDS UNIFIED LATENT VLA","url":"https://opendrivelab.com/WholeBodyVLA/static/pdf/WholeBodyVLA.pdf"},{"title":"WholeBodyVLA: Towards Unified Latent VLA for Whole-Body Loco-Manipulation Control","url":"https://arxiv.org/html/2512.11047v1"},{"title":"WholeBodyVLA: Towards Unified Latent VLA for Whole-body Loco-manipulation Control","url":"https://wholebodyvla.github.io/"},{"title":"WholeBodyVLA: Towards Unified Latent VLA for Whole-Body Loco-Manipulation Control | alphaXiv","url":"https://www.alphaxiv.org/resources/2512.11047v2"}]
+
+## WholeBodyVLA: Towards Unified Latent VLA for Whole-body Loco-manipulation Control
+
+I found comprehensive information about this research paper. Here's what WholeBodyVLA is:
+
+### Overview
+WholeBodyVLA is a unified Vision-Language-Action framework for large-space humanoid loco-manipulation. The paper was published at ICLR 2026 by researchers from OpenDriveLab.
+
+### Key Technical Contributions
+It learns unified latent actions from action-free egocentric videos through a Latent Action Model (LAM), and employs a loco-manipulation-oriented (LMO) RL policy for precise and stable whole-body coordination.
+
+The research addresses two main challenges:
+1. A unified latent learning framework that enables Vision-Language-Action (VLA) system to learn from low-cost action-free egocentric videos
+2. A loco–manipulation–oriented (LMO) RL policy specifically tailored for accurate and stable core loco-manipulation movements, such as advancing, turning, and squatting.
+
+### Performance and Results
+It is verified via comprehensive experiments on the AgiBot X2 humanoid, outperforming prior baseline by 21.3%. It also demonstrates strong generalization and high extensibility across a broad range of tasks.
+
+### Availability
+The paper and code are available on the [GitHub repository](https://github.com/OpenDriveLab/WholebodyVLA) and on [arXiv](https://arxiv.org/abs/2512.11047).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0756e4e8-c34d-498b-a570-aaaa8a325a81",
+  "isSidechain": true,
+  "promptId": "822627e6-0b1b-4ac9-84a8-84712d5faee2",
+  "agentId": "a74092bde9cd2f2a5",
+  "type": "user",
+  "uuid": "99e2936e-1766-4c57-88cb-31a27c9bcf75",
+  "sourceToolAssistantUUID": "0756e4e8-c34d-498b-a570-aaaa8a325a81",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70 · 2026-05-10T19:42:20.123Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Hh1v8usgCHPfjAuFxhN9iQ`</summary>
+
+```json
+{
+  "query": "SOAR autonomous improvement robot data collection self-supervised 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "99e2936e-1766-4c57-88cb-31a27c9bcf75",
+  "isSidechain": true,
+  "agentId": "a74092bde9cd2f2a5",
+  "requestId": "req_011CauTZMtFDxLTJBG4BNyrP",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "09078967-7765-4443-8c29-59971cfdd9e1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0125kCKpv4zXLUmRTjbJPVPr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4055,
+      "cache_read_input_tokens": 34131,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4055,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 35,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-10T19:42:20.658Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01PHU3HnE6wimc3wndArjmzU`</summary>
+
+```json
+{
+  "query": "IntervenGen robust robot imitation learning failure intervention data 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "09078967-7765-4443-8c29-59971cfdd9e1",
+  "isSidechain": true,
+  "agentId": "a74092bde9cd2f2a5",
+  "requestId": "req_011CauTZMtFDxLTJBG4BNyrP",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "979729b2-608d-424f-b0f3-c7871ad0d106",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0125kCKpv4zXLUmRTjbJPVPr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4055,
+      "cache_read_input_tokens": 34131,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4055,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 35,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72 · 2026-05-10T19:42:21.295Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TfWv3Yo93wXHkd5tC4ttDT`</summary>
+
+```json
+{
+  "query": "semantic failure mode clustering robot policy improvement targeted data collection 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "979729b2-608d-424f-b0f3-c7871ad0d106",
+  "isSidechain": true,
+  "agentId": "a74092bde9cd2f2a5",
+  "requestId": "req_011CauTZMtFDxLTJBG4BNyrP",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "3f4f4607-bb74-447d-8c59-dc5aadbde9bf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0125kCKpv4zXLUmRTjbJPVPr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4055,
+      "cache_read_input_tokens": 34131,
+      "output_tokens": 163,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 4055
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 163,
+          "cache_read_input_tokens": 34131,
+          "cache_creation_input_tokens": 4055,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 4055,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-10T19:42:28.217Z_
+
+<details><summary>↩ Tool result · `toolu_01Hh1v8usgCHPfjAuFxhN9iQ`</summary>
+
+```text
+Web search results for query: "SOAR autonomous improvement robot data collection self-supervised 2024"
+
+Links: [{"title":"Autonomous Improvement","url":"https://auto-improvement.github.io/"},{"title":"GitHub - rail-berkeley/soar: Code release for paper \"Autonomous Improvement of Instruction Following Skills via Foundation Models\" | CoRL 2024 · GitHub","url":"https://github.com/rail-berkeley/soar"},{"title":"Autonomous Improvement of Instruction Following Skills via Foundation Models","url":"https://soar-autonomous-improvement.github.io/"},{"title":"SOAR: Autonomous Improvement of ...","url":"https://auto-improvement.github.io/static/paper.pdf"},{"title":"Autonomous Improvement of Instruction Following Skills via Foundation Models","url":"https://arxiv.org/html/2407.20635v1"},{"title":"Soar Robotics — Republic","url":"https://republic.com/soar-robotics"},{"title":"So You Think You Can Scale Up Autonomous Robot Data Collection?","url":"https://arxiv.org/html/2411.01813"},{"title":"Autonomous Improvement of Instruction Following Skills via Foundation Models | Oier Mees","url":"https://www.oiermees.com/publication/soar/"},{"title":"Autonomy - SoarTech","url":"https://soartech.com/expertise/autonomy/"},{"title":"GitHub - YanjieZe/Paper-List: A paper list of my history reading. Robotics, Learning, Vision. · GitHub","url":"https://github.com/YanjieZe/Paper-List"}]
+
+Based on the search results, here's what I found about SOAR:
+
+## Overview
+
+SOAR is an approach to autonomously improve instruction following policies leveraging foundation models. SOAR is a general-purpose robot learning system capable of autonomously improving instruction following policies.
+
+## Key Components
+
+SOAR breaks down the autonomous improvement problem into components that import Internet-scale knowledge from VLMs and a component that learns from autonomous data with a purely self-supervised objective. Specifically:
+
+- VLMs and diffusion models are used to help guide large-scale autonomous data collection.
+- The approach decouples language understanding from robotic control, so semantic understanding benefits from internet-scale pre-training and low-level control improve with self-supervision.
+- Any autonomously collected data can be used to improve the policy with an entirely self-supervised learning algorithm, namely hindsight-relabeled goal-conditioned learning.
+
+## Data Collection
+
+SOAR was deployed on a fleet of 5 WidowX robots, enabling the collection of over 30,000 autonomous trajectories across more than 50 scenes within just a few weeks. SOAR-Data is similar in size compared to other current robotic datasets, but is collected under much smaller time frames (in a matter of weeks) with minimal human effort in the loop.
+
+## Dataset Details
+
+SOAR-Data consists of more than 25,000 trajectories (2.5M transitions) collected with over 50 different sets of objects across 5 different table top setups. Each trajectory in SOAR-Data comes with language annotations (from a VLM), 5 commanded subgoal images generated by SuSIE during one episode, and a task success label predicted by the VLM.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "09078967-7765-4443-8c29-59971cfdd9e1",
+  "isSidechain": true,
+  "promptId": "822627e6-0b1b-4ac9-84a8-84712d5faee2",
+  "agentId": "a74092bde9cd2f2a5",
+  "type": "user",
+  "uuid": "0a423de3-ccb8-4f4e-ba4b-af7d274a6eef",
+  "sourceToolAssistantUUID": "09078967-7765-4443-8c29-59971cfdd9e1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-10T19:42:30.099Z_
+
+<details><summary>↩ Tool result · `toolu_01TfWv3Yo93wXHkd5tC4ttDT`</summary>
+
+```text
+Web search results for query: "semantic failure mode clustering robot policy improvement targeted data collection 2025"
+
+Links: [{"title":"Enhancing Robot Safety via MLLM-Based Semantic Interpretation of Failure Data","url":"https://mllm-failure-clustering.github.io/"},{"title":"[2506.06570] Unsupervised Discovery of Failure Taxonomies from Deployment Logs","url":"https://arxiv.org/abs/2506.06570"},{"title":"Enhancing Robot Safety via MLLM-Based Semantic Interpretation of Failure Data","url":"https://arxiv.org/html/2506.06570v1"},{"title":"Unsupervised Discovery of Failure Taxonomies from Deployment Logs","url":"https://arxiv.org/html/2506.06570"},{"title":"Enhancing Robot Safety via MLLM-Based Semantic Interpretation of Failure Data","url":"https://openreview.net/pdf/a33626dc61ed90ba34de4525bd0f633dd1cf878b.pdf"},{"title":"From Mystery to Mastery: Failure Diagnosis for Improving Manipulation Policies","url":"https://arxiv.org/html/2412.02818v2"},{"title":"Real-Time Out-of-Distribution Failure Prevention via Multi-Modal Reasoning","url":"https://arxiv.org/html/2505.10547.pdf"},{"title":"Language-Driven Semantic Clustering of Failures for ...","url":"https://arxiv.org/pdf/2506.06570"},{"title":"Ctrl-World: A Controllable Generative World Model for Robot Manipulation","url":"https://arxiv.org/html/2510.10125v1"},{"title":"RoboFail: Analyzing Failures in Robot Learning Policies","url":"https://arxiv.org/html/2412.02818v1"}]
+
+I found relevant research on this topic. Here are the key findings:
+
+## Overview
+
+The search results reveal recent work on semantic failure mode clustering and its application to robot policy improvement through targeted data collection, particularly from 2025 research.
+
+## Key Research
+
+The primary research addresses unsupervised discovery of failure taxonomies from large volumes of raw failure logs, aiming to obtain semantically coherent and actionable failure modes directly from perceptual trajectories.
+
+## Methodology
+
+The approach first infers structured failure explanations from multimodal inputs using vision-language reasoning, and then performs clustering in the resulting semantic reasoning space, enabling the discovery of recurring failure modes rather than isolated episode-level descriptions. The approach leverages the reasoning capabilities of Multimodal Large Language Models (MLLMs), trained on internet-scale data, to infer high-level failure causes from raw perceptual trajectories and discover interpretable structure within uncurated failure logs.
+
+## Applications to Policy Improvement
+
+Structured failure taxonomies guide targeted data collection for offline policy refinement and enhance runtime failure monitoring systems. A concrete example demonstrates effectiveness: Using the discovered clusters to guide expert data collection in targeted regions of the environment, the robot policy was fine-tuned on this augmented dataset, with the failure rate in sampled trajectories dropping from 46% to 18%, demonstrating enhanced safety in previously failure-prone situations.
+
+## Evaluation Domains
+
+The method was evaluated across robotic manipulation, indoor navigation, and autonomous driving domains, demonstrating that the discovered taxonomies are consistent, interpretable, and practically useful.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3f4f4607-bb74-447d-8c59-dc5aadbde9bf",
+  "isSidechain": true,
+  "promptId": "822627e6-0b1b-4ac9-84a8-84712d5faee2",
+  "agentId": "a74092bde9cd2f2a5",
+  "type": "user",
+  "uuid": "a258ac4b-1198-4d8b-8a5c-4540958472ec",
+  "sourceToolAssistantUUID": "3f4f4607-bb74-447d-8c59-dc5aadbde9bf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 75 · 2026-05-10T19:42:31.516Z_
+
+<details><summary>↩ Tool result · `toolu_01PHU3HnE6wimc3wndArjmzU`</summary>
+
+```text
+Web search results for query: "IntervenGen robust robot imitation learning failure intervention data 2024 2025"
+
+Links: [{"title":"IntervenGen","url":"https://sites.google.com/view/intervengen2024"},{"title":"[2405.01472] IntervenGen: Interventional Data Generation for Robust and Data-Efficient Robot Imitation Learning","url":"https://arxiv.org/abs/2405.01472"},{"title":"IntervenGen: Robust Robot Imitation Learning","url":"https://www.emergentmind.com/papers/2405.01472"},{"title":"IntervenGen: Interventional Data Generation for Robust and Data-Efficient Robot Imitation Learning","url":"https://arxiv.org/html/2405.01472v1"},{"title":"IntervenGen: Interventional Data Generation for Robust and Data-Efficient Robot Imitation Learning | IEEE Conference Publication | IEEE Xplore","url":"https://ieeexplore.ieee.org/iel8/10801246/10801290/10801523.pdf"},{"title":"Interventional Data Generation for Robust and Data-Efficient Robot Imitation Learning | Research","url":"https://research.nvidia.com/publication/2024-10_interventional-data-generation-robust-and-data-efficient-robot-imitation"},{"title":"Interventional Data Generation for Robust and Data-Efficient Robot Imitation Learning | OpenReview","url":"https://openreview.net/forum?id=ckFRoOaA3n"},{"title":"Interventional Data Generation for Robust and ...","url":"https://openreview.net/pdf?id=ckFRoOaA3n"},{"title":"IntervenGen: Interventional Data Generation for Robust and Data-Efficient Robot Imitation Learning | Request PDF","url":"https://www.researchgate.net/publication/387422420_IntervenGen_Interventional_Data_Generation_for_Robust_and_Data-Efficient_Robot_Imitation_Learning"},{"title":"IntervenGen: Interventional Data Generation for Robust and Data-Efficient Robot Imitation Learning | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/intervengen-interventional-data-generation-robust-data-efficient"}]
+
+Based on the search results, here's what I found about IntervenGen:
+
+## Overview
+
+IntervenGen (I-Gen) is a novel data generation system that can autonomously produce a large set of corrective interventions with rich coverage of the state space from a small number of human interventions.
+
+## Problem It Addresses
+
+Interactive imitation learning approaches like DAgger have humans provide corrective interventions during policy rollouts, but collecting a sufficient amount of interventions to cover the distribution of policy mistakes can be burdensome for human operators.
+
+## Key Features
+
+IntervenGen automatically generates large datasets of synthetic corrective interventions from a handful of human interventions, with coverage across both diverse scene configurations and policy mistake distributions.
+
+## Performance Results
+
+In tests involving high-precision manipulation tasks, robots trained with I-Gen enhanced their robustness to errors by up to 39 times with merely 10 human-derived interventions. Additionally, policies using I-Gen data outperformed those trained with over ten times more direct human intervention data, showing both effectiveness and efficiency.
+
+## Real Robot Experiments
+
+Real robot experiments were conducted with a Franka Emika Panda robot for a cube grasping task, where the robot must reach and grasp a 5 cm x 5 cm x 5 cm cube randomly positioned in a 20 cm x 30 cm region.
+
+The paper was published in May 2024 and represents an advancement in making robot imitation learning more efficient and robust.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "979729b2-608d-424f-b0f3-c7871ad0d106",
+  "isSidechain": true,
+  "promptId": "822627e6-0b1b-4ac9-84a8-84712d5faee2",
+  "agentId": "a74092bde9cd2f2a5",
+  "type": "user",
+  "uuid": "17de187d-9cda-48f2-b630-6d82f3fbb271",
+  "sourceToolAssistantUUID": "979729b2-608d-424f-b0f3-c7871ad0d106",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 76 · 2026-05-10T19:43:55.056Z_
+
+Now I have comprehensive results. Here is the full report.
+
+---
+
+## Exhaustive Literature Search Report: "Failure-Guided Procedural Data Generation for Humanoid Robots"
+
+I conducted 18 web searches across your 10 query themes plus targeted follow-ups. Below are the most relevant papers organized by threat level to novelty, from highest overlap to supporting/adjacent work.
+
+---
+
+### HIGH OVERLAP -- Papers the authors MUST cite and differentiate from
+
+**1. "Unsupervised Discovery of Failure Taxonomies from Deployment Logs" (aka "Enhancing Robot Safety via MLLM-Based Semantic Interpretation of Failure Data")**
+- Venue: arXiv, June 2025
+- Uses MLLMs to automatically discover semantically meaningful failure mode clusters from robot deployment logs, then uses those clusters to **guide targeted data collection** for policy fine-tuning. Demonstrated dropping failure rate from 46% to 18% by collecting data specifically in failure-prone regions. This is arguably the closest existing work: failure diagnosis leading to targeted data collection for policy improvement. The key difference is that this paper does not decompose failures into kinematic subsystems, and is not humanoid-specific.
+- [Paper](https://arxiv.org/abs/2506.06570)
+
+**2. RoboFail / "From Mystery to Mastery: Failure Diagnosis for Improving Manipulation Policies"**
+- Venue: arXiv, December 2024
+- Uses deep RL to proactively discover failure modes in robot manipulation policies by searching over environment configurations. Quantifies failure mode probabilities and provides structured failure analysis. Directly addresses failure diagnosis for policy improvement, though it does not close the loop with targeted data generation or humanoid-specific decomposition.
+- [Paper](https://arxiv.org/abs/2412.02818)
+
+**3. RESample: A Robust Data Augmentation Framework via Exploratory Sampling for Robotic Manipulation**
+- Venue: Submitted to ICRA 2026 (arXiv Oct 2025)
+- Automatically generates failure/recovery augmentation data for VLA models by using offline RL to identify sub-optimal actions, then sampling OOD states and generating corrective trajectories. This is a **failure-aware data generation** pipeline, though it operates at the trajectory/action level rather than decomposing into kinematic subsystems, and targets manipulation arms rather than humanoids.
+- [Paper](https://arxiv.org/abs/2510.17640)
+
+**4. RACER: Rich Language-Guided Failure Recovery Policies for Imitation Learning**
+- Venue: ICRA 2025
+- Proposes a **scalable failure recovery data augmentation pipeline** that automatically generates failure trajectories from expert demos and pairs them with rich language descriptions for training recovery policies. The data pipeline aspect directly overlaps with the proposed work's procedural demo generation from failures, though RACER uses language guidance rather than kinematic decomposition and targets table-top manipulation.
+- [Paper](https://arxiv.org/abs/2409.14674)
+
+**5. FailSafe: Reasoning and Recovery from Failures in Vision-Language-Action Models**
+- Venue: arXiv, October 2025
+- A **failure generation and recovery system** that automatically produces diverse failure cases paired with recovery actions for any manipulation task in any simulator. Improves VLA models by up to 22.6%. Overlaps with the proposed work's failure-guided data generation, but does not decompose failures by kinematic subsystem or target humanoids.
+- [Paper](https://arxiv.org/abs/2510.01642)
+
+**6. IntervenGen: Interventional Data Generation for Robust and Data-Efficient Robot Imitation Learning**
+- Venue: CoRL 2024 (NVIDIA Research)
+- Autonomously generates large sets of **corrective interventions** from a small number of human interventions, covering diverse policy mistake distributions. Achieved 39x improvement in robustness to errors. This is targeted corrective data generation from identified failure states, conceptually close to failure-guided data generation.
+- [Paper](https://arxiv.org/abs/2405.01472)
+
+---
+
+### SIGNIFICANT RELEVANCE -- Papers with partial overlap on key components
+
+**7. RoboFAC: A Comprehensive Framework for Robotic Failure Analysis and Correction**
+- Venue: arXiv, May 2025
+- A multimodal framework for task understanding, failure analysis, and failure correction with 9,440 erroneous manipulation trajectories. Outperforms GPT-4o by 34.1% on failure analysis. Relevant for the failure analysis component but does not generate new training data from failures.
+- [Paper](https://arxiv.org/abs/2505.12224)
+
+**8. HOTU: Human-Humanoid Robots Cross-Embodiment Behavior-Skill Transfer Using Decomposed Adversarial Learning from Demonstration**
+- Venue: IEEE RAM 2025 (arXiv Dec 2024)
+- **Decomposes complex humanoid robot structures into functional components**, each trained independently and dynamically coordinated. Directly relevant to the kinematic subsystem decomposition aspect of the proposed work, though it is used for skill transfer rather than failure-guided data generation.
+- [Paper](https://arxiv.org/abs/2412.15166)
+
+**9. OmniRetarget: Interaction-Preserving Data Generation for Humanoid Whole-Body Loco-Manipulation and Scene Interaction**
+- Venue: arXiv, September 2025
+- A **data generation engine for humanoid loco-manipulation** that retargets human motions while preserving interactions. Generated 8+ hours of trajectories for Unitree G1. Directly relevant as a humanoid data generation pipeline, though it is not failure-guided.
+- [Paper](https://arxiv.org/abs/2509.26633)
+
+**10. DemoGen: Synthetic Demonstration Generation for Data-Efficient Visuomotor Policy Learning**
+- Venue: RSS 2025
+- Generates hundreds of spatially-augmented synthetic demonstrations from a single human demo in seconds using TAMP-inspired decomposition of trajectories into segments. Reduces human effort by 20x. Relevant as a **procedural demonstration generation** system, though not failure-guided or humanoid-specific.
+- [Paper](https://arxiv.org/abs/2502.16932)
+
+**11. HiFAR: Multi-Stage Curriculum Learning for High-Dynamics Humanoid Fall Recovery**
+- Venue: IROS 2025
+- Uses multi-stage curriculum learning for humanoid fall recovery, progressively incorporating complex recovery tasks. Relevant for the **humanoid failure recovery** and curriculum aspects, though it does not generate procedural demonstrations.
+- [Paper](https://arxiv.org/abs/2502.20061)
+
+**12. CurricuLLM: Automatic Task Curricula Design for Learning Complex Robot Skills using Large Language Models**
+- Venue: ICRA 2025
+- Uses LLMs to automatically design task curricula with progressive difficulty, evaluated on humanoid robots. Relevant for **automated curriculum design** based on performance, though it does not analyze failures or decompose them into subsystems.
+- [Paper](https://arxiv.org/abs/2409.18382)
+
+**13. SOAR: Autonomous Improvement of Instruction Following Skills via Foundation Models**
+- Venue: CoRL 2024
+- A **self-improving robot data pipeline** that autonomously collects 30,000+ trajectories and improves policies using self-supervised learning. Relevant as a closed-loop autonomous improvement system, though not failure-guided or humanoid-specific.
+- [Paper](https://arxiv.org/abs/2407.20635)
+
+---
+
+### CONTEXTUALLY RELEVANT -- Papers on the broader landscape
+
+**14. WholeBodyVLA: Towards Unified Latent VLA for Whole-body Loco-manipulation Control**
+- Venue: ICLR 2026
+- Unified latent VLA for humanoid loco-manipulation that learns from action-free videos. Relevant as the state-of-the-art humanoid loco-manipulation policy that the proposed data generation could potentially improve.
+- [Paper](https://arxiv.org/abs/2512.11047)
+
+**15. VisualMimic: Visual Humanoid Loco-Manipulation via Motion Tracking and Generation**
+- Venue: IROS 2025
+- Hierarchical whole-body control framework for humanoid loco-manipulation with sim-to-real transfer. Relevant as a target policy architecture.
+- [Paper](https://arxiv.org/abs/2509.20322)
+
+**16. LeVERB: Humanoid Whole-Body Control with Latent Vision-Language Instruction**
+- Venue: arXiv, June 2025 (Berkeley)
+- Hierarchical framework for humanoid WBC trained on synthetic data. Relevant as a competing humanoid whole-body control approach.
+- [Paper](https://arxiv.org/abs/2506.13751)
+
+**17. PhysicsGen: Simulation-Based Data Generation Pipeline**
+- Venue: MIT, 2025
+- Turns 24 human demos into thousands of simulated ones via physics-based simulation, achieving 60% improvement. Relevant as a **procedural data generation pipeline** for dexterous manipulation.
+- [PhysicsGen Website](https://lujieyang.github.io/physicsgen/)
+
+**18. NVIDIA Isaac GR00T-Mimic Blueprint**
+- Industry: NVIDIA, 2025-2026
+- Generated 780K synthetic trajectories in 11 hours from few human demos, improving GR00T N1 by 40%. Relevant as the industrial state-of-the-art for **humanoid synthetic data generation**.
+- [NVIDIA Blog](https://developer.nvidia.com/blog/building-a-synthetic-motion-generation-pipeline-for-humanoid-robot-learning/)
+
+**19. WM-DAgger: Enabling Efficient Data Aggregation with World Models**
+- Venue: arXiv, April 2026
+- Uses world models to synthesize corrective recovery data for imitation learning. Relevant as a failure-corrective data synthesis approach.
+- [Paper](https://arxiv.org/html/2604.11351)
+
+**20. CCIL: Continuity-based Data Augmentation for Corrective Imitation Learning**
+- Venue: arXiv, October 2023
+- Generates corrective labels using local continuity in dynamics. Foundational work on corrective data augmentation.
+- [Paper](https://arxiv.org/html/2310.12972)
+
+**21. "So You Think You Can Scale Up Autonomous Robot Data Collection?"**
+- Venue: arXiv, November 2024
+- Finds that autonomous data collection faces major scaling challenges and that **targeted human data helps much more than random autonomous data**. Directly motivates the proposed work's targeted approach.
+- [Paper](https://arxiv.org/abs/2411.01813)
+
+---
+
+### ASSESSMENT OF NOVELTY
+
+The proposed idea's **specific combination** -- (1) decomposing failures into kinematic subsystem contributions (balance, locomotion, manipulation, coordination) and (2) using that decomposition to parameterize procedural demo generation -- does appear to be novel. However, the authors face significant differentiation challenges:
+
+**Strongest threats to novelty:**
+- The "Unsupervised Discovery of Failure Taxonomies" paper (item 1) already closes the loop from failure clustering to targeted data collection to policy improvement. The proposed work would need to argue that kinematic subsystem decomposition is fundamentally better than semantic clustering for humanoids.
+- HOTU (item 8) already decomposes humanoid structures into functional components for learning. Combining this with failure analysis is an incremental (though valuable) step.
+- RESample, RACER, FailSafe, and IntervenGen (items 3-6) all generate corrective/failure-recovery data automatically. The proposed work needs to clearly articulate why subsystem-level failure attribution produces better training signal than trajectory-level failure detection.
+
+**Recommended differentiators the authors should emphasize:**
+- The kinematic subsystem decomposition (balance/locomotion/manipulation/coordination) as a structured prior specific to humanoid morphology
+- The use of decomposed failure attribution to parameterize (not just trigger) demo generation -- i.e., generating qualitatively different data depending on which subsystem failed
+- Evaluation on full humanoid loco-manipulation rather than table-top manipulation
+
+Sources:
+- [Unsupervised Discovery of Failure Taxonomies](https://arxiv.org/abs/2506.06570)
+- [RoboFail](https://arxiv.org/abs/2412.02818)
+- [RESample](https://arxiv.org/abs/2510.17640)
+- [RACER](https://arxiv.org/abs/2409.14674)
+- [FailSafe](https://arxiv.org/abs/2510.01642)
+- [IntervenGen](https://arxiv.org/abs/2405.01472)
+- [RoboFAC](https://arxiv.org/abs/2505.12224)
+- [HOTU Decomposed Adversarial Learning](https://arxiv.org/abs/2412.15166)
+- [OmniRetarget](https://arxiv.org/abs/2509.26633)
+- [DemoGen](https://arxiv.org/abs/2502.16932)
+- [HiFAR](https://arxiv.org/abs/2502.20061)
+- [CurricuLLM](https://arxiv.org/abs/2409.18382)
+- [SOAR](https://arxiv.org/abs/2407.20635)
+- [WholeBodyVLA](https://arxiv.org/abs/2512.11047)
+- [VisualMimic](https://arxiv.org/abs/2509.20322)
+- [LeVERB](https://arxiv.org/abs/2506.13751)
+- [PhysicsGen](https://lujieyang.github.io/physicsgen/)
+- [NVIDIA GR00T-Mimic](https://developer.nvidia.com/blog/building-a-synthetic-motion-generation-pipeline-for-humanoid-robot-learning/)
+- [WM-DAgger](https://arxiv.org/html/2604.11351)
+- [CCIL](https://arxiv.org/html/2310.12972)
+- [Scaling Autonomous Data Collection](https://arxiv.org/abs/2411.01813)
+- [REFLECT](https://arxiv.org/abs/2306.15724)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "17de187d-9cda-48f2-b630-6d82f3fbb271",
+  "isSidechain": true,
+  "agentId": "a74092bde9cd2f2a5",
+  "requestId": "req_011CauTaR9E79cF6r6pmmkmA",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "aeeb8054-36d7-4c75-9290-e9b3642f802f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d7edff2e-bfa1-47b2-b8be-d343fde6e072",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015QQEYowc1xafSpGsv1m26U",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 836,
+      "cache_creation_input_tokens": 1905,
+      "cache_read_input_tokens": 38186,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1905,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---

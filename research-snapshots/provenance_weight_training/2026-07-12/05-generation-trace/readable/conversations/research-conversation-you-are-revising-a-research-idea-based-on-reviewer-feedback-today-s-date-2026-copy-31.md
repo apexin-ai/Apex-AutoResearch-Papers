@@ -1,0 +1,3329 @@
+# Research conversation: You are revising a research idea based on reviewer feedback. **Today's date: 2026-05-11 (UTC).** ## Original idea { "tit
+
+**When Does Detect-and-Reweight Work for Synthetic Contamination? (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 51
+- **Recorded user turns:** 1
+- **Tool calls:** 12
+- **Original source:** `logs/chats/exported-trajectories/account-3/518af693-e78b-4645-b459-0ed2fcc8e91c.jsonl`
+- **Structured JSON:** [`23e312798abd1fa188d7.json`](../../sessions/23/23e312798abd1fa188d7.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-12T01:17:25.298Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-12T01:17:25.298Z",
+  "sessionId": "518af693-e78b-4645-b459-0ed2fcc8e91c",
+  "content": "You are revising a research idea based on reviewer feedback.\n\n**Today's date: 2026-05-11 (UTC).**\n\n## Original idea\n{\n  \"title\": \"Convergence-Informed Provenance Weighting for Recursive Web Contamination\",\n  \"core_problem\": \"Web-scraped training corpora contain an unknown and growing fraction of synthetic text at multiple recursive generation depths, creating feedback loops that degrade model quality. Recent convergence theory (arXiv 2602.16065) proves that training outcomes depend on min(baseline_rate, real_data_fraction), and the Strong Model Collapse result (Dohmatob et al., ICLR 2025 Spotlight) shows that even 0.1% synthetic contamination causes collapse under static mixing — with larger models amplifying the effect. However, no practical pipeline estimates the real-data fraction from unlabeled web data or translates convergence insights into principled training weights. Existing detector-guided resampling (arXiv 2502.15654) treats its weighting exponent as a hyperparameter, tests only single-generator contamination on a small curated dataset (WikiText-2), and does not investigate whether generation depth — a key theoretical variable in collapse dynamics — is classifiable from text alone. A further complication is that the convergence bound requires convex distance metrics (Assumption A2), which excludes cross-entropy and KL divergence — the standard language model training objectives — creating a theory-practice gap. Crucially, no general inequality bridges this gap in the needed direction: Pinsker's inequality gives small KL → small TV, but convergence under A2-compatible metrics (TV, Wasserstein, MMD) does not imply convergence under cross-entropy. This necessitates empirical dual-metric validation rather than a purely theoretical bridge.\",\n  \"opportunity\": \"Four disconnected research threads address parts of this problem but leave a critical integration gap. (1) Convergence theory (arXiv 2602.16065, Feb 2026) provides the bound d(ℙ̂_t, ℙ_0) ≲ t^{−min{p,α}} — the first positive theoretical result on recursive training without distributional assumptions — but restricts d to convex metrics (total variation, Wasserstein-p, MMD), explicitly excluding cross-entropy/KL, and offers no detection or weighting method. (2) Detector-guided resampling (arXiv 2502.15654, Feb 2025) demonstrates that binary synthetic detection + importance weighting w=(1−q(x))^b prevents collapse on WikiText-2 with GPT-2/SmolLM2, but uses a single generator family per experiment, a heuristically tuned b, and does not scale to web-like corpora. (3) Golden-ratio weighting (arXiv 2502.18049, Feb 2025) derives the optimal real/synthetic mixing weight w⋆ = (√(k²+4k)−k)/2 by minimizing C(w,k) = [w²+(1−w)²k]/(2w−w²), with the complementary result of Garg et al. (arXiv 2509.22341, Sep 2025, revised Feb 2026) showing that the optimal real-data proportion converges to the reciprocal of the golden ratio under overparameterized interpolation learning — but both assume the synthetic fraction k is known a priori, an assumption that fails on unlabeled web crawls. (4) Strong Model Collapse (arXiv 2410.04840, Dohmatob et al., ICLR 2025 Spotlight) proves that even minimal synthetic contamination causes collapse under static mixing with known proportions, and that weighted mixing alone is insufficient — but does not consider detection-based adaptive reweighting where importance weights can drive the effective contribution of detected synthetic samples toward zero, functionally achieving their p₂→0 escape condition. Meanwhile, the Knowledge Collapse analysis (arXiv 2509.04796, Sep 2025) shows surface fluency is preserved across recursive depths while factual accuracy degrades, raising the empirical question of whether depth is a classifiable signal — a question no prior work has tested. Cross-generator detection generalization remains an open challenge: the best disentangled approach (arXiv 2604.13692, Apr 2026) achieves ~88% average cross-family accuracy but degrades to 68.9% on the hardest family (FLAN-T5). The critical integration gap — connecting convergence theory to weight calibration with estimated (not assumed-known) contamination fractions, validated under both theory-compatible metrics and practical cross-entropy training — remains unaddressed. The EMNLP 2026 special theme 'New Missions for NLP Research' includes a 'Data as responsibility' sub-theme that explicitly solicits work on 'contamination' and 'the consequences of synthetic data feedback loops,' providing strong venue alignment.\",\n  \"landscape\": \"Binary AI-text detection achieves 0.986 AUC in-distribution (ModernBERT on MAGE benchmark, arXiv 2502.15654) but degrades on out-of-distribution generators (~0.943 AUC) and cross-family transfer (~88% average, 68.9% worst-case on FLAN-T5, arXiv 2604.13692). Recent feature-augmented transformer detectors (arXiv 2605.03969, May 2026) achieve up to 99.5% balanced accuracy in-domain but only 85.9% on cross-dataset transfer, confirming cross-generator generalization as a fundamental challenge. The foundational model collapse result (Nature, 2024) demonstrates tail disappearance under recursive training. The ICML 2024 accumulation result shows that mixing real + synthetic data avoids collapse. The convergence theory (arXiv 2602.16065) formalizes this as d(ℙ̂_t, ℙ_0) ≲ t^{−min{p,α}} without distributional assumptions, where d must be a convex metric — satisfied by total variation, Wasserstein-p, energy distance, and MMD, but explicitly NOT by cross-entropy, likelihood, or KL divergence. The authors identify extending the proof to cross-entropy as important future work. This metric restriction is critical: standard LM training uses cross-entropy loss, so the bound's applicability to practical training requires either extension of the theory or empirical validation that the bound's qualitative insights transfer. Note that Pinsker's inequality (TV ≤ √(KL/2)) provides only the direction small KL → small TV; it does not provide a converse, meaning convergence under A2-compatible metrics cannot be theoretically transferred to cross-entropy without additional assumptions (e.g., bounded density ratios for a reverse Pinsker bound). This asymmetry is precisely what motivates our dual-metric empirical validation rather than a purely theoretical bridge. Strong Model Collapse (arXiv 2410.04840, Dohmatob et al., ICLR 2025 Spotlight) proves that even 0.1% synthetic contamination causes collapse in regression settings within the scaling laws paradigm, with larger models amplifying collapse. Critically, their Section 5 shows that weighted single-step mixing with known proportions does not prevent collapse — the escape condition requires p₂→0 (vanishing synthetic proportion). However, their analysis considers only known-proportion weighting, not detection-based adaptive reweighting where importance weights can drive the effective contribution of detected synthetic samples toward zero. Fu et al. (arXiv 2502.18865, ICLR 2025) introduce recursive stability and prove O(1/n) convergence for transformers in self-consuming loops with constant real-data proportion, providing architecture-dependent convergence guarantees complementary to the architecture-agnostic but metric-restricted bounds of arXiv 2602.16065. Golden-ratio weighting (arXiv 2502.18049) minimizes C(w,k) to derive optimal weights but requires known synthetic fraction k. Garg et al. (arXiv 2509.22341, Sep 2025, revised Feb 2026) extend this to overparameterized settings, showing that the optimal real-data proportion converges to the reciprocal of the golden ratio under min-ℓ₂-norm interpolation for general covariate distributions — again assuming known proportions. The Knowledge Collapse paper (arXiv 2509.04796) reveals a three-stage degradation (preservation → knowledge collapse → instruction collapse) where Shannon entropy declines from ~4.2 to ~2.5 across depths while surface fluency is preserved. Detector-guided resampling (arXiv 2502.15654) uses w=(1−q(x))^b with calibrated ModernBERT detection to upweight likely-human samples, preventing collapse and even improving over pure human data — but treats b as a hyperparameter, uses single-generator single-dataset evaluation, and does not consider depth. Dynamic loss-based sample reweighting (arXiv 2502.06733, ICLR 2025) provides convergence analysis for loss-based reweighting but does not address synthetic contamination detection. Curated synthetic data with pluralistic preferences (arXiv 2605.07724, ICML 2026) proves convergence to a weighted Nash bargaining solution under multi-objective curation but focuses on diversity preservation rather than contamination mitigation. Synthetic data verification (arXiv 2510.16657) uses binary filtering without continuous weighting. The critical gap is the integration of convergence theory with practical detection and weight calibration — specifically, bridging A2-compatible convergence bounds to cross-entropy training via dual-metric validation — on realistic multi-generator web contamination with depth investigation.\",\n  \"approach\": \"We propose a four-phase pipeline validated within ≤200 H100-hours that bridges the theory–practice gap through dual-metric validation — showing that convergence-informed weighting improves both theory-compatible metrics (where the bound formally applies) and cross-entropy training (where the benefit is empirically demonstrated).\\n\\n**Phase 1 — Depth Classifiability Pilot (novel empirical investigation, ~12 H100-hours).** We generate multi-depth synthetic corpora by iteratively retraining Qwen3-0.6B on its own outputs at depths 1–3 on a 400M-token FineWeb subset. Limiting to 3 depths is scientifically defensible: the Knowledge Collapse paper (arXiv 2509.04796) shows the most informative degradation transitions occur in early generations. At each depth we measure corpus-level statistics (Shannon entropy, distinct-n, perplexity under an external reference model, factual retention via the KR-test) and train a ModernBERT-base (150M) classifier for 3-class ordinal depth prediction. We report per-depth-pair F1. Decision rule: if adjacent-depth F1 > 65%, depth enters the weighting function; otherwise, we report this as a negative result — itself a novel contribution — and proceed with binary detection only.\\n\\n**Phase 2 — Multi-Generator Provenance Detector (~6 H100-hours).** We fine-tune ModernBERT-base on a balanced corpus of human text (C4/FineWeb) and synthetic text from two model families — Qwen3-0.6B and Llama-3.2-1B — to produce calibrated per-document synthetic probabilities q(x) via temperature scaling. We evaluate cross-generator transfer: train on Qwen3 outputs, test on Llama outputs, and vice versa. This addresses the single-generator limitation of arXiv 2502.15654.\\n\\n**Phase 3 — Convergence-Informed Weight Calibration (core contribution).** We derive training sample weights informed by the convergence bound of arXiv 2602.16065, explicitly addressing the theory's metric restriction and the informality of the distribution-to-sample bridge.\\n\\n*Metric limitation and dual-validation strategy.* The convergence bound d(ℙ̂_t, ℙ_0) ≲ t^{−min{p,α}} requires d to be a convex metric (Assumption A2). Cross-entropy and KL divergence do not satisfy A2. No general inequality bridges A2-compatible metrics to cross-entropy in the needed direction: Pinsker's inequality gives small KL → small TV, but we need the reverse (small TV → small KL), which requires bounded density ratios — an assumption that is unverifiable for high-dimensional language distributions. We therefore adopt a dual-validation strategy: we validate the weight calibration on A2-compatible metrics (Wasserstein-1 distance and kernel MMD, computed on frozen SentenceTransformer embeddings) where the bound formally applies, and separately demonstrate whether the benefit transfers to cross-entropy training — the practical objective. This design tests the theory on its own terms while characterizing the theory-practice bridge empirically.\\n\\n*Step 1 — Effective real fraction under importance weighting.* Given a training batch {x_1,...,x_N} with calibrated detector scores q(x_i) = P̂(synthetic|x_i) and importance weights w_i = (1−q(x_i))^b, we define the effective real fraction:\\n\\n  α_eff(b) = Σ_i (1−q_i)^{b+1} / Σ_i (1−q_i)^b\\n\\nThis follows from the law of total expectation: E[w_i · 1{x_i is real} | q_i] = (1−q_i)^{b+1} when q is well-calibrated. α_eff(b) is computable from batch statistics, monotonically non-decreasing in b, with α_eff(0) = 1 − ρ̂ (the unweighted real fraction) and α_eff(b) → 1 as b → ∞.\\n\\n*Step 2 — Hypothesis: connection to convergence bound.* We hypothesize that under importance-weighted training, the reweighted empirical distribution achieves effective real fraction α_eff(b), yielding convergence rate t^{−min{p, α_eff(b)}} for A2-compatible metrics. This hypothesis is plausible — importance weighting tilts the empirical distribution toward real data — but constitutes an assertion, not a theorem: the convergence bound assumes training on fixed-proportion mixtures, not importance-weighted sampling from a contaminated pool. Formally bridging this gap would require showing that importance-weighted SGD on a contaminated corpus is equivalent, in the relevant metric, to training on a clean mixture with fraction α_eff(b) — a nontrivial claim we leave as a conjecture and validate empirically. We note that even without formal proof, the qualitative insight — the rate exponent saturates at p, so pushing α_eff(b) beyond p only costs effective sample size — provides a principled stopping criterion.\\n\\n*Connection to Strong Model Collapse.* Dohmatob et al. (arXiv 2410.04840) prove that collapse persists unless p₂→0 (vanishing synthetic proportion), and show that known-proportion weighted mixing is insufficient. Our detection-based approach differs fundamentally: for samples with high q(x_i), importance weights w_i = (1−q(x_i))^b → 0 as b grows, effectively achieving the p₂→0 condition for the detectable portion of contamination. The irreducible contamination from undetected synthetic text (false negatives) sets a floor: effective p₂_residual ≈ FNR × ρ, where FNR is the detector's false negative rate and ρ is the true contamination fraction. This motivates our multi-generator detector training in Phase 2 to minimize FNR.\\n\\n*Step 3 — Optimal b derivation.* The effective sample size under importance weighting is ESS(b) = (Σ_i w_i)² / Σ_i w_i². Large b improves α_eff (and thus the hypothesized rate exponent) but degrades the constant factor (via reduced ESS). We solve:\\n\\n  b* = inf{b ≥ 0 : α_eff(b) ≥ τ}  subject to  ESS(b*) ≥ n_min\\n\\nwhere τ = min(p, target_rate) is the rate exponent threshold and n_min is the minimum effective sample size for stable gradient estimates. When the constraints conflict, we solve b* = argmax_b α_eff(b) s.t. ESS(b) ≥ n_min. When batch contamination is low (ρ̂ < 1−τ), we use uniform weights (b=0). This replaces the heuristic grid search over b in arXiv 2502.15654 with an adaptive, batch-dependent schedule.\\n\\n*Step 4 — Concentration argument and calibration correction.* For finite batches, α̂_eff(b) concentrates around its expectation at a rate governed by ESS: |α̂_eff − α_eff| ≤ O(√(w_max / (ESS · Σw_i)) · log(1/δ)) with probability 1−δ. With imperfect detector calibration (expected calibration error ε), we apply a safety margin: τ_adj = τ + c·ε·(b+1) where c is estimated from the calibration curve.\\n\\nIf Phase 1 succeeds, we extend: w_i = (1−q(x_i))^b · α^{d̂_i}, incorporating estimated depth d̂_i as a multiplicative adjustment.\\n\\n**Phase 4 — End-to-End Validation with Dual-Metric Evaluation (~145 H100-hours, with data generation explicitly budgeted).** We pretrain Qwen3-0.6B on FineWeb subsets (~2B tokens each) with controlled multi-generator contamination at 20%, 40%, and 60% synthetic fraction, comparing: (a) uniform weighting (no mitigation), (b) heuristic b via grid search à la arXiv 2502.15654, (c) our convergence-informed adaptive b.\\n\\n*Dual-metric evaluation.* We evaluate on two metric classes: (i) *Theory-compatible metrics* — Wasserstein-1 distance and kernel MMD between model-generated text and held-out human reference text, computed in frozen SentenceTransformer embedding space. These satisfy Assumption A2, enabling direct validation of the convergence bound's prediction. (ii) *Practical metrics* — perplexity, output diversity (Self-BLEU, distinct-n), downstream accuracy (MMLU, HellaSwag). Comparing results across both metric classes reveals whether the theory's qualitative insight (optimal rate depends on effective real fraction) transfers to cross-entropy training, and characterizes the tightness of the theory-practice bridge.\\n\\nSynthetic data generation budget: at 60% contamination on 2B tokens, we need ~1.2B synthetic tokens; across 3 contamination levels × 2 generators, total generation is ~4.8B tokens requiring ~40 H100-hours at ~30K tokens/s (generated once and shared across all training runs). Training: 9 core runs (3 contamination levels × 3 methods) + 2 cross-generator experiments + 2 ablations (depth-aware vs depth-agnostic) = 13 runs × ~7 H100-hours/run ≈ 91 H100-hours. Wasserstein/MMD evaluation: ~3 H100-hours (embedding extraction + distance computation post-hoc). Buffer: ~9 H100-hours for debugging and reruns.\\n\\n**Total: ~163 H100-hours** (Phase 1: 12 + Phase 2: 6 + Phase 4 generation: 40 + Phase 4 training: 91 + Phase 4 eval: 3 + buffer: 9 + Phase 3 compute: 2), well within the ≤200 H100-hour hard constraint.\\n\\n**Pre-registered success criteria:**\\n\\n*Primary criterion (adaptive robustness):* Convergence-informed b achieves ≥90% of the perplexity improvement of the best per-condition grid-searched heuristic b, across ALL contamination levels simultaneously with a single adaptive schedule — demonstrating that convergence-informed calibration eliminates the need for expensive hyperparameter sweeps.\\n\\n*Secondary criterion (theory validation):* Convergence-informed b achieves statistically significant improvement over heuristic b on at least one A2-compatible metric (Wasserstein-1 or MMD) at contamination ≥40%, validating that the convergence bound's insight translates to measurable distributional benefits.\\n\\n*Tertiary criterion (absolute practical improvement):* At contamination ≥40%, convergence-informed b improves over best heuristic b by ≥3% perplexity reduction OR ≥2% downstream accuracy (MMLU/HellaSwag).\\n\\n*Fallback framing:* If convergence-informed b provides <3% improvement over heuristic b, fails the adaptive robustness criterion, AND the theory-compatible metrics do not show significant improvement, the paper reframes as: 'From Convergence Bounds to Cross-Entropy Training: An Empirical Investigation of Theory Transfer for Contaminated Web Corpora.' Contributions become: (a) the first dual-metric investigation of whether A2-compatible convergence bounds predict practical training outcomes under detection-based reweighting, with precise characterization of where the bridge is tight vs. loose; (b) the depth classifiability result (positive or negative); (c) the multi-generator evaluation addressing key limitations of prior work. This makes the paper robust to the theory-practice connection being weaker than hoped.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~130 H100-hours\",\n      \"gpu_utilization\": \"30–40%; GPUs idle between experiment design, debugging, and analysis\",\n      \"timeline\": \"2–3 months\",\n      \"team\": \"2 researchers (NLP + ML theory)\",\n      \"estimated_gpu_cost\": \"$325 (130h × ~$2.50/hr on competitive H100 cloud providers)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~163 H100-hours\",\n      \"gpu_utilization\": \"60–70%; agent queues experiment batches and begins analysis while awaiting human approval\",\n      \"timeline\": \"4–6 weeks\",\n      \"team\": \"1 researcher, ~1hr/day reviewing agent proposals and auditing depth-data pipeline\",\n      \"claude_api_cost\": \"$100–300 (~1,500–3,000 turns for experiment design, code generation, and analysis)\",\n      \"estimated_gpu_cost\": \"$408 (163h × ~$2.50/hr)\",\n      \"risk_note\": \"Sequential dependency in depth-labeled data generation (depth-k requires depth-(k-1) model); requires human audit of recursive data pipeline to prevent label mislabeling\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~163 H100-hours (Phase 1: 12h, Phase 2: 6h, Phase 3 compute: 2h, Phase 4 generation: 40h, Phase 4 training: 91h, Phase 4 eval: 3h, buffer: 9h)\",\n      \"gpu_utilization\": \"85–90%; near-zero idle between runs\",\n      \"timeline\": \"2–3 weeks with 4 concurrent H100s\",\n      \"team\": \"0 (initial setup and final review only)\",\n      \"claude_api_cost\": \"$200–500 (~3,000–5,000 turns for full exploration, debugging, and paper drafting)\",\n      \"estimated_gpu_cost\": \"$408 (163h × ~$2.50/hr)\",\n      \"speed_bottleneck\": \"Sequential depth-data generation (~1.2 days on 1 H100) + synthetic corpus generation (~40 H100-hours, parallelizable across generators); remainder parallelizable across 4 H100s\",\n      \"risk_note\": \"Budget fits within ≤200 H100-hours hard constraint with ~37h margin. ESS threshold sensitivity ablation dropped to fit budget; depth-aware vs depth-agnostic ablation retained as the higher-value comparison.\"\n    }\n  },\n  \"target_venues\": [\n    \"AAAI 2027 (expected deadline: ~Jul–Aug 2026 — primary target; ~10–12 weeks from today allows full experimental validation, Phase 3 formalization, dual-metric evaluation, and ablations)\",\n    \"EMNLP 2026 (ARR deadline: May 25, 2026 — aspirational; the special theme 'New Missions for NLP Research' includes a 'Data as responsibility' sub-theme explicitly soliciting work on 'contamination' and 'synthetic data feedback loops,' providing strong thematic alignment; submit only if Phase 1–2 pilot results are conclusive by May 18 and Phase 3 derivation is formalized; 14-day timeline creates execution risk for a full paper — consider Findings-track submission with Phases 1–2 + preliminary Phase 4 results if timeline is binding)\"\n  ],\n  \"level\": \"top-tier\",\n  \"key_references\": [\n    \"Machine-generated text detection prevents language model collapse (arXiv 2502.15654, Feb 2025) — binary detection + importance resampling baseline; our work extends with convergence-informed calibration and multi-generator evaluation\",\n    \"Can Generative AI Survive Data Contamination? Theoretical Guarantees under Contaminated Recursive Training (arXiv 2602.16065, Feb 2026) — convergence bound d(ℙ̂_t,ℙ_0) ≲ t^{−min{p,α}} we operationalize via the α_eff(b) bridge; Assumption A2 restricts d to convex metrics, explicitly excluding cross-entropy/KL — motivating our dual-metric validation approach\",\n    \"Strong Model Collapse (arXiv 2410.04840, Dohmatob et al., ICLR 2025 Spotlight) — proves even 0.1% synthetic contamination causes collapse under static mixing with known proportions; escape requires p₂→0; our detection-based adaptive reweighting functionally achieves this for detected synthetic samples, differentiating from their known-proportion weighted mixing analysis\",\n    \"A Theoretical Perspective: How to Prevent Model Collapse in Self-consuming Training Loops (arXiv 2502.18865, ICLR 2025) — recursive stability framework proving O(1/n) convergence for transformers with constant real-data proportion; complementary architecture-dependent analysis vs. our detection-dependent approach\",\n    \"Golden Ratio Weighting Prevents Model Collapse (arXiv 2502.18049, Feb 2025) — optimal mixing with known synthetic fraction via C(w,k)=[w²+(1−w)²k]/(2w−w²); our method estimates the fraction from unlabeled data\",\n    \"Preventing Model Collapse Under Overparametrization: Optimal Mixing Ratios for Interpolation Learning and Ridge Regression (arXiv 2509.22341, Garg et al., Sep 2025, revised Feb 2026) — extends golden-ratio convergence to overparameterized min-ℓ₂-norm interpolation and ridge regression for general covariate distributions; complementary to arXiv 2502.18049 in deriving optimal mixing ratios under known proportions, which our method estimates from unlabeled data\",\n    \"Knowledge Collapse in LLMs: When Fluency Survives but Facts Fail under Recursive Synthetic Training (arXiv 2509.04796, Sep 2025) — depth-dependent degradation patterns informing our pilot study design and metrics\",\n    \"Breaking the Generator Barrier: Disentangled Representation for Generalizable AI-Text Detection (arXiv 2604.13692, Apr 2026) — cross-generator detection challenge (~88% average, 68.9% worst-case on FLAN-T5) motivating our multi-generator training\",\n    \"AI models collapse when trained on recursively generated data (Nature, Jul 2024) — foundational model collapse result\",\n    \"Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data (ICML 2024) — real+synthetic accumulation baseline\",\n    \"From Collapse to Improvement: Statistical Perspectives on Iterative Training on Contaminated Sources (arXiv 2602.10531, Feb 2026) — conditions under which contaminated training can improve; notes that synthetic data detection is a crucial future direction for estimating mixture proportions\",\n    \"Detecting Benchmark Contamination Through Watermarking (ICLR 2025) — proactive watermark-based detection (complementary to our post-hoc approach)\",\n    \"Escaping Model Collapse via Synthetic Data Verification (arXiv 2510.16657, Oct 2025) — verification-based binary filtering alternative\",\n    \"Dynamic Loss-Based Sample Reweighting for Improved Large Language Model Pretraining (arXiv 2502.06733, ICLR 2025) — convergence analysis for loss-based reweighting; complementary to our detection-based approach\",\n    \"Curated Synthetic Data Doesn't Have to Collapse (arXiv 2605.07724, ICML 2026) — convergence under pluralistic curation; addresses diversity preservation rather than contamination detection\",\n    \"Feature-Augmented Transformers for Robust AI-Text Detection Across Domains and Generators (arXiv 2605.03969, May 2026) — confirms cross-generator generalization remains challenging (85.9% cross-dataset balanced accuracy)\"\n  ],\n  \"description\": \"We bridge the gap between model-collapse convergence theory and practical training pipelines for web corpora contaminated with multi-depth, multi-generator synthetic text. A critical challenge is that the convergence bound of arXiv 2602.16065 (d(ℙ̂_t, ℙ_0) ≲ t^{−min{p,α}}) requires convex distance metrics (Assumption A2) that exclude cross-entropy — the standard LM training objective — and no general inequality bridges this gap in the needed direction (Pinsker's inequality gives small KL → small TV, not the reverse). We address this through dual-metric empirical validation. Our four-phase pipeline: (1) conducts the first empirical investigation of whether recursive generation depth (1–3) is classifiable from text alone, using iteratively retrained Qwen3-0.6B — a novel feasibility study whose outcome (positive or negative) is informative; (2) trains a multi-generator provenance detector (ModernBERT-base on Qwen3 + Llama-3.2 outputs) with cross-generator evaluation, addressing the single-generator limitation of arXiv 2502.15654; (3) derives training sample weights informed by the convergence bound via effective real fraction α_eff(b) = Σ(1−q_i)^{b+1}/Σ(1−q_i)^b, solving for b* such that α_eff(b*) ≥ τ subject to ESS ≥ n_min — replacing the heuristic grid-searched b of arXiv 2502.15654 with an adaptive schedule. We explicitly frame the connection between α_eff(b) and the convergence bound's rate exponent as a hypothesis (not a theorem) that is formally applicable only to A2-compatible metrics, and argue that detection-based adaptive reweighting functionally achieves the p₂→0 escape condition required by Strong Model Collapse (Dohmatob et al., ICLR 2025 Spotlight); and (4) validates end-to-end with dual-metric evaluation: theory-compatible metrics (Wasserstein-1, kernel MMD) where the bound formally applies, alongside practical metrics (perplexity, MMLU, HellaSwag), characterizing precisely where the theory-practice bridge is tight vs. loose. Evaluation on controlled multi-generator contamination at 20–60% on FineWeb subsets (9 core runs + 2 cross-generator + 2 ablations). Pre-registered success criteria include adaptive robustness (≥90% of best heuristic across all levels), theory validation (significant improvement on A2-compatible metrics), and practical improvement (≥3% perplexity or ≥2% accuracy at ≥40% contamination); fallback reframes as dual-metric investigation of theory transfer. Total compute: ~163 H100-hours ($408), well within ≤200 H100-hour constraint. Primary target: AAAI 2027.\",\n  \"project_name\": \"provenance_weight_training\",\n  \"source\": \"web_research\"\n}\n\n## Reviewer feedback (round 5)\nIssues: [\"MISSING REFERENCE — Amin et al. (arXiv 2502.08924, NeurIPS 2025): 'Escaping Collapse: The Strength of Weak Data for Large Language Model Training' uses a boosting-inspired theory-guided reweighting procedure to prevent model collapse, showing convergence to optimal LLM even with poor-quality non-synthetic data. This is from Google Research and published at a top venue. It represents a closely related approach to theory-guided data weighting for collapse prevention that must be cited and differentiated from. Key distinction: Amin et al. reweight based on loss signals without a detection step; the proposal reweights based on detection confidence informed by convergence theory — different theoretical foundations, different practical assumptions.\", \"MISSING REFERENCE — Schaeffer et al. (arXiv 2503.03150, ICML 2025 Position): 'Position: Model Collapse Does Not Mean What You Think' argues that there are eight distinct definitions of model collapse, many based on assumptions that poorly match real-world conditions, and that several collapse scenarios are readily avoidable. This directly challenges the proposal's premise and motivation. A top-venue reviewer will expect engagement with this critique — either by acknowledging which collapse definition the proposal targets, or by arguing why the web contamination scenario is one where collapse IS a genuine risk despite the position paper's concerns.\", \"DRAYSON et al. NOW PUBLISHED AT EMNLP 2025 MAIN CONFERENCE: The proposal should update the citation to reflect this venue acceptance. More importantly, the characterization as 'single-generator single-dataset evaluation' is misleading — Drayson et al. test 4 LLMs (GPT-2 124M, SmolLM2 135M/360M/1.7B) from 2 model families across 6 decoding strategies. While each collapse experiment uses one generator family and the primary evaluation dataset is WikiText-2, the paper is not limited to a single generator overall. A fairer characterization: 'single-generator-per-experiment evaluation on a curated dataset (WikiText-2), without cross-generator contamination scenarios or web-scale evaluation.'\", \"VENUE FIT OVERCORRECTION FROM ROUND 4: The Round 4 reviewer incorrectly stated that the EMNLP 2026 CFP does not explicitly name synthetic contamination. In fact, the 'Data as a bottleneck and a responsibility' sub-theme explicitly solicits work on 'contamination' and 'the consequences of synthetic data feedback loops.' The proposal's venue alignment claim is accurate and should be stated with confidence, not hedged.\"]\nFeedback: The proposal has matured substantially across 5 rounds — all major issues from Rounds 1-4 are resolved (Pinsker direction fixed, compute arithmetic consistent, A2 metric exclusion acknowledged with dual-metric validation, Strong Model Collapse properly cited). Three final fixes would push this to passable:\n\n1. **Cite and differentiate from Amin et al. (NeurIPS 2025)**: Position their boosting-inspired reweighting as complementary but distinct — they reweight based on loss signals without a detection step and do not estimate contamination fractions; your method uses detection confidence to estimate effective real fraction and calibrate weights via convergence theory. Both are theory-guided but operate in different settings (known-clean subset required for Amin et al. vs. unlabeled web corpus for your method).\n\n2. **Engage with Schaeffer et al. (ICML 2025 Position)**: Acknowledge the 'model collapse is overblown' critique in 1-2 sentences. Your response: web contamination at 50-60% synthetic fraction (Graphite/Common Crawl 2025 estimates) represents exactly the setting where collapse IS a genuine risk per Strong Model Collapse (Dohmatob et al., ICLR 2025 Spotlight) — your work addresses the most practically relevant collapse scenario, not the artificial single-model-recycling setting that the position paper critiques.\n\n3. **Correct Drayson et al. characterization**: Update citation to EMNLP 2025. Change 'single-generator' to 'single-generator-per-experiment on a curated dataset' — this is a fairer characterization that still highlights the gap your multi-generator evaluation fills.\n\nBonus: Restore confidence in the EMNLP 2026 venue fit claim — the CFP explicitly solicits this work. The Round 4 reviewer was wrong about the theme characterization.\n\n## Instructions\n- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method (approach / resource_estimate / key_references). Do not jump straight to fixing the method if the underlying problem framing needs correction.\n- Address each issue specifically.\n\n## 深度调研要求（每一轮修订都必须执行）\n\n不要简单地'打补丁'——每一轮修订都是重新审视和深化这个 idea 的机会。\n\n1. **深度搜索**：针对 reviewer 指出的每个问题，建议用 2-3 种不同的搜索查询调研。\n   - 搜索最新的相关论文（arXiv, conference proceedings）\n   - 搜索 benchmark/leaderboard 确认当前 SOTA\n   - 搜索可能遗漏的相关工作和 concurrent work\n\n2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文的 abstract 和方法部分，\n   不要只依赖搜索摘要。形成你自己对领域现状的独立判断。\n\n3. **深度思考**：在修订之前，先独立思考以下问题：\n   - 这个 idea 的核心假设是否仍然成立？\n   - reviewer 的批评是否揭示了更深层的问题？\n   - 有没有更好的 framing 或 approach 来解决同一个核心问题？\n   - 修订后的 idea 相比上一版有什么本质性的改进？\n\n4. **避免表面修订**：如果你发现自己只是在换措辞或补充细节而没有实质改进，\n   考虑是否需要 major revision 或 pivot。反复的 minor fix 不会拯救一个根基有问题的 idea。\n\n## 针对 Review 意见的定向搜索\n\n对 reviewer 指出的每个问题，执行以下搜索流程：\n\n1. **如果 reviewer 说'已有类似工作'**：\n   - 搜索 reviewer 提到的论文，用 WebFetch 实际阅读\n   - 搜索该论文的 cited-by，找到后续跟进工作\n   - 明确你的 idea 与这些工作的差异化点——如果差异化不够，必须 pivot\n\n2. **如果 reviewer 说'SOTA 过时'**：\n   - 用 Papers With Code 查看当前排行榜\n   - 搜索过去 6 个月的最新方法\n   - 更新你的 landscape 和 baseline\n\n3. **如果 reviewer 说'可行性有问题'**：\n   - 搜索类似规模实验的实际成本和时间线\n   - 搜索 GitHub 上是否有可复用的实现\n   - 搜索相关数据集/模型的可获取性\n\n4. **如果 reviewer 说'novelty 不足'**：\n   - 对核心方法尽量做 3-5 种不同关键词组合的搜索\n   - 搜索相邻领域是否有类似思路\n   - 如果确实 novelty 不足，考虑 major revision 或 pivot\n\n- Use WebSearch to find updated information if the reviewer flagged outdated claims.\n- You have full freedom in how much to change:\n  - Minor fix: if only specific details are wrong, correct them and keep everything else.\n  - Major revision: if the approach is fundamentally flawed but the core problem is valid, you may redesign the approach entirely.\n  - Pivot: if the reviewer's feedback reveals that the core problem itself is invalid (e.g., the gap no longer exists), you may propose a RELATED but substantially different idea that builds on the same research area. This is preferred over forcing a doomed idea to pass review.\n- The output replaces the original idea (same tracking ID). Whether you make a small tweak or a full pivot, output a COMPLETE JSON object with ALL fields filled.\n- In the output JSON, include a \"change_type\" field with one of: \"minor\", \"major\", or \"pivot\" to indicate the scope of your changes.\n- Output the revised idea as a COMPLETE JSON object (same schema as original, plus \"change_type\").\n\n## 停滞提醒\n这个 idea 已经经过 5 轮修订，近 3 轮的平均分从 3.5 到 3.8，没有明显改善。\n\n请认真思考：\n- 当前方向是否存在根本性的瓶颈？反复的 minor fix 是否在回避核心问题？\n- 如果你认为问题出在 approach 而非 framing，可以做 major revision。\n- 如果你认为 core problem 本身就有问题（gap 不存在、问题不够重要），pivot 到同一研究领域下的新方向可能是更好的选择。\n- 当然，如果你有信心这一轮修订能实现突破，继续改进也完全可以。\n\n最终由你判断——做你认为最能提升 idea 质量的选择。"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-12T01:17:25.302Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-12T01:17:25.302Z",
+  "sessionId": "518af693-e78b-4645-b459-0ed2fcc8e91c"
+}
+```
+
+---
+
+## Round 1
+
+49 recorded events
+
+### User
+
+_source line 3 · 2026-05-12T01:17:25.323Z_
+
+You are revising a research idea based on reviewer feedback.
+
+**Today's date: 2026-05-11 (UTC).**
+
+## Original idea
+{
+  "title": "Convergence-Informed Provenance Weighting for Recursive Web Contamination",
+  "core_problem": "Web-scraped training corpora contain an unknown and growing fraction of synthetic text at multiple recursive generation depths, creating feedback loops that degrade model quality. Recent convergence theory (arXiv 2602.16065) proves that training outcomes depend on min(baseline_rate, real_data_fraction), and the Strong Model Collapse result (Dohmatob et al., ICLR 2025 Spotlight) shows that even 0.1% synthetic contamination causes collapse under static mixing — with larger models amplifying the effect. However, no practical pipeline estimates the real-data fraction from unlabeled web data or translates convergence insights into principled training weights. Existing detector-guided resampling (arXiv 2502.15654) treats its weighting exponent as a hyperparameter, tests only single-generator contamination on a small curated dataset (WikiText-2), and does not investigate whether generation depth — a key theoretical variable in collapse dynamics — is classifiable from text alone. A further complication is that the convergence bound requires convex distance metrics (Assumption A2), which excludes cross-entropy and KL divergence — the standard language model training objectives — creating a theory-practice gap. Crucially, no general inequality bridges this gap in the needed direction: Pinsker's inequality gives small KL → small TV, but convergence under A2-compatible metrics (TV, Wasserstein, MMD) does not imply convergence under cross-entropy. This necessitates empirical dual-metric validation rather than a purely theoretical bridge.",
+  "opportunity": "Four disconnected research threads address parts of this problem but leave a critical integration gap. (1) Convergence theory (arXiv 2602.16065, Feb 2026) provides the bound d(ℙ̂_t, ℙ_0) ≲ t^{−min{p,α}} — the first positive theoretical result on recursive training without distributional assumptions — but restricts d to convex metrics (total variation, Wasserstein-p, MMD), explicitly excluding cross-entropy/KL, and offers no detection or weighting method. (2) Detector-guided resampling (arXiv 2502.15654, Feb 2025) demonstrates that binary synthetic detection + importance weighting w=(1−q(x))^b prevents collapse on WikiText-2 with GPT-2/SmolLM2, but uses a single generator family per experiment, a heuristically tuned b, and does not scale to web-like corpora. (3) Golden-ratio weighting (arXiv 2502.18049, Feb 2025) derives the optimal real/synthetic mixing weight w⋆ = (√(k²+4k)−k)/2 by minimizing C(w,k) = [w²+(1−w)²k]/(2w−w²), with the complementary result of Garg et al. (arXiv 2509.22341, Sep 2025, revised Feb 2026) showing that the optimal real-data proportion converges to the reciprocal of the golden ratio under overparameterized interpolation learning — but both assume the synthetic fraction k is known a priori, an assumption that fails on unlabeled web crawls. (4) Strong Model Collapse (arXiv 2410.04840, Dohmatob et al., ICLR 2025 Spotlight) proves that even minimal synthetic contamination causes collapse under static mixing with known proportions, and that weighted mixing alone is insufficient — but does not consider detection-based adaptive reweighting where importance weights can drive the effective contribution of detected synthetic samples toward zero, functionally achieving their p₂→0 escape condition. Meanwhile, the Knowledge Collapse analysis (arXiv 2509.04796, Sep 2025) shows surface fluency is preserved across recursive depths while factual accuracy degrades, raising the empirical question of whether depth is a classifiable signal — a question no prior work has tested. Cross-generator detection generalization remains an open challenge: the best disentangled approach (arXiv 2604.13692, Apr 2026) achieves ~88% average cross-family accuracy but degrades to 68.9% on the hardest family (FLAN-T5). The critical integration gap — connecting convergence theory to weight calibration with estimated (not assumed-known) contamination fractions, validated under both theory-compatible metrics and practical cross-entropy training — remains unaddressed. The EMNLP 2026 special theme 'New Missions for NLP Research' includes a 'Data as responsibility' sub-theme that explicitly solicits work on 'contamination' and 'the consequences of synthetic data feedback loops,' providing strong venue alignment.",
+  "landscape": "Binary AI-text detection achieves 0.986 AUC in-distribution (ModernBERT on MAGE benchmark, arXiv 2502.15654) but degrades on out-of-distribution generators (~0.943 AUC) and cross-family transfer (~88% average, 68.9% worst-case on FLAN-T5, arXiv 2604.13692). Recent feature-augmented transformer detectors (arXiv 2605.03969, May 2026) achieve up to 99.5% balanced accuracy in-domain but only 85.9% on cross-dataset transfer, confirming cross-generator generalization as a fundamental challenge. The foundational model collapse result (Nature, 2024) demonstrates tail disappearance under recursive training. The ICML 2024 accumulation result shows that mixing real + synthetic data avoids collapse. The convergence theory (arXiv 2602.16065) formalizes this as d(ℙ̂_t, ℙ_0) ≲ t^{−min{p,α}} without distributional assumptions, where d must be a convex metric — satisfied by total variation, Wasserstein-p, energy distance, and MMD, but explicitly NOT by cross-entropy, likelihood, or KL divergence. The authors identify extending the proof to cross-entropy as important future work. This metric restriction is critical: standard LM training uses cross-entropy loss, so the bound's applicability to practical training requires either extension of the theory or empirical validation that the bound's qualitative insights transfer. Note that Pinsker's inequality (TV ≤ √(KL/2)) provides only the direction small KL → small TV; it does not provide a converse, meaning convergence under A2-compatible metrics cannot be theoretically transferred to cross-entropy without additional assumptions (e.g., bounded density ratios for a reverse Pinsker bound). This asymmetry is precisely what motivates our dual-metric empirical validation rather than a purely theoretical bridge. Strong Model Collapse (arXiv 2410.04840, Dohmatob et al., ICLR 2025 Spotlight) proves that even 0.1% synthetic contamination causes collapse in regression settings within the scaling laws paradigm, with larger models amplifying collapse. Critically, their Section 5 shows that weighted single-step mixing with known proportions does not prevent collapse — the escape condition requires p₂→0 (vanishing synthetic proportion). However, their analysis considers only known-proportion weighting, not detection-based adaptive reweighting where importance weights can drive the effective contribution of detected synthetic samples toward zero. Fu et al. (arXiv 2502.18865, ICLR 2025) introduce recursive stability and prove O(1/n) convergence for transformers in self-consuming loops with constant real-data proportion, providing architecture-dependent convergence guarantees complementary to the architecture-agnostic but metric-restricted bounds of arXiv 2602.16065. Golden-ratio weighting (arXiv 2502.18049) minimizes C(w,k) to derive optimal weights but requires known synthetic fraction k. Garg et al. (arXiv 2509.22341, Sep 2025, revised Feb 2026) extend this to overparameterized settings, showing that the optimal real-data proportion converges to the reciprocal of the golden ratio under min-ℓ₂-norm interpolation for general covariate distributions — again assuming known proportions. The Knowledge Collapse paper (arXiv 2509.04796) reveals a three-stage degradation (preservation → knowledge collapse → instruction collapse) where Shannon entropy declines from ~4.2 to ~2.5 across depths while surface fluency is preserved. Detector-guided resampling (arXiv 2502.15654) uses w=(1−q(x))^b with calibrated ModernBERT detection to upweight likely-human samples, preventing collapse and even improving over pure human data — but treats b as a hyperparameter, uses single-generator single-dataset evaluation, and does not consider depth. Dynamic loss-based sample reweighting (arXiv 2502.06733, ICLR 2025) provides convergence analysis for loss-based reweighting but does not address synthetic contamination detection. Curated synthetic data with pluralistic preferences (arXiv 2605.07724, ICML 2026) proves convergence to a weighted Nash bargaining solution under multi-objective curation but focuses on diversity preservation rather than contamination mitigation. Synthetic data verification (arXiv 2510.16657) uses binary filtering without continuous weighting. The critical gap is the integration of convergence theory with practical detection and weight calibration — specifically, bridging A2-compatible convergence bounds to cross-entropy training via dual-metric validation — on realistic multi-generator web contamination with depth investigation.",
+  "approach": "We propose a four-phase pipeline validated within ≤200 H100-hours that bridges the theory–practice gap through dual-metric validation — showing that convergence-informed weighting improves both theory-compatible metrics (where the bound formally applies) and cross-entropy training (where the benefit is empirically demonstrated).\n\n**Phase 1 — Depth Classifiability Pilot (novel empirical investigation, ~12 H100-hours).** We generate multi-depth synthetic corpora by iteratively retraining Qwen3-0.6B on its own outputs at depths 1–3 on a 400M-token FineWeb subset. Limiting to 3 depths is scientifically defensible: the Knowledge Collapse paper (arXiv 2509.04796) shows the most informative degradation transitions occur in early generations. At each depth we measure corpus-level statistics (Shannon entropy, distinct-n, perplexity under an external reference model, factual retention via the KR-test) and train a ModernBERT-base (150M) classifier for 3-class ordinal depth prediction. We report per-depth-pair F1. Decision rule: if adjacent-depth F1 > 65%, depth enters the weighting function; otherwise, we report this as a negative result — itself a novel contribution — and proceed with binary detection only.\n\n**Phase 2 — Multi-Generator Provenance Detector (~6 H100-hours).** We fine-tune ModernBERT-base on a balanced corpus of human text (C4/FineWeb) and synthetic text from two model families — Qwen3-0.6B and Llama-3.2-1B — to produce calibrated per-document synthetic probabilities q(x) via temperature scaling. We evaluate cross-generator transfer: train on Qwen3 outputs, test on Llama outputs, and vice versa. This addresses the single-generator limitation of arXiv 2502.15654.\n\n**Phase 3 — Convergence-Informed Weight Calibration (core contribution).** We derive training sample weights informed by the convergence bound of arXiv 2602.16065, explicitly addressing the theory's metric restriction and the informality of the distribution-to-sample bridge.\n\n*Metric limitation and dual-validation strategy.* The convergence bound d(ℙ̂_t, ℙ_0) ≲ t^{−min{p,α}} requires d to be a convex metric (Assumption A2). Cross-entropy and KL divergence do not satisfy A2. No general inequality bridges A2-compatible metrics to cross-entropy in the needed direction: Pinsker's inequality gives small KL → small TV, but we need the reverse (small TV → small KL), which requires bounded density ratios — an assumption that is unverifiable for high-dimensional language distributions. We therefore adopt a dual-validation strategy: we validate the weight calibration on A2-compatible metrics (Wasserstein-1 distance and kernel MMD, computed on frozen SentenceTransformer embeddings) where the bound formally applies, and separately demonstrate whether the benefit transfers to cross-entropy training — the practical objective. This design tests the theory on its own terms while characterizing the theory-practice bridge empirically.\n\n*Step 1 — Effective real fraction under importance weighting.* Given a training batch {x_1,...,x_N} with calibrated detector scores q(x_i) = P̂(synthetic|x_i) and importance weights w_i = (1−q(x_i))^b, we define the effective real fraction:\n\n  α_eff(b) = Σ_i (1−q_i)^{b+1} / Σ_i (1−q_i)^b\n\nThis follows from the law of total expectation: E[w_i · 1{x_i is real} | q_i] = (1−q_i)^{b+1} when q is well-calibrated. α_eff(b) is computable from batch statistics, monotonically non-decreasing in b, with α_eff(0) = 1 − ρ̂ (the unweighted real fraction) and α_eff(b) → 1 as b → ∞.\n\n*Step 2 — Hypothesis: connection to convergence bound.* We hypothesize that under importance-weighted training, the reweighted empirical distribution achieves effective real fraction α_eff(b), yielding convergence rate t^{−min{p, α_eff(b)}} for A2-compatible metrics. This hypothesis is plausible — importance weighting tilts the empirical distribution toward real data — but constitutes an assertion, not a theorem: the convergence bound assumes training on fixed-proportion mixtures, not importance-weighted sampling from a contaminated pool. Formally bridging this gap would require showing that importance-weighted SGD on a contaminated corpus is equivalent, in the relevant metric, to training on a clean mixture with fraction α_eff(b) — a nontrivial claim we leave as a conjecture and validate empirically. We note that even without formal proof, the qualitative insight — the rate exponent saturates at p, so pushing α_eff(b) beyond p only costs effective sample size — provides a principled stopping criterion.\n\n*Connection to Strong Model Collapse.* Dohmatob et al. (arXiv 2410.04840) prove that collapse persists unless p₂→0 (vanishing synthetic proportion), and show that known-proportion weighted mixing is insufficient. Our detection-based approach differs fundamentally: for samples with high q(x_i), importance weights w_i = (1−q(x_i))^b → 0 as b grows, effectively achieving the p₂→0 condition for the detectable portion of contamination. The irreducible contamination from undetected synthetic text (false negatives) sets a floor: effective p₂_residual ≈ FNR × ρ, where FNR is the detector's false negative rate and ρ is the true contamination fraction. This motivates our multi-generator detector training in Phase 2 to minimize FNR.\n\n*Step 3 — Optimal b derivation.* The effective sample size under importance weighting is ESS(b) = (Σ_i w_i)² / Σ_i w_i². Large b improves α_eff (and thus the hypothesized rate exponent) but degrades the constant factor (via reduced ESS). We solve:\n\n  b* = inf{b ≥ 0 : α_eff(b) ≥ τ}  subject to  ESS(b*) ≥ n_min\n\nwhere τ = min(p, target_rate) is the rate exponent threshold and n_min is the minimum effective sample size for stable gradient estimates. When the constraints conflict, we solve b* = argmax_b α_eff(b) s.t. ESS(b) ≥ n_min. When batch contamination is low (ρ̂ < 1−τ), we use uniform weights (b=0). This replaces the heuristic grid search over b in arXiv 2502.15654 with an adaptive, batch-dependent schedule.\n\n*Step 4 — Concentration argument and calibration correction.* For finite batches, α̂_eff(b) concentrates around its expectation at a rate governed by ESS: |α̂_eff − α_eff| ≤ O(√(w_max / (ESS · Σw_i)) · log(1/δ)) with probability 1−δ. With imperfect detector calibration (expected calibration error ε), we apply a safety margin: τ_adj = τ + c·ε·(b+1) where c is estimated from the calibration curve.\n\nIf Phase 1 succeeds, we extend: w_i = (1−q(x_i))^b · α^{d̂_i}, incorporating estimated depth d̂_i as a multiplicative adjustment.\n\n**Phase 4 — End-to-End Validation with Dual-Metric Evaluation (~145 H100-hours, with data generation explicitly budgeted).** We pretrain Qwen3-0.6B on FineWeb subsets (~2B tokens each) with controlled multi-generator contamination at 20%, 40%, and 60% synthetic fraction, comparing: (a) uniform weighting (no mitigation), (b) heuristic b via grid search à la arXiv 2502.15654, (c) our convergence-informed adaptive b.\n\n*Dual-metric evaluation.* We evaluate on two metric classes: (i) *Theory-compatible metrics* — Wasserstein-1 distance and kernel MMD between model-generated text and held-out human reference text, computed in frozen SentenceTransformer embedding space. These satisfy Assumption A2, enabling direct validation of the convergence bound's prediction. (ii) *Practical metrics* — perplexity, output diversity (Self-BLEU, distinct-n), downstream accuracy (MMLU, HellaSwag). Comparing results across both metric classes reveals whether the theory's qualitative insight (optimal rate depends on effective real fraction) transfers to cross-entropy training, and characterizes the tightness of the theory-practice bridge.\n\nSynthetic data generation budget: at 60% contamination on 2B tokens, we need ~1.2B synthetic tokens; across 3 contamination levels × 2 generators, total generation is ~4.8B tokens requiring ~40 H100-hours at ~30K tokens/s (generated once and shared across all training runs). Training: 9 core runs (3 contamination levels × 3 methods) + 2 cross-generator experiments + 2 ablations (depth-aware vs depth-agnostic) = 13 runs × ~7 H100-hours/run ≈ 91 H100-hours. Wasserstein/MMD evaluation: ~3 H100-hours (embedding extraction + distance computation post-hoc). Buffer: ~9 H100-hours for debugging and reruns.\n\n**Total: ~163 H100-hours** (Phase 1: 12 + Phase 2: 6 + Phase 4 generation: 40 + Phase 4 training: 91 + Phase 4 eval: 3 + buffer: 9 + Phase 3 compute: 2), well within the ≤200 H100-hour hard constraint.\n\n**Pre-registered success criteria:**\n\n*Primary criterion (adaptive robustness):* Convergence-informed b achieves ≥90% of the perplexity improvement of the best per-condition grid-searched heuristic b, across ALL contamination levels simultaneously with a single adaptive schedule — demonstrating that convergence-informed calibration eliminates the need for expensive hyperparameter sweeps.\n\n*Secondary criterion (theory validation):* Convergence-informed b achieves statistically significant improvement over heuristic b on at least one A2-compatible metric (Wasserstein-1 or MMD) at contamination ≥40%, validating that the convergence bound's insight translates to measurable distributional benefits.\n\n*Tertiary criterion (absolute practical improvement):* At contamination ≥40%, convergence-informed b improves over best heuristic b by ≥3% perplexity reduction OR ≥2% downstream accuracy (MMLU/HellaSwag).\n\n*Fallback framing:* If convergence-informed b provides <3% improvement over heuristic b, fails the adaptive robustness criterion, AND the theory-compatible metrics do not show significant improvement, the paper reframes as: 'From Convergence Bounds to Cross-Entropy Training: An Empirical Investigation of Theory Transfer for Contaminated Web Corpora.' Contributions become: (a) the first dual-metric investigation of whether A2-compatible convergence bounds predict practical training outcomes under detection-based reweighting, with precise characterization of where the bridge is tight vs. loose; (b) the depth classifiability result (positive or negative); (c) the multi-generator evaluation addressing key limitations of prior work. This makes the paper robust to the theory-practice connection being weaker than hoped.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~130 H100-hours",
+      "gpu_utilization": "30–40%; GPUs idle between experiment design, debugging, and analysis",
+      "timeline": "2–3 months",
+      "team": "2 researchers (NLP + ML theory)",
+      "estimated_gpu_cost": "$325 (130h × ~$2.50/hr on competitive H100 cloud providers)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~163 H100-hours",
+      "gpu_utilization": "60–70%; agent queues experiment batches and begins analysis while awaiting human approval",
+      "timeline": "4–6 weeks",
+      "team": "1 researcher, ~1hr/day reviewing agent proposals and auditing depth-data pipeline",
+      "claude_api_cost": "$100–300 (~1,500–3,000 turns for experiment design, code generation, and analysis)",
+      "estimated_gpu_cost": "$408 (163h × ~$2.50/hr)",
+      "risk_note": "Sequential dependency in depth-labeled data generation (depth-k requires depth-(k-1) model); requires human audit of recursive data pipeline to prevent label mislabeling"
+    },
+    "auto_research": {
+      "gpu_hours": "~163 H100-hours (Phase 1: 12h, Phase 2: 6h, Phase 3 compute: 2h, Phase 4 generation: 40h, Phase 4 training: 91h, Phase 4 eval: 3h, buffer: 9h)",
+      "gpu_utilization": "85–90%; near-zero idle between runs",
+      "timeline": "2–3 weeks with 4 concurrent H100s",
+      "team": "0 (initial setup and final review only)",
+      "claude_api_cost": "$200–500 (~3,000–5,000 turns for full exploration, debugging, and paper drafting)",
+      "estimated_gpu_cost": "$408 (163h × ~$2.50/hr)",
+      "speed_bottleneck": "Sequential depth-data generation (~1.2 days on 1 H100) + synthetic corpus generation (~40 H100-hours, parallelizable across generators); remainder parallelizable across 4 H100s",
+      "risk_note": "Budget fits within ≤200 H100-hours hard constraint with ~37h margin. ESS threshold sensitivity ablation dropped to fit budget; depth-aware vs depth-agnostic ablation retained as the higher-value comparison."
+    }
+  },
+  "target_venues": [
+    "AAAI 2027 (expected deadline: ~Jul–Aug 2026 — primary target; ~10–12 weeks from today allows full experimental validation, Phase 3 formalization, dual-metric evaluation, and ablations)",
+    "EMNLP 2026 (ARR deadline: May 25, 2026 — aspirational; the special theme 'New Missions for NLP Research' includes a 'Data as responsibility' sub-theme explicitly soliciting work on 'contamination' and 'synthetic data feedback loops,' providing strong thematic alignment; submit only if Phase 1–2 pilot results are conclusive by May 18 and Phase 3 derivation is formalized; 14-day timeline creates execution risk for a full paper — consider Findings-track submission with Phases 1–2 + preliminary Phase 4 results if timeline is binding)"
+  ],
+  "level": "top-tier",
+  "key_references": [
+    "Machine-generated text detection prevents language model collapse (arXiv 2502.15654, Feb 2025) — binary detection + importance resampling baseline; our work extends with convergence-informed calibration and multi-generator evaluation",
+    "Can Generative AI Survive Data Contamination? Theoretical Guarantees under Contaminated Recursive Training (arXiv 2602.16065, Feb 2026) — convergence bound d(ℙ̂_t,ℙ_0) ≲ t^{−min{p,α}} we operationalize via the α_eff(b) bridge; Assumption A2 restricts d to convex metrics, explicitly excluding cross-entropy/KL — motivating our dual-metric validation approach",
+    "Strong Model Collapse (arXiv 2410.04840, Dohmatob et al., ICLR 2025 Spotlight) — proves even 0.1% synthetic contamination causes collapse under static mixing with known proportions; escape requires p₂→0; our detection-based adaptive reweighting functionally achieves this for detected synthetic samples, differentiating from their known-proportion weighted mixing analysis",
+    "A Theoretical Perspective: How to Prevent Model Collapse in Self-consuming Training Loops (arXiv 2502.18865, ICLR 2025) — recursive stability framework proving O(1/n) convergence for transformers with constant real-data proportion; complementary architecture-dependent analysis vs. our detection-dependent approach",
+    "Golden Ratio Weighting Prevents Model Collapse (arXiv 2502.18049, Feb 2025) — optimal mixing with known synthetic fraction via C(w,k)=[w²+(1−w)²k]/(2w−w²); our method estimates the fraction from unlabeled data",
+    "Preventing Model Collapse Under Overparametrization: Optimal Mixing Ratios for Interpolation Learning and Ridge Regression (arXiv 2509.22341, Garg et al., Sep 2025, revised Feb 2026) — extends golden-ratio convergence to overparameterized min-ℓ₂-norm interpolation and ridge regression for general covariate distributions; complementary to arXiv 2502.18049 in deriving optimal mixing ratios under known proportions, which our method estimates from unlabeled data",
+    "Knowledge Collapse in LLMs: When Fluency Survives but Facts Fail under Recursive Synthetic Training (arXiv 2509.04796, Sep 2025) — depth-dependent degradation patterns informing our pilot study design and metrics",
+    "Breaking the Generator Barrier: Disentangled Representation for Generalizable AI-Text Detection (arXiv 2604.13692, Apr 2026) — cross-generator detection challenge (~88% average, 68.9% worst-case on FLAN-T5) motivating our multi-generator training",
+    "AI models collapse when trained on recursively generated data (Nature, Jul 2024) — foundational model collapse result",
+    "Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data (ICML 2024) — real+synthetic accumulation baseline",
+    "From Collapse to Improvement: Statistical Perspectives on Iterative Training on Contaminated Sources (arXiv 2602.10531, Feb 2026) — conditions under which contaminated training can improve; notes that synthetic data detection is a crucial future direction for estimating mixture proportions",
+    "Detecting Benchmark Contamination Through Watermarking (ICLR 2025) — proactive watermark-based detection (complementary to our post-hoc approach)",
+    "Escaping Model Collapse via Synthetic Data Verification (arXiv 2510.16657, Oct 2025) — verification-based binary filtering alternative",
+    "Dynamic Loss-Based Sample Reweighting for Improved Large Language Model Pretraining (arXiv 2502.06733, ICLR 2025) — convergence analysis for loss-based reweighting; complementary to our detection-based approach",
+    "Curated Synthetic Data Doesn't Have to Collapse (arXiv 2605.07724, ICML 2026) — convergence under pluralistic curation; addresses diversity preservation rather than contamination detection",
+    "Feature-Augmented Transformers for Robust AI-Text Detection Across Domains and Generators (arXiv 2605.03969, May 2026) — confirms cross-generator generalization remains challenging (85.9% cross-dataset balanced accuracy)"
+  ],
+  "description": "We bridge the gap between model-collapse convergence theory and practical training pipelines for web corpora contaminated with multi-depth, multi-generator synthetic text. A critical challenge is that the convergence bound of arXiv 2602.16065 (d(ℙ̂_t, ℙ_0) ≲ t^{−min{p,α}}) requires convex distance metrics (Assumption A2) that exclude cross-entropy — the standard LM training objective — and no general inequality bridges this gap in the needed direction (Pinsker's inequality gives small KL → small TV, not the reverse). We address this through dual-metric empirical validation. Our four-phase pipeline: (1) conducts the first empirical investigation of whether recursive generation depth (1–3) is classifiable from text alone, using iteratively retrained Qwen3-0.6B — a novel feasibility study whose outcome (positive or negative) is informative; (2) trains a multi-generator provenance detector (ModernBERT-base on Qwen3 + Llama-3.2 outputs) with cross-generator evaluation, addressing the single-generator limitation of arXiv 2502.15654; (3) derives training sample weights informed by the convergence bound via effective real fraction α_eff(b) = Σ(1−q_i)^{b+1}/Σ(1−q_i)^b, solving for b* such that α_eff(b*) ≥ τ subject to ESS ≥ n_min — replacing the heuristic grid-searched b of arXiv 2502.15654 with an adaptive schedule. We explicitly frame the connection between α_eff(b) and the convergence bound's rate exponent as a hypothesis (not a theorem) that is formally applicable only to A2-compatible metrics, and argue that detection-based adaptive reweighting functionally achieves the p₂→0 escape condition required by Strong Model Collapse (Dohmatob et al., ICLR 2025 Spotlight); and (4) validates end-to-end with dual-metric evaluation: theory-compatible metrics (Wasserstein-1, kernel MMD) where the bound formally applies, alongside practical metrics (perplexity, MMLU, HellaSwag), characterizing precisely where the theory-practice bridge is tight vs. loose. Evaluation on controlled multi-generator contamination at 20–60% on FineWeb subsets (9 core runs + 2 cross-generator + 2 ablations). Pre-registered success criteria include adaptive robustness (≥90% of best heuristic across all levels), theory validation (significant improvement on A2-compatible metrics), and practical improvement (≥3% perplexity or ≥2% accuracy at ≥40% contamination); fallback reframes as dual-metric investigation of theory transfer. Total compute: ~163 H100-hours ($408), well within ≤200 H100-hour constraint. Primary target: AAAI 2027.",
+  "project_name": "provenance_weight_training",
+  "source": "web_research"
+}
+
+## Reviewer feedback (round 5)
+Issues: ["MISSING REFERENCE — Amin et al. (arXiv 2502.08924, NeurIPS 2025): 'Escaping Collapse: The Strength of Weak Data for Large Language Model Training' uses a boosting-inspired theory-guided reweighting procedure to prevent model collapse, showing convergence to optimal LLM even with poor-quality non-synthetic data. This is from Google Research and published at a top venue. It represents a closely related approach to theory-guided data weighting for collapse prevention that must be cited and differentiated from. Key distinction: Amin et al. reweight based on loss signals without a detection step; the proposal reweights based on detection confidence informed by convergence theory — different theoretical foundations, different practical assumptions.", "MISSING REFERENCE — Schaeffer et al. (arXiv 2503.03150, ICML 2025 Position): 'Position: Model Collapse Does Not Mean What You Think' argues that there are eight distinct definitions of model collapse, many based on assumptions that poorly match real-world conditions, and that several collapse scenarios are readily avoidable. This directly challenges the proposal's premise and motivation. A top-venue reviewer will expect engagement with this critique — either by acknowledging which collapse definition the proposal targets, or by arguing why the web contamination scenario is one where collapse IS a genuine risk despite the position paper's concerns.", "DRAYSON et al. NOW PUBLISHED AT EMNLP 2025 MAIN CONFERENCE: The proposal should update the citation to reflect this venue acceptance. More importantly, the characterization as 'single-generator single-dataset evaluation' is misleading — Drayson et al. test 4 LLMs (GPT-2 124M, SmolLM2 135M/360M/1.7B) from 2 model families across 6 decoding strategies. While each collapse experiment uses one generator family and the primary evaluation dataset is WikiText-2, the paper is not limited to a single generator overall. A fairer characterization: 'single-generator-per-experiment evaluation on a curated dataset (WikiText-2), without cross-generator contamination scenarios or web-scale evaluation.'", "VENUE FIT OVERCORRECTION FROM ROUND 4: The Round 4 reviewer incorrectly stated that the EMNLP 2026 CFP does not explicitly name synthetic contamination. In fact, the 'Data as a bottleneck and a responsibility' sub-theme explicitly solicits work on 'contamination' and 'the consequences of synthetic data feedback loops.' The proposal's venue alignment claim is accurate and should be stated with confidence, not hedged."]
+Feedback: The proposal has matured substantially across 5 rounds — all major issues from Rounds 1-4 are resolved (Pinsker direction fixed, compute arithmetic consistent, A2 metric exclusion acknowledged with dual-metric validation, Strong Model Collapse properly cited). Three final fixes would push this to passable:
+
+1. **Cite and differentiate from Amin et al. (NeurIPS 2025)**: Position their boosting-inspired reweighting as complementary but distinct — they reweight based on loss signals without a detection step and do not estimate contamination fractions; your method uses detection confidence to estimate effective real fraction and calibrate weights via convergence theory. Both are theory-guided but operate in different settings (known-clean subset required for Amin et al. vs. unlabeled web corpus for your method).
+
+2. **Engage with Schaeffer et al. (ICML 2025 Position)**: Acknowledge the 'model collapse is overblown' critique in 1-2 sentences. Your response: web contamination at 50-60% synthetic fraction (Graphite/Common Crawl 2025 estimates) represents exactly the setting where collapse IS a genuine risk per Strong Model Collapse (Dohmatob et al., ICLR 2025 Spotlight) — your work addresses the most practically relevant collapse scenario, not the artificial single-model-recycling setting that the position paper critiques.
+
+3. **Correct Drayson et al. characterization**: Update citation to EMNLP 2025. Change 'single-generator' to 'single-generator-per-experiment on a curated dataset' — this is a fairer characterization that still highlights the gap your multi-generator evaluation fills.
+
+Bonus: Restore confidence in the EMNLP 2026 venue fit claim — the CFP explicitly solicits this work. The Round 4 reviewer was wrong about the theme characterization.
+
+## Instructions
+- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method (approach / resource_estimate / key_references). Do not jump straight to fixing the method if the underlying problem framing needs correction.
+- Address each issue specifically.
+
+## 深度调研要求（每一轮修订都必须执行）
+
+不要简单地'打补丁'——每一轮修订都是重新审视和深化这个 idea 的机会。
+
+1. **深度搜索**：针对 reviewer 指出的每个问题，建议用 2-3 种不同的搜索查询调研。
+   - 搜索最新的相关论文（arXiv, conference proceedings）
+   - 搜索 benchmark/leaderboard 确认当前 SOTA
+   - 搜索可能遗漏的相关工作和 concurrent work
+
+2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文的 abstract 和方法部分，
+   不要只依赖搜索摘要。形成你自己对领域现状的独立判断。
+
+3. **深度思考**：在修订之前，先独立思考以下问题：
+   - 这个 idea 的核心假设是否仍然成立？
+   - reviewer 的批评是否揭示了更深层的问题？
+   - 有没有更好的 framing 或 approach 来解决同一个核心问题？
+   - 修订后的 idea 相比上一版有什么本质性的改进？
+
+4. **避免表面修订**：如果你发现自己只是在换措辞或补充细节而没有实质改进，
+   考虑是否需要 major revision 或 pivot。反复的 minor fix 不会拯救一个根基有问题的 idea。
+
+## 针对 Review 意见的定向搜索
+
+对 reviewer 指出的每个问题，执行以下搜索流程：
+
+1. **如果 reviewer 说'已有类似工作'**：
+   - 搜索 reviewer 提到的论文，用 WebFetch 实际阅读
+   - 搜索该论文的 cited-by，找到后续跟进工作
+   - 明确你的 idea 与这些工作的差异化点——如果差异化不够，必须 pivot
+
+2. **如果 reviewer 说'SOTA 过时'**：
+   - 用 Papers With Code 查看当前排行榜
+   - 搜索过去 6 个月的最新方法
+   - 更新你的 landscape 和 baseline
+
+3. **如果 reviewer 说'可行性有问题'**：
+   - 搜索类似规模实验的实际成本和时间线
+   - 搜索 GitHub 上是否有可复用的实现
+   - 搜索相关数据集/模型的可获取性
+
+4. **如果 reviewer 说'novelty 不足'**：
+   - 对核心方法尽量做 3-5 种不同关键词组合的搜索
+   - 搜索相邻领域是否有类似思路
+   - 如果确实 novelty 不足，考虑 major revision 或 pivot
+
+- Use WebSearch to find updated information if the reviewer flagged outdated claims.
+- You have full freedom in how much to change:
+  - Minor fix: if only specific details are wrong, correct them and keep everything else.
+  - Major revision: if the approach is fundamentally flawed but the core problem is valid, you may redesign the approach entirely.
+  - Pivot: if the reviewer's feedback reveals that the core problem itself is invalid (e.g., the gap no longer exists), you may propose a RELATED but substantially different idea that builds on the same research area. This is preferred over forcing a doomed idea to pass review.
+- The output replaces the original idea (same tracking ID). Whether you make a small tweak or a full pivot, output a COMPLETE JSON object with ALL fields filled.
+- In the output JSON, include a "change_type" field with one of: "minor", "major", or "pivot" to indicate the scope of your changes.
+- Output the revised idea as a COMPLETE JSON object (same schema as original, plus "change_type").
+
+## 停滞提醒
+这个 idea 已经经过 5 轮修订，近 3 轮的平均分从 3.5 到 3.8，没有明显改善。
+
+请认真思考：
+- 当前方向是否存在根本性的瓶颈？反复的 minor fix 是否在回避核心问题？
+- 如果你认为问题出在 approach 而非 framing，可以做 major revision。
+- 如果你认为 core problem 本身就有问题（gap 不存在、问题不够重要），pivot 到同一研究领域下的新方向可能是更好的选择。
+- 当然，如果你有信心这一轮修订能实现突破，继续改进也完全可以。
+
+最终由你判断——做你认为最能提升 idea 质量的选择。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "0563b0a1-3d11-48a3-b7d2-73cb71c5383f",
+  "type": "user",
+  "uuid": "b9f87a82-8af1-49ab-aced-d89538063dbf",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "518af693-e78b-4645-b459-0ed2fcc8e91c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-12T01:17:25.321Z_
+
+```json
+{
+  "parentUuid": "b9f87a82-8af1-49ab-aced-d89538063dbf",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "dcb67e94-2512-4954-846c-bb92cdc1dcae",
+  "timestamp": "2026-05-12T01:17:25.321Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "518af693-e78b-4645-b459-0ed2fcc8e91c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-12T01:17:25.322Z_
+
+```json
+{
+  "parentUuid": "dcb67e94-2512-4954-846c-bb92cdc1dcae",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "a13f6f34-db41-43f6-8fe4-97d0e7de83e8",
+  "timestamp": "2026-05-12T01:17:25.322Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "518af693-e78b-4645-b459-0ed2fcc8e91c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-11 (UTC).**  ## Original idea {   \"title\": \"Convergence-Informed Provenance Weighting for Recursive Web Contaminat…",
+  "leafUuid": "a13f6f34-db41-43f6-8fe4-97d0e7de83e8",
+  "sessionId": "518af693-e78b-4645-b459-0ed2fcc8e91c"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise research idea based on reviewer feedback",
+  "sessionId": "518af693-e78b-4645-b459-0ed2fcc8e91c"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-12T01:17:39.440Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the reviewer feedback carefully before diving into research. The feedback identifies four specific issues:
+
+1. Missing reference: Amin et al. (arXiv 2502.08924, NeurIPS 2025) - boosting-inspired theory-guided reweighting
+2. Missing reference: Schaeffer et al. (arXiv 2503.03150, ICML 2025 Position) - "Model Collapse Does Not Mean What You Think"
+3. Drayson et al. citation needs updating to EMNLP 2025, and characterization needs correction
+
+
+4. EMNLP 2026 venue fit claim should be restored with confidence
+
+The reviewer emphasizes that the proposal has matured substantially and these are the final fixes needed. Since the core issues are citation gaps and characterization accuracy rather than fundamental flaws, and the reviewer explicitly states all major issues from previous rounds are resolved, I should focus on these targeted corrections rather than pursuing a major revision—the feedback signals this is genuinely close to completion.
+
+Now I'm diving into the research on those specific papers to integrate the citations and fix the characterization issues.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a13f6f34-db41-43f6-8fe4-97d0e7de83e8",
+  "isSidechain": false,
+  "requestId": "req_011CawnvYW2DgDtk7WJnmWzR",
+  "type": "assistant",
+  "uuid": "6ba6fd66-4af7-4fab-98de-68303faeaf35",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "518af693-e78b-4645-b459-0ed2fcc8e91c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014doCRd2WWj5YDBxJHR3SMg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 15428,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 504,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15428,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 504,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 15428,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15428
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-12T01:17:39.448Z_
+
+I'll research the three key papers flagged by the reviewer, then integrate the findings into a revised proposal. Let me start with parallel searches.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6ba6fd66-4af7-4fab-98de-68303faeaf35",
+  "isSidechain": false,
+  "requestId": "req_011CawnvYW2DgDtk7WJnmWzR",
+  "type": "assistant",
+  "uuid": "125395ca-2b2e-4172-9617-7c2052d0f123",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "518af693-e78b-4645-b459-0ed2fcc8e91c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014doCRd2WWj5YDBxJHR3SMg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 15428,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 504,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15428,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 504,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 15428,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15428
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-12T01:17:39.642Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01GNDbfUuVbiXEhmw38jNjpV`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "125395ca-2b2e-4172-9617-7c2052d0f123",
+  "isSidechain": false,
+  "requestId": "req_011CawnvYW2DgDtk7WJnmWzR",
+  "type": "assistant",
+  "uuid": "98fa224e-85c5-443b-9ee8-cd3c13fbc8c1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "518af693-e78b-4645-b459-0ed2fcc8e91c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014doCRd2WWj5YDBxJHR3SMg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 15428,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 504,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15428,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 504,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 15428,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15428
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-12T01:17:39.648Z_
+
+<details><summary>↩ Tool result · `toolu_01GNDbfUuVbiXEhmw38jNjpV`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "98fa224e-85c5-443b-9ee8-cd3c13fbc8c1",
+  "isSidechain": false,
+  "promptId": "0563b0a1-3d11-48a3-b7d2-73cb71c5383f",
+  "type": "user",
+  "uuid": "63d514d7-8c2a-493b-8f35-f9ce10778862",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "98fa224e-85c5-443b-9ee8-cd3c13fbc8c1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "518af693-e78b-4645-b459-0ed2fcc8e91c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-12T01:17:43.198Z_
+
+Now let me research all three papers in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "63d514d7-8c2a-493b-8f35-f9ce10778862",
+  "isSidechain": false,
+  "requestId": "req_011CawnwbwfcMktFzqRiXSNW",
+  "type": "assistant",
+  "uuid": "ee9310b2-e2d7-4b2f-a457-261d238d3959",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "518af693-e78b-4645-b459-0ed2fcc8e91c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018GUA7Xi7pgxFRX7817DxZq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1523,
+      "cache_read_input_tokens": 27269,
+      "output_tokens": 458,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1523,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 458,
+          "cache_read_input_tokens": 27269,
+          "cache_creation_input_tokens": 1523,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1523
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-12T01:17:45.677Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01YGSYnftY371d3abGaExqZh`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2502.08924",
+  "prompt": "Extract the full abstract, key contributions, and method summary of this paper. What is the theoretical foundation? What assumptions does it make (e.g., does it require a known-clean subset)? What are the main results? How does it relate to model collapse prevention?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ee9310b2-e2d7-4b2f-a457-261d238d3959",
+  "isSidechain": false,
+  "requestId": "req_011CawnwbwfcMktFzqRiXSNW",
+  "type": "assistant",
+  "uuid": "0a528c8e-c4e3-45f7-a6ef-f011c1784fcb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "518af693-e78b-4645-b459-0ed2fcc8e91c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018GUA7Xi7pgxFRX7817DxZq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1523,
+      "cache_read_input_tokens": 27269,
+      "output_tokens": 458,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1523,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 458,
+          "cache_read_input_tokens": 27269,
+          "cache_creation_input_tokens": 1523,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1523
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-12T01:17:47.721Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01VbWR4JG6Q5jukQDgBokBZG`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2503.03150",
+  "prompt": "Extract the full abstract and key arguments of this paper. What are the eight definitions of model collapse it identifies? What is the main critique — which collapse scenarios does it argue are avoidable vs. genuine risks? What practical recommendations does it make?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0a528c8e-c4e3-45f7-a6ef-f011c1784fcb",
+  "isSidechain": false,
+  "requestId": "req_011CawnwbwfcMktFzqRiXSNW",
+  "type": "assistant",
+  "uuid": "db75254c-bd41-46d3-a77f-7b626330e6df",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "518af693-e78b-4645-b459-0ed2fcc8e91c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018GUA7Xi7pgxFRX7817DxZq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1523,
+      "cache_read_input_tokens": 27269,
+      "output_tokens": 458,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1523,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 458,
+          "cache_read_input_tokens": 27269,
+          "cache_creation_input_tokens": 1523,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1523
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-12T01:17:49.084Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0158RxMe3NiGvzPYgYQyuZn3`</summary>
+
+```json
+{
+  "query": "Amin et al. \"Escaping Collapse\" \"Strength of Weak Data\" NeurIPS 2025 boosting reweighting model collapse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "db75254c-bd41-46d3-a77f-7b626330e6df",
+  "isSidechain": false,
+  "requestId": "req_011CawnwbwfcMktFzqRiXSNW",
+  "type": "assistant",
+  "uuid": "57d3e962-e3c5-4e21-bb74-817ad1453515",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "518af693-e78b-4645-b459-0ed2fcc8e91c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018GUA7Xi7pgxFRX7817DxZq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1523,
+      "cache_read_input_tokens": 27269,
+      "output_tokens": 458,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1523,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 458,
+          "cache_read_input_tokens": 27269,
+          "cache_creation_input_tokens": 1523,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1523
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-12T01:17:50.087Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01ETzgDxkmSzPMyd6bcDrp1Q`</summary>
+
+```json
+{
+  "query": "Schaeffer et al. \"Model Collapse Does Not Mean What You Think\" ICML 2025 position paper eight definitions"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "57d3e962-e3c5-4e21-bb74-817ad1453515",
+  "isSidechain": false,
+  "requestId": "req_011CawnwbwfcMktFzqRiXSNW",
+  "type": "assistant",
+  "uuid": "57b266c6-326e-4f7b-8b26-39addb170a22",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "518af693-e78b-4645-b459-0ed2fcc8e91c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018GUA7Xi7pgxFRX7817DxZq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1523,
+      "cache_read_input_tokens": 27269,
+      "output_tokens": 458,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1523,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 458,
+          "cache_read_input_tokens": 27269,
+          "cache_creation_input_tokens": 1523,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1523
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-12T01:17:50.292Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012vz4ZCcLY7FWXPt1wbufKf`</summary>
+
+```json
+{
+  "query": "Drayson et al. \"Machine-generated text detection prevents language model collapse\" EMNLP 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "57b266c6-326e-4f7b-8b26-39addb170a22",
+  "isSidechain": false,
+  "requestId": "req_011CawnwbwfcMktFzqRiXSNW",
+  "type": "assistant",
+  "uuid": "aca1be84-b731-4608-9323-b69b1dcc4e75",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "518af693-e78b-4645-b459-0ed2fcc8e91c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018GUA7Xi7pgxFRX7817DxZq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1523,
+      "cache_read_input_tokens": 27269,
+      "output_tokens": 458,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1523,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 458,
+          "cache_read_input_tokens": 27269,
+          "cache_creation_input_tokens": 1523,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1523
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-12T01:17:51.383Z_
+
+<details><summary>↩ Tool result · `toolu_01YGSYnftY371d3abGaExqZh`</summary>
+
+```text
+# Paper Analysis: "Escaping Collapse: The Strength of Weak Data for Large Language Model Training"
+
+## Full Abstract
+"Synthetically-generated data plays an increasingly larger role in training large language models. However, while synthetic data has been found to be useful, studies have also shown that without proper curation it can cause LLM performance to plateau, or even 'collapse', after many training iterations."
+
+The researchers formalize how much curation is necessary to maintain continuous performance improvement, developing a theoretical framework inspired by boosting algorithms.
+
+## Theoretical Foundation
+The approach draws from **boosting**, a classical machine learning technique that combines weak learners into strong classifiers. This foundation allows the analysis to encompass many recently proposed synthetic data training methods while explaining their success mechanisms.
+
+## Key Contributions
+1. **Formal framework** investigating the relationship between data curation requirements and sustained LLM performance gains
+2. **Theoretical analysis** that subsumes multiple existing synthetic data training approaches
+3. **Empirical validation** demonstrating that dynamically allocating labeling resources toward challenging examples improves outcomes
+
+## Method Summary
+The authors employ a boosting-inspired strategy where labeling efforts concentrate on difficult examples iteratively—mirroring how classical boosting focuses weak learner resources.
+
+## Main Results & Model Collapse Prevention
+By dynamically prioritizing hard examples, the method addresses performance degradation that occurs without adequate data curation, enabling continual improvement rather than collapse.
+
+## Critical Assumptions
+The abstract doesn't specify whether the approach requires a known-clean data subset, though the boosting inspiration suggests iterative refinement of the training set through difficulty-based sampling.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0a528c8e-c4e3-45f7-a6ef-f011c1784fcb",
+  "isSidechain": false,
+  "promptId": "0563b0a1-3d11-48a3-b7d2-73cb71c5383f",
+  "type": "user",
+  "uuid": "5d726d97-ee4a-4c7d-a1bd-f9b850c51147",
+  "toolUseResult": {
+    "bytes": 47223,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Paper Analysis: \"Escaping Collapse: The Strength of Weak Data for Large Language Model Training\"\n\n## Full Abstract\n\"Synthetically-generated data plays an increasingly larger role in training large language models. However, while synthetic data has been found to be useful, studies have also shown that without proper curation it can cause LLM performance to plateau, or even 'collapse', after many training iterations.\"\n\nThe researchers formalize how much curation is necessary to maintain continuous performance improvement, developing a theoretical framework inspired by boosting algorithms.\n\n## Theoretical Foundation\nThe approach draws from **boosting**, a classical machine learning technique that combines weak learners into strong classifiers. This foundation allows the analysis to encompass many recently proposed synthetic data training methods while explaining their success mechanisms.\n\n## Key Contributions\n1. **Formal framework** investigating the relationship between data curation requirements and sustained LLM performance gains\n2. **Theoretical analysis** that subsumes multiple existing synthetic data training approaches\n3. **Empirical validation** demonstrating that dynamically allocating labeling resources toward challenging examples improves outcomes\n\n## Method Summary\nThe authors employ a boosting-inspired strategy where labeling efforts concentrate on difficult examples iteratively—mirroring how classical boosting focuses weak learner resources.\n\n## Main Results & Model Collapse Prevention\nBy dynamically prioritizing hard examples, the method addresses performance degradation that occurs without adequate data curation, enabling continual improvement rather than collapse.\n\n## Critical Assumptions\nThe abstract doesn't specify whether the approach requires a known-clean data subset, though the boosting inspiration suggests iterative refinement of the training set through difficulty-based sampling.",
+    "durationMs": 5703,
+    "url": "https://arxiv.org/abs/2502.08924"
+  },
+  "sourceToolAssistantUUID": "0a528c8e-c4e3-45f7-a6ef-f011c1784fcb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "518af693-e78b-4645-b459-0ed2fcc8e91c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-12T01:17:52.024Z_
+
+<details><summary>↩ Tool result · `toolu_01VbWR4JG6Q5jukQDgBokBZG`</summary>
+
+```text
+# Summary of "Position: Model Collapse Does Not Mean What You Think"
+
+## Full Abstract
+
+The paper contends that widespread concerns about model collapse—performance degradation in generative models trained on synthetic data—are based on a fundamental misunderstanding of the evidence. The authors argue that "research on model collapse actually encompasses eight distinct and at times conflicting definitions" and that this terminological inconsistency has prevented comprehensive understanding. They evaluate existing literature against realistic real-world conditions and conclude that "several prominent collapse scenarios are readily avoidable."
+
+## The Eight Definitions
+
+The paper identifies eight distinct definitions of model collapse, though the webpage content does not enumerate them explicitly. The authors emphasize that these definitions sometimes conflict with one another, creating confusion in the literature.
+
+## Main Critique
+
+The authors argue that the narrative around model collapse has been oversimplified and sensationalized. Their key points include:
+
+- Many collapse scenarios rely on "assumptions and conditions that poorly match real-world conditions"
+- Certain predicted catastrophic outcomes are "readily avoidable"
+- The field has conflated multiple distinct phenomena under one umbrella term
+
+## Practical Recommendations
+
+The webpage does not detail specific recommendations. However, the authors suggest that attention should shift to "specific harms more likely under society's current trajectory" that have received disproportionately less focus than collapse narratives.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "db75254c-bd41-46d3-a77f-7b626330e6df",
+  "isSidechain": false,
+  "promptId": "0563b0a1-3d11-48a3-b7d2-73cb71c5383f",
+  "type": "user",
+  "uuid": "a7773ad4-2ead-4671-a141-ac64ca08945a",
+  "toolUseResult": {
+    "bytes": 47612,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Summary of \"Position: Model Collapse Does Not Mean What You Think\"\n\n## Full Abstract\n\nThe paper contends that widespread concerns about model collapse—performance degradation in generative models trained on synthetic data—are based on a fundamental misunderstanding of the evidence. The authors argue that \"research on model collapse actually encompasses eight distinct and at times conflicting definitions\" and that this terminological inconsistency has prevented comprehensive understanding. They evaluate existing literature against realistic real-world conditions and conclude that \"several prominent collapse scenarios are readily avoidable.\"\n\n## The Eight Definitions\n\nThe paper identifies eight distinct definitions of model collapse, though the webpage content does not enumerate them explicitly. The authors emphasize that these definitions sometimes conflict with one another, creating confusion in the literature.\n\n## Main Critique\n\nThe authors argue that the narrative around model collapse has been oversimplified and sensationalized. Their key points include:\n\n- Many collapse scenarios rely on \"assumptions and conditions that poorly match real-world conditions\"\n- Certain predicted catastrophic outcomes are \"readily avoidable\"\n- The field has conflated multiple distinct phenomena under one umbrella term\n\n## Practical Recommendations\n\nThe webpage does not detail specific recommendations. However, the authors suggest that attention should shift to \"specific harms more likely under society's current trajectory\" that have received disproportionately less focus than collapse narratives.",
+    "durationMs": 4298,
+    "url": "https://arxiv.org/abs/2503.03150"
+  },
+  "sourceToolAssistantUUID": "db75254c-bd41-46d3-a77f-7b626330e6df",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "518af693-e78b-4645-b459-0ed2fcc8e91c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-12T01:17:54.606Z_
+
+<details><summary>↩ Tool result · `toolu_01ETzgDxkmSzPMyd6bcDrp1Q`</summary>
+
+```text
+Web search results for query: "Schaeffer et al. "Model Collapse Does Not Mean What You Think" ICML 2025 position paper eight definitions"
+
+Links: [{"title":"1 Introduction","url":"https://arxiv.org/html/2503.03150v2"},{"title":"ICML Poster Collapse or Thrive: Perils and Promises of Synthetic Data in a Self-Generating World","url":"https://icml.cc/virtual/2025/poster/44713"},{"title":"ICML 2025 Position Paper Track | OpenReview","url":"https://openreview.net/group?id=ICML.cc%2F2025%2FPosition_Paper_Track"},{"title":"Strong Model Collapse | OpenReview","url":"https://openreview.net/forum?id=et5l9qPUhm"},{"title":"ICML.2025 | Cool Papers - Immersive Paper Discovery","url":"https://papers.cool/venue/ICML.2025"},{"title":"ICML 2025 Papers","url":"https://icml.cc/virtual/2025/papers.html"},{"title":"A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective","url":"https://arxiv.org/html/2509.16499v1"},{"title":"Position: Model Collapse Does Not Mean What You Think","url":"https://arxiv.org/pdf/2503.03150"},{"title":"Published as a conference paper at ICLR 2025 STRONG MODEL COLLAPSE","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/284afdc2309f9667d2d4fb9290235b0c-Paper-Conference.pdf"},{"title":"Position: Model Collapse Does Not Mean What You Think Anonymous Author(s)","url":"https://openreview.net/pdf?id=ygfzWIGDN8"}]
+
+Based on the search results, I found the Schaeffer et al. position paper for ICML 2025. Here's what I found:
+
+The paper is titled "Position: Model Collapse Does Not Mean What You Think" by Rylan Schaeffer, Joshua Kazdan, Alvan Caleb Arulandu, and Sanmi Koyejo.
+
+By hand-annotating 28 prior research publications, the authors identify 8 definitions of model collapse. The 8 definitions can be loosely grouped into three families: (1) the behavior of the test loss on real data over model-fitting iterations, (2) the deformation of the real data distribution over model-fitting iterations, and (3) the scaling behavior of the test loss with respect to typical scaling quantities such as the amount of data.
+
+The paper appears to be addressing the confusion and lack of consensus around how "model collapse" is defined in the literature. The authors argue that despite widespread concerns about model collapse due to AI-generated content, the term has been used inconsistently across different research papers, each employing different definitions based on different performance metrics and assumptions.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "57b266c6-326e-4f7b-8b26-39addb170a22",
+  "isSidechain": false,
+  "promptId": "0563b0a1-3d11-48a3-b7d2-73cb71c5383f",
+  "type": "user",
+  "uuid": "d298551f-456b-454d-989d-3951f84d77a3",
+  "toolUseResult": {
+    "query": "Schaeffer et al. \"Model Collapse Does Not Mean What You Think\" ICML 2025 position paper eight definitions",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VvxMpCwy7CL2rYaivcoD5Q",
+        "content": [
+          {
+            "title": "1 Introduction",
+            "url": "https://arxiv.org/html/2503.03150v2"
+          },
+          {
+            "title": "ICML Poster Collapse or Thrive: Perils and Promises of Synthetic Data in a Self-Generating World",
+            "url": "https://icml.cc/virtual/2025/poster/44713"
+          },
+          {
+            "title": "ICML 2025 Position Paper Track | OpenReview",
+            "url": "https://openreview.net/group?id=ICML.cc%2F2025%2FPosition_Paper_Track"
+          },
+          {
+            "title": "Strong Model Collapse | OpenReview",
+            "url": "https://openreview.net/forum?id=et5l9qPUhm"
+          },
+          {
+            "title": "ICML.2025 | Cool Papers - Immersive Paper Discovery",
+            "url": "https://papers.cool/venue/ICML.2025"
+          },
+          {
+            "title": "ICML 2025 Papers",
+            "url": "https://icml.cc/virtual/2025/papers.html"
+          },
+          {
+            "title": "A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective",
+            "url": "https://arxiv.org/html/2509.16499v1"
+          },
+          {
+            "title": "Position: Model Collapse Does Not Mean What You Think",
+            "url": "https://arxiv.org/pdf/2503.03150"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025 STRONG MODEL COLLAPSE",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/284afdc2309f9667d2d4fb9290235b0c-Paper-Conference.pdf"
+          },
+          {
+            "title": "Position: Model Collapse Does Not Mean What You Think Anonymous Author(s)",
+            "url": "https://openreview.net/pdf?id=ygfzWIGDN8"
+          }
+        ]
+      },
+      "Based on the search results, I found the Schaeffer et al. position paper for ICML 2025. Here's what I found:\n\nThe paper is titled \"Position: Model Collapse Does Not Mean What You Think\" by Rylan Schaeffer, Joshua Kazdan, Alvan Caleb Arulandu, and Sanmi Koyejo.\n\nBy hand-annotating 28 prior research publications, the authors identify 8 definitions of model collapse. The 8 definitions can be loosely grouped into three families: (1) the behavior of the test loss on real data over model-fitting iterations, (2) the deformation of the real data distribution over model-fitting iterations, and (3) the scaling behavior of the test loss with respect to typical scaling quantities such as the amount of data.\n\nThe paper appears to be addressing the confusion and lack of consensus around how \"model collapse\" is defined in the literature. The authors argue that despite widespread concerns about model collapse due to AI-generated content, the term has been used inconsistently across different research papers, each employing different definitions based on different performance metrics and assumptions."
+    ],
+    "durationSeconds": 4.516227513999999
+  },
+  "sourceToolAssistantUUID": "57b266c6-326e-4f7b-8b26-39addb170a22",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "518af693-e78b-4645-b459-0ed2fcc8e91c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-12T01:17:55.073Z_
+
+<details><summary>↩ Tool result · `toolu_0158RxMe3NiGvzPYgYQyuZn3`</summary>
+
+```text
+Web search results for query: "Amin et al. "Escaping Collapse" "Strength of Weak Data" NeurIPS 2025 boosting reweighting model collapse"
+
+Links: [{"title":"NeurIPS Poster Escaping Collapse: The Strength of Weak Data for Large Language Model Training","url":"https://neurips.cc/virtual/2025/loc/san-diego/poster/115205"},{"title":"[2502.08924] Escaping Collapse: The Strength of Weak Data for Large Language Model Training","url":"https://arxiv.org/abs/2502.08924"},{"title":"Escaping Collapse: The Strength of Weak Data for Large Language Model Training∗","url":"https://openreview.net/pdf?id=xpY3C8HxNh"},{"title":"Escaping Collapse: The Strength of Weak Data for Large Language Model Training | OpenReview","url":"https://openreview.net/forum?id=xpY3C8HxNh"},{"title":"Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements and Long-term ConvergenceThis project is supported by the AI2050 program at Schmidt Sciences (Grant G-24-66104) and Army Research Office Award W911NF-23-1-0030. We also thank Cong Ma from UChicago, Hongning Wang and Bo Li from Tsinghua, Pinyan Lu and Gavin Tang from Shanghai University of Finance and Economics for helpful discussions and suggestions.","url":"https://arxiv.org/html/2510.16657v1"},{"title":"Escaping Collapse: The Strength of Weak Data for Large Language Model TrainingAuthors ordered alphabetically. Author contributions are listed at the end.","url":"https://arxiv.org/html/2502.08924v2"},{"title":"[PDF] Escaping Collapse: The Strength of Weak Data for Large Language Model Training | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Escaping-Collapse:-The-Strength-of-Weak-Data-for-Amin-Babakniya/6f68462091407147a0704d70f0bad23b0e366134"},{"title":"Escaping Model Collapse via Synthetic Data Verification:","url":"https://arxiv.org/pdf/2510.16657"},{"title":"Escaping Collapse: The Strength of Weak Data for Large Language Model Training | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/escaping-collapse-strength-weak-data-large-language"},{"title":"[Literature Review] Escaping Collapse: The Strength of Weak Data for Large Language Model Training","url":"https://www.themoonlight.io/en/review/escaping-collapse-the-strength-of-weak-data-for-large-language-model-training"}]
+
+I found the paper you're looking for! Here's what I found about it:
+
+## Paper Summary
+
+"Escaping Collapse: The Strength of Weak Data for Large Language Model Training" by Kareem Amin, Sara Babakniya, Alex Bie, Weiwei Kong, Umar Syed, and Sergei Vassilvitskii was presented as a NeurIPS 2025 poster.
+
+## Main Problem
+
+While synthetic data has been found useful, studies have shown that without proper curation it can cause LLM performance to plateau, or even "collapse", after many training iterations. The paper formalizes this question and develops a theoretical framework to investigate how much curation is needed in order to ensure that LLM performance continually improves.
+
+## Key Approach
+
+The analysis is inspired by boosting, a classic machine learning technique that leverages a very weak learning algorithm to produce an arbitrarily good classifier. The approach analyzed subsumes many recently proposed methods for training LLMs on synthetic data.
+
+## Key Finding
+
+The requirements for data curation are nearly minimal—the paper describes a training procedure that converges to an optimal LLM even if almost all of the non-synthetic training data is of poor quality.
+
+The paper is available on arXiv as paper 2502.08924 and has corresponding OpenReview and NeurIPS materials.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "57d3e962-e3c5-4e21-bb74-817ad1453515",
+  "isSidechain": false,
+  "promptId": "0563b0a1-3d11-48a3-b7d2-73cb71c5383f",
+  "type": "user",
+  "uuid": "d5a2ef37-333b-49a8-b653-b3943e7de0c2",
+  "toolUseResult": {
+    "query": "Amin et al. \"Escaping Collapse\" \"Strength of Weak Data\" NeurIPS 2025 boosting reweighting model collapse",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013VuQJ3S53uLnzePpxSapU2",
+        "content": [
+          {
+            "title": "NeurIPS Poster Escaping Collapse: The Strength of Weak Data for Large Language Model Training",
+            "url": "https://neurips.cc/virtual/2025/loc/san-diego/poster/115205"
+          },
+          {
+            "title": "[2502.08924] Escaping Collapse: The Strength of Weak Data for Large Language Model Training",
+            "url": "https://arxiv.org/abs/2502.08924"
+          },
+          {
+            "title": "Escaping Collapse: The Strength of Weak Data for Large Language Model Training∗",
+            "url": "https://openreview.net/pdf?id=xpY3C8HxNh"
+          },
+          {
+            "title": "Escaping Collapse: The Strength of Weak Data for Large Language Model Training | OpenReview",
+            "url": "https://openreview.net/forum?id=xpY3C8HxNh"
+          },
+          {
+            "title": "Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements and Long-term ConvergenceThis project is supported by the AI2050 program at Schmidt Sciences (Grant G-24-66104) and Army Research Office Award W911NF-23-1-0030. We also thank Cong Ma from UChicago, Hongning Wang and Bo Li from Tsinghua, Pinyan Lu and Gavin Tang from Shanghai University of Finance and Economics for helpful discussions and suggestions.",
+            "url": "https://arxiv.org/html/2510.16657v1"
+          },
+          {
+            "title": "Escaping Collapse: The Strength of Weak Data for Large Language Model TrainingAuthors ordered alphabetically. Author contributions are listed at the end.",
+            "url": "https://arxiv.org/html/2502.08924v2"
+          },
+          {
+            "title": "[PDF] Escaping Collapse: The Strength of Weak Data for Large Language Model Training | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Escaping-Collapse:-The-Strength-of-Weak-Data-for-Amin-Babakniya/6f68462091407147a0704d70f0bad23b0e366134"
+          },
+          {
+            "title": "Escaping Model Collapse via Synthetic Data Verification:",
+            "url": "https://arxiv.org/pdf/2510.16657"
+          },
+          {
+            "title": "Escaping Collapse: The Strength of Weak Data for Large Language Model Training | AI Research Paper Details",
+            "url": "https://www.aimodels.fyi/papers/arxiv/escaping-collapse-strength-weak-data-large-language"
+          },
+          {
+            "title": "[Literature Review] Escaping Collapse: The Strength of Weak Data for Large Language Model Training",
+            "url": "https://www.themoonlight.io/en/review/escaping-collapse-the-strength-of-weak-data-for-large-language-model-training"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here's what I found about it:\n\n## Paper Summary\n\n\"Escaping Collapse: The Strength of Weak Data for Large Language Model Training\" by Kareem Amin, Sara Babakniya, Alex Bie, Weiwei Kong, Umar Syed, and Sergei Vassilvitskii was presented as a NeurIPS 2025 poster.\n\n## Main Problem\n\nWhile synthetic data has been found useful, studies have shown that without proper curation it can cause LLM performance to plateau, or even \"collapse\", after many training iterations. The paper formalizes this question and develops a theoretical framework to investigate how much curation is needed in order to ensure that LLM performance continually improves.\n\n## Key Approach\n\nThe analysis is inspired by boosting, a classic machine learning technique that leverages a very weak learning algorithm to produce an arbitrarily good classifier. The approach analyzed subsumes many recently proposed methods for training LLMs on synthetic data.\n\n## Key Finding\n\nThe requirements for data curation are nearly minimal—the paper describes a training procedure that converges to an optimal LLM even if almost all of the non-synthetic training data is of poor quality.\n\nThe paper is available on arXiv as paper 2502.08924 and has corresponding OpenReview and NeurIPS materials."
+    ],
+    "durationSeconds": 5.9849125569999995
+  },
+  "sourceToolAssistantUUID": "57d3e962-e3c5-4e21-bb74-817ad1453515",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "518af693-e78b-4645-b459-0ed2fcc8e91c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-11 (UTC).**  ## Original idea {   \"title\": \"Convergence-Informed Provenance Weighting for Recursive Web Contaminat…",
+  "leafUuid": "d5a2ef37-333b-49a8-b653-b3943e7de0c2",
+  "sessionId": "518af693-e78b-4645-b459-0ed2fcc8e91c"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 23_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise research idea based on reviewer feedback",
+  "sessionId": "518af693-e78b-4645-b459-0ed2fcc8e91c"
+}
+```
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-12T01:17:56.917Z_
+
+<details><summary>↩ Tool result · `toolu_012vz4ZCcLY7FWXPt1wbufKf`</summary>
+
+```text
+Web search results for query: "Drayson et al. "Machine-generated text detection prevents language model collapse" EMNLP 2025"
+
+Links: [{"title":"[2502.15654] Machine-generated text detection prevents language model collapse","url":"https://arxiv.org/abs/2502.15654"},{"title":"Machine-generated text detection prevents language model collapse","url":"https://arxiv.org/html/2502.15654"},{"title":"(PDF) Machine-generated text detection prevents language model collapse","url":"https://www.researchgate.net/publication/397412242_Machine-generated_text_detection_prevents_language_model_collapse"},{"title":"Machine-generated text detection prevents language model ...","url":"https://discovery.ucl.ac.uk/id/eprint/10217226/1/2025.emnlp-main.1506.pdf"},{"title":"Machine-generated text detection prevents language ...","url":"https://omega.cs.ucl.ac.uk/assets/pdf/papers/drayson2025-model-collapse.pdf"},{"title":"GitHub - GeorgeDrayson/model_collapse","url":"https://github.com/GeorgeDrayson/model_collapse"},{"title":"Machine-generated text detection prevents language model collapse - UCL Discovery","url":"https://discovery.ucl.ac.uk/id/eprint/10217226/"},{"title":"Computation and Language Feb 2025","url":"https://www.arxiv.org/list/cs.CL/2025-02?skip=1325&show=250"},{"title":"Learning by Surprise: Surplexity for Mitigating Model Collapse in Generative AI","url":"https://arxiv.org/html/2410.12341v3"},{"title":"Machine-generated text detection prevents language model collapse","url":"https://openreview.net/pdf/22a5ff4d5a06122ee42c12ae85435b110781d685.pdf"}]
+
+I've successfully found the paper! Here are the key details about the Drayson et al. research:
+
+## Paper Details
+
+**Title:** Machine-generated text detection prevents language model collapse
+
+**Authors:** George Drayson, Emine Yilmaz and Vasileios Lampos from Centre for Artificial Intelligence, Department of Computer Science, University College London, UK
+
+**Conference:** Accepted by EMNLP 2025 (main)
+
+**Publication Details:** Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing, pages 29645-29661
+
+## Research Summary
+
+The paper addresses the issue that as Large Language Models (LLMs) become increasingly prevalent, their generated outputs are proliferating across the web, risking a future where machine-generated content dilutes human-authored text. Since online data is the primary resource for LLM pre-training, subsequent models could be trained on an unknown portion of synthetic samples, which could lead to model collapse, a degenerative process whereby LLMs reinforce their own errors, reduce output diversity, and ultimately yield declining performance.
+
+**Key Finding:** The research demonstrates that machine-generated text detection not only prevents model collapse but also improves performance compared to training on purely human data, underscoring the benefit of synthetic samples and the importance of data curation.
+
+**Code:** The repository contains the official implementation of the paper available at github.com/GeorgeDrayson/model_collapse
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "aca1be84-b731-4608-9323-b69b1dcc4e75",
+  "isSidechain": false,
+  "promptId": "0563b0a1-3d11-48a3-b7d2-73cb71c5383f",
+  "type": "user",
+  "uuid": "26dceb4a-5a74-413e-9024-bbc5a8ae655a",
+  "toolUseResult": {
+    "query": "Drayson et al. \"Machine-generated text detection prevents language model collapse\" EMNLP 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01MxBN8MgzonB7sVkNTUyuTd",
+        "content": [
+          {
+            "title": "[2502.15654] Machine-generated text detection prevents language model collapse",
+            "url": "https://arxiv.org/abs/2502.15654"
+          },
+          {
+            "title": "Machine-generated text detection prevents language model collapse",
+            "url": "https://arxiv.org/html/2502.15654"
+          },
+          {
+            "title": "(PDF) Machine-generated text detection prevents language model collapse",
+            "url": "https://www.researchgate.net/publication/397412242_Machine-generated_text_detection_prevents_language_model_collapse"
+          },
+          {
+            "title": "Machine-generated text detection prevents language model ...",
+            "url": "https://discovery.ucl.ac.uk/id/eprint/10217226/1/2025.emnlp-main.1506.pdf"
+          },
+          {
+            "title": "Machine-generated text detection prevents language ...",
+            "url": "https://omega.cs.ucl.ac.uk/assets/pdf/papers/drayson2025-model-collapse.pdf"
+          },
+          {
+            "title": "GitHub - GeorgeDrayson/model_collapse",
+            "url": "https://github.com/GeorgeDrayson/model_collapse"
+          },
+          {
+            "title": "Machine-generated text detection prevents language model collapse - UCL Discovery",
+            "url": "https://discovery.ucl.ac.uk/id/eprint/10217226/"
+          },
+          {
+            "title": "Computation and Language Feb 2025",
+            "url": "https://www.arxiv.org/list/cs.CL/2025-02?skip=1325&show=250"
+          },
+          {
+            "title": "Learning by Surprise: Surplexity for Mitigating Model Collapse in Generative AI",
+            "url": "https://arxiv.org/html/2410.12341v3"
+          },
+          {
+            "title": "Machine-generated text detection prevents language model collapse",
+            "url": "https://openreview.net/pdf/22a5ff4d5a06122ee42c12ae85435b110781d685.pdf"
+          }
+        ]
+      },
+      "I've successfully found the paper! Here are the key details about the Drayson et al. research:\n\n## Paper Details\n\n**Title:** Machine-generated text detection prevents language model collapse\n\n**Authors:** George Drayson, Emine Yilmaz and Vasileios Lampos from Centre for Artificial Intelligence, Department of Computer Science, University College London, UK\n\n**Conference:** Accepted by EMNLP 2025 (main)\n\n**Publication Details:** Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing, pages 29645-29661\n\n## Research Summary\n\nThe paper addresses the issue that as Large Language Models (LLMs) become increasingly prevalent, their generated outputs are proliferating across the web, risking a future where machine-generated content dilutes human-authored text. Since online data is the primary resource for LLM pre-training, subsequent models could be trained on an unknown portion of synthetic samples, which could lead to model collapse, a degenerative process whereby LLMs reinforce their own errors, reduce output diversity, and ultimately yield declining performance.\n\n**Key Finding:** The research demonstrates that machine-generated text detection not only prevents model collapse but also improves performance compared to training on purely human data, underscoring the benefit of synthetic samples and the importance of data curation.\n\n**Code:** The repository contains the official implementation of the paper available at github.com/GeorgeDrayson/model_collapse"
+    ],
+    "durationSeconds": 6.621000530999998
+  },
+  "sourceToolAssistantUUID": "aca1be84-b731-4608-9323-b69b1dcc4e75",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "518af693-e78b-4645-b459-0ed2fcc8e91c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25 · 2026-05-12T01:18:01.237Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I have initial information. Let me now do deeper reads on the Amin et al. and Schaeffer et al. papers to understand their methods more precisely, and also check the Drayson et al. EMNLP 2025 paper for the exact experimental setup (how many models/generators they test).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "26dceb4a-5a74-413e-9024-bbc5a8ae655a",
+  "isSidechain": false,
+  "requestId": "req_011Cawnxs4Y3yZaHqQcgL3vL",
+  "type": "assistant",
+  "uuid": "0c3c6369-f5fe-4473-b62d-03c5ddce7453",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "518af693-e78b-4645-b459-0ed2fcc8e91c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012m5CowgtudbAt3QgiW1i69",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3811,
+      "cache_read_input_tokens": 28792,
+      "output_tokens": 650,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3811,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 650,
+          "cache_read_input_tokens": 28792,
+          "cache_creation_input_tokens": 3811,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3811
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26 · 2026-05-12T01:18:01.735Z_
+
+Let me do deeper reads on the key papers to understand their methods precisely.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0c3c6369-f5fe-4473-b62d-03c5ddce7453",
+  "isSidechain": false,
+  "requestId": "req_011Cawnxs4Y3yZaHqQcgL3vL",
+  "type": "assistant",
+  "uuid": "93ab9f71-2448-4887-aaae-1ce5387c227b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "518af693-e78b-4645-b459-0ed2fcc8e91c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012m5CowgtudbAt3QgiW1i69",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3811,
+      "cache_read_input_tokens": 28792,
+      "output_tokens": 650,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3811,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 650,
+          "cache_read_input_tokens": 28792,
+          "cache_creation_input_tokens": 3811,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3811
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-12T01:18:06.086Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01TYCBrrSbHa2HzJnTCoJ8QA`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2502.08924v2",
+  "prompt": "Extract the detailed method/approach. Specifically: 1) What is the boosting-inspired reweighting procedure? 2) Does it require a known-clean subset of data? 3) What are the theoretical guarantees? 4) What assumptions does it make about knowing the synthetic fraction? 5) How does it differ from detection-based approaches? 6) What is the convergence result — does it converge to an optimal LLM even with poor-quality non-synthetic data? 7) What practical settings does it target (web corpus, curated data, etc.)? 8) What models and datasets are used in experiments?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "93ab9f71-2448-4887-aaae-1ce5387c227b",
+  "isSidechain": false,
+  "requestId": "req_011Cawnxs4Y3yZaHqQcgL3vL",
+  "type": "assistant",
+  "uuid": "c371bdfa-0a4f-426e-ac6c-d5d163e06f1e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "518af693-e78b-4645-b459-0ed2fcc8e91c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012m5CowgtudbAt3QgiW1i69",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3811,
+      "cache_read_input_tokens": 28792,
+      "output_tokens": 650,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3811,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 650,
+          "cache_read_input_tokens": 28792,
+          "cache_creation_input_tokens": 3811,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3811
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-12T01:18:09.505Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01B2QS7jfpVitC8J81AWGhN3`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2503.03150v2",
+  "prompt": "Extract: 1) The eight definitions of model collapse identified. 2) Which collapse definitions/scenarios are argued to be avoidable? 3) Which scenarios are acknowledged as genuine risks? 4) What does the paper say about web contamination and recursive training? 5) What does it say about the distinction between single-model recycling and multi-generator contamination? 6) What specific recommendations does it make for future research? 7) What is the main argument about why current collapse fears are overstated?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c371bdfa-0a4f-426e-ac6c-d5d163e06f1e",
+  "isSidechain": false,
+  "requestId": "req_011Cawnxs4Y3yZaHqQcgL3vL",
+  "type": "assistant",
+  "uuid": "70103f4f-c298-4b2a-b7dd-10996bdf76d3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "518af693-e78b-4645-b459-0ed2fcc8e91c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012m5CowgtudbAt3QgiW1i69",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3811,
+      "cache_read_input_tokens": 28792,
+      "output_tokens": 650,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3811,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 650,
+          "cache_read_input_tokens": 28792,
+          "cache_creation_input_tokens": 3811,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3811
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-12T01:18:11.327Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01DWEnS1S8GfqoUwp4DY74r6`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2502.15654",
+  "prompt": "Extract the experimental setup details: 1) Exactly which LLMs are used for generating synthetic data? List all model names and sizes. 2) How many model families are tested? 3) Is each collapse experiment single-generator or multi-generator? 4) What datasets are used? 5) Is cross-generator contamination tested? 6) What decoding strategies are used?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "70103f4f-c298-4b2a-b7dd-10996bdf76d3",
+  "isSidechain": false,
+  "requestId": "req_011Cawnxs4Y3yZaHqQcgL3vL",
+  "type": "assistant",
+  "uuid": "8f8dc4aa-adc1-49bc-8e8e-cf8e0810da9c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "518af693-e78b-4645-b459-0ed2fcc8e91c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012m5CowgtudbAt3QgiW1i69",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3811,
+      "cache_read_input_tokens": 28792,
+      "output_tokens": 650,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3811,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 650,
+          "cache_read_input_tokens": 28792,
+          "cache_creation_input_tokens": 3811,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3811
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-12T01:18:17.123Z_
+
+<details><summary>↩ Tool result · `toolu_01TYCBrrSbHa2HzJnTCoJ8QA`</summary>
+
+```text
+# Detailed Method/Approach Summary
+
+## 1) Boosting-Inspired Reweighting Procedure
+
+The approach uses an iterative algorithm that mirrors classical boosting but inverts its assumptions. Rather than combining weak learners, it leverages "strong learners" (LLMs that can perfectly fit training data) with "weak data" (responses where only a β-fraction are high-quality). Each iteration:
+
+- Generates k synthetic responses per prompt from the current LLM
+- Filters responses to identify high-quality synthetic data
+- Sends low-quality prompts to a weak labeler for external responses
+- Reweights training data by allocating fixed weight α to newly labeled examples
+- Retrains the LLM on the accumulated weighted mixture
+
+## 2) Does It Require a Known-Clean Subset?
+
+No. The algorithm does not assume access to a verified clean dataset. Instead, it requires only a "β-weak labeler" that produces responses where "a β fraction of these labels are high-quality" across any prompt set, without indicating which ones are correct.
+
+## 3) Theoretical Guarantees
+
+**Theorem 5** provides convergence guarantees: With T ≥ log(2/ε)/β + 2α/(βε) + 1 iterations and k ≥ (2log T + log|P|)/(βγ) samples per prompt, the algorithm achieves probability at least 1-1/T of reaching "Pr[q(x,y)=1] ≥ 1-ε" across the prompt set.
+
+## 4) Assumptions About Synthetic Fraction
+
+The framework does not assume knowledge of how much data is synthetic versus authentic. It assumes the learner can "perfectly fit training data" distributions and that the weak labeler maintains constant β-quality when focused on difficult prompt subsets—achievable through fixed labeling budgets distributed across problems.
+
+## 5) Difference From Detection-Based Approaches
+
+Unlike methods that identify and remove synthetic data, this approach **actively leverages** synthetic data by dynamically focusing curation on prompts where the model performs poorly. It "focuses training on examples where previous hypotheses performed poorly," similar to AdaBoost's reweighting strategy.
+
+## 6) Convergence to Optimal LLM
+
+Yes. The theory proves the model converges toward optimality even when non-synthetic data quality is bounded only by β > 0. The algorithm succeeds because "the size of Pt− shrinks exponentially with t," ensuring low-quality prompts receive increasingly accurate labels through the weak labeler over iterations.
+
+## 7) Practical Settings Targeted
+
+The framework models "continued training" scenarios where developers iteratively improve LLMs using mixed data sources—capturing approaches like STaR, ReST, and ReSTᴱᴹ. It applies to domains where response quality is "relatively easy to programmatically verify," such as math and coding tasks.
+
+## 8) Models and Datasets
+
+Experiments use **Gemma 2 2B** (a small-scale model) on:
+- **GSM8K**: 7,000 math word problems
+- **MBPP**: 374 Python coding problems
+
+Results show boosting variants outperform filter-only and do-nothing baselines on training accuracy across both tasks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c371bdfa-0a4f-426e-ac6c-d5d163e06f1e",
+  "isSidechain": false,
+  "promptId": "0563b0a1-3d11-48a3-b7d2-73cb71c5383f",
+  "type": "user",
+  "uuid": "7401052f-a594-4527-8cb5-8f7849daa951",
+  "toolUseResult": {
+    "bytes": 482545,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Detailed Method/Approach Summary\n\n## 1) Boosting-Inspired Reweighting Procedure\n\nThe approach uses an iterative algorithm that mirrors classical boosting but inverts its assumptions. Rather than combining weak learners, it leverages \"strong learners\" (LLMs that can perfectly fit training data) with \"weak data\" (responses where only a β-fraction are high-quality). Each iteration:\n\n- Generates k synthetic responses per prompt from the current LLM\n- Filters responses to identify high-quality synthetic data\n- Sends low-quality prompts to a weak labeler for external responses\n- Reweights training data by allocating fixed weight α to newly labeled examples\n- Retrains the LLM on the accumulated weighted mixture\n\n## 2) Does It Require a Known-Clean Subset?\n\nNo. The algorithm does not assume access to a verified clean dataset. Instead, it requires only a \"β-weak labeler\" that produces responses where \"a β fraction of these labels are high-quality\" across any prompt set, without indicating which ones are correct.\n\n## 3) Theoretical Guarantees\n\n**Theorem 5** provides convergence guarantees: With T ≥ log(2/ε)/β + 2α/(βε) + 1 iterations and k ≥ (2log T + log|P|)/(βγ) samples per prompt, the algorithm achieves probability at least 1-1/T of reaching \"Pr[q(x,y)=1] ≥ 1-ε\" across the prompt set.\n\n## 4) Assumptions About Synthetic Fraction\n\nThe framework does not assume knowledge of how much data is synthetic versus authentic. It assumes the learner can \"perfectly fit training data\" distributions and that the weak labeler maintains constant β-quality when focused on difficult prompt subsets—achievable through fixed labeling budgets distributed across problems.\n\n## 5) Difference From Detection-Based Approaches\n\nUnlike methods that identify and remove synthetic data, this approach **actively leverages** synthetic data by dynamically focusing curation on prompts where the model performs poorly. It \"focuses training on examples where previous hypotheses performed poorly,\" similar to AdaBoost's reweighting strategy.\n\n## 6) Convergence to Optimal LLM\n\nYes. The theory proves the model converges toward optimality even when non-synthetic data quality is bounded only by β > 0. The algorithm succeeds because \"the size of Pt− shrinks exponentially with t,\" ensuring low-quality prompts receive increasingly accurate labels through the weak labeler over iterations.\n\n## 7) Practical Settings Targeted\n\nThe framework models \"continued training\" scenarios where developers iteratively improve LLMs using mixed data sources—capturing approaches like STaR, ReST, and ReSTᴱᴹ. It applies to domains where response quality is \"relatively easy to programmatically verify,\" such as math and coding tasks.\n\n## 8) Models and Datasets\n\nExperiments use **Gemma 2 2B** (a small-scale model) on:\n- **GSM8K**: 7,000 math word problems\n- **MBPP**: 374 Python coding problems\n\nResults show boosting variants outperform filter-only and do-nothing baselines on training accuracy across both tasks.",
+    "durationMs": 11032,
+    "url": "https://arxiv.org/html/2502.08924v2"
+  },
+  "sourceToolAssistantUUID": "c371bdfa-0a4f-426e-ac6c-d5d163e06f1e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "518af693-e78b-4645-b459-0ed2fcc8e91c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-12T01:18:17.880Z_
+
+<details><summary>↩ Tool result · `toolu_01DWEnS1S8GfqoUwp4DY74r6`</summary>
+
+```text
+# Experimental Setup Details
+
+## 1) LLMs for Generating Synthetic Data
+
+The study uses two model families:
+- **GPT-2**: 124M parameters
+- **SmolLM2**: 135M, 360M, and 1.7B parameter variants
+
+## 2) Model Families Tested
+
+**Two families** are evaluated across the experiments.
+
+## 3) Collapse Experiment Type
+
+The experiments are **single-generator**. Each generation recursively trains on outputs from the immediately preceding model iteration, following a sequential pipeline rather than incorporating multiple parallel generators.
+
+## 4) Datasets Used
+
+- **WikiText-2** for model collapse experiments (36,718 training documents; 4,358 test documents)
+- **MAGE dataset** for machine-generated text detector training (10 domains; 154,078 human and 294,381 synthetic texts)
+- **RAID dataset** (subset) for improved SmolLM2 detector performance
+
+## 5) Cross-Generator Contamination Testing
+
+Yes. The study explicitly tests "partially synthetic with synthetic data accumulated across generations" using mixing coefficients (α=0.5, β=0.5, γ=0.5), where training incorporates "cross-generational data" from multiple prior generations.
+
+## 6) Decoding Strategies Used
+
+Six strategies are evaluated:
+- Greedy decoding
+- 5-way beam search
+- Pure sampling
+- Temperature sampling (τ=0.9)
+- Top-k sampling (k=50)
+- Nucleus sampling (η=0.95)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8f8dc4aa-adc1-49bc-8e8e-cf8e0810da9c",
+  "isSidechain": false,
+  "promptId": "0563b0a1-3d11-48a3-b7d2-73cb71c5383f",
+  "type": "user",
+  "uuid": "0d51a513-1e1d-4a78-bfd3-c6cded30e056",
+  "toolUseResult": {
+    "bytes": 501797,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Experimental Setup Details\n\n## 1) LLMs for Generating Synthetic Data\n\nThe study uses two model families:\n- **GPT-2**: 124M parameters\n- **SmolLM2**: 135M, 360M, and 1.7B parameter variants\n\n## 2) Model Families Tested\n\n**Two families** are evaluated across the experiments.\n\n## 3) Collapse Experiment Type\n\nThe experiments are **single-generator**. Each generation recursively trains on outputs from the immediately preceding model iteration, following a sequential pipeline rather than incorporating multiple parallel generators.\n\n## 4) Datasets Used\n\n- **WikiText-2** for model collapse experiments (36,718 training documents; 4,358 test documents)\n- **MAGE dataset** for machine-generated text detector training (10 domains; 154,078 human and 294,381 synthetic texts)\n- **RAID dataset** (subset) for improved SmolLM2 detector performance\n\n## 5) Cross-Generator Contamination Testing\n\nYes. The study explicitly tests \"partially synthetic with synthetic data accumulated across generations\" using mixing coefficients (α=0.5, β=0.5, γ=0.5), where training incorporates \"cross-generational data\" from multiple prior generations.\n\n## 6) Decoding Strategies Used\n\nSix strategies are evaluated:\n- Greedy decoding\n- 5-way beam search\n- Pure sampling\n- Temperature sampling (τ=0.9)\n- Top-k sampling (k=50)\n- Nucleus sampling (η=0.95)",
+    "durationMs": 6552,
+    "url": "https://arxiv.org/html/2502.15654"
+  },
+  "sourceToolAssistantUUID": "8f8dc4aa-adc1-49bc-8e8e-cf8e0810da9c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "518af693-e78b-4645-b459-0ed2fcc8e91c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-12T01:18:20.540Z_
+
+<details><summary>↩ Tool result · `toolu_01B2QS7jfpVitC8J81AWGhN3`</summary>
+
+```text
+# Model Collapse: Eight Definitions and Key Findings
+
+## 1) Eight Definitions of Model Collapse
+
+The paper identifies these distinct failure modes:
+
+1. **Catastrophic population risk increase** - critical, rapid performance degradation
+2. **Any population risk increase** - strict threshold for any performance decline
+3. **Asymptotically diverging risk** - unbounded performance deterioration across iterations
+4. **Collapsing variance** - distributions trending toward delta-like functions
+5. **Changed scaling laws** - altered relationship between performance and data size
+6. **Mode disappearance/entanglement** - loss of real data distribution modes
+7. **Real tail data disappearance** - underrepresentation of rare cases ("coverage collapse")
+8. **Hallucinated data appearance** - synthetic data unsupported by original distribution
+
+## 2) Avoidable Collapse Scenarios
+
+The authors argue that "most concerning collapse predictions emerge from implausible experimental setups." Specifically:
+
+- Population risk catastrophe is avoidable through "standard ongoing practices in model development"
+- The "replace" paradigm (deleting all data after each iteration) is unrealistic; data actually accumulates
+- Under realistic accumulation conditions, asymptotic divergence doesn't occur
+
+## 3) Acknowledged Genuine Risks
+
+Despite skepticism about catastrophic collapse, the paper identifies serious threats:
+
+- **Tail data loss**: Real concerns about underrepresenting "rare ones" affecting marginalized groups
+- **Mode collapse**: Potential disappearance of specific data modes
+- **Scaling law changes**: Uncertain impacts on model performance relationships
+
+The authors emphasize these risks warrant "careful study" despite being less dramatic than collapse narratives suggest.
+
+## 4) Web Contamination and Recursive Training
+
+The paper's core realism argument concerns data propagation assumptions:
+
+Current frontier AI labs don't practice iterative retraining (training new models from previous checkpoints). Instead, they train from scratch on accumulated web data containing both real and synthetic content. This fundamentally differs from laboratory model collapse studies assuming complete data replacement.
+
+## 5) Single-Model Recycling vs. Multi-Generator Contamination
+
+The paper doesn't explicitly distinguish these terms, but addresses related dynamics:
+
+The "accumulate" paradigm (realistic) involves synthetic data from one model mixing with other sources. The "replace" paradigm (unrealistic) involves single-model self-consumption. Their analysis shows accumulation prevents divergent risk that replacement causes.
+
+## 6) Specific Research Recommendations
+
+The authors call for:
+
+- **Explicit definition adherence**: Papers must clearly state and consistently use collapse definitions
+- **Tail/mode protection studies**: "More research regarding coverage and mode collapse prevention strategies"
+- **Realistic parameter analysis**: Research examining "how synthetic data affects scaling behaviors"
+- **Data quality focus**: Investigation of how improving synthetic data quality affects downstream models
+- **Diversity preservation**: Building on prior work like Hashimoto et al. (2018) addressing distribution coverage
+
+## 7) Main Argument Against Overstated Fears
+
+The paper's central claim: "synthetic data poses genuine challenges" but catastrophic collapse requires unrealistic assumptions. They argue the disconnect emerges because:
+
+Most alarming predictions assume data deletion after each generation—not actual practice. Under realistic web-scale accumulation with improving compute/data quality, population risk stabilizes. The "entire internet is not deleted" after model training, yet many studies assume exactly this scenario.
+
+Their evidence suggests reorienting focus "towards understanding how to generate and curate synthetic data that improves future frontier AI systems while mitigating failure modes" rather than preventing imaginary catastrophes.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "70103f4f-c298-4b2a-b7dd-10996bdf76d3",
+  "isSidechain": false,
+  "promptId": "0563b0a1-3d11-48a3-b7d2-73cb71c5383f",
+  "type": "user",
+  "uuid": "5fe675c0-4561-4695-8eb0-284740474dff",
+  "toolUseResult": {
+    "bytes": 342034,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Model Collapse: Eight Definitions and Key Findings\n\n## 1) Eight Definitions of Model Collapse\n\nThe paper identifies these distinct failure modes:\n\n1. **Catastrophic population risk increase** - critical, rapid performance degradation\n2. **Any population risk increase** - strict threshold for any performance decline\n3. **Asymptotically diverging risk** - unbounded performance deterioration across iterations\n4. **Collapsing variance** - distributions trending toward delta-like functions\n5. **Changed scaling laws** - altered relationship between performance and data size\n6. **Mode disappearance/entanglement** - loss of real data distribution modes\n7. **Real tail data disappearance** - underrepresentation of rare cases (\"coverage collapse\")\n8. **Hallucinated data appearance** - synthetic data unsupported by original distribution\n\n## 2) Avoidable Collapse Scenarios\n\nThe authors argue that \"most concerning collapse predictions emerge from implausible experimental setups.\" Specifically:\n\n- Population risk catastrophe is avoidable through \"standard ongoing practices in model development\"\n- The \"replace\" paradigm (deleting all data after each iteration) is unrealistic; data actually accumulates\n- Under realistic accumulation conditions, asymptotic divergence doesn't occur\n\n## 3) Acknowledged Genuine Risks\n\nDespite skepticism about catastrophic collapse, the paper identifies serious threats:\n\n- **Tail data loss**: Real concerns about underrepresenting \"rare ones\" affecting marginalized groups\n- **Mode collapse**: Potential disappearance of specific data modes\n- **Scaling law changes**: Uncertain impacts on model performance relationships\n\nThe authors emphasize these risks warrant \"careful study\" despite being less dramatic than collapse narratives suggest.\n\n## 4) Web Contamination and Recursive Training\n\nThe paper's core realism argument concerns data propagation assumptions:\n\nCurrent frontier AI labs don't practice iterative retraining (training new models from previous checkpoints). Instead, they train from scratch on accumulated web data containing both real and synthetic content. This fundamentally differs from laboratory model collapse studies assuming complete data replacement.\n\n## 5) Single-Model Recycling vs. Multi-Generator Contamination\n\nThe paper doesn't explicitly distinguish these terms, but addresses related dynamics:\n\nThe \"accumulate\" paradigm (realistic) involves synthetic data from one model mixing with other sources. The \"replace\" paradigm (unrealistic) involves single-model self-consumption. Their analysis shows accumulation prevents divergent risk that replacement causes.\n\n## 6) Specific Research Recommendations\n\nThe authors call for:\n\n- **Explicit definition adherence**: Papers must clearly state and consistently use collapse definitions\n- **Tail/mode protection studies**: \"More research regarding coverage and mode collapse prevention strategies\"\n- **Realistic parameter analysis**: Research examining \"how synthetic data affects scaling behaviors\"\n- **Data quality focus**: Investigation of how improving synthetic data quality affects downstream models\n- **Diversity preservation**: Building on prior work like Hashimoto et al. (2018) addressing distribution coverage\n\n## 7) Main Argument Against Overstated Fears\n\nThe paper's central claim: \"synthetic data poses genuine challenges\" but catastrophic collapse requires unrealistic assumptions. They argue the disconnect emerges because:\n\nMost alarming predictions assume data deletion after each generation—not actual practice. Under realistic web-scale accumulation with improving compute/data quality, population risk stabilizes. The \"entire internet is not deleted\" after model training, yet many studies assume exactly this scenario.\n\nTheir evidence suggests reorienting focus \"towards understanding how to generate and curate synthetic data that improves future frontier AI systems while mitigating failure modes\" rather than preventing imaginary catastrophes.",
+    "durationMs": 11031,
+    "url": "https://arxiv.org/html/2503.03150v2"
+  },
+  "sourceToolAssistantUUID": "70103f4f-c298-4b2a-b7dd-10996bdf76d3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "518af693-e78b-4645-b459-0ed2fcc8e91c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 33 · 2026-05-12T01:18:20.544Z_
+
+```json
+{
+  "parentUuid": "5fe675c0-4561-4695-8eb0-284740474dff",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "a7b701d8-ff05-4555-aa7b-ce889113561d",
+  "timestamp": "2026-05-12T01:18:20.544Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "518af693-e78b-4645-b459-0ed2fcc8e91c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 34_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-11 (UTC).**  ## Original idea {   \"title\": \"Convergence-Informed Provenance Weighting for Recursive Web Contaminat…",
+  "leafUuid": "a7b701d8-ff05-4555-aa7b-ce889113561d",
+  "sessionId": "518af693-e78b-4645-b459-0ed2fcc8e91c"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 35_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise research idea based on reviewer feedback",
+  "sessionId": "518af693-e78b-4645-b459-0ed2fcc8e91c"
+}
+```
+
+---
+
+### Assistant
+
+_source line 36 · 2026-05-12T01:18:44.671Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a much clearer picture. Let me synthesize what I've learned:
+
+**Amin et al. (NeurIPS 2025):**
+- Boosting-inspired iterative reweighting for synthetic data training
+- Does NOT require a known-clean subset — uses a "β-weak labeler" (where a β-fraction of labels are high quality)
+- Reweights based on loss/performance signals, NOT detection of synthetic content
+- Targets settings where quality is programmatically verifiable (math, coding)
+- Convergence guarantee: converges to optimal even with mostly poor-quality non-synthetic data
+
+
+- The key difference from our approach is they're reweighting by model performance rather than detecting synthetic content itself, they don't estimate contamination fractions, and they're working within curated training pipelines rather than open web corpora with unknown contamination levels. They validated on Gemma 2 2B using GSM8K and MBPP.
+
+**Schaeffer et al. (ICML 2025 Position):**
+- Proposes 8 definitions of model collapse organized into 3 families: test loss behavior, distribution deformation, and scaling behavior changes
+- Argues that catastrophic collapse requires unrealistic conditions like data replacement rather than accumulation
+- Still acknowledges real risks like tail data loss and mode collapse.
+
+The core tension I'm seeing is their "replace" paradigm doesn't match reality—data accumulates. But more importantly, they're not addressing the web contamination scenario where synthetic content keeps growing as a fraction of the corpus, which is the realistic case they're sidestepping.
+
+**Drayson et al. (EMNLP 2025):**
+- Tests with GPT-2 124M and SmolLM2 in three sizes (135M, 360M, 1.7B), so four models across two families
+- Each collapse experiment uses a single generator in a sequential pipeline
+- Focuses on WikiText-2 as the primary dataset
+- Evaluates six different decoding strategies and includes cross-generational data mixing
+- The reviewer's point stands: they're running single-generator-per-experiment on curated data, which is more controlled than what I'm describing
+
+Now I need to decide on the proposal revision. The reviewer frames these as three final fixes and suggests the work is close to acceptable, which tells me the fundamental direction is sound—I just need to tighten the citations, fix how I'm characterizing the papers, and clarify the venue fit. I'll revise by properly integrating Amin et al. throughout the proposal, engaging more carefully with Schaeffer et al., correcting the Drayson et al. description, and stating EMNLP 2026 positioning with more confidence. I should also do a quick search for any recent work that might strengthen the revision.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a7b701d8-ff05-4555-aa7b-ce889113561d",
+  "isSidechain": false,
+  "requestId": "req_011Cawnzc5CA8a7LXzdDV4UL",
+  "type": "assistant",
+  "uuid": "63ee2590-cd09-4fca-ad90-fce87e615711",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "518af693-e78b-4645-b459-0ed2fcc8e91c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014bddvCMNSAasoDmnCU3X8q",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 391,
+      "cache_creation_input_tokens": 2359,
+      "cache_read_input_tokens": 32603,
+      "output_tokens": 976,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2359,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 391,
+          "output_tokens": 976,
+          "cache_read_input_tokens": 32603,
+          "cache_creation_input_tokens": 2359,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2359
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37 · 2026-05-12T01:18:44.673Z_
+
+Good, I now have detailed understanding of all three papers. Let me also check the Amin et al. OpenReview page for any additional details on their theoretical framework.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "63ee2590-cd09-4fca-ad90-fce87e615711",
+  "isSidechain": false,
+  "requestId": "req_011Cawnzc5CA8a7LXzdDV4UL",
+  "type": "assistant",
+  "uuid": "64520977-a919-4ca7-8b08-dc809c377906",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "518af693-e78b-4645-b459-0ed2fcc8e91c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014bddvCMNSAasoDmnCU3X8q",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 391,
+      "cache_creation_input_tokens": 2359,
+      "cache_read_input_tokens": 32603,
+      "output_tokens": 976,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2359,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 391,
+          "output_tokens": 976,
+          "cache_read_input_tokens": 32603,
+          "cache_creation_input_tokens": 2359,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2359
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-12T01:18:47.422Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01GX6DuYL6p9xmQjsuBrYubN`</summary>
+
+```json
+{
+  "url": "https://openreview.net/forum?id=xpY3C8HxNh",
+  "prompt": "Extract: 1) The paper's theoretical assumptions and setting. 2) Does it address web-scale unlabeled data or curated training pipelines? 3) What is the relationship between the weak labeler and synthetic data detection? 4) What are the reviewer scores and key criticisms? 5) Any discussion of how it relates to detection-based approaches vs loss-based reweighting?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "64520977-a919-4ca7-8b08-dc809c377906",
+  "isSidechain": false,
+  "requestId": "req_011Cawnzc5CA8a7LXzdDV4UL",
+  "type": "assistant",
+  "uuid": "e29cd504-9eff-4317-9a3a-738185730e13",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "518af693-e78b-4645-b459-0ed2fcc8e91c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014bddvCMNSAasoDmnCU3X8q",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 391,
+      "cache_creation_input_tokens": 2359,
+      "cache_read_input_tokens": 32603,
+      "output_tokens": 976,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2359,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 391,
+          "output_tokens": 976,
+          "cache_read_input_tokens": 32603,
+          "cache_creation_input_tokens": 2359,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2359
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-12T01:18:48.009Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_017YcwNPhEzYbK24H4YeYtM4`</summary>
+
+```json
+{
+  "query": "EMNLP 2026 call for papers \"Data as responsibility\" \"synthetic data feedback loops\" contamination special theme"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e29cd504-9eff-4317-9a3a-738185730e13",
+  "isSidechain": false,
+  "requestId": "req_011Cawnzc5CA8a7LXzdDV4UL",
+  "type": "assistant",
+  "uuid": "329421e2-75f1-47c2-befb-6a52ad140699",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "518af693-e78b-4645-b459-0ed2fcc8e91c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014bddvCMNSAasoDmnCU3X8q",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 391,
+      "cache_creation_input_tokens": 2359,
+      "cache_read_input_tokens": 32603,
+      "output_tokens": 976,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2359,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 391,
+          "output_tokens": 976,
+          "cache_read_input_tokens": 32603,
+          "cache_creation_input_tokens": 2359,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2359
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-12T01:18:50.992Z_
+
+<details><summary>↩ Tool result · `toolu_01GX6DuYL6p9xmQjsuBrYubN`</summary>
+
+```text
+# Analysis of Available Information
+
+Based on the webpage content provided, I can only offer limited responses to your questions:
+
+## What Can Be Addressed:
+
+**1) Theoretical Framework:**
+The paper's approach is "inspired by boosting, a classic machine learning technique" and develops a framework examining "how much curation is needed" for continued LLM performance improvement.
+
+**2) Data Curation vs. Web-Scale:**
+The work focuses on curated training pipelines rather than web-scale unlabeled data. It emphasizes "dynamically focusing labeling resources on the most challenging examples."
+
+**3-5) Remaining Questions:**
+The webpage does not contain information about:
+- The specific relationship between weak labelers and synthetic data detection
+- Reviewer scores or criticisms
+- Comparisons between detection-based approaches versus loss-based reweighting methods
+
+## Note:
+To answer questions 3-5 comprehensively, you would need to access the full paper PDF or the OpenReview discussion section, which are referenced but not included in the provided webpage excerpt.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e29cd504-9eff-4317-9a3a-738185730e13",
+  "isSidechain": false,
+  "promptId": "0563b0a1-3d11-48a3-b7d2-73cb71c5383f",
+  "type": "user",
+  "uuid": "2fd32bae-63f4-4692-91d1-9e1c14309df1",
+  "toolUseResult": {
+    "bytes": 68483,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Analysis of Available Information\n\nBased on the webpage content provided, I can only offer limited responses to your questions:\n\n## What Can Be Addressed:\n\n**1) Theoretical Framework:**\nThe paper's approach is \"inspired by boosting, a classic machine learning technique\" and develops a framework examining \"how much curation is needed\" for continued LLM performance improvement.\n\n**2) Data Curation vs. Web-Scale:**\nThe work focuses on curated training pipelines rather than web-scale unlabeled data. It emphasizes \"dynamically focusing labeling resources on the most challenging examples.\"\n\n**3-5) Remaining Questions:**\nThe webpage does not contain information about:\n- The specific relationship between weak labelers and synthetic data detection\n- Reviewer scores or criticisms\n- Comparisons between detection-based approaches versus loss-based reweighting methods\n\n## Note:\nTo answer questions 3-5 comprehensively, you would need to access the full paper PDF or the OpenReview discussion section, which are referenced but not included in the provided webpage excerpt.",
+    "durationMs": 3565,
+    "url": "https://openreview.net/forum?id=xpY3C8HxNh"
+  },
+  "sourceToolAssistantUUID": "e29cd504-9eff-4317-9a3a-738185730e13",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "518af693-e78b-4645-b459-0ed2fcc8e91c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-12T01:18:54.675Z_
+
+<details><summary>↩ Tool result · `toolu_017YcwNPhEzYbK24H4YeYtM4`</summary>
+
+```text
+Web search results for query: "EMNLP 2026 call for papers "Data as responsibility" "synthetic data feedback loops" contamination special theme"
+
+Links: [{"title":"Call for Main Conference Papers - EMNLP 2026","url":"https://2026.emnlp.org/calls/main_conference_papers/"},{"title":"EMNLP 2026 : The 2026 Conference on Empirical Methods in N","url":"https://callforpaper.org/call-for-papers-emnlp-2026"},{"title":"LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)","url":"https://linguistlist.org/issues/37/972/"},{"title":"Call for workshops: EMNLP & AACL","url":"https://groups.google.com/g/ml-news/c/W-fucfhVto4"},{"title":"SynthAI@SIGMOD 2026 - Call for Papers","url":"https://synthetic-data-sigmod.github.io/syndata2026/cfp.html"},{"title":"Confs: 2026 Conference on Empirical Methods in Natural ...","url":"https://www.facebook.com/linguistlist/posts/confs-2026-conference-on-empirical-methods-in-natural-language-processing-emnlp-/1351983883622556/"},{"title":"Joint Call for Tutorial Proposals (EMNLP/AACL-IJCNLP 2026) | ACL Member Portal","url":"https://www.aclweb.org/portal/content/joint-call-tutorial-proposals-emnlpaacl-ijcnlp-2026"},{"title":"EMNLP 2026 Call for Papers — Official Deadlines & Important Dates | PaperPilot","url":"https://www.getpaperpilot.com/deadlines/emnlp-2026.html"},{"title":"EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X","url":"https://x.com/emnlpmeeting/status/2029508292637061462"},{"title":"Call for Bids to Host EMNLP 2025 or 2026 - SIGDAT","url":"https://sigdat.org/calls/bids2025"}]
+
+Based on the search results, I found detailed information about EMNLP 2026's call for papers and its special theme on data responsibility.
+
+## EMNLP 2026 Special Theme: "Data as a Bottleneck and a Responsibility"
+
+EMNLP 2026 has a special theme titled "Data as a bottleneck and a responsibility" which includes research on data scarcity and limits, contamination, and the consequences of synthetic data feedback loops, and new approaches to data creation, documentation, governance, and consent.
+
+## Context for the Special Theme
+
+Large language models have rapidly shifted from research prototypes to widely used infrastructure, changing the center of gravity of NLP research. The EMNLP 2026 special theme invites papers that articulate, test, and advance visions for NLP in this era, addressing the foundational question of what are the missions of NLP research now.
+
+## Additional Special Theme
+
+Another special theme focuses on "LLMs as research tools: AI in research," with examples including rigorous studies of how LLMs can support the research process in hypothesis generation, experiment design, analysis, and peer review support tools without eroding scientific standards.
+
+## Submission Details
+
+The ARR submission deadline for long and short papers is May 25, 2026, and the EMNLP commitment deadline is August 2, 2026. EMNLP 2026 will use ACL Rolling Review (ARR) as a reviewing system, but final decisions will be made by the conference, with submissions performed via the Open Review platform.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "329421e2-75f1-47c2-befb-6a52ad140699",
+  "isSidechain": false,
+  "promptId": "0563b0a1-3d11-48a3-b7d2-73cb71c5383f",
+  "type": "user",
+  "uuid": "d6a14f1a-3cfe-48cb-85f7-d5c3e87445fb",
+  "toolUseResult": {
+    "query": "EMNLP 2026 call for papers \"Data as responsibility\" \"synthetic data feedback loops\" contamination special theme",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01EiFF3NV3WnK96oYD65Bz9z",
+        "content": [
+          {
+            "title": "Call for Main Conference Papers - EMNLP 2026",
+            "url": "https://2026.emnlp.org/calls/main_conference_papers/"
+          },
+          {
+            "title": "EMNLP 2026 : The 2026 Conference on Empirical Methods in N",
+            "url": "https://callforpaper.org/call-for-papers-emnlp-2026"
+          },
+          {
+            "title": "LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)",
+            "url": "https://linguistlist.org/issues/37/972/"
+          },
+          {
+            "title": "Call for workshops: EMNLP & AACL",
+            "url": "https://groups.google.com/g/ml-news/c/W-fucfhVto4"
+          },
+          {
+            "title": "SynthAI@SIGMOD 2026 - Call for Papers",
+            "url": "https://synthetic-data-sigmod.github.io/syndata2026/cfp.html"
+          },
+          {
+            "title": "Confs: 2026 Conference on Empirical Methods in Natural ...",
+            "url": "https://www.facebook.com/linguistlist/posts/confs-2026-conference-on-empirical-methods-in-natural-language-processing-emnlp-/1351983883622556/"
+          },
+          {
+            "title": "Joint Call for Tutorial Proposals (EMNLP/AACL-IJCNLP 2026) | ACL Member Portal",
+            "url": "https://www.aclweb.org/portal/content/joint-call-tutorial-proposals-emnlpaacl-ijcnlp-2026"
+          },
+          {
+            "title": "EMNLP 2026 Call for Papers — Official Deadlines & Important Dates | PaperPilot",
+            "url": "https://www.getpaperpilot.com/deadlines/emnlp-2026.html"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X",
+            "url": "https://x.com/emnlpmeeting/status/2029508292637061462"
+          },
+          {
+            "title": "Call for Bids to Host EMNLP 2025 or 2026 - SIGDAT",
+            "url": "https://sigdat.org/calls/bids2025"
+          }
+        ]
+      },
+      "Based on the search results, I found detailed information about EMNLP 2026's call for papers and its special theme on data responsibility.\n\n## EMNLP 2026 Special Theme: \"Data as a Bottleneck and a Responsibility\"\n\nEMNLP 2026 has a special theme titled \"Data as a bottleneck and a responsibility\" which includes research on data scarcity and limits, contamination, and the consequences of synthetic data feedback loops, and new approaches to data creation, documentation, governance, and consent.\n\n## Context for the Special Theme\n\nLarge language models have rapidly shifted from research prototypes to widely used infrastructure, changing the center of gravity of NLP research. The EMNLP 2026 special theme invites papers that articulate, test, and advance visions for NLP in this era, addressing the foundational question of what are the missions of NLP research now.\n\n## Additional Special Theme\n\nAnother special theme focuses on \"LLMs as research tools: AI in research,\" with examples including rigorous studies of how LLMs can support the research process in hypothesis generation, experiment design, analysis, and peer review support tools without eroding scientific standards.\n\n## Submission Details\n\nThe ARR submission deadline for long and short papers is May 25, 2026, and the EMNLP commitment deadline is August 2, 2026. EMNLP 2026 will use ACL Rolling Review (ARR) as a reviewing system, but final decisions will be made by the conference, with submissions performed via the Open Review platform."
+    ],
+    "durationSeconds": 6.662800212999995
+  },
+  "sourceToolAssistantUUID": "329421e2-75f1-47c2-befb-6a52ad140699",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "518af693-e78b-4645-b459-0ed2fcc8e91c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42 · 2026-05-12T01:18:59.623Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the information I need. Let me also verify the EMNLP 2026 CFP details by reading it directly.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d6a14f1a-3cfe-48cb-85f7-d5c3e87445fb",
+  "isSidechain": false,
+  "requestId": "req_011Cawo383JZWi4Mxd8xi7gP",
+  "type": "assistant",
+  "uuid": "c1d60630-57a7-486b-89e0-25205140168f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "518af693-e78b-4645-b459-0ed2fcc8e91c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WSPvqF3C3j1uqG2GGungNq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2700,
+      "cache_read_input_tokens": 34962,
+      "output_tokens": 209,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2700,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 209,
+          "cache_read_input_tokens": 34962,
+          "cache_creation_input_tokens": 2700,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2700
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43 · 2026-05-12T01:19:00.120Z_
+
+Let me verify the EMNLP 2026 CFP details directly.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c1d60630-57a7-486b-89e0-25205140168f",
+  "isSidechain": false,
+  "requestId": "req_011Cawo383JZWi4Mxd8xi7gP",
+  "type": "assistant",
+  "uuid": "5a20506d-873d-4b7e-a4fd-069228042d40",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "518af693-e78b-4645-b459-0ed2fcc8e91c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WSPvqF3C3j1uqG2GGungNq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2700,
+      "cache_read_input_tokens": 34962,
+      "output_tokens": 209,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2700,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 209,
+          "cache_read_input_tokens": 34962,
+          "cache_creation_input_tokens": 2700,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2700
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-12T01:19:02.284Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01NCjbhjJXDDwrsLGwkamV2a`</summary>
+
+```json
+{
+  "url": "https://2026.emnlp.org/calls/main_conference_papers/",
+  "prompt": "Extract the exact text of the special theme description, particularly the \"Data as a bottleneck and a responsibility\" sub-theme. What exact words does it use regarding contamination, synthetic data, and feedback loops? Also extract key dates: ARR submission deadline, commitment deadline."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5a20506d-873d-4b7e-a4fd-069228042d40",
+  "isSidechain": false,
+  "requestId": "req_011Cawo383JZWi4Mxd8xi7gP",
+  "type": "assistant",
+  "uuid": "c29f605f-4c79-4bd6-8bfd-0f053eca9f21",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "518af693-e78b-4645-b459-0ed2fcc8e91c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WSPvqF3C3j1uqG2GGungNq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2700,
+      "cache_read_input_tokens": 34962,
+      "output_tokens": 209,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2700,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 209,
+          "cache_read_input_tokens": 34962,
+          "cache_creation_input_tokens": 2700,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2700
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-12T01:19:05.544Z_
+
+<details><summary>↩ Tool result · `toolu_01NCjbhjJXDDwrsLGwkamV2a`</summary>
+
+```text
+# EMNLP 2026 Key Information
+
+## Data Sub-Theme Description
+
+The "Data as a bottleneck and a responsibility" section addresses: **"data scarcity and limits, contamination, and the consequences of synthetic data feedback loops"** along with approaches to data creation, documentation, governance, and consent.
+
+The exact phrasing regarding these concerns emphasizes research on three interconnected issues: insufficient data availability, quality degradation through contamination, and problematic cycles created when synthetic outputs feed back into training processes.
+
+## Critical Deadlines
+
+- **ARR Submission Deadline:** May 25, 2026
+- **EMNLP Commitment Deadline:** August 2, 2026
+
+All deadlines operate at 11:59 PM UTC-12:00 ("anywhere on Earth").
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c29f605f-4c79-4bd6-8bfd-0f053eca9f21",
+  "isSidechain": false,
+  "promptId": "0563b0a1-3d11-48a3-b7d2-73cb71c5383f",
+  "type": "user",
+  "uuid": "d129a352-6ed2-4096-b4e0-1e0359c823cb",
+  "toolUseResult": {
+    "bytes": 26681,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# EMNLP 2026 Key Information\n\n## Data Sub-Theme Description\n\nThe \"Data as a bottleneck and a responsibility\" section addresses: **\"data scarcity and limits, contamination, and the consequences of synthetic data feedback loops\"** along with approaches to data creation, documentation, governance, and consent.\n\nThe exact phrasing regarding these concerns emphasizes research on three interconnected issues: insufficient data availability, quality degradation through contamination, and problematic cycles created when synthetic outputs feed back into training processes.\n\n## Critical Deadlines\n\n- **ARR Submission Deadline:** May 25, 2026\n- **EMNLP Commitment Deadline:** August 2, 2026\n\nAll deadlines operate at 11:59 PM UTC-12:00 (\"anywhere on Earth\").",
+    "durationMs": 3256,
+    "url": "https://2026.emnlp.org/calls/main_conference_papers/"
+  },
+  "sourceToolAssistantUUID": "c29f605f-4c79-4bd6-8bfd-0f053eca9f21",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "518af693-e78b-4645-b459-0ed2fcc8e91c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46 · 2026-05-12T01:19:32.183Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the information I need. Let me now synthesize everything and produce the revised proposal.
+
+Key changes needed:
+1. **Amin et al. (NeurIPS 2025)**: Cite and differentiate. Key distinctions:
+   - They use boosting-inspired reweighting based on loss/performance signals, not detection
+   - They require a "β-weak labeler" (not a known-clean subset, but a labeler that produces β-fraction good labels)
+   - They target curated training pipelines (math, coding) with programmatic verification
+   - They don't estimate contamination fractions from unlabeled data or address web-scale corpora with unknown multi-generator contamination, whereas our detection-based method estimates effective real fraction from unlabeled web data informed by convergence theory
+
+2. **Schaeffer et al. (ICML 2025 Position)**: Engage with the "model collapse is overblown" critique. They identify 8 definitions and argue catastrophic collapse requires unrealistic "replace" paradigm, but acknowledge genuine risks like tail loss and mode collapse. Our response directly addresses their concern: web contamination at 50-60% with growing synthetic fractions represents the realistic scenario they're describing.
+
+3. We're targeting their definition families (1) and (2) — test loss on real data and distribution deformation — and showing that even their endorsed "accumulate" paradigm faces collapse risk when synthetic fraction dominates.
+
+4. **Drayson et al.**: Updating to EMNLP 2025 with the correct characterization that they evaluated on WikiText-2 without cross-generator contamination or web-scale scenarios.
+
+5. **EMNLP 2026 venue fit**: I should state this with confidence using exact CFP language.
+
+Now I'm deciding whether these changes constitute minor fixes, major revisions, or a pivot. The reviewer says three fixes would make this passable, and the stagnation warning is generic from the five-round history. The feedback itself is specific and constructive — these are straightforward citation and characterization corrections.
+
+The core approach, theoretical framework, and experimental design are all validated by the reviewer since all major issues from earlier rounds are resolved. This is definitely a **minor** fix. I need to add two new references and differentiate from them, correct one existing characterization, and restore venue confidence.
+
+I'll revise the proposal by touching the core_problem section to add Schaeffer et al. context about why collapse is a real risk here, the opportunity section to add Amin et al. as a fifth thread and engage with Schaeffer et al., the landscape to include both new references with the corrected Drayson characterization, a brief mention in approach about how we differ from Amin et al., and update the key_references section with both new papers and the Drayson citation.
+
+Now I'm restoring EMNLP 2026 to the target venues and updating the description accordingly.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d129a352-6ed2-4096-b4e0-1e0359c823cb",
+  "isSidechain": false,
+  "requestId": "req_011Cawo3vUokxMnDdAHZXpa1",
+  "type": "assistant",
+  "uuid": "efa24445-8e02-4d4b-975f-22738a7e9271",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "518af693-e78b-4645-b459-0ed2fcc8e91c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XTRWFkqxLBB3nyF4PKj8vm",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 400,
+      "cache_read_input_tokens": 37662,
+      "output_tokens": 10717,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 400,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 10717,
+          "cache_read_input_tokens": 37662,
+          "cache_creation_input_tokens": 400,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 400
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47 · 2026-05-12T01:23:37.544Z_
+
+Now I have thorough understanding of all three papers. Let me synthesize and produce the revised proposal. The changes are clearly **minor** — citation gaps and characterization corrections, not fundamental issues.
+
+Key findings from research:
+- **Amin et al.**: Boosting-inspired, reweights based on loss signals with a β-weak labeler, targets curated pipelines (math/coding) with programmatic verification — no detection step, no contamination estimation, not web-scale
+- **Schaeffer et al.**: 8 collapse definitions in 3 families; argues catastrophic collapse requires unrealistic "replace" paradigm but acknowledges genuine risks (tail loss, mode collapse, scaling changes)
+- **Drayson et al.**: Confirmed EMNLP 2025; uses GPT-2 124M + SmolLM2 135M/360M/1.7B (4 models, 2 families, 6 decoding strategies) but each collapse experiment is single-generator; WikiText-2 primary dataset
+- **EMNLP 2026 CFP**: Explicitly solicits "contamination" and "consequences of synthetic data feedback loops" under "Data as a bottleneck and a responsibility"
+
+Here is the complete revised proposal:
+
+```json
+{
+  "title": "Convergence-Informed Provenance Weighting for Recursive Web Contamination",
+  "core_problem": "Web-scraped training corpora contain an unknown and growing fraction of synthetic text at multiple recursive generation depths, creating feedback loops that degrade model quality. Recent convergence theory (arXiv 2602.16065) proves that training outcomes depend on min(baseline_rate, real_data_fraction), and the Strong Model Collapse result (Dohmatob et al., ICLR 2025 Spotlight) shows that even 0.1% synthetic contamination causes collapse under static mixing — with larger models amplifying the effect. However, no practical pipeline estimates the real-data fraction from unlabeled web data or translates convergence insights into principled training weights. Existing detector-guided resampling (Drayson et al., EMNLP 2025) treats its weighting exponent as a hyperparameter, uses single-generator-per-experiment evaluation on a curated dataset (WikiText-2), and does not investigate whether generation depth — a key theoretical variable in collapse dynamics — is classifiable from text alone. Boosting-inspired theory-guided reweighting (Amin et al., NeurIPS 2025) prevents collapse through loss-based sample prioritization but requires a weak labeler with programmatically verifiable quality and does not estimate contamination fractions from unlabeled data — assumptions that fail on web corpora where synthetic provenance is unknown. A further complication is that the convergence bound requires convex distance metrics (Assumption A2), which excludes cross-entropy and KL divergence — the standard language model training objectives — creating a theory-practice gap. Crucially, no general inequality bridges this gap in the needed direction: Pinsker's inequality gives small KL → small TV, but convergence under A2-compatible metrics (TV, Wasserstein, MMD) does not imply convergence under cross-entropy. This necessitates empirical dual-metric validation rather than a purely theoretical bridge. We note that while Schaeffer et al. (ICML 2025 Position) argue that 'model collapse' conflates eight distinct definitions and that catastrophic scenarios often rely on unrealistic data-replacement assumptions, the web contamination setting we target — where synthetic fraction reaches 50–60% of crawled data and grows with each scrape cycle — falls squarely within the regime where collapse IS a genuine risk per Strong Model Collapse (Dohmatob et al., ICLR 2025 Spotlight), precisely because the synthetic fraction is large, persistent, and not replaced but accumulated alongside real data.",
+  "opportunity": "Five disconnected research threads address parts of this problem but leave a critical integration gap. (1) Convergence theory (arXiv 2602.16065, Feb 2026) provides the bound d(ℙ̂_t, ℙ_0) ≲ t^{−min{p,α}} — the first positive theoretical result on recursive training without distributional assumptions — but restricts d to convex metrics (total variation, Wasserstein-p, MMD), explicitly excluding cross-entropy/KL, and offers no detection or weighting method. (2) Detector-guided resampling (Drayson et al., EMNLP 2025) demonstrates that binary synthetic detection + importance weighting w=(1−q(x))^b prevents collapse and even improves over pure human data on WikiText-2 with GPT-2/SmolLM2 across 6 decoding strategies, but uses single-generator-per-experiment evaluation, a heuristically tuned b, and does not scale to web-like corpora with cross-generator contamination. (3) Golden-ratio weighting (arXiv 2502.18049, Feb 2025) derives the optimal real/synthetic mixing weight w⋆ = (√(k²+4k)−k)/2 by minimizing C(w,k) = [w²+(1−w)²k]/(2w−w²), with the complementary result of Garg et al. (arXiv 2509.22341, Sep 2025, revised Feb 2026) showing that the optimal real-data proportion converges to the reciprocal of the golden ratio under overparameterized interpolation learning — but both assume the synthetic fraction k is known a priori, an assumption that fails on unlabeled web crawls. (4) Strong Model Collapse (arXiv 2410.04840, Dohmatob et al., ICLR 2025 Spotlight) proves that even minimal synthetic contamination causes collapse under static mixing with known proportions, and that weighted mixing alone is insufficient — but does not consider detection-based adaptive reweighting where importance weights can drive the effective contribution of detected synthetic samples toward zero, functionally achieving their p₂→0 escape condition. (5) Boosting-inspired theory-guided reweighting (Amin et al., arXiv 2502.08924, NeurIPS 2025) proves convergence to an optimal LLM even with mostly poor-quality non-synthetic data by dynamically focusing labeling resources on challenging examples — but operates in curated training pipelines with programmatically verifiable quality (math, coding), requires a β-weak labeler, and does not address detection of synthetic provenance in unlabeled web corpora where quality cannot be automatically verified. Meanwhile, the Knowledge Collapse analysis (arXiv 2509.04796, Sep 2025) shows surface fluency is preserved across recursive depths while factual accuracy degrades, raising the empirical question of whether depth is a classifiable signal — a question no prior work has tested. Cross-generator detection generalization remains an open challenge: the best disentangled approach (arXiv 2604.13692, Apr 2026) achieves ~88% average cross-family accuracy but degrades to 68.9% on the hardest family (FLAN-T5). The critical integration gap — connecting convergence theory to weight calibration with estimated (not assumed-known) contamination fractions, validated under both theory-compatible metrics and practical cross-entropy training — remains unaddressed. The EMNLP 2026 special theme 'New Missions for NLP Research' includes a 'Data as a bottleneck and a responsibility' sub-theme that explicitly solicits work on 'contamination' and 'the consequences of synthetic data feedback loops,' providing strong venue alignment.",
+  "landscape": "Binary AI-text detection achieves 0.986 AUC in-distribution (ModernBERT on MAGE benchmark, Drayson et al., EMNLP 2025) but degrades on out-of-distribution generators (~0.943 AUC) and cross-family transfer (~88% average, 68.9% worst-case on FLAN-T5, arXiv 2604.13692). Recent feature-augmented transformer detectors (arXiv 2605.03969, May 2026) achieve up to 99.5% balanced accuracy in-domain but only 85.9% on cross-dataset transfer, confirming cross-generator generalization as a fundamental challenge. The foundational model collapse result (Nature, 2024) demonstrates tail disappearance under recursive training. The ICML 2024 accumulation result shows that mixing real + synthetic data avoids collapse. The convergence theory (arXiv 2602.16065) formalizes this as d(ℙ̂_t, ℙ_0) ≲ t^{−min{p,α}} without distributional assumptions, where d must be a convex metric — satisfied by total variation, Wasserstein-p, energy distance, and MMD, but explicitly NOT by cross-entropy, likelihood, or KL divergence. The authors identify extending the proof to cross-entropy as important future work. This metric restriction is critical: standard LM training uses cross-entropy loss, so the bound's applicability to practical training requires either extension of the theory or empirical validation that the bound's qualitative insights transfer. Note that Pinsker's inequality (TV ≤ √(KL/2)) provides only the direction small KL → small TV; it does not provide a converse, meaning convergence under A2-compatible metrics cannot be theoretically transferred to cross-entropy without additional assumptions (e.g., bounded density ratios for a reverse Pinsker bound). This asymmetry is precisely what motivates our dual-metric empirical validation rather than a purely theoretical bridge. Strong Model Collapse (arXiv 2410.04840, Dohmatob et al., ICLR 2025 Spotlight) proves that even 0.1% synthetic contamination causes collapse in regression settings within the scaling laws paradigm, with larger models amplifying collapse. Critically, their Section 5 shows that weighted single-step mixing with known proportions does not prevent collapse — the escape condition requires p₂→0 (vanishing synthetic proportion). However, their analysis considers only known-proportion weighting, not detection-based adaptive reweighting where importance weights can drive the effective contribution of detected synthetic samples toward zero. Schaeffer et al. (arXiv 2503.03150, ICML 2025 Position) argue that 'model collapse' conflates eight distinct definitions across three families — test loss behavior, distribution deformation, and scaling law changes — and that catastrophic collapse scenarios often rest on the unrealistic 'replace' paradigm where all prior data is discarded. We target collapse definitions in families (1) and (2) under the realistic 'accumulate' paradigm, where the risk is not data replacement but the growing dominance of synthetic content in accumulated web crawls — a regime where even the 'accumulate' paradigm faces degradation when synthetic fractions exceed 40–60% (per Strong Model Collapse and empirical estimates of current web synthetic content). Fu et al. (arXiv 2502.18865, ICLR 2025) introduce recursive stability and prove O(1/n) convergence for transformers in self-consuming loops with constant real-data proportion, providing architecture-dependent convergence guarantees complementary to the architecture-agnostic but metric-restricted bounds of arXiv 2602.16065. Golden-ratio weighting (arXiv 2502.18049) minimizes C(w,k) to derive optimal weights but requires known synthetic fraction k. Garg et al. (arXiv 2509.22341, Sep 2025, revised Feb 2026) extend this to overparameterized settings, showing that the optimal real-data proportion converges to the reciprocal of the golden ratio under min-ℓ₂-norm interpolation for general covariate distributions — again assuming known proportions. Amin et al. (arXiv 2502.08924, NeurIPS 2025) prove that a boosting-inspired iterative reweighting procedure converges to an optimal LLM even when non-synthetic data is mostly poor-quality, requiring only a β-weak labeler that produces a β-fraction of high-quality responses. Their approach reweights based on loss signals without a detection step, dynamically focusing labeling resources on challenging examples — complementary to but distinct from our detection-based approach. Key differences: (a) Amin et al. assume access to a weak labeler with programmatically verifiable quality (validated on math/coding tasks), whereas we target web corpora where quality is not automatically verifiable; (b) they do not estimate synthetic contamination fractions, whereas our method estimates the effective real fraction from unlabeled data via detector confidence; (c) their theoretical foundation is boosting (combining weak learners), whereas ours connects to convergence bounds under recursive contamination. The Knowledge Collapse paper (arXiv 2509.04796) reveals a three-stage degradation (preservation → knowledge collapse → instruction collapse) where Shannon entropy declines from ~4.2 to ~2.5 across depths while surface fluency is preserved. Detector-guided resampling (Drayson et al., EMNLP 2025) uses w=(1−q(x))^b with calibrated ModernBERT detection to upweight likely-human samples, preventing collapse and even improving over pure human data — but treats b as a hyperparameter, uses single-generator-per-experiment evaluation on a curated dataset (WikiText-2) across 4 LLMs (GPT-2 124M, SmolLM2 135M/360M/1.7B) from 2 model families with 6 decoding strategies, and does not consider depth or cross-generator contamination scenarios. Dynamic loss-based sample reweighting (arXiv 2502.06733, ICLR 2025) provides convergence analysis for loss-based reweighting but does not address synthetic contamination detection. Curated synthetic data with pluralistic preferences (arXiv 2605.07724, ICML 2026) proves convergence to a weighted Nash bargaining solution under multi-objective curation but focuses on diversity preservation rather than contamination mitigation. Synthetic data verification (arXiv 2510.16657) uses binary filtering without continuous weighting. The critical gap is the integration of convergence theory with practical detection and weight calibration — specifically, bridging A2-compatible convergence bounds to cross-entropy training via dual-metric validation — on realistic multi-generator web contamination with depth investigation, in a setting where neither programmatic quality verification (as in Amin et al.) nor known synthetic proportions (as in golden-ratio methods) are available.",
+  "approach": "We propose a four-phase pipeline validated within ≤200 H100-hours that bridges the theory–practice gap through dual-metric validation — showing that convergence-informed weighting improves both theory-compatible metrics (where the bound formally applies) and cross-entropy training (where the benefit is empirically demonstrated).\n\n**Phase 1 — Depth Classifiability Pilot (novel empirical investigation, ~12 H100-hours).** We generate multi-depth synthetic corpora by iteratively retraining Qwen3-0.6B on its own outputs at depths 1–3 on a 400M-token FineWeb subset. Limiting to 3 depths is scientifically defensible: the Knowledge Collapse paper (arXiv 2509.04796) shows the most informative degradation transitions occur in early generations. At each depth we measure corpus-level statistics (Shannon entropy, distinct-n, perplexity under an external reference model, factual retention via the KR-test) and train a ModernBERT-base (150M) classifier for 3-class ordinal depth prediction. We report per-depth-pair F1. Decision rule: if adjacent-depth F1 > 65%, depth enters the weighting function; otherwise, we report this as a negative result — itself a novel contribution — and proceed with binary detection only.\n\n**Phase 2 — Multi-Generator Provenance Detector (~6 H100-hours).** We fine-tune ModernBERT-base on a balanced corpus of human text (C4/FineWeb) and synthetic text from two model families — Qwen3-0.6B and Llama-3.2-1B — to produce calibrated per-document synthetic probabilities q(x) via temperature scaling. We evaluate cross-generator transfer: train on Qwen3 outputs, test on Llama outputs, and vice versa. This extends beyond the single-generator-per-experiment evaluation in Drayson et al. (EMNLP 2025) to address cross-generator contamination — the realistic web scenario.\n\n**Phase 3 — Convergence-Informed Weight Calibration (core contribution).** We derive training sample weights informed by the convergence bound of arXiv 2602.16065, explicitly addressing the theory's metric restriction and the informality of the distribution-to-sample bridge. Our approach differs fundamentally from Amin et al. (NeurIPS 2025): they reweight based on loss signals using a β-weak labeler with programmatically verifiable quality, whereas we reweight based on detection confidence to estimate the effective real fraction in unlabeled web data — a setting where quality verification is unavailable and the key challenge is identifying synthetic provenance, not curating response quality.\n\n*Metric limitation and dual-validation strategy.* The convergence bound d(ℙ̂_t, ℙ_0) ≲ t^{−min{p,α}} requires d to be a convex metric (Assumption A2). Cross-entropy and KL divergence do not satisfy A2. No general inequality bridges A2-compatible metrics to cross-entropy in the needed direction: Pinsker's inequality gives small KL → small TV, but we need the reverse (small TV → small KL), which requires bounded density ratios — an assumption that is unverifiable for high-dimensional language distributions. We therefore adopt a dual-validation strategy: we validate the weight calibration on A2-compatible metrics (Wasserstein-1 distance and kernel MMD, computed on frozen SentenceTransformer embeddings) where the bound formally applies, and separately demonstrate whether the benefit transfers to cross-entropy training — the practical objective. This design tests the theory on its own terms while characterizing the theory-practice bridge empirically.\n\n*Step 1 — Effective real fraction under importance weighting.* Given a training batch {x_1,...,x_N} with calibrated detector scores q(x_i) = P̂(synthetic|x_i) and importance weights w_i = (1−q(x_i))^b, we define the effective real fraction:\n\n  α_eff(b) = Σ_i (1−q_i)^{b+1} / Σ_i (1−q_i)^b\n\nThis follows from the law of total expectation: E[w_i · 1{x_i is real} | q_i] = (1−q_i)^{b+1} when q is well-calibrated. α_eff(b) is computable from batch statistics, monotonically non-decreasing in b, with α_eff(0) = 1 − ρ̂ (the unweighted real fraction) and α_eff(b) → 1 as b → ∞.\n\n*Step 2 — Hypothesis: connection to convergence bound.* We hypothesize that under importance-weighted training, the reweighted empirical distribution achieves effective real fraction α_eff(b), yielding convergence rate t^{−min{p, α_eff(b)}} for A2-compatible metrics. This hypothesis is plausible — importance weighting tilts the empirical distribution toward real data — but constitutes an assertion, not a theorem: the convergence bound assumes training on fixed-proportion mixtures, not importance-weighted sampling from a contaminated pool. Formally bridging this gap would require showing that importance-weighted SGD on a contaminated corpus is equivalent, in the relevant metric, to training on a clean mixture with fraction α_eff(b) — a nontrivial claim we leave as a conjecture and validate empirically. We note that even without formal proof, the qualitative insight — the rate exponent saturates at p, so pushing α_eff(b) beyond p only costs effective sample size — provides a principled stopping criterion.\n\n*Connection to Strong Model Collapse.* Dohmatob et al. (arXiv 2410.04840) prove that collapse persists unless p₂→0 (vanishing synthetic proportion), and show that known-proportion weighted mixing is insufficient. Our detection-based approach differs fundamentally: for samples with high q(x_i), importance weights w_i = (1−q(x_i))^b → 0 as b grows, effectively achieving the p₂→0 condition for the detectable portion of contamination. The irreducible contamination from undetected synthetic text (false negatives) sets a floor: effective p₂_residual ≈ FNR × ρ, where FNR is the detector's false negative rate and ρ is the true contamination fraction. This motivates our multi-generator detector training in Phase 2 to minimize FNR.\n\n*Step 3 — Optimal b derivation.* The effective sample size under importance weighting is ESS(b) = (Σ_i w_i)² / Σ_i w_i². Large b improves α_eff (and thus the hypothesized rate exponent) but degrades the constant factor (via reduced ESS). We solve:\n\n  b* = inf{b ≥ 0 : α_eff(b) ≥ τ}  subject to  ESS(b*) ≥ n_min\n\nwhere τ = min(p, target_rate) is the rate exponent threshold and n_min is the minimum effective sample size for stable gradient estimates. When the constraints conflict, we solve b* = argmax_b α_eff(b) s.t. ESS(b) ≥ n_min. When batch contamination is low (ρ̂ < 1−τ), we use uniform weights (b=0). This replaces the heuristic grid search over b in Drayson et al. (EMNLP 2025) with an adaptive, batch-dependent schedule.\n\n*Step 4 — Concentration argument and calibration correction.* For finite batches, α̂_eff(b) concentrates around its expectation at a rate governed by ESS: |α̂_eff − α_eff| ≤ O(√(w_max / (ESS · Σw_i)) · log(1/δ)) with probability 1−δ. With imperfect detector calibration (expected calibration error ε), we apply a safety margin: τ_adj = τ + c·ε·(b+1) where c is estimated from the calibration curve.\n\nIf Phase 1 succeeds, we extend: w_i = (1−q(x_i))^b · α^{d̂_i}, incorporating estimated depth d̂_i as a multiplicative adjustment.\n\n**Phase 4 — End-to-End Validation with Dual-Metric Evaluation (~145 H100-hours, with data generation explicitly budgeted).** We pretrain Qwen3-0.6B on FineWeb subsets (~2B tokens each) with controlled multi-generator contamination at 20%, 40%, and 60% synthetic fraction, comparing: (a) uniform weighting (no mitigation), (b) heuristic b via grid search à la Drayson et al. (EMNLP 2025), (c) our convergence-informed adaptive b.\n\n*Dual-metric evaluation.* We evaluate on two metric classes: (i) *Theory-compatible metrics* — Wasserstein-1 distance and kernel MMD between model-generated text and held-out human reference text, computed in frozen SentenceTransformer embedding space. These satisfy Assumption A2, enabling direct validation of the convergence bound's prediction. (ii) *Practical metrics* — perplexity, output diversity (Self-BLEU, distinct-n), downstream accuracy (MMLU, HellaSwag). Comparing results across both metric classes reveals whether the theory's qualitative insight (optimal rate depends on effective real fraction) transfers to cross-entropy training, and characterizes the tightness of the theory-practice bridge.\n\nSynthetic data generation budget: at 60% contamination on 2B tokens, we need ~1.2B synthetic tokens; across 3 contamination levels × 2 generators, total generation is ~4.8B tokens requiring ~40 H100-hours at ~30K tokens/s (generated once and shared across all training runs). Training: 9 core runs (3 contamination levels × 3 methods) + 2 cross-generator experiments + 2 ablations (depth-aware vs depth-agnostic) = 13 runs × ~7 H100-hours/run ≈ 91 H100-hours. Wasserstein/MMD evaluation: ~3 H100-hours (embedding extraction + distance computation post-hoc). Buffer: ~9 H100-hours for debugging and reruns.\n\n**Total: ~163 H100-hours** (Phase 1: 12 + Phase 2: 6 + Phase 4 generation: 40 + Phase 4 training: 91 + Phase 4 eval: 3 + buffer: 9 + Phase 3 compute: 2), well within the ≤200 H100-hour hard constraint.\n\n**Pre-registered success criteria:**\n\n*Primary criterion (adaptive robustness):* Convergence-informed b achieves ≥90% of the perplexity improvement of the best per-condition grid-searched heuristic b, across ALL contamination levels simultaneously with a single adaptive schedule — demonstrating that convergence-informed calibration eliminates the need for expensive hyperparameter sweeps.\n\n*Secondary criterion (theory validation):* Convergence-informed b achieves statistically significant improvement over heuristic b on at least one A2-compatible metric (Wasserstein-1 or MMD) at contamination ≥40%, validating that the convergence bound's insight translates to measurable distributional benefits.\n\n*Tertiary criterion (absolute practical improvement):* At contamination ≥40%, convergence-informed b improves over best heuristic b by ≥3% perplexity reduction OR ≥2% downstream accuracy (MMLU/HellaSwag).\n\n*Fallback framing:* If convergence-informed b provides <3% improvement over heuristic b, fails the adaptive robustness criterion, AND the theory-compatible metrics do not show significant improvement, the paper reframes as: 'From Convergence Bounds to Cross-Entropy Training: An Empirical Investigation of Theory Transfer for Contaminated Web Corpora.' Contributions become: (a) the first dual-metric investigation of whether A2-compatible convergence bounds predict practical training outcomes under detection-based reweighting, with precise characterization of where the bridge is tight vs. loose; (b) the depth classifiability result (positive or negative); (c) the multi-generator evaluation addressing key limitations of prior work. This makes the paper robust to the theory-practice connection being weaker than hoped.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~130 H100-hours",
+      "gpu_utilization": "30–40%; GPUs idle between experiment design, debugging, and analysis",
+      "timeline": "2–3 months",
+      "team": "2 researchers (NLP + ML theory)",
+      "estimated_gpu_cost": "$325 (130h × ~$2.50/hr on competitive H100 cloud providers)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~163 H100-hours",
+      "gpu_utilization": "60–70%; agent queues experiment batches and begins analysis while awaiting human approval",
+      "timeline": "4–6 weeks",
+      "team": "1 researcher, ~1hr/day reviewing agent proposals and auditing depth-data pipeline",
+      "claude_api_cost": "$100–300 (~1,500–3,000 turns for experiment design, code generation, and analysis)",
+      "estimated_gpu_cost": "$408 (163h × ~$2.50/hr)",
+      "risk_note": "Sequential dependency in depth-labeled data generation (depth-k requires depth-(k-1) model); requires human audit of recursive data pipeline to prevent label mislabeling"
+    },
+    "auto_research": {
+      "gpu_hours": "~163 H100-hours (Phase 1: 12h, Phase 2: 6h, Phase 3 compute: 2h, Phase 4 generation: 40h, Phase 4 training: 91h, Phase 4 eval: 3h, buffer: 9h)",
+      "gpu_utilization": "85–90%; near-zero idle between runs",
+      "timeline": "2–3 weeks with 4 concurrent H100s",
+      "team": "0 (initial setup and final review only)",
+      "claude_api_cost": "$200–500 (~3,000–5,000 turns for full exploration, debugging, and paper drafting)",
+      "estimated_gpu_cost": "$408 (163h × ~$2.50/hr)",
+      "speed_bottleneck": "Sequential depth-data generation (~1.2 days on 1 H100) + synthetic corpus generation (~40 H100-hours, parallelizable across generators); remainder parallelizable across 4 H100s",
+      "risk_note": "Budget fits within ≤200 H100-hours hard constraint with ~37h margin. ESS threshold sensitivity ablation dropped to fit budget; depth-aware vs depth-agnostic ablation retained as the higher-value comparison."
+    }
+  },
+  "target_venues": [
+    "AAAI 2027 (expected deadline: ~Jul–Aug 2026 — primary target; ~10–12 weeks from today allows full experimental validation, Phase 3 formalization, dual-metric evaluation, and ablations)",
+    "EMNLP 2026 (ARR deadline: May 25, 2026 — strong venue fit; the special theme 'New Missions for NLP Research' includes a 'Data as a bottleneck and a responsibility' sub-theme that explicitly solicits work on 'contamination' and 'the consequences of synthetic data feedback loops,' directly matching our contribution; submit if Phase 1–2 pilot results are conclusive by May 18 and Phase 3 derivation is formalized; consider Findings-track submission with Phases 1–2 + preliminary Phase 4 results if timeline is binding)"
+  ],
+  "level": "top-tier",
+  "key_references": [
+    "Machine-generated text detection prevents language model collapse (Drayson et al., EMNLP 2025 Main Conference) — binary detection + importance resampling baseline using GPT-2 and SmolLM2 (4 LLMs, 2 families, 6 decoding strategies) with single-generator-per-experiment evaluation on WikiText-2; our work extends with convergence-informed calibration, multi-generator cross-contamination evaluation, and web-scale corpora",
+    "Can Generative AI Survive Data Contamination? Theoretical Guarantees under Contaminated Recursive Training (arXiv 2602.16065, Feb 2026) — convergence bound d(ℙ̂_t,ℙ_0) ≲ t^{−min{p,α}} we operationalize via the α_eff(b) bridge; Assumption A2 restricts d to convex metrics, explicitly excluding cross-entropy/KL — motivating our dual-metric validation approach",
+    "Strong Model Collapse (arXiv 2410.04840, Dohmatob et al., ICLR 2025 Spotlight) — proves even 0.1% synthetic contamination causes collapse under static mixing with known proportions; escape requires p₂→0; our detection-based adaptive reweighting functionally achieves this for detected synthetic samples, differentiating from their known-proportion weighted mixing analysis",
+    "Escaping Collapse: The Strength of Weak Data for Large Language Model Training (Amin et al., arXiv 2502.08924, NeurIPS 2025) — boosting-inspired theory-guided reweighting that converges to optimal LLM even with mostly poor-quality non-synthetic data; reweights based on loss signals with a β-weak labeler requiring programmatically verifiable quality. Complementary but distinct: operates in curated training pipelines (math/coding), does not detect synthetic provenance or estimate contamination fractions from unlabeled web data",
+    "Position: Model Collapse Does Not Mean What You Think (Schaeffer et al., arXiv 2503.03150, ICML 2025 Position) — identifies eight distinct collapse definitions across three families and argues catastrophic scenarios rely on unrealistic data-replacement assumptions; we engage with this critique by targeting the realistic web-accumulation regime where synthetic fraction dominates (50–60%), falling within the risk regime confirmed by Strong Model Collapse",
+    "A Theoretical Perspective: How to Prevent Model Collapse in Self-consuming Training Loops (arXiv 2502.18865, ICLR 2025) — recursive stability framework proving O(1/n) convergence for transformers with constant real-data proportion; complementary architecture-dependent analysis vs. our detection-dependent approach",
+    "Golden Ratio Weighting Prevents Model Collapse (arXiv 2502.18049, Feb 2025) — optimal mixing with known synthetic fraction via C(w,k)=[w²+(1−w)²k]/(2w−w²); our method estimates the fraction from unlabeled data",
+    "Preventing Model Collapse Under Overparametrization: Optimal Mixing Ratios for Interpolation Learning and Ridge Regression (arXiv 2509.22341, Garg et al., Sep 2025, revised Feb 2026) — extends golden-ratio convergence to overparameterized min-ℓ₂-norm interpolation and ridge regression for general covariate distributions; complementary to arXiv 2502.18049 in deriving optimal mixing ratios under known proportions, which our method estimates from unlabeled data",
+    "Knowledge Collapse in LLMs: When Fluency Survives but Facts Fail under Recursive Synthetic Training (arXiv 2509.04796, Sep 2025) — depth-dependent degradation patterns informing our pilot study design and metrics",
+    "Breaking the Generator Barrier: Disentangled Representation for Generalizable AI-Text Detection (arXiv 2604.13692, Apr 2026) — cross-generator detection challenge (~88% average, 68.9% worst-case on FLAN-T5) motivating our multi-generator training",
+    "AI models collapse when trained on recursively generated data (Nature, Jul 2024) — foundational model collapse result",
+    "Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data (ICML 2024) — real+synthetic accumulation baseline",
+    "From Collapse to Improvement: Statistical Perspectives on Iterative Training on Contaminated Sources (arXiv 2602.10531, Feb 2026) — conditions under which contaminated training can improve; notes that synthetic data detection is a crucial future direction for estimating mixture proportions",
+    "Detecting Benchmark Contamination Through Watermarking (ICLR 2025) — proactive watermark-based detection (complementary to our post-hoc approach)",
+    "Escaping Model Collapse via Synthetic Data Verification (arXiv 2510.16657, Oct 2025) — verification-based binary filtering alternative",
+    "Dynamic Loss-Based Sample Reweighting for Improved Large Language Model Pretraining (arXiv 2502.06733, ICLR 2025) — convergence analysis for loss-based reweighting; complementary to our detection-based approach",
+    "Curated Synthetic Data Doesn't Have to Collapse (arXiv 2605.07724, ICML 2026) — convergence under pluralistic curation; addresses diversity preservation rather than contamination detection",
+    "Feature-Augmented Transformers for Robust AI-Text Detection Across Domains and Generators (arXiv 2605.03969, May 2026) — confirms cross-generator generalization remains challenging (85.9% cross-dataset balanced accuracy)"
+  ],
+  "description": "We bridge the gap between model-collapse convergence theory and practical training pipelines for web corpora contaminated with multi-depth, multi-generator synthetic text. A critical challenge is that the convergence bound of arXiv 2602.16065 (d(ℙ̂_t, ℙ_0) ≲ t^{−min{p,α}}) requires convex distance metrics (Assumption A2) that exclude cross-entropy — the standard LM training objective — and no general inequality bridges this gap in the needed direction (Pinsker's inequality gives small KL → small TV, not the reverse). We address this through dual-metric empirical validation. Our four-phase pipeline: (1) conducts the first empirical investigation of whether recursive generation depth (1–3) is classifiable from text alone, using iteratively retrained Qwen3-0.6B — a novel feasibility study whose outcome (positive or negative) is informative; (2) trains a multi-generator provenance detector (ModernBERT-base on Qwen3 + Llama-3.2 outputs) with cross-generator evaluation, extending beyond the single-generator-per-experiment evaluation in Drayson et al. (EMNLP 2025); (3) derives training sample weights informed by the convergence bound via effective real fraction α_eff(b) = Σ(1−q_i)^{b+1}/Σ(1−q_i)^b, solving for b* such that α_eff(b*) ≥ τ subject to ESS ≥ n_min — replacing the heuristic grid-searched b of Drayson et al. with an adaptive schedule. We explicitly frame the connection between α_eff(b) and the convergence bound's rate exponent as a hypothesis (not a theorem) that is formally applicable only to A2-compatible metrics, and argue that detection-based adaptive reweighting functionally achieves the p₂→0 escape condition required by Strong Model Collapse (Dohmatob et al., ICLR 2025 Spotlight). Our detection-based approach is complementary to but distinct from the boosting-inspired loss-based reweighting of Amin et al. (NeurIPS 2025), which requires programmatically verifiable quality and does not estimate contamination fractions — assumptions unavailable for unlabeled web corpora. We engage with the critique of Schaeffer et al. (ICML 2025 Position) that 'model collapse' conflates eight distinct definitions: we target the realistic web-accumulation regime where synthetic fraction reaches 50–60%, falling squarely within the risk regime confirmed by Strong Model Collapse, not the artificial single-model-replacement setting the position paper critiques; and (4) validates end-to-end with dual-metric evaluation: theory-compatible metrics (Wasserstein-1, kernel MMD) where the bound formally applies, alongside practical metrics (perplexity, MMLU, HellaSwag), characterizing precisely where the theory-practice bridge is tight vs. loose. Evaluation on controlled multi-generator contamination at 20–60% on FineWeb subsets (9 core runs + 2 cross-generator + 2 ablations). Pre-registered success criteria include adaptive robustness (≥90% of best heuristic across all levels), theory validation (significant improvement on A2-compatible metrics), and practical improvement (≥3% perplexity or ≥2% accuracy at ≥40% contamination); fallback reframes as dual-metric investigation of theory transfer. Total compute: ~163 H100-hours ($408), well within ≤200 H100-hour constraint. Primary target: AAAI 2027.",
+  "project_name": "provenance_weight_training",
+  "source": "web_research",
+  "change_type": "minor"
+}
+```
+
+## Summary of changes
+
+**1. Amin et al. (NeurIPS 2025) — cited and differentiated** throughout `core_problem`, `opportunity` (added as 5th research thread), `landscape` (detailed comparison), `approach` (Phase 3 differentiation), `key_references`, and `description`. Key distinction: they reweight via loss signals with a β-weak labeler in curated pipelines (math/coding); we reweight via detection confidence to estimate effective real fraction in unlabeled web corpora where quality is not programmatically verifiable.
+
+**2. Schaeffer et al. (ICML 2025 Position) — engaged with** in `core_problem`, `landscape`, `key_references`, and `description`. Response: we target collapse definitions in families (1) and (2) under the realistic accumulate paradigm where synthetic fraction reaches 50–60% — the regime where collapse IS a genuine risk per Strong Model Collapse, not the artificial single-model-replacement setting the position paper critiques.
+
+**3. Drayson et al. — corrected** throughout. Citation updated to EMNLP 2025 Main Conference. Characterization changed from "single-generator single-dataset" to "single-generator-per-experiment evaluation on a curated dataset (WikiText-2)" with acknowledgment that they test 4 LLMs from 2 families across 6 decoding strategies.
+
+**4. EMNLP 2026 venue fit — restored with confidence**. Removed hedging; the CFP explicitly solicits "contamination" and "consequences of synthetic data feedback loops" under the "Data as a bottleneck and a responsibility" sub-theme.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "efa24445-8e02-4d4b-975f-22738a7e9271",
+  "isSidechain": false,
+  "requestId": "req_011Cawo3vUokxMnDdAHZXpa1",
+  "type": "assistant",
+  "uuid": "1bcf10b6-3690-4462-a959-0b33ff1df599",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "518af693-e78b-4645-b459-0ed2fcc8e91c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XTRWFkqxLBB3nyF4PKj8vm",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 400,
+      "cache_read_input_tokens": 37662,
+      "output_tokens": 10717,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 400,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 10717,
+          "cache_read_input_tokens": 37662,
+          "cache_creation_input_tokens": 400,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 400
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 48_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-11 (UTC).**  ## Original idea {   \"title\": \"Convergence-Informed Provenance Weighting for Recursive Web Contaminat…",
+  "leafUuid": "1bcf10b6-3690-4462-a959-0b33ff1df599",
+  "sessionId": "518af693-e78b-4645-b459-0ed2fcc8e91c"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 49_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise research idea based on reviewer feedback",
+  "sessionId": "518af693-e78b-4645-b459-0ed2fcc8e91c"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 50_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-11 (UTC).**  ## Original idea {   \"title\": \"Convergence-Informed Provenance Weighting for Recursive Web Contaminat…",
+  "leafUuid": "1bcf10b6-3690-4462-a959-0b33ff1df599",
+  "sessionId": "518af693-e78b-4645-b459-0ed2fcc8e91c"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 51_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise research idea based on reviewer feedback",
+  "sessionId": "518af693-e78b-4645-b459-0ed2fcc8e91c"
+}
+```
+
+---

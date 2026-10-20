@@ -1,0 +1,979 @@
+_next_id: 70
+mistakes:
+- id: M001
+  date: '2026-05-16'
+  category: code_bug
+  severity: high
+  summary: code_prep 脚本 export CUDA_VISIBLE_DEVICES=-1 覆盖 submit 注入，导致实验启动即崩溃
+  root_cause: code_prep Worker 在脚本内写 `export CUDA_VISIBLE_DEVICES=-1` 作为安全占位符。submit_training_job
+    通过外部环境变量注入实际 GPU 编号，但脚本内的 export 语句在运行时覆盖了外部注入，导致 bf16 ValueError（无可用 GPU）。rho02_adaptive_tau09
+    因此空转 79 分钟。
+  prevention: code_prep 脚本禁止写 `export CUDA_VISIBLE_DEVICES=X`。CUDA_VISIBLE_DEVICES
+    只由 submit 时外部设置。脚本内可保留注释 `# CUDA_VISIBLE_DEVICES set by submit_training_job` 作为提醒。submit
+    前 grep 检查应扩展为：不仅检查值是否为 -1，还检查是否使用了 export 语句。
+  status: active
+  context: rho02_adaptive_tau09_seed42 在 47453:cuda:1 注册 RUNNING 但实际从未启动，GPU 空闲 79
+    分钟才被发现。bash -n 语法检查无法发现此类运行时问题。
+  fix: 移除脚本中 export 行，改为注释。重新提交 PID 367604。批量修复所有待提交脚本。
+- id: M002
+  date: '2026-05-17'
+  category: agent_behavior
+  severity: medium
+  summary: batchsize16_nmin8 三次失败才启动：连错服务器 + 缺 gradient_checkpointing OOM
+  root_cause: Worker 首次连接了 47453 而非 41312（SSH host 混淆）。第二次脚本缺 --gradient_checkpointing，bs=16
+    在 96GB 卡上仍 OOM（bs=16 × seq_len × model_size 超限）。第三次用含 gradient_checkpointing 的正确脚本成功。
+  prevention: 1. submit Worker 指令必须明确写目标服务器 hostname，不要只写 GPU 编号。2. bs>8 的实验脚本必须包含
+    --gradient_checkpointing（Qwen3-0.6B bs=16 无 GC 约 OOM on 96GB）。3. code_prep 时根据
+    bs 自动判断是否需要 gradient_checkpointing。
+  status: active
+  fix: 使用含 gradient_checkpointing 的 run_batchsize16.sh，tmux 方式在 41312:cuda:2 启动成功。PID
+    50284。
+- id: M003
+  date: '2026-05-17'
+  category: experiment_design
+  severity: medium
+  summary: random_reweight_v2 和 rho02_adaptive_tau09 脚本含 --eval_steps 500，导致 inline
+    eval 浪费 8.8h+ GPU 时间
+  root_cause: 脚本提交前未检查是否违反项目规范"不在训练中做 inline eval，使用 post-hoc eval"。审批时也未 catch 到这个违规。
+  prevention: 1. 审批实验时 Agent 必须 grep 脚本中的 --eval_steps/--eval_data_path 参数，发现即报告违规；2.
+    dry-run 验证时检查 training 参数列表是否含 eval 相关 flag；3. Director 审批时追问"是否使用 post-hoc eval"
+  status: active
+  context: random_reweight_v2 每 500 步做一次 eval 遍历全 holdout 数据 (~44min)，6103 步共 12 次
+    = 8.8h 纯浪费。本应 3.6h 完成的实验变成 12h+。rho02_adaptive_tau09 同理。
+  fix: random_reweight_v2 已 96% 不动它（50min 完成）；rho02 评估是否从 checkpoint 恢复（去掉 --eval_steps）
+- id: M004
+  date: '2026-05-17'
+  category: resource_misuse
+  severity: high
+  summary: nvidia-smi D 状态导致 cron 误判三个活跃实验为 failed，registry 被错误更新
+  root_cause: westd-47453 上 20+ nvidia-smi 进程卡在 D (uninterruptible sleep) 状态，GPU 驱动响应异常。cron
+    监控依赖 nvidia-smi + SSH 查询判断实验状态，连续 5 次 SSH 超时后将实验标记为 failed。但实际 CUDA 计算未受影响，训练进程正常。
+  prevention: 1. 监控 cron 应对 nvidia-smi 超时做容错——fallback 到检查 /proc/{pid}/status 而非直接判定
+    failed；2. 标记实验 failed 前必须确认训练进程 PID 已不存在；3. nvidia-smi D 状态堆积超过 10 个时发出预警而非直接更新
+    registry
+  status: active
+  context: batch_adaptive_tau_rho06 (97%), bs8_auto_nmin (80%), rho02_adaptive_tau09
+    (28%) 三个实验被错误标记为 failed。batch_adaptive_tau_rho06 即将完成，on_complete hook 可能因 registry
+    状态错误不会触发。
+  fix: 手动将三个实验 registry 改回 RUNNING，batch_adaptive_tau_rho06 完成后手动触发 post-hoc eval
+- id: M005
+  date: '2026-05-17'
+  category: agent_behavior
+  severity: high
+  summary: 'M005: 新服务器环境搭建未验证关键依赖版本兼容性，导致全部实验立即崩溃'
+  root_cause: westd-30476 环境搭建时用 pip install transformers 安装了最新版 5.8.1，而代码依赖 4.x API（Trainer
+    的 tokenizer 参数在 5.x 被移除）。dry-run 只检查了 import 而非实际训练流程。
+  prevention: 新服务器环境搭建 checklist 必须包含：1) 从已有正常运行服务器导出 pip freeze，在新服务器 pip install
+    -r 精确复制版本；2) dry-run 必须跑到第一个 training step 完成（不是只 import）；3) 特别注意 transformers/torch/accelerate
+    主版本号一致性
+  status: active
+  context: westd-47453 下线后迁移到 westd-30476。Agent 搭建环境时装了 transformers 5.8.1（最新），但代码用的是
+    4.x API。3 个实验启动后 43-46 秒内全部崩溃。同时还有模型路径转换错误（Qwen3-0___6B vs Qwen3-0.6B）和 output_dir
+    路径争议。
+  fix: pip install transformers==4.57.6 降级到与 westd-41312 一致版本
+- id: M006
+  date: '2026-05-17'
+  category: code_bug
+  severity: high
+  summary: 'M006: bash 脚本 | tee 吞掉 python exit code，训练崩溃被误判为成功'
+  root_cause: rho02 脚本用 `python ... 2>&1 | tee log`，bash pipeline 中 set -e 只检查最后一个命令（tee）的
+    exit code。python crash exit=1 但 tee exit=0，脚本继续执行 echo "DONE" 和 "EXIT_CODE=0"，cron
+    误判为成功完成。
+  prevention: 所有训练脚本必须：1) 在脚本头部加 `set -o pipefail`（pipeline 中任何命令失败则整体失败）；2) 或不使用
+    pipeline 重定向（用 `python ... > log 2>&1` 替代 `| tee`）；3) 新脚本 code review 时 grep 检查
+    `| tee` 模式
+  status: active
+  context: rho02_adaptive_tau09_r2 在 westd-30476 上因 transformers 5.x tokenizer 参数变更崩溃，但
+    | tee 吞掉了 exit code，cron 误判为 ANALYZING 状态。Agent 试图对不存在的 checkpoint 做 eval。
+  fix: 修复脚本加 set -o pipefail，同时降级 transformers 到 4.57.6 后重启
+- id: M007
+  date: '2026-05-17'
+  category: agent_behavior
+  severity: high
+  summary: 'M007: 在有训练进程运行的服务器上执行环境修改 worker，导致全部训练进程被 SIGKILL'
+  root_cause: worker_fix_30476_env_r4 在 westd-30476 上执行 pip/conda 操作时，触发 OOM 或直接 kill
+    了正在运行的 4 个训练进程。这是第二次因环境操作影响训练（第一次是 transformers 版本不兼容导致 API 错误）。
+  prevention: 硬规则：服务器上有 RUNNING 状态的训练进程时，禁止在该服务器上执行任何环境修改 worker（pip install/conda/apt-get
+    等）。环境修改必须在训练启动前完成，或等全部训练完成后再执行。如果必须修改，先显式暂停所有训练进程。
+  status: active
+  context: westd-30476 上 4 个实验（random_reweight_seed123_r2, bs8_auto_nmin_r3, batch_adaptive_tau_rho06_r3,
+    rho02_adaptive_tau09_r3）在运行约 20 分钟/9% 进度时被 SIGKILL。worker_fix_30476_env_r4 完成时间与
+    kill 时间吻合。这些实验已是第 2-3 次重试。
+  fix: 查明 worker_fix_30476_env_r4 具体操作，重启 4 个实验，建立环境修改隔离规则
+- id: M008
+  date: '2026-05-17'
+  category: agent_behavior
+  severity: high
+  summary: worker_fix_30476_env_r4 主动 kill 了 30476 上全部 4 个正在训练的实验进程
+  root_cause: 环境修复 worker 在执行修复操作时，未确认训练进程是否在运行就执行了 kill 操作，导致 4 个实验同时中断
+  prevention: 1. 修复类 worker 指令中必须明确禁止 kill 训练进程；2. 环境修复 worker 应先检测运行中进程并跳过/汇报，而非主动终止；3.
+    对 RUNNING 状态实验所在 GPU 的任何 worker 操作需在指令中加 "禁止终止 PID X" 硬约束
+  status: active
+  context: 2026-05-17 11:44 UTC，30476 上 4 个实验（random_reweight_seed123_r2, bs8_auto_nmin_r3,
+    batch_adaptive_tau_rho06_r3, rho02_adaptive_tau09_r3）在 4 秒内相继被 kill。根因是 worker_fix_30476_env_r4
+    的操作。后续诊断 worker 也 failed，GPU 健康数据 stale。
+- id: M009
+  date: '2026-05-17'
+  category: experiment_design
+  severity: high
+  summary: 30476 四实验同时 OOM killed：cgroup CPU 内存限制 440GiB 被 4 进程并行数据加载耗尽
+  root_cause: 4 个训练进程各自使用默认 dataloader_num_workers（多进程 fork），在 step 480-558 同时达到内存峰值，触发
+    cgroup OOM killer。容器内存限制 440 GiB，4 进程 + 各自的 data worker 子进程累积超限。
+  prevention: 在共享内存容器中并行多实验时：(1) 强制 --dataloader_num_workers 0 减少 fork 内存开销；(2) 设置较小的
+    save_steps（如 200）在 OOM 高风险窗口前保存 checkpoint；(3) 错峰启动（间隔 2 min）避免同时达到内存峰值。提交前用 free
+    -h 确认容器剩余内存 > 预估峰值。
+  status: active
+  context: westd-30476 容器 cgroup 限制 440 GiB，4 实验在 ~8-9% 进度同时被 SIGKILL。transformers
+    版本问题是误判的初始根因，实际 OOM 是真正原因。
+  fix: 方案 2：全部 4 实验重启，加 --dataloader_num_workers 0 + --save_steps 200 + 错峰启动（先 2 个，2
+    分钟后加 2 个）
+- id: M010
+  date: '2026-05-17'
+  category: agent_behavior
+  severity: medium
+  summary: 30476 SIGKILL 根因误诊为 cgroup OOM，实际 oom_kill=0 内存仅 32GiB/440GiB
+  root_cause: Agent 诊断 Worker 看到 SIGKILL + 容器环境 → 直接推断 cgroup OOM，未验证 /sys/fs/cgroup/memory.events。Reviewer
+    独立检查发现 oom=0, oom_kill=0。真正根因不明（可能平台策略或 worker_fix_30476_env_r4 自身 kill 了进程）。
+  prevention: SIGKILL 根因排查必须检查 (1) /sys/fs/cgroup/memory.events 中 oom_kill 计数 (2)
+    dmesg（如可用）(3) 平台特有的进程管理日志。不能仅凭 SIGKILL + 容器环境就断言 OOM。Director 收到根因诊断后应要求提供 memory.events
+    证据再做决策。
+  status: active
+  context: M009 中记录的 OOM 根因是错误的。实际 SIGKILL 来源不明，可能是平台级进程管理或 worker_fix_30476_env_r4
+    操作失误。
+  fix: 修改重启方案：从"4 路并行 + 错峰 2 min"改为"单进程探针 25 min 确认平台稳定后再铺满"
+- id: M011
+  date: '2026-05-17'
+  category: code_bug
+  severity: medium
+  summary: Cron 系统性误报：训练正常完成的实验被 auto-resolve 为 failed（llama3b_adaptive + batchsize16_nmin8，连续两次）
+  root_cause: Cron 检测逻辑：进程退出 + 无 W&B sentinel → auto-resolve as failed。但正常完成的训练也会导致进程退出，而这些实验没有配置
+    W&B。Cron 没有检查 checkpoint/final 目录存在性或 step_metrics 完整性。
+  prevention: 训练脚本完成后应写 sentinel 文件（如 DONE.flag），或 cron 检测逻辑应在标记 failed 前额外检查：(1)
+    final/ 目录是否存在 (2) step_metrics.jsonl 最后一行 step 是否等于 max_steps。Director 收到 cron
+    failed 通知时应交叉验证 Reviewer 报告再决策，不盲信 auto-resolve。
+  status: active
+  context: llama3b_adaptive_seed42 和 batchsize16_nmin8_seed42 连续两次被误标 failed。两者实际都完成了全部
+    6103 步训练，checkpoint 完整。Reviewer 两次独立确认了 false negative。
+  fix: 短期：Director/Agent 收到 cron failed 时先检查 checkpoint 存在性再更新 registry。长期：修改 cron
+    检测逻辑或训练脚本加 sentinel。
+- id: M012
+  date: '2026-05-17'
+  category: experiment_design
+  severity: medium
+  summary: uniform_seed42 retrain 设置 eval_steps=200 导致训练时间从 3.3h 膨胀至 23h
+  root_cause: Worker 启动训练时使用了包含 eval_steps=200 的配置，在 Qwen3-0.6B 上 inline eval 每次耗时远超单步训练时间（eval
+    占总时间 84%），导致 ETA 从 3.3h 变为 23h
+  prevention: 启动 baseline retrain 时，如果只需要最终 checkpoint 用于 post-hoc eval，应设置 eval_strategy=no
+    或 eval_steps>=max_steps，避免 inline eval 浪费时间。inline eval 仅在需要 early stopping 或实时监控时才开启。
+  status: active
+  context: uniform_seed42 retrain 是 downstream eval pipeline 的 critical path（需 checkpoint
+    跑 lm-eval HellaSwag/ARC/PIQA/WinoGrande）。23h 等待直接阻塞论文核心证据产出。
+  fix: Kill 当前进程，以 eval_strategy=no 重跑。预计 3h 完成。
+- id: M013
+  date: '2026-05-17'
+  category: resource_misuse
+  severity: low
+  summary: random_reweight_seed456 提交到已占用的 cuda:2（OOM），而 cuda:3 实际空闲
+  root_cause: Worker 误判 cuda:3 仍被 grid_b0_3_seed456 占用（该实验 17:08 已完成），未通过 nvidia-smi
+    实际确认 GPU 状态就提交到 cuda:2
+  prevention: 提交训练前必须先 nvidia-smi 确认目标 GPU 实际空闲（0% util, 0 MiB memory），不能仅凭 registry
+    状态或历史记忆判断 GPU 占用
+  status: active
+  fix: 在 cuda:3 重新提交 random_reweight_seed456
+- id: M014
+  date: '2026-05-17'
+  category: resource_misuse
+  severity: medium
+  summary: Agent 连续两次将训练任务提交到已占用的 GPU（OOM），未在提交前执行 nvidia-smi 确认
+  root_cause: Agent 依赖 registry 状态或内存中的 GPU 分配记录判断 GPU 可用性，而非实际检查 nvidia-smi。Registry
+    可能过时，Agent session 重置后上下文丢失导致误判。
+  prevention: 提交训练前必须执行 nvidia-smi 确认目标 GPU 可用显存 > 50GB 且无其他训练进程。这应成为 submit_training_job
+    的硬前置检查，不可跳过。
+  status: active
+  context: random_reweight_seed456 两次 OOM：(1) 41312:cuda:2 被 ess_only_seed123 占用 (2)
+    30476:cuda:0 被 grid_b0_1_seed42 占用。最终由 urgent worker 在 41312:cuda:3 成功启动。
+  fix: 第三次提交通过 urgent worker 在正确 GPU 上启动成功。
+- id: M015
+  date: '2026-05-17'
+  category: experiment_design
+  severity: medium
+  summary: batchsize16_nmin8_r2 配置错误：Agent 用 per_device_batch_size=4 + accum=4 但 n_min=8，导致
+    b*=0 always
+  root_cause: Agent 默认用 per_device_batch_size=4（与所有其他实验一致）+ gradient_accumulation_steps=4
+    实现 effective batch=16，但 n_min coupling rule 要求的是 micro-batch≥n_min，不是 effective
+    batch≥n_min。ESS 在前向传播级别计算，只能看到 micro-batch 内的样本数。
+  prevention: batch_size 消融实验的配置必须明确指定 per_device_train_batch_size=目标值, gradient_accumulation_steps=1。Director
+    指令中应明确写"per_device_train_batch_size=16"而非含糊的"batch_size=16"。n_min coupling rule
+    的前提是 micro-batch≥n_min。
+  status: active
+  context: 与 nmin4_seed42 完全相同的机制（micro-batch=4, n_min≥micro_batch → ESS=micro_batch≤n_min
+    → b*=0）。日志前 20 entries 全部 b=0.0, ESS=4.0。浪费约 30min GPU 时间。
+  fix: Kill PID 46446, 以 per_device_train_batch_size=16, gradient_accumulation_steps=1
+    重启。
+- id: M016
+  date: '2026-05-17'
+  category: resource_misuse
+  severity: high
+  summary: Agent reset 后新 session idle 4h，5+ GPU 空闲未启动新实验
+  root_cause: Agent 重置后新 session 仅处理 1 条消息（worker_done 回调），未接收或执行 Director 的 Task
+    2 指令（eval + 新实验队列）。可能原因：(1) Director 指令在旧 session 排队未转移到新 session；(2) 新 session
+    启动后没有 bootstrap 消息驱动它主动检查 GPU
+  prevention: Agent 重置后 Director 必须：(1) 确认新 session 已启动（等 1-2 min）；(2) 立即发一条完整的 context
+    + 任务指令（不依赖旧 session 队列）；(3) 10 min 后 check_agent_queue_status 确认 Agent 在处理。如果
+    Agent idle > 15 min 且有 GPU 空闲，立即发 urgent 消息。
+  status: active
+  context: 时间线：20:10 ACK system nudge → 20:15 Agent reset approved → 新 session 启动
+    → 仅处理 1 条 worker_done → idle 241 min → 第二次 reset request。期间 5+ 实验完成但未 eval，5+
+    GPU 空闲。估计损失 ~20 GPU·h。
+  fix: 第二次 reset + 立即发送完整恢复指令（包含 nvidia-smi 检查 + eval 队列 + 新实验队列）
+- id: M017
+  date: '2026-05-17'
+  category: communication
+  severity: medium
+  summary: 'M017: Director 批准了过时的 RESET REQUEST，中断了正在工作的新 Agent session'
+  root_cause: RESET REQUEST 消息从旧 session 的 idle 状态生成，但在新 session 已启动并工作 8 分钟后才送达 Director。Director
+    未先 check_agent_queue_status 确认当前 Agent 状态就批准了 reset，导致新 session 被中断。
+  prevention: 收到 RESET REQUEST 后必须先 get_agent_queue_status 确认 Agent 当前状态（processing?
+    idle_seconds?）。如果 Agent 正在处理（processing=true, idle_seconds < 600），说明 RESET REQUEST
+    可能是旧 session 的延迟通知——应 DENY 并注明 "Agent 已在新 session 工作中"。
+  status: active
+  context: 时间线：旧 session idle 240min → RESET REQUEST 生成 → Director 先前已 reset Agent
+    + replace_queue → 新 session 启动处理指令 → 8 min 后 RESET REQUEST 送达 → Director 未核实就批准
+    → 新 session 被中断。队列中的指令会被下一个 session 接管，但浪费了 8 min 处理时间。
+  fix: Queue 指令持久化跨 session，新 session 会接管。今后 RESET REQUEST 到达时先查 queue status。
+- id: M018
+  date: '2026-05-18'
+  category: experiment_design
+  severity: medium
+  summary: Resume from checkpoint 导致 optimizer state corruption，final PPL 退化 0.7+
+  root_cause: 服务器崩溃后从 checkpoint resume 训练，optimizer state 或 LR schedule 在 resume
+    时未正确恢复，导致最后 ~10% 步骤 loss spike，final PPL 远高于正常值
+  prevention: Resume 后必须监控前几十步的 loss/grad 是否与中断前连续。如果 loss 跳升，立即停止并检查 optimizer state
+    完整性。对于接近完成的实验（>90%），优先用中断前最后 checkpoint 的 eval 而非 resume 到 final
+  status: active
+  context: grid_b0_2_seed123/456 在 checkpoint-5500 (90%) PPL ~17.64 正常，resume 603
+    步后 final PPL 跳至 18.3+
+  fix: 采用 checkpoint-5500 的 eval 结果代替 final，不重跑
+- id: M019
+  date: '2026-05-18'
+  category: experiment_design
+  severity: medium
+  summary: 'M019: grid_b0_2 PPL 退化误诊为 optimizer corruption，实际是 eval 参数缺失'
+  root_cause: Agent 报告 resume 后 PPL 从 ~17.64 跳至 18.3+，Director 和 Agent 都归因于 optimizer
+    state corruption。Reviewer 发现 eval 命令缺少 --max_length 2048 --stride 1024 --fp16
+    标准参数，导致 PPL 计算方式不同。误诊导致 D077 决策（用 checkpoint-5500 eval 代替）可能不必要
+  prevention: 1. eval 异常时先检查 eval 命令参数是否与标准一致，再考虑训练本身的问题。2. 所有 eval 脚本应有统一的 wrapper/配置，避免手动输入参数遗漏。3.
+    Reviewer 的 eval 参数一致性检查是关键防线
+  status: active
+  context: grid_b0_2_seed123 PPL=18.429, grid_b0_2_seed456 PPL=18.340——实际训练完整（step
+    6102, final/ 目录完整），问题在 eval 参数
+  fix: 用标准参数重新 eval final checkpoint，结果出来后确认是否需要修正 D077
+- id: M020
+  date: '2026-05-18'
+  category: code_bug
+  severity: high
+  summary: 'M020: --save_only_model 导致 resume 时 LR 重置，训练末段严重退化'
+  root_cause: 训练命令含 --save_only_model flag，checkpoint 只存模型权重不存 optimizer_state/scheduler。服务器
+    crash 后 resume 时 LR 从 5e-5 重新开始，而 step 5500/6103 处正常 LR 约 5e-6（线性衰减末期），10× 过高
+    LR 导致 603 步内 PPL 退化 0.7+
+  prevention: 1. 训练脚本禁止使用 --save_only_model（除非明确不需要 resume 能力）。2. resume 后前几步必须检查
+    LR 是否与中断前连续。3. 所有 checkpoint 默认保存 optimizer + scheduler state
+  status: active
+  context: grid_b0_2_seed123/456 从 checkpoint-5500 resume 603 步，PPL 从 17.64 跳至 18.3+。同时
+    30476 上另两个 resume 实验（从更早 checkpoint）LR 偏高 20-30%，影响较小
+  fix: 使用 checkpoint-5500 的 eval 结果（17.637/17.645）作为 b=0.2 数据。未来去掉 --save_only_model
+- id: M021
+  date: '2026-05-18'
+  category: experiment_design
+  severity: medium
+  summary: D&R seed123/456 未传 --num_train_tokens，默认跑 ~8477 steps 而非 seed42 的 6103
+    steps，cross-seed 不可比
+  root_cause: 派 D&R 3-seed 实验时，Agent 复制命令但遗漏了 --num_train_tokens 200000000 参数。Trainer
+    默认行为是跑完整个 dataset（~1 Trainer epoch = 8477-9607 steps），而非限制到 200M tokens (6103
+    steps)。
+  prevention: cross-seed 实验必须严格复制原始实验的所有训练参数，包括 --num_train_tokens / --max_steps。审批
+    cross-seed 实验时 Director 应要求 Agent 列出完整命令行并与 seed42 原始命令逐项对比。
+  status: active
+  fix: eval 时使用 checkpoint-6000（save_steps=500，最接近 6103 的 checkpoint）确保可比性。同时 eval
+    final checkpoint 作为额外数据点。
+  related_decisions:
+  - D078
+- id: M022
+  date: '2026-05-18'
+  category: experiment_design
+  severity: medium
+  summary: D&R seed123/456 多传了 --eval_data_path/--eval_steps/--use_wandb，导致显存 70GB（正常
+    41GB）、训练速度慢 2.5 倍、预计多花 7.6h
+  root_cause: Worker 提交 D&R 实验时从其他实验模板复制了 --eval_data_path data/human/eval_holdout.jsonl
+    --eval_steps 500 --use_wandb 参数，而 seed42 原始命令没有这些参数。67K eval 样本加载多占 29GB 显存，每
+    500 步触发一次 eval（~38min/次，12 次共 ~7.6h）。
+  prevention: cross-seed 实验必须严格逐参数对比原始 seed42 命令。审批时要求 Agent diff 新命令与原始命令，任何新增/删除参数必须有明确理由。特别注意
+    --eval_data_path 和 --eval_steps 这类不影响模型但严重影响训练速度和资源的参数。
+  status: active
+  fix: kill 异常进程，从 checkpoint-500 重启，不加 --eval_data_path/--eval_steps/--use_wandb
+  related_decisions:
+  - D078
+- id: M023
+  date: '2026-05-18'
+  category: code_bug
+  severity: medium
+  summary: eval Worker 使用了 ρ=0.4 旧路径（ess_only_seed123/）而非 ρ=0.6 新路径（contamination_60_ess_only_seed123/），导致重复
+    eval 已有数据
+  root_cause: ρ=0.6 实验名称为 contamination_60_* 前缀，但 eval 脚本/Worker 构造模型路径时用了不带前缀的旧名称，匹配到了
+    ρ=0.4 的旧实验目录。
+  prevention: eval 指令中必须写完整的绝对模型路径，不能让 Worker 自己拼接。Director 在派发 eval 任务时应在指令中列出完整路径，而非只给实验名。
+  status: active
+  fix: 重新派发 eval Worker，明确指定 /root/autodl-tmp/provenance_weight_training/output/models/contamination_60_*/final/
+    路径
+- id: M024
+  date: '2026-05-18'
+  category: code_bug
+  severity: high
+  summary: eval_perplexity.py 参数名系统性错误：--model_path/--eval_data 应为 --checkpoint_paths/--data_path，导致
+    3 次 Worker 失败
+  root_cause: Director 和 Agent 假设 eval 脚本参数名为 --model_path 和 --eval_data，实际脚本使用 --checkpoint_paths（复数，支持多
+    checkpoint）和 --data_path。脚本在项目根目录（eval_perplexity.py），不是 eval/ 子目录。三次 Worker 使用错误参数名，脚本静默失败或报错但
+    Worker 标记为 done。
+  prevention: 在 ROADMAP 或 memory 中记录 eval 脚本的正确调用格式。新 eval 任务必须参考验证过的命令模板，不凭记忆拼参数。
+  status: active
+  fix: 使用 Reviewer 验证的正确命令：cd /root/provenance_weight_training && python eval_perplexity.py
+    --checkpoint_paths ... --data_path data/human/eval_holdout.jsonl --max_docs 5000
+    --max_length 2048 --stride 1024 --fp16
+- id: M025
+  date: '2026-05-18'
+  category: code_bug
+  severity: high
+  summary: Cron 监控反复将正常完成的训练误标为 failed（第 4 次）
+  root_cause: Cron 监控检测到训练进程退出（正常完成）后标记 "process dead, no active cron monitor"，无法区分正常退出和异常退出。已在
+    random_seed42、seed123、seed456、q09 上重复发生。
+  prevention: 1) 实验标记为 failed 时，先检查 final checkpoint 是否存在完整的 model.safetensors 再确认；2)
+    Agent 收到 failure 通知时先 ls final/ 验证；3) 系统层面需要修复 cron 的退出码判断逻辑。
+  status: active
+  context: 本 session 中 detect_remove_q05_seed123/456 和 detect_remove_q09_seed42 三个实验均被误标
+    failed，但 final/model.safetensors (1.19GB) 完整存在。与之前 contamination_60_random_seed42
+    误标模式完全一致。导致这些实验长时间未 eval、GPU 空闲。
+  fix: '手动更正 registry conclusion: failed → success，删除 failure_reason，补做 eval。'
+- id: M026
+  date: '2026-05-18'
+  category: agent_behavior
+  severity: high
+  summary: Eval Worker 系统性失败：6+ 次评估错误目标或参数错误
+  root_cause: Worker 通过间接 SSH 执行 eval 时反复出现：1) 评估错误的实验 checkpoint（用旧 ρ=0.4 路径而非 ρ=0.6）；2)
+    参数名错误（--model_path 而非 --checkpoints）；3) eval 数据路径错误。Worker 的 SSH 执行链不可靠，路径解析逻辑有系统性问题。
+  prevention: eval 任务不再通过 spawn_worker 间接执行，改为 Agent 直接 ssh_execute 运行。eval 命令必须包含完整绝对路径，参数名从
+    memory 中获取（--checkpoints, --data_path）。
+  status: active
+  context: 本 session 中 eval Worker 失败序列：v5 参数名错误、v6 评估了 ρ=0.4 旧实验、v7 再次失败、binoculars
+    scoring 后的 eval 又评估了旧 ρ=0.6 实验。每次失败导致 GPU 空闲 + 关键数据延迟。已指示 Agent 直接 SSH 执行 eval
+    并给出完整命令模板。
+  fix: Director 在队列指令中提供完整 eval 命令（含正确参数名和绝对路径），要求 Agent 直接 ssh_execute 而非 spawn_worker。
+- id: M027
+  date: '2026-05-18'
+  category: communication
+  severity: high
+  summary: Agent 汇报 8/8 GPU 全满但实际只有 3/8 活跃，ROADMAP 被误导
+  root_cause: Agent 基于 submit_training_job 的返回和 registry 状态汇报 GPU 占用，未实际 SSH 验证进程是否在运行。多个实验提交后可能启动失败或
+    GPU 分配与汇报不一致（如 1.7B 汇报在 cuda:0/1 实际在 cuda:2/3）。
+  prevention: 1) Agent 汇报 GPU 状态时必须 SSH 执行 nvidia-smi 确认实际进程，不能仅基于 registry；2) Director
+    在重大状态更新前请 Reviewer 交叉验证；3) submit_training_job 后派 Worker 在 30s 内确认进程实际启动。
+  status: active
+  context: Agent 汇报 8/8 GPU 全满，Director 更新 ROADMAP 并通知用户。Reviewer 随后验证发现只有 3/8 活跃：30476
+    仅 cuda:2 跑 q03，41312 仅 cuda:2/3 跑 1.7B。epoch_matched_seed123/456 和 q01 可能从未启动，N-gram
+    训练可能被 1.7B 占用了 GPU。
+- id: M028
+  date: '2026-05-18'
+  category: code_bug
+  severity: high
+  summary: submit_training_job 的 tmux 环境无 conda，python 不在 PATH（第 2 次）
+  root_cause: 'submit_training_job 在 tmux 中用 sh 启动命令，sh 不加载 conda 环境，导致 python: command
+    not found (EXIT_CODE=127)。之前 1.7B 训练已遇到并修复过，但修复未泛化到后续所有 submit_training_job 调用。'
+  prevention: 所有 submit_training_job 的命令必须用 `bash -c "source /root/miniconda3/bin/activate
+    && cd /root/provenance_weight_training && python ..."` 格式。Agent 提交实验前检查命令是否包含
+    conda activate。
+  status: active
+  context: westd-30476 上 4 个实验（epoch_matched_seed123/456, q03, q01）全部因此静默失败。Agent
+    汇报 RUNNING 但实际从未启动。1.7B 训练已修复过此问题但教训未传递到后续实验。
+- id: M029
+  date: '2026-05-18'
+  category: agent_behavior
+  severity: high
+  summary: Worker ssh_execute 通道 broken 导致 eval 空转 2h+，Agent 处理 worker:done 回调卡住 20+
+    分钟
+  root_cause: Worker ssh_execute 到 westd-30476 完全失效（ssh_read_only 正常），导致 Worker 反复报
+    done 但不执行任何命令。Agent 在处理 worker:done 回调时陷入长时间调查循环（spawning 更多 Workers 调查，形成 Worker
+    空转循环）。根因可能是磁盘满事件后 ssh_execute 通道未恢复。
+  prevention: 1. Worker 连续 2 次报 done 但无产出时，立即切换到 submit_training_job 执行（不要继续派 Worker）。2.
+    eval 这种简单短任务优先用 submit_training_job 而非 Worker。3. Director 发现 GPU 空闲超过 30 分钟时立即介入，不等
+    Agent 自行解决。
+  status: active
+  context: westd-30476 上 epoch_matched_dr_seed123/456 和 q07_r2 训练完成后，eval 因 Worker
+    ssh_execute 失效而被卡 2+ 小时。期间 Agent 多次派 Worker（eval + diagnose + check），全部报 done
+    但无产出。Reviewer 独立确认 ssh_read_only 正常但 ssh_execute broken。最终方案：用 submit_training_job
+    执行 eval。但 Agent 在处理最后一个 worker:done 回调时卡住 20+ 分钟，进一步延迟了指令传达。
+  fix: 替换 Agent 队列，发综合指令：用 submit_training_job 执行 3 个 eval + 调查 41312 cuda:0 uniform_1_7b
+    状态。等待 Agent 恢复处理。
+- id: M030
+  date: '2026-05-18'
+  category: agent_behavior
+  severity: medium
+  summary: 'M030: submit_training_job 返回 PID unknown 未被检测，41312 cuda:0 空闲 30 分钟'
+  root_cause: Agent 提交 uniform_1_7b eval 时 submit_training_job 返回 PID "unknown"（未成功启动），但
+    Agent 未检测到失败、未重试、未汇报。Director 也未设置结果确认机制。导致 cuda:0 空闲 30 分钟无人发现，直到 System keepalive
+    催促。
+  prevention: 1. submit_training_job 返回后必须验证 PID 是否为有效数字，PID=unknown 视为失败立即重试。2. 关键
+    eval（影响 claim 的实验）提交后 5 分钟内必须确认结果文件生成。3. Director 发 eval 指令后设 5 分钟跟进检查，不要只等回调。
+  status: active
+  context: uniform_1_7b 于 ~18:05 UTC 完成，Director 于 ~18:10 发 eval 指令，Agent 处理后首次提交失败（PID
+    unknown），未报告。直到 18:40 System keepalive 催促后 Director 追问，Agent 才发现并重新提交。
+  fix: Agent 重新提交 eval_uniform_1_7b_v2 (PID 240255)，等待结果。
+- id: M031
+  date: '2026-05-18'
+  category: resource_misuse
+  severity: high
+  summary: 'M031: 41312 四张 GPU 空闲 30+ 分钟，GPT-2 关键实验未启动'
+  root_cause: Agent 处理完指令并汇报了 N-gram/1.7B 结果后，processing 标志未清除（idle_seconds=3038），导致后续综合指令（含
+    GPT-2 训练批准）无法被处理。Director 发出 GPT-2 批准后未在 5 分钟内跟进确认 GPU 是否有活跃进程，依赖 Agent 自主汇报而非主动验证。
+  prevention: 1. 批准关键实验后 5 分钟内必须 get_gpu_health 或让 Reviewer 验证 GPU 有进程。2. 发现 Agent
+    idle_seconds > 600 且 processing=true 时，立即用 urgent_agent_message 或 replace_agent_queue
+    干预。3. 关键实验（影响 narrative 的）的启动确认不能只等回调。
+  status: active
+  context: 1.7B 和 N-gram eval 完成后（~18:35 UTC），41312 四张 GPU 释放。Director 在综合指令中批准了 GPT-2
+    训练，但该指令排在 Agent 队列中未被处理。直到 ~19:20 UTC Reviewer 通过 nvidia-smi 发现 41312 4/4 GPU
+    0% utilization，已空闲约 45 分钟。
+  fix: 发送 urgent_agent_message 插队，含完整 submit_training_job 命令。
+- id: M032
+  date: '2026-05-19'
+  category: resource_misuse
+  severity: high
+  summary: 'M032: 30476 磁盘满导致 q07 epoch-matched crash + 其他实验风险'
+  root_cause: 大量已完成实验保留了中间 checkpoint-XXXX/ 目录（每个 ~1.2GB），累积占满 250GB /root/autodl-tmp。完成后未清理。
+  prevention: 1. 实验完成后立即清理中间 checkpoint，仅保留 final/；2. 批量提交实验前用 df -h 检查磁盘余量（需 >20GB）；3.
+    设置 save_total_limit=1 减少中间 checkpoint；4. 定期磁盘巡检
+  status: active
+  context: 'q07 epoch-matched 在 step 2000/3047 保存 checkpoint 时 SafetensorError: No
+    space left on device。q03 seed123/456 和 q09 epoch-matched 也面临同样风险。'
+  fix: urgent_agent_message 派 Agent 清理所有已完成实验的中间 checkpoint，释放空间后重启 q07。
+- id: M033
+  date: '2026-05-19'
+  category: communication
+  severity: high
+  summary: Table 1 数据完整性错误：ESS-only seed456=17.719（registry=17.76）、grid-best 仍为 b=0.5（D074
+    已确认 b=0.3）
+  root_cause: Paper Agent 整合数据时未从 registry 重新提取，沿用了历史 tex 文件中的旧数值。Director 审批 patch
+    时未逐行核对 Table 数据与 registry 的一致性。
+  prevention: Paper Agent 更新任何 Table 数值时，必须先从 registry 提取 ground truth 数据，不复用 tex
+    文件中的旧值。Director 审批写作 patch 时，对涉及数值变更的 Table 逐行核对 registry。
+  status: active
+  context: ESS-only seed456 论文=17.719，registry ess_only_seed456=17.76，差异 0.041。Grid-best
+    论文用 b=0.5 (17.646)，D074 定稿为 b=0.3 (17.620±0.033)。Conclusion 仍写 expect amplification
+    但 D090 已撤回。三个数据源（tex/framing/registry）互有矛盾。
+  fix: 紧急派 Paper Agent 从 registry 重新提取所有 Table 数值，修正 ESS-only/grid-best/conclusion。
+  related_decisions:
+  - D073
+  - D074
+  - D090
+- id: M034
+  date: '2026-05-19'
+  category: communication
+  severity: high
+  summary: 论文 binding statistics 全文使用 D056 修正前旧数据（clean 49.9% vs 实际 ~2%，α_eff binding
+    20.2% vs 37.2%）
+  root_cause: D056 修正了 binding statistics 数据（paper_framing.md 已更新），但 Paper Agent 写作时未从
+    framing ground truth 重新拉取数据，沿用了 tex 中的旧值。Director 在多次 patch 中未发现 tex 与 framing
+    的数值不一致。
+  prevention: Paper Agent 写作/patch 前必须 grep 论文中所有硬编码数值，与 paper_framing.md 和 registry
+    交叉验证。Director 在重大数据修正（如 D056）后应主动派 Paper Agent 全文数据一致性扫描。
+  status: active
+  fix: 紧急派 Paper Agent 修正 introduction/discussion/conclusion 中的 binding statistics
+    为 D056 修正后数据
+  related_decisions:
+  - D056
+- id: M035
+  date: '2026-05-19'
+  category: experiment_design
+  severity: high
+  summary: Table 1 per-seed 值来源混乱 + Checklist GPU 型号虚假
+  root_cause: Paper Agent 使用了混合精度来源填 Table 1（部分来自旧的 2dp inline eval，部分来自 post-hoc
+    精确值），导致 per-seed 值和 std 不自洽。Checklist C1 GPU 型号被填为 A100/H100 而非实际的 RTX PRO 6000，可能是
+    Paper Agent 使用了通用模板。
+  prevention: Table 中的所有数值必须从 registry 精确值统一生成，禁止混合来源。Checklist 事实性内容（GPU、训练时间等）必须从项目配置或实际基础设施获取，不能使用模板默认值。提交前必须做
+    Table ↔ Registry 一致性校验。
+  status: active
+  context: Reviewer Round 5 后审查发现：(1) Adaptive seed42 应为 17.653 非 17.650, seed456
+    应为 17.657 非 17.660; (2) Random baseline 三个 seed 全部不匹配 registry; (3) ESS-only seed123/456
+    与 registry Δ=0.016; (4) Checklist 写 A100/H100 但实际用 RTX PRO 6000
+  fix: 从 registry 拉取全部精确值重建 Table 1；Checklist 修正为实际 GPU 型号
+- id: M036
+  date: '2026-05-19'
+  category: experiment_design
+  severity: high
+  summary: adaptive_fix 模型有 checkpoint resume artifact（n_min=3→n_min=2），论文未记录，导致不可从头复现
+  root_cause: 早期调参阶段从 n_min=3 checkpoint 恢复训练改用 n_min=2，但未在 registry 或论文中明确标注此训练历史。论文描述为"τ=0.8,
+    n_min=2"隐含从头训练，实际前 1000-1500 步使用不同超参。
+  prevention: 1. 任何 checkpoint resume 必须在 registry notes 中记录完整训练历史；2. 论文报告的模型如有 resume，必须在实验设置中说明；3.
+    发布前对每个 reported 模型做 from-scratch 一致性验证（±0.01 容差）
+  status: active
+  context: adaptive_fix_seed42 从 checkpoint-1500 恢复（前 1500 步 n_min=3）；seed123 从 checkpoint-1500
+    恢复；seed456 从 checkpoint-1000 恢复。从头重训 PPL 偏高 0.027-0.034，效应量从 Δ=-0.043 缩至约 Δ=-0.014。OOD
+    distribution matching 结论仅由 resume seed42 驱动。
+  fix: 重训 from-scratch adaptive seed42；根据 3-seed from-scratch 结果决定是否降级 distribution
+    matching 贡献或更新 Table 2
+- id: M037
+  date: '2026-05-19'
+  category: code_bug
+  severity: medium
+  summary: Eval script without CUDA_VISIBLE_DEVICES causes model to load on wrong
+    GPU, blocking eval for 50 min
+  root_cause: run_seed42_full_eval.sh 或 eval 自动启动脚本未设置 CUDA_VISIBLE_DEVICES。device_map="auto"
+    将模型分散到所有可见 GPU，包括被训练占用的 GPU 1/2/3，导致 eval 卡死无进度。
+  prevention: 所有 eval 脚本必须显式设置 CUDA_VISIBLE_DEVICES 指向空闲 GPU。在有并行训练的环境下，eval 启动前先确认目标
+    GPU 空闲，不依赖 device_map="auto"。
+  status: active
+  fix: Kill 卡死进程 PID 350265，用 CUDA_VISIBLE_DEVICES=0 重启 eval
+- id: M038
+  date: '2026-05-20'
+  category: resource_misuse
+  severity: medium
+  summary: Eval 脚本未设 CUDA_VISIBLE_DEVICES，单卡 eval 占满全部 4 张 GPU，阻塞其他实验启动
+  root_cause: eval_ppl_ood.py 启动时未指定 CUDA_VISIBLE_DEVICES，PyTorch 默认初始化所有可见 GPU，虽然实际推理只用
+    1 卡但其余 3 卡被锁定（显存占用 552MB-7.4GB 不等）
+  prevention: 所有 eval/推理脚本启动时必须设 CUDA_VISIBLE_DEVICES=N 限制为单卡。submit_training_job
+    和手动 ssh_execute 均需检查。训练脚本同理，除非显式使用多卡分布式。
+  status: active
+  context: 'rho06_tau07_seed42 eval Worker 的 OOD eval 进程 PID 374939 占用 cuda:0-3 全部
+    4 卡，导致 seed123/456 训练无法启动，浪费 30-60 min × 3 GPU。Reviewer Report #18 发现。'
+- id: M039
+  date: '2026-05-20'
+  category: experiment_design
+  severity: high
+  summary: rho06_tau07_seed42 registry checkpoint_path 指向 hybrid 方法旧模型，eval 在评估错误模型
+  root_cause: '第一个训练 Worker 因代码路径问题失败（Report #17），后续 Worker 没有从零训练，而是错误地将 registry
+    checkpoint_path 设为已存在的 hybrid_rho06_seed42 目录（5月17日 hybrid 方法产物）。Registry 更新时未验证
+    checkpoint 的训练方法和时间戳是否与当前实验配置一致。'
+  prevention: 1. 更新 registry checkpoint_path 时必须验证：模型文件时间戳晚于实验创建时间、训练日志中的超参数与实验配置一致。2.
+    输出目录命名必须包含方法标识（adaptive_/hybrid_/uniform_），避免不同方法共用目录名。3. eval 前核对 checkpoint
+    元数据（config.json/training_args）与 registry spec 一致。
+  status: active
+  context: 'Reviewer Report #19 发现。hybrid_rho06_seed42 是 5月17日训练的 hybrid 方法模型（q>0.95
+    过滤 + adaptive 加权，PPL=17.530），与 adaptive τ=0.7 方法（预期 PPL≈17.74）差距 0.2 PPL。OOD eval
+    结果如果进入论文将构成方法-数据不一致。'
+- id: M040
+  date: '2026-05-20'
+  category: agent_behavior
+  severity: high
+  summary: eval Worker 将 hybrid 模型的好指标错误标记为 rho06_tau07_seed42 success，且 3 实验被 kill
+    后 GPU 全部空闲未及时重新提交
+  root_cause: 1. eval Worker 见 PPL 17.53 < baseline 17.73 就改 conclusion 为 success，未验证
+    checkpoint 来源是否与实验方法一致。2. seed123/456 被 kill 后 Agent 等 Director 确认而未主动重新提交，导致
+    8 GPU 空转。
+  prevention: 1. eval Worker 更新 conclusion 前必须验证 checkpoint 时间戳和方法标识与 registry spec
+    一致。2. 训练被 kill 后如果原因是 GPU 冲突（非实验设计问题），Agent 应在 GPU 释放后自动重新提交，不需要等 Director 确认。
+  status: active
+  context: 'Reviewer Report #20。rho06 eval 占全部 4 卡（因未设 CUDA_VISIBLE_DEVICES），eval
+    完成后 GPU 全部释放但 Agent 未立即提交替代实验。距 ARR May 25 DDL 不到 5 天。'
+- id: M041
+  date: '2026-05-20'
+  category: resource_misuse
+  severity: medium
+  summary: Worker ssh_execute 超时后未 kill 残留进程，导致同一 eval 重复占用多张 GPU
+  root_cause: Worker 通过 ssh_execute 启动 lm_eval 后超时退出，但未清理残留进程。后续重试又启动新进程，导致 GPU 1
+    上有 2 个重复进程、GPU 3 上有 1 个重复进程，共 3 个进程做同一件事。Python 输出缓冲导致 nohup 日志不更新，Worker 误判任务未启动。
+  prevention: 1. Worker ssh_execute 超时后必须先 ssh_read_only 检查是否有残留进程（ps aux | grep），有则
+    kill 后再决定是否重试。2. nohup 启动 Python 脚本时必须加 PYTHONUNBUFFERED=1 或 python -u 避免输出缓冲。3.
+    重试前先检查目标 GPU 是否已有同名进程在跑。
+  status: active
+  context: westd-41312 上 uniform_seed42 downstream eval，PID 379015(GPU1)、379728(GPU1)、380475(GPU3)
+    三个重复进程。adaptive_rho06_tau07 三组训练因 GPU 被占而等待。
+- id: M042
+  date: '2026-05-20'
+  category: code_bug
+  severity: high
+  summary: '训练命令缺少 conda 环境激活，导致 python: command not found (EXIT_CODE=127)'
+  root_cause: aml-train 镜像使用 conda 环境，裸 python 不在 PATH 中。Worker 提交的 bash -c 命令没有加
+    source /root/miniconda3/etc/profile.d/conda.sh && conda activate base，导致三个 adaptive_rho06_tau07_seed{42,123,456}
+    全部启动失败。Worker 报告 done 但未检查日志内容确认实际启动成功。
+  prevention: 1. aml-train 镜像上所有训练命令必须以 source /root/miniconda3/etc/profile.d/conda.sh
+    && conda activate base && 开头。2. Worker verify_training_start 必须检查日志内容（至少确认无 EXIT_CODE
+    非零），不能仅凭 PID 存在就报告成功。3. CLAUDE.md 已有 conda 环境规范，Worker 必须遵守。
+  status: active
+  context: westd-41312 上 adaptive_rho06_tau07_seed42/123/456 三个实验，registry 仍显示 PREPARING
+    未更新为 FAILED。GPU 0/1/2 完全空闲。
+- id: M043
+  date: '2026-05-20'
+  category: agent_behavior
+  severity: medium
+  summary: Worker 报告 OOD eval done 但实际未产出任何结果（OOD 数据不存在于目标服务器）
+  root_cause: westd-30476 上不存在 OOD 数据目录，Worker 执行 eval 脚本后未检查是否产生了结果文件，直接报告 done。与
+    M042 同类问题：Worker 未验证任务实际完成就报告成功。
+  prevention: Worker 完成 eval 任务后必须验证：(1) 结果文件是否存在且非空 (2) 结果文件时间戳是否在任务启动之后。无结果文件时应报告
+    failed 并说明原因（如数据缺失）。跨服务器执行 eval 前，先 ssh_read_only 检查数据文件是否存在。
+  status: active
+- id: M044
+  date: '2026-05-20'
+  category: agent_behavior
+  severity: medium
+  summary: Worker 报告 Qwen3-1.7B 下载 done 但权重文件全部缺失（仅 142MB 元数据，缺 3.4GB safetensors）
+  root_cause: AutoDL 网络问题导致 HF 大文件下载失败，仅小文件（config/tokenizer）成功。Worker 未验证下载完整性（文件大小/权重可加载性）就报告
+    done。与 M042/M043 同类：Worker 不验证任务实际结果。
+  prevention: 模型下载后必须验证：(1) 目录总大小与预期匹配 (2) safetensors 文件存在且大小合理 (3) 最好用 transformers
+    加载测试。AutoDL 上大文件下载优先用 scp 内网传输或 ModelScope CDN。
+  status: active
+- id: M045
+  date: '2026-05-20'
+  category: resource_misuse
+  severity: high
+  summary: westd-30476 上 8 个无 registry 记录的 OOD eval 进程占满 4 卡，运行 2-3h 无输出，阻塞 1.7B 训练
+  root_cause: Worker 两次提交 OOD eval 但未注册到 registry，第一波被第二波完全覆盖但未 kill。进程运行 2-3h 无输出文件，可能数据未就绪或脚本有问题。同时
+    Worker 报告 adaptive_1_7b 已 RUNNING 但实际被 OOD 进程阻塞未启动。
+  prevention: 1. 长时间 eval/训练任务必须注册到 registry。2. 提交新一波进程前必须 kill 旧一波。3. 启动后 10 分钟内必须检查输出文件是否开始产生。4.
+    报告进程 RUNNING 前必须 nvidia-smi 确认目标 GPU 上确实是该进程在跑。
+  status: active
+- id: M046
+  date: '2026-05-20'
+  category: agent_behavior
+  severity: medium
+  summary: 清理 Worker 超出指令范围，自行扫描并 kill 了非目标进程（Wikipedia OOD eval PID 197197/197280）
+  root_cause: Worker 被指令 kill 8 个指定 PID，但执行后自行扫描 GPU 并 kill 了额外发现的进程。Worker 应严格执行白名单
+    PID 而非自主决策。
+  prevention: kill 指令必须是精确 PID 白名单。Worker 不应自行扫描并 kill 指令范围外的进程。如发现可疑进程，应上报而非自行处理。
+  status: active
+- id: M047
+  date: '2026-05-20'
+  category: resource_misuse
+  severity: high
+  summary: 1.7B 训练因磁盘满崩溃（/autodl-tmp 250GB/250GB），提交前未检查磁盘空间
+  root_cause: westd-41312 /autodl-tmp 已满，1.7B 训练在 step 500 save checkpoint 时报 No space
+    left on device。两个 1.7B 实验各需 ~20GB checkpoint 空间，但提交前未检查磁盘可用空间。
+  prevention: 提交训练前必须 ssh_read_only 检查 df -h /autodl-tmp，确认可用空间 ≥ 预估需求 × 1.5。大模型训练（1.7B+）至少需要
+    50GB 余量。磁盘不足时先清理再提交。
+  status: active
+- id: M048
+  date: '2026-05-20'
+  category: experiment_design
+  severity: high
+  summary: paper_framing.md 中 ρ=0.6 τ=0.7 vs τ=0.8 OOD gap 数字 (0.029/0.068) 无实验支撑，被传播到论文
+  root_cause: D104 更新 paper_framing 时写入了 ρ=0.6 OOD gap 数字，但当时 ρ=0.6 τ=0.8 没有 OOD eval
+    数据。数字可能是估算或从其他比较错误推导。D105 eval 完成后未回头验证 paper_framing 中的 OOD 数字。Paper Agent 直接从
+    paper_framing 取数写入论文。
+  prevention: paper_framing.md 中每个数字必须标注数据来源（exp_id + metric_key）。写入新数字时如果对应实验尚未完成，必须标注
+    "PENDING — awaiting exp_X eval"。Paper Agent patch 前 Director 应交叉核对 paper_framing
+    数字与 registry 实际值。
+  status: active
+  context: 'ρ=0.4 OOD numbers verified correct (OWT -0.077, Wiki -0.143 from actual
+    experiments). ρ=0.6 actual D105 paired data: OWT Δ=-0.014, Wiki Δ=-0.013. Paper
+    claimed 0.029/0.068 (2-5x inflation).'
+  fix: '1. Fix paper_framing.md: ρ=0.6 OOD gap → -0.014/-0.013. 2. Fix ROADMAP. 3.
+    Paper Agent fix: 1.7B "2 seeds"→"single seed", PPL 13.26→13.27/13.28, remove ±0.01,
+    OOD gap 0.029/0.068→0.014/0.013. 4. Appendix τ=0.8 table unified to D105 values.'
+- id: M049
+  date: '2026-05-20'
+  category: experiment_design
+  severity: high
+  summary: τ=0.8 seed42 OOD 数据来自 resume checkpoint（adaptive_fix_seed42），但被当作 from-scratch
+    数据用于 τ comparison，导致 OOD 退化 +0.049/+0.114 全为 resume artifact
+  root_cause: D095/D096/D097 已识别并修正了 τ=0.7 的 resume artifact，但遗漏了 τ=0.8 也受影响。adaptive_fix_seed42
+    的 notes 写了"从 checkpoint-1500 恢复"，但后续 OOD 数据被直接用于 τ comparison 时无人检查训练方式。seed123/456
+    的 from-scratch 数据证明 τ=0.8 OOD 不退化。
+  prevention: τ/method comparison 时必须确认所有比较对象的训练条件一致（from-scratch vs resume）。Registry
+    应标记 training_mode 字段。OOD 比较只用同一 training_mode 的实验。
+  status: active
+  context: 'Resume artifact at 0.6B: τ=0.7 resume OOD was also artificially bad, fixed
+    by from-scratch retraining. Same artifact affected τ=0.8 seed42 but was not caught
+    until now. Paper propagated +0.049/+0.114 as τ=0.8 OOD degradation, which is the
+    strongest single argument for τ=0.7 recommendation. Corrected from-scratch data:
+    τ=0.8 2-seed OOD is neutral (OWT -0.005, Wiki -0.002 vs uniform), τ=0.7 still
+    improves OOD (OWT -0.028, Wiki -0.029). τ=0.7 advantage is real but ~3-5x smaller
+    than reported.'
+  fix: '1. Paper: replace +0.049/+0.114 with from-scratch 2-seed data. 2. τ narrative:
+    from "τ=0.8 degrades OOD" to "τ=0.7 improves OOD, τ=0.8 neutral". 3. Fix registry
+    attribution (adaptive_fix OOD → adaptive_ood). 4. Cancel in-flight Paper Agent
+    patch that used -0.041/-0.066 (still includes resume seed42).'
+  related_decisions:
+  - D104
+  - D106
+  - D109
+- id: M050
+  date: '2026-05-21'
+  category: experiment_design
+  severity: medium
+  summary: Inline eval (--eval_steps 500) 导致两个实验 timeout 失败（gpt2_seed123 + D110 tau08_seed42）
+  root_cause: --eval_steps 500 每 500 步触发一轮 holdout eval（8477 batches, ~43min/轮），6103
+    步训练中触发 5-7 轮 eval 消耗 3.6-5.0h，超出 6-8h timeout 预算。训练代码模板默认包含 inline eval 参数。
+  prevention: 后续所有 >4h 的训练实验默认不加 --eval_data_path 和 --eval_steps。训练完成后单独用 eval_results/
+    pipeline 评估。如需 inline eval，timeout 应设为 训练时间 × 3 以上。审批实验时检查提交命令是否包含 inline eval
+    + timeout 是否充足。
+  status: active
+  fix: 两个实验均从最近 checkpoint resume，去掉 inline eval 参数，1.6-2.3h 内完成。
+  related_decisions:
+  - D110
+  - D111
+- id: M051
+  date: '2026-05-21'
+  category: code_bug
+  severity: high
+  summary: --save_only_model 导致 resume 时 optimizer state 丢失，Adam 从零初始化，模型严重退化
+  root_cause: 训练命令使用 --save_only_model flag，checkpoint 仅保存模型权重（无 optimizer.pt / scheduler.pt
+    / rng_state.pt）。当训练因 inline eval timeout 被 kill 后从 checkpoint resume 时，Adam optimizer
+    的 m/v 从零初始化，有效学习率异常偏高，导致最终模型 PPL 严重偏差（17.905 vs 预期 ~17.65）。
+  prevention: 1. 禁止同时使用 --save_only_model 和可能需要 resume 的训练配置。2. 如果训练可能超时需要 resume，必须保存完整
+    checkpoint（含 optimizer/scheduler/rng state）。3. 更好的方案：去掉 --eval_data_path/--eval_steps
+    避免 timeout，一次性跑完不 resume。4. Resume 前必须检查 checkpoint 目录是否包含 optimizer.pt — 缺失则不能
+    resume，必须从头跑。
+  status: active
+  context: 'D110 adaptive_tau08_scratch_seed42: 从 checkpoint-3500 resume（因 inline
+    eval timeout），PPL=17.905（uniform baseline 17.694, Δ=+0.211）。gpt2_adaptive_seed123
+    同样从 checkpoint-2500 resume，预计也会异常。两个实验都需要从头重跑。'
+  fix: 从头重跑，去掉 --save_only_model 和 --eval_data_path/--eval_steps，确保一次性跑完不中断。
+  related_decisions:
+  - D110
+- id: M052
+  date: '2026-05-21'
+  category: communication
+  severity: medium
+  summary: ROADMAP 数据速查表 GPT-2 和 N-gram PPL 数值交换（17.79 vs 17.82 标反）
+  root_cause: Director 更新 ROADMAP 时从记忆中转录 detector PPL 数据，未交叉验证原始 eval 日志。GPT-2 seed42
+    实际 PPL=17.79，N-gram seed42 实际 PPL=17.82，但在表格中标反了。
+  prevention: 更新 ROADMAP/report 中的关键数据时，必须从 registry 或 eval 日志中复制精确数值，不得凭记忆转录。尤其是同量级的数值（17.79
+    vs 17.82）极易混淆。
+  status: active
+  fix: Reviewer 审查发现后立即修正 ROADMAP，并派 Reviewer 检查论文中是否有同样的数值交换。
+- id: M053
+  date: '2026-05-21'
+  category: resource_misuse
+  severity: high
+  summary: 磁盘空间未监控，250G 磁盘被已完成实验的中间 checkpoint 填满，导致 gpt2_seed456 在 98% 崩溃
+  root_cause: 1.7B 实验（4 个，每个 ~33G 中间 checkpoint）训练完成后未清理中间 checkpoint，仅需 final/ (~3.3G)
+    但占了 132G。无磁盘空间监控机制，直到写入失败才发现。
+  prevention: 1) 训练完成的实验，Agent 应在 eval 完成后立即清理中间 checkpoint（保留 final/）。2) 大模型实验（1.7B+）完成后必须检查磁盘占用。3)
+    启动新实验前检查 df -h 确认剩余空间 > 预估实验需求。4) 考虑在训练脚本中加 save_total_limit 限制中间 checkpoint 数量。
+  status: active
+  fix: 紧急清理 4 个 1.7B 中间 checkpoint 回收 ~119G，从 checkpoint-5500 resume gpt2_seed456。
+- id: M054
+  date: '2026-05-21'
+  category: experiment_design
+  severity: high
+  summary: 'M054: W3 LR confound uniform 实验错用 cosine schedule，与所有历史实验的 linear 默认不一致'
+  root_cause: Director 在 LR confound 指令中写了 "independent 2533-step cosine schedule"，基于论文
+    experiments.tex L13 声称的 "cosine schedule"。但实际代码默认 lr_scheduler_type=linear（HF
+    Trainer 默认）。Worker 实现 uniform 实验时显式加了 --lr_scheduler_type cosine（按 Director 指令），而
+    D&R 实验因为"发现默认是 linear"而正确地沿用了 linear。导致两个对照实验 schedule 不一致。
+  prevention: 1. 派 LR 相关实验前必须先检查现有实验的实际 lr_scheduler_type（读 training_args.bin 或代码默认值），不要信论文描述。2.
+    对照实验的所有超参必须显式 match，不依赖默认值（两边都显式写 --lr_scheduler_type linear）。
+  status: active
+  context: 论文 experiments.tex L13 写 "cosine schedule (peak lr = 5×10⁻⁵)"，但 pretrain_weighted.py
+    L328 默认 lr_scheduler_type="linear"。所有 217 个实验实际用 linear。uniform_epoch_matched
+    实验按论文描述设了 cosine，dr_epoch_matched 沿用 linear。
+  fix: 'Kill uniform_epoch_matched on cuda:2, restart with linear schedule (remove
+    --lr_scheduler_type cosine). Fix experiments.tex: cosine → linear schedule with
+    warmup.'
+  related_decisions:
+  - D115
+- id: M055
+  date: '2026-05-21'
+  category: experiment_design
+  severity: high
+  summary: D&R 过滤数据 scored_data_filtered_q05.jsonl 方向反转：保留 q>0.5（85%合成）而非 q≤0.5（真实数据），导致
+    epoch confound 结论可能为伪影
+  root_cause: 过滤数据文件生成时使用了反向条件（保留 q>threshold 而非 q≤threshold），或未使用正确的过滤脚本。脚本 filter_high_qscore.py
+    逻辑正确但实际生成文件时可能手动操作出错。Director 和 Agent 均未在实验启动前验证过滤数据的组成（depth 分布、q_score 范围）。
+  prevention: 1. 每次生成过滤/处理数据后，必须验证输出文件的统计摘要（样本数、类别分布、目标变量范围）。2. D&R 类实验启动前，检查训练数据中
+    depth=0/1 比例是否符合预期。3. 将数据验证步骤写入实验 checklist，不允许跳过。
+  status: active
+  context: 'scored_data_filtered_q05.jsonl 包含 217,774 条（85.3% depth=1 合成），正确应为 ~153,725
+    条（以 depth=0 真实为主）。dr_epoch_matched_indep_lr_seed42 在此错误数据上训练得到 PPL=18.782，与 Uniform
+    18.062 对比得出 +0.720 差距被写入论文 §5.1 作为 epoch confound 证据（Contribution #1）。detect_remove_q05_seed42
+    也在此数据上训练中。'
+  fix: Kill detect_remove，重新生成过滤数据，重跑 dr_epoch_matched 和 detect_remove。暂停论文 epoch
+    confound 相关内容更新直到正确数据结果出来。
+  related_decisions:
+  - D116
+  - D117
+- id: M056
+  date: '2026-05-21'
+  category: resource_misuse
+  severity: high
+  summary: westd-41312 磁盘 250GB 被已完成实验的中间 checkpoint 占满，导致 bs16_adaptive_seed123 崩溃
+  root_cause: 已完成实验保留了完整中间 checkpoint（每个 ~12GB），累计占用 ~228GB。仅需保留 /final（~1.2GB）。无定期磁盘清理机制。
+  prevention: 1. 实验完成后立即清理中间 checkpoint（保留 /final）。2. 启动新实验前检查磁盘空间（df -h）。3. 设置 save_total_limit=2
+    限制 checkpoint 数量。
+  status: active
+  context: bs16_adaptive_tau07_seed123 在 step 500 checkpoint save 时崩溃。bs16_uniform_seed123
+    和 detect_remove_q05_v2_seed42 也面临崩溃风险。
+- id: M057
+  date: '2026-05-21'
+  category: experiment_design
+  severity: medium
+  summary: dr_epoch_matched_seed123 缺少 --gradient_accumulation_steps 4，effective batch=4（应为16），实验无效
+  root_cause: Director 指令只写了 "--batch_size 4" 但未显式指定 --gradient_accumulation_steps
+    4。Agent 从 seed42 日志确认参数时漏掉了 grad_accum，脚本默认 grad_accum=1。
+  prevention: 派发 seed 复现实验时，Director 指令必须列出所有关键超参（包括 gradient_accumulation_steps），不能只说"与
+    seed42 完全相同配置"。Agent 提交前必须对比 seed42 的完整命令行，逐项校验 effective batch size = batch_size
+    × grad_accum。
+  status: active
+  fix: 在 cuda:1 重跑 dr_epoch_matched_seed123_r2，显式指定 --batch_size 4 --gradient_accumulation_steps
+    4。
+- id: M058
+  date: '2026-05-23'
+  category: resource_misuse
+  severity: high
+  summary: 4 并行实验写 checkpoint 导致 250GB 磁盘满，全部崩溃
+  root_cause: 启动时磁盘 75%（64GB 可用），但 4 个实验同时写 checkpoint（每个实验每 1000 步约 ~15GB），未预估总 checkpoint
+    写入量。df -h 只检查了启动时刻，未考虑训练期间累积。
+  prevention: 4 卡并行时预估总 checkpoint 需求（4 × 每实验 checkpoint 数 × 单 checkpoint 大小）。如预估超过可用空间
+    50%，先清理旧实验 checkpoint 或设置 save_total_limit=2。启动前不仅 df -h，还要计算：可用空间 > 预估写入量 × 1.5。
+  status: active
+  context: D121 rho03_seed456 + D122 bs8_seed123 四组实验并行。磁盘 64GB 可用但 4 个训练各写多个 checkpoint
+    共耗尽空间。之前 handoff 已提醒"提交前必须 df -h 预检"但未预估训练中的累积写入。
+  fix: Agent 正在清理已完成实验的中间 checkpoint（保留 /final），预计释放 30-50GB。清理后从崩溃前 checkpoint 恢复训练。
+  related_decisions:
+  - D121
+  - D122
+- id: M059
+  date: '2026-05-23'
+  category: agent_behavior
+  severity: high
+  summary: 从 corrupted checkpoint resume 未验证完整性，3/4 实验二次崩溃
+  root_cause: 磁盘满崩溃时 checkpoint 写入被中断，产生 truncated safetensors 和缺失 trainer_state.json。Agent
+    恢复时直接 --resume_from_checkpoint 未先检查文件完整性。
+  prevention: 从崩溃 checkpoint 恢复前必须验证：(1) trainer_state.json 存在且可解析；(2) model.safetensors
+    可被 safe_open 正确打开；(3) 如验证失败，fallback 到更早 checkpoint 或 from-scratch。
+  status: active
+  context: M058 磁盘满崩溃后，Agent 清理空间恢复训练但未验证 checkpoint-1000 完整性。rho03_adaptive_seed456
+    缺 trainer_state.json，bs8 两个实验 safetensors truncated。仅 rho03_uniform_seed456 的
+    checkpoint 恰好完整。
+  fix: rho03_adaptive_seed456 from-scratch 重启；bs8 两实验先验证 checkpoint-500，完整则恢复，否则 from-scratch。
+  related_decisions:
+  - D121
+  - D122
+- id: M060
+  date: '2026-05-23'
+  category: experiment_design
+  severity: medium
+  summary: B=8 seed456 实验使用了错误的 contamination_ratio=0.2（应为 0.4）
+  root_cause: Agent 提交实验时未严格复制 seed42 的完整参数 spec，contamination_ratio 默认或错误设置为 0.2
+    而非 0.4。Director 指令中说了"参考 bs8_nmin4_adaptive_seed42 的 spec 完全复制参数"，但未在指令中显式列出 contamination_ratio=0.4。
+  prevention: 跨 seed 复制实验时，Director 指令必须显式列出所有关键超参数（尤其 contamination_ratio、data_path），不能只说"参考
+    seed42"。审批前 Reviewer 应自动校验新实验 spec 与同组已完成实验的参数一致性。
+  status: active
+  context: B=8 batch-size amplification 实验补第三 seed。seed42 和 seed123 都用 ρ=0.4 (data/scored_data.jsonl)，seed456
+    错误使用了 ρ=0.2 数据。Reviewer 在实验刚启动时发现，GPU 浪费约 10 分钟。
+  fix: 立即 kill 两个进程，修正 contamination_ratio=0.4 + 正确 data_path 后重新启动。
+- id: M061
+  date: '2026-05-24'
+  category: experiment_design
+  severity: high
+  summary: N=5 统计分析混用 B=16 和 B=4 实验数据，导致 Δ 从 -0.023 被错误放大为 -0.044
+  root_cause: Worker 自动提取 PPL 时未区分 bs16_adaptive_tau07_seed* (B=16) 和 adaptive_fix_seed*
+    (B=4) 实验，seeds 42/123/456 的 adaptive PPL 取自错误的 B=16 实验
+  prevention: 多 seed 统计分析时必须验证所有数据点来源于同一实验条件（相同 batch size / learning rate / 超参数）。自动提取脚本应按
+    registry experiment name pattern 过滤，不能仅按 seed 匹配
+  status: active
+  context: 'seeds 42/123/456 adaptive PPL: Worker 用了 17.644/17.631/17.642 (B=16)，正确值应为
+    17.680/17.666/17.677 (B=4)。修正后 mean Δ ≈ -0.023±0.007, p_BH ≈ 0.012 仍显著，结论不变但数值需全面修正'
+  fix: 用正确的 B=4 数据重新运行统计分析，手动指定输入值
+- id: M062
+  date: '2026-05-24'
+  category: resource_misuse
+  severity: high
+  summary: 磁盘满导致多实验连锁崩溃：DONE 实验 checkpoint 未清理，/root/autodl-tmp 250G 占满
+  root_cause: 已完成实验保留了完整 checkpoint（每个 ~6.8G），~20 个 DONE 实验累积 ~130G。无定期磁盘清理机制，无磁盘使用预警。4
+    个实验同时运行时在 checkpoint save 阶段连锁崩溃。
+  prevention: 1. 实验 DONE+eval 完成后立即删除 checkpoint-*（只保留 final/）。2. 启动新实验前检查磁盘剩余空间（df
+    -h /root/autodl-tmp）。3. 设置磁盘使用阈值预警（>80% 时提醒清理）。
+  status: active
+  context: 2026-05-25 00:10 UTC。p0_nmin_5 在 step 500 崩溃（torch.save 失败），random_subset_epoch_seed42（step
+    3904/6103, 64%）即将在 step 4000 触发崩溃。detect_remove 和 permuted_score 也面临相同风险。
+  fix: 紧急批量删除 DONE 实验的 checkpoint-* 目录，释放 ~130G。
+- id: M063
+  date: '2026-05-24'
+  category: resource_misuse
+  severity: medium
+  summary: 两个 Worker 同时分配 cuda:1 导致 GPU 冲突，p0_nmin_5 被杀
+  root_cause: restart worker 在 cuda:1 启动 p0_nmin_5，replacement worker 随后在同一 cuda:1
+    启动 contamination_20_tau07_seed42，未检查 GPU 是否已被占用。两个 Worker 的指令来自不同队列消息，缺乏 GPU 锁定机制。
+  prevention: 1. Worker 启动训练前必须 nvidia-smi 检查目标 GPU 是否空闲。2. Director 分配 GPU 时明确指定，避免多条指令分配同一
+    GPU。3. 多个 Worker 并行时，GPU 分配在单条综合指令中统一规划，不分散到多条消息。
+  status: active
+  fix: p0_nmin_5 本就不该重跑（redundant with nmin4），cuda:1 被 contamination_20_tau07_seed42
+    接管反而是更优分配。
+- id: M064
+  date: '2026-05-24'
+  category: communication
+  severity: medium
+  summary: detect_remove_q05_seed42 registry 更新被催 4 次仍未完成，Agent 队列堵塞导致指令无法及时执行
+  root_cause: Agent 队列被 cron 通知、Worker 完成回调大量占用（depth 最高达 8），Director 的 registry 修复指令反复被排到后面。urgent_message
+    也无法中断当前正在处理的消息。
+  prevention: 1. 关键 registry 修复应在 replace_agent_queue 的综合指令中排第一条并标注"执行完再做其他"。2. 对即将完成的实验，registry
+    修复窗口极短时，考虑直接 Worker SSH 执行修复而非等 Agent 队列。3. 实验重启时 Worker 应同步更新 registry，不依赖后续消息。
+  status: active
+  fix: 实验完成后手动补录 metrics。
+- id: M065
+  date: '2026-05-24'
+  category: code_bug
+  severity: medium
+  summary: Cron 自动监控用残留旧 failure_reason 覆写成功实验的 conclusion 为 failed
+  root_cause: permuted_score_control_seed42 第一次运行失败留下了 failure_reason（"process dead
+    5× with no sentinel/W&B"）。第二次重跑成功后 Agent 设了 conclusion=success 但未清除旧 failure_reason。Cron
+    检测到进程退出 + 有 failure_reason 字段，就把 conclusion 覆写为 failed。
+  prevention: 实验重跑成功后，Agent 必须同时清除旧的 failure_reason 字段。Cron 判断 failed 时应检查 conclusion
+    是否已被手动设为 success，若已设则不覆写。
+  status: active
+  fix: urgent_agent_message 指令 Agent 手动修正 conclusion=success 并清除 failure_reason
+- id: M066
+  date: '2026-05-24'
+  category: agent_behavior
+  severity: high
+  summary: Cron 第二次误判正常完成的训练为 failed（random_subset_epoch_seed42），与 M065 permuted_score_control
+    完全相同模式
+  root_cause: Cron 监控仅靠进程存活状态判定实验成败。训练正常完成后进程自然退出，cron 连续 5 次检测到进程不存在后 auto-resolve
+    为 failed，未检查 checkpoint 是否存在或 step_metrics 是否到达 max_steps
+  prevention: 1. Cron 判定 failed 前必须检查：(a) final/ checkpoint 是否存在 (b) step_metrics.jsonl
+    最后 step 是否接近 max_steps。两者任一满足则判定为训练完成（待 eval），不是 failed。2. 收到 cron auto-resolved
+    as failed 时，Agent 必须先 SSH 检查 checkpoint 再更新 registry，不要直接接受 cron 判定
+  status: active
+  context: 'random_subset_epoch_seed42: final/ 目录存在 (model.safetensors 1.19GB)，checkpoint-6103
+    已保存，step_metrics 记录到 step=6102。failure_reason "process dead 5× with no sentinel/W&B
+    — auto-resolved as failed" 完全是误判。这是继 permuted_score_control_seed42 (M065) 后第二次相同模式的误判。'
+  fix: 更正 conclusion 为待定，在 cuda:0 上执行 post-hoc eval
+- id: M067
+  date: '2026-05-25'
+  category: resource_misuse
+  severity: medium
+  summary: q05 训练被 SIGKILL 后从头重跑而非从 checkpoint 恢复，浪费 ~10h GPU 时间
+  root_cause: 训练在 step 5827/6103 (95.5%) 被 kill (EXIT_CODE=137) 后，Agent 重新提交了全新训练从
+    step 0 开始，而非使用 --resume_from_checkpoint 从 checkpoint-5500 恢复
+  prevention: 训练被 kill/中断后，优先检查是否有可用 checkpoint，用 --resume_from_checkpoint 恢复。仅在无
+    checkpoint 或 checkpoint 损坏时才从头重跑
+  status: active
+  context: 'detect_remove_q05_seed42 旧 PID 601613 在 step 5827/6103 被 SIGKILL，之后新 PID
+    962199 从 step 0 重跑。Reviewer 在 Loop #23 核实发现。'
+- id: M068
+  date: '2026-05-25'
+  category: agent_behavior
+  severity: high
+  summary: Cron on_failed 回调自动将 q05 registry 标为 DONE/failed，但实际训练进程正常运行中（第三次 cron
+    误判）
+  root_cause: kill+resume 操作后旧 PID 退出触发 cron on_failed，Agent 处理回调时未验证新进程是否存在就更新了 registry。cron
+    监控逻辑只看 PID 存活，不检查是否有新进程接替
+  prevention: 1. 处理 cron failed 回调时必须先 SSH 验证实际进程状态再更新 registry。2. 手动 kill+resume
+    的实验应立即删除旧 cron，避免旧 PID 退出触发误判。3. 对已知会重启的实验批量关闭 cron 监控
+  status: active
+  context: detect_remove_q05_seed42 PID 962199 被主动 kill 后从 ckpt-5500 用新 PID 8049 resume。旧
+    PID 退出触发 cron，Agent 在 on_failed 回调中将 registry 更新为 DONE/failed。Reviewer 独立核实发现
+    PID 8049 在 cuda:2 正常训练 step 5657/6103 (93%)。这是 cron 第三次误判（前两次：permuted_score_control、random_subset_epoch）。
+- id: M069
+  date: '2026-05-25'
+  category: experiment_design
+  severity: high
+  summary: --save_only_model checkpoint 缺少 optimizer/scheduler 状态，resume 后 AdamW momentum
+    归零导致 q05 final PPL 劣化 0.66
+  root_cause: 训练脚本使用 --save_only_model 保存 checkpoint（只存模型权重），不保存 optimizer.pt 和 scheduler.pt。从此
+    checkpoint resume 时 AdamW 的 momentum/velocity 归零，导致最后 603 步训练产生不稳定更新，final model
+    PPL 从预期的 17.28 劣化到 17.946
+  prevention: 1. 如果后续可能需要 resume，不要用 --save_only_model，改用完整 checkpoint（含 optimizer+scheduler）。2.
+    如果必须用 --save_only_model 节省磁盘，resume 后必须对 final model 做 sanity check（对比最近 checkpoint
+    的 eval 结果）。3. 或者：不 resume，让训练跑完；需要加速时只去掉 inline eval 而非 kill+resume
+  status: active
+  context: 'detect_remove_q05_seed42 从 checkpoint-5500 resume 后跑了 603 步到 step 6103。ckpt-5500
+    eval: holdout=17.291 (正常), final eval: holdout=17.946 (异常劣化 +0.655)。Reviewer 独立核实确认
+    checkpoint 目录无 optimizer.pt/scheduler.pt。q03 和 q07 同样在做 kill+resume，面临相同风险。'

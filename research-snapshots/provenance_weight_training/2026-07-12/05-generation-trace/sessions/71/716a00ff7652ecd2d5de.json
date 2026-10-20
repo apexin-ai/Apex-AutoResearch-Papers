@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0",
+  "id": "716a00ff7652ecd2d5de",
+  "project": "provenance_weight_training--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [CRON] 实验进程异常退出（失败），需要你诊断原因。 详情: Process exited without valid W&B metrics - exp_id: llama3b_adaptive_seed42 - project: p",
+  "task_key": "e1cf9a63-fbbb-4841-bac2-f39807cf350b",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-3/e1cf9a63-fbbb-4841-bac2-f39807cf350b.jsonl",
+    "occurrence": 1,
+    "bytes": 698935,
+    "sha256": "acf2622582efc58d1209feab17a14f053d3418353216852faea1945affce3691"
+  },
+  "statistics": {
+    "messages": 209,
+    "user_turns": 3,
+    "tool_calls": 63,
+    "roles": {
+      "record": 42,
+      "user": 3,
+      "assistant": 38,
+      "tool_call": 63,
+      "tool_result": 63
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "716a00ff7652ecd2d5de-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 203,
+      "chunks": [
+        {
+          "path": "716a00ff7652ecd2d5de-part-0001.json",
+          "message_count": 144
+        },
+        {
+          "path": "716a00ff7652ecd2d5de-part-0002.json",
+          "message_count": 59
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "716a00ff7652ecd2d5de-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "716a00ff7652ecd2d5de-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-cron-process-exited-without-valid-w-b-metrics-exp-id-llama3b-adaptive-seed42-p.md"
+}

@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0",
+  "session_id": "073144d0c4a3028cb01a",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 541,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Score 371K samples with character 5-gram perplexity",
+                "sessionId": "521fc807-b66f-49b2-9a9e-8c3651c7fe3b"
+              }
+            }
+          ],
+          "id": "event-000541"
+        }
+      ]
+    }
+  ]
+}

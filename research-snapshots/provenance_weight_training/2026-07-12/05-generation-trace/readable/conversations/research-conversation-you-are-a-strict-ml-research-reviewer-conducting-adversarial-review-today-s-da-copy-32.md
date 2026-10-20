@@ -1,0 +1,11426 @@
+# Research conversation: You are a strict ML research reviewer conducting adversarial review. **Today's date: 2026-05-13 (UTC).** Your job: indep
+
+**When Does Detect-and-Reweight Work for Synthetic Contamination? (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 158
+- **Recorded user turns:** 1
+- **Tool calls:** 52
+- **Original source:** `logs/chats/exported-trajectories/account-3/2167d8d7-492b-4e35-b3c9-ff22d9784b7a.jsonl`
+- **Structured JSON:** [`618e070b37444ce93fd7.json`](../../sessions/61/618e070b37444ce93fd7.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-13T04:58:57.790Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-13T04:58:57.790Z",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "content": "You are a strict ML research reviewer conducting adversarial review.\n\n**Today's date: 2026-05-13 (UTC).**\n\nYour job: independently verify this idea's claims via WebSearch, then issue a verdict.\n\n## User requirements\nThe user asked for: **VLA中的token裁剪/增强能否提升VLA模型的泛化性（多从理论角度分析为何能增强）**\nYou MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be \"revise\" or \"fail\".\n\n## 核心要求：非常仔细地调研，非常仔细地思考\n\n你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。\n\n### 调研要求\n\n1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。\n   每个验证维度建议用 2-3 种不同的搜索查询。\n\n2. **可行性深度检查**：\n   - 搜索类似实验的实际成本/周期\n   - 检查 claimed baselines 是否可复现\n   - 验证所需的 datasets/models 是否真的可以获取\n\n3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：\n   - 尝试不同的关键词组合\n   - 同时检查 arXiv 和 conference proceedings\n   - 寻找相邻领域的并行/concurrent 工作\n\n4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。\n\n### 思考要求\n\n5. **独立判断**：\n   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查\n   - 思考这个 idea 在实际执行中会遇到什么困难\n   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）\n\n6. **评分诚实**：\n   - 不要给\"看起来还行\"的 idea 高分——4 分意味着\"确实很好\"，5 分意味着\"令人兴奋\"\n   - Agent 评分经常虚高，你的职责就是纠正这种偏差\n\n充分利用你的工具——做真正的调研，不是走过场。\n\n\n## 论文搜索策略\n\n你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。\n\n### 搜索源（推荐每个维度使用 2 个不同来源）\n\n1. **arXiv 预印本**（最新工作）:\n   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文\n   - `site:arxiv.org {method_name}` — 按具体方法名搜索\n   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作\n\n2. **Google Scholar**（引用关系 + 综合覆盖）:\n   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果\n   - `\"{exact paper title}\"` — 验证论文是否真实存在\n   - `\"{author name}\" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）\n\n3. **Papers With Code**（SOTA 排行 + 代码可用性）:\n   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜\n   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现\n   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局\n\n4. **OpenReview**（会议审稿 + 同行评价）:\n   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文\n   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价\n\n5. **Semantic Scholar**（语义搜索 + 引用图谱）:\n   - `semantic scholar {topic} survey {year}` — 找综述论文\n   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）\n\n6. **GitHub**（实现验证）:\n   - `site:github.com {method_name} {task}` — 验证开源实现是否存在\n   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取\n\n### 搜索维度（多角度交叉，不要只按 topic 搜）\n\n对每个 idea/方向，尽量覆盖以下维度：\n\n1. **正向搜索**：直接搜索主题相关论文\n   - `{topic} {subtopic} {year}`\n   - `{method_name} for {task_name}`\n\n2. **竞争论文搜索**（最关键！）：\n   - `{core_problem} {year}` — 有没有人在解决同样的问题？\n   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？\n   - `{gap_description} solution` — 你发现的 gap 是否已被解决？\n   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文\n\n3. **相邻领域搜索**：\n   - `{method_from_other_field} applied to {your_task}`\n   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题\n\n4. **反面搜索**（找到反对你 idea 的证据）：\n   - `{your_approach} limitations` / `{your_approach} failure`\n   - `why {assumed_gap} is not a problem`\n   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好\n\n5. **引用链追踪**（发现遗漏工作的最有效方法）：\n   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分\n   - 在 Semantic Scholar 上查看它的 \"cited by\" — 最近引用它的论文很可能是 concurrent work\n   - 对 3 个以上核心相关论文重复此步骤\n\n### 搜索数量建议（理想目标，上下文充裕时尽量达到）\n\n| 角色 | 建议搜索次数 | 说明 |\n|------|-------------|------|\n| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |\n| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |\n| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |\n| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |\n\n### 上下文管理\n\n你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。\n\n- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。\n- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。\n- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。\n- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。\n\n\nAs a reviewer, your search focus should be:\n1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实\n2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作\n3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通\n4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work\n\n## 竞争论文专项搜索（Reviewer 独有）\n\n这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：\n\n1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题\n   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）\n   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）\n   - 方法名 + 任务名的不同组合\n\n2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，\n   搜索他们最近的论文（`\"team_name\" OR \"author_name\" {topic} {year}`）\n\n3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers\n   - `site:openreview.net {topic} 2026`\n   - `{conference_name} 2026 accepted papers {topic}`\n\n4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文\n   这是发现 concurrent work 最有效的窗口\n\n如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，\n并在 feedback 中说明这些工作如何影响 idea 的 novelty。\n\n## Review checklist\n1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?\n   If outdated, specify what the current SOTA is and cite your source.\n2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)\n3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?\n4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-13?\n5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?\n6. **Novelty**: Is this sufficiently different from existing work?\n   When scoring novelty < 4:\n   - You MUST identify the closest existing work(s) via WebSearch\n   - In your feedback, write: \"This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion].\"\n   - This gives the generator targeted guidance to boost novelty, not just \"be more novel\".\n7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?\n   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero\n   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks\n   - Human-in-Loop should fall between manual and auto on most dimensions\n   - Manual and HIL must NOT include salary/wages — only GPU and API costs\n   - Auto Research must NOT include agent operational overhead\n   - If any mode estimate is clearly unrealistic, flag it\n\n## Idea under review (round 3/10)\n{\n  \"title\": \"Causal Token Selection for Invariant VLA Policies via Amortized Interventional Scoring\",\n  \"core_problem\": \"VLA models learn spurious visual correlations — attending to background textures, lighting conditions, and distractor objects that co-occur with target actions in training data — causing catastrophic failure under visual distribution shifts. Recent work (arXiv 2502.11501, ACL Findings 2025; arXiv 2512.07580, ICLR 2026) reveals two critical findings: (1) many attention-based token pruning methods underperform even naive random selection due to flawed scoring criteria, and (2) visual token information 'vanishes' in deep LLM layers, becoming uniformly uninformative beyond an 'information horizon' — meaning that any token selection must operate before this horizon. Meanwhile, a proliferation of concurrent VLA token selection methods (DTP, FocusVLA, LightVLA, TIES, BFA++, Compressor-VLA, Gaze-VLA — all 2025-2026) each propose different heuristic criteria (attention intersection, cross-attention TopK, Gumbel softmax, Kendall rank consistency, hierarchical importance, instruction-guided compression, gaze alignment), yet none provide formal justification for why their criterion identifies task-relevant tokens rather than merely attention-salient tokens. Simple adaptation methods like FTM (arXiv 2512.02902) can recover substantial robustness with only 4K parameters, raising the question: can we identify *why* certain tokens matter and provide interpretable, formally grounded selection criteria rather than black-box affine recalibration?\",\n  \"opportunity\": \"Three research threads have developed in isolation: (1) causal intervention for imitation learning robustness (Causal-ACT, arXiv 2507.22380; ICIL, NeurIPS 2021), operating at the feature level in smaller architectures, (2) VLA token pruning for efficiency (DTP, FocusVLA, LightVLA, TIES, BFA++, VLA-Pruner, VLA-IAP, OTPrune, Compressor-VLA), using attention/gradient/geometric/rank heuristics without causal grounding, and (3) causal attention distillation (LeaF, NeurIPS 2025) and learnable pruning (LearnPruner, arXiv 2604.23950), which move beyond pure attention heuristics but lack formal causal intervention criteria. A critical recent finding connects these threads: visual tokens in VLA architectures preserve spatial correspondence to image patches at the vision encoder output (where SigLIP provides semantic and DINOv2 provides spatial features), but this spatial structure degrades progressively through LLM layers due to self-attention mixing, ultimately vanishing at an 'information horizon' (arXiv 2512.07580). This means token-level causal selection must operate at or near the vision encoder output — where spatial locality is preserved by construction — rather than at deep LLM layers where existing attention-based methods struggle (explaining why they often underperform random selection). Formalizing this insight via a structural causal model over the token-action pipeline, with amortized interventional scoring operating at the pre-LLM representation layer, would provide the principled criterion that existing pruning methods lack while operating in the representation space where the criterion is most valid.\",\n  \"landscape\": \"**Robustness benchmarking**: LIBERO-Plus (arXiv 2510.13626, CVPR 2026) demonstrates VLA catastrophic failures across 7 perturbation dimensions, with the current SOTA at 82.1% average success (SRPO, arXiv 2511.15605) — SRPO achieves 167% improvement over one-shot SFT baseline via self-referential RL without token selection. **Causal approaches in imitation learning**: Causal-ACT (arXiv 2507.22380, July 2025) integrates causal structure learning into ACT by learning binary causal graphs over ResNet features — achieving 0.82 OOD success on ALOHA cube transfer vs. 0.23 for standard ACT. However, it operates at the feature level in small architectures, uses heuristic energy-based graph search, and evaluates on a single simple task. ICIL (NeurIPS 2021) learns domain-invariant features for imitation but not at the token level. CLIP-ICM (ICML 2025) applies causal invariance to VLMs via SCMs but for classification, not action policies. **Simple adaptation baselines**: FTM (arXiv 2512.02902) achieves 87.1% on LIBERO viewpoint with just 4K parameters via global affine token modulation; FLA extends to 90.8% with 4.7M parameters. Neither evaluated on full LIBERO-Plus; neither provides interpretability. **Active attention**: AVA-VLA (arXiv 2511.18960) dynamically reweights visual tokens via active attention, achieving 74.7% on LIBERO-Plus. **Concurrent VLA token pruning/selection methods (2025-2026) — all using heuristic criteria**: (i) DTP (arXiv 2601.16065, Jan 2026) prunes 'distracting tokens' via attention intersection scoring — tokens in task-irrelevant regions exceeding a scaled threshold of the maximum attention in task-relevant regions are pruned. Evaluated on SIMPLER, not LIBERO-Plus. Directly analogous motivation to CaTS (removing spuriously correlated tokens), but uses attention heuristics without formal justification that attention-salient ≠ causally relevant. (ii) FocusVLA (arXiv 2603.28740, Mar 2026) uses cross-attention-based TopK patch selection with modality cascaded attention, achieving 98.7% on standard LIBERO. Not evaluated on LIBERO-Plus; assumes cross-attention scores identify task relevance without causal validation. (iii) LightVLA (arXiv 2509.12594, ICRA 2026) uses Gumbel softmax for differentiable token selection, reducing FLOPs by 59.1% with 2.9% success rate improvement on LIBERO. End-to-end learned selection but criterion is implicitly defined by task loss — no interpretability or formal robustness criterion. (iv) TIES (arXiv 2603.24941, Mar 2026) introduces Kendall rank consistency across layers as a stability metric, improving average success by 6% on CogACT+SIMPLER while reducing tokens by 78%. Most relevant concurrent work: uses rank consistency as a robustness signal, but this is a statistical regularity heuristic, not a causal criterion — rank consistency does not distinguish causal from spuriously consistent tokens. Not evaluated under environmental perturbations. (v) BFA++ (arXiv 2602.20566, Feb 2026) uses hierarchical intra-view and inter-view importance predictors for multi-view VLAs. Addresses multi-view settings CaTS does not target. (vi) Compressor-VLA (arXiv 2511.18950) uses instruction-guided semantic and spatial compression modules, reducing visual tokens by 3× on LIBERO. (vii) Gaze-Regularized VLA (arXiv 2603.23202, Mar 2026) aligns attention with human gaze heatmaps via KL divergence, achieving 4-12% improvement. Requires human gaze data as supervision; provides indirect causal signal (human gaze correlates with but does not identify causal features). (viii) LearnPruner (arXiv 2604.23950, Apr 2026) trains a learnable pruning module after the vision encoder, retaining only 5.5% of tokens while preserving ~95% performance. Learns importance scores end-to-end but without causal or robustness criteria. **Token information dynamics**: arXiv 2512.07580 (ICLR 2026) discovers 'vanishing token information' — visual tokens progressively lose discriminative salience in deep LLM layers, becoming uniformly uninformative beyond an 'information horizon' (~layer 20 for general tasks, deeper for OCR). This explains why attention-based pruning in late layers underperforms random selection and motivates scoring at early/intermediate layers where spatial information is preserved. **Token pruning critique**: arXiv 2502.11501 (ACL Findings 2025) systematically shows many attention-based pruning methods underperform random selection due to position bias and flawed attention-as-importance assumptions. **Causal token pruning in NLP**: LeaF (NeurIPS 2025, arXiv 2506.07851) uses gradient-based teacher-student comparison to identify confounding tokens. Analogous in spirit but targets LLM reasoning, not embodied action; uses gradient heuristics, not formal interventions. **Robustness training**: RobustVLA (ICLR 2026, arXiv 2510.00037) uses offline robust optimization with 12.6% absolute gains on π0 backbone. **World models**: Mask World Model (arXiv 2604.19683) achieves 98.3% on standard LIBERO via geometric information bottleneck but not evaluated on LIBERO-Plus. **Shortcut learning**: arXiv 2508.06426 (CoRL 2025) identifies dataset diversity as root cause — complementary data-side approach. **Invariance theory limitations**: Rosenfeld et al. (ICLR 2021) demonstrate IRM fails in non-linear settings. V-REx (Krueger et al., ICML 2021) proposes variance-based risk extrapolation as simpler alternative but suffers similar non-linear limitations and fails under heteroskedastic noise — it is a practical heuristic, not a principled fix. Wasserstein DRO (Kuhn et al., 2024) provides genuine finite-sample guarantees without requiring linear/invariance assumptions. **Amortized causal estimation**: CausalPFN (NeurIPS 2025) demonstrates amortized causal effect estimation via in-context learning with asymptotic consistency guarantees; ACTIVA (arXiv 2503.01290) uses transformer-based VAEs but is limited to tabular data. Amortized Shapley estimation (SurroShap, SimSHAP) provides convergence bounds of O(√(r/m)) for m sampled coalitions. **No existing work combines formal token-level causal intervention criteria with amortized estimation in VLA transformers, operating at the vision encoder output where spatial locality is empirically validated, for cross-environment policy invariance.**\",\n  \"approach\": \"We propose Causal Token Selection (CaTS) v3, which identifies and retains visual tokens whose causal effect on action predictions is significant and stable across visual environments, using an amortized interventional scoring framework operating at the vision encoder output where spatial locality is empirically grounded.\\n\\n**Formal SCM for VLA Token-Action Pipeline.** We define a structural causal model: observation O is processed by the vision encoder into T(O) = {t_1,...,t_N} (N=256 for OpenVLA's SigLIP+DINOv2 encoder); each token t_i corresponds to an image patch and carries causal content C_i (object geometry, gripper state, contact regions) and spurious content S_i (background texture, lighting, distractor appearance); environment variable E influences S_i but not C_i; action A = π(f(T)) where f is the LLM backbone. We formalize the *encoder-level spatial locality* assumption (revised from the original spatial locality assumption): at the vision encoder output — before LLM self-attention layers mix token representations — causal content C_i is concentrated in a subset T* ⊂ T corresponding to image patches containing task-relevant objects, while spurious content S_i is distributed across patches containing background and distractors. **Justification**: this is grounded in two empirical findings: (a) DINOv2's attention maps show foreground object concentration by layers 3-6, with the CLS token primarily aggregating foreground tokens (arXiv 2602.22394); (b) the 'vanishing token information' phenomenon (arXiv 2512.07580) confirms that spatial discriminability is maximal at the vision encoder output and degrades through LLM depth. By scoring at the encoder output, CaTS operates precisely where the assumption is most valid, unlike methods scoring at deep LLM layers where information mixing undermines spatial selectivity.\\n\\n**Multi-Layer Scoring Architecture.** Rather than scoring tokens at a single layer (where the spatial locality / information quality tradeoff is unclear), CaTS employs a two-stage scoring approach: (1) *Primary scoring* at the vision encoder output (post-MLP projection, pre-LLM), where spatial locality is strongest. (2) *Optional refinement scoring* at an intermediate LLM layer (before the information horizon, empirically determined per-model via the protocol of arXiv 2512.07580 — typically layer 8-15 for 7B models), capturing cross-modal relevance signals that emerge only after some language-vision interaction. The two scores are combined via a learned convex combination α·s_encoder + (1-α)·s_intermediate, where α is a learnable scalar. **Degradation analysis**: we formally analyze how the ε-invariance bound degrades as spatial locality weakens (parameterized by α_leak = fraction of causal information C_i that 'leaks' to non-corresponding tokens through self-attention). When α_leak is high (poor spatial locality at the scoring layer), the bound degrades gracefully — the theory predicts diminishing returns of causal selection over random pruning, which is empirically testable.\\n\\n**Theorem (Conditional Invariance).** Under four assumptions — (A1) causal sufficiency: A ⊥ E | C(T*); (A2) token-level identifiability: do(t_i) changes C(T*) with positive probability for t_i ∈ T*; (A3) environment diversity: training environments span relevant E dimensions; (A4) bounded amortization error of the causal scorer — the causal token selection operator S_τ with threshold τ satisfies:\\n\\n*Concrete bound*: max_{e,e'} |R(π,e) - R(π,e')| ≤ ε(N_env, M, τ, α_leak) where:\\nε = C₁/√M + C₂·exp(-c·N_env/d_E) + C₃·α_leak·g(τ) + ε_amort\\n\\n- C₁/√M: Shapley estimation error from M intervention samples (from known SurroShap/SimSHAP convergence bounds where the O(√(r/m)) rate is established)\\n- C₂·exp(-c·N_env/d_E): environment coverage gap, where d_E is the effective dimensionality of the environment variable E and c is a constant depending on the environment distribution's tail behavior. This shows the bound requires N_env = Ω(d_E·log(1/δ)) environments, connecting to but improving on Rosenfeld et al.'s d+1 requirement because token-level selection reduces the effective feature dimensionality (each token is a localized patch, not a global feature)\\n- C₃·α_leak·g(τ): spatial locality violation term, where α_leak ∈ [0,1] measures causal information leakage across tokens and g(τ) is monotonically decreasing in τ (tighter pruning amplifies locality violations). When α_leak → 0 (perfect spatial locality at scoring layer), this term vanishes; when α_leak → 1 (complete information mixing, as in deep LLM layers), causal selection degenerates to random — explaining why late-layer attention pruning fails\\n- ε_amort: amortization gap of the learned scorer (bounded below)\\n\\n**Full proof strategy**: The proof proceeds in three steps: (1) show that under A1-A2, exact token-level ACE identifies T* (follows from standard do-calculus); (2) bound the approximation error when ACE is estimated from M samples via Shapley decomposition (using Hoeffding-type concentration on bounded action losses); (3) bound the error from amortizing the Shapley estimates via a neural network (using universal approximation + Rademacher complexity of the MLP hypothesis class). Step (3) yields the ε_amort term.\\n\\n**Failure modes (explicit with analysis):** (F1) Insufficient environment diversity violates A3 — same limitation as IRM/V-REx. Mitigation: LIBERO-Plus provides 7 perturbation dimensions; we report per-dimension results to identify which dimensions have sufficient diversity. (F2) Spatial locality violation at scoring layer (high α_leak). Mitigation: multi-layer scoring allows operating at the layer with lowest α_leak; we empirically measure α_leak by comparing per-token ACE computed at encoder output vs. intermediate LLM layers. (F3) Amortization gap (see detailed analysis below). (F4) V-REx variance penalty limitations in non-linear settings — see honest framing below.\\n\\n**Amortized Causal Scoring (ACS) with Quantified Amortization Gap.** We train a lightweight causal scoring head attached to the frozen VLA backbone. Training data is generated via *batch stochastic interventions*: for randomly sampled token subsets across LIBERO-Plus perturbation environments, we replace token embeddings with environment-marginal statistics and measure KL divergence in action distributions. A Shapley-value-inspired decomposition attributes group effects to individual tokens. The scorer (2-layer MLP with width W, <1M parameters) learns to predict token-level causal effects from token embeddings.\\n\\n**Amortization gap analysis**: The gap between the learned scorer s_θ(t_i) and the true ACE(t_i) is bounded by: ε_amort ≤ ε_approx(W, d) + ε_stat(n_train) where ε_approx(W, d) = O(d/W) is the MLP approximation error for d-dimensional token embeddings with width W (from universal approximation theory for Lipschitz functions), and ε_stat(n_train) = O(1/√n_train) is the statistical estimation error from n_train training interventions. **Central validation protocol** (not merely an ablation): we compute exact ACE on a validation set of 50 tokens × 5 environments (250 forward passes per token = 12,500 total, feasible) and report: (a) Pearson/Spearman correlation between s_θ and exact ACE; (b) mean absolute error; (c) rank agreement (does s_θ rank tokens in the same order as exact ACE?). The amortized scorer is considered validated if rank-order Spearman ρ > 0.8 and the scoring threshold τ selects a token set overlapping ≥ 85% with the exact-ACE-selected set. If validation fails, we fall back to exact ACE computation at inference (trading efficiency for correctness), which remains a viable contribution.\\n\\n**Composite Robustness Objective (honest framing).** We do NOT claim to solve the non-linear invariance problem. Instead, we use a *composite robustness objective* combining three components: (1) Standard action prediction loss on selected tokens: L_task = E_e[L(π(S_τ(T)), a*)]. (2) V-REx-style variance penalty: L_var = Var_e(L(π(S_τ(T)), a*)), which penalizes cross-environment loss variance. We frame this honestly as a *practical heuristic* that is simpler and more stable than IRMv1 (Krueger et al., ICML 2021) but shares the same fundamental limitation in non-linear settings: it does not distinguish between underfitting and inherent noise, and can fail under heteroskedastic environments. (3) Wasserstein DRO regularization: L_DRO = sup_{Q: W(Q,P̂)≤ρ} E_Q[L], providing finite-sample robustness guarantees (Kuhn et al., 2024) that do not require linear assumptions. The DRO term provides theoretical backing where V-REx's guarantees fail, at the cost of a more conservative objective. The combined loss is L = L_task + λ_var·L_var + λ_DRO·L_DRO, where λ_var and λ_DRO are hyperparameters with explicit sensitivity analysis. We expect V-REx to provide better empirical performance in practice (as observed in prior work) while DRO provides the theoretical safety net.\\n\\n**Architecture.** Frozen OpenVLA-OFT backbone (7B). The ACS head operates at the vision encoder output (post-projection), with optional refinement at an intermediate LLM layer. Total trainable parameters: ACS scoring head (~0.5M) + thin LoRA adaptation (~3.5M) = ~4M total. At inference, the scorer assigns causal scores to all visual tokens in a single forward pass; tokens below threshold τ are pruned before entering the LLM backbone, providing both robustness and efficiency.\\n\\n**Evaluation with Formal Statistical Protocol.** Primary benchmark: LIBERO-Plus across all 7 perturbation dimensions. Primary metric: average success rate under distribution shift.\\n\\n**Statistical protocol against random pruning** (addressing arXiv 2502.11501's findings): We adopt a paired bootstrap protocol with bias-corrected accelerated (BCa) confidence intervals and sign-flip permutation tests (following arXiv 2511.19794). Specifically: (a) train CaTS and random-pruning variants under identical conditions with 5 random seeds; (b) record per-seed, per-task success rate differences; (c) compute BCa 95% confidence intervals on the mean difference; (d) perform sign-flip permutation test (10,000 permutations) for each perturbation dimension. CaTS claims significant improvement only if the BCa interval lies entirely above zero AND the permutation p-value < 0.05. *A priori success criterion*: CaTS must significantly outperform random pruning on at least 5 of 7 perturbation dimensions. If this criterion is not met, we report the negative result transparently and analyze which perturbation types resist causal selection (contributing understanding of when causal criteria matter vs. when random suffices).\\n\\n**Baselines** (11 total): (1) SRPO — current LIBERO-Plus SOTA (82.1%); (2) FTM/FLA — reproduced on LIBERO-Plus; (3) Causal-ACT — adapted to OpenVLA backbone; (4) AVA-VLA; (5) VLA-Pruner; (6) VLA-IAP; (7) RobustVLA; (8) Random token pruning — critical control; (9) LeaF-adapted from NLP; (10) DTP — most directly analogous concurrent work; (11) TIES — most sophisticated heuristic baseline. Note: FocusVLA, LightVLA, BFA++, and Compressor-VLA are discussed but not baselined because they do not evaluate on LIBERO-Plus and their codebases target different VLA architectures.\\n\\n**Ablations**: (a) amortized vs. exact ACE (central validation, not just ablation); (b) encoder-level vs. intermediate-layer vs. late-layer scoring (testing spatial locality assumption directly); (c) V-REx only vs. DRO only vs. composite objective; (d) variance penalty weight sensitivity; (e) DRO radius sensitivity; (f) pruning ratio sweep (10-90%); (g) per-perturbation-dimension analysis; (h) causal score interpretability analysis (do high-scoring tokens correspond to task-relevant regions via IoU with ground-truth object masks?); (i) α_leak measurement across layers.\\n\\n**Key differentiations from all concurrent work.** The central claim is not merely that causal criteria exist, but that they provide *measurably better token selection than heuristic alternatives* — the burden of proof is on CaTS, and the evaluation is designed to test this rigorously.\\n\\nvs. DTP (arXiv 2601.16065): DTP uses attention intersection heuristics (tokens in irrelevant regions with attention exceeding scaled threshold are pruned). CaTS uses formal causal intervention criteria. DTP's attention-based scoring is exactly the type shown to be unreliable by arXiv 2502.11501; CaTS's causal scoring is designed to be the principled alternative. Empirical comparison on LIBERO-Plus will directly test whether causal grounding outperforms attention-based distractor identification.\\n\\nvs. FocusVLA (arXiv 2603.28740): FocusVLA uses cross-attention TopK selection + modality cascaded attention, achieving strong results on standard LIBERO (98.7%) but without robustness evaluation. CaTS targets robustness under distribution shift specifically. FocusVLA's TopK is a differentiable selection mechanism but provides no criterion for *which* tokens matter for cross-environment generalization.\\n\\nvs. LightVLA (arXiv 2509.12594): LightVLA learns token selection end-to-end via Gumbel softmax — the selection criterion is implicitly defined by the training loss and may overfit to spurious correlations in training environments. CaTS's explicit causal criterion is designed to prevent exactly this overfitting.\\n\\nvs. TIES (arXiv 2603.24941): TIES uses inter-layer rank consistency (Kendall τ) as a stability signal — an innovative heuristic that captures token 'reliability' across layers. However, rank consistency does not distinguish between causally relevant tokens and tokens that are consistently spurious (e.g., a distinctive background element present in all training scenes would have high rank consistency but is causally irrelevant). CaTS's interventional scoring directly tests causal relevance via environment-marginal replacement.\\n\\nvs. Gaze-VLA (arXiv 2603.23202): Uses human gaze as an indirect causal signal (humans look at task-relevant regions). Requires gaze data collection; gaze provides a noisy proxy for causal relevance (humans also look at salient distractors). CaTS derives causal relevance from the model's own action predictions under intervention.\\n\\nvs. Causal-ACT (arXiv 2507.22380): Token-level in 7B VLA (not feature-level in ResNet+ACT); amortized scoring (not heuristic graph search); comprehensive LIBERO-Plus evaluation; concrete ε-invariance bound.\\n\\nvs. FTM: Interpretable per-token causal scores (not black-box affine transform); selective token removal (not global recalibration); formal robustness criterion.\\n\\nvs. LeaF (NeurIPS 2025): VLA action policies (not NLP reasoning); cross-environment interventional scoring (not single-domain gradient heuristics); formal SCM (not teacher-student comparison).\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~800h A100 (80GB): ~350h for 22-28 LoRA fine-tuning runs with ACS head at ~14h each (including multi-layer scoring variants and composite objective hyperparameter search), ~250h for batch intervention data generation, amortized scorer training, and exact ACE validation (12,500 forward passes for validation set + systematic coverage across 7 perturbation types), ~200h for baseline reproduction (DTP and TIES reproduction on LIBERO-Plus, FTM on LIBERO-Plus, Causal-ACT adaptation, 11 baselines total with 5 seeds each for statistical protocol) and ablations\",\n      \"gpu_utilization\": \"Low (~25-30%). GPUs sit idle during code development, causal scoring pipeline debugging, statistical protocol implementation, α_leak measurement analysis, and theorem proof development.\",\n      \"timeline\": \"4-6 months\",\n      \"team\": \"1-2 researchers (one with causal inference/DRO background for theorem formalization and proof, one with VLA/robotics experience for implementation and evaluation)\",\n      \"estimated_gpu_cost\": \"~$1,200 (800h × $1.50/hr A100 spot pricing, May 2026 market rate)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~1200h A100 (80GB): agent explores ~40-50 training configurations more systematically, runs comprehensive ablations across all 7 perturbation dimensions with 5 seeds, evaluates all 11 baselines, and performs extensive α_leak measurements across layers\",\n      \"gpu_utilization\": \"Moderate (~50-60%). Agent queues experiments faster but pauses at approval gates for: multi-layer scoring architecture decisions, DRO radius selection, amortization validation thresholds, theorem assumption checking.\",\n      \"timeline\": \"2-4 months\",\n      \"team\": \"1 researcher, ~45min/day check-in for approving experiment plans, reviewing causal score visualizations, validating amortization gap measurements, and verifying theorem proof steps\",\n      \"claude_api_cost\": \"$500-700 (5000-7000 conversation turns for experiment design, code generation, theorem checking, statistical protocol implementation, result analysis)\",\n      \"estimated_gpu_cost\": \"~$1,800 (1200h × $1.50/hr)\",\n      \"risk_note\": \"Amortized scorer validation (Spearman ρ > 0.8 threshold) requires careful human judgment — if the scorer barely misses the threshold, the decision to proceed with amortized vs. exact scoring has significant downstream implications. DRO radius selection and the V-REx/DRO tradeoff require human expertise. Theorem proof needs verification by someone with expertise in both causal inference and approximation theory.\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~2500h A100 (80GB): agent runs 120-150 experiment configurations including aggressive sweeps for scoring layer selection, V-REx/DRO weight ratios, pruning ratios, Shapley approximation methods, scorer architectures (varying width W), plus all baseline reproductions with 5 seeds and failed exploration runs\",\n      \"gpu_utilization\": \"High (~90%+). Agent queues next experiment immediately upon completion. Continuous 24/7 execution.\",\n      \"timeline\": \"3-5 weeks with 4-8 concurrent A100s; as few as 8-10 days with 16 concurrent GPUs\",\n      \"team\": \"0 (initial setup: configure LIBERO-Plus environments, OpenVLA-OFT checkpoint, define intervention distribution, implement statistical testing protocol, implement α_leak measurement)\",\n      \"claude_api_cost\": \"$700-1100 (7000-11000 turns for autonomous experiment design, debugging, statistical analysis, and paper drafting)\",\n      \"estimated_gpu_cost\": \"~$3,750 (2500h × $1.50/hr)\",\n      \"speed_bottleneck\": \"Number of concurrent A100 GPU instances. Secondary: intervention data generation is I/O-intensive (requires rendering perturbation environments). Statistical protocol with 5 seeds × 11 baselines × 7 perturbation dimensions requires organized experiment management.\",\n      \"risk_note\": \"Without human gates, agent may over-explore suboptimal scoring layer combinations or DRO radius values. The theorem formalization cannot be fully automated — agent-generated proofs require expert verification, especially the amortization gap bound (step 3 of the proof involving Rademacher complexity). The statistical protocol is automatable but interpretation of borderline results (e.g., CaTS significant on 4/7 dimensions vs. the a priori 5/7 criterion) requires human judgment. Risk mitigation: pre-define structured search space with early stopping on amortization validation metrics; halt if Spearman ρ < 0.6 after initial scorer training.\"\n    }\n  },\n  \"target_venues\": [\n    \"AAAI 2027 (deadline: ~August 1, 2026 — primary target, sufficient time for theoretical development, multi-layer scoring implementation, and statistical evaluation)\",\n    \"ICLR 2027 (deadline: ~October 2026 — strong target, allows comprehensive evaluation and concurrent work comparison)\",\n    \"ICRA 2027 (deadline: ~September 2026 — robotics venue, good fit for empirical contribution)\",\n    \"CoRL 2026 (deadline: May 29, 2026 — infeasible given revision scope, removed as target)\"\n  ],\n  \"level\": \"top-tier\",\n  \"key_references\": [\n    \"Improving Generalization Ability of Robotic Imitation Learning by Resolving Causal Confusion in Observations [Causal-ACT] (arXiv 2507.22380, July 2025)\",\n    \"VLA Models Are More Generalizable Than You Think: Revisiting Physical and Spatial Modeling [FTM/FLA] (arXiv 2512.02902, Dec 2025)\",\n    \"Learning to Focus: Causal Attention Distillation via Gradient-Guided Token Pruning [LeaF] (NeurIPS 2025, arXiv 2506.07851)\",\n    \"Shortcut Learning in Generalist Robot Policies: The Role of Dataset Diversity and Fragmentation (CoRL 2025, arXiv 2508.06426)\",\n    \"Token Pruning in Multimodal Large Language Models: Are We Solving the Right Problem? (ACL Findings 2025, arXiv 2502.11501)\",\n    \"When Token Pruning is Worse than Random: Understanding Visual Token Information in VLLMs (ICLR 2026, arXiv 2512.07580)\",\n    \"The Risks of Invariant Risk Minimization (ICLR 2021, arXiv 2010.05761)\",\n    \"Out-of-Distribution Generalization via Risk Extrapolation [V-REx] (ICML 2021, arXiv 2003.00688)\",\n    \"SRPO: Self-Referential Policy Optimization for Vision-Language-Action Models (arXiv 2511.15605)\",\n    \"AVA-VLA: Improving Vision-Language-Action Models with Active Visual Attention (arXiv 2511.18960)\",\n    \"ACTIVA: Amortized Causal Effect Estimation via Transformer-based Variational Autoencoder (arXiv 2503.01290)\",\n    \"CausalPFN: Amortized Causal Effect Estimation via In-Context Learning (NeurIPS 2025, arXiv 2506.07918)\",\n    \"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models (CVPR 2026, arXiv 2510.13626)\",\n    \"Invariant Causal Imitation Learning for Generalizable Policies [ICIL] (NeurIPS 2021)\",\n    \"DTP: A Simple yet Effective Distracting Token Pruning Framework for VLA Models (arXiv 2601.16065, Jan 2026)\",\n    \"FocusVLA: Focused Visual Utilization for Vision-Language-Action Models (arXiv 2603.28740, Mar 2026)\",\n    \"LightVLA: Towards Efficient VLA Models via Differentiable Token Pruning (ICRA 2026, arXiv 2509.12594)\",\n    \"TIES: Beyond Attention Magnitude — Leveraging Inter-layer Rank Consistency for Efficient VLA Models (arXiv 2603.24941, Mar 2026)\",\n    \"BFA++: Hierarchical Best-Feature-Aware Token Pruning for Multi-View VLA Models (arXiv 2602.20566, Feb 2026)\",\n    \"Compressor-VLA: Instruction-Guided Visual Token Compression for Efficient Robotic Manipulation (arXiv 2511.18950)\",\n    \"Gaze-Regularized Vision-Language-Action Models for Robotic Manipulation (arXiv 2603.23202, Mar 2026)\",\n    \"LearnPruner: Rethinking Attention-based Token Pruning in Vision Language Models (arXiv 2604.23950, Apr 2026)\",\n    \"On Robustness of Vision-Language-Action Model against Multi-Modal Perturbations [RobustVLA] (ICLR 2026, arXiv 2510.00037)\",\n    \"Mask World Model: Predicting What Matters for Robust Robot Policy Learning (arXiv 2604.19683, April 2026)\",\n    \"VLA-Pruner: Temporal-Aware Dual-Level Visual Token Pruning for Efficient VLA Inference (arXiv 2511.16449)\",\n    \"VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for VLA Models (arXiv 2603.22991, March 2026)\",\n    \"Learning Invariant Causal Mechanism from Vision-Language Models [CLIP-ICM] (ICML 2025, arXiv 2405.15289)\",\n    \"OTPrune: Distribution-Aligned Visual Token Pruning via Optimal Transport (arXiv 2602.20205)\",\n    \"Wasserstein Distributionally Robust Optimization and Variation Regularization (Operations Research, 2024)\",\n    \"Finite-Sample Guarantees for Wasserstein DRO: Breaking the Curse of Dimensionality (Operations Research, 2023)\",\n    \"Vision Transformers Need More Than Registers (arXiv 2602.22394, Feb 2026)\",\n    \"Bounding the Estimation Error of Sampling-based Shapley Value Approximation (arXiv 1306.4265)\",\n    \"Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success [OpenVLA-OFT] (arXiv 2025)\"\n  ],\n  \"description\": \"VLA models suffer catastrophic failures under visual distribution shifts, yet a proliferation of concurrent token pruning methods (DTP, FocusVLA, LightVLA, TIES, BFA++, Compressor-VLA, Gaze-VLA — all 2025-2026) each propose different heuristic criteria without formal justification, and recent work shows many attention-based methods underperform random selection (arXiv 2502.11501) due to 'vanishing token information' in deep layers (arXiv 2512.07580). We propose Causal Token Selection (CaTS) v3, bridging three disconnected threads: VLA token pruning, causal intervention for imitation learning (Causal-ACT, ICIL), and causal attention distillation (LeaF). CaTS defines a formal SCM over the VLA token-action pipeline with a revised *encoder-level spatial locality* assumption — grounded in empirical findings that DINOv2/SigLIP encoder outputs preserve spatial correspondence while LLM self-attention progressively mixes token information. Key advances over v2: (1) Multi-layer scoring at vision encoder output (where spatial locality is empirically validated) with optional intermediate-layer refinement, addressing the ViT information-mixing concern. (2) Concrete ε-invariance bound: ε = C₁/√M + C₂·exp(-c·N_env/d_E) + C₃·α_leak·g(τ) + ε_amort, with explicit degradation analysis as spatial locality weakens (parameterized by α_leak). (3) Honest composite robustness objective combining V-REx variance penalty (practical heuristic, explicitly acknowledged as sharing IRM's non-linear limitations) with Wasserstein DRO regularization (providing genuine finite-sample guarantees). (4) Quantified amortization gap: ε_amort ≤ O(d/W) + O(1/√n_train), with a central validation protocol (Spearman ρ > 0.8 against exact ACE on validation set). (5) Formal statistical protocol (BCa bootstrap + permutation test) against random pruning baseline, with a priori success criterion of significant improvement on ≥ 5/7 LIBERO-Plus perturbation dimensions. Evaluated against 11 baselines including SRPO (82.1% SOTA), DTP, and TIES. All concurrent works are discussed and differentiated: all use attention/gradient/geometric/rank heuristics; CaTS is the only method providing formal causal intervention criteria with theoretical guarantees, operating at the representation layer where those criteria are most valid. Primary targets: AAAI 2027 and ICLR 2027.\",\n  \"project_name\": \"causal_token_sel_vla\",\n  \"source\": \"web_research\"\n}\n\n\n## Previous review history\n### Round 1 review\nVerdict: revise\nIssues: [\"CRITICAL MISSING WORK: 'Improving Generalization Ability of Robotic Imitation Learning by Resolving Causal Confusion in Observations' (arXiv 2507.22380, July 2025) applies causal intervention to resolve causal confusion in robotic imitation learning—directly overlapping with CaTS's core motivation and approach. This paper was NOT cited.\", \"CRITICAL MISSING WORK: 'VLA Models Are More Generalizable Than You Think' (arXiv 2512.02902) shows Feature Token Modulation (FTM) achieves 87.1% on LIBERO viewpoint with only 4K parameters—a much simpler and cheaper alternative that undermines CaTS's complexity justification. Must be included as a baseline.\", \"MISSING WORK: 'Learning to Focus: Causal Attention Distillation (LeaF)' (NeurIPS 2025, arXiv 2506.07851) uses causal intervention at the token level for pruning confounding tokens. While targeting NLP, the method is directly analogous and must be discussed.\", \"MISSING WORK: 'Shortcut Learning in Generalist Robot Policies' (CoRL 2025, arXiv 2508.06426) addresses the same shortcut/spurious correlation problem through dataset design—a competing solution approach.\", \"MISSING WORK: 'Token Pruning in MLLMs: Are We Solving the Right Problem?' (arXiv 2502.11501, ACL Findings 2025) raises fundamental questions about attention-based token pruning, finding some methods underperform random selection. Must be addressed.\", \"OVERCLAIMED THEORY: 'Provable invariance guarantees' via IRM-style penalty is not justified. IRM fails catastrophically in non-linear settings (Rosenfeld et al., ICLR 2021), requires environment coverage that LIBERO-Plus may not provide, and the IRMv1 penalty doesn't always capture invariance correctly. These failure modes must be acknowledged and addressed.\", \"INVALID BASELINE: Mask World Model (arXiv 2604.19683) evaluates on LIBERO and RLBench, NOT LIBERO-Plus. Listing it as a LIBERO-Plus baseline comparison is misleading.\", \"INSUFFICIENT THEORETICAL DEPTH: The user specifically requested '多从理论角度分析为何能增强' (theoretical analysis of WHY token pruning enhances generalization). The idea merely invokes do-calculus and IRM without formal results—no theorems, no proofs, no explicit assumptions. The theoretical contribution is the supposed differentiator from VLA-Pruner/IAP but is undeveloped.\", \"ACE ESTIMATION SCALABILITY: Estimating per-token ACE by intervening (replacing embeddings with marginal statistics) across multiple environments is combinatorially expensive. For 256+ tokens × multiple perturbation types × sufficient samples for stable KL-divergence estimates, the 100h GPU estimate for 'causal effect estimation sweeps' likely significantly underestimates the real cost.\", \"STALE SOTA TARGET: The 79.6% LIBERO-Plus SOTA may already be surpassed by FTM-style approaches or Mask World Model adaptations. The generator should verify this is still current.\"]\nFeedback: The core idea of using causal criteria for VLA token selection has merit, but significant revisions are needed:\n\n1. **Add missing related work urgently**: (a) arXiv 2507.22380 on causal confusion in imitation learning—this is your closest competitor and must be discussed with clear differentiation. (b) arXiv 2512.02902 (FTM)—this simple 4K-parameter method achieves strong robustness and must be a baseline. If CaTS cannot outperform FTM, the entire approach is questionable. (c) LeaF (NeurIPS 2025)—the NLP-domain analog of your idea. (d) 'Shortcut Learning in Generalist Robot Policies' (CoRL 2025). (e) arXiv 2502.11501 on fundamental problems with token pruning.\n\n2. **Develop the theoretical framework seriously or drop the 'provable guarantees' claim**: The user's core requirement is theoretical analysis. You need: (a) A formal SCM for the VLA token → action pipeline with explicit assumptions. (b) A theorem stating under what conditions causal token selection yields invariant policies, with at least a proof sketch. (c) Explicit discussion of when the guarantees break (IRM failure modes, insufficient environment diversity, non-linear interactions). Without this, the paper is just another engineering method paper, which doesn't match the user's request.\n\n3. **Fix the Mask World Model baseline**: Either demonstrate MWM on LIBERO-Plus yourself or remove it from the comparison table.\n\n4. **Address ACE estimation scalability**: Provide a realistic computational analysis of per-token intervention costs. Consider approximations (e.g., batch interventions, amortized estimation) and include these in the method.\n\n5. **Strengthen differentiation from arXiv 2507.22380**: That paper already does causal intervention in imitation learning. Your contribution must be clearly at the token level within transformer VLA architectures, not just causal intervention in general.\n\n### Round 2 review\nVerdict: revise\nIssues: [\"MISSING CONCURRENT WORK (6+ papers): DTP (arXiv 2601.16065, Jan 2026) prunes 'distracting tokens' in VLA — directly analogous motivation to CaTS (removing spuriously correlated tokens). FocusVLA (arXiv 2603.28740, Mar 2026) dynamically selects task-relevant visual patches via 'Focus Attention' to suppress task-irrelevant noise. LightVLA (arXiv 2509.12594, ICRA 2026) uses differentiable token pruning with Gumbel softmax to learn task-relevant token selection — a gradient-based alternative to causal selection. TIES (arXiv 2603.24941, Mar 2026) uses inter-layer rank consistency for robust token selection and explicitly evaluates robustness under environmental perturbations. BFA++ (arXiv 2602.20566, Feb 2026) uses hierarchical importance predictors. Compressor-VLA (arXiv 2511.18950) uses instruction-guided compression. Gaze-Regularized VLA (arXiv 2603.23202) aligns attention with human gaze patterns. All must be discussed and differentiated.\", \"SPATIAL LOCALITY ASSUMPTION PROBLEMATIC IN VITs: The core 'spatial locality of causal features' assumption — that task-relevant content is concentrated in a subset of tokens while spurious content is distributed — may be significantly violated in practice. ViT self-attention layers progressively mix information across ALL token positions. By late layers (which is where the frozen VLA backbone produces embeddings), a 'background' token has incorporated object information and vice versa. This undermines the clean causal/spurious separation at the token level. The proposal needs analysis of which layer's representations to score, and empirical validation that spatial locality holds sufficiently at that layer.\", \"V-REx DOES NOT FIX IRM'S NON-LINEAR PROBLEMS: The proposal frames V-REx as replacing 'the problematic IRM objective' for distributional robustness. However, V-REx has the same fundamental limitations as IRM in non-linear settings (Krueger et al. ICML 2021 acknowledge this; empirical studies show V-REx fails similarly to IRM on non-linear benchmarks). The framing should be more honest: V-REx is simpler and more stable than IRMv1, but does not escape the core failure mode. The 'distributional robustness without claiming strict invariance guarantees' language is good but the justification needs strengthening.\", \"THEOREM STILL A 'SKETCH': For a paper targeting AAAI/ICLR where the theoretical framework is the primary differentiator from simpler methods, the conditional invariance result must move beyond 'sketch' status. A full proof (or at least a detailed proof sketch with all key steps) is needed. The ε-invariance bound ε(N_env, M, τ) needs concrete functional form — otherwise reviewers will view this as hand-waving. What is the convergence rate? How many environments are sufficient? These are the questions the theory should answer.\", \"AMORTIZATION GAP UNQUANTIFIED: Failure mode F3 (amortization gap between learned scorer and true ACE) is acknowledged but not analyzed. How large is this gap expected to be? Under what conditions does it remain bounded? The ACTIVA paper (arXiv 2503.01290) that inspires the approach works on tabular data with much simpler structure — scaling to 256-dimensional token spaces in a 7B VLA is a significant leap. Some empirical or theoretical characterization of the expected gap is needed.\", \"RISK OF NEGATIVE RESULT: The paper arXiv 2502.11501 shows attention-based pruning can underperform random selection. This is used to motivate causal pruning. However, if the amortized causal scorer also underperforms random (due to amortization gap, spatial locality violations, or V-REx limitations), the paper's central claim collapses. The evaluation plan should include a formal statistical protocol for comparing against random pruning baseline to demonstrate significant improvement.\"]\nFeedback: The revision substantially improved the proposal from round 1 — all previously flagged issues are addressed, the SCM is formalized, IRM concerns are partially mitigated, and Mask World Model is correctly handled. The idea remains promising. To reach pass threshold:\n\n1. **Cite and differentiate from 6+ new concurrent works** (DTP, FocusVLA, LightVLA, TIES, BFA++, Compressor-VLA, Gaze-VLA). Key differentiation argument: these all use attention/gradient/geometric heuristics proven fragile by arXiv 2502.11501, while CaTS uses formal causal criteria. But acknowledge that DTP/FocusVLA achieve similar goals without causal overhead — the burden is on CaTS to show the causal framework provides measurable empirical improvement beyond interpretability.\n\n2. **Address the spatial locality assumption in ViTs seriously.** Either (a) propose scoring at early/intermediate layers where spatial locality is better preserved, with analysis of the information-quality tradeoff, or (b) provide empirical evidence from existing ViT attention analyses that task-relevant tokens remain spatially concentrated even in late layers, or (c) weaken the assumption and adjust the theory accordingly.\n\n3. **Be fully honest about V-REx limitations.** V-REx is a better choice than IRM, but it doesn't solve the non-linear problem. Frame it as 'practical heuristic with distributional robustness motivation' rather than 'principled fix for IRM.' Consider discussing connections to DRO (distributionally robust optimization) which has stronger finite-sample guarantees.\n\n4. **Develop the theorem beyond a sketch.** Provide the concrete functional form of ε(N_env, M, τ) with at least the dominant terms. Show how the bound degrades as spatial locality weakens. This is the paper's unique selling point — it must be rigorous enough to survive reviewer scrutiny at AAAI/ICLR.\n\n5. **Quantify the amortization gap.** Either theoretically (bound on approximation error of the 2-layer MLP scorer vs. true ACE) or empirically (plan to compute exact ACE on a small validation set and compare to amortized predictions, which is already in the ablation plan — make this a central validation, not just an ablation).\n\n\n## Output format\nOutput ONLY a JSON object:\n{\n  \"verdict\": \"pass | revise | fail\",\n  \"scores\": {\n    \"novelty\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"feasibility\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"clarity\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"impact\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"}\n  },\n  \"issues\": [\"specific issue 1\", \"specific issue 2\", ...],\n  \"feedback\": \"Actionable feedback for the generator (if verdict=revise)\",\n  \"reason\": \"One-line summary of verdict rationale\"\n}\n\nRules:\n- \"pass\": idea is sound AND high quality — avg score >= 4.0, no critical issues\n- \"revise\": fixable issues OR scores below threshold — provide specific feedback\n- \"fail\": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)\n- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.\n- Round 10 only: if still \"revise\", you MUST choose \"pass\" or \"fail\"."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-13T04:58:57.808Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-13T04:58:57.808Z",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a"
+}
+```
+
+---
+
+## Round 1
+
+156 recorded events
+
+### User
+
+_source line 3 · 2026-05-13T04:58:57.894Z_
+
+You are a strict ML research reviewer conducting adversarial review.
+
+**Today's date: 2026-05-13 (UTC).**
+
+Your job: independently verify this idea's claims via WebSearch, then issue a verdict.
+
+## User requirements
+The user asked for: **VLA中的token裁剪/增强能否提升VLA模型的泛化性（多从理论角度分析为何能增强）**
+You MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be "revise" or "fail".
+
+## 核心要求：非常仔细地调研，非常仔细地思考
+
+你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。
+
+### 调研要求
+
+1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。
+   每个验证维度建议用 2-3 种不同的搜索查询。
+
+2. **可行性深度检查**：
+   - 搜索类似实验的实际成本/周期
+   - 检查 claimed baselines 是否可复现
+   - 验证所需的 datasets/models 是否真的可以获取
+
+3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：
+   - 尝试不同的关键词组合
+   - 同时检查 arXiv 和 conference proceedings
+   - 寻找相邻领域的并行/concurrent 工作
+
+4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。
+
+### 思考要求
+
+5. **独立判断**：
+   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查
+   - 思考这个 idea 在实际执行中会遇到什么困难
+   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）
+
+6. **评分诚实**：
+   - 不要给"看起来还行"的 idea 高分——4 分意味着"确实很好"，5 分意味着"令人兴奋"
+   - Agent 评分经常虚高，你的职责就是纠正这种偏差
+
+充分利用你的工具——做真正的调研，不是走过场。
+
+
+## 论文搜索策略
+
+你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。
+
+### 搜索源（推荐每个维度使用 2 个不同来源）
+
+1. **arXiv 预印本**（最新工作）:
+   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文
+   - `site:arxiv.org {method_name}` — 按具体方法名搜索
+   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作
+
+2. **Google Scholar**（引用关系 + 综合覆盖）:
+   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果
+   - `"{exact paper title}"` — 验证论文是否真实存在
+   - `"{author name}" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）
+
+3. **Papers With Code**（SOTA 排行 + 代码可用性）:
+   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜
+   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现
+   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局
+
+4. **OpenReview**（会议审稿 + 同行评价）:
+   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文
+   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价
+
+5. **Semantic Scholar**（语义搜索 + 引用图谱）:
+   - `semantic scholar {topic} survey {year}` — 找综述论文
+   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）
+
+6. **GitHub**（实现验证）:
+   - `site:github.com {method_name} {task}` — 验证开源实现是否存在
+   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取
+
+### 搜索维度（多角度交叉，不要只按 topic 搜）
+
+对每个 idea/方向，尽量覆盖以下维度：
+
+1. **正向搜索**：直接搜索主题相关论文
+   - `{topic} {subtopic} {year}`
+   - `{method_name} for {task_name}`
+
+2. **竞争论文搜索**（最关键！）：
+   - `{core_problem} {year}` — 有没有人在解决同样的问题？
+   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？
+   - `{gap_description} solution` — 你发现的 gap 是否已被解决？
+   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文
+
+3. **相邻领域搜索**：
+   - `{method_from_other_field} applied to {your_task}`
+   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题
+
+4. **反面搜索**（找到反对你 idea 的证据）：
+   - `{your_approach} limitations` / `{your_approach} failure`
+   - `why {assumed_gap} is not a problem`
+   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好
+
+5. **引用链追踪**（发现遗漏工作的最有效方法）：
+   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分
+   - 在 Semantic Scholar 上查看它的 "cited by" — 最近引用它的论文很可能是 concurrent work
+   - 对 3 个以上核心相关论文重复此步骤
+
+### 搜索数量建议（理想目标，上下文充裕时尽量达到）
+
+| 角色 | 建议搜索次数 | 说明 |
+|------|-------------|------|
+| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |
+| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |
+| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |
+| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |
+
+### 上下文管理
+
+你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。
+
+- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。
+- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。
+- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。
+- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。
+
+
+As a reviewer, your search focus should be:
+1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实
+2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作
+3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通
+4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work
+
+## 竞争论文专项搜索（Reviewer 独有）
+
+这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：
+
+1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题
+   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）
+   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）
+   - 方法名 + 任务名的不同组合
+
+2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，
+   搜索他们最近的论文（`"team_name" OR "author_name" {topic} {year}`）
+
+3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers
+   - `site:openreview.net {topic} 2026`
+   - `{conference_name} 2026 accepted papers {topic}`
+
+4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文
+   这是发现 concurrent work 最有效的窗口
+
+如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，
+并在 feedback 中说明这些工作如何影响 idea 的 novelty。
+
+## Review checklist
+1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?
+   If outdated, specify what the current SOTA is and cite your source.
+2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)
+3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?
+4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-13?
+5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?
+6. **Novelty**: Is this sufficiently different from existing work?
+   When scoring novelty < 4:
+   - You MUST identify the closest existing work(s) via WebSearch
+   - In your feedback, write: "This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion]."
+   - This gives the generator targeted guidance to boost novelty, not just "be more novel".
+7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?
+   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero
+   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks
+   - Human-in-Loop should fall between manual and auto on most dimensions
+   - Manual and HIL must NOT include salary/wages — only GPU and API costs
+   - Auto Research must NOT include agent operational overhead
+   - If any mode estimate is clearly unrealistic, flag it
+
+## Idea under review (round 3/10)
+{
+  "title": "Causal Token Selection for Invariant VLA Policies via Amortized Interventional Scoring",
+  "core_problem": "VLA models learn spurious visual correlations — attending to background textures, lighting conditions, and distractor objects that co-occur with target actions in training data — causing catastrophic failure under visual distribution shifts. Recent work (arXiv 2502.11501, ACL Findings 2025; arXiv 2512.07580, ICLR 2026) reveals two critical findings: (1) many attention-based token pruning methods underperform even naive random selection due to flawed scoring criteria, and (2) visual token information 'vanishes' in deep LLM layers, becoming uniformly uninformative beyond an 'information horizon' — meaning that any token selection must operate before this horizon. Meanwhile, a proliferation of concurrent VLA token selection methods (DTP, FocusVLA, LightVLA, TIES, BFA++, Compressor-VLA, Gaze-VLA — all 2025-2026) each propose different heuristic criteria (attention intersection, cross-attention TopK, Gumbel softmax, Kendall rank consistency, hierarchical importance, instruction-guided compression, gaze alignment), yet none provide formal justification for why their criterion identifies task-relevant tokens rather than merely attention-salient tokens. Simple adaptation methods like FTM (arXiv 2512.02902) can recover substantial robustness with only 4K parameters, raising the question: can we identify *why* certain tokens matter and provide interpretable, formally grounded selection criteria rather than black-box affine recalibration?",
+  "opportunity": "Three research threads have developed in isolation: (1) causal intervention for imitation learning robustness (Causal-ACT, arXiv 2507.22380; ICIL, NeurIPS 2021), operating at the feature level in smaller architectures, (2) VLA token pruning for efficiency (DTP, FocusVLA, LightVLA, TIES, BFA++, VLA-Pruner, VLA-IAP, OTPrune, Compressor-VLA), using attention/gradient/geometric/rank heuristics without causal grounding, and (3) causal attention distillation (LeaF, NeurIPS 2025) and learnable pruning (LearnPruner, arXiv 2604.23950), which move beyond pure attention heuristics but lack formal causal intervention criteria. A critical recent finding connects these threads: visual tokens in VLA architectures preserve spatial correspondence to image patches at the vision encoder output (where SigLIP provides semantic and DINOv2 provides spatial features), but this spatial structure degrades progressively through LLM layers due to self-attention mixing, ultimately vanishing at an 'information horizon' (arXiv 2512.07580). This means token-level causal selection must operate at or near the vision encoder output — where spatial locality is preserved by construction — rather than at deep LLM layers where existing attention-based methods struggle (explaining why they often underperform random selection). Formalizing this insight via a structural causal model over the token-action pipeline, with amortized interventional scoring operating at the pre-LLM representation layer, would provide the principled criterion that existing pruning methods lack while operating in the representation space where the criterion is most valid.",
+  "landscape": "**Robustness benchmarking**: LIBERO-Plus (arXiv 2510.13626, CVPR 2026) demonstrates VLA catastrophic failures across 7 perturbation dimensions, with the current SOTA at 82.1% average success (SRPO, arXiv 2511.15605) — SRPO achieves 167% improvement over one-shot SFT baseline via self-referential RL without token selection. **Causal approaches in imitation learning**: Causal-ACT (arXiv 2507.22380, July 2025) integrates causal structure learning into ACT by learning binary causal graphs over ResNet features — achieving 0.82 OOD success on ALOHA cube transfer vs. 0.23 for standard ACT. However, it operates at the feature level in small architectures, uses heuristic energy-based graph search, and evaluates on a single simple task. ICIL (NeurIPS 2021) learns domain-invariant features for imitation but not at the token level. CLIP-ICM (ICML 2025) applies causal invariance to VLMs via SCMs but for classification, not action policies. **Simple adaptation baselines**: FTM (arXiv 2512.02902) achieves 87.1% on LIBERO viewpoint with just 4K parameters via global affine token modulation; FLA extends to 90.8% with 4.7M parameters. Neither evaluated on full LIBERO-Plus; neither provides interpretability. **Active attention**: AVA-VLA (arXiv 2511.18960) dynamically reweights visual tokens via active attention, achieving 74.7% on LIBERO-Plus. **Concurrent VLA token pruning/selection methods (2025-2026) — all using heuristic criteria**: (i) DTP (arXiv 2601.16065, Jan 2026) prunes 'distracting tokens' via attention intersection scoring — tokens in task-irrelevant regions exceeding a scaled threshold of the maximum attention in task-relevant regions are pruned. Evaluated on SIMPLER, not LIBERO-Plus. Directly analogous motivation to CaTS (removing spuriously correlated tokens), but uses attention heuristics without formal justification that attention-salient ≠ causally relevant. (ii) FocusVLA (arXiv 2603.28740, Mar 2026) uses cross-attention-based TopK patch selection with modality cascaded attention, achieving 98.7% on standard LIBERO. Not evaluated on LIBERO-Plus; assumes cross-attention scores identify task relevance without causal validation. (iii) LightVLA (arXiv 2509.12594, ICRA 2026) uses Gumbel softmax for differentiable token selection, reducing FLOPs by 59.1% with 2.9% success rate improvement on LIBERO. End-to-end learned selection but criterion is implicitly defined by task loss — no interpretability or formal robustness criterion. (iv) TIES (arXiv 2603.24941, Mar 2026) introduces Kendall rank consistency across layers as a stability metric, improving average success by 6% on CogACT+SIMPLER while reducing tokens by 78%. Most relevant concurrent work: uses rank consistency as a robustness signal, but this is a statistical regularity heuristic, not a causal criterion — rank consistency does not distinguish causal from spuriously consistent tokens. Not evaluated under environmental perturbations. (v) BFA++ (arXiv 2602.20566, Feb 2026) uses hierarchical intra-view and inter-view importance predictors for multi-view VLAs. Addresses multi-view settings CaTS does not target. (vi) Compressor-VLA (arXiv 2511.18950) uses instruction-guided semantic and spatial compression modules, reducing visual tokens by 3× on LIBERO. (vii) Gaze-Regularized VLA (arXiv 2603.23202, Mar 2026) aligns attention with human gaze heatmaps via KL divergence, achieving 4-12% improvement. Requires human gaze data as supervision; provides indirect causal signal (human gaze correlates with but does not identify causal features). (viii) LearnPruner (arXiv 2604.23950, Apr 2026) trains a learnable pruning module after the vision encoder, retaining only 5.5% of tokens while preserving ~95% performance. Learns importance scores end-to-end but without causal or robustness criteria. **Token information dynamics**: arXiv 2512.07580 (ICLR 2026) discovers 'vanishing token information' — visual tokens progressively lose discriminative salience in deep LLM layers, becoming uniformly uninformative beyond an 'information horizon' (~layer 20 for general tasks, deeper for OCR). This explains why attention-based pruning in late layers underperforms random selection and motivates scoring at early/intermediate layers where spatial information is preserved. **Token pruning critique**: arXiv 2502.11501 (ACL Findings 2025) systematically shows many attention-based pruning methods underperform random selection due to position bias and flawed attention-as-importance assumptions. **Causal token pruning in NLP**: LeaF (NeurIPS 2025, arXiv 2506.07851) uses gradient-based teacher-student comparison to identify confounding tokens. Analogous in spirit but targets LLM reasoning, not embodied action; uses gradient heuristics, not formal interventions. **Robustness training**: RobustVLA (ICLR 2026, arXiv 2510.00037) uses offline robust optimization with 12.6% absolute gains on π0 backbone. **World models**: Mask World Model (arXiv 2604.19683) achieves 98.3% on standard LIBERO via geometric information bottleneck but not evaluated on LIBERO-Plus. **Shortcut learning**: arXiv 2508.06426 (CoRL 2025) identifies dataset diversity as root cause — complementary data-side approach. **Invariance theory limitations**: Rosenfeld et al. (ICLR 2021) demonstrate IRM fails in non-linear settings. V-REx (Krueger et al., ICML 2021) proposes variance-based risk extrapolation as simpler alternative but suffers similar non-linear limitations and fails under heteroskedastic noise — it is a practical heuristic, not a principled fix. Wasserstein DRO (Kuhn et al., 2024) provides genuine finite-sample guarantees without requiring linear/invariance assumptions. **Amortized causal estimation**: CausalPFN (NeurIPS 2025) demonstrates amortized causal effect estimation via in-context learning with asymptotic consistency guarantees; ACTIVA (arXiv 2503.01290) uses transformer-based VAEs but is limited to tabular data. Amortized Shapley estimation (SurroShap, SimSHAP) provides convergence bounds of O(√(r/m)) for m sampled coalitions. **No existing work combines formal token-level causal intervention criteria with amortized estimation in VLA transformers, operating at the vision encoder output where spatial locality is empirically validated, for cross-environment policy invariance.**",
+  "approach": "We propose Causal Token Selection (CaTS) v3, which identifies and retains visual tokens whose causal effect on action predictions is significant and stable across visual environments, using an amortized interventional scoring framework operating at the vision encoder output where spatial locality is empirically grounded.\n\n**Formal SCM for VLA Token-Action Pipeline.** We define a structural causal model: observation O is processed by the vision encoder into T(O) = {t_1,...,t_N} (N=256 for OpenVLA's SigLIP+DINOv2 encoder); each token t_i corresponds to an image patch and carries causal content C_i (object geometry, gripper state, contact regions) and spurious content S_i (background texture, lighting, distractor appearance); environment variable E influences S_i but not C_i; action A = π(f(T)) where f is the LLM backbone. We formalize the *encoder-level spatial locality* assumption (revised from the original spatial locality assumption): at the vision encoder output — before LLM self-attention layers mix token representations — causal content C_i is concentrated in a subset T* ⊂ T corresponding to image patches containing task-relevant objects, while spurious content S_i is distributed across patches containing background and distractors. **Justification**: this is grounded in two empirical findings: (a) DINOv2's attention maps show foreground object concentration by layers 3-6, with the CLS token primarily aggregating foreground tokens (arXiv 2602.22394); (b) the 'vanishing token information' phenomenon (arXiv 2512.07580) confirms that spatial discriminability is maximal at the vision encoder output and degrades through LLM depth. By scoring at the encoder output, CaTS operates precisely where the assumption is most valid, unlike methods scoring at deep LLM layers where information mixing undermines spatial selectivity.\n\n**Multi-Layer Scoring Architecture.** Rather than scoring tokens at a single layer (where the spatial locality / information quality tradeoff is unclear), CaTS employs a two-stage scoring approach: (1) *Primary scoring* at the vision encoder output (post-MLP projection, pre-LLM), where spatial locality is strongest. (2) *Optional refinement scoring* at an intermediate LLM layer (before the information horizon, empirically determined per-model via the protocol of arXiv 2512.07580 — typically layer 8-15 for 7B models), capturing cross-modal relevance signals that emerge only after some language-vision interaction. The two scores are combined via a learned convex combination α·s_encoder + (1-α)·s_intermediate, where α is a learnable scalar. **Degradation analysis**: we formally analyze how the ε-invariance bound degrades as spatial locality weakens (parameterized by α_leak = fraction of causal information C_i that 'leaks' to non-corresponding tokens through self-attention). When α_leak is high (poor spatial locality at the scoring layer), the bound degrades gracefully — the theory predicts diminishing returns of causal selection over random pruning, which is empirically testable.\n\n**Theorem (Conditional Invariance).** Under four assumptions — (A1) causal sufficiency: A ⊥ E | C(T*); (A2) token-level identifiability: do(t_i) changes C(T*) with positive probability for t_i ∈ T*; (A3) environment diversity: training environments span relevant E dimensions; (A4) bounded amortization error of the causal scorer — the causal token selection operator S_τ with threshold τ satisfies:\n\n*Concrete bound*: max_{e,e'} |R(π,e) - R(π,e')| ≤ ε(N_env, M, τ, α_leak) where:\nε = C₁/√M + C₂·exp(-c·N_env/d_E) + C₃·α_leak·g(τ) + ε_amort\n\n- C₁/√M: Shapley estimation error from M intervention samples (from known SurroShap/SimSHAP convergence bounds where the O(√(r/m)) rate is established)\n- C₂·exp(-c·N_env/d_E): environment coverage gap, where d_E is the effective dimensionality of the environment variable E and c is a constant depending on the environment distribution's tail behavior. This shows the bound requires N_env = Ω(d_E·log(1/δ)) environments, connecting to but improving on Rosenfeld et al.'s d+1 requirement because token-level selection reduces the effective feature dimensionality (each token is a localized patch, not a global feature)\n- C₃·α_leak·g(τ): spatial locality violation term, where α_leak ∈ [0,1] measures causal information leakage across tokens and g(τ) is monotonically decreasing in τ (tighter pruning amplifies locality violations). When α_leak → 0 (perfect spatial locality at scoring layer), this term vanishes; when α_leak → 1 (complete information mixing, as in deep LLM layers), causal selection degenerates to random — explaining why late-layer attention pruning fails\n- ε_amort: amortization gap of the learned scorer (bounded below)\n\n**Full proof strategy**: The proof proceeds in three steps: (1) show that under A1-A2, exact token-level ACE identifies T* (follows from standard do-calculus); (2) bound the approximation error when ACE is estimated from M samples via Shapley decomposition (using Hoeffding-type concentration on bounded action losses); (3) bound the error from amortizing the Shapley estimates via a neural network (using universal approximation + Rademacher complexity of the MLP hypothesis class). Step (3) yields the ε_amort term.\n\n**Failure modes (explicit with analysis):** (F1) Insufficient environment diversity violates A3 — same limitation as IRM/V-REx. Mitigation: LIBERO-Plus provides 7 perturbation dimensions; we report per-dimension results to identify which dimensions have sufficient diversity. (F2) Spatial locality violation at scoring layer (high α_leak). Mitigation: multi-layer scoring allows operating at the layer with lowest α_leak; we empirically measure α_leak by comparing per-token ACE computed at encoder output vs. intermediate LLM layers. (F3) Amortization gap (see detailed analysis below). (F4) V-REx variance penalty limitations in non-linear settings — see honest framing below.\n\n**Amortized Causal Scoring (ACS) with Quantified Amortization Gap.** We train a lightweight causal scoring head attached to the frozen VLA backbone. Training data is generated via *batch stochastic interventions*: for randomly sampled token subsets across LIBERO-Plus perturbation environments, we replace token embeddings with environment-marginal statistics and measure KL divergence in action distributions. A Shapley-value-inspired decomposition attributes group effects to individual tokens. The scorer (2-layer MLP with width W, <1M parameters) learns to predict token-level causal effects from token embeddings.\n\n**Amortization gap analysis**: The gap between the learned scorer s_θ(t_i) and the true ACE(t_i) is bounded by: ε_amort ≤ ε_approx(W, d) + ε_stat(n_train) where ε_approx(W, d) = O(d/W) is the MLP approximation error for d-dimensional token embeddings with width W (from universal approximation theory for Lipschitz functions), and ε_stat(n_train) = O(1/√n_train) is the statistical estimation error from n_train training interventions. **Central validation protocol** (not merely an ablation): we compute exact ACE on a validation set of 50 tokens × 5 environments (250 forward passes per token = 12,500 total, feasible) and report: (a) Pearson/Spearman correlation between s_θ and exact ACE; (b) mean absolute error; (c) rank agreement (does s_θ rank tokens in the same order as exact ACE?). The amortized scorer is considered validated if rank-order Spearman ρ > 0.8 and the scoring threshold τ selects a token set overlapping ≥ 85% with the exact-ACE-selected set. If validation fails, we fall back to exact ACE computation at inference (trading efficiency for correctness), which remains a viable contribution.\n\n**Composite Robustness Objective (honest framing).** We do NOT claim to solve the non-linear invariance problem. Instead, we use a *composite robustness objective* combining three components: (1) Standard action prediction loss on selected tokens: L_task = E_e[L(π(S_τ(T)), a*)]. (2) V-REx-style variance penalty: L_var = Var_e(L(π(S_τ(T)), a*)), which penalizes cross-environment loss variance. We frame this honestly as a *practical heuristic* that is simpler and more stable than IRMv1 (Krueger et al., ICML 2021) but shares the same fundamental limitation in non-linear settings: it does not distinguish between underfitting and inherent noise, and can fail under heteroskedastic environments. (3) Wasserstein DRO regularization: L_DRO = sup_{Q: W(Q,P̂)≤ρ} E_Q[L], providing finite-sample robustness guarantees (Kuhn et al., 2024) that do not require linear assumptions. The DRO term provides theoretical backing where V-REx's guarantees fail, at the cost of a more conservative objective. The combined loss is L = L_task + λ_var·L_var + λ_DRO·L_DRO, where λ_var and λ_DRO are hyperparameters with explicit sensitivity analysis. We expect V-REx to provide better empirical performance in practice (as observed in prior work) while DRO provides the theoretical safety net.\n\n**Architecture.** Frozen OpenVLA-OFT backbone (7B). The ACS head operates at the vision encoder output (post-projection), with optional refinement at an intermediate LLM layer. Total trainable parameters: ACS scoring head (~0.5M) + thin LoRA adaptation (~3.5M) = ~4M total. At inference, the scorer assigns causal scores to all visual tokens in a single forward pass; tokens below threshold τ are pruned before entering the LLM backbone, providing both robustness and efficiency.\n\n**Evaluation with Formal Statistical Protocol.** Primary benchmark: LIBERO-Plus across all 7 perturbation dimensions. Primary metric: average success rate under distribution shift.\n\n**Statistical protocol against random pruning** (addressing arXiv 2502.11501's findings): We adopt a paired bootstrap protocol with bias-corrected accelerated (BCa) confidence intervals and sign-flip permutation tests (following arXiv 2511.19794). Specifically: (a) train CaTS and random-pruning variants under identical conditions with 5 random seeds; (b) record per-seed, per-task success rate differences; (c) compute BCa 95% confidence intervals on the mean difference; (d) perform sign-flip permutation test (10,000 permutations) for each perturbation dimension. CaTS claims significant improvement only if the BCa interval lies entirely above zero AND the permutation p-value < 0.05. *A priori success criterion*: CaTS must significantly outperform random pruning on at least 5 of 7 perturbation dimensions. If this criterion is not met, we report the negative result transparently and analyze which perturbation types resist causal selection (contributing understanding of when causal criteria matter vs. when random suffices).\n\n**Baselines** (11 total): (1) SRPO — current LIBERO-Plus SOTA (82.1%); (2) FTM/FLA — reproduced on LIBERO-Plus; (3) Causal-ACT — adapted to OpenVLA backbone; (4) AVA-VLA; (5) VLA-Pruner; (6) VLA-IAP; (7) RobustVLA; (8) Random token pruning — critical control; (9) LeaF-adapted from NLP; (10) DTP — most directly analogous concurrent work; (11) TIES — most sophisticated heuristic baseline. Note: FocusVLA, LightVLA, BFA++, and Compressor-VLA are discussed but not baselined because they do not evaluate on LIBERO-Plus and their codebases target different VLA architectures.\n\n**Ablations**: (a) amortized vs. exact ACE (central validation, not just ablation); (b) encoder-level vs. intermediate-layer vs. late-layer scoring (testing spatial locality assumption directly); (c) V-REx only vs. DRO only vs. composite objective; (d) variance penalty weight sensitivity; (e) DRO radius sensitivity; (f) pruning ratio sweep (10-90%); (g) per-perturbation-dimension analysis; (h) causal score interpretability analysis (do high-scoring tokens correspond to task-relevant regions via IoU with ground-truth object masks?); (i) α_leak measurement across layers.\n\n**Key differentiations from all concurrent work.** The central claim is not merely that causal criteria exist, but that they provide *measurably better token selection than heuristic alternatives* — the burden of proof is on CaTS, and the evaluation is designed to test this rigorously.\n\nvs. DTP (arXiv 2601.16065): DTP uses attention intersection heuristics (tokens in irrelevant regions with attention exceeding scaled threshold are pruned). CaTS uses formal causal intervention criteria. DTP's attention-based scoring is exactly the type shown to be unreliable by arXiv 2502.11501; CaTS's causal scoring is designed to be the principled alternative. Empirical comparison on LIBERO-Plus will directly test whether causal grounding outperforms attention-based distractor identification.\n\nvs. FocusVLA (arXiv 2603.28740): FocusVLA uses cross-attention TopK selection + modality cascaded attention, achieving strong results on standard LIBERO (98.7%) but without robustness evaluation. CaTS targets robustness under distribution shift specifically. FocusVLA's TopK is a differentiable selection mechanism but provides no criterion for *which* tokens matter for cross-environment generalization.\n\nvs. LightVLA (arXiv 2509.12594): LightVLA learns token selection end-to-end via Gumbel softmax — the selection criterion is implicitly defined by the training loss and may overfit to spurious correlations in training environments. CaTS's explicit causal criterion is designed to prevent exactly this overfitting.\n\nvs. TIES (arXiv 2603.24941): TIES uses inter-layer rank consistency (Kendall τ) as a stability signal — an innovative heuristic that captures token 'reliability' across layers. However, rank consistency does not distinguish between causally relevant tokens and tokens that are consistently spurious (e.g., a distinctive background element present in all training scenes would have high rank consistency but is causally irrelevant). CaTS's interventional scoring directly tests causal relevance via environment-marginal replacement.\n\nvs. Gaze-VLA (arXiv 2603.23202): Uses human gaze as an indirect causal signal (humans look at task-relevant regions). Requires gaze data collection; gaze provides a noisy proxy for causal relevance (humans also look at salient distractors). CaTS derives causal relevance from the model's own action predictions under intervention.\n\nvs. Causal-ACT (arXiv 2507.22380): Token-level in 7B VLA (not feature-level in ResNet+ACT); amortized scoring (not heuristic graph search); comprehensive LIBERO-Plus evaluation; concrete ε-invariance bound.\n\nvs. FTM: Interpretable per-token causal scores (not black-box affine transform); selective token removal (not global recalibration); formal robustness criterion.\n\nvs. LeaF (NeurIPS 2025): VLA action policies (not NLP reasoning); cross-environment interventional scoring (not single-domain gradient heuristics); formal SCM (not teacher-student comparison).",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~800h A100 (80GB): ~350h for 22-28 LoRA fine-tuning runs with ACS head at ~14h each (including multi-layer scoring variants and composite objective hyperparameter search), ~250h for batch intervention data generation, amortized scorer training, and exact ACE validation (12,500 forward passes for validation set + systematic coverage across 7 perturbation types), ~200h for baseline reproduction (DTP and TIES reproduction on LIBERO-Plus, FTM on LIBERO-Plus, Causal-ACT adaptation, 11 baselines total with 5 seeds each for statistical protocol) and ablations",
+      "gpu_utilization": "Low (~25-30%). GPUs sit idle during code development, causal scoring pipeline debugging, statistical protocol implementation, α_leak measurement analysis, and theorem proof development.",
+      "timeline": "4-6 months",
+      "team": "1-2 researchers (one with causal inference/DRO background for theorem formalization and proof, one with VLA/robotics experience for implementation and evaluation)",
+      "estimated_gpu_cost": "~$1,200 (800h × $1.50/hr A100 spot pricing, May 2026 market rate)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~1200h A100 (80GB): agent explores ~40-50 training configurations more systematically, runs comprehensive ablations across all 7 perturbation dimensions with 5 seeds, evaluates all 11 baselines, and performs extensive α_leak measurements across layers",
+      "gpu_utilization": "Moderate (~50-60%). Agent queues experiments faster but pauses at approval gates for: multi-layer scoring architecture decisions, DRO radius selection, amortization validation thresholds, theorem assumption checking.",
+      "timeline": "2-4 months",
+      "team": "1 researcher, ~45min/day check-in for approving experiment plans, reviewing causal score visualizations, validating amortization gap measurements, and verifying theorem proof steps",
+      "claude_api_cost": "$500-700 (5000-7000 conversation turns for experiment design, code generation, theorem checking, statistical protocol implementation, result analysis)",
+      "estimated_gpu_cost": "~$1,800 (1200h × $1.50/hr)",
+      "risk_note": "Amortized scorer validation (Spearman ρ > 0.8 threshold) requires careful human judgment — if the scorer barely misses the threshold, the decision to proceed with amortized vs. exact scoring has significant downstream implications. DRO radius selection and the V-REx/DRO tradeoff require human expertise. Theorem proof needs verification by someone with expertise in both causal inference and approximation theory."
+    },
+    "auto_research": {
+      "gpu_hours": "~2500h A100 (80GB): agent runs 120-150 experiment configurations including aggressive sweeps for scoring layer selection, V-REx/DRO weight ratios, pruning ratios, Shapley approximation methods, scorer architectures (varying width W), plus all baseline reproductions with 5 seeds and failed exploration runs",
+      "gpu_utilization": "High (~90%+). Agent queues next experiment immediately upon completion. Continuous 24/7 execution.",
+      "timeline": "3-5 weeks with 4-8 concurrent A100s; as few as 8-10 days with 16 concurrent GPUs",
+      "team": "0 (initial setup: configure LIBERO-Plus environments, OpenVLA-OFT checkpoint, define intervention distribution, implement statistical testing protocol, implement α_leak measurement)",
+      "claude_api_cost": "$700-1100 (7000-11000 turns for autonomous experiment design, debugging, statistical analysis, and paper drafting)",
+      "estimated_gpu_cost": "~$3,750 (2500h × $1.50/hr)",
+      "speed_bottleneck": "Number of concurrent A100 GPU instances. Secondary: intervention data generation is I/O-intensive (requires rendering perturbation environments). Statistical protocol with 5 seeds × 11 baselines × 7 perturbation dimensions requires organized experiment management.",
+      "risk_note": "Without human gates, agent may over-explore suboptimal scoring layer combinations or DRO radius values. The theorem formalization cannot be fully automated — agent-generated proofs require expert verification, especially the amortization gap bound (step 3 of the proof involving Rademacher complexity). The statistical protocol is automatable but interpretation of borderline results (e.g., CaTS significant on 4/7 dimensions vs. the a priori 5/7 criterion) requires human judgment. Risk mitigation: pre-define structured search space with early stopping on amortization validation metrics; halt if Spearman ρ < 0.6 after initial scorer training."
+    }
+  },
+  "target_venues": [
+    "AAAI 2027 (deadline: ~August 1, 2026 — primary target, sufficient time for theoretical development, multi-layer scoring implementation, and statistical evaluation)",
+    "ICLR 2027 (deadline: ~October 2026 — strong target, allows comprehensive evaluation and concurrent work comparison)",
+    "ICRA 2027 (deadline: ~September 2026 — robotics venue, good fit for empirical contribution)",
+    "CoRL 2026 (deadline: May 29, 2026 — infeasible given revision scope, removed as target)"
+  ],
+  "level": "top-tier",
+  "key_references": [
+    "Improving Generalization Ability of Robotic Imitation Learning by Resolving Causal Confusion in Observations [Causal-ACT] (arXiv 2507.22380, July 2025)",
+    "VLA Models Are More Generalizable Than You Think: Revisiting Physical and Spatial Modeling [FTM/FLA] (arXiv 2512.02902, Dec 2025)",
+    "Learning to Focus: Causal Attention Distillation via Gradient-Guided Token Pruning [LeaF] (NeurIPS 2025, arXiv 2506.07851)",
+    "Shortcut Learning in Generalist Robot Policies: The Role of Dataset Diversity and Fragmentation (CoRL 2025, arXiv 2508.06426)",
+    "Token Pruning in Multimodal Large Language Models: Are We Solving the Right Problem? (ACL Findings 2025, arXiv 2502.11501)",
+    "When Token Pruning is Worse than Random: Understanding Visual Token Information in VLLMs (ICLR 2026, arXiv 2512.07580)",
+    "The Risks of Invariant Risk Minimization (ICLR 2021, arXiv 2010.05761)",
+    "Out-of-Distribution Generalization via Risk Extrapolation [V-REx] (ICML 2021, arXiv 2003.00688)",
+    "SRPO: Self-Referential Policy Optimization for Vision-Language-Action Models (arXiv 2511.15605)",
+    "AVA-VLA: Improving Vision-Language-Action Models with Active Visual Attention (arXiv 2511.18960)",
+    "ACTIVA: Amortized Causal Effect Estimation via Transformer-based Variational Autoencoder (arXiv 2503.01290)",
+    "CausalPFN: Amortized Causal Effect Estimation via In-Context Learning (NeurIPS 2025, arXiv 2506.07918)",
+    "LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models (CVPR 2026, arXiv 2510.13626)",
+    "Invariant Causal Imitation Learning for Generalizable Policies [ICIL] (NeurIPS 2021)",
+    "DTP: A Simple yet Effective Distracting Token Pruning Framework for VLA Models (arXiv 2601.16065, Jan 2026)",
+    "FocusVLA: Focused Visual Utilization for Vision-Language-Action Models (arXiv 2603.28740, Mar 2026)",
+    "LightVLA: Towards Efficient VLA Models via Differentiable Token Pruning (ICRA 2026, arXiv 2509.12594)",
+    "TIES: Beyond Attention Magnitude — Leveraging Inter-layer Rank Consistency for Efficient VLA Models (arXiv 2603.24941, Mar 2026)",
+    "BFA++: Hierarchical Best-Feature-Aware Token Pruning for Multi-View VLA Models (arXiv 2602.20566, Feb 2026)",
+    "Compressor-VLA: Instruction-Guided Visual Token Compression for Efficient Robotic Manipulation (arXiv 2511.18950)",
+    "Gaze-Regularized Vision-Language-Action Models for Robotic Manipulation (arXiv 2603.23202, Mar 2026)",
+    "LearnPruner: Rethinking Attention-based Token Pruning in Vision Language Models (arXiv 2604.23950, Apr 2026)",
+    "On Robustness of Vision-Language-Action Model against Multi-Modal Perturbations [RobustVLA] (ICLR 2026, arXiv 2510.00037)",
+    "Mask World Model: Predicting What Matters for Robust Robot Policy Learning (arXiv 2604.19683, April 2026)",
+    "VLA-Pruner: Temporal-Aware Dual-Level Visual Token Pruning for Efficient VLA Inference (arXiv 2511.16449)",
+    "VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for VLA Models (arXiv 2603.22991, March 2026)",
+    "Learning Invariant Causal Mechanism from Vision-Language Models [CLIP-ICM] (ICML 2025, arXiv 2405.15289)",
+    "OTPrune: Distribution-Aligned Visual Token Pruning via Optimal Transport (arXiv 2602.20205)",
+    "Wasserstein Distributionally Robust Optimization and Variation Regularization (Operations Research, 2024)",
+    "Finite-Sample Guarantees for Wasserstein DRO: Breaking the Curse of Dimensionality (Operations Research, 2023)",
+    "Vision Transformers Need More Than Registers (arXiv 2602.22394, Feb 2026)",
+    "Bounding the Estimation Error of Sampling-based Shapley Value Approximation (arXiv 1306.4265)",
+    "Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success [OpenVLA-OFT] (arXiv 2025)"
+  ],
+  "description": "VLA models suffer catastrophic failures under visual distribution shifts, yet a proliferation of concurrent token pruning methods (DTP, FocusVLA, LightVLA, TIES, BFA++, Compressor-VLA, Gaze-VLA — all 2025-2026) each propose different heuristic criteria without formal justification, and recent work shows many attention-based methods underperform random selection (arXiv 2502.11501) due to 'vanishing token information' in deep layers (arXiv 2512.07580). We propose Causal Token Selection (CaTS) v3, bridging three disconnected threads: VLA token pruning, causal intervention for imitation learning (Causal-ACT, ICIL), and causal attention distillation (LeaF). CaTS defines a formal SCM over the VLA token-action pipeline with a revised *encoder-level spatial locality* assumption — grounded in empirical findings that DINOv2/SigLIP encoder outputs preserve spatial correspondence while LLM self-attention progressively mixes token information. Key advances over v2: (1) Multi-layer scoring at vision encoder output (where spatial locality is empirically validated) with optional intermediate-layer refinement, addressing the ViT information-mixing concern. (2) Concrete ε-invariance bound: ε = C₁/√M + C₂·exp(-c·N_env/d_E) + C₃·α_leak·g(τ) + ε_amort, with explicit degradation analysis as spatial locality weakens (parameterized by α_leak). (3) Honest composite robustness objective combining V-REx variance penalty (practical heuristic, explicitly acknowledged as sharing IRM's non-linear limitations) with Wasserstein DRO regularization (providing genuine finite-sample guarantees). (4) Quantified amortization gap: ε_amort ≤ O(d/W) + O(1/√n_train), with a central validation protocol (Spearman ρ > 0.8 against exact ACE on validation set). (5) Formal statistical protocol (BCa bootstrap + permutation test) against random pruning baseline, with a priori success criterion of significant improvement on ≥ 5/7 LIBERO-Plus perturbation dimensions. Evaluated against 11 baselines including SRPO (82.1% SOTA), DTP, and TIES. All concurrent works are discussed and differentiated: all use attention/gradient/geometric/rank heuristics; CaTS is the only method providing formal causal intervention criteria with theoretical guarantees, operating at the representation layer where those criteria are most valid. Primary targets: AAAI 2027 and ICLR 2027.",
+  "project_name": "causal_token_sel_vla",
+  "source": "web_research"
+}
+
+
+## Previous review history
+### Round 1 review
+Verdict: revise
+Issues: ["CRITICAL MISSING WORK: 'Improving Generalization Ability of Robotic Imitation Learning by Resolving Causal Confusion in Observations' (arXiv 2507.22380, July 2025) applies causal intervention to resolve causal confusion in robotic imitation learning—directly overlapping with CaTS's core motivation and approach. This paper was NOT cited.", "CRITICAL MISSING WORK: 'VLA Models Are More Generalizable Than You Think' (arXiv 2512.02902) shows Feature Token Modulation (FTM) achieves 87.1% on LIBERO viewpoint with only 4K parameters—a much simpler and cheaper alternative that undermines CaTS's complexity justification. Must be included as a baseline.", "MISSING WORK: 'Learning to Focus: Causal Attention Distillation (LeaF)' (NeurIPS 2025, arXiv 2506.07851) uses causal intervention at the token level for pruning confounding tokens. While targeting NLP, the method is directly analogous and must be discussed.", "MISSING WORK: 'Shortcut Learning in Generalist Robot Policies' (CoRL 2025, arXiv 2508.06426) addresses the same shortcut/spurious correlation problem through dataset design—a competing solution approach.", "MISSING WORK: 'Token Pruning in MLLMs: Are We Solving the Right Problem?' (arXiv 2502.11501, ACL Findings 2025) raises fundamental questions about attention-based token pruning, finding some methods underperform random selection. Must be addressed.", "OVERCLAIMED THEORY: 'Provable invariance guarantees' via IRM-style penalty is not justified. IRM fails catastrophically in non-linear settings (Rosenfeld et al., ICLR 2021), requires environment coverage that LIBERO-Plus may not provide, and the IRMv1 penalty doesn't always capture invariance correctly. These failure modes must be acknowledged and addressed.", "INVALID BASELINE: Mask World Model (arXiv 2604.19683) evaluates on LIBERO and RLBench, NOT LIBERO-Plus. Listing it as a LIBERO-Plus baseline comparison is misleading.", "INSUFFICIENT THEORETICAL DEPTH: The user specifically requested '多从理论角度分析为何能增强' (theoretical analysis of WHY token pruning enhances generalization). The idea merely invokes do-calculus and IRM without formal results—no theorems, no proofs, no explicit assumptions. The theoretical contribution is the supposed differentiator from VLA-Pruner/IAP but is undeveloped.", "ACE ESTIMATION SCALABILITY: Estimating per-token ACE by intervening (replacing embeddings with marginal statistics) across multiple environments is combinatorially expensive. For 256+ tokens × multiple perturbation types × sufficient samples for stable KL-divergence estimates, the 100h GPU estimate for 'causal effect estimation sweeps' likely significantly underestimates the real cost.", "STALE SOTA TARGET: The 79.6% LIBERO-Plus SOTA may already be surpassed by FTM-style approaches or Mask World Model adaptations. The generator should verify this is still current."]
+Feedback: The core idea of using causal criteria for VLA token selection has merit, but significant revisions are needed:
+
+1. **Add missing related work urgently**: (a) arXiv 2507.22380 on causal confusion in imitation learning—this is your closest competitor and must be discussed with clear differentiation. (b) arXiv 2512.02902 (FTM)—this simple 4K-parameter method achieves strong robustness and must be a baseline. If CaTS cannot outperform FTM, the entire approach is questionable. (c) LeaF (NeurIPS 2025)—the NLP-domain analog of your idea. (d) 'Shortcut Learning in Generalist Robot Policies' (CoRL 2025). (e) arXiv 2502.11501 on fundamental problems with token pruning.
+
+2. **Develop the theoretical framework seriously or drop the 'provable guarantees' claim**: The user's core requirement is theoretical analysis. You need: (a) A formal SCM for the VLA token → action pipeline with explicit assumptions. (b) A theorem stating under what conditions causal token selection yields invariant policies, with at least a proof sketch. (c) Explicit discussion of when the guarantees break (IRM failure modes, insufficient environment diversity, non-linear interactions). Without this, the paper is just another engineering method paper, which doesn't match the user's request.
+
+3. **Fix the Mask World Model baseline**: Either demonstrate MWM on LIBERO-Plus yourself or remove it from the comparison table.
+
+4. **Address ACE estimation scalability**: Provide a realistic computational analysis of per-token intervention costs. Consider approximations (e.g., batch interventions, amortized estimation) and include these in the method.
+
+5. **Strengthen differentiation from arXiv 2507.22380**: That paper already does causal intervention in imitation learning. Your contribution must be clearly at the token level within transformer VLA architectures, not just causal intervention in general.
+
+### Round 2 review
+Verdict: revise
+Issues: ["MISSING CONCURRENT WORK (6+ papers): DTP (arXiv 2601.16065, Jan 2026) prunes 'distracting tokens' in VLA — directly analogous motivation to CaTS (removing spuriously correlated tokens). FocusVLA (arXiv 2603.28740, Mar 2026) dynamically selects task-relevant visual patches via 'Focus Attention' to suppress task-irrelevant noise. LightVLA (arXiv 2509.12594, ICRA 2026) uses differentiable token pruning with Gumbel softmax to learn task-relevant token selection — a gradient-based alternative to causal selection. TIES (arXiv 2603.24941, Mar 2026) uses inter-layer rank consistency for robust token selection and explicitly evaluates robustness under environmental perturbations. BFA++ (arXiv 2602.20566, Feb 2026) uses hierarchical importance predictors. Compressor-VLA (arXiv 2511.18950) uses instruction-guided compression. Gaze-Regularized VLA (arXiv 2603.23202) aligns attention with human gaze patterns. All must be discussed and differentiated.", "SPATIAL LOCALITY ASSUMPTION PROBLEMATIC IN VITs: The core 'spatial locality of causal features' assumption — that task-relevant content is concentrated in a subset of tokens while spurious content is distributed — may be significantly violated in practice. ViT self-attention layers progressively mix information across ALL token positions. By late layers (which is where the frozen VLA backbone produces embeddings), a 'background' token has incorporated object information and vice versa. This undermines the clean causal/spurious separation at the token level. The proposal needs analysis of which layer's representations to score, and empirical validation that spatial locality holds sufficiently at that layer.", "V-REx DOES NOT FIX IRM'S NON-LINEAR PROBLEMS: The proposal frames V-REx as replacing 'the problematic IRM objective' for distributional robustness. However, V-REx has the same fundamental limitations as IRM in non-linear settings (Krueger et al. ICML 2021 acknowledge this; empirical studies show V-REx fails similarly to IRM on non-linear benchmarks). The framing should be more honest: V-REx is simpler and more stable than IRMv1, but does not escape the core failure mode. The 'distributional robustness without claiming strict invariance guarantees' language is good but the justification needs strengthening.", "THEOREM STILL A 'SKETCH': For a paper targeting AAAI/ICLR where the theoretical framework is the primary differentiator from simpler methods, the conditional invariance result must move beyond 'sketch' status. A full proof (or at least a detailed proof sketch with all key steps) is needed. The ε-invariance bound ε(N_env, M, τ) needs concrete functional form — otherwise reviewers will view this as hand-waving. What is the convergence rate? How many environments are sufficient? These are the questions the theory should answer.", "AMORTIZATION GAP UNQUANTIFIED: Failure mode F3 (amortization gap between learned scorer and true ACE) is acknowledged but not analyzed. How large is this gap expected to be? Under what conditions does it remain bounded? The ACTIVA paper (arXiv 2503.01290) that inspires the approach works on tabular data with much simpler structure — scaling to 256-dimensional token spaces in a 7B VLA is a significant leap. Some empirical or theoretical characterization of the expected gap is needed.", "RISK OF NEGATIVE RESULT: The paper arXiv 2502.11501 shows attention-based pruning can underperform random selection. This is used to motivate causal pruning. However, if the amortized causal scorer also underperforms random (due to amortization gap, spatial locality violations, or V-REx limitations), the paper's central claim collapses. The evaluation plan should include a formal statistical protocol for comparing against random pruning baseline to demonstrate significant improvement."]
+Feedback: The revision substantially improved the proposal from round 1 — all previously flagged issues are addressed, the SCM is formalized, IRM concerns are partially mitigated, and Mask World Model is correctly handled. The idea remains promising. To reach pass threshold:
+
+1. **Cite and differentiate from 6+ new concurrent works** (DTP, FocusVLA, LightVLA, TIES, BFA++, Compressor-VLA, Gaze-VLA). Key differentiation argument: these all use attention/gradient/geometric heuristics proven fragile by arXiv 2502.11501, while CaTS uses formal causal criteria. But acknowledge that DTP/FocusVLA achieve similar goals without causal overhead — the burden is on CaTS to show the causal framework provides measurable empirical improvement beyond interpretability.
+
+2. **Address the spatial locality assumption in ViTs seriously.** Either (a) propose scoring at early/intermediate layers where spatial locality is better preserved, with analysis of the information-quality tradeoff, or (b) provide empirical evidence from existing ViT attention analyses that task-relevant tokens remain spatially concentrated even in late layers, or (c) weaken the assumption and adjust the theory accordingly.
+
+3. **Be fully honest about V-REx limitations.** V-REx is a better choice than IRM, but it doesn't solve the non-linear problem. Frame it as 'practical heuristic with distributional robustness motivation' rather than 'principled fix for IRM.' Consider discussing connections to DRO (distributionally robust optimization) which has stronger finite-sample guarantees.
+
+4. **Develop the theorem beyond a sketch.** Provide the concrete functional form of ε(N_env, M, τ) with at least the dominant terms. Show how the bound degrades as spatial locality weakens. This is the paper's unique selling point — it must be rigorous enough to survive reviewer scrutiny at AAAI/ICLR.
+
+5. **Quantify the amortization gap.** Either theoretically (bound on approximation error of the 2-layer MLP scorer vs. true ACE) or empirically (plan to compute exact ACE on a small validation set and compare to amortized predictions, which is already in the ablation plan — make this a central validation, not just an ablation).
+
+
+## Output format
+Output ONLY a JSON object:
+{
+  "verdict": "pass | revise | fail",
+  "scores": {
+    "novelty": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "feasibility": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "clarity": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "impact": {"score": 0-5, "rationale": "1-2 sentence justification"}
+  },
+  "issues": ["specific issue 1", "specific issue 2", ...],
+  "feedback": "Actionable feedback for the generator (if verdict=revise)",
+  "reason": "One-line summary of verdict rationale"
+}
+
+Rules:
+- "pass": idea is sound AND high quality — avg score >= 4.0, no critical issues
+- "revise": fixable issues OR scores below threshold — provide specific feedback
+- "fail": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)
+- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.
+- Round 10 only: if still "revise", you MUST choose "pass" or "fail".
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "3cc7bdc6-7582-4027-953f-42207d10bfec",
+  "type": "user",
+  "uuid": "d8af2e3b-fcea-45fc-bb05-51a5b3c07b44",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-13T04:58:57.887Z_
+
+```json
+{
+  "parentUuid": "d8af2e3b-fcea-45fc-bb05-51a5b3c07b44",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "2fe0d7b0-e9d8-4205-921c-920e28b42da6",
+  "timestamp": "2026-05-13T04:58:57.887Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-13T04:58:57.887Z_
+
+```json
+{
+  "parentUuid": "2fe0d7b0-e9d8-4205-921c-920e28b42da6",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "7ed9d279-9318-41a2-a5e0-7e70d287ebdc",
+  "timestamp": "2026-05-13T04:58:57.887Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "7ed9d279-9318-41a2-a5e0-7e70d287ebdc",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Causal token selection for VLA generalization",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-13T04:59:08.318Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+This is a complex ML research review task. I need to independently verify the claims made in this research proposal about "Causal Token Selection for Invariant VLA Policies via Amortized Interventional Scoring" (CaTS v3). This is round 3 of review.
+
+Let me break down what I need to verify:
+
+1. **SOTA freshness**: Are the cited models/baselines current?
+2. **Reference verification**: Do cited papers exist?
+3. **Gap validity**: Does the claimed research gap still exist?
+4. **Venue validity**: Are target venues' deadlines after 2026-05-13?
+
+
+5. **Feasibility**: Resource estimates realistic?
+6. **Novelty**: Sufficiently different from existing work?
+7. **Cost realism across modes**
+
+The user's core requirement is about whether token pruning/augmentation in VLA can improve generalization, with emphasis on theoretical analysis of WHY it enhances generalization. I'll start by independently searching to verify the claims and identify any overlooked related work.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7ed9d279-9318-41a2-a5e0-7e70d287ebdc",
+  "isSidechain": false,
+  "requestId": "req_011CayydLDA2qQTSym8pnXXd",
+  "type": "assistant",
+  "uuid": "563fd8c6-5fea-401d-863f-d2125685c596",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UtnX1fKH3KiC2MBMsbC6KE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 21387,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 365,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 21387,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 365,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 21387,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 21387
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-13T04:59:08.557Z_
+
+I'll conduct an independent, thorough review of this CaTS v3 proposal. Let me start by verifying key claims and searching for any missing concurrent work.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "563fd8c6-5fea-401d-863f-d2125685c596",
+  "isSidechain": false,
+  "requestId": "req_011CayydLDA2qQTSym8pnXXd",
+  "type": "assistant",
+  "uuid": "8f39617a-ff9a-4464-ab0b-6f4d85d8a41e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UtnX1fKH3KiC2MBMsbC6KE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 21387,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 365,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 21387,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 365,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 21387,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 21387
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-13T04:59:08.931Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_012YnAfVuY1FG9MnQL7ajdJu`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8f39617a-ff9a-4464-ab0b-6f4d85d8a41e",
+  "isSidechain": false,
+  "requestId": "req_011CayydLDA2qQTSym8pnXXd",
+  "type": "assistant",
+  "uuid": "f932e33c-4e9c-47bb-b789-8979e0751d3a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UtnX1fKH3KiC2MBMsbC6KE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 21387,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 365,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 21387,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 365,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 21387,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 21387
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-13T04:59:08.938Z_
+
+<details><summary>↩ Tool result · `toolu_012YnAfVuY1FG9MnQL7ajdJu`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f932e33c-4e9c-47bb-b789-8979e0751d3a",
+  "isSidechain": false,
+  "promptId": "3cc7bdc6-7582-4027-953f-42207d10bfec",
+  "type": "user",
+  "uuid": "64d3c0a3-759e-4a0b-8e8e-0b5143f51ce8",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "f932e33c-4e9c-47bb-b789-8979e0751d3a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-13T04:59:12.236Z_
+
+Now let me launch several parallel searches to verify the key claims and find potentially missing work.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "64d3c0a3-759e-4a0b-8e8e-0b5143f51ce8",
+  "isSidechain": false,
+  "requestId": "req_011Cayye8A9H2qYknpeWdcJR",
+  "type": "assistant",
+  "uuid": "7eee564a-a098-40e9-b507-ad494cd35d99",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TdyLWauYqfxEHy3QJFFM8c",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1385,
+      "cache_read_input_tokens": 33228,
+      "output_tokens": 87,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1385,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 87,
+          "cache_read_input_tokens": 33228,
+          "cache_creation_input_tokens": 1385,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1385
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-13T04:59:12.979Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QMJ7NUbSLMJ3JeyD3JMHiA`</summary>
+
+```json
+{
+  "query": "LIBERO-Plus VLA benchmark SOTA 2026 success rate"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7eee564a-a098-40e9-b507-ad494cd35d99",
+  "isSidechain": false,
+  "requestId": "req_011Cayye8A9H2qYknpeWdcJR",
+  "type": "assistant",
+  "uuid": "0fe8951b-b7ce-4d87-b423-0b329a7b6036",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TdyLWauYqfxEHy3QJFFM8c",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1385,
+      "cache_read_input_tokens": 33228,
+      "output_tokens": 87,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1385,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 87,
+          "cache_read_input_tokens": 33228,
+          "cache_creation_input_tokens": 1385,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1385
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-13T04:59:19.921Z_
+
+<details><summary>↩ Tool result · `toolu_01QMJ7NUbSLMJ3JeyD3JMHiA`</summary>
+
+```text
+Web search results for query: "LIBERO-Plus VLA benchmark SOTA 2026 success rate"
+
+Links: [{"title":"LIBERO Benchmark: Vision-Language-Action in Robotics","url":"https://www.emergentmind.com/topics/libero"},{"title":"CVPR Poster LIBERO-Plus: A Progressive Robustness Benchmark for Visual-Language-Action Models","url":"https://cvpr.thecvf.com/virtual/2026/poster/38735"},{"title":"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://sylvestf.github.io/LIBERO-plus/"},{"title":"GitHub - sylvestf/LIBERO-plus: Official repository of LIBERO-plus, a generalized benchmark for in-depth robustness analysis of vision-language-action models. · GitHub","url":"https://github.com/sylvestf/LIBERO-plus"},{"title":"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://arxiv.org/html/2510.13626v1"},{"title":"[2604.28192] LaST-R1: Reinforcing Robotic Manipulation via Adaptive Physical Latent Reasoning","url":"https://arxiv.org/abs/2604.28192"},{"title":"[2510.13626] LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://arxiv.org/abs/2510.13626"},{"title":"Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success","url":"https://openvla-oft.github.io/"},{"title":"Paper page - LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://huggingface.co/papers/2510.13626"},{"title":"VLA & Dexterous Manipulation SOTA Leaderboard","url":"https://github.com/MINT-SJTU/Evo-SOTA.io/blob/main/README.md"}]
+
+Based on the search results, here's what I found about LIBERO-Plus VLA benchmark SOTA success rates in 2026:
+
+## Key Findings
+
+A top-performing method achieved 92.8% success rate under camera perturbations, surpassing the next best model by 37.2 percentage points.
+
+For the broader LIBERO benchmark (not specifically LIBERO-Plus perturbations), OpenVLA-OFT achieves SOTA results in LIBERO with 97.1% average success rate across 4 task suites.
+
+Additionally, LaST-R1 achieves a near-perfect 99.9% average success rate on the LIBERO benchmark with only one-shot supervised warm-up, significantly improving convergence speed and performance over prior state-of-the-art (SOTA) methods.
+
+## Important Context
+
+It's worth noting that models exhibit extreme sensitivity to perturbation factors, including camera viewpoints and robot initial states, with performance dropping from 95% to below 30% under modest perturbations. This indicates that while SOTA numbers on standard benchmarks are high, actual robustness under realistic variations is significantly lower.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0fe8951b-b7ce-4d87-b423-0b329a7b6036",
+  "isSidechain": false,
+  "promptId": "3cc7bdc6-7582-4027-953f-42207d10bfec",
+  "type": "user",
+  "uuid": "6f01dd48-5416-4be0-9f1a-a8cb3568ad78",
+  "toolUseResult": {
+    "query": "LIBERO-Plus VLA benchmark SOTA 2026 success rate",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FvZUX5iCvpcXzJ8iRsGzXc",
+        "content": [
+          {
+            "title": "LIBERO Benchmark: Vision-Language-Action in Robotics",
+            "url": "https://www.emergentmind.com/topics/libero"
+          },
+          {
+            "title": "CVPR Poster LIBERO-Plus: A Progressive Robustness Benchmark for Visual-Language-Action Models",
+            "url": "https://cvpr.thecvf.com/virtual/2026/poster/38735"
+          },
+          {
+            "title": "LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://sylvestf.github.io/LIBERO-plus/"
+          },
+          {
+            "title": "GitHub - sylvestf/LIBERO-plus: Official repository of LIBERO-plus, a generalized benchmark for in-depth robustness analysis of vision-language-action models. · GitHub",
+            "url": "https://github.com/sylvestf/LIBERO-plus"
+          },
+          {
+            "title": "LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2510.13626v1"
+          },
+          {
+            "title": "[2604.28192] LaST-R1: Reinforcing Robotic Manipulation via Adaptive Physical Latent Reasoning",
+            "url": "https://arxiv.org/abs/2604.28192"
+          },
+          {
+            "title": "[2510.13626] LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2510.13626"
+          },
+          {
+            "title": "Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success",
+            "url": "https://openvla-oft.github.io/"
+          },
+          {
+            "title": "Paper page - LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://huggingface.co/papers/2510.13626"
+          },
+          {
+            "title": "VLA & Dexterous Manipulation SOTA Leaderboard",
+            "url": "https://github.com/MINT-SJTU/Evo-SOTA.io/blob/main/README.md"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about LIBERO-Plus VLA benchmark SOTA success rates in 2026:\n\n## Key Findings\n\nA top-performing method achieved 92.8% success rate under camera perturbations, surpassing the next best model by 37.2 percentage points.\n\nFor the broader LIBERO benchmark (not specifically LIBERO-Plus perturbations), OpenVLA-OFT achieves SOTA results in LIBERO with 97.1% average success rate across 4 task suites.\n\nAdditionally, LaST-R1 achieves a near-perfect 99.9% average success rate on the LIBERO benchmark with only one-shot supervised warm-up, significantly improving convergence speed and performance over prior state-of-the-art (SOTA) methods.\n\n## Important Context\n\nIt's worth noting that models exhibit extreme sensitivity to perturbation factors, including camera viewpoints and robot initial states, with performance dropping from 95% to below 30% under modest perturbations. This indicates that while SOTA numbers on standard benchmarks are high, actual robustness under realistic variations is significantly lower."
+    ],
+    "durationSeconds": 6.933763911999998
+  },
+  "sourceToolAssistantUUID": "0fe8951b-b7ce-4d87-b423-0b329a7b6036",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-13T04:59:22.432Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01S2vEoyAB5FjLR6LVVkjnpq`</summary>
+
+```json
+{
+  "query": "SRPO self-referential policy optimization VLA arXiv 2511.15605"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6f01dd48-5416-4be0-9f1a-a8cb3568ad78",
+  "isSidechain": false,
+  "requestId": "req_011CayyevhbjiCrfXAogPLeJ",
+  "type": "assistant",
+  "uuid": "e53028ad-adfc-467e-82a7-52e5e1208849",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PHsHQ5bkrfpkEpTBHzMLUm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 888,
+      "cache_read_input_tokens": 34613,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 888,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 34613,
+          "cache_creation_input_tokens": 888,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 888
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-13T04:59:30.864Z_
+
+<details><summary>↩ Tool result · `toolu_01S2vEoyAB5FjLR6LVVkjnpq`</summary>
+
+```text
+Web search results for query: "SRPO self-referential policy optimization VLA arXiv 2511.15605"
+
+Links: [{"title":"[2511.15605] SRPO: Self-Referential Policy Optimization for Vision-Language-Action Models","url":"https://arxiv.org/abs/2511.15605"},{"title":"SRPO: Self-Referential Policy Optimization for Vision-Language-Action Models","url":"https://arxiv.org/html/2511.15605"},{"title":"Paper page - SRPO: Self-Referential Policy Optimization for Vision-Language-Action Models","url":"https://huggingface.co/papers/2511.15605"},{"title":"SRPO: Self-Referential Policy Optimization for Vision-Language-Action Models | alphaXiv","url":"https://www.alphaxiv.org/resources/2511.15605v1"},{"title":"[Quick Review] SRPO: Self-Referential Policy Optimization for Vision-Language-Action Models","url":"https://liner.com/review/srpo-selfreferential-policy-optimization-for-visionlanguageaction-models"},{"title":"[Literature Review] SRPO: Self-Referential Policy Optimization for Vision-Language-Action Models","url":"https://www.themoonlight.io/en/review/srpo-self-referential-policy-optimization-for-vision-language-action-models"},{"title":"SRPO: Self-Referential Policy Optimization for Vision-Language-Action Models | Request PDF","url":"https://www.researchgate.net/publication/397780691_SRPO_Self-Referential_Policy_Optimization_for_Vision-Language-Action_Models"},{"title":"SRPO Code Implementation Explained — siiRL documentation","url":"https://siirl.readthedocs.io/en/latest/programming_guide/srpo_code_explained.html"},{"title":"[2406.01660] Self-Improving Robust Preference Optimization","url":"https://arxiv.org/abs/2406.01660"},{"title":"[2506.01713v1] SRPO: Enhancing Multimodal LLM Reasoning via Reflection-Aware Reinforcement Learning","url":"https://arxiv.org/abs/2506.01713v1"}]
+
+Based on the search results, here's information about the paper SRPO: Self-Referential Policy Optimization for Vision-Language-Action Models (arXiv 2511.15605):
+
+## Overview
+
+SRPO is a novel framework for Vision-Language-Action (VLA) models that excel in robotic manipulation but face challenges from heavy reliance on expert demonstrations and demonstration bias.
+
+## The Problem It Addresses
+
+Current VLA-RL methods are crippled by severe reward sparsity, where relying on binary success indicators wastes valuable information in failed trajectories, resulting in low training efficiency.
+
+## Key Innovation
+
+SRPO eliminates the need for external demonstrations or manual reward engineering by leveraging the model's own successful trajectories, generated within the current training batch, as a self-reference. This allows the method to assign a progress-wise reward to failed attempts.
+
+A core innovation is the use of latent world representations (V-JEPA) to robustly measure behavioral progress, utilizing compressed, transferable encodings from a world model's latent space rather than relying on raw pixels.
+
+## Performance Results
+
+SRPO demonstrates state-of-the-art performance on the LIBERO benchmark, achieving a 99.2% success rate (a 103% relative improvement over its one-shot supervised fine-tuning baseline) in just 200 reinforcement learning steps. On the LIBERO-Plus benchmark, SRPO achieves a 167% performance improvement over the one-shot SFT baseline.
+
+## Real-World Application
+
+The world progress reward modeling successfully transfers to real-world robotic tasks on an X-ARM 7 robot, delivering substantial performance improvements in offline RL setups across diverse manipulation tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e53028ad-adfc-467e-82a7-52e5e1208849",
+  "isSidechain": false,
+  "promptId": "3cc7bdc6-7582-4027-953f-42207d10bfec",
+  "type": "user",
+  "uuid": "97e2c070-bdfd-4ad0-aacc-6b2daf80928a",
+  "toolUseResult": {
+    "query": "SRPO self-referential policy optimization VLA arXiv 2511.15605",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019eVRn6JtMAZdSvkb1wSEBY",
+        "content": [
+          {
+            "title": "[2511.15605] SRPO: Self-Referential Policy Optimization for Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2511.15605"
+          },
+          {
+            "title": "SRPO: Self-Referential Policy Optimization for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2511.15605"
+          },
+          {
+            "title": "Paper page - SRPO: Self-Referential Policy Optimization for Vision-Language-Action Models",
+            "url": "https://huggingface.co/papers/2511.15605"
+          },
+          {
+            "title": "SRPO: Self-Referential Policy Optimization for Vision-Language-Action Models | alphaXiv",
+            "url": "https://www.alphaxiv.org/resources/2511.15605v1"
+          },
+          {
+            "title": "[Quick Review] SRPO: Self-Referential Policy Optimization for Vision-Language-Action Models",
+            "url": "https://liner.com/review/srpo-selfreferential-policy-optimization-for-visionlanguageaction-models"
+          },
+          {
+            "title": "[Literature Review] SRPO: Self-Referential Policy Optimization for Vision-Language-Action Models",
+            "url": "https://www.themoonlight.io/en/review/srpo-self-referential-policy-optimization-for-vision-language-action-models"
+          },
+          {
+            "title": "SRPO: Self-Referential Policy Optimization for Vision-Language-Action Models | Request PDF",
+            "url": "https://www.researchgate.net/publication/397780691_SRPO_Self-Referential_Policy_Optimization_for_Vision-Language-Action_Models"
+          },
+          {
+            "title": "SRPO Code Implementation Explained — siiRL documentation",
+            "url": "https://siirl.readthedocs.io/en/latest/programming_guide/srpo_code_explained.html"
+          },
+          {
+            "title": "[2406.01660] Self-Improving Robust Preference Optimization",
+            "url": "https://arxiv.org/abs/2406.01660"
+          },
+          {
+            "title": "[2506.01713v1] SRPO: Enhancing Multimodal LLM Reasoning via Reflection-Aware Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2506.01713v1"
+          }
+        ]
+      },
+      "Based on the search results, here's information about the paper SRPO: Self-Referential Policy Optimization for Vision-Language-Action Models (arXiv 2511.15605):\n\n## Overview\n\nSRPO is a novel framework for Vision-Language-Action (VLA) models that excel in robotic manipulation but face challenges from heavy reliance on expert demonstrations and demonstration bias.\n\n## The Problem It Addresses\n\nCurrent VLA-RL methods are crippled by severe reward sparsity, where relying on binary success indicators wastes valuable information in failed trajectories, resulting in low training efficiency.\n\n## Key Innovation\n\nSRPO eliminates the need for external demonstrations or manual reward engineering by leveraging the model's own successful trajectories, generated within the current training batch, as a self-reference. This allows the method to assign a progress-wise reward to failed attempts.\n\nA core innovation is the use of latent world representations (V-JEPA) to robustly measure behavioral progress, utilizing compressed, transferable encodings from a world model's latent space rather than relying on raw pixels.\n\n## Performance Results\n\nSRPO demonstrates state-of-the-art performance on the LIBERO benchmark, achieving a 99.2% success rate (a 103% relative improvement over its one-shot supervised fine-tuning baseline) in just 200 reinforcement learning steps. On the LIBERO-Plus benchmark, SRPO achieves a 167% performance improvement over the one-shot SFT baseline.\n\n## Real-World Application\n\nThe world progress reward modeling successfully transfers to real-world robotic tasks on an X-ARM 7 robot, delivering substantial performance improvements in offline RL setups across diverse manipulation tasks."
+    ],
+    "durationSeconds": 8.427465412999998
+  },
+  "sourceToolAssistantUUID": "e53028ad-adfc-467e-82a7-52e5e1208849",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-13T04:59:33.739Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013KH6cGdyYfCVLBsyCedqD2`</summary>
+
+```json
+{
+  "query": "VLA token pruning causal 2026 arXiv visual language action"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "97e2c070-bdfd-4ad0-aacc-6b2daf80928a",
+  "isSidechain": false,
+  "requestId": "req_011CayyfjmoUhpVRLSckjnsr",
+  "type": "assistant",
+  "uuid": "cb42b682-1bcc-4ade-a754-fd17a4a45df2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DrzYeQsTU1j7kHzhb8oWJL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1035,
+      "cache_read_input_tokens": 35501,
+      "output_tokens": 68,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1035,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 68,
+          "cache_read_input_tokens": 35501,
+          "cache_creation_input_tokens": 1035,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1035
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-13T04:59:41.568Z_
+
+<details><summary>↩ Tool result · `toolu_013KH6cGdyYfCVLBsyCedqD2`</summary>
+
+```text
+Web search results for query: "VLA token pruning causal 2026 arXiv visual language action"
+
+Links: [{"title":"[2603.22991v1] VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models","url":"https://arxiv.org/abs/2603.22991v1"},{"title":"[2603.22991] VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models","url":"https://arxiv.org/abs/2603.22991"},{"title":"VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models","url":"https://arxiv.org/html/2603.22991v1"},{"title":"[2511.16449] VLA-Pruner: Temporal-Aware Dual-Level Visual Token Pruning for Efficient Vision-Language-Action Inference","url":"https://arxiv.org/abs/2511.16449"},{"title":"VLA-Pruner: Temporal-Aware Dual-Level Visual Token Pruning for Efficient Vision-Language-Action Inference","url":"https://arxiv.org/html/2511.16449"},{"title":"The Better You Learn, The Smarter You Prune: Towards Efficient Vision-language-action Models via Differentiable Token Pruning","url":"https://arxiv.org/html/2509.12594v1"},{"title":"[2602.20566] BFA++: Hierarchical Best-Feature-Aware Token Prune for Multi-View Vision Language Action Model","url":"https://arxiv.org/abs/2602.20566"},{"title":"FastDriveVLA: Efficient End-to-End Driving via Plug-and-Play","url":"https://arxiv.org/pdf/2507.23318"},{"title":"SpecPrune-VLA: Accelerating Vision-Language-Action Models via Action-Aware","url":"https://arxiv.org/pdf/2509.05614"},{"title":"BFA++: Hierarchical Best-Feature-Aware Token Prune for Multi-View Vision Language Action Model","url":"https://arxiv.org/html/2602.20566"}]
+
+Based on the search results, I found several recent papers on VLA (Vision-Language-Action) token pruning from arXiv in 2026. Here are the key findings:
+
+## VLA-IAP: Interaction-Aligned Pruning (March 2026)
+
+The most recent paper on this topic is VLA-IAP, submitted on March 24, 2026, which addresses how Vision-Language-Action models have rapidly advanced embodied intelligence, enabling robots to execute complex, instruction-driven tasks.
+
+The key challenge addressed is that as model capacity and visual context length grow, the inference cost of VLA systems becomes a major bottleneck for real-world deployment on resource-constrained platforms.
+
+Existing visual token pruning methods mainly rely on semantic saliency or simple temporal cues, overlooking the continuous physical interaction, and often prune visually sparse yet structurally critical regions that support manipulation, leading to unstable behavior during early task phases.
+
+The proposed training-free method, VLA-IAP (Interaction-Aligned Pruning), introduces a geometric prior mechanism to preserve structural anchors and a dynamic scheduling strategy that adapts pruning intensity based on semantic-motion alignment, enabling a conservative-to-aggressive transition.
+
+Experimental results show that VLA-IAP achieves a 97.8% success rate with a 1.25× speedup on the LIBERO benchmark, and up to 1.54× speedup while maintaining performance comparable to the unpruned backbone.
+
+## Related VLA Pruning Work
+
+Several other recent papers also address VLA token pruning with different approaches, including VLA-Pruner (dual-level importance criterion), LightVLA (differentiable token pruning), and BFA++ (hierarchical pruning for multi-view inputs).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cb42b682-1bcc-4ade-a754-fd17a4a45df2",
+  "isSidechain": false,
+  "promptId": "3cc7bdc6-7582-4027-953f-42207d10bfec",
+  "type": "user",
+  "uuid": "df877c44-24ad-4564-9a78-2790caa77fe1",
+  "toolUseResult": {
+    "query": "VLA token pruning causal 2026 arXiv visual language action",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01JJRJp6GzMykdnaXqHbEQJc",
+        "content": [
+          {
+            "title": "[2603.22991v1] VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2603.22991v1"
+          },
+          {
+            "title": "[2603.22991] VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2603.22991"
+          },
+          {
+            "title": "VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2603.22991v1"
+          },
+          {
+            "title": "[2511.16449] VLA-Pruner: Temporal-Aware Dual-Level Visual Token Pruning for Efficient Vision-Language-Action Inference",
+            "url": "https://arxiv.org/abs/2511.16449"
+          },
+          {
+            "title": "VLA-Pruner: Temporal-Aware Dual-Level Visual Token Pruning for Efficient Vision-Language-Action Inference",
+            "url": "https://arxiv.org/html/2511.16449"
+          },
+          {
+            "title": "The Better You Learn, The Smarter You Prune: Towards Efficient Vision-language-action Models via Differentiable Token Pruning",
+            "url": "https://arxiv.org/html/2509.12594v1"
+          },
+          {
+            "title": "[2602.20566] BFA++: Hierarchical Best-Feature-Aware Token Prune for Multi-View Vision Language Action Model",
+            "url": "https://arxiv.org/abs/2602.20566"
+          },
+          {
+            "title": "FastDriveVLA: Efficient End-to-End Driving via Plug-and-Play",
+            "url": "https://arxiv.org/pdf/2507.23318"
+          },
+          {
+            "title": "SpecPrune-VLA: Accelerating Vision-Language-Action Models via Action-Aware",
+            "url": "https://arxiv.org/pdf/2509.05614"
+          },
+          {
+            "title": "BFA++: Hierarchical Best-Feature-Aware Token Prune for Multi-View Vision Language Action Model",
+            "url": "https://arxiv.org/html/2602.20566"
+          }
+        ]
+      },
+      "Based on the search results, I found several recent papers on VLA (Vision-Language-Action) token pruning from arXiv in 2026. Here are the key findings:\n\n## VLA-IAP: Interaction-Aligned Pruning (March 2026)\n\nThe most recent paper on this topic is VLA-IAP, submitted on March 24, 2026, which addresses how Vision-Language-Action models have rapidly advanced embodied intelligence, enabling robots to execute complex, instruction-driven tasks.\n\nThe key challenge addressed is that as model capacity and visual context length grow, the inference cost of VLA systems becomes a major bottleneck for real-world deployment on resource-constrained platforms.\n\nExisting visual token pruning methods mainly rely on semantic saliency or simple temporal cues, overlooking the continuous physical interaction, and often prune visually sparse yet structurally critical regions that support manipulation, leading to unstable behavior during early task phases.\n\nThe proposed training-free method, VLA-IAP (Interaction-Aligned Pruning), introduces a geometric prior mechanism to preserve structural anchors and a dynamic scheduling strategy that adapts pruning intensity based on semantic-motion alignment, enabling a conservative-to-aggressive transition.\n\nExperimental results show that VLA-IAP achieves a 97.8% success rate with a 1.25× speedup on the LIBERO benchmark, and up to 1.54× speedup while maintaining performance comparable to the unpruned backbone.\n\n## Related VLA Pruning Work\n\nSeveral other recent papers also address VLA token pruning with different approaches, including VLA-Pruner (dual-level importance criterion), LightVLA (differentiable token pruning), and BFA++ (hierarchical pruning for multi-view inputs)."
+    ],
+    "durationSeconds": 7.820551577000006
+  },
+  "sourceToolAssistantUUID": "cb42b682-1bcc-4ade-a754-fd17a4a45df2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 19_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "df877c44-24ad-4564-9a78-2790caa77fe1",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Causal token selection for VLA generalization",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a"
+}
+```
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-13T04:59:44.630Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VyVZ2vmaQ9G6Gg5DRsavWw`</summary>
+
+```json
+{
+  "query": "LearnPruner learnable token pruning VLM arXiv 2604.23950"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "df877c44-24ad-4564-9a78-2790caa77fe1",
+  "isSidechain": false,
+  "requestId": "req_011CayygXbrAp3Wf6d49qdw5",
+  "type": "assistant",
+  "uuid": "2227b979-c6da-4f58-a10f-88a5d5d79ba5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GdLQmGrWaKbhsXGtza6qVs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1040,
+      "cache_read_input_tokens": 36536,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1040,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 36536,
+          "cache_creation_input_tokens": 1040,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1040
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-13T04:59:52.212Z_
+
+<details><summary>↩ Tool result · `toolu_01VyVZ2vmaQ9G6Gg5DRsavWw`</summary>
+
+```text
+Web search results for query: "LearnPruner learnable token pruning VLM arXiv 2604.23950"
+
+Links: [{"title":"[2604.23950] LearnPruner: Rethinking Attention-based Token Pruning in Vision Language Models","url":"https://arxiv.org/abs/2604.23950"},{"title":"LearnPruner: Rethinking Attention-based Token Pruning in Vision Language Models","url":"https://arxiv.org/html/2604.23950"},{"title":"LearnPruner: Rethinking Attention-based Token Pruning in Vision Language Models | OpenReview","url":"https://openreview.net/forum?id=Dxb6gBJHby"},{"title":"VLM-Pruner: Buffering for Spatial Sparsity in an Efficient VLM Centrifugal Token Pruning Paradigm","url":"https://arxiv.org/html/2512.02700"},{"title":"[2512.02700] VLM-Pruner: Buffering for Spatial Sparsity in an Efficient VLM Centrifugal Token Pruning Paradigm","url":"https://arxiv.org/abs/2512.02700"},{"title":"RETHINKING ATTENTION-BASED TOKEN PRUNING IN ...","url":"https://openreview.net/pdf/e94a30dd71e7b6a0a1a27082eb13b96f3442bf87.pdf"},{"title":"A Glimpse to Compress: Dynamic Visual Token Pruning for Large Vision-Language Models","url":"https://arxiv.org/html/2508.01548v1"},{"title":"The Better You Learn, The Smarter You Prune: Towards Efficient Vision-language-action Models via Differentiable Token Pruning","url":"https://arxiv.org/html/2509.12594v1"},{"title":"SVD-PRUNE: TRAINING-FREE TOKEN PRUNING FOR EFFICIENT VISION-LANGUAGE MODELS","url":"https://arxiv.org/html/2604.11530"},{"title":"[2511.16449] VLA-Pruner: Temporal-Aware Dual-Level Visual Token Pruning for Efficient Vision-Language-Action Inference","url":"https://arxiv.org/abs/2511.16449"}]
+
+Based on the search results, here's information about LearnPruner:
+
+## LearnPruner: Overview
+
+LearnPruner addresses the significant computational burdens of Vision-Language Models (VLMs) due to long visual sequence inputs.
+
+## Key Approach
+
+LearnPruner is a two-stage token pruning framework that first removes redundant vision tokens via a learnable pruning module after the vision encoder, then retains only task-relevant tokens in the LLM's middle layer.
+
+The method specifically:
+- Employs a lightweight learnable module to directly predict the importance scores of vision tokens, replacing the conventional [CLS] attention scores
+- Retains a small set of diversity tokens to provide complementary visual information
+- Performs query-aware token selection in the middle layer of LLM, further discarding tokens that are irrelevant to the given query
+
+## Key Findings
+
+Vision encoders suffer from attention sink, leading to poor focus on informative foreground regions, while in LLMs, text-to-vision attention demonstrates resistance to attention bias and enables effective pruning guidance in middle layers.
+
+## Results
+
+LearnPruner can preserve approximately 95% of the original performance while using only 5.5% of vision tokens, and achieve 3.2× inference acceleration.
+
+The paper was submitted to arXiv on April 27, 2026, and is authored by Rinyoichi Takezoe and 5 other researchers.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2227b979-c6da-4f58-a10f-88a5d5d79ba5",
+  "isSidechain": false,
+  "promptId": "3cc7bdc6-7582-4027-953f-42207d10bfec",
+  "type": "user",
+  "uuid": "ced2de07-e2fc-41da-9de7-afe2a62e7257",
+  "toolUseResult": {
+    "query": "LearnPruner learnable token pruning VLM arXiv 2604.23950",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01ReVa9AK2fsfTjWGbLSCW1S",
+        "content": [
+          {
+            "title": "[2604.23950] LearnPruner: Rethinking Attention-based Token Pruning in Vision Language Models",
+            "url": "https://arxiv.org/abs/2604.23950"
+          },
+          {
+            "title": "LearnPruner: Rethinking Attention-based Token Pruning in Vision Language Models",
+            "url": "https://arxiv.org/html/2604.23950"
+          },
+          {
+            "title": "LearnPruner: Rethinking Attention-based Token Pruning in Vision Language Models | OpenReview",
+            "url": "https://openreview.net/forum?id=Dxb6gBJHby"
+          },
+          {
+            "title": "VLM-Pruner: Buffering for Spatial Sparsity in an Efficient VLM Centrifugal Token Pruning Paradigm",
+            "url": "https://arxiv.org/html/2512.02700"
+          },
+          {
+            "title": "[2512.02700] VLM-Pruner: Buffering for Spatial Sparsity in an Efficient VLM Centrifugal Token Pruning Paradigm",
+            "url": "https://arxiv.org/abs/2512.02700"
+          },
+          {
+            "title": "RETHINKING ATTENTION-BASED TOKEN PRUNING IN ...",
+            "url": "https://openreview.net/pdf/e94a30dd71e7b6a0a1a27082eb13b96f3442bf87.pdf"
+          },
+          {
+            "title": "A Glimpse to Compress: Dynamic Visual Token Pruning for Large Vision-Language Models",
+            "url": "https://arxiv.org/html/2508.01548v1"
+          },
+          {
+            "title": "The Better You Learn, The Smarter You Prune: Towards Efficient Vision-language-action Models via Differentiable Token Pruning",
+            "url": "https://arxiv.org/html/2509.12594v1"
+          },
+          {
+            "title": "SVD-PRUNE: TRAINING-FREE TOKEN PRUNING FOR EFFICIENT VISION-LANGUAGE MODELS",
+            "url": "https://arxiv.org/html/2604.11530"
+          },
+          {
+            "title": "[2511.16449] VLA-Pruner: Temporal-Aware Dual-Level Visual Token Pruning for Efficient Vision-Language-Action Inference",
+            "url": "https://arxiv.org/abs/2511.16449"
+          }
+        ]
+      },
+      "Based on the search results, here's information about LearnPruner:\n\n## LearnPruner: Overview\n\nLearnPruner addresses the significant computational burdens of Vision-Language Models (VLMs) due to long visual sequence inputs.\n\n## Key Approach\n\nLearnPruner is a two-stage token pruning framework that first removes redundant vision tokens via a learnable pruning module after the vision encoder, then retains only task-relevant tokens in the LLM's middle layer.\n\nThe method specifically:\n- Employs a lightweight learnable module to directly predict the importance scores of vision tokens, replacing the conventional [CLS] attention scores\n- Retains a small set of diversity tokens to provide complementary visual information\n- Performs query-aware token selection in the middle layer of LLM, further discarding tokens that are irrelevant to the given query\n\n## Key Findings\n\nVision encoders suffer from attention sink, leading to poor focus on informative foreground regions, while in LLMs, text-to-vision attention demonstrates resistance to attention bias and enables effective pruning guidance in middle layers.\n\n## Results\n\nLearnPruner can preserve approximately 95% of the original performance while using only 5.5% of vision tokens, and achieve 3.2× inference acceleration.\n\nThe paper was submitted to arXiv on April 27, 2026, and is authored by Rinyoichi Takezoe and 5 other researchers."
+    ],
+    "durationSeconds": 7.575827860000005
+  },
+  "sourceToolAssistantUUID": "2227b979-c6da-4f58-a10f-88a5d5d79ba5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-13T04:59:58.715Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GzDpvML5jJf8py2zC8TKnf`</summary>
+
+```json
+{
+  "query": "causal token selection VLA robustness generalization 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ced2de07-e2fc-41da-9de7-afe2a62e7257",
+  "isSidechain": false,
+  "requestId": "req_011CayyhJrR5axrHVW152T4T",
+  "type": "assistant",
+  "uuid": "a1daba93-fd44-4ff7-84ff-7cd1796d77a3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HsDjLkCKLQ8GnHjQ6fdK5v",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1000,
+      "cache_read_input_tokens": 37576,
+      "output_tokens": 65,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1000,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 65,
+          "cache_read_input_tokens": 37576,
+          "cache_creation_input_tokens": 1000,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1000
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-13T05:00:06.176Z_
+
+<details><summary>↩ Tool result · `toolu_01GzDpvML5jJf8py2zC8TKnf`</summary>
+
+```text
+Web search results for query: "causal token selection VLA robustness generalization 2026"
+
+Links: [{"title":"VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models","url":"https://arxiv.org/html/2603.22991v1"},{"title":"Gaze-Regularized Vision-Language-Action Models for Robotic Manipulation","url":"https://arxiv.org/html/2603.23202v1"},{"title":"RobustVLA: Robustness-Aware Reinforcement Post-Training for Vision-Language-Action Models","url":"https://arxiv.org/html/2511.01331"},{"title":"VLA-Cache: Towards Efficient Vision-Language-Action Model via Adaptive Token Caching in Robotic Manipulation","url":"https://arxiv.org/html/2502.02175v1"},{"title":"Enhancing Linguistic Generalization of VLA: Fine-Tuning OpenVLA via Synthetic Instruction Augmentation","url":"https://arxiv.org/html/2603.16044"},{"title":"World Model for Robot Learning: A Comprehensive Survey","url":"https://arxiv.org/html/2605.00080"},{"title":"State of Vision-Language-Action (VLA) Research at ICLR 2026 – Moritz Reuss","url":"https://mbreuss.github.io/blog_post_iclr_26_vla.html"},{"title":"Do World Action Models Generalize Better than VLAs? A Robustness Study","url":"https://arxiv.org/html/2603.22078v1"},{"title":"Spec-VLA: Speculative Decoding for Vision-Language- ...","url":"https://aclanthology.org/2025.emnlp-main.1367.pdf"},{"title":"What Can RL Bring to VLA Generalization? An Empirical Study","url":"https://arxiv.org/html/2505.19789v4"}]
+
+I found several relevant research papers on your query. Here are the key findings:
+
+## Token Selection and VLA Robustness
+
+VLA-Cache incorporates a token-selection mechanism that compares the visual input at each step with the input from the previous step, adaptively identifying visual tokens with minimal changes, which improves efficiency while maintaining robustness.
+
+Another recent work, VLA-IAP uses a Semantic-Motion IoU metric to assess interaction lock and dynamically switches between conservative and aggressive pruning modes, preventing premature token loss and ensuring robustness under extreme compression.
+
+## Generalization and Robustness
+
+Recent studies reveal that the generalization ability of pre-trained VLA models remains limited when deployed in out-of-distribution scenarios, with one key reason being that VLA models may rely on spurious correlations between irrelevant observation features and actions, rather than capturing the true causal relationship required for robust generalization.
+
+RL fine-tuning, particularly with PPO, significantly enhances generalization in semantic understanding and execution robustness over SFT, while maintaining comparable visual robustness.
+
+## Recent Trends (2026)
+
+A comprehensive analysis of 164 Vision-Language-Action model submissions at ICLR 2026 revealed trends in discrete diffusion VLAs, reasoning models, and benchmarks like LIBERO, CALVIN, and SIMPLER.
+
+The search results show active research on improving VLA robustness through token selection mechanisms, causal reasoning approaches, and enhanced generalization techniques in 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a1daba93-fd44-4ff7-84ff-7cd1796d77a3",
+  "isSidechain": false,
+  "promptId": "3cc7bdc6-7582-4027-953f-42207d10bfec",
+  "type": "user",
+  "uuid": "5c92a2b7-f780-4532-9bed-6e4f53a90bd5",
+  "toolUseResult": {
+    "query": "causal token selection VLA robustness generalization 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01KgTT9nAREArzGoxMtuq5Fv",
+        "content": [
+          {
+            "title": "VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2603.22991v1"
+          },
+          {
+            "title": "Gaze-Regularized Vision-Language-Action Models for Robotic Manipulation",
+            "url": "https://arxiv.org/html/2603.23202v1"
+          },
+          {
+            "title": "RobustVLA: Robustness-Aware Reinforcement Post-Training for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2511.01331"
+          },
+          {
+            "title": "VLA-Cache: Towards Efficient Vision-Language-Action Model via Adaptive Token Caching in Robotic Manipulation",
+            "url": "https://arxiv.org/html/2502.02175v1"
+          },
+          {
+            "title": "Enhancing Linguistic Generalization of VLA: Fine-Tuning OpenVLA via Synthetic Instruction Augmentation",
+            "url": "https://arxiv.org/html/2603.16044"
+          },
+          {
+            "title": "World Model for Robot Learning: A Comprehensive Survey",
+            "url": "https://arxiv.org/html/2605.00080"
+          },
+          {
+            "title": "State of Vision-Language-Action (VLA) Research at ICLR 2026 – Moritz Reuss",
+            "url": "https://mbreuss.github.io/blog_post_iclr_26_vla.html"
+          },
+          {
+            "title": "Do World Action Models Generalize Better than VLAs? A Robustness Study",
+            "url": "https://arxiv.org/html/2603.22078v1"
+          },
+          {
+            "title": "Spec-VLA: Speculative Decoding for Vision-Language- ...",
+            "url": "https://aclanthology.org/2025.emnlp-main.1367.pdf"
+          },
+          {
+            "title": "What Can RL Bring to VLA Generalization? An Empirical Study",
+            "url": "https://arxiv.org/html/2505.19789v4"
+          }
+        ]
+      },
+      "I found several relevant research papers on your query. Here are the key findings:\n\n## Token Selection and VLA Robustness\n\nVLA-Cache incorporates a token-selection mechanism that compares the visual input at each step with the input from the previous step, adaptively identifying visual tokens with minimal changes, which improves efficiency while maintaining robustness.\n\nAnother recent work, VLA-IAP uses a Semantic-Motion IoU metric to assess interaction lock and dynamically switches between conservative and aggressive pruning modes, preventing premature token loss and ensuring robustness under extreme compression.\n\n## Generalization and Robustness\n\nRecent studies reveal that the generalization ability of pre-trained VLA models remains limited when deployed in out-of-distribution scenarios, with one key reason being that VLA models may rely on spurious correlations between irrelevant observation features and actions, rather than capturing the true causal relationship required for robust generalization.\n\nRL fine-tuning, particularly with PPO, significantly enhances generalization in semantic understanding and execution robustness over SFT, while maintaining comparable visual robustness.\n\n## Recent Trends (2026)\n\nA comprehensive analysis of 164 Vision-Language-Action model submissions at ICLR 2026 revealed trends in discrete diffusion VLAs, reasoning models, and benchmarks like LIBERO, CALVIN, and SIMPLER.\n\nThe search results show active research on improving VLA robustness through token selection mechanisms, causal reasoning approaches, and enhanced generalization techniques in 2026."
+    ],
+    "durationSeconds": 7.455549031000002
+  },
+  "sourceToolAssistantUUID": "a1daba93-fd44-4ff7-84ff-7cd1796d77a3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-13T05:00:09.638Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01SBJAwhN6nxQpLDASiC5J2X`</summary>
+
+```json
+{
+  "query": "DTP distracting token pruning VLA arXiv 2601.16065"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5c92a2b7-f780-4532-9bed-6e4f53a90bd5",
+  "isSidechain": false,
+  "requestId": "req_011CayyiLbcgYR9oaY5vU8EA",
+  "type": "assistant",
+  "uuid": "78d933dd-dbd6-4947-b5db-b2148c5d7c32",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XUiwUZ3gSYb2CDFY9SpAcT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 921,
+      "cache_read_input_tokens": 38576,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 921,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 38576,
+          "cache_creation_input_tokens": 921,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 921
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-13T05:00:15.711Z_
+
+<details><summary>↩ Tool result · `toolu_01SBJAwhN6nxQpLDASiC5J2X`</summary>
+
+```text
+Web search results for query: "DTP distracting token pruning VLA arXiv 2601.16065"
+
+Links: [{"title":"[2601.16065] DTP: A Simple yet Effective Distracting Token Pruning Framework for Vision-Language Action Models","url":"https://arxiv.org/abs/2601.16065"},{"title":"DTP:A Simple yet Effective Distracting Token Pruning Framework for Vision-Language Action Models","url":"https://arxiv.org/html/2601.16065"},{"title":"DTP: A Simple yet Effective Distracting Token Pruning Framework for Vision-Language Action Models | OpenReview","url":"https://openreview.net/forum?id=5yYQDuXzZh"},{"title":"DTP:A SIMPLE YET EFFECTIVE DISTRACTING TOKEN ...","url":"https://openreview.net/pdf/81a879f3502bf537aca1b6c9bab050f3b90967e4.pdf"},{"title":"The Better You Learn, The Smarter You Prune: Towards Efficient Vision-language-action Models via Differentiable Token Pruning","url":"https://arxiv.org/html/2509.12594v1"},{"title":"VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models","url":"https://arxiv.org/html/2603.22991v1"},{"title":"Efficient Token Pruning for LLaDA-V","url":"https://arxiv.org/html/2601.20168"},{"title":"GitHub - ZLKong/Awesome-Collection-Token-Reduction: A collection of token reduction (token pruning, merging, clustering, etc.) techniques for ML/AI · GitHub","url":"https://github.com/ZLKong/Awesome-Collection-Token-Reduction"},{"title":"[2601.07667] Adaptive Layer Selection for Layer-Wise Token Pruning in LLM Inference","url":"https://arxiv.org/abs/2601.07667"},{"title":"[2511.16449] VLA-Pruner: Temporal-Aware Dual-Level Visual Token Pruning for Efficient Vision-Language-Action Inference","url":"https://arxiv.org/abs/2511.16449"}]
+
+Based on the search results, here's information about the paper arXiv 2601.16065:
+
+## DTP: Distracting Token Pruning for Vision-Language Action Models
+
+Vision-Language Action (VLA) models have shown remarkable progress in robotic manipulation by leveraging the powerful perception abilities of Vision-Language Models (VLMs), but they may overly attend to image tokens in task-irrelevant regions (described as 'distracting tokens'), which can disturb the model's generation of desired action tokens and affect task success rates.
+
+The paper introduces a simple yet effective plug-and-play Distracting Token Pruning (DTP) framework that dynamically detects and prunes these distracting image tokens by correcting the model's visual attention patterns, aiming to improve task success rates without altering the model's original architecture or adding additional inputs.
+
+### Key Results
+
+Experiments on the SIMPLER Benchmark show that the method consistently achieves relative improvements in task success rates across different types of novel VLA models, demonstrating generalizability to transformer-based VLAs. Further analysis reveals a negative correlation between task success rate and the amount of attention in task-irrelevant regions for all models tested, highlighting a common phenomenon of VLA models that could guide future research.
+
+The paper was published on January 22, 2026, and the authors have made their code publicly available.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "78d933dd-dbd6-4947-b5db-b2148c5d7c32",
+  "isSidechain": false,
+  "promptId": "3cc7bdc6-7582-4027-953f-42207d10bfec",
+  "type": "user",
+  "uuid": "a4c7f55e-7d73-4c28-989e-4de5d13535cf",
+  "toolUseResult": {
+    "query": "DTP distracting token pruning VLA arXiv 2601.16065",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01V93RvLeTovuuQmpeYwxvfE",
+        "content": [
+          {
+            "title": "[2601.16065] DTP: A Simple yet Effective Distracting Token Pruning Framework for Vision-Language Action Models",
+            "url": "https://arxiv.org/abs/2601.16065"
+          },
+          {
+            "title": "DTP:A Simple yet Effective Distracting Token Pruning Framework for Vision-Language Action Models",
+            "url": "https://arxiv.org/html/2601.16065"
+          },
+          {
+            "title": "DTP: A Simple yet Effective Distracting Token Pruning Framework for Vision-Language Action Models | OpenReview",
+            "url": "https://openreview.net/forum?id=5yYQDuXzZh"
+          },
+          {
+            "title": "DTP:A SIMPLE YET EFFECTIVE DISTRACTING TOKEN ...",
+            "url": "https://openreview.net/pdf/81a879f3502bf537aca1b6c9bab050f3b90967e4.pdf"
+          },
+          {
+            "title": "The Better You Learn, The Smarter You Prune: Towards Efficient Vision-language-action Models via Differentiable Token Pruning",
+            "url": "https://arxiv.org/html/2509.12594v1"
+          },
+          {
+            "title": "VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2603.22991v1"
+          },
+          {
+            "title": "Efficient Token Pruning for LLaDA-V",
+            "url": "https://arxiv.org/html/2601.20168"
+          },
+          {
+            "title": "GitHub - ZLKong/Awesome-Collection-Token-Reduction: A collection of token reduction (token pruning, merging, clustering, etc.) techniques for ML/AI · GitHub",
+            "url": "https://github.com/ZLKong/Awesome-Collection-Token-Reduction"
+          },
+          {
+            "title": "[2601.07667] Adaptive Layer Selection for Layer-Wise Token Pruning in LLM Inference",
+            "url": "https://arxiv.org/abs/2601.07667"
+          },
+          {
+            "title": "[2511.16449] VLA-Pruner: Temporal-Aware Dual-Level Visual Token Pruning for Efficient Vision-Language-Action Inference",
+            "url": "https://arxiv.org/abs/2511.16449"
+          }
+        ]
+      },
+      "Based on the search results, here's information about the paper arXiv 2601.16065:\n\n## DTP: Distracting Token Pruning for Vision-Language Action Models\n\nVision-Language Action (VLA) models have shown remarkable progress in robotic manipulation by leveraging the powerful perception abilities of Vision-Language Models (VLMs), but they may overly attend to image tokens in task-irrelevant regions (described as 'distracting tokens'), which can disturb the model's generation of desired action tokens and affect task success rates.\n\nThe paper introduces a simple yet effective plug-and-play Distracting Token Pruning (DTP) framework that dynamically detects and prunes these distracting image tokens by correcting the model's visual attention patterns, aiming to improve task success rates without altering the model's original architecture or adding additional inputs.\n\n### Key Results\n\nExperiments on the SIMPLER Benchmark show that the method consistently achieves relative improvements in task success rates across different types of novel VLA models, demonstrating generalizability to transformer-based VLAs. Further analysis reveals a negative correlation between task success rate and the amount of attention in task-irrelevant regions for all models tested, highlighting a common phenomenon of VLA models that could guide future research.\n\nThe paper was published on January 22, 2026, and the authors have made their code publicly available."
+    ],
+    "durationSeconds": 6.0664161259999965
+  },
+  "sourceToolAssistantUUID": "78d933dd-dbd6-4947-b5db-b2148c5d7c32",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-13T05:00:18.002Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Nu4nP3K9VY6iNGXyHoREBX`</summary>
+
+```json
+{
+  "query": "TIES inter-layer rank consistency VLA token pruning arXiv 2603.24941"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a4c7f55e-7d73-4c28-989e-4de5d13535cf",
+  "isSidechain": false,
+  "requestId": "req_011Cayyj3HqY1RoCUre55bas",
+  "type": "assistant",
+  "uuid": "fc5e654c-a507-4c40-8f61-c3960e4bc5cc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NrCNHsEuKqwBhCuhchFqiC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 964,
+      "cache_read_input_tokens": 39497,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 964,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 39497,
+          "cache_creation_input_tokens": 964,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 964
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-13T05:00:28.854Z_
+
+<details><summary>↩ Tool result · `toolu_01Nu4nP3K9VY6iNGXyHoREBX`</summary>
+
+```text
+Web search results for query: "TIES inter-layer rank consistency VLA token pruning arXiv 2603.24941"
+
+Links: [{"title":"Beyond Attention Magnitude: Leveraging Inter-layer Rank Consistency for","url":"https://arxiv.org/pdf/2603.24941"},{"title":"Beyond Attention Magnitude: Leveraging Inter-layer Rank Consistency for Efficient Vision-Language-Action Models","url":"https://arxiv.org/html/2603.24941"},{"title":"[2603.24941] Beyond Attention Magnitude: Leveraging Inter-layer Rank Consistency for Efficient Vision-Language-Action Models","url":"https://arxiv.org/abs/2603.24941"},{"title":"VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models","url":"https://arxiv.org/html/2603.22991"},{"title":"[2603.22991v1] VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models","url":"https://arxiv.org/abs/2603.22991v1"},{"title":"[2603.22991] VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models","url":"https://arxiv.org/abs/2603.22991"},{"title":"SP-VLA: A Joint Model Scheduling and Token Pruning Approach for VLA Model Acceleration","url":"https://arxiv.org/html/2506.12723v2"},{"title":"[2603.06480] History-Conditioned Spatio-Temporal Visual Token Pruning for Efficient Vision-Language Navigation","url":"https://arxiv.org/abs/2603.06480"},{"title":"ETA-VLA: Efficient Token Adaptation via Temporal Fusion and Intra-LLM Sparsification for Vision-Language-Action Models","url":"https://arxiv.org/html/2603.25766"},{"title":"The Better You Learn, The Smarter You Prune: Towards Efficient Vision-language-action Models via Differentiable Token Pruning","url":"https://arxiv.org/html/2509.12594v1"}]
+
+Based on the search results, here's what I found about the arXiv paper 2603.24941:
+
+## Paper Overview
+
+TIES (Tau-guided Inter-layer Efficient Selection) is a dynamic framework guided by inter-layer token ranking consistency that adaptively balances attention magnitude with ranking consistency to ensure robust token selection without requiring additional training.
+
+## Problem Statement
+
+Vision-Language-Action (VLA) models excel in robotic manipulation but suffer from significant inference latency due to processing dense visual tokens. Existing token reduction methods predominantly rely on attention magnitude as a static selection, but this work challenges this assumption, revealing that high-attention tokens are task-dependent and can even degrade policy performance.
+
+## Key Results
+
+On the CogACT + SIMPLER benchmark, TIES improves average success rates by 6% while reducing token usage by 78%, and demonstrates strong generalization across diverse decoders and benchmarks.
+
+The paper was submitted to arXiv on March 26, 2026, and addresses a critical efficiency bottleneck in VLA models by moving beyond simple attention magnitude-based token pruning to a more sophisticated ranking consistency approach.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fc5e654c-a507-4c40-8f61-c3960e4bc5cc",
+  "isSidechain": false,
+  "promptId": "3cc7bdc6-7582-4027-953f-42207d10bfec",
+  "type": "user",
+  "uuid": "7f760245-e2da-4432-b81b-fe6133268a10",
+  "toolUseResult": {
+    "query": "TIES inter-layer rank consistency VLA token pruning arXiv 2603.24941",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016Bb12YdHgfacZKi2nEne4B",
+        "content": [
+          {
+            "title": "Beyond Attention Magnitude: Leveraging Inter-layer Rank Consistency for",
+            "url": "https://arxiv.org/pdf/2603.24941"
+          },
+          {
+            "title": "Beyond Attention Magnitude: Leveraging Inter-layer Rank Consistency for Efficient Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2603.24941"
+          },
+          {
+            "title": "[2603.24941] Beyond Attention Magnitude: Leveraging Inter-layer Rank Consistency for Efficient Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2603.24941"
+          },
+          {
+            "title": "VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2603.22991"
+          },
+          {
+            "title": "[2603.22991v1] VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2603.22991v1"
+          },
+          {
+            "title": "[2603.22991] VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2603.22991"
+          },
+          {
+            "title": "SP-VLA: A Joint Model Scheduling and Token Pruning Approach for VLA Model Acceleration",
+            "url": "https://arxiv.org/html/2506.12723v2"
+          },
+          {
+            "title": "[2603.06480] History-Conditioned Spatio-Temporal Visual Token Pruning for Efficient Vision-Language Navigation",
+            "url": "https://arxiv.org/abs/2603.06480"
+          },
+          {
+            "title": "ETA-VLA: Efficient Token Adaptation via Temporal Fusion and Intra-LLM Sparsification for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2603.25766"
+          },
+          {
+            "title": "The Better You Learn, The Smarter You Prune: Towards Efficient Vision-language-action Models via Differentiable Token Pruning",
+            "url": "https://arxiv.org/html/2509.12594v1"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the arXiv paper 2603.24941:\n\n## Paper Overview\n\nTIES (Tau-guided Inter-layer Efficient Selection) is a dynamic framework guided by inter-layer token ranking consistency that adaptively balances attention magnitude with ranking consistency to ensure robust token selection without requiring additional training.\n\n## Problem Statement\n\nVision-Language-Action (VLA) models excel in robotic manipulation but suffer from significant inference latency due to processing dense visual tokens. Existing token reduction methods predominantly rely on attention magnitude as a static selection, but this work challenges this assumption, revealing that high-attention tokens are task-dependent and can even degrade policy performance.\n\n## Key Results\n\nOn the CogACT + SIMPLER benchmark, TIES improves average success rates by 6% while reducing token usage by 78%, and demonstrates strong generalization across diverse decoders and benchmarks.\n\nThe paper was submitted to arXiv on March 26, 2026, and addresses a critical efficiency bottleneck in VLA models by moving beyond simple attention magnitude-based token pruning to a more sophisticated ranking consistency approach."
+    ],
+    "durationSeconds": 10.848395977000008
+  },
+  "sourceToolAssistantUUID": "fc5e654c-a507-4c40-8f61-c3960e4bc5cc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 29 · 2026-05-13T05:00:28.858Z_
+
+```json
+{
+  "parentUuid": "7f760245-e2da-4432-b81b-fe6133268a10",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "78c11cca-779e-4a16-9c82-cc18052bd86f",
+  "timestamp": "2026-05-13T05:00:28.858Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 30_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "78c11cca-779e-4a16-9c82-cc18052bd86f",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 31_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Causal token selection for VLA generalization",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a"
+}
+```
+
+---
+
+### Assistant
+
+_source line 32 · 2026-05-13T05:00:33.507Z_
+
+Let me now search for more recent work that might compete with or supersede CaTS, and verify some specific claims.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "78c11cca-779e-4a16-9c82-cc18052bd86f",
+  "isSidechain": false,
+  "requestId": "req_011Cayyk1UUf1ocrpFzdQv2n",
+  "type": "assistant",
+  "uuid": "5e3eefb9-374a-48a6-b65d-c1f69e1cf0b6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EkEEGKdfTLxoMJCEwo125N",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 997,
+      "cache_read_input_tokens": 40461,
+      "output_tokens": 96,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 997,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 96,
+          "cache_read_input_tokens": 40461,
+          "cache_creation_input_tokens": 997,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 997
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-13T05:00:33.892Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01ELA4UYMJ7VwLbG9ALbAifB`</summary>
+
+```json
+{
+  "query": "causal intervention imitation learning robotic manipulation 2025 2026 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5e3eefb9-374a-48a6-b65d-c1f69e1cf0b6",
+  "isSidechain": false,
+  "requestId": "req_011Cayyk1UUf1ocrpFzdQv2n",
+  "type": "assistant",
+  "uuid": "ee2da751-3c8c-4c52-8b01-2f4ae1d4ea10",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EkEEGKdfTLxoMJCEwo125N",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 997,
+      "cache_read_input_tokens": 40461,
+      "output_tokens": 96,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 997,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 96,
+          "cache_read_input_tokens": 40461,
+          "cache_creation_input_tokens": 997,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 997
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-13T05:00:41.178Z_
+
+<details><summary>↩ Tool result · `toolu_01ELA4UYMJ7VwLbG9ALbAifB`</summary>
+
+```text
+Web search results for query: "causal intervention imitation learning robotic manipulation 2025 2026 arXiv"
+
+Links: [{"title":"[2507.22380] Improving Generalization Ability of Robotic Imitation Learning by Resolving Causal Confusion in Observations","url":"https://arxiv.org/abs/2507.22380"},{"title":"[2507.22380v1] Improving Generalization Ability of Robotic Imitation Learning by Resolving Causal Confusion in Observations","url":"https://arxiv.org/abs/2507.22380v1"},{"title":"Improving Generalization Ability of Robotic Imitation Learning by Resolving Causal Confusion in Observations","url":"https://arxiv.org/html/2507.22380v1"},{"title":"Improving Generalization Ability of Robotic Imitation Learning by Resolving","url":"https://arxiv.org/pdf/2507.22380"},{"title":"Frontiers | Interactive imitation learning for dexterous robotic manipulation: challenges and perspectives—a survey","url":"https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1682437/full"},{"title":"Causal World Modeling for Robot Control","url":"https://arxiv.org/html/2601.21998v2"},{"title":"Learning by doing: an online causal reinforcement learning framework with causal-aware policy | Science China Information Sciences | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s11432-024-4403-7"},{"title":"Robot-Gated Interactive Imitation Learning with Adaptive Intervention Mechanism","url":"https://arxiv.org/html/2506.09176v1"},{"title":"Robotics Mar 2025","url":"https://arxiv.org/list/cs.RO/2025-03?skip=275&show=2000"},{"title":"Interactive imitation learning for dexterous robotic manipulation: challenges and perspectives—a survey - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC12757213/"}]
+
+I found relevant research on causal intervention and imitation learning in robotic manipulation. Here are the key findings:
+
+## Main Research Result
+
+The most relevant recent paper is "Improving Generalization Ability of Robotic Imitation Learning by Resolving Causal Confusion in Observations" (arXiv 2507.22380), published in July 2025.
+
+### Key Contributions
+
+The paper proposes to explicitly learn the causal relationship between observation components and expert actions, employing a framework where a causal structural function is learned by intervention on the imitation learning policy. 
+
+The authors propose a simple causal structure learning framework that can be easily embedded in recent imitation learning architectures, such as the Action Chunking Transformer.
+
+### Technical Innovation
+
+The work theoretically clarifies that disentangling feature representations from image input—a requirement in previous approaches—is not necessary in causal relationship learning for complex robotic manipulation processes.
+
+### Experimental Validation
+
+The approach is demonstrated using a simulation of the ALOHA bimanual robot arms in Mujoco, and shows that the method can considerably mitigate the generalization problem of existing complex imitation learning algorithms.
+
+This research directly addresses the intersection of causal intervention, imitation learning, and robotic manipulation that you searched for, with results showing significant improvements in handling domain shifts between training and deployment environments.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ee2da751-3c8c-4c52-8b01-2f4ae1d4ea10",
+  "isSidechain": false,
+  "promptId": "3cc7bdc6-7582-4027-953f-42207d10bfec",
+  "type": "user",
+  "uuid": "d4961604-7a6b-4fac-81bd-2cf9e9b37790",
+  "toolUseResult": {
+    "query": "causal intervention imitation learning robotic manipulation 2025 2026 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01McvaHmWp3WwXamfSV6aeVL",
+        "content": [
+          {
+            "title": "[2507.22380] Improving Generalization Ability of Robotic Imitation Learning by Resolving Causal Confusion in Observations",
+            "url": "https://arxiv.org/abs/2507.22380"
+          },
+          {
+            "title": "[2507.22380v1] Improving Generalization Ability of Robotic Imitation Learning by Resolving Causal Confusion in Observations",
+            "url": "https://arxiv.org/abs/2507.22380v1"
+          },
+          {
+            "title": "Improving Generalization Ability of Robotic Imitation Learning by Resolving Causal Confusion in Observations",
+            "url": "https://arxiv.org/html/2507.22380v1"
+          },
+          {
+            "title": "Improving Generalization Ability of Robotic Imitation Learning by Resolving",
+            "url": "https://arxiv.org/pdf/2507.22380"
+          },
+          {
+            "title": "Frontiers | Interactive imitation learning for dexterous robotic manipulation: challenges and perspectives—a survey",
+            "url": "https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1682437/full"
+          },
+          {
+            "title": "Causal World Modeling for Robot Control",
+            "url": "https://arxiv.org/html/2601.21998v2"
+          },
+          {
+            "title": "Learning by doing: an online causal reinforcement learning framework with causal-aware policy | Science China Information Sciences | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s11432-024-4403-7"
+          },
+          {
+            "title": "Robot-Gated Interactive Imitation Learning with Adaptive Intervention Mechanism",
+            "url": "https://arxiv.org/html/2506.09176v1"
+          },
+          {
+            "title": "Robotics Mar 2025",
+            "url": "https://arxiv.org/list/cs.RO/2025-03?skip=275&show=2000"
+          },
+          {
+            "title": "Interactive imitation learning for dexterous robotic manipulation: challenges and perspectives—a survey - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12757213/"
+          }
+        ]
+      },
+      "I found relevant research on causal intervention and imitation learning in robotic manipulation. Here are the key findings:\n\n## Main Research Result\n\nThe most relevant recent paper is \"Improving Generalization Ability of Robotic Imitation Learning by Resolving Causal Confusion in Observations\" (arXiv 2507.22380), published in July 2025.\n\n### Key Contributions\n\nThe paper proposes to explicitly learn the causal relationship between observation components and expert actions, employing a framework where a causal structural function is learned by intervention on the imitation learning policy. \n\nThe authors propose a simple causal structure learning framework that can be easily embedded in recent imitation learning architectures, such as the Action Chunking Transformer.\n\n### Technical Innovation\n\nThe work theoretically clarifies that disentangling feature representations from image input—a requirement in previous approaches—is not necessary in causal relationship learning for complex robotic manipulation processes.\n\n### Experimental Validation\n\nThe approach is demonstrated using a simulation of the ALOHA bimanual robot arms in Mujoco, and shows that the method can considerably mitigate the generalization problem of existing complex imitation learning algorithms.\n\nThis research directly addresses the intersection of causal intervention, imitation learning, and robotic manipulation that you searched for, with results showing significant improvements in handling domain shifts between training and deployment environments."
+    ],
+    "durationSeconds": 7.276193725999998
+  },
+  "sourceToolAssistantUUID": "ee2da751-3c8c-4c52-8b01-2f4ae1d4ea10",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-13T05:00:44.270Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Cpj7HTS9VMQkuzyAm9fPgT`</summary>
+
+```json
+{
+  "query": "vanishing token information visual tokens VLM ICLR 2026 arXiv 2512.07580"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d4961604-7a6b-4fac-81bd-2cf9e9b37790",
+  "isSidechain": false,
+  "requestId": "req_011CayykvHDfyUCxTyj9euou",
+  "type": "assistant",
+  "uuid": "2c24746b-4861-4601-85da-6172237ba80f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01K9ng1v9Yudo2y1JbkeeVAG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 955,
+      "cache_read_input_tokens": 41458,
+      "output_tokens": 77,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 955,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 77,
+          "cache_read_input_tokens": 41458,
+          "cache_creation_input_tokens": 955,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 955
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-13T05:00:50.563Z_
+
+<details><summary>↩ Tool result · `toolu_01Cpj7HTS9VMQkuzyAm9fPgT`</summary>
+
+```text
+Web search results for query: "vanishing token information visual tokens VLM ICLR 2026 arXiv 2512.07580"
+
+Links: [{"title":"[2512.07580] When Token Pruning is Worse than Random: Understanding Visual Token Information in VLLMs","url":"https://arxiv.org/abs/2512.07580"},{"title":"When Token Pruning is Worse than Random: Understanding Visual Token Information in VLLMs","url":"https://arxiv.org/html/2512.07580"},{"title":"All You Need Are Random Visual Tokens? Demystifying Token Pruning in VLLMs","url":"https://arxiv.org/html/2512.07580v1"},{"title":"Efficient Vision-Language Models by Summarizing Visual Tokens into Compact Registers","url":"https://arxiv.org/html/2410.14072v1"},{"title":"ICML Poster The Hidden Life of Tokens: Reducing Hallucination of Large Vision-Language Models Via Visual Information Steering","url":"https://icml.cc/virtual/2025/poster/46338"},{"title":"SparseVLM: Visual Token Sparsification for Efficient Vision Language Models Inference | OpenReview","url":"https://openreview.net/forum?id=1xG3MN1RRW"},{"title":"All You Need Are Random Visual Tokens? Demystifying Token Pruning in VLLMs | OpenReview","url":"https://openreview.net/forum?id=KcIDfNX9ew"},{"title":"The Hidden Life of Tokens: Reducing Hallucination of Large Vision-Language Models Via Visual Information Steering | OpenReview","url":"https://openreview.net/forum?id=7BKcLeHQsm"},{"title":"inference optimal vlms need fewer visual tokens and more ...","url":"https://arxiv.org/pdf/2411.03312"},{"title":"GitHub - ZLKong/Awesome-Collection-Token-Reduction: A collection of token reduction (token pruning, merging, clustering, etc.) techniques for ML/AI · GitHub","url":"https://github.com/ZLKong/Awesome-Collection-Token-Reduction"}]
+
+Based on the search results, I found the paper you're looking for. Here's what I found:
+
+The paper addresses Vision Large Language Models (VLLMs) that incur high computational costs due to their reliance on hundreds of visual tokens to represent images. While token pruning offers a promising solution for accelerating inference, the paper identifies a key observation: in deeper layers (e.g., beyond the 20th), existing training-free pruning methods perform no better than random pruning.
+
+The authors hypothesize that this degradation is caused by "vanishing token information", where visual tokens progressively lose their salience with increasing network depth.
+
+To validate this hypothesis, they quantify a token's information content by measuring the change in the model output probabilities upon its removal. Using this proposed metric, their analysis of the information of visual tokens across layers reveals that as layers deepen, the information of visual tokens gradually becomes uniform and eventually vanishes at an intermediate layer, which they term as "information horizon".
+
+The paper was submitted on December 8, 2025, and the latest version (v2) was revised on March 9, 2026. The full citation for the paper is arXiv:2512.07580.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2c24746b-4861-4601-85da-6172237ba80f",
+  "isSidechain": false,
+  "promptId": "3cc7bdc6-7582-4027-953f-42207d10bfec",
+  "type": "user",
+  "uuid": "d9ed8126-d7a4-4f11-9439-07e0dcc08435",
+  "toolUseResult": {
+    "query": "vanishing token information visual tokens VLM ICLR 2026 arXiv 2512.07580",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FP14Tuvt4nb1fbbtCGtNtY",
+        "content": [
+          {
+            "title": "[2512.07580] When Token Pruning is Worse than Random: Understanding Visual Token Information in VLLMs",
+            "url": "https://arxiv.org/abs/2512.07580"
+          },
+          {
+            "title": "When Token Pruning is Worse than Random: Understanding Visual Token Information in VLLMs",
+            "url": "https://arxiv.org/html/2512.07580"
+          },
+          {
+            "title": "All You Need Are Random Visual Tokens? Demystifying Token Pruning in VLLMs",
+            "url": "https://arxiv.org/html/2512.07580v1"
+          },
+          {
+            "title": "Efficient Vision-Language Models by Summarizing Visual Tokens into Compact Registers",
+            "url": "https://arxiv.org/html/2410.14072v1"
+          },
+          {
+            "title": "ICML Poster The Hidden Life of Tokens: Reducing Hallucination of Large Vision-Language Models Via Visual Information Steering",
+            "url": "https://icml.cc/virtual/2025/poster/46338"
+          },
+          {
+            "title": "SparseVLM: Visual Token Sparsification for Efficient Vision Language Models Inference | OpenReview",
+            "url": "https://openreview.net/forum?id=1xG3MN1RRW"
+          },
+          {
+            "title": "All You Need Are Random Visual Tokens? Demystifying Token Pruning in VLLMs | OpenReview",
+            "url": "https://openreview.net/forum?id=KcIDfNX9ew"
+          },
+          {
+            "title": "The Hidden Life of Tokens: Reducing Hallucination of Large Vision-Language Models Via Visual Information Steering | OpenReview",
+            "url": "https://openreview.net/forum?id=7BKcLeHQsm"
+          },
+          {
+            "title": "inference optimal vlms need fewer visual tokens and more ...",
+            "url": "https://arxiv.org/pdf/2411.03312"
+          },
+          {
+            "title": "GitHub - ZLKong/Awesome-Collection-Token-Reduction: A collection of token reduction (token pruning, merging, clustering, etc.) techniques for ML/AI · GitHub",
+            "url": "https://github.com/ZLKong/Awesome-Collection-Token-Reduction"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for. Here's what I found:\n\nThe paper addresses Vision Large Language Models (VLLMs) that incur high computational costs due to their reliance on hundreds of visual tokens to represent images. While token pruning offers a promising solution for accelerating inference, the paper identifies a key observation: in deeper layers (e.g., beyond the 20th), existing training-free pruning methods perform no better than random pruning.\n\nThe authors hypothesize that this degradation is caused by \"vanishing token information\", where visual tokens progressively lose their salience with increasing network depth.\n\nTo validate this hypothesis, they quantify a token's information content by measuring the change in the model output probabilities upon its removal. Using this proposed metric, their analysis of the information of visual tokens across layers reveals that as layers deepen, the information of visual tokens gradually becomes uniform and eventually vanishes at an intermediate layer, which they term as \"information horizon\".\n\nThe paper was submitted on December 8, 2025, and the latest version (v2) was revised on March 9, 2026. The full citation for the paper is arXiv:2512.07580."
+    ],
+    "durationSeconds": 6.283976284000004
+  },
+  "sourceToolAssistantUUID": "2c24746b-4861-4601-85da-6172237ba80f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-13T05:00:56.391Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01SrYsrCJYgTcqF4rFKdDoR9`</summary>
+
+```json
+{
+  "query": "VLA visual token selection robustness distribution shift LIBERO-Plus 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d9ed8126-d7a4-4f11-9439-07e0dcc08435",
+  "isSidechain": false,
+  "requestId": "req_011CayymcEnvqMLk8zvreLLK",
+  "type": "assistant",
+  "uuid": "63ee3a70-e810-432a-a9b0-1eae153643f6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Kh6ZTGUgVMiXxaYR9b95BH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 903,
+      "cache_read_input_tokens": 42413,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 903,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 42413,
+          "cache_creation_input_tokens": 903,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 903
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-13T05:01:05.574Z_
+
+<details><summary>↩ Tool result · `toolu_01SrYsrCJYgTcqF4rFKdDoR9`</summary>
+
+```text
+Web search results for query: "VLA visual token selection robustness distribution shift LIBERO-Plus 2026"
+
+Links: [{"title":"OpenMOSS LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-","url":"https://arxiv.org/pdf/2510.13626"},{"title":"VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models","url":"https://arxiv.org/html/2603.22991v1"},{"title":"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://arxiv.org/html/2510.13626v1"},{"title":"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://sylvestf.github.io/LIBERO-plus/"},{"title":"How brittle are the VLA models in robotics | by Yanan Chen | Medium","url":"https://medium.com/@yananchen1116/how-brittle-are-the-vla-models-in-robotics-66ab85286ecf"},{"title":"CVPR Poster LIBERO-Plus: A Progressive Robustness Benchmark for Visual-Language-Action Models","url":"https://cvpr.thecvf.com/virtual/2026/poster/38735"},{"title":"[2510.13626] LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://arxiv.org/abs/2510.13626"},{"title":"VLA Models Are More Generalizable Than You Think: Revisiting Physical and Spatial Modeling","url":"https://arxiv.org/html/2512.02902"},{"title":"LIBERO Benchmark: Vision-Language-Action in Robotics","url":"https://www.emergentmind.com/topics/libero"},{"title":"GitHub - sylvestf/LIBERO-plus: Official repository of LIBERO-plus, a generalized benchmark for in-depth robustness analysis of vision-language-action models. · GitHub","url":"https://github.com/sylvestf/LIBERO-plus"}]
+
+Based on the search results, here's what I found about VLA visual token selection, robustness, distribution shift, and LIBERO-Plus:
+
+## LIBERO-Plus: A Robustness Benchmark for VLA Models
+
+LIBERO-Plus is a comprehensive, automatic, and fine-grained evaluation framework with controlled perturbations across seven dimensions: object layouts, camera viewpoints, robot initial states, language instructions, lighting conditions, background textures, and sensor noise.
+
+## Key Findings on VLA Robustness
+
+Systematic analysis of ten state-of-the-art models reveals consistent brittleness beneath apparent competence, with performance dropping from 95% to below 30% under modest perturbations.
+
+## Visual Token Selection and Robustness
+
+The search results include research on visual token pruning for VLA models. One approach proposes an Interaction-Aligned Dynamic Strategy coupling spatiotemporal priors with an adaptive safety mechanism, leveraging a Semantic-Motion IoU metric to assess interaction lock and dynamically switch between conservative and aggressive pruning modes.
+
+## Distribution Shift Vulnerabilities
+
+Core weaknesses in contemporary VLA models include vulnerability to visual shifts from over-reliance on fixed visual features leading to failure under variations in camera angle or illumination. VLA models do not possess strong cross-object instruction-following generalization and appear to rely more on fixed vision-action mappings than on fully exploiting language signals in task decision-making.
+
+The research demonstrates that while VLA models show strong in-distribution performance, they struggle significantly with distribution shifts and environmental perturbations commonly encountered in real-world robotic applications.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "63ee3a70-e810-432a-a9b0-1eae153643f6",
+  "isSidechain": false,
+  "promptId": "3cc7bdc6-7582-4027-953f-42207d10bfec",
+  "type": "user",
+  "uuid": "7428d9a6-c7b1-4960-941e-05d18ecce57e",
+  "toolUseResult": {
+    "query": "VLA visual token selection robustness distribution shift LIBERO-Plus 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Af4AXYQmjJP55EY5azKGwH",
+        "content": [
+          {
+            "title": "OpenMOSS LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-",
+            "url": "https://arxiv.org/pdf/2510.13626"
+          },
+          {
+            "title": "VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2603.22991v1"
+          },
+          {
+            "title": "LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2510.13626v1"
+          },
+          {
+            "title": "LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://sylvestf.github.io/LIBERO-plus/"
+          },
+          {
+            "title": "How brittle are the VLA models in robotics | by Yanan Chen | Medium",
+            "url": "https://medium.com/@yananchen1116/how-brittle-are-the-vla-models-in-robotics-66ab85286ecf"
+          },
+          {
+            "title": "CVPR Poster LIBERO-Plus: A Progressive Robustness Benchmark for Visual-Language-Action Models",
+            "url": "https://cvpr.thecvf.com/virtual/2026/poster/38735"
+          },
+          {
+            "title": "[2510.13626] LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2510.13626"
+          },
+          {
+            "title": "VLA Models Are More Generalizable Than You Think: Revisiting Physical and Spatial Modeling",
+            "url": "https://arxiv.org/html/2512.02902"
+          },
+          {
+            "title": "LIBERO Benchmark: Vision-Language-Action in Robotics",
+            "url": "https://www.emergentmind.com/topics/libero"
+          },
+          {
+            "title": "GitHub - sylvestf/LIBERO-plus: Official repository of LIBERO-plus, a generalized benchmark for in-depth robustness analysis of vision-language-action models. · GitHub",
+            "url": "https://github.com/sylvestf/LIBERO-plus"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about VLA visual token selection, robustness, distribution shift, and LIBERO-Plus:\n\n## LIBERO-Plus: A Robustness Benchmark for VLA Models\n\nLIBERO-Plus is a comprehensive, automatic, and fine-grained evaluation framework with controlled perturbations across seven dimensions: object layouts, camera viewpoints, robot initial states, language instructions, lighting conditions, background textures, and sensor noise.\n\n## Key Findings on VLA Robustness\n\nSystematic analysis of ten state-of-the-art models reveals consistent brittleness beneath apparent competence, with performance dropping from 95% to below 30% under modest perturbations.\n\n## Visual Token Selection and Robustness\n\nThe search results include research on visual token pruning for VLA models. One approach proposes an Interaction-Aligned Dynamic Strategy coupling spatiotemporal priors with an adaptive safety mechanism, leveraging a Semantic-Motion IoU metric to assess interaction lock and dynamically switch between conservative and aggressive pruning modes.\n\n## Distribution Shift Vulnerabilities\n\nCore weaknesses in contemporary VLA models include vulnerability to visual shifts from over-reliance on fixed visual features leading to failure under variations in camera angle or illumination. VLA models do not possess strong cross-object instruction-following generalization and appear to rely more on fixed vision-action mappings than on fully exploiting language signals in task decision-making.\n\nThe research demonstrates that while VLA models show strong in-distribution performance, they struggle significantly with distribution shifts and environmental perturbations commonly encountered in real-world robotic applications."
+    ],
+    "durationSeconds": 9.180023917000014
+  },
+  "sourceToolAssistantUUID": "63ee3a70-e810-432a-a9b0-1eae153643f6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-13T05:01:07.832Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XV2MWJMfbuCvtHcbg8UWdT`</summary>
+
+```json
+{
+  "query": "AAAI 2027 submission deadline paper deadline date"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7428d9a6-c7b1-4960-941e-05d18ecce57e",
+  "isSidechain": false,
+  "requestId": "req_011CayyniT8QJ7fYD38E2TWM",
+  "type": "assistant",
+  "uuid": "2c7282cd-6971-4b34-94e4-6406cd4d5a3f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T7wCLZFnFSxD3grkt1bvEp",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 981,
+      "cache_read_input_tokens": 43316,
+      "output_tokens": 64,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 981,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 64,
+          "cache_read_input_tokens": 43316,
+          "cache_creation_input_tokens": 981,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 981
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-13T05:01:12.386Z_
+
+<details><summary>↩ Tool result · `toolu_01XV2MWJMfbuCvtHcbg8UWdT`</summary>
+
+```text
+Web search results for query: "AAAI 2027 submission deadline paper deadline date"
+
+Links: [{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"AAAI 2027 Conference Deadline | Live Countdown Tracker","url":"https://www.getpaperpilot.com/deadlines/aaai-2027.html"},{"title":"Update aaai conference deadlines · huggingface/ai-deadlines at 8e14540","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/8e145403081be22360311ec9ad9565e14b1f2d32"},{"title":"AAAI: National Conference on Artificial Intelligence 2027 2026 2025 ...","url":"http://www.wikicfp.com/cfp/program?id=3"},{"title":"AAAI Conference on Artificial Intelligence - AAAI","url":"https://aaai.org/conference/aaai/"},{"title":"AI Deadlines – AI Conference Call For Paper Deadlines","url":"http://aideadlines.org/"},{"title":"🚨AAAI-26 Call for Papers🚨 AAAI-26 will in Singapore from ...","url":"https://www.facebook.com/AAAIOrg/posts/aaai-26-call-for-papersaaai-26-will-in-singapore-from-january-20-to-january-27-2/751564707547430/"},{"title":"Key deadlines in AI and ML conferences","url":"https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"},{"title":"AI/ML Conference Timeline | NIU AI","url":"https://www.niuai.org/resources/conference-timeline/"},{"title":"AAAI 2027 LaTeX Template | Author Kit & Overleaf | Underleaf","url":"https://www.underleaf.ai/templates/aaai"}]
+
+Based on the search results, here's what I found about the AAAI 2027 submission deadline:
+
+The AAAI 2027 paper submission deadline is TBD (to be determined). The specific deadline date has not yet been officially announced.
+
+However, AAAI 2027 is being held in Montréal, Québec, Canada on February 16-23, 2027. Based on historical patterns, submission deadlines for AAAI 2027 are expected around July–August 2026.
+
+For the most up-to-date information, you can check the official AAAI 2027 call for papers at https://aaai.org/conference/aaai/aaai-27/.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2c7282cd-6971-4b34-94e4-6406cd4d5a3f",
+  "isSidechain": false,
+  "promptId": "3cc7bdc6-7582-4027-953f-42207d10bfec",
+  "type": "user",
+  "uuid": "12f788cb-a721-4433-8396-3ef336f38eac",
+  "toolUseResult": {
+    "query": "AAAI 2027 submission deadline paper deadline date",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_015ZrQJuXQYy7UXHGYux7LdM",
+        "content": [
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "AAAI 2027 Conference Deadline | Live Countdown Tracker",
+            "url": "https://www.getpaperpilot.com/deadlines/aaai-2027.html"
+          },
+          {
+            "title": "Update aaai conference deadlines · huggingface/ai-deadlines at 8e14540",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/8e145403081be22360311ec9ad9565e14b1f2d32"
+          },
+          {
+            "title": "AAAI: National Conference on Artificial Intelligence 2027 2026 2025 ...",
+            "url": "http://www.wikicfp.com/cfp/program?id=3"
+          },
+          {
+            "title": "AAAI Conference on Artificial Intelligence - AAAI",
+            "url": "https://aaai.org/conference/aaai/"
+          },
+          {
+            "title": "AI Deadlines – AI Conference Call For Paper Deadlines",
+            "url": "http://aideadlines.org/"
+          },
+          {
+            "title": "🚨AAAI-26 Call for Papers🚨 AAAI-26 will in Singapore from ...",
+            "url": "https://www.facebook.com/AAAIOrg/posts/aaai-26-call-for-papersaaai-26-will-in-singapore-from-january-20-to-january-27-2/751564707547430/"
+          },
+          {
+            "title": "Key deadlines in AI and ML conferences",
+            "url": "https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"
+          },
+          {
+            "title": "AI/ML Conference Timeline | NIU AI",
+            "url": "https://www.niuai.org/resources/conference-timeline/"
+          },
+          {
+            "title": "AAAI 2027 LaTeX Template | Author Kit & Overleaf | Underleaf",
+            "url": "https://www.underleaf.ai/templates/aaai"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the AAAI 2027 submission deadline:\n\nThe AAAI 2027 paper submission deadline is TBD (to be determined). The specific deadline date has not yet been officially announced.\n\nHowever, AAAI 2027 is being held in Montréal, Québec, Canada on February 16-23, 2027. Based on historical patterns, submission deadlines for AAAI 2027 are expected around July–August 2026.\n\nFor the most up-to-date information, you can check the official AAAI 2027 call for papers at https://aaai.org/conference/aaai/aaai-27/."
+    ],
+    "durationSeconds": 4.549174155000015
+  },
+  "sourceToolAssistantUUID": "2c7282cd-6971-4b34-94e4-6406cd4d5a3f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 41_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "12f788cb-a721-4433-8396-3ef336f38eac",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 42_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Causal token selection for VLA generalization",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a"
+}
+```
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-13T05:01:14.718Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QM3pkxJgxnAt2XdQEKrAHm`</summary>
+
+```json
+{
+  "query": "ICLR 2027 submission deadline date call for papers"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "12f788cb-a721-4433-8396-3ef336f38eac",
+  "isSidechain": false,
+  "requestId": "req_011CayyoDXbm13aQiQZsBMM2",
+  "type": "assistant",
+  "uuid": "ec247aea-7732-4e4d-8a7e-84937bc64d75",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011ypDVketAzSc5tJksDUG1H",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 786,
+      "cache_read_input_tokens": 44297,
+      "output_tokens": 65,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 786,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 65,
+          "cache_read_input_tokens": 44297,
+          "cache_creation_input_tokens": 786,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 786
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-13T05:01:18.435Z_
+
+<details><summary>↩ Tool result · `toolu_01QM3pkxJgxnAt2XdQEKrAHm`</summary>
+
+```text
+Web search results for query: "ICLR 2027 submission deadline date call for papers"
+
+Links: [{"title":"ICLR 2026","url":"https://iclr.cc/"},{"title":"International Conference on Learning Representations ICLR in August 2027 in Sydney","url":"https://waset.org/learning-representations-conference-in-august-2027-in-sydney"},{"title":"2026 Dates and Deadlines","url":"https://iclr.cc/Conferences/2026/Dates"},{"title":"ICLR 2026 Call for Papers","url":"https://iclr.cc/Conferences/2026/CallForPapers"},{"title":"Call for Papers","url":"https://iclr.cc/Conferences/2025/CallForPapers"},{"title":"Key deadlines in AI and ML conferences","url":"https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"},{"title":"ICLR | OpenReview","url":"https://openreview.net/group?id=ICLR.cc"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"International Conference on Learning Representations - Wikipedia","url":"https://en.wikipedia.org/wiki/International_Conference_on_Learning_Representations"},{"title":"ICLR 2026 Author Guide","url":"https://iclr.cc/Conferences/2026/AuthorGuide"}]
+
+Based on the search results, I found information about ICLR 2026, but the results do not contain specific information about ICLR 2027's submission deadline or call for papers. The search results primarily show details about ICLR 2026 and ICLR 2025.
+
+For ICLR 2026, the deadline for paper submissions is September 24.
+
+However, as of May 2026 (today's date), the official ICLR 2027 call for papers and submission deadline have not yet been announced in the search results. Typically, ICLR releases its call for papers several months in advance of the submission deadline. I recommend checking the official ICLR website at iclr.cc directly or monitoring their announcements for the 2027 edition details when they become available.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ec247aea-7732-4e4d-8a7e-84937bc64d75",
+  "isSidechain": false,
+  "promptId": "3cc7bdc6-7582-4027-953f-42207d10bfec",
+  "type": "user",
+  "uuid": "264a8819-c495-48be-8e2a-33a2e99446e6",
+  "toolUseResult": {
+    "query": "ICLR 2027 submission deadline date call for papers",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Asn8PFZ8kR2Dn8eTwtWJKp",
+        "content": [
+          {
+            "title": "ICLR 2026",
+            "url": "https://iclr.cc/"
+          },
+          {
+            "title": "International Conference on Learning Representations ICLR in August 2027 in Sydney",
+            "url": "https://waset.org/learning-representations-conference-in-august-2027-in-sydney"
+          },
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://iclr.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "ICLR 2026 Call for Papers",
+            "url": "https://iclr.cc/Conferences/2026/CallForPapers"
+          },
+          {
+            "title": "Call for Papers",
+            "url": "https://iclr.cc/Conferences/2025/CallForPapers"
+          },
+          {
+            "title": "Key deadlines in AI and ML conferences",
+            "url": "https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"
+          },
+          {
+            "title": "ICLR | OpenReview",
+            "url": "https://openreview.net/group?id=ICLR.cc"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "International Conference on Learning Representations - Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/International_Conference_on_Learning_Representations"
+          },
+          {
+            "title": "ICLR 2026 Author Guide",
+            "url": "https://iclr.cc/Conferences/2026/AuthorGuide"
+          }
+        ]
+      },
+      "Based on the search results, I found information about ICLR 2026, but the results do not contain specific information about ICLR 2027's submission deadline or call for papers. The search results primarily show details about ICLR 2026 and ICLR 2025.\n\nFor ICLR 2026, the deadline for paper submissions is September 24.\n\nHowever, as of May 2026 (today's date), the official ICLR 2027 call for papers and submission deadline have not yet been announced in the search results. Typically, ICLR releases its call for papers several months in advance of the submission deadline. I recommend checking the official ICLR website at iclr.cc directly or monitoring their announcements for the 2027 edition details when they become available."
+    ],
+    "durationSeconds": 3.714035226999986
+  },
+  "sourceToolAssistantUUID": "ec247aea-7732-4e4d-8a7e-84937bc64d75",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-13T05:01:21.079Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JPLNcHQaDV4PbxDxavpGmR`</summary>
+
+```json
+{
+  "query": "\"token pruning\" \"causal\" \"invariance\" VLM transformer 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "264a8819-c495-48be-8e2a-33a2e99446e6",
+  "isSidechain": false,
+  "requestId": "req_011CayyofQM59N8T9ahTrD1Q",
+  "type": "assistant",
+  "uuid": "8380a6b0-03d5-4404-b36d-e40886174a45",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H8dzTQEt9uZhuuKqaamXNQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 666,
+      "cache_read_input_tokens": 45083,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 666,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 45083,
+          "cache_creation_input_tokens": 666,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 666
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-13T05:01:38.916Z_
+
+<details><summary>↩ Tool result · `toolu_01JPLNcHQaDV4PbxDxavpGmR`</summary>
+
+```text
+Web search results for query: ""token pruning" "causal" "invariance" VLM transformer 2025 2026"
+
+Links: [{"title":"GitHub - ZLKong/Awesome-Collection-Token-Reduction: A collection of token reduction (token pruning, merging, clustering, etc.) techniques for ML/AI · GitHub","url":"https://github.com/ZLKong/Awesome-Collection-Token-Reduction"},{"title":"TopV: Compatible Token Pruning with Inference Time Optimization for Fast","url":"https://openaccess.thecvf.com/content/CVPR2025/papers/Yang_TopV_Compatible_Token_Pruning_with_Inference_Time_Optimization_for_Fast_CVPR_2025_paper.pdf"},{"title":"Token Pruning","url":"https://www.aussieai.com/research/token-pruning"},{"title":"VLM-Pruner: Buffering for Spatial Sparsity in an Efficient VLM Centrifugal Token Pruning Paradigm","url":"https://arxiv.org/html/2512.02700"},{"title":"LearnPruner: Rethinking Attention-based Token Pruning in Vision Language Models","url":"https://arxiv.org/html/2604.23950"},{"title":"Similarity-Aware Token Pruning: Your VLM but Faster","url":"https://arxiv.org/html/2503.11549v1"},{"title":"[2503.11549] Similarity-Aware Token Pruning: Your VLM but Faster","url":"https://arxiv.org/abs/2503.11549"},{"title":"Token Pruning in Multimodal Large Language Models","url":"https://aclanthology.org/2025.findings-acl.802.pdf"},{"title":"GitHub - daixiangzi/Awesome-Token-Compress: A paper list of some recent works about Token Compress for Vit and VLM · GitHub","url":"https://github.com/daixiangzi/Awesome-Token-Compress"},{"title":"[2512.02700] VLM-Pruner: Buffering for Spatial Sparsity in an Efficient VLM Centrifugal Token Pruning Paradigm","url":"https://arxiv.org/abs/2512.02700"}]
+
+The search has returned comprehensive results on token pruning in VLMs and transformers from 2025-2026. Here's a summary of the key findings:
+
+## Recent Token Pruning Research for VLMs and Transformers (2025-2026)
+
+**NeurIPS 2025 Work on Causal Attention:**
+A NeurIPS 2025 paper titled "Learning to Focus: Causal Attention Distillation via Gradient-Guided Token Pruning" combines causal attention mechanisms with token pruning, which directly addresses your search query about causal mechanisms in token pruning.
+
+**Recent Token Pruning Methods:**
+VLM-Pruner presents a training-free centrifugal token pruning paradigm that balances redundancy and spatial sparsity by combining a BSS criterion with parallel greedy selection and similarity-weighted aggregation.
+
+SAINT is a training-free token pruning framework that leverages token similarity and a graph-based formulation to identify a universal three-stage token evolution process (aligner-explorer-aggregator) in transformers, enabling aggressive pruning in early stages without sacrificing critical information.
+
+**Comprehensive Collections:**
+Kong et al. (2025) published a position paper titled "Token Reduction Should Go Beyond Efficiency in Generative Models--From Vision, Language to Multimodality" that demonstrates how token reduction extends beyond efficiency gains.
+
+**ICLR 2026 and Upcoming Work:**
+Multiple ICLR 2026 papers on token pruning for VLMs include MMTok (multimodal coverage maximization), iLLaVA, HiDrop (hierarchical vision token reduction), and AgilePruner (attention and diversity for adaptive visual token pruning).
+
+The search results show significant progress in combining token pruning with causal attention mechanisms, particularly in handling the trade-off between efficiency and preserving critical visual information across transformer layers.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8380a6b0-03d5-4404-b36d-e40886174a45",
+  "isSidechain": false,
+  "promptId": "3cc7bdc6-7582-4027-953f-42207d10bfec",
+  "type": "user",
+  "uuid": "7df251d2-44b2-4a59-9cb6-d5f484c0d628",
+  "toolUseResult": {
+    "query": "\"token pruning\" \"causal\" \"invariance\" VLM transformer 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017mMtFuiyjf8uDnYXsmooiU",
+        "content": [
+          {
+            "title": "GitHub - ZLKong/Awesome-Collection-Token-Reduction: A collection of token reduction (token pruning, merging, clustering, etc.) techniques for ML/AI · GitHub",
+            "url": "https://github.com/ZLKong/Awesome-Collection-Token-Reduction"
+          },
+          {
+            "title": "TopV: Compatible Token Pruning with Inference Time Optimization for Fast",
+            "url": "https://openaccess.thecvf.com/content/CVPR2025/papers/Yang_TopV_Compatible_Token_Pruning_with_Inference_Time_Optimization_for_Fast_CVPR_2025_paper.pdf"
+          },
+          {
+            "title": "Token Pruning",
+            "url": "https://www.aussieai.com/research/token-pruning"
+          },
+          {
+            "title": "VLM-Pruner: Buffering for Spatial Sparsity in an Efficient VLM Centrifugal Token Pruning Paradigm",
+            "url": "https://arxiv.org/html/2512.02700"
+          },
+          {
+            "title": "LearnPruner: Rethinking Attention-based Token Pruning in Vision Language Models",
+            "url": "https://arxiv.org/html/2604.23950"
+          },
+          {
+            "title": "Similarity-Aware Token Pruning: Your VLM but Faster",
+            "url": "https://arxiv.org/html/2503.11549v1"
+          },
+          {
+            "title": "[2503.11549] Similarity-Aware Token Pruning: Your VLM but Faster",
+            "url": "https://arxiv.org/abs/2503.11549"
+          },
+          {
+            "title": "Token Pruning in Multimodal Large Language Models",
+            "url": "https://aclanthology.org/2025.findings-acl.802.pdf"
+          },
+          {
+            "title": "GitHub - daixiangzi/Awesome-Token-Compress: A paper list of some recent works about Token Compress for Vit and VLM · GitHub",
+            "url": "https://github.com/daixiangzi/Awesome-Token-Compress"
+          },
+          {
+            "title": "[2512.02700] VLM-Pruner: Buffering for Spatial Sparsity in an Efficient VLM Centrifugal Token Pruning Paradigm",
+            "url": "https://arxiv.org/abs/2512.02700"
+          }
+        ]
+      },
+      "The search has returned comprehensive results on token pruning in VLMs and transformers from 2025-2026. Here's a summary of the key findings:\n\n## Recent Token Pruning Research for VLMs and Transformers (2025-2026)\n\n**NeurIPS 2025 Work on Causal Attention:**\nA NeurIPS 2025 paper titled \"Learning to Focus: Causal Attention Distillation via Gradient-Guided Token Pruning\" combines causal attention mechanisms with token pruning, which directly addresses your search query about causal mechanisms in token pruning.\n\n**Recent Token Pruning Methods:**\nVLM-Pruner presents a training-free centrifugal token pruning paradigm that balances redundancy and spatial sparsity by combining a BSS criterion with parallel greedy selection and similarity-weighted aggregation.\n\nSAINT is a training-free token pruning framework that leverages token similarity and a graph-based formulation to identify a universal three-stage token evolution process (aligner-explorer-aggregator) in transformers, enabling aggressive pruning in early stages without sacrificing critical information.\n\n**Comprehensive Collections:**\nKong et al. (2025) published a position paper titled \"Token Reduction Should Go Beyond Efficiency in Generative Models--From Vision, Language to Multimodality\" that demonstrates how token reduction extends beyond efficiency gains.\n\n**ICLR 2026 and Upcoming Work:**\nMultiple ICLR 2026 papers on token pruning for VLMs include MMTok (multimodal coverage maximization), iLLaVA, HiDrop (hierarchical vision token reduction), and AgilePruner (attention and diversity for adaptive visual token pruning).\n\nThe search results show significant progress in combining token pruning with causal attention mechanisms, particularly in handling the trade-off between efficiency and preserving critical visual information across transformer layers."
+    ],
+    "durationSeconds": 17.832169496999995
+  },
+  "sourceToolAssistantUUID": "8380a6b0-03d5-4404-b36d-e40886174a45",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-13T05:01:42.121Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NpfnD58XDnS3o7mW8Tvjqv`</summary>
+
+```json
+{
+  "query": "Wasserstein distributionally robust optimization imitation learning robotics 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7df251d2-44b2-4a59-9cb6-d5f484c0d628",
+  "isSidechain": false,
+  "requestId": "req_011CayyqB2bJVqmq9aDCN5n9",
+  "type": "assistant",
+  "uuid": "351d3014-6ded-48c0-8106-54f4eba29548",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0141TSX5u5AN1hYVjzaV8cSh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1103,
+      "cache_read_input_tokens": 45749,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1103,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 45749,
+          "cache_creation_input_tokens": 1103,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1103
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-13T05:01:49.821Z_
+
+<details><summary>↩ Tool result · `toolu_01NpfnD58XDnS3o7mW8Tvjqv`</summary>
+
+```text
+Web search results for query: "Wasserstein distributionally robust optimization imitation learning robotics 2025 2026"
+
+Links: [{"title":"Wasserstein Distributionally Robust Optimization: Theory and Applications in Machine Learning | Operations Research & Management Science in the Age of Analytics | Tutorials in OR","url":"https://pubsonline.informs.org/doi/10.1287/educ.2019.0198"},{"title":"[2605.00155] Wasserstein Distributionally Robust Regret Optimization for Reinforcement Learning from Human Feedback","url":"https://arxiv.org/abs/2605.00155"},{"title":"[1908.08729] Wasserstein Distributionally Robust Optimization: Theory and Applications in Machine Learning","url":"https://arxiv.org/abs/1908.08729"},{"title":"Wasserstein Distributionally Robust Optimization and Variation Regularization | Request PDF","url":"https://www.researchgate.net/publication/365043532_Wasserstein_Distributionally_Robust_Optimization_and_Variation_Regularization"},{"title":"Wasserstein Distributionally Robust Optimization with Wasserstein Barycenters","url":"https://timlautk.github.io/pdf/preprints/wbdro.pdf"},{"title":"(PDF) Wasserstein Distributionally Robust Optimization: Theory and Applications in Machine Learning","url":"https://www.researchgate.net/publication/335395361_Wasserstein_Distributionally_Robust_Optimization_Theory_and_Applications_in_Machine_Learning"},{"title":"Wasserstein Distributionally Robust Optimization and Its Tractable Regularization Formulation | Journal of Optimization Theory and Applications | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s10957-025-02896-x"},{"title":"Wasserstein Distributionally Robust Optimization: Theory and Applications in","url":"https://arxiv.org/pdf/1908.08729"},{"title":"Wasserstein Distributionally Robust Optimization and Variation Regularization*","url":"https://arxiv.org/pdf/1712.06050"},{"title":"Distributionally Robust Bayesian Optimization via Sinkhorn-Based Wasserstein Barycenter","url":"https://www.mdpi.com/2504-4990/7/3/90"}]
+
+Based on the web search results, here's what I found on Wasserstein distributionally robust optimization related to recent work:
+
+## Key Concepts
+
+Wasserstein distributionally robust optimization seeks data-driven decisions that perform well under the most adverse distribution within a certain Wasserstein distance from a nominal distribution constructed from the training samples.
+
+## Recent Research (2025-2026)
+
+The most recent work specifically addressing this area includes:
+
+1. **Reinforcement Learning from Human Feedback (2026)**: A Wasserstein distributionally robust regret optimization (DRRO) approach for RLHF pessimizes worst-case regret relative to the best policy under the same plausible reward perturbation. This leads to a practical policy-gradient algorithm with a simple sampled-bonus interpretation and only minor changes to PPO/GRPO-style RLHF training.
+
+2. **Robotics and Control (Recent Work)**: State estimation in the presence of uncertain or data-driven noise distributions remains critical in control and robotics, with a novel steady-state distributionally robust Kalman filter leveraging Wasserstein ambiguity sets.
+
+3. **Optimization Theory (2026)**: Recent studies address Wasserstein distributionally robust optimization problems where the distributions in the ambiguity set are chosen by constraining their Wasserstein discrepancies to the empirical distribution.
+
+While the search results show active research in Wasserstein DRO applied to reinforcement learning and robotics, I did not find papers specifically combining all three elements (Wasserstein DRO + imitation learning + robotics) from 2025-2026 in these results.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "351d3014-6ded-48c0-8106-54f4eba29548",
+  "isSidechain": false,
+  "promptId": "3cc7bdc6-7582-4027-953f-42207d10bfec",
+  "type": "user",
+  "uuid": "8f0384d3-0fcd-453c-9c9f-b9c043ffa14c",
+  "toolUseResult": {
+    "query": "Wasserstein distributionally robust optimization imitation learning robotics 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01GQyMiRykMnr9rcsEkrD9Lj",
+        "content": [
+          {
+            "title": "Wasserstein Distributionally Robust Optimization: Theory and Applications in Machine Learning | Operations Research & Management Science in the Age of Analytics | Tutorials in OR",
+            "url": "https://pubsonline.informs.org/doi/10.1287/educ.2019.0198"
+          },
+          {
+            "title": "[2605.00155] Wasserstein Distributionally Robust Regret Optimization for Reinforcement Learning from Human Feedback",
+            "url": "https://arxiv.org/abs/2605.00155"
+          },
+          {
+            "title": "[1908.08729] Wasserstein Distributionally Robust Optimization: Theory and Applications in Machine Learning",
+            "url": "https://arxiv.org/abs/1908.08729"
+          },
+          {
+            "title": "Wasserstein Distributionally Robust Optimization and Variation Regularization | Request PDF",
+            "url": "https://www.researchgate.net/publication/365043532_Wasserstein_Distributionally_Robust_Optimization_and_Variation_Regularization"
+          },
+          {
+            "title": "Wasserstein Distributionally Robust Optimization with Wasserstein Barycenters",
+            "url": "https://timlautk.github.io/pdf/preprints/wbdro.pdf"
+          },
+          {
+            "title": "(PDF) Wasserstein Distributionally Robust Optimization: Theory and Applications in Machine Learning",
+            "url": "https://www.researchgate.net/publication/335395361_Wasserstein_Distributionally_Robust_Optimization_Theory_and_Applications_in_Machine_Learning"
+          },
+          {
+            "title": "Wasserstein Distributionally Robust Optimization and Its Tractable Regularization Formulation | Journal of Optimization Theory and Applications | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s10957-025-02896-x"
+          },
+          {
+            "title": "Wasserstein Distributionally Robust Optimization: Theory and Applications in",
+            "url": "https://arxiv.org/pdf/1908.08729"
+          },
+          {
+            "title": "Wasserstein Distributionally Robust Optimization and Variation Regularization*",
+            "url": "https://arxiv.org/pdf/1712.06050"
+          },
+          {
+            "title": "Distributionally Robust Bayesian Optimization via Sinkhorn-Based Wasserstein Barycenter",
+            "url": "https://www.mdpi.com/2504-4990/7/3/90"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found on Wasserstein distributionally robust optimization related to recent work:\n\n## Key Concepts\n\nWasserstein distributionally robust optimization seeks data-driven decisions that perform well under the most adverse distribution within a certain Wasserstein distance from a nominal distribution constructed from the training samples.\n\n## Recent Research (2025-2026)\n\nThe most recent work specifically addressing this area includes:\n\n1. **Reinforcement Learning from Human Feedback (2026)**: A Wasserstein distributionally robust regret optimization (DRRO) approach for RLHF pessimizes worst-case regret relative to the best policy under the same plausible reward perturbation. This leads to a practical policy-gradient algorithm with a simple sampled-bonus interpretation and only minor changes to PPO/GRPO-style RLHF training.\n\n2. **Robotics and Control (Recent Work)**: State estimation in the presence of uncertain or data-driven noise distributions remains critical in control and robotics, with a novel steady-state distributionally robust Kalman filter leveraging Wasserstein ambiguity sets.\n\n3. **Optimization Theory (2026)**: Recent studies address Wasserstein distributionally robust optimization problems where the distributions in the ambiguity set are chosen by constraining their Wasserstein discrepancies to the empirical distribution.\n\nWhile the search results show active research in Wasserstein DRO applied to reinforcement learning and robotics, I did not find papers specifically combining all three elements (Wasserstein DRO + imitation learning + robotics) from 2025-2026 in these results."
+    ],
+    "durationSeconds": 7.694732889999985
+  },
+  "sourceToolAssistantUUID": "351d3014-6ded-48c0-8106-54f4eba29548",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-13T05:02:03.347Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01C7vKvzaPhVLR8Ug9WMvCUU`</summary>
+
+```json
+{
+  "query": "FocusVLA cross-attention visual patch selection VLA arXiv 2603.28740"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8f0384d3-0fcd-453c-9c9f-b9c043ffa14c",
+  "isSidechain": false,
+  "requestId": "req_011Cayyqyd2TqFRLJKx1x5uS",
+  "type": "assistant",
+  "uuid": "b5ac1f8d-f02b-471f-b12a-78dba4f568d3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016TGVwHiUB4ShU9GaSZxTWA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1050,
+      "cache_read_input_tokens": 46852,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1050,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 46852,
+          "cache_creation_input_tokens": 1050,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1050
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-13T05:02:16.070Z_
+
+<details><summary>↩ Tool result · `toolu_01C7vKvzaPhVLR8Ug9WMvCUU`</summary>
+
+```text
+Web search results for query: "FocusVLA cross-attention visual patch selection VLA arXiv 2603.28740"
+
+Links: [{"title":"FocusVLA: Focused Visual Utilization for Vision-Language-Action Models","url":"https://arxiv.org/html/2603.28740"},{"title":"[2603.28740] FocusVLA: Focused Visual Utilization for Vision-Language-Action Models","url":"https://arxiv.org/abs/2603.28740"},{"title":"When Robots Obey the Patch: Universal Transferable Patch Attacks on Vision-Language-Action Models","url":"https://arxiv.org/html/2511.21192"},{"title":"Gaze-Regularized Vision-Language-Action Models for Robotic Manipulation","url":"https://arxiv.org/html/2603.23202v1"},{"title":"VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models","url":"https://arxiv.org/html/2603.22991v1"},{"title":"VLA-Mark: A cross modal watermark for large vision-language alignment models","url":"https://arxiv.org/html/2507.14067"},{"title":"VLA-Pruner: Temporal-Aware Dual-Level Visual Token Pruning for Efficient Vision-Language-Action Inference","url":"https://arxiv.org/html/2511.16449"},{"title":"AVA-VLA: Improving Vision-Language-Action models with Active Visual Attention","url":"https://arxiv.org/html/2511.18960"},{"title":"PosA-VLA: Enhancing Action Generation via Pose-Conditioned Anchor Attention","url":"https://arxiv.org/html/2512.03724"},{"title":"Vision-Language-Action Models: Concepts, Progress, Applications and Challenges","url":"https://arxiv.org/html/2505.04769v1"}]
+
+Based on the search results, I found detailed information about FocusVLA (arXiv 2603.28740):
+
+## FocusVLA: Focused Visual Utilization for Vision-Language-Action Models
+
+Vision-Language-Action (VLA) models improve action generation by conditioning policies on rich vision-language information. However, current auto-regressive policies are constrained by three bottlenecks: (1) architectural bias drives models to overlook visual details, (2) an excessive number of visual tokens makes attention difficult to focus on the correct regions, and (3) task-irrelevant visual information introduces substantial noise.
+
+### Core Innovations
+
+FocusVLA addresses these bottlenecks through two core innovations: Modality Cascaded Attention to eliminate structural shortcuts, which replaces the mixed attention in VLA-Adapter with a cascaded attention mechanism to sever the shortcut pathways within the policy. By enabling action to retrieve visual information independently, it forces the model to extract task-critical details from the visual features.
+
+Furthermore, FocusVLA proposes Focus Attention, which dynamically selects task-relevant visual patches to control information quantity while explicitly modulating their influence to suppress task-irrelevant noise. More specifically, they select task-relevant visual tokens based on cross-attention scores between action queries and vision keys, where top K scores are retained for information propagation, while the other tokens are masked out.
+
+### Results
+
+Extensive experiments on both simulated and real-world robotic benchmarks demonstrate that FocusVLA not only effectively leverages visual details to perform dexterous manipulations, but also substantially improves performance and accelerates convergence across a variety of tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b5ac1f8d-f02b-471f-b12a-78dba4f568d3",
+  "isSidechain": false,
+  "promptId": "3cc7bdc6-7582-4027-953f-42207d10bfec",
+  "type": "user",
+  "uuid": "ce892148-37ec-47ef-9d99-a6db894380c6",
+  "toolUseResult": {
+    "query": "FocusVLA cross-attention visual patch selection VLA arXiv 2603.28740",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019cjod4C1xz4YGMUYtgtSBh",
+        "content": [
+          {
+            "title": "FocusVLA: Focused Visual Utilization for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2603.28740"
+          },
+          {
+            "title": "[2603.28740] FocusVLA: Focused Visual Utilization for Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2603.28740"
+          },
+          {
+            "title": "When Robots Obey the Patch: Universal Transferable Patch Attacks on Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2511.21192"
+          },
+          {
+            "title": "Gaze-Regularized Vision-Language-Action Models for Robotic Manipulation",
+            "url": "https://arxiv.org/html/2603.23202v1"
+          },
+          {
+            "title": "VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2603.22991v1"
+          },
+          {
+            "title": "VLA-Mark: A cross modal watermark for large vision-language alignment models",
+            "url": "https://arxiv.org/html/2507.14067"
+          },
+          {
+            "title": "VLA-Pruner: Temporal-Aware Dual-Level Visual Token Pruning for Efficient Vision-Language-Action Inference",
+            "url": "https://arxiv.org/html/2511.16449"
+          },
+          {
+            "title": "AVA-VLA: Improving Vision-Language-Action models with Active Visual Attention",
+            "url": "https://arxiv.org/html/2511.18960"
+          },
+          {
+            "title": "PosA-VLA: Enhancing Action Generation via Pose-Conditioned Anchor Attention",
+            "url": "https://arxiv.org/html/2512.03724"
+          },
+          {
+            "title": "Vision-Language-Action Models: Concepts, Progress, Applications and Challenges",
+            "url": "https://arxiv.org/html/2505.04769v1"
+          }
+        ]
+      },
+      "Based on the search results, I found detailed information about FocusVLA (arXiv 2603.28740):\n\n## FocusVLA: Focused Visual Utilization for Vision-Language-Action Models\n\nVision-Language-Action (VLA) models improve action generation by conditioning policies on rich vision-language information. However, current auto-regressive policies are constrained by three bottlenecks: (1) architectural bias drives models to overlook visual details, (2) an excessive number of visual tokens makes attention difficult to focus on the correct regions, and (3) task-irrelevant visual information introduces substantial noise.\n\n### Core Innovations\n\nFocusVLA addresses these bottlenecks through two core innovations: Modality Cascaded Attention to eliminate structural shortcuts, which replaces the mixed attention in VLA-Adapter with a cascaded attention mechanism to sever the shortcut pathways within the policy. By enabling action to retrieve visual information independently, it forces the model to extract task-critical details from the visual features.\n\nFurthermore, FocusVLA proposes Focus Attention, which dynamically selects task-relevant visual patches to control information quantity while explicitly modulating their influence to suppress task-irrelevant noise. More specifically, they select task-relevant visual tokens based on cross-attention scores between action queries and vision keys, where top K scores are retained for information propagation, while the other tokens are masked out.\n\n### Results\n\nExtensive experiments on both simulated and real-world robotic benchmarks demonstrate that FocusVLA not only effectively leverages visual details to perform dexterous manipulations, but also substantially improves performance and accelerates convergence across a variety of tasks."
+    ],
+    "durationSeconds": 12.717604905000014
+  },
+  "sourceToolAssistantUUID": "b5ac1f8d-f02b-471f-b12a-78dba4f568d3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 51_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "ce892148-37ec-47ef-9d99-a6db894380c6",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 52_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Causal token selection for VLA generalization",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a"
+}
+```
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-13T05:02:19.662Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012PddxHm99NGTtTYKKvdWKJ`</summary>
+
+```json
+{
+  "query": "LaST-R1 reinforcement VLA LIBERO-Plus robustness 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ce892148-37ec-47ef-9d99-a6db894380c6",
+  "isSidechain": false,
+  "requestId": "req_011Cayysuwa7aRM1c9DgGzAP",
+  "type": "assistant",
+  "uuid": "77a966ac-407c-4fbd-8ffb-a78010eb3020",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VVG5vcPCKZeAwmiB36o6Nj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 948,
+      "cache_read_input_tokens": 47902,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 948,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 47902,
+          "cache_creation_input_tokens": 948,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 948
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-13T05:02:26.873Z_
+
+<details><summary>↩ Tool result · `toolu_012PddxHm99NGTtTYKKvdWKJ`</summary>
+
+```text
+Web search results for query: "LaST-R1 reinforcement VLA LIBERO-Plus robustness 2026"
+
+Links: [{"title":"LaST-R1: Reinforcing Robotic Manipulation via Adaptive Physical Latent Reasoning","url":"https://arxiv.org/html/2604.28192"},{"title":"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://arxiv.org/html/2510.13626v1"},{"title":"[2604.28192] LaST-R1: Reinforcing Robotic Manipulation via Adaptive Physical Latent Reasoning","url":"https://arxiv.org/abs/2604.28192"},{"title":"GitHub - sylvestf/LIBERO-plus: Official repository of LIBERO-plus, a generalized benchmark for in-depth robustness analysis of vision-language-action models. · GitHub","url":"https://github.com/sylvestf/LIBERO-plus"},{"title":"[2510.13626] LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://arxiv.org/abs/2510.13626"},{"title":"CVPR Poster LIBERO-Plus: A Progressive Robustness Benchmark for Visual-Language-Action Models","url":"https://cvpr.thecvf.com/virtual/2026/poster/38735"},{"title":"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://sylvestf.github.io/LIBERO-plus/"},{"title":"Paper page - LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://huggingface.co/papers/2510.13626"},{"title":"OpenMOSS LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-","url":"https://arxiv.org/pdf/2510.13626"},{"title":"LIBERO-plus/README.md at main · sylvestf/LIBERO-plus","url":"https://github.com/sylvestf/LIBERO-plus/blob/main/README.md"}]
+
+Based on the search results, I found relevant information about both LaST-R1 and LIBERO-Plus:
+
+## LaST-R1
+
+LaST-R1 is a reinforcement learning post-training framework designed to harness "latent reasoning-before-acting" policies, which proposes Latent-to-Action Policy Optimization (LAPO), a core RL algorithm that jointly optimizes the latent reasoning process and action generation by embedding latent Chain-of-Thought reasoning directly within the RL optimization loop to drive robust execution in interactive environments.
+
+LaST-R1 achieves a near-perfect 99.9% average success rate on the LIBERO benchmark with only one-shot supervised warm-up, significantly improving convergence speed and performance over prior state-of-the-art methods. In real-world deployments, LaST-R1 yields up to a 22.5% average improvement over SOTA supervised fine-tuning approach across four complex tasks, including both single-arm and dual-arm settings.
+
+## LIBERO-Plus
+
+LIBERO-Plus performs a systematic vulnerability analysis by introducing controlled perturbations across seven dimensions: objects layout, camera viewpoints, robot initial states, language instructions, light conditions, background textures and sensor noise. 
+
+The analysis exposes critical weaknesses: models exhibit extreme sensitivity to perturbation factors, including camera viewpoints and robot initial states, with performance dropping from 95% to below 30% under modest perturbations. Surprisingly, models are largely insensitive to language variations, with further experiments revealing that models tend to ignore language instructions completely.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "77a966ac-407c-4fbd-8ffb-a78010eb3020",
+  "isSidechain": false,
+  "promptId": "3cc7bdc6-7582-4027-953f-42207d10bfec",
+  "type": "user",
+  "uuid": "61356ba9-9a98-4df5-922d-9d4de4930ed2",
+  "toolUseResult": {
+    "query": "LaST-R1 reinforcement VLA LIBERO-Plus robustness 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01D26qW5du6o66nbwrFo6PMd",
+        "content": [
+          {
+            "title": "LaST-R1: Reinforcing Robotic Manipulation via Adaptive Physical Latent Reasoning",
+            "url": "https://arxiv.org/html/2604.28192"
+          },
+          {
+            "title": "LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2510.13626v1"
+          },
+          {
+            "title": "[2604.28192] LaST-R1: Reinforcing Robotic Manipulation via Adaptive Physical Latent Reasoning",
+            "url": "https://arxiv.org/abs/2604.28192"
+          },
+          {
+            "title": "GitHub - sylvestf/LIBERO-plus: Official repository of LIBERO-plus, a generalized benchmark for in-depth robustness analysis of vision-language-action models. · GitHub",
+            "url": "https://github.com/sylvestf/LIBERO-plus"
+          },
+          {
+            "title": "[2510.13626] LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2510.13626"
+          },
+          {
+            "title": "CVPR Poster LIBERO-Plus: A Progressive Robustness Benchmark for Visual-Language-Action Models",
+            "url": "https://cvpr.thecvf.com/virtual/2026/poster/38735"
+          },
+          {
+            "title": "LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://sylvestf.github.io/LIBERO-plus/"
+          },
+          {
+            "title": "Paper page - LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://huggingface.co/papers/2510.13626"
+          },
+          {
+            "title": "OpenMOSS LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-",
+            "url": "https://arxiv.org/pdf/2510.13626"
+          },
+          {
+            "title": "LIBERO-plus/README.md at main · sylvestf/LIBERO-plus",
+            "url": "https://github.com/sylvestf/LIBERO-plus/blob/main/README.md"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about both LaST-R1 and LIBERO-Plus:\n\n## LaST-R1\n\nLaST-R1 is a reinforcement learning post-training framework designed to harness \"latent reasoning-before-acting\" policies, which proposes Latent-to-Action Policy Optimization (LAPO), a core RL algorithm that jointly optimizes the latent reasoning process and action generation by embedding latent Chain-of-Thought reasoning directly within the RL optimization loop to drive robust execution in interactive environments.\n\nLaST-R1 achieves a near-perfect 99.9% average success rate on the LIBERO benchmark with only one-shot supervised warm-up, significantly improving convergence speed and performance over prior state-of-the-art methods. In real-world deployments, LaST-R1 yields up to a 22.5% average improvement over SOTA supervised fine-tuning approach across four complex tasks, including both single-arm and dual-arm settings.\n\n## LIBERO-Plus\n\nLIBERO-Plus performs a systematic vulnerability analysis by introducing controlled perturbations across seven dimensions: objects layout, camera viewpoints, robot initial states, language instructions, light conditions, background textures and sensor noise. \n\nThe analysis exposes critical weaknesses: models exhibit extreme sensitivity to perturbation factors, including camera viewpoints and robot initial states, with performance dropping from 95% to below 30% under modest perturbations. Surprisingly, models are largely insensitive to language variations, with further experiments revealing that models tend to ignore language instructions completely."
+    ],
+    "durationSeconds": 7.20456330899999
+  },
+  "sourceToolAssistantUUID": "77a966ac-407c-4fbd-8ffb-a78010eb3020",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 55 · 2026-05-13T05:02:26.877Z_
+
+```json
+{
+  "parentUuid": "61356ba9-9a98-4df5-922d-9d4de4930ed2",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "206ef2b2-3018-425a-8679-af78333dab0f",
+  "timestamp": "2026-05-13T05:02:26.877Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-13T05:02:29.989Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JkBfFpdCTLGBHrEewCwZTk`</summary>
+
+```json
+{
+  "query": "Causal-ACT arXiv 2507.22380 results OOD success rate ALOHA"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "206ef2b2-3018-425a-8679-af78333dab0f",
+  "isSidechain": false,
+  "requestId": "req_011Cayyti1zp13xUmwwnhgje",
+  "type": "assistant",
+  "uuid": "a4382504-3182-48fe-a6de-55542d559f41",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y9SjVxmNxACYeMxd4yfPxj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1100,
+      "cache_read_input_tokens": 48850,
+      "output_tokens": 77,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1100,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 77,
+          "cache_read_input_tokens": 48850,
+          "cache_creation_input_tokens": 1100,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1100
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-13T05:02:36.220Z_
+
+<details><summary>↩ Tool result · `toolu_01JkBfFpdCTLGBHrEewCwZTk`</summary>
+
+```text
+Web search results for query: "Causal-ACT arXiv 2507.22380 results OOD success rate ALOHA"
+
+Links: [{"title":"Improving Generalization Ability of Robotic Imitation Learning by Resolving Causal Confusion in Observations","url":"https://arxiv.org/html/2507.22380"},{"title":"Improving Generalization Ability of Robotic Imitation Learning by Resolving","url":"https://arxiv.org/pdf/2507.22380"},{"title":"[2507.22380] Improving Generalization Ability of Robotic Imitation Learning by Resolving Causal Confusion in Observations","url":"https://arxiv.org/abs/2507.22380"},{"title":"Intervening to Learn and Compose Causally Disentangled Representations","url":"https://arxiv.org/html/2507.04754"},{"title":"[2507.00440] A Recipe for Causal Graph Regression: Confounding Effects Revisited","url":"https://arxiv.org/abs/2507.00440"},{"title":"Causal-SAM-LLM: Large Language Models as Causal Reasoners for Robust Medical Segmentation","url":"https://arxiv.org/html/2507.03585"},{"title":"A Recipe for Causal Graph Regression: Confounding Effects Revisited","url":"https://arxiv.org/html/2507.00440"},{"title":"Causality Is Key to Understand and Balance Multiple Goals in Trustworthy ML and Foundation Models","url":"https://arxiv.org/html/2502.21123v5"},{"title":"Probably Approximately Correct Causal Discovery","url":"https://arxiv.org/html/2507.18903v1"},{"title":"Sparse Causal Discovery with Generative Intervention for Unsupervised Graph Domain Adaptation","url":"https://arxiv.org/html/2507.07621v1"}]
+
+Based on the search results, I found the Causal-ACT paper (arXiv 2507.22380). Here are the key results regarding OOD success rate:
+
+The Causal-ACT method substantially outperforms the traditional ACT method under distribution shift conditions. The approach has similar performance to ACT with domain randomization without the need for additional expert demonstrations or computational requirements.
+
+The experiments were conducted using the ALOHA bimanual robot to complete a manipulation task, training policies with task-irrelevant features in the environment then testing in an out-of-distribution environment with the irrelevant features removed.
+
+The paper addresses the causal confusion problem in Imitation Learning and proposes to explicitly learn the causal relationship between observation components and expert actions, employing a framework where a causal structural function is learned by intervention on the imitation learning policy.
+
+If you need specific numerical success rate percentages from the paper's results tables, I would recommend checking the full paper directly on arXiv, as the search results provide the main findings but not the detailed numerical metrics.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a4382504-3182-48fe-a6de-55542d559f41",
+  "isSidechain": false,
+  "promptId": "3cc7bdc6-7582-4027-953f-42207d10bfec",
+  "type": "user",
+  "uuid": "c29cc08b-e319-4b33-bba7-0c8a2718ab7f",
+  "toolUseResult": {
+    "query": "Causal-ACT arXiv 2507.22380 results OOD success rate ALOHA",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01AYELM7yZ4izV7gkcFrbB4x",
+        "content": [
+          {
+            "title": "Improving Generalization Ability of Robotic Imitation Learning by Resolving Causal Confusion in Observations",
+            "url": "https://arxiv.org/html/2507.22380"
+          },
+          {
+            "title": "Improving Generalization Ability of Robotic Imitation Learning by Resolving",
+            "url": "https://arxiv.org/pdf/2507.22380"
+          },
+          {
+            "title": "[2507.22380] Improving Generalization Ability of Robotic Imitation Learning by Resolving Causal Confusion in Observations",
+            "url": "https://arxiv.org/abs/2507.22380"
+          },
+          {
+            "title": "Intervening to Learn and Compose Causally Disentangled Representations",
+            "url": "https://arxiv.org/html/2507.04754"
+          },
+          {
+            "title": "[2507.00440] A Recipe for Causal Graph Regression: Confounding Effects Revisited",
+            "url": "https://arxiv.org/abs/2507.00440"
+          },
+          {
+            "title": "Causal-SAM-LLM: Large Language Models as Causal Reasoners for Robust Medical Segmentation",
+            "url": "https://arxiv.org/html/2507.03585"
+          },
+          {
+            "title": "A Recipe for Causal Graph Regression: Confounding Effects Revisited",
+            "url": "https://arxiv.org/html/2507.00440"
+          },
+          {
+            "title": "Causality Is Key to Understand and Balance Multiple Goals in Trustworthy ML and Foundation Models",
+            "url": "https://arxiv.org/html/2502.21123v5"
+          },
+          {
+            "title": "Probably Approximately Correct Causal Discovery",
+            "url": "https://arxiv.org/html/2507.18903v1"
+          },
+          {
+            "title": "Sparse Causal Discovery with Generative Intervention for Unsupervised Graph Domain Adaptation",
+            "url": "https://arxiv.org/html/2507.07621v1"
+          }
+        ]
+      },
+      "Based on the search results, I found the Causal-ACT paper (arXiv 2507.22380). Here are the key results regarding OOD success rate:\n\nThe Causal-ACT method substantially outperforms the traditional ACT method under distribution shift conditions. The approach has similar performance to ACT with domain randomization without the need for additional expert demonstrations or computational requirements.\n\nThe experiments were conducted using the ALOHA bimanual robot to complete a manipulation task, training policies with task-irrelevant features in the environment then testing in an out-of-distribution environment with the irrelevant features removed.\n\nThe paper addresses the causal confusion problem in Imitation Learning and proposes to explicitly learn the causal relationship between observation components and expert actions, employing a framework where a causal structural function is learned by intervention on the imitation learning policy.\n\nIf you need specific numerical success rate percentages from the paper's results tables, I would recommend checking the full paper directly on arXiv, as the search results provide the main findings but not the detailed numerical metrics."
+    ],
+    "durationSeconds": 6.2282416899999955
+  },
+  "sourceToolAssistantUUID": "a4382504-3182-48fe-a6de-55542d559f41",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 58 · 2026-05-13T05:02:42.857Z_
+
+Now let me do a deeper dive into critical aspects — the LIBERO-Plus SOTA, any very recent VLA robustness work, and whether there's any work combining causal intervention with token pruning that the proposal might have missed.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c29cc08b-e319-4b33-bba7-0c8a2718ab7f",
+  "isSidechain": false,
+  "requestId": "req_011CayyuQ5mgyhTtbsUqHuxj",
+  "type": "assistant",
+  "uuid": "deccfbbe-5e60-43fa-b7fb-752769fc38da",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016fyunSFET7FFcVRHXJCXdT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 819,
+      "cache_read_input_tokens": 49950,
+      "output_tokens": 123,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 819,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 123,
+          "cache_read_input_tokens": 49950,
+          "cache_creation_input_tokens": 819,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 819
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-13T05:02:43.671Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01SRVA7WzV32GtR8Vd3SnB6U`</summary>
+
+```json
+{
+  "query": "OTPrune optimal transport token pruning VLA arXiv 2602.20205"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "deccfbbe-5e60-43fa-b7fb-752769fc38da",
+  "isSidechain": false,
+  "requestId": "req_011CayyuQ5mgyhTtbsUqHuxj",
+  "type": "assistant",
+  "uuid": "8f2bf723-ea06-467f-8de1-fa9ae7a5e9f8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016fyunSFET7FFcVRHXJCXdT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 819,
+      "cache_read_input_tokens": 49950,
+      "output_tokens": 123,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 819,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 123,
+          "cache_read_input_tokens": 49950,
+          "cache_creation_input_tokens": 819,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 819
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-13T05:02:49.781Z_
+
+<details><summary>↩ Tool result · `toolu_01SRVA7WzV32GtR8Vd3SnB6U`</summary>
+
+```text
+Web search results for query: "OTPrune optimal transport token pruning VLA arXiv 2602.20205"
+
+Links: [{"title":"[2602.20205] OTPrune: Distribution-Aligned Visual Token Pruning via Optimal Transport","url":"https://arxiv.org/abs/2602.20205"},{"title":"OTPrune: Distribution-Aligned Visual Token Pruning via Optimal Transport","url":"https://arxiv.org/html/2602.20205"},{"title":"GitHub - xiwenc1/OTPrune: Official code for the paper: OTPrune: Distribution-Aligned Visual Token Pruning via Optimal Transport · GitHub","url":"https://github.com/xiwenc1/OTPrune"},{"title":"BFA++: Hierarchical Best-Feature-Aware Token Prune for Multi-View Vision Language Action Model","url":"https://arxiv.org/html/2602.20566"},{"title":"TopV: Compatible Token Pruning with Inference Time Optimization for Fast and Low-Memory Multimodal Vision Language Model","url":"https://arxiv.org/html/2503.18278v1"},{"title":"TopV: Compatible Token Pruning with Inference Time Optimization for Fast","url":"https://openaccess.thecvf.com/content/CVPR2025/papers/Yang_TopV_Compatible_Token_Pruning_with_Inference_Time_Optimization_for_Fast_CVPR_2025_paper.pdf"},{"title":"Efficient token pruning in Vision Transformers using an attention-based Multilayer Network - ScienceDirect","url":"https://www.sciencedirect.com/science/article/pii/S0957417425010711"},{"title":"VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models","url":"https://arxiv.org/html/2603.22991v1"},{"title":"GitHub - ZLKong/Awesome-Collection-Token-Reduction: A collection of token reduction (token pruning, merging, clustering, etc.) techniques for ML/AI · GitHub","url":"https://github.com/ZLKong/Awesome-Collection-Token-Reduction"},{"title":"SP-VLA: A Joint Model Scheduling and Token Pruning Approach for VLA Model Acceleration","url":"https://arxiv.org/html/2506.12723v2"}]
+
+Based on the search results, here's what I found about OTPrune:
+
+## OTPrune: Distribution-Aligned Visual Token Pruning via Optimal Transport
+
+OTPrune is a training-free framework that formulates pruning as distribution alignment via optimal transport (OT). The paper was published on arXiv with ID 2602.20205.
+
+### Problem It Addresses
+
+Multi-modal large language models (MLLMs) achieve strong visual-language reasoning but suffer from high inference cost due to redundant visual tokens. Recent work explores visual token pruning to accelerate inference, while existing pruning methods overlook the underlying distributional structure of visual representations.
+
+### Key Innovation
+
+By minimizing the 2-Wasserstein distance between the full and pruned token distributions, OTPrune preserves both local diversity and global representativeness while reducing inference cost.
+
+### Theoretical Foundation
+
+The authors derive a tractable submodular objective that enables efficient optimization, and theoretically prove its monotonicity and submodularity, providing a principled foundation for stable and efficient pruning.
+
+### Performance
+
+Comprehensive experiments on wider benchmarks demonstrate that OTPrune achieves superior performance–efficiency tradeoffs compared to state-of-the-art methods. The code is available at https://github.com/xiwenc1/OTPrune.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8f2bf723-ea06-467f-8de1-fa9ae7a5e9f8",
+  "isSidechain": false,
+  "promptId": "3cc7bdc6-7582-4027-953f-42207d10bfec",
+  "type": "user",
+  "uuid": "0cb2bcf8-8895-487b-9c76-47b404b80900",
+  "toolUseResult": {
+    "query": "OTPrune optimal transport token pruning VLA arXiv 2602.20205",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01N3VkKrUfJT5Vkii4b78NXW",
+        "content": [
+          {
+            "title": "[2602.20205] OTPrune: Distribution-Aligned Visual Token Pruning via Optimal Transport",
+            "url": "https://arxiv.org/abs/2602.20205"
+          },
+          {
+            "title": "OTPrune: Distribution-Aligned Visual Token Pruning via Optimal Transport",
+            "url": "https://arxiv.org/html/2602.20205"
+          },
+          {
+            "title": "GitHub - xiwenc1/OTPrune: Official code for the paper: OTPrune: Distribution-Aligned Visual Token Pruning via Optimal Transport · GitHub",
+            "url": "https://github.com/xiwenc1/OTPrune"
+          },
+          {
+            "title": "BFA++: Hierarchical Best-Feature-Aware Token Prune for Multi-View Vision Language Action Model",
+            "url": "https://arxiv.org/html/2602.20566"
+          },
+          {
+            "title": "TopV: Compatible Token Pruning with Inference Time Optimization for Fast and Low-Memory Multimodal Vision Language Model",
+            "url": "https://arxiv.org/html/2503.18278v1"
+          },
+          {
+            "title": "TopV: Compatible Token Pruning with Inference Time Optimization for Fast",
+            "url": "https://openaccess.thecvf.com/content/CVPR2025/papers/Yang_TopV_Compatible_Token_Pruning_with_Inference_Time_Optimization_for_Fast_CVPR_2025_paper.pdf"
+          },
+          {
+            "title": "Efficient token pruning in Vision Transformers using an attention-based Multilayer Network - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/pii/S0957417425010711"
+          },
+          {
+            "title": "VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2603.22991v1"
+          },
+          {
+            "title": "GitHub - ZLKong/Awesome-Collection-Token-Reduction: A collection of token reduction (token pruning, merging, clustering, etc.) techniques for ML/AI · GitHub",
+            "url": "https://github.com/ZLKong/Awesome-Collection-Token-Reduction"
+          },
+          {
+            "title": "SP-VLA: A Joint Model Scheduling and Token Pruning Approach for VLA Model Acceleration",
+            "url": "https://arxiv.org/html/2506.12723v2"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about OTPrune:\n\n## OTPrune: Distribution-Aligned Visual Token Pruning via Optimal Transport\n\nOTPrune is a training-free framework that formulates pruning as distribution alignment via optimal transport (OT). The paper was published on arXiv with ID 2602.20205.\n\n### Problem It Addresses\n\nMulti-modal large language models (MLLMs) achieve strong visual-language reasoning but suffer from high inference cost due to redundant visual tokens. Recent work explores visual token pruning to accelerate inference, while existing pruning methods overlook the underlying distributional structure of visual representations.\n\n### Key Innovation\n\nBy minimizing the 2-Wasserstein distance between the full and pruned token distributions, OTPrune preserves both local diversity and global representativeness while reducing inference cost.\n\n### Theoretical Foundation\n\nThe authors derive a tractable submodular objective that enables efficient optimization, and theoretically prove its monotonicity and submodularity, providing a principled foundation for stable and efficient pruning.\n\n### Performance\n\nComprehensive experiments on wider benchmarks demonstrate that OTPrune achieves superior performance–efficiency tradeoffs compared to state-of-the-art methods. The code is available at https://github.com/xiwenc1/OTPrune."
+    ],
+    "durationSeconds": 6.1058344320000035
+  },
+  "sourceToolAssistantUUID": "8f2bf723-ea06-467f-8de1-fa9ae7a5e9f8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-13T05:02:52.591Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Nt6EQubQt4uzuhvBgFaG4k`</summary>
+
+```json
+{
+  "query": "SP-VLA joint scheduling token pruning VLA 2026 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0cb2bcf8-8895-487b-9c76-47b404b80900",
+  "isSidechain": false,
+  "requestId": "req_011CayyvPw82bePJsmaYDiiP",
+  "type": "assistant",
+  "uuid": "db72718a-588c-4904-bab2-6bb84bc5148e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HRyrVfhXFseDyHDP8wrkJt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1029,
+      "cache_read_input_tokens": 50769,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1029,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 50769,
+          "cache_creation_input_tokens": 1029,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1029
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-13T05:02:58.556Z_
+
+<details><summary>↩ Tool result · `toolu_01Nt6EQubQt4uzuhvBgFaG4k`</summary>
+
+```text
+Web search results for query: "SP-VLA joint scheduling token pruning VLA 2026 arXiv"
+
+Links: [{"title":"[2506.12723] SP-VLA: A Joint Model Scheduling and Token Pruning Approach for VLA Model Acceleration","url":"https://arxiv.org/abs/2506.12723"},{"title":"SP-VLA: A Joint Model Scheduling and Token Pruning Approach for VLA Model Acceleration","url":"https://arxiv.org/html/2506.12723v2"},{"title":"SP-VLA: A Joint Model Scheduling and Token Pruning Approach for VLA Model Acceleration | OpenReview","url":"https://openreview.net/forum?id=RwdGIIjPlC"},{"title":"(PDF) SP-VLA: A Joint Model Scheduling and Token Pruning Approach for VLA Model Acceleration","url":"https://www.researchgate.net/publication/392736853_SP-VLA_A_Joint_Model_Scheduling_and_Token_Pruning_Approach_for_VLA_Model_Acceleration"},{"title":"Preprint. SP-VLA: A JOINT MODEL SCHEDULING AND TOKEN","url":"https://arxiv.org/pdf/2506.12723"},{"title":"dblp: SP-VLA: A Joint Model Scheduling and Token Pruning Approach for VLA Model Acceleration.","url":"https://dblp.org/rec/journals/corr/abs-2506-12723.html"},{"title":"SP-VLA: A Joint Model Scheduling and Token Pruning Approach for VLA Model Acceleration | alphaXiv","url":"https://www.alphaxiv.org/overview/2506.12723v3"},{"title":"GitHub - ChildTang/SP-VLA · GitHub","url":"https://github.com/ChildTang/SP-VLA"},{"title":"Publications - Jiajun Fan","url":"https://www.jiajunfan.com/publications/"},{"title":"[Literature Review] SP-VLA: A Joint Model Scheduling and Token Pruning Approach for VLA Model Acceleration","url":"https://www.themoonlight.io/en/review/sp-vla-a-joint-model-scheduling-and-token-pruning-approach-for-vla-model-acceleration"}]
+
+I found the research paper you're looking for! Here's a summary of SP-VLA:
+
+## SP-VLA: A Joint Model Scheduling and Token Pruning Approach for VLA Model Acceleration
+
+SP-VLA is a unified framework that accelerates VLA models by jointly scheduling models and pruning tokens.
+
+### Key Components:
+
+**Model Scheduling:** The framework includes an action-aware model scheduling mechanism that reduces temporal redundancy by dynamically switching between the VLA model and a lightweight generator, categorizing VLA actions into deliberative and intuitive actions, assigning the former to the VLA model and the latter to the lightweight generator.
+
+**Token Pruning:** To address spatial redundancy, the paper develops a spatio-semantic dual-aware token pruning method where tokens are classified into spatial and semantic types and pruned based on their dual-aware importance to accelerate VLA inference.
+
+### Results:
+
+The method achieves 1.5× lossless acceleration in LIBERO and 2.4× in SimplerEnv, with up to 6% average performance gain, and inference frequency and latency improve by 2.2× in SimplerEnv and 1.4× in LIBERO.
+
+The paper is accepted at ICLR 2026 and is available on arXiv as paper 2506.12723.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "db72718a-588c-4904-bab2-6bb84bc5148e",
+  "isSidechain": false,
+  "promptId": "3cc7bdc6-7582-4027-953f-42207d10bfec",
+  "type": "user",
+  "uuid": "00a12924-1b5d-4abd-b8a4-1f837887767c",
+  "toolUseResult": {
+    "query": "SP-VLA joint scheduling token pruning VLA 2026 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01YX8Yoo4MAhymQmNmpXmpnr",
+        "content": [
+          {
+            "title": "[2506.12723] SP-VLA: A Joint Model Scheduling and Token Pruning Approach for VLA Model Acceleration",
+            "url": "https://arxiv.org/abs/2506.12723"
+          },
+          {
+            "title": "SP-VLA: A Joint Model Scheduling and Token Pruning Approach for VLA Model Acceleration",
+            "url": "https://arxiv.org/html/2506.12723v2"
+          },
+          {
+            "title": "SP-VLA: A Joint Model Scheduling and Token Pruning Approach for VLA Model Acceleration | OpenReview",
+            "url": "https://openreview.net/forum?id=RwdGIIjPlC"
+          },
+          {
+            "title": "(PDF) SP-VLA: A Joint Model Scheduling and Token Pruning Approach for VLA Model Acceleration",
+            "url": "https://www.researchgate.net/publication/392736853_SP-VLA_A_Joint_Model_Scheduling_and_Token_Pruning_Approach_for_VLA_Model_Acceleration"
+          },
+          {
+            "title": "Preprint. SP-VLA: A JOINT MODEL SCHEDULING AND TOKEN",
+            "url": "https://arxiv.org/pdf/2506.12723"
+          },
+          {
+            "title": "dblp: SP-VLA: A Joint Model Scheduling and Token Pruning Approach for VLA Model Acceleration.",
+            "url": "https://dblp.org/rec/journals/corr/abs-2506-12723.html"
+          },
+          {
+            "title": "SP-VLA: A Joint Model Scheduling and Token Pruning Approach for VLA Model Acceleration | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2506.12723v3"
+          },
+          {
+            "title": "GitHub - ChildTang/SP-VLA · GitHub",
+            "url": "https://github.com/ChildTang/SP-VLA"
+          },
+          {
+            "title": "Publications - Jiajun Fan",
+            "url": "https://www.jiajunfan.com/publications/"
+          },
+          {
+            "title": "[Literature Review] SP-VLA: A Joint Model Scheduling and Token Pruning Approach for VLA Model Acceleration",
+            "url": "https://www.themoonlight.io/en/review/sp-vla-a-joint-model-scheduling-and-token-pruning-approach-for-vla-model-acceleration"
+          }
+        ]
+      },
+      "I found the research paper you're looking for! Here's a summary of SP-VLA:\n\n## SP-VLA: A Joint Model Scheduling and Token Pruning Approach for VLA Model Acceleration\n\nSP-VLA is a unified framework that accelerates VLA models by jointly scheduling models and pruning tokens.\n\n### Key Components:\n\n**Model Scheduling:** The framework includes an action-aware model scheduling mechanism that reduces temporal redundancy by dynamically switching between the VLA model and a lightweight generator, categorizing VLA actions into deliberative and intuitive actions, assigning the former to the VLA model and the latter to the lightweight generator.\n\n**Token Pruning:** To address spatial redundancy, the paper develops a spatio-semantic dual-aware token pruning method where tokens are classified into spatial and semantic types and pruned based on their dual-aware importance to accelerate VLA inference.\n\n### Results:\n\nThe method achieves 1.5× lossless acceleration in LIBERO and 2.4× in SimplerEnv, with up to 6% average performance gain, and inference frequency and latency improve by 2.2× in SimplerEnv and 1.4× in LIBERO.\n\nThe paper is accepted at ICLR 2026 and is available on arXiv as paper 2506.12723."
+    ],
+    "durationSeconds": 5.955767309000017
+  },
+  "sourceToolAssistantUUID": "db72718a-588c-4904-bab2-6bb84bc5148e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 63_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "00a12924-1b5d-4abd-b8a4-1f837887767c",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 64_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Causal token selection for VLA generalization",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a"
+}
+```
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-13T05:03:01.637Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GPHrscbZNDUbyEc9nkDMJ6`</summary>
+
+```json
+{
+  "query": "SRPO LIBERO-Plus average success rate 82.1 percent 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "00a12924-1b5d-4abd-b8a4-1f837887767c",
+  "isSidechain": false,
+  "requestId": "req_011Cayyw3Tqh5fBzRJZEbMAY",
+  "type": "assistant",
+  "uuid": "b1ce99c6-21bc-47db-b867-661e306f4d3d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016iX6gxRcKcTeZwCfv53vJ6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 957,
+      "cache_read_input_tokens": 51798,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 957,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 51798,
+          "cache_creation_input_tokens": 957,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 957
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-13T05:03:08.058Z_
+
+<details><summary>↩ Tool result · `toolu_01GPHrscbZNDUbyEc9nkDMJ6`</summary>
+
+```text
+Web search results for query: "SRPO LIBERO-Plus average success rate 82.1 percent 2026"
+
+Links: [{"title":"CVPR Poster LIBERO-Plus: A Progressive Robustness Benchmark for Visual-Language-Action Models","url":"https://cvpr.thecvf.com/virtual/2026/poster/38735"},{"title":"GitHub - sylvestf/LIBERO-plus: Official repository of LIBERO-plus, a generalized benchmark for in-depth robustness analysis of vision-language-action models. · GitHub","url":"https://github.com/sylvestf/LIBERO-plus"},{"title":"Average success rate across evaluation settings on LIBERO and... | Download Scientific Diagram","url":"https://www.researchgate.net/figure/Average-success-rate-across-evaluation-settings-on-LIBERO-and-MetaWorld-v2-All-results_tbl1_397006917"},{"title":"38 Statistics on RFP Win Rates & Proposal Management | Loopio","url":"https://loopio.com/blog/rfp-statistics-win-rates/"},{"title":"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://sylvestf.github.io/LIBERO-plus/"},{"title":"Startup Statistics 2026 [By Countries & Success Rates]","url":"https://www.demandsage.com/startup-statistics/"},{"title":"Day Trading Statistics 2026: The Real Answer and Success Rate - QuantifiedStrategies.com","url":"https://www.quantifiedstrategies.com/day-trading-statistics/"},{"title":"Post-train on LIBERO Benchmark · Issue #30 · Robbyant/lingbot-va","url":"https://github.com/Robbyant/lingbot-va/issues/30"},{"title":"LIBERO-PRO: Towards Robust and Fair Evaluation of ...","url":"https://arxiv.org/pdf/2510.03827"},{"title":"LIBERO: simulation benchmark for the study of lifelong robot learning | by Deepthi Karkada | Medium","url":"https://medium.com/@deepkarkada/libero-simulation-benchmark-for-the-study-of-lifelong-robot-learning-583b786a96f6"}]
+
+Based on the search results, I found a reference to SRPO LIBERO-Plus with the 82.1 percent success rate you mentioned. SRPO (Self-Referential Policy Optimization) is a method for Vision-Language-Action Models, and it achieved an average success rate of 82.1 percent on LIBERO-Plus.
+
+The search results indicate this information comes from the official LIBERO-Plus GitHub repository, which is described as a benchmark for in-depth robustness analysis of Vision-Language-Action Models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b1ce99c6-21bc-47db-b867-661e306f4d3d",
+  "isSidechain": false,
+  "promptId": "3cc7bdc6-7582-4027-953f-42207d10bfec",
+  "type": "user",
+  "uuid": "6a777bf6-0c17-4f9e-8078-7e622f17fdcf",
+  "toolUseResult": {
+    "query": "SRPO LIBERO-Plus average success rate 82.1 percent 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019Ubfs2anDmiUMPYfxmKpg1",
+        "content": [
+          {
+            "title": "CVPR Poster LIBERO-Plus: A Progressive Robustness Benchmark for Visual-Language-Action Models",
+            "url": "https://cvpr.thecvf.com/virtual/2026/poster/38735"
+          },
+          {
+            "title": "GitHub - sylvestf/LIBERO-plus: Official repository of LIBERO-plus, a generalized benchmark for in-depth robustness analysis of vision-language-action models. · GitHub",
+            "url": "https://github.com/sylvestf/LIBERO-plus"
+          },
+          {
+            "title": "Average success rate across evaluation settings on LIBERO and... | Download Scientific Diagram",
+            "url": "https://www.researchgate.net/figure/Average-success-rate-across-evaluation-settings-on-LIBERO-and-MetaWorld-v2-All-results_tbl1_397006917"
+          },
+          {
+            "title": "38 Statistics on RFP Win Rates & Proposal Management | Loopio",
+            "url": "https://loopio.com/blog/rfp-statistics-win-rates/"
+          },
+          {
+            "title": "LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://sylvestf.github.io/LIBERO-plus/"
+          },
+          {
+            "title": "Startup Statistics 2026 [By Countries & Success Rates]",
+            "url": "https://www.demandsage.com/startup-statistics/"
+          },
+          {
+            "title": "Day Trading Statistics 2026: The Real Answer and Success Rate - QuantifiedStrategies.com",
+            "url": "https://www.quantifiedstrategies.com/day-trading-statistics/"
+          },
+          {
+            "title": "Post-train on LIBERO Benchmark · Issue #30 · Robbyant/lingbot-va",
+            "url": "https://github.com/Robbyant/lingbot-va/issues/30"
+          },
+          {
+            "title": "LIBERO-PRO: Towards Robust and Fair Evaluation of ...",
+            "url": "https://arxiv.org/pdf/2510.03827"
+          },
+          {
+            "title": "LIBERO: simulation benchmark for the study of lifelong robot learning | by Deepthi Karkada | Medium",
+            "url": "https://medium.com/@deepkarkada/libero-simulation-benchmark-for-the-study-of-lifelong-robot-learning-583b786a96f6"
+          }
+        ]
+      },
+      "Based on the search results, I found a reference to SRPO LIBERO-Plus with the 82.1 percent success rate you mentioned. SRPO (Self-Referential Policy Optimization) is a method for Vision-Language-Action Models, and it achieved an average success rate of 82.1 percent on LIBERO-Plus.\n\nThe search results indicate this information comes from the official LIBERO-Plus GitHub repository, which is described as a benchmark for in-depth robustness analysis of Vision-Language-Action Models."
+    ],
+    "durationSeconds": 6.417672772999999
+  },
+  "sourceToolAssistantUUID": "b1ce99c6-21bc-47db-b867-661e306f4d3d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-13T05:03:13.547Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01FbWCuLWx2UWWodn8h9XhFJ`</summary>
+
+```json
+{
+  "url": "https://github.com/sylvestf/LIBERO-plus",
+  "prompt": "What are the SOTA results on LIBERO-Plus? List all models and their success rates. What is the current best performing method on LIBERO-Plus?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6a777bf6-0c17-4f9e-8078-7e622f17fdcf",
+  "isSidechain": false,
+  "requestId": "req_011Cayywk8q1Dqqu45y26TWp",
+  "type": "assistant",
+  "uuid": "987493e6-7af3-46d9-9fe6-c4fd30ad52d3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EWABz36evNU6zojrQFV8z9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 781,
+      "cache_read_input_tokens": 52755,
+      "output_tokens": 118,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 781,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 118,
+          "cache_read_input_tokens": 52755,
+          "cache_creation_input_tokens": 781,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 781
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-13T05:03:20.011Z_
+
+<details><summary>↩ Tool result · `toolu_01FbWCuLWx2UWWodn8h9XhFJ`</summary>
+
+```text
+# LIBERO-Plus SOTA Results
+
+Based on the benchmark leaderboard provided, here are all evaluated models and their overall success rates:
+
+| Model | Success Rate |
+|-------|--------------|
+| **OpenVLA-OFT+ (Best)** | **79.6%** |
+| OpenVLA-OFT | 69.6% |
+| RIPT-VLA | 68.4% |
+| OpenVLA-OFT_m | 67.9% |
+| π₀-Fast | 61.6% |
+| UniVLA | 43.9% |
+| NORA | 39.0% |
+| WorldVLA | 25.0% |
+| π₀ | 53.6% |
+| OpenVLA | 15.6% |
+| OpenVLA-OFT_w | 55.8% |
+
+## Current Best Method
+
+The highest-performing approach is **"OpenVLA-OFT+ with mix-SFT on LIBERO-plus dataset"** at **79.6% average success rate**. This represents a fine-tuned variant of OpenVLA-OFT using mixed supervised fine-tuning on the LIBERO-plus training data, with model weights available on Hugging Face.
+
+The model shows particularly strong performance on camera perturbations (92.8%) and lighting conditions (94.9%), though robot initial state robustness remains a challenge (30.3%).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "987493e6-7af3-46d9-9fe6-c4fd30ad52d3",
+  "isSidechain": false,
+  "promptId": "3cc7bdc6-7582-4027-953f-42207d10bfec",
+  "type": "user",
+  "uuid": "70c78fe6-9f42-4954-8119-fed31a13214f",
+  "toolUseResult": {
+    "bytes": 319211,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# LIBERO-Plus SOTA Results\n\nBased on the benchmark leaderboard provided, here are all evaluated models and their overall success rates:\n\n| Model | Success Rate |\n|-------|--------------|\n| **OpenVLA-OFT+ (Best)** | **79.6%** |\n| OpenVLA-OFT | 69.6% |\n| RIPT-VLA | 68.4% |\n| OpenVLA-OFT_m | 67.9% |\n| π₀-Fast | 61.6% |\n| UniVLA | 43.9% |\n| NORA | 39.0% |\n| WorldVLA | 25.0% |\n| π₀ | 53.6% |\n| OpenVLA | 15.6% |\n| OpenVLA-OFT_w | 55.8% |\n\n## Current Best Method\n\nThe highest-performing approach is **\"OpenVLA-OFT+ with mix-SFT on LIBERO-plus dataset\"** at **79.6% average success rate**. This represents a fine-tuned variant of OpenVLA-OFT using mixed supervised fine-tuning on the LIBERO-plus training data, with model weights available on Hugging Face.\n\nThe model shows particularly strong performance on camera perturbations (92.8%) and lighting conditions (94.9%), though robot initial state robustness remains a challenge (30.3%).",
+    "durationMs": 6460,
+    "url": "https://github.com/sylvestf/LIBERO-plus"
+  },
+  "sourceToolAssistantUUID": "987493e6-7af3-46d9-9fe6-c4fd30ad52d3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-13T05:03:22.823Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JNgoFgSsJA8fNZkLY69BAh`</summary>
+
+```json
+{
+  "query": "AVA-VLA active visual attention arXiv 2511.18960 LIBERO-Plus results"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "70c78fe6-9f42-4954-8119-fed31a13214f",
+  "isSidechain": false,
+  "requestId": "req_011CayyxdDsxMBd1upG6nrxT",
+  "type": "assistant",
+  "uuid": "dd36dc50-5c55-43e1-a34f-6d81f13f7e16",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014cumaN9vgc4wffBenhvbUr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 468,
+      "cache_read_input_tokens": 53536,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 468,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 53536,
+          "cache_creation_input_tokens": 468,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 468
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-13T05:03:29.395Z_
+
+<details><summary>↩ Tool result · `toolu_01JNgoFgSsJA8fNZkLY69BAh`</summary>
+
+```text
+Web search results for query: "AVA-VLA active visual attention arXiv 2511.18960 LIBERO-Plus results"
+
+Links: [{"title":"[2511.18960] AVA-VLA: Improving Vision-Language-Action models with Active Visual Attention","url":"https://arxiv.org/abs/2511.18960"},{"title":"AVA-VLA: Improving Vision-Language-Action models with Active Visual Attention","url":"https://arxiv.org/html/2511.18960"},{"title":"AVA-VLA: Improving Vision-Language-Action models with Active Visual Attention - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv251118960X/abstract"},{"title":"AVA-VLA: Improving Vision-Language-Action models with Active Visual Attention | alphaXiv","url":"https://www.alphaxiv.org/overview/2511.18960v1"},{"title":"AVA-VLA: Improving Vision-Language-Action models with Active Visual Attention","url":"https://www.researchgate.net/publication/397934001_AVA-VLA_Improving_Vision-Language-Action_models_with_Active_Visual_Attention"},{"title":"Gaze-Regularized Vision-Language-Action Models for Robotic Manipulation","url":"https://arxiv.org/html/2603.23202v1"},{"title":"Recursive Belief Vision Language Action Model","url":"https://arxiv.org/html/2602.20659v1"},{"title":"FocusVLA: Focused Visual Utilization for Vision-Language-Action Models","url":"https://arxiv.org/html/2603.28740"},{"title":"LIBERO-plus/README.md at main · sylvestf/LIBERO-plus","url":"https://github.com/sylvestf/LIBERO-plus/blob/main/README.md"},{"title":"ActiveVLA: Injecting Active Perception into Vision-Language-Action Models for Precise 3D Robotic Manipulation","url":"https://arxiv.org/html/2601.08325"}]
+
+Based on the search results, here's what I found about AVA-VLA and its LIBERO-Plus results:
+
+## Overview
+
+AVA-VLA is a framework that conditions action generation on a recurrent state serving as a neural approximation to the agent's belief over task history, and introduces Active Visual Attention (AVA) which dynamically reweights visual tokens in the current observation.
+
+## LIBERO-Plus Results
+
+LIBERO+ is a challenging LIBERO-based benchmark offering a robust benchmarking framework with 7 perturbation dimensions and 21 sub-dimensions, and AVA-VLA conducts additional experiments on the LIBERO+ benchmark with results presented in Appendix D.
+
+According to the LIBERO-Plus GitHub repository, AVA-VLA achieved an average score of 74.7 on LIBERO-Plus.
+
+## Overall Performance
+
+AVA-VLA achieves state-of-the-art performance on standard robotic benchmarks, including LIBERO and CALVIN, and transfers effectively to real-world dual-arm manipulation tasks. Additionally, on the LIBERO benchmark, the framework achieves state-of-the-art performance in both single-task and multi-task settings, with particularly strong results on the LIBERO-Long suite that requires extended sequential reasoning.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "dd36dc50-5c55-43e1-a34f-6d81f13f7e16",
+  "isSidechain": false,
+  "promptId": "3cc7bdc6-7582-4027-953f-42207d10bfec",
+  "type": "user",
+  "uuid": "e90bd40f-1c0a-49a3-897b-38a623517ab8",
+  "toolUseResult": {
+    "query": "AVA-VLA active visual attention arXiv 2511.18960 LIBERO-Plus results",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NtxQ6iTkVYbt6AVRULsY9R",
+        "content": [
+          {
+            "title": "[2511.18960] AVA-VLA: Improving Vision-Language-Action models with Active Visual Attention",
+            "url": "https://arxiv.org/abs/2511.18960"
+          },
+          {
+            "title": "AVA-VLA: Improving Vision-Language-Action models with Active Visual Attention",
+            "url": "https://arxiv.org/html/2511.18960"
+          },
+          {
+            "title": "AVA-VLA: Improving Vision-Language-Action models with Active Visual Attention - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2025arXiv251118960X/abstract"
+          },
+          {
+            "title": "AVA-VLA: Improving Vision-Language-Action models with Active Visual Attention | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2511.18960v1"
+          },
+          {
+            "title": "AVA-VLA: Improving Vision-Language-Action models with Active Visual Attention",
+            "url": "https://www.researchgate.net/publication/397934001_AVA-VLA_Improving_Vision-Language-Action_models_with_Active_Visual_Attention"
+          },
+          {
+            "title": "Gaze-Regularized Vision-Language-Action Models for Robotic Manipulation",
+            "url": "https://arxiv.org/html/2603.23202v1"
+          },
+          {
+            "title": "Recursive Belief Vision Language Action Model",
+            "url": "https://arxiv.org/html/2602.20659v1"
+          },
+          {
+            "title": "FocusVLA: Focused Visual Utilization for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2603.28740"
+          },
+          {
+            "title": "LIBERO-plus/README.md at main · sylvestf/LIBERO-plus",
+            "url": "https://github.com/sylvestf/LIBERO-plus/blob/main/README.md"
+          },
+          {
+            "title": "ActiveVLA: Injecting Active Perception into Vision-Language-Action Models for Precise 3D Robotic Manipulation",
+            "url": "https://arxiv.org/html/2601.08325"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about AVA-VLA and its LIBERO-Plus results:\n\n## Overview\n\nAVA-VLA is a framework that conditions action generation on a recurrent state serving as a neural approximation to the agent's belief over task history, and introduces Active Visual Attention (AVA) which dynamically reweights visual tokens in the current observation.\n\n## LIBERO-Plus Results\n\nLIBERO+ is a challenging LIBERO-based benchmark offering a robust benchmarking framework with 7 perturbation dimensions and 21 sub-dimensions, and AVA-VLA conducts additional experiments on the LIBERO+ benchmark with results presented in Appendix D.\n\nAccording to the LIBERO-Plus GitHub repository, AVA-VLA achieved an average score of 74.7 on LIBERO-Plus.\n\n## Overall Performance\n\nAVA-VLA achieves state-of-the-art performance on standard robotic benchmarks, including LIBERO and CALVIN, and transfers effectively to real-world dual-arm manipulation tasks. Additionally, on the LIBERO benchmark, the framework achieves state-of-the-art performance in both single-task and multi-task settings, with particularly strong results on the LIBERO-Long suite that requires extended sequential reasoning."
+    ],
+    "durationSeconds": 6.568742718000023
+  },
+  "sourceToolAssistantUUID": "dd36dc50-5c55-43e1-a34f-6d81f13f7e16",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-13T05:03:32.544Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01LSQiXq32fDAHb235HSaJ4i`</summary>
+
+```json
+{
+  "query": "ETA-VLA efficient token adaptation temporal fusion VLA 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e90bd40f-1c0a-49a3-897b-38a623517ab8",
+  "isSidechain": false,
+  "requestId": "req_011CayyyKLdQNrt4exvAMTWQ",
+  "type": "assistant",
+  "uuid": "d2edb8eb-64e8-4a99-93f6-3471d8116299",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016YD6VxaASRYqpXFJLsnDVm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 905,
+      "cache_read_input_tokens": 54004,
+      "output_tokens": 66,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 905,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 66,
+          "cache_read_input_tokens": 54004,
+          "cache_creation_input_tokens": 905,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 905
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-13T05:03:41.173Z_
+
+<details><summary>↩ Tool result · `toolu_01LSQiXq32fDAHb235HSaJ4i`</summary>
+
+```text
+Web search results for query: "ETA-VLA efficient token adaptation temporal fusion VLA 2026"
+
+Links: [{"title":"[2603.25766] ETA-VLA: Efficient Token Adaptation via Temporal Fusion and Intra-LLM Sparsification for Vision-Language-Action Models","url":"https://arxiv.org/abs/2603.25766"},{"title":"ETA-VLA: Efficient Token Adaptation via Temporal Fusion and Intra-LLM Sparsification for Vision-Language-Action Models","url":"https://arxiv.org/html/2603.25766v1"},{"title":"TTF-VLA: Temporal Token Fusion via Pixel-Attention Integration for","url":"https://arxiv.org/pdf/2508.19257"},{"title":"TTF-VLA: Temporal Token Fusion via Pixel-Attention Integration for Vision-Language-Action Models","url":"https://arxiv.org/html/2508.19257"},{"title":"[2508.19257] TTF-VLA: Temporal Token Fusion via Pixel-Attention Integration for Vision-Language-Action Models","url":"https://arxiv.org/abs/2508.19257"},{"title":"VLA-Pruner: Temporal-Aware Dual-Level Visual Token Pruning for Efficient Vision-Language-Action Inference","url":"https://arxiv.org/html/2511.16449"},{"title":"TTF-VLA: Temporal Token Fusion via Pixel-Attention Integration for Vision-Language-Action Models","url":"https://www.researchgate.net/publication/395033880_TTF-VLA_Temporal_Token_Fusion_via_Pixel-Attention_Integration_for_Vision-Language-Action_Models"},{"title":"Vision Language Action Models in Robotic Manipulation: A Systematic Review","url":"https://arxiv.org/html/2507.10672v1"},{"title":"Large VLM-based Vision-Language-Action Models for Robotic Manipulation: A Survey","url":"https://arxiv.org/html/2508.13073v1"},{"title":"[2511.16449] VLA-Pruner: Temporal-Aware Dual-Level Visual Token Pruning for Efficient Vision-Language-Action Inference","url":"https://arxiv.org/abs/2511.16449"}]
+
+I found research on ETA-VLA. Here are the key findings:
+
+## ETA-VLA Overview
+
+ETA-VLA is an Efficient Token Adaptation framework for VLA models. The integration of Vision-Language-Action (VLA) models into autonomous driving systems offers a unified framework for interpreting complex scenes and executing control commands, though the necessity to incorporate historical multi-view frames imposes a severe computational burden, primarily driven by the quadratic complexity of self-attention mechanisms in Large Language Models (LLMs).
+
+## Key Components
+
+The framework consists of two main components: a Temporal Fusion Module (TFM) and an Intra-LLM Sparse Aggregator (ILSA).
+
+ETA-VLA processes the past n frames of multi-view images and introduces a novel Intra-LLM Sparse Aggregator (ILSA) that, drawing inspiration from human driver attention allocation, dynamically identifies and prunes redundant visual tokens guided by textual queries and temporal consistency.
+
+## Performance Results
+
+ETA-VLA achieves an EPDMS of 85.0 on Navtest while saving 32% FLOPs, demonstrating its high-fidelity driving performance compared with strong baselines.
+
+The paper was posted to arXiv on March 26, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d2edb8eb-64e8-4a99-93f6-3471d8116299",
+  "isSidechain": false,
+  "promptId": "3cc7bdc6-7582-4027-953f-42207d10bfec",
+  "type": "user",
+  "uuid": "6156d94a-8952-4fbf-b23c-f2e3ecfe9648",
+  "toolUseResult": {
+    "query": "ETA-VLA efficient token adaptation temporal fusion VLA 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01EdpDGZzAVQN7HZ3CrL4dr1",
+        "content": [
+          {
+            "title": "[2603.25766] ETA-VLA: Efficient Token Adaptation via Temporal Fusion and Intra-LLM Sparsification for Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2603.25766"
+          },
+          {
+            "title": "ETA-VLA: Efficient Token Adaptation via Temporal Fusion and Intra-LLM Sparsification for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2603.25766v1"
+          },
+          {
+            "title": "TTF-VLA: Temporal Token Fusion via Pixel-Attention Integration for",
+            "url": "https://arxiv.org/pdf/2508.19257"
+          },
+          {
+            "title": "TTF-VLA: Temporal Token Fusion via Pixel-Attention Integration for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2508.19257"
+          },
+          {
+            "title": "[2508.19257] TTF-VLA: Temporal Token Fusion via Pixel-Attention Integration for Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2508.19257"
+          },
+          {
+            "title": "VLA-Pruner: Temporal-Aware Dual-Level Visual Token Pruning for Efficient Vision-Language-Action Inference",
+            "url": "https://arxiv.org/html/2511.16449"
+          },
+          {
+            "title": "TTF-VLA: Temporal Token Fusion via Pixel-Attention Integration for Vision-Language-Action Models",
+            "url": "https://www.researchgate.net/publication/395033880_TTF-VLA_Temporal_Token_Fusion_via_Pixel-Attention_Integration_for_Vision-Language-Action_Models"
+          },
+          {
+            "title": "Vision Language Action Models in Robotic Manipulation: A Systematic Review",
+            "url": "https://arxiv.org/html/2507.10672v1"
+          },
+          {
+            "title": "Large VLM-based Vision-Language-Action Models for Robotic Manipulation: A Survey",
+            "url": "https://arxiv.org/html/2508.13073v1"
+          },
+          {
+            "title": "[2511.16449] VLA-Pruner: Temporal-Aware Dual-Level Visual Token Pruning for Efficient Vision-Language-Action Inference",
+            "url": "https://arxiv.org/abs/2511.16449"
+          }
+        ]
+      },
+      "I found research on ETA-VLA. Here are the key findings:\n\n## ETA-VLA Overview\n\nETA-VLA is an Efficient Token Adaptation framework for VLA models. The integration of Vision-Language-Action (VLA) models into autonomous driving systems offers a unified framework for interpreting complex scenes and executing control commands, though the necessity to incorporate historical multi-view frames imposes a severe computational burden, primarily driven by the quadratic complexity of self-attention mechanisms in Large Language Models (LLMs).\n\n## Key Components\n\nThe framework consists of two main components: a Temporal Fusion Module (TFM) and an Intra-LLM Sparse Aggregator (ILSA).\n\nETA-VLA processes the past n frames of multi-view images and introduces a novel Intra-LLM Sparse Aggregator (ILSA) that, drawing inspiration from human driver attention allocation, dynamically identifies and prunes redundant visual tokens guided by textual queries and temporal consistency.\n\n## Performance Results\n\nETA-VLA achieves an EPDMS of 85.0 on Navtest while saving 32% FLOPs, demonstrating its high-fidelity driving performance compared with strong baselines.\n\nThe paper was posted to arXiv on March 26, 2026."
+    ],
+    "durationSeconds": 8.623534198000037
+  },
+  "sourceToolAssistantUUID": "d2edb8eb-64e8-4a99-93f6-3471d8116299",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-13T05:03:44.111Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01KjvsqmzkDWp7dYJVyv6GaX`</summary>
+
+```json
+{
+  "query": "\"causal token\" OR \"causal feature selection\" \"invariant\" policy robot 2025 2026 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6156d94a-8952-4fbf-b23c-f2e3ecfe9648",
+  "isSidechain": false,
+  "requestId": "req_011CayyzBfHwPH25oWYk1MbX",
+  "type": "assistant",
+  "uuid": "9a3baf08-53e9-44b8-962e-44c97f2a7cb2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RTncnAbL8zpCJ9qMHPn9KZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 954,
+      "cache_read_input_tokens": 54909,
+      "output_tokens": 79,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 954,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 79,
+          "cache_read_input_tokens": 54909,
+          "cache_creation_input_tokens": 954,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 954
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-13T05:03:51.269Z_
+
+<details><summary>↩ Tool result · `toolu_01KjvsqmzkDWp7dYJVyv6GaX`</summary>
+
+```text
+Web search results for query: ""causal token" OR "causal feature selection" "invariant" policy robot 2025 2026 arXiv"
+
+Links: [{"title":"Causal World Modeling for Robot Control","url":"https://arxiv.org/html/2601.21998v2"},{"title":"[2601.21998] Causal World Modeling for Robot Control","url":"https://arxiv.org/abs/2601.21998"},{"title":"Learning by doing: an online causal reinforcement learning framework with causal-aware policy | Science China Information Sciences | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s11432-024-4403-7"},{"title":"Machine Learning May 2025","url":"https://arxiv.org/list/cs.LG/2025-05?skip=2575&show=2000"},{"title":"GitHub - libo-huang/Awesome-Causal-Reinforcement-Learning: [TNNLS-2024, arXiv-2023.2.10] Official repository of \"A Survey on Causal Reinforcement Learning\" · GitHub","url":"https://github.com/libo-huang/Awesome-Causal-Reinforcement-Learning"},{"title":"An Introduction to Causal Reinforcement Learning Elias Bareinboim","url":"https://causalai.net/r65.pdf"},{"title":"Downloads 2024","url":"https://icml.cc/Downloads/2024"},{"title":"[2308.06203] Towards a Causal Probabilistic Framework for Prediction, Action-Selection & Explanations for Robot Block-Stacking Tasks","url":"https://arxiv.org/abs/2308.06203"},{"title":"Published as a conference paper at ICLR 2025","url":"https://openreview.net/pdf?id=y9A2TpaGsE"},{"title":"Machine Learning Jul 2025","url":"https://arxiv.org/list/cs.LG/2025-07?skip=450&show=2000"}]
+
+Based on my search results, I found a highly relevant paper from 2025-2026:
+
+## Primary Finding: "Causal World Modeling for Robot Control"
+
+This work highlights that video world modeling establishes a foundation for robot learning, where video world models provide the ability to imagine the near future by understanding the causality between actions and visual dynamics. The paper introduces LingBot-VA, an autoregressive diffusion framework that learns frame prediction and policy execution simultaneously.
+
+The model features three carefully crafted designs: (1) a shared latent space, integrating vision and action tokens, driven by a Mixture-of-Transformers (MoT) architecture, (2) a closed-loop rollout mechanism, allowing for ongoing acquisition of environmental feedback with ground-truth observations, (3) an asynchronous inference pipeline, parallelizing action prediction and motor execution to support efficient control.
+
+The paper is available on arXiv as [arXiv:2601.21998](https://arxiv.org/abs/2601.21998) with versions dated January 29, 2026 and March 22, 2026.
+
+## Related Work Context
+
+The search also revealed a broader landscape of causal reinforcement learning research. Recent work includes papers on invariant causal representation learning for generalization in imitation and reinforcement learning, offline reinforcement learning with causal structured world models, and learning invariant representations for reinforcement learning without reconstruction.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9a3baf08-53e9-44b8-962e-44c97f2a7cb2",
+  "isSidechain": false,
+  "promptId": "3cc7bdc6-7582-4027-953f-42207d10bfec",
+  "type": "user",
+  "uuid": "fddf5d49-c7f1-4b42-aabe-daabadadec03",
+  "toolUseResult": {
+    "query": "\"causal token\" OR \"causal feature selection\" \"invariant\" policy robot 2025 2026 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016GEtnTTHYMBjJQ6Z1hMd4C",
+        "content": [
+          {
+            "title": "Causal World Modeling for Robot Control",
+            "url": "https://arxiv.org/html/2601.21998v2"
+          },
+          {
+            "title": "[2601.21998] Causal World Modeling for Robot Control",
+            "url": "https://arxiv.org/abs/2601.21998"
+          },
+          {
+            "title": "Learning by doing: an online causal reinforcement learning framework with causal-aware policy | Science China Information Sciences | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s11432-024-4403-7"
+          },
+          {
+            "title": "Machine Learning May 2025",
+            "url": "https://arxiv.org/list/cs.LG/2025-05?skip=2575&show=2000"
+          },
+          {
+            "title": "GitHub - libo-huang/Awesome-Causal-Reinforcement-Learning: [TNNLS-2024, arXiv-2023.2.10] Official repository of \"A Survey on Causal Reinforcement Learning\" · GitHub",
+            "url": "https://github.com/libo-huang/Awesome-Causal-Reinforcement-Learning"
+          },
+          {
+            "title": "An Introduction to Causal Reinforcement Learning Elias Bareinboim",
+            "url": "https://causalai.net/r65.pdf"
+          },
+          {
+            "title": "Downloads 2024",
+            "url": "https://icml.cc/Downloads/2024"
+          },
+          {
+            "title": "[2308.06203] Towards a Causal Probabilistic Framework for Prediction, Action-Selection & Explanations for Robot Block-Stacking Tasks",
+            "url": "https://arxiv.org/abs/2308.06203"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025",
+            "url": "https://openreview.net/pdf?id=y9A2TpaGsE"
+          },
+          {
+            "title": "Machine Learning Jul 2025",
+            "url": "https://arxiv.org/list/cs.LG/2025-07?skip=450&show=2000"
+          }
+        ]
+      },
+      "Based on my search results, I found a highly relevant paper from 2025-2026:\n\n## Primary Finding: \"Causal World Modeling for Robot Control\"\n\nThis work highlights that video world modeling establishes a foundation for robot learning, where video world models provide the ability to imagine the near future by understanding the causality between actions and visual dynamics. The paper introduces LingBot-VA, an autoregressive diffusion framework that learns frame prediction and policy execution simultaneously.\n\nThe model features three carefully crafted designs: (1) a shared latent space, integrating vision and action tokens, driven by a Mixture-of-Transformers (MoT) architecture, (2) a closed-loop rollout mechanism, allowing for ongoing acquisition of environmental feedback with ground-truth observations, (3) an asynchronous inference pipeline, parallelizing action prediction and motor execution to support efficient control.\n\nThe paper is available on arXiv as [arXiv:2601.21998](https://arxiv.org/abs/2601.21998) with versions dated January 29, 2026 and March 22, 2026.\n\n## Related Work Context\n\nThe search also revealed a broader landscape of causal reinforcement learning research. Recent work includes papers on invariant causal representation learning for generalization in imitation and reinforcement learning, offline reinforcement learning with causal structured world models, and learning invariant representations for reinforcement learning without reconstruction."
+    ],
+    "durationSeconds": 7.155263009999995
+  },
+  "sourceToolAssistantUUID": "9a3baf08-53e9-44b8-962e-44c97f2a7cb2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 75_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "fddf5d49-c7f1-4b42-aabe-daabadadec03",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 76_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Causal token selection for VLA generalization",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a"
+}
+```
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-13T05:03:56.847Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018Hv4NPdJh3NuAp84jRhuoJ`</summary>
+
+```json
+{
+  "query": "VLA token selection robustness generalization spurious correlation 2026 new method"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fddf5d49-c7f1-4b42-aabe-daabadadec03",
+  "isSidechain": false,
+  "requestId": "req_011Cayyzvr5tpMvo9bqNufdA",
+  "type": "assistant",
+  "uuid": "154bb200-b448-4156-af95-ecafed467f70",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EfP8hSWBtLikmoXscfDT5s",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 920,
+      "cache_read_input_tokens": 55863,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 920,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 55863,
+          "cache_creation_input_tokens": 920,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 920
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-13T05:04:05.814Z_
+
+<details><summary>↩ Tool result · `toolu_018Hv4NPdJh3NuAp84jRhuoJ`</summary>
+
+```text
+Web search results for query: "VLA token selection robustness generalization spurious correlation 2026 new method"
+
+Links: [{"title":"VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models","url":"https://arxiv.org/html/2603.22991v1"},{"title":"RobustVLA: Robustness-Aware Reinforcement Post-Training for Vision-Language-Action Models","url":"https://arxiv.org/html/2511.01331"},{"title":"Detecting Regional Spurious Correlations in Vision Transformers via Token Discarding","url":"https://arxiv.org/html/2509.04009"},{"title":"InSpire: Vision-Language-Action Models with Intrinsic Spatial Reasoning","url":"https://arxiv.org/html/2505.13888"},{"title":"State of Vision-Language-Action (VLA) Research at ICLR 2026 – Moritz Reuss","url":"https://mbreuss.github.io/blog_post_iclr_26_vla.html"},{"title":"[2603.22991v1] VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models","url":"https://arxiv.org/abs/2603.22991v1"},{"title":"Spec-VLA: Speculative Decoding for Vision-Language-Action Models with Relaxed Acceptance","url":"https://arxiv.org/html/2507.22424v1"},{"title":"Pure Vision Language Action (VLA) Models: A Comprehensive Survey","url":"https://arxiv.org/html/2509.19012v1"},{"title":"Superclass-Guided Representation Disentanglement for Spurious Correlation Mitigation","url":"https://arxiv.org/html/2508.08570"},{"title":"What Can RL Bring to VLA Generalization? An Empirical Study","url":"https://arxiv.org/html/2505.19789v4"}]
+
+I found several relevant research papers on Vision-Language-Action (VLA) models addressing robustness, generalization, and spurious correlations. Here are the key findings:
+
+## Recent VLA Research on Robustness and Spurious Correlations (2026)
+
+**VLA-IAP: Training-Free Visual Token Pruning**
+
+VLA-IAP (Interaction-Aligned Pruning) introduces a geometric prior mechanism to preserve structural anchors and a dynamic scheduling strategy that adapts pruning intensity based on semantic-motion alignment. The method demonstrates superior and consistent performance across multiple model architectures and three different simulation environments, as well as a real robot platform, validating its strong generalization capability and practical applicability.
+
+**RobustVLA: Robustness-Aware RL Post-Training**
+
+VLA models may rely on spurious correlations between irrelevant observation features and actions, rather than capturing the true task requirements. RobustVLA is a lightweight online RL post-training method designed to explicitly enhance the resilience of VLA models through Jacobian regularization, which mitigates sensitivity to observation noise, and smoothness regularization, which stabilizes policies under action perturbations.
+
+**InSpire: Intrinsic Spatial Reasoning**
+
+InSpire is a simple yet effective approach that mitigates the adverse effects of spurious correlations by boosting the spatial reasoning ability of VLAs.
+
+**Token Discarding for Spurious Correlation Detection**
+
+A novel method leverages the token discarding mechanism to identify spurious correlations through influential tokens that significantly impact the model's predictions.
+
+These methods represent recent advances (2025-2026) specifically addressing token selection, robustness, generalization, and the challenge of spurious correlations in VLA models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "154bb200-b448-4156-af95-ecafed467f70",
+  "isSidechain": false,
+  "promptId": "3cc7bdc6-7582-4027-953f-42207d10bfec",
+  "type": "user",
+  "uuid": "24c28a8f-f002-4530-a095-c0f7e9b94d91",
+  "toolUseResult": {
+    "query": "VLA token selection robustness generalization spurious correlation 2026 new method",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_011truoArqzwDx8W3zryAqox",
+        "content": [
+          {
+            "title": "VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2603.22991v1"
+          },
+          {
+            "title": "RobustVLA: Robustness-Aware Reinforcement Post-Training for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2511.01331"
+          },
+          {
+            "title": "Detecting Regional Spurious Correlations in Vision Transformers via Token Discarding",
+            "url": "https://arxiv.org/html/2509.04009"
+          },
+          {
+            "title": "InSpire: Vision-Language-Action Models with Intrinsic Spatial Reasoning",
+            "url": "https://arxiv.org/html/2505.13888"
+          },
+          {
+            "title": "State of Vision-Language-Action (VLA) Research at ICLR 2026 – Moritz Reuss",
+            "url": "https://mbreuss.github.io/blog_post_iclr_26_vla.html"
+          },
+          {
+            "title": "[2603.22991v1] VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2603.22991v1"
+          },
+          {
+            "title": "Spec-VLA: Speculative Decoding for Vision-Language-Action Models with Relaxed Acceptance",
+            "url": "https://arxiv.org/html/2507.22424v1"
+          },
+          {
+            "title": "Pure Vision Language Action (VLA) Models: A Comprehensive Survey",
+            "url": "https://arxiv.org/html/2509.19012v1"
+          },
+          {
+            "title": "Superclass-Guided Representation Disentanglement for Spurious Correlation Mitigation",
+            "url": "https://arxiv.org/html/2508.08570"
+          },
+          {
+            "title": "What Can RL Bring to VLA Generalization? An Empirical Study",
+            "url": "https://arxiv.org/html/2505.19789v4"
+          }
+        ]
+      },
+      "I found several relevant research papers on Vision-Language-Action (VLA) models addressing robustness, generalization, and spurious correlations. Here are the key findings:\n\n## Recent VLA Research on Robustness and Spurious Correlations (2026)\n\n**VLA-IAP: Training-Free Visual Token Pruning**\n\nVLA-IAP (Interaction-Aligned Pruning) introduces a geometric prior mechanism to preserve structural anchors and a dynamic scheduling strategy that adapts pruning intensity based on semantic-motion alignment. The method demonstrates superior and consistent performance across multiple model architectures and three different simulation environments, as well as a real robot platform, validating its strong generalization capability and practical applicability.\n\n**RobustVLA: Robustness-Aware RL Post-Training**\n\nVLA models may rely on spurious correlations between irrelevant observation features and actions, rather than capturing the true task requirements. RobustVLA is a lightweight online RL post-training method designed to explicitly enhance the resilience of VLA models through Jacobian regularization, which mitigates sensitivity to observation noise, and smoothness regularization, which stabilizes policies under action perturbations.\n\n**InSpire: Intrinsic Spatial Reasoning**\n\nInSpire is a simple yet effective approach that mitigates the adverse effects of spurious correlations by boosting the spatial reasoning ability of VLAs.\n\n**Token Discarding for Spurious Correlation Detection**\n\nA novel method leverages the token discarding mechanism to identify spurious correlations through influential tokens that significantly impact the model's predictions.\n\nThese methods represent recent advances (2025-2026) specifically addressing token selection, robustness, generalization, and the challenge of spurious correlations in VLA models."
+    ],
+    "durationSeconds": 8.962004618000007
+  },
+  "sourceToolAssistantUUID": "154bb200-b448-4156-af95-ecafed467f70",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 79 · 2026-05-13T05:04:05.819Z_
+
+```json
+{
+  "parentUuid": "24c28a8f-f002-4530-a095-c0f7e9b94d91",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "62d3a7fe-5d0e-4a11-b692-0ad037963945",
+  "timestamp": "2026-05-13T05:04:05.819Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 80 · 2026-05-13T05:04:08.554Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011eRHXkbr9LSRJQ4CKoe1Ns`</summary>
+
+```json
+{
+  "query": "InSpire spatial reasoning VLA spurious correlation arXiv 2505"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "62d3a7fe-5d0e-4a11-b692-0ad037963945",
+  "isSidechain": false,
+  "requestId": "req_011Cayz214NWdK6R31wD2vq1",
+  "type": "assistant",
+  "uuid": "3e35c2c8-c1e0-420a-86ee-b1f0736175bb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QNMpZ5fUQXSFe2tpM1aw66",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1094,
+      "cache_read_input_tokens": 56783,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1094,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 56783,
+          "cache_creation_input_tokens": 1094,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1094
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 81 · 2026-05-13T05:04:16.223Z_
+
+<details><summary>↩ Tool result · `toolu_011eRHXkbr9LSRJQ4CKoe1Ns`</summary>
+
+```text
+Web search results for query: "InSpire spatial reasoning VLA spurious correlation arXiv 2505"
+
+Links: [{"title":"InSpire: Vision-Language-Action Models with Intrinsic Spatial Reasoning","url":"https://arxiv.org/html/2505.13888"},{"title":"[2505.13888] InSpire: Vision-Language-Action Models with Intrinsic Spatial Reasoning","url":"https://arxiv.org/abs/2505.13888"},{"title":"InSpire: Vision-Language-Action Models with Intrinsic Spatial Reasoning - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv250513888Z/abstract"},{"title":"[PDF] InSpire: Vision-Language-Action Models with Intrinsic Spatial Reasoning | Semantic Scholar","url":"https://www.semanticscholar.org/paper/InSpire:-Vision-Language-Action-Models-with-Spatial-Zhang-Wu/1a718e7f3e53fd724c4317ca5a8ec3b91eb0e228"},{"title":"(PDF) InSpire: Vision-Language-Action Models with Intrinsic Spatial Reasoning","url":"https://www.researchgate.net/publication/391911423_InSpire_Vision-Language-Action_Models_with_Intrinsic_Spatial_Reasoning"},{"title":"The Clever Hans Mirage: A Comprehensive Survey on Spurious Correlations in Machine Learning","url":"https://arxiv.org/html/2402.12715v3"},{"title":"[2505.24257] Out of Sight, Not Out of Context? Egocentric Spatial Reasoning in VLMs Across Disjoint Frames","url":"https://arxiv.org/abs/2505.24257"},{"title":"[2505.24843] From Invariant Representations to Invariant Data: Provable Robustness to Spurious Correlations via Noisy Counterfactual Matching","url":"https://arxiv.org/abs/2505.24843"},{"title":"[2601.11021] Combating Spurious Correlations in Graph Interpretability via Self-Reflection","url":"https://arxiv.org/abs/2601.11021"},{"title":"1 Introduction","url":"https://arxiv.org/html/2505.13748"}]
+
+I found the paper you're searching for. Here's what the research is about:
+
+## InSpire: Vision-Language-Action Models with Intrinsic Spatial Reasoning
+
+The paper addresses how existing Vision-Language-Action (VLA) models tend to spuriously correlate task-irrelevant visual features with actions, and proposes InSpire as an approach that mitigates the adverse effects of spurious correlations by boosting the spatial reasoning ability of VLAs.
+
+### Key Approach
+
+InSpire works by redirecting the VLA's attention to task-relevant factors through prepending the question "In which direction is the [object] relative to the robot?" to the language instruction and aligning the answer "right/left/up/down/front/back/grasped" and predicted actions with ground-truth.
+
+### Practical Advantages
+
+InSpire can be used as a plugin to enhance existing autoregressive VLAs, requiring no extra training data or interaction with other large models. Extensive experimental results in both simulation and real-world environments demonstrate the effectiveness and flexibility of the approach.
+
+The arXiv identifier is **2505.13888**, published in May 2025, and the work demonstrates how adding explicit spatial reasoning prompts can help VLAs avoid learning spurious correlations that undermine their generalization ability.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3e35c2c8-c1e0-420a-86ee-b1f0736175bb",
+  "isSidechain": false,
+  "promptId": "3cc7bdc6-7582-4027-953f-42207d10bfec",
+  "type": "user",
+  "uuid": "33679420-b324-4abb-8acf-02323a5f6f37",
+  "toolUseResult": {
+    "query": "InSpire spatial reasoning VLA spurious correlation arXiv 2505",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01UaxM4pg2jDBQD5whcWfYBn",
+        "content": [
+          {
+            "title": "InSpire: Vision-Language-Action Models with Intrinsic Spatial Reasoning",
+            "url": "https://arxiv.org/html/2505.13888"
+          },
+          {
+            "title": "[2505.13888] InSpire: Vision-Language-Action Models with Intrinsic Spatial Reasoning",
+            "url": "https://arxiv.org/abs/2505.13888"
+          },
+          {
+            "title": "InSpire: Vision-Language-Action Models with Intrinsic Spatial Reasoning - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2025arXiv250513888Z/abstract"
+          },
+          {
+            "title": "[PDF] InSpire: Vision-Language-Action Models with Intrinsic Spatial Reasoning | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/InSpire:-Vision-Language-Action-Models-with-Spatial-Zhang-Wu/1a718e7f3e53fd724c4317ca5a8ec3b91eb0e228"
+          },
+          {
+            "title": "(PDF) InSpire: Vision-Language-Action Models with Intrinsic Spatial Reasoning",
+            "url": "https://www.researchgate.net/publication/391911423_InSpire_Vision-Language-Action_Models_with_Intrinsic_Spatial_Reasoning"
+          },
+          {
+            "title": "The Clever Hans Mirage: A Comprehensive Survey on Spurious Correlations in Machine Learning",
+            "url": "https://arxiv.org/html/2402.12715v3"
+          },
+          {
+            "title": "[2505.24257] Out of Sight, Not Out of Context? Egocentric Spatial Reasoning in VLMs Across Disjoint Frames",
+            "url": "https://arxiv.org/abs/2505.24257"
+          },
+          {
+            "title": "[2505.24843] From Invariant Representations to Invariant Data: Provable Robustness to Spurious Correlations via Noisy Counterfactual Matching",
+            "url": "https://arxiv.org/abs/2505.24843"
+          },
+          {
+            "title": "[2601.11021] Combating Spurious Correlations in Graph Interpretability via Self-Reflection",
+            "url": "https://arxiv.org/abs/2601.11021"
+          },
+          {
+            "title": "1 Introduction",
+            "url": "https://arxiv.org/html/2505.13748"
+          }
+        ]
+      },
+      "I found the paper you're searching for. Here's what the research is about:\n\n## InSpire: Vision-Language-Action Models with Intrinsic Spatial Reasoning\n\nThe paper addresses how existing Vision-Language-Action (VLA) models tend to spuriously correlate task-irrelevant visual features with actions, and proposes InSpire as an approach that mitigates the adverse effects of spurious correlations by boosting the spatial reasoning ability of VLAs.\n\n### Key Approach\n\nInSpire works by redirecting the VLA's attention to task-relevant factors through prepending the question \"In which direction is the [object] relative to the robot?\" to the language instruction and aligning the answer \"right/left/up/down/front/back/grasped\" and predicted actions with ground-truth.\n\n### Practical Advantages\n\nInSpire can be used as a plugin to enhance existing autoregressive VLAs, requiring no extra training data or interaction with other large models. Extensive experimental results in both simulation and real-world environments demonstrate the effectiveness and flexibility of the approach.\n\nThe arXiv identifier is **2505.13888**, published in May 2025, and the work demonstrates how adding explicit spatial reasoning prompts can help VLAs avoid learning spurious correlations that undermine their generalization ability."
+    ],
+    "durationSeconds": 7.665177112000005
+  },
+  "sourceToolAssistantUUID": "3e35c2c8-c1e0-420a-86ee-b1f0736175bb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 82 · 2026-05-13T05:04:20.260Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018qoLohxR3zwgkmESwQhpx1`</summary>
+
+```json
+{
+  "query": "\"invariant representations\" \"counterfactual\" spurious correlations arXiv 2505.24843 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "33679420-b324-4abb-8acf-02323a5f6f37",
+  "isSidechain": false,
+  "requestId": "req_011Cayz2mY45unyMY2SFNHmn",
+  "type": "assistant",
+  "uuid": "f70f6378-5d9f-4fe8-a31a-af813ac0c5bb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R8ehmySdBxDnn38XQoThqa",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 961,
+      "cache_read_input_tokens": 57877,
+      "output_tokens": 78,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 961,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 78,
+          "cache_read_input_tokens": 57877,
+          "cache_creation_input_tokens": 961,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 961
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 83 · 2026-05-13T05:04:26.699Z_
+
+<details><summary>↩ Tool result · `toolu_018qoLohxR3zwgkmESwQhpx1`</summary>
+
+```text
+Web search results for query: ""invariant representations" "counterfactual" spurious correlations arXiv 2505.24843 2026"
+
+Links: [{"title":"[2505.24843] From Invariant Representations to Invariant Data: Provable Robustness to Spurious Correlations via Noisy Counterfactual Matching","url":"https://arxiv.org/abs/2505.24843"},{"title":"From Invariant Representations to Invariant Data: Provable Robustness to Spurious Correlations via Noisy Counterfactual Matching","url":"https://arxiv.org/html/2505.24843"},{"title":"Provable Robustness to Spurious Correlations via Noisy ...","url":"https://arxiv.org/pdf/2505.24843"},{"title":"[2106.00545v1] Counterfactual Invariance to Spurious Correlations: Why and How to Pass Stress Tests","url":"https://arxiv.org/abs/2106.00545v1"},{"title":"Identifying Spurious Correlations using Counterfactual Alignment | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/identifying-spurious-correlations-using-counterfactual-alignment"},{"title":"Counterfactual Invariance to Spurious Correlations:","url":"https://arxiv.org/pdf/2106.00545"},{"title":"Counterfactual Invariance to Spurious Correlations in Text Classification | OpenReview","url":"https://openreview.net/forum?id=BdKxQp0iBi8"},{"title":"[2106.00545] Counterfactual Invariance to Spurious Correlations: Why and How to Pass Stress Tests","url":"https://arxiv.org/abs/2106.00545"},{"title":"Counterfactual Invariance to Spurious Correlations: Why and How to Pass Stress Tests | Request PDF","url":"https://www.researchgate.net/publication/352053699_Counterfactual_Invariance_to_Spurious_Correlations_Why_and_How_to_Pass_Stress_Tests"},{"title":"Causal Neighbourhood Learning for Invariant Graph Representations","url":"https://arxiv.org/html/2602.17934"}]
+
+I found the paper you're looking for! Here's what the search revealed about arXiv 2505.24843:
+
+The paper addresses how models that learn spurious correlations from training data often fail when deployed in new environments, and notes that while many methods aim to learn invariant representations to address this, they often underperform standard empirical risk minimization (ERM).
+
+The paper proposes a data-centric alternative that shifts the focus from learning invariant representations to leveraging invariant data pairs—pairs of samples that should have the same prediction—and proves that certain counterfactuals naturally satisfy this invariance property.
+
+The authors introduce Noisy Counterfactual Matching (NCM), a simple constraint-based method that improves robustness by leveraging even a small number of noisy counterfactual pairs.
+
+For linear causal models, they prove that NCM's test-domain error is bounded by its in-domain error plus a term dependent on the counterfactuals' quality and diversity.
+
+The paper was submitted on May 30, 2025, with a second version released on November 10, 2025. The authors are Ruqi Bai, Yao Ji, Zeyu Zhou, and David I. Inouye.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f70f6378-5d9f-4fe8-a31a-af813ac0c5bb",
+  "isSidechain": false,
+  "promptId": "3cc7bdc6-7582-4027-953f-42207d10bfec",
+  "type": "user",
+  "uuid": "0a5da612-754a-46a7-b3de-d10018485aaf",
+  "toolUseResult": {
+    "query": "\"invariant representations\" \"counterfactual\" spurious correlations arXiv 2505.24843 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NwENLfbPGPYg4vSj26w3vJ",
+        "content": [
+          {
+            "title": "[2505.24843] From Invariant Representations to Invariant Data: Provable Robustness to Spurious Correlations via Noisy Counterfactual Matching",
+            "url": "https://arxiv.org/abs/2505.24843"
+          },
+          {
+            "title": "From Invariant Representations to Invariant Data: Provable Robustness to Spurious Correlations via Noisy Counterfactual Matching",
+            "url": "https://arxiv.org/html/2505.24843"
+          },
+          {
+            "title": "Provable Robustness to Spurious Correlations via Noisy ...",
+            "url": "https://arxiv.org/pdf/2505.24843"
+          },
+          {
+            "title": "[2106.00545v1] Counterfactual Invariance to Spurious Correlations: Why and How to Pass Stress Tests",
+            "url": "https://arxiv.org/abs/2106.00545v1"
+          },
+          {
+            "title": "Identifying Spurious Correlations using Counterfactual Alignment | AI Research Paper Details",
+            "url": "https://www.aimodels.fyi/papers/arxiv/identifying-spurious-correlations-using-counterfactual-alignment"
+          },
+          {
+            "title": "Counterfactual Invariance to Spurious Correlations:",
+            "url": "https://arxiv.org/pdf/2106.00545"
+          },
+          {
+            "title": "Counterfactual Invariance to Spurious Correlations in Text Classification | OpenReview",
+            "url": "https://openreview.net/forum?id=BdKxQp0iBi8"
+          },
+          {
+            "title": "[2106.00545] Counterfactual Invariance to Spurious Correlations: Why and How to Pass Stress Tests",
+            "url": "https://arxiv.org/abs/2106.00545"
+          },
+          {
+            "title": "Counterfactual Invariance to Spurious Correlations: Why and How to Pass Stress Tests | Request PDF",
+            "url": "https://www.researchgate.net/publication/352053699_Counterfactual_Invariance_to_Spurious_Correlations_Why_and_How_to_Pass_Stress_Tests"
+          },
+          {
+            "title": "Causal Neighbourhood Learning for Invariant Graph Representations",
+            "url": "https://arxiv.org/html/2602.17934"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here's what the search revealed about arXiv 2505.24843:\n\nThe paper addresses how models that learn spurious correlations from training data often fail when deployed in new environments, and notes that while many methods aim to learn invariant representations to address this, they often underperform standard empirical risk minimization (ERM).\n\nThe paper proposes a data-centric alternative that shifts the focus from learning invariant representations to leveraging invariant data pairs—pairs of samples that should have the same prediction—and proves that certain counterfactuals naturally satisfy this invariance property.\n\nThe authors introduce Noisy Counterfactual Matching (NCM), a simple constraint-based method that improves robustness by leveraging even a small number of noisy counterfactual pairs.\n\nFor linear causal models, they prove that NCM's test-domain error is bounded by its in-domain error plus a term dependent on the counterfactuals' quality and diversity.\n\nThe paper was submitted on May 30, 2025, with a second version released on November 10, 2025. The authors are Ruqi Bai, Yao Ji, Zeyu Zhou, and David I. Inouye."
+    ],
+    "durationSeconds": 6.435805059999984
+  },
+  "sourceToolAssistantUUID": "f70f6378-5d9f-4fe8-a31a-af813ac0c5bb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 84 · 2026-05-13T05:04:29.422Z_
+
+Now let me check some specific references and look for any additional very recent work that might have been missed.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0a5da612-754a-46a7-b3de-d10018485aaf",
+  "isSidechain": false,
+  "requestId": "req_011Cayz3YMKksb8LGbgjs82P",
+  "type": "assistant",
+  "uuid": "67448d70-9619-46ac-8226-8ef833ed5495",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TGWWmYK4CLXt1aVTwKfy1g",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 965,
+      "cache_read_input_tokens": 58838,
+      "output_tokens": 103,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 965,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 103,
+          "cache_read_input_tokens": 58838,
+          "cache_creation_input_tokens": 965,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 965
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-13T05:04:30.515Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XERfCAc4dRs3XcLRqxpjph`</summary>
+
+```json
+{
+  "query": "CausalPFN amortized causal effect estimation NeurIPS 2025 arXiv 2506.07918"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "67448d70-9619-46ac-8226-8ef833ed5495",
+  "isSidechain": false,
+  "requestId": "req_011Cayz3YMKksb8LGbgjs82P",
+  "type": "assistant",
+  "uuid": "e6ddc51d-3849-4a1f-b1f4-eed9ab00ee61",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TGWWmYK4CLXt1aVTwKfy1g",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 965,
+      "cache_read_input_tokens": 58838,
+      "output_tokens": 103,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 965,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 103,
+          "cache_read_input_tokens": 58838,
+          "cache_creation_input_tokens": 965,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 965
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-13T05:04:38.639Z_
+
+<details><summary>↩ Tool result · `toolu_01XERfCAc4dRs3XcLRqxpjph`</summary>
+
+```text
+Web search results for query: "CausalPFN amortized causal effect estimation NeurIPS 2025 arXiv 2506.07918"
+
+Links: [{"title":"[2506.07918] CausalPFN: Amortized Causal Effect Estimation via In-Context Learning","url":"https://arxiv.org/abs/2506.07918"},{"title":"CausalPFN: Amortized Causal Effect Estimation via In-Context Learning","url":"https://arxiv.org/pdf/2506.07918"},{"title":"[PDF] CausalPFN: Amortized Causal Effect Estimation via In-Context Learning | Semantic Scholar","url":"https://www.semanticscholar.org/paper/CausalPFN:-Amortized-Causal-Effect-Estimation-via-Balazadeh-Kamkari/55586284afcecbd4e86f2a96b957be315a819b00"},{"title":"Paper page - CausalPFN: Amortized Causal Effect Estimation via In-Context Learning","url":"https://huggingface.co/papers/2506.07918"},{"title":"CausalPFN: Amortized Causal Effect Estimation via In-Context Learning | alphaXiv","url":"https://www.alphaxiv.org/abs/2506.07918"},{"title":"NeurIPS Poster CausalPFN: Amortized Causal Effect Estimation via In-Context Learning","url":"https://neurips.cc/virtual/2025/loc/san-diego/poster/118013"},{"title":"CausalPFN: Amortized Causal Effect Estimation via In-Context Learning","url":"https://proceedings.neurips.cc/paper_files/paper/2025/hash/e3d3db07c1bfb63e1d0b998996de1d12-Abstract-Conference.html"},{"title":"(PDF) CausalPFN: Amortized Causal Effect Estimation via In-Context Learning","url":"https://www.researchgate.net/publication/392530668_CausalPFN_Amortized_Causal_Effect_Estimation_via_In-Context_Learning"},{"title":"GitHub - vdblm/CausalPFN: CausalPFN: Amortized Causal Effect Estimation via In-Context Learning · GitHub","url":"https://github.com/vdblm/CausalPFN/"},{"title":"Foundation Models for Causal Inference via Prior-Data ...","url":"https://arxiv.org/pdf/2506.10914"}]
+
+Here are the search results for the CausalPFN paper:
+
+## Overview
+
+CausalPFN is a single transformer that amortizes causal effect estimation workflow: trained once on a large library of simulated data-generating processes that satisfy ignorability, it infers causal effects for new observational datasets out of the box.
+
+## Authors and Publication
+
+The paper was submitted on June 9, 2025 with the latest revision on October 27, 2025, authored by Vahid Balazadeh, Hamidreza Kamkari, Valentin Thomas, Benson Li, Junwei Ma, Jesse C. Cresswell, and Rahul G. Krishnan. The paper is published at the 39th Conference on Neural Information Processing Systems (NeurIPS 2025).
+
+## Key Performance Results
+
+The approach achieves superior average performance on heterogeneous and average treatment effect estimation benchmarks (IHDP, Lalonde, ACIC). It shows competitive performance for real-world policy making on uplift modeling tasks and provides calibrated uncertainty estimates to support reliable decision-making based on Bayesian principles.
+
+## Key Features
+
+CausalPFN combines ideas from Bayesian causal inference with the large-scale training protocol of prior-fitted networks (PFNs), learning to map raw observations directly to causal effects without any task-specific adjustment. The ready-to-use model requires no further training or tuning and takes a step toward automated causal inference.
+
+The paper, code, and additional resources are available through the official GitHub repository.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e6ddc51d-3849-4a1f-b1f4-eed9ab00ee61",
+  "isSidechain": false,
+  "promptId": "3cc7bdc6-7582-4027-953f-42207d10bfec",
+  "type": "user",
+  "uuid": "d9f10835-1d3b-4cb8-a05d-ff088b0a9a54",
+  "toolUseResult": {
+    "query": "CausalPFN amortized causal effect estimation NeurIPS 2025 arXiv 2506.07918",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01CEWQcvnMfHiRxcSCN4eJjT",
+        "content": [
+          {
+            "title": "[2506.07918] CausalPFN: Amortized Causal Effect Estimation via In-Context Learning",
+            "url": "https://arxiv.org/abs/2506.07918"
+          },
+          {
+            "title": "CausalPFN: Amortized Causal Effect Estimation via In-Context Learning",
+            "url": "https://arxiv.org/pdf/2506.07918"
+          },
+          {
+            "title": "[PDF] CausalPFN: Amortized Causal Effect Estimation via In-Context Learning | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/CausalPFN:-Amortized-Causal-Effect-Estimation-via-Balazadeh-Kamkari/55586284afcecbd4e86f2a96b957be315a819b00"
+          },
+          {
+            "title": "Paper page - CausalPFN: Amortized Causal Effect Estimation via In-Context Learning",
+            "url": "https://huggingface.co/papers/2506.07918"
+          },
+          {
+            "title": "CausalPFN: Amortized Causal Effect Estimation via In-Context Learning | alphaXiv",
+            "url": "https://www.alphaxiv.org/abs/2506.07918"
+          },
+          {
+            "title": "NeurIPS Poster CausalPFN: Amortized Causal Effect Estimation via In-Context Learning",
+            "url": "https://neurips.cc/virtual/2025/loc/san-diego/poster/118013"
+          },
+          {
+            "title": "CausalPFN: Amortized Causal Effect Estimation via In-Context Learning",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2025/hash/e3d3db07c1bfb63e1d0b998996de1d12-Abstract-Conference.html"
+          },
+          {
+            "title": "(PDF) CausalPFN: Amortized Causal Effect Estimation via In-Context Learning",
+            "url": "https://www.researchgate.net/publication/392530668_CausalPFN_Amortized_Causal_Effect_Estimation_via_In-Context_Learning"
+          },
+          {
+            "title": "GitHub - vdblm/CausalPFN: CausalPFN: Amortized Causal Effect Estimation via In-Context Learning · GitHub",
+            "url": "https://github.com/vdblm/CausalPFN/"
+          },
+          {
+            "title": "Foundation Models for Causal Inference via Prior-Data ...",
+            "url": "https://arxiv.org/pdf/2506.10914"
+          }
+        ]
+      },
+      "Here are the search results for the CausalPFN paper:\n\n## Overview\n\nCausalPFN is a single transformer that amortizes causal effect estimation workflow: trained once on a large library of simulated data-generating processes that satisfy ignorability, it infers causal effects for new observational datasets out of the box.\n\n## Authors and Publication\n\nThe paper was submitted on June 9, 2025 with the latest revision on October 27, 2025, authored by Vahid Balazadeh, Hamidreza Kamkari, Valentin Thomas, Benson Li, Junwei Ma, Jesse C. Cresswell, and Rahul G. Krishnan. The paper is published at the 39th Conference on Neural Information Processing Systems (NeurIPS 2025).\n\n## Key Performance Results\n\nThe approach achieves superior average performance on heterogeneous and average treatment effect estimation benchmarks (IHDP, Lalonde, ACIC). It shows competitive performance for real-world policy making on uplift modeling tasks and provides calibrated uncertainty estimates to support reliable decision-making based on Bayesian principles.\n\n## Key Features\n\nCausalPFN combines ideas from Bayesian causal inference with the large-scale training protocol of prior-fitted networks (PFNs), learning to map raw observations directly to causal effects without any task-specific adjustment. The ready-to-use model requires no further training or tuning and takes a step toward automated causal inference.\n\nThe paper, code, and additional resources are available through the official GitHub repository."
+    ],
+    "durationSeconds": 8.119563389000017
+  },
+  "sourceToolAssistantUUID": "e6ddc51d-3849-4a1f-b1f4-eed9ab00ee61",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 87_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "d9f10835-1d3b-4cb8-a05d-ff088b0a9a54",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 88_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Causal token selection for VLA generalization",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a"
+}
+```
+
+---
+
+### Tool call
+
+_source line 89 · 2026-05-13T05:04:43.151Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01BDjnH6BnVy16uxW3orgs2g`</summary>
+
+```json
+{
+  "query": "VLA robustness token selection causal invariant May 2026 recent arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d9f10835-1d3b-4cb8-a05d-ff088b0a9a54",
+  "isSidechain": false,
+  "requestId": "req_011Cayz4RT87tMhzKLMpiEHJ",
+  "type": "assistant",
+  "uuid": "51a644e3-19d4-4c43-83cd-6780ebd796e0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Tip9n7MZB1vtJAaD7YEcXu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1136,
+      "cache_read_input_tokens": 59803,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1136,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 59803,
+          "cache_creation_input_tokens": 1136,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1136
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-13T05:04:51.218Z_
+
+<details><summary>↩ Tool result · `toolu_01BDjnH6BnVy16uxW3orgs2g`</summary>
+
+```text
+Web search results for query: "VLA robustness token selection causal invariant May 2026 recent arXiv"
+
+Links: [{"title":"Invariant Features in Language Models: Geometric Characterization and Model Attribution","url":"https://arxiv.org/html/2605.06458"},{"title":"RobustVLA: Robustness-Aware Reinforcement Post-Training for Vision-Language-Action Models","url":"https://arxiv.org/html/2511.01331"},{"title":"State of Vision-Language-Action (VLA) Research at ICLR 2026 – Moritz Reuss","url":"https://mbreuss.github.io/blog_post_iclr_26_vla.html"},{"title":"From Pixels to Tokens: A Systematic Study of Latent Action Supervision for Vision-Language-Action Models","url":"https://arxiv.org/html/2605.04678v1"},{"title":"Pure Vision Language Action (VLA) Models: A Comprehensive Survey","url":"https://arxiv.org/html/2509.19012v1"},{"title":"OmniVLA-RL: A Vision-Language-Action Model with Spatial Understanding and Online RL","url":"https://arxiv.org/html/2604.17706"},{"title":"VLA-Forget: Vision-Language-Action Unlearning for Embodied Foundation Models","url":"https://arxiv.org/html/2604.03956v1"},{"title":"[2406.09246] OpenVLA: An Open-Source Vision-Language-Action Model","url":"https://arxiv.org/abs/2406.09246"},{"title":"X-World: Controllable Ego-Centric Multi-Camera World Models for Scalable End-to-End Driving","url":"https://arxiv.org/html/2603.19979v1"},{"title":"[2602.00919] Green-VLA: Staged Vision-Language-Action Model for Generalist Robots","url":"https://arxiv.org/abs/2602.00919"}]
+
+I've performed a web search for your query. Here are the relevant results from recent arXiv papers (May 2026 and nearby timeframes) related to VLA, robustness, token selection, and causal/invariant concepts:
+
+## Key Findings:
+
+**RobustVLA (December 2025):** RobustVLA is a lightweight online RL post-training method designed to explicitly enhance the resilience of VLA models through systematic robustness analysis, identifying Jacobian regularization (which mitigates sensitivity to observation noise) and smoothness regularization (which stabilizes policies under action perturbations).
+
+**Token-Level Studies (May 2026):** Recent work categorizes latent action supervision into complementary perspectives and proposes four integration strategies for VLA training, providing extensive empirical analysis that reveals formulation-task correspondence, comparative effectiveness of different strategies, and robustness under joint training on mixed-task datasets.
+
+**Causal Attention Mechanisms:** OmniVLA-RL introduces a novel Block-wise Causal Attention mechanism that explicitly decouples spatial-semantic prefix tokens from action suffix tokens, allowing uncontaminated scene understanding while enforcing autoregressive causality during action generation.
+
+**Invariant Feature Research (May 2026):** Recent research on invariant features in language models demonstrates that representation-level interventions indicate a causal role of invariant components in model outputs, with strong separation between semantic-preserving and other interventions providing direct causal evidence that the discovered invariant subspace governs semantically meaningful model behavior.
+
+Would you like more specific information about any of these papers?
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "51a644e3-19d4-4c43-83cd-6780ebd796e0",
+  "isSidechain": false,
+  "promptId": "3cc7bdc6-7582-4027-953f-42207d10bfec",
+  "type": "user",
+  "uuid": "0c340b4a-d0d4-4c6d-86b0-42c80363676a",
+  "toolUseResult": {
+    "query": "VLA robustness token selection causal invariant May 2026 recent arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_015bCsQV8sjnk9SaWRxQaU5X",
+        "content": [
+          {
+            "title": "Invariant Features in Language Models: Geometric Characterization and Model Attribution",
+            "url": "https://arxiv.org/html/2605.06458"
+          },
+          {
+            "title": "RobustVLA: Robustness-Aware Reinforcement Post-Training for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2511.01331"
+          },
+          {
+            "title": "State of Vision-Language-Action (VLA) Research at ICLR 2026 – Moritz Reuss",
+            "url": "https://mbreuss.github.io/blog_post_iclr_26_vla.html"
+          },
+          {
+            "title": "From Pixels to Tokens: A Systematic Study of Latent Action Supervision for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2605.04678v1"
+          },
+          {
+            "title": "Pure Vision Language Action (VLA) Models: A Comprehensive Survey",
+            "url": "https://arxiv.org/html/2509.19012v1"
+          },
+          {
+            "title": "OmniVLA-RL: A Vision-Language-Action Model with Spatial Understanding and Online RL",
+            "url": "https://arxiv.org/html/2604.17706"
+          },
+          {
+            "title": "VLA-Forget: Vision-Language-Action Unlearning for Embodied Foundation Models",
+            "url": "https://arxiv.org/html/2604.03956v1"
+          },
+          {
+            "title": "[2406.09246] OpenVLA: An Open-Source Vision-Language-Action Model",
+            "url": "https://arxiv.org/abs/2406.09246"
+          },
+          {
+            "title": "X-World: Controllable Ego-Centric Multi-Camera World Models for Scalable End-to-End Driving",
+            "url": "https://arxiv.org/html/2603.19979v1"
+          },
+          {
+            "title": "[2602.00919] Green-VLA: Staged Vision-Language-Action Model for Generalist Robots",
+            "url": "https://arxiv.org/abs/2602.00919"
+          }
+        ]
+      },
+      "I've performed a web search for your query. Here are the relevant results from recent arXiv papers (May 2026 and nearby timeframes) related to VLA, robustness, token selection, and causal/invariant concepts:\n\n## Key Findings:\n\n**RobustVLA (December 2025):** RobustVLA is a lightweight online RL post-training method designed to explicitly enhance the resilience of VLA models through systematic robustness analysis, identifying Jacobian regularization (which mitigates sensitivity to observation noise) and smoothness regularization (which stabilizes policies under action perturbations).\n\n**Token-Level Studies (May 2026):** Recent work categorizes latent action supervision into complementary perspectives and proposes four integration strategies for VLA training, providing extensive empirical analysis that reveals formulation-task correspondence, comparative effectiveness of different strategies, and robustness under joint training on mixed-task datasets.\n\n**Causal Attention Mechanisms:** OmniVLA-RL introduces a novel Block-wise Causal Attention mechanism that explicitly decouples spatial-semantic prefix tokens from action suffix tokens, allowing uncontaminated scene understanding while enforcing autoregressive causality during action generation.\n\n**Invariant Feature Research (May 2026):** Recent research on invariant features in language models demonstrates that representation-level interventions indicate a causal role of invariant components in model outputs, with strong separation between semantic-preserving and other interventions providing direct causal evidence that the discovered invariant subspace governs semantically meaningful model behavior.\n\nWould you like more specific information about any of these papers?"
+    ],
+    "durationSeconds": 8.06025273800001
+  },
+  "sourceToolAssistantUUID": "51a644e3-19d4-4c43-83cd-6780ebd796e0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91 · 2026-05-13T05:04:54.029Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GwnY7mdMqoawKPPSPZamoC`</summary>
+
+```json
+{
+  "query": "token pruning random baseline outperform attention-based ACL 2025 findings arXiv 2502.11501"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0c340b4a-d0d4-4c6d-86b0-42c80363676a",
+  "isSidechain": false,
+  "requestId": "req_011Cayz5M8wp55i4Kk6cCybJ",
+  "type": "assistant",
+  "uuid": "cb05dfa1-b9e2-4263-ae72-4c4aed0bde44",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AU3mvtsScvBV2J2pX5T8rc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 953,
+      "cache_read_input_tokens": 60939,
+      "output_tokens": 78,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 953,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 78,
+          "cache_read_input_tokens": 60939,
+          "cache_creation_input_tokens": 953,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 953
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-13T05:05:08.304Z_
+
+<details><summary>↩ Tool result · `toolu_01GwnY7mdMqoawKPPSPZamoC`</summary>
+
+```text
+Web search results for query: "token pruning random baseline outperform attention-based ACL 2025 findings arXiv 2502.11501"
+
+Links: [{"title":"[2502.11501] Token Pruning in Multimodal Large Language Models: Are We Solving the Right Problem?","url":"https://arxiv.org/abs/2502.11501"},{"title":"Token Pruning in Multimodal Large Language Models: Are We Solving the Right Problem?","url":"https://arxiv.org/html/2502.11501"},{"title":"arXiv:2502.11501v2 [cs.CL] 29 May 2025","url":"https://arxiv.org/pdf/2502.11501"},{"title":"[2502.11501] Token Pruning in Multimodal Large Language Models: Are We Solving the Right Problem?","url":"http://export.arxiv.org/abs/2502.11501"},{"title":"Beyond Attention or Similarity: Maximizing Conditional Diversity for Token Pruning in MLLMs","url":"https://arxiv.org/html/2506.10967v1"},{"title":"Token Pruning in Multimodal Large Language Models","url":"https://aclanthology.org/2025.findings-acl.802.pdf"},{"title":"Stop Looking for “Important Tokens” in Multimodal Language Models: Duplication Matters More","url":"https://arxiv.org/html/2502.11494v2"},{"title":"GitHub - ZLKong/Awesome-Collection-Token-Reduction: A collection of token reduction (token pruning, merging, clustering, etc.) techniques for ML/AI · GitHub","url":"https://github.com/ZLKong/Awesome-Collection-Token-Reduction"},{"title":"LearnPruner: Rethinking Attention-based Token Pruning in Vision Language Models","url":"https://arxiv.org/html/2604.23950"},{"title":"Token Reduction Should Go Beyond Efficiency in Generative Models – From Vision, Language to Multimodality","url":"https://arxiv.org/html/2505.18227v1"}]
+
+I found the paper you're looking for. Here's what the search results reveal about arXiv paper 2502.11501:
+
+## Key Findings
+
+Many existing token pruning approaches underperform even compared to naive random token selection. This is a central finding of the research.
+
+The paper, titled "Token Pruning in Multimodal Large Language Models: Are We Solving the Right Problem?", raises critical questions about current approaches:
+
+- Attention-based scoring may not be sufficient for reliably identifying redundant tokens.
+- Whether language information is really helpful during token pruning is questioned.
+- The trade-off between token importance and duplication is a key consideration.
+- Current evaluation protocols may not be comprehensive and unbiased.
+
+The paper systematically examines why many sophisticated token pruning methods fail to outperform simpler baselines, challenging fundamental assumptions in the field. The authors provide insights into the design of future token pruning methods.
+
+This work appears to be published as part of ACL 2025 findings and has generated significant follow-up research on token reduction in multimodal language models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cb05dfa1-b9e2-4263-ae72-4c4aed0bde44",
+  "isSidechain": false,
+  "promptId": "3cc7bdc6-7582-4027-953f-42207d10bfec",
+  "type": "user",
+  "uuid": "e5126904-898e-4b1a-8a59-d9f8d45c062b",
+  "toolUseResult": {
+    "query": "token pruning random baseline outperform attention-based ACL 2025 findings arXiv 2502.11501",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012Fu3sfngwyGm7gsniUXwWt",
+        "content": [
+          {
+            "title": "[2502.11501] Token Pruning in Multimodal Large Language Models: Are We Solving the Right Problem?",
+            "url": "https://arxiv.org/abs/2502.11501"
+          },
+          {
+            "title": "Token Pruning in Multimodal Large Language Models: Are We Solving the Right Problem?",
+            "url": "https://arxiv.org/html/2502.11501"
+          },
+          {
+            "title": "arXiv:2502.11501v2 [cs.CL] 29 May 2025",
+            "url": "https://arxiv.org/pdf/2502.11501"
+          },
+          {
+            "title": "[2502.11501] Token Pruning in Multimodal Large Language Models: Are We Solving the Right Problem?",
+            "url": "http://export.arxiv.org/abs/2502.11501"
+          },
+          {
+            "title": "Beyond Attention or Similarity: Maximizing Conditional Diversity for Token Pruning in MLLMs",
+            "url": "https://arxiv.org/html/2506.10967v1"
+          },
+          {
+            "title": "Token Pruning in Multimodal Large Language Models",
+            "url": "https://aclanthology.org/2025.findings-acl.802.pdf"
+          },
+          {
+            "title": "Stop Looking for “Important Tokens” in Multimodal Language Models: Duplication Matters More",
+            "url": "https://arxiv.org/html/2502.11494v2"
+          },
+          {
+            "title": "GitHub - ZLKong/Awesome-Collection-Token-Reduction: A collection of token reduction (token pruning, merging, clustering, etc.) techniques for ML/AI · GitHub",
+            "url": "https://github.com/ZLKong/Awesome-Collection-Token-Reduction"
+          },
+          {
+            "title": "LearnPruner: Rethinking Attention-based Token Pruning in Vision Language Models",
+            "url": "https://arxiv.org/html/2604.23950"
+          },
+          {
+            "title": "Token Reduction Should Go Beyond Efficiency in Generative Models – From Vision, Language to Multimodality",
+            "url": "https://arxiv.org/html/2505.18227v1"
+          }
+        ]
+      },
+      "I found the paper you're looking for. Here's what the search results reveal about arXiv paper 2502.11501:\n\n## Key Findings\n\nMany existing token pruning approaches underperform even compared to naive random token selection. This is a central finding of the research.\n\nThe paper, titled \"Token Pruning in Multimodal Large Language Models: Are We Solving the Right Problem?\", raises critical questions about current approaches:\n\n- Attention-based scoring may not be sufficient for reliably identifying redundant tokens.\n- Whether language information is really helpful during token pruning is questioned.\n- The trade-off between token importance and duplication is a key consideration.\n- Current evaluation protocols may not be comprehensive and unbiased.\n\nThe paper systematically examines why many sophisticated token pruning methods fail to outperform simpler baselines, challenging fundamental assumptions in the field. The authors provide insights into the design of future token pruning methods.\n\nThis work appears to be published as part of ACL 2025 findings and has generated significant follow-up research on token reduction in multimodal language models."
+    ],
+    "durationSeconds": 14.264091580000008
+  },
+  "sourceToolAssistantUUID": "cb05dfa1-b9e2-4263-ae72-4c4aed0bde44",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 93 · 2026-05-13T05:05:12.648Z_
+
+Let me now check for any very recent (April-May 2026) work that directly overlaps with CaTS.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e5126904-898e-4b1a-8a59-d9f8d45c062b",
+  "isSidechain": false,
+  "requestId": "req_011Cayz6cE5US66DyABRXtUq",
+  "type": "assistant",
+  "uuid": "6517b40d-7a1d-4e7b-9691-18567c48ce56",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Vcs37VpcsGv95gfTjuxdZH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 867,
+      "cache_read_input_tokens": 61892,
+      "output_tokens": 100,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 867,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 100,
+          "cache_read_input_tokens": 61892,
+          "cache_creation_input_tokens": 867,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 867
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 94 · 2026-05-13T05:05:13.131Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JvKaezYUKdiPdvKUvi8kE3`</summary>
+
+```json
+{
+  "query": "causal VLA token pruning invariance robustness April May 2026 arXiv new"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6517b40d-7a1d-4e7b-9691-18567c48ce56",
+  "isSidechain": false,
+  "requestId": "req_011Cayz6cE5US66DyABRXtUq",
+  "type": "assistant",
+  "uuid": "8372eb7b-7b05-4bc1-8b7a-d4fd5d185e4d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Vcs37VpcsGv95gfTjuxdZH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 867,
+      "cache_read_input_tokens": 61892,
+      "output_tokens": 100,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 867,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 100,
+          "cache_read_input_tokens": 61892,
+          "cache_creation_input_tokens": 867,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 867
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 95 · 2026-05-13T05:05:21.842Z_
+
+<details><summary>↩ Tool result · `toolu_01JvKaezYUKdiPdvKUvi8kE3`</summary>
+
+```text
+Web search results for query: "causal VLA token pruning invariance robustness April May 2026 arXiv new"
+
+Links: [{"title":"VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models","url":"https://arxiv.org/html/2603.22991v1"},{"title":"SP-VLA: A Joint Model Scheduling and Token Pruning Approach for VLA Model Acceleration","url":"https://arxiv.org/html/2506.12723v2"},{"title":"Invariance & Causal Representation Learning: Prospects and Limitations","url":"https://arxiv.org/html/2312.03580v1"},{"title":"[2603.22991v1] VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models","url":"https://arxiv.org/abs/2603.22991v1"},{"title":"[2603.22991] VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models","url":"https://arxiv.org/abs/2603.22991"},{"title":"ATP-LLaVA: Adaptive Token Pruning for Large Vision Language Models","url":"https://arxiv.org/html/2412.00447v1"},{"title":"Position: Trustworthy AI Suffers from Invariance Conflicts and Causality is the Solution","url":"https://arxiv.org/html/2605.02640v1"},{"title":"Causality-Inspired Robustness for Nonlinear Models via Representation Learning","url":"https://arxiv.org/html/2505.12868v1"},{"title":"Invariance & Causal Representation Learning: Prospects and Limitations | OpenReview","url":"https://openreview.net/forum?id=lpOC6s4BcM"},{"title":"[2505.12868] Causality-Inspired Robustness for Nonlinear Models via Representation Learning","url":"https://arxiv.org/abs/2505.12868"}]
+
+Based on the web search results, I found relevant papers on VLA token pruning with robustness considerations from April-May 2026 on arXiv:
+
+## Key Findings:
+
+**1. VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment**
+
+The inference cost of VLA systems becomes a bottleneck for deployment on resource-constrained platforms. Existing visual token pruning methods mainly rely on semantic saliency or simple temporal cues, overlooking the continuous physical interaction that is fundamental to VLA tasks, often leading to unstable behavior during early task phases.
+
+The proposed training-free method, VLA-IAP (Interaction-Aligned Pruning), introduces a geometric prior mechanism to preserve structural anchors and a dynamic scheduling strategy that adapts pruning intensity based on semantic-motion alignment, enabling a conservative-to-aggressive transition that ensures robustness during early uncertainty and efficiency once interaction is locked.
+
+VLA-IAP achieves a 97.8% success rate with a 1.25× speedup on the LIBERO benchmark, and up to 1.54× speedup while maintaining performance comparable to the unpruned backbone, demonstrating superior and consistent performance across multiple model architectures and different simulation environments, as well as a real robot platform.
+
+**2. SP-VLA: A Joint Model Scheduling and Token Pruning Approach**
+
+SP-VLA achieves outstanding acceleration on VLA models while demonstrating strong robustness by maintaining stable performance across a wide range of acceleration ratios, with model scheduling delivering markedly larger speedups than token pruning.
+
+Both papers were published on arXiv in early 2026 and focus on robustness in token pruning for Vision-Language-Action models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8372eb7b-7b05-4bc1-8b7a-d4fd5d185e4d",
+  "isSidechain": false,
+  "promptId": "3cc7bdc6-7582-4027-953f-42207d10bfec",
+  "type": "user",
+  "uuid": "c0dd9ec2-b7a9-4ba3-9e8a-4af275c40d87",
+  "toolUseResult": {
+    "query": "causal VLA token pruning invariance robustness April May 2026 arXiv new",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01TZbYxbGYhmdeWeRLmDSumu",
+        "content": [
+          {
+            "title": "VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2603.22991v1"
+          },
+          {
+            "title": "SP-VLA: A Joint Model Scheduling and Token Pruning Approach for VLA Model Acceleration",
+            "url": "https://arxiv.org/html/2506.12723v2"
+          },
+          {
+            "title": "Invariance & Causal Representation Learning: Prospects and Limitations",
+            "url": "https://arxiv.org/html/2312.03580v1"
+          },
+          {
+            "title": "[2603.22991v1] VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2603.22991v1"
+          },
+          {
+            "title": "[2603.22991] VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2603.22991"
+          },
+          {
+            "title": "ATP-LLaVA: Adaptive Token Pruning for Large Vision Language Models",
+            "url": "https://arxiv.org/html/2412.00447v1"
+          },
+          {
+            "title": "Position: Trustworthy AI Suffers from Invariance Conflicts and Causality is the Solution",
+            "url": "https://arxiv.org/html/2605.02640v1"
+          },
+          {
+            "title": "Causality-Inspired Robustness for Nonlinear Models via Representation Learning",
+            "url": "https://arxiv.org/html/2505.12868v1"
+          },
+          {
+            "title": "Invariance & Causal Representation Learning: Prospects and Limitations | OpenReview",
+            "url": "https://openreview.net/forum?id=lpOC6s4BcM"
+          },
+          {
+            "title": "[2505.12868] Causality-Inspired Robustness for Nonlinear Models via Representation Learning",
+            "url": "https://arxiv.org/abs/2505.12868"
+          }
+        ]
+      },
+      "Based on the web search results, I found relevant papers on VLA token pruning with robustness considerations from April-May 2026 on arXiv:\n\n## Key Findings:\n\n**1. VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment**\n\nThe inference cost of VLA systems becomes a bottleneck for deployment on resource-constrained platforms. Existing visual token pruning methods mainly rely on semantic saliency or simple temporal cues, overlooking the continuous physical interaction that is fundamental to VLA tasks, often leading to unstable behavior during early task phases.\n\nThe proposed training-free method, VLA-IAP (Interaction-Aligned Pruning), introduces a geometric prior mechanism to preserve structural anchors and a dynamic scheduling strategy that adapts pruning intensity based on semantic-motion alignment, enabling a conservative-to-aggressive transition that ensures robustness during early uncertainty and efficiency once interaction is locked.\n\nVLA-IAP achieves a 97.8% success rate with a 1.25× speedup on the LIBERO benchmark, and up to 1.54× speedup while maintaining performance comparable to the unpruned backbone, demonstrating superior and consistent performance across multiple model architectures and different simulation environments, as well as a real robot platform.\n\n**2. SP-VLA: A Joint Model Scheduling and Token Pruning Approach**\n\nSP-VLA achieves outstanding acceleration on VLA models while demonstrating strong robustness by maintaining stable performance across a wide range of acceleration ratios, with model scheduling delivering markedly larger speedups than token pruning.\n\nBoth papers were published on arXiv in early 2026 and focus on robustness in token pruning for Vision-Language-Action models."
+    ],
+    "durationSeconds": 8.704891743000015
+  },
+  "sourceToolAssistantUUID": "8372eb7b-7b05-4bc1-8b7a-d4fd5d185e4d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 96 · 2026-05-13T05:05:27.773Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013TURmhqnhW973ByfWAam6U`</summary>
+
+```json
+{
+  "query": "\"detecting spurious correlations\" \"token discarding\" vision transformer arXiv 2509.04009"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c0dd9ec2-b7a9-4ba3-9e8a-4af275c40d87",
+  "isSidechain": false,
+  "requestId": "req_011Cayz7hCkFiwkkMcwXFWcz",
+  "type": "assistant",
+  "uuid": "5aba3465-94dc-4fcc-a553-d67054527543",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019ddFWGu9R9YNn3V5x6r7sQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1027,
+      "cache_read_input_tokens": 62759,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1027,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 62759,
+          "cache_creation_input_tokens": 1027,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1027
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 97 · 2026-05-13T05:05:34.360Z_
+
+<details><summary>↩ Tool result · `toolu_013TURmhqnhW973ByfWAam6U`</summary>
+
+```text
+Web search results for query: ""detecting spurious correlations" "token discarding" vision transformer arXiv 2509.04009"
+
+Links: [{"title":"[2509.04009] Detecting Regional Spurious Correlations in Vision Transformers via Token Discarding","url":"https://arxiv.org/abs/2509.04009"},{"title":"Detecting Regional Spurious Correlations in Vision Transformers via Token Discarding","url":"https://arxiv.org/html/2509.04009"},{"title":"Detecting Regional Spurious Correlations in Vision Transformers via Token Discarding","url":"https://paperreading.club/page?id=335914"},{"title":"Token-Based Detection of Spurious Correlations in Vision ...","url":"https://openreview.net/pdf/fe7fb70653869c7658c0b6f8dd3359e5749a8eea.pdf"},{"title":"Are Vision Transformers Robust to Spurious Correlations? | International Journal of Computer Vision | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s11263-023-01916-5"},{"title":"Enhancing Transformer-Based Vision Models:","url":"https://arxiv.org/pdf/2509.19687"},{"title":"LeGrad: An Explainability Method for Vision Transformers ...","url":"https://openaccess.thecvf.com/content/ICCV2025/supplemental/Bousselham_LeGrad_An_Explainability_ICCV_2025_supplemental.pdf"},{"title":"ERICT: Enhancing Robustness by Identifying Concept Tokens ...","url":"https://raw.githubusercontent.com/mlresearch/v267/main/assets/dong25o/dong25o.pdf"},{"title":"Are Vision Transformers Robust to Spurious Correlations? | OpenReview","url":"https://openreview.net/forum?id=0JIzy1TZe5&noteId=mu0As9pU3u"},{"title":"[2203.09125] Are Vision Transformers Robust to Spurious Correlations?","url":"https://arxiv.org/abs/2203.09125"}]
+
+I found the paper you're looking for! Here's what I found:
+
+arXiv paper 2509.04009 is titled "Detecting Regional Spurious Correlations in Vision Transformers via Token Discarding". The paper was submitted on September 4, 2025, with authors including Solha Kang, Esla Timothy Anzaku, Wesley De Neve, Arnout Van Messem, Joris Vankerschaver, Francois Rameau, and Utku Ozbulak.
+
+The paper addresses an important problem: neural network-based computer vision models have the ability to detect and exploit unintended patterns within the data, potentially leading to correct predictions based on incorrect or unintended but statistically relevant signals, which may vary from simple color aberrations to small texts within the image. This phenomenon is referred to as spurious correlations, where patterns appear to be associated with the task but are actually coincidental, and detection and mitigation of spurious correlations have become crucial tasks for building trustworthy, reliable, and generalizable machine learning models.
+
+You can access the paper directly at: https://arxiv.org/abs/2509.04009
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5aba3465-94dc-4fcc-a553-d67054527543",
+  "isSidechain": false,
+  "promptId": "3cc7bdc6-7582-4027-953f-42207d10bfec",
+  "type": "user",
+  "uuid": "94a782d9-b94f-41b4-bea6-cf8e3768ee9b",
+  "toolUseResult": {
+    "query": "\"detecting spurious correlations\" \"token discarding\" vision transformer arXiv 2509.04009",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01S9ex7TH9nLmZ5fULSJsMBD",
+        "content": [
+          {
+            "title": "[2509.04009] Detecting Regional Spurious Correlations in Vision Transformers via Token Discarding",
+            "url": "https://arxiv.org/abs/2509.04009"
+          },
+          {
+            "title": "Detecting Regional Spurious Correlations in Vision Transformers via Token Discarding",
+            "url": "https://arxiv.org/html/2509.04009"
+          },
+          {
+            "title": "Detecting Regional Spurious Correlations in Vision Transformers via Token Discarding",
+            "url": "https://paperreading.club/page?id=335914"
+          },
+          {
+            "title": "Token-Based Detection of Spurious Correlations in Vision ...",
+            "url": "https://openreview.net/pdf/fe7fb70653869c7658c0b6f8dd3359e5749a8eea.pdf"
+          },
+          {
+            "title": "Are Vision Transformers Robust to Spurious Correlations? | International Journal of Computer Vision | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s11263-023-01916-5"
+          },
+          {
+            "title": "Enhancing Transformer-Based Vision Models:",
+            "url": "https://arxiv.org/pdf/2509.19687"
+          },
+          {
+            "title": "LeGrad: An Explainability Method for Vision Transformers ...",
+            "url": "https://openaccess.thecvf.com/content/ICCV2025/supplemental/Bousselham_LeGrad_An_Explainability_ICCV_2025_supplemental.pdf"
+          },
+          {
+            "title": "ERICT: Enhancing Robustness by Identifying Concept Tokens ...",
+            "url": "https://raw.githubusercontent.com/mlresearch/v267/main/assets/dong25o/dong25o.pdf"
+          },
+          {
+            "title": "Are Vision Transformers Robust to Spurious Correlations? | OpenReview",
+            "url": "https://openreview.net/forum?id=0JIzy1TZe5&noteId=mu0As9pU3u"
+          },
+          {
+            "title": "[2203.09125] Are Vision Transformers Robust to Spurious Correlations?",
+            "url": "https://arxiv.org/abs/2203.09125"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here's what I found:\n\narXiv paper 2509.04009 is titled \"Detecting Regional Spurious Correlations in Vision Transformers via Token Discarding\". The paper was submitted on September 4, 2025, with authors including Solha Kang, Esla Timothy Anzaku, Wesley De Neve, Arnout Van Messem, Joris Vankerschaver, Francois Rameau, and Utku Ozbulak.\n\nThe paper addresses an important problem: neural network-based computer vision models have the ability to detect and exploit unintended patterns within the data, potentially leading to correct predictions based on incorrect or unintended but statistically relevant signals, which may vary from simple color aberrations to small texts within the image. This phenomenon is referred to as spurious correlations, where patterns appear to be associated with the task but are actually coincidental, and detection and mitigation of spurious correlations have become crucial tasks for building trustworthy, reliable, and generalizable machine learning models.\n\nYou can access the paper directly at: https://arxiv.org/abs/2509.04009"
+    ],
+    "durationSeconds": 6.583067807000014
+  },
+  "sourceToolAssistantUUID": "5aba3465-94dc-4fcc-a553-d67054527543",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 98_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "94a782d9-b94f-41b4-bea6-cf8e3768ee9b",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 99_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Causal token selection for VLA generalization",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a"
+}
+```
+
+---
+
+### Tool call
+
+_source line 100 · 2026-05-13T05:05:38.940Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TDpNteTNScD4v3ng3yyjth`</summary>
+
+```json
+{
+  "query": "Rosenfeld IRM fails nonlinear ICLR 2021 invariant risk minimization limitations"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "94a782d9-b94f-41b4-bea6-cf8e3768ee9b",
+  "isSidechain": false,
+  "requestId": "req_011Cayz8Xim7oSe3JQMvHLYm",
+  "type": "assistant",
+  "uuid": "bb8e123b-033e-4fb8-abd3-ad86f8875530",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EegujSVnpW4ZMewEFTi1MQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 911,
+      "cache_read_input_tokens": 63786,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 911,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 63786,
+          "cache_creation_input_tokens": 911,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 911
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 101 · 2026-05-13T05:05:47.052Z_
+
+<details><summary>↩ Tool result · `toolu_01TDpNteTNScD4v3ng3yyjth`</summary>
+
+```text
+Web search results for query: "Rosenfeld IRM fails nonlinear ICLR 2021 invariant risk minimization limitations"
+
+Links: [{"title":"[2010.05761] The Risks of Invariant Risk Minimization","url":"https://arxiv.org/abs/2010.05761"},{"title":"The Risks of Invariant Risk Minimization","url":"https://www.cs.cmu.edu/~elan/docs/Risks_of_IRM_poster.pdf"},{"title":"THE RISKS OF INVARIANT RISK MINIMIZATION","url":"https://openreview.net/pdf?id=BbNIbVPJ-42"},{"title":"Risks of Invariant Risk Minimization","url":"https://www.emergentmind.com/papers/2010.05761"},{"title":"The Risks of Invariant Risk Minimization","url":"https://www.iclr.cc/media/iclr-2021/Slides/2752.pdf"},{"title":"Meta-Learned Invariant Risk Minimization","url":"https://arxiv.org/pdf/2103.12947"},{"title":"ICLR Poster The Risks of Invariant Risk Minimization","url":"https://iclr.cc/virtual/2021/poster/2752"},{"title":"Invariant Risk Minimization","url":"https://arxiv.org/pdf/1907.02893"},{"title":"The Risks of Invariant Risk Minimization | OpenReview","url":"https://openreview.net/forum?id=BbNIbVPJ-42"},{"title":"Generalized Invariant Risk Minimization: relating adaptation ...","url":"https://preregister.science/papers_20neurips/57_paper.pdf"}]
+
+Based on the search results, I found comprehensive information about Rosenfeld's work on the limitations of Invariant Risk Minimization (IRM):
+
+## Overview
+
+Elan Rosenfeld and colleagues presented "The Risks of Invariant Risk Minimization," a paper analyzing the limitations of the IRM framework. The paper presents the first analysis of classification under the IRM objective—as well as recently proposed alternatives—under a fairly natural and general model.
+
+## Linear Case Findings
+
+In the linear case, the authors show simple conditions under which the optimal solution succeeds or, more often, fails to recover the optimal invariant predictor.
+
+## Non-Linear Regime Limitations
+
+The authors present the very first results in the non-linear regime: they demonstrate that IRM can fail catastrophically unless the test data are sufficiently similar to the training distribution—this is precisely the issue that it was intended to solve. In this setting, IRM and its alternatives fundamentally do not improve over standard Empirical Risk Minimization.
+
+## Key Condition for Failure
+
+IRMv1 can guarantee to find the optimal invariant classifier under the condition that the number of spurious correlations is smaller than the number of training environments (E > |Ψs|). With simple violation of this condition (E ≤|Ψs|), IRMv1 can catastrophically fail to generalize for out-of-distribution scenarios.
+
+This work was presented at ICLR 2021 and has been influential in highlighting theoretical limitations of IRM as an approach to out-of-distribution generalization.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bb8e123b-033e-4fb8-abd3-ad86f8875530",
+  "isSidechain": false,
+  "promptId": "3cc7bdc6-7582-4027-953f-42207d10bfec",
+  "type": "user",
+  "uuid": "4f05e8db-452b-410c-bc2b-0fcc292aa22f",
+  "toolUseResult": {
+    "query": "Rosenfeld IRM fails nonlinear ICLR 2021 invariant risk minimization limitations",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01PJGL5ik6oBcsyeVwY3ncXv",
+        "content": [
+          {
+            "title": "[2010.05761] The Risks of Invariant Risk Minimization",
+            "url": "https://arxiv.org/abs/2010.05761"
+          },
+          {
+            "title": "The Risks of Invariant Risk Minimization",
+            "url": "https://www.cs.cmu.edu/~elan/docs/Risks_of_IRM_poster.pdf"
+          },
+          {
+            "title": "THE RISKS OF INVARIANT RISK MINIMIZATION",
+            "url": "https://openreview.net/pdf?id=BbNIbVPJ-42"
+          },
+          {
+            "title": "Risks of Invariant Risk Minimization",
+            "url": "https://www.emergentmind.com/papers/2010.05761"
+          },
+          {
+            "title": "The Risks of Invariant Risk Minimization",
+            "url": "https://www.iclr.cc/media/iclr-2021/Slides/2752.pdf"
+          },
+          {
+            "title": "Meta-Learned Invariant Risk Minimization",
+            "url": "https://arxiv.org/pdf/2103.12947"
+          },
+          {
+            "title": "ICLR Poster The Risks of Invariant Risk Minimization",
+            "url": "https://iclr.cc/virtual/2021/poster/2752"
+          },
+          {
+            "title": "Invariant Risk Minimization",
+            "url": "https://arxiv.org/pdf/1907.02893"
+          },
+          {
+            "title": "The Risks of Invariant Risk Minimization | OpenReview",
+            "url": "https://openreview.net/forum?id=BbNIbVPJ-42"
+          },
+          {
+            "title": "Generalized Invariant Risk Minimization: relating adaptation ...",
+            "url": "https://preregister.science/papers_20neurips/57_paper.pdf"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about Rosenfeld's work on the limitations of Invariant Risk Minimization (IRM):\n\n## Overview\n\nElan Rosenfeld and colleagues presented \"The Risks of Invariant Risk Minimization,\" a paper analyzing the limitations of the IRM framework. The paper presents the first analysis of classification under the IRM objective—as well as recently proposed alternatives—under a fairly natural and general model.\n\n## Linear Case Findings\n\nIn the linear case, the authors show simple conditions under which the optimal solution succeeds or, more often, fails to recover the optimal invariant predictor.\n\n## Non-Linear Regime Limitations\n\nThe authors present the very first results in the non-linear regime: they demonstrate that IRM can fail catastrophically unless the test data are sufficiently similar to the training distribution—this is precisely the issue that it was intended to solve. In this setting, IRM and its alternatives fundamentally do not improve over standard Empirical Risk Minimization.\n\n## Key Condition for Failure\n\nIRMv1 can guarantee to find the optimal invariant classifier under the condition that the number of spurious correlations is smaller than the number of training environments (E > |Ψs|). With simple violation of this condition (E ≤|Ψs|), IRMv1 can catastrophically fail to generalize for out-of-distribution scenarios.\n\nThis work was presented at ICLR 2021 and has been influential in highlighting theoretical limitations of IRM as an approach to out-of-distribution generalization."
+    ],
+    "durationSeconds": 8.107045051999972
+  },
+  "sourceToolAssistantUUID": "bb8e123b-033e-4fb8-abd3-ad86f8875530",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 102 · 2026-05-13T05:05:47.054Z_
+
+```json
+{
+  "parentUuid": "4f05e8db-452b-410c-bc2b-0fcc292aa22f",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "d6cdf523-85ff-4bea-b91e-cb9f50cf757e",
+  "timestamp": "2026-05-13T05:05:47.054Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 103 · 2026-05-13T05:05:50.311Z_
+
+Let me now fetch the Causal-ACT paper and the ICLR 2026 VLA survey blog post to understand the current landscape more deeply.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d6cdf523-85ff-4bea-b91e-cb9f50cf757e",
+  "isSidechain": false,
+  "requestId": "req_011Cayz9Ts7ojw8htSzasR93",
+  "type": "assistant",
+  "uuid": "b63da376-1265-40e9-8e40-a3d3ed548516",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VfPrWM1xgMi3YuQJNx42Ea",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 987,
+      "cache_read_input_tokens": 64697,
+      "output_tokens": 213,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 987,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 213,
+          "cache_read_input_tokens": 64697,
+          "cache_creation_input_tokens": 987,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 987
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 104 · 2026-05-13T05:05:53.272Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01CkTZevmo1nReVcMJFXeoJ7`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2507.22380",
+  "prompt": "Extract the key method details, results, and limitations. Specifically: (1) What exact causal intervention method do they use? (2) At what level do they operate - feature level or token level? (3) What architecture do they use (ACT, VLA, transformer)? (4) What tasks and environments did they evaluate on? (5) What numerical OOD results did they achieve? (6) What are the main limitations?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b63da376-1265-40e9-8e40-a3d3ed548516",
+  "isSidechain": false,
+  "requestId": "req_011Cayz9Ts7ojw8htSzasR93",
+  "type": "assistant",
+  "uuid": "13734d92-7459-4e28-b6be-dcfbd7ed4142",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VfPrWM1xgMi3YuQJNx42Ea",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 987,
+      "cache_read_input_tokens": 64697,
+      "output_tokens": 213,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 987,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 213,
+          "cache_read_input_tokens": 64697,
+          "cache_creation_input_tokens": 987,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 987
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 105 · 2026-05-13T05:05:58.558Z_
+
+<details><summary>↩ Tool result · `toolu_01CkTZevmo1nReVcMJFXeoJ7`</summary>
+
+```text
+# Summary of Key Research Details
+
+Based on the arXiv abstract provided, here's what can be extracted:
+
+## Causal Intervention Method
+The paper proposes learning "causal relationship between observation components and expert actions" through "a causal structural function learned by intervention on the imitation learning policy," following a framework similar to reference [6].
+
+## Operational Level
+The authors clarify that "disentangling the feature representation from image input...is not necessary in causal relationship learning," suggesting they operate above the strict feature-disentanglement level while still using image inputs.
+
+## Architecture
+They integrate their approach into "Action Chunking Transformer [31]," using this established imitation learning architecture as their foundation.
+
+## Evaluation Environment
+Testing was conducted on "a simulation of the ALOHA bimanual robot arms in Mujoco," focusing on robotic manipulation tasks.
+
+## Quantitative OOD Results
+The abstract provides no numerical results, only stating the method "can considerably mitigate the generalization problem."
+
+## Main Limitations
+The document acknowledges that "current techniques in imitation learning can suffer from poor generalization, limiting performance even under relatively minor domain shifts"—the core problem they address. The abstract doesn't detail specific failure modes or limitations of their proposed solution.
+
+**Note:** Full technical details require accessing the complete paper PDF or HTML version.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "13734d92-7459-4e28-b6be-dcfbd7ed4142",
+  "isSidechain": false,
+  "promptId": "3cc7bdc6-7582-4027-953f-42207d10bfec",
+  "type": "user",
+  "uuid": "18feba09-08f4-46c5-a286-bf88b9ca6023",
+  "toolUseResult": {
+    "bytes": 47364,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Summary of Key Research Details\n\nBased on the arXiv abstract provided, here's what can be extracted:\n\n## Causal Intervention Method\nThe paper proposes learning \"causal relationship between observation components and expert actions\" through \"a causal structural function learned by intervention on the imitation learning policy,\" following a framework similar to reference [6].\n\n## Operational Level\nThe authors clarify that \"disentangling the feature representation from image input...is not necessary in causal relationship learning,\" suggesting they operate above the strict feature-disentanglement level while still using image inputs.\n\n## Architecture\nThey integrate their approach into \"Action Chunking Transformer [31],\" using this established imitation learning architecture as their foundation.\n\n## Evaluation Environment\nTesting was conducted on \"a simulation of the ALOHA bimanual robot arms in Mujoco,\" focusing on robotic manipulation tasks.\n\n## Quantitative OOD Results\nThe abstract provides no numerical results, only stating the method \"can considerably mitigate the generalization problem.\"\n\n## Main Limitations\nThe document acknowledges that \"current techniques in imitation learning can suffer from poor generalization, limiting performance even under relatively minor domain shifts\"—the core problem they address. The abstract doesn't detail specific failure modes or limitations of their proposed solution.\n\n**Note:** Full technical details require accessing the complete paper PDF or HTML version.",
+    "durationMs": 5284,
+    "url": "https://arxiv.org/abs/2507.22380"
+  },
+  "sourceToolAssistantUUID": "13734d92-7459-4e28-b6be-dcfbd7ed4142",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 106 · 2026-05-13T05:06:04.005Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01R1CtsomRLsriAJE6nCUCqw`</summary>
+
+```json
+{
+  "url": "https://mbreuss.github.io/blog_post_iclr_26_vla.html",
+  "prompt": "List ALL key VLA papers accepted at ICLR 2026 that relate to: (1) token pruning or token selection, (2) robustness or generalization under distribution shift, (3) causal methods for VLA, (4) any new benchmarks for VLA robustness. For each paper, note title and key contribution."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "18feba09-08f4-46c5-a286-bf88b9ca6023",
+  "isSidechain": false,
+  "requestId": "req_011CayzAK5Z9KZH6W9C8WmMy",
+  "type": "assistant",
+  "uuid": "696e1f9d-02f2-4adf-8099-03e87bf879e8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015FC9twXYajkVecy47UaDDu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 521,
+      "cache_read_input_tokens": 65684,
+      "output_tokens": 168,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 521,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 168,
+          "cache_read_input_tokens": 65684,
+          "cache_creation_input_tokens": 521,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 521
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 107 · 2026-05-13T05:06:10.196Z_
+
+<details><summary>↩ Tool result · `toolu_01R1CtsomRLsriAJE6nCUCqw`</summary>
+
+```text
+# VLA Papers at ICLR 2026: Specific Research Areas
+
+Based on the content provided, here are the papers matching your specified research areas:
+
+## (1) Token Pruning or Token Selection
+**None identified.** The document discusses tokenizers for action representation but no papers focus on pruning or selecting tokens.
+
+## (2) Robustness or Generalization Under Distribution Shift
+**X-VLA: SOFT-PROMPTED TRANSFORMER AS SCALABLE CROSS-EMBODIMENT VISION-LANGUAGE-ACTION MODEL**
+- Key contribution: Addresses cross-action-space learning using soft-prompt tokens, enabling transfer across heterogeneous embodiments and datasets (LIBERO, CALVIN, SIMPLER).
+
+**XR-1: TOWARDS VERSATILE VISION-LANGUAGE-ACTION MODELS VIA LEARNING UNIFIED VISION-MOTION REPRESENTATIONS**
+- Key contribution: Introduces "Unified Vision-Motion Codes enabling better co-pretraining from human and robot" demonstrations for improved generalization.
+
+## (3) Causal Methods for VLA
+**None identified.** The document contains no papers explicitly using causal inference methods.
+
+## (4) New Benchmarks for VLA Robustness
+**ROBOTARENA ∞: UNLIMITED ROBOT BENCHMARKING VIA REAL-TO-SIM TRANSLATION**
+- Key contribution: Introduces real2sim benchmarking framework with "automatic environment construction and evaluation using physics engine" and VLM-based task progression scoring.
+
+**ROBOCASA365: A LARGE-SCALE SIMULATION FRAMEWORK FOR TRAINING AND BENCHMARKING GENERALIST ROBOTS**
+- Key contribution: Extends RoboCasa with "365 tasks across 2k+ kitchen scenes" for testing generalist robot capabilities.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "696e1f9d-02f2-4adf-8099-03e87bf879e8",
+  "isSidechain": false,
+  "promptId": "3cc7bdc6-7582-4027-953f-42207d10bfec",
+  "type": "user",
+  "uuid": "d0116d3f-c61f-4935-b21d-7032acc05dad",
+  "toolUseResult": {
+    "bytes": 62688,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# VLA Papers at ICLR 2026: Specific Research Areas\n\nBased on the content provided, here are the papers matching your specified research areas:\n\n## (1) Token Pruning or Token Selection\n**None identified.** The document discusses tokenizers for action representation but no papers focus on pruning or selecting tokens.\n\n## (2) Robustness or Generalization Under Distribution Shift\n**X-VLA: SOFT-PROMPTED TRANSFORMER AS SCALABLE CROSS-EMBODIMENT VISION-LANGUAGE-ACTION MODEL**\n- Key contribution: Addresses cross-action-space learning using soft-prompt tokens, enabling transfer across heterogeneous embodiments and datasets (LIBERO, CALVIN, SIMPLER).\n\n**XR-1: TOWARDS VERSATILE VISION-LANGUAGE-ACTION MODELS VIA LEARNING UNIFIED VISION-MOTION REPRESENTATIONS**\n- Key contribution: Introduces \"Unified Vision-Motion Codes enabling better co-pretraining from human and robot\" demonstrations for improved generalization.\n\n## (3) Causal Methods for VLA\n**None identified.** The document contains no papers explicitly using causal inference methods.\n\n## (4) New Benchmarks for VLA Robustness\n**ROBOTARENA ∞: UNLIMITED ROBOT BENCHMARKING VIA REAL-TO-SIM TRANSLATION**\n- Key contribution: Introduces real2sim benchmarking framework with \"automatic environment construction and evaluation using physics engine\" and VLM-based task progression scoring.\n\n**ROBOCASA365: A LARGE-SCALE SIMULATION FRAMEWORK FOR TRAINING AND BENCHMARKING GENERALIST ROBOTS**\n- Key contribution: Extends RoboCasa with \"365 tasks across 2k+ kitchen scenes\" for testing generalist robot capabilities.",
+    "durationMs": 6183,
+    "url": "https://mbreuss.github.io/blog_post_iclr_26_vla.html"
+  },
+  "sourceToolAssistantUUID": "696e1f9d-02f2-4adf-8099-03e87bf879e8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 108 · 2026-05-13T05:06:14.941Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01VDKfdtGW1vBM5wytvF65qL`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2512.07580",
+  "prompt": "Extract the key findings: (1) What is the 'information horizon' and at which layer does it occur? (2) How do they measure token information? (3) What are the implications for token pruning - at which layers should pruning happen? (4) Which VLLMs did they test on? (5) Any specific findings about VLA (vision-language-action) models?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d0116d3f-c61f-4935-b21d-7032acc05dad",
+  "isSidechain": false,
+  "requestId": "req_011CayzBAsiin92u61HKhbHy",
+  "type": "assistant",
+  "uuid": "daa3a49f-92a2-4eff-ba12-5624b9fd82d4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HkN3oB9sVK5HDbC1u3XTNZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 582,
+      "cache_read_input_tokens": 66205,
+      "output_tokens": 167,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 582,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 167,
+          "cache_read_input_tokens": 66205,
+          "cache_creation_input_tokens": 582,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 582
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 109 · 2026-05-13T05:06:19.749Z_
+
+<details><summary>↩ Tool result · `toolu_01VDKfdtGW1vBM5wytvF65qL`</summary>
+
+```text
+# Key Findings from the Paper
+
+## (1) Information Horizon Definition and Location
+The "information horizon" refers to an intermediate layer beyond which visual tokens become redundant and their information progressively vanishes. The paper states that tokens "gradually becomes uniform and eventually vanishes at an intermediate layer, which we term as 'information horizon'". The exact layer varies by model and task complexity.
+
+## (2) Token Information Measurement
+Researchers quantified information by "measuring the change in the model output probabilities upon its removal." This metric reveals how much each token contributes to the model's predictions.
+
+## (3) Implications for Token Pruning
+A critical finding: existing pruning methods fail in deeper layers (beyond layer 20), performing "no better than random pruning." The recommendation is to apply "simple random pruning in deep layers" to balance performance and efficiency, as tokens beyond the horizon are already redundant.
+
+## (4) Tested Vision Language Models
+The paper evaluated multiple VLLMs including:
+- Qwen2.5-VL (stronger model)
+- Qwen-2.5-VL-7B
+- LLaVA-1.5 (weaker model)
+
+## (5) Vision-Language-Action (VLA) Models
+The abstract and content provided contain no specific findings about VLA models. The paper focuses on VLLMs for vision tasks like OCR and VQA.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "daa3a49f-92a2-4eff-ba12-5624b9fd82d4",
+  "isSidechain": false,
+  "promptId": "3cc7bdc6-7582-4027-953f-42207d10bfec",
+  "type": "user",
+  "uuid": "a504fdeb-309f-4c22-9213-13390ef1046f",
+  "toolUseResult": {
+    "bytes": 49414,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Key Findings from the Paper\n\n## (1) Information Horizon Definition and Location\nThe \"information horizon\" refers to an intermediate layer beyond which visual tokens become redundant and their information progressively vanishes. The paper states that tokens \"gradually becomes uniform and eventually vanishes at an intermediate layer, which we term as 'information horizon'\". The exact layer varies by model and task complexity.\n\n## (2) Token Information Measurement\nResearchers quantified information by \"measuring the change in the model output probabilities upon its removal.\" This metric reveals how much each token contributes to the model's predictions.\n\n## (3) Implications for Token Pruning\nA critical finding: existing pruning methods fail in deeper layers (beyond layer 20), performing \"no better than random pruning.\" The recommendation is to apply \"simple random pruning in deep layers\" to balance performance and efficiency, as tokens beyond the horizon are already redundant.\n\n## (4) Tested Vision Language Models\nThe paper evaluated multiple VLLMs including:\n- Qwen2.5-VL (stronger model)\n- Qwen-2.5-VL-7B\n- LLaVA-1.5 (weaker model)\n\n## (5) Vision-Language-Action (VLA) Models\nThe abstract and content provided contain no specific findings about VLA models. The paper focuses on VLLMs for vision tasks like OCR and VQA.",
+    "durationMs": 4806,
+    "url": "https://arxiv.org/abs/2512.07580"
+  },
+  "sourceToolAssistantUUID": "daa3a49f-92a2-4eff-ba12-5624b9fd82d4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 110 · 2026-05-13T05:06:22.890Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VsKKV6tT3W4c4cC6btAgsZ`</summary>
+
+```json
+{
+  "query": "visual token pruning VLA robustness LIBERO-Plus distribution shift April May 2026 new paper"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a504fdeb-309f-4c22-9213-13390ef1046f",
+  "isSidechain": false,
+  "requestId": "req_011CayzBsfQFFjSQhTyqM9gU",
+  "type": "assistant",
+  "uuid": "16a31e8c-3574-4287-92e1-8de38af5cc1f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fk9SSvjgKDak9RLmnTnJBy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 491,
+      "cache_read_input_tokens": 66787,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 491,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 66787,
+          "cache_creation_input_tokens": 491,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 491
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 111 · 2026-05-13T05:06:29.799Z_
+
+<details><summary>↩ Tool result · `toolu_01VsKKV6tT3W4c4cC6btAgsZ`</summary>
+
+```text
+Web search results for query: "visual token pruning VLA robustness LIBERO-Plus distribution shift April May 2026 new paper"
+
+Links: [{"title":"VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models","url":"https://arxiv.org/html/2603.22991v1"},{"title":"[2603.22991v1] VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models","url":"https://arxiv.org/abs/2603.22991v1"},{"title":"CVPR Poster LIBERO-Plus: A Progressive Robustness Benchmark for Visual-Language-Action Models","url":"https://cvpr.thecvf.com/virtual/2026/poster/38735"},{"title":"[2603.22991] VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models","url":"https://arxiv.org/abs/2603.22991"},{"title":"OpenMOSS LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-","url":"https://arxiv.org/pdf/2510.13626"},{"title":"VLA-Cache: Efficient Vision-Language-Action Manipulation via Adaptive Token Caching","url":"https://arxiv.org/html/2502.02175v2"},{"title":"The Better You Learn, The Smarter You Prune: Towards Efficient Vision-language-action Models via Differentiable Token Pruning","url":"https://arxiv.org/html/2509.12594v1"},{"title":"SpecPrune-VLA: Accelerating Vision-Language-Action Models via Action-Aware","url":"https://arxiv.org/pdf/2509.05614"},{"title":"One Token Per Frame: Reconsidering Visual Bandwidth in World...","url":"https://arxiv.org/abs/2605.07931v1"},{"title":"[2510.13626] LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://arxiv.org/abs/2510.13626"}]
+
+Based on the web search results, I found relevant papers matching your query about visual token pruning, VLA robustness, and distribution shifts evaluated on LIBERO-Plus. Here are the key findings:
+
+## Recent Papers Found:
+
+**1. VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment** VLA-IAP introduces a geometric prior mechanism to preserve structural anchors and a dynamic scheduling strategy that adapts pruning intensity based on semantic-motion alignment. On the LIBERO benchmark, it achieves a state-of-the-art 97.8% success rate with a 1.54× speedup without performance degradation compared to the unpruned baseline. This paper was published on March 24, 2026.
+
+**2. LIBERO-Plus: A Progressive Robustness Benchmark** LIBERO-Plus is a comprehensive, automatic, and fine-grained evaluation framework with controlled perturbations across seven dimensions: object layouts, camera viewpoints, robot initial states, language instructions, lighting conditions, background textures, and sensor noise. Analysis of ten state-of-the-art models reveals consistent brittleness beneath apparent competence, with performance dropping from 95% to below 30% under modest perturbations.
+
+**3. OneWM-VLA: One Token Per Frame** OneWM-VLA compresses each view into a single semantic token per frame through an Adaptive Attention Pooling, and produces the resulting latent stream and the action trajectory under a single flow-matching objective. This paper was updated on May 11, 2026 - very recently.
+
+These papers directly address visual token pruning for VLAs, robustness evaluation on LIBERO benchmarks, and distribution shift challenges in Vision-Language-Action models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "16a31e8c-3574-4287-92e1-8de38af5cc1f",
+  "isSidechain": false,
+  "promptId": "3cc7bdc6-7582-4027-953f-42207d10bfec",
+  "type": "user",
+  "uuid": "c5fb766b-c889-4969-94c8-d6c5d86287c2",
+  "toolUseResult": {
+    "query": "visual token pruning VLA robustness LIBERO-Plus distribution shift April May 2026 new paper",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017WJz1XMDE8mDWPBVJ8XFAx",
+        "content": [
+          {
+            "title": "VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2603.22991v1"
+          },
+          {
+            "title": "[2603.22991v1] VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2603.22991v1"
+          },
+          {
+            "title": "CVPR Poster LIBERO-Plus: A Progressive Robustness Benchmark for Visual-Language-Action Models",
+            "url": "https://cvpr.thecvf.com/virtual/2026/poster/38735"
+          },
+          {
+            "title": "[2603.22991] VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2603.22991"
+          },
+          {
+            "title": "OpenMOSS LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-",
+            "url": "https://arxiv.org/pdf/2510.13626"
+          },
+          {
+            "title": "VLA-Cache: Efficient Vision-Language-Action Manipulation via Adaptive Token Caching",
+            "url": "https://arxiv.org/html/2502.02175v2"
+          },
+          {
+            "title": "The Better You Learn, The Smarter You Prune: Towards Efficient Vision-language-action Models via Differentiable Token Pruning",
+            "url": "https://arxiv.org/html/2509.12594v1"
+          },
+          {
+            "title": "SpecPrune-VLA: Accelerating Vision-Language-Action Models via Action-Aware",
+            "url": "https://arxiv.org/pdf/2509.05614"
+          },
+          {
+            "title": "One Token Per Frame: Reconsidering Visual Bandwidth in World...",
+            "url": "https://arxiv.org/abs/2605.07931v1"
+          },
+          {
+            "title": "[2510.13626] LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2510.13626"
+          }
+        ]
+      },
+      "Based on the web search results, I found relevant papers matching your query about visual token pruning, VLA robustness, and distribution shifts evaluated on LIBERO-Plus. Here are the key findings:\n\n## Recent Papers Found:\n\n**1. VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment** VLA-IAP introduces a geometric prior mechanism to preserve structural anchors and a dynamic scheduling strategy that adapts pruning intensity based on semantic-motion alignment. On the LIBERO benchmark, it achieves a state-of-the-art 97.8% success rate with a 1.54× speedup without performance degradation compared to the unpruned baseline. This paper was published on March 24, 2026.\n\n**2. LIBERO-Plus: A Progressive Robustness Benchmark** LIBERO-Plus is a comprehensive, automatic, and fine-grained evaluation framework with controlled perturbations across seven dimensions: object layouts, camera viewpoints, robot initial states, language instructions, lighting conditions, background textures, and sensor noise. Analysis of ten state-of-the-art models reveals consistent brittleness beneath apparent competence, with performance dropping from 95% to below 30% under modest perturbations.\n\n**3. OneWM-VLA: One Token Per Frame** OneWM-VLA compresses each view into a single semantic token per frame through an Adaptive Attention Pooling, and produces the resulting latent stream and the action trajectory under a single flow-matching objective. This paper was updated on May 11, 2026 - very recently.\n\nThese papers directly address visual token pruning for VLAs, robustness evaluation on LIBERO benchmarks, and distribution shift challenges in Vision-Language-Action models."
+    ],
+    "durationSeconds": 6.90603020800004
+  },
+  "sourceToolAssistantUUID": "16a31e8c-3574-4287-92e1-8de38af5cc1f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 112_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "c5fb766b-c889-4969-94c8-d6c5d86287c2",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 113_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Causal token selection for VLA generalization",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a"
+}
+```
+
+---
+
+### Tool call
+
+_source line 114 · 2026-05-13T05:06:33.275Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NLb9o1FoAJR6U6KPbYAhcK`</summary>
+
+```json
+{
+  "query": "OpenVLA-OFT checkpoint available huggingface 7B model weights"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c5fb766b-c889-4969-94c8-d6c5d86287c2",
+  "isSidechain": false,
+  "requestId": "req_011CayzCci1jRMwUPtSiTsht",
+  "type": "assistant",
+  "uuid": "449163a9-76cf-43e3-8f77-a4d029624697",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0177dGM3DBMdbzU9bsZF9QUB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1028,
+      "cache_read_input_tokens": 67278,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1028,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 67278,
+          "cache_creation_input_tokens": 1028,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1028
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 115 · 2026-05-13T05:06:38.880Z_
+
+<details><summary>↩ Tool result · `toolu_01NLb9o1FoAJR6U6KPbYAhcK`</summary>
+
+```text
+Web search results for query: "OpenVLA-OFT checkpoint available huggingface 7B model weights"
+
+Links: [{"title":"openvla/openvla-7b · Hugging Face","url":"https://huggingface.co/openvla/openvla-7b"},{"title":"OpenVLA: An Open-Source Vision-Language-Action Model","url":"https://openvla.github.io/"},{"title":"GitHub - openvla/openvla: OpenVLA: An open-source vision-language-action model for robotic manipulation. · GitHub","url":"https://github.com/openvla/openvla"},{"title":"moojink/openvla-7b-oft-finetuned-libero-10 · Hugging Face","url":"https://huggingface.co/moojink/openvla-7b-oft-finetuned-libero-10"},{"title":"GitHub - moojink/openvla-oft: Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success · GitHub","url":"https://github.com/moojink/openvla-oft"},{"title":"modeling_prismatic.py · moojink/openvla-7b-oft-finetuned-libero-object at main","url":"https://huggingface.co/moojink/openvla-7b-oft-finetuned-libero-object/blob/main/modeling_prismatic.py"},{"title":"openvla/openvla-7b-prismatic · Hugging Face","url":"https://huggingface.co/openvla/openvla-7b-prismatic"},{"title":"README.md · moojink/openvla-7b-oft-finetuned-libero-10 at main","url":"https://huggingface.co/moojink/openvla-7b-oft-finetuned-libero-10/blob/main/README.md"},{"title":"[2406.09246] OpenVLA: An Open-Source Vision-Language-Action Model","url":"https://arxiv.org/abs/2406.09246"},{"title":"moojink/openvla-7b-oft-finetuned-libero-goal · Hugging Face","url":"https://huggingface.co/moojink/openvla-7b-oft-finetuned-libero-goal"}]
+
+Based on the search results, I found information about OpenVLA-OFT checkpoints available on Hugging Face:
+
+## OpenVLA-OFT 7B Model Checkpoints
+
+OpenVLA 7B is an open vision-language-action model trained on 970K robot manipulation episodes from the Open X-Embodiment dataset. The base model is available at the official Hugging Face repository: **openvla/openvla-7b**
+
+For OpenVLA-OFT (Optimized Fine-Tuning) checkpoints specifically, OpenVLA-OFT significantly improves upon the base OpenVLA model by incorporating optimized fine-tuning techniques. These checkpoints are available under the **moojink** namespace on Hugging Face. Some available checkpoints include:
+
+- `moojink/openvla-7b-oft-finetuned-libero-10` (LIBERO-Long)
+- `moojink/openvla-7b-oft-finetuned-libero-spatial`
+- `moojink/openvla-7b-oft-finetuned-libero-object`
+- `moojink/openvla-7b-oft-finetuned-libero-goal`
+
+See here for other OpenVLA-OFT checkpoints: https://huggingface.co/moojink?search_models=oft
+
+All model weights are available for download directly from Hugging Face, and all OpenVLA checkpoints, as well as the training codebase are released under an MIT License.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "449163a9-76cf-43e3-8f77-a4d029624697",
+  "isSidechain": false,
+  "promptId": "3cc7bdc6-7582-4027-953f-42207d10bfec",
+  "type": "user",
+  "uuid": "5def18f3-45b1-4bfa-b0dd-ec0965fd60c9",
+  "toolUseResult": {
+    "query": "OpenVLA-OFT checkpoint available huggingface 7B model weights",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Rv5dQdt8bFP2buAHJVYk8E",
+        "content": [
+          {
+            "title": "openvla/openvla-7b · Hugging Face",
+            "url": "https://huggingface.co/openvla/openvla-7b"
+          },
+          {
+            "title": "OpenVLA: An Open-Source Vision-Language-Action Model",
+            "url": "https://openvla.github.io/"
+          },
+          {
+            "title": "GitHub - openvla/openvla: OpenVLA: An open-source vision-language-action model for robotic manipulation. · GitHub",
+            "url": "https://github.com/openvla/openvla"
+          },
+          {
+            "title": "moojink/openvla-7b-oft-finetuned-libero-10 · Hugging Face",
+            "url": "https://huggingface.co/moojink/openvla-7b-oft-finetuned-libero-10"
+          },
+          {
+            "title": "GitHub - moojink/openvla-oft: Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success · GitHub",
+            "url": "https://github.com/moojink/openvla-oft"
+          },
+          {
+            "title": "modeling_prismatic.py · moojink/openvla-7b-oft-finetuned-libero-object at main",
+            "url": "https://huggingface.co/moojink/openvla-7b-oft-finetuned-libero-object/blob/main/modeling_prismatic.py"
+          },
+          {
+            "title": "openvla/openvla-7b-prismatic · Hugging Face",
+            "url": "https://huggingface.co/openvla/openvla-7b-prismatic"
+          },
+          {
+            "title": "README.md · moojink/openvla-7b-oft-finetuned-libero-10 at main",
+            "url": "https://huggingface.co/moojink/openvla-7b-oft-finetuned-libero-10/blob/main/README.md"
+          },
+          {
+            "title": "[2406.09246] OpenVLA: An Open-Source Vision-Language-Action Model",
+            "url": "https://arxiv.org/abs/2406.09246"
+          },
+          {
+            "title": "moojink/openvla-7b-oft-finetuned-libero-goal · Hugging Face",
+            "url": "https://huggingface.co/moojink/openvla-7b-oft-finetuned-libero-goal"
+          }
+        ]
+      },
+      "Based on the search results, I found information about OpenVLA-OFT checkpoints available on Hugging Face:\n\n## OpenVLA-OFT 7B Model Checkpoints\n\nOpenVLA 7B is an open vision-language-action model trained on 970K robot manipulation episodes from the Open X-Embodiment dataset. The base model is available at the official Hugging Face repository: **openvla/openvla-7b**\n\nFor OpenVLA-OFT (Optimized Fine-Tuning) checkpoints specifically, OpenVLA-OFT significantly improves upon the base OpenVLA model by incorporating optimized fine-tuning techniques. These checkpoints are available under the **moojink** namespace on Hugging Face. Some available checkpoints include:\n\n- `moojink/openvla-7b-oft-finetuned-libero-10` (LIBERO-Long)\n- `moojink/openvla-7b-oft-finetuned-libero-spatial`\n- `moojink/openvla-7b-oft-finetuned-libero-object`\n- `moojink/openvla-7b-oft-finetuned-libero-goal`\n\nSee here for other OpenVLA-OFT checkpoints: https://huggingface.co/moojink?search_models=oft\n\nAll model weights are available for download directly from Hugging Face, and all OpenVLA checkpoints, as well as the training codebase are released under an MIT License."
+    ],
+    "durationSeconds": 5.6007001409999795
+  },
+  "sourceToolAssistantUUID": "449163a9-76cf-43e3-8f77-a4d029624697",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 116 · 2026-05-13T05:06:41.954Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01L4676cWPUTVVMrSmoiHPGi`</summary>
+
+```json
+{
+  "query": "ICRA 2027 submission deadline September 2026 call papers robotics"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5def18f3-45b1-4bfa-b0dd-ec0965fd60c9",
+  "isSidechain": false,
+  "requestId": "req_011CayzDHb6SFHAT6X2DmimE",
+  "type": "assistant",
+  "uuid": "a6f1b8b0-ee5a-48e2-a639-cca9d2f7ba2a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H7jHJdv1nWoicKwKFJ3EUA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1045,
+      "cache_read_input_tokens": 68306,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1045,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 68306,
+          "cache_creation_input_tokens": 1045,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1045
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 117 · 2026-05-13T05:06:46.240Z_
+
+<details><summary>↩ Tool result · `toolu_01L4676cWPUTVVMrSmoiHPGi`</summary>
+
+```text
+Web search results for query: "ICRA 2027 submission deadline September 2026 call papers robotics"
+
+Links: [{"title":"IEEE ICRA 2027 | Calls for Papers and Posters","url":"https://2027.ieee-icra.org/contribute/"},{"title":"IEEE ICRA 2026 | Calls for Papers and Posters","url":"https://2026.ieee-icra.org/contribute/"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"ICRA: International Conference on Robotics and Automation 2027 2026 2025 ...","url":"http://www.wikicfp.com/cfp/program?id=1454"},{"title":"ICRA 2030: Submit Your Proposal! The IEEE #Robotics ...","url":"https://www.facebook.com/ieee.ras/posts/icra-2030-submit-your-proposalthe-ieee-robotics-and-automation-society-ras-invit/697022755988706/"},{"title":"ICRA - IEEE Robotics and Automation Society Website","url":"https://www.ieee-ras.org/conferences-workshops/fully-sponsored/icra/"},{"title":"IEEE ICRA on X: \"Final Reminder: ICRA 2026 Paper Submission Deadline – 15 September 2025 (23:59 PST)! Submit your cutting-edge robotics research to the flagship IEEE Robotics &amp; Automation conference. Learn more about the submission process: https://t.co/lopnwGFNTd https://t.co/4FMfIL93Tl\" / X","url":"https://x.com/ieee_ras_icra/status/1966540573549973863"},{"title":"Final Reminder: ICRA 2026 Paper Submission Deadline – 15 September 2025 (23:59 PST)! Submit your cutting-edge robotics research to the flagship IEEE Robotics & Automation conference. 📄 8-page limit… | IEEE International Conference on Robotics and Automation (ICRA)","url":"https://www.linkedin.com/posts/ieee-icra_final-reminder-icra-2026-paper-submission-activity-7372306265139474432-Ath8"},{"title":"2027 IEEE International Conference on Robotics and Automation ICRA","url":"https://www.aconf.org/conf_211853.2027_IEEE_International_Conference_on_Robotics_and_Automation.html"},{"title":"ICRA 2026 Call for Papers: Important Dates, Submission Guide & Research Tips - Conference Inc.","url":"https://conferenceinc.net/post/icra-2026/"}]
+
+Based on the search results, I found information about ICRA submission deadlines. However, the query asks about ICRA 2027 with a September 2026 submission deadline, but the most recent information available is for ICRA 2026.
+
+Here's what I found:
+
+**For ICRA 2026:** Submissions are due by 15 September 2025. ICRA 2026 is scheduled for June 1–5, 2026, in Vienna, Austria.
+
+**For ICRA 2027:** The search results indicate that ICRA 2027 is scheduled for May 24-28, 2027, but I did not find specific submission deadline information for ICRA 2027 in the current search results. The detailed call for papers and submission deadlines for ICRA 2027 may not yet be publicly available or may require visiting the official ICRA 2027 website directly.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a6f1b8b0-ee5a-48e2-a639-cca9d2f7ba2a",
+  "isSidechain": false,
+  "promptId": "3cc7bdc6-7582-4027-953f-42207d10bfec",
+  "type": "user",
+  "uuid": "47d0f040-5cec-4125-80cc-9692ba735755",
+  "toolUseResult": {
+    "query": "ICRA 2027 submission deadline September 2026 call papers robotics",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01MVZPyqbJkRhrP6MB2uKnGr",
+        "content": [
+          {
+            "title": "IEEE ICRA 2027 | Calls for Papers and Posters",
+            "url": "https://2027.ieee-icra.org/contribute/"
+          },
+          {
+            "title": "IEEE ICRA 2026 | Calls for Papers and Posters",
+            "url": "https://2026.ieee-icra.org/contribute/"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "ICRA: International Conference on Robotics and Automation 2027 2026 2025 ...",
+            "url": "http://www.wikicfp.com/cfp/program?id=1454"
+          },
+          {
+            "title": "ICRA 2030: Submit Your Proposal! The IEEE #Robotics ...",
+            "url": "https://www.facebook.com/ieee.ras/posts/icra-2030-submit-your-proposalthe-ieee-robotics-and-automation-society-ras-invit/697022755988706/"
+          },
+          {
+            "title": "ICRA - IEEE Robotics and Automation Society Website",
+            "url": "https://www.ieee-ras.org/conferences-workshops/fully-sponsored/icra/"
+          },
+          {
+            "title": "IEEE ICRA on X: \"Final Reminder: ICRA 2026 Paper Submission Deadline – 15 September 2025 (23:59 PST)! Submit your cutting-edge robotics research to the flagship IEEE Robotics &amp; Automation conference. Learn more about the submission process: https://t.co/lopnwGFNTd https://t.co/4FMfIL93Tl\" / X",
+            "url": "https://x.com/ieee_ras_icra/status/1966540573549973863"
+          },
+          {
+            "title": "Final Reminder: ICRA 2026 Paper Submission Deadline – 15 September 2025 (23:59 PST)! Submit your cutting-edge robotics research to the flagship IEEE Robotics & Automation conference. 📄 8-page limit… | IEEE International Conference on Robotics and Automation (ICRA)",
+            "url": "https://www.linkedin.com/posts/ieee-icra_final-reminder-icra-2026-paper-submission-activity-7372306265139474432-Ath8"
+          },
+          {
+            "title": "2027 IEEE International Conference on Robotics and Automation ICRA",
+            "url": "https://www.aconf.org/conf_211853.2027_IEEE_International_Conference_on_Robotics_and_Automation.html"
+          },
+          {
+            "title": "ICRA 2026 Call for Papers: Important Dates, Submission Guide & Research Tips - Conference Inc.",
+            "url": "https://conferenceinc.net/post/icra-2026/"
+          }
+        ]
+      },
+      "Based on the search results, I found information about ICRA submission deadlines. However, the query asks about ICRA 2027 with a September 2026 submission deadline, but the most recent information available is for ICRA 2026.\n\nHere's what I found:\n\n**For ICRA 2026:** Submissions are due by 15 September 2025. ICRA 2026 is scheduled for June 1–5, 2026, in Vienna, Austria.\n\n**For ICRA 2027:** The search results indicate that ICRA 2027 is scheduled for May 24-28, 2027, but I did not find specific submission deadline information for ICRA 2027 in the current search results. The detailed call for papers and submission deadlines for ICRA 2027 may not yet be publicly available or may require visiting the official ICRA 2027 website directly."
+    ],
+    "durationSeconds": 4.2831843499999955
+  },
+  "sourceToolAssistantUUID": "a6f1b8b0-ee5a-48e2-a639-cca9d2f7ba2a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 118 · 2026-05-13T05:06:48.935Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_013NWp2taor23LdioMzUksbA`</summary>
+
+```json
+{
+  "url": "https://2027.ieee-icra.org/contribute/",
+  "prompt": "What are the submission deadlines for ICRA 2027 papers? List all important dates."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "47d0f040-5cec-4125-80cc-9692ba735755",
+  "isSidechain": false,
+  "requestId": "req_011CayzDpvG8psSzKyC34eDq",
+  "type": "assistant",
+  "uuid": "2242c6b1-856c-405c-a259-4e0b8fa2005b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019osiVrDZ7oL5CG7WCpNTRc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 991,
+      "cache_read_input_tokens": 69351,
+      "output_tokens": 102,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 991,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 102,
+          "cache_read_input_tokens": 69351,
+          "cache_creation_input_tokens": 991,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 991
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 119 · 2026-05-13T05:06:57.493Z_
+
+<details><summary>↩ Tool result · `toolu_013NWp2taor23LdioMzUksbA`</summary>
+
+```text
+# ICRA 2027 Paper Submission Deadlines
+
+Based on the provided content, there is **no information about ICRA 2027 paper submission deadlines**. The page contains details for ICRA 2025, not 2027.
+
+The document states: "ICRA 2025 will bring together the world's top researchers and leading companies to share ideas and advances in Robotics and Automation."
+
+**ICRA 2025 Important Dates** (the only conference with deadlines listed):
+
+- **Paper Submission Deadline:** September 15, 2024 (11:59 PST)
+- **Accompanying Videos Submission:** August 5–September 9, 2024, and September 17–22, 2024 (11:59 PST)
+
+The page notes that "ICRA 2027 Website [is] under Construction" (as of May 5, 2026), so specific 2027 submission details are not yet available.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2242c6b1-856c-405c-a259-4e0b8fa2005b",
+  "isSidechain": false,
+  "promptId": "3cc7bdc6-7582-4027-953f-42207d10bfec",
+  "type": "user",
+  "uuid": "de7bd5ee-d8f9-480e-8f93-0e974df0c4e6",
+  "toolUseResult": {
+    "bytes": 160602,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# ICRA 2027 Paper Submission Deadlines\n\nBased on the provided content, there is **no information about ICRA 2027 paper submission deadlines**. The page contains details for ICRA 2025, not 2027.\n\nThe document states: \"ICRA 2025 will bring together the world's top researchers and leading companies to share ideas and advances in Robotics and Automation.\"\n\n**ICRA 2025 Important Dates** (the only conference with deadlines listed):\n\n- **Paper Submission Deadline:** September 15, 2024 (11:59 PST)\n- **Accompanying Videos Submission:** August 5–September 9, 2024, and September 17–22, 2024 (11:59 PST)\n\nThe page notes that \"ICRA 2027 Website [is] under Construction\" (as of May 5, 2026), so specific 2027 submission details are not yet available.",
+    "durationMs": 8557,
+    "url": "https://2027.ieee-icra.org/contribute/"
+  },
+  "sourceToolAssistantUUID": "2242c6b1-856c-405c-a259-4e0b8fa2005b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 120 · 2026-05-13T05:07:00.060Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NYt8xTJyn537UaBkp1u3oo`</summary>
+
+```json
+{
+  "query": "CoRL 2026 submission deadline May 29 2026 conference on robot learning"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "de7bd5ee-d8f9-480e-8f93-0e974df0c4e6",
+  "isSidechain": false,
+  "requestId": "req_011CayzEf2xyu65i3yToZDez",
+  "type": "assistant",
+  "uuid": "8e538e35-bb82-49d1-92d8-aeb25fa1e8a5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SSvr6sg1x2p6MsK85E1nDq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 337,
+      "cache_read_input_tokens": 70342,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 337,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 70342,
+          "cache_creation_input_tokens": 337,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 337
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 121 · 2026-05-13T05:07:08.414Z_
+
+<details><summary>↩ Tool result · `toolu_01NYt8xTJyn537UaBkp1u3oo`</summary>
+
+```text
+Web search results for query: "CoRL 2026 submission deadline May 29 2026 conference on robot learning"
+
+Links: [{"title":"Update CoRL 2026 conference details · huggingface/ai-deadlines at 0ba012a","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/0ba012abbc2f4e96e0072f99fd68649bfc69d9cf"},{"title":"CoRL 2026 - Call for Papers","url":"https://www.corl.org/contributions/call-for-papers"},{"title":"CoRL LaTeX Template | Robot Learning Conference Format | Underleaf","url":"https://www.underleaf.ai/templates/corl"},{"title":"CoRL 2026","url":"https://www.corl.org/"},{"title":"CoRL 2026 Conference | OpenReview","url":"https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2026%2FConference"},{"title":"CoRL 2026 - Instruction for Authors","url":"https://www.corl.org/contributions/instruction-for-authors"},{"title":"Robot Learning Foundation","url":"https://www.robot-learning.org/"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"Conference on Robot Learning (@corl_conf) / Posts / X","url":"https://x.com/corl_conf"},{"title":"CoRL 2026 - Contributions","url":"https://www.corl.org/contributions"}]
+
+Based on the search results, here's the information about CoRL 2026:
+
+The Conference on Robot Learning (CoRL) is an annual international conference focusing on the intersection of robotics and machine learning, and CoRL 2026 will be held in Austin, Texas, US.
+
+**Submission Deadlines:**
+- Abstract submission deadline: May 26, 2026 11:59 UTC
+- Paper submission deadline: May 29, 2026
+
+**Conference Details:**
+- Conference dates: November 9-12, 2026
+- Venue: JW Marriott Austin, 110 E 2nd St, Austin, TX 78701
+
+**Submission Requirements:**
+- Papers should be limited to 8 pages for the main paper
+- Submissions should focus on core robotics problems, and authors are encouraged to report real-robot experiments or provide convincing evidence that simulation experiments are transferable to real robots
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8e538e35-bb82-49d1-92d8-aeb25fa1e8a5",
+  "isSidechain": false,
+  "promptId": "3cc7bdc6-7582-4027-953f-42207d10bfec",
+  "type": "user",
+  "uuid": "c543fa48-069c-415e-a880-d9cc3b93d8dc",
+  "toolUseResult": {
+    "query": "CoRL 2026 submission deadline May 29 2026 conference on robot learning",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012X4CtUhuWPtRopsTAs5iaz",
+        "content": [
+          {
+            "title": "Update CoRL 2026 conference details · huggingface/ai-deadlines at 0ba012a",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/0ba012abbc2f4e96e0072f99fd68649bfc69d9cf"
+          },
+          {
+            "title": "CoRL 2026 - Call for Papers",
+            "url": "https://www.corl.org/contributions/call-for-papers"
+          },
+          {
+            "title": "CoRL LaTeX Template | Robot Learning Conference Format | Underleaf",
+            "url": "https://www.underleaf.ai/templates/corl"
+          },
+          {
+            "title": "CoRL 2026",
+            "url": "https://www.corl.org/"
+          },
+          {
+            "title": "CoRL 2026 Conference | OpenReview",
+            "url": "https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2026%2FConference"
+          },
+          {
+            "title": "CoRL 2026 - Instruction for Authors",
+            "url": "https://www.corl.org/contributions/instruction-for-authors"
+          },
+          {
+            "title": "Robot Learning Foundation",
+            "url": "https://www.robot-learning.org/"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "Conference on Robot Learning (@corl_conf) / Posts / X",
+            "url": "https://x.com/corl_conf"
+          },
+          {
+            "title": "CoRL 2026 - Contributions",
+            "url": "https://www.corl.org/contributions"
+          }
+        ]
+      },
+      "Based on the search results, here's the information about CoRL 2026:\n\nThe Conference on Robot Learning (CoRL) is an annual international conference focusing on the intersection of robotics and machine learning, and CoRL 2026 will be held in Austin, Texas, US.\n\n**Submission Deadlines:**\n- Abstract submission deadline: May 26, 2026 11:59 UTC\n- Paper submission deadline: May 29, 2026\n\n**Conference Details:**\n- Conference dates: November 9-12, 2026\n- Venue: JW Marriott Austin, 110 E 2nd St, Austin, TX 78701\n\n**Submission Requirements:**\n- Papers should be limited to 8 pages for the main paper\n- Submissions should focus on core robotics problems, and authors are encouraged to report real-robot experiments or provide convincing evidence that simulation experiments are transferable to real robots"
+    ],
+    "durationSeconds": 8.350249895999966
+  },
+  "sourceToolAssistantUUID": "8e538e35-bb82-49d1-92d8-aeb25fa1e8a5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 122 · 2026-05-13T05:07:17.102Z_
+
+Now let me verify the SRPO LIBERO-Plus claim of 82.1% more carefully, and check some recently discovered competing methods.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c543fa48-069c-415e-a880-d9cc3b93d8dc",
+  "isSidechain": false,
+  "requestId": "req_011CayzFhnwMkhtq4w7wfBoh",
+  "type": "assistant",
+  "uuid": "2c529fdf-d755-45a5-ae8b-8158fb987077",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MT6qLJtTQ7nbrNv8fKpDD7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 702,
+      "cache_read_input_tokens": 70679,
+      "output_tokens": 148,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 702,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 148,
+          "cache_read_input_tokens": 70679,
+          "cache_creation_input_tokens": 702,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 702
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 123 · 2026-05-13T05:07:18.588Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01QWVRJ9zctMaDmLnRkppx2K`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2511.15605",
+  "prompt": "What are the specific numerical results of SRPO on LIBERO-Plus? What is the average success rate? Also, what backbone does SRPO use?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2c529fdf-d755-45a5-ae8b-8158fb987077",
+  "isSidechain": false,
+  "requestId": "req_011CayzFhnwMkhtq4w7wfBoh",
+  "type": "assistant",
+  "uuid": "b5626e8c-0070-4fef-bdaf-99ef7b20eb16",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MT6qLJtTQ7nbrNv8fKpDD7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 702,
+      "cache_read_input_tokens": 70679,
+      "output_tokens": 148,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 702,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 148,
+          "cache_read_input_tokens": 70679,
+          "cache_creation_input_tokens": 702,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 702
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 124 · 2026-05-13T05:07:21.868Z_
+
+<details><summary>↩ Tool result · `toolu_01QWVRJ9zctMaDmLnRkppx2K`</summary>
+
+```text
+Based on the provided content, I can address your questions as follows:
+
+**LIBERO-Plus Results:**
+The document states that SRPO achieved "a 167% performance improvement on the LIBERO-Plus benchmark," but does not provide the specific numerical success rate or average success rate for this benchmark.
+
+**LIBERO Results:**
+On the primary LIBERO benchmark, SRPO reached "a new state-of-the-art success rate of 99.2% in just 200 RL steps" (compared to the supervised baseline of 48.9%).
+
+**Backbone Architecture:**
+The provided content does not specify which backbone architecture SRPO uses. This technical detail is not included in the abstract or metadata shown on this arXiv page.
+
+To find information about the backbone, you would need to consult the full paper's methodology section.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b5626e8c-0070-4fef-bdaf-99ef7b20eb16",
+  "isSidechain": false,
+  "promptId": "3cc7bdc6-7582-4027-953f-42207d10bfec",
+  "type": "user",
+  "uuid": "4d52eb96-7d13-41ca-8173-ec5efc27680c",
+  "toolUseResult": {
+    "bytes": 48637,
+    "code": 200,
+    "codeText": "OK",
+    "result": "Based on the provided content, I can address your questions as follows:\n\n**LIBERO-Plus Results:**\nThe document states that SRPO achieved \"a 167% performance improvement on the LIBERO-Plus benchmark,\" but does not provide the specific numerical success rate or average success rate for this benchmark.\n\n**LIBERO Results:**\nOn the primary LIBERO benchmark, SRPO reached \"a new state-of-the-art success rate of 99.2% in just 200 RL steps\" (compared to the supervised baseline of 48.9%).\n\n**Backbone Architecture:**\nThe provided content does not specify which backbone architecture SRPO uses. This technical detail is not included in the abstract or metadata shown on this arXiv page.\n\nTo find information about the backbone, you would need to consult the full paper's methodology section.",
+    "durationMs": 3274,
+    "url": "https://arxiv.org/abs/2511.15605"
+  },
+  "sourceToolAssistantUUID": "b5626e8c-0070-4fef-bdaf-99ef7b20eb16",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 125 · 2026-05-13T05:07:21.872Z_
+
+```json
+{
+  "parentUuid": "4d52eb96-7d13-41ca-8173-ec5efc27680c",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "a14662ce-45c8-4083-b15d-46163ede6a47",
+  "timestamp": "2026-05-13T05:07:21.872Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 126 · 2026-05-13T05:07:32.168Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JUwNQmHj4HwNzNDiDkQsDm`</summary>
+
+```json
+{
+  "query": "SRPO LIBERO-Plus 82 percent success rate leaderboard benchmark results"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a14662ce-45c8-4083-b15d-46163ede6a47",
+  "isSidechain": false,
+  "requestId": "req_011CayzGTMK1UnatSvmQHBua",
+  "type": "assistant",
+  "uuid": "6a87058d-9932-4f61-8607-e87b06712b95",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SJyK85JV2R9u9NoeVafScG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 448,
+      "cache_read_input_tokens": 71381,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 448,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 71381,
+          "cache_creation_input_tokens": 448,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 448
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 127 · 2026-05-13T05:07:37.154Z_
+
+<details><summary>↩ Tool result · `toolu_01JUwNQmHj4HwNzNDiDkQsDm`</summary>
+
+```text
+Web search results for query: "SRPO LIBERO-Plus 82 percent success rate leaderboard benchmark results"
+
+Links: [{"title":"GitHub - sylvestf/LIBERO-plus: Official repository of LIBERO-plus, a generalized benchmark for in-depth robustness analysis of vision-language-action models. · GitHub","url":"https://github.com/sylvestf/LIBERO-plus"},{"title":"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://sylvestf.github.io/LIBERO-plus/"},{"title":"SRPO Code Implementation Explained — siiRL documentation","url":"https://siirl.readthedocs.io/en/latest/programming_guide/srpo_code_explained.html"},{"title":"LIBERO-PRO: Towards Robust and Fair Evaluation of Vision-Language-Action Models Beyond Memorization","url":"https://arxiv.org/html/2510.03827v1"},{"title":"[Quick Review] SRPO: Self-Referential Policy Optimization for Vision-Language-Action Models","url":"https://liner.com/review/srpo-selfreferential-policy-optimization-for-visionlanguageaction-models"},{"title":"[2510.13626] LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://arxiv.org/abs/2510.13626"},{"title":"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://arxiv.org/html/2510.13626v1"},{"title":"VLA & Dexterous Manipulation SOTA Leaderboard","url":"https://github.com/MINT-SJTU/Evo-SOTA.io/blob/main/README.md"},{"title":"Libero-Object Benchmark","url":"https://www.emergentmind.com/topics/libero-object-benchmark"},{"title":"LIBERO Benchmark: Vision-Language-Action in Robotics","url":"https://www.emergentmind.com/topics/libero"}]
+
+Based on the search results, here's what I found about SRPO and LIBERO-Plus:
+
+SRPO (Self-Referential Policy Optimization for Vision-Language-Action Models) achieves an average of 82.1 on the LIBERO-Plus benchmark, which is a leaderboard benchmark for evaluating vision-language-action models.
+
+SRPO achieves a 99.2% success rate on novel states within only 200 RL steps, representing a 103% relative improvement from a supervised baseline with a 48.9% success rate on the standard LIBERO benchmark. Additionally, SRPO shows significant robustness on the LIBERO-Plus benchmark, achieving a 167% performance gain.
+
+LIBERO-Plus is a comprehensive benchmark designed to establish a rigorous leaderboard for evaluating generalization capabilities across key vulnerability dimensions, providing more robust evaluation than standard benchmarks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6a87058d-9932-4f61-8607-e87b06712b95",
+  "isSidechain": false,
+  "promptId": "3cc7bdc6-7582-4027-953f-42207d10bfec",
+  "type": "user",
+  "uuid": "2cf69edb-0065-4832-a6e9-393cdf07b7a3",
+  "toolUseResult": {
+    "query": "SRPO LIBERO-Plus 82 percent success rate leaderboard benchmark results",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01RgDTbxfpVNrhCZ4S1DhADv",
+        "content": [
+          {
+            "title": "GitHub - sylvestf/LIBERO-plus: Official repository of LIBERO-plus, a generalized benchmark for in-depth robustness analysis of vision-language-action models. · GitHub",
+            "url": "https://github.com/sylvestf/LIBERO-plus"
+          },
+          {
+            "title": "LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://sylvestf.github.io/LIBERO-plus/"
+          },
+          {
+            "title": "SRPO Code Implementation Explained — siiRL documentation",
+            "url": "https://siirl.readthedocs.io/en/latest/programming_guide/srpo_code_explained.html"
+          },
+          {
+            "title": "LIBERO-PRO: Towards Robust and Fair Evaluation of Vision-Language-Action Models Beyond Memorization",
+            "url": "https://arxiv.org/html/2510.03827v1"
+          },
+          {
+            "title": "[Quick Review] SRPO: Self-Referential Policy Optimization for Vision-Language-Action Models",
+            "url": "https://liner.com/review/srpo-selfreferential-policy-optimization-for-visionlanguageaction-models"
+          },
+          {
+            "title": "[2510.13626] LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2510.13626"
+          },
+          {
+            "title": "LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2510.13626v1"
+          },
+          {
+            "title": "VLA & Dexterous Manipulation SOTA Leaderboard",
+            "url": "https://github.com/MINT-SJTU/Evo-SOTA.io/blob/main/README.md"
+          },
+          {
+            "title": "Libero-Object Benchmark",
+            "url": "https://www.emergentmind.com/topics/libero-object-benchmark"
+          },
+          {
+            "title": "LIBERO Benchmark: Vision-Language-Action in Robotics",
+            "url": "https://www.emergentmind.com/topics/libero"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about SRPO and LIBERO-Plus:\n\nSRPO (Self-Referential Policy Optimization for Vision-Language-Action Models) achieves an average of 82.1 on the LIBERO-Plus benchmark, which is a leaderboard benchmark for evaluating vision-language-action models.\n\nSRPO achieves a 99.2% success rate on novel states within only 200 RL steps, representing a 103% relative improvement from a supervised baseline with a 48.9% success rate on the standard LIBERO benchmark. Additionally, SRPO shows significant robustness on the LIBERO-Plus benchmark, achieving a 167% performance gain.\n\nLIBERO-Plus is a comprehensive benchmark designed to establish a rigorous leaderboard for evaluating generalization capabilities across key vulnerability dimensions, providing more robust evaluation than standard benchmarks."
+    ],
+    "durationSeconds": 4.982684034999984
+  },
+  "sourceToolAssistantUUID": "6a87058d-9932-4f61-8607-e87b06712b95",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 128_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "2cf69edb-0065-4832-a6e9-393cdf07b7a3",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 129_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Causal token selection for VLA generalization",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a"
+}
+```
+
+---
+
+### Assistant
+
+_source line 130 · 2026-05-13T05:07:41.312Z_
+
+Good — SRPO's 82.1% LIBERO-Plus claim checks out, and according to the LIBERO-Plus leaderboard, the top is actually OpenVLA-OFT+ at 79.6% for the *official* leaderboard. Let me verify whether SRPO is on the official leaderboard.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2cf69edb-0065-4832-a6e9-393cdf07b7a3",
+  "isSidechain": false,
+  "requestId": "req_011CayzHadPWUmHadPKvMYYk",
+  "type": "assistant",
+  "uuid": "3e2c2030-ee14-49cb-8d5f-2b47a9dfcacf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PVufbLgPvaR7WjG3VA37tG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 814,
+      "cache_read_input_tokens": 71829,
+      "output_tokens": 203,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 814,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 203,
+          "cache_read_input_tokens": 71829,
+          "cache_creation_input_tokens": 814,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 814
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 131 · 2026-05-13T05:07:43.058Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01UXvn2QcmxnRctR55ezCqW3`</summary>
+
+```json
+{
+  "url": "https://sylvestf.github.io/LIBERO-plus/",
+  "prompt": "List ALL models and their success rates on the LIBERO-Plus leaderboard. Include SRPO if present. What is the current SOTA? Also list any method that involves token selection or pruning."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3e2c2030-ee14-49cb-8d5f-2b47a9dfcacf",
+  "isSidechain": false,
+  "requestId": "req_011CayzHadPWUmHadPKvMYYk",
+  "type": "assistant",
+  "uuid": "47c44b85-8588-4fe7-9c73-9598661bc839",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PVufbLgPvaR7WjG3VA37tG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 814,
+      "cache_read_input_tokens": 71829,
+      "output_tokens": 203,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 814,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 203,
+          "cache_read_input_tokens": 71829,
+          "cache_creation_input_tokens": 814,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 814
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 132 · 2026-05-13T05:07:46.927Z_
+
+<details><summary>↩ Tool result · `toolu_01UXvn2QcmxnRctR55ezCqW3`</summary>
+
+```text
+# LIBERO-Plus Leaderboard Analysis
+
+Based on the provided content, I cannot give you a complete list of all models and their specific success rates on the LIBERO-Plus leaderboard. The webpage shows visualizations (figures and heatmaps) of model performance, but the actual numerical leaderboard data with individual model scores is not included in the text content provided.
+
+## What is mentioned:
+
+The document references "four representative models" that were used to stratify difficulty levels, but does not name them or provide their individual scores in the text portion available.
+
+One specific result is highlighted: "Our method achieved 92.8% success rate under camera perturbations, surpassing the next best model by 37.2 percentage points," indicating this represents the current state-of-the-art performance for camera robustness specifically.
+
+## Regarding token selection/pruning:
+
+**No methods involving token selection or pruning are mentioned** in this content.
+
+## Recommendation:
+
+To obtain the complete leaderboard with all models and their scores, you would need to consult the full paper (referenced as arxiv:2510.13626) or visit the project repository/HuggingFace assets linked on the webpage.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "47c44b85-8588-4fe7-9c73-9598661bc839",
+  "isSidechain": false,
+  "promptId": "3cc7bdc6-7582-4027-953f-42207d10bfec",
+  "type": "user",
+  "uuid": "4366ff7e-ac9a-4661-aa99-661e73030c97",
+  "toolUseResult": {
+    "bytes": 40818,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# LIBERO-Plus Leaderboard Analysis\n\nBased on the provided content, I cannot give you a complete list of all models and their specific success rates on the LIBERO-Plus leaderboard. The webpage shows visualizations (figures and heatmaps) of model performance, but the actual numerical leaderboard data with individual model scores is not included in the text content provided.\n\n## What is mentioned:\n\nThe document references \"four representative models\" that were used to stratify difficulty levels, but does not name them or provide their individual scores in the text portion available.\n\nOne specific result is highlighted: \"Our method achieved 92.8% success rate under camera perturbations, surpassing the next best model by 37.2 percentage points,\" indicating this represents the current state-of-the-art performance for camera robustness specifically.\n\n## Regarding token selection/pruning:\n\n**No methods involving token selection or pruning are mentioned** in this content.\n\n## Recommendation:\n\nTo obtain the complete leaderboard with all models and their scores, you would need to consult the full paper (referenced as arxiv:2510.13626) or visit the project repository/HuggingFace assets linked on the webpage.",
+    "durationMs": 3851,
+    "url": "https://sylvestf.github.io/LIBERO-plus/"
+  },
+  "sourceToolAssistantUUID": "47c44b85-8588-4fe7-9c73-9598661bc839",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 133 · 2026-05-13T05:07:49.914Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01C9Bg2wQAhYiPC7mW3hTWDN`</summary>
+
+```json
+{
+  "url": "https://github.com/sylvestf/LIBERO-plus/blob/main/README.md",
+  "prompt": "List ALL models on the leaderboard and their average success rates on LIBERO-Plus. Is SRPO included? What is the current best model?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4366ff7e-ac9a-4661-aa99-661e73030c97",
+  "isSidechain": false,
+  "requestId": "req_011CayzJJQqxL977Mqz1Cs6H",
+  "type": "assistant",
+  "uuid": "c54627cc-29a3-4989-8e5d-7b538a6432f1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CXgfa9ahQ8SUSZRYkAyrrB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 481,
+      "cache_read_input_tokens": 72643,
+      "output_tokens": 124,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 481,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 124,
+          "cache_read_input_tokens": 72643,
+          "cache_creation_input_tokens": 481,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 481
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 134 · 2026-05-13T05:07:54.572Z_
+
+<details><summary>↩ Tool result · `toolu_01C9Bg2wQAhYiPC7mW3hTWDN`</summary>
+
+```text
+# LIBERO-Plus Leaderboard Models and Performance
+
+Based on the README, here are all models listed on the leaderboard with their average success rates:
+
+1. OpenVLA: 15.6%
+2. OpenVLA-OFT: 69.6%
+3. OpenVLA-OFT_w: 55.8%
+4. NORA: 39.0%
+5. WorldVLA: 25.0%
+6. UniVLA: 43.9%
+7. π₀: 53.6%
+8. π₀-Fast: 61.6%
+9. RIPT-VLA: 68.4%
+10. OpenVLA-OFT_m: 67.9%
+11. **OpenVLA-OFT+ (Ours): 79.6%**
+
+## SRPO Status
+SRPO is **not** included in the main leaderboard table. However, it appears in the "Research Works Using LIBERO-Plus" section, which notes it achieved an average of 82.1% on the benchmark.
+
+## Current Best Model
+**OpenVLA-OFT+** achieves the highest score on the official leaderboard at 79.6%. If considering related works, SRPO reportedly attained 82.1%, though it's listed separately as external research.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c54627cc-29a3-4989-8e5d-7b538a6432f1",
+  "isSidechain": false,
+  "promptId": "3cc7bdc6-7582-4027-953f-42207d10bfec",
+  "type": "user",
+  "uuid": "b485e923-b000-4a7a-8388-c0029d9f299b",
+  "toolUseResult": {
+    "bytes": 295368,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# LIBERO-Plus Leaderboard Models and Performance\n\nBased on the README, here are all models listed on the leaderboard with their average success rates:\n\n1. OpenVLA: 15.6%\n2. OpenVLA-OFT: 69.6%\n3. OpenVLA-OFT_w: 55.8%\n4. NORA: 39.0%\n5. WorldVLA: 25.0%\n6. UniVLA: 43.9%\n7. π₀: 53.6%\n8. π₀-Fast: 61.6%\n9. RIPT-VLA: 68.4%\n10. OpenVLA-OFT_m: 67.9%\n11. **OpenVLA-OFT+ (Ours): 79.6%**\n\n## SRPO Status\nSRPO is **not** included in the main leaderboard table. However, it appears in the \"Research Works Using LIBERO-Plus\" section, which notes it achieved an average of 82.1% on the benchmark.\n\n## Current Best Model\n**OpenVLA-OFT+** achieves the highest score on the official leaderboard at 79.6%. If considering related works, SRPO reportedly attained 82.1%, though it's listed separately as external research.",
+    "durationMs": 4654,
+    "url": "https://github.com/sylvestf/LIBERO-plus/blob/main/README.md"
+  },
+  "sourceToolAssistantUUID": "c54627cc-29a3-4989-8e5d-7b538a6432f1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 135 · 2026-05-13T05:08:00.119Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+So SRPO achieves 82.1% on LIBERO-Plus, which is listed in "Research Works Using LIBERO-Plus" but not on the official leaderboard. The official leaderboard best is OpenVLA-OFT+ at 79.6%. The CaTS proposal correctly cites SRPO as 82.1% SOTA.
+
+Now let me do a final search for any very recent work (April-May 2026) that might directly overlap with the CaTS idea.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b485e923-b000-4a7a-8388-c0029d9f299b",
+  "isSidechain": false,
+  "requestId": "req_011CayzJs48c5jSd7BeKggJi",
+  "type": "assistant",
+  "uuid": "58dbeff8-d100-4f11-9710-aa47aaa52062",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XjMUfzwSjQ1VmoMGFTHGuH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 448,
+      "cache_read_input_tokens": 73124,
+      "output_tokens": 201,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 448,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 201,
+          "cache_read_input_tokens": 73124,
+          "cache_creation_input_tokens": 448,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 448
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 136 · 2026-05-13T05:08:00.673Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01123BZczz9GR5AaK4AT1oCa`</summary>
+
+```json
+{
+  "query": "causality-inspired robustness nonlinear representation learning arXiv 2505.12868"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "58dbeff8-d100-4f11-9710-aa47aaa52062",
+  "isSidechain": false,
+  "requestId": "req_011CayzJs48c5jSd7BeKggJi",
+  "type": "assistant",
+  "uuid": "743c703a-d785-4352-ac67-a2a99fd00fe2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XjMUfzwSjQ1VmoMGFTHGuH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 448,
+      "cache_read_input_tokens": 73124,
+      "output_tokens": 201,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 448,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 201,
+          "cache_read_input_tokens": 73124,
+          "cache_creation_input_tokens": 448,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 448
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 137 · 2026-05-13T05:08:06.779Z_
+
+<details><summary>↩ Tool result · `toolu_01123BZczz9GR5AaK4AT1oCa`</summary>
+
+```text
+Web search results for query: "causality-inspired robustness nonlinear representation learning arXiv 2505.12868"
+
+Links: [{"title":"[2505.12868] Causality-Inspired Robustness for Nonlinear Models via Representation Learning","url":"https://arxiv.org/abs/2505.12868"},{"title":"Causality-Inspired Robustness for Nonlinear Models via Representation Learning","url":"https://arxiv.org/html/2505.12868v1"},{"title":"Domain Generalization and Adaptation in Intensive Care with Anchor Regression","url":"https://arxiv.org/html/2507.21783v1"},{"title":"CAUSALITY-INSPIRED ROBUSTNESS FOR NONLINEAR MOD","url":"https://openreview.net/pdf/57eaf213b54959f07d734711506e3715b65e6427.pdf"},{"title":"[2102.11107] Towards Causal Representation Learning","url":"https://ar5iv.labs.arxiv.org/html/2102.11107"},{"title":"Robustness of Nonlinear Representation Learning","url":"https://arxiv.org/html/2503.15355v1"},{"title":"Learning Causally Disentangled Representations via the Principle of Independent Causal Mechanisms","url":"https://arxiv.org/html/2306.01213v3"},{"title":"1 Towards Causal Representation Learning","url":"https://arxiv.org/pdf/2102.11107"},{"title":"Invariance & Causal Representation Learning: Prospects and Limitations","url":"https://arxiv.org/html/2312.03580"},{"title":"CausalCompass: Evaluating the Robustness of Time-Series Causal Discovery in Misspecified Scenarios","url":"https://arxiv.org/html/2602.07915"}]
+
+Based on the search results, here's what I found about arXiv 2505.12868:
+
+## Causality-Inspired Robustness for Nonlinear Models via Representation Learning
+
+The paper addresses distributional robustness—a central goal for prediction algorithms facing distribution shifts—where the model aims to minimize worst-case risk across a class of distributions.
+
+**Key Contribution:**
+
+While current causality-inspired robustness methods only provide finite-radius robustness guarantees in linear settings, this work proposes a nonlinear method under a causal framework by incorporating recent developments in identifiable representation learning and establishing a distributional robustness guarantee. This is the first causality-inspired robustness method with such a finite-radius robustness guarantee in nonlinear settings.
+
+**Authors and Details:**
+
+The paper was submitted on May 19, 2025 by authors Marin Šola, Peter Bühlmann, and Xinwei Shen.
+
+**Empirical Validation:**
+
+Empirical validation of the theoretical findings is conducted on both synthetic data and real-world single-cell data, illustrating that finite-radius robustness is crucial.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "743c703a-d785-4352-ac67-a2a99fd00fe2",
+  "isSidechain": false,
+  "promptId": "3cc7bdc6-7582-4027-953f-42207d10bfec",
+  "type": "user",
+  "uuid": "208fd725-ac01-417b-abef-888dd83db375",
+  "toolUseResult": {
+    "query": "causality-inspired robustness nonlinear representation learning arXiv 2505.12868",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01KbsjCNwcGEhJWgnH4ZhqzT",
+        "content": [
+          {
+            "title": "[2505.12868] Causality-Inspired Robustness for Nonlinear Models via Representation Learning",
+            "url": "https://arxiv.org/abs/2505.12868"
+          },
+          {
+            "title": "Causality-Inspired Robustness for Nonlinear Models via Representation Learning",
+            "url": "https://arxiv.org/html/2505.12868v1"
+          },
+          {
+            "title": "Domain Generalization and Adaptation in Intensive Care with Anchor Regression",
+            "url": "https://arxiv.org/html/2507.21783v1"
+          },
+          {
+            "title": "CAUSALITY-INSPIRED ROBUSTNESS FOR NONLINEAR MOD",
+            "url": "https://openreview.net/pdf/57eaf213b54959f07d734711506e3715b65e6427.pdf"
+          },
+          {
+            "title": "[2102.11107] Towards Causal Representation Learning",
+            "url": "https://ar5iv.labs.arxiv.org/html/2102.11107"
+          },
+          {
+            "title": "Robustness of Nonlinear Representation Learning",
+            "url": "https://arxiv.org/html/2503.15355v1"
+          },
+          {
+            "title": "Learning Causally Disentangled Representations via the Principle of Independent Causal Mechanisms",
+            "url": "https://arxiv.org/html/2306.01213v3"
+          },
+          {
+            "title": "1 Towards Causal Representation Learning",
+            "url": "https://arxiv.org/pdf/2102.11107"
+          },
+          {
+            "title": "Invariance & Causal Representation Learning: Prospects and Limitations",
+            "url": "https://arxiv.org/html/2312.03580"
+          },
+          {
+            "title": "CausalCompass: Evaluating the Robustness of Time-Series Causal Discovery in Misspecified Scenarios",
+            "url": "https://arxiv.org/html/2602.07915"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about arXiv 2505.12868:\n\n## Causality-Inspired Robustness for Nonlinear Models via Representation Learning\n\nThe paper addresses distributional robustness—a central goal for prediction algorithms facing distribution shifts—where the model aims to minimize worst-case risk across a class of distributions.\n\n**Key Contribution:**\n\nWhile current causality-inspired robustness methods only provide finite-radius robustness guarantees in linear settings, this work proposes a nonlinear method under a causal framework by incorporating recent developments in identifiable representation learning and establishing a distributional robustness guarantee. This is the first causality-inspired robustness method with such a finite-radius robustness guarantee in nonlinear settings.\n\n**Authors and Details:**\n\nThe paper was submitted on May 19, 2025 by authors Marin Šola, Peter Bühlmann, and Xinwei Shen.\n\n**Empirical Validation:**\n\nEmpirical validation of the theoretical findings is conducted on both synthetic data and real-world single-cell data, illustrating that finite-radius robustness is crucial."
+    ],
+    "durationSeconds": 6.100283428000053
+  },
+  "sourceToolAssistantUUID": "743c703a-d785-4352-ac67-a2a99fd00fe2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 138 · 2026-05-13T05:08:13.215Z_
+
+This is very relevant — a new paper (May 2025) addressing exactly the limitation of IRM/V-REx in nonlinear settings, which CaTS v3 acknowledges. Let me check if it's cited.
+
+The proposal doesn't cite arXiv 2505.12868 (Šola et al., "Causality-Inspired Robustness for Nonlinear Models via Representation Learning"). This is potentially relevant since it provides the nonlinear robustness guarantee that CaTS v3 explicitly acknowledges is missing from IRM/V-REx. Let me now do a few more targeted searches.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "208fd725-ac01-417b-abef-888dd83db375",
+  "isSidechain": false,
+  "requestId": "req_011CayzKmJtH9VyyTgpnAAxC",
+  "type": "assistant",
+  "uuid": "1c999aed-f7cd-40c2-bae8-cdf8c4d3e8c0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Kbuem5kNBPEHq9RjfRxbRy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 955,
+      "cache_read_input_tokens": 73572,
+      "output_tokens": 218,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 955,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 218,
+          "cache_read_input_tokens": 73572,
+          "cache_creation_input_tokens": 955,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 955
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 139 · 2026-05-13T05:08:14.121Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01PHvRLuNjcqjhR9StU6e58r`</summary>
+
+```json
+{
+  "query": "SpecPrune-VLA action-aware token pruning VLA arXiv 2509.05614"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1c999aed-f7cd-40c2-bae8-cdf8c4d3e8c0",
+  "isSidechain": false,
+  "requestId": "req_011CayzKmJtH9VyyTgpnAAxC",
+  "type": "assistant",
+  "uuid": "7043bc40-7aab-4038-92b6-c8e63afb76ea",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Kbuem5kNBPEHq9RjfRxbRy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 955,
+      "cache_read_input_tokens": 73572,
+      "output_tokens": 218,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 955,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 218,
+          "cache_read_input_tokens": 73572,
+          "cache_creation_input_tokens": 955,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 955
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 140 · 2026-05-13T05:08:21.130Z_
+
+<details><summary>↩ Tool result · `toolu_01PHvRLuNjcqjhR9StU6e58r`</summary>
+
+```text
+Web search results for query: "SpecPrune-VLA action-aware token pruning VLA arXiv 2509.05614"
+
+Links: [{"title":"[2509.05614] SpecPrune-VLA: Accelerating Vision-Language-Action Models via Action-Aware Self-Speculative Pruning","url":"https://arxiv.org/abs/2509.05614"},{"title":"SpecPrune-VLA: Accelerating Vision-Language-Action Models via Action-Aware","url":"https://arxiv.org/pdf/2509.05614"},{"title":"SpecPrune-VLA: Accelerating Vision-Language-Action Models via Action-Aware Self-Speculative Pruning","url":"https://arxiv.org/html/2509.05614"},{"title":"SpecPrune-VLA: Accelerating Vision-Language-Action Models via Action-Aware Self-Speculative Pruning | OpenReview","url":"https://openreview.net/forum?id=t85Ni0LwjC"},{"title":"SpecPrune-VLA: Accelerating Vision-Language-Action Models via Action-Aware Self-Speculative Pruning | Request PDF","url":"https://www.researchgate.net/publication/395354566_SpecPrune-VLA_Accelerating_Vision-Language-Action_Models_via_Action-Aware_Self-Speculative_Pruning"},{"title":"VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models","url":"https://arxiv.org/html/2603.22991v1"},{"title":"VLA-Pruner: Temporal-Aware Dual-Level Visual Token Pruning for Efficient Vision-Language-Action Inference","url":"https://arxiv.org/html/2511.16449v1"},{"title":"Compressor-VLA: Instruction-Guided Visual Token Compression for Efficient Robotic Manipulation","url":"https://arxiv.org/html/2511.18950v1"},{"title":"Specprune-vla Boosts Vision-Language-Action Models, Avoiding Over 20% Success Rate Drops With Smart Pruning","url":"https://quantumzeitgeist.com/faster-models-performance-specprune-vla-boosts-vision-language-action-avoiding-success/"},{"title":"SPECPRUNE-VLA:","url":"https://openreview.net/pdf/f898de78034757b0bb38f30b7b6fd21bca97b4ad.pdf"}]
+
+Based on the search results, here's information about SpecPrune-VLA:
+
+## Overview
+
+SpecPrune-VLA is a method for accelerating Vision-Language-Action Models via Action-Aware Self-Speculative Pruning. Pruning is a typical acceleration technique for compute-bound models by removing computation on unimportant values, and has been applied to accelerate Vision-Language-Action (VLA) model inference.
+
+## Key Problem and Insight
+
+Existing acceleration methods focus on local information from the current action step and ignore the global context, leading to >20% success rate drop and limited speedup in some scenarios. The paper points out spatial-temporal consistency in VLA tasks: input images in consecutive steps exhibit high similarity, proposing that token selection should combine local information with global context of the model.
+
+## Technical Approach
+
+SpecPrune-VLA is a training-free, two-level pruning method with heuristic control:
+
+1. Action-level static pruning leverages global history and local attention to statically reduce visual tokens per action
+2. Layer-level dynamic pruning prunes tokens adaptively per layer based on layer-wise importance
+3. A lightweight action-aware controller classifies actions as coarse- or fine-grained by the speed of the end effector and adjusts pruning aggressiveness accordingly
+
+## Experimental Results
+
+SpecPrune-VLA achieves up to 1.57× speedup in LIBERO simulation and 1.70× on real-world tasks, with negligible success rate degradation.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7043bc40-7aab-4038-92b6-c8e63afb76ea",
+  "isSidechain": false,
+  "promptId": "3cc7bdc6-7582-4027-953f-42207d10bfec",
+  "type": "user",
+  "uuid": "0ba5076c-c3de-4744-a141-35155ed7bdf1",
+  "toolUseResult": {
+    "query": "SpecPrune-VLA action-aware token pruning VLA arXiv 2509.05614",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01SfjTiYvfDzECBLq3v89Va5",
+        "content": [
+          {
+            "title": "[2509.05614] SpecPrune-VLA: Accelerating Vision-Language-Action Models via Action-Aware Self-Speculative Pruning",
+            "url": "https://arxiv.org/abs/2509.05614"
+          },
+          {
+            "title": "SpecPrune-VLA: Accelerating Vision-Language-Action Models via Action-Aware",
+            "url": "https://arxiv.org/pdf/2509.05614"
+          },
+          {
+            "title": "SpecPrune-VLA: Accelerating Vision-Language-Action Models via Action-Aware Self-Speculative Pruning",
+            "url": "https://arxiv.org/html/2509.05614"
+          },
+          {
+            "title": "SpecPrune-VLA: Accelerating Vision-Language-Action Models via Action-Aware Self-Speculative Pruning | OpenReview",
+            "url": "https://openreview.net/forum?id=t85Ni0LwjC"
+          },
+          {
+            "title": "SpecPrune-VLA: Accelerating Vision-Language-Action Models via Action-Aware Self-Speculative Pruning | Request PDF",
+            "url": "https://www.researchgate.net/publication/395354566_SpecPrune-VLA_Accelerating_Vision-Language-Action_Models_via_Action-Aware_Self-Speculative_Pruning"
+          },
+          {
+            "title": "VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2603.22991v1"
+          },
+          {
+            "title": "VLA-Pruner: Temporal-Aware Dual-Level Visual Token Pruning for Efficient Vision-Language-Action Inference",
+            "url": "https://arxiv.org/html/2511.16449v1"
+          },
+          {
+            "title": "Compressor-VLA: Instruction-Guided Visual Token Compression for Efficient Robotic Manipulation",
+            "url": "https://arxiv.org/html/2511.18950v1"
+          },
+          {
+            "title": "Specprune-vla Boosts Vision-Language-Action Models, Avoiding Over 20% Success Rate Drops With Smart Pruning",
+            "url": "https://quantumzeitgeist.com/faster-models-performance-specprune-vla-boosts-vision-language-action-avoiding-success/"
+          },
+          {
+            "title": "SPECPRUNE-VLA:",
+            "url": "https://openreview.net/pdf/f898de78034757b0bb38f30b7b6fd21bca97b4ad.pdf"
+          }
+        ]
+      },
+      "Based on the search results, here's information about SpecPrune-VLA:\n\n## Overview\n\nSpecPrune-VLA is a method for accelerating Vision-Language-Action Models via Action-Aware Self-Speculative Pruning. Pruning is a typical acceleration technique for compute-bound models by removing computation on unimportant values, and has been applied to accelerate Vision-Language-Action (VLA) model inference.\n\n## Key Problem and Insight\n\nExisting acceleration methods focus on local information from the current action step and ignore the global context, leading to >20% success rate drop and limited speedup in some scenarios. The paper points out spatial-temporal consistency in VLA tasks: input images in consecutive steps exhibit high similarity, proposing that token selection should combine local information with global context of the model.\n\n## Technical Approach\n\nSpecPrune-VLA is a training-free, two-level pruning method with heuristic control:\n\n1. Action-level static pruning leverages global history and local attention to statically reduce visual tokens per action\n2. Layer-level dynamic pruning prunes tokens adaptively per layer based on layer-wise importance\n3. A lightweight action-aware controller classifies actions as coarse- or fine-grained by the speed of the end effector and adjusts pruning aggressiveness accordingly\n\n## Experimental Results\n\nSpecPrune-VLA achieves up to 1.57× speedup in LIBERO simulation and 1.70× on real-world tasks, with negligible success rate degradation."
+    ],
+    "durationSeconds": 7.002429598000017
+  },
+  "sourceToolAssistantUUID": "7043bc40-7aab-4038-92b6-c8e63afb76ea",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 141 · 2026-05-13T05:08:24.007Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01LfBzBRpN8FjRG6mqF9vPzo`</summary>
+
+```json
+{
+  "query": "VLA-Cache adaptive token caching VLA robotic manipulation arXiv 2502.02175"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0ba5076c-c3de-4744-a141-35155ed7bdf1",
+  "isSidechain": false,
+  "requestId": "req_011CayzLpeaT2HoGrLwa5KAp",
+  "type": "assistant",
+  "uuid": "798f1bfe-cb82-47d4-a600-21b5c607acbb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FBhmn8EV4XdtwD5iVJZdEp",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1225,
+      "cache_read_input_tokens": 74527,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1225,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 74527,
+          "cache_creation_input_tokens": 1225,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1225
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 142 · 2026-05-13T05:08:31.374Z_
+
+<details><summary>↩ Tool result · `toolu_01LfBzBRpN8FjRG6mqF9vPzo`</summary>
+
+```text
+Web search results for query: "VLA-Cache adaptive token caching VLA robotic manipulation arXiv 2502.02175"
+
+Links: [{"title":"[2502.02175] VLA-Cache: Efficient Vision-Language-Action Manipulation via Adaptive Token Caching","url":"https://arxiv.org/abs/2502.02175"},{"title":"VLA-Cache: Towards Efficient Vision-Language-Action Model via Adaptive Token Caching in Robotic Manipulation","url":"https://arxiv.org/html/2502.02175v1"},{"title":"VLA-Cache: Efficient Vision-Language-Action Manipulation via Adaptive Token Caching | OpenReview","url":"https://openreview.net/forum?id=QZYZ0Xm58q"},{"title":"VLA-Cache: Efficient Vision-Language-Action Manipulation via Adaptive Token Caching","url":"https://vla-cache.github.io/"},{"title":"(PDF) VLA-Cache: Towards Efficient Vision-Language-Action Model via Adaptive Token Caching in Robotic Manipulation","url":"https://www.researchgate.net/publication/388685612_VLA-Cache_Towards_Efficient_Vision-Language-Action_Model_via_Adaptive_Token_Caching_in_Robotic_Manipulation"},{"title":"Compressor-VLA: Instruction-Guided Visual Token Compression for Efficient Robotic Manipulation","url":"https://arxiv.org/html/2511.18950v1"},{"title":"VLA-Cache: Efficient Vision-Language-Action Manipulation via Adaptive Token Caching","url":"https://arxiv.org/html/2502.02175"},{"title":"Paper page - VLA-Cache: Towards Efficient Vision-Language-Action Model via Adaptive Token Caching in Robotic Manipulation","url":"https://huggingface.co/papers/2502.02175"},{"title":"GitHub - siyuhsu/vla-cache: [NeurIPS 2025] VLA-Cache: Efficient Vision-Language-Action Manipulation via Adaptive Token Caching · GitHub","url":"https://github.com/siyuhsu/vla-cache"},{"title":"VLN-Cache: Enabling Token Caching for VLN Models with Visual/Semantic Dynamics Awareness","url":"https://arxiv.org/html/2603.07080"}]
+
+Based on the search results, here's what I found about VLA-Cache:
+
+## Overview
+
+VLA-Cache is a training-free inference acceleration method that reduces computational overhead by adaptively caching and reusing static visual tokens across frames.
+
+## Problem and Motivation
+
+The substantial computational cost of Vision-Language-Action models poses a challenge for real-time robotic control, where rapid decision-making is essential. VLA tasks involve sequentially processing temporally adjacent visual observations, where the environment exhibits high spatial redundancy across time, with large portions of the visual scene remaining static and semantically irrelevant to action decisions.
+
+## Key Technical Approach
+
+VLA-Cache identifies minimally changed tokens between adjacent frames and reuses their cached key-value representations to circumvent redundant computations, while selectively re-computing task-relevant tokens that are environmentally sensitive to ensure the fidelity of critical visual information.
+
+The method includes a layer adaptive token reusing strategy that dynamically adjusts the reuse ratio based on attention concentration across decoder layers, prioritizing critical tokens for recomputation.
+
+## Performance Results
+
+Experiments on simulation platforms (LIBERO and SIMPLER) and a real-world robotic system demonstrate that VLA-Cache achieves up to 1.7x speedup in CUDA latency and a 15% increase in control frequency, with negligible loss on task success rate.
+
+The paper was authored by Siyu Xu and collaborators and is available on arXiv with the identifier 2502.02175.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "798f1bfe-cb82-47d4-a600-21b5c607acbb",
+  "isSidechain": false,
+  "promptId": "3cc7bdc6-7582-4027-953f-42207d10bfec",
+  "type": "user",
+  "uuid": "4315ed07-eb28-44f9-ae90-6f7f8a7e91d8",
+  "toolUseResult": {
+    "query": "VLA-Cache adaptive token caching VLA robotic manipulation arXiv 2502.02175",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01ARLiBfQmapSxZ9pja9vsXt",
+        "content": [
+          {
+            "title": "[2502.02175] VLA-Cache: Efficient Vision-Language-Action Manipulation via Adaptive Token Caching",
+            "url": "https://arxiv.org/abs/2502.02175"
+          },
+          {
+            "title": "VLA-Cache: Towards Efficient Vision-Language-Action Model via Adaptive Token Caching in Robotic Manipulation",
+            "url": "https://arxiv.org/html/2502.02175v1"
+          },
+          {
+            "title": "VLA-Cache: Efficient Vision-Language-Action Manipulation via Adaptive Token Caching | OpenReview",
+            "url": "https://openreview.net/forum?id=QZYZ0Xm58q"
+          },
+          {
+            "title": "VLA-Cache: Efficient Vision-Language-Action Manipulation via Adaptive Token Caching",
+            "url": "https://vla-cache.github.io/"
+          },
+          {
+            "title": "(PDF) VLA-Cache: Towards Efficient Vision-Language-Action Model via Adaptive Token Caching in Robotic Manipulation",
+            "url": "https://www.researchgate.net/publication/388685612_VLA-Cache_Towards_Efficient_Vision-Language-Action_Model_via_Adaptive_Token_Caching_in_Robotic_Manipulation"
+          },
+          {
+            "title": "Compressor-VLA: Instruction-Guided Visual Token Compression for Efficient Robotic Manipulation",
+            "url": "https://arxiv.org/html/2511.18950v1"
+          },
+          {
+            "title": "VLA-Cache: Efficient Vision-Language-Action Manipulation via Adaptive Token Caching",
+            "url": "https://arxiv.org/html/2502.02175"
+          },
+          {
+            "title": "Paper page - VLA-Cache: Towards Efficient Vision-Language-Action Model via Adaptive Token Caching in Robotic Manipulation",
+            "url": "https://huggingface.co/papers/2502.02175"
+          },
+          {
+            "title": "GitHub - siyuhsu/vla-cache: [NeurIPS 2025] VLA-Cache: Efficient Vision-Language-Action Manipulation via Adaptive Token Caching · GitHub",
+            "url": "https://github.com/siyuhsu/vla-cache"
+          },
+          {
+            "title": "VLN-Cache: Enabling Token Caching for VLN Models with Visual/Semantic Dynamics Awareness",
+            "url": "https://arxiv.org/html/2603.07080"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about VLA-Cache:\n\n## Overview\n\nVLA-Cache is a training-free inference acceleration method that reduces computational overhead by adaptively caching and reusing static visual tokens across frames.\n\n## Problem and Motivation\n\nThe substantial computational cost of Vision-Language-Action models poses a challenge for real-time robotic control, where rapid decision-making is essential. VLA tasks involve sequentially processing temporally adjacent visual observations, where the environment exhibits high spatial redundancy across time, with large portions of the visual scene remaining static and semantically irrelevant to action decisions.\n\n## Key Technical Approach\n\nVLA-Cache identifies minimally changed tokens between adjacent frames and reuses their cached key-value representations to circumvent redundant computations, while selectively re-computing task-relevant tokens that are environmentally sensitive to ensure the fidelity of critical visual information.\n\nThe method includes a layer adaptive token reusing strategy that dynamically adjusts the reuse ratio based on attention concentration across decoder layers, prioritizing critical tokens for recomputation.\n\n## Performance Results\n\nExperiments on simulation platforms (LIBERO and SIMPLER) and a real-world robotic system demonstrate that VLA-Cache achieves up to 1.7x speedup in CUDA latency and a 15% increase in control frequency, with negligible loss on task success rate.\n\nThe paper was authored by Siyu Xu and collaborators and is available on arXiv with the identifier 2502.02175."
+    ],
+    "durationSeconds": 7.363048421000014
+  },
+  "sourceToolAssistantUUID": "798f1bfe-cb82-47d4-a600-21b5c607acbb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 143_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "4315ed07-eb28-44f9-ae90-6f7f8a7e91d8",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 144_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Causal token selection for VLA generalization",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a"
+}
+```
+
+---
+
+### Assistant
+
+_source line 145 · 2026-05-13T05:08:35.370Z_
+
+Now I have a comprehensive picture. Let me do one final check on the theoretical side — whether the formal framework proposed is truly novel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4315ed07-eb28-44f9-ae90-6f7f8a7e91d8",
+  "isSidechain": false,
+  "requestId": "req_011CayzMaPrf767YkteE5VnF",
+  "type": "assistant",
+  "uuid": "749b2f48-57a8-4737-8f43-c1462602fdf4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WkyCSuYBEGD587t3hjbsnY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1012,
+      "cache_read_input_tokens": 75752,
+      "output_tokens": 103,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1012,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 103,
+          "cache_read_input_tokens": 75752,
+          "cache_creation_input_tokens": 1012,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1012
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 146 · 2026-05-13T05:08:36.068Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01M62Z5QP4HodRyvkXMLfdZD`</summary>
+
+```json
+{
+  "query": "\"structural causal model\" \"token\" \"visual\" transformer pruning invariance formal 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "749b2f48-57a8-4737-8f43-c1462602fdf4",
+  "isSidechain": false,
+  "requestId": "req_011CayzMaPrf767YkteE5VnF",
+  "type": "assistant",
+  "uuid": "6f28728b-96d5-4ecf-84bc-681f8544b7a6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WkyCSuYBEGD587t3hjbsnY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1012,
+      "cache_read_input_tokens": 75752,
+      "output_tokens": 103,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1012,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 103,
+          "cache_read_input_tokens": 75752,
+          "cache_creation_input_tokens": 1012,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1012
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 147 · 2026-05-13T05:08:44.398Z_
+
+<details><summary>↩ Tool result · `toolu_01M62Z5QP4HodRyvkXMLfdZD`</summary>
+
+```text
+Web search results for query: ""structural causal model" "token" "visual" transformer pruning invariance formal 2025 2026"
+
+Links: [{"title":"Token Pruning in Multimodal Large Language Models","url":"https://aclanthology.org/2025.findings-acl.802.pdf"},{"title":"PruneVid: Visual Token Pruning for Efficient Video Large ...","url":"https://aclanthology.org/2025.findings-acl.1024.pdf"},{"title":"GitHub - ZLKong/Awesome-Collection-Token-Reduction: A collection of token reduction (token pruning, merging, clustering, etc.) techniques for ML/AI · GitHub","url":"https://github.com/ZLKong/Awesome-Collection-Token-Reduction"},{"title":"Rethinking Visual Token Reduction in LVLMs under Cross-modal Misalignment","url":"https://arxiv.org/html/2506.22283v1"},{"title":"Efficient token pruning in Vision Transformers using an attention-based Multilayer Network - ScienceDirect","url":"https://www.sciencedirect.com/science/article/pii/S0957417425010711"},{"title":"Token Reduction Should Go Beyond Efficiency in ...","url":"https://arxiv.org/pdf/2505.18227"},{"title":"Token Reduction Should Go Beyond Efficiency in Generative Models – From Vision, Language to Multimodality","url":"https://arxiv.org/html/2505.18227v1"},{"title":"Exploring Causal Learning Through Graph Neural Networks: An In‐Depth Review - Job - 2025 - WIREs Data Mining and Knowledge Discovery - Wiley Online Library","url":"https://wires.onlinelibrary.wiley.com/doi/10.1002/widm.70024"},{"title":"Automatic pruning rate adjustment for dynamic token reduction in vision transformer | Applied Intelligence | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s10489-025-06265-z"},{"title":"The Role of Token Pruning in Efficient Transformer Architectures","url":"https://d197for5662m48.cloudfront.net/documents/publicationstatus/248154/preprint_pdf/ea24ae7811cc12006c32c0153c159c82.pdf"}]
+
+Based on the search results, I found several relevant papers and research on token pruning, visual transformers, and related topics from 2025-2026. Here are the key findings:
+
+## Recent Research on Visual Token Pruning and Transformers
+
+**Token Pruning in Multimodal Models:**
+Token Pruning in Multimodal Large Language Models was presented at ACL 2025 (July 27 - August 1, 2025), focusing on reducing redundancy in visual tokens for multimodal systems.
+
+**Video Token Pruning:**
+PruneVid, presented at ACL 2025, identifies static video regions with minimal temporal variation and reduces redundancy through temporal token merging, followed by spatial compression via clustering and merging.
+
+**Cross-Modal Misalignment in LVLMs:**
+VisionDrop, a training-free pruning framework, progressively prunes visual tokens across both the visual encoder and the LLM using a visual-only scoring method for dominant token selection and contextual token merging, achieving superior performance on nine standard benchmarks. Notably, due to the causal nature of autoregressive LLMs, text tokens tend to focus disproportionately on later-positioned visual tokens in the input sequence.
+
+**Broader Token Reduction Perspectives:**
+A position paper argues that token reduction should transcend its traditional efficiency-oriented role, positioning it as a fundamental principle in generative modeling that critically influences both model architecture and broader applications.
+
+The search results indicate active research combining pruning, formal analysis of transformer behavior, and visual token handling in 2025-2026, though specific papers explicitly unifying structural causal models with all these aspects were not found in these results.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6f28728b-96d5-4ecf-84bc-681f8544b7a6",
+  "isSidechain": false,
+  "promptId": "3cc7bdc6-7582-4027-953f-42207d10bfec",
+  "type": "user",
+  "uuid": "1e286a9a-eb66-4123-bfde-ea6a6d24b26b",
+  "toolUseResult": {
+    "query": "\"structural causal model\" \"token\" \"visual\" transformer pruning invariance formal 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FSfnMAubVyN8rEAkUm5tz8",
+        "content": [
+          {
+            "title": "Token Pruning in Multimodal Large Language Models",
+            "url": "https://aclanthology.org/2025.findings-acl.802.pdf"
+          },
+          {
+            "title": "PruneVid: Visual Token Pruning for Efficient Video Large ...",
+            "url": "https://aclanthology.org/2025.findings-acl.1024.pdf"
+          },
+          {
+            "title": "GitHub - ZLKong/Awesome-Collection-Token-Reduction: A collection of token reduction (token pruning, merging, clustering, etc.) techniques for ML/AI · GitHub",
+            "url": "https://github.com/ZLKong/Awesome-Collection-Token-Reduction"
+          },
+          {
+            "title": "Rethinking Visual Token Reduction in LVLMs under Cross-modal Misalignment",
+            "url": "https://arxiv.org/html/2506.22283v1"
+          },
+          {
+            "title": "Efficient token pruning in Vision Transformers using an attention-based Multilayer Network - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/pii/S0957417425010711"
+          },
+          {
+            "title": "Token Reduction Should Go Beyond Efficiency in ...",
+            "url": "https://arxiv.org/pdf/2505.18227"
+          },
+          {
+            "title": "Token Reduction Should Go Beyond Efficiency in Generative Models – From Vision, Language to Multimodality",
+            "url": "https://arxiv.org/html/2505.18227v1"
+          },
+          {
+            "title": "Exploring Causal Learning Through Graph Neural Networks: An In‐Depth Review - Job - 2025 - WIREs Data Mining and Knowledge Discovery - Wiley Online Library",
+            "url": "https://wires.onlinelibrary.wiley.com/doi/10.1002/widm.70024"
+          },
+          {
+            "title": "Automatic pruning rate adjustment for dynamic token reduction in vision transformer | Applied Intelligence | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s10489-025-06265-z"
+          },
+          {
+            "title": "The Role of Token Pruning in Efficient Transformer Architectures",
+            "url": "https://d197for5662m48.cloudfront.net/documents/publicationstatus/248154/preprint_pdf/ea24ae7811cc12006c32c0153c159c82.pdf"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant papers and research on token pruning, visual transformers, and related topics from 2025-2026. Here are the key findings:\n\n## Recent Research on Visual Token Pruning and Transformers\n\n**Token Pruning in Multimodal Models:**\nToken Pruning in Multimodal Large Language Models was presented at ACL 2025 (July 27 - August 1, 2025), focusing on reducing redundancy in visual tokens for multimodal systems.\n\n**Video Token Pruning:**\nPruneVid, presented at ACL 2025, identifies static video regions with minimal temporal variation and reduces redundancy through temporal token merging, followed by spatial compression via clustering and merging.\n\n**Cross-Modal Misalignment in LVLMs:**\nVisionDrop, a training-free pruning framework, progressively prunes visual tokens across both the visual encoder and the LLM using a visual-only scoring method for dominant token selection and contextual token merging, achieving superior performance on nine standard benchmarks. Notably, due to the causal nature of autoregressive LLMs, text tokens tend to focus disproportionately on later-positioned visual tokens in the input sequence.\n\n**Broader Token Reduction Perspectives:**\nA position paper argues that token reduction should transcend its traditional efficiency-oriented role, positioning it as a fundamental principle in generative modeling that critically influences both model architecture and broader applications.\n\nThe search results indicate active research combining pruning, formal analysis of transformer behavior, and visual token handling in 2025-2026, though specific papers explicitly unifying structural causal models with all these aspects were not found in these results."
+    ],
+    "durationSeconds": 8.326266452000011
+  },
+  "sourceToolAssistantUUID": "6f28728b-96d5-4ecf-84bc-681f8544b7a6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 148 · 2026-05-13T05:08:44.401Z_
+
+```json
+{
+  "parentUuid": "1e286a9a-eb66-4123-bfde-ea6a6d24b26b",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "d30a39a5-01f9-4f27-8605-3ca8edb72830",
+  "timestamp": "2026-05-13T05:08:44.401Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 149 · 2026-05-13T05:08:47.964Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01U1uzfSrRcagkSGaNfpLTUG`</summary>
+
+```json
+{
+  "query": "CLIP-ICM causal invariance VLM SCM ICML 2025 arXiv 2405.15289"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d30a39a5-01f9-4f27-8605-3ca8edb72830",
+  "isSidechain": false,
+  "requestId": "req_011CayzNY6ybo2qjBVKaCd8q",
+  "type": "assistant",
+  "uuid": "a30794e1-01f2-47b1-8563-d76f01a43ec9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FJFfJy2b3tG8mwZ4Xfcumg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1182,
+      "cache_read_input_tokens": 76764,
+      "output_tokens": 81,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1182,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 81,
+          "cache_read_input_tokens": 76764,
+          "cache_creation_input_tokens": 1182,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1182
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 150 · 2026-05-13T05:08:54.310Z_
+
+<details><summary>↩ Tool result · `toolu_01U1uzfSrRcagkSGaNfpLTUG`</summary>
+
+```text
+Web search results for query: "CLIP-ICM causal invariance VLM SCM ICML 2025 arXiv 2405.15289"
+
+Links: [{"title":"[2405.15289] Learning Invariant Causal Mechanism from Vision-Language Models","url":"https://arxiv.org/abs/2405.15289"},{"title":"Learning Invariant Causal Mechanism from Vision-Language Models","url":"https://arxiv.org/html/2405.15289v3"},{"title":"ICML Poster Learning Invariant Causal Mechanism from Vision-Language Models","url":"https://icml.cc/virtual/2025/poster/45848"},{"title":"Learning Invariant Causal Mechanism from Vision-Language Models | OpenReview","url":"https://openreview.net/forum?id=GB9XiKIwfp&noteId=nOIVbKXtjo"},{"title":"(PDF) Learning Invariant Causal Mechanism from Vision-Language Models","url":"https://www.researchgate.net/publication/380895146_Learning_Invariant_Causal_Mechanism_from_Vision-Language_Models"},{"title":"Position: Trustworthy AI Suffers from Invariance Conflicts and Causality is the Solution","url":"https://arxiv.org/html/2605.02640v1"},{"title":"ICML 2025 Schedule","url":"https://icml.cc/virtual/2025/calendar"},{"title":"Downloads 2024","url":"https://icml.cc/Downloads/2024"},{"title":"Published as a conference paper at ICLR 2025","url":"https://arxiv.org/pdf/2409.02772"},{"title":"ICML 2025 Papers","url":"https://icml.cc/virtual/2025/papers.html"}]
+
+Based on the search results, here's what I found about CLIP-ICM (arXiv 2405.15289):
+
+## Overview
+Contrastive Language-Image Pretraining (CLIP) has achieved remarkable success, but its performance can degrade when fine-tuned in out-of-distribution (OOD) scenarios.
+
+## Approach
+The research models the prediction process using a Structural Causal Model (SCM) and shows that the causal mechanism involving both invariant and variant factors in training environments differs from that in test environments, whereas the causal mechanism with solely invariant factors remains consistent across environments.
+
+## Theoretical Contribution
+The authors theoretically prove the existence of a linear mapping from CLIP embeddings to invariant factors, which can be estimated using interventional data, and provide a condition to guarantee low OOD risk of the invariant predictor.
+
+## The CLIP-ICM Framework
+Based on these insights, the Invariant Causal Mechanism of CLIP (CLIP-ICM) framework is proposed. CLIP-ICM involves collecting interventional data, estimating a linear projection matrix, and making predictions within the invariant subspace.
+
+## Results
+Experiments on several OOD datasets show that CLIP-ICM significantly improves the performance of CLIP. The paper has been presented as a poster at ICML 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a30794e1-01f2-47b1-8563-d76f01a43ec9",
+  "isSidechain": false,
+  "promptId": "3cc7bdc6-7582-4027-953f-42207d10bfec",
+  "type": "user",
+  "uuid": "778cd05d-9411-4158-a50d-9e0636809ea2",
+  "toolUseResult": {
+    "query": "CLIP-ICM causal invariance VLM SCM ICML 2025 arXiv 2405.15289",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01BFcXXB1om73dqZSLj38cFC",
+        "content": [
+          {
+            "title": "[2405.15289] Learning Invariant Causal Mechanism from Vision-Language Models",
+            "url": "https://arxiv.org/abs/2405.15289"
+          },
+          {
+            "title": "Learning Invariant Causal Mechanism from Vision-Language Models",
+            "url": "https://arxiv.org/html/2405.15289v3"
+          },
+          {
+            "title": "ICML Poster Learning Invariant Causal Mechanism from Vision-Language Models",
+            "url": "https://icml.cc/virtual/2025/poster/45848"
+          },
+          {
+            "title": "Learning Invariant Causal Mechanism from Vision-Language Models | OpenReview",
+            "url": "https://openreview.net/forum?id=GB9XiKIwfp&noteId=nOIVbKXtjo"
+          },
+          {
+            "title": "(PDF) Learning Invariant Causal Mechanism from Vision-Language Models",
+            "url": "https://www.researchgate.net/publication/380895146_Learning_Invariant_Causal_Mechanism_from_Vision-Language_Models"
+          },
+          {
+            "title": "Position: Trustworthy AI Suffers from Invariance Conflicts and Causality is the Solution",
+            "url": "https://arxiv.org/html/2605.02640v1"
+          },
+          {
+            "title": "ICML 2025 Schedule",
+            "url": "https://icml.cc/virtual/2025/calendar"
+          },
+          {
+            "title": "Downloads 2024",
+            "url": "https://icml.cc/Downloads/2024"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025",
+            "url": "https://arxiv.org/pdf/2409.02772"
+          },
+          {
+            "title": "ICML 2025 Papers",
+            "url": "https://icml.cc/virtual/2025/papers.html"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about CLIP-ICM (arXiv 2405.15289):\n\n## Overview\nContrastive Language-Image Pretraining (CLIP) has achieved remarkable success, but its performance can degrade when fine-tuned in out-of-distribution (OOD) scenarios.\n\n## Approach\nThe research models the prediction process using a Structural Causal Model (SCM) and shows that the causal mechanism involving both invariant and variant factors in training environments differs from that in test environments, whereas the causal mechanism with solely invariant factors remains consistent across environments.\n\n## Theoretical Contribution\nThe authors theoretically prove the existence of a linear mapping from CLIP embeddings to invariant factors, which can be estimated using interventional data, and provide a condition to guarantee low OOD risk of the invariant predictor.\n\n## The CLIP-ICM Framework\nBased on these insights, the Invariant Causal Mechanism of CLIP (CLIP-ICM) framework is proposed. CLIP-ICM involves collecting interventional data, estimating a linear projection matrix, and making predictions within the invariant subspace.\n\n## Results\nExperiments on several OOD datasets show that CLIP-ICM significantly improves the performance of CLIP. The paper has been presented as a poster at ICML 2025."
+    ],
+    "durationSeconds": 6.337855573000037
+  },
+  "sourceToolAssistantUUID": "a30794e1-01f2-47b1-8563-d76f01a43ec9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 151 · 2026-05-13T05:08:56.620Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018S4ivQGUV2WMFS2Z3H6DSB`</summary>
+
+```json
+{
+  "query": "A100 GPU spot price per hour May 2026 cloud computing cost"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "778cd05d-9411-4158-a50d-9e0636809ea2",
+  "isSidechain": false,
+  "requestId": "req_011CayzPGUuGV1Gb66mXqoMf",
+  "type": "assistant",
+  "uuid": "dbde7e49-6124-4fee-afe6-ae5e2e6c27d5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DayAubXVFa6LnZJ7ajgECx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 861,
+      "cache_read_input_tokens": 77946,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 861,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 77946,
+          "cache_creation_input_tokens": 861,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 861
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 152 · 2026-05-13T05:09:03.271Z_
+
+<details><summary>↩ Tool result · `toolu_018S4ivQGUV2WMFS2Z3H6DSB`</summary>
+
+```text
+Web search results for query: "A100 GPU spot price per hour May 2026 cloud computing cost"
+
+Links: [{"title":"A100 Cloud Pricing: Compare 38+ Providers (2026)","url":"https://getdeploying.com/gpus/nvidia-a100"},{"title":"NVIDIA A100 Pricing (May 2026): Cheapest On-demand GPU Instances","url":"https://www.thundercompute.com/blog/nvidia-a100-pricing"},{"title":"NVIDIA A100 GPU Price in 2026: Cost Per Hour, Cloud ...","url":"https://jarvislabs.ai/blog/a100-price"},{"title":"H100 Cloud Pricing: Compare 42+ Providers (2026)","url":"https://getdeploying.com/gpus/nvidia-h100"},{"title":"GPU Cloud Pricing Comparison 2026: Every Major Provider Side by Side | Spheron Blog","url":"https://www.spheron.network/blog/gpu-cloud-pricing-comparison-2026/"},{"title":"AI GPU Rental Market Trends (May 2026): Complete Industry Analysis","url":"https://www.thundercompute.com/blog/ai-gpu-rental-market-trends"},{"title":"How much does an NVIDIA A100 GPU cost? | Blog — Northflank","url":"https://northflank.com/blog/nvidia-a100-gpu-cost"},{"title":"NVIDIA A100 GPU Price Guide (2025) - Cloud Rental & ...","url":"https://jarvislabs.ai/ai-faqs/nvidia-a100-gpu-price"},{"title":"NVIDIA AI GPU Prices: H100 ($27K-$40K) & H200 ($315K/8-GPU) Cost Guide | IntuitionLabs","url":"https://intuitionlabs.ai/articles/nvidia-ai-gpu-pricing-guide"},{"title":"A100 GPU Cost and Price Per Hour – Cost Facts","url":"https://costfacts.org/a100-gpu-cost-price-per-hour/"}]
+
+Based on my search results, here's the current A100 GPU spot pricing information for May 2026:
+
+## A100 Spot Price (May 2026)
+
+The market floor for A100 spot instances is currently $0.13/hr per GPU. This represents the lowest available spot pricing in the cloud computing market.
+
+## Overall A100 Pricing Range
+
+For broader context, A100 pricing currently ranges from $0.13/hr to $5.04/hr per GPU, depending on the provider, instance type, and billing model. The significant variation depends on factors like:
+
+- **Spot vs. On-demand**: A100s start at $0.78/hr for standard on-demand pricing
+- **Provider differences**: A100 80GB instances cost $0.78/hr compared with roughly $0.85-$5.07/hr across tracked competitors
+- **Cost savings with spot pricing**: Spot pricing offers 40-65% savings over on-demand for workloads that implement checkpoint/resume
+
+## Monthly Cost Estimate
+
+At 720 hours per month, one A100 can cost between $95.18 to $3,628.80 per month, depending on the provider.
+
+The dramatic difference in pricing highlights the importance of choosing the right cloud provider and billing model for your specific use case, especially if your workload can tolerate spot instance interruptions.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "dbde7e49-6124-4fee-afe6-ae5e2e6c27d5",
+  "isSidechain": false,
+  "promptId": "3cc7bdc6-7582-4027-953f-42207d10bfec",
+  "type": "user",
+  "uuid": "b3ce78cc-80cf-4dae-acd8-4f3368346330",
+  "toolUseResult": {
+    "query": "A100 GPU spot price per hour May 2026 cloud computing cost",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Qp2fB27dEJmzSTJmQbc37r",
+        "content": [
+          {
+            "title": "A100 Cloud Pricing: Compare 38+ Providers (2026)",
+            "url": "https://getdeploying.com/gpus/nvidia-a100"
+          },
+          {
+            "title": "NVIDIA A100 Pricing (May 2026): Cheapest On-demand GPU Instances",
+            "url": "https://www.thundercompute.com/blog/nvidia-a100-pricing"
+          },
+          {
+            "title": "NVIDIA A100 GPU Price in 2026: Cost Per Hour, Cloud ...",
+            "url": "https://jarvislabs.ai/blog/a100-price"
+          },
+          {
+            "title": "H100 Cloud Pricing: Compare 42+ Providers (2026)",
+            "url": "https://getdeploying.com/gpus/nvidia-h100"
+          },
+          {
+            "title": "GPU Cloud Pricing Comparison 2026: Every Major Provider Side by Side | Spheron Blog",
+            "url": "https://www.spheron.network/blog/gpu-cloud-pricing-comparison-2026/"
+          },
+          {
+            "title": "AI GPU Rental Market Trends (May 2026): Complete Industry Analysis",
+            "url": "https://www.thundercompute.com/blog/ai-gpu-rental-market-trends"
+          },
+          {
+            "title": "How much does an NVIDIA A100 GPU cost? | Blog — Northflank",
+            "url": "https://northflank.com/blog/nvidia-a100-gpu-cost"
+          },
+          {
+            "title": "NVIDIA A100 GPU Price Guide (2025) - Cloud Rental & ...",
+            "url": "https://jarvislabs.ai/ai-faqs/nvidia-a100-gpu-price"
+          },
+          {
+            "title": "NVIDIA AI GPU Prices: H100 ($27K-$40K) & H200 ($315K/8-GPU) Cost Guide | IntuitionLabs",
+            "url": "https://intuitionlabs.ai/articles/nvidia-ai-gpu-pricing-guide"
+          },
+          {
+            "title": "A100 GPU Cost and Price Per Hour – Cost Facts",
+            "url": "https://costfacts.org/a100-gpu-cost-price-per-hour/"
+          }
+        ]
+      },
+      "Based on my search results, here's the current A100 GPU spot pricing information for May 2026:\n\n## A100 Spot Price (May 2026)\n\nThe market floor for A100 spot instances is currently $0.13/hr per GPU. This represents the lowest available spot pricing in the cloud computing market.\n\n## Overall A100 Pricing Range\n\nFor broader context, A100 pricing currently ranges from $0.13/hr to $5.04/hr per GPU, depending on the provider, instance type, and billing model. The significant variation depends on factors like:\n\n- **Spot vs. On-demand**: A100s start at $0.78/hr for standard on-demand pricing\n- **Provider differences**: A100 80GB instances cost $0.78/hr compared with roughly $0.85-$5.07/hr across tracked competitors\n- **Cost savings with spot pricing**: Spot pricing offers 40-65% savings over on-demand for workloads that implement checkpoint/resume\n\n## Monthly Cost Estimate\n\nAt 720 hours per month, one A100 can cost between $95.18 to $3,628.80 per month, depending on the provider.\n\nThe dramatic difference in pricing highlights the importance of choosing the right cloud provider and billing model for your specific use case, especially if your workload can tolerate spot instance interruptions."
+    ],
+    "durationSeconds": 6.647716421999968
+  },
+  "sourceToolAssistantUUID": "dbde7e49-6124-4fee-afe6-ae5e2e6c27d5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 153 · 2026-05-13T05:11:08.762Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have gathered extensive information. Let me analyze the proposal systematically.
+
+## Summary of Findings
+
+### SOTA Freshness
+- LIBERO-Plus official leaderboard: OpenVLA-OFT+ at 79.6% (top of official leaderboard)
+- SRPO claimed at 82.1% (listed as "research work using LIBERO-Plus" not on official leaderboard) — the proposal's claim checks out
+- LaST-R1 achieves 99.9% on standard LIBERO but not evaluated on LIBERO-Plus
+- The proposal cites up-to-date baselines
+
+
+- I've verified the major references cited throughout the paper, including recent work on causal attention, token pruning critiques, and various VLA approaches, and they all check out.
+
+I'm now identifying work that wasn't cited but seems relevant to the research. InSpire addresses spurious correlations in VLAs through spatial reasoning, though it takes a different angle than the token selection focus here. There's also a paper on causality-inspired robustness for nonlinear models that appears to provide theoretical grounding for some of the guarantees being made.
+
+Beyond that, I'm seeing several concurrent VLA methods—SpecPrune-VLA for action-aware pruning, VLA-Cache for temporal token caching, and SP-VLA for joint scheduling and pruning—that either overlap with the work or represent related efficiency approaches. ETA-VLA is another temporal method that got cut off in the notes.
+
+Looking at the gap more carefully, the core claim still seems valid: while these concurrent works use various heuristic criteria like attention intersection or cross-attention TopK, none of them provide formal causal intervention justification through structural causal models. That theoretical grounding appears to be genuinely missing from the literature.
+
+For venue timing, AAAI 2027 and ICLR 2027 both look feasible given their expected deadlines in August and October 2026 respectively.
+
+On the practical side, the GPU cost estimates are conservative—spot pricing is actually much cheaper than the stated $1.50/hr—and the 800 hours for 11 baselines with seeds and ablations is reasonable. The OpenVLA-OFT backbone and LIBERO-Plus are available, and the amortization validation with 12,500 forward passes is definitely doable.
+
+Now I'm evaluating the novelty more carefully. The formal SCM approach over vision tokens is where the real contribution lies.
+
+The token-action pipeline is genuinely novel—nothing in the literature does this. The insight connecting vanishing token information from recent work to where causal scoring should operate is clever, and the multi-layer scoring naturally follows from understanding the information horizon. The failure mode analysis with concrete mitigations is refreshingly honest, and the statistical protocol against random pruning is rigorous. The framing around V-REx limitations and the composite V-REx plus DRO approach feels genuine rather than oversold. The ε-invariance bound is well-structured with four explicit terms, though the constants themselves—C₁, C₂, C₃, c, d_E—aren't specified, so it's more of a structured decomposition than a tight bound.
+
+The spatial locality assumption is empirically grounded but not theoretically guaranteed, though introducing α_leak to quantify violations is an honest way to handle that gap. The proposal borders on over-specification—it reads almost like a paper outline rather than a research idea, which could demonstrate feasibility but might also lock in details before experimentation. Reproducing 11 baselines is ambitious, especially since some like DTP and TIES may lack public implementations. Adding Wasserstein DRO provides theoretical safety guarantees but increases the overall complexity.
+
+The interaction between V-REx and DRO in the composite objective needs deeper analysis. If CaTS performs as intended, it would be the first principled, theoretically grounded token selection method for VLA robustness—a meaningful contribution. The formal statistical protocol against random pruning matters given recent findings, and the interpretability aspect of mapping causal scores to task-relevant regions has practical value. The impact is primarily within the VLA robustness community, though it could influence causal ML work secondarily. On costs, the compute estimates look reasonable—$1,200 for manual training on A100s, or potentially cheaper with spot pricing around $624, plus roughly $1,800 for human-in-the-loop evaluation.
+
+The auto approach at $3,750 plus API costs is also realistic, and the GPU utilization rates across all three methods (25-30% manual, 50-60% HIL, 90%+ auto) are internally consistent. Timeline-wise, 4-6 months for manual, 2-4 months for HIL, and 3-5 weeks for auto all seem feasible. The user's original question in Chinese asks whether token pruning or augmentation can improve VLA generalization, with emphasis on theoretical justification for why it would enhance performance.
+
+The proposal covers all the key requirements: token pruning in VLA, generalization improvements across environments, and theoretical grounding through a formal structural causal model with conditional invariance theorems, ε-bounds with four explicit terms, connections to do-calculus, failure mode analysis, and degradation patterns as spatial locality weakens. The theoretical framework has substantially strengthened from earlier iterations. There are some gaps though—missing citations to concurrent work like SP-VLA and SpecPrune-VLA that should be acknowledged.
+
+The ε-bound constants aren't numerically specified, which limits quantitative predictions but is standard for theoretical ML. The combined V-REx and DRO loss introduces two hyperparameters with unclear interactions, and the evaluation relies entirely on simulation without real-world validation to demonstrate practical impact. The proposal has successfully addressed all major feedback from previous rounds—missing citations, theoretical rigor, and practical validation gaps are now resolved. It's genuinely novel in combining formal causal intervention criteria with amortized token selection at the vision encoder level, making it competitive for top venues. But I need to honestly assess the novelty score, which appears to be cut off mid-thought. The theoretical framework is the unique contribution but may be seen as overly complex if the empirical gains are marginal. Score: 3-3.5
+
+Average: ~3.6-4.0
+
+The user asked for theoretical analysis, and this proposal delivers on that front better than round 1 or 2. The key question is whether the theoretical contribution is deep enough for a top venue.
+
+After careful consideration, I think this proposal is at the borderline. The improvements from rounds 1 and 2 are substantial. The remaining issues are relatively minor (missing a few efficiency-focused concurrent works, unspecified bound constants, no real-world experiments). The theoretical contribution — while not groundbreaking — is the most principled approach in the VLA token pruning literature.
+
+I'll give it a pass with some caveats:
+
+Actually, let me reconsider more carefully.
+
+The average score needs to be ≥ 4.0 for a pass, and I need to be honest. The theoretical framework, while solid, doesn't quite reach the novelty bar for a top venue if the empirical results don't materialize. The crowded token pruning space and marginal gains would undercut the contribution. I'm leaning toward rejection — the proposal is well-executed but incremental. Let me reconsider each dimension:
+
+**Novelty (4)**: The formal SCM + ε-invariance bound for VLA token selection is genuinely new. No existing work provides this. The encoder-level spatial locality insight connecting arXiv 2512.07580 to token scoring is novel. The multi-layer scoring approach is well-motivated. However, it's a natural combination of existing ideas rather than a paradigm shift. 4 is appropriate.
+
+**Feasibility (3.5)**: Well-specified approach with realistic resources. However:
+- The amortization gap is acknowledged but may be larger than theoretical bounds suggest
+- 11 baselines × 5 seeds is very ambitious
+- Some baselines (DTP, TIES, Causal-ACT on LIBERO-Plus) may lack public code, requiring significant reproduction effort
+- The interaction between V-REx and DRO is not analyzed
+- Meeting the statistical criterion of 5/7 perturbation dimensions could prove challenging
+
+**Clarity (4.5)**: Exceptionally well-written with the most thorough differentiation from concurrent work I've seen. Failure modes, assumptions, and limitations are explicitly stated, and the statistical protocol is rigorous.
+
+**Impact (3.5)**: The crowded VLA token pruning space means empirical superiority matters more than theoretical elegance—if CaTS can't outperform simpler baselines like FTM or DTP, the theoretical contribution alone won't carry it at top venues.
+
+Averaging these scores gives 3.875, which falls short of 4.0.
+
+The remaining issues—missing a few concurrent works, needing more specification on ε-bound constants, analyzing V-REx + DRO interactions, and potentially reducing the baseline count—are fixable but not trivial. Given the strict threshold, I should issue a revise verdict despite the work being close to acceptance quality.
+
+Actually, reconsidering the scores more carefully: the proposal has genuinely addressed all prior feedback, the theoretical framework is solid, and the evaluation is well-designed. The feasibility concern around 11 baselines and the V-REx/DRO interaction uncertainty are real, but the approach is well-specified with realistic resources and a validation protocol to catch the amortization gap. For impact, the theoretical contribution stands out as the most rigorous in VLA token pruning, though empirical performance remains uncertain.
+
+The verdict is revise—there are concrete gaps to address like the missing SP-VLA reference, more concrete ε-bound constants, clearer V-REx and DRO interaction analysis, and potentially InSpire as a baseline. But these are relatively minor refinements after two rounds of substantial improvement, and the proposal is approaching pass quality.
+
+On reflection though, I'm reconsidering the impact score. The user specifically wanted theoretical analysis of why token pruning improves generalization, and this work delivers that more rigorously than anything else in the VLA pruning literature—the formal SCM, ε-invariance bound, encoder-level spatial locality justification, and degradation analysis are genuinely valuable contributions. That might push impact to 4, which would bring the average to exactly 4.0 and meet the threshold. But I'm hesitant to rate it that high given the modest empirical gains.
+
+The real issue is that the theoretical assumptions—spatial locality, environment diversity, bounded amortization—may not hold in practice, and the crowded space of VLA pruning methods is a legitimate concern. I'll stick with 3.5 for impact and recommend revision instead. The feedback should focus on some notable gaps: SP-VLA from ICLR 2026 does joint scheduling and token pruning for VLAs but isn't cited, SpecPrune-VLA and InSpire are concurrent methods addressing similar spurious correlation problems that deserve mention, and the ε-bound constants need more concrete specification for top-tier reviewers.
+
+Actually, stepping back, I think this work merits acceptance. The theoretical framework is genuinely novel—no other paper provides this formal analysis of VLA token selection through causal intervention—and the previous concerns have all been resolved. The remaining gaps are truly minor: a handful of concurrent works that use different approaches and don't challenge the core novelty, plus some bound constants that are standard for theoretical ML papers. The evaluation is more rigorous than typical, and it directly addresses what was requested. Those missing papers should be cited for completeness, but they don't undermine the contribution. I'm revising my assessment upward on novelty and overall merit.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b3ce78cc-80cf-4dae-acd8-4f3368346330",
+  "isSidechain": false,
+  "requestId": "req_011CayzQD1Kte28jzQ6iHPJF",
+  "type": "assistant",
+  "uuid": "05065a67-4eaf-4230-925e-2b8835682768",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0125qUucREPx27chAq3tPpmo",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 891,
+      "cache_read_input_tokens": 78807,
+      "output_tokens": 7325,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 891,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 7325,
+          "cache_read_input_tokens": 78807,
+          "cache_creation_input_tokens": 891,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 891
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 154 · 2026-05-13T05:11:58.718Z_
+
+I've completed extensive independent verification. Let me now synthesize my findings into the review.
+
+Key findings from my research:
+- SRPO's 82.1% LIBERO-Plus claim is verified (listed as external research on LIBERO-Plus, not on official leaderboard where top is OpenVLA-OFT+ at 79.6%)
+- All major cited references verified as real
+- The "vanishing token information" finding (arXiv 2512.07580) is correctly characterized
+- A100 spot pricing is now $0.13-$0.78/hr, making the $1.50/hr estimate conservative
+- I found several additional concurrent works not discussed
+- AAAI 2027 (~Aug 2026) and ICLR 2027 (~Oct 2026) deadlines are feasible
+- CoRL 2026 (May 29, 2026) correctly removed as infeasible
+- ICRA 2027 website under construction, deadline TBD but likely ~Sep 2026
+
+```json
+{
+  "verdict": "revise",
+  "scores": {
+    "novelty": {"score": 4, "rationale": "The formal SCM over VLA token-action pipeline with encoder-level spatial locality assumption, concrete ε-invariance bound with four decomposed terms, and the connection between vanishing token information and causal scoring layer are genuinely novel — no existing VLA pruning method provides this level of formal causal grounding. However, the core idea remains a natural (not surprising) combination of causal inference + token pruning."},
+    "feasibility": {"score": 3, "rationale": "The 11-baseline evaluation plan with 5 seeds each is very ambitious; reproducing DTP, TIES, and Causal-ACT on LIBERO-Plus likely requires significant effort as public code may not support LIBERO-Plus. The V-REx + DRO composite objective introduces two hyperparameters whose interaction is unanalyzed, and the DRO radius selection requires expertise the team may lack. The amortization gap validation protocol is well-designed but the fallback to exact ACE (if scorer fails) eliminates the efficiency advantage."},
+    "clarity": {"score": 4, "rationale": "Exceptionally thorough differentiation from 10+ concurrent works with specific technical contrasts. The honest framing of V-REx limitations, explicit failure modes (F1-F4), and the a priori success criterion (5/7 dimensions) are unusually rigorous for a research proposal. The multi-layer scoring motivation from arXiv 2512.07580 is well-articulated."},
+    "impact": {"score": 3, "rationale": "The VLA token pruning space is extremely crowded (10+ methods in 2025-2026). Even with superior theoretical grounding, CaTS must demonstrate convincing empirical superiority over simpler methods like FTM (4K params, 87.1% on viewpoint) and DTP (training-free). If the amortized scorer only marginally outperforms random pruning, the theoretical framework alone may not justify the added complexity for AAAI/ICLR acceptance."}
+  },
+  "issues": [
+    "MISSING CONCURRENT WORK: SP-VLA (arXiv 2506.12723, ICLR 2026) performs joint model scheduling and token pruning for VLAs with a spatio-semantic dual-aware pruning method, achieving lossless acceleration on LIBERO. As an ICLR 2026 accepted paper, it must be discussed. SpecPrune-VLA (arXiv 2509.05614) uses action-aware self-speculative pruning with global history context. VLA-Cache (arXiv 2502.02175, NeurIPS 2025) adaptively caches static tokens. These efficiency-focused methods don't undermine novelty but should be acknowledged for completeness, especially SP-VLA which is at ICLR 2026.",
+    "MISSING RELATED WORK: InSpire (arXiv 2505.13888, May 2025) directly addresses spurious correlations in VLAs by boosting spatial reasoning via language-guided attention redirection. While it takes a different approach (prompting vs. token selection), it targets the same core problem (VLA spurious correlation → poor generalization) and should be discussed. Additionally, 'Causality-Inspired Robustness for Nonlinear Models via Representation Learning' (arXiv 2505.12868) provides the first causality-inspired robustness guarantee in nonlinear settings — directly relevant to CaTS's acknowledged V-REx/IRM limitation and could strengthen the DRO justification.",
+    "FEASIBILITY CONCERN — BASELINE REPRODUCTION: The plan lists 11 baselines but several (DTP, TIES, Causal-ACT, LeaF-adapted) have not been evaluated on LIBERO-Plus in their original papers. Reproducing these on LIBERO-Plus requires adapting their architectures/codebases to the OpenVLA backbone, which is non-trivial engineering work beyond simple re-training. The proposal should explicitly assess code availability for each baseline and potentially reduce to 7-8 core baselines with stronger justification.",
+    "THEORETICAL GAP: The ε-invariance bound constants C₁, C₂, C₃, c remain unspecified even approximately. While the scaling behavior (1/√M, exp(-c·N_env/d_E), etc.) is informative, AAAI/ICLR reviewers will likely ask for at least order-of-magnitude estimates. For example: how many environments N_env are needed for the environment coverage term to be negligible given LIBERO-Plus's 7 perturbation dimensions? How many Shapley samples M are needed for the estimation error to be below a useful threshold? Without these estimates, the bound remains more of a conceptual decomposition than a practical prediction.",
+    "V-REx + DRO INTERACTION UNANALYZED: The composite loss L = L_task + λ_var·L_var + λ_DRO·L_DRO combines two regularizers that may interact non-trivially. V-REx minimizes cross-environment variance while DRO optimizes worst-case over a Wasserstein ball — these objectives could conflict (DRO may increase variance across environments to prepare for worst-case, while V-REx penalizes exactly that). The proposal should provide at least a brief analysis of when these objectives are complementary vs. conflicting, or acknowledge this as an open question with planned sensitivity analysis.",
+    "GPU COST OVERESTIMATE: The proposal uses $1.50/hr for A100 spot pricing, but current market rates (May 2026) show A100 80GB spot prices as low as $0.13-$0.78/hr. This makes the cost estimates conservative by 2-10×. While overestimating costs is better than underestimating, reviewers may question the accuracy if the paper claims specific cost figures. Use current market rates or provide a range."
+  ],
+  "feedback": "The proposal has improved dramatically from rounds 1 and 2 — all previously flagged issues are substantively addressed. The theoretical framework is now the most developed in the VLA token pruning literature, and the honest framing of V-REx limitations with DRO complement is commendable. To reach pass threshold:\n\n1. **Add SP-VLA (ICLR 2026)** to the concurrent work discussion — as an ICLR 2026 accepted paper, its omission is notable. Also briefly mention InSpire (arXiv 2505.13888) which targets the same spurious correlation problem via a different mechanism, and arXiv 2505.12868 which provides nonlinear causality-inspired robustness guarantees relevant to your theoretical framework.\n\n2. **Provide approximate values for ε-bound constants**: Even order-of-magnitude estimates would help. For example, with LIBERO-Plus's 7 perturbation dimensions, what is d_E approximately? With M=100 Shapley samples per token, what is the expected estimation error? This transforms the bound from conceptual to actionable.\n\n3. **Analyze V-REx + DRO interaction**: Add 2-3 sentences on when the two objectives are complementary (DRO handles rare worst-case environments while V-REx stabilizes typical environments) vs. when they conflict. This addresses a likely reviewer concern.\n\n4. **Streamline baselines**: Reduce to 8-9 core baselines with explicit code availability assessment. Drop LeaF-adapted (NLP→VLA adaptation is speculative) and Causal-ACT (feature-level → token-level adaptation to OpenVLA is non-trivial). Keep DTP, TIES, SRPO, FTM/FLA, AVA-VLA, random pruning, VLA-Pruner, and RobustVLA as the most informative comparisons.\n\n5. **Update GPU cost estimates** to reflect current A100 spot pricing ($0.50-$0.80/hr range).",
+  "reason": "Strong theoretical contribution with thorough concurrent work differentiation, but feasibility concerns (ambitious baseline plan, unanalyzed DRO+V-REx interaction) and a few missing concurrent works (SP-VLA at ICLR 2026, InSpire) keep the average score at 3.5 — close to pass threshold but needs minor revisions."
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "05065a67-4eaf-4230-925e-2b8835682768",
+  "isSidechain": false,
+  "requestId": "req_011CayzQD1Kte28jzQ6iHPJF",
+  "type": "assistant",
+  "uuid": "1371e152-06bd-4b42-ae40-56a31a511553",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0125qUucREPx27chAq3tPpmo",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 891,
+      "cache_read_input_tokens": 78807,
+      "output_tokens": 7325,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 891,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 7325,
+          "cache_read_input_tokens": 78807,
+          "cache_creation_input_tokens": 891,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 891
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 155_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "1371e152-06bd-4b42-ae40-56a31a511553",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 156_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Causal token selection for VLA generalization",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 157_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "1371e152-06bd-4b42-ae40-56a31a511553",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 158_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Causal token selection for VLA generalization",
+  "sessionId": "2167d8d7-492b-4e35-b3c9-ff22d9784b7a"
+}
+```
+
+---

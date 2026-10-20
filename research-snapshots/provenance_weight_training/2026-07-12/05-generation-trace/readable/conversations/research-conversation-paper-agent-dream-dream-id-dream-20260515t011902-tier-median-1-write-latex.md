@@ -1,0 +1,3468 @@
+# Research conversation: 你是 Paper Agent（Dream 模式）。任务：为 dream_id=dream_20260515T011902 tier=median 生成一篇完整的模拟论文。 ## 关键规则 1. 用 **Write 工具** 把 LaTeX 
+
+**When Does Detect-and-Reweight Work for Synthetic Contamination? (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 40
+- **Recorded user turns:** 1
+- **Tool calls:** 8
+- **Original source:** `logs/chats/exported-trajectories/account-3/b8d1220f-e94e-4760-9740-c1b8649df453.jsonl`
+- **Structured JSON:** [`0b885b89728fc67f0374.json`](../../sessions/0b/0b885b89728fc67f0374.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-15T01:58:27.469Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-15T01:58:27.469Z",
+  "sessionId": "b8d1220f-e94e-4760-9740-c1b8649df453",
+  "content": "你是 Paper Agent（Dream 模式）。任务：为 dream_id=dream_20260515T011902 tier=median 生成一篇完整的模拟论文。\n\n## 关键规则\n1. 用 **Write 工具** 把 LaTeX 源码写入 `/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/dream_reports/dream_20260515T011902/median/paper.tex`\n2. 用 **Bash 工具** 编译：`cd /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/dream_reports/dream_20260515T011902/median && pdflatex -interaction=nonstopmode paper.tex && pdflatex -interaction=nonstopmode paper.tex`\n3. 所有文件只写入 `/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/dream_reports/dream_20260515T011902/median/`，禁止写入其他目录\n4. 直接写完整 LaTeX 全文（\\documentclass ... \\end{document}），不要输出 YAML/JSON/Markdown\n5. 不走 5 步流水线，不 spawn Worker，不调 Director API——一次性写完\n6. 你必须在论文中为 experiment_data.json 中的**每个**实验设计对应的 section/table\n7. narrative_guidance 是你的写作方向指引，不要在论文正文中引用或复述此指引\n\n## 输入\n- 实验数据（JSON）：`/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/dream_reports/dream_20260515T011902/median/experiment_data.json`（先 Read 此文件）\n- Venue：默认\n- Narrative guidance：Adaptive b* 稳定工作但效应放大有限。b<0.5 fine grid 发现 b≈0.3 略优但差异 <0.005 PPL， PPL landscape 在 b=0.1-0.5 极平坦（全范围仅 ~0.014 PPL）。60% 污染和 3B 模型效应放大温和（~2x）， 不足以单独作为 selling point。维持 Path B 叙事：\"adaptive matches grid-best within seed variance, eliminating grid search (6N→1)\"。Claim 2 措辞保守化为 \"comparable performance at zero tuning cost\"。 下游任务改善不一致，evaluation 以 PPL 为主，downstream 降为 supplementary。 Cross-generator 和 domain-skewed 设置中 adaptive 表现较弱，需 per-batch b* 分布诊断解释。 Lightweight detector sufficiency 是可挖掘的 co-finding（AUC 0.939→0.986 仅换来 0.005 PPL）。\n\n- paper_framing.md（完整版）：`/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/dream_reports/dream_20260515T011902/median/paper_framing.md`（先 Read 此文件）\n\n## 质量目标\n\"够审\"级——让审稿人能评判 idea 和实验设计，不是投稿质量。包含 Abstract、Introduction、Method、Experiments、Conclusion。每个定量 claim 基于 experiment_data.json 中的数据，不得编造数字。"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-15T01:58:27.472Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-15T01:58:27.472Z",
+  "sessionId": "b8d1220f-e94e-4760-9740-c1b8649df453"
+}
+```
+
+---
+
+## Round 1
+
+38 recorded events
+
+### User
+
+_source line 3 · 2026-05-15T01:58:27.492Z_
+
+你是 Paper Agent（Dream 模式）。任务：为 dream_id=dream_20260515T011902 tier=median 生成一篇完整的模拟论文。
+
+## 关键规则
+1. 用 **Write 工具** 把 LaTeX 源码写入 `/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/dream_reports/dream_20260515T011902/median/paper.tex`
+2. 用 **Bash 工具** 编译：`cd /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/dream_reports/dream_20260515T011902/median && pdflatex -interaction=nonstopmode paper.tex && pdflatex -interaction=nonstopmode paper.tex`
+3. 所有文件只写入 `/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/dream_reports/dream_20260515T011902/median/`，禁止写入其他目录
+4. 直接写完整 LaTeX 全文（\documentclass ... \end{document}），不要输出 YAML/JSON/Markdown
+5. 不走 5 步流水线，不 spawn Worker，不调 Director API——一次性写完
+6. 你必须在论文中为 experiment_data.json 中的**每个**实验设计对应的 section/table
+7. narrative_guidance 是你的写作方向指引，不要在论文正文中引用或复述此指引
+
+## 输入
+- 实验数据（JSON）：`/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/dream_reports/dream_20260515T011902/median/experiment_data.json`（先 Read 此文件）
+- Venue：默认
+- Narrative guidance：Adaptive b* 稳定工作但效应放大有限。b<0.5 fine grid 发现 b≈0.3 略优但差异 <0.005 PPL， PPL landscape 在 b=0.1-0.5 极平坦（全范围仅 ~0.014 PPL）。60% 污染和 3B 模型效应放大温和（~2x）， 不足以单独作为 selling point。维持 Path B 叙事："adaptive matches grid-best within seed variance, eliminating grid search (6N→1)"。Claim 2 措辞保守化为 "comparable performance at zero tuning cost"。 下游任务改善不一致，evaluation 以 PPL 为主，downstream 降为 supplementary。 Cross-generator 和 domain-skewed 设置中 adaptive 表现较弱，需 per-batch b* 分布诊断解释。 Lightweight detector sufficiency 是可挖掘的 co-finding（AUC 0.939→0.986 仅换来 0.005 PPL）。
+
+- paper_framing.md（完整版）：`/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/dream_reports/dream_20260515T011902/median/paper_framing.md`（先 Read 此文件）
+
+## 质量目标
+"够审"级——让审稿人能评判 idea 和实验设计，不是投稿质量。包含 Abstract、Introduction、Method、Experiments、Conclusion。每个定量 claim 基于 experiment_data.json 中的数据，不得编造数字。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "c98b2ce2-8f3c-4f7d-9ef0-293847a444d3",
+  "type": "user",
+  "uuid": "ab8c06fd-88e9-4aff-aef3-1dbf38df0b79",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+  "sessionId": "b8d1220f-e94e-4760-9740-c1b8649df453",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-15T01:58:27.491Z_
+
+```json
+{
+  "parentUuid": "ab8c06fd-88e9-4aff-aef3-1dbf38df0b79",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "de52243e-1af7-42d2-9567-c280db544b30",
+  "timestamp": "2026-05-15T01:58:27.491Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+  "sessionId": "b8d1220f-e94e-4760-9740-c1b8649df453",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-15T01:58:27.492Z_
+
+```json
+{
+  "parentUuid": "de52243e-1af7-42d2-9567-c280db544b30",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "627768fa-3e77-453a-bf7d-068211673f8f",
+  "timestamp": "2026-05-15T01:58:27.492Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+  "sessionId": "b8d1220f-e94e-4760-9740-c1b8649df453",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Generate adaptive provenance weight training paper",
+  "sessionId": "b8d1220f-e94e-4760-9740-c1b8649df453"
+}
+```
+
+---
+
+### Assistant
+
+_source line 7 · 2026-05-15T01:58:30.264Z_
+
+I'll start by reading the input files to understand the experiment data and paper framing.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "627768fa-3e77-453a-bf7d-068211673f8f",
+  "isSidechain": false,
+  "requestId": "req_011Cb3XUnEpWJ7uymcgzfHgx",
+  "type": "assistant",
+  "uuid": "2f49e885-4270-41c9-835f-9294630fd34d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+  "sessionId": "b8d1220f-e94e-4760-9740-c1b8649df453",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y981QxSaFR5RmY3eTiTrne",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11331,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 210,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11331,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 210,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 11331,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11331
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-15T01:58:31.287Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01XqMVV4hw5sy7mU8wCHGX71`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/dream_reports/dream_20260515T011902/median/experiment_data.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2f49e885-4270-41c9-835f-9294630fd34d",
+  "isSidechain": false,
+  "requestId": "req_011Cb3XUnEpWJ7uymcgzfHgx",
+  "type": "assistant",
+  "uuid": "c135552c-288a-4e20-8839-71da5e4e8be5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+  "sessionId": "b8d1220f-e94e-4760-9740-c1b8649df453",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y981QxSaFR5RmY3eTiTrne",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11331,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 210,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11331,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 210,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 11331,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11331
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-15T01:58:31.564Z_
+
+<details><summary>↩ Tool result · `toolu_01XqMVV4hw5sy7mU8wCHGX71`</summary>
+
+```text
+1	[
+2	  {
+3	    "name": "Grid-b low (b=0.1/0.2/0.3), seed42",
+4	    "description": "扩展 grid search 到 b<0.5，确认 grid-best 不在搜索边界外",
+5	    "results": {
+6	      "b0_1_eval_ppl": 17.662,
+7	      "b0_2_eval_ppl": 17.65,
+8	      "b0_3_eval_ppl": 17.648,
+9	      "best_b_extended": 0.3,
+10	      "best_ppl_extended": 17.648,
+11	      "improvement_over_b0_5": 0.003,
+12	      "train_runtime_s_per_b": 13000,
+13	      "gpu_hours_total": 10.8
+14	    },
+15	    "tables": [
+16	      {
+17	        "title": "Extended Grid-b PPL (seed42, ρ=0.4)",
+18	        "columns": [
+19	          "b",
+20	          "eval_ppl_holdout",
+21	          "Δ_vs_uniform",
+22	          "relative_improvement_pct"
+23	        ],
+24	        "rows": [
+25	          [
+26	            0.1,
+27	            17.662,
+28	            -0.028,
+29	            0.158
+30	          ],
+31	          [
+32	            0.2,
+33	            17.65,
+34	            -0.04,
+35	            0.226
+36	          ],
+37	          [
+38	            0.3,
+39	            17.648,
+40	            -0.042,
+41	            0.237
+42	          ],
+43	          [
+44	            0.5,
+45	            17.651,
+46	            -0.039,
+47	            0.22
+48	          ],
+49	          [
+50	            1.0,
+51	            17.692,
+52	            0.002,
+53	            -0.011
+54	          ]
+55	        ]
+56	      }
+57	    ],
+58	    "figures": [],
+59	    "analysis": "b=0.3 是 seed42 extended grid-best，但与 b=0.5 仅差 0.003。确认 PPL landscape 足够平坦，使 adaptive b*（median ~0.88）虽系统性高于 grid-best b 但不造成显著损失。\n\n\nPPL landscape 在 b=0.1-0.5 极平坦（全范围仅 0.014 PPL）。b=0.3 比 b=0.5 改善 0.003， 因为更温和的 downweighting 避免了对中等 q-score 样本（q~0.5-0.7）的过度惩罚。 b=0.1 反弹（17.662）是因为 downweighting 力度不足，高污染样本仍贡献过多梯度。 关键结论：b=0.5 不在搜索边界外——真实最优在 b=0.2-0.4 区间，但差异在 seed variance 以内。\n"
+60	  },
+61	  {
+62	    "name": "Grid-b low (b=0.1/0.2/0.3), seed123",
+63	    "description": "Seed123 b<0.5 扩展，验证跨 seed 一致性",
+64	    "results": {
+65	      "b0_1_eval_ppl": 17.654,
+66	      "b0_2_eval_ppl": 17.639,
+67	      "b0_3_eval_ppl": 17.636,
+68	      "best_b_extended": 0.3,
+69	      "best_ppl_extended": 17.636,
+70	      "improvement_over_b0_5": 0.002
+71	    },
+72	    "tables": [],
+73	    "figures": [],
+74	    "analysis": "与 seed42 趋势一致，b=0.3 marginal 最优但差异在 noise 范围内。\n\n与 seed42 一致趋势：b=0.3 略优于 b=0.5。Seed123 本身是三个 seed 中 PPL 最低的 （baseline 和 grid-best 都最好），绝对差异被压缩至 0.002。 平坦 landscape 的跨 seed 一致性支持 \"b=0.3-0.5 区间内 b 选择不关键\"。\n"
+75	  },
+76	  {
+77	    "name": "Grid-b low (b=0.1/0.2/0.3), seed456",
+78	    "description": "Seed456 b<0.5 扩展",
+79	    "results": {
+80	      "b0_1_eval_ppl": 17.666,
+81	      "b0_2_eval_ppl": 17.653,
+82	      "b0_3_eval_ppl": 17.649,
+83	      "best_b_extended": 0.3,
+84	      "best_ppl_extended": 17.649,
+85	      "improvement_over_b0_5": 0.001
+86	    },
+87	    "tables": [],
+88	    "figures": [],
+89	    "analysis": "b=0.3 与 b=0.5 差异最小的 seed，进一步确认 landscape 平坦性。\n\nSeed456 在原始 grid 中 adaptive (17.66) 已是最弱 seed。b=0.3 仅比 b=0.5 好 0.001， 几乎不可区分。此 seed PPL 方差较大，b<0.5 的微小改善被噪声淹没。\n"
+90	  },
+91	  {
+92	    "name": "Post-hoc eval for all 9 b<0.5 checkpoints",
+93	    "description": "汇总三 seed × 三 b 值，更新 grid-best 并重算 aggregate ratio",
+94	    "results": {
+95	      "new_grid_best_b_consensus": 0.3,
+96	      "avg_improvement_over_b0_5": 0.002,
+97	      "cross_seed_consistency": "3/3 seeds show b=0.3 >= b=0.5",
+98	      "updated_aggregate_ratio_pct": 85.8,
+99	      "ppl_range_b0_1_to_b0_5": 0.014
+100	    },
+101	    "tables": [
+102	      {
+103	        "title": "Extended Grid-b Summary (3 seeds × full range)",
+104	        "columns": [
+105	          "b",
+106	          "seed42_ppl",
+107	          "seed123_ppl",
+108	          "seed456_ppl",
+109	          "mean_ppl",
+110	          "rank"
+111	        ],
+112	        "rows": [
+113	          [
+114	            0.1,
+115	            17.662,
+116	            17.654,
+117	            17.666,
+118	            17.661,
+119	            4
+120	          ],
+121	          [
+122	            0.2,
+123	            17.65,
+124	            17.639,
+125	            17.653,
+126	            17.647,
+127	            2
+128	          ],
+129	          [
+130	            0.3,
+131	            17.648,
+132	            17.636,
+133	            17.649,
+134	            17.644,
+135	            1
+136	          ],
+137	          [
+138	            0.5,
+139	            17.651,
+140	            17.638,
+141	            17.65,
+142	            17.646,
+143	            3
+144	          ],
+145	          [
+146	            1.0,
+147	            17.692,
+148	            17.674,
+149	            17.68,
+150	            17.682,
+151	            5
+152	          ],
+153	          [
+154	            1.5,
+155	            17.718,
+156	            17.701,
+157	            17.71,
+158	            17.71,
+159	            6
+160	          ],
+161	          [
+162	            2.0,
+163	            17.741,
+164	            17.725,
+165	            17.73,
+166	            17.732,
+167	            7
+168	          ],
+169	          [
+170	            3.0,
+171	            17.774,
+172	            17.76,
+173	            17.765,
+174	            17.766,
+175	            8
+176	          ],
+177	          [
+178	            5.0,
+179	            17.818,
+180	            17.804,
+181	            17.81,
+182	            17.811,
+183	            9
+184	          ]
+185	        ]
+186	      }
+187	    ],
+188	    "figures": [],
+189	    "analysis": "Grid-best 从 b=0.5 更新为 b=0.3，但差异 <0.003 PPL 不影响核心叙事。 论文呈现完整 9-point curve + error bars，突出 b=0.2-0.5 的平坦区域， 视觉化 \"adaptive b* median ~0.88 仍在平坦区域的右沿\" 这一关键论点。\n\n\n汇总后 b=0.3 在所有三 seed 上均 >= b=0.5，但平均改善仅 0.002。 更新 grid-best 为 b=0.3 后 aggregate ratio 从 88.6% 微降至 ~85.8%， 因为 adaptive 与新 grid-best 差距略增——adaptive b* median ~0.88 离 b=0.3 更远了。 但差异仍在 seed variance 内，不改变 Path B 叙事。 关键发现：b=0.1-0.5 全范围 PPL 差异仅 0.014，PPL landscape 在此区间极度平坦。 Per-seed 重算：\n  seed42: (17.690-17.650)/(17.690-17.648) = 95.2%\n  seed123: (17.690-17.643)/(17.690-17.636) = 87.0%\n  seed456: (17.700-17.660)/(17.700-17.649) = 78.4%\n  aggregate: (95.2+87.0+78.4)/3 = 86.9%（注：seed456 拉低均值）\n"
+190	  },
+191	  {
+192	    "name": "Data generation for ρ=0.6",
+193	    "description": "60% 污染比例数据生成与检测器评分",
+194	    "results": {
+195	      "total_tokens": 200000000,
+196	      "synthetic_fraction": 0.6,
+197	      "real_fraction": 0.4,
+198	      "detector_auc_on_60pct": 0.935,
+199	      "q_score_mean": 0.72,
+200	      "q_score_median": 0.82
+201	    },
+202	    "tables": [],
+203	    "figures": [],
+204	    "analysis": "基础设施步骤。检测器在 60% 条件下仍可用（AUC 0.935）。\n\n更高合成比例使 q-score 分布向高端偏移（mean 0.60→0.72），因为 batch 内合成样本更多， 检测器有更多高 q 样本可输出。TF-IDF+LR AUC 微降（0.939→0.935）， 因为更多合成样本意味着合成风格更多样化，少量非典型合成样本拉低 AUC。\n"
+205	  },
+206	  {
+207	    "name": "Uniform baseline (ρ=0.6, Qwen3-0.6B, seed42)",
+208	    "description": "60% 污染下的 uniform baseline",
+209	    "results": {
+210	      "eval_ppl_holdout": 17.84,
+211	      "train_loss": 7.42,
+212	      "total_steps": 6103,
+213	      "ppl_degradation_vs_40pct": 0.15
+214	    },
+215	    "tables": [],
+216	    "figures": [],
+217	    "analysis": "60% 条件 uniform baseline 建立参考点，PPL 退化 0.15 符合线性趋势。\n\n60% 合成数据引入更多质量退化。模型看到的真实语言模式比例从 60% 降至 40%， PPL 从 17.69 升至 17.84（+0.15）。退化与污染比例近似线性—— 从 0%→40% 退化约 0.3（估计 clean baseline ~17.39），40%→60% 再增 0.15。 更差的 baseline 意味着 reweighting 有更大改善空间。\n"
+218	  },
+219	  {
+220	    "name": "Adaptive b* (ρ=0.6, Qwen3-0.6B, seed42)",
+221	    "description": "验证效应量随污染增大而放大",
+222	    "results": {
+223	      "eval_ppl_holdout": 17.76,
+224	      "improvement_over_uniform": 0.08,
+225	      "relative_improvement_pct": 0.449,
+226	      "amplification_factor_vs_40pct": 2.0,
+227	      "b_star_mean": 1.15,
+228	      "b_star_median": 0.72,
+229	      "b_star_std": 1.65,
+230	      "b_star_pct_below_0_5": 28.4
+231	    },
+232	    "tables": [
+233	      {
+234	        "title": "Effect Amplification: ρ=0.4 vs ρ=0.6",
+235	        "columns": [
+236	          "metric",
+237	          "rho_0.4",
+238	          "rho_0.6",
+239	          "amplification"
+240	        ],
+241	        "rows": [
+242	          [
+243	            "uniform_ppl",
+244	            17.69,
+245	            17.84,
+246	            "-"
+247	          ],
+248	          [
+249	            "adaptive_ppl",
+250	            17.65,
+251	            17.76,
+252	            "-"
+253	          ],
+254	          [
+255	            "absolute_Δ",
+256	            0.04,
+257	            0.08,
+258	            "2.0x"
+259	          ],
+260	          [
+261	            "relative_improvement_pct",
+262	            0.226,
+263	            0.449,
+264	            "2.0x"
+265	          ],
+266	          [
+267	            "b_star_median",
+268	            0.88,
+269	            0.72,
+270	            "-"
+271	          ],
+272	          [
+273	            "b_star_pct_below_0.5",
+274	            "20.9%",
+275	            "28.4%",
+276	            "-"
+277	          ]
+278	        ]
+279	      }
+280	    ],
+281	    "figures": [],
+282	    "analysis": "2x 效应放大温和但方向一致。b* 分布在 60% 时左移是 ESS 约束正确工作的信号。 论文中作为 Table 行或折线图的第二个数据点呈现。\n\n\n效应放大约 2x（relative improvement 0.22%→0.45%），落在 median tier 1.5-3x 范围中段。 放大机制：更差的 uniform baseline（17.84 vs 17.69）给 reweighting 更大改善空间。 但放大不是线性的——60% 高 q 样本使 ESS 下降更快，ESS 约束介入更频繁， 迫使 b* 更保守（median 0.88→0.72）。b* 分布左移反映了 ESS 约束对 更多高 q 样本的自适应响应——这本身是方法 \"principled\" 的佐证。 2x 放大温和，不足以单独作为 selling point，但足以支持 \"效应随污染增加而放大\" 的趋势。\n"
+283	  },
+284	  {
+285	    "name": "Grid-b=0.5 (ρ=0.6, Qwen3-0.6B, seed42)",
+286	    "description": "60% 污染下 grid-b=0.5 参考值",
+287	    "results": {
+288	      "eval_ppl_holdout": 17.75,
+289	      "improvement_over_uniform": 0.09,
+290	      "relative_improvement_pct": 0.504,
+291	      "ratio_adaptive_vs_grid_at_60pct": 88.9
+292	    },
+293	    "tables": [],
+294	    "figures": [],
+295	    "analysis": "Aggregate ratio 跨污染比例稳定（88.6% vs 88.9%）， 支持 \"adaptive 以固定比例匹配 grid-best\" 的 robustness 叙事。\n\n\nGrid-b=0.5 在 60% 下效应也放大（Δ 从 0.039 到 0.090，~2.3x）， 且放大略多于 adaptive——因为 b=0.5 是固定值不受 ESS 约束，在更多高 q 样本时 能比被 clamp 的 adaptive b* 更充分 downweight。 Adaptive vs grid ratio 88.9% 与 40% 条件下的 88.6% 高度一致， 说明 aggregate ratio 是方法的内在特征，不随污染比例剧烈波动——这是一个正面发现。\n"
+296	  },
+297	  {
+298	    "name": "Llama-3.2-3B environment setup + data prep",
+299	    "description": "3B 模型环境准备、数据适配",
+300	    "results": {
+301	      "model_size_gb": 6.2,
+302	      "gpu_memory_usage_gb": 72,
+303	      "detector_auc_reused": 0.939,
+304	      "gradient_checkpointing": true,
+305	      "batch_size": 2
+306	    },
+307	    "tables": [],
+308	    "figures": [],
+309	    "analysis": "Setup 步骤。3B 可在当前 GPU 配置训练，需 gradient checkpointing + 小 batch。\n\n使用与 Qwen3-0.6B 相同的合成数据（Qwen 生成），Llama 训练。 TF-IDF+LR 检测器基于文本特征，不依赖训练模型，AUC 不变。 4× RTX 6000 96GB 可 fit 3B（weights ~6.2GB + optimizer states + activations ~72GB with gradient checkpointing），但 batch size 需降至 2。\n"
+310	  },
+311	  {
+312	    "name": "Uniform baseline (ρ=0.4, Llama-3.2-3B, seed42, 200M tokens)",
+313	    "description": "3B 模型 uniform baseline",
+314	    "results": {
+315	      "eval_ppl_holdout": 13.52,
+316	      "train_loss": 5.88,
+317	      "total_steps": 3800,
+318	      "train_runtime_s": 43200,
+319	      "gpu_hours": 48
+320	    },
+321	    "tables": [],
+322	    "figures": [],
+323	    "analysis": "3B uniform baseline 建立跨模型对比参考点。\n\nLlama-3.2-3B 容量是 Qwen3-0.6B 的 5x，在相同数据上 PPL 显著更低（13.52 vs 17.69）。 3B 模型更好地学习语言分布，即使在 40% 污染数据上也能达到较低 PPL。 训练时间大幅增加（~12h vs ~3.3h），步数因 batch size 调整而不同。\n"
+324	  },
+325	  {
+326	    "name": "Adaptive b* (ρ=0.4, Llama-3.2-3B, seed42, 200M tokens)",
+327	    "description": "3B 模型上 adaptive b* 的跨模型泛化",
+328	    "results": {
+329	      "eval_ppl_holdout": 13.46,
+330	      "improvement_over_uniform": 0.06,
+331	      "relative_improvement_pct": 0.444,
+332	      "amplification_vs_0_6B": 2.0,
+333	      "b_star_mean": 1.38,
+334	      "b_star_median": 0.85,
+335	      "b_star_std": 1.9,
+336	      "ratio_vs_estimated_grid": 85
+337	    },
+338	    "tables": [
+339	      {
+340	        "title": "Cross-Model Comparison (ρ=0.4, adaptive)",
+341	        "columns": [
+342	          "model",
+343	          "params",
+344	          "uniform_ppl",
+345	          "adaptive_ppl",
+346	          "rel_improvement_pct",
+347	          "b_star_median"
+348	        ],
+349	        "rows": [
+350	          [
+351	            "Qwen3-0.6B",
+352	            "0.6B",
+353	            17.69,
+354	            17.65,
+355	            0.226,
+356	            0.88
+357	          ],
+358	          [
+359	            "Llama-3.2-3B",
+360	            "3.0B",
+361	            13.52,
+362	            13.46,
+363	            0.444,
+364	            0.85
+365	          ]
+366	        ]
+367	      }
+368	    ],
+369	    "figures": [],
+370	    "analysis": "跨模型泛化成功，b* 分布跨模型稳定是 principled method 的佐证。 论文强调 \"zero-cost advantage across model scales\" 而非绝对效应量。\n\n\n3B 模型效应放大约 2x（relative improvement 0.22%→0.44%），落在 median tier 1.5-3x 范围。 放大来自模型容量增加——3B 有足够参数捕捉更细微的分布差异，对数据质量更敏感， 从 reweighting 获益更多。但仍为温和放大，0.44% relative improvement 不构成独立 selling point。 b* 分布与 0.6B 高度相似（median 0.85 vs 0.88），因为 b* 由 batch q-score 统计量决定， 与模型大小无关——这是方法 \"principled\" 的直接证据。 关键发现：adaptive b* 在不同模型上无需任何调整即可工作， 对比 Drayson 的 per-model b 选择（0.6B 用 b=10, 1.7B 用 b=1）优势明显。\n"
+371	  },
+372	  {
+373	    "name": "n_min=1 ablation (ρ=0.4, Qwen3-0.6B, seed42)",
+374	    "description": "ESS 约束最宽松——仅需 1 个有效样本",
+375	    "results": {
+376	      "eval_ppl_holdout": 17.655,
+377	      "b_star_mean": 2.15,
+378	      "b_star_median": 1.35,
+379	      "b_star_std": 2.8,
+380	      "b_star_pct_above_5": 8.2,
+381	      "b_star_max": 20,
+382	      "train_loss": 7.62
+383	    },
+384	    "tables": [],
+385	    "figures": [],
+386	    "analysis": "n_min=1 可用但略差于 n_min=2，确认 ESS 约束的正则化价值。\n\nn_min=1 使 ESS 约束几乎不起作用，b* 可取很大值。b* 分布右移 （mean 1.40→2.15, median 0.88→1.35），部分 batch b* 飙到 5-20， 导致高 q 样本权重接近零。两个效应相互抵消： (1) 对高污染 batch 更激进 downweighting 理论上更准确， (2) 但有效 batch size 过小导致梯度噪声增大。 最终 PPL 17.655 略差于 n_min=2 的 17.650（差异 0.005）， 说明 n_min=1 几乎可工作但不是最优——ESS 约束有正面正则化效果。\n"
+387	  },
+388	  {
+389	    "name": "n_min=4 ablation (=batch_size, ρ=0.4, Qwen3-0.6B, seed42)",
+390	    "description": "ESS = batch_size，预期退化为 uniform",
+391	    "results": {
+392	      "eval_ppl_holdout": 17.69,
+393	      "b_star_mean": 0.0,
+394	      "b_star_median": 0.0,
+395	      "b_star_std": 0.0,
+396	      "b_star_pct_at_zero": 100.0,
+397	      "train_loss": 7.31,
+398	      "effective_behavior": "uniform"
+399	    },
+400	    "tables": [],
+401	    "figures": [],
+402	    "analysis": "n_min=4 确认理论预期：ESS 约束过紧 → 优雅退化为 uniform。\n\nn_min = batch_size = 4 时，ESS >= 4 要求所有 4 个样本权重完全相等， 唯一满足条件的 b* = 0（所有权重为 1）。方法完全退化为 uniform training， PPL = 17.690 与 uniform baseline 一致。 价值：建立 sensitivity curve 的上界，证明 ESS 约束过紧时方法优雅退化而非崩溃。\n"
+403	  },
+404	  {
+405	    "name": "n_min=5 ablation (>batch_size, ρ=0.4, Qwen3-0.6B, seed42)",
+406	    "description": "n_min > batch_size 的退化验证",
+407	    "results": {
+408	      "eval_ppl_holdout": 17.69,
+409	      "b_star_mean": 0.0,
+410	      "b_star_median": 0.0,
+411	      "effective_behavior": "uniform"
+412	    },
+413	    "tables": [
+414	      {
+415	        "title": "n_min Sensitivity Summary (seed42, ρ=0.4)",
+416	        "columns": [
+417	          "n_min",
+418	          "eval_ppl",
+419	          "b_star_median",
+420	          "effective_mode",
+421	          "notes"
+422	        ],
+423	        "rows": [
+424	          [
+425	            1,
+426	            17.655,
+427	            1.35,
+428	            "adaptive",
+429	            "ESS 约束过松，b* 偶有极端值"
+430	          ],
+431	          [
+432	            2,
+433	            17.65,
+434	            0.88,
+435	            "adaptive",
+436	            "Sweet spot (adaptive_fix)"
+437	          ],
+438	          [
+439	            3,
+440	            17.69,
+441	            0.45,
+442	            "partially clamped",
+443	            "seed42 退化 (D012)"
+444	          ],
+445	          [
+446	            4,
+447	            17.69,
+448	            0.0,
+449	            "uniform",
+450	            "ESS=batch_size → b*=0"
+451	          ],
+452	          [
+453	            5,
+454	            17.69,
+455	            0.0,
+456	            "uniform",
+457	            "不可满足约束 → fallback b*=0"
+458	          ]
+459	        ]
+460	      }
+461	    ],
+462	    "figures": [],
+463	    "analysis": "完整 5-point curve 叙事：n_min=2 是 sweet spot，n_min=1 略差（过激进）， n_min>=3 在部分 seed 退化。n_min=1-2 都可工作，选择不敏感。 对比 Drayson per-model b 选择，我们仅需设 n_min=2，调参负担大幅降低。\n\n\nn_min=5 > batch_size=4 是不可能满足的约束（4 个样本的 ESS 最大为 4）。 与 n_min=4 结果完全一致：b*=0, uniform 行为, PPL=17.690。 Sanity check 确认代码在边界条件下正确 fallback 到 b*=0。\n"
+464	  },
+465	  {
+466	    "name": "ModernBERT detector training (AUC≈0.99)",
+467	    "description": "高质量 ModernBERT 检测器用于 detector quality ablation",
+468	    "results": {
+469	      "auc": 0.986,
+470	      "accuracy": 0.962,
+471	      "ece_calibrated": 0.025,
+472	      "q_score_mean": 0.58,
+473	      "q_score_std": 0.42,
+474	      "q_score_bimodality": "强——接近 0/1 两极化"
+475	    },
+476	    "tables": [],
+477	    "figures": [],
+478	    "analysis": "为 detector quality ablation 提供高质量对照组。\n\nModernBERT 150M 基于 transformer 语义特征，比 TF-IDF+LR 表面特征更准确。 AUC 从 0.939→0.986 与 Drayson et al. 报告一致。q-score 分布更双峰化—— 高 AUC 意味着真实和合成样本被更明确区分，q 值集中在 0 和 1 附近。 更好的校准（ECE 0.025 vs 0.048）来自 transformer 的更强表征能力。\n"
+479	  },
+480	  {
+481	    "name": "Training with ModernBERT scores (ρ=0.4, Qwen3-0.6B, seed42)",
+482	    "description": "检测器质量 ablation：AUC 提升 5% 换来多少 PPL",
+483	    "results": {
+484	      "adaptive_modernbert_ppl": 17.645,
+485	      "uniform_modernbert_ppl": 17.69,
+486	      "improvement_vs_tfidf_adaptive": 0.005,
+487	      "b_star_mean_modernbert": 1.25,
+488	      "b_star_median_modernbert": 0.78,
+489	      "ratio_vs_grid_modernbert": 90.5
+490	    },
+491	    "tables": [
+492	      {
+493	        "title": "Detector Quality Ablation",
+494	        "columns": [
+495	          "detector",
+496	          "AUC",
+497	          "adaptive_ppl",
+498	          "Δ_vs_uniform",
+499	          "ratio_pct"
+500	        ],
+501	        "rows": [
+502	          [
+503	            "TF-IDF+LR",
+504	            0.939,
+505	            17.65,
+506	            -0.04,
+507	            88.6
+508	          ],
+509	          [
+510	            "ModernBERT",
+511	            0.986,
+512	            17.645,
+513	            -0.045,
+514	            90.5
+515	          ],
+516	          [
+517	            "Δ_detector",
+518	            0.047,
+519	            -0.005,
+520	            -0.005,
+521	            1.9
+522	          ]
+523	        ]
+524	      }
+525	    ],
+526	    "figures": [],
+527	    "analysis": "Detector quality ablation 产生关键 co-finding：轻量检测器即可， 无需昂贵 ModernBERT。可升级为 co-primary contribution（需更多数据点）。\n\n\n更高 AUC 提供更准确 q-score，但 PPL landscape 极平坦，更好的 q-score 仅带来 微小改善（17.645 vs TF-IDF 的 17.650，差 0.005）。 b* median 更低（0.78 vs 0.88），因为 ModernBERT q-score 更双峰化， 高 q 样本 q 值更接近 1，相同 b 下权重变化更剧烈，ESS 约束更早介入。 关键 co-finding：AUC 从 0.939→0.986（+5%）仅换来 0.005 PPL（0.03% relative）， 边际收益极低，强力支持 \"lightweight detector sufficiency\"。\n"
+528	  },
+529	  {
+530	    "name": "Cross-generator data (Llama-3.2-1B generates, Qwen3-0.6B trains)",
+531	    "description": "跨生成器合成数据准备",
+532	    "results": {
+533	      "synthetic_source": "Llama-3.2-1B",
+534	      "total_tokens": 200000000,
+535	      "contamination_ratio": 0.4,
+536	      "detector_auc_cross_gen": 0.925,
+537	      "q_score_mean": 0.55,
+538	      "q_score_std": 0.39
+539	    },
+540	    "tables": [],
+541	    "figures": [],
+542	    "analysis": "跨生成器数据准备。关键观察：检测器在 OOD 生成器上 AUC 下降约 1.5%。\n\n跨模型生成的合成数据风格不同（Llama 的词汇和句式偏好与 Qwen 不同）， TF-IDF+LR 检测器 AUC 下降（0.939→0.925），因为检测器训练在 Qwen 生成数据上， 对 Llama 风格的泛化略弱。q-score 分布更宽且均值降低，反映跨生成器检测不确定性增加。\n"
+543	  },
+544	  {
+545	    "name": "Cross-generator training (adaptive + uniform, ρ=0.4)",
+546	    "description": "跨生成器场景下 adaptive 表现",
+547	    "results": {
+548	      "uniform_ppl": 17.72,
+549	      "adaptive_ppl": 17.69,
+550	      "improvement_over_uniform": 0.03,
+551	      "relative_improvement_pct": 0.169,
+552	      "ratio_vs_in_distribution": 75,
+553	      "b_star_mean": 1.55,
+554	      "b_star_median": 0.95
+555	    },
+556	    "tables": [
+557	      {
+558	        "title": "In-distribution vs Cross-generator",
+559	        "columns": [
+560	          "setting",
+561	          "generator",
+562	          "detector_AUC",
+563	          "uniform_ppl",
+564	          "adaptive_ppl",
+565	          "ratio_pct"
+566	        ],
+567	        "rows": [
+568	          [
+569	            "in-distribution",
+570	            "Qwen3-0.6B",
+571	            0.939,
+572	            17.69,
+573	            17.65,
+574	            88.6
+575	          ],
+576	          [
+577	            "cross-generator",
+578	            "Llama-3.2-1B",
+579	            0.925,
+580	            17.72,
+581	            17.69,
+582	            75.0
+583	          ]
+584	        ]
+585	      }
+586	    ],
+587	    "figures": [],
+588	    "analysis": "Cross-generator 确认 adaptive 表现较弱但仍正方向。论文需 per-batch b* 诊断： 检测器 AUC 下降导致 b* 噪声增大。同时支持 \"detector quality 是性能 soft lower bound\"。\n\n\n跨生成器是 median tier 中 adaptive 表现较弱的设置之一。 Llama 生成的合成数据与 Qwen 分布差异更大，uniform baseline 更差（17.72 vs 17.69）。 但 adaptive 改善仅 0.03（vs in-distribution 的 0.04），ratio 降至 ~75%。 两个原因：(1) 检测器 AUC 下降使 q-score 精度降低，b* 推导的输入质量下降； (2) 跨生成器合成数据 q-score 分布更分散，per-batch 统计量噪声更大。 这拉低 cross-setting aggregate ratio，是 \"少数设置拉低整体\" 的典型例子。\n"
+589	  },
+590	  {
+591	    "name": "Detect-and-remove baseline (threshold=0.5, ρ=0.4, Qwen3-0.6B, seed42)",
+592	    "description": "硬过滤 baseline 对比",
+593	    "results": {
+594	      "eval_ppl_holdout": 17.685,
+595	      "effective_training_tokens": 130000000,
+596	      "data_retention_rate": 0.65,
+597	      "false_positive_rate": 0.08,
+598	      "improvement_over_uniform": 0.005
+599	    },
+600	    "tables": [
+601	      {
+602	        "title": "Method Comparison (ρ=0.4, Qwen3-0.6B, seed42)",
+603	        "columns": [
+604	          "method",
+605	          "eval_ppl",
+606	          "Δ_vs_uniform",
+607	          "effective_tokens"
+608	        ],
+609	        "rows": [
+610	          [
+611	            "uniform",
+612	            17.69,
+613	            0.0,
+614	            "200M"
+615	          ],
+616	          [
+617	            "detect-and-remove",
+618	            17.685,
+619	            -0.005,
+620	            "130M"
+621	          ],
+622	          [
+623	            "grid-best (b=0.3)",
+624	            17.648,
+625	            -0.042,
+626	            "200M"
+627	          ],
+628	          [
+629	            "adaptive",
+630	            17.65,
+631	            -0.04,
+632	            "200M"
+633	          ]
+634	        ]
+635	      }
+636	    ],
+637	    "figures": [],
+638	    "analysis": "Detect-and-remove 几乎无效（0.005 PPL），强力支持 loss reweighting 路径。 与 Drayson SIR（离散重采样）的隐含对比：continuous control > discrete selection。\n\n\n硬过滤（q>0.5 移除）有两个问题：(1) 移除 ~35% 数据含 ~8% 误分类真实数据， 训练数据减少导致 underfitting 压力；(2) 二元决策丢弃 q-score 连续信息—— q=0.51 和 q=0.99 被同等移除。PPL 17.685 仅比 uniform 好 0.005， 远差于 adaptive (17.650)。有力支持 soft reweighting vs hard filtering。\n"
+639	  },
+640	  {
+641	    "name": "Random reweighting baseline (ρ=0.4, Qwen3-0.6B, seed42)",
+642	    "description": "验证 detector signal 必要性",
+643	    "results": {
+644	      "eval_ppl_holdout": 17.695,
+645	      "delta_vs_uniform": -0.005,
+646	      "effective_behavior": "random noise, slight degradation"
+647	    },
+648	    "tables": [],
+649	    "figures": [],
+650	    "analysis": "随机 reweighting 无效甚至略有害，确认 detector signal 是改善来源。 论文中作为 \"signal necessity\" ablation。\n\n\n随机权重不含 contamination 信号，等价于给 SGD 添加乘性噪声。 比 uniform 略差（17.695 vs 17.690），因为随机权重增加梯度估计方差。 关键对照：证明 adaptive 改善确实来自 detector q-score 信息， 而非 reweighting 本身的正则化效应。Detector signal is load-bearing。\n"
+651	  },
+652	  {
+653	    "name": "Domain-skewed injection (code-heavy contamination, ρ=0.4, Qwen3-0.6B)",
+654	    "description": "非均匀域分布污染场景",
+655	    "results": {
+656	      "uniform_ppl": 17.71,
+657	      "adaptive_ppl": 17.69,
+658	      "improvement_over_uniform": 0.02,
+659	      "relative_improvement_pct": 0.113,
+660	      "ratio_vs_uniform_injection": 50,
+661	      "b_star_cross_batch_variance": "高"
+662	    },
+663	    "tables": [],
+664	    "figures": [],
+665	    "analysis": "Domain-skewed 暴露方法弱点：per-batch 估计假设 batch 内 q-score 有足够变异性。 论文需诊断此现象，讨论缓解方案（更大 batch size, 跨 batch smoothing）。 不影响核心叙事——此场景超出 \"uniform random injection\" 的基本假设。\n\n\nDomain-skewed injection 使合成数据集中在特定域（如 code-heavy）， batch 间 q-score 分布差异极大：code-heavy batch q-score 均高， 其他 batch 接近纯 real。per-batch α_eff(b) 估计不稳定—— 部分 batch q-score 缺乏足够变异性，违反推导的隐含假设。 Adaptive 在此场景表现最弱（ratio ~50%），是 median tier \"少数设置拉低 aggregate\" 的例子。 Code-heavy batch 在 \"全高 q → ESS 强制 b*=0\" 和 \"有变异性 → 正常 b*\" 之间振荡。\n"
+666	  },
+667	  {
+668	    "name": "Downstream eval (MMLU/HellaSwag on Llama-3.2-3B checkpoints)",
+669	    "description": "下游任务评估",
+670	    "results": {
+671	      "mmlu_uniform": 34.2,
+672	      "mmlu_adaptive": 34.35,
+673	      "mmlu_delta": 0.15,
+674	      "mmlu_significance": "not significant (p>0.1)",
+675	      "hellaswag_uniform": 52.8,
+676	      "hellaswag_adaptive": 53.1,
+677	      "hellaswag_delta": 0.3,
+678	      "hellaswag_significance": "marginal (p~0.08)"
+679	    },
+680	    "tables": [
+681	      {
+682	        "title": "Downstream Task Results (Llama-3.2-3B, ρ=0.4)",
+683	        "columns": [
+684	          "task",
+685	          "uniform",
+686	          "adaptive",
+687	          "Δ",
+688	          "significant"
+689	        ],
+690	        "rows": [
+691	          [
+692	            "MMLU (5-shot)",
+693	            34.2,
+694	            34.35,
+695	            0.15,
+696	            "No"
+697	          ],
+698	          [
+699	            "HellaSwag (0-shot)",
+700	            52.8,
+701	            53.1,
+702	            0.3,
+703	            "Marginal"
+704	          ],
+705	          [
+706	            "eval_ppl",
+707	            13.52,
+708	            13.46,
+709	            -0.06,
+710	            "Yes"
+711	          ]
+712	        ]
+713	      }
+714	    ],
+715	    "figures": [],
+716	    "analysis": "下游改善不一致且不显著。论文策略：PPL 为主要评估，downstream 作 supplementary。 Limitations 中明确 200M tokens 规模不足以展现 downstream 统计显著差异。\n\nDownstream 改善不一致是 median tier 核心假设。MMLU +0.15% 完全在随机波动范围内 （3B 在 200M tokens 后 MMLU 远未收敛，baseline ~34% 附近波动）。 HellaSwag +0.3% 更可能被检测到（对 PPL 更敏感），但单 seed 下仍不显著。 根本限制：200M tokens 预训练对 downstream tasks 信号极弱—— 模型处于非常早期阶段，downstream 性能主要由架构和初始化决定。 0.4% relative PPL 改善不足以穿透 downstream 的高方差。\n"
+717	  }
+718	]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c135552c-288a-4e20-8839-71da5e4e8be5",
+  "isSidechain": false,
+  "promptId": "c98b2ce2-8f3c-4f7d-9ef0-293847a444d3",
+  "type": "user",
+  "uuid": "56ed8e3f-c363-4cab-8307-443bd8ffa5cf",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/dream_reports/dream_20260515T011902/median/experiment_data.json",
+      "content": "[\n  {\n    \"name\": \"Grid-b low (b=0.1/0.2/0.3), seed42\",\n    \"description\": \"扩展 grid search 到 b<0.5，确认 grid-best 不在搜索边界外\",\n    \"results\": {\n      \"b0_1_eval_ppl\": 17.662,\n      \"b0_2_eval_ppl\": 17.65,\n      \"b0_3_eval_ppl\": 17.648,\n      \"best_b_extended\": 0.3,\n      \"best_ppl_extended\": 17.648,\n      \"improvement_over_b0_5\": 0.003,\n      \"train_runtime_s_per_b\": 13000,\n      \"gpu_hours_total\": 10.8\n    },\n    \"tables\": [\n      {\n        \"title\": \"Extended Grid-b PPL (seed42, ρ=0.4)\",\n        \"columns\": [\n          \"b\",\n          \"eval_ppl_holdout\",\n          \"Δ_vs_uniform\",\n          \"relative_improvement_pct\"\n        ],\n        \"rows\": [\n          [\n            0.1,\n            17.662,\n            -0.028,\n            0.158\n          ],\n          [\n            0.2,\n            17.65,\n            -0.04,\n            0.226\n          ],\n          [\n            0.3,\n            17.648,\n            -0.042,\n            0.237\n          ],\n          [\n            0.5,\n            17.651,\n            -0.039,\n            0.22\n          ],\n          [\n            1.0,\n            17.692,\n            0.002,\n            -0.011\n          ]\n        ]\n      }\n    ],\n    \"figures\": [],\n    \"analysis\": \"b=0.3 是 seed42 extended grid-best，但与 b=0.5 仅差 0.003。确认 PPL landscape 足够平坦，使 adaptive b*（median ~0.88）虽系统性高于 grid-best b 但不造成显著损失。\\n\\n\\nPPL landscape 在 b=0.1-0.5 极平坦（全范围仅 0.014 PPL）。b=0.3 比 b=0.5 改善 0.003， 因为更温和的 downweighting 避免了对中等 q-score 样本（q~0.5-0.7）的过度惩罚。 b=0.1 反弹（17.662）是因为 downweighting 力度不足，高污染样本仍贡献过多梯度。 关键结论：b=0.5 不在搜索边界外——真实最优在 b=0.2-0.4 区间，但差异在 seed variance 以内。\\n\"\n  },\n  {\n    \"name\": \"Grid-b low (b=0.1/0.2/0.3), seed123\",\n    \"description\": \"Seed123 b<0.5 扩展，验证跨 seed 一致性\",\n    \"results\": {\n      \"b0_1_eval_ppl\": 17.654,\n      \"b0_2_eval_ppl\": 17.639,\n      \"b0_3_eval_ppl\": 17.636,\n      \"best_b_extended\": 0.3,\n      \"best_ppl_extended\": 17.636,\n      \"improvement_over_b0_5\": 0.002\n    },\n    \"tables\": [],\n    \"figures\": [],\n    \"analysis\": \"与 seed42 趋势一致，b=0.3 marginal 最优但差异在 noise 范围内。\\n\\n与 seed42 一致趋势：b=0.3 略优于 b=0.5。Seed123 本身是三个 seed 中 PPL 最低的 （baseline 和 grid-best 都最好），绝对差异被压缩至 0.002。 平坦 landscape 的跨 seed 一致性支持 \\\"b=0.3-0.5 区间内 b 选择不关键\\\"。\\n\"\n  },\n  {\n    \"name\": \"Grid-b low (b=0.1/0.2/0.3), seed456\",\n    \"description\": \"Seed456 b<0.5 扩展\",\n    \"results\": {\n      \"b0_1_eval_ppl\": 17.666,\n      \"b0_2_eval_ppl\": 17.653,\n      \"b0_3_eval_ppl\": 17.649,\n      \"best_b_extended\": 0.3,\n      \"best_ppl_extended\": 17.649,\n      \"improvement_over_b0_5\": 0.001\n    },\n    \"tables\": [],\n    \"figures\": [],\n    \"analysis\": \"b=0.3 与 b=0.5 差异最小的 seed，进一步确认 landscape 平坦性。\\n\\nSeed456 在原始 grid 中 adaptive (17.66) 已是最弱 seed。b=0.3 仅比 b=0.5 好 0.001， 几乎不可区分。此 seed PPL 方差较大，b<0.5 的微小改善被噪声淹没。\\n\"\n  },\n  {\n    \"name\": \"Post-hoc eval for all 9 b<0.5 checkpoints\",\n    \"description\": \"汇总三 seed × 三 b 值，更新 grid-best 并重算 aggregate ratio\",\n    \"results\": {\n      \"new_grid_best_b_consensus\": 0.3,\n      \"avg_improvement_over_b0_5\": 0.002,\n      \"cross_seed_consistency\": \"3/3 seeds show b=0.3 >= b=0.5\",\n      \"updated_aggregate_ratio_pct\": 85.8,\n      \"ppl_range_b0_1_to_b0_5\": 0.014\n    },\n    \"tables\": [\n      {\n        \"title\": \"Extended Grid-b Summary (3 seeds × full range)\",\n        \"columns\": [\n          \"b\",\n          \"seed42_ppl\",\n          \"seed123_ppl\",\n          \"seed456_ppl\",\n          \"mean_ppl\",\n          \"rank\"\n        ],\n        \"rows\": [\n          [\n            0.1,\n            17.662,\n            17.654,\n            17.666,\n            17.661,\n            4\n          ],\n          [\n            0.2,\n            17.65,\n            17.639,\n            17.653,\n            17.647,\n            2\n          ],\n          [\n            0.3,\n            17.648,\n            17.636,\n            17.649,\n            17.644,\n            1\n          ],\n          [\n            0.5,\n            17.651,\n            17.638,\n            17.65,\n            17.646,\n            3\n          ],\n          [\n            1.0,\n            17.692,\n            17.674,\n            17.68,\n            17.682,\n            5\n          ],\n          [\n            1.5,\n            17.718,\n            17.701,\n            17.71,\n            17.71,\n            6\n          ],\n          [\n            2.0,\n            17.741,\n            17.725,\n            17.73,\n            17.732,\n            7\n          ],\n          [\n            3.0,\n            17.774,\n            17.76,\n            17.765,\n            17.766,\n            8\n          ],\n          [\n            5.0,\n            17.818,\n            17.804,\n            17.81,\n            17.811,\n            9\n          ]\n        ]\n      }\n    ],\n    \"figures\": [],\n    \"analysis\": \"Grid-best 从 b=0.5 更新为 b=0.3，但差异 <0.003 PPL 不影响核心叙事。 论文呈现完整 9-point curve + error bars，突出 b=0.2-0.5 的平坦区域， 视觉化 \\\"adaptive b* median ~0.88 仍在平坦区域的右沿\\\" 这一关键论点。\\n\\n\\n汇总后 b=0.3 在所有三 seed 上均 >= b=0.5，但平均改善仅 0.002。 更新 grid-best 为 b=0.3 后 aggregate ratio 从 88.6% 微降至 ~85.8%， 因为 adaptive 与新 grid-best 差距略增——adaptive b* median ~0.88 离 b=0.3 更远了。 但差异仍在 seed variance 内，不改变 Path B 叙事。 关键发现：b=0.1-0.5 全范围 PPL 差异仅 0.014，PPL landscape 在此区间极度平坦。 Per-seed 重算：\\n  seed42: (17.690-17.650)/(17.690-17.648) = 95.2%\\n  seed123: (17.690-17.643)/(17.690-17.636) = 87.0%\\n  seed456: (17.700-17.660)/(17.700-17.649) = 78.4%\\n  aggregate: (95.2+87.0+78.4)/3 = 86.9%（注：seed456 拉低均值）\\n\"\n  },\n  {\n    \"name\": \"Data generation for ρ=0.6\",\n    \"description\": \"60% 污染比例数据生成与检测器评分\",\n    \"results\": {\n      \"total_tokens\": 200000000,\n      \"synthetic_fraction\": 0.6,\n      \"real_fraction\": 0.4,\n      \"detector_auc_on_60pct\": 0.935,\n      \"q_score_mean\": 0.72,\n      \"q_score_median\": 0.82\n    },\n    \"tables\": [],\n    \"figures\": [],\n    \"analysis\": \"基础设施步骤。检测器在 60% 条件下仍可用（AUC 0.935）。\\n\\n更高合成比例使 q-score 分布向高端偏移（mean 0.60→0.72），因为 batch 内合成样本更多， 检测器有更多高 q 样本可输出。TF-IDF+LR AUC 微降（0.939→0.935）， 因为更多合成样本意味着合成风格更多样化，少量非典型合成样本拉低 AUC。\\n\"\n  },\n  {\n    \"name\": \"Uniform baseline (ρ=0.6, Qwen3-0.6B, seed42)\",\n    \"description\": \"60% 污染下的 uniform baseline\",\n    \"results\": {\n      \"eval_ppl_holdout\": 17.84,\n      \"train_loss\": 7.42,\n      \"total_steps\": 6103,\n      \"ppl_degradation_vs_40pct\": 0.15\n    },\n    \"tables\": [],\n    \"figures\": [],\n    \"analysis\": \"60% 条件 uniform baseline 建立参考点，PPL 退化 0.15 符合线性趋势。\\n\\n60% 合成数据引入更多质量退化。模型看到的真实语言模式比例从 60% 降至 40%， PPL 从 17.69 升至 17.84（+0.15）。退化与污染比例近似线性—— 从 0%→40% 退化约 0.3（估计 clean baseline ~17.39），40%→60% 再增 0.15。 更差的 baseline 意味着 reweighting 有更大改善空间。\\n\"\n  },\n  {\n    \"name\": \"Adaptive b* (ρ=0.6, Qwen3-0.6B, seed42)\",\n    \"description\": \"验证效应量随污染增大而放大\",\n    \"results\": {\n      \"eval_ppl_holdout\": 17.76,\n      \"improvement_over_uniform\": 0.08,\n      \"relative_improvement_pct\": 0.449,\n      \"amplification_factor_vs_40pct\": 2.0,\n      \"b_star_mean\": 1.15,\n      \"b_star_median\": 0.72,\n      \"b_star_std\": 1.65,\n      \"b_star_pct_below_0_5\": 28.4\n    },\n    \"tables\": [\n      {\n        \"title\": \"Effect Amplification: ρ=0.4 vs ρ=0.6\",\n        \"columns\": [\n          \"metric\",\n          \"rho_0.4\",\n          \"rho_0.6\",\n          \"amplification\"\n        ],\n        \"rows\": [\n          [\n            \"uniform_ppl\",\n            17.69,\n            17.84,\n            \"-\"\n          ],\n          [\n            \"adaptive_ppl\",\n            17.65,\n            17.76,\n            \"-\"\n          ],\n          [\n            \"absolute_Δ\",\n            0.04,\n            0.08,\n            \"2.0x\"\n          ],\n          [\n            \"relative_improvement_pct\",\n            0.226,\n            0.449,\n            \"2.0x\"\n          ],\n          [\n            \"b_star_median\",\n            0.88,\n            0.72,\n            \"-\"\n          ],\n          [\n            \"b_star_pct_below_0.5\",\n            \"20.9%\",\n            \"28.4%\",\n            \"-\"\n          ]\n        ]\n      }\n    ],\n    \"figures\": [],\n    \"analysis\": \"2x 效应放大温和但方向一致。b* 分布在 60% 时左移是 ESS 约束正确工作的信号。 论文中作为 Table 行或折线图的第二个数据点呈现。\\n\\n\\n效应放大约 2x（relative improvement 0.22%→0.45%），落在 median tier 1.5-3x 范围中段。 放大机制：更差的 uniform baseline（17.84 vs 17.69）给 reweighting 更大改善空间。 但放大不是线性的——60% 高 q 样本使 ESS 下降更快，ESS 约束介入更频繁， 迫使 b* 更保守（median 0.88→0.72）。b* 分布左移反映了 ESS 约束对 更多高 q 样本的自适应响应——这本身是方法 \\\"principled\\\" 的佐证。 2x 放大温和，不足以单独作为 selling point，但足以支持 \\\"效应随污染增加而放大\\\" 的趋势。\\n\"\n  },\n  {\n    \"name\": \"Grid-b=0.5 (ρ=0.6, Qwen3-0.6B, seed42)\",\n    \"description\": \"60% 污染下 grid-b=0.5 参考值\",\n    \"results\": {\n      \"eval_ppl_holdout\": 17.75,\n      \"improvement_over_uniform\": 0.09,\n      \"relative_improvement_pct\": 0.504,\n      \"ratio_adaptive_vs_grid_at_60pct\": 88.9\n    },\n    \"tables\": [],\n    \"figures\": [],\n    \"analysis\": \"Aggregate ratio 跨污染比例稳定（88.6% vs 88.9%）， 支持 \\\"adaptive 以固定比例匹配 grid-best\\\" 的 robustness 叙事。\\n\\n\\nGrid-b=0.5 在 60% 下效应也放大（Δ 从 0.039 到 0.090，~2.3x）， 且放大略多于 adaptive——因为 b=0.5 是固定值不受 ESS 约束，在更多高 q 样本时 能比被 clamp 的 adaptive b* 更充分 downweight。 Adaptive vs grid ratio 88.9% 与 40% 条件下的 88.6% 高度一致， 说明 aggregate ratio 是方法的内在特征，不随污染比例剧烈波动——这是一个正面发现。\\n\"\n  },\n  {\n    \"name\": \"Llama-3.2-3B environment setup + data prep\",\n    \"description\": \"3B 模型环境准备、数据适配\",\n    \"results\": {\n      \"model_size_gb\": 6.2,\n      \"gpu_memory_usage_gb\": 72,\n      \"detector_auc_reused\": 0.939,\n      \"gradient_checkpointing\": true,\n      \"batch_size\": 2\n    },\n    \"tables\": [],\n    \"figures\": [],\n    \"analysis\": \"Setup 步骤。3B 可在当前 GPU 配置训练，需 gradient checkpointing + 小 batch。\\n\\n使用与 Qwen3-0.6B 相同的合成数据（Qwen 生成），Llama 训练。 TF-IDF+LR 检测器基于文本特征，不依赖训练模型，AUC 不变。 4× RTX 6000 96GB 可 fit 3B（weights ~6.2GB + optimizer states + activations ~72GB with gradient checkpointing），但 batch size 需降至 2。\\n\"\n  },\n  {\n    \"name\": \"Uniform baseline (ρ=0.4, Llama-3.2-3B, seed42, 200M tokens)\",\n    \"description\": \"3B 模型 uniform baseline\",\n    \"results\": {\n      \"eval_ppl_holdout\": 13.52,\n      \"train_loss\": 5.88,\n      \"total_steps\": 3800,\n      \"train_runtime_s\": 43200,\n      \"gpu_hours\": 48\n    },\n    \"tables\": [],\n    \"figures\": [],\n    \"analysis\": \"3B uniform baseline 建立跨模型对比参考点。\\n\\nLlama-3.2-3B 容量是 Qwen3-0.6B 的 5x，在相同数据上 PPL 显著更低（13.52 vs 17.69）。 3B 模型更好地学习语言分布，即使在 40% 污染数据上也能达到较低 PPL。 训练时间大幅增加（~12h vs ~3.3h），步数因 batch size 调整而不同。\\n\"\n  },\n  {\n    \"name\": \"Adaptive b* (ρ=0.4, Llama-3.2-3B, seed42, 200M tokens)\",\n    \"description\": \"3B 模型上 adaptive b* 的跨模型泛化\",\n    \"results\": {\n      \"eval_ppl_holdout\": 13.46,\n      \"improvement_over_uniform\": 0.06,\n      \"relative_improvement_pct\": 0.444,\n      \"amplification_vs_0_6B\": 2.0,\n      \"b_star_mean\": 1.38,\n      \"b_star_median\": 0.85,\n      \"b_star_std\": 1.9,\n      \"ratio_vs_estimated_grid\": 85\n    },\n    \"tables\": [\n      {\n        \"title\": \"Cross-Model Comparison (ρ=0.4, adaptive)\",\n        \"columns\": [\n          \"model\",\n          \"params\",\n          \"uniform_ppl\",\n          \"adaptive_ppl\",\n          \"rel_improvement_pct\",\n          \"b_star_median\"\n        ],\n        \"rows\": [\n          [\n            \"Qwen3-0.6B\",\n            \"0.6B\",\n            17.69,\n            17.65,\n            0.226,\n            0.88\n          ],\n          [\n            \"Llama-3.2-3B\",\n            \"3.0B\",\n            13.52,\n            13.46,\n            0.444,\n            0.85\n          ]\n        ]\n      }\n    ],\n    \"figures\": [],\n    \"analysis\": \"跨模型泛化成功，b* 分布跨模型稳定是 principled method 的佐证。 论文强调 \\\"zero-cost advantage across model scales\\\" 而非绝对效应量。\\n\\n\\n3B 模型效应放大约 2x（relative improvement 0.22%→0.44%），落在 median tier 1.5-3x 范围。 放大来自模型容量增加——3B 有足够参数捕捉更细微的分布差异，对数据质量更敏感， 从 reweighting 获益更多。但仍为温和放大，0.44% relative improvement 不构成独立 selling point。 b* 分布与 0.6B 高度相似（median 0.85 vs 0.88），因为 b* 由 batch q-score 统计量决定， 与模型大小无关——这是方法 \\\"principled\\\" 的直接证据。 关键发现：adaptive b* 在不同模型上无需任何调整即可工作， 对比 Drayson 的 per-model b 选择（0.6B 用 b=10, 1.7B 用 b=1）优势明显。\\n\"\n  },\n  {\n    \"name\": \"n_min=1 ablation (ρ=0.4, Qwen3-0.6B, seed42)\",\n    \"description\": \"ESS 约束最宽松——仅需 1 个有效样本\",\n    \"results\": {\n      \"eval_ppl_holdout\": 17.655,\n      \"b_star_mean\": 2.15,\n      \"b_star_median\": 1.35,\n      \"b_star_std\": 2.8,\n      \"b_star_pct_above_5\": 8.2,\n      \"b_star_max\": 20,\n      \"train_loss\": 7.62\n    },\n    \"tables\": [],\n    \"figures\": [],\n    \"analysis\": \"n_min=1 可用但略差于 n_min=2，确认 ESS 约束的正则化价值。\\n\\nn_min=1 使 ESS 约束几乎不起作用，b* 可取很大值。b* 分布右移 （mean 1.40→2.15, median 0.88→1.35），部分 batch b* 飙到 5-20， 导致高 q 样本权重接近零。两个效应相互抵消： (1) 对高污染 batch 更激进 downweighting 理论上更准确， (2) 但有效 batch size 过小导致梯度噪声增大。 最终 PPL 17.655 略差于 n_min=2 的 17.650（差异 0.005）， 说明 n_min=1 几乎可工作但不是最优——ESS 约束有正面正则化效果。\\n\"\n  },\n  {\n    \"name\": \"n_min=4 ablation (=batch_size, ρ=0.4, Qwen3-0.6B, seed42)\",\n    \"description\": \"ESS = batch_size，预期退化为 uniform\",\n    \"results\": {\n      \"eval_ppl_holdout\": 17.69,\n      \"b_star_mean\": 0.0,\n      \"b_star_median\": 0.0,\n      \"b_star_std\": 0.0,\n      \"b_star_pct_at_zero\": 100.0,\n      \"train_loss\": 7.31,\n      \"effective_behavior\": \"uniform\"\n    },\n    \"tables\": [],\n    \"figures\": [],\n    \"analysis\": \"n_min=4 确认理论预期：ESS 约束过紧 → 优雅退化为 uniform。\\n\\nn_min = batch_size = 4 时，ESS >= 4 要求所有 4 个样本权重完全相等， 唯一满足条件的 b* = 0（所有权重为 1）。方法完全退化为 uniform training， PPL = 17.690 与 uniform baseline 一致。 价值：建立 sensitivity curve 的上界，证明 ESS 约束过紧时方法优雅退化而非崩溃。\\n\"\n  },\n  {\n    \"name\": \"n_min=5 ablation (>batch_size, ρ=0.4, Qwen3-0.6B, seed42)\",\n    \"description\": \"n_min > batch_size 的退化验证\",\n    \"results\": {\n      \"eval_ppl_holdout\": 17.69,\n      \"b_star_mean\": 0.0,\n      \"b_star_median\": 0.0,\n      \"effective_behavior\": \"uniform\"\n    },\n    \"tables\": [\n      {\n        \"title\": \"n_min Sensitivity Summary (seed42, ρ=0.4)\",\n        \"columns\": [\n          \"n_min\",\n          \"eval_ppl\",\n          \"b_star_median\",\n          \"effective_mode\",\n          \"notes\"\n        ],\n        \"rows\": [\n          [\n            1,\n            17.655,\n            1.35,\n            \"adaptive\",\n            \"ESS 约束过松，b* 偶有极端值\"\n          ],\n          [\n            2,\n            17.65,\n            0.88,\n            \"adaptive\",\n            \"Sweet spot (adaptive_fix)\"\n          ],\n          [\n            3,\n            17.69,\n            0.45,\n            \"partially clamped\",\n            \"seed42 退化 (D012)\"\n          ],\n          [\n            4,\n            17.69,\n            0.0,\n            \"uniform\",\n            \"ESS=batch_size → b*=0\"\n          ],\n          [\n            5,\n            17.69,\n            0.0,\n            \"uniform\",\n            \"不可满足约束 → fallback b*=0\"\n          ]\n        ]\n      }\n    ],\n    \"figures\": [],\n    \"analysis\": \"完整 5-point curve 叙事：n_min=2 是 sweet spot，n_min=1 略差（过激进）， n_min>=3 在部分 seed 退化。n_min=1-2 都可工作，选择不敏感。 对比 Drayson per-model b 选择，我们仅需设 n_min=2，调参负担大幅降低。\\n\\n\\nn_min=5 > batch_size=4 是不可能满足的约束（4 个样本的 ESS 最大为 4）。 与 n_min=4 结果完全一致：b*=0, uniform 行为, PPL=17.690。 Sanity check 确认代码在边界条件下正确 fallback 到 b*=0。\\n\"\n  },\n  {\n    \"name\": \"ModernBERT detector training (AUC≈0.99)\",\n    \"description\": \"高质量 ModernBERT 检测器用于 detector quality ablation\",\n    \"results\": {\n      \"auc\": 0.986,\n      \"accuracy\": 0.962,\n      \"ece_calibrated\": 0.025,\n      \"q_score_mean\": 0.58,\n      \"q_score_std\": 0.42,\n      \"q_score_bimodality\": \"强——接近 0/1 两极化\"\n    },\n    \"tables\": [],\n    \"figures\": [],\n    \"analysis\": \"为 detector quality ablation 提供高质量对照组。\\n\\nModernBERT 150M 基于 transformer 语义特征，比 TF-IDF+LR 表面特征更准确。 AUC 从 0.939→0.986 与 Drayson et al. 报告一致。q-score 分布更双峰化—— 高 AUC 意味着真实和合成样本被更明确区分，q 值集中在 0 和 1 附近。 更好的校准（ECE 0.025 vs 0.048）来自 transformer 的更强表征能力。\\n\"\n  },\n  {\n    \"name\": \"Training with ModernBERT scores (ρ=0.4, Qwen3-0.6B, seed42)\",\n    \"description\": \"检测器质量 ablation：AUC 提升 5% 换来多少 PPL\",\n    \"results\": {\n      \"adaptive_modernbert_ppl\": 17.645,\n      \"uniform_modernbert_ppl\": 17.69,\n      \"improvement_vs_tfidf_adaptive\": 0.005,\n      \"b_star_mean_modernbert\": 1.25,\n      \"b_star_median_modernbert\": 0.78,\n      \"ratio_vs_grid_modernbert\": 90.5\n    },\n    \"tables\": [\n      {\n        \"title\": \"Detector Quality Ablation\",\n        \"columns\": [\n          \"detector\",\n          \"AUC\",\n          \"adaptive_ppl\",\n          \"Δ_vs_uniform\",\n          \"ratio_pct\"\n        ],\n        \"rows\": [\n          [\n            \"TF-IDF+LR\",\n            0.939,\n            17.65,\n            -0.04,\n            88.6\n          ],\n          [\n            \"ModernBERT\",\n            0.986,\n            17.645,\n            -0.045,\n            90.5\n          ],\n          [\n            \"Δ_detector\",\n            0.047,\n            -0.005,\n            -0.005,\n            1.9\n          ]\n        ]\n      }\n    ],\n    \"figures\": [],\n    \"analysis\": \"Detector quality ablation 产生关键 co-finding：轻量检测器即可， 无需昂贵 ModernBERT。可升级为 co-primary contribution（需更多数据点）。\\n\\n\\n更高 AUC 提供更准确 q-score，但 PPL landscape 极平坦，更好的 q-score 仅带来 微小改善（17.645 vs TF-IDF 的 17.650，差 0.005）。 b* median 更低（0.78 vs 0.88），因为 ModernBERT q-score 更双峰化， 高 q 样本 q 值更接近 1，相同 b 下权重变化更剧烈，ESS 约束更早介入。 关键 co-finding：AUC 从 0.939→0.986（+5%）仅换来 0.005 PPL（0.03% relative）， 边际收益极低，强力支持 \\\"lightweight detector sufficiency\\\"。\\n\"\n  },\n  {\n    \"name\": \"Cross-generator data (Llama-3.2-1B generates, Qwen3-0.6B trains)\",\n    \"description\": \"跨生成器合成数据准备\",\n    \"results\": {\n      \"synthetic_source\": \"Llama-3.2-1B\",\n      \"total_tokens\": 200000000,\n      \"contamination_ratio\": 0.4,\n      \"detector_auc_cross_gen\": 0.925,\n      \"q_score_mean\": 0.55,\n      \"q_score_std\": 0.39\n    },\n    \"tables\": [],\n    \"figures\": [],\n    \"analysis\": \"跨生成器数据准备。关键观察：检测器在 OOD 生成器上 AUC 下降约 1.5%。\\n\\n跨模型生成的合成数据风格不同（Llama 的词汇和句式偏好与 Qwen 不同）， TF-IDF+LR 检测器 AUC 下降（0.939→0.925），因为检测器训练在 Qwen 生成数据上， 对 Llama 风格的泛化略弱。q-score 分布更宽且均值降低，反映跨生成器检测不确定性增加。\\n\"\n  },\n  {\n    \"name\": \"Cross-generator training (adaptive + uniform, ρ=0.4)\",\n    \"description\": \"跨生成器场景下 adaptive 表现\",\n    \"results\": {\n      \"uniform_ppl\": 17.72,\n      \"adaptive_ppl\": 17.69,\n      \"improvement_over_uniform\": 0.03,\n      \"relative_improvement_pct\": 0.169,\n      \"ratio_vs_in_distribution\": 75,\n      \"b_star_mean\": 1.55,\n      \"b_star_median\": 0.95\n    },\n    \"tables\": [\n      {\n        \"title\": \"In-distribution vs Cross-generator\",\n        \"columns\": [\n          \"setting\",\n          \"generator\",\n          \"detector_AUC\",\n          \"uniform_ppl\",\n          \"adaptive_ppl\",\n          \"ratio_pct\"\n        ],\n        \"rows\": [\n          [\n            \"in-distribution\",\n            \"Qwen3-0.6B\",\n            0.939,\n            17.69,\n            17.65,\n            88.6\n          ],\n          [\n            \"cross-generator\",\n            \"Llama-3.2-1B\",\n            0.925,\n            17.72,\n            17.69,\n            75.0\n          ]\n        ]\n      }\n    ],\n    \"figures\": [],\n    \"analysis\": \"Cross-generator 确认 adaptive 表现较弱但仍正方向。论文需 per-batch b* 诊断： 检测器 AUC 下降导致 b* 噪声增大。同时支持 \\\"detector quality 是性能 soft lower bound\\\"。\\n\\n\\n跨生成器是 median tier 中 adaptive 表现较弱的设置之一。 Llama 生成的合成数据与 Qwen 分布差异更大，uniform baseline 更差（17.72 vs 17.69）。 但 adaptive 改善仅 0.03（vs in-distribution 的 0.04），ratio 降至 ~75%。 两个原因：(1) 检测器 AUC 下降使 q-score 精度降低，b* 推导的输入质量下降； (2) 跨生成器合成数据 q-score 分布更分散，per-batch 统计量噪声更大。 这拉低 cross-setting aggregate ratio，是 \\\"少数设置拉低整体\\\" 的典型例子。\\n\"\n  },\n  {\n    \"name\": \"Detect-and-remove baseline (threshold=0.5, ρ=0.4, Qwen3-0.6B, seed42)\",\n    \"description\": \"硬过滤 baseline 对比\",\n    \"results\": {\n      \"eval_ppl_holdout\": 17.685,\n      \"effective_training_tokens\": 130000000,\n      \"data_retention_rate\": 0.65,\n      \"false_positive_rate\": 0.08,\n      \"improvement_over_uniform\": 0.005\n    },\n    \"tables\": [\n      {\n        \"title\": \"Method Comparison (ρ=0.4, Qwen3-0.6B, seed42)\",\n        \"columns\": [\n          \"method\",\n          \"eval_ppl\",\n          \"Δ_vs_uniform\",\n          \"effective_tokens\"\n        ],\n        \"rows\": [\n          [\n            \"uniform\",\n            17.69,\n            0.0,\n            \"200M\"\n          ],\n          [\n            \"detect-and-remove\",\n            17.685,\n            -0.005,\n            \"130M\"\n          ],\n          [\n            \"grid-best (b=0.3)\",\n            17.648,\n            -0.042,\n            \"200M\"\n          ],\n          [\n            \"adaptive\",\n            17.65,\n            -0.04,\n            \"200M\"\n          ]\n        ]\n      }\n    ],\n    \"figures\": [],\n    \"analysis\": \"Detect-and-remove 几乎无效（0.005 PPL），强力支持 loss reweighting 路径。 与 Drayson SIR（离散重采样）的隐含对比：continuous control > discrete selection。\\n\\n\\n硬过滤（q>0.5 移除）有两个问题：(1) 移除 ~35% 数据含 ~8% 误分类真实数据， 训练数据减少导致 underfitting 压力；(2) 二元决策丢弃 q-score 连续信息—— q=0.51 和 q=0.99 被同等移除。PPL 17.685 仅比 uniform 好 0.005， 远差于 adaptive (17.650)。有力支持 soft reweighting vs hard filtering。\\n\"\n  },\n  {\n    \"name\": \"Random reweighting baseline (ρ=0.4, Qwen3-0.6B, seed42)\",\n    \"description\": \"验证 detector signal 必要性\",\n    \"results\": {\n      \"eval_ppl_holdout\": 17.695,\n      \"delta_vs_uniform\": -0.005,\n      \"effective_behavior\": \"random noise, slight degradation\"\n    },\n    \"tables\": [],\n    \"figures\": [],\n    \"analysis\": \"随机 reweighting 无效甚至略有害，确认 detector signal 是改善来源。 论文中作为 \\\"signal necessity\\\" ablation。\\n\\n\\n随机权重不含 contamination 信号，等价于给 SGD 添加乘性噪声。 比 uniform 略差（17.695 vs 17.690），因为随机权重增加梯度估计方差。 关键对照：证明 adaptive 改善确实来自 detector q-score 信息， 而非 reweighting 本身的正则化效应。Detector signal is load-bearing。\\n\"\n  },\n  {\n    \"name\": \"Domain-skewed injection (code-heavy contamination, ρ=0.4, Qwen3-0.6B)\",\n    \"description\": \"非均匀域分布污染场景\",\n    \"results\": {\n      \"uniform_ppl\": 17.71,\n      \"adaptive_ppl\": 17.69,\n      \"improvement_over_uniform\": 0.02,\n      \"relative_improvement_pct\": 0.113,\n      \"ratio_vs_uniform_injection\": 50,\n      \"b_star_cross_batch_variance\": \"高\"\n    },\n    \"tables\": [],\n    \"figures\": [],\n    \"analysis\": \"Domain-skewed 暴露方法弱点：per-batch 估计假设 batch 内 q-score 有足够变异性。 论文需诊断此现象，讨论缓解方案（更大 batch size, 跨 batch smoothing）。 不影响核心叙事——此场景超出 \\\"uniform random injection\\\" 的基本假设。\\n\\n\\nDomain-skewed injection 使合成数据集中在特定域（如 code-heavy）， batch 间 q-score 分布差异极大：code-heavy batch q-score 均高， 其他 batch 接近纯 real。per-batch α_eff(b) 估计不稳定—— 部分 batch q-score 缺乏足够变异性，违反推导的隐含假设。 Adaptive 在此场景表现最弱（ratio ~50%），是 median tier \\\"少数设置拉低 aggregate\\\" 的例子。 Code-heavy batch 在 \\\"全高 q → ESS 强制 b*=0\\\" 和 \\\"有变异性 → 正常 b*\\\" 之间振荡。\\n\"\n  },\n  {\n    \"name\": \"Downstream eval (MMLU/HellaSwag on Llama-3.2-3B checkpoints)\",\n    \"description\": \"下游任务评估\",\n    \"results\": {\n      \"mmlu_uniform\": 34.2,\n      \"mmlu_adaptive\": 34.35,\n      \"mmlu_delta\": 0.15,\n      \"mmlu_significance\": \"not significant (p>0.1)\",\n      \"hellaswag_uniform\": 52.8,\n      \"hellaswag_adaptive\": 53.1,\n      \"hellaswag_delta\": 0.3,\n      \"hellaswag_significance\": \"marginal (p~0.08)\"\n    },\n    \"tables\": [\n      {\n        \"title\": \"Downstream Task Results (Llama-3.2-3B, ρ=0.4)\",\n        \"columns\": [\n          \"task\",\n          \"uniform\",\n          \"adaptive\",\n          \"Δ\",\n          \"significant\"\n        ],\n        \"rows\": [\n          [\n            \"MMLU (5-shot)\",\n            34.2,\n            34.35,\n            0.15,\n            \"No\"\n          ],\n          [\n            \"HellaSwag (0-shot)\",\n            52.8,\n            53.1,\n            0.3,\n            \"Marginal\"\n          ],\n          [\n            \"eval_ppl\",\n            13.52,\n            13.46,\n            -0.06,\n            \"Yes\"\n          ]\n        ]\n      }\n    ],\n    \"figures\": [],\n    \"analysis\": \"下游改善不一致且不显著。论文策略：PPL 为主要评估，downstream 作 supplementary。 Limitations 中明确 200M tokens 规模不足以展现 downstream 统计显著差异。\\n\\nDownstream 改善不一致是 median tier 核心假设。MMLU +0.15% 完全在随机波动范围内 （3B 在 200M tokens 后 MMLU 远未收敛，baseline ~34% 附近波动）。 HellaSwag +0.3% 更可能被检测到（对 PPL 更敏感），但单 seed 下仍不显著。 根本限制：200M tokens 预训练对 downstream tasks 信号极弱—— 模型处于非常早期阶段，downstream 性能主要由架构和初始化决定。 0.4% relative PPL 改善不足以穿透 downstream 的高方差。\\n\"\n  }\n]",
+      "numLines": 718,
+      "startLine": 1,
+      "totalLines": 718
+    }
+  },
+  "sourceToolAssistantUUID": "c135552c-288a-4e20-8839-71da5e4e8be5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+  "sessionId": "b8d1220f-e94e-4760-9740-c1b8649df453",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-15T01:58:31.745Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01GFbe9VftZqWpyrLmBwmPk6`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/dream_reports/dream_20260515T011902/median/paper_framing.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "56ed8e3f-c363-4cab-8307-443bd8ffa5cf",
+  "isSidechain": false,
+  "requestId": "req_011Cb3XUnEpWJ7uymcgzfHgx",
+  "type": "assistant",
+  "uuid": "5e46a165-bd32-4821-9039-2c8533389f54",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+  "sessionId": "b8d1220f-e94e-4760-9740-c1b8649df453",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y981QxSaFR5RmY3eTiTrne",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11331,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 210,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11331,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 210,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 11331,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11331
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-15T01:58:31.753Z_
+
+<details><summary>↩ Tool result · `toolu_01GFbe9VftZqWpyrLmBwmPk6`</summary>
+
+```text
+1	# Paper Framing — provenance_weight_training
+2	
+3	> 状态: DRAFT (MVP Path B PASS, D019确认，进入 research 阶段)
+4	> 最后更新: 2026-05-15 01:15 UTC
+5	> 投稿目标: EMNLP 2026 ARR May 25
+6	
+7	## Core Insight
+8	
+9	Drayson et al. (EMNLP 2025) 提出 detect-and-reweight 框架 w=(1-q)^b 用于缓解合成数据污染导致的 model collapse，但 b 需要在 validation set 上 per-model empirical 选取（GPT-2/SmolLM ≤360M 用 b=10，SmolLM 1.7B 用 b=1），且其实现路径为 **Sampling Importance Resampling (SIR)**——按权重重采样数据，本质是离散选择。我们提出 **adaptive b***：从 batch 统计量在线估计 α_eff(b) 推导最优 b*，per-batch 动态调整，无需 validation set、无需 grid search、无需已知污染比例。我们的实现路径为 **直接 loss reweighting**——在 gradient 层面连续加权，保留细粒度控制。
+10	
+11	**两种方法使用同一加权公式，但解决不同问题、采用不同实现路径**：Drayson 面向递归训练场景的 model collapse prevention（b 通过 per-model validation 选取），我们面向 web corpus 一次性预训练的 decontamination（b* 从 batch 统计量自适应推导，零 validation cost）。
+12	
+13	收敛理论（arXiv 2602.16065）作为 **motivation**（非 contribution）：bound d(ℙ̂_t, ℙ_0) ≲ t^{−min{p,α}} 启发了 α_eff 的定义和 b* 的推导，但我们不 claim 理论桥接。
+14	
+15	## Positioning vs Prior Work
+16	
+17	### Drayson et al. (EMNLP 2025) — 最近相关工作
+18	
+19	**共同点**：同一加权公式 w=(1-q)^b，detect-and-reweight 范式。
+20	
+21	**关键区分**：
+22	
+23	| 维度 | Drayson et al. | Ours |
+24	|------|---------------|------|
+25	| **b 选择** | 验证集 empirical 选取，训练中固定 | α_eff(b) + ESS 约束自适应推导，per-batch 动态 |
+26	| **实现路径** | SIR resampling（离散重采样） | Loss reweighting（连续梯度加权） |
+27	| **污染设置** | 不假设已知比例（原文明确声明），但实验为控制设置 | 未知比例（从 batch 统计量在线估计） |
+28	| **检测器** | ModernBERT 150M (AUC=0.986) | TF-IDF + LR (AUC=0.939)，轻量即可 |
+29	| **理论基础** | 无 b 选取理论，无 ablation | 收敛理论 motivated α_eff(b) 推导 |
+30	| **训练场景** | 递归训练 model collapse prevention | Web corpus 一次性预训练 |
+31	| **数据规模** | WikiText-2 (~2M tokens) | FineWeb subset (132M+ tokens) |
+32	| **validation 成本** | 需 per-model validation run | 零额外 validation cost |
+33	
+34	**定位原则：complementary approaches for different settings，非"我们比 Drayson 更好"。** Drayson 在其设定（递归训练、强检测器、validation-based b 选择）下是合理方案；我们解决的是 web pretraining 场景下无需 validation 的 principled b 选择问题。
+35	
+36	### Golden Ratio Weighting (arXiv 2502.18049, 2025)
+37	理论最优 w*=1/φ，但假设已知 real/synthetic 比例 k。我们不需要已知比例。
+38	
+39	### 其他相关工作
+40	- **Strong Model Collapse (ICLR 2025)** — 理论动机：微量合成数据即致 collapse
+41	- **Dynamic Loss-Based Reweighting (ICLR 2025)** — 按 loss 加权（不使用 detector score），互补
+42	- **SoftDedup (ACL 2024)** — 基于重复度的 soft reweighting
+43	- **DoReMi / DSIR (NeurIPS 2023)** — 域级优化 vs 我们的实例级
+44	- **Beyond Model Collapse / Verification (NeurIPS 2025)** — verifier-based prevention
+45	- **arXiv 2602.16065** — 我们引用的收敛理论
+46	
+47	## Core Claims
+48	
+49	### Claim 1 (Primary): Principled b* via α_eff(b) 理论框架
+50	
+51	基于 α_eff(b) 和 ESS 约束的 adaptive b* 提供 contamination-aware reweighting 中权重指数的 **principled 推导**，替代 Drayson et al. 的 per-model empirical selection。
+52	
+53	- **差异化核心**：Drayson 的 b 是超参数（需 validation set + 人工选取），我们的 b* 是从 batch 统计量在线推导的自适应量
+54	- **理论贡献**：α_eff(b) 框架将 contamination detection score 分布与权重指数选择建立 principled 联系
+55	- **证据需求**：adaptive b* 轨迹分析 + 与 Drayson 推荐值（b=1, b=10）的对比
+56	
+57	### Claim 2 (Primary): Adaptive b* 免调参即匹配 Grid-best
+58	
+59	Adaptive b* 在零超参调优下达到 grid-search 最优同等水平（within seed variance），消除 grid search 的计算开销（6N → 1 runs）。
+60	
+61	- **MVP 证据**: adaptive_fix ×3 seeds vs grid-b ×3 seeds（40% 污染, Qwen3-0.6B, 200M tokens）
+62	- **Pass criteria**: adaptive 均值 ≥ 90% grid-best 改善量 + 无任何 seed 劣于 uniform
+63	- **状态**: ✅ MVP Path B PASS (D019: aggregate 88.6%, 三支柱论证)
+64	
+65	**叙事弹性（避免硬编码精确数字）**：
+66	- 核心表述：**"adaptive matches grid-best within seed variance"**
+67	- 补充表述：**"eliminates grid search cost (6N → 1 runs)"** 和 **"consistent improvement across all seeds"**
+68	- Path B 叙事：3/3 seeds adaptive > uniform，adaptive-grid 差异在 seed variance 范围内
+69	
+70	**最终 MVP 数据**：
+71	
+72	3-seed Grid-b best (b=0.5) vs Adaptive_fix：
+73	
+74	| Metric | seed42 | seed123 | seed456 |
+75	|--------|--------|---------|---------|
+76	| Uniform PPL | 17.690 | 17.690 | 17.700 |
+77	| Grid-best PPL (b=0.5) | 17.651 | 17.638 | 17.650 |
+78	| Adaptive_fix PPL | 17.650 | 17.643 | 17.660 |
+79	| Ratio | 102.6% | 90.4% | 80.0% |
+80	
+81	Aggregate ratio: 88.6% (D019). Path B PASS.
+82	
+83	### Claim 3 (Setting): Unknown Contamination Proportion
+84	
+85	我们的方法在 contamination proportion 完全未知的条件下工作——仅需 detector scores，无需已知污染比例、无需 clean validation set。
+86	
+87	- **差异化**：Golden Ratio Weighting 需要已知比例 k；Drayson 虽不假设已知比例，但 b 选择依赖 validation set 做 per-model tuning；我们仅需 detector scores，无需 validation set 或已知比例
+88	- **实际意义**：web-scale pretraining 中污染比例本质上不可知（organic contamination from multiple generators）
+89	- **证据**：adaptive b* 仅从 per-batch q-score 分布推导，无外部信息输入
+90	
+91	## n_min Robustness Framing
+92	
+93	D012 修复（n_min=3→2）显示方法对 ESS 约束参数的**实际鲁棒性**：
+94	
+95	- **现象**：n_min=3 导致 seed42 零改善（ESS 约束过紧，b* 被钳制在低值），n_min=2 修复后 seed42 恢复正常表现
+96	- **Framing**：ESS 约束是 b* 推导中唯一的超参数，n_min=3→2 的修复表明只要 ESS 下界合理宽松（不过度约束有效样本量），adaptive b* 就能稳定工作
+97	- **论文呈现**：在 Method section 讨论 ESS 约束的作用和敏感度；在 Ablation 中展示 n_min=2 vs n_min=3 的对比作为 robustness evidence
+98	- **注意**：D017 勘误确认实际实施为 n_min=2 无 EMA（EMA 未编码），D018 确认 v1→v2 唯一差异为 n_min(3→2)
+99	
+100	## Narrative Structure
+101	
+102	**起点**: Web 语料中 20-60% 为合成文本，比例未知，来源多样——这是实际预训练面临的现实问题。Strong Model Collapse (ICLR 2025) 证明即使微量污染也会破坏 scaling law。
+103	
+104	**现有方法的不足**：
+105	- Drayson et al.: w=(1-q)^b 有效，但 b 依赖 per-model validation-based tuning（不同模型需不同 b，b=1 vs b=10），且需要 clean validation set
+106	- Golden Ratio Weighting: 理论最优权重，但假设已知混合比例 k
+107	- 两者都不适用于无 validation set 的大规模 web pretraining 场景
+108	
+109	**我们的方案**: 在 Drayson 框架上，从 batch 统计量自适应估计 α_eff(b) 推导 b*，消除对 validation set 和 grid search 的依赖。实现路径从 SIR resampling 转为 direct loss reweighting，保留细粒度 gradient 控制。
+110	
+111	**理论连接**: 收敛 bound 作为 Background/Motivation，不 claim 理论贡献。
+112	
+113	**Method 呈现**: Algorithm 1 (adaptive b*) + ESS 约束（n_min 敏感度分析） + soft-to-hard 连续谱（作为 framing 而非独立 contribution）。
+114	
+115	**Path B 默认叙事**: "Adaptive b* 免调参即可匹配 validation-tuned best，将 Drayson 框架从需要 per-model heuristic tuning 提升为全自动 principled method。" 如果数据支持 Path A（adaptive 显著优于 grid-best），可升级表述，但默认保守。
+116	
+117	## Contribution Structure (2 Primary + 1 Setting)
+118	
+119	1. **Primary — Theoretical Framework**: Adaptive b* via α_eff(b) estimation + ESS constraints，提供 contamination-aware reweighting 中 b 的 principled 推导（vs Drayson 的 empirical selection）
+120	2. **Primary — Practical Result**: Adaptive b* 零超参调优即匹配 grid-best，消除 per-model validation 成本。Lightweight detector (TF-IDF+LR, AUC=0.939) sufficiency 作为附加发现（升级为 co-primary 需 detector quality ablation）
+121	3. **Setting — Unknown Proportion**: 与 Golden Ratio (known k) 的 problem setting 差异。Drayson 虽不假设已知比例，但 b 选择依赖 validation set；我们仅需 detector scores，无需 validation 或已知比例
+122	
+123	## Anticipated Reviewer Concerns
+124	
+125	| Concern | Response Strategy | 实验支撑 |
+126	|---------|------------------|----------|
+127	| "Incremental over Drayson et al." | 三层差异化: (1) adaptive b* without validation-set tuning vs per-model empirical b (核心), (2) loss reweighting vs SIR resampling, (3) zero validation cost vs validation-dependent。Complementary approaches for different settings | Claim 1 + Claim 3 |
+128	| "Base formula is from Drayson" | 明确 acknowledge 公式来源；贡献是 b* 的 principled derivation + 实现路径差异 + 问题设定差异 | Positioning section |
+129	| "Theory not rigorous / overclaimed" | 明确 scope: motivation not contribution; α_eff(b) 是 testable sufficient condition not theorem | Background section |
+130	| "Only 0.6B model, would it scale?" | Full paper: Llama-3.2-3B 验证 | 扩展实验 |
+131	| "Detector quality sensitivity" | TF-IDF+LR (AUC=0.939) 即可；q-score 连续性比 AUC 更关键；检测器 quality ablation | detector quality ablation |
+132	| "Controlled injection ≠ real web" | Full paper: domain-skewed injection + semi-realistic (Binoculars on Common Crawl) | 扩展实验 |
+133	| "Small effect size (~0.3% PPL)" | (a) claim 聚焦方法正确性+调参消除，非效应量; (b) 60% 污染+3B 模型效应放大; (c) adaptive 的 zero-cost advantage | 扩展实验 |
+134	| "n_min sensitivity — just another hyperparameter?" | n_min=3→2 修复证明方法对 ESS 约束宽松度敏感度低（n_min=2 稳定工作）；单一超参 vs Drayson 的 per-model b 选择仍是降低了调参负担 | n_min ablation |
+135	
+136	## Key Risks
+137	
+138	1. **Novelty narrowing (D013)**: 基础公式来自 Drayson，核心新颖性收窄为 adaptive b*。应对：三层差异化（principled b* + loss reweighting vs SIR + unknown proportion setting）；强化 lightweight detector finding
+139	2. **Venue fit**: 核心逻辑偏 ML，EMNLP reviewer 可能低估。应对：加 NLP-specific analysis（contamination 对不同 NLP task 的影响差异）
+140	3. **效应量小 (0.3% relative PPL at 40% contamination)**: 应对：60% 污染 + 3B 模型展示效应放大；强调 zero-cost advantage（方法价值在于免调参，不在于绝对 PPL 提升）
+141	4. **adaptive_fix 如果仍有 seed 失败**: MVP 依赖 D012 修复版结果。应对：如果修复版仍不稳定，需进一步诊断算法或调整 claims
+142	5. **SIR vs loss reweighting 差异被低估**: Reviewer 可能认为两种实现路径差异不大。应对：在 Method 中讨论 gradient-level 细粒度控制的优势，必要时加 ablation 对比
+143	
+144	## MVP → Full Paper 扩展路径
+145	
+146	| 维度 | MVP | Full Paper |
+147	|------|-----|-----------|
+148	| 污染比例 | 40% | 20%, 40%, 60% |
+149	| 模型 | Qwen3-0.6B | + Llama-3.2-3B |
+150	| 生成器 | Qwen3-0.6B (self) | + Llama-3.2-1B, Mistral, Gemma |
+151	| 检测器 | TF-IDF + LR | + ModernBERT variants (quality ablation) |
+152	| Baseline | uniform, grid-b, adaptive | + detect-and-remove, random reweighting, perplexity filter, DSIR, loss-based DRO, oracle |
+153	| 评估 | eval_ppl (perplexity) | + MMLU, HellaSwag, Self-BLEU, distinct-n, Wasserstein, MMD |
+154	| 注入方式 | uniform random | + domain-skewed, semi-realistic |
+155	| n_min 分析 | n_min=2 vs n_min=3 (2 点) | + n_min=1, 4, 5 的完整 sensitivity curve |
+156	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5e46a165-bd32-4821-9039-2c8533389f54",
+  "isSidechain": false,
+  "promptId": "c98b2ce2-8f3c-4f7d-9ef0-293847a444d3",
+  "type": "user",
+  "uuid": "cec5189a-bad8-4c48-a042-7006f62763bb",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/dream_reports/dream_20260515T011902/median/paper_framing.md",
+      "content": "# Paper Framing — provenance_weight_training\n\n> 状态: DRAFT (MVP Path B PASS, D019确认，进入 research 阶段)\n> 最后更新: 2026-05-15 01:15 UTC\n> 投稿目标: EMNLP 2026 ARR May 25\n\n## Core Insight\n\nDrayson et al. (EMNLP 2025) 提出 detect-and-reweight 框架 w=(1-q)^b 用于缓解合成数据污染导致的 model collapse，但 b 需要在 validation set 上 per-model empirical 选取（GPT-2/SmolLM ≤360M 用 b=10，SmolLM 1.7B 用 b=1），且其实现路径为 **Sampling Importance Resampling (SIR)**——按权重重采样数据，本质是离散选择。我们提出 **adaptive b***：从 batch 统计量在线估计 α_eff(b) 推导最优 b*，per-batch 动态调整，无需 validation set、无需 grid search、无需已知污染比例。我们的实现路径为 **直接 loss reweighting**——在 gradient 层面连续加权，保留细粒度控制。\n\n**两种方法使用同一加权公式，但解决不同问题、采用不同实现路径**：Drayson 面向递归训练场景的 model collapse prevention（b 通过 per-model validation 选取），我们面向 web corpus 一次性预训练的 decontamination（b* 从 batch 统计量自适应推导，零 validation cost）。\n\n收敛理论（arXiv 2602.16065）作为 **motivation**（非 contribution）：bound d(ℙ̂_t, ℙ_0) ≲ t^{−min{p,α}} 启发了 α_eff 的定义和 b* 的推导，但我们不 claim 理论桥接。\n\n## Positioning vs Prior Work\n\n### Drayson et al. (EMNLP 2025) — 最近相关工作\n\n**共同点**：同一加权公式 w=(1-q)^b，detect-and-reweight 范式。\n\n**关键区分**：\n\n| 维度 | Drayson et al. | Ours |\n|------|---------------|------|\n| **b 选择** | 验证集 empirical 选取，训练中固定 | α_eff(b) + ESS 约束自适应推导，per-batch 动态 |\n| **实现路径** | SIR resampling（离散重采样） | Loss reweighting（连续梯度加权） |\n| **污染设置** | 不假设已知比例（原文明确声明），但实验为控制设置 | 未知比例（从 batch 统计量在线估计） |\n| **检测器** | ModernBERT 150M (AUC=0.986) | TF-IDF + LR (AUC=0.939)，轻量即可 |\n| **理论基础** | 无 b 选取理论，无 ablation | 收敛理论 motivated α_eff(b) 推导 |\n| **训练场景** | 递归训练 model collapse prevention | Web corpus 一次性预训练 |\n| **数据规模** | WikiText-2 (~2M tokens) | FineWeb subset (132M+ tokens) |\n| **validation 成本** | 需 per-model validation run | 零额外 validation cost |\n\n**定位原则：complementary approaches for different settings，非\"我们比 Drayson 更好\"。** Drayson 在其设定（递归训练、强检测器、validation-based b 选择）下是合理方案；我们解决的是 web pretraining 场景下无需 validation 的 principled b 选择问题。\n\n### Golden Ratio Weighting (arXiv 2502.18049, 2025)\n理论最优 w*=1/φ，但假设已知 real/synthetic 比例 k。我们不需要已知比例。\n\n### 其他相关工作\n- **Strong Model Collapse (ICLR 2025)** — 理论动机：微量合成数据即致 collapse\n- **Dynamic Loss-Based Reweighting (ICLR 2025)** — 按 loss 加权（不使用 detector score），互补\n- **SoftDedup (ACL 2024)** — 基于重复度的 soft reweighting\n- **DoReMi / DSIR (NeurIPS 2023)** — 域级优化 vs 我们的实例级\n- **Beyond Model Collapse / Verification (NeurIPS 2025)** — verifier-based prevention\n- **arXiv 2602.16065** — 我们引用的收敛理论\n\n## Core Claims\n\n### Claim 1 (Primary): Principled b* via α_eff(b) 理论框架\n\n基于 α_eff(b) 和 ESS 约束的 adaptive b* 提供 contamination-aware reweighting 中权重指数的 **principled 推导**，替代 Drayson et al. 的 per-model empirical selection。\n\n- **差异化核心**：Drayson 的 b 是超参数（需 validation set + 人工选取），我们的 b* 是从 batch 统计量在线推导的自适应量\n- **理论贡献**：α_eff(b) 框架将 contamination detection score 分布与权重指数选择建立 principled 联系\n- **证据需求**：adaptive b* 轨迹分析 + 与 Drayson 推荐值（b=1, b=10）的对比\n\n### Claim 2 (Primary): Adaptive b* 免调参即匹配 Grid-best\n\nAdaptive b* 在零超参调优下达到 grid-search 最优同等水平（within seed variance），消除 grid search 的计算开销（6N → 1 runs）。\n\n- **MVP 证据**: adaptive_fix ×3 seeds vs grid-b ×3 seeds（40% 污染, Qwen3-0.6B, 200M tokens）\n- **Pass criteria**: adaptive 均值 ≥ 90% grid-best 改善量 + 无任何 seed 劣于 uniform\n- **状态**: ✅ MVP Path B PASS (D019: aggregate 88.6%, 三支柱论证)\n\n**叙事弹性（避免硬编码精确数字）**：\n- 核心表述：**\"adaptive matches grid-best within seed variance\"**\n- 补充表述：**\"eliminates grid search cost (6N → 1 runs)\"** 和 **\"consistent improvement across all seeds\"**\n- Path B 叙事：3/3 seeds adaptive > uniform，adaptive-grid 差异在 seed variance 范围内\n\n**最终 MVP 数据**：\n\n3-seed Grid-b best (b=0.5) vs Adaptive_fix：\n\n| Metric | seed42 | seed123 | seed456 |\n|--------|--------|---------|---------|\n| Uniform PPL | 17.690 | 17.690 | 17.700 |\n| Grid-best PPL (b=0.5) | 17.651 | 17.638 | 17.650 |\n| Adaptive_fix PPL | 17.650 | 17.643 | 17.660 |\n| Ratio | 102.6% | 90.4% | 80.0% |\n\nAggregate ratio: 88.6% (D019). Path B PASS.\n\n### Claim 3 (Setting): Unknown Contamination Proportion\n\n我们的方法在 contamination proportion 完全未知的条件下工作——仅需 detector scores，无需已知污染比例、无需 clean validation set。\n\n- **差异化**：Golden Ratio Weighting 需要已知比例 k；Drayson 虽不假设已知比例，但 b 选择依赖 validation set 做 per-model tuning；我们仅需 detector scores，无需 validation set 或已知比例\n- **实际意义**：web-scale pretraining 中污染比例本质上不可知（organic contamination from multiple generators）\n- **证据**：adaptive b* 仅从 per-batch q-score 分布推导，无外部信息输入\n\n## n_min Robustness Framing\n\nD012 修复（n_min=3→2）显示方法对 ESS 约束参数的**实际鲁棒性**：\n\n- **现象**：n_min=3 导致 seed42 零改善（ESS 约束过紧，b* 被钳制在低值），n_min=2 修复后 seed42 恢复正常表现\n- **Framing**：ESS 约束是 b* 推导中唯一的超参数，n_min=3→2 的修复表明只要 ESS 下界合理宽松（不过度约束有效样本量），adaptive b* 就能稳定工作\n- **论文呈现**：在 Method section 讨论 ESS 约束的作用和敏感度；在 Ablation 中展示 n_min=2 vs n_min=3 的对比作为 robustness evidence\n- **注意**：D017 勘误确认实际实施为 n_min=2 无 EMA（EMA 未编码），D018 确认 v1→v2 唯一差异为 n_min(3→2)\n\n## Narrative Structure\n\n**起点**: Web 语料中 20-60% 为合成文本，比例未知，来源多样——这是实际预训练面临的现实问题。Strong Model Collapse (ICLR 2025) 证明即使微量污染也会破坏 scaling law。\n\n**现有方法的不足**：\n- Drayson et al.: w=(1-q)^b 有效，但 b 依赖 per-model validation-based tuning（不同模型需不同 b，b=1 vs b=10），且需要 clean validation set\n- Golden Ratio Weighting: 理论最优权重，但假设已知混合比例 k\n- 两者都不适用于无 validation set 的大规模 web pretraining 场景\n\n**我们的方案**: 在 Drayson 框架上，从 batch 统计量自适应估计 α_eff(b) 推导 b*，消除对 validation set 和 grid search 的依赖。实现路径从 SIR resampling 转为 direct loss reweighting，保留细粒度 gradient 控制。\n\n**理论连接**: 收敛 bound 作为 Background/Motivation，不 claim 理论贡献。\n\n**Method 呈现**: Algorithm 1 (adaptive b*) + ESS 约束（n_min 敏感度分析） + soft-to-hard 连续谱（作为 framing 而非独立 contribution）。\n\n**Path B 默认叙事**: \"Adaptive b* 免调参即可匹配 validation-tuned best，将 Drayson 框架从需要 per-model heuristic tuning 提升为全自动 principled method。\" 如果数据支持 Path A（adaptive 显著优于 grid-best），可升级表述，但默认保守。\n\n## Contribution Structure (2 Primary + 1 Setting)\n\n1. **Primary — Theoretical Framework**: Adaptive b* via α_eff(b) estimation + ESS constraints，提供 contamination-aware reweighting 中 b 的 principled 推导（vs Drayson 的 empirical selection）\n2. **Primary — Practical Result**: Adaptive b* 零超参调优即匹配 grid-best，消除 per-model validation 成本。Lightweight detector (TF-IDF+LR, AUC=0.939) sufficiency 作为附加发现（升级为 co-primary 需 detector quality ablation）\n3. **Setting — Unknown Proportion**: 与 Golden Ratio (known k) 的 problem setting 差异。Drayson 虽不假设已知比例，但 b 选择依赖 validation set；我们仅需 detector scores，无需 validation 或已知比例\n\n## Anticipated Reviewer Concerns\n\n| Concern | Response Strategy | 实验支撑 |\n|---------|------------------|----------|\n| \"Incremental over Drayson et al.\" | 三层差异化: (1) adaptive b* without validation-set tuning vs per-model empirical b (核心), (2) loss reweighting vs SIR resampling, (3) zero validation cost vs validation-dependent。Complementary approaches for different settings | Claim 1 + Claim 3 |\n| \"Base formula is from Drayson\" | 明确 acknowledge 公式来源；贡献是 b* 的 principled derivation + 实现路径差异 + 问题设定差异 | Positioning section |\n| \"Theory not rigorous / overclaimed\" | 明确 scope: motivation not contribution; α_eff(b) 是 testable sufficient condition not theorem | Background section |\n| \"Only 0.6B model, would it scale?\" | Full paper: Llama-3.2-3B 验证 | 扩展实验 |\n| \"Detector quality sensitivity\" | TF-IDF+LR (AUC=0.939) 即可；q-score 连续性比 AUC 更关键；检测器 quality ablation | detector quality ablation |\n| \"Controlled injection ≠ real web\" | Full paper: domain-skewed injection + semi-realistic (Binoculars on Common Crawl) | 扩展实验 |\n| \"Small effect size (~0.3% PPL)\" | (a) claim 聚焦方法正确性+调参消除，非效应量; (b) 60% 污染+3B 模型效应放大; (c) adaptive 的 zero-cost advantage | 扩展实验 |\n| \"n_min sensitivity — just another hyperparameter?\" | n_min=3→2 修复证明方法对 ESS 约束宽松度敏感度低（n_min=2 稳定工作）；单一超参 vs Drayson 的 per-model b 选择仍是降低了调参负担 | n_min ablation |\n\n## Key Risks\n\n1. **Novelty narrowing (D013)**: 基础公式来自 Drayson，核心新颖性收窄为 adaptive b*。应对：三层差异化（principled b* + loss reweighting vs SIR + unknown proportion setting）；强化 lightweight detector finding\n2. **Venue fit**: 核心逻辑偏 ML，EMNLP reviewer 可能低估。应对：加 NLP-specific analysis（contamination 对不同 NLP task 的影响差异）\n3. **效应量小 (0.3% relative PPL at 40% contamination)**: 应对：60% 污染 + 3B 模型展示效应放大；强调 zero-cost advantage（方法价值在于免调参，不在于绝对 PPL 提升）\n4. **adaptive_fix 如果仍有 seed 失败**: MVP 依赖 D012 修复版结果。应对：如果修复版仍不稳定，需进一步诊断算法或调整 claims\n5. **SIR vs loss reweighting 差异被低估**: Reviewer 可能认为两种实现路径差异不大。应对：在 Method 中讨论 gradient-level 细粒度控制的优势，必要时加 ablation 对比\n\n## MVP → Full Paper 扩展路径\n\n| 维度 | MVP | Full Paper |\n|------|-----|-----------|\n| 污染比例 | 40% | 20%, 40%, 60% |\n| 模型 | Qwen3-0.6B | + Llama-3.2-3B |\n| 生成器 | Qwen3-0.6B (self) | + Llama-3.2-1B, Mistral, Gemma |\n| 检测器 | TF-IDF + LR | + ModernBERT variants (quality ablation) |\n| Baseline | uniform, grid-b, adaptive | + detect-and-remove, random reweighting, perplexity filter, DSIR, loss-based DRO, oracle |\n| 评估 | eval_ppl (perplexity) | + MMLU, HellaSwag, Self-BLEU, distinct-n, Wasserstein, MMD |\n| 注入方式 | uniform random | + domain-skewed, semi-realistic |\n| n_min 分析 | n_min=2 vs n_min=3 (2 点) | + n_min=1, 4, 5 的完整 sensitivity curve |\n",
+      "numLines": 156,
+      "startLine": 1,
+      "totalLines": 156
+    }
+  },
+  "sourceToolAssistantUUID": "5e46a165-bd32-4821-9039-2c8533389f54",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+  "sessionId": "b8d1220f-e94e-4760-9740-c1b8649df453",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 12_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是 Paper Agent（Dream 模式）。任务：为 dream_id=dream_20260515T011902 tier=median 生成一篇完整的模拟论文。  ## 关键规则 1. 用 **Write 工具** 把 LaTeX 源码写入 `/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weig…",
+  "leafUuid": "cec5189a-bad8-4c48-a042-7006f62763bb",
+  "sessionId": "b8d1220f-e94e-4760-9740-c1b8649df453"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 13_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Generate adaptive provenance weight training paper",
+  "sessionId": "b8d1220f-e94e-4760-9740-c1b8649df453"
+}
+```
+
+---
+
+### Assistant
+
+_source line 14 · 2026-05-15T01:58:34.935Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a comprehensive understanding of the experiment data and paper framing. Let me write a complete LaTeX paper. Let me first check if the target directory exists.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cec5189a-bad8-4c48-a042-7006f62763bb",
+  "isSidechain": false,
+  "requestId": "req_011Cb3XV6LzZJ6UrbxCjBCF5",
+  "type": "assistant",
+  "uuid": "0cb3c503-2f1a-4584-8787-e3774bddf777",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+  "sessionId": "b8d1220f-e94e-4760-9740-c1b8649df453",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ui3gYgMi8zysDj1QxcMKdg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17943,
+      "cache_read_input_tokens": 23172,
+      "output_tokens": 178,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 17943,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 178,
+          "cache_read_input_tokens": 23172,
+          "cache_creation_input_tokens": 17943,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 17943
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15 · 2026-05-15T01:58:35.444Z_
+
+Let me check the target directory exists before writing.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0cb3c503-2f1a-4584-8787-e3774bddf777",
+  "isSidechain": false,
+  "requestId": "req_011Cb3XV6LzZJ6UrbxCjBCF5",
+  "type": "assistant",
+  "uuid": "403034b7-abed-4eea-aa0c-0a9bfa518622",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+  "sessionId": "b8d1220f-e94e-4760-9740-c1b8649df453",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ui3gYgMi8zysDj1QxcMKdg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17943,
+      "cache_read_input_tokens": 23172,
+      "output_tokens": 178,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 17943,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 178,
+          "cache_read_input_tokens": 23172,
+          "cache_creation_input_tokens": 17943,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 17943
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-15T01:58:37.693Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01Fez7WDBzi3bWpgkBjPsP6K`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/dream_reports/dream_20260515T011902/median/",
+  "description": "List target directory contents"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "403034b7-abed-4eea-aa0c-0a9bfa518622",
+  "isSidechain": false,
+  "requestId": "req_011Cb3XV6LzZJ6UrbxCjBCF5",
+  "type": "assistant",
+  "uuid": "5fa50e21-28cf-42d4-85bd-3f07ee100e0f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+  "sessionId": "b8d1220f-e94e-4760-9740-c1b8649df453",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ui3gYgMi8zysDj1QxcMKdg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17943,
+      "cache_read_input_tokens": 23172,
+      "output_tokens": 178,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 17943,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 178,
+          "cache_read_input_tokens": 23172,
+          "cache_creation_input_tokens": 17943,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 17943
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-15T01:58:37.885Z_
+
+<details><summary>↩ Tool result · `toolu_01Fez7WDBzi3bWpgkBjPsP6K`</summary>
+
+```text
+experiment_data.json
+imagined_experiments.yaml
+paper_framing.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5fa50e21-28cf-42d4-85bd-3f07ee100e0f",
+  "isSidechain": false,
+  "promptId": "c98b2ce2-8f3c-4f7d-9ef0-293847a444d3",
+  "type": "user",
+  "uuid": "1195b8fc-2aa5-4cc9-a372-b08fa0ce00a0",
+  "toolUseResult": {
+    "stdout": "experiment_data.json\nimagined_experiments.yaml\npaper_framing.md",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "5fa50e21-28cf-42d4-85bd-3f07ee100e0f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+  "sessionId": "b8d1220f-e94e-4760-9740-c1b8649df453",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18 · 2026-05-15T01:58:48.189Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, the directory exists. Now let me write the complete LaTeX paper based on the experiment data and paper framing. I need to:
+
+1. Cover all experiments from experiment_data.json
+2. Follow the narrative guidance
+3. Structure: Abstract, Introduction, Method, Experiments, Conclusion
+4. Every quantitative claim must be backed by data from experiment_data.json
+5. Not fabricate numbers
+
+Let me organize the experiments:
+
+1. Extended Grid-b (b<0.5) across 3 seeds - Shows PPL landscape is flat
+2. Post-hoc eval for all 9 b<0.5 checkpoints - Summary table
+
+
+3. ρ=0.6 data generation with uniform, adaptive, and grid sampling strategies - Tests effect amplification
+4. Llama-3.2-3B with uniform and adaptive sampling - Validates cross-model generalization
+5. n_min ablation across values 1-5 - Measures ESS sensitivity
+6. ModernBERT detector with training - Evaluates detector quality impact
+7. Cross-generator setup where Llama generates and Qwen trains - Tests robustness across model pairs
+8. Detect-and-remove baseline - Compares against alternative approaches
+9. Random reweighting baseline - Confirms signal necessity
+10. Domain-skewed injection - Identifies method weaknesses
+11. Downstream evaluation tasks - Assesses practical impact
+
+Now I'm ready to write up the full paper with all these experiments.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1195b8fc-2aa5-4cc9-a372-b08fa0ce00a0",
+  "isSidechain": false,
+  "requestId": "req_011Cb3XVYXLghRNrgxxFgMz5",
+  "type": "assistant",
+  "uuid": "40550267-af47-4ac6-be7d-ee0bbfd7f705",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+  "sessionId": "b8d1220f-e94e-4760-9740-c1b8649df453",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PqqgvPtFSfXnrHDs5eJSQY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 209,
+      "cache_read_input_tokens": 41115,
+      "output_tokens": 9616,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 209,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 9616,
+          "cache_read_input_tokens": 41115,
+          "cache_creation_input_tokens": 209,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 209
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19 · 2026-05-15T01:58:48.193Z_
+
+Now I'll write the full LaTeX paper.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "40550267-af47-4ac6-be7d-ee0bbfd7f705",
+  "isSidechain": false,
+  "requestId": "req_011Cb3XVYXLghRNrgxxFgMz5",
+  "type": "assistant",
+  "uuid": "46fc7b71-2a4b-405d-a217-11d25499a703",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+  "sessionId": "b8d1220f-e94e-4760-9740-c1b8649df453",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PqqgvPtFSfXnrHDs5eJSQY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 209,
+      "cache_read_input_tokens": 41115,
+      "output_tokens": 9616,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 209,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 9616,
+          "cache_read_input_tokens": 41115,
+          "cache_creation_input_tokens": 209,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 209
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-15T02:01:28.891Z_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01PuPQ7FEXSUpqt33F7oshNo`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/dream_reports/dream_20260515T011902/median/paper.tex",
+  "content": "\\documentclass[11pt,a4paper]{article}\n\\usepackage[hyperref]{acl}\n\\usepackage{times}\n\\usepackage{latexsym}\n\\usepackage{amsmath}\n\\usepackage{amssymb}\n\\usepackage{booktabs}\n\\usepackage{multirow}\n\\usepackage{graphicx}\n\\usepackage{algorithm}\n\\usepackage{algorithmic}\n\\usepackage{xcolor}\n\\usepackage{enumitem}\n\n\\newcommand{\\bstar}{b^{*}}\n\\newcommand{\\aeff}{\\alpha_{\\mathrm{eff}}}\n\\newcommand{\\nmin}{n_{\\min}}\n\\newcommand{\\E}{\\mathbb{E}}\n\n\\title{Adaptive Contamination-Aware Reweighting for Pretraining on\\\\Mixed Real-Synthetic Corpora}\n\n\\author{Anonymous}\n\n\\begin{document}\n\\maketitle\n\n%----------------------------------------------------------------------\n\\begin{abstract}\nLarge-scale web corpora increasingly contain machine-generated text of unknown provenance and proportion, degrading language model pretraining through implicit contamination.\nPrior work applies the weighting function $w = (1-q)^b$ using detector-derived scores $q$, but requires per-model validation-based tuning of the exponent $b$.\nWe propose \\textbf{adaptive $\\bstar$}, a method that derives the reweighting exponent online from per-batch score statistics via an effective power-law index $\\aeff(b)$ subject to an effective sample size (ESS) constraint, eliminating grid search and validation sets entirely.\nOn controlled pretraining experiments (132M--200M tokens, Qwen3-0.6B and Llama-3.2-3B), adaptive $\\bstar$ matches grid-search-optimal performance within seed variance (aggregate ratio 85.8\\% of grid-best improvement) while reducing tuning cost from $6N$ to $1$ training run.\nA lightweight TF-IDF+LR detector (AUC = 0.939) suffices: upgrading to ModernBERT (AUC = 0.986) yields only 0.005 additional perplexity reduction.\nThe effect scales with both contamination ratio (2$\\times$ amplification at $\\rho{=}0.6$ vs.\\ $\\rho{=}0.4$) and model size (2$\\times$ amplification at 3B vs.\\ 0.6B parameters).\nWe release all code and experimental configurations.\n\\end{abstract}\n\n%----------------------------------------------------------------------\n\\section{Introduction}\n\\label{sec:intro}\n\nWeb-scale pretraining corpora now contain an estimated 20--60\\% machine-generated text, a fraction that is growing and fundamentally unknowable in production settings.\nRecent theoretical work demonstrates that even small amounts of synthetic contamination can degrade scaling laws and induce model collapse~\\cite{shumailov2024strong}.\nPractical mitigation requires reweighting or filtering training data based on provenance signals from contamination detectors.\n\n\\citet{drayson2025} introduced the weighting function $w_i = (1-q_i)^b$, where $q_i \\in [0,1]$ is a detector-derived synthetic probability score, and showed that sampling importance resampling (SIR) with this weight effectively counters model collapse in recursive training.\nHowever, the exponent $b$ must be selected via per-model validation: \\citet{drayson2025} report $b{=}10$ for GPT-2/SmolLM $\\leq$360M and $b{=}1$ for SmolLM 1.7B, with no principled selection criterion.\nGolden Ratio Weighting~\\cite{goldenratio2025} derives a theoretically optimal weight but requires a known contamination ratio $k$.\nNeither approach applies directly to web-scale pretraining where the contamination proportion is unknown and no clean validation set is available.\n\nWe propose \\textbf{adaptive $\\bstar$}, which replaces the fixed exponent with a per-batch optimized value derived from an effective power-law index $\\aeff(b)$ estimated from the batch's $q$-score distribution, subject to an effective sample size (ESS) lower bound.\nOur contributions are:\n\\begin{enumerate}[nosep,leftmargin=*]\n    \\item \\textbf{Theoretical framework}: $\\aeff(b)$ estimation + ESS constraints provide a principled derivation of $b$ from batch statistics alone, requiring no validation set, no grid search, and no known contamination proportion.\n    \\item \\textbf{Practical result}: Adaptive $\\bstar$ achieves comparable performance to grid-search-optimal $b$ at zero tuning cost, reducing computational overhead from $6N$ to $1$ training run. A lightweight detector (TF-IDF+LR, AUC = 0.939) suffices.\n    \\item \\textbf{Problem setting}: We address one-pass web pretraining with unknown contamination proportion, complementing \\citet{drayson2025}'s recursive training setting.\n\\end{enumerate}\n\n%----------------------------------------------------------------------\n\\section{Background and Related Work}\n\\label{sec:related}\n\n\\paragraph{Model Collapse from Synthetic Data.}\n\\citet{shumailov2024strong} prove that training on recursively generated synthetic data causes progressive distribution collapse.\nConvergence bounds~\\cite{convergencetheory2025} show $d(\\hat{\\mathbb{P}}_t, \\mathbb{P}_0) \\lesssim t^{-\\min\\{p,\\alpha\\}}$, motivating the $\\aeff$ definition in our framework.\n\n\\paragraph{Detect-and-Reweight.}\n\\citet{drayson2025} propose $w_i = (1-q_i)^b$ with SIR resampling on WikiText-2 ($\\sim$2M tokens).\nTheir detector is ModernBERT 150M (AUC = 0.986).\nThe exponent $b$ is selected per-model via validation.\nWe adopt the same weighting function but derive $b$ adaptively and apply weights directly to the loss (continuous gradient-level control) rather than via discrete resampling.\n\n\\paragraph{Other Reweighting Approaches.}\nDoReMi~\\cite{doremi2023} and DSIR~\\cite{dsir2023} optimize domain-level weights; SoftDedup~\\cite{softdedup2024} reweights by duplication.\nDynamic loss-based reweighting~\\cite{dynamicloss2025} uses loss signals without detector scores.\nAll are complementary; none address contamination-specific $b$ selection.\n\n%----------------------------------------------------------------------\n\\section{Method}\n\\label{sec:method}\n\n\\subsection{Problem Setup}\n\nGiven a training corpus $\\mathcal{D} = \\{x_1, \\ldots, x_N\\}$ with unknown contamination proportion $\\rho$, and a pretrained contamination detector that assigns each sample a synthetic probability $q_i \\in [0,1]$, we train a language model with weighted loss:\n\\begin{equation}\n    \\mathcal{L}_b = \\frac{1}{|\\mathcal{B}|} \\sum_{i \\in \\mathcal{B}} (1 - q_i)^b \\cdot \\ell(x_i; \\theta)\n    \\label{eq:weighted_loss}\n\\end{equation}\nwhere $\\ell(x_i; \\theta)$ is the per-sample cross-entropy loss and $b \\geq 0$ controls downweighting intensity.\n\n\\subsection{Adaptive $\\bstar$ via $\\aeff(b)$}\n\nFor each mini-batch $\\mathcal{B}$, we compute the $q$-score statistics and estimate $\\aeff(b)$, the effective power-law index governing how weights concentrate probability mass on real samples.\nWe define $\\bstar$ as the value maximizing $\\aeff(b)$ subject to the ESS constraint:\n\\begin{equation}\n    \\bstar = \\arg\\max_b \\; \\aeff(b) \\quad \\text{s.t.} \\quad \\mathrm{ESS}(b) \\geq \\nmin\n    \\label{eq:bstar}\n\\end{equation}\nwhere the effective sample size is:\n\\begin{equation}\n    \\mathrm{ESS}(b) = \\frac{\\left(\\sum_{i \\in \\mathcal{B}} w_i\\right)^2}{\\sum_{i \\in \\mathcal{B}} w_i^2}, \\quad w_i = (1 - q_i)^b\n    \\label{eq:ess}\n\\end{equation}\n\nThe ESS constraint prevents degenerate solutions where $b$ is so large that only one or two samples have non-negligible weight.\nWhen $\\mathrm{ESS}(b) < \\nmin$ for all $b > 0$, we set $\\bstar = 0$ (uniform weighting), ensuring graceful degradation.\n\n\\subsection{ESS Constraint and $\\nmin$}\n\nThe sole hyperparameter is $\\nmin$, the ESS lower bound.\nWe set $\\nmin = 2$ throughout all experiments.\nSection~\\ref{sec:nmin_ablation} shows that $\\nmin \\in \\{1, 2\\}$ yields stable performance, while $\\nmin \\geq 3$ can over-constrain $\\bstar$ toward zero for small batch sizes ($|\\mathcal{B}| = 4$).\nWhen $\\nmin = |\\mathcal{B}|$, the only feasible solution is $\\bstar = 0$ (all weights equal), recovering uniform training exactly.\n\n\\begin{algorithm}[t]\n\\caption{Adaptive $\\bstar$ Reweighting}\n\\label{alg:adaptive}\n\\begin{algorithmic}[1]\n\\REQUIRE Mini-batch $\\mathcal{B}$, detector scores $\\{q_i\\}_{i \\in \\mathcal{B}}$, $\\nmin$\n\\STATE Compute $q$-score statistics over $\\mathcal{B}$\n\\STATE Search $b \\in [0, b_{\\max}]$ for $\\bstar$ maximizing $\\aeff(b)$\n\\STATE Subject to $\\mathrm{ESS}(b) \\geq \\nmin$ (Eq.~\\ref{eq:ess})\n\\STATE If no feasible $b > 0$: set $\\bstar \\leftarrow 0$\n\\STATE Compute weights $w_i = (1 - q_i)^{\\bstar}$ for $i \\in \\mathcal{B}$\n\\STATE Compute weighted loss $\\mathcal{L}_{\\bstar}$ (Eq.~\\ref{eq:weighted_loss})\n\\RETURN $\\mathcal{L}_{\\bstar}$\n\\end{algorithmic}\n\\end{algorithm}\n\n%----------------------------------------------------------------------\n\\section{Experimental Setup}\n\\label{sec:setup}\n\n\\paragraph{Data.}\nWe construct controlled pretraining corpora from FineWeb subsets (132M--200M tokens) with synthetic contamination injected at known proportions $\\rho \\in \\{0.4, 0.6\\}$.\nSynthetic text is generated by Qwen3-0.6B (in-distribution) or Llama-3.2-1B (cross-generator) and uniformly mixed into real data.\nA domain-skewed variant concentrates synthetic injection in code-heavy domains.\n\n\\paragraph{Detector.}\nOur primary detector is TF-IDF + Logistic Regression, achieving AUC = 0.939 on in-distribution data and AUC = 0.925 on cross-generator data.\nFor the detector quality ablation, we additionally train a ModernBERT 150M detector (AUC = 0.986).\n\n\\paragraph{Models.}\nWe train Qwen3-0.6B (primary) and Llama-3.2-3B (cross-model generalization) from scratch on the contaminated corpora.\nAll Qwen3-0.6B runs use batch size 4 and run for $\\sim$6100 steps; Llama-3.2-3B uses batch size 2 with gradient checkpointing ($\\sim$3800 steps, $\\sim$48 GPU-hours on 4$\\times$ RTX 6000).\n\n\\paragraph{Methods.}\nWe compare: \\textbf{Uniform} (standard training, $b{=}0$); \\textbf{Grid-$b$} ($b \\in \\{0.1, 0.2, 0.3, 0.5, 1.0, 1.5, 2.0, 3.0, 5.0\\}$, best selected post-hoc); \\textbf{Adaptive $\\bstar$} ($\\nmin{=}2$, no tuning); \\textbf{Detect-and-remove} (hard filter at $q{>}0.5$); \\textbf{Random reweighting} (random weights from the same distribution, no detector signal).\n\n\\paragraph{Evaluation.}\nPrimary metric: held-out perplexity (PPL) on real-only data.\nSupplementary: MMLU (5-shot) and HellaSwag (0-shot) on Llama-3.2-3B checkpoints.\n\n%----------------------------------------------------------------------\n\\section{Results}\n\\label{sec:results}\n\n\\subsection{PPL Landscape Is Flat: Extended Grid Search}\n\\label{sec:grid_extended}\n\nWe extend the grid search to $b < 0.5$ (Table~\\ref{tab:extended_grid}) to verify that the grid-best is not at the boundary of the original search range.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Extended grid-$b$ perplexity across 3 seeds ($\\rho{=}0.4$, Qwen3-0.6B, 200M tokens). The PPL range across $b = 0.1$--$0.5$ is only 0.014, confirming an extremely flat landscape.}\n\\label{tab:extended_grid}\n\\begin{tabular}{lcccc}\n\\toprule\n$b$ & seed42 & seed123 & seed456 & Mean PPL \\\\\n\\midrule\n0.1 & 17.662 & 17.654 & 17.666 & 17.661 \\\\\n0.2 & 17.650 & 17.639 & 17.653 & 17.647 \\\\\n\\textbf{0.3} & \\textbf{17.648} & \\textbf{17.636} & \\textbf{17.649} & \\textbf{17.644} \\\\\n0.5 & 17.651 & 17.638 & 17.650 & 17.646 \\\\\n1.0 & 17.692 & 17.674 & 17.680 & 17.682 \\\\\n1.5 & 17.718 & 17.701 & 17.710 & 17.710 \\\\\n2.0 & 17.741 & 17.725 & 17.730 & 17.732 \\\\\n3.0 & 17.774 & 17.760 & 17.765 & 17.766 \\\\\n5.0 & 17.818 & 17.804 & 17.810 & 17.811 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nAll three seeds agree that $b{=}0.3$ is marginally best, but the improvement over $b{=}0.5$ is only 0.002 PPL on average---well within seed variance.\nThe PPL surface across $b = 0.1$--$0.5$ spans just 0.014 perplexity points.\nThis flatness is central to our argument: adaptive $\\bstar$ (median $\\sim$0.88) falls within the flat region, so its slightly higher operating point incurs negligible cost compared to the grid-optimal $b{=}0.3$.\n\nUpdating the grid-best from $b{=}0.5$ to $b{=}0.3$, the aggregate ratio of adaptive-vs-grid improvement is 85.8\\% (per-seed: 95.2\\%, 87.0\\%, 78.4\\%).\n\n\\subsection{Adaptive $\\bstar$ Matches Grid-Best at Zero Tuning Cost}\n\\label{sec:adaptive_vs_grid}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Adaptive $\\bstar$ vs.\\ grid-best ($b{=}0.3$), both at $\\rho{=}0.4$, Qwen3-0.6B, 200M tokens. Adaptive achieves 85.8\\% of grid-best improvement over uniform, within seed variance.}\n\\label{tab:adaptive_vs_grid}\n\\begin{tabular}{lccc}\n\\toprule\nMethod & seed42 & seed123 & seed456 \\\\\n\\midrule\nUniform & 17.690 & 17.690 & 17.700 \\\\\nGrid-best ($b{=}0.3$) & 17.648 & 17.636 & 17.649 \\\\\nAdaptive $\\bstar$ & 17.650 & 17.643 & 17.660 \\\\\n\\midrule\nRatio (\\%) & 95.2 & 87.0 & 78.4 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:adaptive_vs_grid} shows that adaptive $\\bstar$ consistently improves over uniform training across all three seeds, with an aggregate ratio of 85.8\\% relative to the grid-best improvement.\nThe gap between adaptive and grid-best (0.002--0.011 PPL) is smaller than cross-seed variance, and adaptive requires \\textbf{zero tuning}: a single training run replaces the 9-point grid search (9$\\times$ training cost).\n\n\\subsection{Method Comparison}\n\\label{sec:method_comparison}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Method comparison ($\\rho{=}0.4$, Qwen3-0.6B, seed42). Detect-and-remove and random reweighting yield negligible improvement, confirming that soft, signal-driven reweighting is necessary.}\n\\label{tab:method_comparison}\n\\begin{tabular}{lccc}\n\\toprule\nMethod & Eval PPL & $\\Delta$ vs.\\ Uniform & Eff.\\ Tokens \\\\\n\\midrule\nUniform & 17.690 & --- & 200M \\\\\nRandom reweighting & 17.695 & $+$0.005 & 200M \\\\\nDetect-and-remove & 17.685 & $-$0.005 & 130M \\\\\nAdaptive $\\bstar$ & 17.650 & $-$0.040 & 200M \\\\\nGrid-best ($b{=}0.3$) & 17.648 & $-$0.042 & 200M \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\textbf{Detect-and-remove} (hard threshold at $q > 0.5$) discards 35\\% of training data including 8\\% false positives, yielding only 0.005 PPL improvement---far less than soft reweighting.\nBinary filtering discards the continuous $q$-score information: samples with $q = 0.51$ and $q = 0.99$ are treated identically.\n\n\\textbf{Random reweighting} slightly degrades PPL ($+$0.005), confirming that the improvement from adaptive $\\bstar$ is driven by the detector signal, not a regularization artifact of non-uniform weighting.\n\n\\subsection{Effect Amplification: Higher Contamination}\n\\label{sec:rho06}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Effect amplification from $\\rho{=}0.4$ to $\\rho{=}0.6$ (Qwen3-0.6B, seed42). Both absolute and relative improvements double.}\n\\label{tab:effect_amplification}\n\\begin{tabular}{lcccc}\n\\toprule\n& $\\rho{=}0.4$ & $\\rho{=}0.6$ & Amplification \\\\\n\\midrule\nUniform PPL & 17.690 & 17.840 & --- \\\\\nAdaptive PPL & 17.650 & 17.760 & --- \\\\\nAbsolute $\\Delta$ & 0.040 & 0.080 & 2.0$\\times$ \\\\\nRelative impr.\\ (\\%) & 0.226 & 0.449 & 2.0$\\times$ \\\\\n$\\bstar$ median & 0.88 & 0.72 & --- \\\\\n\\midrule\nGrid $b{=}0.5$ PPL & 17.651 & 17.750 & --- \\\\\nAdaptive/Grid ratio & 88.6\\% & 88.9\\% & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nAt $\\rho{=}0.6$, the adaptive improvement over uniform doubles from 0.040 to 0.080 PPL (Table~\\ref{tab:effect_amplification}).\nThe $\\bstar$ distribution shifts left (median 0.88 $\\to$ 0.72) as the ESS constraint activates more frequently in batches with many high-$q$ samples---a sign that the principled constraint is working as designed.\nThe adaptive-vs-grid ratio remains stable at $\\sim$89\\% across contamination levels.\n\nThe detector (TF-IDF+LR) maintains adequate performance at $\\rho{=}0.6$ (AUC = 0.935 vs.\\ 0.939 at $\\rho{=}0.4$), with a slight decrease due to greater stylistic diversity among the more numerous synthetic samples.\n\n\\subsection{Cross-Model Generalization: Llama-3.2-3B}\n\\label{sec:cross_model}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Cross-model comparison ($\\rho{=}0.4$, seed42). Adaptive $\\bstar$ generalizes to Llama-3.2-3B with no adjustment; effect amplification is $\\sim$2$\\times$.}\n\\label{tab:cross_model}\n\\begin{tabular}{lcccc}\n\\toprule\nModel & Params & Unif.\\ PPL & Adapt.\\ PPL & Rel.\\ Impr.\\ (\\%) \\\\\n\\midrule\nQwen3-0.6B & 0.6B & 17.690 & 17.650 & 0.226 \\\\\nLlama-3.2-3B & 3.0B & 13.520 & 13.460 & 0.444 \\\\\n\\midrule\nAmplification & & & & 2.0$\\times$ \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nOn Llama-3.2-3B (Table~\\ref{tab:cross_model}), adaptive $\\bstar$ achieves 0.444\\% relative improvement ($\\sim$2$\\times$ the 0.6B effect), confirming cross-model generalization.\nThe $\\bstar$ distribution is remarkably stable across models (median 0.85 vs.\\ 0.88 for 0.6B), because $\\bstar$ is determined by batch $q$-score statistics rather than model capacity---a direct consequence of the principled derivation.\nIn contrast, \\citet{drayson2025} report that different model sizes require different $b$ values (10 vs.\\ 1), necessitating per-model validation.\n\n\\subsection{Detector Quality Ablation: Lightweight Sufficiency}\n\\label{sec:detector_ablation}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Detector quality ablation ($\\rho{=}0.4$, Qwen3-0.6B, seed42). A 5\\% AUC improvement (0.939 $\\to$ 0.986) yields only 0.005 PPL gain.}\n\\label{tab:detector_ablation}\n\\begin{tabular}{lcccc}\n\\toprule\nDetector & AUC & Adapt.\\ PPL & $\\Delta$ vs.\\ Unif. & Ratio (\\%) \\\\\n\\midrule\nTF-IDF+LR & 0.939 & 17.650 & $-$0.040 & 88.6 \\\\\nModernBERT & 0.986 & 17.645 & $-$0.045 & 90.5 \\\\\n\\midrule\n$\\Delta_{\\text{detector}}$ & $+$0.047 & $-$0.005 & $-$0.005 & $+$1.9 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nUpgrading from TF-IDF+LR (AUC = 0.939) to ModernBERT 150M (AUC = 0.986) improves PPL by only 0.005 (Table~\\ref{tab:detector_ablation}).\nThe marginal return on detector quality is diminishing: a 5-percentage-point AUC gain translates to 0.03\\% relative PPL improvement.\nThis supports \\textbf{lightweight detector sufficiency}---practitioners need not invest in expensive neural detectors when a simple TF-IDF+LR model captures enough signal for effective reweighting.\n\nThe ModernBERT detector produces more bimodal $q$-scores (scores concentrated near 0 and 1), leading to lower $\\bstar$ median (0.78 vs.\\ 0.88) as the ESS constraint activates earlier with more extreme weights.\n\n\\subsection{ESS Constraint Sensitivity ($\\nmin$ Ablation)}\n\\label{sec:nmin_ablation}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{$\\nmin$ sensitivity ($\\rho{=}0.4$, Qwen3-0.6B, seed42, batch size 4). $\\nmin \\in \\{1, 2\\}$ yields effective adaptive behavior; $\\nmin \\geq |\\mathcal{B}|$ degrades to uniform.}\n\\label{tab:nmin}\n\\begin{tabular}{lccl}\n\\toprule\n$\\nmin$ & Eval PPL & $\\bstar$ median & Behavior \\\\\n\\midrule\n1 & 17.655 & 1.35 & Adaptive (occasional extremes) \\\\\n\\textbf{2} & \\textbf{17.650} & \\textbf{0.88} & \\textbf{Adaptive (stable)} \\\\\n3 & 17.690 & 0.45 & Partially clamped \\\\\n4 & 17.690 & 0.00 & Uniform ($\\nmin = |\\mathcal{B}|$) \\\\\n5 & 17.690 & 0.00 & Uniform ($\\nmin > |\\mathcal{B}|$) \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:nmin} shows the complete $\\nmin$ sensitivity curve.\nAt $\\nmin{=}1$, the ESS constraint is nearly vacuous: $\\bstar$ can take extreme values (max observed $= 20$), and PPL is slightly worse than $\\nmin{=}2$ (17.655 vs.\\ 17.650), confirming that the ESS constraint provides beneficial regularization.\nAt $\\nmin{=}2$, the method achieves its best performance.\nAt $\\nmin{=}3$, $\\bstar$ is frequently clamped to low values, and performance degrades to uniform-level on some seeds.\nAt $\\nmin \\geq |\\mathcal{B}| = 4$, the only feasible solution is $\\bstar{=}0$ (all weights equal), and the method gracefully degrades to standard uniform training.\n\nThis graceful degradation is a desirable property: over-constraining $\\nmin$ never causes the method to perform \\emph{worse} than uniform training.\nThe practical recommendation is $\\nmin = 2$, which is robust and requires no further tuning.\n\n\\subsection{Cross-Generator Robustness}\n\\label{sec:cross_gen}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{In-distribution vs.\\ cross-generator settings ($\\rho{=}0.4$, Qwen3-0.6B). Cross-generator reduces effectiveness due to lower detector AUC.}\n\\label{tab:cross_gen}\n\\begin{tabular}{lcccc}\n\\toprule\nSetting & Det.\\ AUC & Unif.\\ PPL & Adapt.\\ PPL & Ratio (\\%) \\\\\n\\midrule\nIn-distribution & 0.939 & 17.690 & 17.650 & 88.6 \\\\\nCross-generator & 0.925 & 17.720 & 17.690 & 75.0 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nWhen synthetic data is generated by Llama-3.2-1B rather than Qwen3-0.6B (Table~\\ref{tab:cross_gen}), detector AUC drops to 0.925 (out-of-distribution for the TF-IDF+LR detector trained on Qwen-generated text).\nAdaptive $\\bstar$ still improves over uniform (0.03 PPL), but the ratio drops to 75\\%.\nThe degradation traces to noisier $q$-scores: the $\\bstar$ distribution widens ($\\bstar$ median 0.95 vs.\\ 0.88), reflecting increased uncertainty in per-batch score statistics.\nThis result bounds the method's dependency on detector quality in out-of-distribution settings.\n\n\\subsection{Domain-Skewed Contamination}\n\\label{sec:domain_skewed}\n\nWhen synthetic contamination is concentrated in a single domain (code-heavy injection rather than uniform random), adaptive $\\bstar$ achieves only 50\\% of the in-distribution ratio (0.02 PPL improvement, relative improvement 0.113\\%).\nThe per-batch $\\bstar$ exhibits high variance: code-heavy batches have uniformly high $q$-scores with low intra-batch variance, violating the implicit assumption that each batch contains a mix of real and synthetic samples.\nIn these batches, the ESS constraint forces $\\bstar \\to 0$, alternating with normal $\\bstar$ values in mixed batches.\n\nThis is a known limitation of per-batch estimation.\nPotential mitigations include larger batch sizes (increasing intra-batch diversity) and cross-batch smoothing of $\\bstar$, which we leave to future work.\n\n\\subsection{Downstream Task Evaluation}\n\\label{sec:downstream}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Downstream evaluation (Llama-3.2-3B, $\\rho{=}0.4$, seed42). PPL improvement is significant; downstream task gains are not statistically significant at this training scale.}\n\\label{tab:downstream}\n\\begin{tabular}{lcccc}\n\\toprule\nTask & Uniform & Adaptive & $\\Delta$ & Significant? \\\\\n\\midrule\nMMLU (5-shot) & 34.20 & 34.35 & $+$0.15 & No ($p > 0.1$) \\\\\nHellaSwag (0-shot) & 52.80 & 53.10 & $+$0.30 & Marginal ($p \\approx 0.08$) \\\\\nEval PPL & 13.52 & 13.46 & $-$0.06 & Yes \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nPPL improvements consistently transfer to directionally positive downstream gains (Table~\\ref{tab:downstream}), but at 200M tokens the model is in very early training and downstream metrics have high variance.\nMMLU improvement ($+$0.15) is not significant; HellaSwag ($+$0.30) reaches marginal significance.\nWe therefore use PPL as the primary evaluation metric and present downstream results as supplementary evidence.\nLonger training runs at larger data scales are needed to determine whether PPL gains translate to statistically significant downstream improvements.\n\n%----------------------------------------------------------------------\n\\section{Analysis}\n\\label{sec:analysis}\n\n\\paragraph{Why does a lightweight detector suffice?}\nThe PPL landscape across $b$ values is extremely flat in the effective range (Section~\\ref{sec:grid_extended}).\nEven if a higher-AUC detector provides more accurate $q$-scores, the adaptive $\\bstar$ operating point shifts only marginally within this flat region.\nThe key requirement is that $q$-scores be \\emph{monotonically informative} (higher $q$ correlates with higher synthetic probability), not perfectly calibrated.\n\n\\paragraph{Aggregate ratio stability.}\nThe adaptive-vs-grid ratio is remarkably stable: 88.6\\% at $\\rho{=}0.4$ and 88.9\\% at $\\rho{=}0.6$.\nThis suggests the ratio is an intrinsic property of the method rather than a function of contamination level---the ESS constraint scales its intervention proportionally to the $q$-score distribution shift.\n\n\\paragraph{$\\bstar$ distribution across settings.}\nThe $\\bstar$ median varies modestly across conditions (0.72--0.95), with the primary driver being the batch $q$-score distribution rather than model size or training dynamics.\nThis model-independence is a direct benefit of the principled per-batch derivation, compared to \\citet{drayson2025}'s model-dependent $b$ selection.\n\n%----------------------------------------------------------------------\n\\section{Discussion and Limitations}\n\\label{sec:limitations}\n\n\\paragraph{Effect size.}\nThe absolute PPL improvements are small (0.04--0.08 at $\\rho{=}0.4$--$0.6$).\nWe emphasize that the method's value lies in \\emph{zero-cost matching of grid-search performance}, not in large absolute gains.\nThe effect amplifies with contamination ratio ($2\\times$ at $\\rho{=}0.6$) and model scale ($2\\times$ at 3B), suggesting greater practical impact at production scales.\n\n\\paragraph{Domain-skewed contamination.}\nPer-batch $\\bstar$ estimation assumes intra-batch $q$-score diversity.\nWhen contamination is concentrated in specific domains, per-batch statistics degrade.\nCross-batch smoothing or stratified batching could address this, but we have not evaluated these extensions.\n\n\\paragraph{Cross-generator degradation.}\nWhen the detector encounters synthetic text from an unseen generator, AUC drops and the adaptive method's effectiveness decreases (ratio 75\\% vs.\\ 88.6\\%).\nIn production, ensemble detectors or periodic retraining on emerging generator signatures would mitigate this.\n\n\\paragraph{Training scale.}\nOur experiments use 132M--200M tokens.\nProduction pretraining corpora are $10^3$--$10^4\\times$ larger; whether the flat PPL landscape and stable aggregate ratio persist at scale requires further study.\n\n\\paragraph{Downstream transfer.}\nAt our training scale, PPL improvements do not reliably transfer to statistically significant downstream gains.\nWe report PPL as the primary metric and downstream results as supplementary.\n\n%----------------------------------------------------------------------\n\\section{Conclusion}\n\\label{sec:conclusion}\n\nWe presented adaptive $\\bstar$, a method that derives the reweighting exponent for contamination-aware pretraining directly from per-batch detector score statistics.\nBy replacing grid search with a principled $\\aeff(b)$ estimation subject to ESS constraints, adaptive $\\bstar$ eliminates validation cost while achieving comparable performance to grid-optimal $b$ (85.8\\% aggregate ratio, within seed variance).\nThe method generalizes across contamination ratios ($\\rho = 0.4$, $0.6$), model scales (0.6B, 3B), and detector qualities (AUC 0.939--0.986), with a lightweight TF-IDF+LR detector proving sufficient.\nThe sole hyperparameter ($\\nmin$) has a simple, robust default ($\\nmin{=}2$), and over-constraining it leads to graceful degradation rather than failure.\n\n\\bibliography{references}\n\\bibliographystyle{acl_natbib}\n\n\\end{document}\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "46fc7b71-2a4b-405d-a217-11d25499a703",
+  "isSidechain": false,
+  "requestId": "req_011Cb3XVYXLghRNrgxxFgMz5",
+  "type": "assistant",
+  "uuid": "126f90f6-5b49-4627-bc51-cf3f656cc009",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+  "sessionId": "b8d1220f-e94e-4760-9740-c1b8649df453",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PqqgvPtFSfXnrHDs5eJSQY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 209,
+      "cache_read_input_tokens": 41115,
+      "output_tokens": 9616,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 209,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 9616,
+          "cache_read_input_tokens": 41115,
+          "cache_creation_input_tokens": 209,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 209
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T02:01:28.915Z_
+
+<details><summary>↩ Tool result · `toolu_01PuPQ7FEXSUpqt33F7oshNo`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/dream_reports/dream_20260515T011902/median/paper.tex
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "126f90f6-5b49-4627-bc51-cf3f656cc009",
+  "isSidechain": false,
+  "promptId": "c98b2ce2-8f3c-4f7d-9ef0-293847a444d3",
+  "type": "user",
+  "uuid": "7b646651-4d44-4b1c-8ab5-8b13f7bcf7ec",
+  "toolUseResult": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/dream_reports/dream_20260515T011902/median/paper.tex",
+    "content": "\\documentclass[11pt,a4paper]{article}\n\\usepackage[hyperref]{acl}\n\\usepackage{times}\n\\usepackage{latexsym}\n\\usepackage{amsmath}\n\\usepackage{amssymb}\n\\usepackage{booktabs}\n\\usepackage{multirow}\n\\usepackage{graphicx}\n\\usepackage{algorithm}\n\\usepackage{algorithmic}\n\\usepackage{xcolor}\n\\usepackage{enumitem}\n\n\\newcommand{\\bstar}{b^{*}}\n\\newcommand{\\aeff}{\\alpha_{\\mathrm{eff}}}\n\\newcommand{\\nmin}{n_{\\min}}\n\\newcommand{\\E}{\\mathbb{E}}\n\n\\title{Adaptive Contamination-Aware Reweighting for Pretraining on\\\\Mixed Real-Synthetic Corpora}\n\n\\author{Anonymous}\n\n\\begin{document}\n\\maketitle\n\n%----------------------------------------------------------------------\n\\begin{abstract}\nLarge-scale web corpora increasingly contain machine-generated text of unknown provenance and proportion, degrading language model pretraining through implicit contamination.\nPrior work applies the weighting function $w = (1-q)^b$ using detector-derived scores $q$, but requires per-model validation-based tuning of the exponent $b$.\nWe propose \\textbf{adaptive $\\bstar$}, a method that derives the reweighting exponent online from per-batch score statistics via an effective power-law index $\\aeff(b)$ subject to an effective sample size (ESS) constraint, eliminating grid search and validation sets entirely.\nOn controlled pretraining experiments (132M--200M tokens, Qwen3-0.6B and Llama-3.2-3B), adaptive $\\bstar$ matches grid-search-optimal performance within seed variance (aggregate ratio 85.8\\% of grid-best improvement) while reducing tuning cost from $6N$ to $1$ training run.\nA lightweight TF-IDF+LR detector (AUC = 0.939) suffices: upgrading to ModernBERT (AUC = 0.986) yields only 0.005 additional perplexity reduction.\nThe effect scales with both contamination ratio (2$\\times$ amplification at $\\rho{=}0.6$ vs.\\ $\\rho{=}0.4$) and model size (2$\\times$ amplification at 3B vs.\\ 0.6B parameters).\nWe release all code and experimental configurations.\n\\end{abstract}\n\n%----------------------------------------------------------------------\n\\section{Introduction}\n\\label{sec:intro}\n\nWeb-scale pretraining corpora now contain an estimated 20--60\\% machine-generated text, a fraction that is growing and fundamentally unknowable in production settings.\nRecent theoretical work demonstrates that even small amounts of synthetic contamination can degrade scaling laws and induce model collapse~\\cite{shumailov2024strong}.\nPractical mitigation requires reweighting or filtering training data based on provenance signals from contamination detectors.\n\n\\citet{drayson2025} introduced the weighting function $w_i = (1-q_i)^b$, where $q_i \\in [0,1]$ is a detector-derived synthetic probability score, and showed that sampling importance resampling (SIR) with this weight effectively counters model collapse in recursive training.\nHowever, the exponent $b$ must be selected via per-model validation: \\citet{drayson2025} report $b{=}10$ for GPT-2/SmolLM $\\leq$360M and $b{=}1$ for SmolLM 1.7B, with no principled selection criterion.\nGolden Ratio Weighting~\\cite{goldenratio2025} derives a theoretically optimal weight but requires a known contamination ratio $k$.\nNeither approach applies directly to web-scale pretraining where the contamination proportion is unknown and no clean validation set is available.\n\nWe propose \\textbf{adaptive $\\bstar$}, which replaces the fixed exponent with a per-batch optimized value derived from an effective power-law index $\\aeff(b)$ estimated from the batch's $q$-score distribution, subject to an effective sample size (ESS) lower bound.\nOur contributions are:\n\\begin{enumerate}[nosep,leftmargin=*]\n    \\item \\textbf{Theoretical framework}: $\\aeff(b)$ estimation + ESS constraints provide a principled derivation of $b$ from batch statistics alone, requiring no validation set, no grid search, and no known contamination proportion.\n    \\item \\textbf{Practical result}: Adaptive $\\bstar$ achieves comparable performance to grid-search-optimal $b$ at zero tuning cost, reducing computational overhead from $6N$ to $1$ training run. A lightweight detector (TF-IDF+LR, AUC = 0.939) suffices.\n    \\item \\textbf{Problem setting}: We address one-pass web pretraining with unknown contamination proportion, complementing \\citet{drayson2025}'s recursive training setting.\n\\end{enumerate}\n\n%----------------------------------------------------------------------\n\\section{Background and Related Work}\n\\label{sec:related}\n\n\\paragraph{Model Collapse from Synthetic Data.}\n\\citet{shumailov2024strong} prove that training on recursively generated synthetic data causes progressive distribution collapse.\nConvergence bounds~\\cite{convergencetheory2025} show $d(\\hat{\\mathbb{P}}_t, \\mathbb{P}_0) \\lesssim t^{-\\min\\{p,\\alpha\\}}$, motivating the $\\aeff$ definition in our framework.\n\n\\paragraph{Detect-and-Reweight.}\n\\citet{drayson2025} propose $w_i = (1-q_i)^b$ with SIR resampling on WikiText-2 ($\\sim$2M tokens).\nTheir detector is ModernBERT 150M (AUC = 0.986).\nThe exponent $b$ is selected per-model via validation.\nWe adopt the same weighting function but derive $b$ adaptively and apply weights directly to the loss (continuous gradient-level control) rather than via discrete resampling.\n\n\\paragraph{Other Reweighting Approaches.}\nDoReMi~\\cite{doremi2023} and DSIR~\\cite{dsir2023} optimize domain-level weights; SoftDedup~\\cite{softdedup2024} reweights by duplication.\nDynamic loss-based reweighting~\\cite{dynamicloss2025} uses loss signals without detector scores.\nAll are complementary; none address contamination-specific $b$ selection.\n\n%----------------------------------------------------------------------\n\\section{Method}\n\\label{sec:method}\n\n\\subsection{Problem Setup}\n\nGiven a training corpus $\\mathcal{D} = \\{x_1, \\ldots, x_N\\}$ with unknown contamination proportion $\\rho$, and a pretrained contamination detector that assigns each sample a synthetic probability $q_i \\in [0,1]$, we train a language model with weighted loss:\n\\begin{equation}\n    \\mathcal{L}_b = \\frac{1}{|\\mathcal{B}|} \\sum_{i \\in \\mathcal{B}} (1 - q_i)^b \\cdot \\ell(x_i; \\theta)\n    \\label{eq:weighted_loss}\n\\end{equation}\nwhere $\\ell(x_i; \\theta)$ is the per-sample cross-entropy loss and $b \\geq 0$ controls downweighting intensity.\n\n\\subsection{Adaptive $\\bstar$ via $\\aeff(b)$}\n\nFor each mini-batch $\\mathcal{B}$, we compute the $q$-score statistics and estimate $\\aeff(b)$, the effective power-law index governing how weights concentrate probability mass on real samples.\nWe define $\\bstar$ as the value maximizing $\\aeff(b)$ subject to the ESS constraint:\n\\begin{equation}\n    \\bstar = \\arg\\max_b \\; \\aeff(b) \\quad \\text{s.t.} \\quad \\mathrm{ESS}(b) \\geq \\nmin\n    \\label{eq:bstar}\n\\end{equation}\nwhere the effective sample size is:\n\\begin{equation}\n    \\mathrm{ESS}(b) = \\frac{\\left(\\sum_{i \\in \\mathcal{B}} w_i\\right)^2}{\\sum_{i \\in \\mathcal{B}} w_i^2}, \\quad w_i = (1 - q_i)^b\n    \\label{eq:ess}\n\\end{equation}\n\nThe ESS constraint prevents degenerate solutions where $b$ is so large that only one or two samples have non-negligible weight.\nWhen $\\mathrm{ESS}(b) < \\nmin$ for all $b > 0$, we set $\\bstar = 0$ (uniform weighting), ensuring graceful degradation.\n\n\\subsection{ESS Constraint and $\\nmin$}\n\nThe sole hyperparameter is $\\nmin$, the ESS lower bound.\nWe set $\\nmin = 2$ throughout all experiments.\nSection~\\ref{sec:nmin_ablation} shows that $\\nmin \\in \\{1, 2\\}$ yields stable performance, while $\\nmin \\geq 3$ can over-constrain $\\bstar$ toward zero for small batch sizes ($|\\mathcal{B}| = 4$).\nWhen $\\nmin = |\\mathcal{B}|$, the only feasible solution is $\\bstar = 0$ (all weights equal), recovering uniform training exactly.\n\n\\begin{algorithm}[t]\n\\caption{Adaptive $\\bstar$ Reweighting}\n\\label{alg:adaptive}\n\\begin{algorithmic}[1]\n\\REQUIRE Mini-batch $\\mathcal{B}$, detector scores $\\{q_i\\}_{i \\in \\mathcal{B}}$, $\\nmin$\n\\STATE Compute $q$-score statistics over $\\mathcal{B}$\n\\STATE Search $b \\in [0, b_{\\max}]$ for $\\bstar$ maximizing $\\aeff(b)$\n\\STATE Subject to $\\mathrm{ESS}(b) \\geq \\nmin$ (Eq.~\\ref{eq:ess})\n\\STATE If no feasible $b > 0$: set $\\bstar \\leftarrow 0$\n\\STATE Compute weights $w_i = (1 - q_i)^{\\bstar}$ for $i \\in \\mathcal{B}$\n\\STATE Compute weighted loss $\\mathcal{L}_{\\bstar}$ (Eq.~\\ref{eq:weighted_loss})\n\\RETURN $\\mathcal{L}_{\\bstar}$\n\\end{algorithmic}\n\\end{algorithm}\n\n%----------------------------------------------------------------------\n\\section{Experimental Setup}\n\\label{sec:setup}\n\n\\paragraph{Data.}\nWe construct controlled pretraining corpora from FineWeb subsets (132M--200M tokens) with synthetic contamination injected at known proportions $\\rho \\in \\{0.4, 0.6\\}$.\nSynthetic text is generated by Qwen3-0.6B (in-distribution) or Llama-3.2-1B (cross-generator) and uniformly mixed into real data.\nA domain-skewed variant concentrates synthetic injection in code-heavy domains.\n\n\\paragraph{Detector.}\nOur primary detector is TF-IDF + Logistic Regression, achieving AUC = 0.939 on in-distribution data and AUC = 0.925 on cross-generator data.\nFor the detector quality ablation, we additionally train a ModernBERT 150M detector (AUC = 0.986).\n\n\\paragraph{Models.}\nWe train Qwen3-0.6B (primary) and Llama-3.2-3B (cross-model generalization) from scratch on the contaminated corpora.\nAll Qwen3-0.6B runs use batch size 4 and run for $\\sim$6100 steps; Llama-3.2-3B uses batch size 2 with gradient checkpointing ($\\sim$3800 steps, $\\sim$48 GPU-hours on 4$\\times$ RTX 6000).\n\n\\paragraph{Methods.}\nWe compare: \\textbf{Uniform} (standard training, $b{=}0$); \\textbf{Grid-$b$} ($b \\in \\{0.1, 0.2, 0.3, 0.5, 1.0, 1.5, 2.0, 3.0, 5.0\\}$, best selected post-hoc); \\textbf{Adaptive $\\bstar$} ($\\nmin{=}2$, no tuning); \\textbf{Detect-and-remove} (hard filter at $q{>}0.5$); \\textbf{Random reweighting} (random weights from the same distribution, no detector signal).\n\n\\paragraph{Evaluation.}\nPrimary metric: held-out perplexity (PPL) on real-only data.\nSupplementary: MMLU (5-shot) and HellaSwag (0-shot) on Llama-3.2-3B checkpoints.\n\n%----------------------------------------------------------------------\n\\section{Results}\n\\label{sec:results}\n\n\\subsection{PPL Landscape Is Flat: Extended Grid Search}\n\\label{sec:grid_extended}\n\nWe extend the grid search to $b < 0.5$ (Table~\\ref{tab:extended_grid}) to verify that the grid-best is not at the boundary of the original search range.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Extended grid-$b$ perplexity across 3 seeds ($\\rho{=}0.4$, Qwen3-0.6B, 200M tokens). The PPL range across $b = 0.1$--$0.5$ is only 0.014, confirming an extremely flat landscape.}\n\\label{tab:extended_grid}\n\\begin{tabular}{lcccc}\n\\toprule\n$b$ & seed42 & seed123 & seed456 & Mean PPL \\\\\n\\midrule\n0.1 & 17.662 & 17.654 & 17.666 & 17.661 \\\\\n0.2 & 17.650 & 17.639 & 17.653 & 17.647 \\\\\n\\textbf{0.3} & \\textbf{17.648} & \\textbf{17.636} & \\textbf{17.649} & \\textbf{17.644} \\\\\n0.5 & 17.651 & 17.638 & 17.650 & 17.646 \\\\\n1.0 & 17.692 & 17.674 & 17.680 & 17.682 \\\\\n1.5 & 17.718 & 17.701 & 17.710 & 17.710 \\\\\n2.0 & 17.741 & 17.725 & 17.730 & 17.732 \\\\\n3.0 & 17.774 & 17.760 & 17.765 & 17.766 \\\\\n5.0 & 17.818 & 17.804 & 17.810 & 17.811 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nAll three seeds agree that $b{=}0.3$ is marginally best, but the improvement over $b{=}0.5$ is only 0.002 PPL on average---well within seed variance.\nThe PPL surface across $b = 0.1$--$0.5$ spans just 0.014 perplexity points.\nThis flatness is central to our argument: adaptive $\\bstar$ (median $\\sim$0.88) falls within the flat region, so its slightly higher operating point incurs negligible cost compared to the grid-optimal $b{=}0.3$.\n\nUpdating the grid-best from $b{=}0.5$ to $b{=}0.3$, the aggregate ratio of adaptive-vs-grid improvement is 85.8\\% (per-seed: 95.2\\%, 87.0\\%, 78.4\\%).\n\n\\subsection{Adaptive $\\bstar$ Matches Grid-Best at Zero Tuning Cost}\n\\label{sec:adaptive_vs_grid}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Adaptive $\\bstar$ vs.\\ grid-best ($b{=}0.3$), both at $\\rho{=}0.4$, Qwen3-0.6B, 200M tokens. Adaptive achieves 85.8\\% of grid-best improvement over uniform, within seed variance.}\n\\label{tab:adaptive_vs_grid}\n\\begin{tabular}{lccc}\n\\toprule\nMethod & seed42 & seed123 & seed456 \\\\\n\\midrule\nUniform & 17.690 & 17.690 & 17.700 \\\\\nGrid-best ($b{=}0.3$) & 17.648 & 17.636 & 17.649 \\\\\nAdaptive $\\bstar$ & 17.650 & 17.643 & 17.660 \\\\\n\\midrule\nRatio (\\%) & 95.2 & 87.0 & 78.4 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:adaptive_vs_grid} shows that adaptive $\\bstar$ consistently improves over uniform training across all three seeds, with an aggregate ratio of 85.8\\% relative to the grid-best improvement.\nThe gap between adaptive and grid-best (0.002--0.011 PPL) is smaller than cross-seed variance, and adaptive requires \\textbf{zero tuning}: a single training run replaces the 9-point grid search (9$\\times$ training cost).\n\n\\subsection{Method Comparison}\n\\label{sec:method_comparison}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Method comparison ($\\rho{=}0.4$, Qwen3-0.6B, seed42). Detect-and-remove and random reweighting yield negligible improvement, confirming that soft, signal-driven reweighting is necessary.}\n\\label{tab:method_comparison}\n\\begin{tabular}{lccc}\n\\toprule\nMethod & Eval PPL & $\\Delta$ vs.\\ Uniform & Eff.\\ Tokens \\\\\n\\midrule\nUniform & 17.690 & --- & 200M \\\\\nRandom reweighting & 17.695 & $+$0.005 & 200M \\\\\nDetect-and-remove & 17.685 & $-$0.005 & 130M \\\\\nAdaptive $\\bstar$ & 17.650 & $-$0.040 & 200M \\\\\nGrid-best ($b{=}0.3$) & 17.648 & $-$0.042 & 200M \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\textbf{Detect-and-remove} (hard threshold at $q > 0.5$) discards 35\\% of training data including 8\\% false positives, yielding only 0.005 PPL improvement---far less than soft reweighting.\nBinary filtering discards the continuous $q$-score information: samples with $q = 0.51$ and $q = 0.99$ are treated identically.\n\n\\textbf{Random reweighting} slightly degrades PPL ($+$0.005), confirming that the improvement from adaptive $\\bstar$ is driven by the detector signal, not a regularization artifact of non-uniform weighting.\n\n\\subsection{Effect Amplification: Higher Contamination}\n\\label{sec:rho06}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Effect amplification from $\\rho{=}0.4$ to $\\rho{=}0.6$ (Qwen3-0.6B, seed42). Both absolute and relative improvements double.}\n\\label{tab:effect_amplification}\n\\begin{tabular}{lcccc}\n\\toprule\n& $\\rho{=}0.4$ & $\\rho{=}0.6$ & Amplification \\\\\n\\midrule\nUniform PPL & 17.690 & 17.840 & --- \\\\\nAdaptive PPL & 17.650 & 17.760 & --- \\\\\nAbsolute $\\Delta$ & 0.040 & 0.080 & 2.0$\\times$ \\\\\nRelative impr.\\ (\\%) & 0.226 & 0.449 & 2.0$\\times$ \\\\\n$\\bstar$ median & 0.88 & 0.72 & --- \\\\\n\\midrule\nGrid $b{=}0.5$ PPL & 17.651 & 17.750 & --- \\\\\nAdaptive/Grid ratio & 88.6\\% & 88.9\\% & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nAt $\\rho{=}0.6$, the adaptive improvement over uniform doubles from 0.040 to 0.080 PPL (Table~\\ref{tab:effect_amplification}).\nThe $\\bstar$ distribution shifts left (median 0.88 $\\to$ 0.72) as the ESS constraint activates more frequently in batches with many high-$q$ samples---a sign that the principled constraint is working as designed.\nThe adaptive-vs-grid ratio remains stable at $\\sim$89\\% across contamination levels.\n\nThe detector (TF-IDF+LR) maintains adequate performance at $\\rho{=}0.6$ (AUC = 0.935 vs.\\ 0.939 at $\\rho{=}0.4$), with a slight decrease due to greater stylistic diversity among the more numerous synthetic samples.\n\n\\subsection{Cross-Model Generalization: Llama-3.2-3B}\n\\label{sec:cross_model}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Cross-model comparison ($\\rho{=}0.4$, seed42). Adaptive $\\bstar$ generalizes to Llama-3.2-3B with no adjustment; effect amplification is $\\sim$2$\\times$.}\n\\label{tab:cross_model}\n\\begin{tabular}{lcccc}\n\\toprule\nModel & Params & Unif.\\ PPL & Adapt.\\ PPL & Rel.\\ Impr.\\ (\\%) \\\\\n\\midrule\nQwen3-0.6B & 0.6B & 17.690 & 17.650 & 0.226 \\\\\nLlama-3.2-3B & 3.0B & 13.520 & 13.460 & 0.444 \\\\\n\\midrule\nAmplification & & & & 2.0$\\times$ \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nOn Llama-3.2-3B (Table~\\ref{tab:cross_model}), adaptive $\\bstar$ achieves 0.444\\% relative improvement ($\\sim$2$\\times$ the 0.6B effect), confirming cross-model generalization.\nThe $\\bstar$ distribution is remarkably stable across models (median 0.85 vs.\\ 0.88 for 0.6B), because $\\bstar$ is determined by batch $q$-score statistics rather than model capacity---a direct consequence of the principled derivation.\nIn contrast, \\citet{drayson2025} report that different model sizes require different $b$ values (10 vs.\\ 1), necessitating per-model validation.\n\n\\subsection{Detector Quality Ablation: Lightweight Sufficiency}\n\\label{sec:detector_ablation}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Detector quality ablation ($\\rho{=}0.4$, Qwen3-0.6B, seed42). A 5\\% AUC improvement (0.939 $\\to$ 0.986) yields only 0.005 PPL gain.}\n\\label{tab:detector_ablation}\n\\begin{tabular}{lcccc}\n\\toprule\nDetector & AUC & Adapt.\\ PPL & $\\Delta$ vs.\\ Unif. & Ratio (\\%) \\\\\n\\midrule\nTF-IDF+LR & 0.939 & 17.650 & $-$0.040 & 88.6 \\\\\nModernBERT & 0.986 & 17.645 & $-$0.045 & 90.5 \\\\\n\\midrule\n$\\Delta_{\\text{detector}}$ & $+$0.047 & $-$0.005 & $-$0.005 & $+$1.9 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nUpgrading from TF-IDF+LR (AUC = 0.939) to ModernBERT 150M (AUC = 0.986) improves PPL by only 0.005 (Table~\\ref{tab:detector_ablation}).\nThe marginal return on detector quality is diminishing: a 5-percentage-point AUC gain translates to 0.03\\% relative PPL improvement.\nThis supports \\textbf{lightweight detector sufficiency}---practitioners need not invest in expensive neural detectors when a simple TF-IDF+LR model captures enough signal for effective reweighting.\n\nThe ModernBERT detector produces more bimodal $q$-scores (scores concentrated near 0 and 1), leading to lower $\\bstar$ median (0.78 vs.\\ 0.88) as the ESS constraint activates earlier with more extreme weights.\n\n\\subsection{ESS Constraint Sensitivity ($\\nmin$ Ablation)}\n\\label{sec:nmin_ablation}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{$\\nmin$ sensitivity ($\\rho{=}0.4$, Qwen3-0.6B, seed42, batch size 4). $\\nmin \\in \\{1, 2\\}$ yields effective adaptive behavior; $\\nmin \\geq |\\mathcal{B}|$ degrades to uniform.}\n\\label{tab:nmin}\n\\begin{tabular}{lccl}\n\\toprule\n$\\nmin$ & Eval PPL & $\\bstar$ median & Behavior \\\\\n\\midrule\n1 & 17.655 & 1.35 & Adaptive (occasional extremes) \\\\\n\\textbf{2} & \\textbf{17.650} & \\textbf{0.88} & \\textbf{Adaptive (stable)} \\\\\n3 & 17.690 & 0.45 & Partially clamped \\\\\n4 & 17.690 & 0.00 & Uniform ($\\nmin = |\\mathcal{B}|$) \\\\\n5 & 17.690 & 0.00 & Uniform ($\\nmin > |\\mathcal{B}|$) \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:nmin} shows the complete $\\nmin$ sensitivity curve.\nAt $\\nmin{=}1$, the ESS constraint is nearly vacuous: $\\bstar$ can take extreme values (max observed $= 20$), and PPL is slightly worse than $\\nmin{=}2$ (17.655 vs.\\ 17.650), confirming that the ESS constraint provides beneficial regularization.\nAt $\\nmin{=}2$, the method achieves its best performance.\nAt $\\nmin{=}3$, $\\bstar$ is frequently clamped to low values, and performance degrades to uniform-level on some seeds.\nAt $\\nmin \\geq |\\mathcal{B}| = 4$, the only feasible solution is $\\bstar{=}0$ (all weights equal), and the method gracefully degrades to standard uniform training.\n\nThis graceful degradation is a desirable property: over-constraining $\\nmin$ never causes the method to perform \\emph{worse} than uniform training.\nThe practical recommendation is $\\nmin = 2$, which is robust and requires no further tuning.\n\n\\subsection{Cross-Generator Robustness}\n\\label{sec:cross_gen}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{In-distribution vs.\\ cross-generator settings ($\\rho{=}0.4$, Qwen3-0.6B). Cross-generator reduces effectiveness due to lower detector AUC.}\n\\label{tab:cross_gen}\n\\begin{tabular}{lcccc}\n\\toprule\nSetting & Det.\\ AUC & Unif.\\ PPL & Adapt.\\ PPL & Ratio (\\%) \\\\\n\\midrule\nIn-distribution & 0.939 & 17.690 & 17.650 & 88.6 \\\\\nCross-generator & 0.925 & 17.720 & 17.690 & 75.0 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nWhen synthetic data is generated by Llama-3.2-1B rather than Qwen3-0.6B (Table~\\ref{tab:cross_gen}), detector AUC drops to 0.925 (out-of-distribution for the TF-IDF+LR detector trained on Qwen-generated text).\nAdaptive $\\bstar$ still improves over uniform (0.03 PPL), but the ratio drops to 75\\%.\nThe degradation traces to noisier $q$-scores: the $\\bstar$ distribution widens ($\\bstar$ median 0.95 vs.\\ 0.88), reflecting increased uncertainty in per-batch score statistics.\nThis result bounds the method's dependency on detector quality in out-of-distribution settings.\n\n\\subsection{Domain-Skewed Contamination}\n\\label{sec:domain_skewed}\n\nWhen synthetic contamination is concentrated in a single domain (code-heavy injection rather than uniform random), adaptive $\\bstar$ achieves only 50\\% of the in-distribution ratio (0.02 PPL improvement, relative improvement 0.113\\%).\nThe per-batch $\\bstar$ exhibits high variance: code-heavy batches have uniformly high $q$-scores with low intra-batch variance, violating the implicit assumption that each batch contains a mix of real and synthetic samples.\nIn these batches, the ESS constraint forces $\\bstar \\to 0$, alternating with normal $\\bstar$ values in mixed batches.\n\nThis is a known limitation of per-batch estimation.\nPotential mitigations include larger batch sizes (increasing intra-batch diversity) and cross-batch smoothing of $\\bstar$, which we leave to future work.\n\n\\subsection{Downstream Task Evaluation}\n\\label{sec:downstream}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Downstream evaluation (Llama-3.2-3B, $\\rho{=}0.4$, seed42). PPL improvement is significant; downstream task gains are not statistically significant at this training scale.}\n\\label{tab:downstream}\n\\begin{tabular}{lcccc}\n\\toprule\nTask & Uniform & Adaptive & $\\Delta$ & Significant? \\\\\n\\midrule\nMMLU (5-shot) & 34.20 & 34.35 & $+$0.15 & No ($p > 0.1$) \\\\\nHellaSwag (0-shot) & 52.80 & 53.10 & $+$0.30 & Marginal ($p \\approx 0.08$) \\\\\nEval PPL & 13.52 & 13.46 & $-$0.06 & Yes \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nPPL improvements consistently transfer to directionally positive downstream gains (Table~\\ref{tab:downstream}), but at 200M tokens the model is in very early training and downstream metrics have high variance.\nMMLU improvement ($+$0.15) is not significant; HellaSwag ($+$0.30) reaches marginal significance.\nWe therefore use PPL as the primary evaluation metric and present downstream results as supplementary evidence.\nLonger training runs at larger data scales are needed to determine whether PPL gains translate to statistically significant downstream improvements.\n\n%----------------------------------------------------------------------\n\\section{Analysis}\n\\label{sec:analysis}\n\n\\paragraph{Why does a lightweight detector suffice?}\nThe PPL landscape across $b$ values is extremely flat in the effective range (Section~\\ref{sec:grid_extended}).\nEven if a higher-AUC detector provides more accurate $q$-scores, the adaptive $\\bstar$ operating point shifts only marginally within this flat region.\nThe key requirement is that $q$-scores be \\emph{monotonically informative} (higher $q$ correlates with higher synthetic probability), not perfectly calibrated.\n\n\\paragraph{Aggregate ratio stability.}\nThe adaptive-vs-grid ratio is remarkably stable: 88.6\\% at $\\rho{=}0.4$ and 88.9\\% at $\\rho{=}0.6$.\nThis suggests the ratio is an intrinsic property of the method rather than a function of contamination level---the ESS constraint scales its intervention proportionally to the $q$-score distribution shift.\n\n\\paragraph{$\\bstar$ distribution across settings.}\nThe $\\bstar$ median varies modestly across conditions (0.72--0.95), with the primary driver being the batch $q$-score distribution rather than model size or training dynamics.\nThis model-independence is a direct benefit of the principled per-batch derivation, compared to \\citet{drayson2025}'s model-dependent $b$ selection.\n\n%----------------------------------------------------------------------\n\\section{Discussion and Limitations}\n\\label{sec:limitations}\n\n\\paragraph{Effect size.}\nThe absolute PPL improvements are small (0.04--0.08 at $\\rho{=}0.4$--$0.6$).\nWe emphasize that the method's value lies in \\emph{zero-cost matching of grid-search performance}, not in large absolute gains.\nThe effect amplifies with contamination ratio ($2\\times$ at $\\rho{=}0.6$) and model scale ($2\\times$ at 3B), suggesting greater practical impact at production scales.\n\n\\paragraph{Domain-skewed contamination.}\nPer-batch $\\bstar$ estimation assumes intra-batch $q$-score diversity.\nWhen contamination is concentrated in specific domains, per-batch statistics degrade.\nCross-batch smoothing or stratified batching could address this, but we have not evaluated these extensions.\n\n\\paragraph{Cross-generator degradation.}\nWhen the detector encounters synthetic text from an unseen generator, AUC drops and the adaptive method's effectiveness decreases (ratio 75\\% vs.\\ 88.6\\%).\nIn production, ensemble detectors or periodic retraining on emerging generator signatures would mitigate this.\n\n\\paragraph{Training scale.}\nOur experiments use 132M--200M tokens.\nProduction pretraining corpora are $10^3$--$10^4\\times$ larger; whether the flat PPL landscape and stable aggregate ratio persist at scale requires further study.\n\n\\paragraph{Downstream transfer.}\nAt our training scale, PPL improvements do not reliably transfer to statistically significant downstream gains.\nWe report PPL as the primary metric and downstream results as supplementary.\n\n%----------------------------------------------------------------------\n\\section{Conclusion}\n\\label{sec:conclusion}\n\nWe presented adaptive $\\bstar$, a method that derives the reweighting exponent for contamination-aware pretraining directly from per-batch detector score statistics.\nBy replacing grid search with a principled $\\aeff(b)$ estimation subject to ESS constraints, adaptive $\\bstar$ eliminates validation cost while achieving comparable performance to grid-optimal $b$ (85.8\\% aggregate ratio, within seed variance).\nThe method generalizes across contamination ratios ($\\rho = 0.4$, $0.6$), model scales (0.6B, 3B), and detector qualities (AUC 0.939--0.986), with a lightweight TF-IDF+LR detector proving sufficient.\nThe sole hyperparameter ($\\nmin$) has a simple, robust default ($\\nmin{=}2$), and over-constraining it leads to graceful degradation rather than failure.\n\n\\bibliography{references}\n\\bibliographystyle{acl_natbib}\n\n\\end{document}\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  },
+  "sourceToolAssistantUUID": "126f90f6-5b49-4627-bc51-cf3f656cc009",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+  "sessionId": "b8d1220f-e94e-4760-9740-c1b8649df453",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是 Paper Agent（Dream 模式）。任务：为 dream_id=dream_20260515T011902 tier=median 生成一篇完整的模拟论文。  ## 关键规则 1. 用 **Write 工具** 把 LaTeX 源码写入 `/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weig…",
+  "leafUuid": "7b646651-4d44-4b1c-8ab5-8b13f7bcf7ec",
+  "sessionId": "b8d1220f-e94e-4760-9740-c1b8649df453"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 23_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Generate adaptive provenance weight training paper",
+  "sessionId": "b8d1220f-e94e-4760-9740-c1b8649df453"
+}
+```
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-15T02:01:32.340Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01EzJUJgkLv98JzfyCCE8kNo`</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/dream_reports/dream_20260515T011902/median && pdflatex -interaction=nonstopmode paper.tex && pdflatex -interaction=nonstopmode paper.tex",
+  "description": "Compile LaTeX paper twice for cross-references",
+  "timeout": 120000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7b646651-4d44-4b1c-8ab5-8b13f7bcf7ec",
+  "isSidechain": false,
+  "requestId": "req_011Cb3Xi9yt1Pa4sAgssQBgE",
+  "type": "assistant",
+  "uuid": "ee88459a-3a52-4486-89bf-382438d52169",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+  "sessionId": "b8d1220f-e94e-4760-9740-c1b8649df453",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011pyb9XtRz7gUVdsWy2Rpn2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9680,
+      "cache_read_input_tokens": 41324,
+      "output_tokens": 171,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9680,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 171,
+          "cache_read_input_tokens": 41324,
+          "cache_creation_input_tokens": 9680,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9680
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-15T02:01:32.486Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01EzJUJgkLv98JzfyCCE8kNo`</summary>
+
+```text
+Exit code 1
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025/Debian) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./paper.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2026-01-19>
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo))
+
+! LaTeX Error: File `acl.sty' not found.
+
+Type X to quit or &lt;RETURN> to proceed,
+or enter new name. (Default extension: sty)
+
+Enter file name: 
+! Emergency stop.
+&lt;read *> 
+         
+l.3 \usepackage
+               {times}^^M
+!  ==> Fatal error occurred, no output PDF file produced!
+Transcript written on paper.log.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ee88459a-3a52-4486-89bf-382438d52169",
+  "isSidechain": false,
+  "promptId": "c98b2ce2-8f3c-4f7d-9ef0-293847a444d3",
+  "type": "user",
+  "uuid": "0236de58-19c8-4f6c-b7e2-e343ca096e82",
+  "toolUseResult": "Error: Exit code 1\nThis is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025/Debian) (preloaded format=pdflatex)\n restricted \\write18 enabled.\nentering extended mode\n(./paper.tex\nLaTeX2e <2025-11-01>\nL3 programming layer <2026-01-19>\n(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls\nDocument Class: article 2025/01/22 v1.4n Standard LaTeX document class\n(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo))\n\n! LaTeX Error: File `acl.sty' not found.\n\nType X to quit or &lt;RETURN> to proceed,\nor enter new name. (Default extension: sty)\n\nEnter file name: \n! Emergency stop.\n&lt;read *> \n         \nl.3 \\usepackage\n               {times}^^M\n!  ==> Fatal error occurred, no output PDF file produced!\nTranscript written on paper.log.",
+  "sourceToolAssistantUUID": "ee88459a-3a52-4486-89bf-382438d52169",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+  "sessionId": "b8d1220f-e94e-4760-9740-c1b8649df453",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26 · 2026-05-15T02:01:35.206Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+acl.sty is not available. Let me switch to a simpler document class that's available.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0236de58-19c8-4f6c-b7e2-e343ca096e82",
+  "isSidechain": false,
+  "requestId": "req_011Cb3XiR2zkMwDGxBeLRBLd",
+  "type": "assistant",
+  "uuid": "d85a3256-84ed-4d03-8f22-c120e8c003ee",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+  "sessionId": "b8d1220f-e94e-4760-9740-c1b8649df453",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KuMhz5zU1f1xM99XFcHjub",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 465,
+      "cache_read_input_tokens": 51004,
+      "output_tokens": 495,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 465,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 495,
+          "cache_read_input_tokens": 51004,
+          "cache_creation_input_tokens": 465,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 465
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27 · 2026-05-15T02:01:35.766Z_
+
+ACL style not available. I'll switch to a standard article class with hyperref.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d85a3256-84ed-4d03-8f22-c120e8c003ee",
+  "isSidechain": false,
+  "requestId": "req_011Cb3XiR2zkMwDGxBeLRBLd",
+  "type": "assistant",
+  "uuid": "61cb8c8a-c20c-44e6-a3d2-f11c04de6334",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+  "sessionId": "b8d1220f-e94e-4760-9740-c1b8649df453",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KuMhz5zU1f1xM99XFcHjub",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 465,
+      "cache_read_input_tokens": 51004,
+      "output_tokens": 495,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 465,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 495,
+          "cache_read_input_tokens": 51004,
+          "cache_creation_input_tokens": 465,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 465
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-15T02:01:39.652Z_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_016D72B7kHwLAti5Tbv2pen6`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/dream_reports/dream_20260515T011902/median/paper.tex",
+  "old_string": "\\documentclass[11pt,a4paper]{article}\n\\usepackage[hyperref]{acl}\n\\usepackage{times}\n\\usepackage{latexsym}\n\\usepackage{amsmath}\n\\usepackage{amssymb}\n\\usepackage{booktabs}\n\\usepackage{multirow}\n\\usepackage{graphicx}\n\\usepackage{algorithm}\n\\usepackage{algorithmic}\n\\usepackage{xcolor}\n\\usepackage{enumitem}",
+  "new_string": "\\documentclass[11pt,a4paper]{article}\n\\usepackage[margin=1in]{geometry}\n\\usepackage{times}\n\\usepackage{latexsym}\n\\usepackage{amsmath}\n\\usepackage{amssymb}\n\\usepackage{booktabs}\n\\usepackage{multirow}\n\\usepackage{graphicx}\n\\usepackage{algorithm}\n\\usepackage{algorithmic}\n\\usepackage{xcolor}\n\\usepackage{enumitem}\n\\usepackage[colorlinks=true,citecolor=blue,urlcolor=blue]{hyperref}\n\\usepackage{natbib}\n\\bibliographystyle{plainnat}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "61cb8c8a-c20c-44e6-a3d2-f11c04de6334",
+  "isSidechain": false,
+  "requestId": "req_011Cb3XiR2zkMwDGxBeLRBLd",
+  "type": "assistant",
+  "uuid": "94284df9-154f-48ba-8db6-e7ab4bb290b1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+  "sessionId": "b8d1220f-e94e-4760-9740-c1b8649df453",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KuMhz5zU1f1xM99XFcHjub",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 465,
+      "cache_read_input_tokens": 51004,
+      "output_tokens": 495,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 465,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 495,
+          "cache_read_input_tokens": 51004,
+          "cache_creation_input_tokens": 465,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 465
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-15T02:01:39.705Z_
+
+<details><summary>↩ Tool result · `toolu_016D72B7kHwLAti5Tbv2pen6`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/dream_reports/dream_20260515T011902/median/paper.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "94284df9-154f-48ba-8db6-e7ab4bb290b1",
+  "isSidechain": false,
+  "promptId": "c98b2ce2-8f3c-4f7d-9ef0-293847a444d3",
+  "type": "user",
+  "uuid": "4765547e-91be-403e-8dc6-bd9b97de1633",
+  "toolUseResult": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/dream_reports/dream_20260515T011902/median/paper.tex",
+    "oldString": "\\documentclass[11pt,a4paper]{article}\n\\usepackage[hyperref]{acl}\n\\usepackage{times}\n\\usepackage{latexsym}\n\\usepackage{amsmath}\n\\usepackage{amssymb}\n\\usepackage{booktabs}\n\\usepackage{multirow}\n\\usepackage{graphicx}\n\\usepackage{algorithm}\n\\usepackage{algorithmic}\n\\usepackage{xcolor}\n\\usepackage{enumitem}",
+    "newString": "\\documentclass[11pt,a4paper]{article}\n\\usepackage[margin=1in]{geometry}\n\\usepackage{times}\n\\usepackage{latexsym}\n\\usepackage{amsmath}\n\\usepackage{amssymb}\n\\usepackage{booktabs}\n\\usepackage{multirow}\n\\usepackage{graphicx}\n\\usepackage{algorithm}\n\\usepackage{algorithmic}\n\\usepackage{xcolor}\n\\usepackage{enumitem}\n\\usepackage[colorlinks=true,citecolor=blue,urlcolor=blue]{hyperref}\n\\usepackage{natbib}\n\\bibliographystyle{plainnat}",
+    "originalFile": null,
+    "structuredPatch": [
+      {
+        "oldStart": 1,
+        "oldLines": 5,
+        "newStart": 1,
+        "newLines": 5,
+        "lines": [
+          " \\documentclass[11pt,a4paper]{article}",
+          "-\\usepackage[hyperref]{acl}",
+          "+\\usepackage[margin=1in]{geometry}",
+          " \\usepackage{times}",
+          " \\usepackage{latexsym}",
+          " \\usepackage{amsmath}"
+        ]
+      },
+      {
+        "oldStart": 11,
+        "oldLines": 6,
+        "newStart": 11,
+        "newLines": 9,
+        "lines": [
+          " \\usepackage{algorithmic}",
+          " \\usepackage{xcolor}",
+          " \\usepackage{enumitem}",
+          "+\\usepackage[colorlinks=true,citecolor=blue,urlcolor=blue]{hyperref}",
+          "+\\usepackage{natbib}",
+          "+\\bibliographystyle{plainnat}",
+          " ",
+          " \\newcommand{\\bstar}{b^{*}}",
+          " \\newcommand{\\aeff}{\\alpha_{\\mathrm{eff}}}"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  },
+  "sourceToolAssistantUUID": "94284df9-154f-48ba-8db6-e7ab4bb290b1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+  "sessionId": "b8d1220f-e94e-4760-9740-c1b8649df453",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 30 · 2026-05-15T02:01:39.710Z_
+
+```json
+{
+  "parentUuid": "4765547e-91be-403e-8dc6-bd9b97de1633",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "41faaa20-1ae5-4b1f-b88f-52eba341f5e1",
+  "timestamp": "2026-05-15T02:01:39.710Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+  "sessionId": "b8d1220f-e94e-4760-9740-c1b8649df453",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 31 · 2026-05-15T02:01:42.376Z_
+
+Now I need to also fix the bibliography at the end since we don't have a .bib file. Let me replace it with inline references.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "41faaa20-1ae5-4b1f-b88f-52eba341f5e1",
+  "isSidechain": false,
+  "requestId": "req_011Cb3Xiwv7xX6JBgWStMEyh",
+  "type": "assistant",
+  "uuid": "f242e705-7a69-4388-aa31-a72420af3370",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+  "sessionId": "b8d1220f-e94e-4760-9740-c1b8649df453",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DaXLX5HcUdjgyhsXQ4iQXs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 685,
+      "cache_read_input_tokens": 51469,
+      "output_tokens": 791,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 685,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 791,
+          "cache_read_input_tokens": 51469,
+          "cache_creation_input_tokens": 685,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 685
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-15T02:01:52.511Z_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_015du8oWUrCQQYwCnf2cL7UE`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/dream_reports/dream_20260515T011902/median/paper.tex",
+  "old_string": "\\bibliography{references}\n\\bibliographystyle{acl_natbib}\n\n\\end{document}",
+  "new_string": "\\begin{thebibliography}{10}\n\n\\bibitem[Drayson et~al.(2025)]{drayson2025}\nDrayson, B., et~al.\n\\newblock Detect and reweight: Combating model collapse in LLM pretraining with synthetic data.\n\\newblock In \\emph{Proc.\\ EMNLP}, 2025.\n\n\\bibitem[Shumailov et~al.(2024)]{shumailov2024strong}\nShumailov, I., et~al.\n\\newblock AI models collapse when trained on recursively generated data.\n\\newblock In \\emph{Nature}, 2024.\n\n\\bibitem[{Convergence Theory}(2025)]{convergencetheory2025}\nFeng, W., et~al.\n\\newblock Convergence bounds for synthetic data contamination in pretraining.\n\\newblock \\emph{arXiv:2602.16065}, 2025.\n\n\\bibitem[{Golden Ratio}(2025)]{goldenratio2025}\nLi, Y., et~al.\n\\newblock Golden ratio weighting for synthetic data mixing.\n\\newblock \\emph{arXiv:2502.18049}, 2025.\n\n\\bibitem[Xie et~al.(2023)]{doremi2023}\nXie, S., et~al.\n\\newblock DoReMi: Optimizing data mixtures speeds up language model pretraining.\n\\newblock In \\emph{Proc.\\ NeurIPS}, 2023.\n\n\\bibitem[{DSIR}(2023)]{dsir2023}\nXie, S., et~al.\n\\newblock Data selection for language models via importance resampling.\n\\newblock In \\emph{Proc.\\ NeurIPS}, 2023.\n\n\\bibitem[Abbas et~al.(2024)]{softdedup2024}\nAbbas, A., et~al.\n\\newblock SoftDedup: Deduplication via soft content similarity.\n\\newblock In \\emph{Proc.\\ ACL}, 2024.\n\n\\bibitem[{Dynamic Loss}(2025)]{dynamicloss2025}\nChen, Z., et~al.\n\\newblock Dynamic loss-based reweighting for robust pretraining.\n\\newblock In \\emph{Proc.\\ ICLR}, 2025.\n\n\\end{thebibliography}\n\n\\end{document}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f242e705-7a69-4388-aa31-a72420af3370",
+  "isSidechain": false,
+  "requestId": "req_011Cb3Xiwv7xX6JBgWStMEyh",
+  "type": "assistant",
+  "uuid": "2b79c20b-672d-40a9-8756-b7fbd887ce67",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+  "sessionId": "b8d1220f-e94e-4760-9740-c1b8649df453",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DaXLX5HcUdjgyhsXQ4iQXs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 685,
+      "cache_read_input_tokens": 51469,
+      "output_tokens": 791,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 685,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 791,
+          "cache_read_input_tokens": 51469,
+          "cache_creation_input_tokens": 685,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 685
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-15T02:01:52.524Z_
+
+<details><summary>↩ Tool result · `toolu_015du8oWUrCQQYwCnf2cL7UE`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/dream_reports/dream_20260515T011902/median/paper.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2b79c20b-672d-40a9-8756-b7fbd887ce67",
+  "isSidechain": false,
+  "promptId": "c98b2ce2-8f3c-4f7d-9ef0-293847a444d3",
+  "type": "user",
+  "uuid": "b6bd9835-3268-40d0-aabe-1258fc8fbc7a",
+  "toolUseResult": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/dream_reports/dream_20260515T011902/median/paper.tex",
+    "oldString": "\\bibliography{references}\n\\bibliographystyle{acl_natbib}\n\n\\end{document}",
+    "newString": "\\begin{thebibliography}{10}\n\n\\bibitem[Drayson et~al.(2025)]{drayson2025}\nDrayson, B., et~al.\n\\newblock Detect and reweight: Combating model collapse in LLM pretraining with synthetic data.\n\\newblock In \\emph{Proc.\\ EMNLP}, 2025.\n\n\\bibitem[Shumailov et~al.(2024)]{shumailov2024strong}\nShumailov, I., et~al.\n\\newblock AI models collapse when trained on recursively generated data.\n\\newblock In \\emph{Nature}, 2024.\n\n\\bibitem[{Convergence Theory}(2025)]{convergencetheory2025}\nFeng, W., et~al.\n\\newblock Convergence bounds for synthetic data contamination in pretraining.\n\\newblock \\emph{arXiv:2602.16065}, 2025.\n\n\\bibitem[{Golden Ratio}(2025)]{goldenratio2025}\nLi, Y., et~al.\n\\newblock Golden ratio weighting for synthetic data mixing.\n\\newblock \\emph{arXiv:2502.18049}, 2025.\n\n\\bibitem[Xie et~al.(2023)]{doremi2023}\nXie, S., et~al.\n\\newblock DoReMi: Optimizing data mixtures speeds up language model pretraining.\n\\newblock In \\emph{Proc.\\ NeurIPS}, 2023.\n\n\\bibitem[{DSIR}(2023)]{dsir2023}\nXie, S., et~al.\n\\newblock Data selection for language models via importance resampling.\n\\newblock In \\emph{Proc.\\ NeurIPS}, 2023.\n\n\\bibitem[Abbas et~al.(2024)]{softdedup2024}\nAbbas, A., et~al.\n\\newblock SoftDedup: Deduplication via soft content similarity.\n\\newblock In \\emph{Proc.\\ ACL}, 2024.\n\n\\bibitem[{Dynamic Loss}(2025)]{dynamicloss2025}\nChen, Z., et~al.\n\\newblock Dynamic loss-based reweighting for robust pretraining.\n\\newblock In \\emph{Proc.\\ ICLR}, 2025.\n\n\\end{thebibliography}\n\n\\end{document}",
+    "originalFile": null,
+    "structuredPatch": [
+      {
+        "oldStart": 460,
+        "oldLines": 7,
+        "newStart": 460,
+        "newLines": 48,
+        "lines": [
+          " The method generalizes across contamination ratios ($\\rho = 0.4$, $0.6$), model scales (0.6B, 3B), and detector qualities (AUC 0.939--0.986), with a lightweight TF-IDF+LR detector proving sufficient.",
+          " The sole hyperparameter ($\\nmin$) has a simple, robust default ($\\nmin{=}2$), and over-constraining it leads to graceful degradation rather than failure.",
+          " ",
+          "-\\bibliography{references}",
+          "-\\bibliographystyle{acl_natbib}",
+          "+\\begin{thebibliography}{10}",
+          " ",
+          "+\\bibitem[Drayson et~al.(2025)]{drayson2025}",
+          "+Drayson, B., et~al.",
+          "+\\newblock Detect and reweight: Combating model collapse in LLM pretraining with synthetic data.",
+          "+\\newblock In \\emph{Proc.\\ EMNLP}, 2025.",
+          "+",
+          "+\\bibitem[Shumailov et~al.(2024)]{shumailov2024strong}",
+          "+Shumailov, I., et~al.",
+          "+\\newblock AI models collapse when trained on recursively generated data.",
+          "+\\newblock In \\emph{Nature}, 2024.",
+          "+",
+          "+\\bibitem[{Convergence Theory}(2025)]{convergencetheory2025}",
+          "+Feng, W., et~al.",
+          "+\\newblock Convergence bounds for synthetic data contamination in pretraining.",
+          "+\\newblock \\emph{arXiv:2602.16065}, 2025.",
+          "+",
+          "+\\bibitem[{Golden Ratio}(2025)]{goldenratio2025}",
+          "+Li, Y., et~al.",
+          "+\\newblock Golden ratio weighting for synthetic data mixing.",
+          "+\\newblock \\emph{arXiv:2502.18049}, 2025.",
+          "+",
+          "+\\bibitem[Xie et~al.(2023)]{doremi2023}",
+          "+Xie, S., et~al.",
+          "+\\newblock DoReMi: Optimizing data mixtures speeds up language model pretraining.",
+          "+\\newblock In \\emph{Proc.\\ NeurIPS}, 2023.",
+          "+",
+          "+\\bibitem[{DSIR}(2023)]{dsir2023}",
+          "+Xie, S., et~al.",
+          "+\\newblock Data selection for language models via importance resampling.",
+          "+\\newblock In \\emph{Proc.\\ NeurIPS}, 2023.",
+          "+",
+          "+\\bibitem[Abbas et~al.(2024)]{softdedup2024}",
+          "+Abbas, A., et~al.",
+          "+\\newblock SoftDedup: Deduplication via soft content similarity.",
+          "+\\newblock In \\emph{Proc.\\ ACL}, 2024.",
+          "+",
+          "+\\bibitem[{Dynamic Loss}(2025)]{dynamicloss2025}",
+          "+Chen, Z., et~al.",
+          "+\\newblock Dynamic loss-based reweighting for robust pretraining.",
+          "+\\newblock In \\emph{Proc.\\ ICLR}, 2025.",
+          "+",
+          "+\\end{thebibliography}",
+          "+",
+          " \\end{document}"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  },
+  "sourceToolAssistantUUID": "2b79c20b-672d-40a9-8756-b7fbd887ce67",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+  "sessionId": "b8d1220f-e94e-4760-9740-c1b8649df453",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-15T02:01:55.696Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01CNfbDVcdBv6eHuxUTymsCP`</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/dream_reports/dream_20260515T011902/median && pdflatex -interaction=nonstopmode paper.tex && pdflatex -interaction=nonstopmode paper.tex",
+  "description": "Compile LaTeX paper twice for cross-references",
+  "timeout": 120000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b6bd9835-3268-40d0-aabe-1258fc8fbc7a",
+  "isSidechain": false,
+  "requestId": "req_011Cb3Xjttq7mcvSciEVgPkX",
+  "type": "assistant",
+  "uuid": "e4b29cc6-42e7-4ba5-b2cd-5bc92ad00f39",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+  "sessionId": "b8d1220f-e94e-4760-9740-c1b8649df453",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018SXHH73JRUnEeafdtHNuX1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 877,
+      "cache_read_input_tokens": 52154,
+      "output_tokens": 171,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 877,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 171,
+          "cache_read_input_tokens": 52154,
+          "cache_creation_input_tokens": 877,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 877
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-15T02:01:56.694Z_
+
+<details><summary>↩ Tool result · `toolu_01CNfbDVcdBv6eHuxUTymsCP`</summary>
+
+```text
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025/Debian) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./paper.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2026-01-19>
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo))
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/times.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/base/latexsym.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/multirow/multirow.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)))
+(/usr/share/texlive/texmf-dist/tex/latex/algorithms/algorithm.sty
+(/usr/share/texlive/texmf-dist/tex/latex/float/float.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/algorithms/algorithmic.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+(/usr/share/texlive/texmf-dist/tex/latex/enumitem/enumitem.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/stringenc/stringenc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+No file paper.aux.
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
+(/usr/share/texlive/texmf-dist/tex/latex/base/ulasy.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
+
+Package natbib Warning: Citation `shumailov2024strong' on page 1 undefined on i
+nput line 46.
+
+
+Package natbib Warning: Citation `drayson2025' on page 1 undefined on input lin
+e 49.
+
+
+Package natbib Warning: Citation `drayson2025' on page 1 undefined on input lin
+e 50.
+
+
+Package natbib Warning: Citation `goldenratio2025' on page 1 undefined on input
+ line 51.
+
+
+Package natbib Warning: Citation `drayson2025' on page 1 undefined on input lin
+e 59.
+
+
+Package natbib Warning: Citation `shumailov2024strong' on page 1 undefined on i
+nput line 67.
+
+
+Package natbib Warning: Citation `convergencetheory2025' on page 1 undefined on
+ input line 68.
+
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-
+dist/fonts/enc/dvips/base/8r.enc}]
+
+Package natbib Warning: Citation `drayson2025' on page 2 undefined on input lin
+e 71.
+
+
+Package natbib Warning: Citation `doremi2023' on page 2 undefined on input line
+ 77.
+
+
+Package natbib Warning: Citation `dsir2023' on page 2 undefined on input line 7
+7.
+
+
+Package natbib Warning: Citation `softdedup2024' on page 2 undefined on input l
+ine 77.
+
+
+Package natbib Warning: Citation `dynamicloss2025' on page 2 undefined on input
+ line 78.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 94.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `superscript' on input line 94.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 94.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 94.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\alpha' on input line 94.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 94.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 94.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 111.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 111.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\min' on input line 111.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 111.
+
+
+LaTeX Warning: Reference `sec:nmin_ablation' on page 2 undefined on input line 
+115.
+
+
+LaTeX Warning: Reference `eq:ess' on page 2 undefined on input line 125.
+
+
+LaTeX Warning: Reference `eq:weighted_loss' on page 2 undefined on input line 1
+28.
+
+[2]
+Overfull \hbox (46.37134pt too wide) in paragraph at lines 151--152
+ []\OT1/ptm/b/n/10.95 Methods.[] \OT1/ptm/m/n/10.95 We com-pare: \OT1/ptm/b/n/1
+0.95 Uni-form \OT1/ptm/m/n/10.95 (stan-dard train-ing, $\OML/cmm/m/it/10.95 b[]
+\OT1/cmr/m/n/10.95 0$\OT1/ptm/m/n/10.95 ); \OT1/ptm/b/n/10.95 Grid-$\OML/cmm/m/
+it/10.95 b$ \OT1/ptm/m/n/10.95 ($\OML/cmm/m/it/10.95 b \OMS/cmsy/m/n/10.95 2 f\
+OT1/cmr/m/n/10.95 0\OML/cmm/m/it/10.95 :\OT1/cmr/m/n/10.95 1\OML/cmm/m/it/10.95
+ ; \OT1/cmr/m/n/10.95 0\OML/cmm/m/it/10.95 :\OT1/cmr/m/n/10.95 2\OML/cmm/m/it/1
+0.95 ; \OT1/cmr/m/n/10.95 0\OML/cmm/m/it/10.95 :\OT1/cmr/m/n/10.95 3\OML/cmm/m/
+it/10.95 ; \OT1/cmr/m/n/10.95 0\OML/cmm/m/it/10.95 :\OT1/cmr/m/n/10.95 5\OML/cm
+m/m/it/10.95 ; \OT1/cmr/m/n/10.95 1\OML/cmm/m/it/10.95 :\OT1/cmr/m/n/10.95 0\OM
+L/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 1\OML/cmm/m/it/10.95 :\OT1/cmr/m/n/10.95 
+5\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 2\OML/cmm/m/it/10.95 :\OT1/cmr/m/n/10
+.95 0\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 3\OML/cmm/m/it/10.95 :\OT1/cmr/m/
+n/10.95 0\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 5\OML/cmm/m/it/10.95 :\OT1/cm
+r/m/n/10.95 0\OMS/cmsy/m/n/10.95 g$\OT1/ptm/m/n/10.95 ,
+
+LaTeX Warning: Reference `tab:extended_grid' on page 3 undefined on input line 
+164.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 194.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `superscript' on input line 194.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 194.
+
+
+LaTeX Warning: Reference `tab:adaptive_vs_grid' on page 3 undefined on input li
+ne 215.
+
+[3]
+
+LaTeX Warning: Reference `tab:effect_amplification' on page 4 undefined on inpu
+t line 268.
+
+
+LaTeX Warning: Reference `tab:cross_model' on page 4 undefined on input line 29
+4.
+
+
+Package natbib Warning: Citation `drayson2025' on page 4 undefined on input lin
+e 296.
+
+[4]
+
+LaTeX Warning: Reference `tab:detector_ablation' on page 5 undefined on input l
+ine 318.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 324.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 324.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\min' on input line 324.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 324.
+
+
+LaTeX Warning: Reference `tab:nmin' on page 5 undefined on input line 345.
+
+
+LaTeX Warning: Reference `tab:cross_gen' on page 5 undefined on input line 372.
+
+
+[5]
+
+LaTeX Warning: Reference `tab:downstream' on page 6 undefined on input line 406
+.
+
+
+LaTeX Warning: Reference `sec:grid_extended' on page 6 undefined on input line 
+416.
+
+[6]
+
+Package natbib Warning: Citation `drayson2025' on page 7 undefined on input lin
+e 426.
+
+[7]
+
+Package natbib Warning: There were undefined citations.
+
+[8] (./paper.aux
+
+Package natbib Warning: Citation(s) may have changed.
+(natbib)                Rerun to get citations correct.
+
+)
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+
+Package rerunfilecheck Warning: File `paper.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+ )
+(see the transcript file for additional information)&lt;/usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmex10.pfb>&lt;/usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmmi10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmmi12.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmmi7.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmmi8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmr10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr1
+2.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb>&lt;/
+usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb>&lt;/usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>&lt;/usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb>&lt;/usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>&lt;/usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmsy8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/symbols/msam10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/symbols/msbm10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/ty
+pe1/urw/times/utmb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/u
+tmr8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on paper.pdf (8 pages, 216415 bytes).
+Transcript written on paper.log.
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025/Debian) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./paper.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2026-01-19>
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo))
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/times.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/base/latexsym.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/multirow/multirow.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)))
+(/usr/share/texlive/texmf-dist/tex/latex/algorithms/algorithm.sty
+(/usr/share/texlive/texmf-dist/tex/latex/float/float.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/algorithms/algorithmic.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+(/usr/share/texlive/texmf-dist/tex/latex/enumitem/enumitem.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/stringenc/stringenc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+(./paper.aux)
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
+(./paper.out) (./paper.out)
+(/usr/share/texlive/texmf-dist/tex/latex/base/ulasy.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd) [1{/var/lib/texmf/fo
+nts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-dist/fonts/enc/dvips
+/base/8r.enc}]
+Overfull \hbox (0.67365pt too wide) in paragraph at lines 71--75
+ []\OT1/ptm/b/n/10.95 Detect-and-Reweight.[] [][]\OT1/ptm/m/n/10.95 Drayson et 
+al.[][] [[][]2025[][]] pro-pose $\OML/cmm/m/it/10.95 w[] \OT1/cmr/m/n/10.95 = (
+1 \OMS/cmsy/m/n/10.95 ^^@ \OML/cmm/m/it/10.95 q[]\OT1/cmr/m/n/10.95 )[]$ \OT1/p
+tm/m/n/10.95 with SIR re-sam-pling on WikiText-
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 94.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `superscript' on input line 94.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 94.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 94.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\alpha' on input line 94.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 94.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 94.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 111.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 111.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\min' on input line 111.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 111.
+
+[2]
+Overfull \hbox (46.37134pt too wide) in paragraph at lines 151--152
+ []\OT1/ptm/b/n/10.95 Methods.[] \OT1/ptm/m/n/10.95 We com-pare: \OT1/ptm/b/n/1
+0.95 Uni-form \OT1/ptm/m/n/10.95 (stan-dard train-ing, $\OML/cmm/m/it/10.95 b[]
+\OT1/cmr/m/n/10.95 0$\OT1/ptm/m/n/10.95 ); \OT1/ptm/b/n/10.95 Grid-$\OML/cmm/m/
+it/10.95 b$ \OT1/ptm/m/n/10.95 ($\OML/cmm/m/it/10.95 b \OMS/cmsy/m/n/10.95 2 f\
+OT1/cmr/m/n/10.95 0\OML/cmm/m/it/10.95 :\OT1/cmr/m/n/10.95 1\OML/cmm/m/it/10.95
+ ; \OT1/cmr/m/n/10.95 0\OML/cmm/m/it/10.95 :\OT1/cmr/m/n/10.95 2\OML/cmm/m/it/1
+0.95 ; \OT1/cmr/m/n/10.95 0\OML/cmm/m/it/10.95 :\OT1/cmr/m/n/10.95 3\OML/cmm/m/
+it/10.95 ; \OT1/cmr/m/n/10.95 0\OML/cmm/m/it/10.95 :\OT1/cmr/m/n/10.95 5\OML/cm
+m/m/it/10.95 ; \OT1/cmr/m/n/10.95 1\OML/cmm/m/it/10.95 :\OT1/cmr/m/n/10.95 0\OM
+L/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 1\OML/cmm/m/it/10.95 :\OT1/cmr/m/n/10.95 
+5\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 2\OML/cmm/m/it/10.95 :\OT1/cmr/m/n/10
+.95 0\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 3\OML/cmm/m/it/10.95 :\OT1/cmr/m/
+n/10.95 0\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 5\OML/cmm/m/it/10.95 :\OT1/cm
+r/m/n/10.95 0\OMS/cmsy/m/n/10.95 g$\OT1/ptm/m/n/10.95 ,
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 194.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `superscript' on input line 194.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 194.
+
+[3] [4]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 324.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 324.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\min' on input line 324.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 324.
+
+[5] [6] [7] [8] (./paper.aux) )
+(see the transcript file for additional information)&lt;/usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmex10.pfb>&lt;/usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmmi10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmmi12.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmmi7.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmmi8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmr10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr1
+2.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb>&lt;/
+usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb>&lt;/usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>&lt;/usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb>&lt;/usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>&lt;/usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmsy8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/symbols/msam10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/symbols/msbm10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/ty
+pe1/urw/times/utmb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/u
+tmr8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on paper.pdf (8 pages, 220304 bytes).
+Transcript written on paper.log.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e4b29cc6-42e7-4ba5-b2cd-5bc92ad00f39",
+  "isSidechain": false,
+  "promptId": "c98b2ce2-8f3c-4f7d-9ef0-293847a444d3",
+  "type": "user",
+  "uuid": "5ff89b12-4314-4566-a0fb-e4e61048ebf2",
+  "toolUseResult": {
+    "stdout": "This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025/Debian) (preloaded format=pdflatex)\n restricted \\write18 enabled.\nentering extended mode\n(./paper.tex\nLaTeX2e <2025-11-01>\nL3 programming layer <2026-01-19>\n(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls\nDocument Class: article 2025/01/22 v1.4n Standard LaTeX document class\n(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo))\n(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty\n(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)))\n(/usr/share/texlive/texmf-dist/tex/latex/psnfss/times.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/base/latexsym.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty\nFor additional information on amsmath, use the `?' option.\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))\n(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty\n(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))\n(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/multirow/multirow.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)\n(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)))\n(/usr/share/texlive/texmf-dist/tex/latex/algorithms/algorithm.sty\n(/usr/share/texlive/texmf-dist/tex/latex/float/float.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty))\n(/usr/share/texlive/texmf-dist/tex/latex/algorithms/algorithmic.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty\n(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))\n(/usr/share/texlive/texmf-dist/tex/latex/enumitem/enumitem.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty\n(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty\n(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty\n(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))\n(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty\n(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty\n(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))\n(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/stringenc/stringenc.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)\n(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)\n(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty\n(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty)))\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def\n(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty\n(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))\n(/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd)\n(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)\nNo file paper.aux.\n*geometry* driver: auto-detecting\n*geometry* detected driver: pdftex\n(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii\n[Loading MPS to PDF converter (version 2006.09.02).]\n) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty\n(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))\n(/usr/share/texlive/texmf-dist/tex/latex/base/ulasy.fd)\n(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)\n(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)\n\nPackage natbib Warning: Citation `shumailov2024strong' on page 1 undefined on i\nnput line 46.\n\n\nPackage natbib Warning: Citation `drayson2025' on page 1 undefined on input lin\ne 49.\n\n\nPackage natbib Warning: Citation `drayson2025' on page 1 undefined on input lin\ne 50.\n\n\nPackage natbib Warning: Citation `goldenratio2025' on page 1 undefined on input\n line 51.\n\n\nPackage natbib Warning: Citation `drayson2025' on page 1 undefined on input lin\ne 59.\n\n\nPackage natbib Warning: Citation `shumailov2024strong' on page 1 undefined on i\nnput line 67.\n\n\nPackage natbib Warning: Citation `convergencetheory2025' on page 1 undefined on\n input line 68.\n\n[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-\ndist/fonts/enc/dvips/base/8r.enc}]\n\nPackage natbib Warning: Citation `drayson2025' on page 2 undefined on input lin\ne 71.\n\n\nPackage natbib Warning: Citation `doremi2023' on page 2 undefined on input line\n 77.\n\n\nPackage natbib Warning: Citation `dsir2023' on page 2 undefined on input line 7\n7.\n\n\nPackage natbib Warning: Citation `softdedup2024' on page 2 undefined on input l\nine 77.\n\n\nPackage natbib Warning: Citation `dynamicloss2025' on page 2 undefined on input\n line 78.\n\n\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\n(hyperref)                removing `math shift' on input line 94.\n\n\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\n(hyperref)                removing `superscript' on input line 94.\n\n\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\n(hyperref)                removing `math shift' on input line 94.\n\n\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\n(hyperref)                removing `math shift' on input line 94.\n\n\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\n(hyperref)                removing `\\alpha' on input line 94.\n\n\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\n(hyperref)                removing `subscript' on input line 94.\n\n\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\n(hyperref)                removing `math shift' on input line 94.\n\n\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\n(hyperref)                removing `math shift' on input line 111.\n\n\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\n(hyperref)                removing `subscript' on input line 111.\n\n\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\n(hyperref)                removing `\\min' on input line 111.\n\n\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\n(hyperref)                removing `math shift' on input line 111.\n\n\nLaTeX Warning: Reference `sec:nmin_ablation' on page 2 undefined on input line \n115.\n\n\nLaTeX Warning: Reference `eq:ess' on page 2 undefined on input line 125.\n\n\nLaTeX Warning: Reference `eq:weighted_loss' on page 2 undefined on input line 1\n28.\n\n[2]\nOverfull \\hbox (46.37134pt too wide) in paragraph at lines 151--152\n []\\OT1/ptm/b/n/10.95 Methods.[] \\OT1/ptm/m/n/10.95 We com-pare: \\OT1/ptm/b/n/1\n0.95 Uni-form \\OT1/ptm/m/n/10.95 (stan-dard train-ing, $\\OML/cmm/m/it/10.95 b[]\n\\OT1/cmr/m/n/10.95 0$\\OT1/ptm/m/n/10.95 ); \\OT1/ptm/b/n/10.95 Grid-$\\OML/cmm/m/\nit/10.95 b$ \\OT1/ptm/m/n/10.95 ($\\OML/cmm/m/it/10.95 b \\OMS/cmsy/m/n/10.95 2 f\\\nOT1/cmr/m/n/10.95 0\\OML/cmm/m/it/10.95 :\\OT1/cmr/m/n/10.95 1\\OML/cmm/m/it/10.95\n ; \\OT1/cmr/m/n/10.95 0\\OML/cmm/m/it/10.95 :\\OT1/cmr/m/n/10.95 2\\OML/cmm/m/it/1\n0.95 ; \\OT1/cmr/m/n/10.95 0\\OML/cmm/m/it/10.95 :\\OT1/cmr/m/n/10.95 3\\OML/cmm/m/\nit/10.95 ; \\OT1/cmr/m/n/10.95 0\\OML/cmm/m/it/10.95 :\\OT1/cmr/m/n/10.95 5\\OML/cm\nm/m/it/10.95 ; \\OT1/cmr/m/n/10.95 1\\OML/cmm/m/it/10.95 :\\OT1/cmr/m/n/10.95 0\\OM\nL/cmm/m/it/10.95 ; \\OT1/cmr/m/n/10.95 1\\OML/cmm/m/it/10.95 :\\OT1/cmr/m/n/10.95 \n5\\OML/cmm/m/it/10.95 ; \\OT1/cmr/m/n/10.95 2\\OML/cmm/m/it/10.95 :\\OT1/cmr/m/n/10\n.95 0\\OML/cmm/m/it/10.95 ; \\OT1/cmr/m/n/10.95 3\\OML/cmm/m/it/10.95 :\\OT1/cmr/m/\nn/10.95 0\\OML/cmm/m/it/10.95 ; \\OT1/cmr/m/n/10.95 5\\OML/cmm/m/it/10.95 :\\OT1/cm\nr/m/n/10.95 0\\OMS/cmsy/m/n/10.95 g$\\OT1/ptm/m/n/10.95 ,\n\nLaTeX Warning: Reference `tab:extended_grid' on page 3 undefined on input line \n164.\n\n\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\n(hyperref)                removing `math shift' on input line 194.\n\n\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\n(hyperref)                removing `superscript' on input line 194.\n\n\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\n(hyperref)                removing `math shift' on input line 194.\n\n\nLaTeX Warning: Reference `tab:adaptive_vs_grid' on page 3 undefined on input li\nne 215.\n\n[3]\n\nLaTeX Warning: Reference `tab:effect_amplification' on page 4 undefined on inpu\nt line 268.\n\n\nLaTeX Warning: Reference `tab:cross_model' on page 4 undefined on input line 29\n4.\n\n\nPackage natbib Warning: Citation `drayson2025' on page 4 undefined on input lin\ne 296.\n\n[4]\n\nLaTeX Warning: Reference `tab:detector_ablation' on page 5 undefined on input l\nine 318.\n\n\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\n(hyperref)                removing `math shift' on input line 324.\n\n\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\n(hyperref)                removing `subscript' on input line 324.\n\n\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\n(hyperref)                removing `\\min' on input line 324.\n\n\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\n(hyperref)                removing `math shift' on input line 324.\n\n\nLaTeX Warning: Reference `tab:nmin' on page 5 undefined on input line 345.\n\n\nLaTeX Warning: Reference `tab:cross_gen' on page 5 undefined on input line 372.\n\n\n[5]\n\nLaTeX Warning: Reference `tab:downstream' on page 6 undefined on input line 406\n.\n\n\nLaTeX Warning: Reference `sec:grid_extended' on page 6 undefined on input line \n416.\n\n[6]\n\nPackage natbib Warning: Citation `drayson2025' on page 7 undefined on input lin\ne 426.\n\n[7]\n\nPackage natbib Warning: There were undefined citations.\n\n[8] (./paper.aux\n\nPackage natbib Warning: Citation(s) may have changed.\n(natbib)                Rerun to get citations correct.\n\n)\n\nLaTeX Warning: There were undefined references.\n\n\nLaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.\n\n\nPackage rerunfilecheck Warning: File `paper.out' has changed.\n(rerunfilecheck)                Rerun to get outlines right\n(rerunfilecheck)                or use package `bookmark'.\n\n )\n(see the transcript file for additional information)&lt;/usr/share/texlive/texmf-d\nist/fonts/type1/public/amsfonts/cm/cmex10.pfb>&lt;/usr/share/texlive/texmf-dist/fo\nnts/type1/public/amsfonts/cm/cmmi10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/ty\npe1/public/amsfonts/cm/cmmi12.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/pu\nblic/amsfonts/cm/cmmi7.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/am\nsfonts/cm/cmmi8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/\ncm/cmr10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr1\n2.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb>&lt;/\nusr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb>&lt;/usr/shar\ne/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>&lt;/usr/share/texl\nive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb>&lt;/usr/share/texlive/tex\nmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>&lt;/usr/share/texlive/texmf-dist\n/fonts/type1/public/amsfonts/cm/cmsy8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/\ntype1/public/amsfonts/symbols/msam10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/t\nype1/public/amsfonts/symbols/msbm10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/ty\npe1/urw/times/utmb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/u\ntmr8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>\nOutput written on paper.pdf (8 pages, 216415 bytes).\nTranscript written on paper.log.\nThis is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025/Debian) (preloaded format=pdflatex)\n restricted \\write18 enabled.\nentering extended mode\n(./paper.tex\nLaTeX2e <2025-11-01>\nL3 programming layer <2026-01-19>\n(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls\nDocument Class: article 2025/01/22 v1.4n Standard LaTeX document class\n(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo))\n(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty\n(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)))\n(/usr/share/texlive/texmf-dist/tex/latex/psnfss/times.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/base/latexsym.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty\nFor additional information on amsmath, use the `?' option.\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))\n(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty\n(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))\n(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/multirow/multirow.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)\n(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)))\n(/usr/share/texlive/texmf-dist/tex/latex/algorithms/algorithm.sty\n(/usr/share/texlive/texmf-dist/tex/latex/float/float.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty))\n(/usr/share/texlive/texmf-dist/tex/latex/algorithms/algorithmic.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty\n(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))\n(/usr/share/texlive/texmf-dist/tex/latex/enumitem/enumitem.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty\n(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty\n(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty\n(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))\n(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty\n(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty\n(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))\n(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/stringenc/stringenc.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)\n(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)\n(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty\n(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty)))\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def\n(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty\n(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))\n(/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd)\n(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)\n(./paper.aux)\n*geometry* driver: auto-detecting\n*geometry* detected driver: pdftex\n(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii\n[Loading MPS to PDF converter (version 2006.09.02).]\n) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty\n(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))\n(./paper.out) (./paper.out)\n(/usr/share/texlive/texmf-dist/tex/latex/base/ulasy.fd)\n(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)\n(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd) [1{/var/lib/texmf/fo\nnts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-dist/fonts/enc/dvips\n/base/8r.enc}]\nOverfull \\hbox (0.67365pt too wide) in paragraph at lines 71--75\n []\\OT1/ptm/b/n/10.95 Detect-and-Reweight.[] [][]\\OT1/ptm/m/n/10.95 Drayson et \nal.[][] [[][]2025[][]] pro-pose $\\OML/cmm/m/it/10.95 w[] \\OT1/cmr/m/n/10.95 = (\n1 \\OMS/cmsy/m/n/10.95 ^^@ \\OML/cmm/m/it/10.95 q[]\\OT1/cmr/m/n/10.95 )[]$ \\OT1/p\ntm/m/n/10.95 with SIR re-sam-pling on WikiText-\n\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\n(hyperref)                removing `math shift' on input line 94.\n\n\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\n(hyperref)                removing `superscript' on input line 94.\n\n\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\n(hyperref)                removing `math shift' on input line 94.\n\n\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\n(hyperref)                removing `math shift' on input line 94.\n\n\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\n(hyperref)                removing `\\alpha' on input line 94.\n\n\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\n(hyperref)                removing `subscript' on input line 94.\n\n\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\n(hyperref)                removing `math shift' on input line 94.\n\n\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\n(hyperref)                removing `math shift' on input line 111.\n\n\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\n(hyperref)                removing `subscript' on input line 111.\n\n\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\n(hyperref)                removing `\\min' on input line 111.\n\n\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\n(hyperref)                removing `math shift' on input line 111.\n\n[2]\nOverfull \\hbox (46.37134pt too wide) in paragraph at lines 151--152\n []\\OT1/ptm/b/n/10.95 Methods.[] \\OT1/ptm/m/n/10.95 We com-pare: \\OT1/ptm/b/n/1\n0.95 Uni-form \\OT1/ptm/m/n/10.95 (stan-dard train-ing, $\\OML/cmm/m/it/10.95 b[]\n\\OT1/cmr/m/n/10.95 0$\\OT1/ptm/m/n/10.95 ); \\OT1/ptm/b/n/10.95 Grid-$\\OML/cmm/m/\nit/10.95 b$ \\OT1/ptm/m/n/10.95 ($\\OML/cmm/m/it/10.95 b \\OMS/cmsy/m/n/10.95 2 f\\\nOT1/cmr/m/n/10.95 0\\OML/cmm/m/it/10.95 :\\OT1/cmr/m/n/10.95 1\\OML/cmm/m/it/10.95\n ; \\OT1/cmr/m/n/10.95 0\\OML/cmm/m/it/10.95 :\\OT1/cmr/m/n/10.95 2\\OML/cmm/m/it/1\n0.95 ; \\OT1/cmr/m/n/10.95 0\\OML/cmm/m/it/10.95 :\\OT1/cmr/m/n/10.95 3\\OML/cmm/m/\nit/10.95 ; \\OT1/cmr/m/n/10.95 0\\OML/cmm/m/it/10.95 :\\OT1/cmr/m/n/10.95 5\\OML/cm\nm/m/it/10.95 ; \\OT1/cmr/m/n/10.95 1\\OML/cmm/m/it/10.95 :\\OT1/cmr/m/n/10.95 0\\OM\nL/cmm/m/it/10.95 ; \\OT1/cmr/m/n/10.95 1\\OML/cmm/m/it/10.95 :\\OT1/cmr/m/n/10.95 \n5\\OML/cmm/m/it/10.95 ; \\OT1/cmr/m/n/10.95 2\\OML/cmm/m/it/10.95 :\\OT1/cmr/m/n/10\n.95 0\\OML/cmm/m/it/10.95 ; \\OT1/cmr/m/n/10.95 3\\OML/cmm/m/it/10.95 :\\OT1/cmr/m/\nn/10.95 0\\OML/cmm/m/it/10.95 ; \\OT1/cmr/m/n/10.95 5\\OML/cmm/m/it/10.95 :\\OT1/cm\nr/m/n/10.95 0\\OMS/cmsy/m/n/10.95 g$\\OT1/ptm/m/n/10.95 ,\n\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\n(hyperref)                removing `math shift' on input line 194.\n\n\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\n(hyperref)                removing `superscript' on input line 194.\n\n\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\n(hyperref)                removing `math shift' on input line 194.\n\n[3] [4]\n\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\n(hyperref)                removing `math shift' on input line 324.\n\n\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\n(hyperref)                removing `subscript' on input line 324.\n\n\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\n(hyperref)                removing `\\min' on input line 324.\n\n\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\n(hyperref)                removing `math shift' on input line 324.\n\n[5] [6] [7] [8] (./paper.aux) )\n(see the transcript file for additional information)&lt;/usr/share/texlive/texmf-d\nist/fonts/type1/public/amsfonts/cm/cmex10.pfb>&lt;/usr/share/texlive/texmf-dist/fo\nnts/type1/public/amsfonts/cm/cmmi10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/ty\npe1/public/amsfonts/cm/cmmi12.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/pu\nblic/amsfonts/cm/cmmi7.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/am\nsfonts/cm/cmmi8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/\ncm/cmr10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr1\n2.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb>&lt;/\nusr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb>&lt;/usr/shar\ne/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>&lt;/usr/share/texl\nive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb>&lt;/usr/share/texlive/tex\nmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>&lt;/usr/share/texlive/texmf-dist\n/fonts/type1/public/amsfonts/cm/cmsy8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/\ntype1/public/amsfonts/symbols/msam10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/t\nype1/public/amsfonts/symbols/msbm10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/ty\npe1/urw/times/utmb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/u\ntmr8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>\nOutput written on paper.pdf (8 pages, 220304 bytes).\nTranscript written on paper.log.",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "e4b29cc6-42e7-4ba5-b2cd-5bc92ad00f39",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/dream_reports/dream_20260515T011902/median",
+  "sessionId": "b8d1220f-e94e-4760-9740-c1b8649df453",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 36_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是 Paper Agent（Dream 模式）。任务：为 dream_id=dream_20260515T011902 tier=median 生成一篇完整的模拟论文。  ## 关键规则 1. 用 **Write 工具** 把 LaTeX 源码写入 `/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weig…",
+  "leafUuid": "5ff89b12-4314-4566-a0fb-e4e61048ebf2",
+  "sessionId": "b8d1220f-e94e-4760-9740-c1b8649df453"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 37_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Generate adaptive provenance weight training paper",
+  "sessionId": "b8d1220f-e94e-4760-9740-c1b8649df453"
+}
+```
+
+---
+
+### Assistant
+
+_source line 38 · 2026-05-15T02:02:03.853Z_
+
+编译成功，生成 8 页 PDF。
+
+输出：`paper.pdf`（8 pages, 220KB），覆盖全部 18 个实验的数据，包含 8 张表格（extended grid、adaptive vs grid、method comparison、effect amplification、cross-model、detector ablation、$n_{\min}$ sensitivity、cross-generator）、Algorithm 1、完整的 Abstract/Intro/Method/Experiments/Analysis/Limitations/Conclusion 和参考文献。所有数字均取自 `experiment_data.json`，无编造。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5ff89b12-4314-4566-a0fb-e4e61048ebf2",
+  "isSidechain": false,
+  "requestId": "req_011Cb3XkDWGKRBYncdecPHJn",
+  "type": "assistant",
+  "uuid": "b58f074f-9420-4090-b00d-1068c1b1dad1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/dream_reports/dream_20260515T011902/median",
+  "sessionId": "b8d1220f-e94e-4760-9740-c1b8649df453",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HuDMeeC39QXBcYCiWGvxtK",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9880,
+      "cache_read_input_tokens": 53031,
+      "output_tokens": 148,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9880,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 148,
+          "cache_read_input_tokens": 53031,
+          "cache_creation_input_tokens": 9880,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9880
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 39_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是 Paper Agent（Dream 模式）。任务：为 dream_id=dream_20260515T011902 tier=median 生成一篇完整的模拟论文。  ## 关键规则 1. 用 **Write 工具** 把 LaTeX 源码写入 `/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weig…",
+  "leafUuid": "b58f074f-9420-4090-b00d-1068c1b1dad1",
+  "sessionId": "b8d1220f-e94e-4760-9740-c1b8649df453"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 40_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Generate adaptive provenance weight training paper",
+  "sessionId": "b8d1220f-e94e-4760-9740-c1b8649df453"
+}
+```
+
+---
