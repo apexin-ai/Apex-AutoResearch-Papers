@@ -133,6 +133,17 @@
           "paper_pdf": null,
           "code_count": 5,
           "trace_count": 1762
+        },
+        "faith-evidence-ie": {
+          "status": "uploaded",
+          "project": "faith-evidence-ie",
+          "collection": "faith-evidence-ie--export-20260712",
+          "snapshot": true,
+          "derived_archive_sha256": "039bc6faab8ed7efb6097589be90208c897d68b6e62fe4deae4e6b6d51b6674d",
+          "indexed_members": 2554,
+          "paper_pdf": null,
+          "code_count": 5,
+          "trace_count": 2549
         }
       },
       "status": "in_progress",

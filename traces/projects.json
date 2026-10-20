@@ -656,6 +656,19 @@
       }
     },
     {
+      "project": "faith-evidence-ie--export-20260712",
+      "title": "Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction (July export snapshot)",
+      "catalog": "../research-snapshots/faith-evidence-ie/2026-07-12/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 2549,
+        "messages": 318975,
+        "user_turns": 16205,
+        "tool_calls": 80190,
+        "unparsed_lines": 0,
+        "conversation": 2549
+      }
+    },
+    {
       "project": "gated_mfrm_judge_bias",
       "title": "Fair Scores via Joint Calibration: A Gated Many-Facet Rasch Model for Disentangling Judge Bias and Contamination in LLM Evaluation",
       "catalog": "../paper-assets/gated_mfrm_judge_bias/05-generation-trace/catalog.json",
