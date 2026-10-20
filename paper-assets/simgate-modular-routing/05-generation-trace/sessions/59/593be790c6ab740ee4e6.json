@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "593be790c6ab740ee4e6",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "infra data migration westb to westd",
+  "task_key": "worker_infra_data-migration-westb-to-westd_20260521T050229",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_data-migration-westb-to-westd_20260521T050229.log",
+    "occurrence": 1,
+    "bytes": 775807,
+    "sha256": "64fad255ee34731152b0eb43ac49b95b6e24d1dbdee21c5ae20e4443472aaa9f"
+  },
+  "statistics": {
+    "messages": 379,
+    "user_turns": 1,
+    "tool_calls": 135,
+    "roles": {
+      "log": 1,
+      "system": 11,
+      "record": 1,
+      "assistant": 94,
+      "tool_call": 135,
+      "tool_result": 135,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 32,
+      "chunks": [
+        {
+          "path": "593be790c6ab740ee4e6-part-0001.json",
+          "message_count": 32
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 347,
+      "chunks": [
+        {
+          "path": "593be790c6ab740ee4e6-part-0001.json",
+          "message_count": 148
+        },
+        {
+          "path": "593be790c6ab740ee4e6-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "593be790c6ab740ee4e6-part-0003.json",
+          "message_count": 19
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-data-migration-westb-to-westd.md"
+}

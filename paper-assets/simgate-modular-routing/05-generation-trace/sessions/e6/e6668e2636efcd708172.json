@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e6668e2636efcd708172",
+  "project": "simgate-modular-routing",
+  "kind": "history",
+  "title": "agent / loop_4_1778779353.md",
+  "task_key": "loop_4_1778779353",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778779353.md",
+    "occurrence": 1,
+    "bytes": 4199,
+    "sha256": "68fe97c8fc9f4bb3519380f96fa65b0608d35bf26e1159a21ebdb134d37b891c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: max_wall_time\nupdated: '2026-05-14T17:21:23+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westb-13313 的 cuda:0 和 cuda:1（gpu_ids=[0,1]）。不得用其他卡。\n- 论文是 **analysis paper**（D045/D046 确认），不是 method paper。不要提出 router 架构改进或系统提案。\n- MATH pilot 数据就是 pilot-50（D047 确认 math-200-fixed 不恢复）。不要尝试重跑 MATH-200。\n- ALFWorld 定位为 exploratory（D044），不承诺纳入论文。结果出来后看是否作为 supplementary。\n- 论文两个目录共存：`artifacts/_project/paper/latex/`（编译主目录）和 `docs/paper/`（历史副本）。修改必须两处同步，否则审计时会报不一致。\n- discussion.tex 文件保留但不再 `\\input`——内容已移入 Limitations 节。\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westb-13313（SSH 别名 `autodl-simgate`），2× RTX 5090 32GB\n- 工作目录：`/root/autodl-tmp/simgate-modular-routing/`\n- Python：`/root/miniconda3/bin/python`（aml-train 镜像，conda base 环境）\n- 本地项目根：`/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/`\n- LaTeX 编译：本地 `/usr/bin/pdflatex` 可用（已验证）；远程也可编译\n- 活跃实验：alfworld-counterfactual-full（cron 监控中，pid=alfworld_cf，预计 ~3.5h 总时长）\n- GPU 0：空闲（vLLM 已 kill，28GB 已释放）\n- GPU 1：alfworld 实验占用\n\n### 3. 📊 当前状态\n**刚完成 P0 页数修复**：论文从 ~5 页正文压缩到 ≤4 页（本地编译验证通过）。Discussion 移入 Limitations，Table 2 移入 Appendix B，labeling quality 在 Appendix A。\n\n**本轮密集完成的 Worker（~15 个）**：\n- draft gap analysis ✅、compile audit ✅、number audit ✅、reference audit ✅、full draft audit ✅\n- bib expansion ✅（+3 引用：ToolkenGPT/ALFWorld/Voyager，总 20 条）\n- Table 1 CI 修复 ✅（90%→95%）\n- Table 2 per-task 创建 ✅\n- 4 篇 concurrent work 引用补入 Related Work ✅\n- page-trim ✅ + P0 页数修复（Agent 直接执行）✅\n\n**Registry RUNNING**：alfworld-counterfactual-full（135 games, 6 task types）\n\n**等待中**：\n- alfworld-counterfactual-full cron 回调（完成后按 on-experiment-done 处理）\n- 后端 Worker 账号池恢复（本轮密集派发导致耗尽）\n\n### 4. 📋 待办\n- alfworld-counterfactual-full cron 回调到达 → 读结果，更新 registry。如果有信号：更新 Limitations 中的 ALFWorld TODO 占位符，考虑加入 supplementary。如果无信号/负向：记录到 registry，不改论文。\n- Worker 池恢复 → 派 Worker SSH 到 westb-13313 同步本地编辑到远程并重编译（本地编译通过但远程尚未同步）\n- 远程编译验证通过 → 汇报 Director \"初稿可交审\"\n- Director 说\"交初稿\" → 走 paper checklist、reference-audit skill 最终检查\n- 5/17 前：整合完整 LaTeX 初稿交 Director\n- 5/17-22：Review 对抗迭代期\n\n### 5. 🎯 战略上下文\n- **核心发现**：Death avoidance 占 ~90% routing signal（DAF=90.41%），non-death 场景两种 modality 近似等效。论文贡献 = empirical finding + diagnostic methodology。\n- **决策链关键节点**：D045/D046 撤销 pivot 回归 analysis paper → D047 MATH-200 不恢复 → D044 ALFWorld exploratory\n- **论文当前状态**：实质完成，所有 section 无 placeholder，数字审计 100% 通过。唯一 TODO = ALFWorld 结果占位符（在 Limitations 和 Conclusion 中）。\n- **易错点**：\n  - `docs/paper/` 结构与 `artifacts/` 不同（docs 有更详细的 experiments 段落如 cross-seed、end-to-end evaluation、three observations），不要假设两处内容一致\n  - artifacts/ 的 experiments.tex 是精简版（Router Diagnostic 只有 3 段），docs/ 是完整版（6 段）。最终提交需要决定用哪个版本\n  - 论文标题两处不同：artifacts 用 \"Death Avoidance Accounts for 90%...\"，docs 用 \"Death Avoidance Dominates Routing Signal...\"——需要 Director 定稿\n  - find-non-living-thing 是唯一零死亡 task 但有 Δ=+9.58，是审稿人会追问的异常点，论文已 address\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778779353.md"
+}

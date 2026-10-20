@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d347ab56747f6b40c6f7",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "diagnose plan 006 deep internal",
+  "task_key": "worker_diagnose_plan-006-deep-internal_20260515T161622",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_plan-006-deep-internal_20260515T161622_result.json",
+    "occurrence": 1,
+    "bytes": 830,
+    "sha256": "b63d4ef1aea4de0675fe58671254e1306ca226558ce80c38dd31becdce21dbf5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断报告已写入 `artifacts/plan-006-deep-internal/failure_diagnosis.md`。\n\n**核心结论**：\n\n- **根因**：两个并行进程都用了 `CUDA_VISIBLE_DEVICES=0`，在同一块 32GB GPU 上跑两个 vLLM 实例（各要 85% 显存），GPU 1 全程空闲。Process 1 还错误地包含了全部 6 个任务而非计划的 2 个。\n- **死亡方式**：GPU 显存竞争导致 vLLM EngineCore 崩溃（`Engine core proc EngineCore died unexpectedly`），进程在 chemistry-mix 未完成时终止，无 sentinel 文件。\n- **数据现状**：117/120 episodes 已收集（97.5%），chemistry-mix 差 3 集，补充进程正在跑。但两进程同写一目录，需去重检查。\n- **当前风险**：服务器上两个补充进程又在 GPU 0 上竞争，重演相同模式，建议 kill 一个。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-plan-006-deep-internal.md"
+}

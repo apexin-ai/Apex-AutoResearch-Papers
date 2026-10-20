@@ -1,0 +1,728 @@
+{
+  "schema_version": "1.0",
+  "session_id": "c8e128e71234dde3ebe7",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 541,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019FK6JjDAuooHLwaGxXYfSc",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westb-13313",
+                "command": "head -155 /root/autodl-tmp/simgate-modular-routing/src/episode_level_collection.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "33321c42-deef-4a8a-97d9-eb2806e96fe8",
+            "uuid": "8b0dff78-f400-43b4-9337-10284873f818",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KgM8Qqo6BV4EYpE2w6Mzes",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3571,
+                "cache_read_input_tokens": 40935,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3571
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000541"
+        },
+        {
+          "source_line": 542,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GHnADRpWcwrGtYezitmXTh",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westb-13313",
+                "command": "sed -n '100,220p' /root/autodl-tmp/simgate-modular-routing/src/episode_level_collection.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "33321c42-deef-4a8a-97d9-eb2806e96fe8",
+            "uuid": "b36be3b4-4da3-40af-87ff-bcfc5c6ae830",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KgM8Qqo6BV4EYpE2w6Mzes",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3571,
+                "cache_read_input_tokens": 40935,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3571
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000542"
+        },
+        {
+          "source_line": 543,
+          "timestamp": "2026-05-19T02:19:43.397Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019FK6JjDAuooHLwaGxXYfSc",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# Plan C episode-level labeling data collection for router SFT training.\\\\n#\\\\n# For each task variation, runs 2 complete episodes (always-internal + always-deterministic),\\\\n# compares final episode scores to label each step's modality preference.\\\\n# Reuses run_episode_internal / run_episode_deterministic from signal_prescreening.py.\\\\n#\\\\n# Outputs:\\\\n#   {output_dir}/{task_type}/episodes.jsonl        — full episode data (downstream pipeline input)\\\\n#   {output_dir}/{task_type}/labeled_steps.jsonl   — one labeled step per line (training data)\\\\n#   {output_dir}/{task_type}/episode_summary.jsonl  — one episode summary per line\\\\n#\\\\n# Usage:\\\\n#   python src/episode_level_collection.py --task_types \\\\\\\"boil,melt\\\\\\\" --episodes 20 --gpu_id 0\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport random\\\\nimport sys\\\\nimport signal\\\\nimport subprocess\\\\nimport time\\\\nfrom typing import List, Dict, Any\\\\n\\\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\\\nfrom scienceworld_utils import (\\\\n    create_env, reset_env, get_valid_actions, get_score,\\\\n    step_env, close_env, fork_and_lookahead, get_task_types,\\\\n    get_max_variations,\\\\n)\\\\nfrom llm_agent import LLMAgent, find_model_path\\\\n\\\\nDEATH_THRESHOLD = -100\\\\n\\\\n# Disk space optimization: strip verbose per-step fields (llm_output, per-step\\\\n# action_history, candidates). Set SLIM_EPISODES=0 for full debug output.\\\\nSLIM_EPISODES = os.environ.get(\\\\\\\"SLIM_EPISODES\\\\\\\", \\\\\\\"1\\\\\\\") == \\\\\\\"1\\\\\\\"\\\\n\\\\n\\\\ndef _slim_episode_data(ep):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Strip per-step debug fields when SLIM_EPISODES is enabled.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if not SLIM_EPISODES:\\\\n        return ep\\\\n    result = {k: v for k, v in ep.items() if k != \\\\\\\"steps\\\\\\\"}\\\\n    if \\\\\\\"steps\\\\\\\" in ep:\\\\n        result[\\\\\\\"steps\\\\\\\"] = [\\\\n            {k: v for k, v in s.items()\\\\n             if k not in (\\\\\\\"llm_output\\\\\\\", \\\\\\\"action_history\\\\\\\", \\\\\\\"candidates\\\\\\\")}\\\\n            for s in ep[\\\\\\\"steps\\\\\\\"]\\\\n        ]\\\\n    return result\\\\n\\\\n\\\\n\\\\ndef cleanup_gpu_processes(gpu_id: int):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Kill orphaned GPU processes before vLLM init to prevent OOM.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    try:\\\\n        result = subprocess.run(\\\\n            [\\\\\\\"nvidia-smi\\\\\\\", f\\\\\\\"--id={gpu_id}\\\\\\\",\\\\n             \\\\\\\"--query-compute-apps=pid\\\\\\\", \\\\\\\"--format=csv,noheader\\\\\\\"],\\\\n            capture_output=True, text=True, timeout=10,\\\\n        )\\\\n        if result.returncode != 0 or not result.stdout.strip():\\\\n            return\\\\n        my_pid = os.getpid()\\\\n        killed = []\\\\n        for line in result.stdout.strip().split(\\\\\\\"\\\\\\\\n\\\\\\\"):\\\\n            pid_str = line.strip()\\\\n            if pid_str.isdigit() and int(pid_str) != my_pid:\\\\n                try:\\\\n                    os.kill(int(pid_str), signal.SIGKILL)\\\\n                    killed.append(pid_str)\\\\n                except ProcessLookupError:\\\\n                    pass\\\\n        if killed:\\\\n            print(f\\\\\\\"[cleanup] Killed orphan PIDs on GPU {gpu_id}: {killed}\\\\\\\")\\\\n            time.sleep(3)\\\\n    except Exception as e:\\\\n        print(f\\\\\\\"[cleanup] GPU cleanup warning: {e}\\\\\\\")\\\\n\\\\n\\\\ndef resolve_task_type(name: str) -> str:\\\\n    try:\\\\n        available = get_task_types()\\\\n    except Exception:\\\\n        return name\\\\n    if name in available:\\\\n        return name\\\\n    matches = [t for t in available if name.lower() in t.lower()]\\\\n    if matches:\\\\n        return matches[0]\\\\n    return name\\\\n\\\\n\\\\ndef is_lethal(fr: Dict[str, Any]) -> bool:\\\\n    if fr[\\\\\\\"done\\\\\\\"] and fr[\\\\\\\"score\\\\\\\"] < 0:\\\\n        return True\\\\n    if fr[\\\\\\\"score\\\\\\\"] <= -100:\\\\n        return True\\\\n    return False\\\\n\\\\n\\\\ndef scan_reuse_episodes(reuse_dirs: List[str], task_name: str) -> Dict[str, Any]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Scan reuse directories for existing episodes of a given task.\\\\n\\\\n    Returns dict with 'total' count and 'sources' list of {dir, count, path}.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    task_name_normalized = task_name.replace(\\\\\\\" \\\\\\\", \\\\\\\"_\\\\\\\")\\\\n    candidates = [task_name, task_name_normalized]\\\\n    if \\\\\\\"-\\\\\\\" in task_name:\\\\n        candidates.append(task_name.replace(\\\\\\\"-\\\\\\\", \\\\\\\"_\\\\\\\"))\\\\n    if \\\\\\\"_\\\\\\\" in task_name:\\\\n        candidates.append(task_name.replace(\\\\\\\"_\\\\\\\", \\\\\\\"-\\\\\\\"))\\\\n\\\\n    sources = []\\\\n    total = 0\\\\n\\\\n    for reuse_dir in reuse_dirs:\\\\n        reuse_dir = reuse_dir.rstrip(\\\\\\\"/\\\\\\\")\\\\n        if not os.path.isdir(reuse_dir):\\\\n            continue\\\\n\\\\n        found_path = None\\\\n        for cand_name in candidates:\\\\n            ep_path = os.path.join(reuse_dir, cand_name, \\\\\\\"episodes.jsonl\\\\\\\")\\\\n            if os.path.isfile(ep_path):\\\\n                found_path = ep_path\\\\n                break\\\\n\\\\n        if not found_path:\\\\n            subdirs = os.listdir(reuse_dir)\\\\n            for sd in subdirs:\\\\n                if sd.lower() == task_name_normalized.lower():\\\\n                    ep_path = os.path.join(reuse_dir, sd, \\\\\\\"episodes.jsonl\\\\\\\")\\\\n                    if os.path.isfile(ep_path):\\\\n                        found_path = ep_path\\\\n                        break\\\\n\\\\n        if found_path:\\\\n            count = 0\\\\n            with open(found_path) as f:\\\\n                for line in f:\\\\n                    line = line.strip()\\\\n                    if line:\\\\n                        count += 1\\\\n            sources.append({\\\\n                \\\\\\\"dir\\\\\\\": reuse_dir,\\\\n                \\\\\\\"path\\\\\\\": found_path,\\\\n                \\\\\\\"count\\\\\\\": count,\\\\n            })\\\\n            total += count\\\\n\\\\n    return {\\\\\\\"total\\\\\\\": total, \\\\\\\"sources\\\\\\\": sources}\\\\n\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.74}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "33321c42-deef-4a8a-97d9-eb2806e96fe8",
+            "uuid": "32a8e951-dedc-480f-8691-6320329fe200",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# Plan C episode-level labeling data collection for router SFT training.\\\\n#\\\\n# For each task variation, runs 2 complete episodes (always-internal + always-deterministic),\\\\n# compares final episode scores to label each step's modality preference.\\\\n# Reuses run_episode_internal / run_episode_deterministic from signal_prescreening.py.\\\\n#\\\\n# Outputs:\\\\n#   {output_dir}/{task_type}/episodes.jsonl        — full episode data (downstream pipeline input)\\\\n#   {output_dir}/{task_type}/labeled_steps.jsonl   — one labeled step per line (training data)\\\\n#   {output_dir}/{task_type}/episode_summary.jsonl  — one episode summary per line\\\\n#\\\\n# Usage:\\\\n#   python src/episode_level_collection.py --task_types \\\\\\\"boil,melt\\\\\\\" --episodes 20 --gpu_id 0\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport random\\\\nimport sys\\\\nimport signal\\\\nimport subprocess\\\\nimport time\\\\nfrom typing import List, Dict, Any\\\\n\\\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\\\nfrom scienceworld_utils import (\\\\n    create_env, reset_env, get_valid_actions, get_score,\\\\n    step_env, close_env, fork_and_lookahead, get_task_types,\\\\n    get_max_variations,\\\\n)\\\\nfrom llm_agent import LLMAgent, find_model_path\\\\n\\\\nDEATH_THRESHOLD = -100\\\\n\\\\n# Disk space optimization: strip verbose per-step fields (llm_output, per-step\\\\n# action_history, candidates). Set SLIM_EPISODES=0 for full debug output.\\\\nSLIM_EPISODES = os.environ.get(\\\\\\\"SLIM_EPISODES\\\\\\\", \\\\\\\"1\\\\\\\") == \\\\\\\"1\\\\\\\"\\\\n\\\\n\\\\ndef _slim_episode_data(ep):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Strip per-step debug fields when SLIM_EPISODES is enabled.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if not SLIM_EPISODES:\\\\n        return ep\\\\n    result = {k: v for k, v in ep.items() if k != \\\\\\\"steps\\\\\\\"}\\\\n    if \\\\\\\"steps\\\\\\\" in ep:\\\\n        result[\\\\\\\"steps\\\\\\\"] = [\\\\n            {k: v for k, v in s.items()\\\\n             if k not in (\\\\\\\"llm_output\\\\\\\", \\\\\\\"action_history\\\\\\\", \\\\\\\"candidates\\\\\\\")}\\\\n            for s in ep[\\\\\\\"steps\\\\\\\"]\\\\n        ]\\\\n    return result\\\\n\\\\n\\\\n\\\\ndef cleanup_gpu_processes(gpu_id: int):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Kill orphaned GPU processes before vLLM init to prevent OOM.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    try:\\\\n        result = subprocess.run(\\\\n            [\\\\\\\"nvidia-smi\\\\\\\", f\\\\\\\"--id={gpu_id}\\\\\\\",\\\\n             \\\\\\\"--query-compute-apps=pid\\\\\\\", \\\\\\\"--format=csv,noheader\\\\\\\"],\\\\n            capture_output=True, text=True, timeout=10,\\\\n        )\\\\n        if result.returncode != 0 or not result.stdout.strip():\\\\n            return\\\\n        my_pid = os.getpid()\\\\n        killed = []\\\\n        for line in result.stdout.strip().split(\\\\\\\"\\\\\\\\n\\\\\\\"):\\\\n            pid_str = line.strip()\\\\n            if pid_str.isdigit() and int(pid_str) != my_pid:\\\\n                try:\\\\n                    os.kill(int(pid_str), signal.SIGKILL)\\\\n                    killed.append(pid_str)\\\\n                except ProcessLookupError:\\\\n                    pass\\\\n        if killed:\\\\n            print(f\\\\\\\"[cleanup] Killed orphan PIDs on GPU {gpu_id}: {killed}\\\\\\\")\\\\n            time.sleep(3)\\\\n    except Exception as e:\\\\n        print(f\\\\\\\"[cleanup] GPU cleanup warning: {e}\\\\\\\")\\\\n\\\\n\\\\ndef resolve_task_type(name: str) -> str:\\\\n    try:\\\\n        available = get_task_types()\\\\n    except Exception:\\\\n        return name\\\\n    if name in available:\\\\n        return name\\\\n    matches = [t for t in available if name.lower() in t.lower()]\\\\n    if matches:\\\\n        return matches[0]\\\\n    return name\\\\n\\\\n\\\\ndef is_lethal(fr: Dict[str, Any]) -> bool:\\\\n    if fr[\\\\\\\"done\\\\\\\"] and fr[\\\\\\\"score\\\\\\\"] < 0:\\\\n        return True\\\\n    if fr[\\\\\\\"score\\\\\\\"] <= -100:\\\\n        return True\\\\n    return False\\\\n\\\\n\\\\ndef scan_reuse_episodes(reuse_dirs: List[str], task_name: str) -> Dict[str, Any]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Scan reuse directories for existing episodes of a given task.\\\\n\\\\n    Returns dict with 'total' count and 'sources' list of {dir, count, path}.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    task_name_normalized = task_name.replace(\\\\\\\" \\\\\\\", \\\\\\\"_\\\\\\\")\\\\n    candidates = [task_name, task_name_normalized]\\\\n    if \\\\\\\"-\\\\\\\" in task_name:\\\\n        candidates.append(task_name.replace(\\\\\\\"-\\\\\\\", \\\\\\\"_\\\\\\\"))\\\\n    if \\\\\\\"_\\\\\\\" in task_name:\\\\n        candidates.append(task_name.replace(\\\\\\\"_\\\\\\\", \\\\\\\"-\\\\\\\"))\\\\n\\\\n    sources = []\\\\n    total = 0\\\\n\\\\n    for reuse_dir in reuse_dirs:\\\\n        reuse_dir = reuse_dir.rstrip(\\\\\\\"/\\\\\\\")\\\\n        if not os.path.isdir(reuse_dir):\\\\n            continue\\\\n\\\\n        found_path = None\\\\n        for cand_name in candidates:\\\\n            ep_path = os.path.join(reuse_dir, cand_name, \\\\\\\"episodes.jsonl\\\\\\\")\\\\n            if os.path.isfile(ep_path):\\\\n                found_path = ep_path\\\\n                break\\\\n\\\\n        if not found_path:\\\\n            subdirs = os.listdir(reuse_dir)\\\\n            for sd in subdirs:\\\\n                if sd.lower() == task_name_normalized.lower():\\\\n                    ep_path = os.path.join(reuse_dir, sd, \\\\\\\"episodes.jsonl\\\\\\\")\\\\n                    if os.path.isfile(ep_path):\\\\n                        found_path = ep_path\\\\n                        break\\\\n\\\\n        if found_path:\\\\n            count = 0\\\\n            with open(found_path) as f:\\\\n                for line in f:\\\\n                    line = line.strip()\\\\n                    if line:\\\\n                        count += 1\\\\n            sources.append({\\\\n                \\\\\\\"dir\\\\\\\": reuse_dir,\\\\n                \\\\\\\"path\\\\\\\": found_path,\\\\n                \\\\\\\"count\\\\\\\": count,\\\\n            })\\\\n            total += count\\\\n\\\\n    return {\\\\\\\"total\\\\\\\": total, \\\\\\\"sources\\\\\\\": sources}\\\\n\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.74}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"# Plan C episode-level labeling data collection for router SFT training.\\n#\\n# For each task variation, runs 2 complete episodes (always-internal + always-deterministic),\\n# compares final episode scores to label each step's modality preference.\\n# Reuses run_episode_internal / run_episode_deterministic from signal_prescreening.py.\\n#\\n# Outputs:\\n#   {output_dir}/{task_type}/episodes.jsonl        — full episode data (downstream pipeline input)\\n#   {output_dir}/{task_type}/labeled_steps.jsonl   — one labeled step per line (training data)\\n#   {output_dir}/{task_type}/episode_summary.jsonl  — one episode summary per line\\n#\\n# Usage:\\n#   python src/episode_level_collection.py --task_types \\\"boil,melt\\\" --episodes 20 --gpu_id 0\\n\\nimport argparse\\nimport json\\nimport os\\nimport random\\nimport sys\\nimport signal\\nimport subprocess\\nimport time\\nfrom typing import List, Dict, Any\\n\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\nfrom scienceworld_utils import (\\n    create_env, reset_env, get_valid_actions, get_score,\\n    step_env, close_env, fork_and_lookahead, get_task_types,\\n    get_max_variations,\\n)\\nfrom llm_agent import LLMAgent, find_model_path\\n\\nDEATH_THRESHOLD = -100\\n\\n# Disk space optimization: strip verbose per-step fields (llm_output, per-step\\n# action_history, candidates). Set SLIM_EPISODES=0 for full debug output.\\nSLIM_EPISODES = os.environ.get(\\\"SLIM_EPISODES\\\", \\\"1\\\") == \\\"1\\\"\\n\\n\\ndef _slim_episode_data(ep):\\n    \\\"\\\"\\\"Strip per-step debug fields when SLIM_EPISODES is enabled.\\\"\\\"\\\"\\n    if not SLIM_EPISODES:\\n        return ep\\n    result = {k: v for k, v in ep.items() if k != \\\"steps\\\"}\\n    if \\\"steps\\\" in ep:\\n        result[\\\"steps\\\"] = [\\n            {k: v for k, v in s.items()\\n             if k not in (\\\"llm_output\\\", \\\"action_history\\\", \\\"candidates\\\")}\\n            for s in ep[\\\"steps\\\"]\\n        ]\\n    return result\\n\\n\\n\\ndef cleanup_gpu_processes(gpu_id: int):\\n    \\\"\\\"\\\"Kill orphaned GPU processes before vLLM init to prevent OOM.\\\"\\\"\\\"\\n    try:\\n        result = subprocess.run(\\n            [\\\"nvidia-smi\\\", f\\\"--id={gpu_id}\\\",\\n             \\\"--query-compute-apps=pid\\\", \\\"--format=csv,noheader\\\"],\\n            capture_output=True, text=True, timeout=10,\\n        )\\n        if result.returncode != 0 or not result.stdout.strip():\\n            return\\n        my_pid = os.getpid()\\n        killed = []\\n        for line in result.stdout.strip().split(\\\"\\\\n\\\"):\\n            pid_str = line.strip()\\n            if pid_str.isdigit() and int(pid_str) != my_pid:\\n                try:\\n                    os.kill(int(pid_str), signal.SIGKILL)\\n                    killed.append(pid_str)\\n                except ProcessLookupError:\\n                    pass\\n        if killed:\\n            print(f\\\"[cleanup] Killed orphan PIDs on GPU {gpu_id}: {killed}\\\")\\n            time.sleep(3)\\n    except Exception as e:\\n        print(f\\\"[cleanup] GPU cleanup warning: {e}\\\")\\n\\n\\ndef resolve_task_type(name: str) -> str:\\n    try:\\n        available = get_task_types()\\n    except Exception:\\n        return name\\n    if name in available:\\n        return name\\n    matches = [t for t in available if name.lower() in t.lower()]\\n    if matches:\\n        return matches[0]\\n    return name\\n\\n\\ndef is_lethal(fr: Dict[str, Any]) -> bool:\\n    if fr[\\\"done\\\"] and fr[\\\"score\\\"] < 0:\\n        return True\\n    if fr[\\\"score\\\"] <= -100:\\n        return True\\n    return False\\n\\n\\ndef scan_reuse_episodes(reuse_dirs: List[str], task_name: str) -> Dict[str, Any]:\\n    \\\"\\\"\\\"Scan reuse directories for existing episodes of a given task.\\n\\n    Returns dict with 'total' count and 'sources' list of {dir, count, path}.\\n    \\\"\\\"\\\"\\n    task_name_normalized = task_name.replace(\\\" \\\", \\\"_\\\")\\n    candidates = [task_name, task_name_normalized]\\n    if \\\"-\\\" in task_name:\\n        candidates.append(task_name.replace(\\\"-\\\", \\\"_\\\"))\\n    if \\\"_\\\" in task_name:\\n        candidates.append(task_name.replace(\\\"_\\\", \\\"-\\\"))\\n\\n    sources = []\\n    total = 0\\n\\n    for reuse_dir in reuse_dirs:\\n        reuse_dir = reuse_dir.rstrip(\\\"/\\\")\\n        if not os.path.isdir(reuse_dir):\\n            continue\\n\\n        found_path = None\\n        for cand_name in candidates:\\n            ep_path = os.path.join(reuse_dir, cand_name, \\\"episodes.jsonl\\\")\\n            if os.path.isfile(ep_path):\\n                found_path = ep_path\\n                break\\n\\n        if not found_path:\\n            subdirs = os.listdir(reuse_dir)\\n            for sd in subdirs:\\n                if sd.lower() == task_name_normalized.lower():\\n                    ep_path = os.path.join(reuse_dir, sd, \\\"episodes.jsonl\\\")\\n                    if os.path.isfile(ep_path):\\n                        found_path = ep_path\\n                        break\\n\\n        if found_path:\\n            count = 0\\n            with open(found_path) as f:\\n                for line in f:\\n                    line = line.strip()\\n                    if line:\\n                        count += 1\\n            sources.append({\\n                \\\"dir\\\": reuse_dir,\\n                \\\"path\\\": found_path,\\n                \\\"count\\\": count,\\n            })\\n            total += count\\n\\n    return {\\\"total\\\": total, \\\"sources\\\": sources}\\n\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.74}}"
+              }
+            }
+          },
+          "id": "event-000543"
+        },
+        {
+          "source_line": 544,
+          "timestamp": "2026-05-19T02:19:43.411Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GHnADRpWcwrGtYezitmXTh",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "33321c42-deef-4a8a-97d9-eb2806e96fe8",
+            "uuid": "763720b4-88e4-4599-ab39-351c7434bd25",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000544"
+        },
+        {
+          "source_line": 545,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XDbkeFmekh2WUpadP4sESc",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westb-13313",
+                "command": "head -400 /root/autodl-tmp/simgate-modular-routing/src/episode_level_collection.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "33321c42-deef-4a8a-97d9-eb2806e96fe8",
+            "uuid": "6fd67f02-eba0-46b3-827c-ba3c9ae818b0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015hsgp2dZK9qmPdDHmde2sY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2336,
+                "cache_read_input_tokens": 44506,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2336
+                },
+                "output_tokens": 45,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000545"
+        },
+        {
+          "source_line": 546,
+          "timestamp": "2026-05-19T02:19:49.828Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XDbkeFmekh2WUpadP4sESc",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# Plan C episode-level labeling data collection for router SFT training.\\\\n#\\\\n# For each task variation, runs 2 complete episodes (always-internal + always-deterministic),\\\\n# compares final episode scores to label each step's modality preference.\\\\n# Reuses run_episode_internal / run_episode_deterministic from signal_prescreening.py.\\\\n#\\\\n# Outputs:\\\\n#   {output_dir}/{task_type}/episodes.jsonl        — full episode data (downstream pipeline input)\\\\n#   {output_dir}/{task_type}/labeled_steps.jsonl   — one labeled step per line (training data)\\\\n#   {output_dir}/{task_type}/episode_summary.jsonl  — one episode summary per line\\\\n#\\\\n# Usage:\\\\n#   python src/episode_level_collection.py --task_types \\\\\\\"boil,melt\\\\\\\" --episodes 20 --gpu_id 0\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport random\\\\nimport sys\\\\nimport signal\\\\nimport subprocess\\\\nimport time\\\\nfrom typing import List, Dict, Any\\\\n\\\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\\\nfrom scienceworld_utils import (\\\\n    create_env, reset_env, get_valid_actions, get_score,\\\\n    step_env, close_env, fork_and_lookahead, get_task_types,\\\\n    get_max_variations,\\\\n)\\\\nfrom llm_agent import LLMAgent, find_model_path\\\\n\\\\nDEATH_THRESHOLD = -100\\\\n\\\\n# Disk space optimization: strip verbose per-step fields (llm_output, per-step\\\\n# action_history, candidates). Set SLIM_EPISODES=0 for full debug output.\\\\nSLIM_EPISODES = os.environ.get(\\\\\\\"SLIM_EPISODES\\\\\\\", \\\\\\\"1\\\\\\\") == \\\\\\\"1\\\\\\\"\\\\n\\\\n\\\\ndef _slim_episode_data(ep):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Strip per-step debug fields when SLIM_EPISODES is enabled.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if not SLIM_EPISODES:\\\\n        return ep\\\\n    result = {k: v for k, v in ep.items() if k != \\\\\\\"steps\\\\\\\"}\\\\n    if \\\\\\\"steps\\\\\\\" in ep:\\\\n        result[\\\\\\\"steps\\\\\\\"] = [\\\\n            {k: v for k, v in s.items()\\\\n             if k not in (\\\\\\\"llm_output\\\\\\\", \\\\\\\"action_history\\\\\\\", \\\\\\\"candidates\\\\\\\")}\\\\n            for s in ep[\\\\\\\"steps\\\\\\\"]\\\\n        ]\\\\n    return result\\\\n\\\\n\\\\n\\\\ndef cleanup_gpu_processes(gpu_id: int):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Kill orphaned GPU processes before vLLM init to prevent OOM.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    try:\\\\n        result = subprocess.run(\\\\n            [\\\\\\\"nvidia-smi\\\\\\\", f\\\\\\\"--id={gpu_id}\\\\\\\",\\\\n             \\\\\\\"--query-compute-apps=pid\\\\\\\", \\\\\\\"--format=csv,noheader\\\\\\\"],\\\\n            capture_output=True, text=True, timeout=10,\\\\n        )\\\\n        if result.returncode != 0 or not result.stdout.strip():\\\\n            return\\\\n        my_pid = os.getpid()\\\\n        killed = []\\\\n        for line in result.stdout.strip().split(\\\\\\\"\\\\\\\\n\\\\\\\"):\\\\n            pid_str = line.strip()\\\\n            if pid_str.isdigit() and int(pid_str) != my_pid:\\\\n                try:\\\\n                    os.kill(int(pid_str), signal.SIGKILL)\\\\n                    killed.append(pid_str)\\\\n                except ProcessLookupError:\\\\n                    pass\\\\n        if killed:\\\\n            print(f\\\\\\\"[cleanup] Killed orphan PIDs on GPU {gpu_id}: {killed}\\\\\\\")\\\\n            time.sleep(3)\\\\n    except Exception as e:\\\\n        print(f\\\\\\\"[cleanup] GPU cleanup warning: {e}\\\\\\\")\\\\n\\\\n\\\\ndef resolve_task_type(name: str) -> str:\\\\n    try:\\\\n        available = get_task_types()\\\\n    except Exception:\\\\n        return name\\\\n    if name in available:\\\\n        return name\\\\n    matches = [t for t in available if name.lower() in t.lower()]\\\\n    if matches:\\\\n        return matches[0]\\\\n    return name\\\\n\\\\n\\\\ndef is_lethal(fr: Dict[str, Any]) -> bool:\\\\n    if fr[\\\\\\\"done\\\\\\\"] and fr[\\\\\\\"score\\\\\\\"] < 0:\\\\n        return True\\\\n    if fr[\\\\\\\"score\\\\\\\"] <= -100:\\\\n        return True\\\\n    return False\\\\n\\\\n\\\\ndef scan_reuse_episodes(reuse_dirs: List[str], task_name: str) -> Dict[str, Any]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Scan reuse directories for existing episodes of a given task.\\\\n\\\\n    Returns dict with 'total' count and 'sources' list of {dir, count, path}.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    task_name_normalized = task_name.replace(\\\\\\\" \\\\\\\", \\\\\\\"_\\\\\\\")\\\\n    candidates = [task_name, task_name_normalized]\\\\n    if \\\\\\\"-\\\\\\\" in task_name:\\\\n        candidates.append(task_name.replace(\\\\\\\"-\\\\\\\", \\\\\\\"_\\\\\\\"))\\\\n    if \\\\\\\"_\\\\\\\" in task_name:\\\\n        candidates.append(task_name.replace(\\\\\\\"_\\\\\\\", \\\\\\\"-\\\\\\\"))\\\\n\\\\n    sources = []\\\\n    total = 0\\\\n\\\\n    for reuse_dir in reuse_dirs:\\\\n        reuse_dir = reuse_dir.rstrip(\\\\\\\"/\\\\\\\")\\\\n        if not os.path.isdir(reuse_dir):\\\\n            continue\\\\n\\\\n        found_path = Non\\\\n\\\\n... [截断: 输出过长，省略 4734 字符] ...\\\\n\\\\n_name: str,\\\\n    variation_idx: int,\\\\n    max_steps: int,\\\\n    n_candidates: int = 3,\\\\n) -> Dict[str, Any]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Always-deterministic: LLM candidates + fork evaluation + death filter.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    env = create_env(task_name, variation_idx)\\\\n    obs, _ = reset_env(env)\\\\n    initial_score = get_score(env)\\\\n\\\\n    steps = []\\\\n    action_history = []\\\\n    history_dicts = []\\\\n    t0 = time.time()\\\\n\\\\n    for step_idx in range(max_steps):\\\\n        valid_actions = get_valid_actions(env)\\\\n        if not valid_actions:\\\\n            break\\\\n\\\\n        candidates, raw_output = agent.generate_candidate_actions(\\\\n            obs, valid_actions, history_dicts, n=n_candidates\\\\n        )\\\\n\\\\n        best_action = None\\\\n        best_delta = float(\\\\\\\"-inf\\\\\\\")\\\\n        best_action_fallback = None\\\\n        best_delta_fallback = float(\\\\\\\"-inf\\\\\\\")\\\\n        fork_results = []\\\\n        for cand in candidates:\\\\n            fr = fork_and_lookahead(task_name, variation_idx, action_history, cand)\\\\n            lethal = is_lethal(fr)\\\\n            fork_results.append({\\\\n                \\\\\\\"action\\\\\\\": cand,\\\\n                \\\\\\\"score_delta\\\\\\\": fr[\\\\\\\"score_delta\\\\\\\"],\\\\n                \\\\\\\"score\\\\\\\": fr[\\\\\\\"score\\\\\\\"],\\\\n                \\\\\\\"lethal\\\\\\\": lethal,\\\\n            })\\\\n            if fr[\\\\\\\"score_delta\\\\\\\"] > best_delta_fallback:\\\\n                best_delta_fallback = fr[\\\\\\\"score_delta\\\\\\\"]\\\\n                best_action_fallback = cand\\\\n            if not lethal and fr[\\\\\\\"score_delta\\\\\\\"] > best_delta:\\\\n                best_delta = fr[\\\\\\\"score_delta\\\\\\\"]\\\\n                best_action = cand\\\\n\\\\n        if best_action is None:\\\\n            best_action = best_action_fallback if best_action_fallback else valid_actions[0]\\\\n\\\\n        score_before = get_score(env)\\\\n        obs_new, reward, done, info = step_env(env, best_action)\\\\n        score_after = get_score(env)\\\\n\\\\n        steps.append({\\\\n            \\\\\\\"step\\\\\\\": step_idx,\\\\n            \\\\\\\"action\\\\\\\": best_action,\\\\n            \\\\\\\"modality\\\\\\\": \\\\\\\"deterministic\\\\\\\",\\\\n            \\\\\\\"score_before\\\\\\\": score_before,\\\\n            \\\\\\\"score_after\\\\\\\": score_after,\\\\n            \\\\\\\"score_delta\\\\\\\": score_after - score_before,\\\\n            \\\\\\\"candidates\\\\\\\": fork_results,\\\\n            \\\\\\\"observation\\\\\\\": obs_new[:500],\\\\n            \\\\\\\"llm_output\\\\\\\": raw_output[:300],\\\\n            \\\\\\\"action_history\\\\\\\": list(action_history),\\\\n            \\\\\\\"is_dead\\\\\\\": score_after <= DEATH_THRESHOLD,\\\\n        })\\\\n        action_history.append(best_action)\\\\n        history_dicts.append({\\\\\\\"action\\\\\\\": best_action, \\\\\\\"observation\\\\\\\": obs_new[:200], \\\\\\\"score\\\\\\\": score_after})\\\\n        obs = obs_new\\\\n\\\\n        if done:\\\\n            break\\\\n\\\\n    final_score = get_score(env)\\\\n    close_env(env)\\\\n\\\\n    return {\\\\n        \\\\\\\"mode\\\\\\\": \\\\\\\"always-deterministic\\\\\\\",\\\\n        \\\\\\\"task_name\\\\\\\": task_name,\\\\n        \\\\\\\"variation_idx\\\\\\\": variation_idx,\\\\n        \\\\\\\"final_score\\\\\\\": final_score,\\\\n        \\\\\\\"initial_score\\\\\\\": initial_score,\\\\n        \\\\\\\"num_steps\\\\\\\": len(steps),\\\\n        \\\\\\\"total_time_s\\\\\\\": time.time() - t0,\\\\n        \\\\\\\"steps\\\\\\\": steps,\\\\n        \\\\\\\"action_history\\\\\\\": action_history,\\\\n    }\\\\n\\\\n\\\\ndef classify_episode_labels(internal_final: float, det_final: float):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"3-label classification matching death_aware_labeling.classify_episode().\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    int_died = internal_final <= DEATH_THRESHOLD\\\\n    det_died = det_final <= DEATH_THRESHOLD\\\\n\\\\n    if int_died and not det_died:\\\\n        return \\\\\\\"det-preferred\\\\\\\", \\\\\\\"int_died_det_alive\\\\\\\", \\\\\\\"death_asymmetry\\\\\\\"\\\\n    if det_died and not int_died:\\\\n        return \\\\\\\"internal-preferred\\\\\\\", \\\\\\\"det_died_int_alive\\\\\\\", \\\\\\\"death_asymmetry\\\\\\\"\\\\n    if int_died and det_died:\\\\n        return \\\\\\\"no-preference\\\\\\\", \\\\\\\"both_died\\\\\\\", \\\\\\\"both_dead\\\\\\\"\\\\n    if det_final > internal_final:\\\\n        return \\\\\\\"det-preferred\\\\\\\", \\\\\\\"both_alive_det_wins\\\\\\\", \\\\\\\"score_comparison\\\\\\\"\\\\n    if internal_final > det_final:\\\\n        return \\\\\\\"internal-preferred\\\\\\\", \\\\\\\"both_alive_int_wins\\\\\\\", \\\\\\\"score_comparison\\\\\\\"\\\\n    return \\\\\\\"no-preference\\\\\\\", \\\\\\\"tie\\\\\\\", \\\\\\\"tied_alive\\\\\\\"\\\\n\\\\n\\\\ndef run_task_collection(\\\\n    agent: LLMAgent,\\\\n    task_name: str,\\\\n    n_episodes: int,\\\\n    start_episode: int,\\\\n    max_steps: int,\\\\n    output_dir: str,\\\\n    n_candidates: int = 3,\\\\n) -> Dict[str, Any]:\\\\n    task_dir = os.path.join(output_dir, task_name.replace(\\\\\\\" \\\\\\\", \\\\\\\"_\\\\\\\"))\\\\n    os.makedirs(task_dir, exist_ok=True)\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.76}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "33321c42-deef-4a8a-97d9-eb2806e96fe8",
+            "uuid": "83db7009-382e-4976-a9cb-f4b3a58ef8c1",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# Plan C episode-level labeling data collection for router SFT training.\\\\n#\\\\n# For each task variation, runs 2 complete episodes (always-internal + always-deterministic),\\\\n# compares final episode scores to label each step's modality preference.\\\\n# Reuses run_episode_internal / run_episode_deterministic from signal_prescreening.py.\\\\n#\\\\n# Outputs:\\\\n#   {output_dir}/{task_type}/episodes.jsonl        — full episode data (downstream pipeline input)\\\\n#   {output_dir}/{task_type}/labeled_steps.jsonl   — one labeled step per line (training data)\\\\n#   {output_dir}/{task_type}/episode_summary.jsonl  — one episode summary per line\\\\n#\\\\n# Usage:\\\\n#   python src/episode_level_collection.py --task_types \\\\\\\"boil,melt\\\\\\\" --episodes 20 --gpu_id 0\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport random\\\\nimport sys\\\\nimport signal\\\\nimport subprocess\\\\nimport time\\\\nfrom typing import List, Dict, Any\\\\n\\\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\\\nfrom scienceworld_utils import (\\\\n    create_env, reset_env, get_valid_actions, get_score,\\\\n    step_env, close_env, fork_and_lookahead, get_task_types,\\\\n    get_max_variations,\\\\n)\\\\nfrom llm_agent import LLMAgent, find_model_path\\\\n\\\\nDEATH_THRESHOLD = -100\\\\n\\\\n# Disk space optimization: strip verbose per-step fields (llm_output, per-step\\\\n# action_history, candidates). Set SLIM_EPISODES=0 for full debug output.\\\\nSLIM_EPISODES = os.environ.get(\\\\\\\"SLIM_EPISODES\\\\\\\", \\\\\\\"1\\\\\\\") == \\\\\\\"1\\\\\\\"\\\\n\\\\n\\\\ndef _slim_episode_data(ep):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Strip per-step debug fields when SLIM_EPISODES is enabled.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if not SLIM_EPISODES:\\\\n        return ep\\\\n    result = {k: v for k, v in ep.items() if k != \\\\\\\"steps\\\\\\\"}\\\\n    if \\\\\\\"steps\\\\\\\" in ep:\\\\n        result[\\\\\\\"steps\\\\\\\"] = [\\\\n            {k: v for k, v in s.items()\\\\n             if k not in (\\\\\\\"llm_output\\\\\\\", \\\\\\\"action_history\\\\\\\", \\\\\\\"candidates\\\\\\\")}\\\\n            for s in ep[\\\\\\\"steps\\\\\\\"]\\\\n        ]\\\\n    return result\\\\n\\\\n\\\\n\\\\ndef cleanup_gpu_processes(gpu_id: int):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Kill orphaned GPU processes before vLLM init to prevent OOM.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    try:\\\\n        result = subprocess.run(\\\\n            [\\\\\\\"nvidia-smi\\\\\\\", f\\\\\\\"--id={gpu_id}\\\\\\\",\\\\n             \\\\\\\"--query-compute-apps=pid\\\\\\\", \\\\\\\"--format=csv,noheader\\\\\\\"],\\\\n            capture_output=True, text=True, timeout=10,\\\\n        )\\\\n        if result.returncode != 0 or not result.stdout.strip():\\\\n            return\\\\n        my_pid = os.getpid()\\\\n        killed = []\\\\n        for line in result.stdout.strip().split(\\\\\\\"\\\\\\\\n\\\\\\\"):\\\\n            pid_str = line.strip()\\\\n            if pid_str.isdigit() and int(pid_str) != my_pid:\\\\n                try:\\\\n                    os.kill(int(pid_str), signal.SIGKILL)\\\\n                    killed.append(pid_str)\\\\n                except ProcessLookupError:\\\\n                    pass\\\\n        if killed:\\\\n            print(f\\\\\\\"[cleanup] Killed orphan PIDs on GPU {gpu_id}: {killed}\\\\\\\")\\\\n            time.sleep(3)\\\\n    except Exception as e:\\\\n        print(f\\\\\\\"[cleanup] GPU cleanup warning: {e}\\\\\\\")\\\\n\\\\n\\\\ndef resolve_task_type(name: str) -> str:\\\\n    try:\\\\n        available = get_task_types()\\\\n    except Exception:\\\\n        return name\\\\n    if name in available:\\\\n        return name\\\\n    matches = [t for t in available if name.lower() in t.lower()]\\\\n    if matches:\\\\n        return matches[0]\\\\n    return name\\\\n\\\\n\\\\ndef is_lethal(fr: Dict[str, Any]) -> bool:\\\\n    if fr[\\\\\\\"done\\\\\\\"] and fr[\\\\\\\"score\\\\\\\"] < 0:\\\\n        return True\\\\n    if fr[\\\\\\\"score\\\\\\\"] <= -100:\\\\n        return True\\\\n    return False\\\\n\\\\n\\\\ndef scan_reuse_episodes(reuse_dirs: List[str], task_name: str) -> Dict[str, Any]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Scan reuse directories for existing episodes of a given task.\\\\n\\\\n    Returns dict with 'total' count and 'sources' list of {dir, count, path}.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    task_name_normalized = task_name.replace(\\\\\\\" \\\\\\\", \\\\\\\"_\\\\\\\")\\\\n    candidates = [task_name, task_name_normalized]\\\\n    if \\\\\\\"-\\\\\\\" in task_name:\\\\n        candidates.append(task_name.replace(\\\\\\\"-\\\\\\\", \\\\\\\"_\\\\\\\"))\\\\n    if \\\\\\\"_\\\\\\\" in task_name:\\\\n        candidates.append(task_name.replace(\\\\\\\"_\\\\\\\", \\\\\\\"-\\\\\\\"))\\\\n\\\\n    sources = []\\\\n    total = 0\\\\n\\\\n    for reuse_dir in reuse_dirs:\\\\n        reuse_dir = reuse_dir.rstrip(\\\\\\\"/\\\\\\\")\\\\n        if not os.path.isdir(reuse_dir):\\\\n            continue\\\\n\\\\n        found_path = Non\\\\n\\\\n... [截断: 输出过长，省略 4734 字符] ...\\\\n\\\\n_name: str,\\\\n    variation_idx: int,\\\\n    max_steps: int,\\\\n    n_candidates: int = 3,\\\\n) -> Dict[str, Any]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Always-deterministic: LLM candidates + fork evaluation + death filter.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    env = create_env(task_name, variation_idx)\\\\n    obs, _ = reset_env(env)\\\\n    initial_score = get_score(env)\\\\n\\\\n    steps = []\\\\n    action_history = []\\\\n    history_dicts = []\\\\n    t0 = time.time()\\\\n\\\\n    for step_idx in range(max_steps):\\\\n        valid_actions = get_valid_actions(env)\\\\n        if not valid_actions:\\\\n            break\\\\n\\\\n        candidates, raw_output = agent.generate_candidate_actions(\\\\n            obs, valid_actions, history_dicts, n=n_candidates\\\\n        )\\\\n\\\\n        best_action = None\\\\n        best_delta = float(\\\\\\\"-inf\\\\\\\")\\\\n        best_action_fallback = None\\\\n        best_delta_fallback = float(\\\\\\\"-inf\\\\\\\")\\\\n        fork_results = []\\\\n        for cand in candidates:\\\\n            fr = fork_and_lookahead(task_name, variation_idx, action_history, cand)\\\\n            lethal = is_lethal(fr)\\\\n            fork_results.append({\\\\n                \\\\\\\"action\\\\\\\": cand,\\\\n                \\\\\\\"score_delta\\\\\\\": fr[\\\\\\\"score_delta\\\\\\\"],\\\\n                \\\\\\\"score\\\\\\\": fr[\\\\\\\"score\\\\\\\"],\\\\n                \\\\\\\"lethal\\\\\\\": lethal,\\\\n            })\\\\n            if fr[\\\\\\\"score_delta\\\\\\\"] > best_delta_fallback:\\\\n                best_delta_fallback = fr[\\\\\\\"score_delta\\\\\\\"]\\\\n                best_action_fallback = cand\\\\n            if not lethal and fr[\\\\\\\"score_delta\\\\\\\"] > best_delta:\\\\n                best_delta = fr[\\\\\\\"score_delta\\\\\\\"]\\\\n                best_action = cand\\\\n\\\\n        if best_action is None:\\\\n            best_action = best_action_fallback if best_action_fallback else valid_actions[0]\\\\n\\\\n        score_before = get_score(env)\\\\n        obs_new, reward, done, info = step_env(env, best_action)\\\\n        score_after = get_score(env)\\\\n\\\\n        steps.append({\\\\n            \\\\\\\"step\\\\\\\": step_idx,\\\\n            \\\\\\\"action\\\\\\\": best_action,\\\\n            \\\\\\\"modality\\\\\\\": \\\\\\\"deterministic\\\\\\\",\\\\n            \\\\\\\"score_before\\\\\\\": score_before,\\\\n            \\\\\\\"score_after\\\\\\\": score_after,\\\\n            \\\\\\\"score_delta\\\\\\\": score_after - score_before,\\\\n            \\\\\\\"candidates\\\\\\\": fork_results,\\\\n            \\\\\\\"observation\\\\\\\": obs_new[:500],\\\\n            \\\\\\\"llm_output\\\\\\\": raw_output[:300],\\\\n            \\\\\\\"action_history\\\\\\\": list(action_history),\\\\n            \\\\\\\"is_dead\\\\\\\": score_after <= DEATH_THRESHOLD,\\\\n        })\\\\n        action_history.append(best_action)\\\\n        history_dicts.append({\\\\\\\"action\\\\\\\": best_action, \\\\\\\"observation\\\\\\\": obs_new[:200], \\\\\\\"score\\\\\\\": score_after})\\\\n        obs = obs_new\\\\n\\\\n        if done:\\\\n            break\\\\n\\\\n    final_score = get_score(env)\\\\n    close_env(env)\\\\n\\\\n    return {\\\\n        \\\\\\\"mode\\\\\\\": \\\\\\\"always-deterministic\\\\\\\",\\\\n        \\\\\\\"task_name\\\\\\\": task_name,\\\\n        \\\\\\\"variation_idx\\\\\\\": variation_idx,\\\\n        \\\\\\\"final_score\\\\\\\": final_score,\\\\n        \\\\\\\"initial_score\\\\\\\": initial_score,\\\\n        \\\\\\\"num_steps\\\\\\\": len(steps),\\\\n        \\\\\\\"total_time_s\\\\\\\": time.time() - t0,\\\\n        \\\\\\\"steps\\\\\\\": steps,\\\\n        \\\\\\\"action_history\\\\\\\": action_history,\\\\n    }\\\\n\\\\n\\\\ndef classify_episode_labels(internal_final: float, det_final: float):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"3-label classification matching death_aware_labeling.classify_episode().\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    int_died = internal_final <= DEATH_THRESHOLD\\\\n    det_died = det_final <= DEATH_THRESHOLD\\\\n\\\\n    if int_died and not det_died:\\\\n        return \\\\\\\"det-preferred\\\\\\\", \\\\\\\"int_died_det_alive\\\\\\\", \\\\\\\"death_asymmetry\\\\\\\"\\\\n    if det_died and not int_died:\\\\n        return \\\\\\\"internal-preferred\\\\\\\", \\\\\\\"det_died_int_alive\\\\\\\", \\\\\\\"death_asymmetry\\\\\\\"\\\\n    if int_died and det_died:\\\\n        return \\\\\\\"no-preference\\\\\\\", \\\\\\\"both_died\\\\\\\", \\\\\\\"both_dead\\\\\\\"\\\\n    if det_final > internal_final:\\\\n        return \\\\\\\"det-preferred\\\\\\\", \\\\\\\"both_alive_det_wins\\\\\\\", \\\\\\\"score_comparison\\\\\\\"\\\\n    if internal_final > det_final:\\\\n        return \\\\\\\"internal-preferred\\\\\\\", \\\\\\\"both_alive_int_wins\\\\\\\", \\\\\\\"score_comparison\\\\\\\"\\\\n    return \\\\\\\"no-preference\\\\\\\", \\\\\\\"tie\\\\\\\", \\\\\\\"tied_alive\\\\\\\"\\\\n\\\\n\\\\ndef run_task_collection(\\\\n    agent: LLMAgent,\\\\n    task_name: str,\\\\n    n_episodes: int,\\\\n    start_episode: int,\\\\n    max_steps: int,\\\\n    output_dir: str,\\\\n    n_candidates: int = 3,\\\\n) -> Dict[str, Any]:\\\\n    task_dir = os.path.join(output_dir, task_name.replace(\\\\\\\" \\\\\\\", \\\\\\\"_\\\\\\\"))\\\\n    os.makedirs(task_dir, exist_ok=True)\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.76}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"# Plan C episode-level labeling data collection for router SFT training.\\n#\\n# For each task variation, runs 2 complete episodes (always-internal + always-deterministic),\\n# compares final episode scores to label each step's modality preference.\\n# Reuses run_episode_internal / run_episode_deterministic from signal_prescreening.py.\\n#\\n# Outputs:\\n#   {output_dir}/{task_type}/episodes.jsonl        — full episode data (downstream pipeline input)\\n#   {output_dir}/{task_type}/labeled_steps.jsonl   — one labeled step per line (training data)\\n#   {output_dir}/{task_type}/episode_summary.jsonl  — one episode summary per line\\n#\\n# Usage:\\n#   python src/episode_level_collection.py --task_types \\\"boil,melt\\\" --episodes 20 --gpu_id 0\\n\\nimport argparse\\nimport json\\nimport os\\nimport random\\nimport sys\\nimport signal\\nimport subprocess\\nimport time\\nfrom typing import List, Dict, Any\\n\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\nfrom scienceworld_utils import (\\n    create_env, reset_env, get_valid_actions, get_score,\\n    step_env, close_env, fork_and_lookahead, get_task_types,\\n    get_max_variations,\\n)\\nfrom llm_agent import LLMAgent, find_model_path\\n\\nDEATH_THRESHOLD = -100\\n\\n# Disk space optimization: strip verbose per-step fields (llm_output, per-step\\n# action_history, candidates). Set SLIM_EPISODES=0 for full debug output.\\nSLIM_EPISODES = os.environ.get(\\\"SLIM_EPISODES\\\", \\\"1\\\") == \\\"1\\\"\\n\\n\\ndef _slim_episode_data(ep):\\n    \\\"\\\"\\\"Strip per-step debug fields when SLIM_EPISODES is enabled.\\\"\\\"\\\"\\n    if not SLIM_EPISODES:\\n        return ep\\n    result = {k: v for k, v in ep.items() if k != \\\"steps\\\"}\\n    if \\\"steps\\\" in ep:\\n        result[\\\"steps\\\"] = [\\n            {k: v for k, v in s.items()\\n             if k not in (\\\"llm_output\\\", \\\"action_history\\\", \\\"candidates\\\")}\\n            for s in ep[\\\"steps\\\"]\\n        ]\\n    return result\\n\\n\\n\\ndef cleanup_gpu_processes(gpu_id: int):\\n    \\\"\\\"\\\"Kill orphaned GPU processes before vLLM init to prevent OOM.\\\"\\\"\\\"\\n    try:\\n        result = subprocess.run(\\n            [\\\"nvidia-smi\\\", f\\\"--id={gpu_id}\\\",\\n             \\\"--query-compute-apps=pid\\\", \\\"--format=csv,noheader\\\"],\\n            capture_output=True, text=True, timeout=10,\\n        )\\n        if result.returncode != 0 or not result.stdout.strip():\\n            return\\n        my_pid = os.getpid()\\n        killed = []\\n        for line in result.stdout.strip().split(\\\"\\\\n\\\"):\\n            pid_str = line.strip()\\n            if pid_str.isdigit() and int(pid_str) != my_pid:\\n                try:\\n                    os.kill(int(pid_str), signal.SIGKILL)\\n                    killed.append(pid_str)\\n                except ProcessLookupError:\\n                    pass\\n        if killed:\\n            print(f\\\"[cleanup] Killed orphan PIDs on GPU {gpu_id}: {killed}\\\")\\n            time.sleep(3)\\n    except Exception as e:\\n        print(f\\\"[cleanup] GPU cleanup warning: {e}\\\")\\n\\n\\ndef resolve_task_type(name: str) -> str:\\n    try:\\n        available = get_task_types()\\n    except Exception:\\n        return name\\n    if name in available:\\n        return name\\n    matches = [t for t in available if name.lower() in t.lower()]\\n    if matches:\\n        return matches[0]\\n    return name\\n\\n\\ndef is_lethal(fr: Dict[str, Any]) -> bool:\\n    if fr[\\\"done\\\"] and fr[\\\"score\\\"] < 0:\\n        return True\\n    if fr[\\\"score\\\"] <= -100:\\n        return True\\n    return False\\n\\n\\ndef scan_reuse_episodes(reuse_dirs: List[str], task_name: str) -> Dict[str, Any]:\\n    \\\"\\\"\\\"Scan reuse directories for existing episodes of a given task.\\n\\n    Returns dict with 'total' count and 'sources' list of {dir, count, path}.\\n    \\\"\\\"\\\"\\n    task_name_normalized = task_name.replace(\\\" \\\", \\\"_\\\")\\n    candidates = [task_name, task_name_normalized]\\n    if \\\"-\\\" in task_name:\\n        candidates.append(task_name.replace(\\\"-\\\", \\\"_\\\"))\\n    if \\\"_\\\" in task_name:\\n        candidates.append(task_name.replace(\\\"_\\\", \\\"-\\\"))\\n\\n    sources = []\\n    total = 0\\n\\n    for reuse_dir in reuse_dirs:\\n        reuse_dir = reuse_dir.rstrip(\\\"/\\\")\\n        if not os.path.isdir(reuse_dir):\\n            continue\\n\\n        found_path = Non\\n\\n... [截断: 输出过长，省略 4734 字符] ...\\n\\n_name: str,\\n    variation_idx: int,\\n    max_steps: int,\\n    n_candidates: int = 3,\\n) -> Dict[str, Any]:\\n    \\\"\\\"\\\"Always-deterministic: LLM candidates + fork evaluation + death filter.\\\"\\\"\\\"\\n    env = create_env(task_name, variation_idx)\\n    obs, _ = reset_env(env)\\n    initial_score = get_score(env)\\n\\n    steps = []\\n    action_history = []\\n    history_dicts = []\\n    t0 = time.time()\\n\\n    for step_idx in range(max_steps):\\n        valid_actions = get_valid_actions(env)\\n        if not valid_actions:\\n            break\\n\\n        candidates, raw_output = agent.generate_candidate_actions(\\n            obs, valid_actions, history_dicts, n=n_candidates\\n        )\\n\\n        best_action = None\\n        best_delta = float(\\\"-inf\\\")\\n        best_action_fallback = None\\n        best_delta_fallback = float(\\\"-inf\\\")\\n        fork_results = []\\n        for cand in candidates:\\n            fr = fork_and_lookahead(task_name, variation_idx, action_history, cand)\\n            lethal = is_lethal(fr)\\n            fork_results.append({\\n                \\\"action\\\": cand,\\n                \\\"score_delta\\\": fr[\\\"score_delta\\\"],\\n                \\\"score\\\": fr[\\\"score\\\"],\\n                \\\"lethal\\\": lethal,\\n            })\\n            if fr[\\\"score_delta\\\"] > best_delta_fallback:\\n                best_delta_fallback = fr[\\\"score_delta\\\"]\\n                best_action_fallback = cand\\n            if not lethal and fr[\\\"score_delta\\\"] > best_delta:\\n                best_delta = fr[\\\"score_delta\\\"]\\n                best_action = cand\\n\\n        if best_action is None:\\n            best_action = best_action_fallback if best_action_fallback else valid_actions[0]\\n\\n        score_before = get_score(env)\\n        obs_new, reward, done, info = step_env(env, best_action)\\n        score_after = get_score(env)\\n\\n        steps.append({\\n            \\\"step\\\": step_idx,\\n            \\\"action\\\": best_action,\\n            \\\"modality\\\": \\\"deterministic\\\",\\n            \\\"score_before\\\": score_before,\\n            \\\"score_after\\\": score_after,\\n            \\\"score_delta\\\": score_after - score_before,\\n            \\\"candidates\\\": fork_results,\\n            \\\"observation\\\": obs_new[:500],\\n            \\\"llm_output\\\": raw_output[:300],\\n            \\\"action_history\\\": list(action_history),\\n            \\\"is_dead\\\": score_after <= DEATH_THRESHOLD,\\n        })\\n        action_history.append(best_action)\\n        history_dicts.append({\\\"action\\\": best_action, \\\"observation\\\": obs_new[:200], \\\"score\\\": score_after})\\n        obs = obs_new\\n\\n        if done:\\n            break\\n\\n    final_score = get_score(env)\\n    close_env(env)\\n\\n    return {\\n        \\\"mode\\\": \\\"always-deterministic\\\",\\n        \\\"task_name\\\": task_name,\\n        \\\"variation_idx\\\": variation_idx,\\n        \\\"final_score\\\": final_score,\\n        \\\"initial_score\\\": initial_score,\\n        \\\"num_steps\\\": len(steps),\\n        \\\"total_time_s\\\": time.time() - t0,\\n        \\\"steps\\\": steps,\\n        \\\"action_history\\\": action_history,\\n    }\\n\\n\\ndef classify_episode_labels(internal_final: float, det_final: float):\\n    \\\"\\\"\\\"3-label classification matching death_aware_labeling.classify_episode().\\\"\\\"\\\"\\n    int_died = internal_final <= DEATH_THRESHOLD\\n    det_died = det_final <= DEATH_THRESHOLD\\n\\n    if int_died and not det_died:\\n        return \\\"det-preferred\\\", \\\"int_died_det_alive\\\", \\\"death_asymmetry\\\"\\n    if det_died and not int_died:\\n        return \\\"internal-preferred\\\", \\\"det_died_int_alive\\\", \\\"death_asymmetry\\\"\\n    if int_died and det_died:\\n        return \\\"no-preference\\\", \\\"both_died\\\", \\\"both_dead\\\"\\n    if det_final > internal_final:\\n        return \\\"det-preferred\\\", \\\"both_alive_det_wins\\\", \\\"score_comparison\\\"\\n    if internal_final > det_final:\\n        return \\\"internal-preferred\\\", \\\"both_alive_int_wins\\\", \\\"score_comparison\\\"\\n    return \\\"no-preference\\\", \\\"tie\\\", \\\"tied_alive\\\"\\n\\n\\ndef run_task_collection(\\n    agent: LLMAgent,\\n    task_name: str,\\n    n_episodes: int,\\n    start_episode: int,\\n    max_steps: int,\\n    output_dir: str,\\n    n_candidates: int = 3,\\n) -> Dict[str, Any]:\\n    task_dir = os.path.join(output_dir, task_name.replace(\\\" \\\", \\\"_\\\"))\\n    os.makedirs(task_dir, exist_ok=True)\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.76}}"
+              }
+            }
+          },
+          "id": "event-000546"
+        },
+        {
+          "source_line": 547,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HVfP1fTfmttZXS4p6YFTtb",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westb-13313",
+                "command": "head -600 /root/autodl-tmp/simgate-modular-routing/src/episode_level_collection.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "33321c42-deef-4a8a-97d9-eb2806e96fe8",
+            "uuid": "c6e342ad-a0b0-40a5-b993-667ba22595ab",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FMurYrBubap6qZuVwmT1NF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3299,
+                "cache_read_input_tokens": 46842,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3299
+                },
+                "output_tokens": 41,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000547"
+        },
+        {
+          "source_line": 548,
+          "timestamp": "2026-05-19T02:19:54.686Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HVfP1fTfmttZXS4p6YFTtb",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# Plan C episode-level labeling data collection for router SFT training.\\\\n#\\\\n# For each task variation, runs 2 complete episodes (always-internal + always-deterministic),\\\\n# compares final episode scores to label each step's modality preference.\\\\n# Reuses run_episode_internal / run_episode_deterministic from signal_prescreening.py.\\\\n#\\\\n# Outputs:\\\\n#   {output_dir}/{task_type}/episodes.jsonl        — full episode data (downstream pipeline input)\\\\n#   {output_dir}/{task_type}/labeled_steps.jsonl   — one labeled step per line (training data)\\\\n#   {output_dir}/{task_type}/episode_summary.jsonl  — one episode summary per line\\\\n#\\\\n# Usage:\\\\n#   python src/episode_level_collection.py --task_types \\\\\\\"boil,melt\\\\\\\" --episodes 20 --gpu_id 0\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport random\\\\nimport sys\\\\nimport signal\\\\nimport subprocess\\\\nimport time\\\\nfrom typing import List, Dict, Any\\\\n\\\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\\\nfrom scienceworld_utils import (\\\\n    create_env, reset_env, get_valid_actions, get_score,\\\\n    step_env, close_env, fork_and_lookahead, get_task_types,\\\\n    get_max_variations,\\\\n)\\\\nfrom llm_agent import LLMAgent, find_model_path\\\\n\\\\nDEATH_THRESHOLD = -100\\\\n\\\\n# Disk space optimization: strip verbose per-step fields (llm_output, per-step\\\\n# action_history, candidates). Set SLIM_EPISODES=0 for full debug output.\\\\nSLIM_EPISODES = os.environ.get(\\\\\\\"SLIM_EPISODES\\\\\\\", \\\\\\\"1\\\\\\\") == \\\\\\\"1\\\\\\\"\\\\n\\\\n\\\\ndef _slim_episode_data(ep):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Strip per-step debug fields when SLIM_EPISODES is enabled.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if not SLIM_EPISODES:\\\\n        return ep\\\\n    result = {k: v for k, v in ep.items() if k != \\\\\\\"steps\\\\\\\"}\\\\n    if \\\\\\\"steps\\\\\\\" in ep:\\\\n        result[\\\\\\\"steps\\\\\\\"] = [\\\\n            {k: v for k, v in s.items()\\\\n             if k not in (\\\\\\\"llm_output\\\\\\\", \\\\\\\"action_history\\\\\\\", \\\\\\\"candidates\\\\\\\")}\\\\n            for s in ep[\\\\\\\"steps\\\\\\\"]\\\\n        ]\\\\n    return result\\\\n\\\\n\\\\n\\\\ndef cleanup_gpu_processes(gpu_id: int):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Kill orphaned GPU processes before vLLM init to prevent OOM.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    try:\\\\n        result = subprocess.run(\\\\n            [\\\\\\\"nvidia-smi\\\\\\\", f\\\\\\\"--id={gpu_id}\\\\\\\",\\\\n             \\\\\\\"--query-compute-apps=pid\\\\\\\", \\\\\\\"--format=csv,noheader\\\\\\\"],\\\\n            capture_output=True, text=True, timeout=10,\\\\n        )\\\\n        if result.returncode != 0 or not result.stdout.strip():\\\\n            return\\\\n        my_pid = os.getpid()\\\\n        killed = []\\\\n        for line in result.stdout.strip().split(\\\\\\\"\\\\\\\\n\\\\\\\"):\\\\n            pid_str = line.strip()\\\\n            if pid_str.isdigit() and int(pid_str) != my_pid:\\\\n                try:\\\\n                    os.kill(int(pid_str), signal.SIGKILL)\\\\n                    killed.append(pid_str)\\\\n                except ProcessLookupError:\\\\n                    pass\\\\n        if killed:\\\\n            print(f\\\\\\\"[cleanup] Killed orphan PIDs on GPU {gpu_id}: {killed}\\\\\\\")\\\\n            time.sleep(3)\\\\n    except Exception as e:\\\\n        print(f\\\\\\\"[cleanup] GPU cleanup warning: {e}\\\\\\\")\\\\n\\\\n\\\\ndef resolve_task_type(name: str) -> str:\\\\n    try:\\\\n        available = get_task_types()\\\\n    except Exception:\\\\n        return name\\\\n    if name in available:\\\\n        return name\\\\n    matches = [t for t in available if name.lower() in t.lower()]\\\\n    if matches:\\\\n        return matches[0]\\\\n    return name\\\\n\\\\n\\\\ndef is_lethal(fr: Dict[str, Any]) -> bool:\\\\n    if fr[\\\\\\\"done\\\\\\\"] and fr[\\\\\\\"score\\\\\\\"] < 0:\\\\n        return True\\\\n    if fr[\\\\\\\"score\\\\\\\"] <= -100:\\\\n        return True\\\\n    return False\\\\n\\\\n\\\\ndef scan_reuse_episodes(reuse_dirs: List[str], task_name: str) -> Dict[str, Any]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Scan reuse directories for existing episodes of a given task.\\\\n\\\\n    Returns dict with 'total' count and 'sources' list of {dir, count, path}.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    task_name_normalized = task_name.replace(\\\\\\\" \\\\\\\", \\\\\\\"_\\\\\\\")\\\\n    candidates = [task_name, task_name_normalized]\\\\n    if \\\\\\\"-\\\\\\\" in task_name:\\\\n        candidates.append(task_name.replace(\\\\\\\"-\\\\\\\", \\\\\\\"_\\\\\\\"))\\\\n    if \\\\\\\"_\\\\\\\" in task_name:\\\\n        candidates.append(task_name.replace(\\\\\\\"_\\\\\\\", \\\\\\\"-\\\\\\\"))\\\\n\\\\n    sources = []\\\\n    total = 0\\\\n\\\\n    for reuse_dir in reuse_dirs:\\\\n        reuse_dir = reuse_dir.rstrip(\\\\\\\"/\\\\\\\")\\\\n        if not os.path.isdir(reuse_dir):\\\\n            continue\\\\n\\\\n        found_path = Non\\\\n\\\\n... [截断: 输出过长，省略 13424 字符] ...\\\\n\\\\ncounts['internal']}, det={death_counts['det']}, both={death_counts['both']}\\\\\\\")\\\\n\\\\n    return {\\\\n        \\\\\\\"task_name\\\\\\\": task_name,\\\\n        \\\\\\\"n_episodes\\\\\\\": n_episodes,\\\\n        \\\\\\\"start_episode\\\\\\\": start_episode,\\\\n        \\\\\\\"label_counts\\\\\\\": label_counts,\\\\n        \\\\\\\"total_labeled_steps\\\\\\\": total_labeled_steps,\\\\n        \\\\\\\"avg_score_gap\\\\\\\": avg_gap,\\\\n        \\\\\\\"death_counts\\\\\\\": death_counts,\\\\n    }\\\\n\\\\n\\\\ndef copy_reused_episodes(sources: List[Dict], task_dir: str) -> int:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Copy episodes from reuse sources into the output episodes.jsonl.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    episodes_file = os.path.join(task_dir, \\\\\\\"episodes.jsonl\\\\\\\")\\\\n    copied = 0\\\\n    for src in sources:\\\\n        with open(src[\\\\\\\"path\\\\\\\"]) as fin:\\\\n            with open(episodes_file, \\\\\\\"a\\\\\\\") as fout:\\\\n                for line in fin:\\\\n                    line = line.strip()\\\\n                    if line:\\\\n                        fout.write(line + \\\\\\\"\\\\\\\\n\\\\\\\")\\\\n                        copied += 1\\\\n    return copied\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(\\\\n        description=\\\\\\\"Plan C episode-level labeling: collect SFT training data by comparing always-internal vs always-deterministic episodes\\\\\\\"\\\\n    )\\\\n    parser.add_argument(\\\\\\\"--task_types\\\\\\\", type=str, default=None,\\\\n                        help=\\\\\\\"Comma-separated task type names\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--task_list\\\\\\\", type=str, default=None,\\\\n                        help=\\\\\\\"Comma-separated task type names (alias for --task_types)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--episodes\\\\\\\", type=int, default=20,\\\\n                        help=\\\\\\\"Number of episodes per task type (default: 20)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--start_episode\\\\\\\", type=int, default=0,\\\\n                        help=\\\\\\\"Starting episode index for incremental runs (default: 0)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--gpu_id\\\\\\\", type=int, default=0)\\\\n    parser.add_argument(\\\\\\\"--max_steps\\\\\\\", type=int, default=30)\\\\n    parser.add_argument(\\\\\\\"--output_dir\\\\\\\", type=str, default=\\\\\\\"results/plan_c/\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--model_path\\\\\\\", type=str, default=None)\\\\n    parser.add_argument(\\\\\\\"--use_vllm\\\\\\\", action=\\\\\\\"store_true\\\\\\\", default=True)\\\\n    parser.add_argument(\\\\\\\"--no_vllm\\\\\\\", action=\\\\\\\"store_true\\\\\\\", default=False,\\\\n                        help=\\\\\\\"Use HF transformers instead of vLLM\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--n_candidates\\\\\\\", type=int, default=3,\\\\n                        help=\\\\\\\"Number of candidate actions for deterministic mode\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42)\\\\n    parser.add_argument(\\\\\\\"--reuse_dirs\\\\\\\", type=str, default=None,\\\\n                        help=\\\\\\\"Comma-separated directories to scan for existing episode data\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--deep_internal\\\\\\\", action=\\\\\\\"store_true\\\\\\\", default=False,\\\\n                        help=\\\\\\\"Deep-internal mode: extended CoT reasoning, collect only deep-internal episodes\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--dry_run\\\\\\\", action=\\\\\\\"store_true\\\\\\\", default=False,\\\\n                        help=\\\\\\\"Only scan reuse dirs and report what would be collected, no GPU inference\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--tp\\\\\\\", type=int, default=1,\\\\n                        help=\\\\\\\"Tensor parallel size for vLLM (default: 1)\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    task_types_str = args.task_types or args.task_list\\\\n    if not task_types_str:\\\\n        parser.error(\\\\\\\"--task_types or --task_list is required\\\\\\\")\\\\n\\\\n    if args.no_vllm:\\\\n        args.use_vllm = False\\\\n\\\\n    random.seed(args.seed)\\\\n\\\\n    task_names_raw = [t.strip() for t in task_types_str.split(\\\\\\\",\\\\\\\") if t.strip()]\\\\n    task_names = [resolve_task_type(t) for t in task_names_raw]\\\\n\\\\n    reuse_dirs = []\\\\n    if args.reuse_dirs:\\\\n        reuse_dirs = [d.strip() for d in args.reuse_dirs.split(\\\\\\\",\\\\\\\") if d.strip()]\\\\n\\\\n    if args.dry_run:\\\\n        print(f\\\\\\\"=== DRY RUN: scanning reuse dirs for {len(task_names)} tasks ===\\\\\\\")\\\\n        print(f\\\\\\\"Reuse dirs: {reuse_dirs}\\\\\\\")\\\\n        print(f\\\\\\\"Target episodes per task: {args.episodes}\\\\\\\\n\\\\\\\")\\\\n\\\\n        for task_name in task_names:\\\\n            reuse_info = scan_reuse_episodes(reuse_dirs, task_name) if reuse_dirs else {\\\\\\\"total\\\\\\\": 0, \\\\\\\"sources\\\\\\\": []}\\\\n            existing = reuse_info[\\\\\\\"total\\\\\\\"]\\\\n            needed = max(0, args.episodes - existing)\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.87}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "33321c42-deef-4a8a-97d9-eb2806e96fe8",
+            "uuid": "8e939521-8a0a-44fc-88fb-18811cb86716",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# Plan C episode-level labeling data collection for router SFT training.\\\\n#\\\\n# For each task variation, runs 2 complete episodes (always-internal + always-deterministic),\\\\n# compares final episode scores to label each step's modality preference.\\\\n# Reuses run_episode_internal / run_episode_deterministic from signal_prescreening.py.\\\\n#\\\\n# Outputs:\\\\n#   {output_dir}/{task_type}/episodes.jsonl        — full episode data (downstream pipeline input)\\\\n#   {output_dir}/{task_type}/labeled_steps.jsonl   — one labeled step per line (training data)\\\\n#   {output_dir}/{task_type}/episode_summary.jsonl  — one episode summary per line\\\\n#\\\\n# Usage:\\\\n#   python src/episode_level_collection.py --task_types \\\\\\\"boil,melt\\\\\\\" --episodes 20 --gpu_id 0\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport random\\\\nimport sys\\\\nimport signal\\\\nimport subprocess\\\\nimport time\\\\nfrom typing import List, Dict, Any\\\\n\\\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\\\nfrom scienceworld_utils import (\\\\n    create_env, reset_env, get_valid_actions, get_score,\\\\n    step_env, close_env, fork_and_lookahead, get_task_types,\\\\n    get_max_variations,\\\\n)\\\\nfrom llm_agent import LLMAgent, find_model_path\\\\n\\\\nDEATH_THRESHOLD = -100\\\\n\\\\n# Disk space optimization: strip verbose per-step fields (llm_output, per-step\\\\n# action_history, candidates). Set SLIM_EPISODES=0 for full debug output.\\\\nSLIM_EPISODES = os.environ.get(\\\\\\\"SLIM_EPISODES\\\\\\\", \\\\\\\"1\\\\\\\") == \\\\\\\"1\\\\\\\"\\\\n\\\\n\\\\ndef _slim_episode_data(ep):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Strip per-step debug fields when SLIM_EPISODES is enabled.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if not SLIM_EPISODES:\\\\n        return ep\\\\n    result = {k: v for k, v in ep.items() if k != \\\\\\\"steps\\\\\\\"}\\\\n    if \\\\\\\"steps\\\\\\\" in ep:\\\\n        result[\\\\\\\"steps\\\\\\\"] = [\\\\n            {k: v for k, v in s.items()\\\\n             if k not in (\\\\\\\"llm_output\\\\\\\", \\\\\\\"action_history\\\\\\\", \\\\\\\"candidates\\\\\\\")}\\\\n            for s in ep[\\\\\\\"steps\\\\\\\"]\\\\n        ]\\\\n    return result\\\\n\\\\n\\\\n\\\\ndef cleanup_gpu_processes(gpu_id: int):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Kill orphaned GPU processes before vLLM init to prevent OOM.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    try:\\\\n        result = subprocess.run(\\\\n            [\\\\\\\"nvidia-smi\\\\\\\", f\\\\\\\"--id={gpu_id}\\\\\\\",\\\\n             \\\\\\\"--query-compute-apps=pid\\\\\\\", \\\\\\\"--format=csv,noheader\\\\\\\"],\\\\n            capture_output=True, text=True, timeout=10,\\\\n        )\\\\n        if result.returncode != 0 or not result.stdout.strip():\\\\n            return\\\\n        my_pid = os.getpid()\\\\n        killed = []\\\\n        for line in result.stdout.strip().split(\\\\\\\"\\\\\\\\n\\\\\\\"):\\\\n            pid_str = line.strip()\\\\n            if pid_str.isdigit() and int(pid_str) != my_pid:\\\\n                try:\\\\n                    os.kill(int(pid_str), signal.SIGKILL)\\\\n                    killed.append(pid_str)\\\\n                except ProcessLookupError:\\\\n                    pass\\\\n        if killed:\\\\n            print(f\\\\\\\"[cleanup] Killed orphan PIDs on GPU {gpu_id}: {killed}\\\\\\\")\\\\n            time.sleep(3)\\\\n    except Exception as e:\\\\n        print(f\\\\\\\"[cleanup] GPU cleanup warning: {e}\\\\\\\")\\\\n\\\\n\\\\ndef resolve_task_type(name: str) -> str:\\\\n    try:\\\\n        available = get_task_types()\\\\n    except Exception:\\\\n        return name\\\\n    if name in available:\\\\n        return name\\\\n    matches = [t for t in available if name.lower() in t.lower()]\\\\n    if matches:\\\\n        return matches[0]\\\\n    return name\\\\n\\\\n\\\\ndef is_lethal(fr: Dict[str, Any]) -> bool:\\\\n    if fr[\\\\\\\"done\\\\\\\"] and fr[\\\\\\\"score\\\\\\\"] < 0:\\\\n        return True\\\\n    if fr[\\\\\\\"score\\\\\\\"] <= -100:\\\\n        return True\\\\n    return False\\\\n\\\\n\\\\ndef scan_reuse_episodes(reuse_dirs: List[str], task_name: str) -> Dict[str, Any]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Scan reuse directories for existing episodes of a given task.\\\\n\\\\n    Returns dict with 'total' count and 'sources' list of {dir, count, path}.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    task_name_normalized = task_name.replace(\\\\\\\" \\\\\\\", \\\\\\\"_\\\\\\\")\\\\n    candidates = [task_name, task_name_normalized]\\\\n    if \\\\\\\"-\\\\\\\" in task_name:\\\\n        candidates.append(task_name.replace(\\\\\\\"-\\\\\\\", \\\\\\\"_\\\\\\\"))\\\\n    if \\\\\\\"_\\\\\\\" in task_name:\\\\n        candidates.append(task_name.replace(\\\\\\\"_\\\\\\\", \\\\\\\"-\\\\\\\"))\\\\n\\\\n    sources = []\\\\n    total = 0\\\\n\\\\n    for reuse_dir in reuse_dirs:\\\\n        reuse_dir = reuse_dir.rstrip(\\\\\\\"/\\\\\\\")\\\\n        if not os.path.isdir(reuse_dir):\\\\n            continue\\\\n\\\\n        found_path = Non\\\\n\\\\n... [截断: 输出过长，省略 13424 字符] ...\\\\n\\\\ncounts['internal']}, det={death_counts['det']}, both={death_counts['both']}\\\\\\\")\\\\n\\\\n    return {\\\\n        \\\\\\\"task_name\\\\\\\": task_name,\\\\n        \\\\\\\"n_episodes\\\\\\\": n_episodes,\\\\n        \\\\\\\"start_episode\\\\\\\": start_episode,\\\\n        \\\\\\\"label_counts\\\\\\\": label_counts,\\\\n        \\\\\\\"total_labeled_steps\\\\\\\": total_labeled_steps,\\\\n        \\\\\\\"avg_score_gap\\\\\\\": avg_gap,\\\\n        \\\\\\\"death_counts\\\\\\\": death_counts,\\\\n    }\\\\n\\\\n\\\\ndef copy_reused_episodes(sources: List[Dict], task_dir: str) -> int:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Copy episodes from reuse sources into the output episodes.jsonl.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    episodes_file = os.path.join(task_dir, \\\\\\\"episodes.jsonl\\\\\\\")\\\\n    copied = 0\\\\n    for src in sources:\\\\n        with open(src[\\\\\\\"path\\\\\\\"]) as fin:\\\\n            with open(episodes_file, \\\\\\\"a\\\\\\\") as fout:\\\\n                for line in fin:\\\\n                    line = line.strip()\\\\n                    if line:\\\\n                        fout.write(line + \\\\\\\"\\\\\\\\n\\\\\\\")\\\\n                        copied += 1\\\\n    return copied\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(\\\\n        description=\\\\\\\"Plan C episode-level labeling: collect SFT training data by comparing always-internal vs always-deterministic episodes\\\\\\\"\\\\n    )\\\\n    parser.add_argument(\\\\\\\"--task_types\\\\\\\", type=str, default=None,\\\\n                        help=\\\\\\\"Comma-separated task type names\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--task_list\\\\\\\", type=str, default=None,\\\\n                        help=\\\\\\\"Comma-separated task type names (alias for --task_types)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--episodes\\\\\\\", type=int, default=20,\\\\n                        help=\\\\\\\"Number of episodes per task type (default: 20)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--start_episode\\\\\\\", type=int, default=0,\\\\n                        help=\\\\\\\"Starting episode index for incremental runs (default: 0)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--gpu_id\\\\\\\", type=int, default=0)\\\\n    parser.add_argument(\\\\\\\"--max_steps\\\\\\\", type=int, default=30)\\\\n    parser.add_argument(\\\\\\\"--output_dir\\\\\\\", type=str, default=\\\\\\\"results/plan_c/\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--model_path\\\\\\\", type=str, default=None)\\\\n    parser.add_argument(\\\\\\\"--use_vllm\\\\\\\", action=\\\\\\\"store_true\\\\\\\", default=True)\\\\n    parser.add_argument(\\\\\\\"--no_vllm\\\\\\\", action=\\\\\\\"store_true\\\\\\\", default=False,\\\\n                        help=\\\\\\\"Use HF transformers instead of vLLM\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--n_candidates\\\\\\\", type=int, default=3,\\\\n                        help=\\\\\\\"Number of candidate actions for deterministic mode\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42)\\\\n    parser.add_argument(\\\\\\\"--reuse_dirs\\\\\\\", type=str, default=None,\\\\n                        help=\\\\\\\"Comma-separated directories to scan for existing episode data\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--deep_internal\\\\\\\", action=\\\\\\\"store_true\\\\\\\", default=False,\\\\n                        help=\\\\\\\"Deep-internal mode: extended CoT reasoning, collect only deep-internal episodes\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--dry_run\\\\\\\", action=\\\\\\\"store_true\\\\\\\", default=False,\\\\n                        help=\\\\\\\"Only scan reuse dirs and report what would be collected, no GPU inference\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--tp\\\\\\\", type=int, default=1,\\\\n                        help=\\\\\\\"Tensor parallel size for vLLM (default: 1)\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    task_types_str = args.task_types or args.task_list\\\\n    if not task_types_str:\\\\n        parser.error(\\\\\\\"--task_types or --task_list is required\\\\\\\")\\\\n\\\\n    if args.no_vllm:\\\\n        args.use_vllm = False\\\\n\\\\n    random.seed(args.seed)\\\\n\\\\n    task_names_raw = [t.strip() for t in task_types_str.split(\\\\\\\",\\\\\\\") if t.strip()]\\\\n    task_names = [resolve_task_type(t) for t in task_names_raw]\\\\n\\\\n    reuse_dirs = []\\\\n    if args.reuse_dirs:\\\\n        reuse_dirs = [d.strip() for d in args.reuse_dirs.split(\\\\\\\",\\\\\\\") if d.strip()]\\\\n\\\\n    if args.dry_run:\\\\n        print(f\\\\\\\"=== DRY RUN: scanning reuse dirs for {len(task_names)} tasks ===\\\\\\\")\\\\n        print(f\\\\\\\"Reuse dirs: {reuse_dirs}\\\\\\\")\\\\n        print(f\\\\\\\"Target episodes per task: {args.episodes}\\\\\\\\n\\\\\\\")\\\\n\\\\n        for task_name in task_names:\\\\n            reuse_info = scan_reuse_episodes(reuse_dirs, task_name) if reuse_dirs else {\\\\\\\"total\\\\\\\": 0, \\\\\\\"sources\\\\\\\": []}\\\\n            existing = reuse_info[\\\\\\\"total\\\\\\\"]\\\\n            needed = max(0, args.episodes - existing)\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.87}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"# Plan C episode-level labeling data collection for router SFT training.\\n#\\n# For each task variation, runs 2 complete episodes (always-internal + always-deterministic),\\n# compares final episode scores to label each step's modality preference.\\n# Reuses run_episode_internal / run_episode_deterministic from signal_prescreening.py.\\n#\\n# Outputs:\\n#   {output_dir}/{task_type}/episodes.jsonl        — full episode data (downstream pipeline input)\\n#   {output_dir}/{task_type}/labeled_steps.jsonl   — one labeled step per line (training data)\\n#   {output_dir}/{task_type}/episode_summary.jsonl  — one episode summary per line\\n#\\n# Usage:\\n#   python src/episode_level_collection.py --task_types \\\"boil,melt\\\" --episodes 20 --gpu_id 0\\n\\nimport argparse\\nimport json\\nimport os\\nimport random\\nimport sys\\nimport signal\\nimport subprocess\\nimport time\\nfrom typing import List, Dict, Any\\n\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\nfrom scienceworld_utils import (\\n    create_env, reset_env, get_valid_actions, get_score,\\n    step_env, close_env, fork_and_lookahead, get_task_types,\\n    get_max_variations,\\n)\\nfrom llm_agent import LLMAgent, find_model_path\\n\\nDEATH_THRESHOLD = -100\\n\\n# Disk space optimization: strip verbose per-step fields (llm_output, per-step\\n# action_history, candidates). Set SLIM_EPISODES=0 for full debug output.\\nSLIM_EPISODES = os.environ.get(\\\"SLIM_EPISODES\\\", \\\"1\\\") == \\\"1\\\"\\n\\n\\ndef _slim_episode_data(ep):\\n    \\\"\\\"\\\"Strip per-step debug fields when SLIM_EPISODES is enabled.\\\"\\\"\\\"\\n    if not SLIM_EPISODES:\\n        return ep\\n    result = {k: v for k, v in ep.items() if k != \\\"steps\\\"}\\n    if \\\"steps\\\" in ep:\\n        result[\\\"steps\\\"] = [\\n            {k: v for k, v in s.items()\\n             if k not in (\\\"llm_output\\\", \\\"action_history\\\", \\\"candidates\\\")}\\n            for s in ep[\\\"steps\\\"]\\n        ]\\n    return result\\n\\n\\n\\ndef cleanup_gpu_processes(gpu_id: int):\\n    \\\"\\\"\\\"Kill orphaned GPU processes before vLLM init to prevent OOM.\\\"\\\"\\\"\\n    try:\\n        result = subprocess.run(\\n            [\\\"nvidia-smi\\\", f\\\"--id={gpu_id}\\\",\\n             \\\"--query-compute-apps=pid\\\", \\\"--format=csv,noheader\\\"],\\n            capture_output=True, text=True, timeout=10,\\n        )\\n        if result.returncode != 0 or not result.stdout.strip():\\n            return\\n        my_pid = os.getpid()\\n        killed = []\\n        for line in result.stdout.strip().split(\\\"\\\\n\\\"):\\n            pid_str = line.strip()\\n            if pid_str.isdigit() and int(pid_str) != my_pid:\\n                try:\\n                    os.kill(int(pid_str), signal.SIGKILL)\\n                    killed.append(pid_str)\\n                except ProcessLookupError:\\n                    pass\\n        if killed:\\n            print(f\\\"[cleanup] Killed orphan PIDs on GPU {gpu_id}: {killed}\\\")\\n            time.sleep(3)\\n    except Exception as e:\\n        print(f\\\"[cleanup] GPU cleanup warning: {e}\\\")\\n\\n\\ndef resolve_task_type(name: str) -> str:\\n    try:\\n        available = get_task_types()\\n    except Exception:\\n        return name\\n    if name in available:\\n        return name\\n    matches = [t for t in available if name.lower() in t.lower()]\\n    if matches:\\n        return matches[0]\\n    return name\\n\\n\\ndef is_lethal(fr: Dict[str, Any]) -> bool:\\n    if fr[\\\"done\\\"] and fr[\\\"score\\\"] < 0:\\n        return True\\n    if fr[\\\"score\\\"] <= -100:\\n        return True\\n    return False\\n\\n\\ndef scan_reuse_episodes(reuse_dirs: List[str], task_name: str) -> Dict[str, Any]:\\n    \\\"\\\"\\\"Scan reuse directories for existing episodes of a given task.\\n\\n    Returns dict with 'total' count and 'sources' list of {dir, count, path}.\\n    \\\"\\\"\\\"\\n    task_name_normalized = task_name.replace(\\\" \\\", \\\"_\\\")\\n    candidates = [task_name, task_name_normalized]\\n    if \\\"-\\\" in task_name:\\n        candidates.append(task_name.replace(\\\"-\\\", \\\"_\\\"))\\n    if \\\"_\\\" in task_name:\\n        candidates.append(task_name.replace(\\\"_\\\", \\\"-\\\"))\\n\\n    sources = []\\n    total = 0\\n\\n    for reuse_dir in reuse_dirs:\\n        reuse_dir = reuse_dir.rstrip(\\\"/\\\")\\n        if not os.path.isdir(reuse_dir):\\n            continue\\n\\n        found_path = Non\\n\\n... [截断: 输出过长，省略 13424 字符] ...\\n\\ncounts['internal']}, det={death_counts['det']}, both={death_counts['both']}\\\")\\n\\n    return {\\n        \\\"task_name\\\": task_name,\\n        \\\"n_episodes\\\": n_episodes,\\n        \\\"start_episode\\\": start_episode,\\n        \\\"label_counts\\\": label_counts,\\n        \\\"total_labeled_steps\\\": total_labeled_steps,\\n        \\\"avg_score_gap\\\": avg_gap,\\n        \\\"death_counts\\\": death_counts,\\n    }\\n\\n\\ndef copy_reused_episodes(sources: List[Dict], task_dir: str) -> int:\\n    \\\"\\\"\\\"Copy episodes from reuse sources into the output episodes.jsonl.\\\"\\\"\\\"\\n    episodes_file = os.path.join(task_dir, \\\"episodes.jsonl\\\")\\n    copied = 0\\n    for src in sources:\\n        with open(src[\\\"path\\\"]) as fin:\\n            with open(episodes_file, \\\"a\\\") as fout:\\n                for line in fin:\\n                    line = line.strip()\\n                    if line:\\n                        fout.write(line + \\\"\\\\n\\\")\\n                        copied += 1\\n    return copied\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(\\n        description=\\\"Plan C episode-level labeling: collect SFT training data by comparing always-internal vs always-deterministic episodes\\\"\\n    )\\n    parser.add_argument(\\\"--task_types\\\", type=str, default=None,\\n                        help=\\\"Comma-separated task type names\\\")\\n    parser.add_argument(\\\"--task_list\\\", type=str, default=None,\\n                        help=\\\"Comma-separated task type names (alias for --task_types)\\\")\\n    parser.add_argument(\\\"--episodes\\\", type=int, default=20,\\n                        help=\\\"Number of episodes per task type (default: 20)\\\")\\n    parser.add_argument(\\\"--start_episode\\\", type=int, default=0,\\n                        help=\\\"Starting episode index for incremental runs (default: 0)\\\")\\n    parser.add_argument(\\\"--gpu_id\\\", type=int, default=0)\\n    parser.add_argument(\\\"--max_steps\\\", type=int, default=30)\\n    parser.add_argument(\\\"--output_dir\\\", type=str, default=\\\"results/plan_c/\\\")\\n    parser.add_argument(\\\"--model_path\\\", type=str, default=None)\\n    parser.add_argument(\\\"--use_vllm\\\", action=\\\"store_true\\\", default=True)\\n    parser.add_argument(\\\"--no_vllm\\\", action=\\\"store_true\\\", default=False,\\n                        help=\\\"Use HF transformers instead of vLLM\\\")\\n    parser.add_argument(\\\"--n_candidates\\\", type=int, default=3,\\n                        help=\\\"Number of candidate actions for deterministic mode\\\")\\n    parser.add_argument(\\\"--seed\\\", type=int, default=42)\\n    parser.add_argument(\\\"--reuse_dirs\\\", type=str, default=None,\\n                        help=\\\"Comma-separated directories to scan for existing episode data\\\")\\n    parser.add_argument(\\\"--deep_internal\\\", action=\\\"store_true\\\", default=False,\\n                        help=\\\"Deep-internal mode: extended CoT reasoning, collect only deep-internal episodes\\\")\\n    parser.add_argument(\\\"--dry_run\\\", action=\\\"store_true\\\", default=False,\\n                        help=\\\"Only scan reuse dirs and report what would be collected, no GPU inference\\\")\\n    parser.add_argument(\\\"--tp\\\", type=int, default=1,\\n                        help=\\\"Tensor parallel size for vLLM (default: 1)\\\")\\n    args = parser.parse_args()\\n\\n    task_types_str = args.task_types or args.task_list\\n    if not task_types_str:\\n        parser.error(\\\"--task_types or --task_list is required\\\")\\n\\n    if args.no_vllm:\\n        args.use_vllm = False\\n\\n    random.seed(args.seed)\\n\\n    task_names_raw = [t.strip() for t in task_types_str.split(\\\",\\\") if t.strip()]\\n    task_names = [resolve_task_type(t) for t in task_names_raw]\\n\\n    reuse_dirs = []\\n    if args.reuse_dirs:\\n        reuse_dirs = [d.strip() for d in args.reuse_dirs.split(\\\",\\\") if d.strip()]\\n\\n    if args.dry_run:\\n        print(f\\\"=== DRY RUN: scanning reuse dirs for {len(task_names)} tasks ===\\\")\\n        print(f\\\"Reuse dirs: {reuse_dirs}\\\")\\n        print(f\\\"Target episodes per task: {args.episodes}\\\\n\\\")\\n\\n        for task_name in task_names:\\n            reuse_info = scan_reuse_episodes(reuse_dirs, task_name) if reuse_dirs else {\\\"total\\\": 0, \\\"sources\\\": []}\\n            existing = reuse_info[\\\"total\\\"]\\n            needed = max(0, args.episodes - existing)\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.87}}"
+              }
+            }
+          },
+          "id": "event-000548"
+        },
+        {
+          "source_line": 549,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me see the `run_task_collection` function and the part between internal and deterministic episodes.",
+              "signature": "EqICClkIDRgCKkDj7e7u0fqclY+IiFJ1VgcGggsEZu1KDeZIyXyGz1xloQoJS2dqAj6sRK6UEMki5G/LvdLj4lNrdKEroZQhgtUZMg9jbGF1ZGUtb3B1cy00LTY4ABIMRsf/x728s40vrIwCGgxPTw54kjEf+1RI9CkiMN+dFBMGFbREX1rY4xdHhgS8YUtoghapiAmUevmbaKLAxzlbxM1crfwR8Y3vOOmOryp3ANJOsJau6pkJ1ptDC0djFTRsfWjTk7hO0BbsTz9dMdBI0HH0hoZyisVC4KQONTHqwwsWKN026vUdL61stBVd+UkFeyteWlNcDgCSLRWn0BA0Jqme226okiOqZi3E5WjJsVILfaRndO0tf5mypAxxEfS0IoItgwMYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "33321c42-deef-4a8a-97d9-eb2806e96fe8",
+            "uuid": "c2815162-b609-428e-933e-e688c5ea9d43",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NBHPUBUhUBXj6D7HabDjNr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3211,
+                "cache_read_input_tokens": 50141,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3211
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000549"
+        },
+        {
+          "source_line": 550,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Lqic3raxxodNF8DcyfHHYG",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westb-13313",
+                "command": "grep -n \"run_episode_internal\\|run_episode_deterministic\\|r_int\\|r_det\\|print.*always\" /root/autodl-tmp/simgate-modular-routing/src/episode_level_collection.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "33321c42-deef-4a8a-97d9-eb2806e96fe8",
+            "uuid": "a41ffdc4-31ca-458b-b3b2-a98c6d3b6160",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NBHPUBUhUBXj6D7HabDjNr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3211,
+                "cache_read_input_tokens": 50141,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3211
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000550"
+        },
+        {
+          "source_line": 551,
+          "timestamp": "2026-05-19T02:20:02.905Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Lqic3raxxodNF8DcyfHHYG",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "33321c42-deef-4a8a-97d9-eb2806e96fe8",
+            "uuid": "594be870-6235-4216-b729-e38c82019596",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000551"
+        },
+        {
+          "source_line": 552,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0194nTbUnYGY66DcCvNaNm4n",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westb-13313",
+                "command": "grep -n \"run_episode_internal\" /root/autodl-tmp/simgate-modular-routing/src/episode_level_collection.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "33321c42-deef-4a8a-97d9-eb2806e96fe8",
+            "uuid": "72e5a727-5c56-440c-a001-a52f34aced2c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Riy6sPopUwcGXgr3CjJ2mq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 272,
+                "cache_read_input_tokens": 53352,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 272
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000552"
+        },
+        {
+          "source_line": 553,
+          "timestamp": "2026-05-19T02:20:06.030Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0194nTbUnYGY66DcCvNaNm4n",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"5:# Reuses run_episode_internal / run_episode_deterministic from signal_prescreening.py.\\\\n156:def run_episode_internal(\\\\n425:        r_int = run_episode_internal(agent, task_name, variation_idx, max_steps)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.74}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "33321c42-deef-4a8a-97d9-eb2806e96fe8",
+            "uuid": "bd09b9a0-d045-45c1-9c3b-3677d9987caf",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"5:# Reuses run_episode_internal / run_episode_deterministic from signal_prescreening.py.\\\\n156:def run_episode_internal(\\\\n425:        r_int = run_episode_internal(agent, task_name, variation_idx, max_steps)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.74}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"5:# Reuses run_episode_internal / run_episode_deterministic from signal_prescreening.py.\\n156:def run_episode_internal(\\n425:        r_int = run_episode_internal(agent, task_name, variation_idx, max_steps)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.74}}"
+              }
+            }
+          },
+          "id": "event-000553"
+        },
+        {
+          "source_line": 554,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MpCtEmstnFCCECUD2p4ns8",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westb-13313",
+                "command": "grep -n \"run_episode_deterministic\" /root/autodl-tmp/simgate-modular-routing/src/episode_level_collection.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "33321c42-deef-4a8a-97d9-eb2806e96fe8",
+            "uuid": "2e5fdd25-f462-4878-b149-e1ae73603903",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Riy6sPopUwcGXgr3CjJ2mq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 272,
+                "cache_read_input_tokens": 53352,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 272
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000554"
+        },
+        {
+          "source_line": 555,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0166Aq2LGJYpNDZJeSvGVgs5",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westb-13313",
+                "command": "grep -n \"r_int\\|r_det\" /root/autodl-tmp/simgate-modular-routing/src/episode_level_collection.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "33321c42-deef-4a8a-97d9-eb2806e96fe8",
+            "uuid": "e918aa0f-e8a6-4842-bffb-921bb9f39f9c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Riy6sPopUwcGXgr3CjJ2mq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 272,
+                "cache_read_input_tokens": 53352,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 272
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000555"
+        },
+        {
+          "source_line": 556,
+          "timestamp": "2026-05-19T02:20:07.572Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MpCtEmstnFCCECUD2p4ns8",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"5:# Reuses run_episode_internal / run_episode_deterministic from signal_prescreening.py.\\\\n281:def run_episode_deterministic(\\\\n430:        r_det = run_episode_deterministic(\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.74}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "33321c42-deef-4a8a-97d9-eb2806e96fe8",
+            "uuid": "10723ab3-03dc-42e9-a025-435f80464d51",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"5:# Reuses run_episode_internal / run_episode_deterministic from signal_prescreening.py.\\\\n281:def run_episode_deterministic(\\\\n430:        r_det = run_episode_deterministic(\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.74}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"5:# Reuses run_episode_internal / run_episode_deterministic from signal_prescreening.py.\\n281:def run_episode_deterministic(\\n430:        r_det = run_episode_deterministic(\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.74}}"
+              }
+            }
+          },
+          "id": "event-000556"
+        },
+        {
+          "source_line": 557,
+          "timestamp": "2026-05-19T02:20:07.585Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0166Aq2LGJYpNDZJeSvGVgs5",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "33321c42-deef-4a8a-97d9-eb2806e96fe8",
+            "uuid": "02b8b389-c41f-45bc-913e-bd49c4b9988f",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000557"
+        },
+        {
+          "source_line": 558,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MxafGpH2mLhioETwEDENAE",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westb-13313",
+                "command": "tail -n +410 /root/autodl-tmp/simgate-modular-routing/src/episode_level_collection.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "33321c42-deef-4a8a-97d9-eb2806e96fe8",
+            "uuid": "c4b6ef20-5c72-41e7-9e18-c217b37f0141",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PQwMG9CdvXzSUSEbky4733",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 777,
+                "cache_read_input_tokens": 53624,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 777
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000558"
+        },
+        {
+          "source_line": 559,
+          "timestamp": "2026-05-19T02:20:11.468Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MxafGpH2mLhioETwEDENAE",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    print(f\\\\\\\"Episodes: {start_episode}..{end_episode-1} ({n_episodes} total) | Max steps: {max_steps}\\\\\\\")\\\\n    print(f\\\\\\\"Max variations: {max_var}\\\\\\\")\\\\n    print(f\\\\\\\"{'='*60}\\\\\\\")\\\\n\\\\n    label_counts = {\\\\\\\"det-preferred\\\\\\\": 0, \\\\\\\"internal-preferred\\\\\\\": 0, \\\\\\\"no-preference\\\\\\\": 0}\\\\n    total_labeled_steps = 0\\\\n    death_counts = {\\\\\\\"internal\\\\\\\": 0, \\\\\\\"det\\\\\\\": 0, \\\\\\\"both\\\\\\\": 0}\\\\n    score_gaps = []\\\\n\\\\n    for ep_idx in range(start_episode, end_episode):\\\\n        variation_idx = ep_idx % max_var\\\\n        print(f\\\\\\\"\\\\\\\\n--- Episode {ep_idx} (variation={variation_idx}) ---\\\\\\\")\\\\n\\\\n        print(f\\\\\\\"  [I] always-internal...\\\\\\\", end=\\\\\\\" \\\\\\\", flush=True)\\\\n        t = time.time()\\\\n        r_int = run_episode_internal(agent, task_name, variation_idx, max_steps)\\\\n        print(f\\\\\\\"score={r_int['final_score']:.1f} ({time.time()-t:.0f}s)\\\\\\\")\\\\n\\\\n        print(f\\\\\\\"  [D] always-deterministic...\\\\\\\", end=\\\\\\\" \\\\\\\", flush=True)\\\\n        t = time.time()\\\\n        r_det = run_episode_deterministic(\\\\n            agent, task_name, variation_idx, max_steps, n_candidates\\\\n        )\\\\n        print(f\\\\\\\"score={r_det['final_score']:.1f} ({time.time()-t:.0f}s)\\\\\\\")\\\\n\\\\n        internal_final = r_int[\\\\\\\"final_score\\\\\\\"]\\\\n        det_final = r_det[\\\\\\\"final_score\\\\\\\"]\\\\n        label, reason, signal_source = classify_episode_labels(internal_final, det_final)\\\\n        score_gap = det_final - internal_final\\\\n\\\\n        # Track deaths\\\\n        int_death = internal_final <= DEATH_THRESHOLD\\\\n        det_death = det_final <= DEATH_THRESHOLD\\\\n        if int_death and det_death:\\\\n            death_counts[\\\\\\\"both\\\\\\\"] += 1\\\\n        elif int_death:\\\\n            death_counts[\\\\\\\"internal\\\\\\\"] += 1\\\\n        elif det_death:\\\\n            death_counts[\\\\\\\"det\\\\\\\"] += 1\\\\n\\\\n        label_counts[label] += 1\\\\n        if label != \\\\\\\"no-preference\\\\\\\":\\\\n            score_gaps.append(abs(score_gap))\\\\n\\\\n        # Write episode to episodes.jsonl (prescreening-compatible format)\\\\n        ep_entry = {\\\\n            \\\\\\\"episode_idx\\\\\\\": ep_idx,\\\\n            \\\\\\\"variation_idx\\\\\\\": variation_idx,\\\\n            \\\\\\\"always_internal\\\\\\\": _slim_episode_data(r_int),\\\\n            \\\\\\\"always_deterministic\\\\\\\": _slim_episode_data(r_det),\\\\n        }\\\\n        with open(episodes_file, \\\\\\\"a\\\\\\\") as f:\\\\n            f.write(json.dumps(ep_entry) + \\\\\\\"\\\\\\\\n\\\\\\\")\\\\n\\\\n        # Write episode summary\\\\n        ep_summary = {\\\\n            \\\\\\\"episode\\\\\\\": ep_idx,\\\\n            \\\\\\\"variation\\\\\\\": variation_idx,\\\\n            \\\\\\\"internal_final\\\\\\\": internal_final,\\\\n            \\\\\\\"det_final\\\\\\\": det_final,\\\\n            \\\\\\\"label\\\\\\\": label,\\\\n            \\\\\\\"signal_source\\\\\\\": signal_source,\\\\n            \\\\\\\"reason\\\\\\\": reason,\\\\n            \\\\\\\"score_gap\\\\\\\": score_gap,\\\\n            \\\\\\\"internal_steps\\\\\\\": r_int[\\\\\\\"num_steps\\\\\\\"],\\\\n            \\\\\\\"det_steps\\\\\\\": r_det[\\\\\\\"num_steps\\\\\\\"],\\\\n        }\\\\n        with open(summary_file, \\\\\\\"a\\\\\\\") as f:\\\\n            f.write(json.dumps(ep_summary) + \\\\\\\"\\\\\\\\n\\\\\\\")\\\\n\\\\n        print(f\\\\\\\"  Label: {label} [{signal_source}] (gap={score_gap:+.1f})\\\\\\\")\\\\n\\\\n        # Write labeled steps from preferred episode (skip no-preference)\\\\n        if label == \\\\\\\"no-preference\\\\\\\":\\\\n            continue\\\\n\\\\n        winning_result = r_det if label == \\\\\\\"det-preferred\\\\\\\" else r_int\\\\n        for step in winning_result[\\\\\\\"steps\\\\\\\"]:\\\\n            record = {\\\\n                \\\\\\\"task_type\\\\\\\": task_name,\\\\n                \\\\\\\"episode_id\\\\\\\": ep_idx,\\\\n                \\\\\\\"variation\\\\\\\": variation_idx,\\\\n                \\\\\\\"step_idx\\\\\\\": step[\\\\\\\"step\\\\\\\"],\\\\n                \\\\\\\"observation\\\\\\\": step[\\\\\\\"observation\\\\\\\"],\\\\n                \\\\\\\"action\\\\\\\": step[\\\\\\\"action\\\\\\\"],\\\\n                \\\\\\\"action_history\\\\\\\": step[\\\\\\\"action_history\\\\\\\"],\\\\n                \\\\\\\"score_before\\\\\\\": step[\\\\\\\"score_before\\\\\\\"],\\\\n                \\\\\\\"score_after\\\\\\\": step[\\\\\\\"score_after\\\\\\\"],\\\\n                \\\\\\\"label\\\\\\\": label,\\\\n                \\\\\\\"signal_source\\\\\\\": signal_source,\\\\n                \\\\\\\"episode_score_internal\\\\\\\": internal_final,\\\\n                \\\\\\\"episode_score_det\\\\\\\": det_final,\\\\n                \\\\\\\"score_gap\\\\\\\": score_gap,\\\\n            }\\\\n            with open(steps_file, \\\\\\\"a\\\\\\\") as f:\\\\n                f.write(json.dumps(record) + \\\\\\\"\\\\\\\\n\\\\\\\")\\\\n            total_labeled_steps += 1\\\\n\\\\n    avg_gap = sum(score_gaps) / len(score_gaps) if score_gaps else 0.0\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n=== EPISODE-LEVEL COLLECTION: {task_name} ===\\\\\\\")\\\\n    print(f\\\\\\\"Episodes: {n_episodes} (start={star\\\\n\\\\n... [截断: 输出过长，省略 8387 字符] ...\\\\n\\\\n flush=True)\\\\n                t = time.time()\\\\n                r_deep = run_episode_deep_internal(agent, task_name, variation_idx, args.max_steps)\\\\n                elapsed = time.time() - t\\\\n                print(f\\\\\\\"score={r_deep['final_score']:.1f} ({elapsed:.0f}s)\\\\\\\")\\\\n\\\\n                ep_entry = {\\\\n                    \\\\\\\"episode_idx\\\\\\\": ep_idx,\\\\n                    \\\\\\\"variation_idx\\\\\\\": variation_idx,\\\\n                    \\\\\\\"always_deep_internal\\\\\\\": _slim_episode_data(r_deep),\\\\n                }\\\\n                with open(episodes_file, \\\\\\\"a\\\\\\\") as f:\\\\n                    f.write(json.dumps(ep_entry) + \\\\\\\"\\\\\\\\n\\\\\\\")\\\\n\\\\n                ep_summary = {\\\\n                    \\\\\\\"episode\\\\\\\": ep_idx,\\\\n                    \\\\\\\"variation\\\\\\\": variation_idx,\\\\n                    \\\\\\\"deep_internal_final\\\\\\\": r_deep[\\\\\\\"final_score\\\\\\\"],\\\\n                    \\\\\\\"deep_internal_steps\\\\\\\": r_deep[\\\\\\\"num_steps\\\\\\\"],\\\\n                    \\\\\\\"deep_internal_time_s\\\\\\\": r_deep[\\\\\\\"total_time_s\\\\\\\"],\\\\n                }\\\\n                with open(summary_file, \\\\\\\"a\\\\\\\") as f:\\\\n                    f.write(json.dumps(ep_summary) + \\\\\\\"\\\\\\\\n\\\\\\\")\\\\n\\\\n            meta = {\\\\n                \\\\\\\"task_name\\\\\\\": task_name,\\\\n                \\\\\\\"mode\\\\\\\": \\\\\\\"deep-internal-only\\\\\\\",\\\\n                \\\\\\\"target_episodes\\\\\\\": args.episodes,\\\\n                \\\\\\\"collected_episodes\\\\\\\": needed,\\\\n                \\\\\\\"seed\\\\\\\": args.seed,\\\\n            }\\\\n            with open(os.path.join(task_dir, \\\\\\\"collection_meta.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n                json.dump(meta, f, indent=2)\\\\n\\\\n        print(\\\\\\\"\\\\\\\\nDeep-internal collection complete.\\\\\\\")\\\\n        return\\\\n\\\\n    cleanup_gpu_processes(args.gpu_id)\\\\n\\\\n    agent = LLMAgent(\\\\n        model_path=args.model_path,\\\\n        use_vllm=args.use_vllm,\\\\n        gpu_id=args.gpu_id,\\\\n        tensor_parallel_size=args.tp,\\\\n    )\\\\n\\\\n    os.makedirs(args.output_dir, exist_ok=True)\\\\n    all_results = {}\\\\n\\\\n    for task_name in task_names:\\\\n        plan = task_plans[task_name]\\\\n        task_dir = os.path.join(args.output_dir, task_name.replace(\\\\\\\" \\\\\\\", \\\\\\\"_\\\\\\\"))\\\\n        os.makedirs(task_dir, exist_ok=True)\\\\n\\\\n        if plan[\\\\\\\"reuse_info\\\\\\\"][\\\\\\\"sources\\\\\\\"]:\\\\n            copied = copy_reused_episodes(plan[\\\\\\\"reuse_info\\\\\\\"][\\\\\\\"sources\\\\\\\"], task_dir)\\\\n            print(f\\\\\\\"Copied {copied} reused episodes for {task_name}\\\\\\\")\\\\n\\\\n        if plan[\\\\\\\"needed\\\\\\\"] > 0:\\\\n            effective_start = plan[\\\\\\\"existing\\\\\\\"] if reuse_dirs else args.start_episode\\\\n            result = run_task_collection(\\\\n                agent, task_name, plan[\\\\\\\"needed\\\\\\\"], effective_start,\\\\n                args.max_steps, args.output_dir, args.n_candidates,\\\\n            )\\\\n            all_results[task_name] = result\\\\n        else:\\\\n            all_results[task_name] = {\\\\n                \\\\\\\"task_name\\\\\\\": task_name,\\\\n                \\\\\\\"n_episodes\\\\\\\": 0,\\\\n                \\\\\\\"start_episode\\\\\\\": 0,\\\\n                \\\\\\\"label_counts\\\\\\\": {\\\\\\\"det-preferred\\\\\\\": 0, \\\\\\\"internal-preferred\\\\\\\": 0, \\\\\\\"no-preference\\\\\\\": 0},\\\\n                \\\\\\\"total_labeled_steps\\\\\\\": 0,\\\\n                \\\\\\\"avg_score_gap\\\\\\\": 0.0,\\\\n                \\\\\\\"death_counts\\\\\\\": {\\\\\\\"internal\\\\\\\": 0, \\\\\\\"det\\\\\\\": 0, \\\\\\\"both\\\\\\\": 0},\\\\n                \\\\\\\"skipped\\\\\\\": True,\\\\n            }\\\\n\\\\n        meta = {\\\\n            \\\\\\\"task_name\\\\\\\": task_name,\\\\n            \\\\\\\"target_episodes\\\\\\\": args.episodes,\\\\n            \\\\\\\"reused_episodes\\\\\\\": plan[\\\\\\\"existing\\\\\\\"],\\\\n            \\\\\\\"new_episodes\\\\\\\": plan[\\\\\\\"needed\\\\\\\"],\\\\n            \\\\\\\"reuse_sources\\\\\\\": [{\\\\\\\"dir\\\\\\\": s[\\\\\\\"dir\\\\\\\"], \\\\\\\"count\\\\\\\": s[\\\\\\\"count\\\\\\\"]} for s in plan[\\\\\\\"reuse_info\\\\\\\"][\\\\\\\"sources\\\\\\\"]],\\\\n        }\\\\n        with open(os.path.join(task_dir, \\\\\\\"collection_meta.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n            json.dump(meta, f, indent=2)\\\\n\\\\n    if len(task_names) > 1:\\\\n        print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\")\\\\n        print(\\\\\\\"GLOBAL SUMMARY\\\\\\\")\\\\n        print(f\\\\\\\"{'='*60}\\\\\\\")\\\\n        for tn, r in all_results.items():\\\\n            if r.get(\\\\\\\"skipped\\\\\\\"):\\\\n                print(f\\\\\\\"  {tn}: SKIPPED (reused {task_plans[tn]['existing']} episodes)\\\\\\\")\\\\n            else:\\\\n                lc = r[\\\\\\\"label_counts\\\\\\\"]\\\\n                reused = task_plans[tn][\\\\\\\"existing\\\\\\\"]\\\\n                print(f\\\\\\\"  {tn}: det-pref={lc['det-preferred']} int-pref={lc['internal-preferred']} no-pref={lc['no-preference']} | steps={r['total_labeled_steps']} | reused={reused}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.87}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "33321c42-deef-4a8a-97d9-eb2806e96fe8",
+            "uuid": "b46d166b-e686-40a2-999b-af4c35ab4bee",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    print(f\\\\\\\"Episodes: {start_episode}..{end_episode-1} ({n_episodes} total) | Max steps: {max_steps}\\\\\\\")\\\\n    print(f\\\\\\\"Max variations: {max_var}\\\\\\\")\\\\n    print(f\\\\\\\"{'='*60}\\\\\\\")\\\\n\\\\n    label_counts = {\\\\\\\"det-preferred\\\\\\\": 0, \\\\\\\"internal-preferred\\\\\\\": 0, \\\\\\\"no-preference\\\\\\\": 0}\\\\n    total_labeled_steps = 0\\\\n    death_counts = {\\\\\\\"internal\\\\\\\": 0, \\\\\\\"det\\\\\\\": 0, \\\\\\\"both\\\\\\\": 0}\\\\n    score_gaps = []\\\\n\\\\n    for ep_idx in range(start_episode, end_episode):\\\\n        variation_idx = ep_idx % max_var\\\\n        print(f\\\\\\\"\\\\\\\\n--- Episode {ep_idx} (variation={variation_idx}) ---\\\\\\\")\\\\n\\\\n        print(f\\\\\\\"  [I] always-internal...\\\\\\\", end=\\\\\\\" \\\\\\\", flush=True)\\\\n        t = time.time()\\\\n        r_int = run_episode_internal(agent, task_name, variation_idx, max_steps)\\\\n        print(f\\\\\\\"score={r_int['final_score']:.1f} ({time.time()-t:.0f}s)\\\\\\\")\\\\n\\\\n        print(f\\\\\\\"  [D] always-deterministic...\\\\\\\", end=\\\\\\\" \\\\\\\", flush=True)\\\\n        t = time.time()\\\\n        r_det = run_episode_deterministic(\\\\n            agent, task_name, variation_idx, max_steps, n_candidates\\\\n        )\\\\n        print(f\\\\\\\"score={r_det['final_score']:.1f} ({time.time()-t:.0f}s)\\\\\\\")\\\\n\\\\n        internal_final = r_int[\\\\\\\"final_score\\\\\\\"]\\\\n        det_final = r_det[\\\\\\\"final_score\\\\\\\"]\\\\n        label, reason, signal_source = classify_episode_labels(internal_final, det_final)\\\\n        score_gap = det_final - internal_final\\\\n\\\\n        # Track deaths\\\\n        int_death = internal_final <= DEATH_THRESHOLD\\\\n        det_death = det_final <= DEATH_THRESHOLD\\\\n        if int_death and det_death:\\\\n            death_counts[\\\\\\\"both\\\\\\\"] += 1\\\\n        elif int_death:\\\\n            death_counts[\\\\\\\"internal\\\\\\\"] += 1\\\\n        elif det_death:\\\\n            death_counts[\\\\\\\"det\\\\\\\"] += 1\\\\n\\\\n        label_counts[label] += 1\\\\n        if label != \\\\\\\"no-preference\\\\\\\":\\\\n            score_gaps.append(abs(score_gap))\\\\n\\\\n        # Write episode to episodes.jsonl (prescreening-compatible format)\\\\n        ep_entry = {\\\\n            \\\\\\\"episode_idx\\\\\\\": ep_idx,\\\\n            \\\\\\\"variation_idx\\\\\\\": variation_idx,\\\\n            \\\\\\\"always_internal\\\\\\\": _slim_episode_data(r_int),\\\\n            \\\\\\\"always_deterministic\\\\\\\": _slim_episode_data(r_det),\\\\n        }\\\\n        with open(episodes_file, \\\\\\\"a\\\\\\\") as f:\\\\n            f.write(json.dumps(ep_entry) + \\\\\\\"\\\\\\\\n\\\\\\\")\\\\n\\\\n        # Write episode summary\\\\n        ep_summary = {\\\\n            \\\\\\\"episode\\\\\\\": ep_idx,\\\\n            \\\\\\\"variation\\\\\\\": variation_idx,\\\\n            \\\\\\\"internal_final\\\\\\\": internal_final,\\\\n            \\\\\\\"det_final\\\\\\\": det_final,\\\\n            \\\\\\\"label\\\\\\\": label,\\\\n            \\\\\\\"signal_source\\\\\\\": signal_source,\\\\n            \\\\\\\"reason\\\\\\\": reason,\\\\n            \\\\\\\"score_gap\\\\\\\": score_gap,\\\\n            \\\\\\\"internal_steps\\\\\\\": r_int[\\\\\\\"num_steps\\\\\\\"],\\\\n            \\\\\\\"det_steps\\\\\\\": r_det[\\\\\\\"num_steps\\\\\\\"],\\\\n        }\\\\n        with open(summary_file, \\\\\\\"a\\\\\\\") as f:\\\\n            f.write(json.dumps(ep_summary) + \\\\\\\"\\\\\\\\n\\\\\\\")\\\\n\\\\n        print(f\\\\\\\"  Label: {label} [{signal_source}] (gap={score_gap:+.1f})\\\\\\\")\\\\n\\\\n        # Write labeled steps from preferred episode (skip no-preference)\\\\n        if label == \\\\\\\"no-preference\\\\\\\":\\\\n            continue\\\\n\\\\n        winning_result = r_det if label == \\\\\\\"det-preferred\\\\\\\" else r_int\\\\n        for step in winning_result[\\\\\\\"steps\\\\\\\"]:\\\\n            record = {\\\\n                \\\\\\\"task_type\\\\\\\": task_name,\\\\n                \\\\\\\"episode_id\\\\\\\": ep_idx,\\\\n                \\\\\\\"variation\\\\\\\": variation_idx,\\\\n                \\\\\\\"step_idx\\\\\\\": step[\\\\\\\"step\\\\\\\"],\\\\n                \\\\\\\"observation\\\\\\\": step[\\\\\\\"observation\\\\\\\"],\\\\n                \\\\\\\"action\\\\\\\": step[\\\\\\\"action\\\\\\\"],\\\\n                \\\\\\\"action_history\\\\\\\": step[\\\\\\\"action_history\\\\\\\"],\\\\n                \\\\\\\"score_before\\\\\\\": step[\\\\\\\"score_before\\\\\\\"],\\\\n                \\\\\\\"score_after\\\\\\\": step[\\\\\\\"score_after\\\\\\\"],\\\\n                \\\\\\\"label\\\\\\\": label,\\\\n                \\\\\\\"signal_source\\\\\\\": signal_source,\\\\n                \\\\\\\"episode_score_internal\\\\\\\": internal_final,\\\\n                \\\\\\\"episode_score_det\\\\\\\": det_final,\\\\n                \\\\\\\"score_gap\\\\\\\": score_gap,\\\\n            }\\\\n            with open(steps_file, \\\\\\\"a\\\\\\\") as f:\\\\n                f.write(json.dumps(record) + \\\\\\\"\\\\\\\\n\\\\\\\")\\\\n            total_labeled_steps += 1\\\\n\\\\n    avg_gap = sum(score_gaps) / len(score_gaps) if score_gaps else 0.0\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n=== EPISODE-LEVEL COLLECTION: {task_name} ===\\\\\\\")\\\\n    print(f\\\\\\\"Episodes: {n_episodes} (start={star\\\\n\\\\n... [截断: 输出过长，省略 8387 字符] ...\\\\n\\\\n flush=True)\\\\n                t = time.time()\\\\n                r_deep = run_episode_deep_internal(agent, task_name, variation_idx, args.max_steps)\\\\n                elapsed = time.time() - t\\\\n                print(f\\\\\\\"score={r_deep['final_score']:.1f} ({elapsed:.0f}s)\\\\\\\")\\\\n\\\\n                ep_entry = {\\\\n                    \\\\\\\"episode_idx\\\\\\\": ep_idx,\\\\n                    \\\\\\\"variation_idx\\\\\\\": variation_idx,\\\\n                    \\\\\\\"always_deep_internal\\\\\\\": _slim_episode_data(r_deep),\\\\n                }\\\\n                with open(episodes_file, \\\\\\\"a\\\\\\\") as f:\\\\n                    f.write(json.dumps(ep_entry) + \\\\\\\"\\\\\\\\n\\\\\\\")\\\\n\\\\n                ep_summary = {\\\\n                    \\\\\\\"episode\\\\\\\": ep_idx,\\\\n                    \\\\\\\"variation\\\\\\\": variation_idx,\\\\n                    \\\\\\\"deep_internal_final\\\\\\\": r_deep[\\\\\\\"final_score\\\\\\\"],\\\\n                    \\\\\\\"deep_internal_steps\\\\\\\": r_deep[\\\\\\\"num_steps\\\\\\\"],\\\\n                    \\\\\\\"deep_internal_time_s\\\\\\\": r_deep[\\\\\\\"total_time_s\\\\\\\"],\\\\n                }\\\\n                with open(summary_file, \\\\\\\"a\\\\\\\") as f:\\\\n                    f.write(json.dumps(ep_summary) + \\\\\\\"\\\\\\\\n\\\\\\\")\\\\n\\\\n            meta = {\\\\n                \\\\\\\"task_name\\\\\\\": task_name,\\\\n                \\\\\\\"mode\\\\\\\": \\\\\\\"deep-internal-only\\\\\\\",\\\\n                \\\\\\\"target_episodes\\\\\\\": args.episodes,\\\\n                \\\\\\\"collected_episodes\\\\\\\": needed,\\\\n                \\\\\\\"seed\\\\\\\": args.seed,\\\\n            }\\\\n            with open(os.path.join(task_dir, \\\\\\\"collection_meta.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n                json.dump(meta, f, indent=2)\\\\n\\\\n        print(\\\\\\\"\\\\\\\\nDeep-internal collection complete.\\\\\\\")\\\\n        return\\\\n\\\\n    cleanup_gpu_processes(args.gpu_id)\\\\n\\\\n    agent = LLMAgent(\\\\n        model_path=args.model_path,\\\\n        use_vllm=args.use_vllm,\\\\n        gpu_id=args.gpu_id,\\\\n        tensor_parallel_size=args.tp,\\\\n    )\\\\n\\\\n    os.makedirs(args.output_dir, exist_ok=True)\\\\n    all_results = {}\\\\n\\\\n    for task_name in task_names:\\\\n        plan = task_plans[task_name]\\\\n        task_dir = os.path.join(args.output_dir, task_name.replace(\\\\\\\" \\\\\\\", \\\\\\\"_\\\\\\\"))\\\\n        os.makedirs(task_dir, exist_ok=True)\\\\n\\\\n        if plan[\\\\\\\"reuse_info\\\\\\\"][\\\\\\\"sources\\\\\\\"]:\\\\n            copied = copy_reused_episodes(plan[\\\\\\\"reuse_info\\\\\\\"][\\\\\\\"sources\\\\\\\"], task_dir)\\\\n            print(f\\\\\\\"Copied {copied} reused episodes for {task_name}\\\\\\\")\\\\n\\\\n        if plan[\\\\\\\"needed\\\\\\\"] > 0:\\\\n            effective_start = plan[\\\\\\\"existing\\\\\\\"] if reuse_dirs else args.start_episode\\\\n            result = run_task_collection(\\\\n                agent, task_name, plan[\\\\\\\"needed\\\\\\\"], effective_start,\\\\n                args.max_steps, args.output_dir, args.n_candidates,\\\\n            )\\\\n            all_results[task_name] = result\\\\n        else:\\\\n            all_results[task_name] = {\\\\n                \\\\\\\"task_name\\\\\\\": task_name,\\\\n                \\\\\\\"n_episodes\\\\\\\": 0,\\\\n                \\\\\\\"start_episode\\\\\\\": 0,\\\\n                \\\\\\\"label_counts\\\\\\\": {\\\\\\\"det-preferred\\\\\\\": 0, \\\\\\\"internal-preferred\\\\\\\": 0, \\\\\\\"no-preference\\\\\\\": 0},\\\\n                \\\\\\\"total_labeled_steps\\\\\\\": 0,\\\\n                \\\\\\\"avg_score_gap\\\\\\\": 0.0,\\\\n                \\\\\\\"death_counts\\\\\\\": {\\\\\\\"internal\\\\\\\": 0, \\\\\\\"det\\\\\\\": 0, \\\\\\\"both\\\\\\\": 0},\\\\n                \\\\\\\"skipped\\\\\\\": True,\\\\n            }\\\\n\\\\n        meta = {\\\\n            \\\\\\\"task_name\\\\\\\": task_name,\\\\n            \\\\\\\"target_episodes\\\\\\\": args.episodes,\\\\n            \\\\\\\"reused_episodes\\\\\\\": plan[\\\\\\\"existing\\\\\\\"],\\\\n            \\\\\\\"new_episodes\\\\\\\": plan[\\\\\\\"needed\\\\\\\"],\\\\n            \\\\\\\"reuse_sources\\\\\\\": [{\\\\\\\"dir\\\\\\\": s[\\\\\\\"dir\\\\\\\"], \\\\\\\"count\\\\\\\": s[\\\\\\\"count\\\\\\\"]} for s in plan[\\\\\\\"reuse_info\\\\\\\"][\\\\\\\"sources\\\\\\\"]],\\\\n        }\\\\n        with open(os.path.join(task_dir, \\\\\\\"collection_meta.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n            json.dump(meta, f, indent=2)\\\\n\\\\n    if len(task_names) > 1:\\\\n        print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\")\\\\n        print(\\\\\\\"GLOBAL SUMMARY\\\\\\\")\\\\n        print(f\\\\\\\"{'='*60}\\\\\\\")\\\\n        for tn, r in all_results.items():\\\\n            if r.get(\\\\\\\"skipped\\\\\\\"):\\\\n                print(f\\\\\\\"  {tn}: SKIPPED (reused {task_plans[tn]['existing']} episodes)\\\\\\\")\\\\n            else:\\\\n                lc = r[\\\\\\\"label_counts\\\\\\\"]\\\\n                reused = task_plans[tn][\\\\\\\"existing\\\\\\\"]\\\\n                print(f\\\\\\\"  {tn}: det-pref={lc['det-preferred']} int-pref={lc['internal-preferred']} no-pref={lc['no-preference']} | steps={r['total_labeled_steps']} | reused={reused}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.87}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"    print(f\\\"Episodes: {start_episode}..{end_episode-1} ({n_episodes} total) | Max steps: {max_steps}\\\")\\n    print(f\\\"Max variations: {max_var}\\\")\\n    print(f\\\"{'='*60}\\\")\\n\\n    label_counts = {\\\"det-preferred\\\": 0, \\\"internal-preferred\\\": 0, \\\"no-preference\\\": 0}\\n    total_labeled_steps = 0\\n    death_counts = {\\\"internal\\\": 0, \\\"det\\\": 0, \\\"both\\\": 0}\\n    score_gaps = []\\n\\n    for ep_idx in range(start_episode, end_episode):\\n        variation_idx = ep_idx % max_var\\n        print(f\\\"\\\\n--- Episode {ep_idx} (variation={variation_idx}) ---\\\")\\n\\n        print(f\\\"  [I] always-internal...\\\", end=\\\" \\\", flush=True)\\n        t = time.time()\\n        r_int = run_episode_internal(agent, task_name, variation_idx, max_steps)\\n        print(f\\\"score={r_int['final_score']:.1f} ({time.time()-t:.0f}s)\\\")\\n\\n        print(f\\\"  [D] always-deterministic...\\\", end=\\\" \\\", flush=True)\\n        t = time.time()\\n        r_det = run_episode_deterministic(\\n            agent, task_name, variation_idx, max_steps, n_candidates\\n        )\\n        print(f\\\"score={r_det['final_score']:.1f} ({time.time()-t:.0f}s)\\\")\\n\\n        internal_final = r_int[\\\"final_score\\\"]\\n        det_final = r_det[\\\"final_score\\\"]\\n        label, reason, signal_source = classify_episode_labels(internal_final, det_final)\\n        score_gap = det_final - internal_final\\n\\n        # Track deaths\\n        int_death = internal_final <= DEATH_THRESHOLD\\n        det_death = det_final <= DEATH_THRESHOLD\\n        if int_death and det_death:\\n            death_counts[\\\"both\\\"] += 1\\n        elif int_death:\\n            death_counts[\\\"internal\\\"] += 1\\n        elif det_death:\\n            death_counts[\\\"det\\\"] += 1\\n\\n        label_counts[label] += 1\\n        if label != \\\"no-preference\\\":\\n            score_gaps.append(abs(score_gap))\\n\\n        # Write episode to episodes.jsonl (prescreening-compatible format)\\n        ep_entry = {\\n            \\\"episode_idx\\\": ep_idx,\\n            \\\"variation_idx\\\": variation_idx,\\n            \\\"always_internal\\\": _slim_episode_data(r_int),\\n            \\\"always_deterministic\\\": _slim_episode_data(r_det),\\n        }\\n        with open(episodes_file, \\\"a\\\") as f:\\n            f.write(json.dumps(ep_entry) + \\\"\\\\n\\\")\\n\\n        # Write episode summary\\n        ep_summary = {\\n            \\\"episode\\\": ep_idx,\\n            \\\"variation\\\": variation_idx,\\n            \\\"internal_final\\\": internal_final,\\n            \\\"det_final\\\": det_final,\\n            \\\"label\\\": label,\\n            \\\"signal_source\\\": signal_source,\\n            \\\"reason\\\": reason,\\n            \\\"score_gap\\\": score_gap,\\n            \\\"internal_steps\\\": r_int[\\\"num_steps\\\"],\\n            \\\"det_steps\\\": r_det[\\\"num_steps\\\"],\\n        }\\n        with open(summary_file, \\\"a\\\") as f:\\n            f.write(json.dumps(ep_summary) + \\\"\\\\n\\\")\\n\\n        print(f\\\"  Label: {label} [{signal_source}] (gap={score_gap:+.1f})\\\")\\n\\n        # Write labeled steps from preferred episode (skip no-preference)\\n        if label == \\\"no-preference\\\":\\n            continue\\n\\n        winning_result = r_det if label == \\\"det-preferred\\\" else r_int\\n        for step in winning_result[\\\"steps\\\"]:\\n            record = {\\n                \\\"task_type\\\": task_name,\\n                \\\"episode_id\\\": ep_idx,\\n                \\\"variation\\\": variation_idx,\\n                \\\"step_idx\\\": step[\\\"step\\\"],\\n                \\\"observation\\\": step[\\\"observation\\\"],\\n                \\\"action\\\": step[\\\"action\\\"],\\n                \\\"action_history\\\": step[\\\"action_history\\\"],\\n                \\\"score_before\\\": step[\\\"score_before\\\"],\\n                \\\"score_after\\\": step[\\\"score_after\\\"],\\n                \\\"label\\\": label,\\n                \\\"signal_source\\\": signal_source,\\n                \\\"episode_score_internal\\\": internal_final,\\n                \\\"episode_score_det\\\": det_final,\\n                \\\"score_gap\\\": score_gap,\\n            }\\n            with open(steps_file, \\\"a\\\") as f:\\n                f.write(json.dumps(record) + \\\"\\\\n\\\")\\n            total_labeled_steps += 1\\n\\n    avg_gap = sum(score_gaps) / len(score_gaps) if score_gaps else 0.0\\n\\n    print(f\\\"\\\\n=== EPISODE-LEVEL COLLECTION: {task_name} ===\\\")\\n    print(f\\\"Episodes: {n_episodes} (start={star\\n\\n... [截断: 输出过长，省略 8387 字符] ...\\n\\n flush=True)\\n                t = time.time()\\n                r_deep = run_episode_deep_internal(agent, task_name, variation_idx, args.max_steps)\\n                elapsed = time.time() - t\\n                print(f\\\"score={r_deep['final_score']:.1f} ({elapsed:.0f}s)\\\")\\n\\n                ep_entry = {\\n                    \\\"episode_idx\\\": ep_idx,\\n                    \\\"variation_idx\\\": variation_idx,\\n                    \\\"always_deep_internal\\\": _slim_episode_data(r_deep),\\n                }\\n                with open(episodes_file, \\\"a\\\") as f:\\n                    f.write(json.dumps(ep_entry) + \\\"\\\\n\\\")\\n\\n                ep_summary = {\\n                    \\\"episode\\\": ep_idx,\\n                    \\\"variation\\\": variation_idx,\\n                    \\\"deep_internal_final\\\": r_deep[\\\"final_score\\\"],\\n                    \\\"deep_internal_steps\\\": r_deep[\\\"num_steps\\\"],\\n                    \\\"deep_internal_time_s\\\": r_deep[\\\"total_time_s\\\"],\\n                }\\n                with open(summary_file, \\\"a\\\") as f:\\n                    f.write(json.dumps(ep_summary) + \\\"\\\\n\\\")\\n\\n            meta = {\\n                \\\"task_name\\\": task_name,\\n                \\\"mode\\\": \\\"deep-internal-only\\\",\\n                \\\"target_episodes\\\": args.episodes,\\n                \\\"collected_episodes\\\": needed,\\n                \\\"seed\\\": args.seed,\\n            }\\n            with open(os.path.join(task_dir, \\\"collection_meta.json\\\"), \\\"w\\\") as f:\\n                json.dump(meta, f, indent=2)\\n\\n        print(\\\"\\\\nDeep-internal collection complete.\\\")\\n        return\\n\\n    cleanup_gpu_processes(args.gpu_id)\\n\\n    agent = LLMAgent(\\n        model_path=args.model_path,\\n        use_vllm=args.use_vllm,\\n        gpu_id=args.gpu_id,\\n        tensor_parallel_size=args.tp,\\n    )\\n\\n    os.makedirs(args.output_dir, exist_ok=True)\\n    all_results = {}\\n\\n    for task_name in task_names:\\n        plan = task_plans[task_name]\\n        task_dir = os.path.join(args.output_dir, task_name.replace(\\\" \\\", \\\"_\\\"))\\n        os.makedirs(task_dir, exist_ok=True)\\n\\n        if plan[\\\"reuse_info\\\"][\\\"sources\\\"]:\\n            copied = copy_reused_episodes(plan[\\\"reuse_info\\\"][\\\"sources\\\"], task_dir)\\n            print(f\\\"Copied {copied} reused episodes for {task_name}\\\")\\n\\n        if plan[\\\"needed\\\"] > 0:\\n            effective_start = plan[\\\"existing\\\"] if reuse_dirs else args.start_episode\\n            result = run_task_collection(\\n                agent, task_name, plan[\\\"needed\\\"], effective_start,\\n                args.max_steps, args.output_dir, args.n_candidates,\\n            )\\n            all_results[task_name] = result\\n        else:\\n            all_results[task_name] = {\\n                \\\"task_name\\\": task_name,\\n                \\\"n_episodes\\\": 0,\\n                \\\"start_episode\\\": 0,\\n                \\\"label_counts\\\": {\\\"det-preferred\\\": 0, \\\"internal-preferred\\\": 0, \\\"no-preference\\\": 0},\\n                \\\"total_labeled_steps\\\": 0,\\n                \\\"avg_score_gap\\\": 0.0,\\n                \\\"death_counts\\\": {\\\"internal\\\": 0, \\\"det\\\": 0, \\\"both\\\": 0},\\n                \\\"skipped\\\": True,\\n            }\\n\\n        meta = {\\n            \\\"task_name\\\": task_name,\\n            \\\"target_episodes\\\": args.episodes,\\n            \\\"reused_episodes\\\": plan[\\\"existing\\\"],\\n            \\\"new_episodes\\\": plan[\\\"needed\\\"],\\n            \\\"reuse_sources\\\": [{\\\"dir\\\": s[\\\"dir\\\"], \\\"count\\\": s[\\\"count\\\"]} for s in plan[\\\"reuse_info\\\"][\\\"sources\\\"]],\\n        }\\n        with open(os.path.join(task_dir, \\\"collection_meta.json\\\"), \\\"w\\\") as f:\\n            json.dump(meta, f, indent=2)\\n\\n    if len(task_names) > 1:\\n        print(f\\\"\\\\n{'='*60}\\\")\\n        print(\\\"GLOBAL SUMMARY\\\")\\n        print(f\\\"{'='*60}\\\")\\n        for tn, r in all_results.items():\\n            if r.get(\\\"skipped\\\"):\\n                print(f\\\"  {tn}: SKIPPED (reused {task_plans[tn]['existing']} episodes)\\\")\\n            else:\\n                lc = r[\\\"label_counts\\\"]\\n                reused = task_plans[tn][\\\"existing\\\"]\\n                print(f\\\"  {tn}: det-pref={lc['det-preferred']} int-pref={lc['internal-preferred']} no-pref={lc['no-preference']} | steps={r['total_labeled_steps']} | reused={reused}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.87}}"
+              }
+            }
+          },
+          "id": "event-000559"
+        }
+      ]
+    }
+  ]
+}

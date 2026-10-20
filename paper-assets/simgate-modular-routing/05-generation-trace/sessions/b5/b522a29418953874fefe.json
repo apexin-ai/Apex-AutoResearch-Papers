@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b522a29418953874fefe",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ops plan 004 v2 log check",
+  "task_key": "worker_ops_plan-004-v2-log-check_20260514T070824",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_plan-004-v2-log-check_20260514T070824_result.json",
+    "occurrence": 1,
+    "bytes": 290,
+    "sha256": "55a069b86bbdf9a05811e9b09369282a6cea90dfc810da0530bfa03fa77390a3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。\n\n**结论：plan-004-v2 正常完成退出**，不是 OOM 或异常崩溃。进程在跑完 3 epochs 后自然退出，sentinel 和 adapter 均已写入。train_loss 12.74 是 `class_weights auto` 的已知问题，实验此前已标记为 `failed`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-plan-004-v2-log-check.md"
+}

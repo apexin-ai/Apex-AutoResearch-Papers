@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "bd646fc25147cf3f8298",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "exp phase1 deploy gpu0",
+  "task_key": "worker_exp_phase1-deploy-gpu0_20260513T051059",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_phase1-deploy-gpu0_20260513T051059.log",
+    "occurrence": 1,
+    "bytes": 914765,
+    "sha256": "642800b7d3f7dc09b701d45a3dfe92bf07660a0ad02ce51d4e0e0e86231ea258"
+  },
+  "statistics": {
+    "messages": 520,
+    "user_turns": 0,
+    "tool_calls": 216,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 84,
+      "tool_call": 216,
+      "tool_result": 216,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 520,
+      "chunks": [
+        {
+          "path": "bd646fc25147cf3f8298-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "bd646fc25147cf3f8298-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "bd646fc25147cf3f8298-part-0003.json",
+          "message_count": 160
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-phase1-deploy-gpu0.md"
+}

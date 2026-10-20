@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b2bdec63d36b0a44dd38",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh connection test",
+  "task_key": "worker_ssh_connection-test_20260518T053122",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_connection-test_20260518T053122_result.json",
+    "occurrence": 1,
+    "bytes": 558,
+    "sha256": "52ba041d9b612ca724cda36f269b85a9a6135c278914d7c0753bb5cdcf7ffc45"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n| 服务器 | 状态 | 详情 |\n|--------|------|------|\n| **westb-14838** | 可达 | uptime 47天。**retry-dose-response 进程已结束**——无 tmux session，无相关进程，nvidia-smi 权限被拒（GPU 可能已释放）。日志显示实验仍在跑 `find-animal` 任务 (Ep 7/20, N=5)，但进程不在了，说明**实验中断/异常退出**。最后完成的任务是 `find-animal` 之前的某任务（DR=50.0%, SR=15.0%）。 |\n| **westb-13313** | 可达 | uptime 153天，load average ~32（高负载）。 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-connection-test.md"
+}

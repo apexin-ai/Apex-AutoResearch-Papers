@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "82f350143f02ea0c85fe",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh p2 failure taxonomy figure",
+  "task_key": "worker_ssh_p2-failure-taxonomy-figure_20260518T075703",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_p2-failure-taxonomy-figure_20260518T075703_result.json",
+    "occurrence": 1,
+    "bytes": 3165,
+    "sha256": "3ad74d1724013481f42ee49b5f2596c7476bb7cd2044f5faf2583e7ecc5fa226"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All figures are generated and saved on the server. Here's a summary of the results:\n\n## Data Overview\n- **133 episodes** from **25 tasks** in the prescreening dataset\n- Internal (LLM) strategy: **74 deaths** (55.6%), **59 non-death**\n- Deterministic strategy: **15 deaths** (11.3%), **118 non-death**\n\n## Figure 1: `death_action_distribution.pdf/png` (2589x1314)\nTwo-panel layout showing Internal (LLM) strategy:\n\n**Left panel** (stacked horizontal bars, full distribution):\n| Category | Death (n=74) | Non-death (n=59) |\n|---|---|---|\n| connect [X] to [Y] | 86.7% | 78.6% |\n| focus on [X] | 5.5% | 1.8% |\n| observation | 5.3% | 3.2% |\n| object interaction | 1.4% | 7.6% |\n| disconnect [X] | 1.0% | 6.3% |\n| other | 0.0% | 2.5% |\n\n**Right panel** (zoomed grouped bar for non-connect categories): highlights that `focus on [X]` is **3x higher in death episodes** (5.5% vs 1.8%), with annotation.\n\n## Figure 2: `death_action_timeline.pdf/png` (2965x926)\n6 representative death episodes from different tasks, showing color-coded action sequences step-by-step with the fatal `focus on` step marked with black border and arrow.\n\n## Figure 3: `death_action_comparison.pdf/png` (2973x1162)\nSide-by-side comparison of non-connect action distributions for both Internal and Deterministic strategies.\n\n## Key Findings\n\n1. **ALL death episodes contain exactly 1 `focus on [X]` action** that triggers the -100 death penalty (74 focus actions across 74 death episodes in Internal strategy).\n\n2. **Death episodes are dominated by unproductive `connect [X] to [Y]` loops** (86.7% vs 78.6%), indicating the agent gets stuck in repetitive connection patterns before making a fatal answer submission.\n\n3. **Non-death episodes show more diverse, productive actions**: higher object interaction (7.6% vs 1.4%), more disconnect (6.3% vs 1.0%), suggesting non-death episodes involve actual task-solving behavior.\n\n4. **Interesting pattern beyond `focus on`**: The most common death target is **`focus on workshop`** (33/74 = 44.6% of internal death episodes), suggesting a systematic LLM bias toward the workshop as an answer. Other targets include `focus on inventory` (8), `focus on kitchen` (8), `focus on living room` (4), `focus on fountain` (4).\n\n## Suggested Figure Captions\n\n**Figure 1**: \"Action distribution comparison between death (score = -100) and non-death episodes under the Internal (LLM) strategy across 133 ScienceWorld episodes. Left: full distribution showing dominance of connect actions in both groups. Right: zoomed view of non-connect actions revealing that death episodes exhibit 3x higher focus on [X] (fatal answer submission) and significantly lower rates of productive actions (object interaction, disconnect).\"\n\n**Figure 2**: \"Action sequences of six representative death episodes under the Internal strategy, color-coded by action category. The fatal focus on [X] step (black border, arrow) consistently follows extended sequences of unproductive connect actions, illustrating the stereotypical death pattern: the agent cycles through connection attempts before submitting an incorrect answer.\""
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-p2-failure-taxonomy-figure.md"
+}

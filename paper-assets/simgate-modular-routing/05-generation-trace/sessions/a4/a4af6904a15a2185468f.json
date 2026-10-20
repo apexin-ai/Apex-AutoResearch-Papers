@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a4af6904a15a2185468f",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code fix figures v2",
+  "task_key": "worker_code_fix-figures-v2_20260524T171056",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-figures-v2_20260524T171056_result.json",
+    "occurrence": 1,
+    "bytes": 874,
+    "sha256": "89c000cb805e0c0093cfb9b34be2e9435ea84dac7e72f60cb90ecb2a2271241b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇报如下：\n\n**结果**\n\n| 文件 | 大小 | 状态 |\n|------|------|------|\n| `label_decomposition.pdf` | 28,366 bytes | 有效 PDF v1.4 |\n| `fig1_daf_scatter.pdf` | 24,482 bytes | 有效 PDF v1.4 |\n\n**LaTeX 编译**：无错误，`main.tex` 编译通过。\n\n**关键参数**（与前 Worker 脚本一致）：\n- `label_decomposition.pdf`：figsize=(3.25, 1.35)，ACL 单栏宽度 3.25 inch，水平堆叠柱状图 + 底部 legend + 大括号标注 \"75/95 non-tie = 78.9%\"\n- `fig1_daf_scatter.pdf`：figsize=(3.25, 2.6)，11 个 task scatter + 回归线，legend 在 `lower right`（避免遮挡数据点），find-non-living-thing 红色菱形标注\n\n**方式**：base64 传输反复损坏后，改为在本地直接运行绘图脚本（matplotlib 纯 CPU，无需 GPU），生成的 PDF 与服务器版本参数完全一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-figures-v2.md"
+}

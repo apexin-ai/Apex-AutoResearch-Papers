@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "806b4adc40d61562fa61",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "train plan 008 v4 extra seeds",
+  "task_key": "worker_train_plan-008-v4-extra-seeds_20260515T215949",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_plan-008-v4-extra-seeds_20260515T215949_result.json",
+    "occurrence": 1,
+    "bytes": 882,
+    "sha256": "c965d31e4201c34ac798d815b395334c9f2c1ac17bad914e06170ab29aeaa978"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== 训练完成 ===\n0.6B seed44: eval_loss=0.3117, checkpoint=checkpoints/plan-008-v4-0_6b-seed44/\n0.6B seed45: eval_loss=0.2756, checkpoint=checkpoints/plan-008-v4-0_6b-seed45/\n4B seed44: eval_loss=0.3050, checkpoint=checkpoints/plan-008-v4-4b-seed44/\n4B seed45: eval_loss=0.2684, checkpoint=checkpoints/plan-008-v4-4b-seed45/\n\n=== Generation-based eval (enable_thinking=False) ===\n| Model | Seed 44 | Seed 45 | Mean (new 2 seeds) |\n|-------|---------|---------|-------------------|\n| 0.6B  | 0.6907  | 0.7333  | 0.7120 |\n| 4B    | 0.6556  | 0.7000  | 0.6778 |\n\n=== 4-seed 汇总（seed 42-45）===\n| Model | s42    | s43    | s44    | s45    | Mean±Std |\n|-------|--------|--------|--------|--------|----------|\n| 0.6B  | 0.6241 | 0.5574 | 0.6907 | 0.7333 | 0.6514±0.0771 |\n| 4B    | 0.6241 | 0.5463 | 0.6556 | 0.7000 | 0.6315±0.0648 |\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-plan-008-v4-extra-seeds.md"
+}

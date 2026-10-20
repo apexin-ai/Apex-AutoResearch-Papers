@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a8795b568259feb8207a",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "research missing references",
+  "task_key": "worker_research_missing-references_20260518T050823",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_missing-references_20260518T050823_result.json",
+    "occurrence": 1,
+    "bytes": 4147,
+    "sha256": "b186ff745dcf635c4304f150afaa5fb57527bbd994b3e7a3825faec6d3db3487"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All searches complete. Here are the results:\n\n---\n\n## 1. Webb 2023 — Wild Cluster Bootstrap\n\n```bibtex\n@article{webb2023reworking,\n  author    = {Matthew D. Webb},\n  title     = {Reworking Wild Bootstrap-Based Inference for Clustered Errors},\n  journal   = {Canadian Journal of Economics/Revue canadienne d'\\'{e}conomique},\n  year      = {2023},\n  volume    = {56},\n  number    = {3},\n  pages     = {839--858},\n  doi       = {10.1111/caje.12661},\n  url       = {https://onlinelibrary.wiley.com/doi/10.1111/caje.12661}\n}\n```\n\n---\n\n## 2. Permadeath LLM Agent Literature\n\n### BALROG (ICLR 2025)\n\n```bibtex\n@inproceedings{paglieri2025balrog,\n  author    = {Davide Paglieri and Bart{\\l}omiej Cupia{\\l} and Samuel Coward and Ulyana Piterbarg and Maciej Wolczyk and Akbir Khan and Eduardo Pignatelli and {\\L}ukasz Kuci\\'{n}ski and Lerrel Pinto and Rob Fergus and Jakob Nicolaus Foerster and Jack Parker-Holder and Tim Rockt\\\"{a}schel},\n  title     = {{BALROG}: Benchmarking Agentic {LLM} and {VLM} Reasoning On Games},\n  booktitle = {The Thirteenth International Conference on Learning Representations (ICLR)},\n  year      = {2025},\n  url       = {https://arxiv.org/abs/2411.13543}\n}\n```\n\n### NetPlay (IEEE CoG 2024)\n\n```bibtex\n@inproceedings{jeurissen2024netplay,\n  author    = {Dominik Jeurissen and Diego Perez-Liebana and Jeremy Gow and Duygu Cakmak and James Kwan},\n  title     = {Playing {NetHack} with {LLMs}: Potential \\& Limitations as Zero-Shot Agents},\n  booktitle = {2024 IEEE Conference on Games (CoG)},\n  year      = {2024},\n  url       = {https://arxiv.org/abs/2403.00690},\n  doi       = {10.1109/CoG60054.2024.10645630}\n}\n```\n\n### \"Can LLMs Play NetHack Yet?\" (2026)\n\n**不是正式论文。** 这是一篇博客文章：\"It's 2026. Can LLMs Play Nethack Yet?\" 发表在 \"Vaguely Aligned\" 博客上（作者 Ken），测试了新模型在 NetHack 上的表现（GPT-5.2 最高到 dungeon level 10，BALROG metric 12.56%）。不建议作为学术引用。如果需要 2026 的 NetHack agent 文献，目前没有找到正式发表的论文。\n\n---\n\n## 3. Safety-Aware Routing Literature\n\n### SafeRoute (ACL Findings 2025) — 最直接匹配\n\n```bibtex\n@inproceedings{lee2025saferoute,\n  author    = {Seanie Lee and Dong Bok Lee and Dominik Wagner and Minki Kang and Haebin Seong and Tobias Bocklet and Juho Lee and Sung Ju Hwang},\n  title     = {{SafeRoute}: Adaptive Model Selection for Efficient and Accurate Safety Guardrails in Large Language Models},\n  booktitle = {Findings of the Association for Computational Linguistics: ACL 2025},\n  year      = {2025},\n  pages     = {2053--2069},\n  address   = {Vienna, Austria},\n  url       = {https://arxiv.org/abs/2502.12464}\n}\n```\n\n这是最精确匹配 \"safety-aware routing\" 概念的论文：用二分类 router 区分 easy/hard 样本，将 hard 样本路由到更大的 safety guard 模型，实现效率与安全性的平衡。\n\n### 备选：Sparse Models, Sparse Safety (arXiv 2025, ICLR 2026 投稿)\n\n```bibtex\n@article{jiang2025sparse,\n  author    = {Yukun Jiang and Hai Huang and Mingjie Li and Yage Zhang and Michael Backes and Yang Zhang},\n  title     = {Sparse Models, Sparse Safety: Unsafe Routes in Mixture-of-Experts {LLMs}},\n  journal   = {arXiv preprint arXiv:2602.08621},\n  year      = {2025},\n  url       = {https://arxiv.org/abs/2602.08621}\n}\n```\n\n这篇从 MoE routing 角度研究 safety：发现特定 routing 配置会导致模型产出有害内容。角度不同但相关——如果论文需要的是 \"在 model routing 决策中显式考虑 safety 因素\"，SafeRoute 更合适；如果需要的是 \"routing 机制本身的 safety 风险\"，这篇更合适。\n\n---\n\n**不确定之处：**\n- \"Can LLMs Play NetHack Yet?\" 没有找到 2025/2026 的正式论文，只有博客\n- Safety-aware routing 是相对新的交叉方向，SafeRoute 是目前找到的最直接匹配，但它偏 guardrail model selection 而非 general LLM routing with safety constraints。如果 Paper Agent 需要的是另一种 framing，请补充上下文"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-missing-references.md"
+}

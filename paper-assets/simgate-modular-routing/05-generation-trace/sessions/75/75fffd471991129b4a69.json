@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "75fffd471991129b4a69",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "fix paper sync r10",
+  "task_key": "worker_fix_paper-sync-r10_20260516T220656",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_paper-sync-r10_20260516T220656.log",
+    "occurrence": 1,
+    "bytes": 1414086,
+    "sha256": "46685a2ddf8353fa20d4d442de1cf857977506505190f152e1e9b71b540b8ae7"
+  },
+  "statistics": {
+    "messages": 518,
+    "user_turns": 1,
+    "tool_calls": 171,
+    "roles": {
+      "log": 1,
+      "system": 131,
+      "record": 1,
+      "assistant": 41,
+      "tool_call": 171,
+      "tool_result": 171,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 93,
+      "chunks": [
+        {
+          "path": "75fffd471991129b4a69-part-0001.json",
+          "message_count": 93
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 425,
+      "chunks": [
+        {
+          "path": "75fffd471991129b4a69-part-0001.json",
+          "message_count": 36
+        },
+        {
+          "path": "75fffd471991129b4a69-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "75fffd471991129b4a69-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "75fffd471991129b4a69-part-0004.json",
+          "message_count": 29
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-paper-sync-r10.md"
+}

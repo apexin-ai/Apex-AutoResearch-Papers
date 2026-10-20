@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "95fed9ec18996e35e9a9",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "infra kill 7b vllm cuda3",
+  "task_key": "worker_infra_kill-7b-vllm-cuda3_20260517T194423",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_kill-7b-vllm-cuda3_20260517T194423_result.json",
+    "occurrence": 1,
+    "bytes": 198,
+    "sha256": "c0021c989a75d62b25eff918a7a9f89322a4e542388c26375a7756a90187f757"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。PID 323187（Qwen2.5-7B-Instruct vLLM on port 8002）已终止，GPU 3 显存已完全释放（0MiB / 97887MiB）。其余 72B collection 进程（GPU 0/1/2）未受影响。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-kill-7b-vllm-cuda3.md"
+}

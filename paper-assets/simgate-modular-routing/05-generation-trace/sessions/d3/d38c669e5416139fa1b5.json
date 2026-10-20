@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d38c669e5416139fa1b5",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code pipeline format fix",
+  "task_key": "worker_code_pipeline-format-fix_20260513T214210",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_pipeline-format-fix_20260513T214210_result.json",
+    "occurrence": 1,
+    "bytes": 1019,
+    "sha256": "1e463b4bde45b319b515286acb4e72108b97bc0fae1a5d794bf449054d6b8ea3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成。\n\n### 变更摘要\n\n**`episode_level_collection.py` 修改（11 处）：**\n\n1. **`label_episode()` → `classify_episode_labels()`** — 替换为与 `death_aware_labeling.classify_episode()` 一致的 3-label 方案，返回 `(label, reason, signal_source)`\n2. **新增 `episodes.jsonl` 输出** — `run_task_collection()` 每个 episode 写入 prescreening 兼容格式 `{episode_idx, variation_idx, always_internal, always_deterministic}`\n3. **标签统一** — 全部使用 `\"det-preferred\"/\"internal-preferred\"/\"no-preference\"` + `signal_source`\n4. **向后兼容** — `labeled_steps.jsonl` 和 `episode_summary.jsonl` 保留，内容更新为 3-label\n\n**端到端验证通过：**\n- prescreening `episodes.jsonl`(5 episodes） → `death_aware_labeling.py` → 150 条 `sft_triples.jsonl`\n- 标签分布：det-preferred=2, internal-preferred=1, no-preference=2\n- `scan_reuse_episodes()` 正确识别旧格式数据\n- SFT triples 包含 `signal_source` 字段"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-pipeline-format-fix.md"
+}

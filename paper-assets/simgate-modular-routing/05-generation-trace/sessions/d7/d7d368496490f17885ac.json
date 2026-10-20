@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "d7d368496490f17885ac",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "code llama70b analysis pipeline",
+  "task_key": "worker_code_llama70b-analysis-pipeline_20260524T065551",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama70b-analysis-pipeline_20260524T065551.log",
+    "occurrence": 1,
+    "bytes": 702397,
+    "sha256": "19fead1ab0dca78337200a36622b8c3bc28b136fa1ce983479ddd5eae7a9260d"
+  },
+  "statistics": {
+    "messages": 164,
+    "user_turns": 0,
+    "tool_calls": 58,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 44,
+      "tool_call": 58,
+      "tool_result": 58,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 164,
+      "chunks": [
+        {
+          "path": "d7d368496490f17885ac-part-0001.json",
+          "message_count": 132
+        },
+        {
+          "path": "d7d368496490f17885ac-part-0002.json",
+          "message_count": 32
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-llama70b-analysis-pipeline.md"
+}

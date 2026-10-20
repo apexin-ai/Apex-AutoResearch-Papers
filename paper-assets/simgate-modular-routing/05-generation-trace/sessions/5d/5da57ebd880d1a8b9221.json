@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5da57ebd880d1a8b9221",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "research paper materials",
+  "task_key": "worker_research_paper-materials_20260513T084621",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_paper-materials_20260513T084621_result.json",
+    "occurrence": 1,
+    "bytes": 1109,
+    "sha256": "0138c7863ccef5b4b955f78ae0fac705b2c5c1aa25db15fc482d795237392082"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件已写入 `notes/` 目录。\n\n## 关键发现\n\n**ScienceWorld 环境**:\n- 30 种 task，7,329 个 variations，涵盖物态变化、化学、生物分类、遗传学、电路等 10 个类别\n- Action space: 26 种动作模板，每步约 417 个有效组合（动态变化）\n- Text-based observation + score 0-100 百分制\n- 不支持原生 state fork，需 action replay 实现\n\n**Baselines（ScienceWorld 上有分数的）**:\n| Method | Best Score | Model |\n|--------|-----------|-------|\n| STEP-HRL | 81.57 seen / 77.81 unseen | Llama-3-8B |\n| EMPO² | 75.9 avg | Qwen2.5-7B |\n| GLIDER | 77.43 seen / 68.34 unseen | Llama-3-8B |\n| ETO | 58.17 seen | Mistral-7B |\n| GPT-4 (ReAct) | 44.29 seen / 38.05 unseen | — |\n\n**未找到的方法**: CogRouter 和 ITP-R 均未找到对应论文，已在文件中标注。\n\n**未在 ScienceWorld 评测的**: ReTool、AgentMath、Select-then-Solve 三个方法均专注数学/通用 benchmark，无 ScienceWorld 结果。\n\n注意：`autodl-simgate` 服务器 SSH 认证失败，文件写在了 `westb-13313` 上。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-paper-materials.md"
+}

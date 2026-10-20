@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b6526f34566be656f004",
+  "project": "simgate-modular-routing",
+  "kind": "history",
+  "title": "agent / loop_18_1779053222.md",
+  "task_key": "loop_18_1779053222",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_18_1779053222.md",
+    "occurrence": 1,
+    "bytes": 3939,
+    "sha256": "cbd71cdd5d563ae8c5364e24e85a13a56144bde200485d7e429fc400fa24a229"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 18\nreason: max_wall_time\nupdated: '2026-05-17T11:02:12+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 westb-13313 的 cuda:0 和 cuda:1（gpu_ids=[0,1]），白名单外的 GPU 必须 push back Director\n- backbone-scaling-70b registry 状态卡在 ANALYZING（cron 误触发历史问题），不可回退到 RUNNING（状态机不允许），Director 已批准保持不动，等实验真正完成后直接推 DONE\n- 72B 模型用 vLLM offline 模式（非 OpenAI API server），`curl health` 不会响应，不要误判为宕机\n- nvidia-smi 显示 GPU-Util 0% 是正常的（vLLM 突发推理，采样间隙为 0），判断是否活跃看显存占用 + 进程存活\n- Reflexion 实验必须等 70B 完成后才启动（Director 决策：选 A 串行，不并行抢 GPU）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westb-13313，工作目录 `/root/autodl-tmp/simgate-modular-routing/`\n- GPU：2× RTX 5090 (32.6GB each)，vLLM TP=2 占满两张卡\n- 模型路径：72B AWQ 通过 modelscope 下载，vLLM 已加载 Qwen2.5-72B-Instruct-AWQ\n- 数据/结果：`results/backbone_72b/` 下按 task type 子目录存放 episode JSON\n- 论文：远程 `/root/autodl-tmp/simgate-modular-routing/docs/paper/`，本地 `/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/`\n- 活跃进程：PID 617494 (`python src/episode_level_collection.py`)，tmux session `backbone-scaling-70b`\n- Cron：backbone-scaling-70b 已注册，reconcile 确认 \"Job still running\"\n\n### 3. 📊 当前状态\n刚完成本轮所有论文润色并同步到远程（编译通过 15 页无 error）：\n- 4 处 -ing 短语修复（experiments/method/discussion.tex）\n- Introduction 数字重复合并 + 问题重要性句新增\n- Related Work \"Safe RL\" 拆为 \"LLM Agent Environments and Reasoning\" + \"Safe RL\"\n\n**Registry 关键实验：**\n- `backbone-scaling-70b`：ANALYZING（实际 RUNNING）— chemistry-mix 15/20 done，~3.8 min/ep，预计 5/18 08:00 完成全部 220 episodes\n- `reflexion-internal-baseline`：PREPARING — 等 70B 完成后启动\n- `death-risk-routing-analysis`：DONE/negative\n- `math-extension-n800`：DONE/success\n- `plan-008-v4-4b-e2e`：DONE/negative\n\n**无等待中的 Worker 回调。** 下一个回调将是 backbone-scaling-70b 的 cron 完成回调（预计 ~13h 后）。\n\n### 4. 📋 待办\n- backbone-scaling-70b cron 回调到达 → spawn worker 分析 72B 结果（death rate、DAF、与 7B baseline 对比）→ 更新 registry + report.md → 汇报 Director\n- 72B 分析完成 → 立即启动 reflexion-internal-baseline（用释放的 cuda:0+1，或 Director 可能决定只用 1 张）\n- 72B per-episode >30min → 立即通知 Director（当前 3.8min，远低于阈值，大概率不触发）\n- 72B 结果出来后 → 可能需要更新论文数值/claim（Director 之前说不改数值等 70B 结果）\n- Director 可能随时要求切 32B 替代 72B → 需要 kill vLLM + 换模型 + 重启 collection\n\n### 5. 🎯 战略上下文\n- **核心结论**：routing signal 90.4% 来自 death avoidance（DAF）。论文 framing 是\"诊断框架揭示 routing 本质是安全机制\"\n- **70B 实验的战略意义**：验证 death dominance 是否随模型能力提升而减弱。如果 72B death rate 显著低于 7B (42.9%)，但 DAF 仍高 → 强化\"即使强模型也逃不出 death dominance\"的 claim；如果 DAF 降到 <50% → 需要调整 framing（death dominance 是弱模型特有现象）\n- **Reflexion 的假设**：通过自我纠错降低 internal death rate 至 <20%，如果成功则 death dominance 不再成立 → 这是对 DAF claim 的最强挑战\n- **易错点**：registry filter by exp_id 经常返回空（已知 bug），用 status filter 或 read all 替代；backbone-scaling-70b 在 ANALYZING 状态但实际在跑，不要误以为已完成去推 DONE\n- **DDL**：EMNLP 2026 ARR 提交 2026-05-25，还剩 8 天\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-18-1779053222.md"
+}

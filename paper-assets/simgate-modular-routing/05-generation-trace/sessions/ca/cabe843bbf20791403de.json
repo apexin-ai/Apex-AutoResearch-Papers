@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cabe843bbf20791403de",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code death decomposition analysis",
+  "task_key": "worker_code_death-decomposition-analysis_20260513T204749",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_death-decomposition-analysis_20260513T204749_result.json",
+    "occurrence": 1,
+    "bytes": 609,
+    "sha256": "ce4bb618ac546887655f7b659e7d8852e8d35fd9f53113905214c755eb7b1d8b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本运行成功。关键结果：\n\n- **191 episodes, 24 tasks**\n- Aggregate Δ(D-I) = +36.9, 去除 death 后 Δ_nd = +0.3\n- **Death avoidance fraction = 99%** — 几乎全部 gap 来自 death avoidance\n- Correlation r=0.986, p<0.0001 — death rate diff 与 Δ 高度相关\n- Internal death rate 47%, Det death rate 11%\n- 标签分布: det-preferred 77, internal-preferred 1, no-preference 113\n- Signal source: death_asymmetry 36.1%, both_dead 11.0%, score_comparison 4.7%, tied_alive 48.2%\n\nJSON 报告和 paper table 数据已保存。脚本功能完整，输出格式正确。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-death-decomposition-analysis.md"
+}

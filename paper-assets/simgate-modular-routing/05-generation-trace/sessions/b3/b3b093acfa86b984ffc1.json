@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b3b093acfa86b984ffc1",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "audit paper framing numbers check",
+  "task_key": "worker_audit_paper-framing-numbers-check_20260514T085836",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_paper-framing-numbers-check_20260514T085836_result.json",
+    "occurrence": 1,
+    "bytes": 674,
+    "sha256": "020bc4e24fd882ccb7a0987237534f2d84fd2c149466f07658524d1c6292fc48"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 审计结果\n\n**主文数字全部正确** — 修正 Worker 已将所有 [A] 标签数字统一到 plan-012-full (11 tasks / 245 eps)，无残留的 30-task 错误数据。\n\n逐项核查 10 个关键数字均与权威源一致：Δ_full=+29.60, Δ_nd=+2.84, DAF=90.41%, r=0.9698, p=8.12e-07, labels 86/9/150, death rates 42.9%/16.3%, 11 tasks/245 eps, find-non-living-thing n=40/Δ=+9.58, Δ_nd/Δ_full=9.6%。\n\nRobustness Check 段的 30-task 数据正确标注为 [B] 且注明仅限 appendix。\n\n**修正项**：数据源权威声明补充了第二条禁引条目 `results/plan_c_test_labels/implicit_sft.jsonl`（标签损坏）。已保存。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-paper-framing-numbers-check.md"
+}

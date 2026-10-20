@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "deafd674dcdfe9d106ca",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "code grounding filter ablation",
+  "task_key": "worker_code_grounding-filter-ablation_20260518T214714",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_grounding-filter-ablation_20260518T214714.log",
+    "occurrence": 1,
+    "bytes": 677759,
+    "sha256": "22cfd8cd6a6072be2b32811084f7410d2bea6ff0c098c075cf2459a197905d9b"
+  },
+  "statistics": {
+    "messages": 154,
+    "user_turns": 0,
+    "tool_calls": 56,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 38,
+      "tool_call": 56,
+      "tool_result": 56,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 154,
+      "chunks": [
+        {
+          "path": "deafd674dcdfe9d106ca-part-0001.json",
+          "message_count": 134
+        },
+        {
+          "path": "deafd674dcdfe9d106ca-part-0002.json",
+          "message_count": 20
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-grounding-filter-ablation.md"
+}

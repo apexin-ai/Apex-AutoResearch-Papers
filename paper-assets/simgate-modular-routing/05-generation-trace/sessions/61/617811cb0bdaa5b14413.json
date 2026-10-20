@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "617811cb0bdaa5b14413",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code generative router sft",
+  "task_key": "worker_code_generative-router-sft_20260514T071905",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_generative-router-sft_20260514T071905_result.json",
+    "occurrence": 1,
+    "bytes": 1054,
+    "sha256": "1e058e4b781eea7de24de4a849f69c1b71bd23d7f30900e77f4d5f9223382cc7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**产出总结：**\n\n1. **代码** — `src/training/generative_router_sft.py` 已部署到 westb-13313\n   - 基于 ablation-b 的 `implicit_router_sft.py`，移除了 class_weights 路径，只保留 upsample\n   - 默认 batch_size=4, grad_accum=8（有效 batch=32）\n   - 数据 upsample internal 从 180→1560（1:1 平衡）+ WeightedRandomSampler\n   - 支持 `--max_steps` dry-run、`--upsample_ratio` 控制平衡比例\n   - 显式设置 `model.config.pad_token_id`\n\n2. **Dry-run** — 5 步训练 + eval 全部通过，adapter 正常保存\n\n3. **实验注册** — `plan-002-generative-v1` (status=PREPARING)，启动命令：\n   ```\n   CUDA_VISIBLE_DEVICES=1 WANDB_MODE=offline HF_HUB_OFFLINE=1 python src/training/generative_router_sft.py train \\\n     --data_dir data/plan-004-implicit \\\n     --model_name /root/autodl-tmp/models/Qwen/Qwen3-1.7B \\\n     --epochs 3 --batch_size 4 --gradient_accumulation_steps 8 \\\n     --output_dir checkpoints/plan-002-generative-v1 --seed 42 --gpu_id 0\n   ```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-generative-router-sft.md"
+}

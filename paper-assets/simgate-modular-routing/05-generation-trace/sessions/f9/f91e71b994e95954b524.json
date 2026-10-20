@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f91e71b994e95954b524",
+  "project": "simgate-modular-routing",
+  "kind": "history",
+  "title": "agent / loop_14.md",
+  "task_key": "loop_14",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_14.md",
+    "occurrence": 1,
+    "bytes": 4543,
+    "sha256": "6360a862ee6928c879fe44f8463acbfc92ec1db80d7058d0ad5a643d57aaeae2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 14\nreason: idle_timeout\nupdated: '2026-05-16T01:35:23+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单仅 `cuda:0` 和 `cuda:1`（服务器 westb-13313）。历史上有 cuda:0/1 以外的违规记录\n- 论文最新版在 `docs/paper/`，**不是** `artifacts/_project/paper/latex/`（后者是 5/14 旧版，Reviewer 验证以前者为准）\n- Seed 42 adapter 使用了 episode-level split，与 seeds 43-49 的 step-level split 不同——任何涉及 seed 42 的 8-seed 汇总数据不可信，不能直接引用\n- 55.7±5.0% step-level balanced_acc 已被 D082 判定为 data leakage artifact，**禁止在论文中作为 router 性能引用**。episode-level 独立 eval = 47.1±2.2%（随机水平）\n- C2 reframe 提案（Narrative A：router cross-split failure confirms task-type-level signal）已提交 Director 但**尚未收到 [FRAMING APPROVED]**，论文 C2 相关章节**不能动**直到批准\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**westb-13313**，2× RTX 5090\n- 工作目录：`/root/autodl-tmp/simgate-modular-routing`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- 模型路径：`/root/autodl-tmp/models/Qwen/Qwen3-1.7B`\n- 数据路径：`data/plan-004-implicit/implicit_sft.jsonl`（implicit SFT 训练数据，81 episodes / 2040 steps）\n- Checkpoints：`checkpoints/plan-008-qwen3-1.7b/final_adapter/`（seed 42，注意 split 不一致问题）；seeds 43-49 在各自 seed 子目录\n- W&B：wandb 项目已配（训练时传 `--wandb`）\n- 活跃进程：**无 cron 注册**。r7n2-data-size-ablation PID 921548 提交于 01:17 UTC，状态 ANALYZING，但无 cron 监控\n- 活跃 Worker：`worker_exp_cross-split-multi-seed-eval_20260516T012511`（running，01:25 UTC 启动）\n\n### 3. 📊 当前状态\n- **78 DONE / 1 ANALYZING**，无 RUNNING 实验。两张 GPU 均空闲\n- **r7n2-data-size-ablation**（ANALYZING）：data size ablation（81→200/400/800 synthetic episodes），验证 router balanced_acc 是否因数据不足饱和。PID 921548 on cuda:0，但**无 cron 监控**——需要手动 poll 或 SSH 检查进程是否还活着。如果已完成需要 spawn worker 分析结果\n- **cross-split-robustness-8seed**（DONE, negative）：episode-level held-out balanced_acc = 47.1±2.2%，确认 router 不能跨 episode 泛化。已写入 D081-D086，Framing 调整提案（Narrative A）已提交 Director\n- **Worker `cross-split-multi-seed-eval`** 仍在运行（01:25 UTC 启动），可能在做 cross-split 的详细分析\n- **Round 8 审稿 + 用户审批 = BLOCKING**，Reviewer 最终验证进行中\n- Director 尚未回复 C2 reframe 提案\n\n### 4. 📋 待办（条件触发式）\n- r7n2-data-size-ablation 完成 → spawn worker 分析结果：若 balanced_acc 随数据量饱和则确认 thin signal 是信号本身性质（支撑 Narrative A），若持续上升则 C2 有救需汇报 Director\n- Worker `cross-split-multi-seed-eval` 回调到达 → 整合分析结果到 registry + report.md\n- Director 回复 C2 reframe → 若 [FRAMING APPROVED] → Read `framing-reaudit` skill → 全文 re-audit（逐章节 diff 清单）\n- 用户审批 Round 8 → 根据 Reviewer 反馈迭代论文\n- GPU 空闲 + Director 有新指令 → 按指令提交（当前两张卡都空着，应尽快利用）\n\n### 5. 🎯 战略上下文\n- **核心结论链**：C1（death avoidance dominates routing signal，DAF=90.4%）稳固不受影响。C2 遭受重大打击——router step-level 55.7% 是 data leakage，episode-level = 随机。D086 采用 Narrative A：router 失败本身是 C1 的补充证据（信号在 task-type level，非 episode level，lightweight router 无法捕捉）\n- **最容易判断错的事**：不要把 step-level eval 数字（55.7%、Table 7 的 56.2%）当作有效结果引用——这些全部被 D082 作废。只有 episode-level 47.1±2.2% 是可信数字，但它说明 router 不 work\n- **容易踩的坑**：r7n2-data-size-ablation 没有 cron 监控，不会自动回调。第一件事应该 SSH 检查 PID 921548 是否存活，手动推进状态\n- **DDL 压力**：EMNLP ARR 5/25，剩 9 天。实验基本完成，瓶颈在论文 reframing + Reviewer 验证 + 用户审批。C2 reframe 如果 Director 批准，需要全文 re-audit（非小改），预留 2-3 天\n- **论文数据描述已修正**（D077）：step-level split、corrected gen eval、Table 7 统一。但 C2 reframe 后这些可能需要再改\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-14-copy-2.md"
+}

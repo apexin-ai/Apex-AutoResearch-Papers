@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "59a0f1875d2abc41f328",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code llama 70b check v2",
+  "task_key": "worker_code_llama-70b-check-v2_20260523T225520",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama-70b-check-v2_20260523T225520_result.json",
+    "occurrence": 1,
+    "bytes": 485,
+    "sha256": "786f9fae549afe07e9529a215a0411ca9203baf3774a88534fd5597b3ee3459a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载进行中，关键数据：\n\n- **PID 179639**: running (36min)\n- **完成**: 3/9 safetensors (model-00004/05/06) 在 final dir\n- **下载中**: 4/9 在 temp dir (model-00001/03/07 约 47-50%, model-00009 97%)\n- **未开始**: model-00002, model-00008\n- **速度**: ~430 KB/s/stream × 4 并行\n- **磁盘**: 20G 可用，够用\n- **预计完成**: 约 3-4.5 小时后\n- config.json 尚未下载\n\n报告已写入 `artifacts/llama70b_download_check.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-llama-70b-check-v2.md"
+}

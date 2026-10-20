@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9ee1a7cbaede74993f37",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code episode level collection",
+  "task_key": "worker_code_episode-level-collection_20260513T173842",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_episode-level-collection_20260513T173842_result.json",
+    "occurrence": 1,
+    "bytes": 610,
+    "sha256": "4df3a45ab03987d4592ec97790f3e0e36943de854aac34190269daa7a0329c08"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已写入 `/root/autodl-tmp/simgate-modular-routing/src/episode_level_collection.py`，`--help` 验证通过，import 无报错。\n\n关键设计：\n- 复用 `signal_prescreening.py` 的 episode 运行逻辑，每步额外记录 `action_history`（累积到当前步）\n- Death episode 处理：final_score ≤ -100 自动判负，双死判 tie\n- 输出 `labeled_steps.jsonl`（训练数据）+ `episode_summary.jsonl`，均为 append mode 支持增量补跑\n- `--start_episode` 参数支持从已有数据后接着跑\n- 运行结束打印 label 分布、avg score gap、death 统计"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-episode-level-collection.md"
+}

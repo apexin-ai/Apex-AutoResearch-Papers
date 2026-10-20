@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f5d5d2ebba52c0161ce7",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code gpu1 crash fix dryrun",
+  "task_key": "worker_code_gpu1-crash-fix-dryrun_20260513T080141",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gpu1-crash-fix-dryrun_20260513T080141_result.json",
+    "occurrence": 1,
+    "bytes": 1120,
+    "sha256": "0d2a87fce75ea0a5b9e61cc93c2d489343a76d53f5cee81aee7733a3c14e5844"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "vLLM 正在 GPU1 上加载模型（14.25 GiB），一切正常。\n\n---\n\n## 产出总结\n\n### 1. v2 崩溃根因\n**GPU1 被前序实验的 vLLM EngineCore 僵尸进程占用** — PID 163319 占了 28 GiB（31 GiB 中），只剩 3.51 GiB 可用。vLLM 初始化要求 26.65 GiB（gpu_memory_utilization=0.85），直接 `ValueError` 退出。\n\n### 2. 修复内容\n- **移除 `run_episode_always_internal` 中的 death filter**（lines 75-83）：删掉 `fork_and_lookahead` + `is_lethal` 重选循环。always-internal 现在是纯 LLM 推理：`select_action_react → step_env`\n- `run_episode_always_deterministic` 和 `run_episode_oracle_routing` 的 death filter 保留不动\n\n### 3. Dry-run 结果（通过）\n- always-internal: **score=0.0** (37s) — 无 fork_and_lookahead 调用\n- always-deterministic: **score=0.0** (47s)\n- oracle-routing: **score=0.0** (int=0/det=10) (67s)\n- 无 crash / traceback / exception\n\n### 4. 正式提交\n- **PID**: 324895\n- **tmux session**: `mvp-p1-gpu1-v3`\n- **Registry**: RUNNING, spec 已写入\n- vLLM 模型加载中（14.25 GiB on GPU1）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-gpu1-crash-fix-dryrun.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5ca816d10679224ee89b",
+  "project": "simgate-modular-routing",
+  "kind": "history",
+  "title": "agent / loop_10_1778805502.md",
+  "task_key": "loop_10_1778805502",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_10_1778805502.md",
+    "occurrence": 1,
+    "bytes": 3471,
+    "sha256": "5dfb56d538ccc54b421a1f0e92893346c81af9eaa9e34dc8c8f80c03a1410dc9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: idle_timeout\nupdated: '2026-05-15T00:38:21+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：仅 `westb-13313` 的 `cuda:0` 和 `cuda:1`（2× RTX 5090 32GB）\n- 项目远程路径：`/root/autodl-tmp/simgate-modular-routing`\n- 论文正文 ≤ 4 页（EMNLP ARR short paper）\n- Table 1 数字只能来自 `eval_end_to_end.py`（trained-router: -10.70 [-15.25, -6.38]）\n- 唯一可用训练数据：`data/plan-004-implicit/implicit_sft.jsonl`（MD5: c9b59e04de78, 2040 samples）\n- Qwen3 推理必须 `enable_thinking=False` + regex 清理 `<think>` tags\n- R3 审稿已提交，当前处于 review 等待期——不要主动修改论文内容，除非收到新 reviewer 反馈\n\n### 2. 🖥️ 基础设施快照\n- 服务器：`westb-13313`，SSH config 名同\n- 工作目录：`/root/autodl-tmp/simgate-modular-routing`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- 激活命令：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型：Qwen3-1.7B LoRA adapter，checkpoint = `checkpoints/plan-004-implicit/final_adapter`\n- HF cache：`/root/autodl-tmp/.hf_cache`\n- W&B project：`simgate-modular-routing`\n- 两张 GPU 当前空闲（review 期间热备）\n- 活跃 cron：无（reconcile 返回 0）\n- 活跃 Worker：`worker_paper_r6-revision_20260515T003235`（paper:r6-revision，running）\n\n### 3. 📊 当前状态\n**论文状态：R3 审稿已提交，等待结果。** R2 得分 Borderline Accept - Findings (2.75/5)，3 Blockers 全部修复后 R3 提交，R3 得分 Weak Accept - Findings (3.25/5)，camera-ready 修复中。\n\nRegistry：55 DONE + 3 PREPARING（plan-003-baseline, plan-001b-gpu1-rebalance, mvp-p1-signal 都是早期遗留，不活跃）。0 RUNNING。\n\n正在等待：\n- Worker `worker_paper_r6-revision_20260515T003235` 完成（R6 revision 任务）\n- R3 reviewer 最终决定\n\n关键成果：\n- ALFWorld counterfactual 完成（det 27.4% vs int 3.0%），已写入 Limitations+Conclusion\n- 本地编译通过：7 页（正文 4p + 非计入 3p），0 warnings，22 bib entries\n- 全文数字一致性验证通过\n\n### 4. 📋 待办（条件触发式）\n- Worker `paper_r6-revision` 完成 → 检查产出，确认 camera-ready 修复是否到位，更新 report.md\n- 收到新 reviewer feedback / accept notification → 立即汇报 Director + 按 feedback 派 Worker 修改\n- Director 指示最终提交 → 远程 rsync 同步 + 重编译验证 + PDF 视觉检查 + ARR 提交\n- 5/23-24 终稿窗口到来 → 确保 PDF 完美，准备 ARR submission metadata\n\n### 5. 🎯 战略上下文\n**核心结论**：Death avoidance 占 routing signal ~90%（DAF=90.41%, r=0.9698）。论文贡献 = empirical finding + diagnostic methodology（episode-level counterfactual labeling），不是 router 架构。\n\n**决策链关键节点**：\n- D013: Framing pivot 到 death avoidance dominance\n- D033: Option B 定稿（方法论贡献）\n- D046: 撤销 PIVOT，回归 analysis paper，MATH 不扩全量\n- D048/D049: R2→R3 修复 + camera-ready\n\n**易错点**：\n- plan-003-e2e-ablation-b 已废弃（用错 checkpoint），不要引用其结果\n- `eval_implicit_router.py` 的 -12.84 不用于 Table 1（与 `eval_end_to_end.py` 的 -10.70 是不同脚本）\n- MATH 跨环境验证仅 105 题 pilot（不是全量），定位为 Discussion 补充证据\n- 3 个 PREPARING 实验是早期遗留，已不在 critical path 上，不要尝试推进\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-1778805502.md"
+}

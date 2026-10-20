@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "55f53133b3262694e7f7",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "analysis penalty sensitivity curve",
+  "task_key": "worker_analysis_penalty-sensitivity-curve_20260515T185824",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_penalty-sensitivity-curve_20260515T185824_result.json",
+    "occurrence": 1,
+    "bytes": 1109,
+    "sha256": "81dd9c1e3da1189588df4c413292600db207e08a02dc5607d8a3d2d89c22e967"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n**数据验证通过：**\n- N=245, DAF(100)=90.41% ✓, Δ_full=29.60 ✓, Δ_nd=2.84 ✓\n- Death rates: internal=42.9%, det=16.3% ✓\n- DAF 随 P 单调递增 ✓\n\n**结果表：**\n\n| P | Δ_full(P) | DAF(%) | 95% CI |\n|---|-----------|--------|--------|\n| 0 | 3.07 | 7.5 | [-36.7, 83.1] |\n| 10 | 5.72 | 50.4 | [19.8, 94.5] |\n| 25 | 9.70 | 70.8 | [48.5, 97.1] |\n| 50 | 16.33 | 82.6 | [67.6, 98.4] |\n| 100 | 29.60 | **90.4** | [81.5, 99.1] |\n| 200 | 56.13 | 95.0 | [90.0, 99.5] |\n| 500 | 135.72 | 97.9 | [95.8, 99.8] |\n\n**R6-C1 论证要点：** P=0 时 DAF 降至 7.5%（CI 跨零），确认 DAF 确实依赖 penalty 大小。但在 ScienceWorld 默认 P=100 下 DAF=90.4%，且即使 P 减半至 50，DAF 仍有 82.6%。结合 penalty-independent 的 death-asymmetry label fraction (78.9%)，可双线论证死亡不对称性的稳健性。\n\n**产出已注册：**\n- `penalty_vs_daf.pdf/png` (chart)\n- `penalty_sensitivity_curve_data.json` (data)\n- `penalty_sensitivity_table.tex` (LaTeX table)\n- Registry: `plan-012-penalty-curve` → DONE"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-penalty-sensitivity-curve.md"
+}

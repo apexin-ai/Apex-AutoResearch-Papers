@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "579eb4e891b861ef8140",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh llama full urgent check",
+  "task_key": "worker_ssh_llama-full-urgent-check_20260519T080621",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_llama-full-urgent-check_20260519T080621_result.json",
+    "occurrence": 1,
+    "bytes": 1753,
+    "sha256": "3e84bc8149ad430dba22dc6bc9e1b1c0d4f6a13a4757f82ad40641ca6368498d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## D118 llama-cross-model-full 实验状态报告\n\n### 状态：**进行中**（非崩溃）\n\n| 指标 | 值 |\n|---|---|\n| GPU 利用率 | GPU0: 100%, GPU1: 100% |\n| VLLM 进程 | 双卡各一个，28GB/32GB |\n| ScienceWorld | 两个 Java 进程活跃 |\n| 总进度 | **170/220 episodes (77%)** |\n\n### Task 完成状态\n\n| Task | Episodes | Int DR | Det DR | Int Avg | Det Avg | Status |\n|---|---|---|---|---|---|---|\n| chemistry-mix | 20 | 45% | 20% | 3.4 | 3.6 | DONE |\n| find-animal | 20 | 40% | 25% | 1.3 | 2.7 | DONE |\n| find-non-living-thing | 20 | 0% | 0% | 22.0 | 41.1 | DONE |\n| freeze | 20 | 45% | 0% | 0.5 | 0.8 | DONE |\n| grow-fruit | 4/20 | 50% | 0% | 3.5 | 1.8 | **IN-PROG** |\n| identify-life-stages-1 | 0 | - | - | - | - | **NOT STARTED** |\n| identify-life-stages-2 | 20 | 45% | 5% | 2.9 | 1.7 | DONE |\n| inclined-plane-determine-angle | 20 | 45% | 20% | 1.8 | 6.9 | DONE |\n| lifespan-longest-lived | 20 | 35% | 5% | 7.7 | 7.9 | DONE |\n| lifespan-longest-lived-then-shortest-lived | 20 | 50% | 20% | 3.3 | 6.2 | DONE |\n| measure-melting-point-unknown-substance | 6/20 | 67% | 33% | 3.5 | 2.0 | **IN-PROG** |\n\n### 关键发现\n\n- **Death asymmetry 显著**：Internal 39.4% vs Deterministic 12.4% (3.2x)\n- **Deterministic routing 明显优于 Internal**：det_preferred=62, int_preferred=3, tie=105\n- **find-non-living-thing** 是唯一零 death 的完成 task，且 Det 均分 (41.1) 远超 Int (22.0)\n- 剩余：grow-fruit (16 eps), identify-life-stages-1 (20 eps), measure-melting-point (14 eps) = 50 episodes\n\n注：你提供的提取脚本里 `internal_score`/`deterministic_score` 字段不存在，实际结构是 `always_internal.final_score` / `always_deterministic.final_score`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-llama-full-urgent-check.md"
+}

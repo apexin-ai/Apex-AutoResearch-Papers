@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5457d964b935026b2a50",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "check math completion",
+  "task_key": "worker_check_math-completion_20260515T075020",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_math-completion_20260515T075020_result.json",
+    "occurrence": 1,
+    "bytes": 864,
+    "sha256": "05ba86b7c91db5a1a17e804c2fc507b42849e90cb9575c596e1d7a73486543a8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n## MATH Negative Contrast 实验结果\n\n| 指标 | 值 |\n|------|-----|\n| **N** | 300 (Level 4: 152, Level 5: 148) |\n| **Internal (reasoning)** | **81.7%** [77.3%, 86.0%] |\n| **Deterministic (code)** | **76.7%** [72.0%, 81.3%] |\n| **差异** | **+5.0%** [+0.7%, +9.3%], **显著** |\n| **信号方向** | **反转** — internal > code |\n\n**Contingency**: both correct 215, both wrong 40, only-internal 30, only-code 15\n**Labels**: no-preference 266, internal-preferred 25, det-preferred 9\n**Filtered** (code path 未实际执行代码): 82/300 (27.3%)\n\n**Level 5 差距更大** (+6.1%) — 越难的题 internal reasoning 优势越明显。\n\nRegistry 已更新为 DONE/success，artifact 已注册。vLLM (port 8001, cuda:1) 暂未关闭——有 Llama-3.1-8B 下载正在进行，可能后续还需要。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-math-completion.md"
+}

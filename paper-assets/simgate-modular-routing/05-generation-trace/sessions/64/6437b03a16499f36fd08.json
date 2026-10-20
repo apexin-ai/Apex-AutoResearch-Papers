@@ -1,0 +1,1246 @@
+{
+  "schema_version": "1.0",
+  "id": "6437b03a16499f36fd08",
+  "project": "simgate-modular-routing",
+  "kind": "conversation",
+  "title": "code keywords v2 fix",
+  "task_key": "worker_code_keywords-v2-fix_20260513T211918",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_keywords-v2-fix_20260513T211918.jsonl",
+    "occurrence": 1,
+    "bytes": 47252,
+    "sha256": "683ebad6e2cdc781b63c893e5d5762c2a6fc3d4565aa3d62052704bfac1958c2"
+  },
+  "statistics": {
+    "messages": 61,
+    "user_turns": 0,
+    "tool_calls": 30,
+    "roles": {
+      "tool_call": 30,
+      "tool_result": 30,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-13T21:22:55.166423+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_keywords-v2-fix_20260513T211918",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/src/rule_based_keywords.json"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-13T21:22:55.166773+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_keywords-v2-fix_20260513T211918",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-13T21:22:55.166945+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_keywords-v2-fix_20260513T211918",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/src/rule_based_accuracy.py"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-13T21:22:55.167198+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"Plan-011: Offline keyword routing accuracy analysis.\n2\t\n3\tSimulates keyword router decisions on existing episode data,\n4\tcompares with death-aware episode-level ground truth labels.\n5\t\"\"\"\n6\t\n7\timport argparse\n8\timport json\n9\timport os\n10\tfrom collections import defaultdict\n11\tfrom typing import Dict, List, Tuple, Optional\n12\t\n13\t\n14\tDEATH_THRESHOLD = -100\n15\t\n16\t\n17\tdef is_dead(score: float) -> bool:\n18\t    return score <= DEATH_THRESHOLD\n19\t\n20\t\n21\tdef classify_episode(int_score: float, det_score: float) -> Tuple[str, str]:\n22\t    int_died = is_dead(int_score)\n23\t    det_died = is_dead(det_score)\n24\t    if int_died and not det_died:\n25\t        return \"det-preferred\", \"int_died_det_alive\"\n26\t    if det_died and not int_died:\n27\t        return \"internal-preferred\", \"det_died_int_alive\"\n28\t    if int_died and det_died:\n29\t        return \"no-preference\", \"both_died\"\n30\t    if det_score > int_score:\n31\t        return \"det-preferred\", \"both_alive_det_wins\"\n32\t    if int_score > det_score:\n33\t        return \"internal-preferred\", \"both_alive_int_wins\"\n34\t    return \"no-preference\", \"tie\"\n35\t\n36\t\n37\tdef load_keywords(path: str) -> List[str]:\n38\t    with open(path) as f:\n39\t        data = json.load(f)\n40\t    return data[\"route_to_simulator\"]\n41\t\n42\t\n43\tdef keyword_match(text: str, keywords: List[str]) -> Tuple[bool, Optional[str]]:\n44\t    text_lower = text.lower()\n45\t    for kw in keywords:\n46\t        if kw.lower() in text_lower:\n47\t            return True, kw\n48\t    return False, None\n49\t\n50\t\n51\tdef get_episode_steps(episode: Dict) -> Tuple[List[Dict], str]:\n52\t    for key in [\"oracle\", \"always_internal\"]:\n53\t        if key in episode and episode[key].get(\"steps\"):\n54\t            return episode[key][\"steps\"], key\n55\t    return [], \"none\"\n56\t\n57\t\n58\tdef analyze_episode(episode: Dict, keywords: List[str],\n59\t                    check_obs: bool = False) -> Dict:\n60\t    int_ep = episode[\"always_internal\"]\n61\t    det_ep = episode[\"always_deterministic\"]\n62\t    int_score = i\n…[truncated 9652 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_keywords-v2-fix_20260513T211918",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-13T21:22:55.167356+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_keywords-v2-fix_20260513T211918",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/src/rule_based_routing.py"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-13T21:22:55.167477+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_keywords-v2-fix_20260513T211918",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-13T21:22:55.167624+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_keywords-v2-fix_20260513T211918",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-13T21:22:55.167754+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_keywords-v2-fix_20260513T211918",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-13T21:22:55.167870+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_keywords-v2-fix_20260513T211918",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "cat /root/autodl-tmp/simgate-modular-routing/src/rule_based_keywords.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-13T21:22:55.167998+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_keywords-v2-fix_20260513T211918",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "cat /root/autodl-tmp/simgate-modular-routing/src/rule_based_routing.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-13T21:22:55.168119+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_keywords-v2-fix_20260513T211918",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "ls /root/autodl-tmp/simgate-modular-routing/src/",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-13T21:22:55.168248+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"route_to_simulator\\\\\\\": [\\\\n    \\\\\\\"heat\\\\\\\", \\\\\\\"cool\\\\\\\", \\\\\\\"boil\\\\\\\", \\\\\\\"melt\\\\\\\", \\\\\\\"freeze\\\\\\\", \\\\\\\"burn\\\\\\\",\\\\n    \\\\\\\"mix\\\\\\\", \\\\\\\"pour\\\\\\\", \\\\\\\"react\\\\\\\", \\\\\\\"dissolve\\\\\\\", \\\\\\\"combine\\\\\\\",\\\\n    \\\\\\\"activate\\\\\\\", \\\\\\\"deactivate\\\\\\\", \\\\\\\"turn on\\\\\\\", \\\\\\\"turn off\\\\\\\",\\\\n    \\\\\\\"connect\\\\\\\", \\\\\\\"disconnect\\\\\\\",\\\\n    \\\\\\\"change state\\\\\\\", \\\\\\\"phase change\\\\\\\", \\\\\\\"temperature\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"note\\\\\\\": \\\\\\\"Pre-registered keyword list for plan-011. Do NOT modify after experiment starts.\\\\\\\"\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.88}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_keywords-v2-fix_20260513T211918",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-13T21:22:55.168521+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Plan-011: Rule-based routing baseline.\\\\n\\\\nPre-registered keyword list decides routing per step:\\\\n  - keyword match in obs/actions → deterministic (fork-based simulator evaluation)\\\\n  - no match → internal (LLM ReAct reasoning)\\\\n\\\\nUsage:\\\\n  python src/rule_based_routing.py --task_types \\\\\\\"boil,melt\\\\\\\" --episodes 20 --gpu_id 0\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport hashlib\\\\nimport json\\\\nimport os\\\\nimport random\\\\nimport sys\\\\nimport time\\\\nfrom collections import Counter\\\\nfrom typing import Dict, Any, List, Optional, Tuple\\\\n\\\\nimport numpy as np\\\\n\\\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\\\nfrom scienceworld_utils import (\\\\n    create_env, reset_env, get_valid_actions, get_score,\\\\n    step_env, close_env, fork_and_lookahead, get_task_types,\\\\n    get_max_variations,\\\\n    STRONG_TASKS, MEDIUM_TASKS, WEAK_TASKS, ALL_MVP_TASKS,\\\\n)\\\\nfrom llm_agent import LLMAgent, find_model_path\\\\n\\\\n\\\\ndef resolve_task_type(name: str) -> str:\\\\n    try:\\\\n        available = get_task_types()\\\\n    except Exception:\\\\n        return name\\\\n    if name in available:\\\\n        return name\\\\n    matches = [t for t in available if name.lower() in t.lower()]\\\\n    if matches:\\\\n        return matches[0]\\\\n    return name\\\\n\\\\n\\\\ndef is_lethal(fr: Dict[str, Any]) -> bool:\\\\n    if fr[\\\\\\\"done\\\\\\\"] and fr[\\\\\\\"score\\\\\\\"] < 0:\\\\n        return True\\\\n    if fr[\\\\\\\"score\\\\\\\"] <= -100:\\\\n        return True\\\\n    return False\\\\n\\\\n\\\\ndef load_keywords(keyword_file: str) -> List[str]:\\\\n    with open(keyword_file, \\\\\\\"r\\\\\\\") as f:\\\\n        data = json.load(f)\\\\n    return data[\\\\\\\"route_to_simulator\\\\\\\"]\\\\n\\\\n\\\\ndef keyword_file_md5(keyword_file: str) -> str:\\\\n    with open(keyword_file, \\\\\\\"rb\\\\\\\") as f:\\\\n        return hashlib.md5(f.read()).hexdigest()\\\\n\\\\n\\\\ndef route_by_keywords(\\\\n    observation: str,\\\\n    action_candidates: List[str],\\\\n    keywords: List[str],\\\\n) -> Tupl\n…[truncated 7200 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_keywords-v2-fix_20260513T211918",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-13T21:22:55.168688+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"__pycache__\\\\naction_divergence_analysis.py\\\\nanalysis.py\\\\ncollect_trajectories.py\\\\ncounterfactual_labeling.py\\\\ndeath_analysis.py\\\\ndeath_aware_labeling.py\\\\ndeath_decomposition.py\\\\nepisode_level_collection.py\\\\nllm_agent.py\\\\nphase0_validate_forking.py\\\\nphase1_signal.py\\\\npostprocess_to_sft.py\\\\nrouter_sft_train.py\\\\nrouter_sft_train.py.bak\\\\nrule_based_accuracy.py\\\\nrule_based_keywords.json\\\\nrule_based_routing.py\\\\nrun_all.sh\\\\nscienceworld_utils.py\\\\nsignal_prescreening.py\\\\ntie_rate_analysis.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_keywords-v2-fix_20260513T211918",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-13T21:22:55.168839+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_keywords-v2-fix_20260513T211918",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "src/**",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-13T21:22:55.168959+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "src/llm_agent.py\nsrc/analysis.py\nsrc/scienceworld_utils.py\nsrc/phase0_validate_forking.py\nsrc/run_all.sh\nsrc/phase1_signal.py\nsrc/action_divergence_analysis.py\nsrc/counterfactual_labeling.py\nsrc/router_sft_train.py\nsrc/death_decomposition.py\nsrc/rule_based_accuracy.py\nsrc/episode_level_collection.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_keywords-v2-fix_20260513T211918",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-13T21:22:55.169143+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_keywords-v2-fix_20260513T211918",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "cat > /root/autodl-tmp/simgate-modular-routing/src/rule_based_keywords_v2.json << 'ENDOFFILE'\n{\n    \"_meta\": {\n        \"version\": \"v2\",\n        \"registered_date\": \"2026-05-13\",\n        \"reason\": \"D014: v1 中 connect/disconnect 是 ScienceWorld 通用动作（命中 3662 次），导致 keyword router 退化为 always-det。v2 只保留科学操作/状态变化动词。注册后锁定，plan-011 正式实验不可再改。\"\n    },\n    \"keywords\": [\n        \"heat\",\n        \"cool\",\n        \"boil\",\n        \"melt\",\n        \"freeze\",\n        \"burn\",\n        \"mix\",\n        \"pour\",\n        \"react\",\n        \"dissolve\",\n        \"activate\",\n        \"change state\",\n        \"ignite\",\n        \"combust\",\n        \"evaporate\",\n        \"condense\",\n        \"oxidize\"\n    ]\n}\nENDOFFILE\necho \"v2 file created\"\ncat /root/autodl-tmp/simgate-modular-routing/src/rule_based_keywords_v2.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-13T21:22:55.169303+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"v2 file created\\\\n{\\\\n    \\\\\\\"_meta\\\\\\\": {\\\\n        \\\\\\\"version\\\\\\\": \\\\\\\"v2\\\\\\\",\\\\n        \\\\\\\"registered_date\\\\\\\": \\\\\\\"2026-05-13\\\\\\\",\\\\n        \\\\\\\"reason\\\\\\\": \\\\\\\"D014: v1 中 connect/disconnect 是 ScienceWorld 通用动作（命中 3662 次），导致 keyword router 退化为 always-det。v2 只保留科学操作/状态变化动词。注册后锁定，plan-011 正式实验不可再改。\\\\\\\"\\\\n    },\\\\n    \\\\\\\"keywords\\\\\\\": [\\\\n        \\\\\\\"heat\\\\\\\",\\\\n        \\\\\\\"cool\\\\\\\",\\\\n        \\\\\\\"boil\\\\\\\",\\\\n        \\\\\\\"melt\\\\\\\",\\\\n        \\\\\\\"freeze\\\\\\\",\\\\n        \\\\\\\"burn\\\\\\\",\\\\n        \\\\\\\"mix\\\\\\\",\\\\n        \\\\\\\"pour\\\\\\\",\\\\n        \\\\\\\"react\\\\\\\",\\\\n        \\\\\\\"dissolve\\\\\\\",\\\\n        \\\\\\\"activate\\\\\\\",\\\\n        \\\\\\\"change state\\\\\\\",\\\\n        \\\\\\\"ignite\\\\\\\",\\\\n        \\\\\\\"combust\\\\\\\",\\\\n        \\\\\\\"evaporate\\\\\\\",\\\\n        \\\\\\\"condense\\\\\\\",\\\\n        \\\\\\\"oxidize\\\\\\\"\\\\n    ]\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.74}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_keywords-v2-fix_20260513T211918",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-13T21:22:55.169469+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_keywords-v2-fix_20260513T211918",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "cd /root/autodl-tmp/simgate-modular-routing && python3 -c \"\nimport re\n\n# --- Update rule_based_accuracy.py ---\nwith open('src/rule_based_accuracy.py', 'r') as f:\n    content = f.read()\n\n# 1. Update load_keywords to handle both v1 and v2 format\nold_load = '''def load_keywords(path: str) -> List[str]:\n    with open(path) as f:\n        data = json.load(f)\n    return data[\\\"route_to_simulator\\\"]'''\n\nnew_load = '''def load_keywords(path: str) -> List[str]:\n    with open(path) as f:\n        data = json.load(f)\n    if \\\"keywords\\\" in data:\n        return data[\\\"keywords\\\"]\n    return data[\\\"route_to_simulator\\\"]'''\n\ncontent = content.replace(old_load, new_load)\n\n# 2. Update default keywords path to v2\ncontent = content.replace(\n    'default=\\\"src/rule_based_keywords.json\\\"',\n    'default=\\\"src/rule_based_keywords_v2.json\\\"'\n)\n\nwith open('src/rule_based_accuracy.py', 'w') as f:\n    f.write(content)\n\nprint('rule_based_accuracy.py updated')\n\n# --- Update rule_based_routing.py ---\nwith open('src/rule_based_routing.py', 'r') as f:\n    content2 = f.read()\n\n# 1. Update load_keywords to handle both v1 and v2 format\nold_load2 = '''def load_keywords(keyword_file: str) -> List[str]:\n    with open(keyword_file, \\\"r\\\") as f:\n        data = json.load(f)\n    return data[\\\"route_to_simulator\\\"]'''\n\nnew_load2 = '''def load_keywords(keyword_file: str) -> List[str]:\n    with open(keyword_file, \\\"r\\\") as f:\n        data = json.load(f)\n    if \\\"keywords\\\" in data:\n        return data[\\\"keywords\\\"]\n    return data[\\\"route_to_simulator\\\"]\n\n\ndef get_keywords_version(keyword_file: str) -> str:\n    with open(keyword_file, \\\"r\\\") as f:\n        data = json.load(f)\n    if \\\"_meta\\\" in data and \\\"version\\\" in data[\\\"_meta\\\"]:\n        return data[\\\"_meta\\\"][\\\"version\\\"]\n    return \\\"v1\\\"'''\n\ncontent2 = content2.replace(old_load2, new_load2)\n\n# 2. Update default keyword_file path to v2\ncontent2 = content2.replace(\n    'default=\\\"src/rule_based_keywords.json\\\"',\n    'default=\\\"src/rule_based_keywords_v2.json\\\"'\n)\n\n# 3. Add version print after MD5 print\nold_print = '''    print(f\\\"Keyword file: {args.keyword_file}\\\")\n    print(f\\\"Keyword file MD5: {kw_md5}\\\")'''\n\nnew_print = '''    kw_version = get_keywords_version(args.keyword_file)\n    print(f\\\"Keyword file: {args.keyword_file}\\\")\n    print(f\\\"Keyword version: {kw_version}\\\")\n    print(f\\\"Keyword file MD5: {kw_md5}\\\")'''\n\ncontent2 = content2.replace(old_print, new_print)\n\nwith open('src/rule_based_routing.py', 'w') as f:\n    f.write(content2)\n\nprint('rule_based_routing.py updated')\n\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-13T21:22:55.169683+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cd /root/autodl-tmp/simgate-modular-routing && python3 -c \\\\\\\"\\\\\\\\nimport re\\\\\\\\n\\\\\\\\n# --- Update rule_based_accuracy.py ---\\\\\\\\nwith open(\\\\\\\\'src/rule_based_accuracy.py\\\\\\\\', \\\\\\\\'r\\\\\\\\') as f:\\\\\\\\n    content = f.read()\\\\\\\\n\\\\\\\\n# 1. Update load_keywords to handle both v1 and v2 format\\\\\\\\nold_load = \\\\\\\\'\\\\\\\\'\\\\\\\\'def load_keywords(path: str) -> List[str]:\\\\\\\\n    with open(path) as f:\\\\\\\\n        data = json.load(f)\\\\\\\\n    return data[\\\\\\\\\\\\\\\\\\\\\\\"route_to_simulator\\\\\\\\\\\\\\\\\\\\\\\"]\\\\\\\\'\\\\\\\\'\\\\\\\\'\\\\\\\\n\\\\\\\\nnew_load = \\\\\\\\'\\\\\\\\'\\\\\\\\'def load_keywords(path: str) -> List[str]:\\\\\\\\n    with open(path) as f:\\\\\\\\n        data = json.load(f)\\\\\\\\n    if \\\\\\\\\\\\\\\\\\\\\\\"keywords\\\\\\\\\\\\\\\\\\\\\\\" in data:\\\\\\\\n        return data[\\\\\\\\\\\\\\\\\\\\\\\"keywords\\\\\\\\\\\\\\\\\\\\\\\"]\\\\\\\\n    return data[\\\\\\\\\\\\\\\\\\\\\\\"route_to_simulator\\\\\\\\\\\\\\\\\\\\\\\"]\\\\\\\\'\\\\\\\\'\\\\\\\\'\\\\\\\\n\\\\\\\\ncontent = content.replace(old_load, new_load)\\\\\\\\n\\\\\\\\n# 2. Update default keywords path to v2\\\\\\\\ncontent = content.replace(\\\\\\\\n    \\\\\\\\'default=\\\\\\\\\\\\\\\\\\\\\\\"src/rule_based_keywords.json\\\\\\\\\\\\\\\\\\\\\\\"\\\\\\\\',\\\\\\\\n    \\\\\\\\'default=\\\\\\\\\\\\\\\\\\\\\\\"src/rule_based_keywords_v2.json\\\\\\\\\\\\\\\\\\\\\\\"\\\\\\\\'\\\\\\\\n)\\\\\\\\n\\\\\\\\nwith open(\\\\\\\\'src/rule_based_accuracy.py\\\\\\\\', \\\\\\\\'w\\\\\\\\') as f:\\\\\\\\n    f.write(content)\\\\\\\\n\\\\\\\\nprint(\\\\\\\\'rule_based_accuracy.py updated\\\\\\\\')\\\\\\\\n\\\\\\\\n# --- Update rule_based_routing.py ---\\\\\\\\nwith open(\\\\\\\\'src/rule_based_routing.py\\\\\\\\', \\\\\\\\'r\\\\\\\\') as f:\\\\\\\\n    content2 = f.read()\\\\\\\\n\\\\\\\\n# 1. Update load_keywords to handle both v1 and v2 format\\\\\\\\nold_load2 = \\\\\\\\'\\\\\\\\'\\\\\\\\'def load_keywords(keyword_file: str) -> List[str]:\\\\\\\\n    with open(keyword_file, \\\\\\\\\\\\\\\\\\\\\\\"r\\\\\\\\\\\\\\\\\\\\\\\") as f:\\\\\\\\n        data = json.load(f)\\\\\\\\n    return data[\\\\\\\\\\\\\\\\\\\\\\\"route_to_simulator\\\\\\\\\\\\\\\\\\\\\\\"]\\\\\\\\'\\\\\\\\'\\\\\\\\'\\\\\\\\n\\\\\\\\nnew_load2 = \\\\\\\\'\\\\\\\\'\\\\\\\\'def load_keywords(keyword_file: str) -> List[str]:\\\\\\\\n    with open(keyword_file, \\\\\\\n…[truncated 1910 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_keywords-v2-fix_20260513T211918",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-13T21:22:55.169859+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_keywords-v2-fix_20260513T211918",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && which python",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-13T21:22:55.170003+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3/bin/python\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.73}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_keywords-v2-fix_20260513T211918",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-13T21:22:55.170140+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_keywords-v2-fix_20260513T211918",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "cat > /tmp/update_files.py << 'PYEOF'\nimport json\n\n# --- Update rule_based_accuracy.py ---\nwith open('/root/autodl-tmp/simgate-modular-routing/src/rule_based_accuracy.py', 'r') as f:\n    content = f.read()\n\nold_load = 'def load_keywords(path: str) -> List[str]:\\n    with open(path) as f:\\n        data = json.load(f)\\n    return data[\"route_to_simulator\"]'\n\nnew_load = 'def load_keywords(path: str) -> List[str]:\\n    with open(path) as f:\\n        data = json.load(f)\\n    if \"keywords\" in data:\\n        return data[\"keywords\"]\\n    return data[\"route_to_simulator\"]'\n\ncontent = content.replace(old_load, new_load)\ncontent = content.replace(\n    'default=\"src/rule_based_keywords.json\"',\n    'default=\"src/rule_based_keywords_v2.json\"'\n)\n\nwith open('/root/autodl-tmp/simgate-modular-routing/src/rule_based_accuracy.py', 'w') as f:\n    f.write(content)\nprint('rule_based_accuracy.py updated')\n\n# --- Update rule_based_routing.py ---\nwith open('/root/autodl-tmp/simgate-modular-routing/src/rule_based_routing.py', 'r') as f:\n    content2 = f.read()\n\nold_load2 = 'def load_keywords(keyword_file: str) -> List[str]:\\n    with open(keyword_file, \"r\") as f:\\n        data = json.load(f)\\n    return data[\"route_to_simulator\"]'\n\nnew_load2 = '''def load_keywords(keyword_file: str) -> List[str]:\n    with open(keyword_file, \"r\") as f:\n        data = json.load(f)\n    if \"keywords\" in data:\n        return data[\"keywords\"]\n    return data[\"route_to_simulator\"]\n\n\ndef get_keywords_version(keyword_file: str) -> str:\n    with open(keyword_file, \"r\") as f:\n        data = json.load(f)\n    if \"_meta\" in data and \"version\" in data[\"_meta\"]:\n        return data[\"_meta\"][\"version\"]\n    return \"v1\"'''\n\ncontent2 = content2.replace(old_load2, new_load2)\n\ncontent2 = content2.replace(\n    'default=\"src/rule_based_keywords.json\"',\n    'default=\"src/rule_based_keywords_v2.json\"'\n)\n\nold_print = '    print(f\"Keyword file: {args.keyword_file}\")\\n    print(f\"Keyword file MD5: {kw_md5}\")'\nnew_print = '    kw_version = get_keywords_version(args.keyword_file)\\n    print(f\"Keyword file: {args.keyword_file}\")\\n    print(f\"Keyword version: {kw_version}\")\\n    print(f\"Keyword file MD5: {kw_md5}\")'\n\ncontent2 = content2.replace(old_print, new_print)\n\nwith open('/root/autodl-tmp/simgate-modular-routing/src/rule_based_routing.py', 'w') as f:\n    f.write(content2)\nprint('rule_based_routing.py updated')\nPYEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /tmp/update_files.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-13T21:22:55.170289+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"rule_based_accuracy.py updated\\\\nrule_based_routing.py updated\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.92}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_keywords-v2-fix_20260513T211918",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-13T21:22:55.170432+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_keywords-v2-fix_20260513T211918",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "grep -n \"load_keywords\\|keywords_v2\\|get_keywords_version\\|Keyword version\\|Keyword file MD5\" /root/autodl-tmp/simgate-modular-routing/src/rule_based_accuracy.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-13T21:22:55.170556+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_keywords-v2-fix_20260513T211918",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-13T21:22:55.170671+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_keywords-v2-fix_20260513T211918",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "grep -n \"load_keywords\\|keywords_v2\\|get_keywords_version\\|Keyword version\\|Keyword file MD5\" /root/autodl-tmp/simgate-modular-routing/src/rule_based_routing.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-13T21:22:55.170809+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_keywords-v2-fix_20260513T211918",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-13T21:22:55.170923+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_keywords-v2-fix_20260513T211918",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "grep -n \"load_keywords\\|keywords_v2\\|get_keywords_version\" /root/autodl-tmp/simgate-modular-routing/src/rule_based_accuracy.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-13T21:22:55.171058+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_keywords-v2-fix_20260513T211918",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-13T21:22:55.171172+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_keywords-v2-fix_20260513T211918",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "grep -n \"load_keywords\\|keywords_v2\\|get_keywords_version\\|kw_version\" /root/autodl-tmp/simgate-modular-routing/src/rule_based_routing.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-13T21:22:55.171285+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_keywords-v2-fix_20260513T211918",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-13T21:22:55.171394+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_keywords-v2-fix_20260513T211918",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "grep -n \"load_keywords\\|keywords_v2\\|get_keywords_version\" /root/autodl-tmp/simgate-modular-routing/src/rule_based_routing.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-13T21:22:55.171505+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_keywords-v2-fix_20260513T211918",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-13T21:22:55.171614+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_keywords-v2-fix_20260513T211918",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "grep -n \"keywords\" /root/autodl-tmp/simgate-modular-routing/src/rule_based_accuracy.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-13T21:22:55.171745+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"37:def load_keywords(path: str) -> List[str]:\\\\n40:    if \\\\\\\"keywords\\\\\\\" in data:\\\\n41:        return data[\\\\\\\"keywords\\\\\\\"]\\\\n45:def keyword_match(text: str, keywords: List[str]) -> Tuple[bool, Optional[str]]:\\\\n47:    for kw in keywords:\\\\n60:def analyze_episode(episode: Dict, keywords: List[str],\\\\n80:        matched, kw = keyword_match(text, keywords)\\\\n159:    parser.add_argument(\\\\\\\"--keywords\\\\\\\", type=str,\\\\n160:                        default=\\\\\\\"src/rule_based_keywords_v2.json\\\\\\\")\\\\n164:                        help=\\\\\\\"Also check observation text for keywords\\\\\\\")\\\\n167:    keywords = load_keywords(args.keywords)\\\\n168:    print(f\\\\\\\"Keywords ({len(keywords)}): {keywords}\\\\\\\")\\\\n197:                    result = analyze_episode(episode, keywords,\\\\n229:        \\\\\\\"n_keywords\\\\\\\": len(keywords),\\\\n230:        \\\\\\\"keywords\\\\\\\": keywords,\\\\n253:    print(f\\\\\\\"Keywords: {len(keywords)}  |  Check obs: {args.check_obs}\\\\\\\")\\\\n297:        print(f\\\\\\\"\\\\\\\\nTop matched keywords:\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.77}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_keywords-v2-fix_20260513T211918",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-13T21:22:55.171872+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_keywords-v2-fix_20260513T211918",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "grep -n \"keywords_v2\\|get_keywords_version\\|kw_version\" /root/autodl-tmp/simgate-modular-routing/src/rule_based_routing.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-13T21:22:55.172003+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_keywords-v2-fix_20260513T211918",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-13T21:22:55.172121+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_keywords-v2-fix_20260513T211918",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "grep -n \"keywords_v2\" /root/autodl-tmp/simgate-modular-routing/src/rule_based_routing.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-13T21:22:55.172236+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"307:                        default=\\\\\\\"src/rule_based_keywords_v2.json\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.77}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_keywords-v2-fix_20260513T211918",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-13T21:22:55.172347+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_keywords-v2-fix_20260513T211918",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "grep -n \"get_keywords_version\" /root/autodl-tmp/simgate-modular-routing/src/rule_based_routing.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-13T21:22:55.172457+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_keywords-v2-fix_20260513T211918",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "grep -n \"kw_version\" /root/autodl-tmp/simgate-modular-routing/src/rule_based_routing.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-13T21:22:55.172571+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"62:def get_keywords_version(keyword_file: str) -> str:\\\\n319:    kw_version = get_keywords_version(args.keyword_file)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.77}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_keywords-v2-fix_20260513T211918",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-13T21:22:55.172691+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"319:    kw_version = get_keywords_version(args.keyword_file)\\\\n321:    print(f\\\\\\\"Keyword version: {kw_version}\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.92}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_keywords-v2-fix_20260513T211918",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-13T21:22:55.172822+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_keywords-v2-fix_20260513T211918",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/src/rule_based_accuracy.py",
+              "old_string": "def load_keywords(path: str) -> List[str]:\n    with open(path) as f:\n        data = json.load(f)\n    return data[\"route_to_simulator\"]",
+              "new_string": "def load_keywords(path: str) -> List[str]:\n    with open(path) as f:\n        data = json.load(f)\n    if \"keywords\" in data:\n        return data[\"keywords\"]\n    return data[\"route_to_simulator\"]"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-13T21:22:55.172999+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/src/rule_based_accuracy.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_keywords-v2-fix_20260513T211918",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-13T21:22:55.173122+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_keywords-v2-fix_20260513T211918",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/src/rule_based_accuracy.py",
+              "old_string": "                        default=\"src/rule_based_keywords.json\")",
+              "new_string": "                        default=\"src/rule_based_keywords_v2.json\")"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-13T21:22:55.173282+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/src/rule_based_accuracy.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_keywords-v2-fix_20260513T211918",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-13T21:22:55.173421+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_keywords-v2-fix_20260513T211918",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/src/rule_based_keywords_v2.json",
+              "content": "{\n    \"_meta\": {\n        \"version\": \"v2\",\n        \"registered_date\": \"2026-05-13\",\n        \"reason\": \"D014: v1 中 connect/disconnect 是 ScienceWorld 通用动作（命中 3662 次），导致 keyword router 退化为 always-det。v2 只保留科学操作/状态变化动词。注册后锁定，plan-011 正式实验不可再改。\"\n    },\n    \"keywords\": [\n        \"heat\",\n        \"cool\",\n        \"boil\",\n        \"melt\",\n        \"freeze\",\n        \"burn\",\n        \"mix\",\n        \"pour\",\n        \"react\",\n        \"dissolve\",\n        \"activate\",\n        \"change state\",\n        \"ignite\",\n        \"combust\",\n        \"evaporate\",\n        \"condense\",\n        \"oxidize\"\n    ]\n}\n"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-13T21:22:55.173554+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/src/rule_based_keywords_v2.json"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_keywords-v2-fix_20260513T211918",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-13T21:22:55.173689+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_keywords-v2-fix_20260513T211918",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "ls /root/autodl-tmp/simgate-modular-routing/results/prescreening/ /root/autodl-tmp/simgate-modular-routing/results/mvp/",
+              "account": "root"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-13T21:22:55.173822+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/simgate-modular-routing/results/mvp/:\\\\nboil\\\\nchange-the-state-of-matter-of\\\\nchemistry-mix-paint-secondary-color\\\\nfinal_analysis.json\\\\nfinal_analysis_det_vs_internal.json\\\\nglobal_summary.json\\\\ngrow-plant\\\\nmelt\\\\nphase0_validation.json\\\\nphase0_validation_v2.json\\\\nphase1_gpu0.log\\\\nsignal_type_summary.json\\\\n\\\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/:\\\\nchemistry-mix\\\\nchemistry-mix-paint-tertiary-color\\\\nfind-animal\\\\nfind-living-thing\\\\nfind-non-living-thing\\\\nfind-plant\\\\nfreeze\\\\ngrow-fruit\\\\nidentify-life-stages-1\\\\nidentify-life-stages-2\\\\ninclined-plane-determine-angle\\\\ninclined-plane-friction-named-surfaces\\\\ninclined-plane-friction-unnamed-surfaces\\\\nlifespan-longest-lived\\\\nlifespan-longest-lived-then-shortest-lived\\\\nlifespan-shortest-lived\\\\nmeasure-melting-point-unknown-substance\\\\nmendelian-genetics-known-plant\\\\nmendelian-genetics-unknown-plant\\\\npower-component\\\\npower-component-renewable-vs-nonrenewable-energy\\\\nrun.log\\\\nrun_gpu1.log\\\\nsignal_type_summary.json\\\\nsummary.txt\\\\ntest-conductivity\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.77}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_keywords-v2-fix_20260513T211918",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-13T21:22:55.173942+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_keywords-v2-fix_20260513T211918",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "cd /root/autodl-tmp/simgate-modular-routing && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python src/rule_based_accuracy.py --data_dirs results/prescreening/,results/mvp/ --keywords src/rule_based_keywords_v2.json --output results/rule_based_accuracy_v2_test.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-13T21:22:55.174111+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Keywords (17): ['heat', 'cool', 'boil', 'melt', 'freeze', 'burn', 'mix', 'pour', 'react', 'dissolve', 'activate', 'change state', 'ignite', 'combust', 'evaporate', 'condense', 'oxidize']\\\\n\\\\nReport saved: results/rule_based_accuracy_v2_test.json\\\\n\\\\n======================================================================\\\\nKEYWORD ROUTING ACCURACY ANALYSIS\\\\n======================================================================\\\\nKeywords: 17  |  Check obs: False\\\\nEpisodes: 203  |  Avg keyword match rate: 4.9%\\\\n\\\\nTask                                           Eps  Match%    Acc  GT distribution\\\\n-----------------------------------------------------------------------------------------------\\\\nmvp/boil                                        20   7.5%  0.0%  det-preferred:7  no-preference:13\\\\nmvp/change-the-state-of-matter-of               20   8.8%  0.0%  det-preferred:9  no-preference:11\\\\nmvp/chemistry-mix-paint-secondary-color         20   4.3%  0.0%  det-preferred:8  no-preference:12\\\\nmvp/grow-plant                                  20   4.8%  0.0%  no-preference:20\\\\nmvp/melt                                        20   9.6%  0.0%  det-preferred:8  no-preference:12\\\\nprescreening/chemistry-mix                       5   4.0%  0.0%  det-preferred:3  no-preference:2\\\\nprescreening/chemistry-mix-paint-tertiary-color    5   2.7%  0.0%  det-preferred:1  no-preference:4\\\\nprescreening/find-animal                         5   2.7%  0.0%  det-preferred:3  no-preference:2\\\\nprescreening/find-living-thing                   5   2.7%  0.0%  det-preferred:3  no-preference:2\\\\nprescreening/find-non-living-thing               5   2.7% 33.3%  det-preferred:2  internal-preferred:1  no-preference:2\\\\nprescreening/find-plant                          5   2.7%  0.0%  det-preferred:4  no-preference:1\\\\nprescreening/freeze                              5   5.3%  0.0%  det-preferred:3  no-preference:2\\\\nprescreening/grow-fruit    \n…[truncated 2140 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_keywords-v2-fix_20260513T211918",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-13T21:22:55.174276+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_keywords-v2-fix_20260513T211918",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "cat /root/autodl-tmp/simgate-modular-routing/results/rule_based_accuracy_report.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-13T21:22:55.174399+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /root/autodl-tmp/simgate-modular-routing/results/rule_based_accuracy_report.json: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.77}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_keywords-v2-fix_20260513T211918",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-13T21:22:55.174513+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_keywords-v2-fix_20260513T211918",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "find /root/autodl-tmp/simgate-modular-routing/results/ -name \"*rule_based*\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-13T21:22:55.174639+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/simgate-modular-routing/results/rule_based_accuracy_test.json\\\\n/root/autodl-tmp/simgate-modular-routing/results/rule_based_accuracy_v2_test.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.77}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_keywords-v2-fix_20260513T211918",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-13T21:22:55.174780+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_keywords-v2-fix_20260513T211918",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "cd /root/autodl-tmp/simgate-modular-routing && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python src/rule_based_accuracy.py --data_dirs results/prescreening/,results/mvp/ --keywords src/rule_based_keywords.json --output results/rule_based_accuracy_v1_rerun.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-13T21:22:55.174928+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Keywords (20): ['heat', 'cool', 'boil', 'melt', 'freeze', 'burn', 'mix', 'pour', 'react', 'dissolve', 'combine', 'activate', 'deactivate', 'turn on', 'turn off', 'connect', 'disconnect', 'change state', 'phase change', 'temperature']\\\\n\\\\nReport saved: results/rule_based_accuracy_v1_rerun.json\\\\n\\\\n======================================================================\\\\nKEYWORD ROUTING ACCURACY ANALYSIS\\\\n======================================================================\\\\nKeywords: 20  |  Check obs: False\\\\nEpisodes: 204  |  Avg keyword match rate: 86.1%\\\\n\\\\nTask                                           Eps  Match%    Acc  GT distribution\\\\n-----------------------------------------------------------------------------------------------\\\\nmvp/boil                                        20  86.2% 100.0%  det-preferred:7  no-preference:13\\\\nmvp/change-the-state-of-matter-of               20  89.1% 100.0%  det-preferred:9  no-preference:11\\\\nmvp/chemistry-mix-paint-secondary-color         20  86.1% 100.0%  det-preferred:8  no-preference:12\\\\nmvp/grow-plant                                  20  69.5%  0.0%  no-preference:20\\\\nmvp/melt                                        20  84.7% 87.5%  det-preferred:8  no-preference:12\\\\nprescreening/chemistry-mix                       5  92.0% 100.0%  det-preferred:3  no-preference:2\\\\nprescreening/chemistry-mix-paint-tertiary-color    5  89.0% 100.0%  det-preferred:1  no-preference:4\\\\nprescreening/find-animal                         5  83.9% 100.0%  det-preferred:3  no-preference:2\\\\nprescreening/find-living-thing                   5  91.4% 100.0%  det-preferred:3  no-preference:2\\\\nprescreening/find-non-living-thing               5  76.0% 66.7%  det-preferred:2  internal-preferred:1  no-preference:2\\\\nprescreening/find-plant                          5  89.3% 100.0%  det-preferred:4  no-preference:1\\\\nprescreening/freeze                              5  95.4% 100.0%  det-\n…[truncated 2316 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_keywords-v2-fix_20260513T211918",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-13T21:22:55.175154+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两组数据都有了。\n\n## v1 vs v2 对比\n\n| 指标 | v1 | v2 |\n|------|----|----|\n| Keywords 数量 | 20 | 17 |\n| Avg keyword match rate | **86.1%** | **4.9%** |\n| Det-preferred prediction % | **97.5%** (199/204) | **0.5%** (1/203) |\n| Overall accuracy (excl no-pref) | 97.7% (83/85) | 1.2% (1/84) |\n| Top 3 keywords by hit count | connect(3963), activate(250), freeze(36) | activate(250), freeze(36), mix(2) |\n\n### 分析\n\nv2 成功消除了 `connect`/`disconnect` 造成的虚高命中（3963 次 → 0），匹配率从 86.1% 降到 4.9%。\n\n但问题反转了：v1 退化为 always-det（97.5% 预测 det），v2 退化为 **always-internal**（99.5% 预测 internal）。由于大多数 ground truth 是 det-preferred，v2 accuracy 跌至 1.2%。\n\n核心原因：v2 的 17 个科学动词在 ScienceWorld action text 中出现极少（仅 `activate` 有显著命中，但 250 次分散在 204 个 episode 中不足以让单 episode match rate 超过 50% 阈值）。\n\n### 产出\n\n1. `src/rule_based_keywords_v2.json` — 已创建（服务器 + 本地）\n2. `src/rule_based_accuracy.py` — 默认指向 v2，`load_keywords` 兼容 v1/v2 格式\n3. `src/rule_based_routing.py` — 默认指向 v2，启动时打印 keyword version + MD5\n4. `results/rule_based_accuracy_v2_test.json` — v2 完整报告\n5. `results/rule_based_accuracy_v1_rerun.json` — v1 对照报告"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_keywords-v2-fix_20260513T211918"
+          },
+          "id": "event-000061"
+        }
+      ],
+      "message_count": 61
+    }
+  ],
+  "readable_path": "readable/conversations/code-keywords-v2-fix.md"
+}

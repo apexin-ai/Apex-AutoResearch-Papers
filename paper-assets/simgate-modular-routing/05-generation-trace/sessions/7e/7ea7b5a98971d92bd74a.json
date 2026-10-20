@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7ea7b5a98971d92bd74a",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "research seed42 adapter provenance",
+  "task_key": "worker_research_seed42-adapter-provenance_20260516T010131",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_seed42-adapter-provenance_20260516T010131_result.json",
+    "occurrence": 1,
+    "bytes": 2283,
+    "sha256": "e42db8652f116da43bc2915dcb90002b6754842a356da2bfd80de16b584bfd38"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已收集全部信息。结论如下：\n\n---\n\n## 调查结论：`checkpoints/plan-008-qwen3-1.7b/final_adapter/`\n\n### 基本信息\n| 项目 | 值 |\n|---|---|\n| **创建时间** | 2026-05-15 21:44:50 (CST) |\n| **训练完成标记** | `completed_at=2026-05-15T21:44:50.449648` |\n| **Seed** | **42** |\n| **Base model** | Qwen3-1.7B |\n| **训练数据** | `data/plan-004-implicit/implicit_sft.jsonl` (2040 条, 1830 deterministic + 210 internal) |\n\n### Split 方式\n训练日志明确记录：\n> **Episode-level stratified split: 56 train / 10 val episodes → 1740 train steps, 300 val steps**\n\n是 **episode-level** 分割，不是 step-level。\n\n### 训练配置（与 plan-004-implicit 对比）\n\n| 参数 | plan-008-qwen3-1.7b | plan-004-implicit |\n|---|---|---|\n| data_dir | `data/plan-004-implicit` | `data/plan-004-implicit` |\n| model | Qwen3-1.7B | Qwen3-1.7B |\n| seed | 42 | 42 |\n| epochs | 3 | 3 |\n| batch_size | 4 | 4 |\n| **gradient_accumulation_steps** | **8** | **未设置 (默认1)** |\n| lr | 2e-5 | 2e-5 |\n| lora_r/alpha | 16/32 | 16/32 |\n| eval_split | 0.15 | 0.15 |\n\n**唯一差异**：plan-008 加了 `gradient_accumulation_steps=8`，有效 batch size 从 4 提升到 32。这导致总 training steps 从 plan-004 的约 1320 步降到 165 步（1740 samples / 4 batch / 8 accum ≈ 55 步/epoch × 3 epochs = 165 步）。\n\n### 与 plan-004-implicit 是否同一 checkpoint？\n**不是。** 虽然数据、模型、seed 完全一致，但 gradient_accumulation_steps 不同导致训练动态不同。文件大小相同（25720120 bytes）是因为 LoRA 架构相同（r=16, target_modules 相同），权重值不同。plan-004 创建于 5月14日，plan-008 创建于 5月15日。\n\n### 训练效果\n| Epoch | Eval Loss |\n|---|---|\n| 1 | 0.7213 |\n| 2 | 0.3964 |\n| 3 | 0.3766 |\n\nLoss 持续下降，训练正常收敛。\n\n### 结论\n这个 adapter **可靠**。它是 plan-008 独立训练的产物，使用 episode-level stratified split（56 train / 10 val episodes），seed=42，数据来源是 plan-004-implicit 的 implicit_sft.jsonl。与 plan-004-implicit 的 checkpoint 相比，唯一区别是 gradient_accumulation_steps=8（更大有效 batch size），两者不是同一个 checkpoint。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-seed42-adapter-provenance.md"
+}

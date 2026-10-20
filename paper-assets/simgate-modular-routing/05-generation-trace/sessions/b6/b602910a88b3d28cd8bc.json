@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b602910a88b3d28cd8bc",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh w1 rerun k11",
+  "task_key": "worker_ssh_w1-rerun-k11_20260518T080439",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_w1-rerun-k11_20260518T080439_result.json",
+    "occurrence": 1,
+    "bytes": 760,
+    "sha256": "5350f98da61f56707be4d82ed21c14bc28fdeebd3d1771f7776242a15e53b987"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。已有结果仅含 pairs cluster bootstrap，缺少 3 种方法，因此用正确数据源（K=11, 245 episodes）重跑了完整的 4 方法分析。\n\n核心结论：**四种方法一致显著**，DAF 极其稳健。\n\n| 方法 | p-value | 关键指标 |\n|------|---------|---------|\n| Wild Cluster Bootstrap (Webb 2023) | < 0.001 | CI [0.73, 1.00] |\n| Exact Permutation Test | 0.002 | 4/2048 extreme |\n| Cluster-Robust T-Test | 0.000002 | t=10.0, df=10 |\n| Cohen's d | — | d=3.02 (极大) |\n\n10/11 task types 的 per-cluster DAF=1.0，唯一 DAF=0 的是 find-non-living-thing。结果已写入服务器和本地 `artifacts/w1_cluster_bootstrap_k11.md`，JSON 已更新至 `guided_router/cluster_bootstrap_results.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-w1-rerun-k11.md"
+}

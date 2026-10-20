@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "969515a798a417ce2cab",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "exp research prescreening gpu0",
+  "task_key": "worker_exp_research-prescreening-gpu0_20260513T162053",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_research-prescreening-gpu0_20260513T162053_result.json",
+    "occurrence": 1,
+    "bytes": 303,
+    "sha256": "f0672785fab49e54494bae25d35e82a5a08b74d1d14c5a8e597e040c91ce5bf8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已启动，状态正常：\n\n- **PID**: 649681\n- **第一个 task**: `chemistry-mix` 正在跑\n- **vLLM 推理速度**: ~96 tok/s output，模型加载完毕\n- **日志**: `results/prescreening/run.log` + `results/prescreening/summary.txt`\n- **预计总时长**: 8-10h（25 tasks）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-research-prescreening-gpu0.md"
+}

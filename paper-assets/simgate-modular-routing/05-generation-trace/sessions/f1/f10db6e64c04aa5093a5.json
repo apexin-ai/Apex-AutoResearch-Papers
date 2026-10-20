@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f10db6e64c04aa5093a5",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "infra preflight check",
+  "task_key": "worker_infra_preflight-check_20260513T061826",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_preflight-check_20260513T061826_result.json",
+    "occurrence": 1,
+    "bytes": 720,
+    "sha256": "dd71b746d92c8cf39ee18558a9d74c89cd571099bfcf2adbedd40d3c606f5c1b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 飞行检查报告\n\n| 检查项 | 状态 | 详情 |\n|--------|------|------|\n| **SSH** | ✓ | `westb-13313` 连通 |\n| **GPU** | ✓ | 2× RTX 5090 (32GB each)，显存空闲 |\n| **模型** | ✓ | Qwen2.5-7B-Instruct 存在，Tokenizer 正常 (vocab=151643) |\n| **SCORE_FIX** | ✓ | `_last_score` 已修复 |\n| **VARIATION_FIX** | ✓ | `ep_idx % max_var` 已修复 |\n| **SEED_FIX** | ✓ | `random.seed(42)` 已修复 |\n| **CI_FIX** | ✓ | `oracle_minus_det_ci90` 已修复 |\n| **残留进程** | ✓ | 无 phase1 进程在跑 |\n| **已有产出** | ℹ | `results/mvp/` 下有 phase0 验证文件、`phase1_gpu0.log` (17KB)、`boil/` 目录 |\n\n全部通过，可以启动 Phase 1。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-preflight-check.md"
+}

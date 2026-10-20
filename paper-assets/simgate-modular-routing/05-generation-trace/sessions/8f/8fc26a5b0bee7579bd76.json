@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8fc26a5b0bee7579bd76",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh crafter env setup pilot",
+  "task_key": "worker_ssh_crafter-env-setup-pilot_20260519T122024",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_crafter-env-setup-pilot_20260519T122024_result.json",
+    "occurrence": 1,
+    "bytes": 1931,
+    "sha256": "9ceee9780c63a77069bfe6cc27d58b2c6076677729cf59724e0ef94cee3d79df"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== CRAFTER PILOT RESULTS ===\n\nRandom baseline (5 eps):\n  DR: 100%, Avg steps: 155.2, Avg reward: 0.90, Avg achievements: 1.8\n  Per-episode: [(DIED,179), (DIED,198), (DIED,151), (DIED,55), (DIED,193)]\n\nDeterministic (10 eps):\n  DR: 100%, Avg steps: 170.9, Avg reward: 3.10, Avg achievements: 4.0\n  Per-episode: [(DIED,223), (DIED,192), (DIED,108), (DIED,172), (DIED,149), (DIED,175), (DIED,169), (DIED,212), (DIED,44), (DIED,265)]\n\nLLM/Internal (10 eps):\n  DR: 100%, Avg steps: 180.3, Avg reward: -0.90, Avg achievements: 0.0\n  Per-episode: [(DIED,163), (DIED,160), (DIED,191), (DIED,155), (DIED,190), (DIED,229), (DIED,189), (DIED,167), (DIED,194), (DIED,165)]\n\nDecision:\n  Int DR: 100%\n  Det DR: 100%\n  Δ DR: 0pp\n  Verdict: NOT FEASIBLE (Δ DR = 0, both agents always die)\n\nInfrastructure:\n  Text obs method: BALROG-adapted standalone wrapper (semantic grid → text)\n  LLM parse success rate: 100%\n  vLLM latency: 58ms/call\n  Death detection: health=0 confirmed YES (all deaths = hp=0)\n\nKey observations:\n  - Crafter 300-step episodes are universally lethal: random/det/LLM all 100% DR\n  - Det agent outperforms random on achievements (4.0 vs 1.8) and reward (3.10 vs 0.90)\n  - LLM agent WORSE than random (0 achievements, -0.90 reward): it only outputs movement actions, never uses \"do\" to interact with objects (collect wood, drink water, eat)\n  - LLM survives slightly longer (180.3 steps) likely because it moves away from threats, but starves to death without ever gathering resources\n  - Crafter's death rate is too high across all agent types at 300 steps to produce useful Δ DR signal\n```\n\n**Files deployed to** `/root/autodl-tmp/simgate-modular-routing/scripts/crafter/`:\n- `crafter_text_wrapper.py`\n- `crafter_det_agent.py`\n- `crafter_runner.py`\n\n**Results saved to** `/root/autodl-tmp/simgate-modular-routing/results/crafter_pilot_{random,det,llm}.jsonl`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-crafter-env-setup-pilot.md"
+}

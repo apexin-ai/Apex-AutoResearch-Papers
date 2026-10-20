@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7807db1562648beb549b",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "analysis paper data prep",
+  "task_key": "worker_analysis_paper-data-prep_20260514T062541",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_paper-data-prep_20260514T062541_result.json",
+    "occurrence": 1,
+    "bytes": 1150,
+    "sha256": "aa0df72b27a9cfc7da340ef37f5ad504b7a1660dacc2bc86f9d784aa0bd5e48f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已产出 `artifacts/paper_data_tables.md`（artifact ID: art_20260514_3c02f5），包含：\n\n**Table 1**: Death decomposition 完整数据（plan-012-full 最终版：Δ_full=+29.60, DAF=90.41%, r=0.9698）+ 5/11 tasks 有 per-task 明细，6 tasks 需从服务器提取\n\n**Table 2**: Router SFT — plan-004-ablation-b 完整指标（accuracy=0.6536, internal recall=0.5152），plan-002-v4 标记为 RUNNING placeholder\n\n**Table 3**: Baselines — keyword routing 3 版全部 degenerate，always-det/always-internal 对比\n\n**Figure specs**: 3 张图的数据源、轴定义、优先级（Fig 1 scatter plot 必须，Fig 2/3 可选）\n\n**Consistency check 结果**:\n- paper_framing.md 11 项定量 claim 全部与 registry 一致\n- **1 项未验证**：\"98.2% tie rate\" 无 registry 来源，需补源或从数据重算\n- 旧 experiment_tables.md 的 30-task 预筛数据已标注为 superseded\n\n**7 个 action items** 按优先级列出，最关键的：(1) 从服务器提取 6 个 task 的 per-task 分解数据，(2) 补齐绝对分数，(3) 找到 98.2% tie rate 的来源，(4) 等 plan-002-v4 完成填表。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-paper-data-prep.md"
+}

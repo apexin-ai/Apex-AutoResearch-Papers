@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d36782e3bd770705b0f2",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "analysis bootstrap 95ci",
+  "task_key": "worker_analysis_bootstrap-95ci_20260514T125452",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bootstrap-95ci_20260514T125452_result.json",
+    "occurrence": 1,
+    "bytes": 816,
+    "sha256": "8747cae877394854c756aa977fc3417dd58400a30d155d06df702d7da646583f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "W5 完成。对照表：\n\n| Condition | Mean | 90% CI (old) | 95% CI (new) |\n|-----------|------|-------------|-------------|\n| always-internal | -39.07 | [-44.89, -33.37] | **[-46.40, -32.27]** |\n| always-det | -9.47 | [-13.66, -5.11] | **[-14.71, -4.29]** |\n| oracle | -6.58 | [-10.65, -2.43] | **[-11.54, -1.70]** |\n| random | -22.38 | [-27.75, -17.09] | **[-28.67, -15.75]** |\n| trained-router | -10.70 | [-15.25, -6.38] | **[-16.33, -5.27]** |\n\n修改内容：\n- `analysis.py`、`eval_end_to_end.py`、`eval_implicit_router.py` 中 `ci=0.90` → `ci=0.95`，注释/标签中 `90% CI` → `95% CI`\n- `death_decomposition.py` 已经是 `BOOTSTRAP_CI = 0.95`，无需修改\n- 结果保存：服务器 `results/bootstrap_95ci.json` + 本地 artifacts + registry `plan-003-bootstrap-95ci`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-bootstrap-95ci.md"
+}

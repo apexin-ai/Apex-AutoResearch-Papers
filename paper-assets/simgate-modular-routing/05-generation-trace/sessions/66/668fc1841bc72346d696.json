@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "668fc1841bc72346d696",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "infra cleanup residual pids",
+  "task_key": "worker_infra_cleanup-residual-pids_20260513T154642",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_cleanup-residual-pids_20260513T154642_result.json",
+    "occurrence": 1,
+    "bytes": 250,
+    "sha256": "2cb6c63259df9b9a9faf096555d581db33e9536d3e08032e6800215c4afd675a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部清理完毕：\n\n- `kill 162576 162577` 成功，进程已退出\n- 无其他 vLLM/EngineCore/phase1_signal 残留进程\n- GPU 状态：\n  - GPU 0: **0 MiB**\n  - GPU 1: **0 MiB**\n\n双卡显存已归零，服务器干净。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-cleanup-residual-pids.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "efbcdbfdc4fdf5880441",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code plan 011 rule based baseline",
+  "task_key": "worker_code_plan-011-rule-based-baseline_20260514T041427",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan-011-rule-based-baseline_20260514T041427_result.json",
+    "occurrence": 1,
+    "bytes": 641,
+    "sha256": "6057d191a256c5edc28f9398c5d650dc642827ab3db939813ff9d89e812fc1e5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本和 CSV 输出均正常。\n\n**结果摘要：**\n\n| 指标 | 值 |\n|------|-----|\n| 总 episodes | 254,889 |\n| 可评分 (排除 tie) | 107,312 |\n| Keyword match rate | 42.1% |\n| Overall accuracy | 50.0% |\n\nv3 关键词 match rate 42.1%（被 `lifespan-longest-lived` 的 254k episodes 主导），accuracy 50.0% — 本质等于随机，符合预期的\"关键词 heuristic 结构性失效\"结论。\n\n**产出文件：**\n- 本地脚本：`src/analysis/rule_based_routing.py`\n- 本地关键词：`src/rule_based_keywords.json`（v3，9 个词）\n- 服务器 dry-run CSV：`/tmp/rule_based_comparison.csv`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-011-rule-based-baseline.md"
+}

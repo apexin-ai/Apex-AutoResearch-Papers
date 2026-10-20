@@ -1,0 +1,668 @@
+{
+  "phase1": {
+    "figure_check": {
+      "passed": true,
+      "critical": [],
+      "warning": [
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:discussion} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:threshold-routing} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:experiments} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:decision-framework} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:death-taxonomy} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:loto-daf} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:ai-assistants} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:loo} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:wild-cluster} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:non-death-taxonomy} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:problem-setup} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "experiments.tex:67"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "experiments.tex:150"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "main.tex:98"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "main.tex:173"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "main.tex:250"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "main.tex:400"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "main.tex:453"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "main.tex:568"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "main.tex:630"
+        },
+        {
+          "kind": "missing_required_section",
+          "message": "Venue requires a 'Ethics Statement' section but none was found",
+          "location": "cross-file"
+        }
+      ],
+      "info": [],
+      "summary": "0 critical, 21 warning, 0 info"
+    },
+    "consistency": {
+      "paper_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper",
+      "sections": [
+        {
+          "file": "abstract.tex",
+          "role": "headline",
+          "num_numbers": 2,
+          "num_cites": 0
+        },
+        {
+          "file": "conclusion.tex",
+          "role": "headline",
+          "num_numbers": 1,
+          "num_cites": 0
+        },
+        {
+          "file": "discussion.tex",
+          "role": "other",
+          "num_numbers": 7,
+          "num_cites": 0
+        },
+        {
+          "file": "experiments.tex",
+          "role": "result",
+          "num_numbers": 164,
+          "num_cites": 6
+        },
+        {
+          "file": "introduction.tex",
+          "role": "intro",
+          "num_numbers": 5,
+          "num_cites": 8
+        },
+        {
+          "file": "method.tex",
+          "role": "other",
+          "num_numbers": 46,
+          "num_cites": 4
+        },
+        {
+          "file": "related_work.tex",
+          "role": "other",
+          "num_numbers": 1,
+          "num_cites": 44
+        },
+        {
+          "file": "responsibleNLPchecklist.tex",
+          "role": "other",
+          "num_numbers": 4,
+          "num_cites": 7
+        }
+      ],
+      "critical": [],
+      "warning": [
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'altman1999constrained' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'bonagiri2025check' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'cameron-2008' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'chow2015risk' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'dagger-2011' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'gshard-2021' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'kadavath2022language' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'leviathan2023speculative' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'li2020dividemix' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'manakul2023selfcheckgpt' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'mihatsch2002risk' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'moldovan2012safe' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'northcutt2021confident' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'tamar2015optimizing' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'toolkengpt-2023' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'tot-2023' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'webb-2023' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'zhou2020bert' is never cited.",
+          "location": "references.bib"
+        }
+      ],
+      "info": [
+        {
+          "kind": "notation_per_section",
+          "message": "Inline math symbols collected per section.",
+          "data": {
+            "discussion": [
+              "\\Delta",
+              "\\gg",
+              "\\sim",
+              "\\times"
+            ],
+            "experiments": [
+              "\\Delta",
+              "\\Rightarrow",
+              "\\dagger",
+              "\\geq",
+              "\\leq",
+              "\\overline",
+              "\\pm",
+              "\\sim",
+              "\\times",
+              "\\to"
+            ],
+            "introduction": [
+              "\\sim"
+            ],
+            "method": [
+              "\\Delta",
+              "\\approx",
+              "\\bar",
+              "\\delta",
+              "\\ell",
+              "\\in",
+              "\\leftarrow",
+              "\\leq",
+              "\\ll",
+              "\\max",
+              "\\pi",
+              "\\rho",
+              "\\rightarrow",
+              "\\tau",
+              "\\times",
+              "\\tt"
+            ],
+            "responsibleNLPchecklist": [
+              "\\pm",
+              "\\times"
+            ]
+          }
+        }
+      ],
+      "summary": {
+        "critical": 0,
+        "warning": 18,
+        "info": 1
+      }
+    },
+    "compile_result": {
+      "success": true,
+      "passed": true,
+      "compiled": {
+        "success": true,
+        "pdf_path": "<compiled-in-isolated-tmpdir>",
+        "paper_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/_audit_compile_2q6jv5i1",
+        "main_tex": "main.tex",
+        "log_tail": "\\T1/ptm/m/n/10.95 (+20) All 20 non-death non-tie la-bels in the pri-\n []\n\n\nUnderfull \\hbox (badness 10000) in paragraph at lines 772--773\n\\T1/ptm/m/n/10.95 (+20) mary Qwen2.5-7B anal-y-sis orig-i-nate from\n []\n\n\nUnderfull \\hbox (badness 1242) in paragraph at lines 772--773\n\\T1/pcr/m/n/10.95 find-non-living-thing\\T1/ptm/m/n/10.95 (+20) , the sole death\n-\n []\n\n\nUnderfull \\hbox (badness 2310) in paragraph at lines 790--791\n\\T1/ptm/m/n/10.95 (+20) Hallucination-induced er-rors dom-i-nate (50%),\n []\n\n[21]\nLaTeX Font Info:    Trying to load font information for TS1+ptm on input line 7\n97.\n (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd\nFile: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.\n)\nUnderfull \\hbox (badness 1092) in paragraph at lines 797--798\n[]\\T1/ptm/b/n/10.95 (+20) Code: \\T1/ptm/m/n/10.95 (+20) draft-ing ex-per-i-ment\n scripts, data-\n []\n\n[22\n\n] (./main.aux)\n ***********\nLaTeX2e <2025-11-01>\nL3 programming layer <2026-01-19>\n ***********\nPackage rerunfilecheck Info: File `main.out' has not changed.\n(rerunfilecheck)             Checksum: 659FA267796370957A20D0FD7B3E623A;6473.\n ) \nHere is how much of TeX's memory you used:\n 31021 strings out of 469438\n 574859 string characters out of 5468411\n 1177072 words of memory out of 5000000\n 58371 multiletter control sequences out of 15000+600000\n 718508 words of font info for 461 fonts, out of 8000000 for 9000\n 59 hyphenation exceptions out of 8191\n 98i,15n,108p,1600b,1406s stack positions out of 10000i,1000n,20000p,200000b,200000s\n</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr\n/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/\ntexlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texliv\ne/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texm\nf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/\nfonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/t\nype1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu\nblic/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am\nsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c\nm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.p\nfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr\n/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share\n/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texliv\ne/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf\n-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/f\nonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/ty\npe1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub\nlic/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am\nsfonts/cm/cmtt8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/\nsymbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/s\nymbols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a\n.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/s\nhare/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/te\nxmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/\ntype1/urw/times/utmri8a.pfb>\nOutput written on main.pdf (22 pages, 682078 bytes).\nPDF statistics:\n 1117 PDF objects out of 1200 (max. 8388607)\n 965 compressed objects within 10 object streams\n 288 named destinations out of 1000 (max. 500000)\n 86885 words of extra memory for PDF output out of 89155 (max. 10000000)\n",
+        "error": "",
+        "pages": 22,
+        "warnings": [
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'."
+        ]
+      },
+      "pages": 22,
+      "page_status": "ok",
+      "max_pages": null,
+      "min_pages": null,
+      "critical_warnings": [],
+      "minor_warnings": [
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 2--2",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 2--2",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 2--3",
+        "Underfull \\hbox (badness 1152) in paragraph at lines 2--3",
+        "Underfull \\hbox (badness 5431) in paragraph at lines 2--3",
+        "Underfull \\hbox (badness 1874) in paragraph at lines 10--12",
+        "Underfull \\vbox (badness 5771) has occurred while \\output is active []",
+        "Underfull \\hbox (badness 1024) in paragraph at lines 31--31",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 71--72",
+        "Underfull \\vbox (badness 10000) has occurred while \\output is active []",
+        "Underfull \\hbox (badness 1314) in paragraph at lines 7--7",
+        "Underfull \\hbox (badness 3907) in paragraph at lines 7--7",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 65--66",
+        "Underfull \\hbox (badness 1270) in paragraph at lines 65--66",
+        "Underfull \\hbox (badness 3713) in paragraph at lines 65--66",
+        "Underfull \\hbox (badness 1270) in paragraph at lines 65--66",
+        "Underfull \\hbox (badness 1337) in paragraph at lines 81--84",
+        "Underfull \\hbox (badness 1205) in paragraph at lines 81--84",
+        "Underfull \\hbox (badness 6047) in paragraph at lines 190--195",
+        "Underfull \\hbox (badness 3724) in paragraph at lines 255--261",
+        "Underfull \\hbox (badness 1173) in paragraph at lines 50--72",
+        "Underfull \\hbox (badness 1043) in paragraph at lines 210--211",
+        "Underfull \\hbox (badness 1286) in paragraph at lines 210--211",
+        "Underfull \\hbox (badness 1270) in paragraph at lines 210--211",
+        "Underfull \\hbox (badness 1067) in paragraph at lines 210--211",
+        "Underfull \\hbox (badness 2486) in paragraph at lines 283--291",
+        "Underfull \\hbox (badness 6910) in paragraph at lines 327--327",
+        "Underfull \\hbox (badness 3590) in paragraph at lines 327--327",
+        "Underfull \\hbox (badness 1817) in paragraph at lines 437--437",
+        "Underfull \\hbox (badness 7685) in paragraph at lines 437--437",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 442--443",
+        "Underfull \\hbox (badness 1348) in paragraph at lines 447--452",
+        "Underfull \\hbox (badness 1803) in paragraph at lines 447--452",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 447--452",
+        "Underfull \\hbox (badness 1540) in paragraph at lines 447--452",
+        "Underfull \\hbox (badness 1400) in paragraph at lines 492--493",
+        "Underfull \\hbox (badness 4726) in paragraph at lines 492--493",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 492--493",
+        "Underfull \\hbox (badness 4699) in paragraph at lines 492--493",
+        "Underfull \\hbox (badness 1571) in paragraph at lines 492--493",
+        "Underfull \\hbox (badness 1661) in paragraph at lines 492--493",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 492--493",
+        "Underfull \\vbox (badness 10000) has occurred while \\output is active []",
+        "Underfull \\hbox (badness 2564) in paragraph at lines 518--519",
+        "Underfull \\hbox (badness 1565) in paragraph at lines 518--519",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 518--519",
+        "Underfull \\hbox (badness 3000) in paragraph at lines 518--519",
+        "Underfull \\hbox (badness 1072) in paragraph at lines 520--521",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 522--523",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 522--523",
+        "Underfull \\hbox (badness 6608) in paragraph at lines 522--523",
+        "Underfull \\hbox (badness 4060) in paragraph at lines 525--529",
+        "Underfull \\hbox (badness 1178) in paragraph at lines 581--581",
+        "Underfull \\hbox (badness 1953) in paragraph at lines 651--652",
+        "Underfull \\vbox (badness 10000) has occurred while \\output is active []",
+        "Underfull \\vbox (badness 10000) has occurred while \\output is active []",
+        "Underfull \\hbox (badness 2828) in paragraph at lines 761--762",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 761--762",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 772--773",
+        "Underfull \\hbox (badness 3029) in paragraph at lines 772--773",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 772--773",
+        "Underfull \\hbox (badness 1242) in paragraph at lines 772--773",
+        "Underfull \\hbox (badness 2310) in paragraph at lines 790--791",
+        "Underfull \\hbox (badness 1092) in paragraph at lines 797--798"
+      ],
+      "issues": [],
+      "summary": "PASS"
+    },
+    "refs_result": null,
+    "internal_leak": {
+      "passed": true,
+      "critical": [],
+      "warning": [],
+      "info": [],
+      "summary": "0 critical, 0 warning, 0 info"
+    }
+  },
+  "content_findings": [
+    {
+      "severity": "warning",
+      "dimension": "叙事一致性",
+      "message": "Table 6 (tab:loto-daf) 列标题为\"DAF (%)\"，但实际值为 death-label fraction（78.9%），而非 §3.4 定义的 score-based DAF（90.4%）。Caption 加了\"(label fraction)\"试图区分，但列标题和正文 DAF 定义冲突，审稿人易混淆两个 metric"
+    },
+    {
+      "severity": "warning",
+      "dimension": "叙事一致性",
+      "message": "Abstract 和 Intro P3 均用\"confirm\"描述 MATH/ALFWorld boundary probes（\"confirm the framework distinguishes\"），但 Contribution (3) 加了关键限定语\"while clarifying that full quantitative validation remains specific to ScienceWorld\"。Abstract 的表述比 contribution list 更强，属 overclaim"
+    },
+    {
+      "severity": "warning",
+      "dimension": "符号",
+      "message": "DAF 一词在全文中被 overload：§3.4 定义为 score-based metric (90.4%)，但 §4.1 同时将 label fraction (78.9%) 称为\"primary, penalty-invariant diagnostic\"。Table 6、§4.2 多处用\"DAF\"指代 label fraction。建议给 label fraction 一个独立名称（如\"death-label fraction\"），避免读者在两个含义间反复切换"
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "LaTeX em-dash (---) 在正文多处出现，至少 10 处：abstract.tex:2 (\"routing---deciding\", \"mechanisms---including\")、introduction.tex:11 (\"methods---whether inserting\")、introduction.tex:15、method.tex:41、discussion.tex:12 (\"points---an oracle degeneracy\") 等。应替换为逗号、括号或拆句"
+    },
+    {
+      "severity": "warning",
+      "dimension": "可复现性",
+      "message": "计算资源信息（GPU 型号 RTX 5090/6000 PRO、200 GPU-hours、25 kg CO2eq）仅出现在 responsibleNLPchecklist.tex 中（用户自行填 OpenReview form），论文 PDF 正文和 appendix 均未报告。审稿人在论文中找不到 C1 要求的 compute budget 信息"
+    },
+    {
+      "severity": "warning",
+      "dimension": "贡献-范围对齐",
+      "message": "responsibleNLPchecklist.tex 三处引用不存在的\"Ethics Statement\"（A2、B2、C1）。main.tex 中 Limitations 后直接接 bibliography，无 Ethics Statement section。用户填 OpenReview form 时需修正此不一致"
+    },
+    {
+      "severity": "info",
+      "dimension": "去AI",
+      "message": "main.tex:651 (Appendix S) 使用 \"Notably\"，属 filler word"
+    },
+    {
+      "severity": "info",
+      "dimension": "章节结构",
+      "message": "Introduction 为 3 段 + 贡献列表，省略了独立的\"问题重要性\"段。对于 diagnostic/analysis 论文可接受，但如果审稿人期待标准 5 段结构可能觉得 motivation 铺垫不足"
+    },
+    {
+      "severity": "info",
+      "dimension": "Claim强度",
+      "message": "Contribution (2) 中\"A ~50-episode pilot suffices for practitioners\"仅基于对本文 4 个条件的 retrospective validation（Appendix R），非 prospective 验证。\"suffices\"措辞对 4/4 回溯样本偏强"
+    },
+    {
+      "severity": "info",
+      "dimension": "叙事一致性",
+      "message": "§4.6 标题为\"Router Training: Inconclusive Results\"，但正文称其为\"negative result...consistent with the death-dominance finding\"，Conclusion 也用\"inconclusive\"。两种 framing 有张力：若结果与 death dominance 一致，更准确的说法是\"negative result\"而非\"inconclusive\""
+    },
+    {
+      "severity": "info",
+      "dimension": "Limitations",
+      "message": "Limitations 段约 90 words / 4 个限制点。符合 EMNLP 2026 用户规则（\"一小段，3 个点左右\"），但低于通用建议的 150-word 最低线。内容是实质性的，不回避核心弱点"
+    },
+    {
+      "severity": "info",
+      "dimension": "写作规则",
+      "message": "Abstract 约 137 words（不含 footnote），远低于 200-word 上限 ✅"
+    },
+    {
+      "severity": "info",
+      "dimension": "写作规则",
+      "message": "Limitations section 仅 1 个，在正文中，appendix 无 limitations section ✅"
+    },
+    {
+      "severity": "info",
+      "dimension": "审稿规则",
+      "message": "使用 \\usepackage[review]{acl}，符合 ARR 投稿要求 ✅"
+    }
+  ],
+  "visual_findings": [
+    {
+      "severity": "info",
+      "dimension": "page 1",
+      "message": "首页无 display item，第一个视觉锚点（Figure 1 pipeline 图）出现在 page 2 顶部。在 3 页以内，可接受，但若能将一个精简架构图提到 page 1 右栏可强化审稿人第一印象"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 2",
+      "message": "Figure 1 pipeline 图清晰传达核心方法流程，caption 自包含，Title-Abstract-Figure 1 叙事一致性好"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 3",
+      "message": "纯文本页（Section 3 Method），无 display item。仅此单页，不构成连续纯文本问题，但 method 部分可考虑加一个示意图辅助理解 counterfactual decomposition"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 4",
+      "message": "Table 1 尺寸极小（3×3），字号偏小但可读；Algorithm 1 排版规范；Table 2 使用 booktabs 风格，最优值有粗体标注——整体密度好"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 5",
+      "message": "Figure 4 action sequence 内的彩色文本标注和箭头在打印尺寸下偏小（估计 ~6-7pt），color-blind 用户可能难以区分红色 fatal focus_on 标注与周围文字。建议加大关键标注字号或增加图形标记（如粗框、下划线）"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 5",
+      "message": "Table 3 行数多（~15 行 task types），字号紧凑但可读；Figure 3 散点图清晰，outlier 有 diamond marker 标注"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 6",
+      "message": "Table 4、Table 5、Figure 5 三个 display item 密度高，布局合理，无空白浪费"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 7",
+      "message": "Figure 6 bar chart 使用多色方案（蓝/橙/绿/红等），颜色可区分；但灰度打印时不同类别可能混淆，建议辅以 hatching pattern"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 7",
+      "message": "Table 6 使用 booktabs 风格，最优值粗体标注，格式规范"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 8",
+      "message": "Limitations 段落简短（约 4-5 个点），位于正文内 Conclusion 之前，符合 EMNLP 规则。References 从本页底部开始。主文本正好 8 页，符合页数限制"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 9-10",
+      "message": "References 页排版正常，无 [?] 未解析引用，格式统一，无溢出"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 10",
+      "message": "Appendix Overview 提供目录索引（A-U），组织清晰，方便审稿人导航"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 12",
+      "message": "Table 7 为 19 行详细 per-task 分解表，字号较小（估计 ~7pt）但在双栏单栏表内可接受；Table 8 和 Table 9 格式规范"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 13",
+      "message": "Table 10 per-task death rates 表行数多，字号紧凑；Table 11 router training hyperparameters 表清晰"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 14",
+      "message": "Table 12 per-seed router performance 表较大，跨整栏，格式良好"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 15",
+      "message": "Table 13、Table 14 格式规范，数值精度统一（小数点后 1-2 位）"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 16",
+      "message": "Table 15、Table 16 per-task-type breakdowns 密度高但可读"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 17",
+      "message": "Figure 7 和 Figure 8 bar chart 尺寸偏小（各约 1/4 页宽），柱状图标签在打印尺寸下可能难读。建议适当放大或使用 figure* 全宽展示"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 18",
+      "message": "Appendix O/P ablation 文本为主，Table 18 capacity scaling 表清晰"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 19",
+      "message": "Table 19、Table 20 格式规范，decision framework 文字清晰"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 20",
+      "message": "Appendix T prompt template 文本框内字号偏小（monospace ~6-7pt），大段 prompt 文本在打印尺寸下阅读困难。建议用更大字号或精简展示关键 prompt 片段"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 21",
+      "message": "Table 22 non-death episode classification 表简洁清晰；case study 文本可读"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 22",
+      "message": "末页仅 ~30% 填充（Use of AI Assistants 段 + 大面积空白）。虽为 appendix 末页不影响评审，但可将此段合并到前页节省空间，或补充额外分析填充"
+    },
+    {
+      "severity": "info",
+      "dimension": "全文",
+      "message": "主文本 display items 密度：4 figures + 6 tables + 1 algorithm = 11 items / 8 pages ≈ 1.4/页，对实证论文属优秀水平"
+    },
+    {
+      "severity": "info",
+      "dimension": "全文",
+      "message": "所有表格均使用 booktabs 风格（无竖线），最优结果粗体标注，精度统一"
+    },
+    {
+      "severity": "info",
+      "dimension": "全文",
+      "message": "无 margin 溢出、无 LaTeX 渲染错误、无 section heading 孤悬页底"
+    },
+    {
+      "severity": "info",
+      "dimension": "全文",
+      "message": "双栏排版左右栏底部基本对齐，column 间距均匀"
+    },
+    {
+      "severity": "info",
+      "dimension": "写作规则",
+      "message": "Limitations 位于正文 page 8，单一段落，覆盖 ~4 个点（环境特异性、penalty 依赖、episodic 粒度、practitioner 验证），符合\"一小段覆盖 3 个点左右\"的要求"
+    },
+    {
+      "severity": "info",
+      "dimension": "写作规则",
+      "message": "Appendix 中无 Limitations section，符合\"一篇文章只能有一个 limitations section\"规则"
+    },
+    {
+      "severity": "info",
+      "dimension": "写作规则",
+      "message": "PDF 中未出现 ARR Responsible NLP Checklist，符合\"在 OpenReview submission form 里填写\"规则"
+    },
+    {
+      "severity": "info",
+      "dimension": "写作规则",
+      "message": "Abstract 目视估计约 180-200 words，接近 200-word 上限，建议精确计数确认不超限"
+    },
+    {
+      "severity": "info",
+      "dimension": "审稿规则",
+      "message": "主文本（Section 1-6 + Limitations）占 8 页，References 从 page 8 底部开始，符合 EMNLP 2026 strict 8-page limit"
+    }
+  ],
+  "counts": {
+    "critical": 0,
+    "warning": 119,
+    "info": 36
+  },
+  "error": "",
+  "timestamp": "2026-05-25T15:21:46.399776+00:00"
+}

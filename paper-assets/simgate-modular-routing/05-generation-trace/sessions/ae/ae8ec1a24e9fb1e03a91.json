@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ae8ec1a24e9fb1e03a91",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ops kill zombie dryruns",
+  "task_key": "worker_ops_kill-zombie-dryruns_20260514T144128",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-zombie-dryruns_20260514T144128_result.json",
+    "occurrence": 1,
+    "bytes": 513,
+    "sha256": "e858c5850126ba6aab6306d611ca7474b5d2f99c8516a41787145c9ea333c471"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**清理结果：**\n\n- PID 281564、282738、285291 — 已成功 kill（返回码 0，进程不再存在）\n- 但发现**另一组 counterfactual 进程仍在运行**：\n  - `290557` — tmux session `alfworld_cf`\n  - `290558` — bash wrapper\n  - `290564` — `python src/alfworld_counterfactual.py --n_tasks 140 --gpu_id 1`（占 26% CPU，1.6GB 内存）\n  - `290565` — tee 日志\n\n这组是正式运行（非 dryrun），在 tmux session `alfworld_cf` 中。需要一并清理吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-zombie-dryruns.md"
+}

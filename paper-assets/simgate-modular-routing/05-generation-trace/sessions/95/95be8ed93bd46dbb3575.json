@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "95be8ed93bd46dbb3575",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "analysis qwen llama sensitivity",
+  "task_key": "worker_analysis_qwen-llama-sensitivity_20260521T005220",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_qwen-llama-sensitivity_20260521T005220_result.json",
+    "occurrence": 1,
+    "bytes": 992,
+    "sha256": "0193bf889520a79cc31c528d9a884a70cc9022a37b8e74cabfded68ad5f59144"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果（跳过了 plan_c 中 freeze/lifespan-longest-lived/measure-melting-point 尾部附加的 `deep_internal` 格式行，不影响计算）：\n\n```\n=== SENSITIVITY ANALYSIS (excl. find-non-living-thing, 10 tasks) ===\nModel             Int DR    Det DR    DDR       DAF [95% CI]\nQwen2.5-7B        51.2%     19.5%     +31.7pp   100.0% [100.0, 100.0]\nLlama-3.1-8B      45.5%     12.5%     +33.0pp    97.0% [91.3, 100.0]\nGemma-2-9B        40.0%     15.5%     +24.5pp    99.9% [99.7, 100.0]\n```\n\n关键发现：\n- **三个模型排除 find-non-living-thing 后 DAF 全部 ≥97%**，说明 deterministic 的优势几乎完全来自死亡避免\n- Qwen Δ\\_nd = 0.00（非死亡 episodes 中 internal 与 deterministic 得分完全持平），DAF 达到理论上限 100.0%\n- Llama DAF 97.0% 稍低，Δ\\_nd = 1.03 说明有少量非死亡 episodes 中 deterministic 仍略优，但置信区间上界触 100.0%\n- Gemma 此前已知 99.9%，三模型一致性很强"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-qwen-llama-sensitivity.md"
+}

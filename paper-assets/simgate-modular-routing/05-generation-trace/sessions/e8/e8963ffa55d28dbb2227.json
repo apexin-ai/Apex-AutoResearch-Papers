@@ -1,0 +1,1406 @@
+{
+  "schema_version": "1.0",
+  "id": "e8963ffa55d28dbb2227",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "fix sensitivity table ci",
+  "task_key": "worker_fix_sensitivity-table-ci_20260521T011105",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_sensitivity-table-ci_20260521T011105.log",
+    "occurrence": 1,
+    "bytes": 103749,
+    "sha256": "34b0b3ebda2359b3bb77b9d314bd832a634e3a99fc0b8b12aae1ca4d819470c8"
+  },
+  "statistics": {
+    "messages": 33,
+    "user_turns": 0,
+    "tool_calls": 10,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 9,
+      "tool_call": 10,
+      "tool_result": 10,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+                "session_id": "0f8d6455-98e5-42da-8fef-7f343087162d",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "fb070886-e936-47f5-99b9-58349d304179",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779334800,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "ea64e2a4-9262-4219-a1d8-5aa965946f32",
+                "session_id": "0f8d6455-98e5-42da-8fef-7f343087162d"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start by finding the sensitivity table in main.tex on the remote server.",
+              "signature": "EpQCCmMIDRgCKkDWVlk4GYB9D4jviw+OCeLemD568IiAC0ocggqBGbTLxpeM0Nmh+nxxgHZiy+iJ2qXf03Q88sHYByotnVWUSij/Mg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDCAm0JcerS95ULl+GRoMBjBNQqisdpQ9UIv1IjCcq2j0rjoFDHTO4wRN6EfycklazGfMCimYNRsh7H8XJsqauL+cFeqpgIqT8KGtwZIqX1GSTLyziP7aFTnr6zQQuXpsxB5gD0SmasAFe1skb4w03xzWmsygGhG6DC1q8RE82MRK2onFc7n1ujPuYnZHSTynMJe9X6aloAIfFFykqi7OoODq5Becsci47JtTREdxGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0f8d6455-98e5-42da-8fef-7f343087162d",
+            "uuid": "73191320-f3b8-4195-a310-0db13228a0e1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XXuwqtcBPfbH4kLffaxeaw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12277,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12277
+                },
+                "output_tokens": 41,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QFm1osWbLJPzqz97yfCGcx",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0f8d6455-98e5-42da-8fef-7f343087162d",
+            "uuid": "b445d4b4-6d63-48d6-9077-6ade3841419f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XXuwqtcBPfbH4kLffaxeaw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12277,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12277
+                },
+                "output_tokens": 41,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T01:11:18.567Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01QFm1osWbLJPzqz97yfCGcx",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0f8d6455-98e5-42da-8fef-7f343087162d",
+            "uuid": "dc9f55e4-1538-40a6-9eee-bbab33b4e6a5",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__ssh_execute"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "先定位表格位置并读取当前内容。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0f8d6455-98e5-42da-8fef-7f343087162d",
+            "uuid": "e9863084-8911-492d-8c64-989c00561164",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VmX3oRMcirc9C1afGuWe1x",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 702,
+                "cache_read_input_tokens": 24118,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 702
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NLbntomvj76g3BME7ovfWC",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westb-13313",
+                "command": "grep -n \"daf-sensitivity\\|Zero-Death\\|zero-death\\|DAF sensitivity\" /root/autodl-tmp/simgate-modular-routing/docs/paper/main.tex",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0f8d6455-98e5-42da-8fef-7f343087162d",
+            "uuid": "203b794c-3c3b-4124-b10d-1f2da0227a67",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VmX3oRMcirc9C1afGuWe1x",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 702,
+                "cache_read_input_tokens": 24118,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 702
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T01:11:22.050Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NLbntomvj76g3BME7ovfWC",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0f8d6455-98e5-42da-8fef-7f343087162d",
+            "uuid": "edac2605-ca11-43bf-a6c2-1b555c527c39",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BtjJN1LShjuvsUexHhZGJf",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westb-13313",
+                "command": "grep -n -E \"daf-sensitivity|zero-death|DAF sensitivity\" /root/autodl-tmp/simgate-modular-routing/docs/paper/main.tex",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0f8d6455-98e5-42da-8fef-7f343087162d",
+            "uuid": "36f097ac-fe9a-4f87-9d69-253a88b021bd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016n8eWUZmQ9Jbtc6wRgM3nP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 260,
+                "cache_read_input_tokens": 24820,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 260
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-21T01:11:25.140Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BtjJN1LShjuvsUexHhZGJf",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0f8d6455-98e5-42da-8fef-7f343087162d",
+            "uuid": "e19f3331-7a91-4d91-8a92-b600520d997f",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01E8XWiePCDCNjxjyuPFLvVq",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westb-13313",
+                "command": "grep -n \"daf-sensitivity\" /root/autodl-tmp/simgate-modular-routing/docs/paper/main.tex",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0f8d6455-98e5-42da-8fef-7f343087162d",
+            "uuid": "9b1f8372-9a1f-4f40-920a-61c021fee672",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BZBiYEMLnmHZDsKvZLQm7s",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 236,
+                "cache_read_input_tokens": 25080,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 236
+                },
+                "output_tokens": 71,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-21T01:11:30.163Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01E8XWiePCDCNjxjyuPFLvVq",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"280:\\\\\\\\label{app:daf-sensitivity}\\\\n282:Table~\\\\\\\\ref{tab:daf-sensitivity} reports DAF estimates with and without \\\\\\\\texttt{find-non-living-thing}, the only task type with zero death rate across all three models.\\\\n297:\\\\\\\\label{tab:daf-sensitivity}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.85}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0f8d6455-98e5-42da-8fef-7f343087162d",
+            "uuid": "54e4edc0-f0af-4bb5-bd37-dfa2885ff63c",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"280:\\\\\\\\label{app:daf-sensitivity}\\\\n282:Table~\\\\\\\\ref{tab:daf-sensitivity} reports DAF estimates with and without \\\\\\\\texttt{find-non-living-thing}, the only task type with zero death rate across all three models.\\\\n297:\\\\\\\\label{tab:daf-sensitivity}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.85}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"280:\\\\label{app:daf-sensitivity}\\n282:Table~\\\\ref{tab:daf-sensitivity} reports DAF estimates with and without \\\\texttt{find-non-living-thing}, the only task type with zero death rate across all three models.\\n297:\\\\label{tab:daf-sensitivity}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.85}}"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FPJ12a2auRv6PAsjWGuTUw",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westb-13313",
+                "command": "head -310 /root/autodl-tmp/simgate-modular-routing/docs/paper/main.tex",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0f8d6455-98e5-42da-8fef-7f343087162d",
+            "uuid": "2cb60eca-77c0-4fa4-a2c8-5ed73fe103f3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016QhcEL2NCzM8yniJdjXLQT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 285,
+                "cache_read_input_tokens": 25316,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 285
+                },
+                "output_tokens": 63,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-21T01:11:34.429Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FPJ12a2auRv6PAsjWGuTUw",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\\documentclass[11pt]{article}\\\\n\\\\n\\\\\\\\usepackage[review]{acl}\\\\n\\\\n\\\\\\\\usepackage{times}\\\\n\\\\\\\\usepackage{latexsym}\\\\n\\\\\\\\usepackage[T1]{fontenc}\\\\n\\\\\\\\usepackage[utf8]{inputenc}\\\\n\\\\\\\\usepackage{microtype}\\\\n\\\\\\\\usepackage{graphicx}\\\\n\\\\\\\\graphicspath{{figures/}}\\\\n\\\\\\\\usepackage{booktabs}\\\\n\\\\\\\\usepackage{amsmath}\\\\n\\\\\\\\usepackage{amssymb}\\\\n\\\\\\\\usepackage{algorithm}\\\\n\\\\\\\\usepackage{enumitem}\\\\n\\\\\\\\usepackage{algorithmic}\\\\n\\\\n\\\\\\\\title{Death Avoidance as a Dominant Routing Signal:\\\\\\\\\\\\\\\\A Counterfactual Analysis on ScienceWorld}\\\\n\\\\n\\\\\\\\author{Anonymous}\\\\n\\\\n\\\\\\\\begin{document}\\\\n\\\\\\\\maketitle\\\\n\\\\n\\\\\\\\input{abstract}\\\\n\\\\\\\\input{introduction}\\\\n\\\\\\\\input{method}\\\\n\\\\\\\\input{experiments}\\\\n\\\\\\\\input{related_work}\\\\n\\\\\\\\input{discussion}\\\\n\\\\\\\\input{conclusion}\\\\n\\\\n\\\\\\\\section*{Limitations}\\\\n\\\\nOur primary analysis uses a single environment (ScienceWorld, 11 of 30 task types) with one backbone (Qwen2.5-7B-Instruct); generalization requires further validation. The $-100$ death penalty amplifies DAF; environments with softer penalties would exhibit lower DAF values (Appendix~\\\\\\\\ref{app:penalty}). The 19 excluded task types (63\\\\\\\\%) lack routing signal because both strategies typically time out within 30 steps; increasing the step budget could surface additional signal. Our internal-reasoning baseline uses single-pass ReAct~\\\\\\\\citep{react-2023}; more sophisticated strategies (e.g., Reflexion~\\\\\\\\citep{reflexion-2023} or Tree-of-Thought backtracking~\\\\\\\\citep{tot-2023}) may reduce internal death rates and lower DAF. Episode-level labels may assign suboptimal routing to individual steps, particularly those preceding death events, and training on pure-strategy trajectories introduces distribution shift at deployment~\\\\\\\\citep{dagger-2011}. Cross-environment analyses on MATH and ALFWorld (\\\\\\\\S\\\\\\\\ref{sec:cross-env}, \\\\\\\\S\\\\\\\\ref{sec:discussion}) provide supporting evidence but do not conclusively establish generalization. A Llama-3.1-8B-Instruct replication (7 task types, $N{=}70$; Appendix~\\\\\\\\ref{app:cross-model}) confirms direction-consistent death patterns for all tasks, though both models are in the 7--8B parameter range; validation at larger scales remains future work.\\\\n\\\\n\\\\\\\\section*{Ethics Statement}\\\\n\\\\nThis work uses ScienceWorld \\\\\\\\cite{scienceworld-2022}, a publicly available text-based simulation environment, and does not involve human subjects or private data. All language models are accessed via standard APIs or publicly released weights. We report computational costs: approximately 40 GPU-hours on two consumer GPUs for data collection, router training, and evaluation. Code and data will be released upon acceptance.\\\\n\\\\n\\\\\\\\bibliography{references}\\\\n\\\\n\\\\\\\\appendix\\\\n\\\\n\\\\\\\\section{Labeling Quality Audit}\\\\n\\\\\\\\label{app:labeling}\\\\n\\\\nA potential concern is oracle circularity: whether episode-level labels reflect tie-breaking artifacts rather than genuine modality differences. We audit all 245 labels. Of the 150 \\\\\\\\texttt{no\\\\\\\\_preference} labels (61.2\\\\\\\\%), 115 (46.9\\\\\\\\%) are both-alive ties and 35 (14.3\\\\\\\\%) are both-dead, all excluded from router training. The remaining 95 training labels are entirely genuine: 75 from death asymmetry (70 deterministic-preferred, 5 internal-preferred) and 20 from score comparison with both strategies surviving (16 deterministic-preferred, 4 internal-preferred). Zero labels depend on tie-breaking. Retraining the router using only death-asymmetry labels yields step-level balanced accuracy of 57.3\\\\\\\\%, within 1$\\\\\\\\sigma$ of the full-label retrain (57.6 $\\\\\\\\pm$ 0.5\\\\\\\\%, step-level Trainer evaluation); score-comparison labels contribute negligible additional signal. (Step-level metrics are used here for the relative comparison; as shown in \\\\\\\\S\\\\\\\\ref{sec:router-diagnostic}, absolute generalization to new episodes is near chance.) The 97.4\\\\\\\\% step-level tie rate (\\\\\\\\S\\\\\\\\ref{sec:collection}) further motivates episode-level over step-level labeling.\\\\n\\\\n\\\\\\\\section{Per-Task Decomposition}\\\\n\\\\\\\\label{app:per-task}\\\\nWe select 11 of ScienceWorld's 30 task types via prescreening: task types where both strategies complete at least one episode within the 30-step budget are retained; types where both strategies time out on all seed variations\\\\n\\\\n... [截断: 输出过长，省略 16100 字符] ...\\\\n\\\\ngaps. \\\\\\\\textsuperscript{*}Default ScienceWorld setting.}\\\\n\\\\\\\\label{tab:penalty-correlation}\\\\n\\\\\\\\end{table}\\\\n\\\\nThis sharpens our central finding: death is not merely the dominant component of routing signal; it is effectively the \\\\\\\\emph{only} component that generates differential routing signal in ScienceWorld. At low penalties, the death contribution is small and $\\\\\\\\Delta_{\\\\\\\\text{full}}$ reduces to $\\\\\\\\Delta_{\\\\\\\\text{nd}} \\\\\\\\approx 2.84$, which is near-uniform across task types ($\\\\\\\\text{mean non-death gap} = -1.19$ excluding the \\\\\\\\texttt{find-non-living-thing} outlier); consequently, death-rate differential has no predictive power. As $P$ increases, the death term dominates $\\\\\\\\Delta_{\\\\\\\\text{full}}$, and the correlation sharpens because death rates \\\\\\\\emph{are} the performance gap. The DAF values in Table~\\\\\\\\ref{tab:penalty-sensitivity} increase monotonically with $P$, but this is a mathematical consequence of the decomposition ($\\\\\\\\text{DAF} = \\\\\\\\delta P / (\\\\\\\\delta P + \\\\\\\\Delta_{\\\\\\\\text{nd}})$), not evidence of mechanism robustness.\\\\n\\\\n\\\\\\\\section{Cross-Model Verification}\\\\n\\\\\\\\label{app:cross-model}\\\\n\\\\nTo test whether the death-avoidance finding generalizes beyond Qwen2.5-7B-Instruct, we replicate the counterfactual analysis with Llama-3.1-8B-Instruct on 7 task types ($N{=}70$ episode pairs, 10 episodes per task). The results are strongly consistent with the Qwen findings: 24 episodes (34.3\\\\\\\\%) are deterministic-preferred, \\\\\\\\textbf{0} (0\\\\\\\\%) are internal-preferred, and 46 (65.7\\\\\\\\%) show no preference. The internal strategy dies in 58.6\\\\\\\\% of episodes versus 24.3\\\\\\\\% for deterministic (death-rate differential $+34.3\\\\\\\\%$), compared to $+26.6\\\\\\\\%$ for Qwen2.5-7B. Direction consistency is perfect: all 7 task types show higher internal than deterministic death rates (7/7, compared to 10/11 for Qwen). The larger death-rate differential ($+34.3\\\\\\\\%$ vs.\\\\\\\\ $+26.6\\\\\\\\%$) and the absence of any internal-preferred episodes (0 vs.\\\\\\\\ 9 for Qwen) suggest that Llama-3.1-8B is more vulnerable to hallucination-induced death, amplifying the death-avoidance effect. These results confirm that the death-avoidance dominance is not specific to the Qwen model family.\\\\n\\\\n\\\\n\\\\\\\\section{DAF Sensitivity to Zero-Death Task Types}\\\\n\\\\\\\\label{app:daf-sensitivity}\\\\n\\\\nTable~\\\\\\\\ref{tab:daf-sensitivity} reports DAF estimates with and without \\\\\\\\texttt{find-non-living-thing}, the only task type with zero death rate across all three models.\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\\\\\\centering\\\\n\\\\\\\\small\\\\n\\\\\\\\begin{tabular}{lcc}\\\\n\\\\\\\\toprule\\\\n\\\\\\\\textbf{Model} & \\\\\\\\textbf{DAF (11 tasks)} & \\\\\\\\textbf{DAF (10 tasks)} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nQwen2.5-7B-Instruct & 90.4\\\\\\\\% [81.4, 99.1] & 100.0\\\\\\\\% [100.0, 100.0] \\\\\\\\\\\\\\\\\\\\nLlama-3.1-8B-Instruct & 88.2\\\\\\\\% [80.0, 95.1] & 97.0\\\\\\\\% [91.5, 100.0] \\\\\\\\\\\\\\\\\\\\nGemma-2-9B-it & 89.7\\\\\\\\% [79.5, 98.4] & 99.9\\\\\\\\% [99.7, 100.0] \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\\\\\caption{DAF sensitivity analysis. ``10 tasks'' excludes \\\\\\\\texttt{find-non-living-thing} (the only task type with zero death rate across all models). Episode-level bootstrap 95\\\\\\\\% CIs ($B = 10{,}000$).}\\\\n\\\\\\\\label{tab:daf-sensitivity}\\\\n\\\\\\\\end{table}\\\\n\\\\nFor the 10 task types with nonzero death rates, DAF exceeds 97\\\\\\\\% across all three model families, confirming that the wider CIs in the full analysis reflect the mechanical effect of including a zero-death task type rather than method instability.\\\\n\\\\n\\\\\\\\section{Failure Mode Analysis}\\\\n\\\\\\\\label{app:failure-modes}\\\\n\\\\nThe most common failure mode for the internal strategy is state hallucination: the model predicts that an action succeeded (e.g., ``the water is now boiling'') when the environment state did not change, leading to cascading errors that trigger agent death. The deterministic strategy avoids this by receiving ground-truth observations, but still dies in 16.3\\\\\\\\% of episodes, primarily from selecting inherently dangerous actions (e.g., eating toxic substances) rather than from state misestimation.\\\\n\\\\n\\\\\\\\section{Ablation Studies}\\\\n\\\\\\\\label{app:ablations}\\\\n\\\\n\\\\\\\\paragraph{Capacity scaling.} We scale the implicit router from Qwen3-0.6B to Qwen3-4B and evaluate at both step and episode level (Table~\\\\\\\\ref{tab:capacity}).\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.85}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0f8d6455-98e5-42da-8fef-7f343087162d",
+            "uuid": "5eed1bb2-5568-42dd-9bee-34c58f2d3048",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\\documentclass[11pt]{article}\\\\n\\\\n\\\\\\\\usepackage[review]{acl}\\\\n\\\\n\\\\\\\\usepackage{times}\\\\n\\\\\\\\usepackage{latexsym}\\\\n\\\\\\\\usepackage[T1]{fontenc}\\\\n\\\\\\\\usepackage[utf8]{inputenc}\\\\n\\\\\\\\usepackage{microtype}\\\\n\\\\\\\\usepackage{graphicx}\\\\n\\\\\\\\graphicspath{{figures/}}\\\\n\\\\\\\\usepackage{booktabs}\\\\n\\\\\\\\usepackage{amsmath}\\\\n\\\\\\\\usepackage{amssymb}\\\\n\\\\\\\\usepackage{algorithm}\\\\n\\\\\\\\usepackage{enumitem}\\\\n\\\\\\\\usepackage{algorithmic}\\\\n\\\\n\\\\\\\\title{Death Avoidance as a Dominant Routing Signal:\\\\\\\\\\\\\\\\A Counterfactual Analysis on ScienceWorld}\\\\n\\\\n\\\\\\\\author{Anonymous}\\\\n\\\\n\\\\\\\\begin{document}\\\\n\\\\\\\\maketitle\\\\n\\\\n\\\\\\\\input{abstract}\\\\n\\\\\\\\input{introduction}\\\\n\\\\\\\\input{method}\\\\n\\\\\\\\input{experiments}\\\\n\\\\\\\\input{related_work}\\\\n\\\\\\\\input{discussion}\\\\n\\\\\\\\input{conclusion}\\\\n\\\\n\\\\\\\\section*{Limitations}\\\\n\\\\nOur primary analysis uses a single environment (ScienceWorld, 11 of 30 task types) with one backbone (Qwen2.5-7B-Instruct); generalization requires further validation. The $-100$ death penalty amplifies DAF; environments with softer penalties would exhibit lower DAF values (Appendix~\\\\\\\\ref{app:penalty}). The 19 excluded task types (63\\\\\\\\%) lack routing signal because both strategies typically time out within 30 steps; increasing the step budget could surface additional signal. Our internal-reasoning baseline uses single-pass ReAct~\\\\\\\\citep{react-2023}; more sophisticated strategies (e.g., Reflexion~\\\\\\\\citep{reflexion-2023} or Tree-of-Thought backtracking~\\\\\\\\citep{tot-2023}) may reduce internal death rates and lower DAF. Episode-level labels may assign suboptimal routing to individual steps, particularly those preceding death events, and training on pure-strategy trajectories introduces distribution shift at deployment~\\\\\\\\citep{dagger-2011}. Cross-environment analyses on MATH and ALFWorld (\\\\\\\\S\\\\\\\\ref{sec:cross-env}, \\\\\\\\S\\\\\\\\ref{sec:discussion}) provide supporting evidence but do not conclusively establish generalization. A Llama-3.1-8B-Instruct replication (7 task types, $N{=}70$; Appendix~\\\\\\\\ref{app:cross-model}) confirms direction-consistent death patterns for all tasks, though both models are in the 7--8B parameter range; validation at larger scales remains future work.\\\\n\\\\n\\\\\\\\section*{Ethics Statement}\\\\n\\\\nThis work uses ScienceWorld \\\\\\\\cite{scienceworld-2022}, a publicly available text-based simulation environment, and does not involve human subjects or private data. All language models are accessed via standard APIs or publicly released weights. We report computational costs: approximately 40 GPU-hours on two consumer GPUs for data collection, router training, and evaluation. Code and data will be released upon acceptance.\\\\n\\\\n\\\\\\\\bibliography{references}\\\\n\\\\n\\\\\\\\appendix\\\\n\\\\n\\\\\\\\section{Labeling Quality Audit}\\\\n\\\\\\\\label{app:labeling}\\\\n\\\\nA potential concern is oracle circularity: whether episode-level labels reflect tie-breaking artifacts rather than genuine modality differences. We audit all 245 labels. Of the 150 \\\\\\\\texttt{no\\\\\\\\_preference} labels (61.2\\\\\\\\%), 115 (46.9\\\\\\\\%) are both-alive ties and 35 (14.3\\\\\\\\%) are both-dead, all excluded from router training. The remaining 95 training labels are entirely genuine: 75 from death asymmetry (70 deterministic-preferred, 5 internal-preferred) and 20 from score comparison with both strategies surviving (16 deterministic-preferred, 4 internal-preferred). Zero labels depend on tie-breaking. Retraining the router using only death-asymmetry labels yields step-level balanced accuracy of 57.3\\\\\\\\%, within 1$\\\\\\\\sigma$ of the full-label retrain (57.6 $\\\\\\\\pm$ 0.5\\\\\\\\%, step-level Trainer evaluation); score-comparison labels contribute negligible additional signal. (Step-level metrics are used here for the relative comparison; as shown in \\\\\\\\S\\\\\\\\ref{sec:router-diagnostic}, absolute generalization to new episodes is near chance.) The 97.4\\\\\\\\% step-level tie rate (\\\\\\\\S\\\\\\\\ref{sec:collection}) further motivates episode-level over step-level labeling.\\\\n\\\\n\\\\\\\\section{Per-Task Decomposition}\\\\n\\\\\\\\label{app:per-task}\\\\nWe select 11 of ScienceWorld's 30 task types via prescreening: task types where both strategies complete at least one episode within the 30-step budget are retained; types where both strategies time out on all seed variations\\\\n\\\\n... [截断: 输出过长，省略 16100 字符] ...\\\\n\\\\ngaps. \\\\\\\\textsuperscript{*}Default ScienceWorld setting.}\\\\n\\\\\\\\label{tab:penalty-correlation}\\\\n\\\\\\\\end{table}\\\\n\\\\nThis sharpens our central finding: death is not merely the dominant component of routing signal; it is effectively the \\\\\\\\emph{only} component that generates differential routing signal in ScienceWorld. At low penalties, the death contribution is small and $\\\\\\\\Delta_{\\\\\\\\text{full}}$ reduces to $\\\\\\\\Delta_{\\\\\\\\text{nd}} \\\\\\\\approx 2.84$, which is near-uniform across task types ($\\\\\\\\text{mean non-death gap} = -1.19$ excluding the \\\\\\\\texttt{find-non-living-thing} outlier); consequently, death-rate differential has no predictive power. As $P$ increases, the death term dominates $\\\\\\\\Delta_{\\\\\\\\text{full}}$, and the correlation sharpens because death rates \\\\\\\\emph{are} the performance gap. The DAF values in Table~\\\\\\\\ref{tab:penalty-sensitivity} increase monotonically with $P$, but this is a mathematical consequence of the decomposition ($\\\\\\\\text{DAF} = \\\\\\\\delta P / (\\\\\\\\delta P + \\\\\\\\Delta_{\\\\\\\\text{nd}})$), not evidence of mechanism robustness.\\\\n\\\\n\\\\\\\\section{Cross-Model Verification}\\\\n\\\\\\\\label{app:cross-model}\\\\n\\\\nTo test whether the death-avoidance finding generalizes beyond Qwen2.5-7B-Instruct, we replicate the counterfactual analysis with Llama-3.1-8B-Instruct on 7 task types ($N{=}70$ episode pairs, 10 episodes per task). The results are strongly consistent with the Qwen findings: 24 episodes (34.3\\\\\\\\%) are deterministic-preferred, \\\\\\\\textbf{0} (0\\\\\\\\%) are internal-preferred, and 46 (65.7\\\\\\\\%) show no preference. The internal strategy dies in 58.6\\\\\\\\% of episodes versus 24.3\\\\\\\\% for deterministic (death-rate differential $+34.3\\\\\\\\%$), compared to $+26.6\\\\\\\\%$ for Qwen2.5-7B. Direction consistency is perfect: all 7 task types show higher internal than deterministic death rates (7/7, compared to 10/11 for Qwen). The larger death-rate differential ($+34.3\\\\\\\\%$ vs.\\\\\\\\ $+26.6\\\\\\\\%$) and the absence of any internal-preferred episodes (0 vs.\\\\\\\\ 9 for Qwen) suggest that Llama-3.1-8B is more vulnerable to hallucination-induced death, amplifying the death-avoidance effect. These results confirm that the death-avoidance dominance is not specific to the Qwen model family.\\\\n\\\\n\\\\n\\\\\\\\section{DAF Sensitivity to Zero-Death Task Types}\\\\n\\\\\\\\label{app:daf-sensitivity}\\\\n\\\\nTable~\\\\\\\\ref{tab:daf-sensitivity} reports DAF estimates with and without \\\\\\\\texttt{find-non-living-thing}, the only task type with zero death rate across all three models.\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\\\\\\centering\\\\n\\\\\\\\small\\\\n\\\\\\\\begin{tabular}{lcc}\\\\n\\\\\\\\toprule\\\\n\\\\\\\\textbf{Model} & \\\\\\\\textbf{DAF (11 tasks)} & \\\\\\\\textbf{DAF (10 tasks)} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nQwen2.5-7B-Instruct & 90.4\\\\\\\\% [81.4, 99.1] & 100.0\\\\\\\\% [100.0, 100.0] \\\\\\\\\\\\\\\\\\\\nLlama-3.1-8B-Instruct & 88.2\\\\\\\\% [80.0, 95.1] & 97.0\\\\\\\\% [91.5, 100.0] \\\\\\\\\\\\\\\\\\\\nGemma-2-9B-it & 89.7\\\\\\\\% [79.5, 98.4] & 99.9\\\\\\\\% [99.7, 100.0] \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\\\\\caption{DAF sensitivity analysis. ``10 tasks'' excludes \\\\\\\\texttt{find-non-living-thing} (the only task type with zero death rate across all models). Episode-level bootstrap 95\\\\\\\\% CIs ($B = 10{,}000$).}\\\\n\\\\\\\\label{tab:daf-sensitivity}\\\\n\\\\\\\\end{table}\\\\n\\\\nFor the 10 task types with nonzero death rates, DAF exceeds 97\\\\\\\\% across all three model families, confirming that the wider CIs in the full analysis reflect the mechanical effect of including a zero-death task type rather than method instability.\\\\n\\\\n\\\\\\\\section{Failure Mode Analysis}\\\\n\\\\\\\\label{app:failure-modes}\\\\n\\\\nThe most common failure mode for the internal strategy is state hallucination: the model predicts that an action succeeded (e.g., ``the water is now boiling'') when the environment state did not change, leading to cascading errors that trigger agent death. The deterministic strategy avoids this by receiving ground-truth observations, but still dies in 16.3\\\\\\\\% of episodes, primarily from selecting inherently dangerous actions (e.g., eating toxic substances) rather than from state misestimation.\\\\n\\\\n\\\\\\\\section{Ablation Studies}\\\\n\\\\\\\\label{app:ablations}\\\\n\\\\n\\\\\\\\paragraph{Capacity scaling.} We scale the implicit router from Qwen3-0.6B to Qwen3-4B and evaluate at both step and episode level (Table~\\\\\\\\ref{tab:capacity}).\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.85}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\\documentclass[11pt]{article}\\n\\n\\\\usepackage[review]{acl}\\n\\n\\\\usepackage{times}\\n\\\\usepackage{latexsym}\\n\\\\usepackage[T1]{fontenc}\\n\\\\usepackage[utf8]{inputenc}\\n\\\\usepackage{microtype}\\n\\\\usepackage{graphicx}\\n\\\\graphicspath{{figures/}}\\n\\\\usepackage{booktabs}\\n\\\\usepackage{amsmath}\\n\\\\usepackage{amssymb}\\n\\\\usepackage{algorithm}\\n\\\\usepackage{enumitem}\\n\\\\usepackage{algorithmic}\\n\\n\\\\title{Death Avoidance as a Dominant Routing Signal:\\\\\\\\A Counterfactual Analysis on ScienceWorld}\\n\\n\\\\author{Anonymous}\\n\\n\\\\begin{document}\\n\\\\maketitle\\n\\n\\\\input{abstract}\\n\\\\input{introduction}\\n\\\\input{method}\\n\\\\input{experiments}\\n\\\\input{related_work}\\n\\\\input{discussion}\\n\\\\input{conclusion}\\n\\n\\\\section*{Limitations}\\n\\nOur primary analysis uses a single environment (ScienceWorld, 11 of 30 task types) with one backbone (Qwen2.5-7B-Instruct); generalization requires further validation. The $-100$ death penalty amplifies DAF; environments with softer penalties would exhibit lower DAF values (Appendix~\\\\ref{app:penalty}). The 19 excluded task types (63\\\\%) lack routing signal because both strategies typically time out within 30 steps; increasing the step budget could surface additional signal. Our internal-reasoning baseline uses single-pass ReAct~\\\\citep{react-2023}; more sophisticated strategies (e.g., Reflexion~\\\\citep{reflexion-2023} or Tree-of-Thought backtracking~\\\\citep{tot-2023}) may reduce internal death rates and lower DAF. Episode-level labels may assign suboptimal routing to individual steps, particularly those preceding death events, and training on pure-strategy trajectories introduces distribution shift at deployment~\\\\citep{dagger-2011}. Cross-environment analyses on MATH and ALFWorld (\\\\S\\\\ref{sec:cross-env}, \\\\S\\\\ref{sec:discussion}) provide supporting evidence but do not conclusively establish generalization. A Llama-3.1-8B-Instruct replication (7 task types, $N{=}70$; Appendix~\\\\ref{app:cross-model}) confirms direction-consistent death patterns for all tasks, though both models are in the 7--8B parameter range; validation at larger scales remains future work.\\n\\n\\\\section*{Ethics Statement}\\n\\nThis work uses ScienceWorld \\\\cite{scienceworld-2022}, a publicly available text-based simulation environment, and does not involve human subjects or private data. All language models are accessed via standard APIs or publicly released weights. We report computational costs: approximately 40 GPU-hours on two consumer GPUs for data collection, router training, and evaluation. Code and data will be released upon acceptance.\\n\\n\\\\bibliography{references}\\n\\n\\\\appendix\\n\\n\\\\section{Labeling Quality Audit}\\n\\\\label{app:labeling}\\n\\nA potential concern is oracle circularity: whether episode-level labels reflect tie-breaking artifacts rather than genuine modality differences. We audit all 245 labels. Of the 150 \\\\texttt{no\\\\_preference} labels (61.2\\\\%), 115 (46.9\\\\%) are both-alive ties and 35 (14.3\\\\%) are both-dead, all excluded from router training. The remaining 95 training labels are entirely genuine: 75 from death asymmetry (70 deterministic-preferred, 5 internal-preferred) and 20 from score comparison with both strategies surviving (16 deterministic-preferred, 4 internal-preferred). Zero labels depend on tie-breaking. Retraining the router using only death-asymmetry labels yields step-level balanced accuracy of 57.3\\\\%, within 1$\\\\sigma$ of the full-label retrain (57.6 $\\\\pm$ 0.5\\\\%, step-level Trainer evaluation); score-comparison labels contribute negligible additional signal. (Step-level metrics are used here for the relative comparison; as shown in \\\\S\\\\ref{sec:router-diagnostic}, absolute generalization to new episodes is near chance.) The 97.4\\\\% step-level tie rate (\\\\S\\\\ref{sec:collection}) further motivates episode-level over step-level labeling.\\n\\n\\\\section{Per-Task Decomposition}\\n\\\\label{app:per-task}\\nWe select 11 of ScienceWorld's 30 task types via prescreening: task types where both strategies complete at least one episode within the 30-step budget are retained; types where both strategies time out on all seed variations\\n\\n... [截断: 输出过长，省略 16100 字符] ...\\n\\ngaps. \\\\textsuperscript{*}Default ScienceWorld setting.}\\n\\\\label{tab:penalty-correlation}\\n\\\\end{table}\\n\\nThis sharpens our central finding: death is not merely the dominant component of routing signal; it is effectively the \\\\emph{only} component that generates differential routing signal in ScienceWorld. At low penalties, the death contribution is small and $\\\\Delta_{\\\\text{full}}$ reduces to $\\\\Delta_{\\\\text{nd}} \\\\approx 2.84$, which is near-uniform across task types ($\\\\text{mean non-death gap} = -1.19$ excluding the \\\\texttt{find-non-living-thing} outlier); consequently, death-rate differential has no predictive power. As $P$ increases, the death term dominates $\\\\Delta_{\\\\text{full}}$, and the correlation sharpens because death rates \\\\emph{are} the performance gap. The DAF values in Table~\\\\ref{tab:penalty-sensitivity} increase monotonically with $P$, but this is a mathematical consequence of the decomposition ($\\\\text{DAF} = \\\\delta P / (\\\\delta P + \\\\Delta_{\\\\text{nd}})$), not evidence of mechanism robustness.\\n\\n\\\\section{Cross-Model Verification}\\n\\\\label{app:cross-model}\\n\\nTo test whether the death-avoidance finding generalizes beyond Qwen2.5-7B-Instruct, we replicate the counterfactual analysis with Llama-3.1-8B-Instruct on 7 task types ($N{=}70$ episode pairs, 10 episodes per task). The results are strongly consistent with the Qwen findings: 24 episodes (34.3\\\\%) are deterministic-preferred, \\\\textbf{0} (0\\\\%) are internal-preferred, and 46 (65.7\\\\%) show no preference. The internal strategy dies in 58.6\\\\% of episodes versus 24.3\\\\% for deterministic (death-rate differential $+34.3\\\\%$), compared to $+26.6\\\\%$ for Qwen2.5-7B. Direction consistency is perfect: all 7 task types show higher internal than deterministic death rates (7/7, compared to 10/11 for Qwen). The larger death-rate differential ($+34.3\\\\%$ vs.\\\\ $+26.6\\\\%$) and the absence of any internal-preferred episodes (0 vs.\\\\ 9 for Qwen) suggest that Llama-3.1-8B is more vulnerable to hallucination-induced death, amplifying the death-avoidance effect. These results confirm that the death-avoidance dominance is not specific to the Qwen model family.\\n\\n\\n\\\\section{DAF Sensitivity to Zero-Death Task Types}\\n\\\\label{app:daf-sensitivity}\\n\\nTable~\\\\ref{tab:daf-sensitivity} reports DAF estimates with and without \\\\texttt{find-non-living-thing}, the only task type with zero death rate across all three models.\\n\\n\\\\begin{table}[h]\\n\\\\centering\\n\\\\small\\n\\\\begin{tabular}{lcc}\\n\\\\toprule\\n\\\\textbf{Model} & \\\\textbf{DAF (11 tasks)} & \\\\textbf{DAF (10 tasks)} \\\\\\\\\\n\\\\midrule\\nQwen2.5-7B-Instruct & 90.4\\\\% [81.4, 99.1] & 100.0\\\\% [100.0, 100.0] \\\\\\\\\\nLlama-3.1-8B-Instruct & 88.2\\\\% [80.0, 95.1] & 97.0\\\\% [91.5, 100.0] \\\\\\\\\\nGemma-2-9B-it & 89.7\\\\% [79.5, 98.4] & 99.9\\\\% [99.7, 100.0] \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\\\caption{DAF sensitivity analysis. ``10 tasks'' excludes \\\\texttt{find-non-living-thing} (the only task type with zero death rate across all models). Episode-level bootstrap 95\\\\% CIs ($B = 10{,}000$).}\\n\\\\label{tab:daf-sensitivity}\\n\\\\end{table}\\n\\nFor the 10 task types with nonzero death rates, DAF exceeds 97\\\\% across all three model families, confirming that the wider CIs in the full analysis reflect the mechanical effect of including a zero-death task type rather than method instability.\\n\\n\\\\section{Failure Mode Analysis}\\n\\\\label{app:failure-modes}\\n\\nThe most common failure mode for the internal strategy is state hallucination: the model predicts that an action succeeded (e.g., ``the water is now boiling'') when the environment state did not change, leading to cascading errors that trigger agent death. The deterministic strategy avoids this by receiving ground-truth observations, but still dies in 16.3\\\\% of episodes, primarily from selecting inherently dangerous actions (e.g., eating toxic substances) rather than from state misestimation.\\n\\n\\\\section{Ablation Studies}\\n\\\\label{app:ablations}\\n\\n\\\\paragraph{Capacity scaling.} We scale the implicit router from Qwen3-0.6B to Qwen3-4B and evaluate at both step and episode level (Table~\\\\ref{tab:capacity}).\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.85}}"
+              }
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "I found the table. Let me extract the current table content around lines 280-300. The current table has:\n\n```latex\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{lcc}\n\\toprule\n\\textbf{Model} & \\textbf{DAF (11 tasks)} & \\textbf{DAF (10 tasks)} \\\\\n\\midrule\nQwen2.5-7B-Instruct & 90.4\\% [81.4, 99.1] & 100.0\\% [100.0, 100.0] \\\\\n\n\n```\n\nCompleting the table with the remaining model rows and closing the LaTeX structure... I'm looking at the specific confidence interval values that need updating across the three models for both the full-sample and excluding-FNL conditions, then I'll need to adjust the table header and caption to clarify the exclusion criteria and bootstrap methodology, along with fixing the spacing in the B parameter notation and adding the seed specification. Generating the table...",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0f8d6455-98e5-42da-8fef-7f343087162d",
+            "uuid": "da327fe7-6079-4496-870e-c391cc2f12c5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PvV4W4uCeCnM1cREKn1art",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2891,
+                "cache_read_input_tokens": 25601,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2891
+                },
+                "output_tokens": 13,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "找到表格，在 ~285-299 行。当前值与目标值的差异：\n- Qwen 11-task CI: [81.4→81.3]\n- Llama 11-task CI: [80.0→80.2]\n- Gemma 11-task CI: [79.5, 98.4] → [68.8, 100.0]\n- Llama 10-task CI: [91.5→91.3]\n- 列头和 caption 也需更新\n\n用 Python 脚本做精确替换。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0f8d6455-98e5-42da-8fef-7f343087162d",
+            "uuid": "42a1df86-f1e1-4cae-9f14-db038ba3ba72",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PvV4W4uCeCnM1cREKn1art",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2891,
+                "cache_read_input_tokens": 25601,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2891
+                },
+                "output_tokens": 13,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MzB6bPA8ZKcYhHMLeHhF7c",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westb-13313",
+                "command": "cd /root/autodl-tmp/simgate-modular-routing/docs/paper && python3 -c \"\nimport re\n\nwith open('main.tex', 'r') as f:\n    content = f.read()\n\n# 1. Column header: DAF (10 tasks) -> DAF (10 tasks, excl.\\ zero-death)\ncontent = content.replace(\n    r'\\textbf{DAF (10 tasks)} \\\\',\n    r'\\textbf{DAF (10 tasks, excl.\\ zero-death)} \\\\'\n)\n\n# 2. Qwen CI: 81.4 -> 81.3\ncontent = content.replace(\n    r'90.4\\% [81.4, 99.1]',\n    r'90.4\\% [81.3, 99.1]'\n)\n\n# 3. Llama 11-task CI: 80.0 -> 80.2\ncontent = content.replace(\n    r'88.2\\% [80.0, 95.1]',\n    r'88.2\\% [80.2, 95.1]'\n)\n\n# 4. Gemma 11-task CI: [79.5, 98.4] -> [68.8, 100.0]\ncontent = content.replace(\n    r'89.7\\% [79.5, 98.4]',\n    r'89.7\\% [68.8, 100.0]'\n)\n\n# 5. Llama 10-task CI: 91.5 -> 91.3\ncontent = content.replace(\n    r'97.0\\% [91.5, 100.0]',\n    r'97.0\\% [91.3, 100.0]'\n)\n\n# 6. Caption update\nold_caption = r'''DAF sensitivity analysis. \\`\\`10 tasks'' excludes \\texttt{find-non-living-thing} (the only task type with zero death rate across all models). Episode-level bootstrap 95\\% CIs (\\$B = 10{,}000\\$).'''\nnew_caption = r'''DAF sensitivity analysis. \\`\\`10 tasks'' excludes \\texttt{find-non-living-thing} (the only task type with zero death rate). Bootstrap 95\\% CIs (\\$B{=}10{,}000\\$, seed 42). Full-sample CIs use cluster bootstrap (\\$K{=}11\\$); exclusion CIs use episode-level bootstrap over the remaining 10 task types.'''\n\ncontent = content.replace(old_caption, new_caption)\n\nwith open('main.tex', 'w') as f:\n    f.write(content)\n\nprint('Done')\n\"\n",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0f8d6455-98e5-42da-8fef-7f343087162d",
+            "uuid": "26b8c924-dd37-4986-86f0-afd21795b6f9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PvV4W4uCeCnM1cREKn1art",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2891,
+                "cache_read_input_tokens": 25601,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2891
+                },
+                "output_tokens": 13,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-21T01:12:03.614Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MzB6bPA8ZKcYhHMLeHhF7c",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cd /root/autodl-tmp/simgate-modular-routing/docs/paper && python3 -c \\\\\\\"\\\\\\\\nimport re\\\\\\\\n\\\\\\\\nwith open(\\\\\\\\'main.tex\\\\\\\\', \\\\\\\\'r\\\\\\\\') as f:\\\\\\\\n    content = f.read()\\\\\\\\n\\\\\\\\n# 1. Column header: DAF (10 tasks) -> DAF (10 tasks, excl.\\\\\\\\\\\\\\\\ zero-death)\\\\\\\\ncontent = content.replace(\\\\\\\\n    r\\\\\\\\'\\\\\\\\\\\\\\\\textbf{DAF (10 tasks)} \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\',\\\\\\\\n    r\\\\\\\\'\\\\\\\\\\\\\\\\textbf{DAF (10 tasks, excl.\\\\\\\\\\\\\\\\ zero-death)} \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'\\\\\\\\n)\\\\\\\\n\\\\\\\\n# 2. Qwen CI: 81.4 -> 81.3\\\\\\\\ncontent = content.replace(\\\\\\\\n    r\\\\\\\\'90.4\\\\\\\\\\\\\\\\% [81.4, 99.1]\\\\\\\\',\\\\\\\\n    r\\\\\\\\'90.4\\\\\\\\\\\\\\\\% [81.3, 99.1]\\\\\\\\'\\\\\\\\n)\\\\\\\\n\\\\\\\\n# 3. Llama 11-task CI: 80.0 -> 80.2\\\\\\\\ncontent = content.replace(\\\\\\\\n    r\\\\\\\\'88.2\\\\\\\\\\\\\\\\% [80.0, 95.1]\\\\\\\\',\\\\\\\\n    r\\\\\\\\'88.2\\\\\\\\\\\\\\\\% [80.2, 95.1]\\\\\\\\'\\\\\\\\n)\\\\\\\\n\\\\\\\\n# 4. Gemma 11-task CI: [79.5, 98.4] -> [68.8, 100.0]\\\\\\\\ncontent = content.replace(\\\\\\\\n    r\\\\\\\\'89.7\\\\\\\\\\\\\\\\% [79.5, 98.4]\\\\\\\\',\\\\\\\\n    r\\\\\\\\'89.7\\\\\\\\\\\\\\\\% [68.8, 100.0]\\\\\\\\'\\\\\\\\n)\\\\\\\\n\\\\\\\\n# 5. Llama 10-task CI: 91.5 -> 91.3\\\\\\\\ncontent = content.replace(\\\\\\\\n    r\\\\\\\\'97.0\\\\\\\\\\\\\\\\% [91.5, 100.0]\\\\\\\\',\\\\\\\\n    r\\\\\\\\'97.0\\\\\\\\\\\\\\\\% [91.3, 100.0]\\\\\\\\'\\\\\\\\n)\\\\\\\\n\\\\\\\\n# 6. Caption update\\\\\\\\nold_caption = r\\\\\\\\'\\\\\\\\'\\\\\\\\'DAF sensitivity analysis. \\\\\\\\\\\\\\\\`\\\\\\\\\\\\\\\\`10 tasks\\\\\\\\'\\\\\\\\' excludes \\\\\\\\\\\\\\\\texttt{find-non-living-thing} (the only task type with zero death rate across all models). Episode-level bootstrap 95\\\\\\\\\\\\\\\\% CIs (\\\\\\\\\\\\\\\\$B = 10{,}000\\\\\\\\\\\\\\\\$).\\\\\\\\'\\\\\\\\'\\\\\\\\'\\\\\\\\nnew_caption = r\\\\\\\\'\\\\\\\\'\\\\\\\\'DAF sensitivity analysis. \\\\\\\\\\\\\\\\`\\\\\\\\\\\\\\\\`10 tasks\\\\\\\\'\\\\\\\\' excludes \\\\\\\\\\\\\\\\texttt{find-non-living-thing} (the only task type with zero death rate). Bootstrap 95\\\\\\\\\\\\\\\\% CIs (\\\\\\\\\\\\\\\\$B{=}10{,}000\\\\\\\\\\\\\\\\$, seed 42). Full-sample CIs use cluster bootstrap (\\\\\\\\\\\\\\\\$K{=}11\\\\\\\\\\\\\\\\$); exclusion CIs use episode-level bootstrap over the remaining 10 task types.\\\\\\\\'\\\\\\\\'\\\\\\\\'\\\\\\\\n\\\\\\\\ncontent = content.replace(old_caption, new_caption)\\\\\\\\n\\\\\\\\nwith open(\\\\\\\\'main.tex\\\\\\\\', \\\\\\\\'w\\\\\\\\') as f:\\\\\\\\n    f.write(content)\\\\\\\\n\\\\\\\\nprint(\\\\\\\\'Done\\\\\\\\')\\\\\\\\n\\\\\\\"\\\\\\\\n'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\n  File \\\\\\\"<string>\\\\\\\", line 9\\\\n    r'\\\\\\\\textbf{DAF (10 tasks)} \\\\\\\\',\\\\n    ^\\\\nSyntaxError: unterminated string literal (detected at line 9)\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.75}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0f8d6455-98e5-42da-8fef-7f343087162d",
+            "uuid": "50753845-ef74-4a2f-be05-b7941a6a77fd",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cd /root/autodl-tmp/simgate-modular-routing/docs/paper && python3 -c \\\\\\\"\\\\\\\\nimport re\\\\\\\\n\\\\\\\\nwith open(\\\\\\\\'main.tex\\\\\\\\', \\\\\\\\'r\\\\\\\\') as f:\\\\\\\\n    content = f.read()\\\\\\\\n\\\\\\\\n# 1. Column header: DAF (10 tasks) -> DAF (10 tasks, excl.\\\\\\\\\\\\\\\\ zero-death)\\\\\\\\ncontent = content.replace(\\\\\\\\n    r\\\\\\\\'\\\\\\\\\\\\\\\\textbf{DAF (10 tasks)} \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\',\\\\\\\\n    r\\\\\\\\'\\\\\\\\\\\\\\\\textbf{DAF (10 tasks, excl.\\\\\\\\\\\\\\\\ zero-death)} \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'\\\\\\\\n)\\\\\\\\n\\\\\\\\n# 2. Qwen CI: 81.4 -> 81.3\\\\\\\\ncontent = content.replace(\\\\\\\\n    r\\\\\\\\'90.4\\\\\\\\\\\\\\\\% [81.4, 99.1]\\\\\\\\',\\\\\\\\n    r\\\\\\\\'90.4\\\\\\\\\\\\\\\\% [81.3, 99.1]\\\\\\\\'\\\\\\\\n)\\\\\\\\n\\\\\\\\n# 3. Llama 11-task CI: 80.0 -> 80.2\\\\\\\\ncontent = content.replace(\\\\\\\\n    r\\\\\\\\'88.2\\\\\\\\\\\\\\\\% [80.0, 95.1]\\\\\\\\',\\\\\\\\n    r\\\\\\\\'88.2\\\\\\\\\\\\\\\\% [80.2, 95.1]\\\\\\\\'\\\\\\\\n)\\\\\\\\n\\\\\\\\n# 4. Gemma 11-task CI: [79.5, 98.4] -> [68.8, 100.0]\\\\\\\\ncontent = content.replace(\\\\\\\\n    r\\\\\\\\'89.7\\\\\\\\\\\\\\\\% [79.5, 98.4]\\\\\\\\',\\\\\\\\n    r\\\\\\\\'89.7\\\\\\\\\\\\\\\\% [68.8, 100.0]\\\\\\\\'\\\\\\\\n)\\\\\\\\n\\\\\\\\n# 5. Llama 10-task CI: 91.5 -> 91.3\\\\\\\\ncontent = content.replace(\\\\\\\\n    r\\\\\\\\'97.0\\\\\\\\\\\\\\\\% [91.5, 100.0]\\\\\\\\',\\\\\\\\n    r\\\\\\\\'97.0\\\\\\\\\\\\\\\\% [91.3, 100.0]\\\\\\\\'\\\\\\\\n)\\\\\\\\n\\\\\\\\n# 6. Caption update\\\\\\\\nold_caption = r\\\\\\\\'\\\\\\\\'\\\\\\\\'DAF sensitivity analysis. \\\\\\\\\\\\\\\\`\\\\\\\\\\\\\\\\`10 tasks\\\\\\\\'\\\\\\\\' excludes \\\\\\\\\\\\\\\\texttt{find-non-living-thing} (the only task type with zero death rate across all models). Episode-level bootstrap 95\\\\\\\\\\\\\\\\% CIs (\\\\\\\\\\\\\\\\$B = 10{,}000\\\\\\\\\\\\\\\\$).\\\\\\\\'\\\\\\\\'\\\\\\\\'\\\\\\\\nnew_caption = r\\\\\\\\'\\\\\\\\'\\\\\\\\'DAF sensitivity analysis. \\\\\\\\\\\\\\\\`\\\\\\\\\\\\\\\\`10 tasks\\\\\\\\'\\\\\\\\' excludes \\\\\\\\\\\\\\\\texttt{find-non-living-thing} (the only task type with zero death rate). Bootstrap 95\\\\\\\\\\\\\\\\% CIs (\\\\\\\\\\\\\\\\$B{=}10{,}000\\\\\\\\\\\\\\\\$, seed 42). Full-sample CIs use cluster bootstrap (\\\\\\\\\\\\\\\\$K{=}11\\\\\\\\\\\\\\\\$); exclusion CIs use episode-level bootstrap over the remaining 10 task types.\\\\\\\\'\\\\\\\\'\\\\\\\\'\\\\\\\\n\\\\\\\\ncontent = content.replace(old_caption, new_caption)\\\\\\\\n\\\\\\\\nwith open(\\\\\\\\'main.tex\\\\\\\\', \\\\\\\\'w\\\\\\\\') as f:\\\\\\\\n    f.write(content)\\\\\\\\n\\\\\\\\nprint(\\\\\\\\'Done\\\\\\\\')\\\\\\\\n\\\\\\\"\\\\\\\\n'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\n  File \\\\\\\"<string>\\\\\\\", line 9\\\\n    r'\\\\\\\\textbf{DAF (10 tasks)} \\\\\\\\',\\\\n    ^\\\\nSyntaxError: unterminated string literal (detected at line 9)\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.75}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/autodl-tmp/simgate-modular-routing/docs/paper && python3 -c \\\"\\\\nimport re\\\\n\\\\nwith open(\\\\'main.tex\\\\', \\\\'r\\\\') as f:\\\\n    content = f.read()\\\\n\\\\n# 1. Column header: DAF (10 tasks) -> DAF (10 tasks, excl.\\\\\\\\ zero-death)\\\\ncontent = content.replace(\\\\n    r\\\\'\\\\\\\\textbf{DAF (10 tasks)} \\\\\\\\\\\\\\\\\\\\',\\\\n    r\\\\'\\\\\\\\textbf{DAF (10 tasks, excl.\\\\\\\\ zero-death)} \\\\\\\\\\\\\\\\\\\\'\\\\n)\\\\n\\\\n# 2. Qwen CI: 81.4 -> 81.3\\\\ncontent = content.replace(\\\\n    r\\\\'90.4\\\\\\\\% [81.4, 99.1]\\\\',\\\\n    r\\\\'90.4\\\\\\\\% [81.3, 99.1]\\\\'\\\\n)\\\\n\\\\n# 3. Llama 11-task CI: 80.0 -> 80.2\\\\ncontent = content.replace(\\\\n    r\\\\'88.2\\\\\\\\% [80.0, 95.1]\\\\',\\\\n    r\\\\'88.2\\\\\\\\% [80.2, 95.1]\\\\'\\\\n)\\\\n\\\\n# 4. Gemma 11-task CI: [79.5, 98.4] -> [68.8, 100.0]\\\\ncontent = content.replace(\\\\n    r\\\\'89.7\\\\\\\\% [79.5, 98.4]\\\\',\\\\n    r\\\\'89.7\\\\\\\\% [68.8, 100.0]\\\\'\\\\n)\\\\n\\\\n# 5. Llama 10-task CI: 91.5 -> 91.3\\\\ncontent = content.replace(\\\\n    r\\\\'97.0\\\\\\\\% [91.5, 100.0]\\\\',\\\\n    r\\\\'97.0\\\\\\\\% [91.3, 100.0]\\\\'\\\\n)\\\\n\\\\n# 6. Caption update\\\\nold_caption = r\\\\'\\\\'\\\\'DAF sensitivity analysis. \\\\\\\\`\\\\\\\\`10 tasks\\\\'\\\\' excludes \\\\\\\\texttt{find-non-living-thing} (the only task type with zero death rate across all models). Episode-level bootstrap 95\\\\\\\\% CIs (\\\\\\\\$B = 10{,}000\\\\\\\\$).\\\\'\\\\'\\\\'\\\\nnew_caption = r\\\\'\\\\'\\\\'DAF sensitivity analysis. \\\\\\\\`\\\\\\\\`10 tasks\\\\'\\\\' excludes \\\\\\\\texttt{find-non-living-thing} (the only task type with zero death rate). Bootstrap 95\\\\\\\\% CIs (\\\\\\\\$B{=}10{,}000\\\\\\\\$, seed 42). Full-sample CIs use cluster bootstrap (\\\\\\\\$K{=}11\\\\\\\\$); exclusion CIs use episode-level bootstrap over the remaining 10 task types.\\\\'\\\\'\\\\'\\\\n\\\\ncontent = content.replace(old_caption, new_caption)\\\\n\\\\nwith open(\\\\'main.tex\\\\', \\\\'w\\\\') as f:\\\\n    f.write(content)\\\\n\\\\nprint(\\\\'Done\\\\')\\\\n\\\"\\\\n'\\n\\nExit code: 1\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n  File \\\"<string>\\\", line 9\\n    r'\\\\textbf{DAF (10 tasks)} \\\\',\\n    ^\\nSyntaxError: unterminated string literal (detected at line 9)\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.75}}"
+              }
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The quoting is too complex with inline python. Let me write a Python script file to the server instead, then execute it.",
+              "signature": "Er4CCmMIDRgCKkBN2BW/cCEkaH9gqIn4u7IUdm5tzB+tc0u4UHgJioz4zcs3C/dOmlLA2BpGljiANYBuCjkVFPABvGKZFTTyHGguMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDLV0nZWVr4q/63DTzhoMgFLYbyvvI+dyvDQlIjA1q574Decnabi+EkEA9YHV52KE4rNCxeMu1xpbeLx8eTUu1DfCYGJy0jOpt005UQoqiAH/8zHp12cuP1rSd90SE13fj4HOBvuBbBf1Ll6ARSUJWbB4ANom/4d/690o408H6kaMjmgGVdwa8N+2QV5WbHJrYuOdzDUfpbZOUXWJhTqz0eV1PMqJRZmd55UV0NaZ/oY4wKXo712Tq1zDcONuDgE9hC054aeqH+PspMMgwNL9TZekz9T/ACq8GAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0f8d6455-98e5-42da-8fef-7f343087162d",
+            "uuid": "be32c87a-e6c6-4604-bea0-3cf19f59820d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012zFWQJy7qqxhXcKCCXN5GC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3464,
+                "cache_read_input_tokens": 28492,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3464
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Inline quoting is messy. Let me write a script file instead."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0f8d6455-98e5-42da-8fef-7f343087162d",
+            "uuid": "28f9945f-15a6-434d-82c6-6bfa82a2db2c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012zFWQJy7qqxhXcKCCXN5GC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3464,
+                "cache_read_input_tokens": 28492,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3464
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01A4oqwZ59JDQmv8B9sDau9n",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westb-13313",
+                "command": "cat > /tmp/fix_table.py << 'PYEOF'\nimport re\n\nwith open('/root/autodl-tmp/simgate-modular-routing/docs/paper/main.tex', 'r') as f:\n    content = f.read()\n\n# 1. Column header\ncontent = content.replace(\n    r'\\textbf{DAF (10 tasks)} \\\\',\n    r'\\textbf{DAF (10 tasks, excl.\\ zero-death)} \\\\'\n)\n\n# 2. Qwen CI: 81.4 -> 81.3\ncontent = content.replace(\n    r'90.4\\% [81.4, 99.1]',\n    r'90.4\\% [81.3, 99.1]'\n)\n\n# 3. Llama 11-task CI: 80.0 -> 80.2\ncontent = content.replace(\n    r'88.2\\% [80.0, 95.1]',\n    r'88.2\\% [80.2, 95.1]'\n)\n\n# 4. Gemma 11-task CI: [79.5, 98.4] -> [68.8, 100.0]\ncontent = content.replace(\n    r'89.7\\% [79.5, 98.4]',\n    r'89.7\\% [68.8, 100.0]'\n)\n\n# 5. Llama 10-task CI: 91.5 -> 91.3\ncontent = content.replace(\n    r'97.0\\% [91.5, 100.0]',\n    r'97.0\\% [91.3, 100.0]'\n)\n\n# 6. Caption update\nold_cap = (r\"DAF sensitivity analysis. ``10 tasks'' excludes \\texttt{find-non-living-thing} \"\n           r\"(the only task type with zero death rate across all models). \"\n           r\"Episode-level bootstrap 95\\% CIs ($B = 10{,}000$).\")\nnew_cap = (r\"DAF sensitivity analysis. ``10 tasks'' excludes \\texttt{find-non-living-thing} \"\n           r\"(the only task type with zero death rate). \"\n           r\"Bootstrap 95\\% CIs ($B{=}10{,}000$, seed 42). \"\n           r\"Full-sample CIs use cluster bootstrap ($K{=}11$); \"\n           r\"exclusion CIs use episode-level bootstrap over the remaining 10 task types.\")\n\ncontent = content.replace(old_cap, new_cap)\n\nwith open('/root/autodl-tmp/simgate-modular-routing/docs/paper/main.tex', 'w') as f:\n    f.write(content)\n\nprint('Done')\nPYEOF\npython3 /tmp/fix_table.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0f8d6455-98e5-42da-8fef-7f343087162d",
+            "uuid": "baa23bbf-7fb5-457c-9427-2fd20f14476d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012zFWQJy7qqxhXcKCCXN5GC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3464,
+                "cache_read_input_tokens": 28492,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3464
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-21T01:12:14.832Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01A4oqwZ59JDQmv8B9sDau9n",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Done\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.9}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0f8d6455-98e5-42da-8fef-7f343087162d",
+            "uuid": "3fb9fbe8-f15e-451b-8e13-7b90ffc1f628",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Done\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.9}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Done\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.9}}"
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证修改后的表格内容并编译。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0f8d6455-98e5-42da-8fef-7f343087162d",
+            "uuid": "3251a875-357d-419d-8ace-670098dba8f0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0183JEN8XHueXBJLdS5hVyMj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1037,
+                "cache_read_input_tokens": 31956,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1037
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019fV6kWu9tTH6yvYfcE7jvy",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westb-13313",
+                "command": "grep -n \"daf-sensitivity\" /root/autodl-tmp/simgate-modular-routing/docs/paper/main.tex",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0f8d6455-98e5-42da-8fef-7f343087162d",
+            "uuid": "a8c8797e-7e9f-46df-82d4-7266c9ff0404",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0183JEN8XHueXBJLdS5hVyMj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1037,
+                "cache_read_input_tokens": 31956,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1037
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-21T01:12:19.310Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019fV6kWu9tTH6yvYfcE7jvy",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"280:\\\\\\\\label{app:daf-sensitivity}\\\\n282:Table~\\\\\\\\ref{tab:daf-sensitivity} reports DAF estimates with and without \\\\\\\\texttt{find-non-living-thing}, the only task type with zero death rate across all three models.\\\\n297:\\\\\\\\label{tab:daf-sensitivity}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.75}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0f8d6455-98e5-42da-8fef-7f343087162d",
+            "uuid": "61e3d9ea-6734-4be5-b420-6e4fbdb76784",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"280:\\\\\\\\label{app:daf-sensitivity}\\\\n282:Table~\\\\\\\\ref{tab:daf-sensitivity} reports DAF estimates with and without \\\\\\\\texttt{find-non-living-thing}, the only task type with zero death rate across all three models.\\\\n297:\\\\\\\\label{tab:daf-sensitivity}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.75}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"280:\\\\label{app:daf-sensitivity}\\n282:Table~\\\\ref{tab:daf-sensitivity} reports DAF estimates with and without \\\\texttt{find-non-living-thing}, the only task type with zero death rate across all three models.\\n297:\\\\label{tab:daf-sensitivity}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.75}}"
+              }
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01616cFW5Jra3X1HbxfoEXnD",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westb-13313",
+                "command": "head -300 /root/autodl-tmp/simgate-modular-routing/docs/paper/main.tex",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0f8d6455-98e5-42da-8fef-7f343087162d",
+            "uuid": "c3abe13b-cefd-4f32-820c-314203df739b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JkWXCgjr5Qr65zBjzeUitZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 300,
+                "cache_read_input_tokens": 32993,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 300
+                },
+                "output_tokens": 63,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-21T01:12:24.049Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01616cFW5Jra3X1HbxfoEXnD",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\\documentclass[11pt]{article}\\\\n\\\\n\\\\\\\\usepackage[review]{acl}\\\\n\\\\n\\\\\\\\usepackage{times}\\\\n\\\\\\\\usepackage{latexsym}\\\\n\\\\\\\\usepackage[T1]{fontenc}\\\\n\\\\\\\\usepackage[utf8]{inputenc}\\\\n\\\\\\\\usepackage{microtype}\\\\n\\\\\\\\usepackage{graphicx}\\\\n\\\\\\\\graphicspath{{figures/}}\\\\n\\\\\\\\usepackage{booktabs}\\\\n\\\\\\\\usepackage{amsmath}\\\\n\\\\\\\\usepackage{amssymb}\\\\n\\\\\\\\usepackage{algorithm}\\\\n\\\\\\\\usepackage{enumitem}\\\\n\\\\\\\\usepackage{algorithmic}\\\\n\\\\n\\\\\\\\title{Death Avoidance as a Dominant Routing Signal:\\\\\\\\\\\\\\\\A Counterfactual Analysis on ScienceWorld}\\\\n\\\\n\\\\\\\\author{Anonymous}\\\\n\\\\n\\\\\\\\begin{document}\\\\n\\\\\\\\maketitle\\\\n\\\\n\\\\\\\\input{abstract}\\\\n\\\\\\\\input{introduction}\\\\n\\\\\\\\input{method}\\\\n\\\\\\\\input{experiments}\\\\n\\\\\\\\input{related_work}\\\\n\\\\\\\\input{discussion}\\\\n\\\\\\\\input{conclusion}\\\\n\\\\n\\\\\\\\section*{Limitations}\\\\n\\\\nOur primary analysis uses a single environment (ScienceWorld, 11 of 30 task types) with one backbone (Qwen2.5-7B-Instruct); generalization requires further validation. The $-100$ death penalty amplifies DAF; environments with softer penalties would exhibit lower DAF values (Appendix~\\\\\\\\ref{app:penalty}). The 19 excluded task types (63\\\\\\\\%) lack routing signal because both strategies typically time out within 30 steps; increasing the step budget could surface additional signal. Our internal-reasoning baseline uses single-pass ReAct~\\\\\\\\citep{react-2023}; more sophisticated strategies (e.g., Reflexion~\\\\\\\\citep{reflexion-2023} or Tree-of-Thought backtracking~\\\\\\\\citep{tot-2023}) may reduce internal death rates and lower DAF. Episode-level labels may assign suboptimal routing to individual steps, particularly those preceding death events, and training on pure-strategy trajectories introduces distribution shift at deployment~\\\\\\\\citep{dagger-2011}. Cross-environment analyses on MATH and ALFWorld (\\\\\\\\S\\\\\\\\ref{sec:cross-env}, \\\\\\\\S\\\\\\\\ref{sec:discussion}) provide supporting evidence but do not conclusively establish generalization. A Llama-3.1-8B-Instruct replication (7 task types, $N{=}70$; Appendix~\\\\\\\\ref{app:cross-model}) confirms direction-consistent death patterns for all tasks, though both models are in the 7--8B parameter range; validation at larger scales remains future work.\\\\n\\\\n\\\\\\\\section*{Ethics Statement}\\\\n\\\\nThis work uses ScienceWorld \\\\\\\\cite{scienceworld-2022}, a publicly available text-based simulation environment, and does not involve human subjects or private data. All language models are accessed via standard APIs or publicly released weights. We report computational costs: approximately 40 GPU-hours on two consumer GPUs for data collection, router training, and evaluation. Code and data will be released upon acceptance.\\\\n\\\\n\\\\\\\\bibliography{references}\\\\n\\\\n\\\\\\\\appendix\\\\n\\\\n\\\\\\\\section{Labeling Quality Audit}\\\\n\\\\\\\\label{app:labeling}\\\\n\\\\nA potential concern is oracle circularity: whether episode-level labels reflect tie-breaking artifacts rather than genuine modality differences. We audit all 245 labels. Of the 150 \\\\\\\\texttt{no\\\\\\\\_preference} labels (61.2\\\\\\\\%), 115 (46.9\\\\\\\\%) are both-alive ties and 35 (14.3\\\\\\\\%) are both-dead, all excluded from router training. The remaining 95 training labels are entirely genuine: 75 from death asymmetry (70 deterministic-preferred, 5 internal-preferred) and 20 from score comparison with both strategies surviving (16 deterministic-preferred, 4 internal-preferred). Zero labels depend on tie-breaking. Retraining the router using only death-asymmetry labels yields step-level balanced accuracy of 57.3\\\\\\\\%, within 1$\\\\\\\\sigma$ of the full-label retrain (57.6 $\\\\\\\\pm$ 0.5\\\\\\\\%, step-level Trainer evaluation); score-comparison labels contribute negligible additional signal. (Step-level metrics are used here for the relative comparison; as shown in \\\\\\\\S\\\\\\\\ref{sec:router-diagnostic}, absolute generalization to new episodes is near chance.) The 97.4\\\\\\\\% step-level tie rate (\\\\\\\\S\\\\\\\\ref{sec:collection}) further motivates episode-level over step-level labeling.\\\\n\\\\n\\\\\\\\section{Per-Task Decomposition}\\\\n\\\\\\\\label{app:per-task}\\\\nWe select 11 of ScienceWorld's 30 task types via prescreening: task types where both strategies complete at least one episode within the 30-step budget are retained; types where both strategies time out on all seed variations\\\\n\\\\n... [截断: 输出过长，省略 15455 字符] ...\\\\n\\\\nenalty magnitudes.\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\\\\\\centering\\\\n\\\\\\\\small\\\\n\\\\\\\\begin{tabular}{@{}rccl@{}}\\\\n\\\\\\\\toprule\\\\n$P$ & $r$ & $p$ & Sig.\\\\\\\\ ($\\\\\\\\alpha{=}0.05$) \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n10 & $-0.08$ & $0.813$ & No \\\\\\\\\\\\\\\\\\\\n25 & $0.51$ & $0.108$ & No \\\\\\\\\\\\\\\\\\\\n50 & $0.86$ & $0.0006$ & Yes \\\\\\\\\\\\\\\\\\\\n100\\\\\\\\textsuperscript{*} & $0.97$ & $8 \\\\\\\\times 10^{-7}$ & Yes \\\\\\\\\\\\\\\\\\\\n200 & $0.99$ & $1 \\\\\\\\times 10^{-9}$ & Yes \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\\\\\caption{Pearson $r$ between per-task death-rate differential and $\\\\\\\\Delta_{\\\\\\\\text{full}}(P)$ across penalty magnitudes. The correlation is non-significant at low penalties and emerges at $P \\\\\\\\geq 50$, reflecting the transition from non-death-dominated to death-dominated score gaps. \\\\\\\\textsuperscript{*}Default ScienceWorld setting.}\\\\n\\\\\\\\label{tab:penalty-correlation}\\\\n\\\\\\\\end{table}\\\\n\\\\nThis sharpens our central finding: death is not merely the dominant component of routing signal; it is effectively the \\\\\\\\emph{only} component that generates differential routing signal in ScienceWorld. At low penalties, the death contribution is small and $\\\\\\\\Delta_{\\\\\\\\text{full}}$ reduces to $\\\\\\\\Delta_{\\\\\\\\text{nd}} \\\\\\\\approx 2.84$, which is near-uniform across task types ($\\\\\\\\text{mean non-death gap} = -1.19$ excluding the \\\\\\\\texttt{find-non-living-thing} outlier); consequently, death-rate differential has no predictive power. As $P$ increases, the death term dominates $\\\\\\\\Delta_{\\\\\\\\text{full}}$, and the correlation sharpens because death rates \\\\\\\\emph{are} the performance gap. The DAF values in Table~\\\\\\\\ref{tab:penalty-sensitivity} increase monotonically with $P$, but this is a mathematical consequence of the decomposition ($\\\\\\\\text{DAF} = \\\\\\\\delta P / (\\\\\\\\delta P + \\\\\\\\Delta_{\\\\\\\\text{nd}})$), not evidence of mechanism robustness.\\\\n\\\\n\\\\\\\\section{Cross-Model Verification}\\\\n\\\\\\\\label{app:cross-model}\\\\n\\\\nTo test whether the death-avoidance finding generalizes beyond Qwen2.5-7B-Instruct, we replicate the counterfactual analysis with Llama-3.1-8B-Instruct on 7 task types ($N{=}70$ episode pairs, 10 episodes per task). The results are strongly consistent with the Qwen findings: 24 episodes (34.3\\\\\\\\%) are deterministic-preferred, \\\\\\\\textbf{0} (0\\\\\\\\%) are internal-preferred, and 46 (65.7\\\\\\\\%) show no preference. The internal strategy dies in 58.6\\\\\\\\% of episodes versus 24.3\\\\\\\\% for deterministic (death-rate differential $+34.3\\\\\\\\%$), compared to $+26.6\\\\\\\\%$ for Qwen2.5-7B. Direction consistency is perfect: all 7 task types show higher internal than deterministic death rates (7/7, compared to 10/11 for Qwen). The larger death-rate differential ($+34.3\\\\\\\\%$ vs.\\\\\\\\ $+26.6\\\\\\\\%$) and the absence of any internal-preferred episodes (0 vs.\\\\\\\\ 9 for Qwen) suggest that Llama-3.1-8B is more vulnerable to hallucination-induced death, amplifying the death-avoidance effect. These results confirm that the death-avoidance dominance is not specific to the Qwen model family.\\\\n\\\\n\\\\n\\\\\\\\section{DAF Sensitivity to Zero-Death Task Types}\\\\n\\\\\\\\label{app:daf-sensitivity}\\\\n\\\\nTable~\\\\\\\\ref{tab:daf-sensitivity} reports DAF estimates with and without \\\\\\\\texttt{find-non-living-thing}, the only task type with zero death rate across all three models.\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\\\\\\centering\\\\n\\\\\\\\small\\\\n\\\\\\\\begin{tabular}{lcc}\\\\n\\\\\\\\toprule\\\\n\\\\\\\\textbf{Model} & \\\\\\\\textbf{DAF (11 tasks)} & \\\\\\\\textbf{DAF (10 tasks, excl.\\\\\\\\ zero-death)} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nQwen2.5-7B-Instruct & 90.4\\\\\\\\% [81.3, 99.1] & 100.0\\\\\\\\% [100.0, 100.0] \\\\\\\\\\\\\\\\\\\\nLlama-3.1-8B-Instruct & 88.2\\\\\\\\% [80.2, 95.1] & 97.0\\\\\\\\% [91.3, 100.0] \\\\\\\\\\\\\\\\\\\\nGemma-2-9B-it & 89.7\\\\\\\\% [68.8, 100.0] & 99.9\\\\\\\\% [99.7, 100.0] \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\\\\\caption{DAF sensitivity analysis. ``10 tasks'' excludes \\\\\\\\texttt{find-non-living-thing} (the only task type with zero death rate). Bootstrap 95\\\\\\\\% CIs ($B{=}10{,}000$, seed 42). Full-sample CIs use cluster bootstrap ($K{=}11$); exclusion CIs use episode-level bootstrap over the remaining 10 task types.}\\\\n\\\\\\\\label{tab:daf-sensitivity}\\\\n\\\\\\\\end{table}\\\\n\\\\nFor the 10 task types with nonzero death rates, DAF exceeds 97\\\\\\\\% across all three model families, confirming that the wider CIs in the full analysis reflect the mechanical effect of including a zero-death task type rather than method instability.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.88}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0f8d6455-98e5-42da-8fef-7f343087162d",
+            "uuid": "b7f8bd4c-4339-452c-9eff-b6aef805158b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\\documentclass[11pt]{article}\\\\n\\\\n\\\\\\\\usepackage[review]{acl}\\\\n\\\\n\\\\\\\\usepackage{times}\\\\n\\\\\\\\usepackage{latexsym}\\\\n\\\\\\\\usepackage[T1]{fontenc}\\\\n\\\\\\\\usepackage[utf8]{inputenc}\\\\n\\\\\\\\usepackage{microtype}\\\\n\\\\\\\\usepackage{graphicx}\\\\n\\\\\\\\graphicspath{{figures/}}\\\\n\\\\\\\\usepackage{booktabs}\\\\n\\\\\\\\usepackage{amsmath}\\\\n\\\\\\\\usepackage{amssymb}\\\\n\\\\\\\\usepackage{algorithm}\\\\n\\\\\\\\usepackage{enumitem}\\\\n\\\\\\\\usepackage{algorithmic}\\\\n\\\\n\\\\\\\\title{Death Avoidance as a Dominant Routing Signal:\\\\\\\\\\\\\\\\A Counterfactual Analysis on ScienceWorld}\\\\n\\\\n\\\\\\\\author{Anonymous}\\\\n\\\\n\\\\\\\\begin{document}\\\\n\\\\\\\\maketitle\\\\n\\\\n\\\\\\\\input{abstract}\\\\n\\\\\\\\input{introduction}\\\\n\\\\\\\\input{method}\\\\n\\\\\\\\input{experiments}\\\\n\\\\\\\\input{related_work}\\\\n\\\\\\\\input{discussion}\\\\n\\\\\\\\input{conclusion}\\\\n\\\\n\\\\\\\\section*{Limitations}\\\\n\\\\nOur primary analysis uses a single environment (ScienceWorld, 11 of 30 task types) with one backbone (Qwen2.5-7B-Instruct); generalization requires further validation. The $-100$ death penalty amplifies DAF; environments with softer penalties would exhibit lower DAF values (Appendix~\\\\\\\\ref{app:penalty}). The 19 excluded task types (63\\\\\\\\%) lack routing signal because both strategies typically time out within 30 steps; increasing the step budget could surface additional signal. Our internal-reasoning baseline uses single-pass ReAct~\\\\\\\\citep{react-2023}; more sophisticated strategies (e.g., Reflexion~\\\\\\\\citep{reflexion-2023} or Tree-of-Thought backtracking~\\\\\\\\citep{tot-2023}) may reduce internal death rates and lower DAF. Episode-level labels may assign suboptimal routing to individual steps, particularly those preceding death events, and training on pure-strategy trajectories introduces distribution shift at deployment~\\\\\\\\citep{dagger-2011}. Cross-environment analyses on MATH and ALFWorld (\\\\\\\\S\\\\\\\\ref{sec:cross-env}, \\\\\\\\S\\\\\\\\ref{sec:discussion}) provide supporting evidence but do not conclusively establish generalization. A Llama-3.1-8B-Instruct replication (7 task types, $N{=}70$; Appendix~\\\\\\\\ref{app:cross-model}) confirms direction-consistent death patterns for all tasks, though both models are in the 7--8B parameter range; validation at larger scales remains future work.\\\\n\\\\n\\\\\\\\section*{Ethics Statement}\\\\n\\\\nThis work uses ScienceWorld \\\\\\\\cite{scienceworld-2022}, a publicly available text-based simulation environment, and does not involve human subjects or private data. All language models are accessed via standard APIs or publicly released weights. We report computational costs: approximately 40 GPU-hours on two consumer GPUs for data collection, router training, and evaluation. Code and data will be released upon acceptance.\\\\n\\\\n\\\\\\\\bibliography{references}\\\\n\\\\n\\\\\\\\appendix\\\\n\\\\n\\\\\\\\section{Labeling Quality Audit}\\\\n\\\\\\\\label{app:labeling}\\\\n\\\\nA potential concern is oracle circularity: whether episode-level labels reflect tie-breaking artifacts rather than genuine modality differences. We audit all 245 labels. Of the 150 \\\\\\\\texttt{no\\\\\\\\_preference} labels (61.2\\\\\\\\%), 115 (46.9\\\\\\\\%) are both-alive ties and 35 (14.3\\\\\\\\%) are both-dead, all excluded from router training. The remaining 95 training labels are entirely genuine: 75 from death asymmetry (70 deterministic-preferred, 5 internal-preferred) and 20 from score comparison with both strategies surviving (16 deterministic-preferred, 4 internal-preferred). Zero labels depend on tie-breaking. Retraining the router using only death-asymmetry labels yields step-level balanced accuracy of 57.3\\\\\\\\%, within 1$\\\\\\\\sigma$ of the full-label retrain (57.6 $\\\\\\\\pm$ 0.5\\\\\\\\%, step-level Trainer evaluation); score-comparison labels contribute negligible additional signal. (Step-level metrics are used here for the relative comparison; as shown in \\\\\\\\S\\\\\\\\ref{sec:router-diagnostic}, absolute generalization to new episodes is near chance.) The 97.4\\\\\\\\% step-level tie rate (\\\\\\\\S\\\\\\\\ref{sec:collection}) further motivates episode-level over step-level labeling.\\\\n\\\\n\\\\\\\\section{Per-Task Decomposition}\\\\n\\\\\\\\label{app:per-task}\\\\nWe select 11 of ScienceWorld's 30 task types via prescreening: task types where both strategies complete at least one episode within the 30-step budget are retained; types where both strategies time out on all seed variations\\\\n\\\\n... [截断: 输出过长，省略 15455 字符] ...\\\\n\\\\nenalty magnitudes.\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\\\\\\centering\\\\n\\\\\\\\small\\\\n\\\\\\\\begin{tabular}{@{}rccl@{}}\\\\n\\\\\\\\toprule\\\\n$P$ & $r$ & $p$ & Sig.\\\\\\\\ ($\\\\\\\\alpha{=}0.05$) \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n10 & $-0.08$ & $0.813$ & No \\\\\\\\\\\\\\\\\\\\n25 & $0.51$ & $0.108$ & No \\\\\\\\\\\\\\\\\\\\n50 & $0.86$ & $0.0006$ & Yes \\\\\\\\\\\\\\\\\\\\n100\\\\\\\\textsuperscript{*} & $0.97$ & $8 \\\\\\\\times 10^{-7}$ & Yes \\\\\\\\\\\\\\\\\\\\n200 & $0.99$ & $1 \\\\\\\\times 10^{-9}$ & Yes \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\\\\\caption{Pearson $r$ between per-task death-rate differential and $\\\\\\\\Delta_{\\\\\\\\text{full}}(P)$ across penalty magnitudes. The correlation is non-significant at low penalties and emerges at $P \\\\\\\\geq 50$, reflecting the transition from non-death-dominated to death-dominated score gaps. \\\\\\\\textsuperscript{*}Default ScienceWorld setting.}\\\\n\\\\\\\\label{tab:penalty-correlation}\\\\n\\\\\\\\end{table}\\\\n\\\\nThis sharpens our central finding: death is not merely the dominant component of routing signal; it is effectively the \\\\\\\\emph{only} component that generates differential routing signal in ScienceWorld. At low penalties, the death contribution is small and $\\\\\\\\Delta_{\\\\\\\\text{full}}$ reduces to $\\\\\\\\Delta_{\\\\\\\\text{nd}} \\\\\\\\approx 2.84$, which is near-uniform across task types ($\\\\\\\\text{mean non-death gap} = -1.19$ excluding the \\\\\\\\texttt{find-non-living-thing} outlier); consequently, death-rate differential has no predictive power. As $P$ increases, the death term dominates $\\\\\\\\Delta_{\\\\\\\\text{full}}$, and the correlation sharpens because death rates \\\\\\\\emph{are} the performance gap. The DAF values in Table~\\\\\\\\ref{tab:penalty-sensitivity} increase monotonically with $P$, but this is a mathematical consequence of the decomposition ($\\\\\\\\text{DAF} = \\\\\\\\delta P / (\\\\\\\\delta P + \\\\\\\\Delta_{\\\\\\\\text{nd}})$), not evidence of mechanism robustness.\\\\n\\\\n\\\\\\\\section{Cross-Model Verification}\\\\n\\\\\\\\label{app:cross-model}\\\\n\\\\nTo test whether the death-avoidance finding generalizes beyond Qwen2.5-7B-Instruct, we replicate the counterfactual analysis with Llama-3.1-8B-Instruct on 7 task types ($N{=}70$ episode pairs, 10 episodes per task). The results are strongly consistent with the Qwen findings: 24 episodes (34.3\\\\\\\\%) are deterministic-preferred, \\\\\\\\textbf{0} (0\\\\\\\\%) are internal-preferred, and 46 (65.7\\\\\\\\%) show no preference. The internal strategy dies in 58.6\\\\\\\\% of episodes versus 24.3\\\\\\\\% for deterministic (death-rate differential $+34.3\\\\\\\\%$), compared to $+26.6\\\\\\\\%$ for Qwen2.5-7B. Direction consistency is perfect: all 7 task types show higher internal than deterministic death rates (7/7, compared to 10/11 for Qwen). The larger death-rate differential ($+34.3\\\\\\\\%$ vs.\\\\\\\\ $+26.6\\\\\\\\%$) and the absence of any internal-preferred episodes (0 vs.\\\\\\\\ 9 for Qwen) suggest that Llama-3.1-8B is more vulnerable to hallucination-induced death, amplifying the death-avoidance effect. These results confirm that the death-avoidance dominance is not specific to the Qwen model family.\\\\n\\\\n\\\\n\\\\\\\\section{DAF Sensitivity to Zero-Death Task Types}\\\\n\\\\\\\\label{app:daf-sensitivity}\\\\n\\\\nTable~\\\\\\\\ref{tab:daf-sensitivity} reports DAF estimates with and without \\\\\\\\texttt{find-non-living-thing}, the only task type with zero death rate across all three models.\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\\\\\\centering\\\\n\\\\\\\\small\\\\n\\\\\\\\begin{tabular}{lcc}\\\\n\\\\\\\\toprule\\\\n\\\\\\\\textbf{Model} & \\\\\\\\textbf{DAF (11 tasks)} & \\\\\\\\textbf{DAF (10 tasks, excl.\\\\\\\\ zero-death)} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nQwen2.5-7B-Instruct & 90.4\\\\\\\\% [81.3, 99.1] & 100.0\\\\\\\\% [100.0, 100.0] \\\\\\\\\\\\\\\\\\\\nLlama-3.1-8B-Instruct & 88.2\\\\\\\\% [80.2, 95.1] & 97.0\\\\\\\\% [91.3, 100.0] \\\\\\\\\\\\\\\\\\\\nGemma-2-9B-it & 89.7\\\\\\\\% [68.8, 100.0] & 99.9\\\\\\\\% [99.7, 100.0] \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\\\\\caption{DAF sensitivity analysis. ``10 tasks'' excludes \\\\\\\\texttt{find-non-living-thing} (the only task type with zero death rate). Bootstrap 95\\\\\\\\% CIs ($B{=}10{,}000$, seed 42). Full-sample CIs use cluster bootstrap ($K{=}11$); exclusion CIs use episode-level bootstrap over the remaining 10 task types.}\\\\n\\\\\\\\label{tab:daf-sensitivity}\\\\n\\\\\\\\end{table}\\\\n\\\\nFor the 10 task types with nonzero death rates, DAF exceeds 97\\\\\\\\% across all three model families, confirming that the wider CIs in the full analysis reflect the mechanical effect of including a zero-death task type rather than method instability.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.88}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\\documentclass[11pt]{article}\\n\\n\\\\usepackage[review]{acl}\\n\\n\\\\usepackage{times}\\n\\\\usepackage{latexsym}\\n\\\\usepackage[T1]{fontenc}\\n\\\\usepackage[utf8]{inputenc}\\n\\\\usepackage{microtype}\\n\\\\usepackage{graphicx}\\n\\\\graphicspath{{figures/}}\\n\\\\usepackage{booktabs}\\n\\\\usepackage{amsmath}\\n\\\\usepackage{amssymb}\\n\\\\usepackage{algorithm}\\n\\\\usepackage{enumitem}\\n\\\\usepackage{algorithmic}\\n\\n\\\\title{Death Avoidance as a Dominant Routing Signal:\\\\\\\\A Counterfactual Analysis on ScienceWorld}\\n\\n\\\\author{Anonymous}\\n\\n\\\\begin{document}\\n\\\\maketitle\\n\\n\\\\input{abstract}\\n\\\\input{introduction}\\n\\\\input{method}\\n\\\\input{experiments}\\n\\\\input{related_work}\\n\\\\input{discussion}\\n\\\\input{conclusion}\\n\\n\\\\section*{Limitations}\\n\\nOur primary analysis uses a single environment (ScienceWorld, 11 of 30 task types) with one backbone (Qwen2.5-7B-Instruct); generalization requires further validation. The $-100$ death penalty amplifies DAF; environments with softer penalties would exhibit lower DAF values (Appendix~\\\\ref{app:penalty}). The 19 excluded task types (63\\\\%) lack routing signal because both strategies typically time out within 30 steps; increasing the step budget could surface additional signal. Our internal-reasoning baseline uses single-pass ReAct~\\\\citep{react-2023}; more sophisticated strategies (e.g., Reflexion~\\\\citep{reflexion-2023} or Tree-of-Thought backtracking~\\\\citep{tot-2023}) may reduce internal death rates and lower DAF. Episode-level labels may assign suboptimal routing to individual steps, particularly those preceding death events, and training on pure-strategy trajectories introduces distribution shift at deployment~\\\\citep{dagger-2011}. Cross-environment analyses on MATH and ALFWorld (\\\\S\\\\ref{sec:cross-env}, \\\\S\\\\ref{sec:discussion}) provide supporting evidence but do not conclusively establish generalization. A Llama-3.1-8B-Instruct replication (7 task types, $N{=}70$; Appendix~\\\\ref{app:cross-model}) confirms direction-consistent death patterns for all tasks, though both models are in the 7--8B parameter range; validation at larger scales remains future work.\\n\\n\\\\section*{Ethics Statement}\\n\\nThis work uses ScienceWorld \\\\cite{scienceworld-2022}, a publicly available text-based simulation environment, and does not involve human subjects or private data. All language models are accessed via standard APIs or publicly released weights. We report computational costs: approximately 40 GPU-hours on two consumer GPUs for data collection, router training, and evaluation. Code and data will be released upon acceptance.\\n\\n\\\\bibliography{references}\\n\\n\\\\appendix\\n\\n\\\\section{Labeling Quality Audit}\\n\\\\label{app:labeling}\\n\\nA potential concern is oracle circularity: whether episode-level labels reflect tie-breaking artifacts rather than genuine modality differences. We audit all 245 labels. Of the 150 \\\\texttt{no\\\\_preference} labels (61.2\\\\%), 115 (46.9\\\\%) are both-alive ties and 35 (14.3\\\\%) are both-dead, all excluded from router training. The remaining 95 training labels are entirely genuine: 75 from death asymmetry (70 deterministic-preferred, 5 internal-preferred) and 20 from score comparison with both strategies surviving (16 deterministic-preferred, 4 internal-preferred). Zero labels depend on tie-breaking. Retraining the router using only death-asymmetry labels yields step-level balanced accuracy of 57.3\\\\%, within 1$\\\\sigma$ of the full-label retrain (57.6 $\\\\pm$ 0.5\\\\%, step-level Trainer evaluation); score-comparison labels contribute negligible additional signal. (Step-level metrics are used here for the relative comparison; as shown in \\\\S\\\\ref{sec:router-diagnostic}, absolute generalization to new episodes is near chance.) The 97.4\\\\% step-level tie rate (\\\\S\\\\ref{sec:collection}) further motivates episode-level over step-level labeling.\\n\\n\\\\section{Per-Task Decomposition}\\n\\\\label{app:per-task}\\nWe select 11 of ScienceWorld's 30 task types via prescreening: task types where both strategies complete at least one episode within the 30-step budget are retained; types where both strategies time out on all seed variations\\n\\n... [截断: 输出过长，省略 15455 字符] ...\\n\\nenalty magnitudes.\\n\\n\\\\begin{table}[h]\\n\\\\centering\\n\\\\small\\n\\\\begin{tabular}{@{}rccl@{}}\\n\\\\toprule\\n$P$ & $r$ & $p$ & Sig.\\\\ ($\\\\alpha{=}0.05$) \\\\\\\\\\n\\\\midrule\\n10 & $-0.08$ & $0.813$ & No \\\\\\\\\\n25 & $0.51$ & $0.108$ & No \\\\\\\\\\n50 & $0.86$ & $0.0006$ & Yes \\\\\\\\\\n100\\\\textsuperscript{*} & $0.97$ & $8 \\\\times 10^{-7}$ & Yes \\\\\\\\\\n200 & $0.99$ & $1 \\\\times 10^{-9}$ & Yes \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\\\caption{Pearson $r$ between per-task death-rate differential and $\\\\Delta_{\\\\text{full}}(P)$ across penalty magnitudes. The correlation is non-significant at low penalties and emerges at $P \\\\geq 50$, reflecting the transition from non-death-dominated to death-dominated score gaps. \\\\textsuperscript{*}Default ScienceWorld setting.}\\n\\\\label{tab:penalty-correlation}\\n\\\\end{table}\\n\\nThis sharpens our central finding: death is not merely the dominant component of routing signal; it is effectively the \\\\emph{only} component that generates differential routing signal in ScienceWorld. At low penalties, the death contribution is small and $\\\\Delta_{\\\\text{full}}$ reduces to $\\\\Delta_{\\\\text{nd}} \\\\approx 2.84$, which is near-uniform across task types ($\\\\text{mean non-death gap} = -1.19$ excluding the \\\\texttt{find-non-living-thing} outlier); consequently, death-rate differential has no predictive power. As $P$ increases, the death term dominates $\\\\Delta_{\\\\text{full}}$, and the correlation sharpens because death rates \\\\emph{are} the performance gap. The DAF values in Table~\\\\ref{tab:penalty-sensitivity} increase monotonically with $P$, but this is a mathematical consequence of the decomposition ($\\\\text{DAF} = \\\\delta P / (\\\\delta P + \\\\Delta_{\\\\text{nd}})$), not evidence of mechanism robustness.\\n\\n\\\\section{Cross-Model Verification}\\n\\\\label{app:cross-model}\\n\\nTo test whether the death-avoidance finding generalizes beyond Qwen2.5-7B-Instruct, we replicate the counterfactual analysis with Llama-3.1-8B-Instruct on 7 task types ($N{=}70$ episode pairs, 10 episodes per task). The results are strongly consistent with the Qwen findings: 24 episodes (34.3\\\\%) are deterministic-preferred, \\\\textbf{0} (0\\\\%) are internal-preferred, and 46 (65.7\\\\%) show no preference. The internal strategy dies in 58.6\\\\% of episodes versus 24.3\\\\% for deterministic (death-rate differential $+34.3\\\\%$), compared to $+26.6\\\\%$ for Qwen2.5-7B. Direction consistency is perfect: all 7 task types show higher internal than deterministic death rates (7/7, compared to 10/11 for Qwen). The larger death-rate differential ($+34.3\\\\%$ vs.\\\\ $+26.6\\\\%$) and the absence of any internal-preferred episodes (0 vs.\\\\ 9 for Qwen) suggest that Llama-3.1-8B is more vulnerable to hallucination-induced death, amplifying the death-avoidance effect. These results confirm that the death-avoidance dominance is not specific to the Qwen model family.\\n\\n\\n\\\\section{DAF Sensitivity to Zero-Death Task Types}\\n\\\\label{app:daf-sensitivity}\\n\\nTable~\\\\ref{tab:daf-sensitivity} reports DAF estimates with and without \\\\texttt{find-non-living-thing}, the only task type with zero death rate across all three models.\\n\\n\\\\begin{table}[h]\\n\\\\centering\\n\\\\small\\n\\\\begin{tabular}{lcc}\\n\\\\toprule\\n\\\\textbf{Model} & \\\\textbf{DAF (11 tasks)} & \\\\textbf{DAF (10 tasks, excl.\\\\ zero-death)} \\\\\\\\\\n\\\\midrule\\nQwen2.5-7B-Instruct & 90.4\\\\% [81.3, 99.1] & 100.0\\\\% [100.0, 100.0] \\\\\\\\\\nLlama-3.1-8B-Instruct & 88.2\\\\% [80.2, 95.1] & 97.0\\\\% [91.3, 100.0] \\\\\\\\\\nGemma-2-9B-it & 89.7\\\\% [68.8, 100.0] & 99.9\\\\% [99.7, 100.0] \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\\\caption{DAF sensitivity analysis. ``10 tasks'' excludes \\\\texttt{find-non-living-thing} (the only task type with zero death rate). Bootstrap 95\\\\% CIs ($B{=}10{,}000$, seed 42). Full-sample CIs use cluster bootstrap ($K{=}11$); exclusion CIs use episode-level bootstrap over the remaining 10 task types.}\\n\\\\label{tab:daf-sensitivity}\\n\\\\end{table}\\n\\nFor the 10 task types with nonzero death rates, DAF exceeds 97\\\\% across all three model families, confirming that the wider CIs in the full analysis reflect the mechanical effect of including a zero-death task type rather than method instability.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.88}}"
+              }
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有替换已生效。现在编译验证。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0f8d6455-98e5-42da-8fef-7f343087162d",
+            "uuid": "143ffc32-9b25-4251-8716-645630b36e1f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KMisPF1LmrMCWfheAmzYDW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3053,
+                "cache_read_input_tokens": 33293,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3053
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TDGz9B9M74xJuHQhgh1ewq",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westb-13313",
+                "command": "cd /root/autodl-tmp/simgate-modular-routing/docs/paper && latexmk -pdf main.tex 2>&1 | tail -20",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0f8d6455-98e5-42da-8fef-7f343087162d",
+            "uuid": "414d9835-2025-4ad5-b4b7-4cc0cf97ad4e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KMisPF1LmrMCWfheAmzYDW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3053,
+                "cache_read_input_tokens": 33293,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3053
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-21T01:12:29.687Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TDGz9B9M74xJuHQhgh1ewq",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/\\\\nfonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u\\\\nrw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utm\\\\nb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/s\\\\nhare/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>\\\\nOutput written on main.pdf (17 pages, 444987 bytes).\\\\nTranscript written on main.log.\\\\nLatexmk: Found input bbl file 'main.bbl'\\\\nLatexmk: Log file says output to 'main.pdf'\\\\nLatexmk: List of undefined refs and citations:\\\\n  Reference `sec:experiments' on page 16 undefined on input line 33\\\\n  Reference `sec:experiments' on page 16 undefined on input line 45\\\\n  Reference `sec:experiments' on page 16 undefined on input line 56\\\\n  Reference `sec:experiments' on page 16 undefined on input line 59\\\\nLatexmk: Examining 'main.log'\\\\n=== TeX engine is 'pdfTeX'\\\\nLatexmk: Found bibliography file(s) [references.bib]\\\\nLatexmk: Summary of warnings from last run of *latex:\\\\n  Latex failed to resolve 4 reference(s)\\\\nLatexmk: All targets (main.pdf) are up-to-date\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.2}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0f8d6455-98e5-42da-8fef-7f343087162d",
+            "uuid": "fa981221-b3f6-44fc-bba7-5972be16419c",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/\\\\nfonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u\\\\nrw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utm\\\\nb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/s\\\\nhare/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>\\\\nOutput written on main.pdf (17 pages, 444987 bytes).\\\\nTranscript written on main.log.\\\\nLatexmk: Found input bbl file 'main.bbl'\\\\nLatexmk: Log file says output to 'main.pdf'\\\\nLatexmk: List of undefined refs and citations:\\\\n  Reference `sec:experiments' on page 16 undefined on input line 33\\\\n  Reference `sec:experiments' on page 16 undefined on input line 45\\\\n  Reference `sec:experiments' on page 16 undefined on input line 56\\\\n  Reference `sec:experiments' on page 16 undefined on input line 59\\\\nLatexmk: Examining 'main.log'\\\\n=== TeX engine is 'pdfTeX'\\\\nLatexmk: Found bibliography file(s) [references.bib]\\\\nLatexmk: Summary of warnings from last run of *latex:\\\\n  Latex failed to resolve 4 reference(s)\\\\nLatexmk: All targets (main.pdf) are up-to-date\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.2}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/\\nfonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u\\nrw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utm\\nb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/s\\nhare/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>\\nOutput written on main.pdf (17 pages, 444987 bytes).\\nTranscript written on main.log.\\nLatexmk: Found input bbl file 'main.bbl'\\nLatexmk: Log file says output to 'main.pdf'\\nLatexmk: List of undefined refs and citations:\\n  Reference `sec:experiments' on page 16 undefined on input line 33\\n  Reference `sec:experiments' on page 16 undefined on input line 45\\n  Reference `sec:experiments' on page 16 undefined on input line 56\\n  Reference `sec:experiments' on page 16 undefined on input line 59\\nLatexmk: Examining 'main.log'\\n=== TeX engine is 'pdfTeX'\\nLatexmk: Found bibliography file(s) [references.bib]\\nLatexmk: Summary of warnings from last run of *latex:\\n  Latex failed to resolve 4 reference(s)\\nLatexmk: All targets (main.pdf) are up-to-date\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.2}}"
+              }
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译成功，0 errors。4 个 undefined `sec:experiments` 引用是已有的（与本次修改无关）。输出 17 页 PDF。\n\n### Diff 总结\n\n| 位置 | 修改前 | 修改后 |\n|------|--------|--------|\n| 列头 | `DAF (10 tasks)` | `DAF (10 tasks, excl.\\ zero-death)` |\n| Qwen 11-task CI | [81.4, 99.1] | [81.3, 99.1] |\n| Llama 11-task CI | [80.0, 95.1] | [80.2, 95.1] |\n| Gemma 11-task CI | [79.5, 98.4] | [68.8, 100.0] |\n| Llama 10-task CI | [91.5, 100.0] | [91.3, 100.0] |\n| Caption | \"across all models). Episode-level bootstrap 95% CIs ($B = 10,000$).\" | \"zero death rate). Bootstrap 95% CIs ($B{=}10{,}000$, seed 42). Full-sample CIs use cluster bootstrap ($K{=}11$); exclusion CIs use episode-level bootstrap over the remaining 10 task types.\" |"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0f8d6455-98e5-42da-8fef-7f343087162d",
+            "uuid": "5e5258ed-66ad-4312-8323-d3f19eee92af",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MhZDpo6iawwrSfrGCkDUVc",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 686,
+                "cache_read_input_tokens": 36346,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 686
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译成功，0 errors。4 个 undefined `sec:experiments` 引用是已有的（与本次修改无关）。输出 17 页 PDF。\n\n### Diff 总结\n\n| 位置 | 修改前 | 修改后 |\n|------|--------|--------|\n| 列头 | `DAF (10 tasks)` | `DAF (10 tasks, excl.\\ zero-death)` |\n| Qwen 11-task CI | [81.4, 99.1] | [81.3, 99.1] |\n| Llama 11-task CI | [80.0, 95.1] | [80.2, 95.1] |\n| Gemma 11-task CI | [79.5, 98.4] | [68.8, 100.0] |\n| Llama 10-task CI | [91.5, 100.0] | [91.3, 100.0] |\n| Caption | \"across all models). Episode-level bootstrap 95% CIs ($B = 10,000$).\" | \"zero death rate). Bootstrap 95% CIs ($B{=}10{,}000$, seed 42). Full-sample CIs use cluster bootstrap ($K{=}11$); exclusion CIs use episode-level bootstrap over the remaining 10 task types.\" |"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 82481,
+            "duration_api_ms": 74915,
+            "num_turns": 11,
+            "stop_reason": "end_turn",
+            "session_id": "0f8d6455-98e5-42da-8fef-7f343087162d",
+            "total_cost_usd": 0.42591674999999996,
+            "usage": {
+              "input_tokens": 14,
+              "cache_creation_input_tokens": 25191,
+              "cache_read_input_tokens": 299856,
+              "output_tokens": 4669,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 25191,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 340,
+                  "cache_read_input_tokens": 36346,
+                  "cache_creation_input_tokens": 686,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 686
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1665,
+                "outputTokens": 17,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.00175,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 14,
+                "outputTokens": 4669,
+                "cacheReadInputTokens": 299856,
+                "cacheCreationInputTokens": 25191,
+                "webSearchRequests": 0,
+                "costUSD": 0.42416675,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "a369ae6d-bff6-445d-a646-c355275e5c39"
+          },
+          "id": "event-000033"
+        }
+      ],
+      "message_count": 33
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-sensitivity-table-ci.md"
+}

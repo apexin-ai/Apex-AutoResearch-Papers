@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "af3c47d59adf1f9d3794",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "paper reference fix",
+  "task_key": "worker_paper_reference-fix_20260514T120408",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_reference-fix_20260514T120408_result.json",
+    "occurrence": 1,
+    "bytes": 1508,
+    "sha256": "8dbcd5b5a4ab4b5965614cffdb82fda2a7c1cc9964f261f9e64d8a022f920cde"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。修正清单总结：\n\n## references.bib 修正清单\n\n| # | Key | 修正内容 | 验证状态 |\n|---|-----|---------|---------|\n| 1 | `toolformer-2024` | year 2024→2023, NeurIPS 2023 | ✅ 已验证 |\n| 2 | `chameleon-2024` | year 2024→2023, NeurIPS 2023 | ✅ 已验证 |\n| 3 | `retool-2026` | year 2026→2025, arXiv:2504.11536 | ✅ 已验证 |\n| 4 | `cogrouter-2026` | 作者 Yang, Jiahao → Yang, Ruihan | ✅ 已验证 |\n| 5 | `ares-2026` | 作者 Yang, Zhuoqun → Yang, Jingbo | ✅ 已验证 |\n| 6 | `mixture-of-recursions-2025` | 作者 Bae, Jongho → Bae, Sangmin | ✅ 已验证 |\n| 7 | `mtrouter-2026` | 作者 Zhang, Yifan → Zhang, Yiqun, ACL 2026 | ✅ 已验证 |\n| 8 | `itp-2026` | 作者 Liu, Haoyu → Liu, Youwei | ✅ 已验证 |\n| 9 | `dynathink-2025` | 作者 Anonymous → Yu, Xiao, arXiv:2506.00320 | ✅ 已验证 |\n| 10 | `envsimbench-2026` | 幻觉引用，已删除（bib 和 tex 均不存在） | ✅ |\n| 11 | `dagger-2011` | 新增 Ross et al., AISTATS 2011 | ✅ 已验证 |\n| 12 | `art-2023` | journal 字段已有 `arXiv preprint arXiv:2303.09014` | ✅ 无需修改 |\n\n**输出位置：**\n- 本地 docs: `docs/paper/references.bib`\n- 本地 artifacts: `artifacts/_project/paper/references.bib`\n- 服务器: `/root/autodl-tmp/simgate-modular-routing/paper/references.bib`\n\n共 13 个条目（12 原有 + 1 新增 - 1 删除），所有 @article 有 journal 字段，所有 @inproceedings 有 booktitle 字段。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-reference-fix.md"
+}

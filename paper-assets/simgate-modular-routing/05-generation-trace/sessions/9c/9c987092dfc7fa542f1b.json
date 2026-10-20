@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9c987092dfc7fa542f1b",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "research check logprobs",
+  "task_key": "worker_research_check-logprobs_20260517T120129",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_check-logprobs_20260517T120129_result.json",
+    "occurrence": 1,
+    "bytes": 1135,
+    "sha256": "2cd8f969cf7e5e5c1aa706b91a1b6ba648c92c63b66e0178ba3337699b7ac3f8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n**数据中是否有 logprobs：否**\n\nEpisode 数据（`episodes.jsonl`、`labeled_steps.jsonl`、`episode_details.jsonl`）只记录了 step-level 的 action、score、observation 等信息，没有任何 logprobs/token_probs 相关字段。LLM 的原始输出文本（raw ReAct output）也未被保存到数据中。\n\n**代码中 vLLM API 调用是否请求了 logprobs：否**\n\n`src/llm_agent.py:268-272`，`SamplingParams` 只传了三个参数：\n```python\nparams = SamplingParams(\n    temperature=max(temperature, 0.01),\n    max_tokens=self.max_new_tokens,\n    stop=[\"Observation:\", \"\\nObservation\"],\n)\n```\n没有设置 `logprobs` 参数。且 `_generate` 方法（L274）只提取了 `outputs[0].outputs[0].text`，丢弃了其他所有返回信息。\n\n**加 logprobs 的改动量**\n\n很小，两处修改即可：\n1. `SamplingParams` 加 `logprobs=5`（或需要的 top-k 数量）\n2. `_generate` 返回值从纯 text 改为同时返回 `outputs[0].outputs[0].logprobs`\n\n但需要**重新跑 245 episodes**才能拿到带 logprobs 的数据，现有数据无法追溯。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-check-logprobs.md"
+}

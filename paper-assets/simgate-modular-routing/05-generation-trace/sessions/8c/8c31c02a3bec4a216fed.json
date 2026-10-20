@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8c31c02a3bec4a216fed",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh retry pid check",
+  "task_key": "worker_ssh_retry-pid-check_20260518T080305",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_retry-pid-check_20260518T080305_result.json",
+    "occurrence": 1,
+    "bytes": 1003,
+    "sha256": "d78da233159319e8481bfd9fb587da363b3c374cbf1f9d23a5760ceb481322a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n| 项目 | 值 |\n|------|-----|\n| **PID** | `899248` |\n| **tmux session** | `retry-dose-response` (创建于 May 18 14:42) |\n| **运行命令** | `python run_retry_dose_response.py --n-values 5 --episodes-per-task 20 --max-steps 30 --model Qwen2.5-7B-Instruct --api-base http://localhost:8000/v1 --seed 42` |\n| **运行时长** | ~1h20m（14:43 启动） |\n\n**进度：46/200 episodes（23%）**\n\n- `chemistry-mix`: 20/20 ✅\n- `find-animal`: 20/20 ✅\n- `freeze`: 6/20 🔄 进行中\n- `grow-fruit`: 0/20\n- `identify-life-stages-1`: 0/20\n- `identify-life-stages-2`: 0/20\n- `inclined-plane-determine-angle`: 0/20\n- `lifespan-longest-lived`: 0/20\n- `lifespan-longest-lived-then-shortest-lived`: 0/20\n- `measure-melting-point-unknown-substance`: 0/20\n\n共 10 个 task × 20 episodes = 200 total。当前条件 `n=5`，最新输出文件：`/root/autodl-tmp/simgate-modular-routing/results/retry_dose_response/retry_n5/freeze_ep005.json`（16:02 更新）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-retry-pid-check.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "6da79a9da2dbf15797a1",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "ssh minihack harder tasks pilot",
+  "task_key": "worker_ssh_minihack-harder-tasks-pilot_20260519T115207",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_minihack-harder-tasks-pilot_20260519T115207.log",
+    "occurrence": 1,
+    "bytes": 573089,
+    "sha256": "c26325c1c2d0aef348ba6f3a21983f65734e8531d39545bd67841373cb058e43"
+  },
+  "statistics": {
+    "messages": 320,
+    "user_turns": 0,
+    "tool_calls": 121,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 74,
+      "tool_call": 121,
+      "tool_result": 121,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 320,
+      "chunks": [
+        {
+          "path": "6da79a9da2dbf15797a1-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "6da79a9da2dbf15797a1-part-0002.json",
+          "message_count": 140
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-minihack-harder-tasks-pilot.md"
+}

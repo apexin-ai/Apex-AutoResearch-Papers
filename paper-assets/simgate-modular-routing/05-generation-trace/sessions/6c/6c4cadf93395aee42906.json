@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6c4cadf93395aee42906",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code 72b parallel 14838",
+  "task_key": "worker_code_72b-parallel-14838_20260517T151422",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_72b-parallel-14838_20260517T151422_result.json",
+    "occurrence": 1,
+    "bytes": 952,
+    "sha256": "ac9159c5e14c888a5b05c1cd0b40ce97880cb524e06f406531208f806396c718"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "一切正常。\n\n## 报告\n\n| 项目 | 状态 |\n|------|------|\n| **westb-13313 已完成** | chemistry-mix, find-animal, find-non-living-thing |\n| **westb-13313 正在跑** | freeze |\n| **westb-14838 分配 tasks** | grow-fruit, identify-life-stages-1, identify-life-stages-2, inclined-plane-determine-angle, lifespan-longest-lived, lifespan-longest-lived-then-shortest-lived, measure-melting-point-unknown-substance（7 个） |\n| **vLLM 72B AWQ** | 成功启动，GPU 1 占用 87GB，利用率 100%，~30 tok/s output |\n| **Collection PID** | 69734 |\n| **tmux session** | `72b-collect` |\n| **日志** | `/tmp/72b-collect.log` |\n\n注意事项：\n- GPU 1 VRAM 占用 87GB（比预期的 ~40GB 高，因为 CUDA graph capture + KV cache 填满了 90% 可用显存），正常运行无 OOM\n- 72B AWQ TP=1 在单卡 B200 上运行顺利，无需 `--quantization awq` 参数（vLLM 自动从 config.json 检测 AWQ 量化）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-72b-parallel-14838.md"
+}

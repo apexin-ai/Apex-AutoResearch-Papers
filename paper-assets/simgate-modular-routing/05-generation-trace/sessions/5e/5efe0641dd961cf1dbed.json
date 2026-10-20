@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5efe0641dd961cf1dbed",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "research ref verify websearch",
+  "task_key": "worker_research_ref-verify-websearch_20260526T104021",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_ref-verify-websearch_20260526T104021_result.json",
+    "occurrence": 1,
+    "bytes": 974,
+    "sha256": "5ba9e475e8d32521a908d46666577c1c2c9b37e913559b14b6b96f0262b3ad0c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证报告已写入 `artifacts/ref-audit/websearch_verification.md`。\n\n**9 条引用中 7 条需修改，2 条待核对 bib 确认**。关键发现：\n\n| 论文 | 核心问题 |\n|------|----------|\n| **ToolACE** | 第一作者是 Liu, Weiwen，不是 Zhang |\n| **Reflexion** | Edward Berman **确实是**第三作者，Director 疑虑可排除 |\n| **Agent-SafetyBench** | 实际 7 人，bib 多了 3 个不存在的作者；第五作者是 Junxiao 非 Junhao |\n| **AutoMix** | 实际 13 人，bib 仅 6 人，多处姓名错误，Tandon 不在作者列表中 |\n| **SALT** | 第三作者是 Qiaojing Yan，不是 David Yan |\n| **Amitai 2024** | 第二作者是 Yael Septon，不是 Guy Septon |\n| **Bonagiri 2025** | 作者顺序确认为 Bonagiri → Kumaraguru → Nguyen → Plaut |\n| **Pona 2025** | 已被 NeurIPS 2025 正式接收，venue 需从 arXiv 更新 |\n| **Gajcin 2023** | 是 Doctoral Consortium 论文，非正式会议论文 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-ref-verify-websearch.md"
+}

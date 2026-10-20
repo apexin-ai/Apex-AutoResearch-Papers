@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ec5068a86de577fd1f88",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code plan 008 v3 add eval",
+  "task_key": "worker_code_plan-008-v3-add-eval_20260515T150008",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan-008-v3-add-eval_20260515T150008_result.json",
+    "occurrence": 1,
+    "bytes": 999,
+    "sha256": "a27ac5745c5cca39ea1fa2023b12a0782daf5a6bc7ba6106a43d0233ef041f3e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 eval 完成。结果汇总：\n\n| Model | balanced_acc | internal_recall | det_recall |\n|-------|-------------|-----------------|------------|\n| Qwen3-0.6B | 0.3222 | 0.3333 | 0.3111 |\n| Qwen3-1.7B | 0.3759 | 0.4000 | 0.3519 |\n| Qwen3-4B | 0.3463 | 0.3667 | 0.3259 |\n| **Reference** (seed-robustness, 1.7B) | **0.554±0.052** | — | — |\n\n**问题**：三个模型的 balanced_acc 全部低于随机基线（0.5），远低于 seed-robustness 参考值。所有模型都大量预测 \"internal\"（真实分布 internal=30, det=270，但预测 internal ~187-196），说明模型没有学会正确输出 `[SIMULATE]` 前缀。\n\n这与 v2 遇到的问题类似。可能原因：\n1. v3 训练虽然用了 `implicit_router_sft.py`，但 `.bak` 文件存在说明脚本可能被修改过\n2. 需要对比 v3 训练的 `implicit_router_sft.py` 与 seed-robustness 使用的版本是否一致\n\n结果已保存到 `results/plan-008-v3/eval_qwen3_{0.6b,1.7b,4b}.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-008-v3-add-eval.md"
+}

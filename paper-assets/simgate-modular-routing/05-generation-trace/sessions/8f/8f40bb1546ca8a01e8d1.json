@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8f40bb1546ca8a01e8d1",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "paper emdash cleanup",
+  "task_key": "worker_paper_emdash-cleanup_20260521T135011",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_emdash-cleanup_20260521T135011_result.json",
+    "occurrence": 1,
+    "bytes": 3618,
+    "sha256": "5985c7e99c8a1058bcaf5dde305a83c2a30ccdb5a06f38f8368bdd3c1a172b79"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 替换清单\n\n1. [abstract.tex:2] `routing---deciding when to rely on internal reasoning versus external tool use---is` → `routing (deciding when to rely on internal reasoning versus external tool use) is` (插入语→括号)\n2. [abstract.tex:2] `death asymmetry---the internal strategy triggers catastrophic failure while the deterministic strategy survives` → `death asymmetry: the internal strategy triggers...` (定义→冒号)\n3. [abstract.tex:2] `mechanisms---no extractable signal and information asymmetry, respectively---demonstrating` → `mechanisms (no extractable signal and information asymmetry, respectively), demonstrating` (插入语→括号)\n4. [introduction.tex:4] `error-prone---the model may hallucinate...activated)---while` → `error-prone, as the model may hallucinate...activated), while` (插入语→逗号)\n5. [introduction.tex:15] `death asymmetry---a single mechanism` → `death asymmetry, a single mechanism` (定义→逗号)\n6. [experiments.tex:18] `ties---neither strategy outperforms the other---indicating` → `ties (neither strategy outperforms the other), indicating` (插入语→括号)\n7. [experiments.tex:78] `probes---not cross-domain validation---testing` → `probes (not cross-domain validation), testing` (插入语→括号)\n8. [experiments.tex:82] `admissible actions---an information asymmetry` → `admissible actions, an information asymmetry` (定义→逗号)\n9. [experiments.tex:82] `asymmetry---not death avoidance---drives` → `asymmetry, not death avoidance, drives` (插入语→逗号)\n10. [experiments.tex:112] `task-type-level---there is no step-level pattern` → `task-type-level: there is no step-level pattern` (定义→冒号)\n11. [experiments.tex:112] `data regime---though` → `data regime, though` (转折→逗号)\n12. [main.tex:43] `mismatch---applying correct-direction labels to uninformative steps---not` → `mismatch (applying correct-direction labels to uninformative steps), not` (插入语→括号)\n13. [main.tex:52] `routing---for example, by combining DAF analysis with online policy learning---is` → `routing (for example, by combining DAF analysis with online policy learning) is` (插入语→括号)\n14. [method.tex:67] `fraction---invariant to penalty magnitude---serves` → `fraction, invariant to penalty magnitude, serves` (插入语→逗号)\n15. [related_work.tex:15] `rewards---the closest setting to ours;` → `rewards, the closest setting to ours;` (定义→逗号)\n16. [保留] [introduction.tex:6] `assumption---that routing signal stems from diverse sources and a learned router can exploit it---remains untested` — 核心论点的修辞强调\n17. [保留] [experiments.tex:107] `always-deterministic---an \\emph{oracle degeneracy}` — 引入命名概念\n18. [保留] [method.tex:75] `steps---a granularity mismatch, not label error---explaining` — 关键方法论澄清\n19. [保留] [main.tex:777] `tasks---the opposite of a cherry-picking bias` — 强对比\n\n## 统计\n- 总 em-dash（正文）: 19 处 (修复前)\n- 替换: 15 处\n- 保留: 4 处\n- 最终: 4 处 (目标 3-5 ✓)\n- 表格占位符 `---`: 8 处 (未动)\n\n## 编译结果\n- Errors: 0\n- 总页数: 25\n\n## Page 8/9 边界\n- Page 8 末尾: Conclusion 开头 \"In ScienceWorld, death avoidance alone accounts for 78.9% of non-tie routing labels... a ~50-episode pilot suf-\"\n- Page 9 开头: \"-fices for build-vs-buy decisions in new environments.\" 然后 Limitations\n- ⚠️ **OVERFLOW**: Conclusion 溢出到 page 9（约 2 行），Limitations 从 page 9 line 668 开始"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-emdash-cleanup.md"
+}

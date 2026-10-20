@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bc29a6938ffaff6e07b6",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "analysis retry control done",
+  "task_key": "worker_analysis_retry-control-done_20260517T170412",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_retry-control-done_20260517T170412_result.json",
+    "occurrence": 1,
+    "bytes": 1507,
+    "sha256": "81f0c1289c8f880c8863951ef917f69d015c7b9e1a21bc3702770a635b52c5d6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## retry-control-baseline 状态报告\n\n### 完成状态\n- **retry-part2**: 正常完成 (80/80 episodes)\n- **retry-part1**: 崩溃退出，`openai.APIConnectionError: Connection error`，停在 identify-life-stages-1 ep011\n\n### 缺失数据\n- `identify-life-stages-1`: 只有 11/20 episodes（缺 9 个）\n- `identify-life-stages-2`: 0/20 episodes（完全缺失）\n- **总计 191/220 episodes，缺 29 个**\n\n### 各 task 统计\n\n| Task | Eps | Death% | Succ% |\n|------|-----|--------|-------|\n| chemistry-mix | 20 | 55.0% | 10.0% |\n| find-animal | 20 | 55.0% | 10.0% |\n| find-non-living-thing | 20 | 0.0% | 65.0% |\n| freeze | 20 | 45.0% | 5.0% |\n| grow-fruit | 20 | 45.0% | 25.0% |\n| identify-life-stages-1 | **11** | 54.5% | 0.0% |\n| inclined-plane-determine-angle | 20 | 50.0% | 5.0% |\n| lifespan-longest-lived | 20 | 40.0% | 15.0% |\n| lifespan-longest-lived-then-shortest-lived | 20 | 50.0% | 0.0% |\n| measure-melting-point-unknown-substance | 20 | 55.0% | 10.0% |\n\n### 总体对比（191 eps）\n\n| Metric | Retry Control | Reflexion Baseline |\n|--------|--------------|-------------------|\n| Death rate | **44.5%** | 31.4% |\n| Success rate | **15.2%** | 17.3% |\n\nRetry control 的 death rate 比 reflexion 高 13pp，success rate 低 2pp。需要补跑缺失的 29 episodes（identify-life-stages-1 剩余 9 个 + identify-life-stages-2 全部 20 个）。vLLM server（vllm-7b-retry, CUDA:3）仍在运行，可以直接重跑 part1 的剩余部分。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-retry-control-done.md"
+}

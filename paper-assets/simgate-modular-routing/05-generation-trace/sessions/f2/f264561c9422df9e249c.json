@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f264561c9422df9e249c",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "analysis daf threshold sensitivity",
+  "task_key": "worker_analysis_daf-threshold-sensitivity_20260516T060023",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_daf-threshold-sensitivity_20260516T060023_result.json",
+    "occurrence": 1,
+    "bytes": 1154,
+    "sha256": "f0974527067c04de685a53227b62473100f7ad98deae41bee2033f6c51aa1730"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果摘要：\n\n**验证通过**: T=-100 → DAF=90.4%, r=0.9698 ✓\n\n**Method 1 (绝对阈值)**:\n| T | avoidance | r |\n|---|---|---|\n| -100 | 90.4% | 0.9698 |\n| -50, -20 | 90.4% | 0.9698 (无中间分数) |\n| 0 | 100.0% | -0.13 |\n| 10 | 100.0% | 0.02 |\n| 20 | 88.5% | 0.20 |\n\n**Method 2 (相对 drop)**:\n| X% | avoidance | r |\n|---|---|---|\n| 50% | 87.4% | -0.52 |\n| 75% | 87.4% | 0.26 |\n| 90% | 100.0% | 0.08 |\n| 100% (=death) | 90.4% | 0.9698 |\n\n**Method 3 (Rank-based)**: Q1 阈值恰好是 -100 (42.9% episodes 死亡)，det-preferred 率 66.7% vs overall 35.1%（1.9x enrichment）。\n\n**结论**: DAF robust — 所有阈值下 avoidance fraction 均 > 87%（远超 70% 标准）。failure avoidance 不依赖于 -100 这个特定 threshold 选择。关键 insight: 因为 ScienceWorld 分数是 bimodal 的（-100 或 ≥0），T ∈ {-100, -50, -20} 和 X=100% 给出完全相同的结果。\n\n脚本: `/root/autodl-tmp/simgate-modular-routing/scripts/daf_threshold_sensitivity.py`\n结果: `/root/autodl-tmp/simgate-modular-routing/artifacts/daf-sensitivity-extended/threshold_sensitivity.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-daf-threshold-sensitivity.md"
+}

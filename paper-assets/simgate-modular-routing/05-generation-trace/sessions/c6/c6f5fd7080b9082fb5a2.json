@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c6f5fd7080b9082fb5a2",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code llama 70b setup",
+  "task_key": "worker_code_llama-70b-setup_20260523T221712",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama-70b-setup_20260523T221712_result.json",
+    "occurrence": 1,
+    "bytes": 141,
+    "sha256": "88c5e5be0e22d9125f44e39eade73990f557fd4ed396d98000406bfaee80b3bc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Download is ~35% through the slowest shards. Will resume in 20 minutes to check completion and proceed with vLLM server setup."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-llama-70b-setup.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "effae3621ce21bcf3c8d",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "paper phase3 case study",
+  "task_key": "worker_paper_phase3-case-study_20260522T233759",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_phase3-case-study_20260522T233759_result.json",
+    "occurrence": 1,
+    "bytes": 928,
+    "sha256": "550c89dd439e1da1abe598deb45125b4a46cea048ba3677d13e94c3029c3bb95"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据提取完成。文件写入 `artifacts/phase3_case_study_data.md`，包含 4 个案例：\n\n| Episode | Label | Det | Int | Gap | 核心差异 |\n|---------|-------|-----|-----|-----|---------|\n| EP3 (var 3) | det-preferred | 67 | 0 | +67 | Internal 全程发无效 `connect` 指令，从未 focus 任何物体；Det 正确 focus orange (+58) 并打开厨房门 (+9) |\n| EP17 (var 17) | det-preferred | 58 | 50 | +8 | 两边都成功，但 Det 选了 orange (58分)，Internal 选了 fountain (50分)——物体选择质量差异 |\n| EP12 (var 12) | internal-preferred | 58 | 67 | −9 | Det 犯语义错误——focus 了目标容器 \"red box\" 而非找一个独立的 non-living thing；Internal 正确区分目标与容器，选了 orange |\n| EP16 (var 16) | internal-preferred | 0 | 58 | −58 | Det 陷入 task 查询循环（9次），从未 focus 任何物体；Internal 成功 focus orange |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-phase3-case-study.md"
+}

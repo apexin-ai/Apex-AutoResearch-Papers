@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fb642bd9d5dc4cd4fbce",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code compile commit push",
+  "task_key": "worker_code_compile-commit-push_20260524T044747",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_compile-commit-push_20260524T044747_result.json",
+    "occurrence": 1,
+    "bytes": 324,
+    "sha256": "61c7a75647ba662e0685a286bfc0697722572eca81b2789f27cd1f7612fe5e62"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "API Error: Claude Code is unable to respond to this request, which appears to violate our Usage Policy (https://www.anthropic.com/legal/aup). Try rephrasing the request or attempting a different approach. If you are seeing this refusal repeatedly, try running /model claude-sonnet-4-20250514 to switch models."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-compile-commit-push.md"
+}

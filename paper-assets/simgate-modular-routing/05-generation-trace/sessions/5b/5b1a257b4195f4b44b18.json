@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5b1a257b4195f4b44b18",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "infra math counterfactual",
+  "task_key": "worker_infra_math-counterfactual_20260514T132142",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_math-counterfactual_20260514T132142_result.json",
+    "occurrence": 1,
+    "bytes": 1084,
+    "sha256": "e39a64bfeebda04b22c755073f513ef427a30e7d2f0e3e90ce93a85e60f461a1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报如下：\n\n---\n\n**MATH Counterfactual Labeling 基础设施 — Dry-run 完成**\n\n**服务器**: westb-13313, RTX 5090 cuda:0, vLLM 0.18.1\n**模型**: Qwen2.5-7B-Instruct\n\n**部署文件**:\n- `src/code_sandbox.py` — Python 代码执行沙箱\n- `src/math_answer_utils.py` — 答案提取 + sympy 符号比较\n- `src/math_counterfactual.py` — 主 pipeline（vLLM 推理 + ReAct code interpreter）\n\n**数据集**: 2538 题 Level 4-5（7 个科目），保存在 `data/math-raw/`\n\n**Dry-run 结果 (10 题)**:\n\n| 指标 | 值 |\n|------|-----|\n| Internal accuracy | 50% (5/10) |\n| Code Interpreter accuracy | 70% (7/10) |\n| det-preferred | 3 (30%) |\n| internal-preferred | 1 (10%) |\n| no-preference | 6 (60%) |\n| 每题耗时 | 15.8s |\n| 每条 trajectory tokens | ~690 |\n\n**信号有效**：Code Interpreter 比 Internal 高 20%，30% 的题目产出 det-preferred label。\n\n**全量跑估算**: 2538 题 × 15.8s ≈ 11 小时。如果取 400 题子集 ≈ 1.75 小时。\n\n等待指令启动全量/子集运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-math-counterfactual.md"
+}

@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "dbbdc45c58517670405b",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "research arr submission prep",
+  "task_key": "worker_research_arr-submission-prep_20260517T182252",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_arr-submission-prep_20260517T182252_result.json",
+    "occurrence": 1,
+    "bytes": 2112230,
+    "sha256": "0b571d82e0dbb802d13d72ad40f2d00051d81104c57ea0140a23429b6085a858"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2112250,
+                "serialized_sha256": "06a865b738ddc34fe6044dd259afb52ee967239ac537f33e2c74278c57f9f775",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-arr-submission-prep-copy-2.md"
+}

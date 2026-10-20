@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ab993748944d01e68661",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ops cleanup tmux submit v6",
+  "task_key": "worker_ops_cleanup-tmux-submit-v6_20260514T070051",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cleanup-tmux-submit-v6_20260514T070051_result.json",
+    "occurrence": 1,
+    "bytes": 590,
+    "sha256": "cbca10b7f61c4ccfd2950ee3e682d9d87d06c327a1863b07d61cd3332c37884c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成：\n\n1. **Stale tmux sessions** — 全部清理（v3/v4/v5/v6）\n2. **僵尸进程** — PID 239593（OOM 后占用 29GB 显存）已 kill，GPU 释放\n3. **v6 重新提交** — tmux session `plan-002-formal-v6` 启动，PID 240633，GPU 0 占用 29848 MiB，训练正在进行\n4. **Registry 更新** — status=RUNNING，spec 含 command/pid/log_path/data_path/data_count/model_name/seed/server/gpu\n\n注意：之前的 v6 OOM 是因为框架的 submit 和我的 tmux submit 同时抢 GPU 0 导致。当前只有一个训练实例在跑，应该正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cleanup-tmux-submit-v6.md"
+}

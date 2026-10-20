@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e749edcd7cd36e2caaa8",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "exp majority vote baseline",
+  "task_key": "worker_exp_majority-vote-baseline_20260516T013857",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_majority-vote-baseline_20260516T013857_result.json",
+    "occurrence": 1,
+    "bytes": 1622,
+    "sha256": "3d65a868fce1b65f0a5858301e131fb0a7bf27738d9d9ce37320ad7b5fc7b1d1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果完整。核心发现：\n\n## 结果\n\n### Task-type majority vote baseline\n\n| Split Seed | TT-MajVote bal_acc | Global-Maj bal_acc | Val label dist |\n|:---:|:---:|:---:|:---:|\n| 42 | **0.5000** | 0.5000 | 240 det / 60 int |\n| 123 | 1.0000* | 1.0000* | 330 det / 0 int |\n| 456 | 1.0000* | 1.0000* | 330 det / 0 int |\n\n*\\*val set 100% deterministic，balanced_acc 退化为 trivial 1.0*\n\n### vs Router (split seed=42)\n- **TT majority vote: 0.5000** (= always predict \"deterministic\")\n- **Router 8-seed mean: 0.4711±0.0221**\n- Delta: +0.0289 → 朴素 baseline 优于 router\n\n### 关键洞察\n\n1. **所有 11 个 task_type 的 majority label 都是 \"deterministic\"**。TT-majority vote ≡ global majority vote ≡ \"always predict det\"。Task-type 级别不提供额外区分力。\n\n2. **数据集极度不平衡**：train set 91.4% deterministic。\"internal\" label 只出现在 4 个 task_type（chemistry-mix, find-non-living-thing, grow-fruit, lifespan-longest-lived-then-shortest-lived）中，且都是少数。\n\n3. **Episode-level split 无 stratify 导致 val set 不稳定**：seed 123/456 的 val set 完全没有 internal 样本。\n\n4. **Router 低于 50% balanced_acc 的含义**：router 不是在\"学习 task-type signal\"——它在 unseen episodes 上表现比\"永远猜 deterministic\"还差，说明它过拟合到了训练 episode 的 step-level pattern，在 held-out episodes 上反而预测出更多错误的 \"internal\"。\n\n结果已保存到 `results/majority_vote_baseline/results.json`，脚本在 `scripts/majority_vote_baseline.py`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-majority-vote-baseline.md"
+}

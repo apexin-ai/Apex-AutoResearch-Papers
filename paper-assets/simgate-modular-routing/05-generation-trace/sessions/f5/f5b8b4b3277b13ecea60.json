@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f5b8b4b3277b13ecea60",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code llama 70b status check",
+  "task_key": "worker_code_llama-70b-status-check_20260523T225125",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama-70b-status-check_20260523T225125_result.json",
+    "occurrence": 1,
+    "bytes": 560,
+    "sha256": "17b81d92942d772f1a5ad6f62ffa61e2b699b0fcf40fe073e55eab25a58e3e79"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Llama-70B 下载状态：进行中**\n\n| 类别 | 详情 |\n|------|------|\n| 进程 | PID 179639 **仍在运行** (ModelScope 下载) |\n| 已完成 shards | 3/9 (shard 4, 5, 6 各 4.6G，已在最终目录) |\n| 下载中 shards | 4 个 (shard 1: 42%, 3: 45%, 7: ~43%, 9: 79%) |\n| 未开始 shards | 2 个 (shard 2, 8) + config.json |\n| 已下载总量 | ~24G / ~37G |\n| 下载速度 | ~1 MB/s |\n| 预计剩余 | **40-60 分钟** |\n\n下载完成后需要启动 vLLM 并测试。报告已写入 `artifacts/llama70b_setup_report.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-llama-70b-status-check.md"
+}

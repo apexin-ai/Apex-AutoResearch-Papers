@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "c6b3b629caf7cec0ec0b",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "exp gemma definitive fix",
+  "task_key": "worker_exp_gemma-definitive-fix_20260520T082520",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_gemma-definitive-fix_20260520T082520.log",
+    "occurrence": 1,
+    "bytes": 809169,
+    "sha256": "dd1b711854028631e73b77f063458289819a90296b9b7da8bf75c86f58f226a0"
+  },
+  "statistics": {
+    "messages": 423,
+    "user_turns": 0,
+    "tool_calls": 157,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 105,
+      "tool_call": 157,
+      "tool_result": 157,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 423,
+      "chunks": [
+        {
+          "path": "c6b3b629caf7cec0ec0b-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "c6b3b629caf7cec0ec0b-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "c6b3b629caf7cec0ec0b-part-0003.json",
+          "message_count": 63
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-gemma-definitive-fix.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8484a7e1d68d79a736cc",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "exp backbone scaling 70b",
+  "task_key": "worker_exp_backbone-scaling-70b_20260517T084345",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_backbone-scaling-70b_20260517T084345_result.json",
+    "occurrence": 1,
+    "bytes": 793,
+    "sha256": "ec42fd7ad8d0d776991da9e6fc4a91be1cc8d79563b425fb442a6a414ec351c5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Job is running correctly, polling every 30s for shards. The shards download to temp locations first and get moved on completion. Everything is set up:\n\n- **Download**: modelscope downloading 11 shards in parallel at ~16 MB/s total (~40 min estimated)\n- **Job script**: `backbone-scaling-70b` tmux session, polling for shard completion\n- **Once download finishes**: auto-starts episode collection on 11 task types x 20 episodes with TP=2 across both GPUs\n\n**Code changes made**:\n- `src/llm_agent.py`: added `tensor_parallel_size` parameter, auto-sets `CUDA_VISIBLE_DEVICES` for multi-GPU\n- `src/episode_level_collection.py`: added `--tp` CLI arg, passes to LLMAgent\n\n**Registry**: `backbone-scaling-70b` = RUNNING on westb-13313, cuda:0+cuda:1, Qwen2.5-72B-Instruct-AWQ"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-backbone-scaling-70b.md"
+}

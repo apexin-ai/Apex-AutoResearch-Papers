@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "93781dfa07a0e3b240b8",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code signal prescreening",
+  "task_key": "worker_code_signal-prescreening_20260513T154322",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_signal-prescreening_20260513T154322_result.json",
+    "occurrence": 1,
+    "bytes": 576,
+    "sha256": "50617f5cb648a6081fd5a047918afdde7e8a7167ff2d56f19a7273e3175f63df"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "dry-run 通过，import 无报错，参数解析正常。\n\n**产出**: `/root/autodl-tmp/simgate-modular-routing/src/signal_prescreening.py` 已写入并验证。\n\n脚本与 `phase1_signal.py` 的关键差异:\n- `--task_type` 单个任务（非逗号分隔）\n- 默认 5 episodes（可 `--episodes` 覆盖）\n- 仅 2-way：always-internal（纯 LLM，无 death filter）+ always-deterministic（fork + death filter）\n- 每 episode 追加写入 JSONL，结束后打印 summary 含 Δ(D-I) 和方向判定（>1 POSITIVE / <-1 NEGATIVE / 其他 NEUTRAL）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-signal-prescreening.md"
+}

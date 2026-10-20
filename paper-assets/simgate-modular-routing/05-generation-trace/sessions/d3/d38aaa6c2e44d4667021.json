@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d38aaa6c2e44d4667021",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "analysis experiment data tables",
+  "task_key": "worker_analysis_experiment-data-tables_20260514T014313",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_experiment-data-tables_20260514T014313_result.json",
+    "occurrence": 1,
+    "bytes": 928,
+    "sha256": "fb3681b1776666baed718a1806e2ad4e0ff8df1c36082daa8f696a93200b9d1b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入 `artifacts/experiment_tables.md`，包含 4 张表：\n\n1. **Table 1 — Death Decomposition**：使用 `death_decomposition_report.json` 的实际数值（episode-weighted Δ_full=+38.33, DAF=98.8%, r=0.986），task-weighted 列保留 registry 数值待验证\n2. **Table 2 — Keyword Baseline**：v1/v2/v3 三版关键词列表全部结构性失效，附具体关键词清单和失效机制\n3. **Table 3 — Label Distribution**：det-preferred 41.0%, no-preference 58.6%, internal-preferred 0.4%；附 plan-005 的 task-level taxonomy（25/30 death-dominated）\n4. **Table 4 — Baseline Comparison**：always-internal −47.5, always-det −9.2, oracle pending\n\n与 prompt 给定数字的主要修正：Δ_full 37.9→38.33, Δ_nd 0.2→0.48, DAF 99.1%→98.8%（均来自 report.json 实际计算值 vs registry 的四舍五入值）。全部标注 preliminary，plan-001b 完成后更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-experiment-data-tables.md"
+}

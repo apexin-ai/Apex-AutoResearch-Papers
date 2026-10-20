@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c9906bfcb26b01b99e95",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "check gpu1 freeze chem status",
+  "task_key": "worker_check_gpu1-freeze-chem-status_20260514T040546",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_gpu1-freeze-chem-status_20260514T040546_result.json",
+    "occurrence": 1,
+    "bytes": 654,
+    "sha256": "7fbaf816f2e55f0fb417dcdf6c7ed288cb1a359e2cd3c1b342af510b96475462"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n**PID 788058 — 存活，运行 ~54 分钟**\n\n| 项目 | 状态 |\n|------|------|\n| 进程 | 存活，`Ss+` 状态，在 tmux 中运行 |\n| GPU | cuda:1 占用 28013/32607 MiB，利用率 0%（ScienceWorld bursty 正常） |\n| freeze 阶段 | **15/20 episodes 完成**（episode 0-14），正在跑第 16 个 |\n| chemistry-mix 阶段 | 尚未开始（目录不存在），等 freeze 20 eps 完成后启动 |\n| 速率 | ~54 分钟完成 15 episodes ≈ 3.6 min/episode |\n| 预计剩余 | freeze 剩 5 eps (~18 min) + chemistry-mix 20 eps (~72 min) ≈ **~90 分钟完成** |\n\n进程正常运行中，无需干预。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-gpu1-freeze-chem-status.md"
+}

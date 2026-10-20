@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d2998bc5b7b75526a81e",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "investigate plan 003 implicit results",
+  "task_key": "worker_investigate_plan-003-implicit-results_20260514T092451",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_investigate_plan-003-implicit-results_20260514T092451_result.json",
+    "occurrence": 1,
+    "bytes": 1194,
+    "sha256": "96130996816c5892af011e44859659dc6fecea2b000345b304335070c4af03c3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。结果摘要：\n\n## plan-003-implicit-eval-full 结果 — **Negative**\n\n| 指标 | 值 |\n|---|---|\n| **Continuous Score** | **-12.84** [-17.52, -8.45] |\n| Always-det baseline | -9.47 |\n| **差距** | **-3.37 (劣于 baseline)** |\n| Success Rate | 22.0% |\n| Death Rate | 19.2% |\n| Sim Invocation Ratio | 94.1% |\n\n**Routing 分析：**\n- Step accuracy: 60.2% (1301/2160)\n- Episode accuracy: 82.1% (78/95)\n- 路由极度偏 deterministic: 229 det vs 16 internal\n- Internal recall: 44.4% (4/9) — 仅识别出不到一半的 internal-preferred episodes\n- Det recall: 86.0% (74/86)\n- Oracle 标签分布: internal-preferred=9, det-preferred=86, no-preference=150\n\n**Per-task 亮点/问题：**\n- `find-non-living-thing` 是唯一正分任务 (+26.38)，也是 internal routing 最多的 (5/40)\n- `inclined-plane-determine-angle` 最差 (-30.00, 0% success)\n- `chemistry-mix`, `freeze`, `measure-melting-point` 都在 -27~-30 区间，death rate 30%\n\n**核心问题：** 模型几乎总选 deterministic (93.5%)，internal recall 仅 44%，导致该路由到 internal 的 episode 大部分被误分到 deterministic，拉低了总分。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/investigate-plan-003-implicit-results.md"
+}

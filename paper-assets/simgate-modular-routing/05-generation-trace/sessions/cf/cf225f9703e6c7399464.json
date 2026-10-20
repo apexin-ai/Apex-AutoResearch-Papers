@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "cf225f9703e6c7399464",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "exp gemma scienceworld cross model",
+  "task_key": "worker_exp_gemma-scienceworld-cross-model_20260520T055916",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_gemma-scienceworld-cross-model_20260520T055916.log",
+    "occurrence": 1,
+    "bytes": 1071560,
+    "sha256": "3b52caa68e29c4073e4b108ca3385262d4741d54dc5abfa6634e707c02588407"
+  },
+  "statistics": {
+    "messages": 836,
+    "user_turns": 0,
+    "tool_calls": 351,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 130,
+      "tool_call": 351,
+      "tool_result": 351,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 836,
+      "chunks": [
+        {
+          "path": "cf225f9703e6c7399464-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "cf225f9703e6c7399464-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "cf225f9703e6c7399464-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "cf225f9703e6c7399464-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "cf225f9703e6c7399464-part-0005.json",
+          "message_count": 116
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-gemma-scienceworld-cross-model.md"
+}

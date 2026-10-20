@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e7a74f42cde848626d47",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "eval capacity scaling 1 7b 4seed",
+  "task_key": "worker_eval_capacity-scaling-1_7b-4seed_20260516T235444",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_capacity-scaling-1_7b-4seed_20260516T235444_result.json",
+    "occurrence": 1,
+    "bytes": 161,
+    "sha256": "58f7aa64c0cb80bc6e4d8add754e3f3c38c34fa530f1256f0622e9854a543ca9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已在 tmux `cap_1_7b` 中运行。当前 seed42 正在训练，预计 4 seeds 训练 + eval 总计约 1-2 小时。会定期检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-capacity-scaling-1-7b-4seed.md"
+}

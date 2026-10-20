@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7ce2ada16dac8d57a172",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "eval backbone scaling death 0 5b v4",
+  "task_key": "worker_eval_backbone-scaling-death-0_5b-v4_20260516T212525",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_backbone-scaling-death-0_5b-v4_20260516T212525_result.json",
+    "occurrence": 1,
+    "bytes": 304,
+    "sha256": "3fb4c2725da021c39c312c275253087012527cffdaa64cdffef60d64d8b3da76"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已在 tmux `backbone_eval` 中成功启动：\n- GPU0 占用 2169 MiB，模型加载完成\n- 命令：3 个 task_types × 5 episodes × max 30 steps\n- 日志输出到 `/root/autodl-tmp/simgate-modular-routing/backbone_0.5b_eval.log`\n\n~4.5 分钟后回来检查第一次进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-backbone-scaling-death-0-5b-v4.md"
+}

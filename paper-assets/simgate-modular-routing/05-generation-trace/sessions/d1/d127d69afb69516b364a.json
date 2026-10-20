@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d127d69afb69516b364a",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh plan 001b gpu1 extra restart",
+  "task_key": "worker_ssh_plan-001b-gpu1-extra-restart_20260514T015745",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_plan-001b-gpu1-extra-restart_20260514T015745_result.json",
+    "occurrence": 1,
+    "bytes": 316,
+    "sha256": "2cdb8e6f5082f2cfa1acec839b5f5f6a095a4646df498648ff88c57920a98cc4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "vLLM 已在 GPU1 上加载 Qwen2.5-7B-Instruct（14.25 GiB），模型加载成功。\n\n启动确认完毕：\n- tmux session: `plan-001b-gpu1-extra`\n- GPU1 上 vLLM 已加载模型\n- 正在从 Episode 21 开始收集，目标 19 episodes（21-39）\n- 日志路径: `/tmp/plan-001b-gpu1-extra.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-plan-001b-gpu1-extra-restart.md"
+}

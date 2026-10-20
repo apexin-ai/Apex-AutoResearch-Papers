@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9d9b85fb843162deb9a4",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "fix sensitivity table gemma ci",
+  "task_key": "worker_fix_sensitivity-table-gemma-ci_20260521T011908",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_sensitivity-table-gemma-ci_20260521T011908_result.json",
+    "occurrence": 1,
+    "bytes": 694,
+    "sha256": "7cf290852ce7288306727180a52a49aa6def1731cf745f73f1b046a20bf5c100"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All done. Summary:\n\n**修改前 → 修改后：**\n\n| 项目 | 旧值 | 新值 |\n|------|------|------|\n| Gemma CI (line 293) | `89.7\\% [68.8, 100.0]` | `89.7\\% [79.5, 98.4]` |\n| Caption (line 296) | `Bootstrap 95\\% CIs ... Full-sample CIs use cluster bootstrap ($K{=}11$); exclusion CIs use episode-level bootstrap over the remaining 10 task types.` | `Non-clustered episode-level bootstrap 95\\% CIs ($B{=}10{,}000$, seed 42).` |\n\n**残留检查：** `grep -n \"68.8\" main.tex` → 0 matches，无残留。\n\n**编译：** 0 errors，17 pages。4 个 `sec:experiments` undefined ref 是已有的（experiments.tex 中的 label 问题），与本次修改无关。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-sensitivity-table-gemma-ci.md"
+}

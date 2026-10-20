@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d8fde1c715dbf963ab77",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "audit server data inventory",
+  "task_key": "worker_audit_server-data-inventory_20260523T194816",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_server-data-inventory_20260523T194816_result.json",
+    "occurrence": 1,
+    "bytes": 462,
+    "sha256": "afd7a0e385f1fa183379c61737d8dbf54986746446fb23073ab5d46898f71445"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/server_data_inventory.md`。\n\n摘要：\n- **总体 11G**，其中 `checkpoints/` 占 9.4G，`results/` 占 1.3G\n- 大量 LoRA adapter checkpoint（`.safetensors` + optimizer/scheduler 状态），分布在 seed-robustness、ablation 等实验目录\n- `results/` 下 107 个条目，覆盖消融、跨模型、baseline、统计分析等\n- **无训练进程运行**，GPU（RTX PRO 6000 Blackwell 98GB）完全空闲"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-server-data-inventory.md"
+}

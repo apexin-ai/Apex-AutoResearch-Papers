@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "824d3f3248e0856bec34",
+  "project": "simgate-modular-routing",
+  "kind": "history",
+  "title": "agent / loop_9_1778804418.md",
+  "task_key": "loop_9_1778804418",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_9_1778804418.md",
+    "occurrence": 1,
+    "bytes": 2190,
+    "sha256": "2f324c81a6277bb20182db8ad16d60a15179fa9a7484ff3d468b59e536900f44"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 9\nreason: idle_timeout\nupdated: '2026-05-15T00:19:55+00:00'\n---\n\n## 当前状态\n\n项目 simgate-modular-routing 处于 **Review 迭代阶段**。EMNLP 2026 ARR short paper，DDL 2026-05-25（剩 10 天）。\n\nR2 Borderline Accept - Findings (2.75/5)，3 Blockers 全部修复完成，R3 审稿已提交。论文初稿状态 READY：正文 ≤4 页，0 编译 warnings，22 bib entries。\n\n## 实验全部终态\n\n58 experiments: 22 success / 13 negative / 10 failed / 13 killed，**0 RUNNING**。核心发现：death avoidance fraction = 90.41%，DAF 在 P=10→94.5% at P=200 单调递增。Trained router（balanced_acc ~58%）e2e 表现 ≤ always-deterministic，强力支撑 C1。\n\n## 资源\n\n- 服务器 westb-13313: cuda:0 + cuda:1 均空闲\n- Worker 池: 0\n- Cron: 0 活跃（reconcile 确认）\n\n## 待办\n\n1. **远程同步 + 重编译验证**（需 Worker SSH 到 westb-13313 rsync 最新 LaTeX 源码并编译）\n2. **最终 PDF 视觉检查**（paper-visual-review skill）\n3. **5/17 初稿交付**\n4. **R3 审稿结果等待中**（5/15 预计出结果）— 收到后按 Action Matrix 处理\n5. **5/15-22 迭代至收敛**\n6. **5/23-24 终稿 + ARR 提交**\n\n## 关键上下文\n\n- R3 修复清单（B1 标题 scope、B2 train/test split、B3 penalty sensitivity）+ S1-S8 全部完成并写入论文\n- ALFWorld 全量 counterfactual（135 games）结果已入 Limitations + Conclusion，定位为 exploratory（D044）\n- MATH pilot 50 题：internal 80% 反超 code interpreter 72%，反转信号否定统一 router 前提（D045/D046），结果入 Discussion\n- Logit-level vs generation-level eval 严重不一致是 router 训练的核心教训（plan-004-v4/v5、plan-002-generative-v1 均证实）\n- 论文 framing 已 pivot 回 analysis paper（D046），核心贡献 = empirical finding + diagnostic methodology\n\n## 不要再试的事\n\n- 不要再尝试 generative router SFT 变体（v1-v6 全部失败或 near-random，根因是 episode-level labels 信号不足）\n- 不要扩 MATH-200（D047 决策：105 题足够支撑 Discussion，不恢复）\n- class_weights auto 会导致 grad_norm 爆炸 + internal 有效学习率≈0（D021/D023 根因分析）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-9-1778804418.md"
+}

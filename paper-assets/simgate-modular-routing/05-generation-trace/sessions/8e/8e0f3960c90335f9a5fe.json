@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8e0f3960c90335f9a5fe",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh kill orphan prescreening",
+  "task_key": "worker_ssh_kill-orphan-prescreening_20260513T234316",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_kill-orphan-prescreening_20260513T234316_result.json",
+    "occurrence": 1,
+    "bytes": 383,
+    "sha256": "29d42573a1081616e7fb97a42ea9c8b5b998ea85d9580520698f84a742640250"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 prescreening 孤儿进程已清除。确认结果：\n\n- **无 prescreening 残留** — grep 输出中不含任何 prescreening 相关进程\n- **plan-001b 进程正常运行**：\n  - gpu0-v2 (PID 852800) — 正常\n  - gpu1 (PID 773114) — 正常\n- **GPU 占用正常**：\n  - GPU 0: PID 853847, 28004 MiB (VLLM)\n  - GPU 1: PID 774317, 28004 MiB (VLLM)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-kill-orphan-prescreening.md"
+}

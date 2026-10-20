@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d06e2faf5a9b59647f0f",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "research cogrouter deep read",
+  "task_key": "worker_research_cogrouter-deep-read_20260513T090830",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_cogrouter-deep-read_20260513T090830_result.json",
+    "occurrence": 1,
+    "bytes": 1072,
+    "sha256": "5e818f014d5e8f79d7f3dc92496610dae1cb493d9672a429f14bf67be93e2b65"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结提取结果：\n\n**ScienceWorld 结果**: CoPO (Qwen2.5-7B) Score=84.6, SR=72.0%, 1543 tokens。超过 GPT-4o (+40.3pp SR)、o3 (+18pp)、GRPO (+19pp)。无 seen/unseen 分拆，无 per-task breakdown，测试集仅 200 simulations。\n\n**方法**: 4 层认知深度（ℒ₁ 直觉→ℒ₄ 战略规划），LLM 自回归生成 level tag 路由（无外部 classifier/模拟器）。CoSFT 用 GPT-4o 轨迹+随机层级分配做冷启动，CoPO 用 confidence-aware advantage reweighting 训练层级选择偏好。\n\n**消融**: 训练后 ℒ₁ 占 55%（GRPO 坍缩到 76% ℒ₄）；去掉 balanced CoSFT → SR -7.5pp；复杂任务自动增加 ℒ₄ 使用率。\n\n**与 SimGate 正交**: CogRouter 路由 thinking depth，SimGate 路由 computation modality。CogRouter 的 ℒ₄ \"心理模拟\"仍受 LLM 幻觉限制，而 SimGate 用真实模拟器做精确计算——这是关键差异化论点。两者理论上可组合。\n\n已写入 `memory.md` (CogRouter 竞品分析 section) 和服务器 `notes/baselines.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-cogrouter-deep-read.md"
+}

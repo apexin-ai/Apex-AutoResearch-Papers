@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e00556dae8a077fd7b62",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code fix tiebreak deathfilter",
+  "task_key": "worker_code_fix-tiebreak-deathfilter_20260513T074437",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-tiebreak-deathfilter_20260513T074437_result.json",
+    "occurrence": 1,
+    "bytes": 730,
+    "sha256": "bb9b9ec36a78ebe90eb0306bb69829acbad2bf5595ae4954c60b46479c2d89c1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**修复 1 — Tie-break**: `phase1_signal.py:273` `>=` → `>`，相等 delta 时 oracle 选 deterministic\n\n**修复 2 — 致死动作过滤**: \n- 新增 `is_lethal(fr)` 函数（line 44），检查 `done+score<0` 或 `score<=-100`\n- **always-internal** (line 74-83): fork 检查 LLM 选出的 action，致死则移除重选，最多 3 次\n- **always-deterministic** (line 149-167): fork 评估时跳过致死候选，fallback 到最佳全量候选\n- **oracle** (line 230-267): 两条线都加过滤，fallback 逻辑一致\n\n**实验 `mvp-p1-gpu1-v2`**: 已在 westb-13313 GPU1 上启动，正在运行 chemistry-mix-paint-secondary-color Episode 0。Registry 已更新为 RUNNING。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-tiebreak-deathfilter.md"
+}

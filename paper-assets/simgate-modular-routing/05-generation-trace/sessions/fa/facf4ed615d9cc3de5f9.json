@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "facf4ed615d9cc3de5f9",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "fix sensitivity table ci",
+  "task_key": "worker_fix_sensitivity-table-ci_20260521T011105",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_sensitivity-table-ci_20260521T011105_result.json",
+    "occurrence": 1,
+    "bytes": 790,
+    "sha256": "5fe1251eeb4bcc29f1796ed2b101ab6c76bf2eb3c9150e451a4497e1a1449fb0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译成功，0 errors。4 个 undefined `sec:experiments` 引用是已有的（与本次修改无关）。输出 17 页 PDF。\n\n### Diff 总结\n\n| 位置 | 修改前 | 修改后 |\n|------|--------|--------|\n| 列头 | `DAF (10 tasks)` | `DAF (10 tasks, excl.\\ zero-death)` |\n| Qwen 11-task CI | [81.4, 99.1] | [81.3, 99.1] |\n| Llama 11-task CI | [80.0, 95.1] | [80.2, 95.1] |\n| Gemma 11-task CI | [79.5, 98.4] | [68.8, 100.0] |\n| Llama 10-task CI | [91.5, 100.0] | [91.3, 100.0] |\n| Caption | \"across all models). Episode-level bootstrap 95% CIs ($B = 10,000$).\" | \"zero death rate). Bootstrap 95% CIs ($B{=}10{,}000$, seed 42). Full-sample CIs use cluster bootstrap ($K{=}11$); exclusion CIs use episode-level bootstrap over the remaining 10 task types.\" |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-sensitivity-table-ci.md"
+}

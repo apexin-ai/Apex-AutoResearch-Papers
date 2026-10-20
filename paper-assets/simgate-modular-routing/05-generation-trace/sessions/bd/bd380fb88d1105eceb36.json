@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "bd380fb88d1105eceb36",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code plan 008 router size v2",
+  "task_key": "worker_code_plan-008-router-size-v2_20260515T135740",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan-008-router-size-v2_20260515T135740_result.json",
+    "occurrence": 1,
+    "bytes": 2384352,
+    "sha256": "a1ac76b384d4a7eaedea6ca91faf821fc893596afe22aa23afeede1a336a0e1a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2384372,
+                "serialized_sha256": "6c38b85000694da9cc35708b78c9dd25c788bf8c52cd0472b1f6808798eff557",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-008-router-size-v2.md"
+}

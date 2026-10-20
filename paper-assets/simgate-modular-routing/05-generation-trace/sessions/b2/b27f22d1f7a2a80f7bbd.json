@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b27f22d1f7a2a80f7bbd",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "investigate label distribution reversal",
+  "task_key": "worker_investigate_label-distribution-reversal_20260514T065722",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_investigate_label-distribution-reversal_20260514T065722_result.json",
+    "occurrence": 1,
+    "bytes": 3845,
+    "sha256": "6b09c6d0c7106e9184e7d8433f7f8898eef3682d2d2eb833e01c21bd1834815b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据已收集完毕，以下是完整分析。\n\n---\n\n## 分析报告：plan-002 vs plan-004 标签分布反转\n\n### 1. 两个 pipeline 的标签生成逻辑对比\n\n| | plan-002 (`router_sft_train.py`) | plan-004 (`implicit_router_sft.py`) |\n|---|---|---|\n| **数据源** | `results/plan_c/*/labeled_steps.jsonl` (11 task types, 2040 steps) | `results/plan_c_test_labels/implicit_sft.jsonl` (4 task types, 1814 records) |\n| **上游标注脚本** | 未知（但产出无 \"no-preference\" 记录） | `death_aware_labeling.py` → `sft_triples.jsonl` → `format_implicit_data.py` → `implicit_sft.jsonl` |\n| **\"no-preference\" 处理** | `data_loader.py:60` — RAW_LABEL_MAP 无映射 → **丢弃** | 旧版 format_implicit_data.py **映射为 \"internal\"** |\n| **模型类型** | 分类头 (SequenceClassification) | 因果LM，通过 `[SIMULATE]` 前缀隐式路由 |\n\n### 2. 翻转根因：三重差异叠加\n\n**差异 A — 数据集完全不同：**\n- `plan_c/`：11 个 task，2040 steps，**无 \"no-preference\" 记录**\n- `plan_c_test_labels/sft_triples.jsonl`：4 个 task（`death_aware_labeling.py` 产出），1814 steps，其中 **\"no-preference\" 占 1064 条（58.7%）**\n\n**差异 B — \"no-preference\" 处理方式截然相反（核心原因）：**\n\n`sft_triples.jsonl` 的原始标签分布：\n```\ndet-preferred:      600  (33.1%)\ninternal-preferred: 150  ( 8.3%)\nno-preference:     1064  (58.7%)   ← 占大头\n```\n\n- plan-002 的 `data_loader.py` 丢弃 \"no-preference\" → 只剩 750 条 → internal=150 (20%), det=600 (80%)\n- plan-004 的旧版 `format_implicit_data.py` 把 \"no-preference\" 全部映射为 \"internal\" → 1814 条 → **internal=1214 (66.9%), det=600 (33.1%)**\n\n1064 条 \"no-preference\" 涌入 \"internal\" 类别，直接翻转了分布。\n\n**差异 C — plan_c/ 本身标签就不同：**\n\nplan-002 实际用的 `plan_c/` 数据更极端（11 task 全量，0 条 no-preference）：\n```\ninternal-preferred: 210  (10.3%)\ndet-preferred:     1830  (89.7%)\n```\n\n### 3. 代码证据\n\n**旧版 format_implicit_data.py 的痕迹：** 当前 `conversion_summary.json` 的字段（`input_path`、无 `skipped`）与当前代码不匹配。当前代码输出 `output_path` + `skipped`，但文件中是 `input_path` 且无 `skipped`。这证实 implicit_sft.jsonl 由**旧版脚本**生成，该版本将 \"no-preference\" 映射为 \"internal\"。\n\n**`death_aware_labeling.py:44-46` 的隐性偏置：** 对 \"no-preference\" episode，使用 `always_internal` trajectory 提取 step actions：\n```python\nelse:\n    source_key = \"always_internal\"  # no-preference 默认用 internal 轨迹\n```\n所以 \"no-preference\" 记录不仅标签被设为 internal，连训练文本（action）都来自 internal trajectory。\n\n### 4. 是否是 bug？\n\n**是。** plan-004 的数据生成有两个问题：\n\n1. **旧版 `format_implicit_data.py` 将 \"no-preference\" 映射为 \"internal\" 是语义错误。** \"no-preference\" 意味着两种模态效果相当（双方都死亡或分数持平），不应偏向任一类别。当前版本已修复（正确丢弃），但 implicit_sft.jsonl 未重新生成。\n\n2. **数据源不一致。** plan-002 用 11 task 的 plan_c/，plan-004 用 4 task 的 plan_c_test_labels/，不具可比性。\n\n### 5. 修复方案\n\n- **立即修复**：用**当前版本**的 `format_implicit_data.py` 重新生成 `implicit_sft.jsonl`，会正确丢弃 \"no-preference\"，产出 750 条 (internal=150, det=600)，分布与 plan-002 方向一致\n- **数据量不足问题**：750 条偏少。考虑改用 `plan_c/`（11 task, 2040 steps）作为输入替代 `plan_c_test_labels/`\n- **对齐数据源**：让两个 plan 用同一份标注数据，否则 ablation 对比无意义"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/investigate-label-distribution-reversal.md"
+}

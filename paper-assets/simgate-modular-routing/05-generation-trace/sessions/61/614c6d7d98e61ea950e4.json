@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "614c6d7d98e61ea950e4",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "eval generative v1 routing metrics",
+  "task_key": "worker_eval_generative-v1-routing-metrics_20260514T081258",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_generative-v1-routing-metrics_20260514T081258_result.json",
+    "occurrence": 1,
+    "bytes": 954,
+    "sha256": "9c915fb23b979965b8fb093d2da763e81549e02eab512813b0821b767003842c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。总结：\n\n**plan-002-generative-v1 路由评估结果 (negative)**\n\n| 指标 | generative-v1 | ablation-b | 对比 |\n|------|:---:|:---:|:---:|\n| accuracy | 70.67% | 65.4% | +5.3pp (假象：多数类偏向) |\n| balanced_accuracy | 46.67% | — | 低于 50% 随机基线 |\n| internal_recall | **16.67%** | **51.5%** | **-34.8pp** |\n| det_recall | 76.67% | — | — |\n\n关键发现：\n1. **Qwen3 thinking 模式问题**：推理时模型默认输出 `<think>\\n\\n</think>` 再接内容，需要 `enable_thinking=False` 或 strip thinking\n2. **路由信号未学到**：模型确实输出两种格式（232 det / 68 internal），但预测与真实标签不相关。Internal recall 仅 16.67%，远低于 ablation-b 的 51.5%\n3. **之前的 51.85% 可能来自 logit-level eval**，不反映实际生成行为\n4. 结论：generative routing 在当前配置下 **失败**，conclusion 更新为 negative"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-generative-v1-routing-metrics.md"
+}

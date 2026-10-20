@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "72f738126d5e86795883",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "research d028 number consistency audit",
+  "task_key": "worker_research_d028-number-consistency-audit_20260514T075449",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_d028-number-consistency-audit_20260514T075449_result.json",
+    "occurrence": 1,
+    "bytes": 1078,
+    "sha256": "d50f97aa75afb329451182c2ffc19f7e07d56615ef5f0836e0b78a56b1b4f51b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。核心发现：\n\n**根因**：项目存在 3 套数据源被混用——A (11 tasks/245 eps)、B (30 tasks/249 eps)、C (11 tasks/194 eps)。\n\n**6 项不一致**：\n1. **最严重**：`death_decomposition_report.json` 用的是 30-task prescreening 数据（Δ=38.33, r=0.9864），不是 plan-012-full 的 11-task 数据（Δ=29.60, r=0.9698）。文件名极易混淆。\n2. 245 vs 194 episodes 差异：plan-001b 后续追加了 51 episodes（rebalance），plan-003 baseline 在追加前跑的。\n3. `plan005/routing_metrics.json` 混合了 prescreening 和 plan-001b 数据。\n4. rule_based_accuracy 三版本 episode 数各不相同（204/203/225）。\n5. 死亡率指标命名不统一（catastrophic_failure_rate vs death_rate）。\n6. trained-router 完全退化（与 always-det 完全相同）。\n\n**论文写作建议**：decomposition 用 plan-012-full (245 eps) 数字，baselines 用 plan-003 (194 eps) 数字，但需注明两组数字基于不同 episode 集合。\n\n报告已保存为 artifact `art_20260514_e311aa`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-d028-number-consistency-audit.md"
+}

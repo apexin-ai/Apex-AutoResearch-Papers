@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ede1070f83e5a6c3f3a7",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code llama70b analysis pipeline",
+  "task_key": "worker_code_llama70b-analysis-pipeline_20260524T065551",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama70b-analysis-pipeline_20260524T065551_result.json",
+    "occurrence": 1,
+    "bytes": 495,
+    "sha256": "b8426f2d85b9a720f97b691a99b8112cd65847403f065320f5a91ab1373f8420"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**产出总结：**\n- 脚本 `/root/autodl-tmp/simgate-modular-routing/src/analyze_llama70b.py` 已部署\n- Dry-run 全部指标精确匹配：delta_full=29.60, delta_nd=2.84, DAF=90.4%, label_fraction=78.9%, labels=86/9/150\n- 关键修复：优先读 `episodes.jsonl`（`episode_summary.jsonl` 有重复条目导致少 6 个 episode）；ratio 字段存储全精度避免 rounding 后显示偏差\n- Artifact 文档写到 `artifacts/llama70b_analysis_pipeline.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-llama70b-analysis-pipeline.md"
+}

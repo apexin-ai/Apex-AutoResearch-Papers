@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8e56d8d6cc04ff6033fe",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh verify plan 001b startup",
+  "task_key": "worker_ssh_verify-plan-001b-startup_20260513T221117",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_verify-plan-001b-startup_20260513T221117_result.json",
+    "occurrence": 1,
+    "bytes": 983,
+    "sha256": "f3eb91a11a36a34213abd5b068241a3dff634e476b17476a495071e5c17c7352"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 启动状态：GPU0 异常，GPU1 正常\n\n### plan-001b-gpu0 — **崩溃** (EXIT_CODE=1)\n- **根因**: vLLM 初始化时 cuda:0 仅 3.51/31.36 GiB 空闲，需要 26.65 GiB (85%)\n- 崩溃时间: 2026-05-13T22:10:20Z（启动后几秒即失败）\n- Reuse 机制本身正常：7 个 task 都正确识别了 5-7 条可复用 episode\n- `find-animal/` 目录已创建，仅含复制的 reuse 数据\n\n### plan-001b-gpu1 — **正常运行**\n- PID 773109 存活，已运行 ~1:30\n- 4 个 task 各复用 5 条 episode，reuse 机制生效\n- 日志显示活跃推理中（~800-1900 toks/s input, ~95-100 toks/s output）\n\n### GPU 状态\n| GPU | 显存占用 | 利用率 |\n|-----|---------|--------|\n| 0 | 28013/32607 MiB | 0% |\n| 1 | 28013/32607 MiB | 0% |\n\n### 诊断\nGPU 0 被某个进程占用了 ~28 GiB 显存（利用率 0%），导致 gpu0 的 vLLM 无法分配内存。需要排查 GPU 0 上的残留进程并清理后重新提交 gpu0 任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-verify-plan-001b-startup.md"
+}

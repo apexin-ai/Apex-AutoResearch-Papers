@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9a4ff2451797a442cbb7",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "critical eval template fix",
+  "task_key": "worker_critical_eval-template-fix_20260515T152346",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_critical_eval-template-fix_20260515T152346_result.json",
+    "occurrence": 1,
+    "bytes": 854,
+    "sha256": "c02169dab3cbb1a375dabf176aa88677a1b74e4cc7ed7be9961c408951df00ef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n---\n\n**根因不是 eval template mismatch，而是 checkpoint mismatch。**\n\n- **0.5761**：来自 `plan-004-implicit/final_adapter`（gradient_accumulation=8，正确配置）\n- **0.4278**：来自 `plan-004-v5/final_adapter`（gradient_accumulation=1，05-14 脚本被意外修改导致的 bug）\n- **enable_thinking 对 plan-004-v5 无影响**：thinking_on=0.4148, thinking_off=0.4148\n- **修复后在正确 checkpoint 上评估**：balanced_acc=0.5685（接近 0.5761，差异来自采样随机性）\n\n已完成：\n1. `eval_routing_metrics.py` 中 `enable_thinking=False` 已移除（备份在 `.bak_pre_fix`）\n2. 在 `plan-004-implicit` 上重新评估并保存到 `results/eval-template-fix/`\n3. 论文数字可信，但 reviewer 需要使用 `plan-004-implicit` 而不是 `plan-004-v5` 来复现"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/critical-eval-template-fix.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8dec67b2b756b6111932",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh sync unify script fixes",
+  "task_key": "worker_ssh_sync-unify-script-fixes_20260518T174837",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_sync-unify-script-fixes_20260518T174837_result.json",
+    "occurrence": 1,
+    "bytes": 909,
+    "sha256": "d8da21050ac4dd8e781b47c72b1fe8618df6187cd713874a4b899221a326548f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。验证结果：\n\n**脚本一致性**：两台服务器 md5 一致 (`9fea5f3cb1f477bab7e6361edd9baeaa`)\n\n**Ground truth 校验通过**：\n- Reflexion N=3 final_dr = **34.0% (68/200)** ✓\n- Reflexion N=4 final_dr = **36.5% (73/200)** ✓\n- 所有条件分母固定 = 200（N=3、N=4），N=5 = 188（数据本身只有 188 episodes）\n\n**输出路径修复**：JSON 输出到 `/root/autodl-tmp/simgate-modular-routing/analysis/unified_dose_response_data.json`，不再嵌套到 `analysis/analysis/`\n\n**westb 清理**：嵌套目录中的旧 JSON 已移为 `unified_dose_response_data_retry.json`，空目录已删除\n\n**两处代码修正**：\n1. `compute_dose_response`: `min(k, len(trials))` 替代 skip，分母固定为 `len(episodes)`\n2. `--output` 默认值从相对路径 `analysis/...` 改为 `os.path.join(_SCRIPT_DIR, \"unified_dose_response_data.json\")`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-sync-unify-script-fixes.md"
+}

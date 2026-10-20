@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f44b80853bb72ca12dce",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh gpu recovery and retry",
+  "task_key": "worker_ssh_gpu-recovery-and-retry_20260518T053604",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_gpu-recovery-and-retry_20260518T053604_result.json",
+    "occurrence": 1,
+    "bytes": 905,
+    "sha256": "d823be342a74d669e46a861986b90e54dc930dc18ae0c7816daecae552934340"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n| 检查项 | 状态 |\n|--------|------|\n| **GPU 恢复** | **未恢复。** `nvidia-smi` 是 0 字节空文件，`/dev/nvidia*` 设备不存在，PyTorch 报 `CUDA available: False, GPU count: 0`。驱动仍未加载。 |\n| **已保存数据** | **完好。** 26 个 episode JSON 全部存在（chemistry-mix 20/20, find-animal 6/20）+ `retry_dose_response_analysis.json` |\n| **Crafter 文件** | **完好。** `crafter_pilot/` 目录及所有文件（heuristic_agent.py, v8, episode_runner, llm_agent 等）均在 |\n| **dry-run** | **无法执行**，GPU 不可用，vLLM 无法启动 |\n| **全量实验** | **不可提交**，需等 GPU 恢复 |\n\n**结论**: westb-14838 的 GPU 驱动仍然挂掉。数据和代码完好无损，不存在丢失风险。需要等待平台方（AutoDL/SeetaCloud）修复驱动，或者考虑将实验迁移到 westb-13313 执行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-gpu-recovery-and-retry.md"
+}

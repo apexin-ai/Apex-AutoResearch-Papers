@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "727231c0370e0a1a6998",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code retry control 14838",
+  "task_key": "worker_code_retry-control-14838_20260517T145413",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_retry-control-14838_20260517T145413_result.json",
+    "occurrence": 1,
+    "bytes": 661,
+    "sha256": "1560beae4adec39fc7373e3dd6a2d2539cb6af801d25a9bde7685c8f5e5e677b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪，实验正常运行中。\n\n## 报告\n\n| 项目 | 状态 |\n|------|------|\n| **vLLM (port 8002, cuda:0)** | 运行中，session `vllm-retry` |\n| **retry-part1** | PID 49468，7 tasks × 20 episodes = 140 episodes，已开始 `chemistry-mix` Episode 1 |\n| **retry-part2** | PID 49575，4 tasks × 20 episodes = 80 episodes，已开始 `inclined-plane-determine-angle` Episode 1 |\n\n**修复记录**：原始命令中 `--tasks 0 1 2 3...` 使用了数字索引，但脚本需要实际任务名（如 `chemistry-mix`）。已改用正确的任务名格式。\n\n日志路径：`/tmp/retry-part1.log`、`/tmp/retry-part2.log`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-retry-control-14838.md"
+}

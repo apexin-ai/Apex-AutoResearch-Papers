@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a06c63ecc9e3769b8e03",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "exp alfworld llama restart v2",
+  "task_key": "worker_exp_alfworld-llama-restart-v2_20260520T083052",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_alfworld-llama-restart-v2_20260520T083052_result.json",
+    "occurrence": 1,
+    "bytes": 404,
+    "sha256": "20816869e250b332307b814f60a8d45483ba3e8dcf5077fcdea58f9858d38381"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "ALFWorld Llama 已在 GPU 0 上成功重启，从第 69/135 episode 继续。\n\n**关键操作**:\n- 杀掉残留进程，备份 68 episodes 数据\n- 给脚本加了 resume 逻辑（跳过已完成 task_id）\n- 降低 `gpu_memory_utilization` 0.85→0.75 + `enforce_eager=True` 解决 vLLM v1 引擎 OOM\n- tmux session `alfworld-v2`，剩余 67 episodes 处理中\n- GPU 1 未受影响"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-alfworld-llama-restart-v2.md"
+}

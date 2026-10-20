@@ -1,0 +1,111 @@
+{
+  "schema_version": "1.0",
+  "id": "69ed6ed04b7ccdfd7951",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ops check chem read eval cleanup",
+  "task_key": "worker_ops_check-chem-read-eval-cleanup_20260514T051435",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-chem-read-eval-cleanup_20260514T051435_result.json",
+    "occurrence": 1,
+    "bytes": 3233,
+    "sha256": "c9b08b534d2478a6a3d46c0095c40339c82853ad4769ca7e8693fca9115a9cb7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总：\n\n---\n\n### 1. chemistry-mix 进度\n\n| 指标 | 值 |\n|---|---|\n| PID 788058 | **存活**，已运行 2h02m57s |\n| episodes.jsonl | **16 行** |\n| GPU 占用 | PID 789051 占用 28004 MiB（注意不是 788058，可能是子进程） |\n\n**未完成**，仍在运行中。16 条 episode 产出偏少，可能是 chemistry-mix 单条耗时较长。\n\n---\n\n### 2. eval_report.json（plan-002-dryrun）\n\n```json\n{\n  \"overall_accuracy\": 0.9231,\n  \"confusion_matrix\": [[0, 30], [0, 360]],\n  \"confusion_labels\": [\"internal\", \"deterministic\"],\n  \"per_task\": {\n    \"chemistry-mix\":           {\"accuracy\": 0.0,  \"n_samples\": 30},\n    \"find-animal\":             {\"accuracy\": 1.0,  \"n_samples\": 30},\n    \"find-non-living-thing\":   {\"accuracy\": 1.0,  \"n_samples\": 90},\n    \"freeze\":                  {\"accuracy\": 1.0,  \"n_samples\": 30},\n    \"grow-fruit\":              {\"accuracy\": 1.0,  \"n_samples\": 30},\n    \"identify-life-stages-1\":  {\"accuracy\": 1.0,  \"n_samples\": 30},\n    \"identify-life-stages-2\":  {\"accuracy\": 1.0,  \"n_samples\": 30},\n    \"inclined-plane-determine-angle\": {\"accuracy\": 1.0, \"n_samples\": 30},\n    \"lifespan-longest-lived\":  {\"accuracy\": 1.0,  \"n_samples\": 30},\n    \"lifespan-longest-lived-then-shortest-lived\": {\"accuracy\": 1.0, \"n_samples\": 30},\n    \"measure-melting-point-unknown-substance\": {\"accuracy\": 1.0, \"n_samples\": 30}\n  }\n}\n```\n\noverall 92.3%，**chemistry-mix 是唯一 0% 的任务**（30 samples 全错），所有 deterministic 类任务全部 100%。confusion matrix 显示模型把所有 30 个 internal 样本都预测成了 deterministic。\n\n---\n\n### 3. 磁盘清理\n\n三个目标文件**均已不存在**（之前已被清理）。无需再次删除。\n\n| 指标 | 值 |\n|---|---|\n| 数据盘 | 250G 总量，55G 已用（22%），196G 可用 |\n| lifespan-longest-lived 目录 | 仅剩 416K（3 个小文件） |"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "overall_accuracy": 0.9231,
+              "confusion_matrix": [
+                [
+                  0,
+                  30
+                ],
+                [
+                  0,
+                  360
+                ]
+              ],
+              "confusion_labels": [
+                "internal",
+                "deterministic"
+              ],
+              "per_task": {
+                "chemistry-mix": {
+                  "accuracy": 0.0,
+                  "n_samples": 30
+                },
+                "find-animal": {
+                  "accuracy": 1.0,
+                  "n_samples": 30
+                },
+                "find-non-living-thing": {
+                  "accuracy": 1.0,
+                  "n_samples": 90
+                },
+                "freeze": {
+                  "accuracy": 1.0,
+                  "n_samples": 30
+                },
+                "grow-fruit": {
+                  "accuracy": 1.0,
+                  "n_samples": 30
+                },
+                "identify-life-stages-1": {
+                  "accuracy": 1.0,
+                  "n_samples": 30
+                },
+                "identify-life-stages-2": {
+                  "accuracy": 1.0,
+                  "n_samples": 30
+                },
+                "inclined-plane-determine-angle": {
+                  "accuracy": 1.0,
+                  "n_samples": 30
+                },
+                "lifespan-longest-lived": {
+                  "accuracy": 1.0,
+                  "n_samples": 30
+                },
+                "lifespan-longest-lived-then-shortest-lived": {
+                  "accuracy": 1.0,
+                  "n_samples": 30
+                },
+                "measure-melting-point-unknown-substance": {
+                  "accuracy": 1.0,
+                  "n_samples": 30
+                }
+              }
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-chem-read-eval-cleanup.md"
+}

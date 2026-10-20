@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "84b031b2d4bf5514205a",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "exp research boil v3 gpu1",
+  "task_key": "worker_exp_research-boil-v3-gpu1_20260513T162106",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_research-boil-v3-gpu1_20260513T162106_result.json",
+    "occurrence": 1,
+    "bytes": 389,
+    "sha256": "1a87db66732c54690ab7e1ced24b6b2885d2a42282db463615b4da98b92e5cc0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已提交并在运行：\n\n- **exp_id**: `research-boil-v3-gpu1`\n- **PID**: 650421 (westb-13313, cuda:1)\n- **状态**: RUNNING\n- **日志**: `/tmp/research-boil-v3-gpu1.log`\n- **注意**: 脚本不支持 `--seed` 参数，已去掉该flag\n- **v3 验证**: tie-break `>` ✓，death filter 仅 det/oracle ✓\n\nvLLM 推理已正常产出，预计 ~1.5h 完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-research-boil-v3-gpu1.md"
+}

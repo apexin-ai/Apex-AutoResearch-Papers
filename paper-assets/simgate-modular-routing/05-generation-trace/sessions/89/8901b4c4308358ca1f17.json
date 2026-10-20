@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8901b4c4308358ca1f17",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "paper r30 batch1 data",
+  "task_key": "worker_paper_r30-batch1-data_20260523T042223",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_r30-batch1-data_20260523T042223_result.json",
+    "occurrence": 1,
+    "bytes": 823,
+    "sha256": "453b1acea6f94ca97dbf8401953f6176ce22f1f30a069d807adfc196e686a075"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。报告已写入 `artifacts/r30_batch1_analysis.md`。\n\n**Part 1 结果**:\n- 20 个 non-death non-tie episodes **全部来自 find-non-living-thing**（其他 task types 的非 tie episodes 都涉及 death）\n- 分类：**10 hallucination**（eat-before-focus + 浴室水管 + focus-inventory 循环）、**3 action selection**（无效导航）、**7 object quality**（picture/fountain=50 vs orange=58）\n- 核心发现：内部策略在 11/20 episodes 中先吃掉 orange 再 focus（state model 错误地认为 eat=completing task）\n\n**Part 2 结果**:\n- 72B DAF = **92.4%**, 95% CI = **[86.1%, 97.9%]**\n- delta_full = 30.07, delta_nd = 2.28\n- 实际数据显示 5 个 int-preferred（非 0），来自 find-non-living-thing、grow-fruit、identify-life-stages-2、inclined-plane"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-r30-batch1-data.md"
+}

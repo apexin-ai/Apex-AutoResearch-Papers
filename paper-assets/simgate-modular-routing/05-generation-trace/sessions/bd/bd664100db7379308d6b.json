@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bd664100db7379308d6b",
+  "project": "simgate-modular-routing",
+  "kind": "history",
+  "title": "agent / loop_5_1778757596.md",
+  "task_key": "loop_5_1778757596",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_5_1778757596.md",
+    "occurrence": 1,
+    "bytes": 4163,
+    "sha256": "df6ea97b857ade0223d6b9cdd337436134333034d25fedd92c9e1252e76f6dfb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: idle_timeout\nupdated: '2026-05-14T09:00:20+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：只能用 westb-13313 的 cuda:0 和 cuda:1（RTX 5090 32GB）\n- Qwen3-1.7B 不在本地 HF cache，`AutoTokenizer.from_pretrained(\"Qwen/Qwen3-1.7B\")` 会因网络不可达崩溃。必须用本地绝对路径加载模型\n- AutoDL pip/HF 下载前必须 `source /etc/network_turbo` + 设 SSL 证书环境变量，否则 504/TLS 断连\n- WANDB_MODE=offline 时 cron 会误判进程 failed（检测不到 W&B metrics → 5× dead check → auto-resolved as failed）。已发生 3 次（plan-002-dryrun, plan-004-ablation-b）。需要检查 sentinel 文件而非信任 cron 结论\n- batch_size=32 在 RTX 5090 上 OOM，最大 batch_size=4~8 + gradient_accumulation_steps 补偿\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westb-13313，工作目录 `/root/autodl-tmp/simgate-modular-routing`\n- Python：`/root/miniconda3/bin/python`，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- Qwen2.5-7B-Instruct：`/root/autodl-tmp/models/Qwen/Qwen2___5-7B-Instruct/`（数据收集用，已验证）\n- Qwen3-1.7B：**尚未下载**，Worker `worker_infra_download-qwen3-1_7b_20260514T055647` 正在下载中\n- HF cache：`/root/autodl-tmp/.hf_cache`\n- plan-004 checkpoint：`checkpoints/plan-004-implicit/final_adapter`\n- plan-002-dryrun checkpoint：`checkpoints/plan-002-dryrun/`\n- 数据：`results/plan_c/`（11 tasks, 245 episodes），`data/implicit_formatted/`（2040 samples）\n- 活跃进程：无 GPU 进程在跑，两张卡空闲\n- Cron：reconcile 返回 0 active\n\n### 3. 📊 当前状态\n收到 plan-004-ablation-b cron 失败回调。查日志发现训练实际成功完成（3 epochs, eval_loss 0.36, adapter saved）。已纠正 registry conclusion→success，已向 Director 汇报。\n\n等待中的 Worker 回调（2个）：\n1. `worker_analyze_plan-004-ablation-b_20260514T055629` — SSH 提取 plan-004 详细分类指标（accuracy/F1/per-class/confusion matrix），**关键问题：implicit router 是否也退化（全预测 deterministic）**\n2. `worker_infra_download-qwen3-1_7b_20260514T055647` — 下载 Qwen3-1.7B 到本地\n\nRegistry 状态：\n- plan-002-formal-v3: PREPARING（blocked on Qwen3-1.7B 下载）\n- plan-004-ablation-b: DONE/success（待补充详细 metrics）\n- research-cf-pilot-gpu1: PENDING（等 Director 审批，低优先级）\n\n### 4. 📋 待办\n- Worker analyze 回调 → 更新 plan-004 metrics 到 registry → 按 on-experiment-done 流程处理（对比 plan-002-dryrun, 判断退化, 汇报 Director）\n- Worker download 回调 → 用本地模型路径构造 plan-002-formal-v3 命令 → 提交到 GPU0\n- plan-002-formal-v3 训练完成 → 提取 metrics → 与 plan-004 对比（explicit vs implicit router）→ 推进 plan-003 end-to-end eval\n- plan-004 如果也退化 → 两种 router 都失败 → 需向 Director 提 Framing 调整提案（可能 router 本身不可行，回到 rule-based + death avoidance finding 为主）\n- plan-004 如果不退化 → implicit router > explicit router → 论文新 claim 点\n\n### 5. 🎯 战略上下文\n- **核心发现**：death avoidance 占 ~90% routing signal（plan-012, 11 tasks/245 eps, r=0.9698）。论文是 empirical finding paper，不是 router 架构 paper\n- **投稿目标**：EMNLP 2026 ARR short paper，DDL 2026-05-25（剩 11 天）\n- **Framing v3**：death avoidance dominates + counterfactual methodology\n- **Critical path**：plan-002 router SFT (~8h) → plan-003 end-to-end eval (~15h) → plan-005 分析 → 论文写作。实验窗口 ~1.5 天，写作窗口 ~5 天\n- **易错判断**：plan-002-dryrun 的退化（internal recall=0%）不是 class_weights 问题（已审计确认 weights 生效），而是 1 epoch 不够收敛。3 epochs + grad_accum=8 应该解决，但需要实际验证\n- **keyword baseline 已关闭**：plan-011 三版 keyword list 全部结构性失效，论文定位为 structural failure analysis\n- **find-non-living-thing 是正面案例不是异常**：零死亡 task 上仍有 Δ=9.58，说明 routing 价值超越纯 death avoidance\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-1778757596.md"
+}

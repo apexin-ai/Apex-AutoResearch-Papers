@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "f10d2a6af7aad68f4bb5",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "train plan 008 v4 extra seeds",
+  "task_key": "worker_train_plan-008-v4-extra-seeds_20260515T215949",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_plan-008-v4-extra-seeds_20260515T215949.log",
+    "occurrence": 1,
+    "bytes": 714750,
+    "sha256": "bcbeeb8116114ce92093f5ac5cf0fc0be0c5d0f17997b92df1fd4b7ade66028d"
+  },
+  "statistics": {
+    "messages": 465,
+    "user_turns": 0,
+    "tool_calls": 204,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 3,
+      "assistant": 51,
+      "tool_call": 204,
+      "tool_result": 204,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 465,
+      "chunks": [
+        {
+          "path": "f10d2a6af7aad68f4bb5-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "f10d2a6af7aad68f4bb5-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "f10d2a6af7aad68f4bb5-part-0003.json",
+          "message_count": 105
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/train-plan-008-v4-extra-seeds.md"
+}

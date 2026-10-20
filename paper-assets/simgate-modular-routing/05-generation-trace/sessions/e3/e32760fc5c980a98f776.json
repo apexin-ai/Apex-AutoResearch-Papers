@@ -1,0 +1,809 @@
+{
+  "schema_version": "1.0",
+  "id": "e32760fc5c980a98f776",
+  "project": "simgate-modular-routing",
+  "kind": "conversation",
+  "title": "code death aware postprocess",
+  "task_key": "worker_code_death-aware-postprocess_20260513T191005",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_death-aware-postprocess_20260513T191005.jsonl",
+    "occurrence": 1,
+    "bytes": 40694,
+    "sha256": "315d07bc14a60f96792206e15f2894a7bc588f14b410bc7f5070bd634ff46082"
+  },
+  "statistics": {
+    "messages": 39,
+    "user_turns": 0,
+    "tool_calls": 19,
+    "roles": {
+      "tool_call": 19,
+      "tool_result": 19,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-13T19:13:27.246545+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_death-aware-postprocess_20260513T191005",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-13T19:13:27.246886+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_death-aware-postprocess_20260513T191005",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-13T19:13:27.247078+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_death-aware-postprocess_20260513T191005",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "ls /root/autodl-tmp/simgate-modular-routing/src/postprocess*.py /root/autodl-tmp/simgate-modular-routing/src/convert*.py 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-13T19:13:27.247223+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_death-aware-postprocess_20260513T191005",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-13T19:13:27.247347+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_death-aware-postprocess_20260513T191005",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "cat /root/autodl-tmp/simgate-modular-routing/src/postprocess_mvp_to_sft.py 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-13T19:13:27.247468+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_death-aware-postprocess_20260513T191005",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-13T19:13:27.247585+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_death-aware-postprocess_20260513T191005",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "head -80 /root/autodl-tmp/simgate-modular-routing/src/episode_level_collection.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-13T19:13:27.247700+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_death-aware-postprocess_20260513T191005",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "ls /root/autodl-tmp/simgate-modular-routing/results/sft_data/ 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-13T19:13:27.247812+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_death-aware-postprocess_20260513T191005",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "cat /root/autodl-tmp/simgate-modular-routing/results/sft_data/collection_summary.json 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-13T19:13:27.247968+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# Plan C episode-level labeling data collection for router SFT training.\\\\n#\\\\n# For each task variation, runs 2 complete episodes (always-internal + always-deterministic),\\\\n# compares final episode scores to label each step's modality preference.\\\\n# Reuses run_episode_internal / run_episode_deterministic from signal_prescreening.py.\\\\n#\\\\n# Outputs:\\\\n#   {output_dir}/{task_type}/labeled_steps.jsonl  — one labeled step per line (training data)\\\\n#   {output_dir}/{task_type}/episode_summary.jsonl — one episode summary per line\\\\n#\\\\n# Usage:\\\\n#   python src/episode_level_collection.py --task_types \\\\\\\"boil,melt\\\\\\\" --episodes 20 --gpu_id 0\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport random\\\\nimport sys\\\\nimport time\\\\nfrom typing import List, Dict, Any\\\\n\\\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\\\nfrom scienceworld_utils import (\\\\n    create_env, reset_env, get_valid_actions, get_score,\\\\n    step_env, close_env, fork_and_lookahead, get_task_types,\\\\n    get_max_variations,\\\\n)\\\\nfrom llm_agent import LLMAgent, find_model_path\\\\n\\\\nDEATH_THRESHOLD = -100\\\\n\\\\n\\\\ndef resolve_task_type(name: str) -> str:\\\\n    try:\\\\n        available = get_task_types()\\\\n    except Exception:\\\\n        return name\\\\n    if name in available:\\\\n        return name\\\\n    matches = [t for t in available if name.lower() in t.lower()]\\\\n    if matches:\\\\n        return matches[0]\\\\n    return name\\\\n\\\\n\\\\ndef is_lethal(fr: Dict[str, Any]) -> bool:\\\\n    if fr[\\\\\\\"done\\\\\\\"] and fr[\\\\\\\"score\\\\\\\"] < 0:\\\\n        return True\\\\n    if fr[\\\\\\\"score\\\\\\\"] <= -100:\\\\n        return True\\\\n    return False\\\\n\\\\n\\\\ndef run_episode_internal(\\\\n    agent: LLMAgent,\\\\n    task_name: str,\\\\n    variation_idx: int,\\\\n    max_steps: int,\\\\n) -> Dict[str, Any]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Always-internal: pure LLM ReAct, no death filter.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    env = create_env(task_name, variation_idx)\\\\n    obs, _ = reset_env\n…[truncated 629 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_death-aware-postprocess_20260513T191005",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-13T19:13:27.248150+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_death-aware-postprocess_20260513T191005",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-13T19:13:27.248271+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_death-aware-postprocess_20260513T191005",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-13T19:13:27.248417+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_death-aware-postprocess_20260513T191005",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "ls /root/autodl-tmp/simgate-modular-routing/src/postprocess_mvp_to_sft.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-13T19:13:27.248538+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/simgate-modular-routing/src/postprocess_mvp_to_sft.py': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.75}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_death-aware-postprocess_20260513T191005",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-13T19:13:27.248653+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_death-aware-postprocess_20260513T191005",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "ls /root/autodl-tmp/simgate-modular-routing/results/sft_data/",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-13T19:13:27.248764+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_death-aware-postprocess_20260513T191005",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "ls /root/autodl-tmp/simgate-modular-routing/results/prescreening/",
+              "account": "root"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-13T19:13:27.248885+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"collection_summary.json\\\\nsft_triples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_death-aware-postprocess_20260513T191005",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-13T19:13:27.249021+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"chemistry-mix\\\\nchemistry-mix-paint-tertiary-color\\\\nfind-animal\\\\nfind-living-thing\\\\nfind-non-living-thing\\\\nfind-plant\\\\nfreeze\\\\ngrow-fruit\\\\nidentify-life-stages-1\\\\nrun.log\\\\nsignal_type_summary.json\\\\nsummary.txt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_death-aware-postprocess_20260513T191005",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-13T19:13:27.249143+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_death-aware-postprocess_20260513T191005",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "head -2 /root/autodl-tmp/simgate-modular-routing/results/prescreening/find-non-living-thing/episodes.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-13T19:13:27.249253+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_death-aware-postprocess_20260513T191005",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "cat /root/autodl-tmp/simgate-modular-routing/results/sft_data/collection_summary.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-13T19:13:27.249511+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"episode_idx\\\\\\\": 0, \\\\\\\"variation_idx\\\\\\\": 0, \\\\\\\"always_internal\\\\\\\": {\\\\\\\"mode\\\\\\\": \\\\\\\"always-internal\\\\\\\", \\\\\\\"task_name\\\\\\\": \\\\\\\"find-non-living-thing\\\\\\\", \\\\\\\"variation_idx\\\\\\\": 0, \\\\\\\"final_score\\\\\\\": 50.0, \\\\\\\"initial_score\\\\\\\": 0.0, \\\\\\\"num_steps\\\\\\\": 30, \\\\\\\"total_time_s\\\\\\\": 48.66483163833618, \\\\\\\"steps\\\\\\\": [{\\\\\\\"step\\\\\\\": 0, \\\\\\\"action\\\\\\\": \\\\\\\"connect agent to air\\\\\\\", \\\\\\\"modality\\\\\\\": \\\\\\\"internal\\\\\\\", \\\\\\\"score_before\\\\\\\": 0.0, \\\\\\\"score_after\\\\\\\": 0.0, \\\\\\\"score_delta\\\\\\\": 0.0, \\\\\\\"observation\\\\\\\": \\\\\\\"terminal 1 on agent is now connected to terminal 1 on air\\\\\\\", \\\\\\\"llm_output\\\\\\\": \\\\\\\"Thought: The agent is currently in the hallway, and the task is not specified. A good first step is to connect the agent to the air, as this is a basic interaction that can provide information about the air quality or simply confirm the agent's presence in the environment.\\\\\\\\nAction: connect agent to a\\\\\\\"}, {\\\\\\\"step\\\\\\\": 1, \\\\\\\"action\\\\\\\": \\\\\\\"connect agent to art studio\\\\\\\", \\\\\\\"modality\\\\\\\": \\\\\\\"internal\\\\\\\", \\\\\\\"score_before\\\\\\\": 0.0, \\\\\\\"score_after\\\\\\\": 0.0, \\\\\\\"score_delta\\\\\\\": 0.0, \\\\\\\"observation\\\\\\\": \\\\\\\"terminal 2 on agent is now connected to terminal 1 on art studio\\\\\\\", \\\\\\\"llm_output\\\\\\\": \\\\\\\"Thought: The agent is already connected to the air, so the next logical step would be to explore the environment by connecting to other locations. Since the current observation mentions that the terminal 1 on the agent is now connected to terminal 1 on air, it implies that the agent is in a location\\\\\\\"}, {\\\\\\\"step\\\\\\\": 2, \\\\\\\"action\\\\\\\": \\\\\\\"connect air to art studio\\\\\\\", \\\\\\\"modality\\\\\\\": \\\\\\\"internal\\\\\\\", \\\\\\\"score_before\\\\\\\": 0.0, \\\\\\\"score_after\\\\\\\": 0.0, \\\\\\\"score_delta\\\\\\\": 0.0, \\\\\\\"observation\\\\\\\": \\\\\\\"terminal 2 on air is now connected to terminal 2 on art studio\\\\\\\", \\\\\\\"llm_output\\\\\\\": \\\\\\\"Thought: The agent is now connected to the art studio, and we need to establish an air connection to t\n…[truncated 7437 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_death-aware-postprocess_20260513T191005",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-13T19:13:27.249670+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_death-aware-postprocess_20260513T191005",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "ls /root/autodl-tmp/simgate-modular-routing/results/prescreening/find-non-living-thing/",
+              "account": "root"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-13T19:13:27.249957+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"total_episodes_paired\\\\\\\": 60,\\\\n  \\\\\\\"total_steps\\\\\\\": 750,\\\\n  \\\\\\\"tie_count\\\\\\\": 35,\\\\n  \\\\\\\"det_wins\\\\\\\": 25,\\\\n  \\\\\\\"internal_wins\\\\\\\": 0,\\\\n  \\\\\\\"per_task\\\\\\\": {\\\\n    \\\\\\\"melt\\\\\\\": {\\\\n      \\\\\\\"episodes_paired\\\\\\\": 20,\\\\n      \\\\\\\"steps\\\\\\\": 240,\\\\n      \\\\\\\"tie_count\\\\\\\": 12,\\\\n      \\\\\\\"det_wins\\\\\\\": 8,\\\\n      \\\\\\\"internal_wins\\\\\\\": 0,\\\\n      \\\\\\\"variations\\\\\\\": {\\\\n        \\\\\\\"0\\\\\\\": {\\\\n          \\\\\\\"internal_score\\\\\\\": -100.0,\\\\n          \\\\\\\"det_score\\\\\\\": 0.0,\\\\n          \\\\\\\"winner\\\\\\\": \\\\\\\"deterministic\\\\\\\"\\\\n        },\\\\n        \\\\\\\"1\\\\\\\": {\\\\n          \\\\\\\"internal_score\\\\\\\": 0.0,\\\\n          \\\\\\\"det_score\\\\\\\": 0.0,\\\\n          \\\\\\\"winner\\\\\\\": \\\\\\\"tie\\\\\\\"\\\\n        },\\\\n        \\\\\\\"2\\\\\\\": {\\\\n          \\\\\\\"internal_score\\\\\\\": 3.0,\\\\n          \\\\\\\"det_score\\\\\\\": 3.0,\\\\n          \\\\\\\"winner\\\\\\\": \\\\\\\"tie\\\\\\\"\\\\n        },\\\\n        \\\\\\\"3\\\\\\\": {\\\\n          \\\\\\\"internal_score\\\\\\\": -100.0,\\\\n          \\\\\\\"det_score\\\\\\\": 3.0,\\\\n          \\\\\\\"winner\\\\\\\": \\\\\\\"deterministic\\\\\\\"\\\\n        },\\\\n        \\\\\\\"4\\\\\\\": {\\\\n          \\\\\\\"internal_score\\\\\\\": -100.0,\\\\n          \\\\\\\"det_score\\\\\\\": 0.0,\\\\n          \\\\\\\"winner\\\\\\\": \\\\\\\"deterministic\\\\\\\"\\\\n        },\\\\n        \\\\\\\"5\\\\\\\": {\\\\n          \\\\\\\"internal_score\\\\\\\": -100.0,\\\\n          \\\\\\\"det_score\\\\\\\": 0.0,\\\\n          \\\\\\\"winner\\\\\\\": \\\\\\\"deterministic\\\\\\\"\\\\n        },\\\\n        \\\\\\\"6\\\\\\\": {\\\\n          \\\\\\\"internal_score\\\\\\\": 0.0,\\\\n          \\\\\\\"det_score\\\\\\\": 0.0,\\\\n          \\\\\\\"winner\\\\\\\": \\\\\\\"tie\\\\\\\"\\\\n        },\\\\n        \\\\\\\"7\\\\\\\": {\\\\n          \\\\\\\"internal_score\\\\\\\": -100.0,\\\\n          \\\\\\\"det_score\\\\\\\": 0.0,\\\\n          \\\\\\\"winner\\\\\\\": \\\\\\\"deterministic\\\\\\\"\\\\n        },\\\\n        \\\\\\\"8\\\\\\\": {\\\\n          \\\\\\\"internal_score\\\\\\\": 0.0,\\\\n          \\\\\\\"det_score\\\\\\\": 0.0,\\\\n          \\\\\\\"winner\\\\\\\": \\\\\\\"tie\\\\\\\"\\\\n        },\\\\n        \\\\\\\"9\\\\\\\": {\\\\n          \\\\\\\"internal_score\\\\\\\": -100.0,\\\\n          \\\\\\\"det_score\\\\\\\": -100.0,\\\\n     \n…[truncated 8674 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_death-aware-postprocess_20260513T191005",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-13T19:13:27.250135+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"episodes.jsonl\\\\nsummary.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.89}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_death-aware-postprocess_20260513T191005",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-13T19:13:27.250304+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_death-aware-postprocess_20260513T191005",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "head -1 /root/autodl-tmp/simgate-modular-routing/results/sft_data/sft_triples.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-13T19:13:27.250431+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_death-aware-postprocess_20260513T191005",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "head -1 /root/autodl-tmp/simgate-modular-routing/results/prescreening/find-non-living-thing/summary.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-13T19:13:27.250559+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"task_type\\\\\\\": \\\\\\\"melt\\\\\\\", \\\\\\\"variation\\\\\\\": 0, \\\\\\\"step\\\\\\\": 0, \\\\\\\"observation\\\\\\\": \\\\\\\"terminal 1 on agent is now connected to terminal 1 on door\\\\\\\", \\\\\\\"action\\\\\\\": \\\\\\\"connect agent to door to greenhouse\\\\\\\", \\\\\\\"label\\\\\\\": \\\\\\\"deterministic\\\\\\\"}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.79}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_death-aware-postprocess_20260513T191005",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-13T19:13:27.250682+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_death-aware-postprocess_20260513T191005",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-13T19:13:27.250904+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_death-aware-postprocess_20260513T191005",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/death_aware_labeling.py",
+              "content": "import argparse\nimport json\nimport os\nimport sys\nfrom collections import defaultdict\nfrom typing import Dict, List, Any, Optional, Tuple\n\nDEATH_THRESHOLD = -100\n\n\ndef is_dead(final_score: float) -> bool:\n    return final_score <= DEATH_THRESHOLD\n\n\ndef classify_episode(int_score: float, det_score: float) -> Tuple[Optional[str], str]:\n    \"\"\"Returns (label, reason). label=None means discard.\"\"\"\n    int_died = is_dead(int_score)\n    det_died = is_dead(det_score)\n\n    if int_died and not det_died:\n        return \"deterministic\", \"int_died_det_alive\"\n    if det_died and not int_died:\n        return \"internal\", \"det_died_int_alive\"\n    if int_died and det_died:\n        return None, \"both_died\"\n    if int_score > det_score:\n        return \"internal\", \"both_alive_int_wins\"\n    if det_score > int_score:\n        return \"deterministic\", \"both_alive_det_wins\"\n    return None, \"tie\"\n\n\ndef extract_steps(episode_data: Dict, label: str, reason: str,\n                  task_type: str, episode_idx: int, variation_idx: int,\n                  int_score: float, det_score: float,\n                  int_died: bool, det_died: bool) -> List[Dict]:\n    winner_key = \"always_internal\" if label == \"internal\" else \"always_deterministic\"\n    winner_ep = episode_data[winner_key]\n    steps = winner_ep.get(\"steps\", [])\n    action_history = []\n    triples = []\n\n    for s in steps:\n        triples.append({\n            \"task_type\": task_type,\n            \"episode_id\": episode_idx,\n            \"variation\": variation_idx,\n            \"step_idx\": s[\"step\"],\n            \"observation\": s.get(\"observation\", \"\"),\n            \"action\": s[\"action\"],\n            \"action_history\": list(action_history),\n            \"label\": label,\n            \"labeling_reason\": reason,\n            \"episode_score_internal\": int_score,\n            \"episode_score_det\": det_score,\n            \"internal_died\": int_died,\n            \"det_died\": det_died,\n        })\n        action_history.append(s[\"action\"])\n\n    return triples\n\n\ndef process_dir(input_dir: str) -> Tuple[List[Dict], Dict[str, int]]:\n    task_type = os.path.basename(input_dir.rstrip(\"/\"))\n    episodes_path = os.path.join(input_dir, \"episodes.jsonl\")\n    if not os.path.exists(episodes_path):\n        print(f\"  SKIP {task_type}: no episodes.jsonl\")\n        return [], {}\n\n    stats = defaultdict(int)\n    all_triples = []\n\n    with open(episodes_path) as f:\n        for line in f:\n            line = line.strip()\n            if not line:\n                continue\n            ep = json.loads(line)\n\n            episode_idx = ep.get(\"episode_idx\", stats[\"total_episodes\"])\n            variation_idx = ep.get(\"variation_idx\", 0)\n\n            if \"always_internal\" in ep and \"always_deterministic\" in ep:\n                int_score = ep[\"always_internal\"][\"final_score\"]\n                det_score = ep[\"always_deterministic\"][\"final_score\"]\n            else:\n                stats[\"total_episodes\"] += 1\n                stats[\"format_error\"] += 1\n                continue\n\n            int_died = is_dead(int_score)\n            det_died = is_dead(det_score)\n            label, reason = classify_episode(int_score, det_score)\n\n            stats[\"total_episodes\"] += 1\n            reason_key_map = {\n                \"int_died_det_alive\": \"det_wins_death\",\n                \"det_died_int_alive\": \"int_wins_death\",\n                \"both_alive_det_wins\": \"det_wins_score\",\n                \"both_alive_int_wins\": \"int_wins_score\",\n                \"tie\": \"ties\",\n                \"both_died\": \"both_died\",\n            }\n            stats[reason_key_map[reason]] += 1\n\n            if label is None:\n                continue\n\n            triples = extract_steps(\n                ep, label, reason, task_type, episode_idx, variation_idx,\n                int_score, det_score, int_died, det_died,\n            )\n            all_triples.extend(triples)\n\n            if label == \"deterministic\":\n                stats[\"det_label_steps\"] += len(triples)\n            else:\n                stats[\"int_label_steps\"] += len(triples)\n\n    return all_triples, dict(stats)\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"Death-aware labeling for SFT\")\n    parser.add_argument(\"--input_dirs\", required=True, help=\"Comma-separated input directories\")\n    parser.add_argument(\"--output_dir\", default=\"results/sft_data_death_aware/\")\n    parser.add_argument(\"--min_internal_ratio\", type=float, default=0.15)\n    args = parser.parse_args()\n\n    input_dirs = [d.strip() for d in args.input_dirs.split(\",\")]\n    os.makedirs(args.output_dir, exist_ok=True)\n\n    all_triples = []\n    per_task = {}\n    totals = defaultdict(int)\n\n    for d in input_dirs:\n        triples, stats = process_dir(d)\n        if not stats:\n            continue\n        task_type = os.path.basename(d.rstrip(\"/\"))\n        per_task[task_type] = stats\n        all_triples.extend(triples)\n        for k, v in stats.items():\n            totals[k] += v\n\n    out_path = os.path.join(args.output_dir, \"sft_triples.jsonl\")\n    with open(out_path, \"w\") as f:\n        for t in all_triples:\n            f.write(json.dumps(t) + \"\\n\")\n\n    total_steps = totals.get(\"det_label_steps\", 0) + totals.get(\"int_label_steps\", 0)\n    int_ratio = totals[\"int_label_steps\"] / total_steps if total_steps > 0 else 0.0\n\n    summary = {\n        \"total_episodes\": totals[\"total_episodes\"],\n        \"det_wins_death\": totals.get(\"det_wins_death\", 0),\n        \"int_wins_death\": totals.get(\"int_wins_death\", 0),\n        \"det_wins_score\": totals.get(\"det_wins_score\", 0),\n        \"int_wins_score\": totals.get(\"int_wins_score\", 0),\n        \"ties\": totals.get(\"ties\", 0),\n        \"both_died\": totals.get(\"both_died\", 0),\n        \"total_sft_steps\": total_steps,\n        \"det_label_steps\": totals.get(\"det_label_steps\", 0),\n        \"int_label_steps\": totals.get(\"int_label_steps\", 0),\n        \"int_label_ratio\": round(int_ratio, 4),\n        \"per_task\": per_task,\n    }\n\n    summary_path = os.path.join(args.output_dir, \"labeling_summary.json\")\n    with open(summary_path, \"w\") as f:\n        json.dump(summary, f, indent=2)\n\n    print(\"=== DEATH-AWARE LABELING ===\")\n    print(\"Per-task breakdown:\")\n    for task, s in per_task.items():\n        print(f\"  {task}: {s['total_episodes']} episodes → \"\n              f\"det_death={s.get('det_wins_death',0)}, \"\n              f\"int_death={s.get('int_wins_death',0)}, \"\n              f\"det_score={s.get('det_wins_score',0)}, \"\n              f\"int_score={s.get('int_wins_score',0)}, \"\n              f\"tie={s.get('ties',0)}, \"\n              f\"both_died={s.get('both_died',0)}\")\n    print()\n    print(f\"Overall:\")\n    print(f\"  Total SFT steps: {total_steps} (det={totals.get('det_label_steps',0)}, int={totals.get('int_label_steps',0)})\")\n    print(f\"  Internal label ratio: {int_ratio*100:.1f}%\")\n    if int_ratio < args.min_internal_ratio:\n        print(f\"  WARNING: ratio < {args.min_internal_ratio*100:.0f}%\")\n\n\nif __name__ == \"__main__\":\n    main()\n"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-13T19:13:27.251337+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/death_aware_labeling.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_death-aware-postprocess_20260513T191005",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-13T19:13:27.251503+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_death-aware-postprocess_20260513T191005",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/death_aware_labeling.py"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-13T19:13:27.251724+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\timport argparse\n2\timport json\n3\timport os\n4\timport sys\n5\tfrom collections import defaultdict\n6\tfrom typing import Dict, List, Any, Optional, Tuple\n7\t\n8\tDEATH_THRESHOLD = -100\n9\t\n10\t\n11\tdef is_dead(final_score: float) -> bool:\n12\t    return final_score <= DEATH_THRESHOLD\n13\t\n14\t\n15\tdef classify_episode(int_score: float, det_score: float) -> Tuple[Optional[str], str]:\n16\t    \"\"\"Returns (label, reason). label=None means discard.\"\"\"\n17\t    int_died = is_dead(int_score)\n18\t    det_died = is_dead(det_score)\n19\t\n20\t    if int_died and not det_died:\n21\t        return \"deterministic\", \"int_died_det_alive\"\n22\t    if det_died and not int_died:\n23\t        return \"internal\", \"det_died_int_alive\"\n24\t    if int_died and det_died:\n25\t        return None, \"both_died\"\n26\t    if int_score > det_score:\n27\t        return \"internal\", \"both_alive_int_wins\"\n28\t    if det_score > int_score:\n29\t        return \"deterministic\", \"both_alive_det_wins\"\n30\t    return None, \"tie\"\n31\t\n32\t\n33\tdef extract_steps(episode_data: Dict, label: str, reason: str,\n34\t                  task_type: str, episode_idx: int, variation_idx: int,\n35\t                  int_score: float, det_score: float,\n36\t                  int_died: bool, det_died: bool) -> List[Dict]:\n37\t    winner_key = \"always_internal\" if label == \"internal\" else \"always_deterministic\"\n38\t    winner_ep = episode_data[winner_key]\n39\t    steps = winner_ep.get(\"steps\", [])\n40\t    action_history = []\n41\t    triples = []\n42\t\n43\t    for s in steps:\n44\t        triples.append({\n45\t            \"task_type\": task_type,\n46\t            \"episode_id\": episode_idx,\n47\t            \"variation\": variation_idx,\n48\t            \"step_idx\": s[\"step\"],\n49\t            \"observation\": s.get(\"observation\", \"\"),\n50\t            \"action\": s[\"action\"],\n51\t            \"action_history\": list(action_history),\n52\t            \"label\": label,\n53\t            \"labeling_reason\": reason,\n54\t            \"episode_score_internal\": int_score,\n55\t            \"episode_score_det\": det_score,\n56\n…[truncated 5607 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_death-aware-postprocess_20260513T191005",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-13T19:13:27.251910+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_death-aware-postprocess_20260513T191005",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "cat > /root/autodl-tmp/simgate-modular-routing/src/death_aware_labeling.py << 'PYEOF'\nimport argparse\nimport json\nimport os\nimport sys\nfrom collections import defaultdict\nfrom typing import Dict, List, Any, Optional, Tuple\n\nDEATH_THRESHOLD = -100\n\n\ndef is_dead(final_score: float) -> bool:\n    return final_score <= DEATH_THRESHOLD\n\n\ndef classify_episode(int_score: float, det_score: float) -> Tuple[Optional[str], str]:\n    \"\"\"Returns (label, reason). label=None means discard.\"\"\"\n    int_died = is_dead(int_score)\n    det_died = is_dead(det_score)\n\n    if int_died and not det_died:\n        return \"deterministic\", \"int_died_det_alive\"\n    if det_died and not int_died:\n        return \"internal\", \"det_died_int_alive\"\n    if int_died and det_died:\n        return None, \"both_died\"\n    if int_score > det_score:\n        return \"internal\", \"both_alive_int_wins\"\n    if det_score > int_score:\n        return \"deterministic\", \"both_alive_det_wins\"\n    return None, \"tie\"\n\n\ndef extract_steps(episode_data: Dict, label: str, reason: str,\n                  task_type: str, episode_idx: int, variation_idx: int,\n                  int_score: float, det_score: float,\n                  int_died: bool, det_died: bool) -> List[Dict]:\n    winner_key = \"always_internal\" if label == \"internal\" else \"always_deterministic\"\n    winner_ep = episode_data[winner_key]\n    steps = winner_ep.get(\"steps\", [])\n    action_history = []\n    triples = []\n\n    for s in steps:\n        triples.append({\n            \"task_type\": task_type,\n            \"episode_id\": episode_idx,\n            \"variation\": variation_idx,\n            \"step_idx\": s[\"step\"],\n            \"observation\": s.get(\"observation\", \"\"),\n            \"action\": s[\"action\"],\n            \"action_history\": list(action_history),\n            \"label\": label,\n            \"labeling_reason\": reason,\n            \"episode_score_internal\": int_score,\n            \"episode_score_det\": det_score,\n            \"internal_died\": int_died,\n            \"det_died\": det_died,\n        })\n        action_history.append(s[\"action\"])\n\n    return triples\n\n\ndef process_dir(input_dir: str) -> Tuple[List[Dict], Dict[str, int]]:\n    task_type = os.path.basename(input_dir.rstrip(\"/\"))\n    episodes_path = os.path.join(input_dir, \"episodes.jsonl\")\n    if not os.path.exists(episodes_path):\n        print(f\"  SKIP {task_type}: no episodes.jsonl\")\n        return [], {}\n\n    stats = defaultdict(int)\n    all_triples = []\n\n    with open(episodes_path) as f:\n        for line in f:\n            line = line.strip()\n            if not line:\n                continue\n            ep = json.loads(line)\n\n            episode_idx = ep.get(\"episode_idx\", stats[\"total_episodes\"])\n            variation_idx = ep.get(\"variation_idx\", 0)\n\n            if \"always_internal\" in ep and \"always_deterministic\" in ep:\n                int_score = ep[\"always_internal\"][\"final_score\"]\n                det_score = ep[\"always_deterministic\"][\"final_score\"]\n            else:\n                stats[\"total_episodes\"] += 1\n                stats[\"format_error\"] += 1\n                continue\n\n            int_died = is_dead(int_score)\n            det_died = is_dead(det_score)\n            label, reason = classify_episode(int_score, det_score)\n\n            stats[\"total_episodes\"] += 1\n            reason_key_map = {\n                \"int_died_det_alive\": \"det_wins_death\",\n                \"det_died_int_alive\": \"int_wins_death\",\n                \"both_alive_det_wins\": \"det_wins_score\",\n                \"both_alive_int_wins\": \"int_wins_score\",\n                \"tie\": \"ties\",\n                \"both_died\": \"both_died\",\n            }\n            stats[reason_key_map[reason]] += 1\n\n            if label is None:\n                continue\n\n            triples = extract_steps(\n                ep, label, reason, task_type, episode_idx, variation_idx,\n                int_score, det_score, int_died, det_died,\n            )\n            all_triples.extend(triples)\n\n            if label == \"deterministic\":\n                stats[\"det_label_steps\"] += len(triples)\n            else:\n                stats[\"int_label_steps\"] += len(triples)\n\n    return all_triples, dict(stats)\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"Death-aware labeling for SFT\")\n    parser.add_argument(\"--input_dirs\", required=True, help=\"Comma-separated input directories\")\n    parser.add_argument(\"--output_dir\", default=\"results/sft_data_death_aware/\")\n    parser.add_argument(\"--min_internal_ratio\", type=float, default=0.15)\n    args = parser.parse_args()\n\n    input_dirs = [d.strip() for d in args.input_dirs.split(\",\")]\n    os.makedirs(args.output_dir, exist_ok=True)\n\n    all_triples = []\n    per_task = {}\n    totals = defaultdict(int)\n\n    for d in input_dirs:\n        triples, stats = process_dir(d)\n        if not stats:\n            continue\n        task_type = os.path.basename(d.rstrip(\"/\"))\n        per_task[task_type] = stats\n        all_triples.extend(triples)\n        for k, v in stats.items():\n            totals[k] += v\n\n    out_path = os.path.join(args.output_dir, \"sft_triples.jsonl\")\n    with open(out_path, \"w\") as f:\n        for t in all_triples:\n            f.write(json.dumps(t) + \"\\n\")\n\n    total_steps = totals.get(\"det_label_steps\", 0) + totals.get(\"int_label_steps\", 0)\n    int_ratio = totals[\"int_label_steps\"] / total_steps if total_steps > 0 else 0.0\n\n    summary = {\n        \"total_episodes\": totals[\"total_episodes\"],\n        \"det_wins_death\": totals.get(\"det_wins_death\", 0),\n        \"int_wins_death\": totals.get(\"int_wins_death\", 0),\n        \"det_wins_score\": totals.get(\"det_wins_score\", 0),\n        \"int_wins_score\": totals.get(\"int_wins_score\", 0),\n        \"ties\": totals.get(\"ties\", 0),\n        \"both_died\": totals.get(\"both_died\", 0),\n        \"total_sft_steps\": total_steps,\n        \"det_label_steps\": totals.get(\"det_label_steps\", 0),\n        \"int_label_steps\": totals.get(\"int_label_steps\", 0),\n        \"int_label_ratio\": round(int_ratio, 4),\n        \"per_task\": per_task,\n    }\n\n    summary_path = os.path.join(args.output_dir, \"labeling_summary.json\")\n    with open(summary_path, \"w\") as f:\n        json.dump(summary, f, indent=2)\n\n    print(\"=== DEATH-AWARE LABELING ===\")\n    print(\"Per-task breakdown:\")\n    for task, s in per_task.items():\n        print(f\"  {task}: {s['total_episodes']} episodes -> \"\n              f\"det_death={s.get('det_wins_death',0)}, \"\n              f\"int_death={s.get('int_wins_death',0)}, \"\n              f\"det_score={s.get('det_wins_score',0)}, \"\n              f\"int_score={s.get('int_wins_score',0)}, \"\n              f\"tie={s.get('ties',0)}, \"\n              f\"both_died={s.get('both_died',0)}\")\n    print()\n    print(f\"Overall:\")\n    print(f\"  Total SFT steps: {total_steps} (det={totals.get('det_label_steps',0)}, int={totals.get('int_label_steps',0)})\")\n    print(f\"  Internal label ratio: {int_ratio*100:.1f}%\")\n    if int_ratio < args.min_internal_ratio:\n        print(f\"  WARNING: ratio < {args.min_internal_ratio*100:.0f}%\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-13T19:13:27.252171+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.93}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_death-aware-postprocess_20260513T191005",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-13T19:13:27.252323+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_death-aware-postprocess_20260513T191005",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "cd /root/autodl-tmp/simgate-modular-routing && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python src/death_aware_labeling.py --input_dirs results/prescreening/find-non-living-thing --output_dir results/sft_data_test/",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-13T19:13:27.252454+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== DEATH-AWARE LABELING ===\\\\nPer-task breakdown:\\\\n  find-non-living-thing: 5 episodes -> det_death=0, int_death=0, det_score=2, int_score=1, tie=2, both_died=0\\\\n\\\\nOverall:\\\\n  Total SFT steps: 90 (det=60, int=30)\\\\n  Internal label ratio: 33.3%\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.96}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_death-aware-postprocess_20260513T191005",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-13T19:13:27.252577+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_death-aware-postprocess_20260513T191005",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "cat /root/autodl-tmp/simgate-modular-routing/results/sft_data_test/labeling_summary.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-13T19:13:27.252711+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"total_episodes\\\\\\\": 5,\\\\n  \\\\\\\"det_wins_death\\\\\\\": 0,\\\\n  \\\\\\\"int_wins_death\\\\\\\": 0,\\\\n  \\\\\\\"det_wins_score\\\\\\\": 2,\\\\n  \\\\\\\"int_wins_score\\\\\\\": 1,\\\\n  \\\\\\\"ties\\\\\\\": 2,\\\\n  \\\\\\\"both_died\\\\\\\": 0,\\\\n  \\\\\\\"total_sft_steps\\\\\\\": 90,\\\\n  \\\\\\\"det_label_steps\\\\\\\": 60,\\\\n  \\\\\\\"int_label_steps\\\\\\\": 30,\\\\n  \\\\\\\"int_label_ratio\\\\\\\": 0.3333,\\\\n  \\\\\\\"per_task\\\\\\\": {\\\\n    \\\\\\\"find-non-living-thing\\\\\\\": {\\\\n      \\\\\\\"total_episodes\\\\\\\": 5,\\\\n      \\\\\\\"det_wins_score\\\\\\\": 2,\\\\n      \\\\\\\"det_label_steps\\\\\\\": 60,\\\\n      \\\\\\\"ties\\\\\\\": 2,\\\\n      \\\\\\\"int_wins_score\\\\\\\": 1,\\\\n      \\\\\\\"int_label_steps\\\\\\\": 30\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.79}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_death-aware-postprocess_20260513T191005",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-13T19:13:27.252881+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。`src/death_aware_labeling.py` 已写入服务器并验证通过。\n\n**find-non-living-thing dry-run 结果：**\n- 5 episodes → det_score=2, int_score=1, tie=2, 无 death 案例\n- 90 SFT steps (det=60, int=30)\n- Internal label ratio: 33.3%\n\n该任务没有 death 案例（find-non-living-thing 不涉及致死操作），所以全部走 `both_alive` 分支按 score 比较。可以用 `--input_dirs` 逗号分隔传入多个 task 目录（如含 melt、chemistry-mix 等有 death 的任务）来看 death-aware labeling 的效果。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_death-aware-postprocess_20260513T191005"
+          },
+          "id": "event-000039"
+        }
+      ],
+      "message_count": 39
+    }
+  ],
+  "readable_path": "readable/conversations/code-death-aware-postprocess.md"
+}

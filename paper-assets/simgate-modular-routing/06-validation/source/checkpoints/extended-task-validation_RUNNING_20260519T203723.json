@@ -1,0 +1,47 @@
+{
+  "exp_id": "extended-task-validation",
+  "project": "simgate-modular-routing",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T20:30:59.229Z",
+    "updated_at": "2026-05-19T20:37:23.013Z",
+    "hypothesis": "Excluded task types (dev-set: boil/melt, taxonomic: find-living-thing, agent-floor: use-thermometer/power-component) in full 20-episode collection still exhibit death asymmetry consistent with prescreening n=5 direction, confirming that task exclusion was not cherry-picking to inflate death dominance. Specifically, death-prone excluded tasks should show internal DR >> deterministic DR (matching Table 4 prescreening data).",
+    "server": "westb-13313",
+    "gpu": "cuda:0,cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "westb-13313",
+      "gpu": "cuda:0,cuda:1",
+      "started_at": "2026-05-19T20:31:55.684Z"
+    },
+    "spec": {
+      "server": "westb-13313",
+      "gpu": [
+        "cuda:0",
+        "cuda:1"
+      ],
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 42,
+      "tasks": "boil,melt,find-living-thing,use-thermometer,power-component",
+      "episodes_per_task": 20,
+      "strategies": "internal,deterministic",
+      "command": "bash scripts/run_extended_validation_gpu0.sh (cuda:0, 3 tasks) + bash scripts/run_extended_validation_gpu1.sh (cuda:1, 2 tasks)",
+      "data_path": "5 excluded ScienceWorld tasks: boil, melt, find-living-thing, use-thermometer, power-component",
+      "data_count": 200,
+      "checkpoint_source": "N/A (inference-only, counterfactual data collection)",
+      "eval_data": "5 excluded tasks × 20 episodes × 2 conditions (always-internal + always-deterministic)",
+      "model_path": "/root/autodl-tmp/models/Qwen/Qwen2.5-7B-Instruct",
+      "temperature": 0.3,
+      "max_steps": 30,
+      "tmux_sessions": [
+        "ext-val-gpu0",
+        "ext-val-gpu1"
+      ]
+    }
+  },
+  "timestamp": "2026-05-19T20:37:23.257616+00:00",
+  "trigger": "update_registry"
+}

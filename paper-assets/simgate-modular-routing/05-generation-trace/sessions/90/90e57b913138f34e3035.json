@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "90e57b913138f34e3035",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "exp death proximal labeling router",
+  "task_key": "worker_exp_death-proximal-labeling-router_20260519T162129",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_death-proximal-labeling-router_20260519T162129_result.json",
+    "occurrence": 1,
+    "bytes": 720,
+    "sha256": "67e251e867a8001f842048c40131a1f53c7d868d286d13601525fbe170f53eb4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。\n\n**结论：负面结果。** 5 个模型（full, k10, k5, k3, k1）全部对 internal 类别 0% recall，Step BA(all) ≈ 0.50，Episode BA = 0.50。\n\n**根本原因**：death_asymmetry episode 是单类的（全部标为 deterministic），death-proximal 过滤只减少 deterministic 样本，不改善类别平衡（10.3% → 13.4% internal 比例变化微乎其微）。9:1 的类别不平衡导致模型学会全预测 deterministic。\n\n**已完成**：\n- 5 个模型训练 + 评估（修复了 Qwen3 thinking token 解析 bug）\n- 结果报告写入 `artifacts/death-proximal-labeling-router/`\n- Registry 更新为 DONE (negative)，含完整 metrics\n- Memory 记录教训"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-death-proximal-labeling-router.md"
+}

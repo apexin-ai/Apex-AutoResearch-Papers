@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5d16b4186b6166d2ba2e",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "infra urgent crash diagnosis",
+  "task_key": "worker_infra_urgent-crash-diagnosis_20260513T184325",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_urgent-crash-diagnosis_20260513T184325_result.json",
+    "occurrence": 1,
+    "bytes": 1392,
+    "sha256": "1147f43995e37e3e8d98fce503508bdb26a5b1fcb5fc5b9f59c30b240f9b00b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**没有 crash，两个实验都在正常跑。** 进度慢是因为每个 episode/task 本身耗时长。\n\n---\n\n## Boil v3 (GPU 1)\n\n| 项目 | 状态 |\n|------|------|\n| 进程 | PID 650426 存活，00:23 启动，VLLM PID 651246 (28GB) |\n| 日志最后修改 | 02:43:56（刚刚，持续写入中） |\n| 进度 | **17/20 episodes**（当前正在跑 Episode 17） |\n| episodes.jsonl | 17 行 |\n| 错误 | 无（grep error 结果为 0） |\n| 速度 | ~8.3 min/episode（141 分钟完成 17 个），正常范围 |\n\n## 预筛 (GPU 0)\n\n| 项目 | 状态 |\n|------|------|\n| 进程 | PID 131653 存活（02:42 刚启动 grow-fruit），VLLM PID 132374 (28GB) |\n| 日志最后修改 | 02:44:19（持续写入） |\n| 进度 | **7 tasks 完成 + 1 running（grow-fruit）= 8/25** |\n| 已完成 | chemistry-mix, chemistry-mix-paint-tertiary-color, find-animal, find-living-thing, find-non-living-thing, find-plant, freeze |\n| 错误 | 无 |\n| 速度 | ~20 min/task（每个 task 5 episodes x 30 steps） |\n\n## 诊断结论\n\n- GPU 0 利用率 0%、GPU 1 利用率 11% — 两张卡各跑各的，无争抢\n- 进度看起来\"停滞\"是因为 ScienceWorld 每个 episode 需要多轮 LLM 推理（最多 30 步），单 episode 耗时 ~8 分钟\n- 预估完成时间：boil v3 还剩 ~3 个 episode ≈ 25 分钟；预筛还剩 17 个 tasks ≈ 5-6 小时"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-urgent-crash-diagnosis.md"
+}

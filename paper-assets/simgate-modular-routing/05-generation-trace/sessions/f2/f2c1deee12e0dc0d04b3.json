@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f2c1deee12e0dc0d04b3",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh fix oom and resubmit",
+  "task_key": "worker_ssh_fix-oom-and-resubmit_20260518T215853",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix-oom-and-resubmit_20260518T215853_result.json",
+    "occurrence": 1,
+    "bytes": 554,
+    "sha256": "63d7d457e6a76223c34a59a839c686c542cccd9c9ac82d3fa8a1e33ebffd2db4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 报告\n\n| 项目 | 状态 |\n|---|---|\n| **cuda:0 清理** | 进程 165113 已终止，显存完全释放（0MiB → 可用） |\n| **grounding-prompt-ablation** | 已重启，tmux session `grounding-prompt-ablation`，vLLM PID 168205，cuda:0 占用 29637MiB，正常推理中 |\n| **grounding-filter-ablation** | `src/run_grounding_filter_ablation.py` **不存在**，无法执行 dry-run。另一个 Worker 可能还在准备中 |\n| **GPU 使用** | cuda:0: 29637MiB / 38% util（prompt-ablation）；cuda:1: 空闲 0MiB |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fix-oom-and-resubmit.md"
+}

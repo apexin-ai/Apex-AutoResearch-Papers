@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9ccb1979241dc8e9cc89",
+  "project": "simgate-modular-routing",
+  "kind": "history",
+  "title": "agent / loop_10_1778805470.md",
+  "task_key": "loop_10_1778805470",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_10_1778805470.md",
+    "occurrence": 1,
+    "bytes": 3402,
+    "sha256": "1ffa5529ea6de1fcd831155e0ff53547bcaea023b42d73a9f7ab28e8a6a038f7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: idle_timeout\nupdated: '2026-05-15T00:20:54+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: westb-13313 的 cuda:0 和 cuda:1（config `gpu_ids`），不可用其他设备\n- 论文数据引用只能来自 plan-012-full（11 tasks, 245 eps），prescreening 数据仅限 appendix\n- 禁止引用 `results/plan_c_test_labels/implicit_sft.jsonl`（no-preference→internal 映射错误，已污染）和 `death_decomposition_report.json`（文件名误导，实为 30-task 数据非核心 11-task）\n- DAF 数值已从 ~99% 下调至 ~90%（find-non-living-thing 零死亡反例），不可回退旧 claim\n- Qwen3 eval 必须 `enable_thinking=False` + regex strip `<think>` tags\n\n### 2. 🖥️ 基础设施快照\n- 服务器: westb-13313 (2× RTX 5090 32GB)，账号 root\n- 工作目录: `/root/autodl-tmp/simgate-modular-routing/`\n- Python: `/root/miniconda3/bin/python`（conda base 环境，非 venv）\n- 模型缓存: `/root/autodl-tmp/models/Qwen/Qwen3-1.7B`，HF_HOME=`/root/autodl-tmp/.hf_cache`\n- 核心数据: `results/plan_c/`（2040 samples, 11 tasks, frozen）\n- Router checkpoint: `checkpoints/plan-004-implicit/`（balanced_acc=58.1±0.8%）\n- 论文源码: `docs/paper/`，本地编译 7 页 (4p 正文)，0 warnings\n- 活跃进程: 无（cuda:0 和 cuda:1 均空闲）\n- Cron: 0 个活跃\n\n### 3. 📊 当前状态\nSession #9 全部工作已完成。58 个实验全部终态（22 success / 13 negative / 10 failed / 13 killed），0 RUNNING。\n\n上一轮完成项：\n- ALFWorld 跨环境验证（135 games, det 27.4% vs int 3.0%）已写入论文 Limitations + Conclusion\n- R2→R3 三个 Blocker 全部修复（标题 scope / train-test split / penalty sensitivity）\n- R3 评分 Weak Accept - Findings (3.25/5)，本地编译通过\n- 全文数字一致性交叉验证通过\n\n无等待中的 Worker 回调、Cron、或 Director 决策。\n\n### 4. 📋 待办（条件触发式）\n- R3 reviewer 返回新意见 → 按 Action Matrix 逐条修复，优先 Blocker 再处理 Suggestion\n- Director 指示提交 ARR → rsync 论文到 westb-13313 远程编译验证 → 最终 PDF 视觉检查 → 提交（DDL 5/25）\n- Director 要求补充分析 → cuda:0/1 空闲可用，plan-005 routing pattern 分析 / plan-006 2v3-way ablation 已有方案可立即启动\n- 审稿期间 GPU 空闲 → 可主动建议 Director 跑 plan-005（routing pattern heatmap，纯分析无需训练）充实 appendix\n\n### 5. 🎯 战略上下文\n**核心结论**: Death avoidance 占 ~90% routing signal（DAF=90.41%, r=0.9698, p=8.12e-07）。Router near-random (58.1%) 是 finding 不是 bug——证明除死亡外的信号极弱。\n\n**决策链关键节点**:\n- D046: 撤销 method paper pivot（D041/D042），回归 analysis paper。MATH 反转信号否定统一 router 前提\n- D045: MATH 不扩全量，105 题 pilot 结果入 Discussion 足够\n- D043: CI 统一为 95% Bootstrap CI\n\n**易错点**:\n- plan-002（classification head）已废弃（v1-v6 全退化），不要尝试修复——已证明 class_weights + max_grad_norm 交互导致 internal gradient≈0\n- 论文定位是 empirical finding + diagnostic methodology，不是 router architecture contribution\n- find-non-living-thing（n=40, 零死亡, Δ=+9.58）是正面验证非死亡信号存在的证据，不是 anomaly\n- HF Hub 在 AutoDL 网络不可达，必须 HF_HUB_OFFLINE=1 + 本地模型路径\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-1778805470.md"
+}

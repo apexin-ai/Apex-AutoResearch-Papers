@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5363b048602eb2b71253",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code update death analysis signal type",
+  "task_key": "worker_code_update-death-analysis-signal-type_20260513T190919",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_update-death-analysis-signal-type_20260513T190919_result.json",
+    "occurrence": 1,
+    "bytes": 592,
+    "sha256": "a9c4bf80295a7ae8cb382c3f4a7946b083a5c22063c80463f48a4f2c8b871d70"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果摘要：\n\n**Prescreening (9 tasks):**\n- death-dominated: 4 tasks\n- genuine-det: 3 tasks (find-animal, find-living-thing, freeze)\n- internal-preferred: 1 task (find-non-living-thing)\n- mixed: 1 task (chemistry-mix)\n\n**MVP (5 tasks):**\n- death-dominated: 5 tasks (全部)\n- genuine-det / internal-preferred / mixed: 0\n\nMVP 的 det 优势完全来自 death avoidance，无一例外。Prescreening 中也有近半数是 death-dominated。\n\n产出文件：\n- 更新：`src/death_analysis.py`\n- 新增：`results/prescreening/signal_type_summary.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-update-death-analysis-signal-type.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "75031033dfb91c555841",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "paper draft completeness audit",
+  "task_key": "worker_paper_draft-completeness-audit_20260514T144553",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_draft-completeness-audit_20260514T144553_result.json",
+    "occurrence": 1,
+    "bytes": 963,
+    "sha256": "e8c2deaa506bc74e3816c76b306a32df0ccfd212dd7141231b2c394fe4528268"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`register_artifact` 工具不可用。审计报告已写入 `artifacts/paper_completeness_audit.md`。\n\n---\n\n## 审计结论\n\n**完成度 ~90%**，所有硬约束数字通过，framing 一致。\n\n### 5/17 前必须完成（2 项）\n\n| # | 问题 | 工作量 |\n|---|------|--------|\n| 1 | **Table 2 缺失** — per-task decomposition 表（11 tasks × 7 columns），核心 claim 的逐 task 证据，reviewer 必看 | 1-2h |\n| 2 | **Table 1 CI 值不一致** — 论文与 writing_plan 的 bootstrap CI 不同，需回溯 plan-003/plan-012 确认权威值 | 0.5h |\n\n### Nice-to-have（5/17 后可补）\n\n| # | 问题 |\n|---|------|\n| 3 | `dagger-2011` 在 bib 但未被 `\\cite{}`——引用或删除 |\n| 4 | EnvSimBench 引用缺失（writing_plan 标记 needs_search） |\n| 5 | Method 中 deterministic mode 操作定义可扩展一句 |\n| 6 | 编译后检查页数——7 个 section + Limitations + Ethics 可能偏紧 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-draft-completeness-audit.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "daa852fee4bb84f9c469",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "audit plan 001b data completeness",
+  "task_key": "worker_audit_plan-001b-data-completeness_20260514T044746",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_plan-001b-data-completeness_20260514T044746_result.json",
+    "occurrence": 1,
+    "bytes": 1053,
+    "sha256": "c889d4e9456f518a02e3fd075eed1a79d23f15eb7998a77e2620decab881c687"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Plan-001b Episode 数据完整性审计\n\n| Task | Episodes | 目标 | 状态 |\n|------|----------|------|------|\n| find-non-living-thing | 40 | 40 | ✅ 完成 |\n| grow-fruit | 20 | 20 | ✅ 完成 |\n| inclined-plane-determine-angle | 20 | 20 | ✅ 完成 |\n| identify-life-stages-2 | 20 | 20 | ✅ 完成 |\n| find-animal | 20 | 20 | ✅ 完成 |\n| identify-life-stages-1 | 20 | 20 | ✅ 完成 |\n| lifespan-longest-lived-then-shortest-lived | 20 | 20 | ✅ 完成 |\n| lifespan-longest-lived | 23 | 20 | ✅ 超额完成（+3） |\n| measure-melting-point-unknown-substance | 20 | 20 | ✅ 完成 |\n| freeze | 20 | 20 | ✅ 完成 |\n| chemistry-mix | 8 | 20 | ⚠️ 缺 12 eps |\n\n### 总结\n\n- **10/11 tasks 已达标**（含 lifespan-longest-lived 超额 3 条）\n- **唯一缺数据的是 chemistry-mix**：当前 8 eps，还差 12 eps\n- freeze 已收满 20 eps（plan-001b-gpu1-freeze-chem 的 freeze 部分已完成）\n- chemistry-mix 的剩余 12 eps 应该正在由 plan-001b-gpu1-freeze-chem 继续收集中"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-plan-001b-data-completeness-copy-2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9e56870e08dadae14f81",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "analysis fnlt zero death analysis",
+  "task_key": "worker_analysis_fnlt-zero-death-analysis_20260518T214427",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_fnlt-zero-death-analysis_20260518T214427_result.json",
+    "occurrence": 1,
+    "bytes": 1087,
+    "sha256": "9657badff2b72ababeebf7b4f37a186eeb73980fbe145db0354be5a5f8f4d15e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心发现：\n\n**`focus on` 是所有 11 tasks 中唯一的死亡机制**（146 次死亡全部来自 `focus on`，0 次来自其他 action）。find-non-living-thing 使用 `focus on` 105 次（比任何 death-prone task 都多），却 0 次致死。\n\n原因是 **ScienceWorld 的 task-dependent `focus on` 语义**：\n- 相同的 `focus on inventory` 在 freeze/chemistry-mix 中 → 死亡（-100 分），在 find-non-living-thing 中 → 中性（0 分）\n- find-non-living-thing 的目标类别（非生物）是环境中的**绝对多数类**：房间、家具、工具、食物等几乎都是非生物\n- 对比 find-animal：动物是**少数类**，随机 `focus on` 绝大多数命中非动物 → 死亡率 45%\n\n这使得 find-non-living-thing 成为 death dominance 结论的**天然控制组**：大量使用致死 action，但因 task 结构使死亡不可能发生，证明死亡需要 `focus on` + 特定 task context 两个条件同时满足。\n\n报告已保存到 `artifacts/appendix/fnlt_zero_death_analysis.md` 并注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-fnlt-zero-death-analysis.md"
+}

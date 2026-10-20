@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d630dde7c6e0bccc22f3",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh 72b daf decomposition",
+  "task_key": "worker_ssh_72b-daf-decomposition_20260518T020125",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_72b-daf-decomposition_20260518T020125_result.json",
+    "occurrence": 1,
+    "bytes": 641,
+    "sha256": "0b6cf4af52d548da8ec2eb3d6018ae587280fc19dcbf467e2f0a3db66f85452f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已写入 `artifacts/72b_daf_decomposition.md`。\n\n**72B DAF 核心结果：**\n\n| | All tasks (220 eps) | Death-prone (200 eps) |\n|---|---|---|\n| Δ_full | 31.60 | 32.77 |\n| Δ_nd | 2.87 | 0.17 |\n| **DAF** | **90.9%** [83.9%, 97.3%] | **99.5%** [98.0%, 100.2%] |\n| Label fraction | 70/83 = 84.3% [76.1%, 91.8%] | 70/73 = 95.9% [90.8%, 100.0%] |\n\n**vs 7B**: 7B DAF 90.4% vs 72B DAF 90.9%，几乎一致。Death asymmetry 作为主导信号源与 backbone 规模无关。\n\nfind-non-living-thing 是唯一无 death 的 task（DAF=0%），所有其他 task DAF 均 >= 94.2%，其中 8/10 个 task 达到 100%。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-72b-daf-decomposition.md"
+}

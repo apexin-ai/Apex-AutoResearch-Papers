@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "96c9872f2d6cb99e3956",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "analysis excluded tasks data fix",
+  "task_key": "worker_analysis_excluded-tasks-data-fix_20260515T163652",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_excluded-tasks-data-fix_20260515T163652_result.json",
+    "occurrence": 1,
+    "bytes": 2296,
+    "sha256": "f6863b95e95a44854d299fa7ccebec5e9ae2fc66e59d4efa8a62a3488ab4c37b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修正完成。以下是向 Director 汇报的结构化数据：\n\n---\n\n## 修正后关键统计值\n\n### Included 11 tasks (plan_c 20-ep)\n\n| Task | det_death% | Δnd | source |\n|------|-----------|-----|--------|\n| chemistry-mix | 25.0 | +1.69 | plan_c n=20 |\n| find-animal | 25.0 | +1.67 | plan_c n=20 |\n| find-non-living-thing | 0.0 | +9.58 | plan_c n=40 |\n| freeze | 25.0 | +0.44 | plan_c n=20 |\n| grow-fruit | 20.0 | −0.64 | plan_c n=20 |\n| identify-life-stages-1 | 10.0 | +2.78 | plan_c n=20 |\n| identify-life-stages-2 | 20.0 | −1.20 | plan_c n=20 |\n| inclined-plane-determine-angle | 20.0 | +1.25 | plan_c n=20 |\n| lifespan-longest-lived | 16.0 | +2.59 | plan_c n=25 |\n| lifespan-longest-lived-then-shortest-lived | 10.0 | +6.44 | plan_c n=20 |\n| measure-melting-point-unknown-substance | 25.0 | −0.56 | plan_c n=20 |\n| **Mean** | **17.82%** | **+2.19** | |\n| **Δnd=0 count** | | **0/11** | |\n\n### Excluded 19 tasks (mvp 20-ep + prescreening 5-9-ep)\n\n| Metric | Value |\n|--------|-------|\n| mean det_death_rate | 14.89% |\n| mean det_mean_score | −13.98 |\n| Δnd=0 count | 10/19 |\n| tasks det_death≥20% | 10/19 |\n\n### 四个修正的具体问题\n\n| 问题 | 旧值 | 修正值 | 原因 |\n|------|------|--------|------|\n| **Included det_death_rate mean** | 3.8% | 17.82% | 旧版混用了 prescreening 5-ep 数据；20-ep 数据 death rate 显著更高 |\n| **measure-melting-point-unknown delta_nd** | 16.5 | −0.56 | 16.5 无法溯源，任何数据源都不匹配；plan_c 20-ep 值为 −0.56 |\n| **Group C \"均得分 0.0\" 描述** | \"两种策略均得分 0.0\" | \"6/7 得分 0.0；use-thermometer 例外 (det_nd=0.75, int_nd=1.50)\" | use-thermometer 有微小非零分 |\n| **核心叙事** | \"excluded 死亡率更高 (15.5% vs 3.8%)\" | \"两组死亡率相近；关键区分是 routing signal：included 全部 Δnd≠0, excluded 53% 为 Δnd=0\" | 20-ep 数据推翻了死亡率差异叙事 |\n\n### measure-melting-point-unknown-substance delta_nd 各数据源\n\n| 数据源 | n | delta_nd |\n|--------|---|---------|\n| prescreening (first 5-ep) | 5 | +9.83 |\n| prescreening (all 9-ep) | 9 | +7.93 |\n| **plan_c (20-ep, 最终采用)** | **20** | **−0.56** |\n| 旧分析声称 | ? | 16.5 (无法验证) |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-excluded-tasks-data-fix.md"
+}

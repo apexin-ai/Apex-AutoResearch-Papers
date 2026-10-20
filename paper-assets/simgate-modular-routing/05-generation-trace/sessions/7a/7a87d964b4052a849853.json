@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7a87d964b4052a849853",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code fix unify metrics bugs",
+  "task_key": "worker_code_fix-unify-metrics-bugs_20260518T172223",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-unify-metrics-bugs_20260518T172223_result.json",
+    "occurrence": 1,
+    "bytes": 1498,
+    "sha256": "21a5e35064c480462a1c4b548af285bf278b6b49b35c428468b2cd95dfbdc44b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Ground truth 交叉校验结果：\n\n| 条件 | 脚本输出 | Ground Truth | 状态 |\n|------|----------|-------------|------|\n| Reflexion N=3 FINAL DR | **34.00%** (68/200) | 34.0% | **PASS** |\n| Reflexion N=4 FINAL DR | **36.50%** (73/200) | 36.5% | **PASS** |\n\nN=5 数据有 179 个 episodes（非 200），FINAL DR=36.31%（65/179）。\n\n---\n\n## 修复汇报\n\n### Bug 1: JSON 字段名不匹配\n- `data.get(\"task\", \"\")` → `data.get(\"task_name\", \"\")`\n- `data.get(\"episode\", -1)` → `data.get(\"variation_idx\", -1)`\n- `t[\"trial\"]` → `t[\"trial_idx\"]` (排序 key)\n- `trial_k.get(\"score\", 0) == -100` → `trial_k.get(\"is_death\", ...)` (死亡判定)\n- JSONL 格式同步修复\n\n### Bug 2: DEATH_PRONE_TASKS 虚构列表\n- 从 `[\"freeze\", \"burn\", \"drown\", \"poison\", ...]` 替换为真实 10 个任务\n\n### Bug 3: `--test` 模式污染\n- `--test` 模式输出改写到 `_test` 后缀文件，不再覆盖主输出\n\n### 额外修复\n- **允许单独运行 retry 或 reflexion**：原脚本要求两者都传入，改为至少传一个\n- **自动发现 N 条件子目录**：传入父目录时自动发现 `reflexion_n3/`, `reflexion_n4/` 等子目录，分别处理\n- **新增 final death rate 计算**：原始 DR(k) 只计入到达第 k 次试验的 episode 作为分母，新增以全部 episodes 为分母的 final DR，与 ground truth 定义一致\n- **N=5 数据不完整**：只有 179/200 episodes，可能还在跑"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-unify-metrics-bugs.md"
+}

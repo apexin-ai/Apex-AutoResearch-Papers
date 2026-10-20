@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d21e69d56b42e8837691",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "investigate v5 vs ablation b code diff",
+  "task_key": "worker_investigate_v5-vs-ablation-b-code-diff_20260514T085814",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_investigate_v5-vs-ablation-b-code-diff_20260514T085814_result.json",
+    "occurrence": 1,
+    "bytes": 2355,
+    "sha256": "b6e3d275b45484619efa24114aa7ac18e9fcf765907803decbe4b0d5a5049785"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据已经足够做出结论了。\n\n---\n\n## 调查结果\n\n### 1. 代码确实有变更\n\n`implicit_router_sft.py` 在 ablation-b（05:37 UTC）和 v5（08:03 UTC）之间被修改。`.bak` 文件保留了 ablation-b 使用的原始版本。修改时间 06:40 UTC。\n\n### 2. 具体 diff（4 类关键变更）\n\n| 变更 | ablation-b（.bak） | v5（当前） | 影响 |\n|------|-------------------|-----------|------|\n| **Trainer 类** | `UpsamplingTrainer` | `WeightedTrainer`（自定义 `compute_loss`） | **高** |\n| **Gradient accumulation** | `max(1, 32 // batch_size)` = **8**（batch=4时） | `getattr(args, \"ga\", 1)` = **1** | **极高** |\n| **Loss 计算** | HF 标准 CE（按 token 平均） | 自定义 per-sample mean → 再取 batch mean | **中** |\n| **Data split** | task_type 分层 | episode-level (task_type, variation) 分层 | 低 |\n| **wandb** | `\"wandb\"` | `\"none\"` | 无 |\n\n### 3. 根因：Effective batch size 从 32 暴降到 4\n\n训练日志对比：\n\n| | ablation-b | v5 |\n|---|---|---|\n| per_device_batch | 4 | 4 |\n| gradient_accumulation | **8** | **1** |\n| effective batch | **32** | **4** |\n| steps/epoch | 55 | 435 |\n| epoch 2 train loss | ~0.35 | **0.09** |\n| final eval loss | 0.361 | 0.263 |\n\nv5 的 train loss 降到 0.09 — **严重过拟合**。模型记住了训练数据的 token 分布（logit accuracy 高达 74.5%），但丧失了 generation 泛化能力（internal_recall 仅 26.7%）。\n\n### 4. 次要因素：compute_loss 语义变化\n\n即使不传 `--class_weights`，`WeightedTrainer.compute_loss` 也改变了 loss 的加权方式：HF 默认按 token 数量加权每个样本，自定义版本给每个样本等权重。在 internal/deterministic 样本长度差异大时，这会改变训练动态。\n\n### 5. 结论\n\n**logit-generation gap 的根因是代码 bug，不是\"episode-level labels 粒度限制\"。**\n\n重构 Trainer 时，`gradient_accumulation_steps` 的默认值从 `max(1, 32//batch_size)` 变成了硬编码的 `1`，导致 effective batch size 缩小 8 倍。这是一个非故意的行为变更（代码把 ga 暴露为命令行参数，但默认值不同于旧逻辑）。\n\n要复现 ablation-b 的结果，v5 应该传 `--gradient_accumulation_steps 8`（或把默认值改回 `max(1, 32 // batch_size)`）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/investigate-v5-vs-ablation-b-code-diff.md"
+}

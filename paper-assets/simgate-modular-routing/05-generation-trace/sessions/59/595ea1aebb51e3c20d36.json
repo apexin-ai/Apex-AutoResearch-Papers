@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "595ea1aebb51e3c20d36",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "paper plan013 and tierate fix",
+  "task_key": "worker_paper_plan013-and-tierate-fix_20260514T143712",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_plan013-and-tierate-fix_20260514T143712_result.json",
+    "occurrence": 1,
+    "bytes": 557,
+    "sha256": "ff4af370ad66a6fc8286efde12130d1573497b1b4caaa0b6aeabd17029db3043"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。修改汇总：\n\n**任务 1** — 4 处 `98.2%` → `97.4%` 已替换（abstract.tex, introduction.tex, method.tex, conclusion.tex），paper_framing.md 中 5 处 `98%`/`98.2%` 引用同步更新。论文目录和 paper_framing.md 中已无 `98.2` 残留。\n\n**任务 2** — `\\paragraph{Labeling Quality.}` 已添加到 conclusion.tex 第 5 行，位于 Limitations 之前。3 句话覆盖：tie 排除策略（61.2% ties, 0% tie-break）、95 个 genuine labels 分布、strict-only retrain 与 ablation-b 在 1σ 内一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-plan013-and-tierate-fix.md"
+}

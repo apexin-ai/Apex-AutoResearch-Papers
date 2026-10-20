@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ff1f6c9687b3099d502f",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "check gemma crash investigation",
+  "task_key": "worker_check_gemma-crash-investigation_20260520T103037",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_gemma-crash-investigation_20260520T103037_result.json",
+    "occurrence": 1,
+    "bytes": 894,
+    "sha256": "cddb5de74051b0f5357c6b87f4f77750e1e97f1ca77f61ea8d9b9abade5be3c9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n### 1. Gemma — **正常运行中，未崩溃**\n\n| 指标 | 状态 |\n|------|------|\n| GPU 1 | RTX 5090, 28GB/32GB VRAM, vLLM::EngineCore (PID 881524) |\n| 进程 | `episode_level_collection.py --task_types freeze` 活跃 (PID 881100) |\n| tmux | `gemma-11tasks` session 存在 |\n| 日志 | 无 error/exception，正常输出推理进度 |\n\n**已完成数据：**\n\n| 任务 | episodes | 状态 |\n|------|----------|------|\n| identify-life-stages-1 | 20/20 | ✅ 完成 |\n| freeze | 6/20 | 🔄 运行中 |\n| 剩余 9 个任务 | 0 | 排队中 |\n\n总进度：**~26/220 episodes**（boil=20, melt=2 是之前遗留数据，不在当前脚本任务列表中）\n\n### 2. ALFWorld — **即将完成**\n\n**132/135 episodes** — GPU 0 利用率 96%，正常推理中。\n\n### 3. 无需重启\n\n两个实验都在正常运行，不需要干预。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-gemma-crash-investigation.md"
+}

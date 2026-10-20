@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c6e11deb036c71d00ee4",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "exp alfworld llama cross model",
+  "task_key": "worker_exp_alfworld-llama-cross-model_20260520T055857",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_alfworld-llama-cross-model_20260520T055857_result.json",
+    "occurrence": 1,
+    "bytes": 507,
+    "sha256": "a07719e76d71e0481e2f21b01045cc6d4268406ae9bda9a30461996c99eedb7e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已启动并注册完成。\n\n**总结：**\n- tmux session `alfworld-llama-cross-model` 在 westb-13313 上运行\n- 模型：Meta-Llama-3.1-8B-Instruct (vLLM, GPU 0)\n- 135 games，每 task 约 105s，预计 ~4 小时完成\n- 第一个 task 已完成 (no-preference)，输出写入 `results/alfworld_llama_counterfactual/episodes.jsonl`\n- Registry 已更新为 RUNNING\n\n**修复过程**：tokenizer.json 截断 + 模型权重缺失，从 ModelScope 缓存目录硬链接恢复。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-alfworld-llama-cross-model.md"
+}

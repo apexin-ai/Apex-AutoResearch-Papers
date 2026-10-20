@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e71df66fda370ea94cc7",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh llama full completion check",
+  "task_key": "worker_ssh_llama-full-completion-check_20260519T034629",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_llama-full-completion-check_20260519T034629_result.json",
+    "occurrence": 1,
+    "bytes": 1322,
+    "sha256": "67babfa938f740e1286751380045a9abdbe5cf3adaa0d85a6f15f9e51d806534"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态：仍在运行（未完成）\n\n实验于 10:23 启动，已运行约 1.5 小时。两张 GPU 的 tmux session、vllm 引擎和脚本进程全部正常。\n\n### GPU 0（6 tasks）\n| Task | 状态 |\n|------|------|\n| chemistry-mix | **完成** — 20 episodes，输出 4 文件（含 collection_meta.json） |\n| find-animal | **进行中** — 11:41 开始加载模型，episode 1/20 |\n| 其余 4 tasks | 未开始 |\n\n### GPU 1（5 tasks）\n| Task | 状态 |\n|------|------|\n| identify-life-stages-2 | **进行中** — episodes 0-19 已跑完，labeling 阶段中（无 collection_meta.json） |\n| 其余 4 tasks | 未开始 |\n\n### chemistry-mix 初步数据\n- Death episodes: internal=5, deterministic=0, both=4（20 episodes 中）\n\n### 输出格式\n实际输出为 jsonl 格式（`episodes.jsonl`, `episode_summary.jsonl`, `labeled_steps.jsonl`, `collection_meta.json`），不是 per-episode json 文件。原脚本的 `*.json` 文件计数方式需要调整。\n\n### 预计剩余时间\nchemistry-mix（20 episodes）耗时约 1h18m。按此速率估算：\n- GPU 0：5 tasks 剩余，约 6-7 小时\n- GPU 1：4+ tasks 剩余，约 5-6 小时\n- 预计整体完成时间：约 **今天 18:00-19:00**\n\nCron 的进程退出报告是误报，实验正常运行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-llama-full-completion-check.md"
+}

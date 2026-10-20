@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b1369ac6032f724be13c",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code plan 003 eval prep",
+  "task_key": "worker_code_plan-003-eval-prep_20260514T084744",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan-003-eval-prep_20260514T084744_result.json",
+    "occurrence": 1,
+    "bytes": 1406,
+    "sha256": "1c01287ae2eba12e9089660ce684d68469973d2fa96ec726f7f4021982cd47d5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 成功。结果总结：\n\n## 调研结果\n\n**方案 A（离线 eval）确认可行。** `eval_end_to_end.py` 基于预收集的 counterfactual 数据（每个 episode 同时有 internal 和 deterministic 轨迹分数），路由决策只选用哪个分数。\n\n## 关键差异：classification head vs implicit router\n\n| | 原 trained-router (v6) | ablation-b implicit router |\n|---|---|---|\n| 模型类型 | `AutoModelForSequenceClassification` | `AutoModelForCausalLM` |\n| 输出 | 2-class logits | 生成文本 |\n| 路由判断 | argmax(logits) | `[SIMULATE]` 前缀 → deterministic |\n| adapter task_type | SEQUENCE_CLASSIFICATION | CAUSAL_LM |\n\n## 脚本 `eval_implicit_router.py` 已部署并验证\n\n- **Dry-run (3 episodes, 30 steps)**: 9.6s, ~3.1 steps/s\n- **全量估时**: 2040 steps ÷ 3.1 steps/s ≈ **11 分钟**\n- 路由解析正确（`[SIMULATE]` prefix detection）\n- Metrics 计算与 `eval_end_to_end.py` 一致（bootstrap CI, death rate, sim ratio）\n- 额外输出 step-level 和 episode-level routing accuracy vs oracle\n\n## 运行命令\n\n```bash\ncd /root/autodl-tmp/simgate-modular-routing && \\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\nsource /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && \\\npython src/eval_implicit_router.py\n```\n\n需要我现在启动全量 eval 吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-003-eval-prep.md"
+}

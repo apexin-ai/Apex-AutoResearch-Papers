@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d7ab5118373c0795ebeb",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "infra check gpu westd",
+  "task_key": "worker_infra_check-gpu-westd_20260521T054347",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_check-gpu-westd_20260521T054347_result.json",
+    "occurrence": 1,
+    "bytes": 757,
+    "sha256": "1c039e64297bd9db3085b4d44c72ae1e4ef34155fbf3dda902e81e8f7f55d3a1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 状态汇总\n\n**硬件**：4× NVIDIA RTX PRO 6000 Blackwell，每卡 ~96GB 显存，CUDA 13.0\n\n| GPU | 显存占用 | GPU-Util | 温度 | 功耗 |\n|-----|---------|----------|------|------|\n| 0 | 90241 / 97887 MiB (**92%**) | 0% | 40°C | 88W/600W |\n| 1 | 0 / 97887 MiB | 0% | 30°C | 35W/600W |\n| 2 | 0 / 97887 MiB | 0% | 30°C | 33W/600W |\n| 3 | 0 / 97887 MiB | 0% | 30°C | 33W/600W |\n\n**占用进程**：\n\n| PID | PPID | User | Process | GPU | 显存 |\n|-----|------|------|---------|-----|------|\n| 970664 | 970186 | root | VLLM::EngineCore | GPU 0 | 90232 MiB |\n\nGPU 0 被一个 **vLLM 推理引擎**占满（90GB/96GB），GPU-Util 为 0% 说明当前空闲没有推理请求在处理。GPU 1-3 完全空闲。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-check-gpu-westd.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "75eb6cc54bb98cde203b",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "research minihack feasibility",
+  "task_key": "worker_research_minihack-feasibility_20260519T110859",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_minihack-feasibility_20260519T110859_result.json",
+    "occurrence": 1,
+    "bytes": 1134,
+    "sha256": "d05e989487c2b526b4b3460bc4bb44b1ac0477223a0d32e2c7341688cefc6810"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Report saved to `artifacts/minihack_feasibility_report.md`.\n\n**核心结论**:\n\n1. **首选 MiniHack Navigation Tasks (via BALROG)**\n   - 有现成的 text wrapper (`nle-language-wrapper`)，LLM 可直接用文本交互\n   - Roguelike 是 permadeath 的经典范例，审稿人无需解释\n   - BALROG 框架支持 vLLM 本地推理，可复用 Qwen2.5-7B\n   - 预估 LLM death rate 30-60%，与 ScienceWorld 的 42% 可比\n\n2. **备选 Crafter**（如果 MiniHack 导航任务 death rate 不在合理区间）\n   - 已在服务器验证过：100% random death, 17 actions, semantic map 可建 heuristic\n   - 缺点：无原生 text obs，需 image-to-text wrapper\n\n3. **排除 ALFWorld**（无 death 机制）和 **BabyAI**（death 仅限 lava，太窄）\n\n4. **排除 MiniHack Skill/Quest tasks**（所有 LLM 0% 成功率，无诊断价值）\n\n**关键风险**: Day 2 结束时需决策——如果 MiniHack 导航任务 LLM death rate <20% 或 >90%，立即切 Crafter。\n\n**时间线**: 5 天可完成 100 episode pilot（Day 1 环境搭建 → Day 4 full run → Day 5 分析写入论文）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-minihack-feasibility.md"
+}

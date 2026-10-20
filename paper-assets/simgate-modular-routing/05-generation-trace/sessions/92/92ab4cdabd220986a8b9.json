@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "92ab4cdabd220986a8b9",
+  "project": "simgate-modular-routing",
+  "kind": "history",
+  "title": "agent / loop_6_1778757688.md",
+  "task_key": "loop_6_1778757688",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_6_1778757688.md",
+    "occurrence": 1,
+    "bytes": 4883,
+    "sha256": "8354c8439a9954d83b446f75ca4f5d6800efa6c1d011ef99c3e30477b9284f20"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: idle_timeout\nupdated: '2026-05-14T11:20:57+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**只能用 westb-13313 的 cuda:0 和 cuda:1**（config gpu_constraint: autodl-simgate:cuda:0/1）\n- Checkpoint 路径易混淆：`checkpoints/plan-004-implicit/final_adapter` = ablation-b（正确），`checkpoints/plan-002-generative-v1/final_adapter` = gen-v1（错误）。两者 routing metrics 相似（internal_recall ~51%），plan-003-e2e-ablation-b 因用错 checkpoint 已被废弃\n- 唯一可用训练数据文件：`data/plan-004-implicit/implicit_sft.jsonl`（MD5: c9b59e04de78, 2040 samples）。`results/plan_c_test_labels/implicit_sft.jsonl` 标签损坏（no-preference 被映射为 internal），禁止使用\n- Table 1 所有数字必须来自 `eval_end_to_end.py`，不可用 `eval_implicit_router.py` 的 -12.84（D037）\n- 所有 eval 脚本必须 `enable_thinking=False` + `re.sub` 清理 `<think>` tags（Qwen3 thinking mode 干扰）\n- 提交训练必须：本地模型路径 + `source /etc/network_turbo` + `HF_HOME=/root/autodl-tmp/.hf_cache`\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**westb-13313**，2× RTX 5090 32GB（cuda:0, cuda:1）\n- 工作目录：`/root/autodl-tmp/simgate-modular-routing`\n- Python：aml-train 镜像，conda 环境 `/root/miniconda3/bin/python`（不要创建 venv）\n- 模型：本地 Qwen3-1.7B（路径在服务器上，LoRA batch_size=4 正常，32 OOM）\n- W&B：项目已配置，fetch_wandb_metrics 可用\n- 活跃进程：**无**。0 个 RUNNING 实验，0 个活跃 Worker，0 个活跃 Cron\n- GPU 当前空闲，写作期间可用于补充实验\n\n### 3. 📊 当前状态\n**Paper Writing Sprint 阶段**，核心实验全部完成。上一轮 session 完成了大量分析和评估工作（~20 个 Worker），关键结论已沉淀。\n\nRegistry 总览：49 个实验全部 DONE/PREPARING/PENDING（无 RUNNING）。成功 13 / 负向 14 / 失败 9。\n\n刚完成的关键工作：\n- D035: ablation-b e2e eval 确认 negative（trained-router -10.70 vs always-det -9.47）\n- D036: 3-seed 复制确认非退化可复现但 internal_recall 方差 30pp+\n- D033: Director 定稿 Framing Option B（方法论贡献，非 router 架构）\n- Paper Agent 已写 experiments_v2、method_v2、introduction_v2 草稿\n\n等待中：\n- **无 Worker 回调 / Cron 待触发**\n- D032 核实结果：Worker 已 done（worker_investigate_d032-git-history），需确认产出是否已整合到 ROADMAP\n- 3 seed 实验（seed123/456/789）需补注册到 registry（ROADMAP 标记待办）\n\n### 4. 📋 待办（条件触发式）\n- **Session 启动 → 立即**：检查 D032 git history Worker 产出是否已整合，未整合则读取并更新 ROADMAP/memory\n- **3 seed 实验未注册 → 补注册** seed123/456/789 的完整 spec 和 metrics 到 registry\n- **Paper Agent patches 未完成 → spawn Worker**：Table 1 加 trained-router 行（-10.70）+ Section 3.3 seed 稳定性段落\n- **5/15-16 → spawn Paper Agent Workers**：并行写 Method / Intro / Related Work / Conclusion / Abstract（已有 v2 草稿可迭代）\n- **5/17 初稿完成 → spawn Reviewer Worker** 做全文一致性审查 + 对抗迭代\n- **GPU 空闲 + Director 同意 → 可选**：logit-level seed eval、额外 ablation 补充实验\n- **Director 要求补实验 → 确认 gpu_ids 白名单后提交**\n\n### 5. 🎯 战略上下文\n**核心结论链**：\n- D013: Framing pivot → death avoidance dominates routing signal\n- D025: Classification head 全退化 → pivot to generative SFT\n- D029: Router 训练路线全面评估完毕：classification 全退化，generative negative，ablation-b 唯一非退化但 e2e negative\n- D033: **Framing 定稿 Option B** — 论文贡献 = counterfactual 分析方法论 + death avoidance empirical finding。Router near-random (balanced_acc=58.1±0.8%) IS the finding，不是失败\n- D035/D036: Trained router e2e negative + seed 方差 → 强化 \"routing 信号本质是 death avoidance\" 的叙事\n- D037/D038: Table 1 统一用 eval_end_to_end.py\n\n**关键数字（论文核心）**：\n- Δ_full=+29.60, Δ_nd=+2.84, DAF=90.41%, r=0.9698 (p=8.12e-07)\n- Oracle: -6.58 vs always-det: -9.47（仅差 2.89，96.2% episode oracle 也选 det）\n- Trained router: -10.70 vs always-det: -9.47（negative）\n- find-non-living-thing 是例外：零死亡 Δ=+9.58（正面案例，非异常）\n\n**易错点**：\n- 不要把 ablation-b 描述为 \"成功训练的 router\"——它是 \"唯一非退化的 router\"，e2e 仍然 negative\n- 不要用 eval_implicit_router.py 的 -12.84 替代 eval_end_to_end.py 的 -10.70\n- D032 待核实：v5 可能也用了 WeightedTrainer，若属实则 v5 vs ablation-b 真差异仅 ga（8 vs 1），影响 D029 叙事细节但不改变大结论\n- EMNLP DDL 5/25，**11 天**，critical path 是 Paper Agent 初稿 5/17 + Review 迭代 5/17-24\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6-1778757688.md"
+}

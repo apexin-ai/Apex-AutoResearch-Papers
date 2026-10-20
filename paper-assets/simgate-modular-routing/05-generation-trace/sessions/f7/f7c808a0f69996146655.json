@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f7c808a0f69996146655",
+  "project": "simgate-modular-routing",
+  "kind": "history",
+  "title": "agent / loop_13_1778895323.md",
+  "task_key": "loop_13_1778895323",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_13_1778895323.md",
+    "occurrence": 1,
+    "bytes": 4748,
+    "sha256": "dbb73f425c5fcf3c047be9da9487f69ff4b322252471084714644c2ea8027b9e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 13\nreason: max_wall_time\nupdated: '2026-05-16T01:17:03+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：`cuda:0` 和 `cuda:1`（westb-13313），不可用其他 GPU\n- 论文 canonical 版本是 `docs/paper/`（5/15 23:20），**不是** `artifacts/_project/paper/latex/`（旧版 5/14）。写论文/验证论文改动必须看 `docs/paper/`\n- Seed 42 adapter 来源是 `checkpoints/plan-008-qwen3-1.7b/final_adapter/`，使用 **episode-level** split（56/10 episodes），而 seeds 43-49 使用 **step-level** split。8-seed 汇总存在 split 方式不一致——不要假设所有 seed 用了同一 split\n- EMNLP 2026 DDL = 2026-05-25，仅剩 9 天。GPU 保留不释放（R8 可能要补实验）\n- `submit_training_job` 环境激活命令必须自带（如 `source /root/miniconda3/bin/activate && python ...`），不能假设 .venv\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westb-13313（2× RTX 5090 32GB），工作目录 `/root/autodl-tmp/simgate-modular-routing/`\n- Python：`/root/miniconda3/bin/python`，conda base 环境，激活方式 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型：`/root/autodl-tmp/models/Qwen3-1.7B`（router SFT 用），`Qwen2.5-7B-Instruct`（backbone/vLLM）\n- 数据：`data/plan-004-implicit/implicit_sft.jsonl`（2040 steps, 66 episodes, 95 non-tie labels）\n- Checkpoints：seed42 在 `checkpoints/plan-008-qwen3-1.7b/final_adapter/`；seeds 43-45 在 `checkpoints/seed-robustness-seed{N}/final_adapter/`；seeds 46-49 同理\n- 活跃进程：\n  - `r7n2-data-size-ablation`（tmux session，GPU 0，正在跑 7 scales × 3 seeds 训练，约 2-3h，日志 `~/runs/simgate-modular-routing/r7n2-data-size-ablation.log`）\n  - `cross-split-robustness-8seed`（Worker 仍在跑，GPU 1，8 seed eval 已到 seed 46 即 5/8）\n\n### 3. 📊 当前状态\n**刚做完**：\n- 写好 `src/ablation_data_size.py` 并提交到 GPU 0 运行（registry: `r7n2-data-size-ablation` ANALYZING 但实际仍在跑——cron 误判，tmux 确认 alive）\n- 写好重训 contingency 脚本 `scripts/retrain_seeds_42_45.sh` + `scripts/eval_retrained_seeds.py`\n- Seed 42 adapter 来源调查完成：episode-level split，与 43-49 不一致（已写入 registry notes）\n- 验证了 review_issues.yaml 所有 done items 在 `docs/paper/` 中的落地（R6-C1 ✅ R7-N1 ✅）\n\n**等待中**：\n- `r7n2-data-size-ablation` cron 回调（GPU 0，预计 ~2h 后完成）\n- `cross-split-robustness-8seed` Worker 回调（GPU 1，预计 ~10-15min 完成）\n- Director 审批 Round 8（BLOCKING）\n- Reviewer 最终一致性验证（进行中）\n\n### 4. 📋 待办（条件触发式）\n- `r7n2-data-size-ablation` cron 回调 → 读 `results/ablation_data_size/summary.json`，看 100% 后是否饱和（<1pp improvement），update_registry，向 Director 汇报 balanced_acc vs scale 曲线\n- `cross-split-robustness-8seed` Worker 回调 → 对比 episode-split vs training-split balanced_acc，若 Δ>2pp → 立即向 Director 报告并建议用 `scripts/retrain_seeds_42_45.sh` 重训；若 Δ<2pp → 确认论文数字可靠\n- 如果 cross-split 发现 seeds 42-45 不一致 + Director 批准重训 → 用 `scripts/retrain_seeds_42_45.sh` 双 GPU 并行跑（~40min），然后用 `scripts/eval_retrained_seeds.py` eval\n- Round 8 审稿到达 → 按 review_issues.yaml 逐条处理，R7-N2 data-size ablation 结果已预备\n- `r7n2-data-size-ablation` registry 状态修正：当前是 ANALYZING（cron 误判），实际 tmux 仍 alive。下次 reconcile_crons 应该能自动修正，如果没修正需要手动 `update_registry` 回 RUNNING\n\n### 5. 🎯 战略上下文\n- **核心发现**：ScienceWorld 上 routing signal 的 ~90% 来自 death avoidance（DAF=90.41%, r=0.97）。Router balanced_acc 仅 55.7±5.0%，接近 chance——信号 thin 是因为 extreme class imbalance (86:9 det:int)\n- **论文 framing 已稳定**：78.9% death-asymmetry labels 作为 penalty-independent primary metric，DAF ~90% 作为 penalty-dependent secondary。C1（death avoidance dominates）100% 覆盖，C2（lightweight router suffices）40% 覆盖但 negative results informative\n- **最易判断错的事**：\n  1. 两个论文目录——`docs/paper/` 是 truth，`artifacts/_project/paper/latex/` 是过期副本，不要改错了\n  2. seed 42 与其他 seeds 的 split 方式不一致——如果 cross-split eval 发现显著差异，需要重训而非仅报告\n  3. `r7n2-data-size-ablation` 的 ANALYZING 状态是 cron 误判（和之前 seed-robustness-extended 的 W&B offline 误判类似），训练实际在跑\n  4. D078 经验：ga=1 的高 balanced_acc 是 split-sensitive overfitting artifact，不要被骗——只信任 ga=8 的结果\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-13-1778895323.md"
+}

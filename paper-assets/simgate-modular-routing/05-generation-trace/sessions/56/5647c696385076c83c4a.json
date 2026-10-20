@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5647c696385076c83c4a",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "paper bib fix and expand",
+  "task_key": "worker_paper_bib-fix-and-expand_20260514T145311",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_bib-fix-and-expand_20260514T145311_result.json",
+    "occurrence": 1,
+    "bytes": 1168,
+    "sha256": "7f8a0fc79dd1083c1a3d3ac2c7a4482cc62893564ca0f8768ccc8d392af488ed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 bib 文件完全一致。\n\n**完成情况：**\n\n**Part 1 — bib 质量修复：**\n- Year 字段：3 个 key-year 不匹配项（`toolformer-2024`/`chameleon-2024`/`retool-2026`）经查 venue 确认 year 字段已正确（分别为 2023/NeurIPS、2023/NeurIPS、2025/arXiv），无需修改\n- Entry type：docs/paper 版本中 6 个 arXiv 条目已是 @article；`mixture-of-recursions-2025`（NeurIPS 2025）和 `mtrouter-2026`（ACL 2026）确认为正式会议论文，@inproceedings 正确。artifacts 旧版本已同步为 docs/paper 版本\n- `dagger-2011`：conclusion.tex 中有引用，保留\n\n**Part 2 — 新增 3 条引用：**\n| Key | Venue | 引用位置 |\n|-----|-------|---------|\n| `toolkengpt-2023` | NeurIPS 2023 | related_work.tex Tool-Use Learning 段 |\n| `alfworld-2021` | ICLR 2021 | related_work.tex Agent Frameworks 段 + conclusion.tex Limitations |\n| `voyager-2023` | arXiv 2023 | related_work.tex Agent Frameworks 段 |\n\n**验证：** 20 个 \\cite key 与 20 个 bib entry 一一对应，两处 bib 文件同步。总引用数从 12 → 15（加上之前已有的 concurrent work 4 条共 20 条）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-bib-fix-and-expand.md"
+}

@@ -1,0 +1,87 @@
+{
+  "schema_version": "1.0",
+  "id": "7e2bb45b05da85c4958f",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "research math expansion plan",
+  "task_key": "worker_research_math-expansion-plan_20260515T065859",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_math-expansion-plan_20260515T065859.log",
+    "occurrence": 1,
+    "bytes": 879210,
+    "sha256": "72fb29ce7624758de5b0fe67f1371c3dfc7ec6fa7a768db61c6b85b6fa5f420a"
+  },
+  "statistics": {
+    "messages": 445,
+    "user_turns": 3,
+    "tool_calls": 150,
+    "roles": {
+      "log": 1,
+      "system": 121,
+      "record": 1,
+      "assistant": 18,
+      "tool_call": 150,
+      "user": 3,
+      "tool_result": 150,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "7e2bb45b05da85c4958f-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 95,
+      "chunks": [
+        {
+          "path": "7e2bb45b05da85c4958f-part-0001.json",
+          "message_count": 95
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "7e2bb45b05da85c4958f-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 338,
+      "chunks": [
+        {
+          "path": "7e2bb45b05da85c4958f-part-0001.json",
+          "message_count": 73
+        },
+        {
+          "path": "7e2bb45b05da85c4958f-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "7e2bb45b05da85c4958f-part-0003.json",
+          "message_count": 85
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-math-expansion-plan.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d5796fe5fa02a5c4333c",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "research arr submission prep",
+  "task_key": "worker_research_arr-submission-prep_20260517T075411",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_arr-submission-prep_20260517T075411_result.json",
+    "occurrence": 1,
+    "bytes": 4436,
+    "sha256": "df8f54247e2e72afd69bbb3fcca2a13536c0bdd09a61294cd831573e38886cad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "现在我有了完整信息。论文正文约 5 页（远低于 8 页限制），共 15 页（含附录）。\n\n```\n=== ARR → EMNLP 2026 Submission Checklist ===\n\n截止日期：2026-05-25 23:59:59 AoE（距今 8 天）\nAuthor Registration Form：2026-05-27 EoD AoE\n会议：Budapest, Hungary, Oct 24-29, 2026\n\n⚠️  重要：EMNLP 和 AACL 共享 ARR May cycle，提交时必须选择目标会议（binding）\n\n─────────────────────────────────────────\n\n[已完成]\n- ✓ ACL style template（acl.sty + acl_natbib.bst）\n- ✓ Review mode 开启（\\usepackage[review]{acl}，含行号）\n- ✓ 匿名化（\\author{Anonymous}，无 acknowledgements）\n- ✓ 无自引泄露（grep 未发现 github/gitlab/huggingface/self-reference）\n- ✓ Limitations section（正文后，不计入页数）\n- ✓ Ethics Statement（正文后，不计入页数）\n- ✓ 正文页数：~5 页（限制 8 页 long paper），充裕\n- ✓ References 使用 acl_natbib.bst\n- ✓ 附录结构完整（8 个 appendix sections: A-H）\n- ✓ 所有 sections 齐全：Abstract / Introduction / Method / Experiments / Related Work / Discussion / Conclusion\n- ✓ 论文可编译（main.pdf 15 页，无 error）\n- ✓ 双栏格式正确\n- ✓ 字体 Times，11pt\n\n[需要做]\n- ☐ Abstract 字数超限：当前 ~220 words，ACL 限制 200 words → 需删减约 20 words\n- ☐ Responsible NLP Research Checklist：在 OpenReview 表单中逐项填写（非 PDF 附录）\n    - Section A: Limitations + Risks（已有 Limitations section，需对应填写）\n    - Section B: Scientific Artifacts（代码、数据集、模型引用）\n    - Section C: Computational Experiments（GPU hours、参数量、基础设施）\n    - Section D: Human Annotation（如适用）\n    每项答 Yes 需标注 section number，答 No 需 justification\n    ⚠️  不可全部填 Yes、不可不填 justification，否则 desk reject\n- ☐ Author Registration Form：所有作者须在 deadline 后 48h 内完成（5月27日前）\n- ☐ 所有作者须注册为 reviewer（不合规可能 desk reject）\n- ☐ 选择 target venue = EMNLP 2026（binding，不可更改）\n- ☐ AI 工具使用声明：如使用 generative AI，须在 Responsible Checklist 中披露，\n    详情写入 Acknowledgements（review 版先不加）或 README\n- ☐ Supplementary materials 匿名化检查（如提交代码/数据附件）\n- ☐ 确认 code/data release 承诺（Ethics Statement 中已写 \"upon acceptance\"）\n\n[Metadata 字段 — OpenReview 提交表单]\n- Title: Death Avoidance as a Dominant Routing Signal: A Counterfactual Analysis on ScienceWorld\n- Abstract: 需粘贴（≤200 words 版本）\n- Keywords/Track: 建议选 \"NLP Applications\" 或 \"Interpretability and Analysis of Models for NLP\"\n- Paper type: Long paper\n- Target venue: EMNLP 2026（binding）\n- Resubmission URL: N/A（首次提交）\n- Justification for author changes: N/A\n- Responsible NLP Checklist: 逐项填写\n\n[风险项]\n- 🔴 Abstract 超限（~220 > 200 words）— 部分 cycle 严格执行会 desk reject\n- 🔴 距 deadline 仅 8 天，Responsible Checklist 填写需认真准备\n- 🟡 正文仅 ~5 页（long paper 上限 8 页）— 不是格式问题，但审稿人可能认为内容不够充实\n    建议：将部分 appendix 核心内容（如 cross-model verification 精华）移入正文\n- 🟡 LaTeX warnings: 7 个 `h` float specifier changed to `ht` — 不影响提交但建议修复\n- 🟡 references.bib 部分条目缺少 pages/doi 字段 — 建议补全以提升规范性\n```\n\nSources:\n- [ARR Call for Papers](http://aclrollingreview.org/cfp)\n- [ARR Authors Guidelines](http://aclrollingreview.org/authors)\n- [ARR Submission Form Fields](http://aclrollingreview.org/submissionform)\n- [ARR Common Submission Problems](http://aclrollingreview.org/authorchecklist)\n- [ARR Responsible NLP Research](http://aclrollingreview.org/responsibleNLPresearch/)\n- [Responsible NLP Checklist PDF](https://aclrollingreview.org/static/responsibleNLPresearch.pdf)\n- [EMNLP 2026 Call for Papers](https://2026.emnlp.org/calls/main_conference_papers/)\n- [ACLPUB Formatting Guidelines](https://acl-org.github.io/ACLPUB/formatting.html)\n- [ACL Style Files (GitHub)](https://github.com/acl-org/acl-style-files)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-arr-submission-prep.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7ea8d54d12eb7414231f",
+  "project": "simgate-modular-routing",
+  "kind": "history",
+  "title": "agent / loop_5_1778745080.md",
+  "task_key": "loop_5_1778745080",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_5_1778745080.md",
+    "occurrence": 1,
+    "bytes": 5114,
+    "sha256": "17ff2b32b46e90f546fad57cafcd9d90f8b721ac0e360a6dee270d62235aa4d3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: idle_timeout\nupdated: '2026-05-14T07:27:06+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：`cuda:0` 和 `cuda:1` on westb-13313。不得使用其他 GPU，即使 Director 指示也必须 push back\n- plan-004 数据已确认损坏（D026）：`results/plan_c_test_labels/implicit_sft.jsonl` 中 no-preference 被错误映射为 internal，导致 v2/v3/v4 全部 negative。**不要再用这个文件训练**，必须用修正后的数据\n- Classification head 路线已宣告失败（D025）：plan-002 formal v3-v6 全部退化为 all-deterministic 预测。**不要再尝试分类头**，pivot 到 generative SFT\n- plan-002-formal-v6 registry 状态显示 RUNNING 但实际已失败（OOM 重启后 f1_internal=0.0），需要更新 registry 为 DONE/negative\n- DDL: EMNLP 2026 ARR **2026-05-25**，剩 11 天\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**westb-13313**，2× RTX 5090 32GB\n- 工作目录：`/root/autodl-tmp/simgate-modular-routing`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- 模型：`/root/autodl-tmp/models/Qwen/Qwen3-1.7B`（本地，HF_HUB_OFFLINE=1 可用）\n- HF cache：`/root/autodl-tmp/.hf_cache`\n- W&B：offline 模式（WANDB_MODE=offline）\n- 数据：`results/plan_c/`（11 tasks，2040 samples，plan-001b 收集的 episode-level counterfactual 数据）\n- 训练数据修正版：`data/plan-004-implicit/implicit_sft.jsonl`（plan-002-generative-v1 用）\n- 活跃进程：plan-004-v4 (PID 243301, tmux, cuda:1) — 实际已完成，conclusion=negative；plan-002-formal-v6 (PID 240633, cuda:0) — 实际已失败\n- 活跃 Worker：`worker_code_plan-003-eval-script_20260514T071320`（正在写 plan-003 评估脚本，已跑出初步结果：always-internal -37.16, always-det -11.64, oracle -9.03）\n\n### 3. 📊 当前状态\n**刚完成的关键发现**：\n- plan-012 全量分析 DONE：11 tasks/245 eps, death fraction=90.41%, r=0.9698 — **核心 C1 假设已确认**\n- plan-011 keyword baseline DONE：结构性失效（v1 always-det, v2 always-internal），证明 keyword heuristic 无法捕获 routing signal\n- D025/D026 确认 classification head 和 corrupted data 是 router 训练连续失败的两大根因\n\n**正在进行**：\n- plan-002-generative-v1 (PREPARING)：generative router SFT，基于 ablation-b 成功经验（internal_recall=51.5%）。代码 `src/training/generative_router_sft.py` 应已就绪，需确认数据文件 `data/plan-004-implicit/implicit_sft.jsonl` 是否已修正 no-preference 映射\n- Worker 正在执行 plan-003 eval script（用 always-internal/always-det/oracle baseline 跑评估，不依赖 router）\n\n**需要处理**：\n- plan-004-v4 和 plan-002-formal-v6 的 registry 状态需更新（都已实际结束但 registry 仍显示 RUNNING）\n- plan-002-generative-v1 需提交到 GPU（准备就绪后立即跑）\n- Worker 完成 plan-003 eval 后需整合 baseline 数据到 report.md\n\n### 4. 📋 待办（条件触发式）\n- plan-003 eval Worker 完成 → 整合 baseline 数据（always-det/always-int/oracle/random/confidence 五条线），写入 registry，汇报 Director\n- plan-002-generative-v1 代码+数据就绪 → 提交到 cuda:0（v6 已死，GPU 空闲）\n- plan-002-generative-v1 训练完成 → 若 internal_recall > 30% → 接 plan-003 end-to-end eval（用 generative router 替代 classification head）\n- plan-002-generative-v1 也 negative → 所有 router 训练路线失败 → 论文 C2 降级为\"methodology contribution only\"，router 作为 diagnostic probe 但不作 performance claim。必须向 Director 汇报 framing 调整提案\n- plan-003 baseline + router eval 都完成 → 启动论文写作（Paper Agent），critical path 约 3 天\n\n### 5. 🎯 战略上下文\n**核心结论链**：\n- D013: framing pivot → death avoidance dominates（不再 claim selective > unconditional）\n- D018/D019: C1 数字校准 → ~90%（非 ~99%），find-non-living-thing 是正面案例非异常\n- D023→D024→D025→D026: router 训练连败根因定位 → classification head 在 89.7/10.3 imbalance 下必死 → pivot 到 generative SFT\n\n**最容易判断错的事**：\n1. plan-004-v4 和 plan-002-formal-v6 的 registry 显示 RUNNING 但实际都已结束（negative/failed），别再等它们的 cron 回调\n2. `results/plan_c_test_labels/implicit_sft.jsonl` 是**损坏数据**（D026），只有 `data/plan-004-implicit/` 下的版本（如果已修正）才可用于训练\n3. plan-002-generative-v1 的数据文件来源需验证——它引用 `data/plan-004-implicit/implicit_sft.jsonl`，确认这是修正后的版本（no-preference 已丢弃而非映射为 internal）\n4. plan-003 eval Worker 正在用 baseline（无 router）跑评估，这部分结果不依赖 router 训练，可以直接用于论文 Table\n5. 论文 framing 是 \"empirical finding + methodology\"，**不是** \"我们造了个更好的 router\"。即使 router 训练全部失败，C1（death avoidance dominance）已由 plan-012 确认，论文仍可投\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-1778745080.md"
+}

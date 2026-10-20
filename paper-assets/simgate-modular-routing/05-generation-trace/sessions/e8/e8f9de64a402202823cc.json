@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e8f9de64a402202823cc",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "analysis mvp tie rate",
+  "task_key": "worker_analysis_mvp-tie-rate_20260513T170519",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_mvp-tie-rate_20260513T170519_result.json",
+    "occurrence": 1,
+    "bytes": 1506,
+    "sha256": "46cb809df9ba1b331688e35a6e2513aab9c15b2fc4289840b382dbc7acda099d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果非常明确：\n\n## 结论：CRITICAL — 1-step tie rate 98.2%\n\n| Task | Tie Rate | Non-tie | Verdict |\n|------|----------|---------|---------|\n| boil | 93.8% | 6.2% | CRITICAL |\n| melt | 98.5% | 1.5% | CRITICAL |\n| change-the-state-of-matter-of | 98.5% | 1.5% | CRITICAL |\n| chemistry-mix-paint-secondary-color | 99.7% | 0.3% | CRITICAL |\n| grow-plant | 100.0% | 0.0% | CRITICAL |\n| **Overall** | **98.2%** | **1.8%** | **CRITICAL** |\n\n### 核心发现\n\n1. **全局 non-tie rate 仅 1.8%** — 远低于 10% critical 阈值。1-step oracle labeling 下 router 基本无法学到 selective routing 信号。\n\n2. **绝大多数 tie 是 both_delta=0**（2880/2894 tie 步都是两个 agent 的 score_delta 都为 0）。说明在绝大多数步骤中，无论选哪个 agent，环境分数都不变——这是稀疏奖励问题的直接体现。\n\n3. **非 tie 步的 gap 几乎全是 catastrophic（|gap|>=100）**：出现差异时通常是一个 agent 触发了 -100 惩罚而另一个没有。这意味着差异信号虽然极其稀少，但幅度巨大。\n\n4. **Phase 趋势**：后期步骤（21-30）tie rate 略低于前期，说明差异更可能在 episode 后半段出现。\n\n### 直接含义\n\n**N-step rollout labeling 是必须的**，不是可选的。1-step lookahead 在 >98% 的步骤上给出相同 label，router 训练集几乎没有正负样本区分。需要用多步累积 reward 差异来生成更有辨别力的 counterfactual labels。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-mvp-tie-rate.md"
+}

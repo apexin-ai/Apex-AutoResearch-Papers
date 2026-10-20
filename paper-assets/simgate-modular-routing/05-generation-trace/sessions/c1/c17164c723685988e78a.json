@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "c17164c723685988e78a",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "eval data leakage fix comprehensive",
+  "task_key": "worker_eval_data-leakage-fix-comprehensive_20260515T223110",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_data-leakage-fix-comprehensive_20260515T223110.log",
+    "occurrence": 1,
+    "bytes": 737219,
+    "sha256": "0a772d100c48f9eb3b79ce288c83a49742c51ec34581f4ba76453a72e4553a6e"
+  },
+  "statistics": {
+    "messages": 244,
+    "user_turns": 0,
+    "tool_calls": 95,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 50,
+      "tool_call": 95,
+      "tool_result": 95,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 244,
+      "chunks": [
+        {
+          "path": "c17164c723685988e78a-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "c17164c723685988e78a-part-0002.json",
+          "message_count": 64
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-data-leakage-fix-comprehensive.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c6321a5fae13a9475197",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh gpu0 crash cleanup",
+  "task_key": "worker_ssh_gpu0-crash-cleanup_20260514T015135",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_gpu0-crash-cleanup_20260514T015135_result.json",
+    "occurrence": 1,
+    "bytes": 696,
+    "sha256": "f94171124c90b47f31033d593f03ef286874a5331f29382527c1b55638fb3c65"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 清理完成\n\n**GPU 状态：**\n| GPU | 显存占用 | 利用率 |\n|-----|---------|--------|\n| GPU0 | 0 MiB / 32607 MiB | 0% |\n| GPU1 | 0 MiB / 32607 MiB | 0% |\n\n无任何 python/vllm/episode 残留进程。GPU0 已完全释放。\n\n**已完成 episode 数据：**\n| Task | Episodes |\n|------|----------|\n| find-animal | 20 |\n| identify-life-stages-1 | 20 |\n| lifespan-longest-lived-then-shortest-lived | 20 |\n| lifespan-longest-lived | **15** |\n\n`lifespan-longest-lived` 只完成 15 eps，重启时用 `--start_episode 15`。\n\n**注意：** GPU1 当前也显示 0 MiB——如果 GPU1 的 find-non-living-thing 任务应该在跑，可能也需要检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-gpu0-crash-cleanup.md"
+}

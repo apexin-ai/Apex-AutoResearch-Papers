@@ -1,0 +1,86 @@
+{
+  "schema_version": "1.0",
+  "id": "82349e18bf4e9385e875",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "code fix paper figures",
+  "task_key": "worker_code_fix-paper-figures_20260524T154124",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-paper-figures_20260524T154124.log",
+    "occurrence": 1,
+    "bytes": 1139997,
+    "sha256": "9d1f46b03b320707cb24ff9d417aa1f486dc6cb06fa71ab4c5fb2ff4f6784d61"
+  },
+  "statistics": {
+    "messages": 525,
+    "user_turns": 3,
+    "tool_calls": 183,
+    "roles": {
+      "log": 1,
+      "system": 114,
+      "record": 1,
+      "assistant": 41,
+      "tool_call": 183,
+      "tool_result": 182,
+      "user": 3
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 55,
+      "chunks": [
+        {
+          "path": "82349e18bf4e9385e875-part-0001.json",
+          "message_count": 55
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 3,
+      "chunks": [
+        {
+          "path": "82349e18bf4e9385e875-part-0001.json",
+          "message_count": 3
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 130,
+      "chunks": [
+        {
+          "path": "82349e18bf4e9385e875-part-0001.json",
+          "message_count": 119
+        },
+        {
+          "path": "82349e18bf4e9385e875-part-0002.json",
+          "message_count": 11
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 337,
+      "chunks": [
+        {
+          "path": "82349e18bf4e9385e875-part-0002.json",
+          "message_count": 169
+        },
+        {
+          "path": "82349e18bf4e9385e875-part-0003.json",
+          "message_count": 168
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-fix-paper-figures.md"
+}

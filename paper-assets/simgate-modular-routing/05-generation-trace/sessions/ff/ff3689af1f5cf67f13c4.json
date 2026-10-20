@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ff3689af1f5cf67f13c4",
+  "project": "simgate-modular-routing",
+  "kind": "history",
+  "title": "agent / loop_8_1778782032.md",
+  "task_key": "loop_8_1778782032",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_8_1778782032.md",
+    "occurrence": 1,
+    "bytes": 3977,
+    "sha256": "86ad030e886fd2dc8d52fbb390387bfb783e6304cd94acfd63306c8dbdc99bb9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: idle_timeout\nupdated: '2026-05-14T18:07:11+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：`westb-13313` 的 `cuda:0` 和 `cuda:1`，不得使用其他设备\n- 论文数字唯一来源：Table 1 所有数字必须来自 `eval_end_to_end.py`（trained-router = -10.70, always-det = -9.47, oracle = -6.58）。`eval_implicit_router.py` 产出的 -12.84 **不用于** Table 1\n- 唯一可用训练数据文件：`data/plan-004-implicit/implicit_sft.jsonl`（MD5: c9b59e04de78, 2040 samples）。`results/plan_c_test_labels/implicit_sft.jsonl` 标签损坏，禁止使用\n- Checkpoint 路径：`checkpoints/plan-004-implicit/final_adapter` = ablation-b（正确）；`checkpoints/plan-002-generative-v1/final_adapter` = gen-v1（失败的，勿用）\n- 所有 eval 脚本必须 `enable_thinking=False` + `re.sub` 清理 `<think>` tags（Qwen3 thinking mode 干扰）\n- D046 已定：**分析论文**路线（非 method paper），不再 pivot。MATH 不扩全量，pilot 结果入 Discussion\n\n### 2. 🖥️ 基础设施快照\n- 服务器：`westb-13313`，2× RTX 5090 32GB（cuda:0, cuda:1），两张均空闲\n- 工作目录：`/root/autodl-tmp/simgate-modular-routing`\n- Python/环境：aml-train 镜像，conda base（`/root/miniconda3/bin/python`）\n- 模型：Qwen3-1.7B（本地路径在服务器上，LoRA adapter 在 checkpoints 目录）\n- W&B：项目内配置\n- 活跃进程：无训练进程。`worker_ops_kill-vllm-and-sync-paper`（worker ID: worker_ops_kill-vllm-and-sync-paper_20260514T174712）状态 running，任务是 kill vLLM 僵尸进程 + 同步论文到远程\n- Cron：0 个活跃\n\n### 3. 📊 当前状态\n**论文初稿 READY**，进入 Review 迭代阶段。所有核心实验已完成（58 个实验，22 success / 13 negative / 10 failed）。\n\n最近完成：\n- `alfworld-counterfactual-full` (DONE/success)：135 games，det-preferred 25.9%，已写入 Limitations + Conclusion\n- 本地 pdflatex 编译通过：6 页（正文 4p），0 warnings，0 undefined refs\n- 全文数字一致性交叉验证通过\n- 断引用 `\\ref{sec:rule}` 修复\n\nRegistry 无 RUNNING/PREPARING 实验。Worker 池 = 0（1 个 worker 仍标记 running 但可能已完成 vLLM cleanup + paper sync）。\n\n等待中：\n- `worker_ops_kill-vllm-and-sync-paper` 回调（远程同步 + vLLM 清理）\n- 远程编译验证结果（`worker_ops_remote-compile-verify` 已 done，但同步 worker 仍在跑）\n\n### 4. 📋 待办（条件触发式）\n- `worker_ops_kill-vllm-and-sync-paper` 回调到达 → 确认远程 paper 文件已同步，检查编译是否通过\n- 远程编译确认通过 → 向 Director 提交审稿请求，启动 Review 迭代（5/15-22 窗口）\n- Director 启动 Review → 派 Worker 做 paper-visual-review（PDF 视觉检查）\n- Review 意见返回 → 逐条处理，更新论文\n- 5/23-24 → 终稿 + ARR 提交\n\n### 5. 🎯 战略上下文\n**核心结论**：Death avoidance 占 ~90% routing signal（DAF=90.41%, r=0.9698）。论文贡献 = empirical finding + diagnostic methodology，非 router 架构。\n\n**决策链关键节点**：\n- D013: Framing pivot → death avoidance dominates\n- D033: Option B 定稿（方法论贡献）\n- D037: Table 1 数字来源锁定 eval_end_to_end.py\n- D041→D042→D045→D046: 经历 3 次 pivot 最终回归分析论文，**不要再 pivot**\n\n**易踩坑**：\n- 项目经历过多次 method paper ↔ analysis paper pivot（D041-D046），方向已锁定为分析论文，下一个 session 不要再提 pivot\n- MATH pilot 结果是 internal 反超 code interpreter（80% vs 72%），与 ScienceWorld 趋势相反——这正是不扩全量的原因，只作为 Discussion caveat\n- ALFWorld 72.6% no-preference（tie rate 远高于 ScienceWorld），定位为 exploratory supplementary，不是核心证据\n- Worker 池当前 = 0，boot 后如果有需要应立即 spawn\n- 投稿目标 EMNLP 2026 ARR，DDL 5/25，剩 11 天，critical path 是 Review 迭代质量\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8-1778782032.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "61b16cd27666dd3ae4ab",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "fix figure copy correct dir",
+  "task_key": "worker_fix_figure-copy-correct-dir_20260516T232013",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_figure-copy-correct-dir_20260516T232013_result.json",
+    "occurrence": 1,
+    "bytes": 131,
+    "sha256": "ed12da19fe4fba992c6b85e4465f2753a6919b90f8ecdc2ba317187f229195ba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n```\nErrors: 0\nMissing figures: 0\nUndefined citations/references: 0\nPages: 14\nPDF size: 396 KB\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-figure-copy-correct-dir.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d06ae08e6cd4e40f4576",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "eval seed robustness extended",
+  "task_key": "worker_eval_seed-robustness-extended_20260515T192102",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_seed-robustness-extended_20260515T192102_result.json",
+    "occurrence": 1,
+    "bytes": 1049,
+    "sha256": "9663449cac45ad2aa9a113b9eb579512c21440e18d9269fff57aa839a919d51e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。汇总结果：\n\n## 8-Seed Robustness 汇总\n\n| | balanced_acc | internal_recall | eval_loss |\n|---|---|---|---|\n| **Core (42-45)** | 0.5538 ± 0.052 | 0.5205 ± 0.110 | 0.358 ± 0.085 |\n| **Extended (46-49)** | 0.5282 ± 0.068 | 0.4416 ± 0.193 | 0.396 ± 0.012 |\n| **Combined (8-seed)** | **0.541 ± 0.058** | **0.481 ± 0.152** | **0.377 ± 0.060** |\n\n逐 seed 明细：\n\n| Seed | balanced_acc | internal_recall | eval_loss |\n|------|-------------|----------------|-----------|\n| 42 | 0.5761 | 0.5152 | 0.2400 |\n| 43 | 0.4852 | 0.3667 | 0.4363 |\n| 44 | 0.6074 | 0.6000 | 0.3996 |\n| 45 | 0.5467 | 0.6000 | 0.3562 |\n| 46 | 0.4463 | 0.2333 | 0.3941 |\n| 47 | 0.5185 | 0.4333 | 0.4051 |\n| 48 | 0.5370 | 0.4000 | 0.3788 |\n| 49 | 0.6111 | 0.7000 | 0.4051 |\n\nExtended seeds 与 core seeds 表现一致（balanced_acc 差异 ~2.5pp，在 std 范围内）。8-seed combined std=0.058 略大于 4-seed 的 0.052，internal_recall 方差较大（0.23–0.70 range），是主要不稳定来源。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-seed-robustness-extended.md"
+}

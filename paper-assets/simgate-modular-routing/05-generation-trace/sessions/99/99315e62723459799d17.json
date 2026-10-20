@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "99315e62723459799d17",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "infra safe gpu1 cleanup",
+  "task_key": "worker_infra_safe-gpu1-cleanup_20260513T080340",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_safe-gpu1-cleanup_20260513T080340_result.json",
+    "occurrence": 1,
+    "bytes": 827,
+    "sha256": "5e6c606d3037b7e4a759db7e1c9ffa8c8dd8f9c4f024c4b4d1ad62f5d30b99f9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成，汇总：\n\n| 项目 | 状态 |\n|------|------|\n| PID 20301 是否 GPU0 子进程 | **是** — PPID=20300，属于 mvp-p1-gpu0 进程树，未触碰 |\n| PID 163319 已清理 | **是** — kill -9 成功 |\n| GPU1 显存 | **used: 0 MiB / free: 32110 MiB** — 完全释放 |\n| GPU0 进程安全 | **安全** — PID 20301 仍在运行，占用 15816 MiB |\n| tmux 旧会话 | mvp-p1-gpu1-v2、mvp-p1-gpu1-v3 已清理，仅剩 mvp-p1-gpu0 |\n\n**注意**: PID 162576/162577 是 GPU1 上的 `phase1_signal.py --use_vllm` 进程（`CUDA_VISIBLE_DEVICES=1`），163319 是其 vLLM 子进程。vLLM 引擎被杀后这两个进程的 GPU 显存已释放（0 MiB），但进程本身仍在。它们大概率会因 vLLM 引擎丢失而报错退出。如需立即清理这两个进程，请确认。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-safe-gpu1-cleanup.md"
+}

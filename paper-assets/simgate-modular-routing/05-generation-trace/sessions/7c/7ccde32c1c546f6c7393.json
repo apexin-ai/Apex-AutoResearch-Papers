@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7ccde32c1c546f6c7393",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code llama cross model prep",
+  "task_key": "worker_code_llama-cross-model-prep_20260519T014029",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama-cross-model-prep_20260519T014029_result.json",
+    "occurrence": 1,
+    "bytes": 1263,
+    "sha256": "15676f1b6187d0decc1406b1c42c10a60194f03e0820a96e1017a7d9602ad97c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The user has already launched the D118 experiment with their own scripts. Here's the current status:\n\n**Experiment D118 — Llama-3.1-8B-Instruct full ScienceWorld replication**\n\n**Status: Running successfully on both GPUs**\n\n| GPU | Current Task | Episodes | Output Dir |\n|-----|-------------|----------|------------|\n| 0 | chemistry-mix (1/6 tasks) | 20 | results/llama_cross_model_full |\n| 1 | identify-life-stages-2 (1/5 tasks) | 20 | results/llama_cross_model_full |\n\n**Verified working:**\n- vLLM V1 (0.18.1) loads Llama-3.1-8B correctly (14.99 GiB, CUDA graphs)\n- Internal episodes complete (~48s each)\n- Deterministic episodes with fork_and_lookahead complete (~170s each)\n- No EngineCore crashes in the user's foreground processes\n\n**Episode timing (from Episode 0):**\n- Internal: 48s + Deterministic: ~170s = ~218s per episode pair (~3.6 min)\n- Per task (20 episodes): ~72 min\n- GPU 0 (6 tasks): ~7.2 hours\n- GPU 1 (5 tasks): ~6.0 hours\n\n**My dry-run crash** was caused by GPU memory conflict — the user started their processes on GPU 0 while my nohup dry-run was still occupying it, killing the EngineCore subprocess.\n\nThe experiment will likely finish in ~7-8 hours from start (10:23 CST → ~17:30-18:30 CST)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-llama-cross-model-prep.md"
+}

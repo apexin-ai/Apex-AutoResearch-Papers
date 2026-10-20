@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ee0fef9ffb5959d3edd7",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "analysis math n800 merge stats",
+  "task_key": "worker_analysis_math-n800-merge-stats_20260517T055152",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_math-n800-merge-stats_20260517T055152_result.json",
+    "occurrence": 1,
+    "bytes": 1237,
+    "sha256": "2319361569591fd1f43b04b94b9614ce8ff6273c42a268c90f06e30f73e58a93"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果汇总：\n\n## MATH N=795 统计分析（去重后实际 795，差 5 条未生成）\n\n| 指标 | 值 |\n|------|-----|\n| N | 795 |\n| Internal accuracy | 0.7346 (584/795) |\n| Code accuracy | 0.7296 (580/795) |\n| **Diff (int - code)** | **+0.50pp** |\n| McNemar χ² | 0.1026 |\n| **p-value (exact)** | **0.8103** |\n| 95% CI | [-2.58pp, +3.58pp] |\n| Post-hoc power | 0.0618 |\n\n### Contingency\n- Both correct: 504 (63.4%)\n- Both wrong: 135 (17.0%)\n- Internal only: 80 (10.1%)\n- Code only: 76 (9.6%)\n\n### Labels\n- no-preference: 671 (84.4%)\n- internal-preferred: 66 (8.3%)\n- det-preferred: 58 (7.3%)\n\n### Per-type\n- **Algebra** (N=585): Internal +2.22pp 优于 Code\n- **Counting & Probability** (N=210): Code +4.29pp 优于 Internal\n\n### 结论\n\n差异 **不显著**（p=0.81，远超 0.05）。N=795 时 power 仅 6.2%，说明即使存在差异也极小（CI 包含零）。两种推理路径在 MATH 上表现几乎一致，但在子类型上有分化：algebra 偏 internal，counting/probability 偏 code。\n\n文件已写入：\n- `data/math-counterfactual/math_clean_800.jsonl`（795 条去重数据）\n- `data/math-counterfactual/analysis_n800.json`（完整统计结果）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-math-n800-merge-stats.md"
+}

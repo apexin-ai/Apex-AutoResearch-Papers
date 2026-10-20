@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b3659429f4abc48a1c19",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh dual gpu status check",
+  "task_key": "worker_ssh_dual-gpu-status-check_20260514T034300",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_dual-gpu-status-check_20260514T034300_result.json",
+    "occurrence": 1,
+    "bytes": 1338,
+    "sha256": "4e27a235dd190710c1668d186c73538ab8be2fd0f1e2b58ac443b59df3338037"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n### GPU 显存/利用率\n\n| GPU | 型号 | 利用率 | 显存占用 |\n|-----|------|--------|----------|\n| GPU0 | RTX 5090 | 0% (推理间歇) | 28013 / 32607 MiB (86%) |\n| GPU1 | RTX 5090 | 0% (推理间歇) | 28013 / 32607 MiB (86%) |\n\n### GPU0 — plan-001b-gpu0-v5\n\n- **进程**: PID 698985 存活，运行 57m45s\n- **当前任务**: `measure-melting-point-unknown-substance`\n- **measure-melting-point**: **16/20** eps\n- **lifespan-longest-lived**: **10/20** eps (episode_idx 0-9)\n- 日志正常，vLLM 推理中（~1-4 it/s）\n- 预估 measure-melting-point 剩余 ~15min（4 eps × ~3-4min/ep）\n\n### GPU1 — plan-001b-gpu1-freeze-chem\n\n- **进程**: PID 788058 存活，运行 31m13s\n- **freeze**: **9/20** eps\n- **chemistry-mix**: **0/20**（未开始，排在 freeze 之后）\n\n### 异常告警\n\n**磁盘空间严重警告**: `lifespan-longest-lived/episodes.jsonl` 达到 **150GB**（仅 10 个 episode）。数据盘 250G 已用 168G，仅剩 83G。每个 episode 约 15GB，剩余 10 个 episode 还需 ~150GB——**磁盘空间不足，会在写满后导致进程崩溃**。\n\n需要排查为何单个 episode 文件如此巨大（每条 JSON 行包含完整 step 日志 + LLM 输出 + candidates），考虑是否有日志膨胀 bug 或需要调整输出格式。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-dual-gpu-status-check.md"
+}

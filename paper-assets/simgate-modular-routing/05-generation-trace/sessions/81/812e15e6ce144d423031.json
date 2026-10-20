@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "812e15e6ce144d423031",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "eval math extension cuda0 parallel",
+  "task_key": "worker_eval_math-extension-cuda0-parallel_20260517T045918",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_math-extension-cuda0-parallel_20260517T045918_result.json",
+    "occurrence": 1,
+    "bytes": 819,
+    "sha256": "8ef37c2b47454026bd3874faaba561d6dbb4d12c12f4f927fa5e9e77af719103"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两路并行运行正常：\n- **cuda:1 batch2**: 74/170 (进行中)\n- **cuda:0 batch3**: 3/160 (刚启动，正常生成中)\n\n每题约 10-15 秒（3 次生成），batch3 预计 ~30 分钟完成。\n\n**注意**：cuda:1 的原始脚本跑完 batch2 后会继续跑 batch3 并覆盖文件。有两个选择：\n1. 让它覆盖（浪费时间但无害）\n2. batch3 在 cuda:0 完成后，在 cuda:1 脚本到达 batch3 之前 kill 掉剩余部分\n\nbatch2 还剩 ~96 题 ≈ 16 分钟，之后 cuda:1 脚本才会启动 batch3。cuda:0 的 batch3 在 ~30 分钟后完成，所以 cuda:1 也会尝试跑 batch3。\n\n我等 cuda:0 batch3 完成后再处理冲突。当前两路并行已成功启动，整体时间从串行的 batch2+batch3 ≈ 55 分钟缩短到 max(batch2, batch3) ≈ 30 分钟。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-math-extension-cuda0-parallel.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f8cb78d374ac1925b165",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "paper figures generation",
+  "task_key": "worker_paper_figures-generation_20260515T101501",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figures-generation_20260515T101501_result.json",
+    "occurrence": 1,
+    "bytes": 808,
+    "sha256": "8f2603919558f967db1e78215d9afb47d67c62cb791653fa329b974d0b64542f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部产出完成。总结：\n\n**已生成并注册的 artifacts：**\n\n1. **signal_reversal.pdf + .png** — 服务器路径 `/root/autodl-tmp/simgate-modular-routing/docs/paper/figures/`\n   - Grouped bar chart，红色(det-preferred)、绿色(int-preferred)、灰色(no-preference)\n   - 带 \"Signal Reversal\" 箭头标注，突出 ScienceWorld 与 MATH 间的 label 分布反转\n   - Artifact ID: `art_20260515_0113e0`\n\n2. **cross_env_summary_table.tex** — 已注册到 artifacts\n   - 三行对比表：ScienceWorld / MATH / ALFWorld\n   - 含脚注说明 ALFWorld capability gap 机制差异\n   - Artifact ID: `art_20260515_bf2e29`\n\nPNG 无法通过 SCP 拉回本地（SSH 密钥不兼容本地 scp 调用），图表文件留存服务器上，可通过 SSH 访问验证。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figures-generation.md"
+}

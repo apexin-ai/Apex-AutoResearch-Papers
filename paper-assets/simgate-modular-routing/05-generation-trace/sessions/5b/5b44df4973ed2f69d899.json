@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5b44df4973ed2f69d899",
+  "project": "simgate-modular-routing",
+  "kind": "history",
+  "title": "reviewer / loop_10.md",
+  "task_key": "loop_10",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_10.md",
+    "occurrence": 1,
+    "bytes": 4169,
+    "sha256": "281030b99e99ccf1c59e8c83f5ebfab36e7e62d2f3a09d0ed460b065fc916036"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: max_wall_time\nupdated: '2026-05-15T22:11:03+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0 和 cuda:1（RTX 5090 32GB × 2），不可越界\n- 服务器：westb-13313，account=root\n- 1.7B router eval 存在 **Trainer eval vs generation-based eval 差异**：paper 中 \"57.6%\" 是 Trainer eval (logit-based)，generation-based nothinking 仅 41.7%。两种 pipeline 不可混用比较\n- ssh_read_only 不支持 shell metacharacter（`|`, `&&`, `$()` 等），多 pattern grep 用 `-e` flag\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westb-13313(root)，工作目录 `/root/autodl-tmp/simgate-modular-routing`\n- Python：`/root/miniconda3/bin/python`（conda base 环境）\n- 模型缓存：`/root/autodl-tmp/models/Qwen/Qwen3-{0.6B,1.7B,4B}`\n- HF cache：`/root/autodl-tmp/.hf_cache`\n- 本地 workspace：`/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/`\n- 论文 tex 文件：本地 `docs/paper/*.tex`（Paper Agent 改本地），服务器同路径（可能滞后）\n- W&B：offline mode（不可检查 W&B 在线指标）\n- 活跃进程：无（GPU0/GPU1 均空闲，等 Round 8 决策）\n- Cron：无活跃任务\n\n### 3. 📊 当前状态\n**全部实验完成，论文终稿阶段，blocking on 用户审批 Round 8 continue review。**\n\n我刚完成的审查：\n1. **plan-008-router-size-v4**：审了 3 轮。初始发现 eval pipeline confound（CRITICAL），推动 Worker 补做 0.6B/4B nothinking eval → 再推动 1.7B nothinking eval → 最终获得真正统一的三方比较。结果：0.6B(59.1%) ≈ 4B(58.5%) >> 1.7B(41.7%)\n2. **penalty-robustness**：P=50/100/200 子集 robustness 分析，数据与 plan-012 一致，PASS\n3. **seed-robustness-extended**：8-seed 统计核实通过 (54.1±5.8%)\n4. **plan-012-penalty-curve**：DAF 范围修正 (50%→98%)，CI 修正（script-generated 替代手动值）\n\nRegistry：77 experiments，全部 DONE。无 RUNNING/PREPARING。\n\n**待 Director 决策**：\n- 论文 experiments.tex:105 router-size ablation 段落需更新数字（当前仍用旧 Trainer eval 53.1% for 1.7B）。我已提 3 个方案给 Director（分层报告 / 全 Trainer / 仅 0.6B vs 4B）\n- Round 8 continue review 需用户审批\n\n### 4. 📋 待办\n- 用户审批 Round 8 → 读最新全文做系统审查（abstract/intro/experiments/discussion/conclusion 一致性）\n- Paper Agent 更新 router-size ablation 数字后 → 核实是否用了统一 pipeline 数据（registry `unified_generation_based_nothinking`），检查 \"57.6%\" 与 ablation 1.7B 数字的关系是否在文中解释\n- 论文 local→server sync 后 → 双边核对最新版本一致性\n- 任何新 worker_done 通知 → 按 audit checklist 审查\n- 收到章节审查请求 → 先查 red-section skill 合规，再按 §5 对抗审查\n\n### 5. 🎯 战略上下文\n**核心结论**：ScienceWorld routing signal 主要来自 death avoidance (DAF≈90%)，router 仅是 safety critic 而非 efficiency optimizer。\n\n**决策链关键节点**：\n- D069: 统一 eval pipeline（enable_thinking=False 三方 generation eval）\n- D068: plan-008-v4 router-size ablation 成功\n- D066: 8-seed 更新 (54.1±5.8%)\n- D062: 标题去 \"90%\" 数字 + Discussion pilot 数据替换\n\n**最易判断错的事**：\n1. **1.7B \"57.6%\" vs \"41.7%\"**：这两个数字是同一模型不同 eval 方法的结果，不是矛盾。Trainer eval (logit-based) = 57.6%，generation-based nothinking = 41.7%。Paper 主体用 Trainer eval，ablation 可能需要用 generation eval。关键是不能在同一段落里混用且声称 \"unified pipeline\"\n2. **论文文件双边**：paper tex 的真源在**本地** workspace（Paper Agent 改本地），服务器可能是旧版。断言 \"worker 未更新论文\" 前必须两边都读\n3. **seed-robustness 的 eval_loss 字段**：有 eval_loss 的 JSON = Trainer eval 产物，有 generated/clean/pred 的 JSON = generation eval 产物。这是区分两种 pipeline 的关键标志\n4. **DDL 2026-05-25**：剩 10 天，不要用人类工时直觉判断来不来得及——AI 团队 + 充足 GPU 可以并行迭代，只看 GPU-hours 是否够\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-copy-3.md"
+}

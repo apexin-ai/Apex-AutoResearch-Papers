@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "60df5f57471a043f362b",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "fix plan 002 code cleanup",
+  "task_key": "worker_fix_plan-002-code-cleanup_20260514T044032",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_plan-002-code-cleanup_20260514T044032_result.json",
+    "occurrence": 1,
+    "bytes": 808,
+    "sha256": "b9830afa54ac2d3ee8ba0c7047505ee41ff7d874f476422af912848c0e2b02ca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部修复完成，验证通过。\n\n### 结果\n\n| 修复 | 状态 | 说明 |\n|------|------|------|\n| **修复 1**: prompt 无 task_type | ✅ 已满足 | `build_prompt` 仅用 observation + action_history，无 task_type。`task_type` 出现仅在数据解析/分组/评估中，不进入 prompt |\n| **修复 2**: W&B 硬编码 | ✅ 已修复 | `wandb_project` 默认值 `\"simgate-router-sft\"` → `None`；`report_to=\"wandb\"` → `\"wandb\" if args.wandb_project else \"none\"`；`os.environ` 和 `wandb.init` 包裹在 `if args.wandb_project:` 条件中 |\n| **修复 3**: .bak 残留 | ✅ 已清理 | 删除 `router_sft_train.py.bak` 和 `.bak2`，`find` 确认无残留 |\n| **验证**: `--help` | ✅ 通过 | argparse 正常，`--wandb_project` 显示正确 help 文本 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-plan-002-code-cleanup.md"
+}

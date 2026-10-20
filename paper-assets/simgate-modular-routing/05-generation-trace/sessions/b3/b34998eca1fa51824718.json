@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b34998eca1fa51824718",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "fix discussion pilot50 replace",
+  "task_key": "worker_fix_discussion-pilot50-replace_20260515T160101",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_discussion-pilot50-replace_20260515T160101_result.json",
+    "occurrence": 1,
+    "bytes": 758,
+    "sha256": "91575f1b23938e94efc22141b8b375dcc8ceada91c8b11e4ccf801cb9bb74a89"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n**Diff 摘要（line 5）：**\n- `A preliminary 50-problem pilot on MATH Level~4--5` → `An evaluation on 300 MATH Level~4--5 problems`\n- `80\\% accuracy versus 72\\%` → `81.0\\% accuracy versus 76.7\\% (McNemar's test, $p=0.079$)`\n- `88\\% of problems showing no modality preference` → `84.3\\%`\n- `1 deterministic-preferred, 5 internal-preferred, 44 no-preference` → `17, 30, 253`\n- 删除了 pilot bug 说明和 larger-scale replication 两句\n\n**验证结果：**\n| 检查项 | 结果 |\n|--------|------|\n| 3 个服务器副本 md5 | 全部 `5e9c3bcc239b70e7c277746b607e8c04` |\n| 本地副本 | 已同步 |\n| 旧数据残留 | 0（CLEAN） |\n| TODO 残留 | 0 |\n| 新数据存在 | 确认 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-discussion-pilot50-replace.md"
+}

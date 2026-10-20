@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f3360f0f049e89cc742e",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "analysis find nonliving sft labels",
+  "task_key": "worker_analysis_find-nonliving-sft-labels_20260513T190907",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_find-nonliving-sft-labels_20260513T190907_result.json",
+    "occurrence": 1,
+    "bytes": 1291,
+    "sha256": "5710321fd4120017474b8cb4c30049ed8c7cf88e9a00eebc7a60ede50d870d84"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n### Episode-level label 分布\n\n| Episode | I score | D score | Label |\n|---------|---------|---------|-------|\n| ep=0 var=0 | 50.0 | 58.0 | deterministic |\n| ep=1 var=1 | 0.0 | 0.0 | tie |\n| ep=2 var=2 | 8.0 | 8.0 | tie |\n| ep=3 var=3 | 50.0 | 58.0 | deterministic |\n| ep=4 var=4 | 50.0 | 0.0 | **internal** |\n\n**汇总**: Det wins 2/5, Int wins 1/5, Ties 2/5\n\n### Internal SFT 正样本\n\n- Internal SFT steps: **30** (1 episode × 30 steps)\n- Det SFT steps: **60** (2 episodes × 30 steps)\n- Tie steps (排除): 60\n- **Internal label ratio: 30/90 = 33.3%**\n\n### Step-level 数据完整性\n\n两种 mode 的 step 都包含 `observation` + `action`：\n- `always_internal`: keys = `[step, action, modality, score_before, score_after, score_delta, observation, llm_output]`\n- `always_deterministic`: keys = `[step, action, modality, score_before, score_after, score_delta, candidates, observation]`\n\n数据格式完整可用，但 internal 正样本量很少——只有 1 个 episode (30 steps)，占比仅 33.3%。尽管 find-non-living-thing 是唯一 internal-preferred task，episode-level 看实际上 deterministic 赢的更多 (2 vs 1)，prescreening 的聚合指标 (I=+31.6) 可能是被 ep4 的大幅领先拉高的均值效应。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-find-nonliving-sft-labels.md"
+}

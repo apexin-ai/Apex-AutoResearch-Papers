@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c7effbc810261257f710",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "exp phase1 deploy gpu0",
+  "task_key": "worker_exp_phase1-deploy-gpu0_20260513T051059",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_phase1-deploy-gpu0_20260513T051059_result.json",
+    "occurrence": 1,
+    "bytes": 1031,
+    "sha256": "262a091add22b1034beef4d19526f18b2849e049267ab665a374103ca399be4b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Phase 1 GPU0 进程正在运行（PID 14520），正在等待模型下载完成（PID 1869）。\n\n---\n\n**最终报告：**\n\n| 步骤 | 状态 | 详情 |\n|------|------|------|\n| 1. 代码上传 | ✅ 完成 | 6 个文件全部成功上传 |\n| 2. 模型验证 | ⏳ 下载中 | `/root/autodl-tmp/models/Qwen/Qwen2___5-7B-Instruct/`，tokenizer 验证通过 (vocab=151643)，safetensors 正在下载（文件 1-3 已完成，文件 4 约 70%） |\n| 3. 代码语法验证 | ✅ 通过 | utils/phase1/agent/analysis 全部 OK |\n| 4. Fork 验证 | ✅ 通过 | mix-paint (1.21s, replay_success=True), grow-plant (1.20s, replay_success=True) |\n| 5. Phase 1 GPU0 | ⏳ 已提交 | PID 14520，等待模型下载完成后自动启动。任务: boil,melt,change-the-state-of-matter-of, 20 episodes, max_steps=30 |\n\n**模型路径**: `/root/autodl-tmp/models/Qwen/Qwen2___5-7B-Instruct/`\n**Phase 1 日志**: `results/mvp/phase1_gpu0.log`\n**监控命令**: `tail -f results/mvp/phase1_gpu0.log` 或查 PID 14520"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-phase1-deploy-gpu0.md"
+}

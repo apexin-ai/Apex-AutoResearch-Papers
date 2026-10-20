@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "54c830080d0c568cecf5",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "fix gemma analysis bugs",
+  "task_key": "worker_fix_gemma-analysis-bugs_20260520T235853",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_gemma-analysis-bugs_20260520T235853_result.json",
+    "occurrence": 1,
+    "bytes": 3157,
+    "sha256": "ae8994f3ab3744738c754e877958f82459e704a69b37cb008c0308da0ffc3d90"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n---\n\n## 修改内容\n\n**Bug 1 — label 字符串**：`\"int-preferred\"` → `\"internal-preferred\"`（`per_task_breakdown` 和 `compute_aggregate` 两处）\n\n**Bug 2 — DR 死亡定义**：`score == 0` → `score <= -100`，与 `compute_cross_model_cis.py` 一致（6 处：`per_task_breakdown` 2 处、`compute_aggregate` 3 处、`stat_int_dr`/`stat_det_dr`/`stat_daf` 各 1 处）。alive 定义 `> 0` → `> -100`（`compute_aggregate` 和 `stat_daf` 各 1 处）\n\n**Bug 3 — 重复数据**：`load_episodes` 中增加 `seen_ids` 去重，`find-non-living-thing` 从 35 条 → 20 条\n\n---\n\n## 修复后完整输出\n\n```\nLoaded 220 episodes (11 tasks × 20 each)\n\nPER-TASK BREAKDOWN\nTask                                            N    Det-Pref    Int-Pref     No-Pref   IntDR   DetDR\nidentify-life-stages-1                         20   7 (35.0%)   1 ( 5.0%)  12 (60.0%)   40.0%   10.0%\nidentify-life-stages-2                         20   5 (25.0%)   0 ( 0.0%)  15 (75.0%)   35.0%   10.0%\nfreeze                                         20   5 (25.0%)   0 ( 0.0%)  15 (75.0%)   35.0%   10.0%\ngrow-fruit                                     20   4 (20.0%)   0 ( 0.0%)  16 (80.0%)   35.0%   15.0%\nmeasure-melting-point-unknown-substance        20   7 (35.0%)   0 ( 0.0%)  13 (65.0%)   40.0%   10.0%\nlifespan-longest-lived                         20   4 (20.0%)   1 ( 5.0%)  15 (75.0%)   40.0%   25.0%\nlifespan-longest-lived-then-shortest-lived     20   7 (35.0%)   0 ( 0.0%)  13 (65.0%)   45.0%   10.0%\nchemistry-mix                                  20   3 (15.0%)   1 ( 5.0%)  16 (80.0%)   40.0%   30.0%\ninclined-plane-determine-angle                 20   6 (30.0%)   1 ( 5.0%)  13 (65.0%)   40.0%   15.0%\nfind-animal                                    20   6 (30.0%)   0 ( 0.0%)  14 (70.0%)   50.0%   20.0%\nfind-non-living-thing                          20   9 (45.0%)   3 (15.0%)   8 (40.0%)    0.0%    0.0%\n\nAGGREGATE METRICS\n  Total episodes:         220\n  Det-preferred:           63  (28.6%)\n  Int-preferred:            7  (3.2%)\n  No-preference:          150  (68.2%)\n  Mean internal score:    -33.73\n  Mean det score:         -8.72\n  Internal DR:            36.4%\n  Deterministic DR:       14.1%\n  ΔDR (int - det):        +22.3pp\n  Δ_full:                 -25.0091\n  Δ_nd (n=136):          -2.5882\n  DAF:                    89.7%\n\nBOOTSTRAP 95% CIs (cluster, K=11)\n  Internal DR:   36.4% [28.2,41.8]\n  Det DR:        14.1% [9.5,19.1]\n  ΔDR:           +22.3pp [16.4,27.7]\n  DAF:           89.7% [68.8,100.0]\n\nCROSS-MODEL COMPARISON (ScienceWorld)\nModel               Int DR                  Det DR                    ΔDR                    DAF\nQwen2.5-7B          42.9% [36.7,49.0]  16.3% [11.8,21.2]  +26.5pp [20.4,32.7]  90.4% [81.3,99.1]\nLlama-3.1-8B        41.4% [35.0,47.7]  11.4% [7.3,15.9]   +30.0pp [23.6,36.4]  88.2% [80.2,95.1]\nGemma-2-9B          36.4% [28.2,41.8]  14.1% [9.5,19.1]   +22.3pp [16.4,27.7]  89.7% [68.8,100.0]\n```\n\n`analysis.json` 和 `cross_model_table.tex` 均已更新到 `results/gemma_scienceworld_counterfactual/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-gemma-analysis-bugs.md"
+}

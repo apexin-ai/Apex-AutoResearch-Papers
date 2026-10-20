@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "5cd9768faf8e9ad472de",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "research d028 number consistency audit",
+  "task_key": "worker_research_d028-number-consistency-audit_20260514T075449",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_d028-number-consistency-audit_20260514T075449.log",
+    "occurrence": 1,
+    "bytes": 748317,
+    "sha256": "711024055a96e3798a5f5ce859de87ead370eec867196c273d33247d69ab51a4"
+  },
+  "statistics": {
+    "messages": 113,
+    "user_turns": 0,
+    "tool_calls": 39,
+    "roles": {
+      "log": 1,
+      "system": 12,
+      "record": 1,
+      "assistant": 20,
+      "tool_call": 39,
+      "tool_result": 39,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 113,
+      "chunks": [
+        {
+          "path": "5cd9768faf8e9ad472de-part-0001.json",
+          "message_count": 82
+        },
+        {
+          "path": "5cd9768faf8e9ad472de-part-0002.json",
+          "message_count": 31
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-d028-number-consistency-audit.md"
+}

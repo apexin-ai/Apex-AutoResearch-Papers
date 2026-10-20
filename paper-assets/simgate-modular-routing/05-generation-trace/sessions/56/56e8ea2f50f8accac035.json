@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "56e8ea2f50f8accac035",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "eval partial correlation w2",
+  "task_key": "worker_eval_partial-correlation-w2_20260516T192301",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_partial-correlation-w2_20260516T192301_result.json",
+    "occurrence": 1,
+    "bytes": 884,
+    "sha256": "64660a4d11426bddb773ec618bf6b6c054843c779171cc2ce6862ec438ef9cc3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果清晰。核心发现：\n\n**30-task 数据集:**\n| 指标 | 值 |\n|---|---|\n| Raw r(Δ_full, δ_diff) | **0.9864** (paper 的 r≈0.97) |\n| r(death_contribution, δ_diff) | **1.0000** — 完全共线 (P=100 constant) |\n| **Partial r(Δ_full, δ_diff \\| DC)** | **0.0225** (p=0.906, df=27) — 不显著 |\n| Partial r(Δ_full, δ_int \\| DC) | 0.2065 (p=0.274) — 也不显著 |\n| Non-death signal fraction | 4.0% |\n\n**结论:**\n- P = 100 在所有 task 上恒定 (mean=100.00, std=0.01)\n- death_contribution = δ_diff × 100，与 δ_diff 完全共线 (r=1.0000)\n- Δ_full = δ_diff × 100 + Δ_nd，其中 Δ_nd 仅占 4% 的信号\n- r=0.97 是结构性恒等式 Corr(100·δ + ε, δ) ≈ 1 的直接结果\n- 控制 δ·P 后 partial r = 0.02 (p=0.91)，相关性完全消失\n\n结果已保存到 `guided_router/partial_corr_results.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-partial-correlation-w2.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "c0e9d7376ea274d3b43f",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "research dryrun padtoken investigation",
+  "task_key": "worker_research_dryrun-padtoken-investigation_20260514T063900",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_dryrun-padtoken-investigation_20260514T063900.log",
+    "occurrence": 1,
+    "bytes": 694237,
+    "sha256": "f31290ce99820917325782ce05e462747a4c40ef8e03efaa37e84a6663b4a659"
+  },
+  "statistics": {
+    "messages": 245,
+    "user_turns": 0,
+    "tool_calls": 91,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 59,
+      "tool_call": 91,
+      "tool_result": 91,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 245,
+      "chunks": [
+        {
+          "path": "c0e9d7376ea274d3b43f-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "c0e9d7376ea274d3b43f-part-0002.json",
+          "message_count": 65
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-dryrun-padtoken-investigation.md"
+}

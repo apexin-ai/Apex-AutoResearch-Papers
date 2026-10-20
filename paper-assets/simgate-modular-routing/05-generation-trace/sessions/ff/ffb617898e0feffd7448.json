@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ffb617898e0feffd7448",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh retry data audit",
+  "task_key": "worker_ssh_retry-data-audit_20260518T031355",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_retry-data-audit_20260518T031355_result.json",
+    "occurrence": 1,
+    "bytes": 5441,
+    "sha256": "e794e254dd59d7f37bab733cd310536f73bce4a03f2468ee2fdc628a0e367dd0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据已收集完毕。以下是结构化排查报告。\n\n---\n\n## 排查报告：Retry Per-Trial 数据异常\n\n### 1. 分析脚本逻辑\n\n**脚本路径**: `/root/autodl-tmp/simgate-modular-routing/analyze_retry_dose_response.py`\n\n**DR(N) 计算逻辑**:\n```\nDR(N) = P(前 N 次 trial 全部 is_death=True)\n```\n- 取 `trials[:N]`，检查 `all(t[\"is_death\"] for t in first_n) and len(first_n) == N`\n- 若 episode 因 early success 只有 < N 次 trial，`len(first_n) < N` → 不计为 death（正确）\n- `is_death` 定义：`score <= -100`（DEATH_THRESHOLD = -100）\n- 正确排除了 `find-non-living-thing`\n\n**Bug 检查结果：无 bug**。逻辑正确，off-by-one 无误（trial_idx 从 0 开始，N 从 1 开始）。\n\n**独立验证的 per-trial 和 cumulative DR（retry, death-prone 200 eps）**:\n\n| 指标 | 值 |\n|------|-----|\n| **Per-trial DR** | Trial 0: 93/200=46.5%, Trial 1: 93/185=50.3%, Trial 2: 90/184=48.9% |\n| **Cumulative DR(N)** | DR(1): 93/200=46.5%, DR(2): 89/200=44.5%, DR(3): 83/200=41.5% |\n| **Cumulative rescue** | 1→2: 4/93=4.3%, 2→3: 6/89=6.7% |\n| **Conditional rescue** | 0→1: 4/93=4.3%, 1→2: 6/93=6.5% |\n\n**Score vs is_death 一致性**: 0 个不一致。\n\n**关键发现**: per-trial DR 在 3 次 trial 间高度稳定（46.5%→50.3%→48.9%），trial 1/2 略高是因为分母只含\"未早期成功\"的更难 episode。cumulative rescue 1→2 (4.3%) 和 2→3 (6.7%) 差异不大，**不存在 Reviewer 所述的 9 倍差异（4.3% vs 39.3%）**。\n\n### 2. 种子/配置\n\n- `random.seed(42)` 仅在 `main()` 开头设置一次，不影响 trial 行为（代码中无 `random.choice` 等调用）\n- LLM 随机性来自 `temperature=0.3`（vLLM server-side sampling），每次 trial 独立采样\n- ScienceWorld 环境：`create_env(task_name, variation_idx)` 创建新 JVM 进程，无 seed 参数，同 task+variation 的初始状态**确定性相同**\n- 每次 trial 环境完全重置（新 JVM），不携带前序 trial 状态\n\n**结论**: 3 次 trial 之间 LLM 采样独立，环境初始状态相同。不存在种子导致的高度相关结果。low temperature (0.3) 限制了采样多样性，但仍有足够随机性产生不同 action trajectory。\n\n### 3. 数据来源一致性\n\n| 数据集 | 首文件时间 | 末文件时间 |\n|--------|-----------|-----------|\n| reflexion_baseline_part1 | 2026-05-17 22:01 | — |\n| reflexion_baseline_part2 | — | 2026-05-18 00:20 |\n| retry-control | 2026-05-17 22:58 | 2026-05-18 00:33 |\n\n- 所有数据在同一 session（~2.5 小时内）生成\n- 使用相同 vLLM server（Qwen2.5-7B-Instruct, localhost:8000）\n- `results/retry_dose_response/` 目录不存在 — N=1,5,10 的独立 dose-response 实验未运行\n- **数据来源一致，无多批混合问题**\n\n### 4. Table 4 DR 定义\n\n**答案：(A) 和 (B) 都不准确。实际是：**\n\n> **Table 4 \"Retry (3×): DR = 40.9%\" = `final_is_death` across ALL 220 episodes（含 find-non-living-thing）**\n\n验证：\n- final_is_death (all 220): **90/220 = 40.9%** ← 完全匹配\n- all-3-death cumulative (all 220): 83/220 = 37.7% ← 不匹配\n- all-3-death cumulative (DP 200): 83/200 = 41.5% ← 不匹配\n- final_is_death (DP 200): 90/200 = 45.0% ← 不匹配\n\n**关键区别**: Table 4 的 40.9% 是 \"最终 trial 结果为 death\"，而 dose-response 分析的 DR(3)=41.5% 是 \"3 次 trial 全部 death\"。两者差 7 个 episode — 这 7 个 episode 中某次 trial 得分 0（非 death 非 success），但最终 trial 仍为 death。\n\n具体的 7 个 episode 的 death pattern：\n```\nchemistry-mix var=3:   [False, True, True]  scores=[0, -100, -100]\nchemistry-mix var=16:  [True, False, True]  scores=[-100, 0, -100]\ngrow-fruit var=5:      [False, True, True]  scores=[0, -100, -100]\ngrow-fruit var=12:     [False, True, True]  scores=[0, -100, -100]\nlifespan-ll-then-sl var=9:  [True, False, True]  scores=[-100, 0, -100]\nlifespan-ll-then-sl var=12: [True, False, True]  scores=[-100, 0, -100]\nmeasure-melting var=16: [False, True, True]  scores=[0, -100, -100]\n```\n\n### 5. 结论\n\n**数据可信。分析脚本无 bug。**\n\n| 问题 | 结论 |\n|------|------|\n| 脚本逻辑 bug？ | 无。DR(N)=\"前 N 次全 death\" 逻辑正确 |\n| 4.3% vs 39.3% 异常？ | **无法复现**。retry 内部 rescue rate 1→2=4.3%, 2→3=6.7%，差异在正常范围 |\n| 种子问题？ | 无。环境确定性，随机性仅来自 LLM sampling |\n| 数据一致性？ | 同一 session 生成，无多批混合 |\n| Table 4 定义混淆？ | **是的**。Table 4 (40.9%) = final_is_death/220; dose-response DR(3) (41.5%) = all-3-death/200。两个定义不同 |\n\n**Reviewer 所述 39.3% 的可能来源**:\n1. Reflexion 的 per-trial DR trial 1 = 73/185 = **39.5%**（接近 39.3%），可能被误读为 rescue rate\n2. 可能来自 Table 4 定义（final_is_death）和 dose-response 定义（cumulative all-death）之间的混淆\n\n**建议**:\n1. 论文中明确 DR 的定义 — \"final-outcome death rate\"（Table 4）vs \"cumulative all-trial death rate\"（dose-response）\n2. 如果 dose-response 分析要与 Table 4 对比，统一使用 final_is_death 定义，或明确标注区别\n3. Retry 的 per-trial rescue rate（4.3%~6.5%）vs reflexion（26.1%~21.9%）的对比是有效的 — 证明 retry 几乎无 rescue 效果而 reflexion 有效"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-retry-data-audit.md"
+}

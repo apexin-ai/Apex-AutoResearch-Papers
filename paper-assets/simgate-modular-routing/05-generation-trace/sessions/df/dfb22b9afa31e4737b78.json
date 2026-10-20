@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "dfb22b9afa31e4737b78",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "eval plan 008 v4 1 7b reval",
+  "task_key": "worker_eval_plan-008-v4-1_7b-reval_20260515T204715",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan-008-v4-1_7b-reval_20260515T204715.log",
+    "occurrence": 1,
+    "bytes": 675298,
+    "sha256": "2cbc924c57cd60040e9ff2435dd437c97b9ecead62321937b0f8820794bfec39"
+  },
+  "statistics": {
+    "messages": 214,
+    "user_turns": 0,
+    "tool_calls": 84,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 42,
+      "tool_call": 84,
+      "tool_result": 84,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 214,
+      "chunks": [
+        {
+          "path": "dfb22b9afa31e4737b78-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "dfb22b9afa31e4737b78-part-0002.json",
+          "message_count": 36
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-plan-008-v4-1-7b-reval.md"
+}

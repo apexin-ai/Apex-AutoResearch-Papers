@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5ba01407d373eea1ee3e",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "diagnosis ext val urgent check 2",
+  "task_key": "worker_diagnosis_ext-val-urgent-check-2_20260519T224139",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnosis_ext-val-urgent-check-2_20260519T224139_result.json",
+    "occurrence": 1,
+    "bytes": 776,
+    "sha256": "c905039bd29f1383e05b0442807f69dfa583f0ac3bca596f75858201c81d4c10"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/extended-task-validation/urgent_check_2.md`。\n\n**状态摘要：**\n\n| Task | Progress | Status |\n|------|----------|--------|\n| boil | **20/20** | COMPLETE |\n| use-thermometer | **20/20** | COMPLETE |\n| find-living-thing | **15/20** | RUNNING (gpu0, ~15min ETA) |\n| power-component | **16/20** | RUNNING (gpu1, ~12min ETA) |\n| melt | **0/20** | CRASHED (vLLM EngineDeadError) |\n\n**关键发现：** Internal model 在所有 task 上的 death rate（44-55%）是 deterministic baseline（13-25%）的 2-3 倍。Death asymmetry 是主要的 signal source，det-preferred 占 25-47%。\n\n**Melt** 在 05:44 崩溃（vLLM EngineCore died），目录空，需要手动重启。可在 find-living-thing 完成后复用 gpu0。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnosis-ext-val-urgent-check-2.md"
+}

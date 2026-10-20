@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b4e10b527b9596321e94",
+  "project": "simgate-modular-routing",
+  "kind": "history",
+  "title": "director / loop_9.md",
+  "task_key": "loop_9",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_9.md",
+    "occurrence": 1,
+    "bytes": 4008,
+    "sha256": "15a5eb2a0d7038e898678c0bba3065a982b9b8d39530a2a27830fea2c84156d8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 9\nreason: max_messages\nupdated: '2026-05-16T18:45:22+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westb-13313 的 cuda:0 和 cuda:1，严禁使用其他设备\n- 论文源文件在**本地** `docs/paper/` 目录，不在远程服务器——改论文找本地，改训练代码找远程\n- 远程论文编译路径是 `/root/autodl-tmp/simgate-modular-routing/paper/`（不是 `docs/paper/`）——之前多次同步到错误路径\n- review_issues.yaml 已全量 resolved（28 items），不要重复标记\n- DAF 论文定义用 all-episodes（=90.4%），不是 det-preferred subset（=63.5%）——framework_draft.md 正在修正中\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westb-13313 (connect.westb.seetacloud.com)，账号 root\n- 远程工作目录：/root/autodl-tmp/simgate-modular-routing\n- 远程论文编译目录：/root/autodl-tmp/simgate-modular-routing/paper/（已全量同步，0 undefined，14页 PDF clean）\n- 本地论文目录：/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/\n- 本地 artifacts：/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/\n- 活跃进程：无确认的 RUNNING。Agent 正在处理 framework_draft.md 修正 + bootstrap CI 重跑（用 all-episodes 定义）\n- Guided router 代码：/root/autodl-tmp/simgate-modular-routing/guided_router/\n\n### 3. 📊 当前状态\n**刚完成**：\n- 方向 B (Decomposition-Guided Routing) 证伪：blind LOTO=50%=always-det，keyword variant 泄漏 task identity\n- SCI 计算完成：Gini=0.2147，death signal 均匀分布在 10 个 task（systematic, not task-specific）\n- 论文全量同步到远程 paper/ 路径，编译 0 error 0 undefined\n- Reviewer 战略评估完成：推荐 A (Framework 形式化) + Main track，Findings 作为 fallback\n\n**正在进行**：\n- Agent 正在修正 framework_draft.md DAF 定义（从 det-preferred subset 改为 all-episodes）+ 重跑 bootstrap CI（预期 DAF≈0.904, CI≈[0.816, 0.988]）\n\n**等待**：用户 贾骁涵 的方向确认（A vs Findings）。B 已出局，C 不推荐。已发 3 条消息给用户解释情况。\n\n### 4. 📋 待办\n- Agent 回报 bootstrap CI 结果 → 确认与论文 90.4% 一致 → 注册 registry → 派 Paper Agent 将 SCI+CI 写入 Method section\n- 用户确认方向 A → 立即派 Paper Agent 启动 Method section 重写（framework_draft.md 已就绪）\n- 用户确认 Findings → 提交 Round 9 审稿（submit_paper_to_review, mode=\"continue\"），目标 3.5+/5\n- 用户无响应超 24h（从 5/16 13:18 算起） → 再次提醒 DDL 倒计时\n- Reviewer critical framework 不一致已修正后 → post_to_reviewer 请确认修正版本\n\n### 5. 🎯 战略上下文\n**核心发现**：ScienceWorld 上 ~90% routing signal = death avoidance（DAF=90.4%, CI [0.816, 0.988]）。Router 在 episode-level 失败（47.1% < 50% baseline），data scaling 无效，4B capacity 仅 59%。Signal 是 task-type level 二元属性，step-level router 学不到。\n\n**方向 B 证伪经过**：guided router 62.92% 是 in-sample + task identity 泄漏。Blind LOTO=50%=always-det。Cross-model degenerate（Llama 0 internal-preferred）。结论：routing signal 不可泛化，但这反而加强 C1 作为 \"framework predictive power\"。\n\n**易错点**：\n- framework_draft.md 的 DAF 定义刚被 Reviewer 打回——必须确认修正后版本用 all-episodes 定义（匹配论文 90.4%），不是 det-preferred subset（63.5%）\n- 远程有两个 paper 目录：`paper/`（编译用）和 `docs/paper/`（废弃副本）——同步目标永远是前者\n- SCI Gini=0.21 低不代表坏消息——正确解读是 death signal 是 systematic phenomenon（均匀分布），不是被 outlier 驱动\n- DDL 5/25 剩 9 天。如果走方向 A，timeline: 2天收尾+3天重写+2天polish+2天提交，无余量\n- 88 个实验全部 DONE（36 success / 20 negative / 14 failed）。无需新实验支撑方向 A\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-9.md"
+}

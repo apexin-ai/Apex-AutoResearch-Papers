@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "63e865f04146cf0b7054",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "research ablation b replication",
+  "task_key": "worker_research_ablation-b-replication_20260514T084716",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_ablation-b-replication_20260514T084716.log",
+    "occurrence": 1,
+    "bytes": 931238,
+    "sha256": "0f69cf14fd44e5e740effce657e41739dabff1b66decedf0601f38f735ac6212"
+  },
+  "statistics": {
+    "messages": 369,
+    "user_turns": 0,
+    "tool_calls": 142,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 81,
+      "tool_call": 142,
+      "tool_result": 142,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 369,
+      "chunks": [
+        {
+          "path": "63e865f04146cf0b7054-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "63e865f04146cf0b7054-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "63e865f04146cf0b7054-part-0003.json",
+          "message_count": 9
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-ablation-b-replication.md"
+}

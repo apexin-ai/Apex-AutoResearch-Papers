@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b0a8bf388b7cb95816a8",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "infra verify phase1",
+  "task_key": "worker_infra_verify-phase1_20260513T062525",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_verify-phase1_20260513T062525_result.json",
+    "occurrence": 1,
+    "bytes": 1307,
+    "sha256": "28bcc65182898a9213b739b9169a593ab44e714e3dd3ccee52c7fd4b8346f410"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇报：\n\n**1. 进程状态**\n- GPU0 (PID 20296): **存活**，正常运行中\n- GPU1 (PID 20374): **已死**\n\n**2. GPU0 状态** — 正常\n- 模型加载成功，Backend: HF transformers\n- Task types: boil, melt, change-the-state-of-matter-of\n- 已完成 Episode 0、1，正在跑 Episode 2\n- GPU0 显存占用 15720MiB / 32607MiB\n\n**3. GPU1 崩溃原因** — `CUDA error: invalid device ordinal`\n```\ntorch.AcceleratorError: CUDA error: invalid device ordinal\nGPU device may be out of range, do you have enough GPUs?\n```\n在 `_load_hf()` 加载模型到 `cuda:1` 时失败。错误发生在 `caching_allocator_warmup` → `mem_get_info(device)`。GPU1 物理上存在（nvidia-smi 可见，100% util 但 0MiB 显存），可能是启动时 `CUDA_VISIBLE_DEVICES=1` 导致设备在进程内变为 `cuda:0` 而非 `cuda:1`，但代码尝试访问 `cuda:1`。\n\n**4. GPU 显存**\n- GPU0: 15729MiB / 32607MiB（模型已加载）\n- GPU1: 0MiB / 32607MiB（空闲，进程已死）\n\n**修复建议**：GPU1 进程可能用了 `CUDA_VISIBLE_DEVICES=1` 但代码内部仍尝试访问 `cuda:1`。需要确认启动命令中 `--gpu` 参数与 `CUDA_VISIBLE_DEVICES` 的映射关系——当设置 `CUDA_VISIBLE_DEVICES=1` 时，该 GPU 在进程内应该是 `cuda:0`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-verify-phase1.md"
+}

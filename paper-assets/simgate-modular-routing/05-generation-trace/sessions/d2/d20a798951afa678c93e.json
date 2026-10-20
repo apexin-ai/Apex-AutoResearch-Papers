@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "d20a798951afa678c93e",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "exp capacity scaling episode eval",
+  "task_key": "worker_exp_capacity-scaling-episode-eval_20260516T124153",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_capacity-scaling-episode-eval_20260516T124153.log",
+    "occurrence": 1,
+    "bytes": 507633,
+    "sha256": "986816043c99bee97f4414a32909f24e3133f760205a702584e5dec3b94dd1b1"
+  },
+  "statistics": {
+    "messages": 433,
+    "user_turns": 0,
+    "tool_calls": 195,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 39,
+      "tool_call": 195,
+      "tool_result": 195,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 433,
+      "chunks": [
+        {
+          "path": "d20a798951afa678c93e-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d20a798951afa678c93e-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "d20a798951afa678c93e-part-0003.json",
+          "message_count": 73
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-capacity-scaling-episode-eval.md"
+}

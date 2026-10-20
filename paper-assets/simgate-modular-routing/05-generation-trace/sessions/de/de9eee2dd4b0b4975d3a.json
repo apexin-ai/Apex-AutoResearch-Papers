@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "de9eee2dd4b0b4975d3a",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "paper writing experiments v2",
+  "task_key": "worker_paper_writing_experiments_v2_20260514T085847",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_experiments_v2_20260514T085847_result.json",
+    "occurrence": 1,
+    "bytes": 1096,
+    "sha256": "2f88a610f3a16b496cf7e84909f98fe6a1029758c2ba1e5d4a3e3b0414fd0f5b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。文件写入 `artifacts/_project/paper/experiments_draft.md`，已注册为 `art_20260514_dd9866`。\n\n结构概要：\n\n- **§Setup** (~95 words): ScienceWorld 环境、11 tasks / 245 episodes、Qwen2.5-7B-Instruct + vLLM、30 steps\n- **§Death Avoidance Decomposition** (~400 words): Δ\\_full=+29.60 → Δ\\_nd=+2.84, DAF=90.41%; r=0.9698 (p=8.12e-07); label distribution 86/9/150; find-non-living-thing 零死亡例外; measure-melting-point-unknown 高死亡率例证\n- **§Baselines** (~200 words): Table 1 (booktabs, 含 CI 和 death rate); oracle degeneracy (96.2% ≈ always-det); keyword routing 结构性失败引用 §3.4\n- **§Router Training as Diagnostic** (~280 words): classification head 全退化; implicit router logit 74.5%/79% bal\\_acc vs generation 65.36%/51.5% recall; framed as diagnostic finding; [PLACEHOLDER] 留给 ablation-b e2e 结果\n- **§Limitations** (~130 words): 单 benchmark、单 LLM、-100 penalty 可能放大 DAF、episode-level 粒度\n\n待填项：Table 1 implicit router 行（等 ablation-b e2e 评估结果）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-experiments-v2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cc87596c3186aedea5a0",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "infra paper sync structure fixes",
+  "task_key": "worker_infra_paper-sync-structure-fixes_20260517T102226",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_paper-sync-structure-fixes_20260517T102226_result.json",
+    "occurrence": 1,
+    "bytes": 133,
+    "sha256": "a8e2d7e5edaffbdadf3bdb9226a738b676775b90dde09ecb7b3629dd9d39ac8f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译成功。`main.pdf` 生成（15 页，434KB），无 error，`latexmk: All targets (main.pdf) are up-to-date`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-paper-sync-structure-fixes.md"
+}

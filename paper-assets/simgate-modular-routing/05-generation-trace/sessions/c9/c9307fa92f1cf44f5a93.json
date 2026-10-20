@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c9307fa92f1cf44f5a93",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh inspect retry pertrial data",
+  "task_key": "worker_ssh_inspect-retry-pertrial-data_20260518T171238",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_inspect-retry-pertrial-data_20260518T171238_result.json",
+    "occurrence": 1,
+    "bytes": 1483,
+    "sha256": "520b3baaed6070482a25dcf253823579d637ec63e67a56e449975ebf9ff24559"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有 <5 trials 的 episode 都是因为 early success 提前终止，数据完全正确。\n\n## Retry Per-Trial Data Availability\n\n**有/无 per-trial 数据: YES**\n\n**数据路径:** `/root/autodl-tmp/simgate-modular-routing/results/retry_dose_response/retry_n5/`\n\n**数据格式:** 每个 episode 一个 JSON 文件（`{task_name}_ep{NNN}.json`），结构：\n```json\n{\n  \"task_name\": \"...\",\n  \"variation_idx\": 0,\n  \"mode\": \"retry\",\n  \"trials\": [\n    {\n      \"trial_idx\": 0,\n      \"score\": -100.0,\n      \"is_death\": true,\n      \"is_success\": false,\n      \"num_steps\": 18,\n      \"time_s\": 15.9,\n      \"actions\": [\"...\"],\n      \"reflection_text\": null\n    },\n    // ... trial_idx 1..4\n  ],\n  \"num_trials\": 5,\n  \"final_score\": -100.0,\n  \"final_is_death\": true,\n  \"final_is_success\": false,\n  \"success_trial\": null\n}\n```\n\n**统计:**\n- N=5 episode 文件数: **200**（10 tasks × 20 eps）\n- Trial 数分布: 180 个有 5 trials, 20 个因 early success 提前终止（14×1 trial, 3×2, 1×3, 2×4）\n- **N=3 数据不存在**，只跑了 N=5 条件\n\n**Cutoff=1 验证:**\n- trial[0] death rate = **96/200 = 48.0%**\n- vs 已知 N=1 DR = 46.5%\n- 差异 1.5pp，在 200 episodes 的采样误差范围内（SE ≈ 3.5pp），**验证通过**\n\n**结论:** Per-trial 数据完整且格式良好，可以从 N=5 数据中合成任意 cutoff (1-5) 的 dose-response 曲线，无需补跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-inspect-retry-pertrial-data.md"
+}

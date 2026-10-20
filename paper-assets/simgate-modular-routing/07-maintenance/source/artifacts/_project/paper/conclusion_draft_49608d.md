@@ -1,0 +1,9 @@
+# Conclusion — Draft v1 (A-Source: plan-012-full, 11 tasks / 245 episodes)
+
+\section{Conclusion}
+
+We introduced episode-level counterfactual analysis as a diagnostic methodology for understanding what routing learns in LLM agents operating on interactive environments. Across 11 ScienceWorld task types (245 episodes), death avoidance accounts for 90.41\% of the routing signal between internal LLM reasoning and deterministic computation ($\Delta_{\text{full}} = +29.60$, $\Delta_{\text{no\_death}} = +2.84$; Pearson $r = 0.9698$, $p = 8.12 \times 10^{-7}$). A diagnostic router trained on these labels achieves near-random balanced accuracy ($\approx$58\% across four seeds), reinforcing that the episode-level signal is dominated by a single mechanism---catastrophic failure prevention---rather than diverse step-level routing patterns.
+
+Our analysis is limited to a single benchmark (ScienceWorld) with one LLM backbone (Qwen2.5-7B-Instruct) and 245 episodes across 11 task types; generalization to other environments and model scales remains to be established. Episode-level labeling cannot reveal step-level routing dynamics, and ScienceWorld's severe $-100$ death penalty may amplify the death avoidance signal relative to environments with milder failure costs.
+
+Future work should pursue step-level counterfactual labeling to overcome the granularity bottleneck and enable finer-grained router training. Extending the methodology to other tool-augmented domains---mathematical reasoning with code interpreters, API-mediated tasks---would test whether death avoidance dominance is specific to catastrophic-failure environments or a broader phenomenon. The counterfactual decomposition framework can also serve as a diagnostic lens for other systematic LLM failure modes beyond hallucinated state transitions.

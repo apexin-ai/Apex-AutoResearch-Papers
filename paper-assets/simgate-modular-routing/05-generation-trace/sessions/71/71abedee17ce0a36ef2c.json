@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "71abedee17ce0a36ef2c",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "paper r27 writing fixes",
+  "task_key": "worker_paper_r27-writing-fixes_20260522T050934",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_r27-writing-fixes_20260522T050934.log",
+    "occurrence": 1,
+    "bytes": 824347,
+    "sha256": "01d9cb9535ef31c7f213815c154e33f4fa35a62127bdcded2942e8c05dee9bc4"
+  },
+  "statistics": {
+    "messages": 252,
+    "user_turns": 0,
+    "tool_calls": 77,
+    "roles": {
+      "log": 1,
+      "system": 35,
+      "record": 1,
+      "assistant": 60,
+      "tool_call": 77,
+      "tool_result": 77,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 252,
+      "chunks": [
+        {
+          "path": "71abedee17ce0a36ef2c-part-0001.json",
+          "message_count": 140
+        },
+        {
+          "path": "71abedee17ce0a36ef2c-part-0002.json",
+          "message_count": 112
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-r27-writing-fixes.md"
+}

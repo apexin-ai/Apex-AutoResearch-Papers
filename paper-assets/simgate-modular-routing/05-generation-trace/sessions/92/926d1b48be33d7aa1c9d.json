@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "926d1b48be33d7aa1c9d",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "research itpr deep read",
+  "task_key": "worker_research_itpr-deep-read_20260513T090907",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_itpr-deep-read_20260513T090907_result.json",
+    "occurrence": 1,
+    "bytes": 1091,
+    "sha256": "ca6f19eaf0faaf3b7ac6ac9d2d963a3da73f47ab074523ce42e7f02566bdeb74"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已写入 `/root/autodl-tmp/simgate-modular-routing/notes/literature_itpr.md`（287 行）。\n\n关键发现：\n\n**性能**: ITP-R 在 ScienceWorld 上 best success rate 为 Seen 63.91% / Unseen 57.61%（Llama-3.1-8B）。只报告了 success rate，无 continuous score，无 per-task breakdown。\n\n**World Model 核心弱点**: Learned LLM-based WM 存在 compounding errors — Fact-F1 随 horizon 单调下降，agent success 在 k≈3 后也开始下降。这是 SimGate 用真实 simulator 的最大优势切入点：zero approximation error，不受 horizon 限制。\n\n**Gating 机制**: K-head predictor（线性层）预测 K ∈ {0,...,K_max}，控制 imagination 深度。与 SimGate 的 binary routing 不同 — ITP-R 是选\"看多远\"，SimGate 是选\"用不用 simulator\"。论文没报告 K=0（跳过 WM）的比例。\n\n**训练成本**: ~62.5 A100 GPU-hours，推理每步 14.2s（imagination 占 7.8s）。\n\n**最关键的对比缺口**: ITP-R 论文完全没有对比 learned WM vs real simulator，这正是 SimGate 的贡献空间。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-itpr-deep-read.md"
+}

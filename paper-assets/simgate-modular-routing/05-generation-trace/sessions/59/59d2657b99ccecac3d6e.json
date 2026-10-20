@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "59d2657b99ccecac3d6e",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code plan 005 routing pattern",
+  "task_key": "worker_code_plan-005-routing-pattern_20260513T233251",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan-005-routing-pattern_20260513T233251_result.json",
+    "occurrence": 1,
+    "bytes": 812,
+    "sha256": "2f1e27a38a6e8d082b84aeb03d0cc67926842d176a8eff10d0abcd043d4e0e0d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "运行成功。结果摘要：\n\n**数据**: 314 episodes, 30 tasks\n\n**分类分布**:\n- death-dominated: 25 tasks (DAF ≥ 95%)\n- genuine-det: 3 tasks (find-living-thing, find-plant, measure-melting-point-unknown-substance)\n- internal-preferred: 2 tasks (find-non-living-thing, grow-plant)\n\n**Failure taxonomy**: 所有 death 均由 `focus on <location>` 动作触发，internal 模式 144 次 vs deterministic 37 次。最常见致死动作：`focus on workshop` (45 int / 5 det)。\n\n**输出文件**:\n- `results/plan005/routing_metrics.json` — 30 tasks 的 per-task metrics\n- `results/plan005/fig_routing_heatmap.{pdf,png}` — routing heatmap 图\n- `results/plan005/failure_taxonomy.json` — failure mode taxonomy\n\n本地文件: `src/routing_pattern_analysis.py` 已创建。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-005-routing-pattern.md"
+}

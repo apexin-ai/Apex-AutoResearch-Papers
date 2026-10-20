@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c55f9d12d6e963e4f100",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "check r7n2 progress",
+  "task_key": "worker_check_r7n2-progress_20260516T044302",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_r7n2-progress_20260516T044302_result.json",
+    "occurrence": 1,
+    "bytes": 872,
+    "sha256": "1d22355255a33884a1149db959945475a63c3c7b21093781ab92314e621d82c6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 训练进度报告\n\n**进程状态**: Running (PID 934738, elapsed 1h15m)\n\n**已完成 (6 runs, 有 eval_results.json)**:\n| Run | Steps | 完成时间 |\n|-----|-------|---------|\n| 25pct_seed42 | 42 | 11:33 |\n| 25pct_seed43 | 42 | 11:37 |\n| 25pct_seed44 | 42 | 11:42 |\n| 50pct_seed42 | 84 | 11:47 |\n| 800pct_seed42 | 1302 | 12:14 |\n| 800pct_seed43 | 868 | 12:39 |\n\n**当前正在跑**: `scale_800pct_seed44` — step **265/1302** (20%), ~1.0 s/step, loss=0.123\n\n剩余 1037 steps ≈ **~17 min** 完成当前 run。\n\n**待跑 (7 empty dirs)**:\n`50pct_seed43`, `75pct_seed42`, `75pct_seed44`, `100pct_seed43`, `200pct_seed42`, `200pct_seed44`, `400pct_seed43`\n\n**进度**: 6/14 完成 (+ 1 in progress)。当前 run 之后还剩 7 个较小的 runs（50%~400% 规模），估计 **~30-40 min**。\n\n**预计总剩余**: ~45-55 min。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-r7n2-progress.md"
+}

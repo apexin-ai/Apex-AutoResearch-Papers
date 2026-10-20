@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5f1cec54b70899ac2910",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh 72b data consolidation",
+  "task_key": "worker_ssh_72b-data-consolidation_20260519T115818",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_72b-data-consolidation_20260519T115818_result.json",
+    "occurrence": 1,
+    "bytes": 3701,
+    "sha256": "c58b8804cf51b32ae2ddcd7d53d9976c0cb7004390b743ba3c20efe5d9c21532"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据验证完毕，reason 分布与 death counts 一致。现在输出完整结果。\n\n```\n=== 72B CONSOLIDATED METRICS ===\nData sources: westb-13313 (9 tasks, 175 eps) + westd-18266 (2 tasks, 80 eps)\nTotal: 11 tasks, 255 episodes\n\nNOTE: westd-18266 的 2 个 task 各 40 eps（2 batches of 20），其余 task 20 eps（lifespan-longest-lived 15 eps）\n\n=====================================\nAggregate (11 tasks, 255 eps)\n=====================================\n  Internal DR:  30.59% (78/255)\n  Det DR:        2.75%  (7/255)\n  Δ DR (72B):   27.84 pp\n\n  Δ_full:       30.07  (mean det_score - int_score, all eps)\n  Δ_nd:          2.28  (mean det_score - int_score, both-survive eps only)\n  DAF:          92.42% (Death Attribution Fraction)\n\n  n_both_survive: 174/255 (68.2%)\n\n=====================================\nDeath-prone (excl find-non-living-thing)\n=====================================\n  N = 235\n  Internal DR:  33.19% (78/235)\n  Det DR:        2.98%  (7/235)\n\n=====================================\nLabels\n=====================================\n  det-preferred:  84  (32.9%)\n  int-preferred:   0   (0.0%)\n  no-preference: 171  (67.1%)\n\n=====================================\nReason breakdown (255 eps)\n=====================================\n  tie:                    162  (63.5%)\n  int_died_det_alive:      74  (29.0%)\n  both_alive_det_wins:     10   (3.9%)\n  both_died:                4   (1.6%)\n  det_died_int_alive:       3   (1.2%)\n  both_alive_int_wins:      2   (0.8%)\n\n=====================================\nPer-task breakdown\n=====================================\nTask                                   |  N | IntDR  | DetDR  | IntD | DetD | BothD | Δ_full |  Δ_nd  | n_nd\n---------------------------------------|----| -------|--------|------|------|-------|--------|--------|-----\nchemistry-mix                          | 20 | 50.0%  |  5.0%  |  10  |   1  |   1   |  46.10 |  0.00  |  10\nfind-animal                            | 20 | 40.0%  |  0.0%  |   8  |   0  |   0   |  40.40 |  0.00  |  12\nfind-non-living-thing                  | 20 |  0.0%  |  0.0%  |   0  |   0  |   0   |  20.00 | 20.00  |  20\nfreeze                                 | 20 | 45.0%  |  0.0%  |   9  |   0  |   0   |  45.00 |  0.00  |  11\ngrow-fruit                             | 20 | 40.0%  | 10.0%  |   8  |   2  |   1   |  30.00 |  0.00  |  11\nidentify-life-stages-1                 | 20 | 40.0%  |  0.0%  |   8  |   0  |   0   |  40.00 |  0.00  |  12\nidentify-life-stages-2                 | 20 | 30.0%  |  5.0%  |   6  |   1  |   0   |  24.80 | -0.31  |  13\ninclined-plane-determine-angle         | 20 | 30.0%  |  5.0%  |   6  |   1  |   0   |  25.50 |  0.00  |  13\nlifespan-longest-lived                 | 15 | 26.7%  |  0.0%  |   4  |   0  |   0   |  30.00 |  0.00  |  11\nlifespan-longest-lived-then-s-s*       | 40 | 22.5%  |  2.5%  |   9  |   1  |   1   |  21.65 |  0.00  |  31\nmeasure-melting-point-unknown-s*       | 40 | 25.0%  |  2.5%  |  10  |   1  |   1   |  22.90 |  0.03  |  30\n\n* = data from westd-18266 (40 eps = 2 batches)\n\n=====================================\nKey observations\n=====================================\n- 72B internal routing DR=30.6% vs det DR=2.75%, gap 27.84 pp\n- DAF=92.4%: 几乎全部 score gap 来自 death asymmetry\n- 除 find-non-living-thing 外，当双方都存活时 Δ_nd ≈ 0（10/11 tasks）\n- find-non-living-thing 是唯一 0% death rate 的 task，但 det 仍高 20 分（纯 score 差异，非 death 驱动）\n- int-preferred = 0：72B 在所有 255 episodes 中 internal routing 从未被判定为更优\n- chemistry-mix 和 freeze 死亡率最高（50%、45%）\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-72b-data-consolidation.md"
+}

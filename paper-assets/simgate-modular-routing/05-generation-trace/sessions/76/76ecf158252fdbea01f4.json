@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "76ecf158252fdbea01f4",
+  "project": "simgate-modular-routing",
+  "kind": "history",
+  "title": "agent / loop_9_1778792479.md",
+  "task_key": "loop_9_1778792479",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_9_1778792479.md",
+    "occurrence": 1,
+    "bytes": 3676,
+    "sha256": "be1a36a1b782fdd63b20919e34c3a53a07b3fe074eb7659411984d875755a646"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 9\nreason: idle_timeout\nupdated: '2026-05-14T21:01:11+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 服务器 westb-13313 只能用 cuda:0 和 cuda:1（gpu_ids 白名单）\n- Table 1 所有数字必须来自 `eval_end_to_end.py` 统一脚本，不能混源\n- `data/plan-004-implicit/implicit_sft.jsonl`（2040 samples, MD5: c9b59e04de78）是唯一可信数据源；`results/plan_c_test_labels/implicit_sft.jsonl` 标签被翻转过，**禁止使用**\n- checkpoint 路径易混淆：`checkpoints/plan-002-generative-v1/` = gen-v1（失败），`checkpoints/plan-004-implicit/` = ablation-b（成功），两者 internal_recall ~51% 几乎相同\n- Death-avoidance fraction 已从 ~99% 修正为 ~90%（find-non-living-thing 是正例不是异常），不要回退到旧数值\n- 当前 Worker 池 = 0（无可用后端账号），需要 Director 解决才能 spawn worker\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westb-13313（2× RTX 5090 32GB），cuda:0 和 cuda:1 均 idle（hot standby）\n- 工作目录：/root/autodl-tmp/simgate-modular-routing（推测，需 SSH 确认）\n- Python：/root/miniconda3/bin/python（aml-train 镜像，conda base 环境）\n- 模型：Qwen3-1.7B，checkpoint 在 `checkpoints/plan-004-implicit/`\n- W&B：项目 simgate-modular-routing\n- 活跃进程：无（所有实验已完成）\n- Cron：无活跃监控任务（所有实验已结束）\n\n### 3. 📊 当前状态\n**论文处于最终提交阶段。** 58 个实验全部结束（23 success / 13 negative / 10 failed / 12 killed），3 个 PREPARING 状态的实验无需推进。\n\n刚完成的工作：\n- ALFWorld counterfactual 全量实验（135 games）完成，验证了跨环境普适性\n- R2 三个 blocker 全部修复：标题范围、train/test split 文档化、penalty sensitivity 分析\n- 论文编译 0 warning，2 个断引用已修复，全文数据一致性验证通过\n- report.md 标注状态为 READY\n\n等待中：\n- **无 Worker 回调/Cron 待处理**\n- 需要 Worker 做：远程 sync + recompile 验证 → 最终 PDF 视觉检查\n- R3 reviewer verification 预计 5/15\n\n### 4. 📋 待办（条件触发式）\n- Worker 账号可用 → sync 本地论文到 westb-13313 + `latexmk` 编译验证 + PDF 视觉检查\n- R3 reviewer 返回意见 → 按意见迭代，5/15-22 窗口收敛\n- Director 批准最终版 → 5/23-24 ARR 提交\n- 若 R3 要求补充实验 → cuda:0/cuda:1 可立即用于 supplementary analysis\n- 若需要扩展 MATH 实验（math-200 上次在 55/200 崩溃于 vLLM 400 error）→ 需修复 vLLM 配置再重跑\n\n### 5. 🎯 战略上下文\n**核心贡献**：Episode-level counterfactual 分析揭示 death avoidance 占路由信号的 ~90%（DAF 随 penalty 从 46.4% 到 94.5% 单调递增，r=0.9698）。这是分析性发现，不是性能提升——论文 framing 已从\"routing improves performance\"转为\"counterfactual analysis reveals routing signal structure\"。\n\n**决策链关键节点**：\n- classification head 全部失败（plan-002 v3-v6）→ pivot 到 generative SFT（ablation-b 成功）\n- Trained router e2e eval 不优于 always-deterministic → negative result → 转 analytical framing\n- 跨环境验证：ScienceWorld（主），MATH（code_exec 82%），ALFWorld（det 27.4% vs int 3.0%）\n\n**易错点**：\n- 不要把 GC4/routing performance 作为 claim——论文已经不 claim routing 有效，而是 claim \"death avoidance dominates routing signal\"\n- plan-002 系列的失败教训（class_weights + max_grad_norm 交互导致有效 LR≈0）已经在 memory.md 记录，不要重蹈\n- EMNLP DDL 是 2026-05-25，还剩 11 天，当前是 review iteration 阶段不是赶工阶段\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-9-1778792479.md"
+}

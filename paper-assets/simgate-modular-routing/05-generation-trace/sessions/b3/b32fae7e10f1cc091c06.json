@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b32fae7e10f1cc091c06",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "infra gpu isolation check",
+  "task_key": "worker_infra_gpu-isolation-check_20260513T064942",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_gpu-isolation-check_20260513T064942_result.json",
+    "occurrence": 1,
+    "bytes": 525,
+    "sha256": "222350676565e4ea33117a8c0dd12ec1a95e01783ea2b622f1bfc96ed90d2844"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**GPU 隔离正确，无冲突。**\n\n| 角色 | 父 PID | 实际计算 PID | CUDA_VISIBLE_DEVICES | 物理 GPU | GPU UUID |\n|------|--------|-------------|---------------------|----------|----------|\n| GPU0 Phase 1 | 20296 | 20301 | `0` | GPU 0 | `GPU-30234404...` |\n| GPU1 Phase 1 | 55775 | 55780 | `1` | GPU 1 | `GPU-5576d2e7...` |\n\n- PID 20301 独占 GPU 0，占用 15720 MiB / 32607 MiB\n- PID 55780 独占 GPU 1，占用 15466 MiB / 32607 MiB\n- 两个进程分别绑定不同物理 GPU，无交叉"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-gpu-isolation-check.md"
+}

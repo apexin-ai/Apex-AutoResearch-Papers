@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "a8203915a8cb9905f20c",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "investigate data file diff D021",
+  "task_key": "worker_investigate_data-file-diff-D021_20260514T071513",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_investigate_data-file-diff-D021_20260514T071513.log",
+    "occurrence": 1,
+    "bytes": 662069,
+    "sha256": "4843d3b177e925f60e5411614a34893853ebff4209b66bb7cd5b463498ca2e58"
+  },
+  "statistics": {
+    "messages": 226,
+    "user_turns": 0,
+    "tool_calls": 87,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 48,
+      "tool_call": 87,
+      "tool_result": 87,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 226,
+      "chunks": [
+        {
+          "path": "a8203915a8cb9905f20c-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "a8203915a8cb9905f20c-part-0002.json",
+          "message_count": 46
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/investigate-data-file-diff-d021.md"
+}

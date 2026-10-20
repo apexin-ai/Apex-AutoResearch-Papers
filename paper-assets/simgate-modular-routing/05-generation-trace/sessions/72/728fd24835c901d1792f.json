@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "728fd24835c901d1792f",
+  "project": "simgate-modular-routing",
+  "kind": "history",
+  "title": "agent / loop_5_1778748315.md",
+  "task_key": "loop_5_1778748315",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_5_1778748315.md",
+    "occurrence": 1,
+    "bytes": 3774,
+    "sha256": "41ed77fb12184326f402f909fe67f7c24c14bc6f93300824054a13ab48045c3e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: idle_timeout\nupdated: '2026-05-14T08:41:08+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0, cuda:1（westb-13313）。不得用其他卡，即使 Director 指令也 push back\n- 训练命令必须带 `source /etc/network_turbo`（W&B 需要网络）+ `export HF_HOME=/root/autodl-tmp/.hf_cache`\n- 模型加载必须用本地路径，不用 HF Hub ID（AutoDL network_turbo 随时过期）\n- `--data_dir results/plan_c`（不要用 `results/` 全目录）跑 death_decomposition.py\n- 禁止 `tmux kill-session`（SIGHUP 误杀）、禁止 `pkill -f` 宽泛 pattern\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westb-13313，2× RTX 5090 32GB\n- 工作目录：/root/autodl-tmp/simgate-modular-routing\n- Python：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`（conda 环境，非 venv）\n- 模型：Qwen2.5-7B-Instruct 在 /root/autodl-tmp/models/Qwen/Qwen2___5-7B-Instruct/；Qwen3-1.7B **本地路径未确认**（Worker 正在查找/下载，这是 plan-002-formal 崩溃的根因）\n- HF cache：/root/autodl-tmp/.hf_cache（需设 HF_HOME）\n- 活跃进程：plan-001b-gpu1-freeze-chem (PID 788058, cuda:1, freeze+chemistry-mix 数据收集)\n- 活跃 Worker：worker_diagnose_plan-002-formal_20260514T053744（正在修复网络问题并重提交训练）\n\n### 3. 📊 当前状态\n**刚做完**：plan-002-formal 失败诊断。根因 = AutoTokenizer.from_pretrained(\"Qwen/Qwen3-1.7B\") 连 HF Hub 失败（network_turbo 过期 + 无本地 cache）。训练从未开始。已更新 registry notes、发飞书卡片、汇报 Director、记录 memory.md。\n\n**Registry 状态**：\n- RUNNING：plan-001b-gpu1-freeze-chem (cuda:1, freeze 20 eps + chemistry-mix 20 eps 数据收集)\n- DONE(failed)：plan-002-formal（刚诊断完，Worker 正在修复重试）\n- PREPARING：plan-001b-gpu1-rebalance（已废弃/killed）、mvp-p1-signal（已废弃/killed）\n- PENDING：research-cf-pilot-gpu1（已废弃/killed）\n\n**等待中**：\n- Worker 回调：diagnose worker 完成后应有 plan-002-formal-v2 重新提交的结果\n- plan-001b-gpu1-freeze-chem cron 回调（数据收集完成）\n\n### 4. 📋 待办\n- diagnose Worker 回调 → 确认 Qwen3-1.7B 本地路径 + plan-002-formal-v2 是否成功启动；失败则手动介入\n- plan-001b-gpu1-freeze-chem 完成 → 按 on-experiment-done skill：更新 registry、跑 death_decomposition.py 全量分析（11 tasks 全齐）、汇报 Director\n- chemistry-mix 数据就绪 → plan-002 训练数据从 10/11 → 11/11 tasks，正式训练需用完整数据\n- plan-002 训练完成 → 按 conclusion 分叉：success 则分析 router 在 minority class (internal) 上的表现；negative 则产 Framing 提案\n- 两卡空闲时 → 推进 plan-005 routing pattern analysis（C2 \"early warning\" 验证）\n\n### 5. 🎯 战略上下文\n- **核心发现**：death avoidance 占 ~90% routing signal（D018 修正，从 ~99% 下调）。r=0.967, 11 tasks, 235 eps\n- **论文**：EMNLP 2026 ARR short paper，DDL 2026-05-25（剩 11 天）。Framing v3 = empirical finding + counterfactual methodology\n- **plan-002 定位**：诊断性 probe，验证 learned router 能否从 episode-level labels 学到 signal。不是论文核心贡献，但如果 router 连 majority class 都学不好则影响 C2 credibility\n- **易错点**：(1) Qwen3-1.7B batch_size=32 OOM，只能 4~8 + grad_accum；(2) class_weights=[11.07, 0.52] inverse frequency 可能过激（审计 Worker 建议 sqrt 缩放）；(3) plan-002-dryrun 被 cron 误标 failed（实际 success），检查 conclusion 时以 registry 手动修正后的值为准\n- **决策链**：D013 framing pivot → D015 预分析确认 → D017 tier-B claim → D018 ~90% 修正 → D019 per-task reporting\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-1778748315.md"
+}

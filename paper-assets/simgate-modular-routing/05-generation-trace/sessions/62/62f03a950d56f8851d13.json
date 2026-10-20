@@ -1,0 +1,132 @@
+{
+  "schema_version": "1.0",
+  "id": "62f03a950d56f8851d13",
+  "project": "simgate-modular-routing",
+  "kind": "conversation",
+  "title": "analysis plan 012 pearson r",
+  "task_key": "worker_analysis_plan-012-pearson-r_20260514T054234",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_plan-012-pearson-r_20260514T054234.jsonl",
+    "occurrence": 1,
+    "bytes": 3430,
+    "sha256": "925ad461ba1713a05e5e832f62a05824bf8822a2cf5b297675bb298520437ddf"
+  },
+  "statistics": {
+    "messages": 5,
+    "user_turns": 0,
+    "tool_calls": 2,
+    "roles": {
+      "tool_call": 2,
+      "tool_result": 2,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T05:42:58.937945+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan-012-pearson-r_20260514T054234",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_execute",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T05:42:58.938361+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan-012-pearson-r_20260514T054234",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T05:42:58.938538+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan-012-pearson-r_20260514T054234",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-13313",
+              "account": "root",
+              "command": "cd /root/autodl-tmp/simgate-modular-routing && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport numpy as np\nfrom scipy import stats\n\ntasks = [\n    ('chemistry-mix', 0.45, 0.25, 21.8),\n    ('find-animal', 0.50, 0.25, 26.65),\n    ('find-non-living-thing', 0.0, 0.0, 9.58),\n    ('freeze', 0.55, 0.25, 30.5),\n    ('grow-fruit', 0.45, 0.20, 25.1),\n    ('identify-life-stages-1', 0.55, 0.10, 47.5),\n    ('identify-life-stages-2', 0.50, 0.20, 30.0),\n    ('inclined-plane-determine-angle', 0.55, 0.20, 36.0),\n    ('lifespan-longest-lived', 0.56, 0.16, 44.0),\n    ('lifespan-longest-lived-then-shortest', 0.45, 0.10, 40.8),\n    ('measure-melting-point-unknown', 0.55, 0.25, 30.05),\n]\n\ndeath_rate_diff = np.array([t[1] - t[2] for t in tasks])\ndelta_full = np.array([t[3] for t in tasks])\n\nr, p = stats.pearsonr(death_rate_diff, delta_full)\nprint(f'Pearson r (death_rate_diff vs delta_full): {r:.4f}')\nprint(f'p-value: {p:.6e}')\nprint(f'N = {len(tasks)} tasks')\nprint()\nprint('Per-task:')\nfor t, drd, df in zip([t[0] for t in tasks], death_rate_diff, delta_full):\n    print(f'  {t}: DR_diff={drd:.2f}, delta_full={df:.2f}')\n\""
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T05:42:58.938799+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Pearson r (death_rate_diff vs delta_full): 0.9698\\\\np-value: 8.118952e-07\\\\nN = 11 tasks\\\\n\\\\nPer-task:\\\\n  chemistry-mix: DR_diff=0.20, delta_full=21.80\\\\n  find-animal: DR_diff=0.25, delta_full=26.65\\\\n  find-non-living-thing: DR_diff=0.00, delta_full=9.58\\\\n  freeze: DR_diff=0.30, delta_full=30.50\\\\n  grow-fruit: DR_diff=0.25, delta_full=25.10\\\\n  identify-life-stages-1: DR_diff=0.45, delta_full=47.50\\\\n  identify-life-stages-2: DR_diff=0.30, delta_full=30.00\\\\n  inclined-plane-determine-angle: DR_diff=0.35, delta_full=36.00\\\\n  lifespan-longest-lived: DR_diff=0.40, delta_full=44.00\\\\n  lifespan-longest-lived-then-shortest: DR_diff=0.35, delta_full=40.80\\\\n  measure-melting-point-unknown: DR_diff=0.30, delta_full=30.05\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.59}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan-012-pearson-r_20260514T054234",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T05:42:58.939084+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "- **Pearson r = 0.9698**\n- **p-value = 8.12 × 10⁻⁷**\n- **N = 11 tasks**\n\ndeath_rate_diff 与 Δ_full 高度正相关，统计极显著。死亡率差异几乎完美解释了 integrated 与 deterministic 之间的性能差距。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan-012-pearson-r_20260514T054234"
+          },
+          "id": "event-000005"
+        }
+      ],
+      "message_count": 5
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-plan-012-pearson-r.md"
+}

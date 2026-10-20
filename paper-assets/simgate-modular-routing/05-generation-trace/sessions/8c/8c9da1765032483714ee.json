@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "8c9da1765032483714ee",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "fix plan 004 v2 stratified launch",
+  "task_key": "worker_fix_plan-004-v2-stratified-launch_20260514T062526",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_plan-004-v2-stratified-launch_20260514T062526.log",
+    "occurrence": 1,
+    "bytes": 635087,
+    "sha256": "47ec0f4347ad488ab51bc9f2df9df4259557a8cd55b403d590ba7051c914b32b"
+  },
+  "statistics": {
+    "messages": 163,
+    "user_turns": 0,
+    "tool_calls": 56,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 47,
+      "tool_call": 56,
+      "tool_result": 56,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 163,
+      "chunks": [
+        {
+          "path": "8c9da1765032483714ee-part-0001.json",
+          "message_count": 153
+        },
+        {
+          "path": "8c9da1765032483714ee-part-0002.json",
+          "message_count": 10
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-plan-004-v2-stratified-launch.md"
+}

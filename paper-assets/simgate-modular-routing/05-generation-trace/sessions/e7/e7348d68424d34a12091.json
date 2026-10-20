@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e7348d68424d34a12091",
+  "project": "simgate-modular-routing",
+  "kind": "history",
+  "title": "agent / loop_7_1778782031.md",
+  "task_key": "loop_7_1778782031",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_7_1778782031.md",
+    "occurrence": 1,
+    "bytes": 4246,
+    "sha256": "83c312bbdcdeedd3b1ba1ccd069207c66d783f1c85a5c68bf8e86f617f32c0f9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: idle_timeout\nupdated: '2026-05-14T17:57:08+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：`westb-13313:cuda:0` 和 `westb-13313:cuda:1`，禁止使用其他设备\n- 论文 Table 1 所有数字必须来自 `eval_end_to_end.py`（D037），eval_implicit_router.py 的 -12.84 不可用于 Table 1\n- 唯一可用训练数据：`data/plan-004-implicit/implicit_sft.jsonl`（MD5: c9b59e04de78, 2040 samples）。`results/plan_c_test_labels/implicit_sft.jsonl` 标签损坏（D026），绝对不能用\n- ablation-b checkpoint 在 `checkpoints/plan-004-implicit/final_adapter`，不是 `checkpoints/plan-002-generative-v1/final_adapter`（后者是失败的 gen-v1）\n- 所有 eval 脚本必须 `enable_thinking=False` + regex 清理 `<think>` tags（Qwen3 thinking mode 干扰）\n- AutoDL 提交训练三必须：本地模型路径、`source /etc/network_turbo`、`HF_HOME=/root/autodl-tmp/.hf_cache`\n\n### 2. 🖥️ 基础设施快照\n- 服务器：`westb-13313`（AutoDL），2× RTX 5090 32GB（cuda:0, cuda:1），均空闲\n- 工作目录：`/root/autodl-tmp/simgate-modular-routing`\n- Python：conda 环境（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- 模型：Qwen3-1.7B，本地路径在服务器 `/root/autodl-tmp/` 下（batch_size=4 安全，32 OOM）\n- W&B：项目内已配置\n- 活跃 Worker 2 个：\n  - `worker_ops_kill-vllm-and-sync-paper` (started 17:47 UTC) — kill vLLM 僵尸进程 + 同步论文到远程\n  - `worker_ops_remote-compile-verify` (started 17:52 UTC) — 远程 pdflatex 编译验证\n- Cron：0 个活跃（reconcile 确认）\n- 3 个 PREPARING 实验是历史遗留（plan-003-baseline, plan-001b-gpu1-rebalance, mvp-p1-signal），不需要处理\n\n### 3. 📊 当前状态\n**初稿已就绪，进入 Review 迭代阶段。** 55 个实验全部 DONE（22 success / 13 negative / 10 failed / 10 killed 等）。\n\n刚完成的关键工作：\n- alfworld-counterfactual-full 完成（135 games, det 27.4% vs int 3.0%），结果写入 Limitations + Conclusion\n- 本地 pdflatex 编译通过：4 页正文 + appendix，0 warnings，0 undefined refs\n- 全文数字一致性审计通过\n- 断引用 `\\ref{sec:rule}` 修复\n- bib 20 条，4 篇 concurrent work 已入 Related Work\n\n正在等待 2 个 Worker 回调：\n1. vLLM 僵尸进程清理 + 论文代码同步到远程\n2. 远程编译验证（确认远程 PDF 与本地一致）\n\n### 4. 📋 待办（条件触发式）\n- Worker `kill-vllm-and-sync-paper` 完成 → 确认 GPU 已释放，远程代码同步成功\n- Worker `remote-compile-verify` 完成 → 确认远程编译 0 errors → 更新 report.md \"远程编译 ✅\"\n- 两个 Worker 都完成 → 向 Director 汇报\"初稿远程编译验证完成，可提交 Review 迭代\"\n- Director 启动 Review → spawn reviewer worker，进入审稿对抗迭代（5/15-22 窗口）\n- Review 迭代完成 → 终稿打磨 + ARR 提交准备（5/23-24）\n- 如 Reviewer 发现重大问题需补实验 → cuda:0/cuda:1 空闲可用，立即安排\n\n### 5. 🎯 战略上下文\n**投稿目标**：EMNLP 2026 ARR short paper (4 pages)，DDL 2026-05-25（剩 11 天）\n\n**核心结论**：Episode-level counterfactual analysis 揭示 death avoidance 占 ~90% routing signal（DAF=90.41%, r=0.9698）。Router balanced_acc=58.1±0.8%（仅比随机高 8pp）本身就是 finding。论文贡献 = empirical finding + diagnostic methodology，不是 router 架构。\n\n**关键决策链**：\n- D013: Framing pivot → death avoidance dominates\n- D033: Option B 定稿 → 方法论贡献\n- D046: 撤销 pivot（D041/D042），回归 analysis paper；MATH 不扩全量，pilot 入 Discussion\n- D047: MATH-200-fixed 不恢复，105 题够用\n\n**易错点**：\n- 不要把 classification head 路线（plan-002, 全部退化）和 generative SFT（plan-004 ablation-b, 成功）搞混\n- ga=8 是关键（effective batch=32），ga=1 严重过拟合导致 generation 能力丧失（D029/D032）\n- MATH 跨环境验证是 **negative**（信号反转），已写入 Limitations 作为 caveat，不要试图正面 claim\n- find-non-living-thing 是**正面案例**（零死亡但 Δ=+9.58），不是异常值\n- 3 个 PREPARING 实验是历史遗留，不需要推进\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-1778782031.md"
+}

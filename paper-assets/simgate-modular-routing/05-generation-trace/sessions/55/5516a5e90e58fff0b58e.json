@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5516a5e90e58fff0b58e",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ops plan 004 launch",
+  "task_key": "worker_ops_plan-004-launch_20260514T053757",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_plan-004-launch_20260514T053757_result.json",
+    "occurrence": 1,
+    "bytes": 758,
+    "sha256": "0d944803f5ac79c1f870935bf6f0a7ed540262591cd70908a71de507477d0308"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已成功启动并正常运行。汇报：\n\n**数据格式化**\n- 2040 条记录转换完成，0 条跳过\n- 分布：deterministic 1830 (89.7%) / internal 210 (10.3%)\n\n**训练配置**\n- Train: 1735, Val: 305\n- Route 分布 (train): deterministic 1555, internal 180\n- Upsampling 已启用: WeightedRandomSampler with 1735 draws/epoch\n- LoRA trainable params: 6,422,528 / 1.73B total (0.37%)\n- Gradient accumulation: 8 steps (batch_size=4, effective=32)\n- WANDB offline 模式已生效\n- GPU1 上运行，~1.0 it/s，165 steps/epoch，预计 ~3×165s ≈ 8 分钟/epoch\n\n**进程状态**\n- tmux session: `plan-004-ablation-b` 运行中\n- PID: 223455\n- GPU1 显存: 3897 MiB\n- 当前进度: epoch 1, 22/165 steps (~13%)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-plan-004-launch.md"
+}

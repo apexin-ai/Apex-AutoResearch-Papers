@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "62843128fb590321e46a",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "analysis penalty robustness",
+  "task_key": "worker_analysis_penalty-robustness_20260515T220012",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_penalty-robustness_20260515T220012_result.json",
+    "occurrence": 1,
+    "bytes": 1218,
+    "sha256": "4c03d5f87ec8b0a4de19d89c64b8191474f3047176a76ff0e4b289c7b97e0a8b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果：\n\n```\n=== Penalty Robustness Analysis (245 episodes) ===\n\n| Metric       |          P=-50 |    P=-100 (baseline) |         P=-200 |\n|--------------|----------------|----------------------|----------------|\n| Δ_full       |          16.33 |                29.60 |          56.13 |\n| Δ_nd         |           2.84 |                 2.84 |           2.84 |\n| DAF          |          82.6% |                90.4% |          95.0% |\n| DAF 95% CI   |   [67.6, 98.4] |         [81.5, 99.1] |   [90.0, 99.5] |\n| Pearson r    |         0.8876 |               0.9652 |         0.9905 |\n```\n\n**结论：ROBUST。**\n\n- DAF 在三个 penalty 值下均 >80%（82.6%→90.4%→95.0%），95% CI 互相重叠\n- Δ_nd = 2.84 是常数（不依赖 penalty），确认非死亡路径的分数差异很小\n- Pearson r 随 penalty 增大单调递增（0.89→0.97→0.99），死亡回避始终是分数差距的主导因素\n- DAF 随 penalty 增大而增大是数学必然（Δ_full = δ·P + Δ_nd），但即使在最低 penalty P=50 时仍有 82.6%\n\n核心发现（DAF≈90%）不是特定 penalty 值的产物。脚本和结果已保存至 `results/penalty_robustness/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-penalty-robustness.md"
+}

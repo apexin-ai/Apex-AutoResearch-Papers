@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b5a0118287a0a65609b2",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "research alfworld methodology",
+  "task_key": "worker_research_alfworld-methodology_20260515T154350",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_alfworld-methodology_20260515T154350_result.json",
+    "occurrence": 1,
+    "bytes": 4253,
+    "sha256": "a8c7a6a4165c3e07eaaa7dc7ac79aa5ae9a803a6415272619b919228d12ad06e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here's the structured output:\n\n---\n\n## ALFWorld 方法论补充材料\n\n### 1. 模型\n\n**Qwen2.5-7B-Instruct** (`/root/autodl-tmp/models/Qwen/Qwen2.5-7B-Instruct`)\n- 推理引擎：vLLM，`gpu_memory_utilization=0.85`，`max_model_len=4096`\n- 生成参数：`temperature=0.3`，`max_new_tokens=256`\n\n### 2. \"Deterministic\" Modality 的精确定义\n\n**与 ScienceWorld 语义完全不同。** ALFWorld 中 \"deterministic\" = LLM 在每一步接收环境提供的 **admissible actions list**（合法动作列表）。\n\n代码 docstring 原文：\n> The admissible actions list is the \"deterministic computation\" source: it constrains the LLM to valid simulator actions.\n\n具体实现对比：\n\n| 维度 | Internal mode | Deterministic mode |\n|------|--------------|-------------------|\n| 系统 prompt | \"You do NOT have access to any action list\" | \"You MUST choose an action from the admissible actions list exactly as written\" |\n| 用户 prompt | 仅含 observation + history | 含 observation + history + **编号的 admissible actions 列表** |\n| 动作解析 | `parse_action_free()` → 自由文本提取，再 `match_to_admissible()` 做 best-effort 匹配（exact → case-insensitive → substring） | `parse_action_constrained()` → 直接匹配 admissible list |\n| 兜底 | 匹配失败时 fallback 到 `admissible[0]` | 同 |\n\n关键点：Internal mode 生成的动作仍然需要 map 到 admissible action 才能执行（TextWorld 引擎限制），但 LLM **看不到**这个列表。差异完全在于信息可见性，不是模拟器模式的切换。\n\n### 3. Labeling 流程（与 Algorithm 1 的异同）\n\n**沿用 Algorithm 1 的 episode-level 比较逻辑**，标签定义完全一致：\n\n```\nif det_success and not internal_success → \"det-preferred\"\nif internal_success and not det_success → \"internal-preferred\"\nelse → \"no-preference\"  (both succeed OR both fail)\n```\n\n**差异：**\n- **成功判定**：ALFWorld 使用 TextWorld 的 `won` 布尔标志（任务是否完成），不存在 ScienceWorld 的 normalized score / death 概念\n- **无 death 统计**：ALFWorld 没有 agent 死亡机制，失败 = 50 步内未完成任务\n- **无部分分数**：score 只有 0.0（失败）和 1.0（成功），没有中间态\n\n### 4. Episode 长度配置\n\n- **max_steps = 50**（命令行默认值，实际运行使用此值）\n- Split: `valid_seen`（来自 `json_2.1.1`）\n- History window: 最近 10 步 (`last_k=10`)\n- Random seed: 42\n- 环境：TextWorld gym + `AlfredDemangler(shuffle=False)` + `AlfredInfos`\n\n步数统计：\n| | Mean | Median | Min | Max |\n|---|---|---|---|---|\n| Internal | 49.0 | 50.0 | 5 | 50 |\n| Deterministic | 40.2 | 50.0 | 3 | 50 |\n\n几乎所有 internal episodes 都跑满 50 步（3.0% 成功率极低）。\n\n### 5. 关键统计\n\n**总量**：135 games，6 task types\n\n**Label 分布**：\n\n| Label | Count | % |\n|-------|-------|---|\n| det-preferred | 35 | 25.9% |\n| internal-preferred | 2 | 1.5% |\n| no-preference | 98 | 72.6% |\n\n**No-preference 细分**：both-succeed = 2，both-fail = **96**\n\n**成功率**：Internal 4/135 (3.0%)，Deterministic 37/135 (27.4%)\n\n**按 Task Type 细分**：\n\n| Task Type | N | Internal SR | Det SR | det-pref | int-pref | no-pref |\n|-----------|---|-------------|--------|----------|----------|---------|\n| pick_and_place | 32 | 0.0% | 56.2% | 18 | 0 | 14 |\n| pick_clean_then_place | 27 | 3.7% | 18.5% | 5 | 1 | 21 |\n| pick_cool_then_place | 24 | 0.0% | 16.7% | 4 | 0 | 20 |\n| pick_two_obj_and_place | 23 | 0.0% | 8.7% | 2 | 0 | 21 |\n| pick_heat_then_place | 16 | 6.2% | 18.8% | 3 | 1 | 12 |\n| look_at_obj_in_light | 13 | 15.4% | 38.5% | 3 | 0 | 10 |\n\n**论文写作要点**：\n- ALFWorld 的 deterministic modality 是 **admissible actions oracle**，不是 simulator mode——需要在补充材料中明确说明这个语义差异\n- 标签分布严重偏向 det-preferred + both-fail，符合\"外部知识源（admissible list）显著提升 7B 模型在交互式任务中的表现\"的叙事\n- `pick_and_place` 上 det 优势最大（56.2% vs 0.0%），因为动作空间约束对简单导航任务帮助最大"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-alfworld-methodology.md"
+}

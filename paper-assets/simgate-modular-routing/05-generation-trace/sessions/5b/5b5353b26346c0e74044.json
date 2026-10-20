@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5b5353b26346c0e74044",
+  "project": "simgate-modular-routing",
+  "kind": "history",
+  "title": "agent / loop_13_1778894223.md",
+  "task_key": "loop_13_1778894223",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_13_1778894223.md",
+    "occurrence": 1,
+    "bytes": 3941,
+    "sha256": "181c7f61ecca0ff87e262aeaefefa264587c683bb285b58e117f87cbf41a6c9b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 13\nreason: idle_timeout\nupdated: '2026-05-15T22:43:50+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单仅 `cuda:0` + `cuda:1` @ westb-13313，其他设备号/服务器禁用\n- eval pipeline 必须统一 `enable_thinking=False`（D069 教训：thinking on/off 产生完全不同数字，1.7B: 0.53 vs 0.39）\n- Router-size ablation 1.7B 只有 2-seed generation-based eval（seed 42/43），论文中标注 \"(2-seed)\"，不可与 0.6B/4B 的 4-seed 直接对比 variance\n- D072: seeds 44/45 曾有 data leakage（eval split seed 问题），已作废相关数据——不要使用任何标记为 D072-invalidated 的指标\n- MATH track (plan-009) 的 McNemar p=0.079 未过 0.05，论文用 conservative two-sided framing，不可称 \"significant\"\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**westb-13313**，2× RTX 5090 (32GB each)\n- 工作目录：`/root/autodl-tmp/simgate-modular-routing`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- 模型：`/root/autodl-tmp/models/Qwen/Qwen3-{0.6B,1.7B,4B}`；backbone Qwen2.5-7B-Instruct\n- HF cache：`/root/autodl-tmp/.hf_cache`\n- W&B：offline mode（`WANDB_MODE=offline`）\n- 活跃进程：无（全部实验已 DONE）\n- 活跃 cron：无（reconcile 返回 0）\n- 活跃 Worker：`worker_eval_data-leakage-fix-comprehensive`（running，启动于 22:31 UTC）——正在修复 data leakage 相关 eval\n\n### 3. 📊 当前状态\n**全部 77 个实验已完成（DONE），无 RUNNING/PREPARING。** 论文整合全部完毕，项目处于 \"等待用户审批 Round 8 continue review\" 阶段。\n\n最近完成的关键工作（全部 2026-05-15）：\n- plan-008-router-size-v4 成功：0.6B(0.651)≈4B(0.632)>>1.7B(0.417)，\"lightweight router suffices\" 成立\n- seed-robustness-extended 成功：8-seed 汇总 54.1±5.8%\n- plan-010-cross-task-v2 negative：跨 task domain 迁移不显著\n- plan-012-penalty-curve 成功：penalty sensitivity analysis 完成\n- Paper Agent 完成全部 5 项整合（deep-internal ablation / failure taxonomy / cross-task transfer / router-size ablation / baseline caption）\n- D072 发现 seeds 44/45 eval data leakage → 作废\n\n等待中：\n- **Worker `data-leakage-fix-comprehensive` 正在运行** → 回调到手后需处理结果、更新 registry\n- **用户审批 Round 8 continue review** → BLOCKING，审批后启动 Round 8 审稿\n\n### 4. 📋 待办（条件触发式）\n- Worker `data-leakage-fix-comprehensive` 完成 → 读产出、更新 registry、刷新 report.md、如果修复了 data leakage 则更新论文中 1.7B seed 44/45 数字\n- 用户审批 Round 8 → 启动 Round 8 审稿流程 → 按 review-report-action skill 处理\n- Round 8 发现需补充实验 → 两张 GPU 空闲可立即用\n- Round 8 全部 resolved → 终稿定稿 → ARR 提交（DDL 5/25）\n\n### 5. 🎯 战略上下文\n- **核心发现**：death avoidance 占 routing signal 的 ~90%（DAF=0.904, r=0.97）。论文贡献是 empirical finding + diagnostic methodology，不是 router 架构本身\n- **覆盖率**：C1 83.3%, C1+C2 100%, C2 40%（negative results 为有信息量的否定，不是缺实验）\n- **决策链关键节点**：D013（C1 从 \"selective>unconditional\" 转为 death avoidance dominance）→ D050（短论文升级长论文）→ D065（维持 2-way routing）→ D069（统一 eval pipeline）→ D072（data leakage 作废）\n- **最容易判断错的事**：1.7B 在 generation-based eval 只有 2-seed 数据（seed 42/43），看起来比 0.6B/4B 差很多（0.417 vs 0.65），但这可能是 eval pipeline 差异残留——不要急于下\"1.7B 最差\"的结论，要标注 seed 数量差异。Worker 正在修 data leakage，修完后可能拿到 1.7B seed 44/45 的干净数据\n- **EMNLP DDL 5/25，剩 10 天**，论文整合已完毕，主要风险是 Round 8 审稿发现新问题需要补实验\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-13-1778894223.md"
+}

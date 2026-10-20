@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "9ce96810076f552ce36b",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "exp gpu cleanup and dual restart",
+  "task_key": "worker_exp_gpu-cleanup-and-dual-restart_20260520T063801",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_gpu-cleanup-and-dual-restart_20260520T063801.log",
+    "occurrence": 1,
+    "bytes": 580569,
+    "sha256": "9f4996c75ca61bb45ab4aad76fc61192b724e62be73fa6cde56dd5f2b5fa51e4"
+  },
+  "statistics": {
+    "messages": 213,
+    "user_turns": 0,
+    "tool_calls": 72,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 65,
+      "tool_call": 72,
+      "tool_result": 72,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 213,
+      "chunks": [
+        {
+          "path": "9ce96810076f552ce36b-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "9ce96810076f552ce36b-part-0002.json",
+          "message_count": 33
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-gpu-cleanup-and-dual-restart.md"
+}

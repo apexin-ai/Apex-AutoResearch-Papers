@@ -1,0 +1,2768 @@
+{
+  "schema_version": "1.0",
+  "id": "8e01c15b266c179c36ca",
+  "project": "simgate-modular-routing",
+  "kind": "conversation",
+  "title": "cron hook plan 001b gpu1 20260514T112145 930556",
+  "task_key": "cron_hook_plan-001b-gpu1_20260514T112145_930556",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/archive/cron_hook_plan-001b-gpu1_20260514T112145_930556.jsonl",
+    "occurrence": 1,
+    "bytes": 130960,
+    "sha256": "674796b80af62f91eebbbf452e4a9445e25ba8a6d4ee7b6f6f7ac69260c23e97"
+  },
+  "statistics": {
+    "messages": 142,
+    "user_turns": 2,
+    "tool_calls": 69,
+    "roles": {
+      "user": 2,
+      "tool_call": 69,
+      "tool_result": 69,
+      "assistant": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T07:51:21.649188+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[HANDOFF] 你是 Main Agent，这是 Loop #6。\n\n## 上一轮交接 (task_context)\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**cuda:0, cuda:1** on **westb-13313**，无其他合法设备\n- 唯一可用训练数据文件：`data/plan-004-implicit/implicit_sft.jsonl`（MD5: c9b59e04de78, 2040 samples）。`results/plan_c_test_labels/implicit_sft.jsonl` 标签已损坏（no-preference→internal 映射 bug），**绝对不能用**（D026）\n- Classification head 路线已宣告失败（D025），不要再尝试 2-class classification head 方案\n- plan-002-formal v3-v6 全部退化为 all-deterministic，class_weights + max_grad_norm 交互是根因（D023），generative SFT 是唯一剩余路线\n- D028 暂停论文写作直到核心数字一致性修复完成（至少 3 套数据源混用问题）\n- DDL: EMNLP 2026 ARR **May 25**（剩 11 天），critical path ~1.5 天实验 + ~3 天写作\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**westb-13313**，2× RTX 5090 32GB\n- 工作目录：`/root/autodl-tmp/simgate-modular-routing`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，**不是 venv**）\n- 环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- HF_HOME：`/root/autodl-tmp/.hf_cache`\n- Qwen3-1.7B 本地路径：需确认（之前用 ModelScope 下载到 autodl-tmp）\n- W&B：offline mode（AutoDL 网络限制）\n- 活跃进程：无训练在跑（plan-002-generative-v1 ALLOCATED 但未提交）\n- 活跃 Worker：`worker_code_fix-eval-generative-router_20260514T073837`（running, turn 3, 正在修 eval 代码）\n- Cron：reconcile 返回 0 条活跃\n\n### 3. 📊 当前状态\n**刚完成**：plan-004-v4 negative 确认 + plan-002-formal-v6 negative 确认 → classification head 路线终结（D025）。pivot 到 generative SFT（D027）。\n\n**Registry 关键状态**：\n- `plan-002-generative-v1`: **ALLOCATED**（等 Worker 修完 eval 代码后提交，GPU0）— generative token prediction router，基于 ablation-b 成功经验\n- `plan-003-baseline`: **PREPARING**（depends plan-002，end-to-end eval baselines: always-internal/always-det/oracle/random/trained-router）\n- `plan-012-full`: DONE/success — 核心假设确认（11 tasks/245 eps, death fraction 90.41%, r=0.9698）\n- `plan-011-rule-based`: DONE/success — keyword heuristic 结构性失效确认\n- 5 个 negative（plan-002-formal v3-v6, plan-004 v2-v4），8 个 failed（工程问题），13 个 success\n\n**等待中**：\n- Worker `fix-eval-generative-router` 完成 → 提交 plan-002-generative-v1 到 GPU0\n- D028 数字一致性修复完成 → 恢复论文写作\n\n### 4. 📋 待办（条件触发式）\n- Worker fix-eval 完成 → 用 `submit_on_allocated` 提交 plan-002-generative-v1 到 cuda:0（命令需带 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- plan-002-generative-v1 RUNNING → 同时在 cuda:1 启动 plan-004 ablation 重启（CUDA_VISIBLE_DEVICES fix）\n- plan-002-generative-v1 DONE(success) → 立即启动 plan-003-baseline end-to-end eval\n- plan-002-generative-v1 DONE(negative) → generative 路线也失败 = router 训练整体不可行，C2 需大幅调整，汇报 Director 讨论 pivot\n- plan-003 + plan-004 都完成 → plan-005 routing pattern analysis（CPU-bound）→ 论文写作启动\n- D028 数字一致性修复完成 → 恢复论文写作流程，派 paper-writing Worker\n\n### 5. 🎯 战略上下文\n**核心结论链**：D005(MVP PASS) → D008(1-step labeling 失败,98% tie) → D010(Plan C episode-level) → D013(framing pivot: death avoidance dominates) → D018/D019(数字校准: ~90% 非 ~99%) → D025(classification head 终结) → D027(pivot generative SFT)\n\n**论文 story**：贡献 = empirical finding（death avoidance ≈ 90% routing signal）+ diagnostic methodology（episode-level counterfactual labeling），不是 router 架构。Framing v3。\n\n**最容易判断错的事**：\n1. **不要用 `results/plan_c_test_labels/` 下的任何数据文件**——标签已损坏，只有 `data/plan-004-implicit/` 是正确的\n2. **ablation-b 是 generative 路线唯一成功先例**（internal_recall=51.5%），generative-v1 的设计全部基于它，不要改架构\n3. plan-003 的 oracle routing 仅比 always-det 好 2.6 分——这不是 bug，这恰好支撑 C1（即使完美知道 label，最优策略 ≈ always-det）\n4. **AutoDL 提交训练前必须 `source /etc/network_turbo`**（pip install 依赖），但训练本身用本地模型不需要网络\n5. 不要尝试 class_weights auto + classification head 的任何变体——根因是数学层面的（D023 机制已验证）\n\n## 可查的历史\n前 15 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。\n完整聊天归档可用 `recall_session_history(\"关键词\")` 搜索。\n\n## 第一个动作要求\n1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）\n2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T07:51:32.466193+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__list_workers",
+              "max_results": "6"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T07:51:32.516932+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T07:51:39.153665+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'RUNNING'}",
+              "project": "simgate-modular-routing"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T07:51:39.458796+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1356}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 305
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T07:51:40.016076+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'ALLOCATED'}",
+              "project": "simgate-modular-routing"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T07:51:40.368332+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan-002-generative-v1\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"created_at\\\": \\\"2026-05-14T07:24:07.881Z\\\", \\\"updated_at\\\": \\\"2026-05-14T07:33:07.703Z\\\", \\\"hypothesis\\\": \\\"Generative router SFT: 基于 ablation-b 成功经验（internal_recall=51.5%），用修正数据 data/plan-004-implicit/（2040 samples, 11 tasks, no-preference 已丢弃），upsample_minority=true 平衡类别（internal 180→1560），generative token prediction 而非 classification head。Qwen3-1.7B + LoRA r=16, 3 epochs, batch_size=4, grad_accum=8。目标: internal_recall > 30% 且不退化。\\\"}}, \\\"count\\\": 1, \\\"total\\\": 1, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1972}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 352
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T07:51:40.419095+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'PREPARING'}",
+              "project": "simgate-modular-routing"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T07:51:40.419559+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T07:51:40.821851+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan-003-baseline\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T07:29:43.220Z\\\", \\\"updated_at\\\": \\\"2026-05-14T07:30:27.429Z\\\", \\\"hypothesis\\\": \\\"End-to-end evaluation baselines: always-internal, always-deterministic, oracle, random, trained-router (degenerate v6). 194 episodes / 11 tasks. 建立论文 Table 1 的 baseline 数据。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"always_internal\\\": {\\\"score\\\": -37.16, \\\"ci_90\\\": [-43.39, -31.43], \\\"success_rate\\\": 0.1237, \\\"death_rate\\\": 0.4072, \\\"sim_ratio\\\": 0}, \\\"always_deterministic\\\": {\\\"score\\\": -11.64, \\\"ci_90\\\": [-17.39, -6.55], \\\"success_rate\\\": 0.2371, \\\"death_rate\\\": 0.1856, \\\"sim_ratio\\\": 1}, \\\"oracle\\\": {\\\"score\\\": -9.03, \\\"ci_90\\\": [-14.14, -4.15], \\\"success_rate\\\": 0.2423, \\\"death_rate\\\": 0.1649, \\\"sim_ratio\\\": 0.9623}, \\\"random\\\": {\\\"score\\\": -23.75, \\\"ci_90\\\": [-29.6, -18.11], \\\"success_rate\\\": 0.1649, \\\"death_rate\\\": 0.2835, \\\"sim_ratio\\\": 0.5027}, \\\"trained_router_v6\\\": {\\\"score\\\": -11.64, \\\"ci_90\\\": [-17.39, -6.55], \\\"success_rate\\\": 0.2371, \\\"death_rate\\\": 0.1856, \\\"sim_ratio\\\": 1, \\\"note\\\": \\\"degenerate - identical to always-deterministic\\\"}, \\\"episodes\\\": 194, \\\"tasks\\\": 11}, \\\"notes\\\": \\\"Retrospectively registered. Eval ran on server by worker_code_plan-003-eval-script. Output: results/plan_003_eval/. trained-router = plan-002-formal-v6 (degenerate, all-deterministic). 需用 plan-002-generative-v1 的非退化 router 重跑 trained-router 条件。\\\"}, \\\"plan-001b-gpu1-rebalance\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T01:48:05.077Z\\\", \\\"updated_at\\\": \\\"2026-05-14T01:56:27.532Z\\\", \\\"hypothesis\\\": \\\"GPU 负载均衡：GPU1 接管 find-non-living-thing extra 20 eps + GPU0 未开始的 freeze/chemistry-mix 各 20 eps，加速 plan-001b 完成\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"notes\\\": \\\"已废弃：GPU0-v3 已接管 freeze/chemistry-mix 数据收集。find-non-living-thing extra 20 eps 由 plan-001b-gpu1-extra 独立处理。\\\"}, \\\"mvp-p1-signal\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-13T04:5\n…[truncated 200 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 402
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T07:51:40.822454+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 0, \\\"results\\\": []}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 402
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T07:51:40.873363+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "project": "simgate-modular-routing",
+              "status": "running"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T07:51:40.924211+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [{\\\"worker_id\\\": \\\"worker_code_fix-eval-generative-router_20260514T073837\\\", \\\"task_type\\\": \\\"code:fix-eval-generative-router\\\", \\\"project\\\": \\\"simgate-modular-routing\\\", \\\"status\\\": \\\"running\\\", \\\"started_at\\\": \\\"2026-05-14T07:38:37.204302+00:00\\\", \\\"ended_at\\\": null}], \\\"count\\\": 1}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 50
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T07:51:52.842850+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "simgate-modular-routing",
+              "file": "report.md"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T07:51:52.843333+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "simgate-modular-routing"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T07:51:52.944131+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-14\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n（无）\\\\n\\\\n## 待处理\\\\n- research-cf-pilot-gpu1: Episode-terminal counterfactual labeling (K=10) 在 melt/change-state/mix-paint 上产生 >30% non-tie rate，为 router 训练提供有效信号（等待人工审批）\\\\n- plan-002-generative-v1: Generative router SFT: 基于 ablation-b 成功经验（internal_recall=51.5%），用修正数据 data/plan-004-implicit/（2040 samples, 11 tasks, no-preference 已丢弃），upsample_minority=true 平衡类别（internal 180→1560），generative token prediction 而非 classification head。Qwen3-1.7B + LoRA r=16, 3 epochs, batch_size=4, grad_accum=8。目标: internal_recall > 30% 且不退化。（排队等待 GPU）\\\\n- plan-003-baseline: End-to-end evaluation baselines: always-internal, always-deterministic, oracle, random, trained-router (degenerate v6). 194 episodes / 11 tasks. 建立论文 Table 1 的 baseline 数据。（准备中）\\\\n- plan-001b-gpu1-rebalance: GPU 负载均衡：GPU1 接管 find-non-living-thing extra 20 eps + GPU0 未开始的 freeze/chemistry-mix 各 20 eps，加速 plan-001b 完成（准备中）\\\\n- mvp-p1-signal（准备中）\\\\n\\\\n## 近期结论\\\\n- **plan-002-formal-v6** (negative): —\\\\n- **plan-004-v4** (negative): — ← 基于 plan-004-v3\\\\n- **plan-004-v3** (negative): Implicit router SFT v3：修复两个 bug——(1) 去掉 class_weights auto（D023 根因），(2) 用 plan_c/ 11 task 重生成数据修复 no-preference→internal 映射 bug。与 plan-002-formal-v6（explicit classification head, 同样无 class_weights）对照。2040 samples from 11 tasks, no-preference 已丢弃。 ← 基于 plan-004-v2\\\\n\\\\n## 趋势\\\\n成功 13 / 负向 5 / 失败 8 / 共 34\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\nwestb-13313: 无 GPU 信息\\\\n\\\\n## 告警\\\\n- mvp-p1-gpu1: 已被终止 — unknown\\\\n- mvp-p1-gpu0: 已被终止 — unknown\\\\n- mvp-p1-gpu1-vllm: 已被终止 — unknown\\\\n- mvp-p1-gpu1-v2: 已被终止 — unknown\\\\n- research-prescreening-gpu0: 已被终止 — unknown\\\\n- plan-001b-gpu0: 训练失败 — unknown\\\\n- plan-001b-gpu0-v2: 训练失败 — unknown\\\\n- plan-001b-gpu1-extra: 训练失败 — unknown\\\\n- plan-001b-gpu0-v3: 训练\n…[truncated 360 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 101
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T07:51:52.945024+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/ROADMAP.md\\\", \\\"content\\\": \\\"# simgate-modular-routing — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-14 05:47 UTC | 更新原因: plan-012 全量结果定稿 (11 tasks/245 eps: 90.41% death fraction, r=0.9698), 替换预分析数字, 更新近期任务和 critical path\\\\n\\\\n## 核心方向\\\\nEpisode-level counterfactual analysis 揭示 LLM agent routing 的本质：death avoidance 占 ~90% routing signal（Δ_full=+29.60, Δ_nd=+2.84, fraction=90.41%, r=0.9698 p=8.12e-07），non-death 场景两种 modality 近似等效（但非完全等效：find-non-living-thing 零死亡仍有 Δ=+9.58）。论文贡献 = empirical finding（death avoidance ≈ 主导 routing signal）+ 诊断方法论，非 router 架构。详见 paper_framing.md (D013 revised → D018/D019 数字校准)。\\\\n\\\\n## 投稿目标\\\\nEMNLP 2026 ARR short paper (4 pages)，DDL: 2026-05-25（剩余 11 天）\\\\n\\\\n## 当前阶段\\\\n**Research Phase** — plan-012 全量分析完成 (11 tasks/245 eps, 核心假设确认)。plan-002 router SFT 准备中 (Qwen3-1.7B 下载)，plan-004 ablation 重启中。\\\\n\\\\n## Framing 演进\\\\n- v1 \\\\\\\"selective routing > unconditional\\\\\\\": **废弃** (D013)\\\\n- v2 \\\\\\\"safety-aware routing / death avoidance primary\\\\\\\": 过渡态 (D011)\\\\n- **v3 \\\\\\\"death avoidance dominates + counterfactual methodology\\\\\\\"**: 当前方向 (D013 → D018 数字校准)\\\\n\\\\n## Labeling 策略演进\\\\n- 1-step counterfactual: **废弃** (tie rate 98.2%, D008)\\\\n- Fork-based K-step: **废弃** (73% action divergence, 78h cost, D010)\\\\n- **Plan C (episode-level)**: 已采用\\\\n\\\\n## Death Decomposition 定稿结果（11 tasks / 245 episodes, plan-012 全量）\\\\n- Δ_full (det − internal, all tasks) = **+29.60**\\\\n- Δ_nd (det − internal, non-death episodes only) = **+2.84**\\\\n- Death avoidance fraction = **90.41%**\\\\n- Correlation: **r=0.9698, p=8.12e-07**\\\\n- Label 分布: det-preferred 86 / internal-preferred 9 / no-preference 150\\\\n- 关键例外: find-non-living-thing (n=40, 零死亡, Δ_full=+9.58, 全部为 non-death 性能差异)\\\\n- measure-melting-point (n=20): Δ_pr=0.05, 性能差距 ~100% 由 death avoidance 解释\\\\n\\\\n## Keywords v2 发现\\\\n- v1 keyword list: always-deterministic (所有 task 都匹配)\\\\n- v2 keyword list:\n…[truncated 2892 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 101
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T07:52:37.732058+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/skills/resource-saturation.skill.md"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T07:52:38.687204+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/agent_b9da7cfb."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Read",
+            "elapsed_ms": 955
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-14T07:52:38.838596+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__submit_on_allocated,mcp__agent-ml-research__load_project_config",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-14T07:52:38.889393+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-14T07:52:47.127822+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_code_fix-eval-generative-router_20260514T073837",
+              "verbose": "True"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-14T07:52:47.379560+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_code_fix-eval-generative-router_20260514T073837\\\", \\\"status\\\": \\\"running\\\", \\\"task_type\\\": \\\"code:fix-eval-generative-router\\\", \\\"project\\\": \\\"simgate-modular-routing\\\", \\\"started_at\\\": \\\"2026-05-14T07:38:37.204302+00:00\\\", \\\"ended_at\\\": null, \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"progress\\\": {\\\"recent_tools\\\": [\\\"ssh_execute\\\", \\\"ssh_execute\\\", \\\"ssh_execute\\\", \\\"ssh_execute\\\", \\\"ssh_execute\\\"], \\\"last_text\\\": \\\"Now add the GenerativeRouter class. I'll write it to a separate file first, then insert it.\\\", \\\"turn_count\\\": 26}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 251
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-14T07:52:47.379950+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__load_project_config"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "tool_args": {
+              "project_name": "simgate-modular-routing",
+              "section": "execution"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-14T07:52:47.480697+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"project\\\": \\\"simgate-modular-routing\\\", \\\"section\\\": \\\"execution\\\", \\\"config\\\": {\\\"execution\\\": {\\\"account\\\": \\\"root\\\", \\\"gpu_constraint\\\": [\\\"autodl-simgate:cuda:0\\\", \\\"autodl-simgate:cuda:1\\\"], \\\"gpu_ids\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\"], \\\"project_path\\\": \\\"/root/autodl-tmp/simgate-modular-routing\\\", \\\"servers\\\": [\\\"westb-13313\\\"]}}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "elapsed_ms": 100
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-14T07:53:40.897969+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "simgate-modular-routing",
+              "file": "decisions.yaml",
+              "max_chars": "3000"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-14T07:53:41.099493+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/decisions.yaml\\\", \\\"content\\\": \\\"_next_id: 29\\\\ndecisions:\\\\n- id: D001\\\\n  date: 2026-05-13 04:25 UTC\\\\n  summary: 'MVP 方案: ScienceWorld 信号检测——验证确定性模拟是否在规则驱动任务上优于 LLM 内部推理'\\\\n  rationale: 12 天 deadline 下必须快速验证核心假设。ScienceWorld 是 primary track，其 JVM 后端提供精确的规则化状态转移，与\\\\n    LLM 近似推理的差距应该最大。选 5 task types × 10 episodes 的小规模 counterfactual 比较，不训练 router，纯信号检测。Pass\\\\n    标准 ≥2/5 task types >5pp，基于 ITP-R vs CogRouter 7.4pp 差距的量级。\\\\n  related_experiments: []\\\\n  depends_on: []\\\\n- id: D002\\\\n  date: 2026-05-13 04:28 UTC\\\\n  summary: 采纳 Reviewer 全部 4 条 warning，修订 MVP 为 Phase 0 + Phase 1 两阶段方案\\\\n  rationale: Reviewer 指出 D001 方案 3 个操作层缺陷：(1) counterfactual 方法未明确——改为 episode-level\\\\n    3-way (always-internal / always-deterministic / oracle-routing)，oracle 作为 selective\\\\n    routing 上界；(2) N=10 统计功效不足——增加到 20 episodes/task type + bootstrap 90% CI；(3) kill\\\\n    criteria 不完整——增加 Phase 0 工程 gate、灰区 conditional pass、pre-register 5 task types\\\\n    (3S+1M+1W)。无额外 GPU 成本，仅设计层修正。\\\\n  related_experiments: []\\\\n  depends_on:\\\\n  - D001\\\\n- id: D003\\\\n  date: 2026-05-13 07:43 UTC\\\\n  summary: GPU0 继续收集 baseline，GPU1 停下修复 tie-break + 致死动作过滤后重跑\\\\n  rationale: Fork 诊断发现两个方法论缺陷：(1) tie-break >= 使 95% delta=0 步骤 oracle 永远选 internal，oracle\\\\n    数据不可信；(2) 致死动作 (score=-100) 污染三条线。修 >= 为 >（oracle 仅在 deterministic 严格更优时介入）+ 致死动作过滤。不做\\\\n    N-step rollout——1-step 局限性是真实发现，MVP 应如实反映。GPU0 baseline 数据有效，不浪费已有进度。\\\\n  related_experiments:\\\\n  - exp_id: mvp-p1-gpu0\\\\n    role: baseline data, continue\\\\n  - exp_id: mvp-p1-gpu1-vllm\\\\n    role: kill, fix, rerun\\\\n  depends_on:\\\\n  - D002\\\\n- id: D004\\\\n  date: 2026-05-13 08:13 UTC\\\\n  summary: MVP 判定 primary metric 改为 always-deterministic vs always-internal，oracle\\\\n    降为 supplementary\\\\n  rationale: 1-step lookahead 在稀疏 reward 下 95% 步骤 delta=0，任何 tie-break 都使 oracle 退化（>=\\\\n    → always-internal，> → always-determinist\n…[truncated 1447 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 201
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-14T07:53:41.099915+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "simgate-modular-routing",
+              "file": "memory.md"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-14T07:53:41.150890+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/memory.md\\\", \\\"content\\\": \\\"# Memory — simgate-modular-routing\\\\n\\\\n## 决策记录\\\\n\\\\n### C1 claim 最终措辞 (2026-05-14, D018)\\\\nDirector 决策：C1 改为 \\\\\\\"death avoidance accounts for ~90% of routing signal\\\\\\\"（从 ~99% 下调）。\\\\n- find-non-living-thing 是**正面案例**（不是异常）：零死亡 task 上 Δ_nd=9.58 → routing 价值超越单纯 death avoidance\\\\n- 与 plan-011 keyword heuristic 失效互相呼应：关键词无法捕获的 signal，router 可以\\\\n- 论文分两层展示：overall ~90% death-dominated + per-task breakdown（展示非死亡信号存在）\\\\n- 数据基础：11 tasks, 245 eps, Δ_full=29.60, Δ_nd=2.84, death_fraction=90.41%, r=0.9698\\\\n\\\\n### D025: Classification head 路线宣告失败 (2026-05-14)\\\\nplan-002-formal v3-v6 全部退化为 all-deterministic 预测。根因组合：\\\\n- class_weights + max_grad_norm 交互（D023）使 internal 有效学习率≈0\\\\n- 去掉 class_weights（v6）后，89.7/10.3 极端不平衡仍导致退化\\\\n- **结论：2-class classification head 在此 imbalance 下不可用，pivot 到 generative SFT**\\\\n\\\\n### D026: 训练数据损坏确认 (2026-05-14)\\\\n`results/plan_c_test_labels/implicit_sft.jsonl` 标签损坏：no-preference 被映射为 internal，导致标签比例反转（internal 67% vs 正确的 10.3%）。\\\\n- plan-004 v2/v3/v4 用此文件训练，初始 loss=48（正常应 0.5-0.7）\\\\n- **唯一可用数据文件：`data/plan-004-implicit/implicit_sft.jsonl`**（MD5: c9b59e04de78, 2040 samples, 与 ablation-b 一致）\\\\n\\\\n### plan-003 baseline oracle 发现 (2026-05-14)\\\\nOracle routing 仅比 always-deterministic 好 2.6 分（-9.03 vs -11.64），且 96.2% episode 也选 deterministic。\\\\n- 说明 internal 仅在极少数 episode（~3.8%）上更优\\\\n- **直接支撑 C1：即使完美知道 ground truth label，optimal strategy 几乎等同于 always-deterministic**\\\\n- 论文 Table 1 的强力证据\\\\n\\\\n### plan-011 已关闭 (2026-05-13)\\\\nDirector 决策：接受 keywords v1 (always-det) + v2 (always-internal) 结果，不设计第三种 heuristic。\\\\n定位为论文 \\\\\\\"structural failure analysis\\\\\\\"——keyword routing 在 ScienceWorld episode-level 结构性失效。\\\\n\\\\n### plan-011 论文展示规范 (2026-05-14)\\\\n展示 keyword baseline 时用 match rate + precision + recall，不单独报 accuracy。v1 需标注 \\\\\\\"functionally equivalent to always-deterministic\\\\\\\"。\\\\n\\\\n### D013 framing piv\n…[truncated 2634 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 50
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-14T07:54:49.167416+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "research:d028-number-consistency-audit",
+              "project": "simgate-modular-routing",
+              "task_prompt": "## 任务：D028 核心数字一致性审计\n\n### 背景\n论文写作因 D028 暂停——至少 3 套数据源混用导致数字不一致。你需要审计所有实验结果的数据来源，生成一份权威数字表。\n\n### 服务器信息\n- 服务器：westb-13313\n- 环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 项目路径：`/root/autodl-tmp/simgate-modular-routing`\n\n### 关键数据源（需审计）\n1. **plan-012 全量分析**（权威源，11 tasks / 245 eps）\n   - 结果目录：检查 `results/` 下 plan-012 相关文件\n   - 关键指标：Δ_full=+29.60, Δ_nd=+2.84, death_fraction=90.41%, r=0.9698\n   \n2. **plan-003-baseline**（基线评估，194 eps / 11 tasks）\n   - 结果目录：`results/plan_003_eval/`\n   - 关键指标：always_internal=-37.16, always_det=-11.64, oracle=-9.03, random=-23.75\n\n3. **plan-011 keyword baseline**\n   - 检查结果文件确认 v1 always-det / v2 always-internal 的具体数字\n\n4. **早期 MVP/research 结果**（可能已过时的数字来源）\n   - `results/` 下所有子目录\n   - `data/` 下数据文件\n\n### 具体步骤\n1. SSH 到服务器，列出 `results/` 下所有子目录和关键文件\n2. 读取 plan-012 的原始结果文件，验证数字与 registry 一致\n3. 读取 plan-003 的原始结果文件，验证数字与 registry 一致\n4. 读取 plan-011 的原始结果文件\n5. 检查是否有其他结果文件包含不同版本的相同指标\n6. 特别检查：\n   - episode 数量是否一致（plan-012=245 vs plan-003=194——为什么不同？）\n   - task 列表是否一致（都是 11 个 task？哪 11 个？）\n   - death_fraction 计算方式是否一致\n   - label 分布数字是否匹配\n7. 检查 `data/plan-004-implicit/implicit_sft.jsonl` 的 2040 samples 与 plan-012 的 245 episodes 的关系\n\n### ⚠️ 绝对不能碰的文件\n- `results/plan_c_test_labels/implicit_sft.jsonl` — 标签已损坏（D026），不要读取或引用\n\n### 产出\n在项目知识文件中保存一份 `number_consistency_audit.md`，包含：\n1. **权威数字表**：每个关键指标的最终值 + 来源文件路径 + 验证状态\n2. **不一致清单**：发现的任何数字不匹配，标注哪个是正确值\n3. **episode 数量差异解释**：plan-012 (245) vs plan-003 (194) 为什么不同\n4. **建议**：论文写作时应使用哪套数字、引用哪个实验\n\n用 `save_project_file` 保存产出。",
+              "tool_groups": "['ssh', 'knowledge', 'registry']",
+              "context": "D028 决策：暂停论文写作直到核心数字一致性修复完成（至少 3 套数据源混用问题）。\n\n关键实验：\n- plan-012-full: DONE/success, 11 tasks/245 eps, death fraction 90.41%, r=0.9698\n- plan-012-decomposition: death decomposition 分析\n- plan-003-baseline: 194 eps/11 tasks baseline eval\n- plan-011-rule-based: keyword heuristic 结构性失效\n- plan-007-boil-v3: boil rerun\n\n唯一合法训练数据：data/plan-004-implicit/implicit_sft.jsonl (MD5: c9b59e04de78, 2040 samples)\n损坏数据（禁止使用）：results/plan_c_test_labels/implicit_sft.jsonl"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-14T07:54:51.883514+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_research_d028-number-consistency-audit_20260514T075449\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/logs/workers/worker_research_d028-number-consistency-audit_20260514T075449.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_research_d028-number-consistency-audit_20260514T075449 started. Use get_worker_status('worker_research_d028-number-consistency-audit_20260514T075449') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 2716
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-14T07:55:10.772170+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 分配 2 / 实际跑 0 (blocked on code) | Worker 池 2 (GPU 0 / CPU 2)\n\n## Loop #6 Session 启动汇报\n\n**当前状态**：\n- plan-002-generative-v1 (ALLOCATED, GPU0)：Worker `fix-eval-generative-router` 在 turn 26 活跃写代码（正在实现 GenerativeRouter class），预计很快完成。完成后立即 `submit_on_allocated`\n- plan-003-baseline (PREPARING)：已有回溯性 baseline 数据（194 eps），等 plan-002 非退化 router 完成后重跑 trained-router 条件\n- 0 cron 活跃\n\n**GPU 空闲原因**：两块 GPU 等 Worker 完成 eval 代码修复。Worker 在正常推进（连续 ssh_execute），非卡死。\n\n**已采取行动**：\n1. 派 Worker `d028-number-consistency-audit` 审计核心数字一致性（D028 blocker），直接为论文写作扫清障碍\n2. Worker fix-eval 完成后立即提交 plan-002-generative-v1 到 GPU0\n\n**GPU1 利用问题**：\nD027 提到\"双对照：grad_accum=8 vs grad_accum=1 并行\"。目前仅 plan-002-generative-v1 (grad_accum=8) 在 ALLOCATED。是否需要创建 grad_accum=1 变体提交到 GPU1？这样两块卡同时跑，~8h 后同时出结果。\n\n请确认 GPU1 的安排。",
+              "project": "simgate-modular-routing"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-14T07:55:14.948118+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_f6bffc7e8351600df8091f08a63cd5a0:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 4175
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-14T07:55:23.455096+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Session #6 初始化完成。\n\n**当前状态**：\n- Worker 池 = 2：`fix-eval-generative-router`（turn 26，写 GenerativeRouter）+ `d028-number-consistency-audit`（刚启动）\n- GPU 0/2 在跑——blocked on eval 代码修复，Worker 活跃推进中\n- plan-002-generative-v1 ALLOCATED → Worker 完成后立即提交 GPU0\n- 已向 Director 汇报，询问 GPU1 是否跑 grad_accum=1 变体\n\n等待 Worker 回调和 Director 回复。"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1"
+          },
+          "id": "event-000034"
+        }
+      ],
+      "message_count": 34
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-14T11:18:55.927959+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-14T11:19:23.646062+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Agent",
+            "tool_args": {
+              "description": "Read project state files",
+              "subagent_type": "Explore",
+              "prompt": "I need to understand the current state of the \"simgate-modular-routing\" project. Please find and read the following files:\n\n1. Any registry.yaml or registry file under /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/\n2. report.md under the same project directory\n3. ROADMAP.md under the same project directory\n4. memory.md under the same project directory\n5. experiment_plan.yaml under the same project directory\n6. paper_framing.md under the same project directory\n\nAlso check for any CLAUDE.md session files in /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/\n\nSearch broadly - files might be in subdirectories. Read as much content as possible from each file found."
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-14T11:19:26.660235+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/**/registry*.yaml"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-14T11:19:26.710975+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/**/report.md"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-14T11:19:26.813217+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/registry.yaml"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Glob",
+            "elapsed_ms": 152
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-14T11:19:26.813720+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/report.md"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Glob",
+            "elapsed_ms": 102
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-14T11:19:26.864249+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/**/ROADMAP.md"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-14T11:19:27.066304+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/ROADMAP.md"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Glob",
+            "elapsed_ms": 202
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-14T11:19:27.066793+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/**/memory.md"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-14T11:19:27.267749+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/memory.md"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Glob",
+            "elapsed_ms": 200
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-14T11:19:27.268205+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/**/experiment_plan.yaml"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-14T11:19:27.721220+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/experiment_plan.yaml"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Glob",
+            "elapsed_ms": 453
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-14T11:19:27.721772+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/**/paper_framing.md"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-14T11:19:27.774725+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/dream_reports/dream_20260513T153257/best/paper_framing.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/dream_reports/dream_20260513T153257/median/paper_framing.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/dream_reports/dream_20260513T153257/worst/paper_framing.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/paper_framing.md"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Glob",
+            "elapsed_ms": 52
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-14T11:19:27.775196+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/**/CLAUDE.md"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-14T11:19:27.827214+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/agent_dad2ec46/CLAUDE.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/agent_4f2805e1/CLAUDE.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/agent_a28684b0/CLAUDE.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/agent_5bc88165/CLAUDE.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/agent_c491dd97/CLAUDE.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/paper_agent_5585d4e8/CLAUDE.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/director_976fe708/CLAUDE.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/reviewer_65b870d4/CLAUDE.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/agent_1c25d911/CLAUDE.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/agent_059ec51f/CLAUDE.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/agent_ae7c9c01/CLAUDE.md\nCLAUDE.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/agent_da8ac8a0/CLAUDE.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/agent_9cf66334/CLAUDE.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/agent_ad6775e3/CLAUDE.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/agent_a08e916b/CLAUDE.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/agent_182dcd53/CLAU\n…[truncated 5 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Glob",
+            "elapsed_ms": 52
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-14T11:19:29.639712+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/registry.yaml"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-14T11:19:30.042392+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/report.md"
+            }
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-14T11:19:30.243955+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (37667 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Read",
+            "elapsed_ms": 604
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-14T11:19:30.244410+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Handover — 2026-05-14\n2\t\n3\t> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\n4\t\n5\t## 运行中\n6\t（无）\n7\t\n8\t## 待处理\n9\t- research-cf-pilot-gpu1: Episode-terminal counterfactual labeling (K=10) 在 melt/change-state/mix-paint 上产生 >30% non-tie rate，为 router 训练提供有效信号（等待人工审批）\n10\t- plan-003-baseline: End-to-end evaluation baselines: always-internal, always-deterministic, oracle, random, trained-router (degenerate v6). 194 episodes / 11 tasks. 建立论文 Table 1 的 baseline 数据。（准备中）\n11\t- plan-001b-gpu1-rebalance: GPU 负载均衡：GPU1 接管 find-non-living-thing extra 20 eps + GPU0 未开始的 freeze/chemistry-mix 各 20 eps，加速 plan-001b 完成（准备中）\n12\t- mvp-p1-signal（准备中）\n13\t\n14\t## 近期结论\n15\t- **plan-003-implicit-eval-full** (negative): Step-level implicit routing eval of ablation-b (plan-004-implicit/final_adapter) on 245 episodes / 11 tasks via eval_implicit_router.py. Score -12.84 worse than always-det baseline -9.47.\n16\t- **plan-003-e2e-ablation-b-correct** (negative): End-to-end eval of ablation-b (correct checkpoint: plan-004-implicit/final_adapter, internal_recall=51.52%) on 245 episodes / 11 tasks. Test C1: trained-router > always-det (-9.47).\n17\t  [e2e-eval-ablation-b-correct-results](westb-13313:/root/autodl-tmp/simgate-modular-routing/results/eval_ablation_b_e2e_correct/)\n18\t- **plan-004-ablation-b-seed789** (negative): ablation-b seed 变体 (seed=789)。验证 ablation-b 的 generation-level routing 在不同 seed 下的稳定性。ga=8, upsample_minority=true, data/plan-004-implicit/。\n19\t\n20\t## 趋势\n21\t成功 13 / 负向 14 / 失败 9 / 共 45\n22\t\n23\t## 下一步\n24\t（无活跃 idea，请通过 ideas.md 添加）\n25\t\n26\t## 资源状态\n27\twestb-13313: 无 GPU 信息\n28\t\n29\t## 告警\n30\t- mvp-p1-gpu1: 已被终止 — unknown\n31\t- mvp-p1-gpu0: 已被终止 — unknown\n32\t- mvp-p1-gpu1-vllm: 已被终止 — unknown\n33\t- mvp-p1-gpu1-v2: 已被终止 — unknown\n34\t- research-prescreening-gpu0: 已被终止 — unknown\n35\t- plan-001b-gpu0: 训练失败 — unknown\n36\t- plan-001b-gpu0-v2: 训练失败 — unknown\n37\t- plan-001b-gpu1-extra: 训练失败 — unknown\n38\t- plan-001b-gpu0-v3: 训练失败 — unknown\n39\t- plan-001b-gpu0-v4: 已被终止 — unknown\n40\t- plan-001b-gpu0-v5: 已被终止 — unknown\n41\t-\n…[truncated 280 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Read",
+            "elapsed_ms": 202
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-14T11:19:30.244634+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/ROADMAP.md"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-14T11:19:30.465918+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# simgate-modular-routing — Research Dashboard\n2\t\n3\t> 最后更新: 2026-05-14 09:19 UTC | 更新原因: D035/D036: trained-router e2e negative + seed 方差确认，Reviewer 行动项派发\n4\t\n5\t## 核心方向\n6\tEpisode-level counterfactual analysis 揭示 LLM agent routing 的本质：death avoidance 占 ~90% routing signal（Δ_full=+29.60, Δ_nd=+2.84, DAF=90.41%, r=0.9698 p=8.12e-07），non-death 场景两种 modality 近似等效（例外：find-non-living-thing 零死亡仍有 Δ=+9.58）。论文贡献 = empirical finding + diagnostic methodology，非 router 架构。详见 paper_framing.md。\n7\t\n8\t## 投稿目标\n9\tEMNLP 2026 ARR short paper (4 pages)，DDL: 2026-05-25（剩余 11 天）\n10\t\n11\t## 当前阶段\n12\t**Paper Writing Sprint** — 核心实验全部完成。Paper Agent 写作中。Agent 处理 Reviewer 行动项（D032 核实 + seed 补注册）。\n13\t\n14\t## Router 训练总结 (D029 + D035 + D036)\n15\t- Classification head (v3-v6): 全退化为 always-det (D025)\n16\t- Generative SFT (v1): ga=8/ga=1 双对照均 NEGATIVE\n17\t- Ablation-b: 唯一非退化 (internal_recall=51.5%, seed 42)\n18\t  - **e2e eval NEGATIVE (D035)**: trained-router=-12.84 vs always-det=-9.47，16个 internal 决策增加 deaths (19.2% vs 16.3%)\n19\t  - **跨 seed 不稳定 (D036)**: balanced_acc 稳定 57-59%（学到信号），但 internal_recall 30pp+ 方差（决策边界 seed-dependent）\n20\t  - ga=8 确认为非退化必要条件 (vs v5 ga=1 → 26.7%)\n21\t- ⚠️ D032 准确性待查：v5 可能也用了 WeightedTrainer，真差异仅 ga\n22\t\n23\t## Death Decomposition 定稿结果（plan-012, 11 tasks / 245 episodes）\n24\t- Δ_full = **+29.60**, Δ_nd = **+2.84**, DAF = **90.41%**\n25\t- r = **0.9698**, p = 8.12e-07\n26\t- Label: det-preferred 86 / internal-preferred 9 / no-preference 150\n27\t- 例外: find-non-living-thing (n=40, 零死亡, Δ=+9.58)\n28\t\n29\t## Keywords v2\n30\tv1 ≈ always-det (85.8%), v2 ≈ always-internal (4.9%). Keyword heuristic 结构性失效。\n31\t\n32\t## 近期任务\n33\t- [x] plan-012 全量 death decomposition ✅\n34\t- [x] plan-011 rule-based keyword baseline ✅\n35\t- [x] Router 训练路线全面评估 (D029) ✅\n36\t- [x] plan-003-baseline-245eps baselines ✅\n37\t- [x] ablation-b generation-level eval ✅\n38\t- [x] ablation-b e2e eval (D035: negative, -12.84 vs -9.47) ✅\n39\t- [x] ablation-b 3-seed 复制 (D036: 非退化可复现，方差大) ✅\n40\t- [ ] **D032 核实**（Agent: git history 查 v5 WeightedTra\n…[truncated 2047 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Read",
+            "elapsed_ms": 221
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-14T11:19:30.466407+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/memory.md"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-14T11:19:30.868513+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Memory — simgate-modular-routing\n2\t\n3\t## 决策记录\n4\t\n5\t### C1 claim 最终措辞 (2026-05-14, D018)\n6\tDirector 决策：C1 改为 \"death avoidance accounts for ~90% of routing signal\"（从 ~99% 下调）。\n7\t- find-non-living-thing 是**正面案例**（不是异常）：零死亡 task 上 Δ_nd=9.58 → routing 价值超越单纯 death avoidance\n8\t- 与 plan-011 keyword heuristic 失效互相呼应：关键词无法捕获的 signal，router 可以\n9\t- 论文分两层展示：overall ~90% death-dominated + per-task breakdown（展示非死亡信号存在）\n10\t- 数据基础：11 tasks, 245 eps, Δ_full=29.60, Δ_nd=2.84, death_fraction=90.41%, r=0.9698\n11\t\n12\t### D025: Classification head 路线宣告失败 (2026-05-14)\n13\tplan-002-formal v3-v6 全部退化为 all-deterministic 预测。根因组合：\n14\t- class_weights + max_grad_norm 交互（D023）使 internal 有效学习率≈0\n15\t- 去掉 class_weights（v6）后，89.7/10.3 极端不平衡仍导致退化\n16\t- **结论：2-class classification head 在此 imbalance 下不可用，pivot 到 generative SFT**\n17\t\n18\t### D026: 训练数据损坏确认 (2026-05-14)\n19\t`results/plan_c_test_labels/implicit_sft.jsonl` 标签损坏：no-preference 被映射为 internal，导致标签比例反转（internal 67% vs 正确的 10.3%）。\n20\t- plan-004 v2/v3/v4 用此文件训练，初始 loss=48（正常应 0.5-0.7）\n21\t- **唯一可用数据文件：`data/plan-004-implicit/implicit_sft.jsonl`**（MD5: c9b59e04de78, 2040 samples, 与 ablation-b 一致）\n22\t\n23\t### D029: v5 vs ablation-b 代码重构根因 (2026-05-14)\n24\tablation-b 到 v5 之间 `implicit_router_sft.py` 重构：\n25\t- ga 默认值从 `max(1, 32//batch_size)=8` 变为 `1` → effective batch 32→4 → 严重过拟合（train_loss=0.09）\n26\t- **logit-generation gap 确认是 ga=1 过拟合导致**，非 generative routing 系统性限制\n27\t- **D034 更正**：ablation-b ga=8（步数反推 165=ceil(434/8)×3 确认），D027 原文 ga=1 错误\n28\t- **Reviewer D032 待核实**：v5 是否也用了 WeightedTrainer（Worker 调查中）\n29\t\n30\t### D033: Framing 定稿 Option B（方法论贡献）(2026-05-14)\n31\tDirector 确认 Option B。论文贡献 = counterfactual 分析方法论 + death avoidance empirical finding。\n32\t- Router near-random (balanced_acc=58.1±0.8%, 仅比随机高 8pp) IS the finding → 强化 C1\n33\t- 删除 \"首个非退化 router\" 或 \"成功训练\" 表述\n34\t- 训练实验 conclusion 保持 success（routing 非退化），e2e 部署 conclusion 为 negative（不同实验）\n35\t- Seed 方差数据（4 seeds）必须纳入论文 \"Router Training as Diagnostic\" 小节\n36\t\n37\t### D037: Table 1 权威数字来源 (2026-05-14)\n38\t论\n…[truncated 2538 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Read",
+            "elapsed_ms": 402
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-14T11:19:30.868931+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/experiment_plan.yaml"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-14T11:19:31.020200+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\texperiments:\n2\t- id: plan-001a\n3\t  claim:\n4\t  - C1\n5\t  registry_id: research-prescreening-gpu0\n6\t  description: 'Mini signal detection (pre-screening). Run 5 episodes per candidate\n7\t    task type (2-way: internal + deterministic only) to identify which tasks show\n8\t    det > internal signal. Screen ~20 ScienceWorld task types, keep those with positive\n9\t    effect direction. ~30min per task type, ~10h total for 20 types on dual GPU.\n10\t\n11\t    '\n12\t  priority: P0\n13\t  gpu_budget_hours: 10\n14\t  deps: []\n15\t  notes: 'Reviewer W3: avoid wasting GPU on no-signal tasks like grow-plant. MVP task\n16\t    types (boil, melt, change-state, mix-paint) auto-pass. grow-plant confirmed no-signal\n17\t    (control). Target: identify 10-15 task types with signal.\n18\t\n19\t    '\n20\t- id: plan-001b\n21\t  claim:\n22\t  - C1\n23\t  - C2\n24\t  description: 'Episode-level counterfactual trajectory collection for death decomposition\n25\t    analysis. 10-15 signal-positive task types from plan-001a, each 20 episodes/modality\n26\t    (always-internal + always-deterministic). Three-label scheme: det-preferred, internal-preferred,\n27\t    no-preference (ties RETAINED, not discarded — the ~60% no-preference rate IS the\n28\t    C1 finding). Save complete step-level data: observations, actions, scores, death\n29\t    events. Data feeds plan-012 (death decomposition), plan-005 (routing pattern analysis),\n30\t    plan-002 (router as diagnostic probe). Prescreening + MVP episodes directly reusable\n31\t    (format compatible).\n32\t\n33\t    '\n34\t  priority: P0\n35\t  gpu_budget_hours: 20\n36\t  deps:\n37\t  - plan-001a\n38\t  notes: 'D013: Purpose changed from \"train balanced router\" to \"collect comprehensive\n39\t    data for death decomposition analysis.\" Key insight: 1.4% internal labels across\n40\t    175 paired episodes — the imbalance IS the finding (~93% det-preferred = death\n41\t    avoidance dominance). No class weighting needed. Three labels: det-preferred (~38%),\n42\t    internal-preferred (~1-2%), no-preference (~60%).\n…[truncated 8202 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Read",
+            "elapsed_ms": 151
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-14T11:19:31.020724+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/paper_framing.md"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-14T11:19:31.071493+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Paper Framing — simgate-modular-routing\n2\t\n3\t## Target Venue\n4\t- Primary: EMNLP 2026 Main (ARR short paper, 4 pages + references)\n5\t- Fallback: EMNLP 2026 Findings\n6\t- Deadline: ARR May 25, 2026 (11 days remaining)\n7\t\n8\t## Core Insight\n9\t\n10\tLLM agents on rule-governed environments face catastrophic failures from hallucinated state transitions. Deterministic external computation (environment simulators, code interpreters) eliminates these failures — but what exactly does routing learn? We introduce episode-level counterfactual analysis (per-step oracle labeling degenerates to 98% ties in sparse-reward settings) and discover that **death avoidance accounts for ~90% of routing signal** on ScienceWorld (Δ_full=+29.60 [A], Δ_nd=+2.84 [A], DAF=90.41% [A]; Pearson r=0.9698, p=8.12e-07 [A] across 11 task types / 245 episodes [A]; source: plan-012-full). Non-death performance difference is small but non-negligible (Δ_nd/Δ_full=9.6% [A]). Key exception: find-non-living-thing (n=40, zero deaths, Δ_full=+9.58, all non-death performance difference) [A]. The contribution is the empirical finding (death avoidance dominance) + the diagnostic methodology (episode-level counterfactual labeling), not the router architecture itself.\n11\t\n12\t## Core Claims (2 claims for short paper)\n13\t\n14\t**C1 (Death avoidance dominates routing signal)**: On ScienceWorld, deterministic simulation dramatically outperforms LLM reasoning (Δ_full=+29.60 [A]), with **death avoidance as the dominant mechanism** (90.41% of the performance gap [A], measured by Δ decomposition; plan-012-full, 11 tasks / 245 eps [A]). Episode-level label distribution: det-preferred 86 / internal-preferred 9 / no-preference 150 (out of 245 episodes) [A]. Death rates: internal 42.9% / deterministic 16.3% [A]. Non-death score deltas are small but non-negligible (Δ_nd=+2.84 [A], 9.6% of Δ_full [A]). Key exception: find-non-living-thing (n=40, zero deaths, Δ_full=+9.58, all non-death performance difference) [A]. Pearson r=0.9698 \n…[truncated 11690 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-14T11:19:33.601284+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/registry.yaml",
+              "limit": "500",
+              "offset": "0"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-14T11:19:34.017602+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "0\tbaseline: null\n1\texperiments:\n2\t  mvp-p0-forking:\n3\t    status: DONE\n4\t    retry_count: 0\n5\t    created_at: '2026-05-13T04:50:05.057Z'\n6\t    updated_at: '2026-05-13T05:10:18.587Z'\n7\t    spec:\n8\t      hypothesis: ScienceWorld action-replay state forking 可行：fork 成功率≥80%，单次 fork\n9\t        延迟<5s\n10\t      description: Phase 0 工程可行性验证 - ScienceWorld state forking\n11\t      checkpoint_path: N/A\n12\t      log_path: /root/autodl-tmp/simgate-modular-routing/results/mvp/phase0_validation.json\n13\t      command: python src/phase0_validate_forking.py\n14\t      server: westb-13313\n15\t      data_path: N/A\n16\t      data_count: 10\n17\t      model_name: N/A\n18\t      seed: 0\n19\t    conclusion: success\n20\t    completed_at: '2026-05-13T05:10:13.526Z'\n21\t    metrics:\n22\t      fork_success_rate: 1\n23\t      avg_latency_s: 1.67\n24\t      p50_latency_s: 1.53\n25\t      p95_latency_s: 2.37\n26\t      max_memory_mb: 20\n27\t      gate: PASS\n28\t  mvp-p1-signal:\n29\t    status: PREPARING\n30\t    retry_count: 0\n31\t    created_at: '2026-05-13T04:50:06.546Z'\n32\t    updated_at: '2026-05-13T21:46:23.662Z'\n33\t    spec:\n34\t      hypothesis: Oracle routing 在 strong task types 上显著优于 always-internal，证明 selective\n35\t        routing 存在信号\n36\t      description: Phase 1 信号检测 - 3-way comparison across 5 task types\n37\t      parent: mvp-p0-forking\n38\t    conclusion: killed\n39\t  mvp-p1-gpu1:\n40\t    status: DONE\n41\t    retry_count: 0\n42\t    created_at: '2026-05-13T05:45:20.053Z'\n43\t    updated_at: '2026-05-13T07:09:59.347Z'\n44\t    spec:\n45\t      command: python src/phase1_signal.py --task_types 'chemistry-mix-paint-secondary-color,grow-plant'\n46\t        --episodes 20 --gpu_id 0 --max_steps 30 --output_dir results/mvp/ --model_path\n47\t        /root/autodl-tmp/models/Qwen/Qwen2___5-7B-Instruct/ --no_vllm\n48\t      server: westb-13313\n49\t      gpu:\n50\t      - cuda:1\n51\t      pid: '55775'\n52\t      log_path: ~/runs/simgate-modular-routing/mvp-p1-gpu1.log\n53\t      submitted_at: '2026-05-13T06:46:01.928Z'\n54\t      submitted_via: submi\n…[truncated 17770 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Read",
+            "elapsed_ms": 416
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-14T11:19:34.021186+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/agent_b9da7cfb/CLAUDE.md"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-14T11:19:34.021964+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t## 当前项目\n2\t当前绑定项目：**simgate-modular-routing**\n3\t\n4\t今天是 **2026-05-14**。\n5\t\n6\t你是 ML 研究团队的 AI 执行层。**始终用中文回复。**\n7\t\n8\t## 身份认知\n9\t\n10\t你是 AI 执行层。**你是调度员,不是执行员**——具体执行由 Worker 做,你负责调度。\n11\t\n12\t**能力边界**:\n13\t- `spawn_worker` **无上限并行**——几乎没有\"开多了\"的问题,只有\"开少了\"的失职\n14\t- 7×24 运行,Cron/Worker 回调立即处理,不拖延\n15\t- 时间瓶颈不是你,是 GPU 排队 + 实验训练时长 + cron 监控延迟(~30-60s)\n16\t\n17\t**你的团队有多快（以此为锚估算工期，不按人类节奏）**:\n18\t- Worker 写代码/改代码: 分钟级,不是天级\n19\t- 多 Worker 同时铺环境+数据+模型: 并行完成,小时级全部就绪\n20\t- 从 Director 审批到实验 RUNNING: 分钟级\n21\t- 实验完成到分析汇报: 即时,不隔夜\n22\t- 你同时管理的 Worker 数: 无上限。**有 N 件事就开 N 个 Worker**\n23\t- 向 Director 汇报时,用这个速度估算\"还需要多久\",不要套人类\"几周\"的直觉\n24\t\n25\t**心智硬约束**:\n26\t- **默认并行,不默认串行**——收到实验计划先问\"能拆几个 Worker 并行做\"\n27\t- 实验在跑 ≠ 你没事做——下一批实验准备、文献调研、log 分析、论文起草都可以**现在**并行铺\n28\t- \"我手头就一件事\"是错觉——Worker 池 < 2 就是失职\n29\t- **你不做 SSH / 代码 / 日志分析 / 文献调研**——这些全部 `spawn_worker` 委派,你只做轻量协调(读写 registry / 注册 cron / 向 Director 汇报)\n30\t- **永远全速推进**——收到任务不犹豫、不等\"更好的时机\"、不留 buffer。GPU 空着就是浪费\n31\t\n32\t**上级关系**: Director 方向决策 + 资源分配, 你执行; Director 的指令你**必须** `main_agent_post_to_director` 汇报结果(不调 = 永远不知道)\n33\t\n34\t## 工作环境\n35\t\n36\t你运行在飞书 IM 的后台。你的纯文本输出只发飞书运维群（Group B），**用户和 Director 都看不到**。与 Director 通信必须调用 `main_agent_post_to_director`。\n37\t\n38\t## 角色\n39\t\n40\t你负责执行研究任务：管理实验、调度 Worker、维护项目知识。Director 是你的上级，负责方向决策和资源分配。\n41\t\n42\t**你做协调，Worker 做执行。** SSH 操作、代码修改、日志分析、文献调研、论文写作——全部 `spawn_worker` 委派。你自己只做轻量操作：读写 registry、注册 cron、提交已分配的实验（`submit_on_allocated`）、向 Director 汇报。\n43\t\n44\t`spawn_worker` 后立即回复 Director（告知已派发），然后结束本轮对话。**不要轮询 Worker 状态**——Worker 完成后系统会通过 `[WORKER DONE]` 消息自动回调你，届时你再处理结果。\n45\t\n46\t**Worker 提交训练必须用 `submit_training_job`**，不要用 Bash nohup。`submit_training_job` 会自动走 tmux + cron 监控（检测进程存活、同步指标、完成回调）。Worker 用 nohup 启动后台任务然后退出会导致 orphan 进程——没人监控、没有回调、需要 spawn 新 Worker 来接力，浪费资源。\n47\t\n48\t## 状态机\n49\t\n50\tPREPARING → PENDING（审批）→ QUEUED → ALLOCATED → RUNNING → ANALYZING → DONE\n51\t\n52\t- 状态只能前进。ALLOCATED 后用 `submit_on_allocated` 提交，提交命令必须自带环境激活（如 `source /root/miniconda3/bin/activate && python train.py`，具体方式取决于服务器环境，不要假设 .venv 存在）。**GPU 编号始终从 0 开始**（框架自动注入 CUDA_\n…[truncated 17469 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-14T11:20:00.410098+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now let me compile the findings from all these files.\n\n## Summary of simgate-modular-routing Project State\n\n### Current Project Status (as of 2026-05-14)\n\n**Venue & Timeline:**\n- Target: EMNLP 2026 ARR short paper (4 pages) \n- Deadline: May 25, 2026 (11 days remaining)\n- Current phase: Paper Writing Sprint\n\n**Core Research Finding:**\nThe project investigates episode-level counterfactual analysis to understand routing signals in LLM agents. The key empirical finding: **death avoidance accounts for ~90% of routing signal** on ScienceWorld tasks (Δ_full=+29.60, Δ_nd=+2.84, DAF=90.41%, r=0.9698, p=8.12e-07 across 11 tasks / 245 episodes from plan-012).\n\n### Core Claims (C1 & C2)\n\n**C1 (Death avoidance dominates routing signal):** Deterministic simulation dramatically outperforms LLM reasoning with death avoidance as the dominant mechanism (90.41% of performance gap). Episode-level label distribution: det-preferred 86 / internal-preferred 9 / no-preference 150 out of 245 episodes. Note: find-non-living-thing is an exception (zero deaths, Δ_full=+9.58).\n\n**C2 (Episode-level counterfactual labeling as diagnostic methodology):** Per-step oracle labeling degenerates in sparse-reward environments (98.2% tie rate). Episode-level counterfactual analysis — running complete episodes under pure-internal and pure-deterministic strategies — overcomes this and reveals the death-avoidance mechanism.\n\n### Experiment Status Summary\n\n**Recent Key Results:**\n- plan-012 (death decomposition): SUCCESS — Full analysis completed, core contribution ready\n- plan-011 (rule-based baseline): SUCCESS — Keyword routing structurally fails (v1 ≈ always-det, v2 ≈ always-internal)\n- plan-004-ablation-b (implicit router): Trained router balanced_acc=51.5%, but e2e eval NEGATIVE (-12.84 vs -9.47 always-det)\n- plan-004-ablation-b seed variants (D036): 3-seed replication confirms non-degenerate routing learning but 30pp+ internal_recall variance\n- prescreening (25 tasks): 25/25 death-dominated, rob\n…[truncated 3950 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Agent",
+            "elapsed_ms": 36764
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-14T11:20:06.552341+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Agent",
+            "tool_args": {
+              "description": "Read memory.md for latest context",
+              "subagent_type": "Explore",
+              "prompt": "Read these files in full, returning as much content as possible:\n\n1. /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/memory.md\n2. /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/report.md\n\nI need the complete contents of both files."
+            }
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-14T11:20:09.427009+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/memory.md"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-14T11:20:09.427535+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Memory — simgate-modular-routing\n2\t\n3\t## 决策记录\n4\t\n5\t### C1 claim 最终措辞 (2026-05-14, D018)\n6\tDirector 决策：C1 改为 \"death avoidance accounts for ~90% of routing signal\"（从 ~99% 下调）。\n7\t- find-non-living-thing 是**正面案例**（不是异常）：零死亡 task 上 Δ_nd=9.58 → routing 价值超越单纯 death avoidance\n8\t- 与 plan-011 keyword heuristic 失效互相呼应：关键词无法捕获的 signal，router 可以\n9\t- 论文分两层展示：overall ~90% death-dominated + per-task breakdown（展示非死亡信号存在）\n10\t- 数据基础：11 tasks, 245 eps, Δ_full=29.60, Δ_nd=2.84, death_fraction=90.41%, r=0.9698\n11\t\n12\t### D025: Classification head 路线宣告失败 (2026-05-14)\n13\tplan-002-formal v3-v6 全部退化为 all-deterministic 预测。根因组合：\n14\t- class_weights + max_grad_norm 交互（D023）使 internal 有效学习率≈0\n15\t- 去掉 class_weights（v6）后，89.7/10.3 极端不平衡仍导致退化\n16\t- **结论：2-class classification head 在此 imbalance 下不可用，pivot 到 generative SFT**\n17\t\n18\t### D026: 训练数据损坏确认 (2026-05-14)\n19\t`results/plan_c_test_labels/implicit_sft.jsonl` 标签损坏：no-preference 被映射为 internal，导致标签比例反转（internal 67% vs 正确的 10.3%）。\n20\t- plan-004 v2/v3/v4 用此文件训练，初始 loss=48（正常应 0.5-0.7）\n21\t- **唯一可用数据文件：`data/plan-004-implicit/implicit_sft.jsonl`**（MD5: c9b59e04de78, 2040 samples, 与 ablation-b 一致）\n22\t\n23\t### D029: v5 vs ablation-b 代码重构根因 (2026-05-14)\n24\tablation-b 到 v5 之间 `implicit_router_sft.py` 重构：\n25\t- ga 默认值从 `max(1, 32//batch_size)=8` 变为 `1` → effective batch 32→4 → 严重过拟合（train_loss=0.09）\n26\t- **logit-generation gap 确认是 ga=1 过拟合导致**，非 generative routing 系统性限制\n27\t- **D034 更正**：ablation-b ga=8（步数反推 165=ceil(434/8)×3 确认），D027 原文 ga=1 错误\n28\t- **Reviewer D032 待核实**：v5 是否也用了 WeightedTrainer（Worker 调查中）\n29\t\n30\t### D033: Framing 定稿 Option B（方法论贡献）(2026-05-14)\n31\tDirector 确认 Option B。论文贡献 = counterfactual 分析方法论 + death avoidance empirical finding。\n32\t- Router near-random (balanced_acc=58.1±0.8%, 仅比随机高 8pp) IS the finding → 强化 C1\n33\t- 删除 \"首个非退化 router\" 或 \"成功训练\" 表述\n34\t- 训练实验 conclusion 保持 success（routing 非退化），e2e 部署 conclusion 为 negative（不同实验）\n35\t- Seed 方差数据（4 seeds）必须纳入论文 \"Router Training as Diagnostic\" 小节\n36\t\n37\t### D037: Table 1 权威数字来源 (2026-05-14)\n38\t论\n…[truncated 2538 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-14T11:20:09.427854+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/report.md"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-14T11:20:09.428162+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Handover — 2026-05-14\n2\t\n3\t> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\n4\t\n5\t## 运行中\n6\t（无）\n7\t\n8\t## 待处理\n9\t- research-cf-pilot-gpu1: Episode-terminal counterfactual labeling (K=10) 在 melt/change-state/mix-paint 上产生 >30% non-tie rate，为 router 训练提供有效信号（等待人工审批）\n10\t- plan-003-baseline: End-to-end evaluation baselines: always-internal, always-deterministic, oracle, random, trained-router (degenerate v6). 194 episodes / 11 tasks. 建立论文 Table 1 的 baseline 数据。（准备中）\n11\t- plan-001b-gpu1-rebalance: GPU 负载均衡：GPU1 接管 find-non-living-thing extra 20 eps + GPU0 未开始的 freeze/chemistry-mix 各 20 eps，加速 plan-001b 完成（准备中）\n12\t- mvp-p1-signal（准备中）\n13\t\n14\t## 近期结论\n15\t- **plan-003-implicit-eval-full** (negative): Step-level implicit routing eval of ablation-b (plan-004-implicit/final_adapter) on 245 episodes / 11 tasks via eval_implicit_router.py. Score -12.84 worse than always-det baseline -9.47.\n16\t- **plan-003-e2e-ablation-b-correct** (negative): End-to-end eval of ablation-b (correct checkpoint: plan-004-implicit/final_adapter, internal_recall=51.52%) on 245 episodes / 11 tasks. Test C1: trained-router > always-det (-9.47).\n17\t  [e2e-eval-ablation-b-correct-results](westb-13313:/root/autodl-tmp/simgate-modular-routing/results/eval_ablation_b_e2e_correct/)\n18\t- **plan-004-ablation-b-seed789** (negative): ablation-b seed 变体 (seed=789)。验证 ablation-b 的 generation-level routing 在不同 seed 下的稳定性。ga=8, upsample_minority=true, data/plan-004-implicit/。\n19\t\n20\t## 趋势\n21\t成功 13 / 负向 14 / 失败 9 / 共 45\n22\t\n23\t## 下一步\n24\t（无活跃 idea，请通过 ideas.md 添加）\n25\t\n26\t## 资源状态\n27\twestb-13313: 无 GPU 信息\n28\t\n29\t## 告警\n30\t- mvp-p1-gpu1: 已被终止 — unknown\n31\t- mvp-p1-gpu0: 已被终止 — unknown\n32\t- mvp-p1-gpu1-vllm: 已被终止 — unknown\n33\t- mvp-p1-gpu1-v2: 已被终止 — unknown\n34\t- research-prescreening-gpu0: 已被终止 — unknown\n35\t- plan-001b-gpu0: 训练失败 — unknown\n36\t- plan-001b-gpu0-v2: 训练失败 — unknown\n37\t- plan-001b-gpu1-extra: 训练失败 — unknown\n38\t- plan-001b-gpu0-v3: 训练失败 — unknown\n39\t- plan-001b-gpu0-v4: 已被终止 — unknown\n40\t- plan-001b-gpu0-v5: 已被终止 — unknown\n41\t-\n…[truncated 280 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-14T11:20:09.480169+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Agent",
+            "tool_args": {
+              "description": "Check registry for experiment states",
+              "subagent_type": "Explore",
+              "prompt": "Find and read the registry file for the simgate-modular-routing project. Look for:\n1. /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/registry.yaml\n2. Any other registry files in that directory\n\nAlso check for any active cron configurations or worker states. Look in /home/ubuntu/.agent-ml-research-idea_gen_0509_12/ for cron-related files.\n\nRead as much content as possible from each file found."
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-14T11:20:11.094521+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/ 2>/dev/null | head -50"
+            }
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-14T11:20:11.603476+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 324\ndrwxr-xr-x 10 ubuntu ubuntu   4096 May 14 09:50 .\ndrwxrwxr-x  5 ubuntu ubuntu   4096 May 13 04:23 ..\ndrwxr-xr-x  3 ubuntu ubuntu   4096 May 13 04:23 .claude\n-rw-r--r--  1 ubuntu ubuntu  12799 May 14 11:20 AGENTS.md\n-rw-r--r--  1 ubuntu ubuntu      0 May 13 04:25 ROADMAP.lock\n-rw-------  1 ubuntu ubuntu   4639 May 14 09:25 ROADMAP.md\ndrwxr-xr-x 10 ubuntu ubuntu   4096 May 14 09:12 artifacts\ndrwxr-xr-x  2 ubuntu ubuntu  28672 May 14 09:42 checkpoints\n-rw-r--r--  1 ubuntu ubuntu      0 May 13 04:25 decisions.lock\n-rw-------  1 ubuntu ubuntu  40644 May 14 09:25 decisions.yaml\ndrwxr-xr-x  4 ubuntu ubuntu   4096 May 13 05:45 docs\n-rwxr-xr-x  1 ubuntu ubuntu      0 May 13 05:45 dream_registry.lock\n-rw-------  1 ubuntu ubuntu    970 May 13 16:24 dream_registry.yaml\n-rw-r--r--  1 ubuntu ubuntu    975 May 13 16:24 dream_registry.yaml.bak\n-rw-r--r--  1 ubuntu ubuntu      0 May 13 22:10 experiment_plan.lock\n-rw-------  1 ubuntu ubuntu   9350 May 14 08:03 experiment_plan.yaml\n-rw-r--r--  1 ubuntu ubuntu  12271 May 14 00:44 literature_map.yaml\ndrwxr-xr-x  4 ubuntu ubuntu   4096 May 13 04:50 logs\n-rw-r--r--  1 ubuntu ubuntu   5647 May 14 09:43 memory.md\n-rw-r--r--  1 ubuntu ubuntu  13593 May 14 09:00 paper_framing.md\n-rw-r--r--  1 ubuntu ubuntu      0 May 14 02:04 paper_provenance.lock\n-rw-------  1 ubuntu ubuntu  23014 May 14 09:50 paper_provenance.yaml\n-rw-r--r--  1 ubuntu ubuntu      0 May 13 04:50 registry.lock\n-rw-------  1 ubuntu ubuntu 100210 May 14 09:42 registry.yaml\n-rw-r--r--  1 ubuntu ubuntu   2613 May 14 09:27 report.md\ndrwxr-xr-x  2 ubuntu ubuntu   4096 May 14 04:34 scripts\ndrwxr-xr-x  5 ubuntu ubuntu   4096 May 14 08:51 src\n-rwxr-xr-x  1 ubuntu ubuntu      0 May 13 04:23 study_status.lock\ndrwxr-xr-x  3 ubuntu ubuntu   4096 May 14 11:20 task_context\n-rw-r--r--  1 ubuntu ubuntu   7984 May 14 08:56 writing_plan.yaml"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Bash",
+            "elapsed_ms": 508
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-14T11:20:13.369245+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/registry.yaml"
+            }
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-14T11:20:13.622100+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (37667 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Read",
+            "elapsed_ms": 252
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-14T11:20:15.280519+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/registry.yaml",
+              "limit": "5000"
+            }
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-14T11:20:15.533224+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_12/ -name \"*cron*\" -o -name \"*scheduled*\" 2>/dev/null"
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-14T11:20:15.637068+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (37667 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Read",
+            "elapsed_ms": 356
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-14T11:20:15.637438+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_12/"
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-14T11:20:15.690400+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/global/logs/cron_polls.jsonl\n/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/logs/chats/cron_hook_plan-004-v3.jsonl\n/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/logs/chats/cron_hook_plan-002-generative-v1.jsonl\n/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/logs/chats/cron_hook_plan-001b-gpu1.lock\n/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/logs/chats/cron_hook_plan-001b-gpu1-extra.jsonl\n/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/logs/chats/cron_hook_plan-002-formal-v2.jsonl\n/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/logs/chats/cron_hook_plan-001b-gpu0-v2.jsonl\n/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/logs/chats/cron_hook_mvp-p1-gpu1-v3.jsonl\n/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/logs/chats/cron_hook_plan-004-v3.lock\n/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/logs/chats/cron_hook_plan-002-formal.lock\n/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/logs/chats/cron_hook_plan-002-formal-v5.lock\n/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/logs/chats/cron_hook_mvp-p1-gpu1-v2.jsonl\n/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/logs/chats/cron_hook_plan-004-ablation-b.jsonl\n/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/logs/chats/cron_hook_mvp-p1-gpu1-v2.lock\n/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/logs/chats/cron_hook_plan-002-generative-v1.lock\n/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/logs/chats/cron_hook_mvp-p1-gpu1-v3.lock\n/home/ubuntu/.agent-ml-research-idea\n…[truncated 5039 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Bash",
+            "elapsed_ms": 157
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-14T11:20:15.791160+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 44\ndrwxrwxr-x  9 ubuntu ubuntu 4096 May 10 18:14 .\ndrwxr-x--- 17 ubuntu ubuntu 4096 May 14 07:31 ..\ndrwxr-xr-x  3 ubuntu ubuntu 4096 May 10 18:14 .claude\n-rw-r--r--  1 ubuntu ubuntu  355 May 14 11:20 AGENTS.md\ndrwxrwxr-x  4 ubuntu ubuntu 4096 May 14 09:42 config\ndrwxr-xr-x  3 ubuntu ubuntu 4096 May 14 08:00 global\ndrwxr-xr-x  2 ubuntu ubuntu 4096 May 13 04:23 idea_generator\ndrwxrwxr-x  5 ubuntu ubuntu 4096 May 13 04:23 projects\ndrwxr-xr-x  3 ubuntu ubuntu 4096 May 10 14:54 skills\ndrwxr-xr-x  2 ubuntu ubuntu 4096 May 14 11:20 state\n-rw-r--r--  1 ubuntu ubuntu   13 May 10 14:54 workspace.yaml"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Bash",
+            "elapsed_ms": 153
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-14T11:20:17.850907+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/config/crons.yaml"
+            }
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-14T11:20:18.253578+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tactive_crons: []\n2\tcompleted_crons:\n3\t- chat_id: null\n4\t  completed_at: '2026-05-13T07:47:44Z'\n5\t  created_at: '2026-05-13T07:32:19.879Z'\n6\t  exp_id: mvp-p1-gpu1-vllm\n7\t  hooks: null\n8\t  interval_seconds: 300\n9\t  last_checked: '2026-05-13T07:42:38.440Z'\n10\t  log_path: ~/runs/simgate-modular-routing/mvp-p1-gpu1-vllm.log\n11\t  pid: '162572'\n12\t  project: simgate-modular-routing\n13\t  server: westb-13313\n14\t  status: completed\n15\t  tracked_metrics: null\n16\t  wandb_run_id: null\n17\t- chat_id: null\n18\t  completed_at: '2026-05-13T07:58:54Z'\n19\t  created_at: '2026-05-13T07:58:23.466Z'\n20\t  exp_id: mvp-p1-gpu1-v2\n21\t  hooks: null\n22\t  interval_seconds: 300\n23\t  last_checked: null\n24\t  log_path: ~/runs/simgate-modular-routing/mvp-p1-gpu1-v2.log\n25\t  pid: '282176'\n26\t  project: simgate-modular-routing\n27\t  server: westb-13313\n28\t  status: completed\n29\t  tracked_metrics: null\n30\t  wandb_run_id: null\n31\t- chat_id: null\n32\t  completed_at: '2026-05-13T09:23:15Z'\n33\t  created_at: '2026-05-13T07:32:20.908Z'\n34\t  exp_id: mvp-p1-gpu0\n35\t  hooks: null\n36\t  interval_seconds: 300\n37\t  last_checked: '2026-05-13T09:17:57.122Z'\n38\t  log_path: ~/runs/simgate-modular-routing/mvp-p1-gpu0.log\n39\t  pid: '20296'\n40\t  project: simgate-modular-routing\n41\t  server: westb-13313\n42\t  status: completed\n43\t  tracked_metrics: null\n44\t  wandb_run_id: null\n45\t- chat_id: null\n46\t  completed_at: '2026-05-13T15:15:22Z'\n47\t  created_at: '2026-05-13T08:11:57.350Z'\n48\t  exp_id: mvp-p1-gpu1-v3\n49\t  hooks: null\n50\t  interval_seconds: 300\n51\t  last_checked: '2026-05-13T12:00:14.707Z'\n52\t  log_path: ~/runs/simgate-modular-routing/mvp-p1-gpu1-v3.log\n53\t  pid: '324895'\n54\t  project: simgate-modular-routing\n55\t  server: westb-13313\n56\t  status: completed\n57\t  tracked_metrics: null\n58\t  wandb_run_id: null\n59\t- chat_id: null\n60\t  completed_at: '2026-05-13T15:15:25Z'\n61\t  created_at: '2026-05-13T09:22:20.787Z'\n62\t  exp_id: mvp-p1-gpu0-vllm\n63\t  hooks: null\n64\t  interval_seconds: 300\n65\t  last_checked: '2026-05-13T11:59:43\n…[truncated 9861 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Read",
+            "elapsed_ms": 402
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-14T11:20:18.254075+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "wc -l /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/registry.yaml"
+            }
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-14T11:20:18.354762+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "2517 /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/registry.yaml"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-14T11:20:18.355378+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "head -500 /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/registry.yaml"
+            }
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-14T11:20:18.456108+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "baseline: null\nexperiments:\n  mvp-p0-forking:\n    status: DONE\n    retry_count: 0\n    created_at: '2026-05-13T04:50:05.057Z'\n    updated_at: '2026-05-13T05:10:18.587Z'\n    spec:\n      hypothesis: ScienceWorld action-replay state forking 可行：fork 成功率≥80%，单次 fork\n        延迟<5s\n      description: Phase 0 工程可行性验证 - ScienceWorld state forking\n      checkpoint_path: N/A\n      log_path: /root/autodl-tmp/simgate-modular-routing/results/mvp/phase0_validation.json\n      command: python src/phase0_validate_forking.py\n      server: westb-13313\n      data_path: N/A\n      data_count: 10\n      model_name: N/A\n      seed: 0\n    conclusion: success\n    completed_at: '2026-05-13T05:10:13.526Z'\n    metrics:\n      fork_success_rate: 1\n      avg_latency_s: 1.67\n      p50_latency_s: 1.53\n      p95_latency_s: 2.37\n      max_memory_mb: 20\n      gate: PASS\n  mvp-p1-signal:\n    status: PREPARING\n    retry_count: 0\n    created_at: '2026-05-13T04:50:06.546Z'\n    updated_at: '2026-05-13T21:46:23.662Z'\n    spec:\n      hypothesis: Oracle routing 在 strong task types 上显著优于 always-internal，证明 selective\n        routing 存在信号\n      description: Phase 1 信号检测 - 3-way comparison across 5 task types\n      parent: mvp-p0-forking\n    conclusion: killed\n  mvp-p1-gpu1:\n    status: DONE\n    retry_count: 0\n    created_at: '2026-05-13T05:45:20.053Z'\n    updated_at: '2026-05-13T07:09:59.347Z'\n    spec:\n      command: python src/phase1_signal.py --task_types 'chemistry-mix-paint-secondary-color,grow-plant'\n        --episodes 20 --gpu_id 0 --max_steps 30 --output_dir results/mvp/ --model_path\n        /root/autodl-tmp/models/Qwen/Qwen2___5-7B-Instruct/ --no_vllm\n      server: westb-13313\n      gpu:\n      - cuda:1\n      pid: '55775'\n      log_path: ~/runs/simgate-modular-routing/mvp-p1-gpu1.log\n      submitted_at: '2026-05-13T06:46:01.928Z'\n      submitted_via: submit_training_job\n      backend: tmux\n      account: root\n      data_path: ScienceWorld API (chemistry-mix-paint-secondary-color,grow-plant)\n      data_count:\n…[truncated 15880 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-000089"
+        },
+        {
+          "source_line": 90,
+          "timestamp": "2026-05-14T11:20:20.265582+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here are the complete contents of both files:\n\n## memory.md\n\nThe file contains decision records and lessons learned for the simgate-modular-routing project:\n\n**Key Decisions:**\n- **C1 Claim (D018)**: Death avoidance accounts for ~90% of routing signal (adjusted from ~99%). The find-non-living-thing case is treated as a positive example showing routing value beyond death avoidance.\n- **D025**: Classification head approach failed - all variants degenerated to all-deterministic predictions due to class_weights and max_grad_norm interactions.\n- **D026**: Training data corruption confirmed - labels in `results/plan_c_test_labels/implicit_sft.jsonl` were damaged. The only usable file is `data/plan-004-implicit/implicit_sft.jsonl` (2040 samples).\n- **D029**: Root cause of logit-generation gap identified - gradient accumulation changed from ga=8 to ga=1, causing effective batch reduction from 32 to 4 and severe overfitting.\n- **D033**: Framing finalized as Option B - paper contributions are the counterfactual analysis methodology + death avoidance empirical finding.\n- **D037**: Table 1 numbers must come from `eval_end_to_end.py` - trained-router achieves -10.70 score (negative result).\n\n**Lessons Learned:**\n- Generation-level evaluation is essential for router training\n- Checkpoint path confusion between different experiments\n- Qwen3 thinking mode interferes with evaluation (disable it)\n- Class weights and gradient clipping interactions cause learning rate collapse\n- AutoDL training requires specific setup: local model paths, network turbo source, HF_HOME settings\n- Qwen3-1.7B LoRA requires batch_size=4 on RTX 5090 (32GB) to avoid OOM\n- Process management issues: zombie tmux sessions, SIGHUP signal handling\n\n## report.md\n\nAuto-generated status report as of 2026-05-14, with a 150-line limit:\n\n**Currently Running:** None\n\n**Pending Tasks:**\n- research-cf-pilot-gpu1: Episode-terminal counterfactual labeling producing >30% non-tie rates for router training (awaiting approval)\n-\n…[truncated 649 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Agent",
+            "elapsed_ms": 13713
+          },
+          "id": "event-000090"
+        },
+        {
+          "source_line": 91,
+          "timestamp": "2026-05-14T11:20:21.019787+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/registry.yaml",
+              "offset": "500",
+              "limit": "3000",
+              "command": "tail -300 /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/registry.yaml"
+            }
+          },
+          "id": "event-000091"
+        },
+        {
+          "source_line": 92,
+          "timestamp": "2026-05-14T11:20:21.020195+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>InputValidationError: Read failed due to the following issue:\nAn unexpected parameter `command` was provided</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000092"
+        },
+        {
+          "source_line": 93,
+          "timestamp": "2026-05-14T11:20:21.172274+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -n \"baseline\\|experiments:\" /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/registry.yaml | head -20"
+            }
+          },
+          "id": "event-000093"
+        },
+        {
+          "source_line": 94,
+          "timestamp": "2026-05-14T11:20:21.273427+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1:baseline: null\n2:experiments:\n340:      note: v3 code (> tie-break, death filter det/oracle only). Oracle大幅优于两个baseline,\n681:    hypothesis: Rule-based keyword routing baseline：测试 keyword heuristic 能否捕获 episode-level\n2018:  plan-003-baseline:\n2023:    hypothesis: 'End-to-end evaluation baselines: always-internal, always-deterministic,\n2025:      Table 1 的 baseline 数据。'\n2210:  plan-003-baseline-245eps:\n2218:        always-internal,always-deterministic,oracle,random --output_dir results/baseline_245eps\n2223:      model_name: N/A (baselines only)\n2228:      log_path: results/baseline_245eps/\n2230:    notes: '245 eps baseline results: always-int=-39.07 [-44.89,-33.37] death=42.9%;\n2264:      baseline_always_det: -9.47\n2265:      baseline_oracle: -6.58\n2320:      baselines:\n2443:      baseline_always_det: -9.47\n2444:      baseline_oracle: -6.58\n2497:      always-det baseline -9.47."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Bash",
+            "elapsed_ms": 101
+          },
+          "id": "event-000094"
+        },
+        {
+          "source_line": 95,
+          "timestamp": "2026-05-14T11:20:22.737270+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/registry.yaml",
+              "offset": "2000",
+              "limit": "1500"
+            }
+          },
+          "id": "event-000095"
+        },
+        {
+          "source_line": 96,
+          "timestamp": "2026-05-14T11:20:22.939065+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "2000\t      val_label_dist:\n2001\t        internal: 30\n2002\t        deterministic: 270\n2003\t      pred_dist:\n2004\t        deterministic: 232\n2005\t        internal: 68\n2006\t      confusion_matrix:\n2007\t      - - 5\n2008\t        - 25\n2009\t      - - 63\n2010\t        - 207\n2011\t      train_final_loss: 0.2\n2012\t      train_eval_loss: 0.26\n2013\t      note: enable_thinking=False required for Qwen3 inference; with thinking mode,\n2014\t        model outputs <think> tags causing all-internal parsing failure\n2015\t    conclusion: negative\n2016\t    checkpoint_path: N/A (negative conclusion, no usable checkpoint)\n2017\t    completed_at: '2026-05-14T08:44:34.766Z'\n2018\t  plan-003-baseline:\n2019\t    status: PREPARING\n2020\t    retry_count: 0\n2021\t    created_at: '2026-05-14T07:29:43.220Z'\n2022\t    updated_at: '2026-05-14T07:30:27.429Z'\n2023\t    hypothesis: 'End-to-end evaluation baselines: always-internal, always-deterministic,\n2024\t      oracle, random, trained-router (degenerate v6). 194 episodes / 11 tasks. 建立论文\n2025\t      Table 1 的 baseline 数据。'\n2026\t    conclusion: success\n2027\t    metrics:\n2028\t      always_internal:\n2029\t        score: -37.16\n2030\t        ci_90:\n2031\t        - -43.39\n2032\t        - -31.43\n2033\t        success_rate: 0.1237\n2034\t        death_rate: 0.4072\n2035\t        sim_ratio: 0\n2036\t      always_deterministic:\n2037\t        score: -11.64\n2038\t        ci_90:\n2039\t        - -17.39\n2040\t        - -6.55\n2041\t        success_rate: 0.2371\n2042\t        death_rate: 0.1856\n2043\t        sim_ratio: 1\n2044\t      oracle:\n2045\t        score: -9.03\n2046\t        ci_90:\n2047\t        - -14.14\n2048\t        - -4.15\n2049\t        success_rate: 0.2423\n2050\t        death_rate: 0.1649\n2051\t        sim_ratio: 0.9623\n2052\t      random:\n2053\t        score: -23.75\n2054\t        ci_90:\n2055\t        - -29.6\n2056\t        - -18.11\n2057\t        success_rate: 0.1649\n2058\t        death_rate: 0.2835\n2059\t        sim_ratio: 0.5027\n2060\t      trained_router_v6:\n2061\t        score: -11.64\n2062\t        ci_\n…[truncated 20061 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Read",
+            "elapsed_ms": 201
+          },
+          "id": "event-000096"
+        },
+        {
+          "source_line": 97,
+          "timestamp": "2026-05-14T11:20:22.991274+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "tail -1000 /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/registry.yaml"
+            }
+          },
+          "id": "event-000097"
+        },
+        {
+          "source_line": 98,
+          "timestamp": "2026-05-14T11:20:23.145510+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (37.7KB). Full output saved to: /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing--claude-sessions-agent-b9da7cfb/3f29aa12-277b-4eb3-846e-bc3adb793de8/tool-results/buipa5hjb.txt\n\nPreview (first 2KB):\n    created_at: '2026-05-14T06:41:13.286Z'\n    updated_at: '2026-05-14T07:08:59.680Z'\n    spec:\n      command: CUDA_VISIBLE_DEVICES=1 WANDB_MODE=offline HF_HUB_OFFLINE=1 python src/training/implicit_router_sft.py\n        train --data_dir results/plan_c_test_labels/implicit_sft.jsonl --model_name\n        /root/autodl-tmp/models/Qwen/Qwen3-1.7B --epochs 3 --batch_size 4 --gradient_accumulation_steps\n        8 --class_weights auto --lr 2e-5 --output_dir checkpoints/plan-004-v2 --seed\n        42 --gpu_id 0\n      server: westb-13313\n      gpu: cuda:1\n      data_path: results/plan_c_test_labels/implicit_sft.jsonl\n      data_count: 1814\n      model_name: Qwen/Qwen3-1.7B\n      seed: 42\n      pid: '235893'\n      checkpoint_path: checkpoints/plan-004-v2\n      log_path: checkpoints/plan-004-v2/train.log\n    conclusion: failed\n    failure_reason: class_weights auto 导致训练 loss 异常偏高（48→4.4，avg 12.74），与 plan-002\n      v3/v4/v5 同一已知问题。eval_loss 0.49 看似合理但无 accuracy/balanced_accuracy/per-class metrics\n      可验证模型质量。无 eval_report.json。\n    metrics:\n      train_loss_avg: 12.74\n      train_loss_epoch1:\n      - 48.15\n      - 42.05\n      - 26.14\n      - 13.71\n      train_loss_epoch3:\n      - 4.58\n      - 4.42\n      - 4.15\n      - 4.46\n      - 4.36\n      eval_loss_epoch2: 0.5509\n      eval_loss_epoch3: 0.4905\n      train_runtime_sec: 150.74\n      note: no accuracy/balanced_accuracy computed\n    completed_at: '2026-05-14T07:02:44.123Z'\n    notes: Training completed normally (3 epochs, 147 steps). TRAINING_COMPLETE sentinel\n      present. final_adapter + checkpoint-98/147 saved. train_loss=12.74 (abnormally\n      high due to class_weights auto), eval_loss=0.490 at epoch 3. Process exited\n \n…[truncated 275 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Bash",
+            "elapsed_ms": 154
+          },
+          "id": "event-000098"
+        },
+        {
+          "source_line": 99,
+          "timestamp": "2026-05-14T11:20:25.159853+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -E \"status: (RUNNING|PREPARING|PENDING|ALLOCATED)\" /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/registry.yaml | head -50"
+            }
+          },
+          "id": "event-000099"
+        },
+        {
+          "source_line": 100,
+          "timestamp": "2026-05-14T11:20:25.361053+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "    status: PREPARING\n    status: PENDING\n    status: PREPARING\n    status: PREPARING"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Bash",
+            "elapsed_ms": 201
+          },
+          "id": "event-000100"
+        },
+        {
+          "source_line": 101,
+          "timestamp": "2026-05-14T11:20:25.361542+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "tail -200 /home/ubuntu/.agent-ml-research-idea_gen_0509_12/config/crons.yaml"
+            }
+          },
+          "id": "event-000101"
+        },
+        {
+          "source_line": 102,
+          "timestamp": "2026-05-14T11:20:25.612616+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "  server: westb-13313\n  status: completed\n  tracked_metrics: null\n  wandb_run_id: null\n- chat_id: null\n  completed_at: '2026-05-14T03:12:16Z'\n  created_at: '2026-05-14T02:05:51.303Z'\n  exp_id: plan-001b-fnlt-v2\n  hooks: null\n  interval_seconds: 120\n  last_checked: '2026-05-14T03:11:25.652Z'\n  log_path: /tmp/plan-001b-gpu1-extra.log\n  pid: plan-001b-gpu1-extra\n  project: simgate-modular-routing\n  server: westb-13313\n  status: completed\n  tracked_metrics: null\n  wandb_run_id: null\n- chat_id: null\n  completed_at: '2026-05-14T04:20:50Z'\n  created_at: '2026-05-14T02:47:53.786Z'\n  exp_id: plan-001b-gpu0-v5\n  hooks: null\n  interval_seconds: 120\n  last_checked: '2026-05-14T04:20:03.213Z'\n  log_path: ~/runs/simgate-modular-routing/plan-001b-gpu0-v5.log\n  pid: plan-001b-gpu0-v5\n  project: simgate-modular-routing\n  server: westb-13313\n  status: completed\n  tracked_metrics: null\n  wandb_run_id: null\n- chat_id: null\n  completed_at: '2026-05-14T04:53:49Z'\n  created_at: '2026-05-14T04:21:51.589Z'\n  exp_id: gpu0-v6-lifespan\n  hooks: null\n  interval_seconds: 120\n  last_checked: '2026-05-14T04:51:48.269Z'\n  log_path: ~/runs/simgate-modular-routing/gpu0-v6-lifespan.log\n  pid: '36874'\n  project: simgate-modular-routing\n  server: westb-13313\n  status: completed\n  tracked_metrics: null\n  wandb_run_id: null\n- chat_id: null\n  completed_at: '2026-05-14T05:11:21Z'\n  created_at: '2026-05-14T05:03:45.206Z'\n  exp_id: plan-002-dryrun\n  hooks: null\n  interval_seconds: 120\n  last_checked: '2026-05-14T05:11:07.856Z'\n  log_path: ~/runs/simgate-modular-routing/plan-002-dryrun.log\n  pid: '171059'\n  project: simgate-modular-routing\n  server: westb-13313\n  status: completed\n  tracked_metrics: null\n  wandb_run_id: null\n- chat_id: null\n  completed_at: '2026-05-14T05:34:36Z'\n  created_at: '2026-05-14T05:30:18.581Z'\n  exp_id: plan-002-formal\n  hooks: null\n  interval_seconds: 120\n  last_checked: '2026-05-14T05:32:32.509Z'\n  log_path: ~/runs/simgate-modular-routing/plan-002-formal.log\n  pid: '221402'\n  projec\n…[truncated 3835 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Bash",
+            "elapsed_ms": 251
+          },
+          "id": "event-000102"
+        },
+        {
+          "source_line": 103,
+          "timestamp": "2026-05-14T11:20:25.663382+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -lah /home/ubuntu/.agent-ml-research-idea_gen_0509_12/ | grep -E \"state|workers|scheduled\""
+            }
+          },
+          "id": "event-000103"
+        },
+        {
+          "source_line": 104,
+          "timestamp": "2026-05-14T11:20:25.714079+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "drwxr-xr-x  2 ubuntu ubuntu 4.0K May 14 11:20 state"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-000104"
+        },
+        {
+          "source_line": 105,
+          "timestamp": "2026-05-14T11:20:27.374222+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -lah /home/ubuntu/.agent-ml-research-idea_gen_0509_12/state/"
+            }
+          },
+          "id": "event-000105"
+        },
+        {
+          "source_line": 106,
+          "timestamp": "2026-05-14T11:20:27.776073+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 12K\ndrwxr-xr-x 2 ubuntu ubuntu 4.0K May 14 11:20 .\ndrwxrwxr-x 9 ubuntu ubuntu 4.0K May 10 18:14 ..\n-rw-r--r-- 1 ubuntu ubuntu 1.1K May 14 11:20 pool_state_last.json"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Bash",
+            "elapsed_ms": 401
+          },
+          "id": "event-000106"
+        },
+        {
+          "source_line": 107,
+          "timestamp": "2026-05-14T11:20:27.826816+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_12/ -name \"*.json\" -path \"*/state/*\" -o -name \"workers.yaml\" 2>/dev/null | head -20"
+            }
+          },
+          "id": "event-000107"
+        },
+        {
+          "source_line": 108,
+          "timestamp": "2026-05-14T11:20:28.580939+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/state/pool_state_last.json"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Bash",
+            "elapsed_ms": 754
+          },
+          "id": "event-000108"
+        },
+        {
+          "source_line": 109,
+          "timestamp": "2026-05-14T11:20:28.581448+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -E \"mvp-p1-signal|research-cf|plan-001b|plan-002|plan-003|plan-004\" /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/registry.yaml | grep \"status:\" | sort | uniq -c"
+            }
+          },
+          "id": "event-000109"
+        },
+        {
+          "source_line": 110,
+          "timestamp": "2026-05-14T11:20:28.683835+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Bash",
+            "elapsed_ms": 102
+          },
+          "id": "event-000110"
+        },
+        {
+          "source_line": 111,
+          "timestamp": "2026-05-14T11:20:29.939180+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/state/pool_state_last.json"
+            }
+          },
+          "id": "event-000111"
+        },
+        {
+          "source_line": 112,
+          "timestamp": "2026-05-14T11:20:30.492228+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"accounts\": {\n3\t    \"account-1\": {\n4\t      \"config_dir\": \"/home/ubuntu/.claude-account-1\",\n5\t      \"role\": \"automation\",\n6\t      \"email\": \"Pfhtrevelyanreginald6h33@cyberdude.com\",\n7\t      \"enabled\": true,\n8\t      \"five_hour\": {\n9\t        \"utilization\": 0.0,\n10\t        \"resets_at\": null\n11\t      },\n12\t      \"seven_day\": {\n13\t        \"utilization\": 31.0,\n14\t        \"resets_at\": \"2026-05-20T19:00:00.401796+00:00\"\n15\t      },\n16\t      \"available\": true,\n17\t      \"stale\": false,\n18\t      \"error\": null,\n19\t      \"last_checked\": \"2026-05-14T11:16:30Z\"\n20\t    },\n21\t    \"account-2\": {\n22\t      \"config_dir\": \"/home/ubuntu/.claude-account-2\",\n23\t      \"role\": \"automation\",\n24\t      \"email\": \"oevansadelauHV5NW@doramail.com\",\n25\t      \"enabled\": true,\n26\t      \"five_hour\": {\n27\t        \"utilization\": 100.0,\n28\t        \"resets_at\": \"2026-05-14T11:40:00.597260+00:00\"\n29\t      },\n30\t      \"seven_day\": {\n31\t        \"utilization\": 39.0,\n32\t        \"resets_at\": \"2026-05-17T05:00:00.597297+00:00\"\n33\t      },\n34\t      \"available\": false,\n35\t      \"stale\": false,\n36\t      \"error\": null,\n37\t      \"last_checked\": \"2026-05-14T11:19:34Z\"\n38\t    }\n39\t  },\n40\t  \"global\": {\n41\t    \"watchdog_stale\": false,\n42\t    \"status_age_sec\": 35\n43\t  }\n44\t}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Read",
+            "elapsed_ms": 553
+          },
+          "id": "event-000112"
+        },
+        {
+          "source_line": 113,
+          "timestamp": "2026-05-14T11:20:30.492733+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -A 2 \"status: PREPARING\\|status: PENDING\\|status: ALLOCATING\\|status: ALLOCATED\" /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/registry.yaml"
+            }
+          },
+          "id": "event-000113"
+        },
+        {
+          "source_line": 114,
+          "timestamp": "2026-05-14T11:20:30.683026+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "    status: PREPARING\n    retry_count: 0\n    created_at: '2026-05-13T04:50:06.546Z'\n--\n    status: PENDING\n    retry_count: 0\n    created_at: '2026-05-13T17:15:37.908Z'\n--\n    status: PREPARING\n    retry_count: 0\n    created_at: '2026-05-14T01:48:05.077Z'\n--\n    status: PREPARING\n    retry_count: 0\n    created_at: '2026-05-14T07:29:43.220Z'"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Bash",
+            "elapsed_ms": 190
+          },
+          "id": "event-000114"
+        },
+        {
+          "source_line": 115,
+          "timestamp": "2026-05-14T11:20:32.350797+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -B 5 \"status: PREPARING\\|status: PENDING\" /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/registry.yaml | head -80"
+            }
+          },
+          "id": "event-000115"
+        },
+        {
+          "source_line": 116,
+          "timestamp": "2026-05-14T11:20:32.552193+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "      p50_latency_s: 1.53\n      p95_latency_s: 2.37\n      max_memory_mb: 20\n      gate: PASS\n  mvp-p1-signal:\n    status: PREPARING\n--\n      note: v3 code (> tie-break, death filter det/oracle only). Oracle大幅优于两个baseline,\n        但绝对分低(3.8), 仅1/20 episode拿到70分. Death avoidance is primary mechanism.\n    conclusion: success\n    completed_at: '2026-05-13T19:30:55.385Z'\n  research-cf-pilot-gpu1:\n    status: PENDING\n--\n      hook_events:\n      - event: on_failed\n        action: agent\n        ts: '2026-05-14T02:02:30.025500+00:00'\n  plan-001b-gpu1-rebalance:\n    status: PREPARING\n--\n        model outputs <think> tags causing all-internal parsing failure\n    conclusion: negative\n    checkpoint_path: N/A (negative conclusion, no usable checkpoint)\n    completed_at: '2026-05-14T08:44:34.766Z'\n  plan-003-baseline:\n    status: PREPARING"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Bash",
+            "elapsed_ms": 201
+          },
+          "id": "event-000116"
+        },
+        {
+          "source_line": 117,
+          "timestamp": "2026-05-14T11:20:32.552735+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0509_12/config/crons.yaml | head -20"
+            }
+          },
+          "id": "event-000117"
+        },
+        {
+          "source_line": 118,
+          "timestamp": "2026-05-14T11:20:32.654175+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "active_crons: []\ncompleted_crons:\n- chat_id: null\n  completed_at: '2026-05-13T07:47:44Z'\n  created_at: '2026-05-13T07:32:19.879Z'\n  exp_id: mvp-p1-gpu1-vllm\n  hooks: null\n  interval_seconds: 300\n  last_checked: '2026-05-13T07:42:38.440Z'\n  log_path: ~/runs/simgate-modular-routing/mvp-p1-gpu1-vllm.log\n  pid: '162572'\n  project: simgate-modular-routing\n  server: westb-13313\n  status: completed\n  tracked_metrics: null\n  wandb_run_id: null\n- chat_id: null\n  completed_at: '2026-05-13T07:58:54Z'\n  created_at: '2026-05-13T07:58:23.466Z'\n  exp_id: mvp-p1-gpu1-v2"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Bash",
+            "elapsed_ms": 101
+          },
+          "id": "event-000118"
+        },
+        {
+          "source_line": 119,
+          "timestamp": "2026-05-14T11:20:35.065387+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -E \"^  [a-z0-9-]+:\" /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/registry.yaml | wc -l"
+            }
+          },
+          "id": "event-000119"
+        },
+        {
+          "source_line": 120,
+          "timestamp": "2026-05-14T11:20:35.467972+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "49"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Bash",
+            "elapsed_ms": 402
+          },
+          "id": "event-000120"
+        },
+        {
+          "source_line": 121,
+          "timestamp": "2026-05-14T11:20:35.469142+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -E \"^  [a-z0-9-]+:\" /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/registry.yaml | head -100"
+            }
+          },
+          "id": "event-000121"
+        },
+        {
+          "source_line": 122,
+          "timestamp": "2026-05-14T11:20:35.721719+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "  mvp-p0-forking:\n  mvp-p1-signal:\n  mvp-p1-gpu1:\n  mvp-p1-gpu0:\n  mvp-p1-gpu1-vllm:\n  mvp-p1-gpu1-v2:\n  mvp-p1-gpu1-v3:\n  mvp-p1-gpu0-vllm:\n  research-prescreening-gpu0:\n  research-boil-v3-gpu1:\n  research-cf-pilot-gpu1:\n  research-prescreening-gpu1:\n  plan-001b-gpu0:\n  plan-001b-gpu1:\n  plan-001b-gpu0-v2:\n  plan-012-decomposition:\n  plan-011-rule-based:\n  plan-001b-gpu1-extra:\n  plan-001b-gpu1-rebalance:\n  plan-001b-gpu0-v3:\n  plan-001b-fnlt-v2:\n  plan-001b-gpu0-v4:\n  plan-001b-gpu1-freeze-chem:\n  plan-001b-gpu0-v5:\n  gpu0-v6-lifespan:\n  plan-002-dryrun:\n  plan-002-formal:\n  plan-002-formal-v2:\n  plan-004-ablation-b:\n  plan-002-formal-v3:\n  plan-012-full:\n  plan-002-formal-v4:\n  plan-002-formal-v5:\n  plan-004-v2:\n  plan-002-formal-v6:\n  plan-004-v3:\n  plan-004-v4:\n  plan-002-generative-v1:\n  plan-003-baseline:\n  plan-002-generative-v1-ga1:\n  plan-004-v5:\n  plan-003-baseline-245eps:\n  plan-003-e2e-ablation-b:\n  plan-003-eval-implicit:\n  plan-004-ablation-b-seed123:\n  plan-004-ablation-b-seed456:\n  plan-004-ablation-b-seed789:\n  plan-003-e2e-ablation-b-correct:\n  plan-003-implicit-eval-full:"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Bash",
+            "elapsed_ms": 252
+          },
+          "id": "event-000122"
+        },
+        {
+          "source_line": 123,
+          "timestamp": "2026-05-14T11:20:35.722670+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep \"conclusion: success\\|conclusion: killed\\|conclusion: failed\\|conclusion: negative\" /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/registry.yaml | sort | uniq -c"
+            }
+          },
+          "id": "event-000123"
+        },
+        {
+          "source_line": 124,
+          "timestamp": "2026-05-14T11:20:35.824339+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "      1         conclusion: failed\n      9     conclusion: failed\n     12     conclusion: killed\n     13     conclusion: negative\n     15     conclusion: success"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Bash",
+            "elapsed_ms": 101
+          },
+          "id": "event-000124"
+        },
+        {
+          "source_line": 125,
+          "timestamp": "2026-05-14T11:20:45.230273+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now let me create a comprehensive summary based on what I've found:\n\n## Summary of Registry and Cron Status for simgate-modular-routing Project\n\nI have successfully located and analyzed the registry file and cron configurations for the simgate-modular-routing project. Here are my findings:\n\n### Registry File Location\n- **Main Registry**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/registry.yaml`\n  - File size: 100,210 bytes (~2,517 lines)\n  - Contains baseline, experiments, and comprehensive experiment metadata\n  - **Baseline**: Currently `null` (not set)\n\n### Cron Configuration\n- **Cron Config File**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_12/config/crons.yaml`\n- **Active Crons**: Empty list `[]`\n- **Completed Crons**: 30 tracked experiments across the project\n\n### Experiment Statistics (49 total experiments)\nThe registry contains 49 experiments with the following conclusions:\n- **15 Success** (30.6%)\n- **13 Negative** (26.5%)\n- **12 Killed** (24.5%)\n- **9 Failed** (18.4%)\n\n### Current Experiment Status\n**PREPARING/PENDING (Not yet run):**\n1. `mvp-p1-signal` - Status: PREPARING (created 2026-05-13T04:50:06.546Z)\n2. `research-cf-pilot-gpu1` - Status: PENDING (created 2026-05-13T17:15:37.908Z)\n3. `plan-001b-gpu1-rebalance` - Status: PREPARING (created 2026-05-14T01:48:05.077Z)\n4. `plan-003-baseline` - Status: PREPARING (created 2026-05-14T07:29:43.220Z)\n\n### Recent Experiments (Last 10)\nAll completed, most with `conclusion: negative`:\n- `plan-003-implicit-eval-full` (DONE, negative)\n- `plan-003-e2e-ablation-b-correct` (DONE, negative)\n- `plan-004-ablation-b-seed789` (DONE, negative)\n- `plan-004-ablation-b-seed456` (DONE, negative)\n- `plan-004-ablation-b-seed123` (DONE, negative)\n- `plan-003-eval-implicit` (DONE, negative)\n- `plan-003-e2e-ablation-b` (DONE, failed - wrong checkpoint loaded)\n- `plan-003-baseline-245eps` (DONE, success)\n- `plan-004-v5` (DONE, negative)\n- `plan-002-generative-v1-ga1` (DONE, killed)\n\n…[truncated 1057 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "Agent",
+            "elapsed_ms": 35750
+          },
+          "id": "event-000125"
+        },
+        {
+          "source_line": 126,
+          "timestamp": "2026-05-14T11:20:48.244765+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000126"
+        },
+        {
+          "source_line": 127,
+          "timestamp": "2026-05-14T11:20:48.297394+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "ToolSearch",
+            "elapsed_ms": 52
+          },
+          "id": "event-000127"
+        },
+        {
+          "source_line": 128,
+          "timestamp": "2026-05-14T11:20:52.116474+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "simgate-modular-routing",
+              "filters": "{'status': 'RUNNING'}"
+            }
+          },
+          "id": "event-000128"
+        },
+        {
+          "source_line": 129,
+          "timestamp": "2026-05-14T11:20:52.622162+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1607}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 505
+          },
+          "id": "event-000129"
+        },
+        {
+          "source_line": 130,
+          "timestamp": "2026-05-14T11:20:52.622612+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "simgate-modular-routing",
+              "filters": "{'status': 'PREPARING'}"
+            }
+          },
+          "id": "event-000130"
+        },
+        {
+          "source_line": 131,
+          "timestamp": "2026-05-14T11:20:53.074612+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan-003-baseline\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T07:29:43.220Z\\\", \\\"updated_at\\\": \\\"2026-05-14T07:30:27.429Z\\\", \\\"hypothesis\\\": \\\"End-to-end evaluation baselines: always-internal, always-deterministic, oracle, random, trained-router (degenerate v6). 194 episodes / 11 tasks. 建立论文 Table 1 的 baseline 数据。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"always_internal\\\": {\\\"score\\\": -37.16, \\\"ci_90\\\": [-43.39, -31.43], \\\"success_rate\\\": 0.1237, \\\"death_rate\\\": 0.4072, \\\"sim_ratio\\\": 0}, \\\"always_deterministic\\\": {\\\"score\\\": -11.64, \\\"ci_90\\\": [-17.39, -6.55], \\\"success_rate\\\": 0.2371, \\\"death_rate\\\": 0.1856, \\\"sim_ratio\\\": 1}, \\\"oracle\\\": {\\\"score\\\": -9.03, \\\"ci_90\\\": [-14.14, -4.15], \\\"success_rate\\\": 0.2423, \\\"death_rate\\\": 0.1649, \\\"sim_ratio\\\": 0.9623}, \\\"random\\\": {\\\"score\\\": -23.75, \\\"ci_90\\\": [-29.6, -18.11], \\\"success_rate\\\": 0.1649, \\\"death_rate\\\": 0.2835, \\\"sim_ratio\\\": 0.5027}, \\\"trained_router_v6\\\": {\\\"score\\\": -11.64, \\\"ci_90\\\": [-17.39, -6.55], \\\"success_rate\\\": 0.2371, \\\"death_rate\\\": 0.1856, \\\"sim_ratio\\\": 1, \\\"note\\\": \\\"degenerate - identical to always-deterministic\\\"}, \\\"episodes\\\": 194, \\\"tasks\\\": 11}, \\\"notes\\\": \\\"Retrospectively registered. Eval ran on server by worker_code_plan-003-eval-script. Output: results/plan_003_eval/. trained-router = plan-002-formal-v6 (degenerate, all-deterministic). 需用 plan-002-generative-v1 的非退化 router 重跑 trained-router 条件。\\\"}, \\\"plan-001b-gpu1-rebalance\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T01:48:05.077Z\\\", \\\"updated_at\\\": \\\"2026-05-14T01:56:27.532Z\\\", \\\"hypothesis\\\": \\\"GPU 负载均衡：GPU1 接管 find-non-living-thing extra 20 eps + GPU0 未开始的 freeze/chemistry-mix 各 20 eps，加速 plan-001b 完成\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"notes\\\": \\\"已废弃：GPU0-v3 已接管 freeze/chemistry-mix 数据收集。find-non-living-thing extra 20 eps 由 plan-001b-gpu1-extra 独立处理。\\\"}, \\\"mvp-p1-signal\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-13T04:5\n…[truncated 201 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 451
+          },
+          "id": "event-000131"
+        },
+        {
+          "source_line": 132,
+          "timestamp": "2026-05-14T11:20:53.075119+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "simgate-modular-routing",
+              "filters": "{'status': 'PENDING'}"
+            }
+          },
+          "id": "event-000132"
+        },
+        {
+          "source_line": 133,
+          "timestamp": "2026-05-14T11:20:53.578031+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000133"
+        },
+        {
+          "source_line": 134,
+          "timestamp": "2026-05-14T11:20:53.578464+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"research-cf-pilot-gpu1\\\": {\\\"status\\\": \\\"PENDING\\\", \\\"created_at\\\": \\\"2026-05-13T17:15:37.908Z\\\", \\\"updated_at\\\": \\\"2026-05-13T17:17:23.652Z\\\", \\\"hypothesis\\\": \\\"Episode-terminal counterfactual labeling (K=10) 在 melt/change-state/mix-paint 上产生 >30% non-tie rate，为 router 训练提供有效信号\\\", \\\"conclusion\\\": \\\"killed\\\"}}, \\\"count\\\": 1, \\\"total\\\": 1, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1708}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 503
+          },
+          "id": "event-000134"
+        },
+        {
+          "source_line": 135,
+          "timestamp": "2026-05-14T11:20:54.080492+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 0, \\\"results\\\": []}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 502
+          },
+          "id": "event-000135"
+        },
+        {
+          "source_line": 136,
+          "timestamp": "2026-05-14T11:20:54.583482+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "simgate-modular-routing",
+              "file": "report.md",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000136"
+        },
+        {
+          "source_line": 137,
+          "timestamp": "2026-05-14T11:20:54.584045+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-14\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n（无）\\\\n\\\\n## 待处理\\\\n- research-cf-pilot-gpu1: Episode-terminal counterfactual labeling (K=10) 在 melt/change-state/mix-paint 上产生 >30% non-tie rate，为 router 训练提供有效信号（等待人工审批）\\\\n- plan-003-baseline: End-to-end evaluation baselines: always-internal, always-deterministic, oracle, random, trained-router (degenerate v6). 194 episodes / 11 tasks. 建立论文 Table 1 的 baseline 数据。（准备中）\\\\n- plan-001b-gpu1-rebalance: GPU 负载均衡：GPU1 接管 find-non-living-thing extra 20 eps + GPU0 未开始的 freeze/chemistry-mix 各 20 eps，加速 plan-001b 完成（准备中）\\\\n- mvp-p1-signal（准备中）\\\\n\\\\n## 近期结论\\\\n- **plan-003-implicit-eval-full** (negative): Step-level implicit routing eval of ablation-b (plan-004-implicit/final_adapter) on 245 episodes / 11 tasks via eval_implicit_router.py. Score -12.84 worse than always-det baseline -9.47.\\\\n- **plan-003-e2e-ablation-b-correct** (negative): End-to-end eval of ablation-b (correct checkpoint: plan-004-implicit/final_adapter, internal_recall=51.52%) on 245 episodes / 11 tasks. Test C1: trained-router > always-det (-9.47).\\\\n  [e2e-eval-ablation-b-correct-results](westb-13313:/root/autodl-tmp/simgate-modular-routing/results/eval_ablation_b_e2e_correct/)\\\\n- **plan-004-ablation-b-seed789** (negative): ablation-b seed 变体 (seed=789)。验证 ablation-b 的 generation-level routing 在不同 seed 下的稳定性。ga=8, upsample_minority=true, data/plan-004-implicit/。\\\\n\\\\n## 趋势\\\\n成功 13 / 负向 14 / 失败 9 / 共 45\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\nwestb-13313: 无 GPU 信息\\\\n\\\\n## 告警\\\\n- mvp-p1-gpu1: 已被终止 — unknown\\\\n- mvp-p1-gpu0: 已被终止 — unknown\\\\n- mvp-p1-gpu1-vllm: 已被终止 — unknown\\\\n- mvp-p1-gpu1-v2: 已被终止 — unknown\\\\n- research-prescreening-gpu0: 已被终止 — unknown\\\\n- plan-001b-gpu0: 训练失败 — unknown\\\\n- plan-001b-gpu0-v2: 训练失败 — unknown\\\\n- plan-001b-gpu1-extra: 训练\n…[truncated 489 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000137"
+        },
+        {
+          "source_line": 138,
+          "timestamp": "2026-05-14T11:20:54.734944+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "simgate-modular-routing",
+              "file": "memory.md",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000138"
+        },
+        {
+          "source_line": 139,
+          "timestamp": "2026-05-14T11:20:54.785837+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/memory.md\\\", \\\"content\\\": \\\"# Memory — simgate-modular-routing\\\\n\\\\n## 决策记录\\\\n\\\\n### C1 claim 最终措辞 (2026-05-14, D018)\\\\nDirector 决策：C1 改为 \\\\\\\"death avoidance accounts for ~90% of routing signal\\\\\\\"（从 ~99% 下调）。\\\\n- find-non-living-thing 是**正面案例**（不是异常）：零死亡 task 上 Δ_nd=9.58 → routing 价值超越单纯 death avoidance\\\\n- 与 plan-011 keyword heuristic 失效互相呼应：关键词无法捕获的 signal，router 可以\\\\n- 论文分两层展示：overall ~90% death-dominated + per-task breakdown（展示非死亡信号存在）\\\\n- 数据基础：11 tasks, 245 eps, Δ_full=29.60, Δ_nd=2.84, death_fraction=90.41%, r=0.9698\\\\n\\\\n### D025: Classification head 路线宣告失败 (2026-05-14)\\\\nplan-002-formal v3-v6 全部退化为 all-deterministic 预测。根因组合：\\\\n- class_weights + max_grad_norm 交互（D023）使 internal 有效学习率≈0\\\\n- 去掉 class_weights（v6）后，89.7/10.3 极端不平衡仍导致退化\\\\n- **结论：2-class classification head 在此 imbalance 下不可用，pivot 到 generative SFT**\\\\n\\\\n### D026: 训练数据损坏确认 (2026-05-14)\\\\n`results/plan_c_test_labels/implicit_sft.jsonl` 标签损坏：no-preference 被映射为 internal，导致标签比例反转（internal 67% vs 正确的 10.3%）。\\\\n- plan-004 v2/v3/v4 用此文件训练，初始 loss=48（正常应 0.5-0.7）\\\\n- **唯一可用数据文件：`data/plan-004-implicit/implicit_sft.jsonl`**（MD5: c9b59e04de78, 2040 samples, 与 ablation-b 一致）\\\\n\\\\n### D029: v5 vs ablation-b 代码重构根因 (2026-05-14)\\\\nablation-b 到 v5 之间 `implicit_router_sft.py` 重构：\\\\n- ga 默认值从 `max(1, 32//batch_size)=8` 变为 `1` → effective batch 32→4 → 严重过拟合（train_loss=0.09）\\\\n- **logit-generation gap 确认是 ga=1 过拟合导致**，非 generative routing 系统性限制\\\\n- **D034 更正**：ablation-b ga=8（步数反推 165=ceil(434/8)×3 确认），D027 原文 ga=1 错误\\\\n- **Reviewer D032 待核实**：v5 是否也用了 WeightedTrainer（Worker 调查中）\\\\n\\\\n### D033: Framing 定稿 Option B（方法论贡献）(2026-05-14)\\\\nDirector 确认 Option B。论文贡献 = counterfactual 分析方法论 + death avoidance empirical finding。\\\\n- Router near-random (balanced_acc=58.1±0.8%, 仅比随机高 8pp) IS the finding → 强化 C1\\\\n- 删除 \\\\\\\"首个非退化 router\\\\\\\" 或 \\\\\\\"成功训练\\\\\\\" 表述\\\\n- 训练实验 conclusion 保持 success（routing\n…[truncated 2728 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 50
+          },
+          "id": "event-000139"
+        },
+        {
+          "source_line": 140,
+          "timestamp": "2026-05-14T11:20:59.480862+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "simgate-modular-routing",
+              "file": "ROADMAP.md",
+              "max_chars": "6000"
+            }
+          },
+          "id": "event-000140"
+        },
+        {
+          "source_line": 141,
+          "timestamp": "2026-05-14T11:20:59.531759+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/ROADMAP.md\\\", \\\"content\\\": \\\"# simgate-modular-routing — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-14 09:19 UTC | 更新原因: D035/D036: trained-router e2e negative + seed 方差确认，Reviewer 行动项派发\\\\n\\\\n## 核心方向\\\\nEpisode-level counterfactual analysis 揭示 LLM agent routing 的本质：death avoidance 占 ~90% routing signal（Δ_full=+29.60, Δ_nd=+2.84, DAF=90.41%, r=0.9698 p=8.12e-07），non-death 场景两种 modality 近似等效（例外：find-non-living-thing 零死亡仍有 Δ=+9.58）。论文贡献 = empirical finding + diagnostic methodology，非 router 架构。详见 paper_framing.md。\\\\n\\\\n## 投稿目标\\\\nEMNLP 2026 ARR short paper (4 pages)，DDL: 2026-05-25（剩余 11 天）\\\\n\\\\n## 当前阶段\\\\n**Paper Writing Sprint** — 核心实验全部完成。Paper Agent 写作中。Agent 处理 Reviewer 行动项（D032 核实 + seed 补注册）。\\\\n\\\\n## Router 训练总结 (D029 + D035 + D036)\\\\n- Classification head (v3-v6): 全退化为 always-det (D025)\\\\n- Generative SFT (v1): ga=8/ga=1 双对照均 NEGATIVE\\\\n- Ablation-b: 唯一非退化 (internal_recall=51.5%, seed 42)\\\\n  - **e2e eval NEGATIVE (D035)**: trained-router=-12.84 vs always-det=-9.47，16个 internal 决策增加 deaths (19.2% vs 16.3%)\\\\n  - **跨 seed 不稳定 (D036)**: balanced_acc 稳定 57-59%（学到信号），但 internal_recall 30pp+ 方差（决策边界 seed-dependent）\\\\n  - ga=8 确认为非退化必要条件 (vs v5 ga=1 → 26.7%)\\\\n- ⚠️ D032 准确性待查：v5 可能也用了 WeightedTrainer，真差异仅 ga\\\\n\\\\n## Death Decomposition 定稿结果（plan-012, 11 tasks / 245 episodes）\\\\n- Δ_full = **+29.60**, Δ_nd = **+2.84**, DAF = **90.41%**\\\\n- r = **0.9698**, p = 8.12e-07\\\\n- Label: det-preferred 86 / internal-preferred 9 / no-preference 150\\\\n- 例外: find-non-living-thing (n=40, 零死亡, Δ=+9.58)\\\\n\\\\n## Keywords v2\\\\nv1 ≈ always-det (85.8%), v2 ≈ always-internal (4.9%). Keyword heuristic 结构性失效。\\\\n\\\\n## 近期任务\\\\n- [x] plan-012 全量 death decomposition ✅\\\\n- [x] plan-011 rule-based keyword baseline ✅\\\\n- [x] Router 训练路线全面评估 (D029) ✅\\\\n- [x] plan-003-baseline-245eps baselines ✅\\\\n- [x] ablation-b generation-level eval ✅\\\\n- [x] ablation-b e2e eval (D035: ne\n…[truncated 2231 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 50
+          },
+          "id": "event-000141"
+        },
+        {
+          "source_line": 142,
+          "timestamp": "2026-05-14T11:21:45.928866+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have a complete picture. Let me write the handoff.\n\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westb-13313 的 cuda:0 和 cuda:1，不得用其他设备\n- Table 1 数字唯一来源：`eval_end_to_end.py`，禁用 `eval_implicit_router.py` 的 -12.84\n- 训练数据唯一可用文件：`data/plan-004-implicit/implicit_sft.jsonl`（2040 samples）。`results/plan_c_test_labels/implicit_sft.jsonl` 标签损坏，禁用\n- Framing 已锁定 Option B（D033）：贡献 = counterfactual 分析方法论 + death avoidance empirical finding。禁止声称 \"成功训练 router\" 或 \"首个非退化 router\"\n- Qwen3 eval 必须 `enable_thinking=False` + regex 清理 `<think>` tags\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westb-13313，2× RTX 5090 32GB\n- 工作目录：`/root/autodl-tmp/simgate-modular-routing/`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，非 venv）\n- 模型缓存：`HF_HOME=/root/autodl-tmp/.hf_cache`\n- 活跃进程：无（GPU 空闲，写作期）\n- 活跃 Cron：0 个（全部完成）\n- W&B：项目内有 wandb 配置，用于 router 训练实验\n\n### 3. 📊 当前状态\n刚完成 session-start 初始化。所有实验已完成，无 RUNNING 实验。\n\nRegistry 状态：\n- 0 RUNNING / 3 PREPARING（其中 2 个已 killed：mvp-p1-signal、plan-001b-gpu1-rebalance）/ 1 PENDING（research-cf-pilot-gpu1，已 killed）\n- 总计：13 success / 14 negative / 9 failed / 45 total\n- plan-003-baseline 仍标 PREPARING 但 conclusion=success（回溯注册，metrics 已录入）\n\n项目阶段：**Paper Writing Sprint**，目标 EMNLP 2026 ARR short paper (4 pages)，DDL 2026-05-25（剩 11 天）。\n\n待处理行动项：\n- D032 核实：v5 是否用了 WeightedTrainer（需 Worker 查 git history）\n- 3 seed 实验（seed 123/456/789）补注册到 registry\n- Paper Agent 需 patch：Table 1 trained-router 行 + Section 3.3 seed 稳定性\n- Paper Agent 完整写作：Method/Intro/RW/Conclusion/Abstract → 目标 5/17 初稿\n\n无等待中的 Worker 回调或 Cron。\n\n### 4. 📋 待办（条件触发式）\n- 新 session 启动 → 立即派 Worker 查 D032（git log/diff 查 v5 的 WeightedTrainer 使用情况）\n- D032 结果出来 → 更新 memory.md D029 条目 + ROADMAP\n- Paper Agent 启动写作 → 至少 2 个 Worker 并行（Method+Experiments 一组，Intro+RW 一组）\n- Paper 初稿 5/17 交付 → 立即启动 adversarial review 迭代\n- GPU 空闲期间 → 可跑 logit-level seed eval 等补充实验（不阻塞 critical path）\n- Director 问进度 → 汇报带 `[资源] GPU 分配 2 / 实际跑 0 | Worker 池 0`（写作期 GPU 空闲正常）\n\n### 5. 🎯 战略上下文\n**核心结论**：Death avoidance 占 ~90% routing signal（plan-012: DAF=90.41%, r=0.9698）。Router 训练全线 negative（classification 退化、generative SFT 失败、ablation-b e2e 不如 always-det），但这本身就是 finding——强化 C1。\n\n**决策链**：D013(pivot to death avoidance) → D025(classification dead) → D029(全线评估) → D033(framing Option B: 方法论贡献) → D035(e2e negative) → D036(seed 方差确认) → D037(Table 1 authority)\n\n**易错点**：\n1. 不要混淆两个 eval 脚本的数字：`eval_end_to_end.py` (-10.70) vs `eval_implicit_router.py` (-12.84)，Table 1 只用前者\n2. plan-003-baseline 在 registry 中 status=PREPARING 但 conclusion=success（回溯注册，数据已有），不要重跑\n3. research-cf-pilot-gpu1 和 mvp-p1-signal 虽然 status=PENDING/PREPARING，但 conclusion=killed，不要试图恢复\n4. find-non-living-thing 是 C1 的正面例外（零死亡但 Δ=+9.58），不是反例——论文需要正确 frame\n5. 当前最大风险是 Paper Agent 写作进度：11 天内完成 4 页 short paper + review 迭代，critical path 紧张\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-001b-gpu1"
+          },
+          "id": "event-000142"
+        }
+      ],
+      "message_count": 108
+    }
+  ],
+  "readable_path": "readable/conversations/cron-hook-plan-001b-gpu1-20260514t112145-930556.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a99dc4261bb870ca1b61",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "eval plan 008 v4 1 7b nothinking",
+  "task_key": "worker_eval_plan-008-v4-1_7b-nothinking_20260515T212036",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan-008-v4-1_7b-nothinking_20260515T212036_result.json",
+    "occurrence": 1,
+    "bytes": 1183,
+    "sha256": "5b72a779c6ac2352565bd190ece8cfc65aaa5391c419f3b114617383eb26c198"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== 1.7B generation-based enable_thinking=False eval ===\nSeed 42: balanced_acc=0.3759, internal_recall=0.4000\nSeed 43: balanced_acc=0.4574, internal_recall=0.3000\nMean: balanced_acc=0.4167±0.0408\n\n=== 真正统一 pipeline 三模型对比 ===\n| Model | Seed 42 | Seed 43 | Mean±Std |\n|-------|---------|---------|----------|\n| 0.6B  | 0.6241  | 0.5574  | 0.5908±0.0472 |\n| 1.7B  | 0.3759  | 0.4574  | 0.4167±0.0408 |\n| 4B    | 0.6241  | 0.5463  | 0.5852±0.0550 |\n\n=== 与旧 Trainer eval 对比 ===\nSeed 42: Trainer=0.5761 → gen-based=0.3759 (Δ=-0.2002)\nSeed 43: Trainer=0.4852 → gen-based=0.4574 (Δ=-0.0278)\n```\n\n1.7B 在 generation-based nothinking eval 下表现显著低于 0.6B 和 4B，也远低于其 Trainer logit-based 结果。从混淆矩阵看，seed 42 的 1.7B 模型将 175/270 的 deterministic 样本错误预测为 internal（pred_distribution: 187 internal vs 113 deterministic），说明该 checkpoint 在无 thinking 生成模式下严重偏向预测 \"internal\"。\n\n用的 checkpoint：\n- Seed 42: `checkpoints/plan-008-qwen3-1.7b/final_adapter`\n- Seed 43: `checkpoints/seed-robustness-seed43/final_adapter`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-plan-008-v4-1-7b-nothinking.md"
+}

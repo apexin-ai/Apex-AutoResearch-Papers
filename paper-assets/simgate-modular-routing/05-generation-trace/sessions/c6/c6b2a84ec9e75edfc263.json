@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "c6b2a84ec9e75edfc263",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "fix r8 w6 reasoning depth n",
+  "task_key": "worker_fix_r8-w6-reasoning-depth-n_20260516T125215",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_r8-w6-reasoning-depth-n_20260516T125215_result.json",
+    "occurrence": 1,
+    "bytes": 2172467,
+    "sha256": "d4201a0d14361bae83e9e6f51c03bc6694771bd0573878ea5ad54dfa814cab1f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2172487,
+                "serialized_sha256": "2f8a99d691715b35bc9595cc1570b7af2cdbf121a963c96245bac8bdda2702f8",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-r8-w6-reasoning-depth-n.md"
+}

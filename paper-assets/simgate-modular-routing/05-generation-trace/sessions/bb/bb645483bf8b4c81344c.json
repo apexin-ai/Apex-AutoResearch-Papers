@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bb645483bf8b4c81344c",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code fix plan001b run scripts",
+  "task_key": "worker_code_fix-plan001b-run-scripts_20260513T221012",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-plan001b-run-scripts_20260513T221012_result.json",
+    "occurrence": 1,
+    "bytes": 1294,
+    "sha256": "5e7579394949db20b090bd9d640cb4ebd4983540444a299819c0ac4bbd31dad1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。\n\n## 修复结果\n\n**run_plan001b_gpu0.sh** — 已修复：\n- `collect_trajectories.py` → `episode_level_collection.py`\n- 任务更新为 7 tasks: find-animal, identify-life-stages-1, lifespan-longest-lived-then-shortest-lived, lifespan-longest-lived, measure-melting-point-unknown-substance, freeze, chemistry-mix\n- 添加 `--reuse_dirs results/prescreening,results/mvp,results/research`\n- 输出改为 `results/plan_c/`\n\n**run_plan001b_gpu1.sh** — 已修复：\n- `collect_trajectories.py` → `episode_level_collection.py`\n- 任务更新为 4 tasks: find-non-living-thing, grow-fruit, inclined-plane-determine-angle, identify-life-stages-2\n- 同样添加 `--reuse_dirs` 和 `results/plan_c/` 输出\n\n## Dry-run 验证结果\n\n| 验证项 | 状态 |\n|--------|------|\n| `episode_level_collection.py --dry_run` | 通过 — reuse adapter 正确识别 prescreening 中已有 episodes |\n| `death_decomposition.py --data_dirs results/prescreening` | 通过 — 正确读取 episodes.jsonl 并输出分解表 |\n| `death_aware_labeling.py --input_dirs results/prescreening/find-animal` | 通过 — 三标签输出正常 (det-preferred: 3, no-preference: 2, 150 SFT steps) |\n\nPipeline 格式兼容性确认，可以启动数据收集。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-plan001b-run-scripts.md"
+}

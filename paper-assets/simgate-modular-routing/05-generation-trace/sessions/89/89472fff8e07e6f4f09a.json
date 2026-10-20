@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "89472fff8e07e6f4f09a",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "exp gemma scienceworld cross model",
+  "task_key": "worker_exp_gemma-scienceworld-cross-model_20260520T055916",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_gemma-scienceworld-cross-model_20260520T055916_result.json",
+    "occurrence": 1,
+    "bytes": 836,
+    "sha256": "09cfd4f9484d271490b67c56cb3fdd0f8e5581c1ebd340da47b10dcb41b74a80"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n- **westd-18266** 连接失败，切换到 **westb-13313**（2x RTX 5090 32GB）\n- **Gemma-2-9B-it** 通过 ModelScope 下载完成（21GB，~25 分钟），HuggingFace 因 gated repo 403 被拒\n- 模型路径：`/root/autodl-tmp/models/gemma-2-9b-it/AI-ModelScope/gemma-2-9b-it`\n- **实验已启动**：\n  - `gemma-gpu0` tmux session — 6 tasks (chemistry-mix, find-animal, find-non-living-thing, freeze, grow-fruit, identify-life-stages-1)\n  - `gemma-gpu1` tmux session — 5 tasks (identify-life-stages-2, inclined-plane-determine-angle, lifespan-longest-lived, lifespan-longest-lived-then-shortest-lived, measure-melting-point-unknown-substance)\n  - 11 tasks × 20 episodes × 2 strategies = 440 episode runs\n- **Registry** 已更新为 RUNNING，exp_id: `gemma-scienceworld-cross-model`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-gemma-scienceworld-cross-model.md"
+}

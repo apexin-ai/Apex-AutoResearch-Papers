@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8bff870c8285e534419a",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "analysis gemma final complete",
+  "task_key": "worker_analysis_gemma-final-complete_20260520T174915",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gemma-final-complete_20260520T174915_result.json",
+    "occurrence": 1,
+    "bytes": 142,
+    "sha256": "afa6329f971bbd38fc86109ddba4e41f24917239117ae50410c6f93a1c1b4719"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已设置 4.5 分钟后轮询。GPU1 的 lifespan-longest-lived 预计最先完成（~30 min），GPU0 的 3 个 task 较慢。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-gemma-final-complete.md"
+}

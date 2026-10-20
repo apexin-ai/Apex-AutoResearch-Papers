@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "e1ccd256102d9ea7c945",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "research data audit full",
+  "task_key": "worker_research_data-audit-full_20260523T102337",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_data-audit-full_20260523T102337.log",
+    "occurrence": 1,
+    "bytes": 971020,
+    "sha256": "a238a2548f7c0b36a381ac3870d81fde9cf1b2c119c02c90ec46770eeb1d9eb7"
+  },
+  "statistics": {
+    "messages": 130,
+    "user_turns": 1,
+    "tool_calls": 50,
+    "roles": {
+      "log": 1,
+      "system": 8,
+      "record": 1,
+      "assistant": 18,
+      "tool_call": 50,
+      "tool_result": 50,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 46,
+      "chunks": [
+        {
+          "path": "e1ccd256102d9ea7c945-part-0001.json",
+          "message_count": 46
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 84,
+      "chunks": [
+        {
+          "path": "e1ccd256102d9ea7c945-part-0002.json",
+          "message_count": 84
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-data-audit-full.md"
+}

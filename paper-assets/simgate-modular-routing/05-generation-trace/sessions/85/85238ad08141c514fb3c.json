@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "85238ad08141c514fb3c",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code fix eval generative router",
+  "task_key": "worker_code_fix-eval-generative-router_20260514T073837",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-eval-generative-router_20260514T073837_result.json",
+    "occurrence": 1,
+    "bytes": 1093,
+    "sha256": "28497ad50e9efe465a26f0a89ff841913e6395b5c2679656bbea9755d0d5936c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部修改完成并验证通过。\n\n**已完成：**\n\n**任务 1 — GenerativeRouter 推理路径：**\n- L276: `GenerativeRouter` 类，使用 `AutoModelForCausalLM` + LoRA adapter\n- 使用 `GENERATIVE_SYSTEM_PROMPT`（与 `format_implicit_data.py` 一致）构造 chat-template prompt\n- `predict_step()`: 生成输出，检查 `[SIMULATE]` 前缀 → deterministic，否则 → internal\n- `predict_episode()`: 对所有 step 做 majority vote，返回与 `TrainedRouter` 相同的 `(decision, confidence, detail_dict)` 接口\n- L758: `--router_type` 参数（`classification` / `generative`），根据类型选择 Router 类\n\n**任务 2 — Fallback 偏差修复：**\n- L524: fallback 时 `logger.warning` 输出触发的 episode key\n- L495: `fallback_count` 计数器\n- L553-560: 计算 `fallback_rate`，写入 metrics，>10% 打印 WARNING\n- L669-676: `print_summary` 中输出 fallback 统计\n\n**验证结果：**\n- 语法检查 `SYNTAX OK`\n- `--help` 输出包含 `--router_type {classification,generative}`\n- 原有 `TrainedRouter` 代码未改动"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-eval-generative-router.md"
+}

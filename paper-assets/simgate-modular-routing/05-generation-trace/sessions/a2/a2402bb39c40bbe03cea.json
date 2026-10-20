@@ -1,0 +1,103 @@
+{
+  "schema_version": "1.0",
+  "id": "a2402bb39c40bbe03cea",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "writing experiments expansion long paper",
+  "task_key": "worker_writing_experiments-expansion-long-paper_20260516T190419",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_experiments-expansion-long-paper_20260516T190419_result.json",
+    "occurrence": 1,
+    "bytes": 4601,
+    "sha256": "1fad8ca1619b530d25126fe0190f05853f13b03a52fa8941529b0109ef669e15"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```json\n{\n  \"task\": \"Expand Experiments section to ~3 pages\",\n  \"files_modified\": [\n    \"docs/paper/experiments.tex\",\n    \"docs/paper/discussion.tex\"\n  ],\n  \"files_not_modified\": [\n    \"docs/paper/method.tex\",\n    \"docs/paper/introduction.tex\"\n  ],\n  \"structure_changes\": {\n    \"experiments.tex\": {\n      \"old\": [\"§4.1 Death Avoidance Decomposition\", \"§4.2 Baselines\", \"§4.3 Router Training as Diagnostic\"],\n      \"new\": [\n        \"§4.1 Death Avoidance Decomposition (+SCI paragraph, +Bootstrap CI paragraph)\",\n        \"§4.2 Multi-Model Validation (new, Llama replication from old §4.3 last line)\",\n        \"§4.3 Cross-Domain Negative Contrast: MATH (new, migrated from discussion.tex)\",\n        \"§4.4 Baselines (unchanged, renumbered)\",\n        \"§4.5 Router Training as Diagnostic Probe (trimmed Llama sentence, renumbered)\"\n      ]\n    },\n    \"discussion.tex\": {\n      \"removed\": \"MATH content from Cross-environment evidence paragraph\",\n      \"kept\": [\"Cross-environment evidence (ALFWorld only)\", \"Penalty sensitivity\", \"Implications for router design\", \"Framework applicability\", \"Modality heterogeneity\"],\n      \"added_ref\": \"\\\\S\\\\ref{sec:math-contrast} back-reference to new experiments section\"\n    }\n  },\n  \"new_labels\": {\n    \"sec:cross-model\": \"§4.2 Multi-Model Validation\",\n    \"sec:math-contrast\": \"§4.3 Cross-Domain Negative Contrast: MATH\"\n  },\n  \"content_added\": {\n    \"SCI_analysis\": \"Gini=0.2147, top-1/2/3 CR=14.3/27.5/39.8%, 10/11 tasks DAF=100%, find-non-living-thing exception\",\n    \"bootstrap_CI\": \"B=10000, aggregate DAF CI [81.6%, 98.8%], 10/11 per-task Δ>0, chemistry-mix crosses zero\",\n    \"multi_model\": \"Llama-3.1-8B-Instruct, 7 tasks, N=70, int_preferred=0, death rates 34.3% vs 0%, mechanism verification framing\",\n    \"MATH_contrast\": \"N=300, Level 4-5, 81.0% vs 76.7% (+4.3pp, p=0.079), label inversion 30:17, Level 5 > Level 4, negative control framing\"\n  },\n  \"constraints_respected\": {\n    \"no_ALFWorld_DAF_numbers\": true,\n    \"MATH_directional_trend_wording\": true,\n    \"no_method_tex_modification\": true,\n    \"no_introduction_tex_modification\": true,\n    \"no_fabricated_numbers\": true\n  }\n}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "task": "Expand Experiments section to ~3 pages",
+              "files_modified": [
+                "docs/paper/experiments.tex",
+                "docs/paper/discussion.tex"
+              ],
+              "files_not_modified": [
+                "docs/paper/method.tex",
+                "docs/paper/introduction.tex"
+              ],
+              "structure_changes": {
+                "experiments.tex": {
+                  "old": [
+                    "§4.1 Death Avoidance Decomposition",
+                    "§4.2 Baselines",
+                    "§4.3 Router Training as Diagnostic"
+                  ],
+                  "new": [
+                    "§4.1 Death Avoidance Decomposition (+SCI paragraph, +Bootstrap CI paragraph)",
+                    "§4.2 Multi-Model Validation (new, Llama replication from old §4.3 last line)",
+                    "§4.3 Cross-Domain Negative Contrast: MATH (new, migrated from discussion.tex)",
+                    "§4.4 Baselines (unchanged, renumbered)",
+                    "§4.5 Router Training as Diagnostic Probe (trimmed Llama sentence, renumbered)"
+                  ]
+                },
+                "discussion.tex": {
+                  "removed": "MATH content from Cross-environment evidence paragraph",
+                  "kept": [
+                    "Cross-environment evidence (ALFWorld only)",
+                    "Penalty sensitivity",
+                    "Implications for router design",
+                    "Framework applicability",
+                    "Modality heterogeneity"
+                  ],
+                  "added_ref": "\\S\\ref{sec:math-contrast} back-reference to new experiments section"
+                }
+              },
+              "new_labels": {
+                "sec:cross-model": "§4.2 Multi-Model Validation",
+                "sec:math-contrast": "§4.3 Cross-Domain Negative Contrast: MATH"
+              },
+              "content_added": {
+                "SCI_analysis": "Gini=0.2147, top-1/2/3 CR=14.3/27.5/39.8%, 10/11 tasks DAF=100%, find-non-living-thing exception",
+                "bootstrap_CI": "B=10000, aggregate DAF CI [81.6%, 98.8%], 10/11 per-task Δ>0, chemistry-mix crosses zero",
+                "multi_model": "Llama-3.1-8B-Instruct, 7 tasks, N=70, int_preferred=0, death rates 34.3% vs 0%, mechanism verification framing",
+                "MATH_contrast": "N=300, Level 4-5, 81.0% vs 76.7% (+4.3pp, p=0.079), label inversion 30:17, Level 5 > Level 4, negative control framing"
+              },
+              "constraints_respected": {
+                "no_ALFWorld_DAF_numbers": true,
+                "MATH_directional_trend_wording": true,
+                "no_method_tex_modification": true,
+                "no_introduction_tex_modification": true,
+                "no_fabricated_numbers": true
+              }
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-experiments-expansion-long-paper.md"
+}

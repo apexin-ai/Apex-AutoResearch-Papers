@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ef1e170641494c296388",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "verify paper compile audit",
+  "task_key": "worker_verify_paper-compile-audit_20260514T143149",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_paper-compile-audit_20260514T143149_result.json",
+    "occurrence": 1,
+    "bytes": 847,
+    "sha256": "eb182541c2da8762f9cce71f77a700e14145e66529fbb168c2287c3b5547374f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 编译审计汇总\n\n| 项目 | 结果 |\n|------|------|\n| **编译状态** | 成功，无 error |\n| **PDF 页数** | 5 页（4 页正文 + 1 页 references） |\n| **Figure 1** | `fig1_daf_scatter.pdf` 存在，23.7 KB，在第 2 页正确渲染 |\n| **Undefined references** | 无 |\n| **Missing citations** | 无 |\n| **LaTeX warnings** | 0（仅有 cosmetic Underfull/Overfull hbox） |\n| **BibTeX warnings** | 0，12 条引用全部解析成功 |\n\n**引用审计**：12 个 `\\cite` 键全部在 `references.bib` 中有对应条目。`dagger-2011` 在 bib 中存在但未被引用（不影响编译）。\n\n**同步修复**：\n- `experiments.tex` — 更新了 CI 值，补充了 Cross-Environment Validation 节（§5.5）\n- `related_work.tex` — 修复了服务器上的乱码（`ITP V>cite` → `ITP \\cite`）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-paper-compile-audit.md"
+}

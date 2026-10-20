@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "54f2d7e85f3857eed513",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "diagnose seed robustness extended",
+  "task_key": "worker_diagnose_seed-robustness-extended_20260515T191708",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_seed-robustness-extended_20260515T191708_result.json",
+    "occurrence": 1,
+    "bytes": 1145,
+    "sha256": "7beb53ac698c7029e5fc6cac8fdcb22c02a7ad9b109703db37fc0d65d79116cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n**训练状态：全部 4 seeds 成功完成**\n- 所有 seed 均正常退出 (EXIT_CODE=0)\n- 4 个 checkpoint 均有 `TRAINING_COMPLETE` sentinel 和 `final_adapter/`\n- 无 error/traceback\n\n**训练 eval_loss (epoch 3.0 final)**：\n\n| Seed | eval_loss |\n|------|-----------|\n| 46 | 0.3679 |\n| 47 | 0.3749 |\n| 48 | 0.3468 |\n| 49 | 0.3710 |\n| **mean±std** | **0.3652±0.013** |\n\n**关键缺失：router eval 未执行**\n\n`results/seed-robustness/` 目录只有 core seeds 的 `router_seed{43,44,45}.json`，seeds 46-49 的 balanced_acc / internal_recall 还没算。这些指标来自训练后的独立 eval 步骤，不是 HuggingFace Trainer 的 eval_loss。\n\n**无法计算 8-seed 汇总**，因为新 seeds 缺少 balanced_acc / internal_recall。\n\n**Registry 已更新**：metrics（含训练 eval_loss）、checkpoint_path、log_path。状态保持 RUNNING，因为 router eval 尚未完成。\n\n**下一步**：需要对 seeds 46-49 运行 router eval（与 core seeds 相同的 eval pipeline），产出 `router_seed{46,47,48,49}.json` 后才能合并 8-seed 统计并设为 DONE。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-seed-robustness-extended.md"
+}

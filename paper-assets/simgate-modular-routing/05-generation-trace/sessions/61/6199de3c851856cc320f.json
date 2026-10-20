@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6199de3c851856cc320f",
+  "project": "simgate-modular-routing",
+  "kind": "history",
+  "title": "director / loop_2.md",
+  "task_key": "loop_2",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_2.md",
+    "occurrence": 1,
+    "bytes": 2992,
+    "sha256": "9d72e4c32778047edaa219450c214a39712f389f823bbcfab63090e1bd19f29e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: max_messages\nupdated: '2026-05-13T19:18:24+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 westb-13313 的 cuda:0 和 cuda:1（2× RTX 5090 32GB）\n- AutoDL 实例：pip install / git clone 前必须 `source /etc/network_turbo`\n- HF 下载设 `HF_HUB_DISABLE_XET=1`，大模型优先 ModelScope\n- 根分区 ~30GB，所有大文件放 `/root/autodl-tmp/`\n- Episode-level labeling 策略已定（D011），不要回退到 1-step counterfactual 或 fork-based\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westb-13313 (connect.westb.seetacloud.com)，用户 root\n- 工作目录：/root/autodl-tmp/simgate-modular-routing\n- Python/conda：未确认（上一轮 Agent 未汇报，需 SSH 探查）\n- W&B/Git：未配置\n- 活跃进程：research-prescreening-gpu0（cuda:0），research-boil-v3-gpu1（cuda:1，接近完成）\n- 脚本已就绪：episode_level_collection.py / router_sft_train.py / rule_based_routing.py / collect_trajectories.py\n\n### 3. 📊 当前状态\n- **GPU0**: research-prescreening-gpu0 RUNNING — 8/25 tasks 完成，预计还需 ~5h\n- **GPU1**: research-boil-v3-gpu1 ANALYZING — 17/20 episodes，~25min 完成\n- Agent 刚收到 D011 指令（framing 调整 + death-aware labeling），正在处理\n- Agent 队列中有 D011 执行指令（death-aware 后处理脚本修改 + plan-001b 准备）\n- Reviewer 刚重置\n\n### 4. 📋 待办\n- Boil v3 完成（~25min）→ Agent 最终分析含 death 统计 → registry DONE → GPU1 加入预筛\n- 预筛全部完成（~5h）→ Agent 汇总含 Δ_no_death + Signal_type 的完整表 → 选 task list for plan-001b\n- Plan-001b task list 确定 → Agent 提交方案（含 task list + 预估 label 分布，要求 internal ≥15%）→ 审批\n- Plan-001b 数据收集完成 → plan-002 (router SFT) + plan-004 (explicit vs implicit) 双卡并行\n- 如果 internal-preferred tasks < 3 个 → Agent 报告 → 需要决策是否调整 labeling 策略\n\n### 5. 🎯 战略上下文\n**D011 核心发现**：Det 全部优势 = 纯 death avoidance。Non-death Δ(D-I) = -4.5 ~ -0.4（internal 略优）。13 tasks 一致确认。\n\n**Framing 已调整**：从\"学习路由\"→\"safety-efficiency tradeoff，router 做 death-risk detection\"。Paper claim：selective routing 在 death-risk 时用 det（避免 -100），safe steps 保留 internal 优势。\n\n**决策链**：D001(MVP) → D005(MVP PASS) → D008(1-step 失败) → D010(Plan C episode-level) → D011(death avoidance 发现，framing 调整)\n\n**易错点**：\n- SFT 标签全标 det 是预期行为（death episodes 主导），不是 bug。需要通过 task 选择（混合 death-prone + internal-preferred tasks）平衡\n- plan-012 (death decomposition) 是论文核心证据，优先级实质上已升为 P0\n- DDL 5/25（剩 12 天），critical path ~2.3 天实验 + ~3 天写作，余量极小\n- Dream 审稿 best 4/6 / median 3/6 / worst 2/6，容错率低——C1 \"selective > unconditional\" 依赖 plan-003 结果\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2.md"
+}

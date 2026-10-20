@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9abd9f11b4b08d9bf85d",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code reflexion prep",
+  "task_key": "worker_code_reflexion-prep_20260517T110425",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_reflexion-prep_20260517T110425_result.json",
+    "occurrence": 1,
+    "bytes": 831,
+    "sha256": "81e979a33784e95856066de835763c2478462096edf4df9a647df1d01e66ff87"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/reflexion_prep_report.md`。\n\n**总结：**\n\n- 服务器上**没有任何 Reflexion 相关代码**，需要从零实现\n- 需要新增 1 个文件（`src/reflexion_baseline.py`，~200 行）、修改 1 个文件（`src/llm_agent.py`，~50 行新增）、1 个启动脚本\n- 核心改造点：在 `run_episode_internal()` 外面套 trial loop，每次失败后用 LLM 生成 self-reflection，下一次 trial 注入 prompt\n- 对照组设计：reflexion vs retry-only（纯重试无 reflection），隔离 reflection 的真实效果\n- 当前 internal death rate 49%，目标降到 <20%。如果降不到，是有力的 negative result（支持 routing > self-correction 的论点）\n- 预计实验时间 ~6-12 小时（单/双 GPU），等 72B scaling 实验完成后立即可启动"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-reflexion-prep.md"
+}

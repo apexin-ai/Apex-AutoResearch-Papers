@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "97ee9646e9ec9914465c",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh w4 death rate cis",
+  "task_key": "worker_ssh_w4-death-rate-cis_20260518T070411",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_w4-death-rate-cis_20260518T070411_result.json",
+    "occurrence": 1,
+    "bytes": 1061,
+    "sha256": "24377524738ea6658214c2bf2f6afc23a690dea495a3f09b3d9f73a171bdf7b0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results (from `death_decomposition_report.json`, 30 tasks, 249 matched episodes):\n\n**Per-task death rate differential:**\n- 28/30 tasks are death-prone\n- **15/28 statistically significant** (95% CI for Delta excludes 0)\n- **13/28 non-significant** (all have n=5, power issue)\n- **100% directional consistency**: internal DR > deterministic DR in ALL 28 death-prone tasks (no exceptions)\n\n**Pooled analysis:**\n- Internal DR: 49.0% [42.8%, 55.2%]\n- Deterministic DR: 11.6% [8.2%, 16.2%]\n- Delta: **+37.3% [+29.7%, +44.4%]** (highly significant)\n\n**Interpretation for \"death dominance is universal across tasks\" claim:**\nThe direction is 100% consistent (internal always worse), strongly supporting universality. The 13 tasks that don't reach individual significance all have n=5, where detecting a 40pp difference requires extreme rates. This is a power limitation, not evidence against the claim. The pooled effect is unambiguous.\n\nOutput: `artifacts/w4_death_rate_cis.md` (includes per-task table, forest plot data, and summary)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-w4-death-rate-cis.md"
+}

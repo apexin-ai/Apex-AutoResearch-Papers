@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fd673d34e565c58b6c86",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh investigate episode count",
+  "task_key": "worker_ssh_investigate-episode-count_20260514T005213",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_investigate-episode-count_20260514T005213_result.json",
+    "occurrence": 1,
+    "bytes": 892,
+    "sha256": "558fd0e9226ec000bb03d771bfe20bf8b0fa18045be994f752c8930b99166037"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "根因找到了。看时间线：\n\n| 事件 | 时间 (CST) |\n|------|-----------|\n| v2 报告生成 | 05:22:06 |\n| `lifespan-shortest-lived/episodes.jsonl` 创建 | 05:22:21 |\n| v1 报告生成 | 05:22:29 |\n\n**v2 报告在 `lifespan-shortest-lived` 数据文件诞生前 15 秒生成，v1 报告在其诞生后 8 秒生成。** 这是一个竞态条件——两个报告在数据仍在写入时间隔 23 秒先后运行，v2 跑得早恰好漏掉了这个刚创建的 episode。\n\n与 keyword 差异完全无关。脚本的数据加载逻辑不依赖 keywords（刚验证过：用当前脚本跑 v1 和 v2 都是 233 episodes）。\n\n**建议**：论文中统一引用当前的 episode 基数（用当前脚本重新跑一次 v1 和 v2，两者 episode 数一致）。原始 204/203 的差异只是数据生成和报告生成之间的竞态，不是方法论问题。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-investigate-episode-count.md"
+}

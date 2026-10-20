@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "61044382c1896204ad8d",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code plan 002 router sft",
+  "task_key": "worker_code_plan-002-router-sft_20260514T004238",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan-002-router-sft_20260514T004238_result.json",
+    "occurrence": 1,
+    "bytes": 2037,
+    "sha256": "71e09d858bcc2afee27553b7386ba5101d0483b27110d63049529697a32f49df"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。总结：\n\n### 发现并修复的问题\n\n**Critical Bug — `death_aware_labeling.py` 不递归子目录**\n- 原版 `process_dir` 只在传入目录直接找 `episodes.jsonl`，但数据结构是 `results/prescreening/{task}/episodes.jsonl`\n- `launch_plan002.sh` 传入 `results/prescreening` 等父目录，会全部 skip，产出 0 条数据\n- **修复**：新增 `expand_input_dirs()` 函数，自动扫描一级子目录\n\n**缺失 — `--dry_run` 支持**\n- 原版 `death_aware_labeling.py` 没有 dry_run 参数\n- **修复**：添加 `--dry_run` flag，只扫描和打印分布，不写文件\n\n**缺失 — 独立 eval 脚本**\n- 训练后只有 `router_sft_train.py` 内建的 val 评估，无独立 eval\n- **新建** `src/router_sft_eval.py`：加载 LoRA adapter，eval 同 split 的 held-out 数据，输出 accuracy/F1/confusion matrix，对比 majority-class 和 always-det baselines\n\n**缺失 — `launch_plan002.sh` 无 Step 3**\n- **修复**：添加 Step 3 调用 `router_sft_eval.py`\n\n### 已有代码验证结论\n\n| 检查项 | 状态 |\n|--------|------|\n| 三标签逻辑 (death asymmetry → score comparison) | OK |\n| 输出路径 `results/plan_001b_labels/sft_triples.jsonl` | OK |\n| `router_sft_train.py` 2-way 分类 (drops no-preference) | OK, 符合设计 |\n| SFT 参数 lr=2e-5, batch=32, epochs=3 | OK |\n| Episode-level stratified split (防 leakage) | OK |\n| `--class_weights auto` (inverse-frequency) | OK, 已有 |\n| `--upsample_minority` (WeightedRandomSampler) | OK, 已有 |\n| 输出 checkpoint 到 `results/plan_002_router/` | OK |\n\n### Dry-run 结果 (prescreening + research, 145 episodes)\n- det-preferred: 68 (46.9%), internal-preferred: 1 (0.7%), no-preference: 76 (52.4%)\n- 4386 SFT steps, 其中 training 实际只用 det-preferred + internal-preferred = 2190 steps (no-preference 被 router_sft_train.py 丢弃)\n- 极端不平衡（2160 det vs 30 internal）确认——`--class_weights auto --upsample_minority` 是必要的"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-002-router-sft-copy-2.md"
+}

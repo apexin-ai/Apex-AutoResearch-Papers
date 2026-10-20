@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7ad064acf28f5b6b3851",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "eval loto guided router",
+  "task_key": "worker_eval_loto-guided-router_20260516T150433",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_loto-guided-router_20260516T150433_result.json",
+    "occurrence": 1,
+    "bytes": 1714,
+    "sha256": "82597bbb7d259c11f0ac58763f09e20dcac6521de96c611badd1e7ceb3d4a11d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "LOTO 评估完成。\n\n```\n=== LOTO Guided Router Results ===\n\n| Strategy             | Fold-mean bal_acc | Episode-level bal_acc | Delta vs in-sample |\n|----------------------|-------------------|-----------------------|--------------------|\n| prior_majority       | 77.3% (±24.9%)    | 50.00%                | -12.9 pp           |\n| prior_mean_threshold | 77.3% (±24.9%)    | 50.00%                | -12.9 pp           |\n| learned              | 77.3% (±24.9%)    | 62.92%                |  0.0 pp            |\n\nPer-fold (learned):\n  chemistry-mix                                  50.0%  route=deterministic\n  find-animal                                   100.0%  route=deterministic\n  find-non-living-thing                          50.0%  route=internal      ← 正确识别\n  freeze                                        100.0%  route=deterministic\n  grow-fruit                                     50.0%  route=deterministic\n  identify-life-stages-1                        100.0%  route=deterministic\n  identify-life-stages-2                        100.0%  route=deterministic\n  inclined-plane-determine-angle                100.0%  route=deterministic\n  lifespan-longest-lived                         50.0%  route=deterministic\n  lifespan-longest-lived-then-shortest-lived     50.0%  route=deterministic\n  measure-melting-point-unknown-substance       100.0%  route=deterministic\n```\n\n**结论**：learned variant 的字符串模式匹配在 LOTO 设置下完美泛化，episode-level balanced accuracy 与 in-sample oracle 完全一致（62.92%，0pp 损失）。Prior-based 策略因为无法识别唯一的 safe task（find-non-living-thing）而退化到 50%。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-loto-guided-router.md"
+}

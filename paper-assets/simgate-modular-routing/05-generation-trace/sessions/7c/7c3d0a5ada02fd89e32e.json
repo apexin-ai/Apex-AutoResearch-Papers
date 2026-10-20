@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7c3d0a5ada02fd89e32e",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "data math 200 fixed",
+  "task_key": "worker_data_math-200-fixed_20260514T142524",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_math-200-fixed_20260514T142524_result.json",
+    "occurrence": 1,
+    "bytes": 407,
+    "sha256": "1390233d3101255efa06241f3e289f418b06cc7e65d99c107716214cd723d59a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已启动并验证完毕：\n\n- **PID**: 295415，后台运行中\n- **offset=50**: 从第 51 题开始（跳过 pilot），第一条 episode_id 为 `math_level5_0050`\n- **code_executions output 非空**: `\"106\\n\"`，sandbox 修复有效\n- **Registry**: `math-200-fixed` 状态 RUNNING\n- **预计完成**: ~40 分钟\n- **产出**: `data/math-counterfactual/math_200_fixed.jsonl`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-math-200-fixed.md"
+}

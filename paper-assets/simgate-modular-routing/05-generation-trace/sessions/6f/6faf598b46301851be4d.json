@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "6faf598b46301851be4d",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "monitor vllm ready 14838 v2",
+  "task_key": "worker_monitor_vllm-ready-14838-v2_20260517T131651",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_vllm-ready-14838-v2_20260517T131651.log",
+    "occurrence": 1,
+    "bytes": 554143,
+    "sha256": "734fb7e962f93e7f582e7dc03e5c263cf630ee0b2d4d0e5e1021112e70b4ed9f"
+  },
+  "statistics": {
+    "messages": 326,
+    "user_turns": 0,
+    "tool_calls": 102,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 1,
+      "assistant": 116,
+      "tool_call": 102,
+      "tool_result": 102,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 326,
+      "chunks": [
+        {
+          "path": "6faf598b46301851be4d-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "6faf598b46301851be4d-part-0002.json",
+          "message_count": 146
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/monitor-vllm-ready-14838-v2.md"
+}

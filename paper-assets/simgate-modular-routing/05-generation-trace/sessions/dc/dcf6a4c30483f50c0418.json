@@ -1,0 +1,485 @@
+{
+  "schema_version": "1.0",
+  "id": "dcf6a4c30483f50c0418",
+  "project": "simgate-modular-routing",
+  "kind": "conversation",
+  "title": "paper writing introduction",
+  "task_key": "worker_paper_writing_introduction_20260514T014429",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_writing_introduction_20260514T014429.jsonl",
+    "occurrence": 1,
+    "bytes": 20113,
+    "sha256": "73d14666d62cfd00d0694dd0294cda017207b841030fc8b22618768f299456e9"
+  },
+  "statistics": {
+    "messages": 23,
+    "user_turns": 0,
+    "tool_calls": 11,
+    "roles": {
+      "tool_call": 11,
+      "tool_result": 11,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T01:47:10.193859+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260514T014429",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T01:47:10.194536+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: latex-paper\n3\tdescription: ML 顶会论文 LaTeX 写作全流程——Claim-Evidence 方法论、引用防幻觉、顶会模板速查、投稿工程链、会议转投。写论文/投稿时参考。\n4\tscope: global\n5\ttags:\n6\t- latex\n7\t- paper-writing\n8\t- academic\n9\t- citation\n10\t- submission\n11\tversion: 1\n12\troles:\n13\t- agent\n14\t- worker\n15\t---\n16\t\n17\t# LaTeX 论文写作全流程\n18\t\n19\tML/AI 顶会论文从草稿到投稿的完整指南。整合 Orchestra Research、VibeSkills、claim2evidence 三方最佳实践。\n20\t\n21\t---\n22\t\n23\t## 1. 工作模式\n24\t\n25\t开始前选择模式：\n26\t\n27\t| 模式 | 说明 | 适用 |\n28\t|------|------|------|\n29\t| **Build** | 从实验笔记/结果/代码生成论文 | 新稿 |\n30\t| **Improve** | 改写已有章节，强化论证 | 修改稿 |\n31\t| **Audit** | 输出风险列表 + 缺失证据 + 修复建议 | 投前检查 |\n32\t\n33\t---\n34\t\n35\t## 2. Claim-Evidence 方法论\n36\t\n37\t**核心原则：论文是一个有中心贡献的故事，不是实验的堆砌。**\n38\t\n39\t### 2.1 一句话贡献\n40\t\n41\t在写任何内容之前，必须能用一句话说清贡献。如果不能，说明还没准备好写论文。\n42\t\n43\t### 2.2 Claim-Evidence Map\n44\t\n45\t为每个 contribution 建立 claim→evidence 映射表：\n46\t\n47\t| Contribution | Claim | Evidence | Table/Figure |\n48\t|-------------|-------|----------|-------------|\n49\t| C1: 方法 X 在 Y 上 SOTA | 比所有 baseline 高 ≥2% | 5-seed 平均，p<0.05 | Table 1 |\n50\t| C2: 消融证明 Z 是关键 | 去掉 Z 后掉 >5% | 消融实验 | Table 2 |\n51\t| C3: 计算效率 | 比 baseline 快 3× | FLOPs + wall-clock | Figure 3 |\n52\t\n53\t**没有直接证据支撑的 claim 必须删除或降级为 discussion。**\n54\t\n55\t### 2.3 章节起草顺序\n56\t\n57\t```\n58\t1. Introduction + Experiments（先确定 claim 和 evidence）\n59\t2. Method（评估问题稳定后再写细节）\n60\t3. Related Work\n61\t4. Abstract + Title（核心 claim 定型后最后写）\n62\t```\n63\t\n64\t### 2.4 Quality Gates\n65\t\n66\t投稿前必须通过：\n67\t- [ ] 前两段出现显式 novelty 声明\n68\t- [ ] 每个 contribution 有可验证的 evidence\n69\t- [ ] Abstract / Intro / Conclusion 的 claim 一致\n70\t- [ ] Limitations 真实且技术性诚实\n71\t- [ ] 审稿人两分钟内能识别 delta\n72\t\n73\t---\n74\t\n75\t## 3. 引用防幻觉（CRITICAL）\n76\t\n77\t**AI 生成引用有 ~40% 错误率。绝对禁止凭记忆写 BibTeX。**\n78\t\n79\t### 3.1 黄金法则\n80\t\n81\t```\n82\tIF 无法程序化获取引用:\n83\t    → 标记 [CITATION NEEDED] 或 \\cite{PLACEHOLDER_verify}\n84\t    → 明确告知用户\n85\t    → 绝不编造看似合理的引用\n86\t```\n87\t\n88\t### 3.2 五步验证流程\n89\t\n90\t```\n91\t1. SEARCH  → Semantic Scholar API 搜索关键词\n92\t2. VERIFY  → 至少 2 个来源确认论文存在（S2 + arXiv/CrossRef）\n93\t3. RETRIEVE → 通过 DOI 获取 BibTeX（程序化，非记忆）\n94\t4. CHECK   → 确认\n…[truncated 7201 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260514T014429",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T01:47:10.194753+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260514T014429",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/_project/paper/ 2>/dev/null",
+              "description": "Check existing paper artifacts"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T01:47:10.194905+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "related_work_draft.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260514T014429",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T01:47:10.195089+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260514T014429",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/_project/paper/related_work_draft.md"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T01:47:10.195253+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Related Work — Draft v1\n2\t\n3\t\\section{Related Work}\n4\t\n5\t\\paragraph{Tool-Use Learning.}\n6\tA line of work teaches LLMs when and how to invoke external tools.\n7\tToolformer \\cite{toolformer-2024} inserts API calls via self-supervised filtering, while ART \\cite{art-2023} uses LLM reasoning chains to select tools automatically, and Chameleon \\cite{chameleon-2024} composes diverse tool modules under LLM-as-planner orchestration.\n8\tMore recently, ReTool \\cite{retool-2026} applies reinforcement learning to learn implicit code-interpreter invocation strategies for mathematical reasoning.\n9\tOur work differs along three axes: (1) we generate routing labels via \\emph{episode-level counterfactual analysis}---running complete trajectories under competing strategies---rather than self-supervised or RL-based signals; (2) we frame routing as \\emph{catastrophic failure prevention} rather than general tool selection; and (3) we train an explicit lightweight router decoupled from the backbone LLM, enabling diagnostic analysis of what the routing signal encodes.\n10\t\n11\t\\paragraph{Adaptive Computation.}\n12\tSeveral recent methods adapt reasoning effort per step.\n13\tCogRouter \\cite{cogrouter-2026} achieves 82.3\\% on ScienceWorld by routing among cognitive depth levels (instinct to strategic planning) via Cooperative Policy Optimization, while ARES \\cite{ares-2026} trains a lightweight router to select per-step reasoning effort (low/medium/high), reducing token cost by 52.7\\%.\n14\tMixture-of-Recursions \\cite{mixture-of-recursions-2025} applies adaptive depth at the architecture level via per-token recursive routing.\n15\tThese methods route \\emph{how much} to reason; we route \\emph{which modality} to use (internal LLM reasoning vs.\\ deterministic computation) and contribute the empirical finding that death avoidance accounts for ${\\sim}99\\%$ of the learned routing signal.\n16\t\n17\t\\paragraph{World Model Routing.}\n18\tITP \\cite{itp-2026} augments agents with LLM-based world model lookahead, ad\n…[truncated 993 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260514T014429",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T01:47:10.195398+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260514T014429",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/MEMORY.md"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T01:47:10.195512+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260514T014429",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T01:47:10.195656+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260514T014429",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__read_project_file",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T01:47:10.195775+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260514T014429",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T01:47:10.195885+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260514T014429",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "simgate-modular-routing",
+              "file": "paper_framing.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T01:47:10.196111+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — simgate-modular-routing\\\\n\\\\n## Target Venue\\\\n- Primary: EMNLP 2026 Main (ARR short paper, 4 pages + references)\\\\n- Fallback: EMNLP 2026 Findings\\\\n- Deadline: ARR May 25, 2026 (12 days remaining)\\\\n\\\\n## Core Insight\\\\n\\\\nLLM agents on rule-governed environments face catastrophic failures from hallucinated state transitions. Deterministic external computation (environment simulators, code interpreters) eliminates these failures — but what exactly does routing learn? We introduce episode-level counterfactual analysis (per-step oracle labeling degenerates to 98% ties in sparse-reward settings) and discover that **death avoidance accounts for ~99% of routing signal** on ScienceWorld (Δ_full=+36.9, Δ_no_death=+0.3, r=0.986 p<0.0001). Non-death performance is approximately equal between modalities. The contribution is the empirical finding (death avoidance dominance) + the diagnostic methodology (episode-level counterfactual labeling), not the router architecture itself.\\\\n\\\\n## Core Claims (2 claims for short paper)\\\\n\\\\n**C1 (Death avoidance dominates routing signal)**: On ScienceWorld, deterministic simulation dramatically outperforms LLM reasoning (+30-60pp), with **death avoidance as the dominant mechanism** (~99% of the performance gap, measured by Δ decomposition). Episode-level label distribution: ~40% det-preferred, ~1% internal-preferred, ~59% no-preference. Non-death score deltas are small and inconsistent (range: -6.8 to +4.2, most near 0). The value of deterministic computation in interactive environments is concentrated in catastrophic failure prevention, not positive task guidance. Evidence: 24+ task types consistently show death-dominated signal; correlation between death rate differential and Δ(D-I) is r=0.986 (p<0.0001).\\\\n\\\\n**C2 (Episode-level counterfactual labe\n…[truncated 10589 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260514T014429",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T01:47:10.196283+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260514T014429",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "simgate-modular-routing",
+              "file": "ideas.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T01:47:10.196465+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"No ideas.md found for 'simgate-modular-routing'.\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260514T014429",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T01:47:10.196709+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260514T014429",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/_project/paper",
+              "description": "Ensure paper directory exists"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T01:47:10.196837+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260514T014429",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T01:47:10.197013+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260514T014429",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/_project/paper/introduction_draft.md",
+              "content": "# Introduction — Draft v1\n\n\\section{Introduction}\n\nWhen LLM agents interact with rule-governed environments---manipulating temperatures, mixing chemicals, navigating physical constraints---they face a failure mode qualitatively distinct from suboptimality: \\emph{catastrophic death}. A single hallucinated state transition can trigger an irreversible termination penalty, collapsing the episode score to $-100$. Deterministic external computation---environment simulators or code interpreters---eliminates such hallucinations by providing exact state transitions. But what does a router actually learn when trained to select between internal LLM reasoning and deterministic computation? Recent work on tool-use learning \\cite{toolformer-2024,art-2023,chameleon-2024,retool-2026} and adaptive computation \\cite{cogrouter-2026,ares-2026,mixture-of-recursions-2025} has developed methods for deciding when and how to invoke external modules, yet these approaches frame routing as a general capability or efficiency question---selecting the right tool, calibrating reasoning depth---without examining whether \\emph{failure avoidance} constitutes a distinct and potentially dominant routing signal.\n\nWe address this question by analyzing routing between internal reasoning, following the ReAct interleaved reasoning-and-acting paradigm \\cite{react-2023}, and deterministic computation on ScienceWorld, an interactive science environment with sparse rewards and catastrophic failure penalties. A natural first approach is per-step oracle comparison: at each decision point, run both modalities and prefer the one yielding higher immediate reward. However, in sparse-reward environments where non-zero reward arrives only at episode termination, this strategy degenerates. On ScienceWorld, per-step oracle labeling produces \\textbf{[PLACEHOLDER: 98\\%]} ties---neither modality shows a per-step advantage on the vast majority of steps---rendering the resulting labels uninformative for router training. This \\emph{oracle degeneracy} motivates a shift from step-level to episode-level analysis.\n\nWe introduce \\emph{episode-level counterfactual analysis}: for each task instance, we run complete episodes under pure-internal and pure-deterministic strategies, then compare episode-level outcomes to generate routing labels. Across [PLACEHOLDER: 30] ScienceWorld task types ([PLACEHOLDER: 249] episodes), this methodology reveals a striking concentration of routing signal. The full performance gap between deterministic and internal-reasoning strategies is [PLACEHOLDER: $\\Delta_{\\text{full}} = +37.9$] points. When we exclude episodes where either strategy results in agent death and recompute the gap, it collapses to [PLACEHOLDER: $\\Delta_{\\text{no\\_death}} = +0.2$]---effectively zero. Death avoidance accounts for [PLACEHOLDER: 99\\%] of the routing signal (death avoidance fraction [PLACEHOLDER: 98.75\\%]). The per-task correlation between death rate differential and performance gap is $r =$ [PLACEHOLDER: 0.989] ($p < 0.0001$). Episode-level label distribution confirms this asymmetry: [PLACEHOLDER: 41\\%] of episodes prefer deterministic computation, only [PLACEHOLDER: 0.5\\%] prefer internal reasoning, and [PLACEHOLDER: 59\\%] show no preference. When agents do not die, both reasoning modalities perform approximately equally.\n\nOur contributions are:\n\\begin{itemize}\n    \\item We propose \\textbf{episode-level counterfactual analysis} for routing label generation, overcoming the degeneracy of per-step oracle labeling in sparse-reward interactive environments (per-step tie rate of [PLACEHOLDER: 98\\%] on ScienceWorld).\n    \\item We introduce a \\textbf{death decomposition framework} that separates routing signal into death-avoidance and non-death components, quantifying how much routing value derives from catastrophic failure prevention versus positive task guidance.\n    \\item We provide \\textbf{empirical evidence} across [PLACEHOLDER: 30] ScienceWorld task types that death avoidance accounts for [PLACEHOLDER: 99\\%] of routing signal between internal LLM reasoning and deterministic computation, with non-death performance near-equivalent between modalities ([PLACEHOLDER: $\\Delta_{\\text{no\\_death}} = +0.2$]).\n\\end{itemize}\n"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T01:47:10.197251+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/_project/paper/introduction_draft.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260514T014429",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T01:47:10.197403+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260514T014429",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__register_artifact",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-14T01:47:10.197523+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260514T014429",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-14T01:47:10.197650+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260514T014429",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "introduction_draft_v1",
+              "type": "paper",
+              "description": "EMNLP 2026 short paper Introduction section draft v1 (~650 words). Covers: catastrophic failure framing, per-step oracle degeneracy, episode-level counterfactual methodology, death avoidance dominance finding (99% routing signal), 3 contributions. Registry data marked with [PLACEHOLDER].",
+              "project": "simgate-modular-routing",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/_project/paper/introduction_draft.md",
+              "tags": "['paper', 'introduction', 'draft-v1', 'emnlp-2026']"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-14T01:47:10.197857+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260514_d860d5\\\", \\\"name\\\": \\\"introduction_draft_v1\\\", \\\"type\\\": \\\"paper\\\", \\\"description\\\": \\\"EMNLP 2026 short paper Introduction section draft v1 (~650 words). Covers: catastrophic failure framing, per-step oracle degeneracy, episode-level counterfactual methodology, death avoidance dominance finding (99% routing signal), 3 contributions. Registry data marked with [PLACEHOLDER].\\\", \\\"path\\\": \\\"projects/simgate-modular-routing/artifacts/_project/paper/introduction_draft_d860d5.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"simgate-modular-routing\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-14T01:46:56.650315+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"introduction\\\", \\\"draft-v1\\\", \\\"emnlp-2026\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260514T014429",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-14T01:47:10.198112+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Introduction draft v1 已写入 `artifacts/_project/paper/introduction_draft.md` 并注册 (`art_20260514_d860d5`)。\n\n**结构概览（4 段 + 贡献列表，~650 words）：**\n\n1. **开场** — 从 catastrophic death 切入（非泛泛 LLM 成功论），指出 tool-use / adaptive computation 文献忽略 failure avoidance 作为 routing signal\n2. **Oracle 退化** — per-step oracle 在 sparse-reward 下产生 98% ties，motivate episode-level 方法；自然引入 ReAct 作为 internal reasoning baseline\n3. **核心发现** — episode-level counterfactual 揭示 Δ\\_full=+37.9 → Δ\\_no\\_death=+0.2，death avoidance fraction 98.75%，r=0.989；label distribution 41%/0.5%/59% 确认不对称性\n4. **三条贡献** — counterfactual methodology、death decomposition framework、empirical finding\n\n所有 registry 数字已用 `[PLACEHOLDER: 值]` 标注，待 plan-001b 全量数据到位后替换。引用仅使用 Related Work 已确认的 cite keys，无新增引用。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260514T014429"
+          },
+          "id": "event-000023"
+        }
+      ],
+      "message_count": 23
+    }
+  ],
+  "readable_path": "readable/conversations/paper-writing-introduction.md"
+}

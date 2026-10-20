@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5d16fed81dfd9a7af08a",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code math pilot rerun",
+  "task_key": "worker_code_math-pilot-rerun_20260515T091050",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_math-pilot-rerun_20260515T091050_result.json",
+    "occurrence": 1,
+    "bytes": 1263,
+    "sha256": "98ac4a7e2dd5c51ac72cb86d051dda7e30adaa9c7747e4cc00aa33cae1dfe691"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇报\n\n### 1. 重跑 Pilot 50 (sandbox 修复后)\n\n| 指标 | 旧 pilot (buggy) | 重跑 (fixed) |\n|------|------------------|--------------|\n| Internal acc | 80.0% | 76.0% |\n| Code acc | 72.0% | 72.0% |\n| Empty output rate | **32%** | **2.6%** |\n| Code exec rate | 82% | 78% |\n\nSandbox fix (auto_print_last_expr) 生效，empty output 从 32% 降到 2.6%。\n\n### 2. Clean N=300 完整统计\n\n| 指标 | 值 | 95% CI |\n|------|-----|--------|\n| Internal acc | 81.0% | [76.7%, 85.3%] |\n| Code acc | 76.7% | [72.0%, 81.3%] |\n| **Diff (int − code)** | **+4.3%** | **[0.0%, +8.7%]** |\n\n- Bootstrap P(diff≤0) = 0.032\n- McNemar exact p = 0.079\n- Level 4 gap: +2.0%, Level 5 gap: +6.8%\n\nLabels: no_preference=253, internal_preferred=30, det_preferred=17\n\n### 3. CI 是否排除 0？\n\n**否。** 95% CI 下界恰好为 0.000，未严格排除 0。McNemar p=0.079 也不显著。趋势一致（internal > code）但未达统计显著。\n\n### 4. vs N=250 对比\n\n| | N=250 (clean) | N=300 (clean) |\n|--|---------------|---------------|\n| Diff | +4.4% | +4.3% |\n| CI | [−0.4%, +9.2%] | [0.0%, +8.7%] |\n\n方向稳定，CI 略微收窄但仍含 0。加入修复后的 pilot 50 题没有改变结论方向。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-math-pilot-rerun.md"
+}

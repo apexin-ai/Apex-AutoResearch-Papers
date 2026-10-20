@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d448bcf528a503985172",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "paper writing introduction",
+  "task_key": "worker_paper_writing_introduction_20260514T014429",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_introduction_20260514T014429_result.json",
+    "occurrence": 1,
+    "bytes": 1017,
+    "sha256": "7b1f2f20043a189c820acce919359c9a04f1dc21a09b06172872d7c9909a09a1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Introduction draft v1 已写入 `artifacts/_project/paper/introduction_draft.md` 并注册 (`art_20260514_d860d5`)。\n\n**结构概览（4 段 + 贡献列表，~650 words）：**\n\n1. **开场** — 从 catastrophic death 切入（非泛泛 LLM 成功论），指出 tool-use / adaptive computation 文献忽略 failure avoidance 作为 routing signal\n2. **Oracle 退化** — per-step oracle 在 sparse-reward 下产生 98% ties，motivate episode-level 方法；自然引入 ReAct 作为 internal reasoning baseline\n3. **核心发现** — episode-level counterfactual 揭示 Δ\\_full=+37.9 → Δ\\_no\\_death=+0.2，death avoidance fraction 98.75%，r=0.989；label distribution 41%/0.5%/59% 确认不对称性\n4. **三条贡献** — counterfactual methodology、death decomposition framework、empirical finding\n\n所有 registry 数字已用 `[PLACEHOLDER: 值]` 标注，待 plan-001b 全量数据到位后替换。引用仅使用 Related Work 已确认的 cite keys，无新增引用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-introduction.md"
+}

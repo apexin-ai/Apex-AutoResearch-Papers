@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "e5c66a40e4da7e6facf2",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "ssh crafter heuristic agent",
+  "task_key": "worker_ssh_crafter-heuristic-agent_20260518T041020",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_crafter-heuristic-agent_20260518T041020.log",
+    "occurrence": 1,
+    "bytes": 911511,
+    "sha256": "b882d68c3f337cd60db6aac438cc0638ac6586f5ad8a7a24a038605f803fa642"
+  },
+  "statistics": {
+    "messages": 284,
+    "user_turns": 1,
+    "tool_calls": 104,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 68,
+      "tool_call": 104,
+      "tool_result": 104,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 132,
+      "chunks": [
+        {
+          "path": "e5c66a40e4da7e6facf2-part-0001.json",
+          "message_count": 132
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 152,
+      "chunks": [
+        {
+          "path": "e5c66a40e4da7e6facf2-part-0001.json",
+          "message_count": 22
+        },
+        {
+          "path": "e5c66a40e4da7e6facf2-part-0002.json",
+          "message_count": 130
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-crafter-heuristic-agent.md"
+}

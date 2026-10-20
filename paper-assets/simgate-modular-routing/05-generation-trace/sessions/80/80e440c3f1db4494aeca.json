@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "80e440c3f1db4494aeca",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "exp phase0 run",
+  "task_key": "worker_exp_phase0-run_20260513T045900",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_phase0-run_20260513T045900_result.json",
+    "occurrence": 1,
+    "bytes": 1341,
+    "sha256": "aba1378ba1b22ba7654fa3742eade671453f765effe8bf2f799a8beb4588fb02"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Phase 0 结果报告\n\n### GATE 判定：**PASS**\n\n### Fork 成功率\n**10/10 = 100%**（门槛 ≥80%）\n\n### Fork 延迟\n| 指标 | 值 |\n|------|------|\n| avg | 1.67s |\n| p50 | 1.53s |\n| p95 | 2.37s |\n\np95 < 5s ✓\n\n### 内存\n最大 RSS: 20 MB\n\n### 每个 task type 结果\n\n| Task | 成功率 | 平均延迟 | obs_match | score_match |\n|------|--------|----------|-----------|-------------|\n| boil | 4/4 | 1.56s | 全部 True | 全部 True |\n| melt | 3/3 | 1.77s | 全部 True | 全部 True |\n| change-the-state-of-matter-of | 3/3 | 1.72s | 全部 True | 全部 True |\n\n### ScienceWorld 实际 task type 名称（30 个）\n关键名称与代码配置的对应：\n- `boil` ✓ 精确匹配\n- `melt` ✓ 精确匹配\n- `change-the-state-of-matter-of` ✓ 精确匹配\n- `chemistry-mix-paint-secondary-color`（注意：无尾 `s`，已在修复中更正）\n- `grow-plant` ✓ 精确匹配\n\n### 修复内容\n运行前修复了 `scienceworld_utils.py`：\n1. `get_score()` — ScienceWorld 1.2.3 无 `getScore()`/`get_score()` 方法，改用 `step()` 返回的 `info['score']` 缓存\n2. `get_valid_actions()` — 改用 snake_case API `get_valid_action_object_combinations()`\n3. `MEDIUM_TASKS` 名称 — `chemistry-mix-paint-secondary-colors` → `chemistry-mix-paint-secondary-color`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-phase0-run.md"
+}

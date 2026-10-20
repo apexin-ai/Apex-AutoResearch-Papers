@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cc2e1b2069a69e20e362",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "eval ablation b generation level",
+  "task_key": "worker_eval_ablation-b-generation-level_20260514T083613",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_ablation-b-generation-level_20260514T083613_result.json",
+    "occurrence": 1,
+    "bytes": 1133,
+    "sha256": "b3de2409b02d2dca1ce2020f80b111c8fe484dea742662fe5c0d42f1de117f89"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。总结：\n\n## ablation-b Generation-Level Eval 结果\n\n**结论：ablation-b 通过验证，generation-level internal_recall = 51.52% > 30% 阈值。**\n\n| Metric | 值 |\n|--------|---|\n| Accuracy | 65.36% |\n| Balanced Accuracy | 59.27% |\n| Internal Recall | **51.52%** |\n| Deterministic Recall | 67.03% |\n| Logit-Generation Gap | **0.0** |\n\n**核心发现**：ablation-b 的 generation-level 和 logit-level 结果完全一致（confusion matrix [[17,16],[90,183]] 相同），是项目中唯一没有 logit-generation gap 的模型。\n\n| 模型 | logit internal_recall | gen internal_recall | gap |\n|------|----------------------|--------------------|----|\n| **ablation-b** | **51.52%** | **51.52%** | **0.0** |\n| v5 | 84.85% | 26.7% | 58.15 |\n| generative-v1 | 51.85% | 16.67% | 35.18 |\n\n**对 C2 claim 的影响**：项目有一个有效的 generation-level router (ablation-b)。ablation-b 与失败模型的训练差异（`upsample_minority=true` + `gradient_accumulation_steps=1`）可能是避免 logit-generation gap 的关键因素。\n\nRegistry 和 artifact 已更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-ablation-b-generation-level.md"
+}

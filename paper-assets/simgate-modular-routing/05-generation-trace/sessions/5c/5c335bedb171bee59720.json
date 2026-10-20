@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5c335bedb171bee59720",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "fix update paper csvs",
+  "task_key": "worker_fix_update-paper-csvs_20260514T063526",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_update-paper-csvs_20260514T063526_result.json",
+    "occurrence": 1,
+    "bytes": 632,
+    "sha256": "1acf5ba1ae71daaff561b010f8269d070b9e28e4fb5754cfec90e24f0a948610"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。验证汇总：\n\n**death_decomposition_preliminary.csv**\n- 旧文件已重命名为 `_OLD.csv`\n- 新文件 11 tasks / 245 eps（chemistry-mix 10→20 eps）\n- label_dist: det_pref=86, int_pref=9, no_pref=150 — 与 registry plan-012-full 一致\n\n**heatmap_data.csv find-non-living-thing 行**\n- n: 25→40\n- signal_category: `internal-preferred`→`genuine-det`\n- delta_DI: -1.32→+9.58（方向反转）\n- int_mean: 26.24→18.9, det_mean: 24.92→28.48\n- death_rate_int=0, death_rate_det=0（不变）\n\n两个文件已注册为 artifacts（`art_20260514_f69db2`, `art_20260514_5ea537`）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-update-paper-csvs.md"
+}

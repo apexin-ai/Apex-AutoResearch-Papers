@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a868a709a174c14f66ce",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code plan 006 deep internal",
+  "task_key": "worker_code_plan-006-deep-internal_20260515T143105",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan-006-deep-internal_20260515T143105_result.json",
+    "occurrence": 1,
+    "bytes": 1049,
+    "sha256": "13fdcc05bc724cd10b90d79d4606463b1be7ca60434139da4c31194da834e014"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "正常运行中。Episode 0 完成（65s），Episode 1 进行中。\n\n**收集已启动，状态总结：**\n\n- **实验**: `plan-006-deep-internal` (RUNNING)\n- **服务器**: westb-13313, GPU1\n- **任务**: 6 个 det-preferred 最高的 tasks × 20 episodes = 120 episodes\n  - identify-life-stages-1 (45%), lifespan-longest-lived (44%), find-non-living-thing (40%), lifespan-longest-lived-then-shortest-lived (40%), inclined-plane-determine-angle (35%), chemistry-mix (30%)\n- **模式**: Deep-internal（增强 CoT 系统 prompt + max_new_tokens=768）\n- **速度**: ~65s/ep → 预计 120 × 65s ≈ 2.2 小时完成\n- **输出**: `results/plan-006-deep-internal/{task}/episodes.jsonl`\n- **日志**: `/tmp/plan006_deep_internal.log`\n- **代码修改**:\n  - `src/llm_agent.py`: 添加 `DEEP_REACT_SYSTEM_PROMPT` 和 `select_action_deep_react()` 方法（5 步结构化推理 prompt，max_tokens 临时提升至 768）\n  - `src/episode_level_collection.py`: 添加 `run_episode_deep_internal()` 和 `--deep_internal` flag"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-006-deep-internal.md"
+}

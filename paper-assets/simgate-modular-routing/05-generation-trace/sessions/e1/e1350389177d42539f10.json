@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "e1350389177d42539f10",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "code llama 70b download verify",
+  "task_key": "worker_code_llama-70b-download-verify_20260523T234706",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama-70b-download-verify_20260523T234706.log",
+    "occurrence": 1,
+    "bytes": 775417,
+    "sha256": "1608035e6ad8fb74812dd83bc357a498428e97256b64fef2e1e1d9f96a6ca71d"
+  },
+  "statistics": {
+    "messages": 495,
+    "user_turns": 0,
+    "tool_calls": 202,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 87,
+      "tool_call": 202,
+      "tool_result": 202,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 495,
+      "chunks": [
+        {
+          "path": "e1350389177d42539f10-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "e1350389177d42539f10-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "e1350389177d42539f10-part-0003.json",
+          "message_count": 135
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-llama-70b-download-verify.md"
+}

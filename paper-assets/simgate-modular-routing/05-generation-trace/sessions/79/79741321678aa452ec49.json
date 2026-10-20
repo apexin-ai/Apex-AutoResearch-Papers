@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "79741321678aa452ec49",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "exp gemma definitive fix",
+  "task_key": "worker_exp_gemma-definitive-fix_20260520T082520",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_gemma-definitive-fix_20260520T082520_result.json",
+    "occurrence": 1,
+    "bytes": 690,
+    "sha256": "e9907b1867fd65e205e2c57552be552ad7dec40b511a05668ec58f46105c45f3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n**三个问题修复状态**:\n1. **Task list** ✅ — 确认 11 个精确 task name，脚本已包含\n2. **System role** ✅ — `sanitize_messages_for_template` 已在两个代码路径中调用，无需修改\n3. **vLLM 内存** ✅ — 关键发现：`enable_prefix_caching=False` 解决 EngineCore 崩溃（prefix caching 与 Gemma-2 SWA 交互导致内存泄漏）\n\n**Dry-run**: find-non-living-thing 1 episode 成功（internal=0.0, det=58.0, 60 prompts 无崩溃）\n\n**全量启动**: tmux `gemma-11tasks` 运行中，11 tasks × 20 episodes，GPU 1 正常加载 (27979MiB, 93% util)，GPU 0 未受影响。预计 ~15 小时完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-gemma-definitive-fix.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a65624ebfadc513a18ae",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "infra gpu and boil status",
+  "task_key": "worker_infra_gpu-and-boil-status_20260513T191501",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_gpu-and-boil-status_20260513T191501_result.json",
+    "occurrence": 1,
+    "bytes": 1282,
+    "sha256": "2d8259c96f6ef265334f4cb93b779442fdeb25d0480fd9e9492214de69825930"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总报告\n\n### GPU 状态\n| GPU | 型号 | 利用率 | 显存 |\n|-----|------|--------|------|\n| GPU0 | RTX 5090 | 0% (idle between inferences) | 28013 / 32607 MiB |\n| GPU1 | RTX 5090 | 0% | **0 / 32607 MiB** |\n\n### Prescreening (GPU0, PID 649681) — RUNNING\n已完成 **9/25 tasks**（+ 2 skipped MVP-tested: boil, change-the-state-of-matter-of）\n\n当前 identify-life-stages-1 只跑了 2 episodes（正常 5），可能正在进行中。\n\nSignal type 分布（已完成的 9 个）：\n- death-dominated: 4 (chemistry-mix-paint-tertiary-color, find-plant, grow-fruit, identify-life-stages-1)\n- genuine-det: 3 (find-animal, find-living-thing, freeze)\n- internal-preferred: 1 (find-non-living-thing)\n- mixed: 1 (chemistry-mix)\n\n### Boil v3 (GPU1, PID 650421) — DONE\n20 episodes 完成：\n\n| 策略 | Mean | Std |\n|------|------|-----|\n| always-internal | -44.7 | 50.0 |\n| always-deterministic | -9.3 | 30.3 |\n| oracle-routing | **3.8** | 15.2 |\n| oracle − internal | **+48.5** | — |\n| oracle − det | **+13.1** | — |\n\nOracle routing 大幅优于两个 baseline，但绝对分数仍低（3.8）——大部分 episode 得分 0，只有 1 个 episode 拿到 70 分拉高了均值。\n\n### GPU1 空闲，可派新任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-gpu-and-boil-status.md"
+}

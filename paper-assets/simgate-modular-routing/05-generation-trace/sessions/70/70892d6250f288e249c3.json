@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "70892d6250f288e249c3",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "check running experiments",
+  "task_key": "worker_check_running-experiments_20260514T143237",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_running-experiments_20260514T143237_result.json",
+    "occurrence": 1,
+    "bytes": 602,
+    "sha256": "0e1d27ac6f93d61aabe379c495158ea89f016c00b266a4cecd0da19f33422916"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "状态报告已写入 `artifacts/running_experiments_check.md`。\n\n**汇总：**\n\n| 实验 | 进程 | 进度 | 备注 |\n|------|------|------|------|\n| math-200-fixed | 存活 (PID 295420) | 29/200 (14.5%) | 正常推理中，通过 vLLM server port 8000 |\n| alfworld-cf-full | 存活 (PID 290564) | 45/140 (32%) | **全部 FAIL**（达 50 步上限），0 SUCCESS |\n\n两个需要关注的问题：\n1. **alfworld 成功率为 0%** — 45 个完成的 episode 全部失败，可能需要提前终止排查原因\n2. **3 个残留 dryrun 进程**仍在运行，占用内存资源"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-running-experiments.md"
+}

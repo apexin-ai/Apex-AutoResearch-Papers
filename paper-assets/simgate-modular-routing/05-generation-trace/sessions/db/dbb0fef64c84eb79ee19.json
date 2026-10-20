@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dbb0fef64c84eb79ee19",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "paper final compile",
+  "task_key": "worker_paper_final-compile_20260521T020237",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_final-compile_20260521T020237_result.json",
+    "occurrence": 1,
+    "bytes": 1984,
+    "sha256": "3091b76cb6f028f56e0a6afa6ee4e138cd3cd7e28560acdc73bc7a4f04f227f2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Compilation complete. Here's the full report:\n\n## Compilation Report\n\n**Status**: PDF generated successfully (24 pages, 498 KB)\n\n### Errors\n- **LaTeX errors**: 0 real errors\n- **Missing figures** (4 files, non-fatal — replaced with placeholders):\n  - `figures/dose_response.pdf`\n  - `figures/death_action_distribution.pdf`\n  - `figures/death_action_timeline.pdf`\n  - `figures/death_action_comparison.pdf`\n  - (3 figures exist: `fig1_daf_scatter.pdf`, `pipeline_overview.pdf`, `signal_reversal.pdf`)\n\n### Undefined References\n- **Cross-references**: 0 undefined\n- **Citations**: 1 undefined — `selfcheckgpt-2023` (referenced in `related_work.tex`, missing from `references.bib`)\n\n### BibTeX Warnings (3)\n1. Missing entry: `selfcheckgpt-2023`\n2. `ng1999policy` — `@article` but has `booktitle` field (should be `@inproceedings`)\n3. `northcutt2021confident` — `@inproceedings` but has `journal` field (should be `@article`)\n\n### Page Count\n- **Total**: 24 pages\n- **Main text** (abstract through conclusion): ~9 pages (Limitations starts mid-page 9)\n- **EMNLP 8-page limit**: **exceeded by ~1 page** (Limitations/Ethics don't count, but main text ends around page 9)\n\n### Overfull Hboxes > 10pt (4)\n| Width | Location |\n|-------|----------|\n| 13.5pt | lines 232–242 (Appendix C, excluded-tasks table) |\n| 10.8pt | lines 546–565 (Appendix M, cross-model table) |\n| 34.2pt | lines 680–689 (Appendix Q, threshold routing table) |\n| 94.3pt | lines 741–754 (Appendix S, extended validation table) |\n\n### Action Items\n1. **Critical**: Main text is ~1 page over the 8-page limit — needs trimming\n2. **Must fix**: Add `selfcheckgpt-2023` to `references.bib`\n3. **Must fix**: Upload 4 missing figure PDFs to `figures/`\n4. **Should fix**: Fix entry types for `ng1999policy` (→ `@inproceedings`) and `northcutt2021confident` (→ `@article`)\n5. **Should fix**: 94.3pt overfull hbox in Appendix S table (use `\\resizebox`)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-final-compile.md"
+}

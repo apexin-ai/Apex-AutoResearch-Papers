@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "cdea270470e5b896817d",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "eval ablation b e2e",
+  "task_key": "worker_eval_ablation-b-e2e_20260514T084430",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_ablation-b-e2e_20260514T084430.log",
+    "occurrence": 1,
+    "bytes": 1050975,
+    "sha256": "99448d7d2057f9fa83af3302e9f4938797a0bc5b23c074312b89e738e7bc40b5"
+  },
+  "statistics": {
+    "messages": 561,
+    "user_turns": 0,
+    "tool_calls": 232,
+    "roles": {
+      "log": 1,
+      "system": 8,
+      "record": 1,
+      "assistant": 86,
+      "tool_call": 232,
+      "tool_result": 232,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 561,
+      "chunks": [
+        {
+          "path": "cdea270470e5b896817d-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "cdea270470e5b896817d-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "cdea270470e5b896817d-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "cdea270470e5b896817d-part-0004.json",
+          "message_count": 21
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-ablation-b-e2e.md"
+}

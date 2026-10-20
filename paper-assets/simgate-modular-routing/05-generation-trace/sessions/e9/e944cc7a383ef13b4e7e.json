@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e944cc7a383ef13b4e7e",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "exp alfworld llama v3",
+  "task_key": "worker_exp_alfworld-llama-v3_20260520T085051",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_alfworld-llama-v3_20260520T085051_result.json",
+    "occurrence": 1,
+    "bytes": 78,
+    "sha256": "cff60f20d7e308f3b4ba3b4927d9a2add743b86c3cf6932f3034d622a8441de8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "最后一个后台任务也已完成。所有工作已结束。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-alfworld-llama-v3.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "63e8828f53471f09d896",
+  "project": "simgate-modular-routing",
+  "kind": "history",
+  "title": "agent / loop_6_1778769755.md",
+  "task_key": "loop_6_1778769755",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_6_1778769755.md",
+    "occurrence": 1,
+    "bytes": 5014,
+    "sha256": "a581ad1348861a59fb6a3909b7692340e0264d06d9a43295f7d86329c48dd5fd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: idle_timeout\nupdated: '2026-05-14T14:32:34+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**cuda:0, cuda:1** on westb-13313（仅此两张，无其他服务器）\n- D046（今日）：**撤销 PIVOT，回归 analysis paper**。MATH 不扩全量，pilot 结果仅入 Discussion。不要再提 method paper / unified router\n- D044：ALFWorld counterfactual 定位为 **exploratory**，不承诺纳入论文主体，看结果决定是否 supplementary/future work\n- D033：论文贡献 = **empirical finding + diagnostic methodology**，不是 router 架构。禁止写\"首个非退化 router\"或\"成功训练\"\n- Table 1 数字**只能来自 eval_end_to_end.py**（D037），eval_implicit_router.py 的 -12.84 不用\n- Checkpoint 路径：ablation-b = `checkpoints/plan-004-implicit/final_adapter`（正确）。gen-v1 = `checkpoints/plan-002-generative-v1/final_adapter`（失败的，别用错）\n- 训练数据唯一可用文件：`data/plan-004-implicit/implicit_sft.jsonl`（MD5: c9b59e04de78, 2040 samples）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**westb-13313**，2× RTX 5090 32GB\n- 工作目录：`/root/autodl-tmp/simgate-modular-routing`\n- Python：`/root/miniconda3/bin/python`（conda base，不是 venv）。环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型路径：Qwen2.5-7B-Instruct（数据收集用），Qwen3-1.7B（router 训练用），均在 `/root/autodl-tmp/.hf_cache` 或本地\n- W&B：项目内训练实验用 W&B 记录\n- 网络：AutoDL 必须 `source /etc/network_turbo` + `HF_HOME=/root/autodl-tmp/.hf_cache`\n- 活跃进程：\n  - `math-200-fixed`：cuda:0，MATH 200 题 counterfactual 收集（cron 监控中，间隔 120s）\n  - `alfworld-counterfactual-full`：cuda:1，tmux=alfworld_cf，ALFWorld 135 games counterfactual（cron 监控中，间隔 120s）\n\n### 3. 📊 当前状态\n**Paper Writing Sprint 阶段**，DDL 2026-05-25（剩 11 天）。\n\n两个数据收集实验 RUNNING：\n- `math-200-fixed`（cuda:0）：MATH 200 题 Level 4-5 counterfactual，用修复后的 code_sandbox.py。结果入 Discussion（不扩全量，D046）\n- `alfworld-counterfactual-full`（cuda:1）：ALFWorld 135 games 全量 counterfactual，预计 ~3.5h。探索性质（D044）\n\n**Worker 池 = 0**（违反 L1 红线）。ROADMAP 提到多个写作 Worker（experiments_v2_patch, conclusion, related_work_v2, consistency_review, bootstrap_ci_check, fig1-font-fix, abstract-sync）但当前无一在跑。上一轮 session 可能已完成或中断。\n\n**98.2% tie rate 数值修正**在 ROADMAP 标为\"Agent 处理中\"，状态不明，需确认是否已完成。\n\n核心实验全部完成。plan-012-full 定稿数据：Δ_full=+29.60, Δ_nd=+2.84, DAF=90.41%, r=0.9698。plan-013 确认 oracle circularity 不成立。LaTeX 编译已验证通过。\n\n### 4. 📋 待办（条件触发式）\n- `math-200-fixed` cron 回调到达 → spawn worker 分析 MATH counterfactual 结果（code vs internal 对比），更新 registry，结果写入 Discussion 段落（不做全量扩展，D046）\n- `alfworld-counterfactual-full` cron 回调到达 → spawn worker 分析 ALFWorld 全量结果，与 plan-012 ScienceWorld 数据对比；若 death avoidance pattern 一致 → 考虑入 supplementary；若不一致 → 记录为 future work（D044）\n- 确认 98.2% tie rate 数值是否已修正 → 若未修正，spawn worker 修正论文中对应数字\n- 确认写作 Workers（experiments_v2_patch, conclusion, related_work_v2 等）产出是否已合并 → 若未合并，按 Critical Path 继续推进\n- 5/15-16 → 整合完整 LaTeX 初稿 + plan-013 labeling quality 结果入 Discussion\n- 5/17 → Paper Agent 交初稿目标\n\n### 5. 🎯 战略上下文\n**核心结论链**：ScienceWorld 上 deterministic simulation 大幅优于 LLM reasoning（Δ=+29.60），~90% 归因于 death avoidance（DAF=90.41%）。Classification head 全退化（D025），generative SFT 也 negative（D029）。唯一非退化 router（ablation-b）balanced_acc=58.1%，但 e2e 仍 negative（-10.70 vs always-det -9.47）。**Router near-random IS the finding**——强化 C1。\n\n**方向 pivot 历史**（D041→D042→D045→D046）：今天经历了 analysis→method→analysis 的反复。D046 最终定论：**回归 analysis paper**。MATH pilot 显示 internal 反超 code interpreter（80% vs 72%），否定了统一 router 前提，不适合 method paper。\n\n**最容易判断错的事**：\n1. 不要被 D041/D042 的 method paper pivot 迷惑——D046 已撤销，当前方向是 analysis paper\n2. ALFWorld 结果**不要急于加入主论文**——D044 明确说\"看结果决定\"，default 是 supplementary/future work\n3. ablation-b trained-router 的 Table 1 数字是 **-10.70**（eval_end_to_end.py），不是 -12.84（eval_implicit_router.py）\n4. plan-003-baseline 虽然 status=PREPARING 但 conclusion=success 且 metrics 已有——这是 retrospectively registered，不需要重跑\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6-1778769755.md"
+}

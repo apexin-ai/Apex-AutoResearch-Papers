@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "da8a3dc925c66c93c9ef",
+  "project": "simgate-modular-routing",
+  "kind": "history",
+  "title": "agent / loop_10_1778804432.md",
+  "task_key": "loop_10_1778804432",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_10_1778804432.md",
+    "occurrence": 1,
+    "bytes": 4412,
+    "sha256": "72429ba0da183cd464893b17bee4ad6eca807e2883bb2525374f318259597e4c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: idle_timeout\nupdated: '2026-05-15T00:20:29+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目 GPU 白名单：westb-13313 cuda:0, cuda:1（2× RTX 5090 32GB）。无其他服务器/GPU 分配\n- **数据文件**：`results/plan_c_test_labels/implicit_sft.jsonl` 标签损坏（no-preference→internal 映射错误），**绝对不能用**。唯一可用训练数据：`data/plan-004-implicit/implicit_sft.jsonl`（MD5: c9b59e04de78, 2040 samples）\n- **Checkpoint 路径**：`checkpoints/plan-004-implicit/final_adapter` = ablation-b（成功的 router）。`checkpoints/plan-002-generative-v1/final_adapter` = gen-v1（失败的）。两者 eval metrics 相似容易混淆\n- **死亡分解数据源**：主文引用 plan-012-full（11 tasks / 245 eps，标记 [A]），robustness 仅 appendix（30 tasks / 249 eps，标记 [B]）。`death_decomposition_report.json` 是 30-task 数据，不要引用到主文\n- 论文 Table 1 所有数字必须来自 `eval_end_to_end.py`，不是 `eval_implicit_router.py`\n- Qwen3 推理必须 `enable_thinking=False` + regex 清理 `<think>` tags\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westb-13313，工作目录未在 memory 中明确记录（需 Worker SSH 确认，大概率 `/root/autodl-tmp/simgate-modular-routing` 或类似）\n- Python 环境：预置镜像 `aml-train`，conda base（`/root/miniconda3/bin/python`）\n- 模型：Qwen3-1.7B（router SFT），Qwen2.5-7B（backbone agent）——路径需 Worker SSH 确认\n- W&B：项目中使用但具体 project name 未在 memory 记录\n- HF cache：应在 `/root/autodl-tmp/.hf_cache`（AutoDL 规范）\n- 活跃进程：**无**。0 RUNNING 实验，0 cron，0 Worker\n- 论文源码：本地 `paper/` 目录，本地 pdflatex 编译通过（7 页，0 warnings，22 bib entries）\n\n### 3. 📊 当前状态\n**Session #9 已完成所有实验和论文修复。**\n\n刚完成：\n- ALFWorld counterfactual 全量实验（135 games）结果写入 Limitations + Conclusion\n- R2→R3 所有 3 Blockers（B1-B3）+ 8 Suggestions（S1-S8）修复完毕\n- 本地 pdflatex 完整编译通过，全文数字一致性交叉验证通过\n- R3 审稿已提交（D049: Weak Accept - Findings 3.25/5，从 R2 的 2.75/5 提升）\n\nRegistry 终态：58 experiments，22 success / 13 negative / 10 failed / 13 killed，**0 RUNNING / 0 PREPARING（活跃）**\n\n等待中：\n- R3 审稿验证结果（5/15 预期）\n- 远程 rsync 同步 + 重编译验证尚未做（nice-to-have）\n- 最终 PDF 视觉检查未做\n\n### 4. 📋 待办（条件触发式）\n- R3 审稿回来（预期 5/15）→ 读审稿意见 → 按 Action Matrix 模式处理（blocker/suggestion 分类 → 逐一修复）\n- 若 R3 Accept → 进入 camera-ready 流程（5/23-24 终稿）\n- 若 R3 仍有 blocker → 评估修复工期，必要时补充分析实验（cuda:0/1 空闲可用）\n- 远程同步需要时 → spawn Worker rsync 本地 paper/ 到 westb-13313 → 远程编译验证\n- 5/23 前 → 最终 PDF 视觉检查（spawn Worker 用 pdf_to_images）\n- ARR 提交前 → reference-audit skill 做引用最终验证\n\n### 5. 🎯 战略上下文\n**核心结论**：Episode-level counterfactual analysis 在 ScienceWorld 上发现 death avoidance 占 ~90% routing signal（DAF=90.41%，r=0.9698）。贡献 = empirical finding + diagnostic methodology，不是 router 架构。\n\n**决策链关键节点**：\n- D013: Framing pivot 到 death avoidance dominates（不再声称 selective > unconditional）\n- D025: Classification head 路线宣告失败 → pivot 到 generative SFT\n- D033: Framing 定稿 Option B（方法论贡献）\n- D041-D046: 多次 pivot（analysis→method→analysis），最终回归 analysis paper\n- D049: R3 Weak Accept 3.25/5，camera-ready 修复阶段\n\n**易错点**：\n- 不要把 prescreening 30-task 数据（[B]）混入主文 11-task 数据（[A]）——DAF 数值不同（98.75% vs 90.41%）\n- Router balanced_acc=58.1±0.8% 仅比随机高 8pp——这 IS the finding，不要试图\"改善\"它\n- MATH 跨环境验证信号反转（internal 优于 deterministic）——已入 Discussion 作为 limitation，不要重新跑\n- ALFWorld 结果（det 27.4% vs int 3.0%）仅入 Limitations/Conclusion 作为 exploratory evidence\n- plan-011 keyword baseline 结构性失效——不要再尝试新 keyword list\n- ga=8 是 ablation-b 的正确配置（4 重交叉验证），不要质疑\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-1778804432.md"
+}

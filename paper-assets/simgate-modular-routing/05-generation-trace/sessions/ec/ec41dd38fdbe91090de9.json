@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ec41dd38fdbe91090de9",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ops server cleanup",
+  "task_key": "worker_ops_server-cleanup_20260515T084015",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_server-cleanup_20260515T084015_result.json",
+    "occurrence": 1,
+    "bytes": 1077,
+    "sha256": "6754a367dc8eec1f2d1e04b0ce02fa651c2a60b119da1f45a18b75dc112b6dd3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 1. Llama 模型下载状态：**未完成，碎片化**\n\n模型文件散落在多个目录，不在预期路径 `meta-llama/Meta-Llama-3.1-8B-Instruct/`：\n\n| 位置 | 内容 |\n|------|------|\n| `LLM-Research/Meta-Llama-3___1-8B-Instruct/` | shard 4/4 (1.1GB) + config/tokenizer |\n| `._____temp/LLM-Research/Meta-Llama-3.1-8B-Instruct/` | shard 1-3 (共 ~13.5GB)，在 temp 目录 |\n| `Meta-Llama-3.1-8B-Instruct/` | 仅 44MB，有 `tokenizer.json.aria2` 残留 |\n\n4 个 safetensors 文件都存在但分散在不同目录。需要合并到一个目录并清理 temp 文件。\n\n### 2. GPU 显存\n\n| GPU | 清理前 | 清理后 |\n|-----|--------|--------|\n| cuda:0 | 0 MiB / 32607 MiB | 0 MiB / 32607 MiB |\n| cuda:1 | 28283 MiB / 32607 MiB | **0 MiB / 32607 MiB** |\n\n### 3. 已清理进程\n\n- vLLM Qwen2.5-7B-Instruct (port 8001, CUDA_VISIBLE_DEVICES=1) — PID 359272, 359266 — 已 kill，cuda:1 显存已释放\n\n### 4. Multi-model pilot 相关进程\n\n- port 8000：无进程\n- episode_level_collection.py：无进程"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-server-cleanup.md"
+}

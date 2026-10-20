@@ -1,0 +1,78 @@
+{
+  "schema_version": "1.0",
+  "id": "9a4cc79c613e4c97172a",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "analyze plan 004 ablation b",
+  "task_key": "worker_analyze_plan-004-ablation-b_20260514T055629",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_plan-004-ablation-b_20260514T055629_result.json",
+    "occurrence": 1,
+    "bytes": 2622,
+    "sha256": "1b7fdd0f58d21dae2f0dbaf1ab32ed554c7defe32aaf1ca5411a3de9f1edfc60"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "评估完成。结果：\n\n```json\n{\n  \"eval_accuracy\": 0.6536,\n  \"eval_f1_macro\": 0.5091,\n  \"eval_balanced_accuracy\": 0.5927,\n  \"per_class\": {\n    \"deterministic\": {\"precision\": 0.9196, \"recall\": 0.6703, \"f1\": 0.7754, \"support\": 273},\n    \"internal\":      {\"precision\": 0.1589, \"recall\": 0.5152, \"f1\": 0.2429, \"support\": 33}\n  },\n  \"confusion_matrix\": {\n    \"true_det_pred_det\": 183,\n    \"true_det_pred_int\": 90,\n    \"true_int_pred_det\": 16,\n    \"true_int_pred_int\": 17\n  },\n  \"is_degenerate\": false,\n  \"unique_predictions\": [\"deterministic\", \"internal\"]\n}\n```\n\n## 与 plan-002-dryrun 对比\n\n| 指标 | plan-002 (explicit, 1 epoch) | plan-004 (implicit, 3 epochs) | 变化 |\n|------|------|------|------|\n| accuracy | 0.923 | 0.654 | -0.269 |\n| f1_macro | 0.48 | 0.509 | +0.029 |\n| balanced_accuracy | 0.50 | 0.593 | +0.093 |\n| is_degenerate | YES (全 det) | **NO** | **突破** |\n| det recall | 1.0 | 0.670 | -0.330 |\n| int recall | 0.0 | **0.515** | **+0.515** |\n| int precision | 0.0 | 0.159 | +0.159 |\n\n## 关键发现\n\n1. **不再退化**：plan-004 是两类都有预测的第一个成功模型，balanced_accuracy 0.593 > 0.5，证明模型学到了有意义的路由信号。\n\n2. **internal recall 突破零**：从 plan-002 的 0% → 51.5%，模型能识别约一半的 internal 样本。\n\n3. **代价是 accuracy 下降**：因为 90/273 (33%) 的 deterministic 样本被错误预测为 internal，导致整体 accuracy 从 0.923 降到 0.654。\n\n4. **internal precision 很低 (0.159)**：模型预测为 internal 的样本中，只有 15.9% 真的是 internal — 大量 false positive。\n\n5. **Qwen3 thinking mode 干扰**：模型总是生成 `<think>...</think>` 前缀，需要 strip 后才能检测 `[SIMULATE]`。训练时的 chat template 可能包含了 think 标签导致训练/推理不一致，这可能是 precision 低的原因之一。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "eval_accuracy": 0.6536,
+              "eval_f1_macro": 0.5091,
+              "eval_balanced_accuracy": 0.5927,
+              "per_class": {
+                "deterministic": {
+                  "precision": 0.9196,
+                  "recall": 0.6703,
+                  "f1": 0.7754,
+                  "support": 273
+                },
+                "internal": {
+                  "precision": 0.1589,
+                  "recall": 0.5152,
+                  "f1": 0.2429,
+                  "support": 33
+                }
+              },
+              "confusion_matrix": {
+                "true_det_pred_det": 183,
+                "true_det_pred_int": 90,
+                "true_int_pred_det": 16,
+                "true_int_pred_int": 17
+              },
+              "is_degenerate": false,
+              "unique_predictions": [
+                "deterministic",
+                "internal"
+              ]
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-plan-004-ablation-b.md"
+}

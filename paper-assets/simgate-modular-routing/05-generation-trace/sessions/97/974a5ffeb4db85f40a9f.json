@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "974a5ffeb4db85f40a9f",
+  "project": "simgate-modular-routing",
+  "kind": "history",
+  "title": "director / loop_6.md",
+  "task_key": "loop_6",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_6.md",
+    "occurrence": 1,
+    "bytes": 2051,
+    "sha256": "37fd5cbad5fb5b2822622032f5c172ccfebaeaf59ec3b9c97584e29a2a569f2b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: max_messages\nupdated: '2026-05-15T19:39:19+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 需要先通过 `get_project_status` 和 `load_project_config` 确认本项目当前分配的 GPU 设备号，不要假设任何 cuda 设备\n- 项目已进入审稿阶段（review_chat_id: `oc_0b622d6038b969b96148ee8a163a1a0c`），研究侧继续推进实验，但不参与论文格式/投稿材料准备\n- ideas.md 和 constraints.yaml 尚未创建（标记 ⚠️），首次使用时需初始化\n\n### 2. 🖥️ 基础设施快照\n- 本轮 session 未执行 SSH 探查，服务器/工作目录/Python 路径/模型路径等需要通过 `load_project_config(section=\"execution\")` + `list_ssh_hosts` + `get_resource_inventory` 重新获取\n- 活跃进程/tmux/cron 状态未知，需 BOOT 后立即查询\n\n### 3. 📊 当前状态\n- 本轮 session 38 条消息 / 3h18min，Main Agent 仅 2 条消息后 idle 180min 触发 RESET\n- 未在本轮执行任何实验审批或方向决策\n- 具体 registry 状态（RUNNING/PREPARING 实验）需通过 `director_get_project_overview` + `auto_build_report_facts` 刷新\n- 无等待中的 Worker 回调或 Director 决策\n\n### 4. 📋 待办\n- BOOT 启动 → `get_project_status` + `director_get_project_overview` + `get_resource_inventory` 全面摸底\n- 确认 GPU 分配 → 检查是否有空闲 GPU 未被占用，有则立即派实验\n- 审稿报告到达 → 按 `review-report-action` skill 处理（Holistic Pass → Action Matrix）\n- Main Agent 重置完成 → 根据项目状态派发下一批任务\n\n### 5. 🎯 战略上下文\n- 项目名 simgate-modular-routing，核心方向/claims 见 `paper_framing.md`，实验计划见 `experiment_plan.yaml`\n- 已进入审稿阶段，研究侧应继续铺 ablation / 扩展实验，GPU 不能空等\n- 本轮 session 实际产出很少（Main Agent 几乎未工作），下一个\"你\"需要重新评估项目全貌后立即推进\n- 易错点：不要因为\"审稿阶段\"就停下实验——审稿期间 GPU 必须持续跑，这是 L1 红线\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6.md"
+}

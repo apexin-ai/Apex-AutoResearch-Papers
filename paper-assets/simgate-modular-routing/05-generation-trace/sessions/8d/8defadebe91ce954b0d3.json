@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8defadebe91ce954b0d3",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code counterfactual labeling",
+  "task_key": "worker_code_counterfactual-labeling_20260513T171101",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_counterfactual-labeling_20260513T171101_result.json",
+    "occurrence": 1,
+    "bytes": 734,
+    "sha256": "8e8d4c3f10fbd55396818f511bf899806c0913c2818093b69e78408c90f462ce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 通过，import 和参数解析均无报错。\n\n**产出：**\n- `/root/autodl-tmp/simgate-modular-routing/src/counterfactual_labeling.py` 已写入服务器并验证\n- 本地同步副本：`src/counterfactual_labeling.py`\n\n**脚本结构：**\n- `fork_and_continue()` — 核心新增：fork 环境 → 执行 first_action → 用 ReAct base policy 续跑 K 步 → 返回 final score → 关闭 JVM\n- `get_deterministic_action()` — 复用 phase1 的 candidate 生成 + fork 1-step 评估 + lethal filter 逻辑\n- `run_episode()` — 每步获取 internal/det action，diverge 时双 fork + K 步续跑，用 score 差异标 label\n- `main()` — CLI 入口，按 episode 写 JSONL，结束打 summary"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-counterfactual-labeling.md"
+}

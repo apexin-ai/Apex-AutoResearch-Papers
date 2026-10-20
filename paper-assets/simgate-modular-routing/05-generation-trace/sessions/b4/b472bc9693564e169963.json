@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b472bc9693564e169963",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "fix r7n2 eval batchsize",
+  "task_key": "worker_fix_r7n2-eval-batchsize_20260516T031315",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_r7n2-eval-batchsize_20260516T031315_result.json",
+    "occurrence": 1,
+    "bytes": 421,
+    "sha256": "80eaef605df1cc45410d792ed096b8e385bf82d0b7a841d823f871323c0bae80"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n1. **`per_device_eval_batch_size`** 从 `args.batch_size`(4) → 硬编码 `2`（第342行）\n2. **`generation_eval` batch_size** 已是 2（第376、384行，无需改）\n3. Kill 了旧进程 929751 及两个残留子进程（930111、930385），释放 ~14GB 显存\n4. 新进程 PID 930638 运行中，GPU0 占用 10GB/32GB，训练 epoch 1 接近完成（~93%）\n5. GPU1 未动"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-r7n2-eval-batchsize.md"
+}

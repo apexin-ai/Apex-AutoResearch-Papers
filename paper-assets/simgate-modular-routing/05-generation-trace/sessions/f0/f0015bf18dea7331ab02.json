@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f0015bf18dea7331ab02",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "infra 70b gpu debug",
+  "task_key": "worker_infra_70b-gpu-debug_20260517T101251",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_70b-gpu-debug_20260517T101251_result.json",
+    "occurrence": 1,
+    "bytes": 1183,
+    "sha256": "6818c95d8524d7400159f7fd6a019acad63369f65ca59ffe5f4494f930879a3a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结论：系统正常运行，无需修复。**\n\n诊断结果：\n\n1. **vLLM 正在运行** — 两个 GPU 都被 vLLM Worker 占用（各 32080MiB），模型已加载。`curl health` 不响应是因为使用的是 offline/LLM engine 模式（非 OpenAI API server 模式），直接通过 Python 调用。\n\n2. **Episode collection 正在活跃执行** — 进程 `python src/episode_level_collection.py` 在 17:52 启动，正在处理 11 个 task types，日志显示持续的推理输出（input ~1000-2000 toks/s, output ~35-55 toks/s）。\n\n3. **GPU 利用率显示 0%** — 这是 `nvidia-smi` 的采样问题。vLLM 的推理是突发式的（每次处理一个 prompt），在两次推理之间 GPU compute utilization 会短暂降为 0%。但显存占满（32089/32607 MiB）且进程活跃，说明在正常工作。\n\n4. **输出目录** — `results/backbone_72b/` 已有 `chemistry-mix` 子目录，json 文件数为 0（可能正在写入第一批结果，或结果在子目录内）。\n\n**状态：一切正常，无需干预。** Episode collection 正在跑，模型在持续推理。GPU \"空闲\" 是 nvidia-smi 瞬时采样的误报。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-70b-gpu-debug.md"
+}

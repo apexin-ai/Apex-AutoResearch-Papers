@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ad2e153c67b17c016bed",
+  "project": "simgate-modular-routing",
+  "kind": "history",
+  "title": "agent / loop_9_1778804446.md",
+  "task_key": "loop_9_1778804446",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_9_1778804446.md",
+    "occurrence": 1,
+    "bytes": 3561,
+    "sha256": "bbdee8b875465d25d4a56d1f77e4ebc97d7286f97613b6d36c72f3e07e0953bf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 9\nreason: idle_timeout\nupdated: '2026-05-15T00:20:32+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westb-13313 的 cuda:0, cuda:1（仅此两张，无其他服务器）\n- Table 1 数字唯一来源：`eval_end_to_end.py` 输出，禁止用 `eval_implicit_router.py` 的 -12.84\n- 训练数据唯一可用文件：`data/plan-004-implicit/implicit_sft.jsonl`（MD5: c9b59e04de78, 2040 samples）。`results/plan_c_test_labels/implicit_sft.jsonl` 标签损坏，禁用\n- Qwen3 推理脚本必须 `enable_thinking=False` + `re.sub` 清理 `<think>` tags\n- C1 措辞上限 \"~90%\"（非 ~99%），find-non-living-thing 零死亡 task 是正面案例\n- Checkpoint 区分：`checkpoints/plan-004-implicit/final_adapter` = ablation-b（正确），`checkpoints/plan-002-generative-v1/final_adapter` = gen-v1（失败品）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westb-13313，2× RTX 5090 32GB\n- 工作目录：远程路径需 SSH 确认（上次代码在服务器上，本地 src/ 有部分脚本）\n- Python 环境：conda base（`/root/miniconda3/bin/python`），预置镜像 aml-train\n- HF_HOME：`/root/autodl-tmp/.hf_cache`\n- W&B：项目内有 wandb 集成（fetch_wandb_metrics 可用）\n- 活跃进程：**无**。所有 58 个实验已终态，0 RUNNING，无活跃 tmux/cron\n- Worker 池：0（后端无可用账号）\n\n### 3. 📊 当前状态\n**所有实验已完成，论文处于 review 迭代阶段。**\n\nRegistry: 58 experiments 全部终态（22 success / 13 negative / 10 failed / 13 killed），0 RUNNING / 0 PREPARING。\n\n论文状态：R3 Weak Accept (3.25/5)，D049 camera-ready 修复已完成。本地 pdflatex 编译通过（7 页 = 正文 4p + 附录等 3p，0 warnings，22 bib，0 undefined refs）。ALFWorld 跨环境证据已写入 Limitations + Conclusion。\n\n上一个 session 完成了：ALFWorld 135-game 全量实验、修复断引用、全文数字一致性验证、编译清理。\n\n无等待中的 Worker 回调 / Cron / Director 决策。\n\n### 4. 📋 待办（条件触发式）\n- Director 要求提交 → 远程 rsync 同步最新 LaTeX → 重编译验证 → 最终 PDF 视觉检查 → ARR 提交\n- Director 要求补充分析 → cuda:0/1 空闲可用，spawn worker 执行\n- R3 审稿人返回新 revision 要求 → 按 D048/D049 action matrix 模式处理：列 blockers → 逐一修复 → 编译验证\n- MATH-200 vLLM crash 恢复（D047 决策：不恢复，55/105 题足够支撑 Discussion）\n\n### 5. 🎯 战略上下文\n**核心结论**：Death avoidance 占 ~90% routing signal。Episode-level counterfactual analysis 是方法论贡献（D033 Option B）。Router near-random (balanced_acc=58.1%) 本身就是 finding，不是失败。\n\n**决策链要点**：\n- D046: 撤销 pivot 回归 analysis paper（不是 method paper）\n- D033: Framing Option B = methodology + empirical finding\n- D025: 2-class classification head 路线宣告失败（极端 imbalance 导致退化）\n- D032: ga=8 因果关系成立（4 重交叉验证），ga=1 过拟合是 logit-generation gap 根因\n\n**易错点**：\n- 不要混淆 \"router 训练 success\"（routing 非退化）和 \"e2e deployment negative\"（trained router 不如 always-det），这是两个不同实验的不同 conclusion\n- GC4-par / GC4-seq 不可直接对比（不同环境机制）\n- Oracle routing 仅比 always-det 好 2.89 分（-6.58 vs -9.47），96.2% episode 也选 det → 这是支撑 C1 的关键数据点\n- DDL 是 5/25，当前 5/15，还有 10 天但论文已基本 ready，主要是等 review 迭代收敛\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-9-1778804446.md"
+}

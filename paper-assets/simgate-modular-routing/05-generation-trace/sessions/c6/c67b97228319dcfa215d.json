@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c67b97228319dcfa215d",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "monitor plan 002 v5 early loss",
+  "task_key": "worker_monitor_plan-002-v5-early-loss_20260514T065644",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_plan-002-v5-early-loss_20260514T065644_result.json",
+    "occurrence": 1,
+    "bytes": 1183,
+    "sha256": "4425d98bde300d15da512c9b826ad7533c4bd6e635524767e041d2aaaccb2fd1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**LOSS_ABNORMAL — v5 问题未修复。**\n\n训练已完成（3 epochs, 958s），结果：\n\n| 阶段 | Train Loss | Eval Loss |\n|------|-----------|-----------|\n| Epoch 0.2 | **11.51** | — |\n| Epoch 0.4 | 6.43 | — |\n| Epoch 0.6 | 7.87 | — |\n| Epoch 0.8 | 5.73 | — |\n| Epoch 1.0 | 5.15 | 0.79 |\n| Epoch 2.2-2.9 | 4.16~4.91 | 0.78 |\n| **平均** | **5.59** | — |\n\n**Class weights**: `internal=4.5, deterministic=0.5625` — 已生效打印。\n\n**核心问题**：\n1. Train loss 全程 4-11，远超正常值 0.5-0.7，与 v3/v4 一样异常\n2. **Internal 类完全没学到** — 3 个 epoch 的 eval 中 precision/recall/f1 全为 0.0，模型把所有样本都预测为 deterministic\n3. Train loss (5.59) 与 eval loss (0.78) 差距巨大，说明 class_weights 放大了 train loss 但没有实际引导模型学到少数类\n4. Grad norm 极高（604→70-160），训练不稳定\n5. 无 assert 错误\n\n**结论**：单纯加 class_weights 不足以解决类别不平衡问题。可能需要检查：数据是否真的有可区分的 internal 模式、loss 计算逻辑是否正确、或换用 focal loss / oversampling 等策略。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-plan-002-v5-early-loss.md"
+}

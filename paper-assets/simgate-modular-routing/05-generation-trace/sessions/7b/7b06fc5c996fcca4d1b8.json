@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7b06fc5c996fcca4d1b8",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "analysis death timing sf3",
+  "task_key": "worker_analysis_death-timing-sf3_20260515T161427",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_death-timing-sf3_20260515T161427_result.json",
+    "occurrence": 1,
+    "bytes": 1038,
+    "sha256": "9fc188a451ba119e25e019c5fa7926ba362bc22e918744f4df5b6b072ffb4989"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心发现：\n\n**Death Timing 分布**\n- Internal mode: 105 次死亡，mean step=18.4，median=17，66% 集中在 steps 10–19（mid-episode）\n- Deterministic mode: 40 次死亡，mean step=21.7，median=22，70% 在 step 20+（late-episode）\n- Deterministic 比 internal 平均多存活 3.3 步\n\n**Mixed Routing 结论：价值有限**\n\n关键矛盾 — internal 的死亡集中在 mid-episode（step 16-17 峰值），恰好是 agent 完成初步探索、开始执行任务关键交互的阶段。要避免大部分死亡需要对前 20 步都用 deterministic，但这等于放弃了 67% 的探索机会，几乎就是纯 deterministic 模式。\n\nSimGate 的 task-level routing 比 step-level mixed routing 更合理：直接为整个 episode 选模态，避免了\"安全与探索\"在时间维度上的冲突。\n\n报告已注册为 artifact（`art_20260515_0338b4`），包含完整统计、histogram 数据点、per-task breakdown、论文讨论建议文本、以及可视化 spec。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-death-timing-sf3.md"
+}

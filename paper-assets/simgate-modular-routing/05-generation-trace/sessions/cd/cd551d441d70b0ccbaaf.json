@@ -1,0 +1,478 @@
+{
+  "schema_version": "1.0",
+  "id": "cd551d441d70b0ccbaaf",
+  "project": "simgate-modular-routing",
+  "kind": "conversation",
+  "title": "paper writing experiments v2",
+  "task_key": "worker_paper_writing_experiments_v2_20260514T085847",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_writing_experiments_v2_20260514T085847.jsonl",
+    "occurrence": 1,
+    "bytes": 30717,
+    "sha256": "c00433ad6119cbc5143f996252bac7bd74eeedd8456a58fb53f19cc2bc708074"
+  },
+  "statistics": {
+    "messages": 23,
+    "user_turns": 0,
+    "tool_calls": 11,
+    "roles": {
+      "tool_call": 11,
+      "tool_result": 11,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T09:03:43.647108+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_v2_20260514T085847",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T09:03:43.647834+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: latex-paper\n3\tdescription: ML 顶会论文 LaTeX 写作全流程——Claim-Evidence 方法论、引用防幻觉、顶会模板速查、投稿工程链、会议转投。写论文/投稿时参考。\n4\tscope: global\n5\ttags:\n6\t- latex\n7\t- paper-writing\n8\t- academic\n9\t- citation\n10\t- submission\n11\tversion: 1\n12\troles:\n13\t- agent\n14\t- worker\n15\t---\n16\t\n17\t# LaTeX 论文写作全流程\n18\t\n19\tML/AI 顶会论文从草稿到投稿的完整指南。整合 Orchestra Research、VibeSkills、claim2evidence 三方最佳实践。\n20\t\n21\t---\n22\t\n23\t## 1. 工作模式\n24\t\n25\t开始前选择模式：\n26\t\n27\t| 模式 | 说明 | 适用 |\n28\t|------|------|------|\n29\t| **Build** | 从实验笔记/结果/代码生成论文 | 新稿 |\n30\t| **Improve** | 改写已有章节，强化论证 | 修改稿 |\n31\t| **Audit** | 输出风险列表 + 缺失证据 + 修复建议 | 投前检查 |\n32\t\n33\t---\n34\t\n35\t## 2. Claim-Evidence 方法论\n36\t\n37\t**核心原则：论文是一个有中心贡献的故事，不是实验的堆砌。**\n38\t\n39\t### 2.1 一句话贡献\n40\t\n41\t在写任何内容之前，必须能用一句话说清贡献。如果不能，说明还没准备好写论文。\n42\t\n43\t### 2.2 Claim-Evidence Map\n44\t\n45\t为每个 contribution 建立 claim→evidence 映射表：\n46\t\n47\t| Contribution | Claim | Evidence | Table/Figure |\n48\t|-------------|-------|----------|-------------|\n49\t| C1: 方法 X 在 Y 上 SOTA | 比所有 baseline 高 ≥2% | 5-seed 平均，p<0.05 | Table 1 |\n50\t| C2: 消融证明 Z 是关键 | 去掉 Z 后掉 >5% | 消融实验 | Table 2 |\n51\t| C3: 计算效率 | 比 baseline 快 3× | FLOPs + wall-clock | Figure 3 |\n52\t\n53\t**没有直接证据支撑的 claim 必须删除或降级为 discussion。**\n54\t\n55\t### 2.3 章节起草顺序\n56\t\n57\t```\n58\t1. Introduction + Experiments（先确定 claim 和 evidence）\n59\t2. Method（评估问题稳定后再写细节）\n60\t3. Related Work\n61\t4. Abstract + Title（核心 claim 定型后最后写）\n62\t```\n63\t\n64\t### 2.4 Quality Gates\n65\t\n66\t投稿前必须通过：\n67\t- [ ] 前两段出现显式 novelty 声明\n68\t- [ ] 每个 contribution 有可验证的 evidence\n69\t- [ ] Abstract / Intro / Conclusion 的 claim 一致\n70\t- [ ] Limitations 真实且技术性诚实\n71\t- [ ] 审稿人两分钟内能识别 delta\n72\t\n73\t---\n74\t\n75\t## 3. 引用防幻觉（CRITICAL）\n76\t\n77\t**AI 生成引用有 ~40% 错误率。绝对禁止凭记忆写 BibTeX。**\n78\t\n79\t### 3.1 黄金法则\n80\t\n81\t```\n82\tIF 无法程序化获取引用:\n83\t    → 标记 [CITATION NEEDED] 或 \\cite{PLACEHOLDER_verify}\n84\t    → 明确告知用户\n85\t    → 绝不编造看似合理的引用\n86\t```\n87\t\n88\t### 3.2 五步验证流程\n89\t\n90\t```\n91\t1. SEARCH  → Semantic Scholar API 搜索关键词\n92\t2. VERIFY  → 至少 2 个来源确认论文存在（S2 + arXiv/CrossRef）\n93\t3. RETRIEVE → 通过 DOI 获取 BibTeX（程序化，非记忆）\n94\t4. CHECK   → 确认\n…[truncated 7201 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_v2_20260514T085847",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T09:03:43.648148+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_v2_20260514T085847",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/_project/paper/ 2>/dev/null || echo \"DIR_NOT_EXISTS\""
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T09:03:43.648362+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "experiment_tables.md\nintroduction_draft.md\nintroduction_draft_d860d5.md\nmethod_draft.md\nmethod_draft_e328fe.md\npaper_outline.md\nrelated_work_draft.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_v2_20260514T085847",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T09:03:43.648598+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_v2_20260514T085847",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/_project/paper/method_draft.md"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T09:03:43.648863+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Method — Draft v1\n2\t\n3\t\\section{Method}\n4\t\n5\tWe describe our methodology in four parts: counterfactual episode collection (\\S\\ref{sec:collection}), death-aware labeling (\\S\\ref{sec:labeling}), the death avoidance factor (\\S\\ref{sec:daf}), and a rule-based baseline analysis (\\S\\ref{sec:rule}).\n6\t\n7\t\\subsection{Counterfactual Episode Collection}\n8\t\\label{sec:collection}\n9\t\n10\tAs motivated in \\S1, per-step oracle labeling degenerates under sparse rewards. We instead adopt \\emph{episode-level counterfactual analysis}: for each task instance, we run two complete episodes under identical initial conditions (same random seed):\n11\t\n12\t\\begin{itemize}\n13\t    \\item \\textbf{Pure-internal}: all steps use the LLM's internal reasoning following the ReAct paradigm \\cite{react-2023}, where the agent interleaves chain-of-thought reasoning with environment actions.\n14\t    \\item \\textbf{Pure-deterministic}: all steps use deterministic external computation via the environment simulator, providing exact state transitions.\n15\t\\end{itemize}\n16\t\n17\tEach episode produces a tuple $(s^{\\text{int}}, s^{\\text{det}}, d^{\\text{int}}, d^{\\text{det}})$, where $s$ denotes episode score and $d \\in \\{0, 1\\}$ indicates whether the agent died. Episodes are capped at [PLACEHOLDER: 30] steps. We use Qwen2.5-7B-Instruct as the LLM backbone, served via vLLM.\n18\t\n19\tWe evaluate on ScienceWorld \\cite{scienceworld-2022}, which provides [PLACEHOLDER: 30] task types spanning physical and chemical reasoning. For each task type, we first run a prescreening phase (5 episodes) to identify tasks where both strategies can be meaningfully compared, then collect the full dataset of [PLACEHOLDER: 20] episodes per task. The final dataset comprises [PLACEHOLDER: 249] episodes across all [PLACEHOLDER: 30] task types.\n20\t\n21\t\\subsection{Death-Aware Labeling}\n22\t\\label{sec:labeling}\n23\t\n24\tWe assign an episode-level routing label to each counterfactual pair based on the four-tuple $(s^{\\text{int}}, s^{\\text{det}}, d^{\\tex\n…[truncated 4410 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_v2_20260514T085847",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T09:03:43.649116+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_v2_20260514T085847",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/_project/paper/introduction_draft.md"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T09:03:43.649339+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Introduction — Draft v1\n2\t\n3\t\\section{Introduction}\n4\t\n5\tWhen LLM agents interact with rule-governed environments---manipulating temperatures, mixing chemicals, navigating physical constraints---they face a failure mode qualitatively distinct from suboptimality: \\emph{catastrophic death}. A single hallucinated state transition can trigger an irreversible termination penalty, collapsing the episode score to $-100$. Deterministic external computation---environment simulators or code interpreters---eliminates such hallucinations by providing exact state transitions. But what does a router actually learn when trained to select between internal LLM reasoning and deterministic computation? Recent work on tool-use learning \\cite{toolformer-2024,art-2023,chameleon-2024,retool-2026} and adaptive computation \\cite{cogrouter-2026,ares-2026,mixture-of-recursions-2025} has developed methods for deciding when and how to invoke external modules, yet these approaches frame routing as a general capability or efficiency question---selecting the right tool, calibrating reasoning depth---without examining whether \\emph{failure avoidance} constitutes a distinct and potentially dominant routing signal.\n6\t\n7\tWe address this question by analyzing routing between internal reasoning, following the ReAct interleaved reasoning-and-acting paradigm \\cite{react-2023}, and deterministic computation on ScienceWorld, an interactive science environment with sparse rewards and catastrophic failure penalties. A natural first approach is per-step oracle comparison: at each decision point, run both modalities and prefer the one yielding higher immediate reward. However, in sparse-reward environments where non-zero reward arrives only at episode termination, this strategy degenerates. On ScienceWorld, per-step oracle labeling produces \\textbf{[PLACEHOLDER: 98\\%]} ties---neither modality shows a per-step advantage on the vast majority of steps---rendering the resulting labels uninformative for router t\n…[truncated 2276 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_v2_20260514T085847",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T09:03:43.649553+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_v2_20260514T085847",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/_project/paper/paper_outline.md"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T09:03:43.649809+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# EMNLP 2026 Short Paper Outline\n2\t\n3\t## Title Candidates\n4\t\n5\t1. **Death Avoidance Dominates Routing Signal: A Counterfactual Analysis of LLM Agent Tool Use in Interactive Environments**\n6\t2. **When Does Deterministic Computation Help LLM Agents? Episode-Level Counterfactual Analysis Reveals Death Avoidance Dominance**\n7\t3. **90% Death Avoidance: Decomposing the Routing Signal Between LLM Reasoning and Deterministic Simulation**\n8\t\n9\tRecommended: **Title 1** (clear claim + methodology in title; fits short paper convention of stating the finding)\n10\t\n11\t---\n12\t\n13\t## Abstract Skeleton (~150 words)\n14\t\n15\tKey points to cover:\n16\t\n17\t- **Problem**: LLM agents hallucinate state transitions in rule-governed environments, causing catastrophic failures (deaths). Routing between internal LLM reasoning and deterministic computation (simulators) can mitigate this, but what exactly does routing learn?\n18\t- **Methodological gap**: Per-step oracle labeling degenerates in sparse-reward settings (98% tie rate on ScienceWorld). We propose episode-level counterfactual analysis.\n19\t- **Core finding**: Death avoidance accounts for ~90% of routing signal (Δ_full=+29.60, Δ_no_death=+2.84, DAF=90.41%; Pearson r=0.97, p<1e-6 across 11 task types / 245 episodes) [A: plan-012-full, 245eps/11tasks]. Non-death performance is approximately equal between modalities.\n20\t- **Supporting finding**: Keyword heuristics structurally fail (match rates degenerate to ≈always-det or ≈always-internal); episode-level counterfactual labels can train a lightweight router (internal_recall=51.5%).\n21\t- **Implication**: The value of deterministic computation in interactive environments is concentrated in catastrophic failure prevention, not positive task guidance.\n22\t\n23\t---\n24\t\n25\t## Section Structure\n26\t\n27\t### 1. Introduction (0.8 pages)\n28\t\n29\t**Key points:**\n30\t- LLM agents on rule-governed environments (physics, chemistry) suffer catastrophic failures from hallucinated state transitions → motivate the r\n…[truncated 8551 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_v2_20260514T085847",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T09:03:43.650053+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_v2_20260514T085847",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/memory/MEMORY.md"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T09:03:43.650257+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_v2_20260514T085847",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T09:03:43.650434+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_v2_20260514T085847",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/_project/paper/experiment_tables.md"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T09:03:43.650662+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Experiment Tables for EMNLP 2026 Short Paper\n2\t\n3\t> **Status**: Preliminary (pre-analysis: prescreening 5 ep/task + MVP 20 ep/task, N=249 episodes).\n4\t> Plan-001b full data collection in progress; numbers will be updated upon completion.\n5\t\n6\t---\n7\t\n8\t## Table 1: Death Decomposition Analysis (plan-012)\n9\t\n10\tCore result: deterministic simulation advantage is almost entirely explained by death avoidance.\n11\t\n12\t| Metric | Episode-weighted | Task-weighted† |\n13\t|--------|:---------------:|:-------------:|\n14\t| Δ_full (det − internal) | **+38.33** | **+41.48** |\n15\t| Δ_nd (non-death episodes only) | +0.48 | +0.91 |\n16\t| DAF (death avoidance fraction) | 98.8% | 93.9% |\n17\t| DAF 95% CI (bootstrap) | [93.9%, 104.5%] | [84.6%, 99.8%] |\n18\t| Pearson *r* (Δ_death_rate vs Δ_full) | 0.986 | — |\n19\t| *p*-value | <0.0001 | — |\n20\t| Δ_penalty_removed | +0.98 | — |\n21\t| Internal death rate | 49.0% | — |\n22\t| Deterministic death rate | 11.7% | — |\n23\t| Tasks / Episodes | 30 / 249 | 30 / 249 |\n24\t\n25\t**Data source**: `results/death_decomposition_report.json` (plan-012, 2026-05-14).\n26\tEpisode-weighted = aggregate means across all episodes; Task-weighted† = mean of per-task metrics (from registry, pending re-verification).\n27\t\n28\t### Signal Source Decomposition (episode-level)\n29\t\n30\t| Signal Source | Count | % of Episodes |\n31\t|--------------|:-----:|:------------:|\n32\t| death_asymmetry | 93 | 37.3% |\n33\t| tied_alive (no-preference) | 117 | 47.0% |\n34\t| both_dead (no-preference) | 29 | 11.6% |\n35\t| score_comparison | 10 | 4.0% |\n36\t\n37\t**Interpretation**: 93/102 det-preferred labels (91.2%) come from death asymmetry; only 9 (8.8%) from genuine score differences.\n38\t\n39\t---\n40\t\n41\t## Table 2: Keyword Routing Baseline (plan-011)\n42\t\n43\tAll keyword heuristics degenerate — none provides meaningful routing signal.\n44\t\n45\t| Version | Keywords | N | Match Rate | Routing Acc.† | Effective Behavior |\n46\t|---------|:--------:|:---:|:----------:|:------------:|-------------------|\n47\t| v1 \n…[truncated 3864 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_v2_20260514T085847",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T09:03:43.650841+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_v2_20260514T085847",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/_project/paper/related_work_draft.md"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T09:03:43.651024+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Related Work — Draft v1\n2\t\n3\t\\section{Related Work}\n4\t\n5\t\\paragraph{Tool-Use Learning.}\n6\tA line of work teaches LLMs when and how to invoke external tools.\n7\tToolformer \\cite{toolformer-2024} inserts API calls via self-supervised filtering, while ART \\cite{art-2023} uses LLM reasoning chains to select tools automatically, and Chameleon \\cite{chameleon-2024} composes diverse tool modules under LLM-as-planner orchestration.\n8\tMore recently, ReTool \\cite{retool-2026} applies reinforcement learning to learn implicit code-interpreter invocation strategies for mathematical reasoning.\n9\tOur work differs along three axes: (1) we generate routing labels via \\emph{episode-level counterfactual analysis}---running complete trajectories under competing strategies---rather than self-supervised or RL-based signals; (2) we frame routing as \\emph{catastrophic failure prevention} rather than general tool selection; and (3) we train an explicit lightweight router decoupled from the backbone LLM, enabling diagnostic analysis of what the routing signal encodes.\n10\t\n11\t\\paragraph{Adaptive Computation.}\n12\tSeveral recent methods adapt reasoning effort per step.\n13\tCogRouter \\cite{cogrouter-2026} achieves 82.3\\% on ScienceWorld by routing among cognitive depth levels (instinct to strategic planning) via Cooperative Policy Optimization, while ARES \\cite{ares-2026} trains a lightweight router to select per-step reasoning effort (low/medium/high), reducing token cost by 52.7\\%.\n14\tMixture-of-Recursions \\cite{mixture-of-recursions-2025} applies adaptive depth at the architecture level via per-token recursive routing.\n15\tThese methods route \\emph{how much} to reason; we route \\emph{which modality} to use (internal LLM reasoning vs.\\ deterministic computation) and contribute the empirical finding that death avoidance accounts for ${\\sim}99\\%$ of the learned routing signal.\n16\t\n17\t\\paragraph{World Model Routing.}\n18\tITP \\cite{itp-2026} augments agents with LLM-based world model lookahead, ad\n…[truncated 993 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_v2_20260514T085847",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T09:03:43.651394+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_v2_20260514T085847",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/_project/paper/experiments_draft.md",
+              "content": "# Experiments — Draft v1\n\n\\section{Experiments}\n\n\\subsection{Setup}\n\\label{sec:exp-setup}\n\nWe evaluate on ScienceWorld \\cite{scienceworld-2022}, a text-based interactive environment for elementary science tasks with sparse terminal rewards and a $-100$ penalty upon agent death. Using the counterfactual methodology described in \\S\\ref{sec:collection}, we collect 245 episode pairs across 11 task types (20--40 episodes per type). The LLM backbone is Qwen2.5-7B-Instruct, served via vLLM, with episodes capped at 30 steps. The internal-reasoning strategy follows the ReAct paradigm \\cite{react-2023}; the deterministic strategy uses the environment simulator for exact state transitions.\n\n\\subsection{Death Avoidance Decomposition}\n\\label{sec:death-decomp}\n\nThe full performance gap between deterministic and internal strategies across 245 episodes is $\\Delta_{\\text{full}} = +29.60$ points. When we exclude all episodes where either strategy results in agent death, the gap collapses to $\\Delta_{\\text{no\\_death}} = +2.84$. The resulting Death Avoidance Factor (\\S\\ref{sec:daf}) is 90.41\\%: approximately 90\\% of the deterministic strategy's advantage over internal reasoning is attributable to death avoidance rather than superior task performance when both agents survive.\n\nThis concentration is consistent across task types. The Pearson correlation between per-task death rate differential (internal minus deterministic) and $\\Delta_{\\text{full}}$ is $r = 0.9698$ ($p = 8.12 \\times 10^{-7}$), as shown in Figure~\\ref{fig:decomposition}. Knowing how much more frequently the internal strategy dies is nearly sufficient to predict the full performance gap for a given task type. The internal strategy dies in 42.9\\% of episodes compared to 16.3\\% for deterministic computation---a 2.6$\\times$ ratio that drives the bulk of the observed score difference.\n\nThe episode-level label distribution reflects this asymmetry. Of 245 episodes, 86 are labeled \\texttt{det\\_preferred}, only 9 \\texttt{internal\\_preferred}, and 150 \\texttt{no\\_preference}. The near-absence of internal-preferred labels---combined with the dominance of no-preference labels---indicates that when internal reasoning does not lead to catastrophic failure, it performs comparably to deterministic computation. The few internal-preferred episodes arise from tasks where deterministic computation's rigid action space occasionally produces suboptimal trajectories despite avoiding death.\n\nOne task reveals the residual non-death signal. \\texttt{find-non-living-thing} ($n=40$) is the only task type with zero deaths under both strategies, yet it shows $\\Delta_{\\text{full}} = +9.58$, entirely from non-death performance differences. This confirms that routing value beyond death avoidance exists: deterministic computation can provide advantages through more accurate state tracking even when agents survive. However, this signal is not the dominant factor across the benchmark. Among the 10 death-prone task types, death avoidance overwhelms non-death differences. For example, \\texttt{measure-melting-point-unknown} ($n=20$) exhibits death rates of 55\\% (internal) and 25\\% (deterministic), producing $\\Delta_{\\text{full}} = +30.05$---a gap driven primarily by the 30-percentage-point death rate differential rather than non-death performance.\n\nWhen both modalities survive, their task performance is near-equivalent ($\\Delta_{\\text{no\\_death}} = +2.84$). The value of deterministic computation in this environment is concentrated in preventing catastrophic failures, not in providing positive task guidance.\n\n\\subsection{Baselines}\n\\label{sec:baselines}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{@{}lccc@{}}\n\\toprule\nStrategy & Score & 95\\% CI & Death \\% \\\\\n\\midrule\nAlways-Internal & $-39.07$ & [$-44.89$, $-33.37$] & 42.9 \\\\\nAlways-Deterministic & $-9.47$ & [$-13.66$, $-5.11$] & 16.3 \\\\\nRandom & $-22.38$ & [$-27.75$, $-17.09$] & 27.8 \\\\\nOracle & $-6.58$ & [$-10.65$, $-2.43$] & 14.3 \\\\\n\\midrule\nImplicit Router & \\multicolumn{3}{c}{[PLACEHOLDER]} \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Episode-weighted mean scores on ScienceWorld (11 task types, 245 episodes). Confidence intervals computed via bootstrap. The oracle selects the higher-scoring strategy per episode; 96.2\\% of its decisions match the always-deterministic strategy.}\n\\label{tab:baselines}\n\\end{table}\n\nTable~\\ref{tab:baselines} reports episode-weighted mean scores and death rates for four unconditional strategies. Always-deterministic ($-9.47$) outperforms always-internal ($-39.07$) by 29.60 points, consistent with $\\Delta_{\\text{full}}$. The oracle, which selects the higher-scoring strategy per episode, improves only modestly to $-6.58$, with 96.2\\% of its routing decisions matching always-deterministic. This \\emph{oracle degeneracy} indicates that the optimal episode-level routing policy closely resembles unconditional deterministic computation---the routing signal is insufficient to improve upon simply always choosing the deterministic strategy. Random routing ($-22.38$) falls between the two pure strategies, with a death rate (27.8\\%) proportional to its 50/50 allocation.\n\nKeyword-based routing (\\S\\ref{sec:rule}) structurally fails to provide meaningful discrimination. ScienceWorld actions use generic interaction verbs (\\texttt{pick up}, \\texttt{move}, \\texttt{connect}) rather than science-specific terms, causing keyword match rates to cluster at extremes: near-total (v1: 85.8\\%, degenerating to always-deterministic) or negligible (v2: 4.9\\%, v3: 2.8\\%, both degenerating to always-internal). No keyword granularity bridges this gap.\n\n\\subsection{Router Training as Diagnostic}\n\\label{sec:router-diagnostic}\n\nA natural question is whether the episode-level counterfactual labels can train a step-level router. We investigate this as a diagnostic probe of label informativeness rather than a routing system proposal, testing two architectures.\n\n\\paragraph{Classification head.} We append a linear classification head to the LLM's hidden representations, trained on episode-level routing labels. Across all configurations tested---class weighting, focal loss, minority undersampling, and temperature scaling---the classifier degenerates to predicting always-deterministic (0\\% internal recall in all cases). The episode-level labeling granularity does not transfer to step-level classification through this architecture.\n\n\\paragraph{Implicit router.} We fine-tune a smaller model (Qwen3-1.7B) to internalize routing decisions within its generation process. At the logit level, routing patterns emerge: accuracy reaches 74.5\\% with balanced accuracy of 79\\%, demonstrating that the counterfactual labels encode learnable routing structure beyond what a degenerate always-deterministic predictor captures. At the generation level, however, accuracy drops to 65.36\\% with internal recall of 51.5\\%, revealing a gap between logit-level pattern recognition and generation-level expression. [PLACEHOLDER: ablation-b end-to-end evaluation results for Table~\\ref{tab:baselines}.]\n\nThese results yield two observations. First, the counterfactual labels encode genuine routing patterns at the representation level---the logit-level success rules out uninformative labels as the cause of classification head failure, pointing instead to the episode-to-step granularity mismatch as the bottleneck. Second, while the labels reveal learnable routing patterns at the logit level, generation-level expression of these patterns remains an open challenge. Whether this gap stems from the labeling granularity, the generation decoding process, or model capacity is under investigation; step-level counterfactual labeling may be a productive direction for bridging it.\n\n\\subsection{Limitations}\n\\label{sec:limitations}\n\nOur analysis is conducted on a single benchmark (ScienceWorld) with a single LLM backbone (Qwen2.5-7B-Instruct), and generalization to other interactive environments and model scales remains to be established. ScienceWorld's severe $-100$ death penalty may amplify the death avoidance signal; environments with less catastrophic failure penalties could exhibit a lower DAF, though the qualitative finding---death avoidance as a major component of routing signal---may still hold. Our counterfactual labels operate at episode granularity; step-level labeling with denser reward signals is a natural extension that could improve both decomposition resolution and router training. The gap between logit-level and generation-level routing accuracy in the implicit router warrants further investigation.\n"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T09:03:43.651651+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/_project/paper/experiments_draft.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_v2_20260514T085847",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T09:03:43.651797+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_v2_20260514T085847",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__register_artifact",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-14T09:03:43.651924+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_v2_20260514T085847",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-14T09:03:43.652100+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_v2_20260514T085847",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "experiments_draft",
+              "type": "paper",
+              "description": "EMNLP 2026 short paper Experiments section draft v1 (~1200 words). Covers death avoidance decomposition (DAF=90.41%), baselines (Table 1), router training diagnostic, and limitations. All numbers from A source (plan-012-full, 245 episodes / 11 tasks).",
+              "project": "simgate-modular-routing",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/_project/paper/experiments_draft.md",
+              "tags": "['paper', 'experiments', 'emnlp2026', 'draft-v1']"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-14T09:03:43.652257+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260514_dd9866\\\", \\\"name\\\": \\\"experiments_draft\\\", \\\"type\\\": \\\"paper\\\", \\\"description\\\": \\\"EMNLP 2026 short paper Experiments section draft v1 (~1200 words). Covers death avoidance decomposition (DAF=90.41%), baselines (Table 1), router training diagnostic, and limitations. All numbers from A source (plan-012-full, 245 episodes / 11 tasks).\\\", \\\"path\\\": \\\"projects/simgate-modular-routing/artifacts/_project/paper/experiments_draft_dd9866.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"simgate-modular-routing\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-14T09:03:27.980054+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"experiments\\\", \\\"emnlp2026\\\", \\\"draft-v1\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_v2_20260514T085847",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-14T09:03:43.652495+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。文件写入 `artifacts/_project/paper/experiments_draft.md`，已注册为 `art_20260514_dd9866`。\n\n结构概要：\n\n- **§Setup** (~95 words): ScienceWorld 环境、11 tasks / 245 episodes、Qwen2.5-7B-Instruct + vLLM、30 steps\n- **§Death Avoidance Decomposition** (~400 words): Δ\\_full=+29.60 → Δ\\_nd=+2.84, DAF=90.41%; r=0.9698 (p=8.12e-07); label distribution 86/9/150; find-non-living-thing 零死亡例外; measure-melting-point-unknown 高死亡率例证\n- **§Baselines** (~200 words): Table 1 (booktabs, 含 CI 和 death rate); oracle degeneracy (96.2% ≈ always-det); keyword routing 结构性失败引用 §3.4\n- **§Router Training as Diagnostic** (~280 words): classification head 全退化; implicit router logit 74.5%/79% bal\\_acc vs generation 65.36%/51.5% recall; framed as diagnostic finding; [PLACEHOLDER] 留给 ablation-b e2e 结果\n- **§Limitations** (~130 words): 单 benchmark、单 LLM、-100 penalty 可能放大 DAF、episode-level 粒度\n\n待填项：Table 1 implicit router 行（等 ablation-b e2e 评估结果）。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_v2_20260514T085847"
+          },
+          "id": "event-000023"
+        }
+      ],
+      "message_count": 23
+    }
+  ],
+  "readable_path": "readable/conversations/paper-writing-experiments-v2.md"
+}

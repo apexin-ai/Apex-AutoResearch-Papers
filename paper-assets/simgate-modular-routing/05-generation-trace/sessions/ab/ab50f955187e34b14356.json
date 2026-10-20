@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ab50f955187e34b14356",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh verify gpu0 conflict",
+  "task_key": "worker_ssh_verify-gpu0-conflict_20260514T021301",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_verify-gpu0-conflict_20260514T021301_result.json",
+    "occurrence": 1,
+    "bytes": 1125,
+    "sha256": "2248ec9dc1fef5f4a66f7f2c5c76d44f8993bf010274cbb8c75452dc89ff68cb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### PID 存活状态\n\n| PID | 状态 | 说明 |\n|-----|------|------|\n| 544511 (v3 原始) | **已死** | 不存在 |\n| 544942 (v3 父) | **已死** | 不存在 |\n| 582850 (v4 新) | **存活** | 运行 6 分钟，正在跑 `lifespan-longest-lived,measure-melting-point-unknown-substance --episodes 20 --gpu_id 0` |\n\n### GPU 进程分布\n\n| GPU | UUID | 占用显存 | PID | 归属 |\n|-----|------|---------|-----|------|\n| GPU0 | `GPU-3023...` | 28013/32607 MiB | **583838** (VLLM) | plan-001b-gpu0-**v4** 的子进程（PPID 582855 → 582850） |\n| GPU1 | `GPU-5576...` | 28013/32607 MiB | **558609** (VLLM) | 另一个任务：`find-non-living-thing --gpu_id 1`（PPID 557852），与 GPU0 无关 |\n\n### 结论：**无冲突**\n\n- v3 进程（PID 544511）已经死了，GPU0 上只有 v4 一个进程在跑。\n- GPU1 上的 558609 是另一个独立任务（`find-non-living-thing --gpu_id 1`），不涉及 GPU0。\n- v4 正在正常推理中（日志显示持续的 prompt processing，速度约 2000+ toks/s input, ~90 toks/s output）。\n- 不需要 kill 任何进程。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-verify-gpu0-conflict.md"
+}

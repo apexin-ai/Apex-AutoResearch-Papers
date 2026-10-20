@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d6f2fd470cacd6f2038c",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "analysis plan 004 v5 status",
+  "task_key": "worker_analysis_plan-004-v5-status_20260514T082022",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan-004-v5-status_20260514T082022_result.json",
+    "occurrence": 1,
+    "bytes": 770,
+    "sha256": "bf0e2797311efd0fd9d2c8f8173d5fc78d6ebe2217ab2fec30581061e82ffd59"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## plan-004-v5 结果汇总\n\n**状态**：DONE / success\n\n| 指标 | v5 | ablation-b | 变化 |\n|------|-----|-----------|------|\n| accuracy | 74.5% | 65.4% | +9.1pp |\n| balanced_accuracy | 79.1% | 59.3% | +19.8pp |\n| internal_recall | **84.9%** | 51.5% | +33.4pp |\n| internal_precision | 27.7% | 15.9% | +11.8pp |\n| eval_loss | 0.238 | 0.36 | -0.122 |\n\n**结论**：实验成功，internal_recall 84.9% 远超 30% 阈值和 ablation-b 的 51.5%。模型学会了区分 internal vs deterministic，无退化。trade-off 是 internal_precision 较低（27.7%），73/273 个 deterministic 样本被误判为 internal——模型在 upsample 后倾向过度预测少数类。\n\n两张 GPU 目前都空闲。Registry 已更新为 DONE/success。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan-004-v5-status.md"
+}

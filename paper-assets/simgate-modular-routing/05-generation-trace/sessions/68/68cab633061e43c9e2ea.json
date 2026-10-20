@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "68cab633061e43c9e2ea",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "diagnose session status check",
+  "task_key": "worker_diagnose_session-status-check_20260514T051139",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_session-status-check_20260514T051139_result.json",
+    "occurrence": 1,
+    "bytes": 669,
+    "sha256": "49028e9aae6713efa54dee9d14e4fde82992a449df1733230227f9befe7b57a5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "| 项目 | 状态 |\n|------|------|\n| **GPU0** | 空闲，0 MiB / 32607 MiB，0% 利用率 |\n| **GPU1** | 28013 MiB / 32607 MiB，PID 789051 占用 28004 MiB |\n| **plan-002 dryrun** | 训练中，Qwen3-1.7B LoRA r=16，1163 steps，当前 step 310 (27%)，~1.37 it/s，ETA ~10min |\n| **checkpoint** | `checkpoint-383` + `final_adapter` + `eval_report.json` 已存在（来自之前的运行） |\n| **chemistry-mix** | 15 episodes |\n| **freeze-chem PID 788058** | 存活，已运行 1h59m56s |\n| **磁盘** | 211G / 250G 已用 (85%)，剩余 40G |\n\nplan-002 dryrun 正在 GPU1 上跑，预计 ~7-8 分钟完成 epoch 1。磁盘 85% 需留意。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-session-status-check.md"
+}

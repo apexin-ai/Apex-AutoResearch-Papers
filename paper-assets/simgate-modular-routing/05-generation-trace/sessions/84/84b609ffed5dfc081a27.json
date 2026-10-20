@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "84b609ffed5dfc081a27",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "research w4 code survey",
+  "task_key": "worker_research_w4-code-survey_20260521T205845",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_w4-code-survey_20260521T205845_result.json",
+    "occurrence": 1,
+    "bytes": 1020,
+    "sha256": "4cf8561a1a057f5a197fade88601d0da99b4d5f5cd01949cda67a1ade9d63185"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/w4_code_survey.md`。\n\n核心发现：\n\n1. **Router 训练代码**在 `src/router_sft_train.py`，用 Qwen3 LoRA + `AutoModelForSequenceClassification`，2-class (internal/deterministic)，输入只有 observation + action_history，**prompt 中不含 task_type**。\n\n2. **训练数据**（2040 steps）中每条记录都已包含 `task_type` 字段，无需额外数据采集。Label 分布严重不平衡：1830 deterministic / 210 internal。\n\n3. **已有 `task_type_classifier.py`** 但用的是 3-class episode-level 设置，不能直接与 2-class step-level router 对比。\n\n4. **推荐 Plan C**：新建一个 ~120 行的 sklearn 脚本 `src/task_type_positive_control.py`，用 task_type one-hot 作为唯一输入预测 routing label。运行 <1 秒，预期 balanced accuracy ~90%+，直接证明 routing signal 是 task-type level property。如果 reviewer 需要 same-architecture 对比，再补做 Plan A（在 LLM prompt 中加一行 task_type）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-w4-code-survey.md"
+}

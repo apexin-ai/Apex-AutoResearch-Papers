@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7fa30f5477643acf7e23",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "infra install tmux",
+  "task_key": "worker_infra_install-tmux_20260513T061858",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_install-tmux_20260513T061858_result.json",
+    "occurrence": 1,
+    "bytes": 61,
+    "sha256": "0969838d92410ab0837dc030b494bfab13b6ffdecc6258d4451c47b6f8f726a9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "安装成功。**tmux 3.2a**，耗时 7 秒。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-install-tmux.md"
+}

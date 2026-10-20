@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "869d6ae7e2d86fd0969b",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code minihack det heuristic",
+  "task_key": "worker_code_minihack-det-heuristic_20260519T111653",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_minihack-det-heuristic_20260519T111653_result.json",
+    "occurrence": 1,
+    "bytes": 1305,
+    "sha256": "a11e2724c804642caf17384a93c8f842f7daccf91b9a3b20eae3c6e3cdd37502"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件已写入，语法验证通过。\n\n**`minihack_det_agent.py`** — 核心 agent：\n- `ActionMapper`: 从 env 的 action tuple 中通过 NLE enum 值匹配建立 direction/command → action index 映射，兼容不同 task 的 action space\n- `parse_map()`: 用 `screen_descriptions` 文本匹配（主）+ NLE glyph 常量范围检查（辅）识别 walkable/goal/monster/item\n- `bfs_path()`: 标准 BFS 寻路，支持 avoid set（低血量时绕开怪物）\n- 生存优先级：低 HP + 相邻怪物 → 逃跑；饥饿 → 吃；脚下有物品 → 拾取\n- 探索策略：goal 不可见时 BFS 到最近未探索 walkable cell\n- 卡住检测：连续 5 步原地不动 → 尝试 SEARCH/KICK/OPEN\n- 兼容 gym / gymnasium 两种 API（reset 和 step 返回值差异）\n\n**`minihack_episode_runner.py`** — episode 批量运行器：\n- 支持 `--strategy deterministic|internal|random`\n- LLM agent 是 stub（接口已定义，集成 BALROG + vLLM 后填入 `act()`）\n- JSONL 输出格式：`episode_id, task, strategy, score, died, goal_reached, steps, seed, wall_time_s`\n- `--tasks-all` 可一次跑所有 5 个 navigation task\n- `print_summary()` 汇总 win/death/avg_steps\n\n`blstats` 索引和 hunger 阈值均按 NLE 源码校准（BL_HUNGER=21）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-minihack-det-heuristic.md"
+}

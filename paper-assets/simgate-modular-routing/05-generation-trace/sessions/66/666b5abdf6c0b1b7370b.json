@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "666b5abdf6c0b1b7370b",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code bootstrap ci script",
+  "task_key": "worker_code_bootstrap-ci-script_20260520T120423",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_bootstrap-ci-script_20260520T120423_result.json",
+    "occurrence": 1,
+    "bytes": 1084,
+    "sha256": "56c6945f255f071f7ae2ee245d62f1523232d8e7480699b4be98f1f9109c9801"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "运行完毕。结果汇总：\n\n## Aggregate Results (B=10000, seed=42)\n\n| Model | Int DR [95% CI] | Det DR [95% CI] | ΔDR [95% CI] | DAF [95% CI] |\n|---|---|---|---|---|\n| **Qwen2.5-7B** (245 eps) | 42.9% [36.7, 49.0] | 16.3% [11.8, 21.2] | +26.5 [20.4, 32.7] | 90.4% [81.3, 99.1] |\n| **Llama-3.1-8B** (220 eps) | 41.4% [35.0, 47.7] | 11.4% [7.3, 15.9] | +30.0 [23.6, 36.4] | 88.2% [80.2, 95.1] |\n\n**验证点对齐情况**：\n- Qwen int_DR = 42.9% ✓, DAF = 90.4% ✓\n- Llama int_DR = 41.4% ✓, det_DR = 11.4% ✓, ΔDR = 30.0pp ✓, DAF = 88.2% ✓\n\n**注意**：Qwen det_DR 实际为 **16.3%**（40/245），与你给的\"≈4.5%\"有较大差异。数据确认过——`plan_c` 11 个 task、245 个有效 episode（排除了 30 个 `always_deep_internal` 的），逐 task det death 都在 10-25%。如果你的 4.5% 来源于不同数据子集或不同定义，需要核实。\n\n输出文件：\n- `results/cross_model_bootstrap_cis.json` — 完整数值\n- `results/cross_model_bootstrap_cis.tex` — LaTeX tabular，可直接插入 Appendix M"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-bootstrap-ci-script.md"
+}

@@ -1,0 +1,664 @@
+{
+  "schema_version": "1.0",
+  "id": "6902c23aaff091810dd1",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "exp cross split multi seed eval",
+  "task_key": "worker_exp_cross-split-multi-seed-eval_20260516T012511",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_cross-split-multi-seed-eval_20260516T012511.log",
+    "occurrence": 1,
+    "bytes": 51201,
+    "sha256": "93c4704541a1ebdb75712afb233e70184d6cae7bc18075b5fff2e528faf4296d"
+  },
+  "statistics": {
+    "messages": 14,
+    "user_turns": 0,
+    "tool_calls": 4,
+    "roles": {
+      "system": 1,
+      "record": 1,
+      "assistant": 4,
+      "tool_call": 4,
+      "tool_result": 4
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+                "session_id": "d1279997-98dd-4f09-9e7d-ef2833b448b6",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only",
+                  "mcp__agent-ml-research__update_registry"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "1aa6ad32-5e20-4b14-8398-d447f4efa629",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778907000,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "3b385890-9ac0-44d9-8dda-b4524fb2c243",
+                "session_id": "d1279997-98dd-4f09-9e7d-ef2833b448b6"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The user wants me to run two sets of episode-level evaluations on GPU1. Let me break this down:\n\n1. **Task 1**: Multi split seed confirmation - run episode-level eval with split seeds 123 and 456 across 8 router checkpoints (seeds 42-49)\n2. **Task 2**: Router size ablation episode-level eval - run eval on 0.6B and 4B router checkpoints from plan-008-v4\n\nLet me start by examining the codebase and understanding the eval script, then connect to the server.\n\nFirst, let me look at the project structure and the eval script.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d1279997-98dd-4f09-9e7d-ef2833b448b6",
+            "uuid": "e3147b6b-bf7f-40b1-9cf2-2733a6776894",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VFMe697BheRVuz1n5wEVuU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12589,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12589
+                },
+                "output_tokens": 24,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll start by examining the eval script and server state in parallel."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d1279997-98dd-4f09-9e7d-ef2833b448b6",
+            "uuid": "bd238572-7125-4b74-b9ab-5a2124b1dfa8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VFMe697BheRVuz1n5wEVuU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12589,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12589
+                },
+                "output_tokens": 24,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LDzG6QT2yLonELxeYYqABs",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact",
+                "max_results": 4
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d1279997-98dd-4f09-9e7d-ef2833b448b6",
+            "uuid": "15fe998f-c906-45fa-a0a3-512589c1a1d6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VFMe697BheRVuz1n5wEVuU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12589,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12589
+                },
+                "output_tokens": 24,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T01:36:21.762Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01LDzG6QT2yLonELxeYYqABs",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__detect_image"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__register_artifact"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "d1279997-98dd-4f09-9e7d-ef2833b448b6",
+            "uuid": "3834c47a-1a8f-471f-87f8-238bd6be397b",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__ssh_execute",
+                "mcp__agent-ml-research__detect_image",
+                "mcp__agent-ml-research__register_artifact"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact",
+              "total_deferred_tools": 26
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start by reading the eval script and checking the server state in parallel.",
+              "signature": "Eo0CClkIDRgCKkB4GOuDOtN8OVRmUjW0ANXrPkm4/zAhs444Ee3Tjls/+A1Deyu5VVrvDsEfq2LCKAScxOdRS5azz/KV9hlqliumMg9jbGF1ZGUtb3B1cy00LTY4ABIMhWJdyZOS4E4dPLj4Ggy30RKealJSHDdCay8iMPlSQWpuExwRZiBBowczeXCpL3bAPKDeOwXxbXl7GyD1kuwro3xwW6mukBCiMu+pHypiRVaLyEIpyy6mfDk4zjtM1C6f74qZdu+iyQYmW7iN2BcpfXIn0gwoUJbM5YN0t1F4Mg2dqs+lFa3zX0zKsZ/OVodWqXOWtBbgz84z74Kc693AL7Ahjr1nU0Xr8oAlVdqhGPgYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d1279997-98dd-4f09-9e7d-ef2833b448b6",
+            "uuid": "6ee9247f-94da-4147-8194-8ca6ac214ee3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017SAAPg3GJ3jTDd5brg1XcM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1656,
+                "cache_read_input_tokens": 24430,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1656
+                },
+                "output_tokens": 19,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me examine the eval script and check server state in parallel."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d1279997-98dd-4f09-9e7d-ef2833b448b6",
+            "uuid": "f3a1d369-4e45-4529-a5fe-574891b59d04",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017SAAPg3GJ3jTDd5brg1XcM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1656,
+                "cache_read_input_tokens": 24430,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1656
+                },
+                "output_tokens": 19,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011WRtHZXKWnb3sHgSeg8Uap",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westb-13313",
+                "command": "cat /root/autodl-tmp/simgate-modular-routing/scripts/cross_split_eval.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d1279997-98dd-4f09-9e7d-ef2833b448b6",
+            "uuid": "20caf8e9-fd0d-4ccf-ac53-8d46242dc6bb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017SAAPg3GJ3jTDd5brg1XcM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1656,
+                "cache_read_input_tokens": 24430,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1656
+                },
+                "output_tokens": 19,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01K486UJX7xef1MnR3tG87G8",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westb-13313",
+                "command": "ls /root/autodl-tmp/simgate-modular-routing/checkpoints/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d1279997-98dd-4f09-9e7d-ef2833b448b6",
+            "uuid": "19e0aef8-aeda-4c97-894c-93e0bbd9d64f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017SAAPg3GJ3jTDd5brg1XcM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1656,
+                "cache_read_input_tokens": 24430,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1656
+                },
+                "output_tokens": 19,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Gq93jCcTFLHpLhQfAoLMGr",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westb-13313",
+                "command": "ls /root/autodl-tmp/simgate-modular-routing/results/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d1279997-98dd-4f09-9e7d-ef2833b448b6",
+            "uuid": "7da70ffe-6396-4d46-a12d-1dd7716e6109",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017SAAPg3GJ3jTDd5brg1XcM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1656,
+                "cache_read_input_tokens": 24430,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1656
+                },
+                "output_tokens": 19,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T01:36:28.038Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011WRtHZXKWnb3sHgSeg8Uap",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Cross-split robustness eval: episode-level split (independent from training split).\\\\n\\\\nEvaluates 8 seed checkpoints on an episode-level val split (sklearn seed=42),\\\\ncomparing against the corrected_eval which used step-level stratified split.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json, os, sys, time, gc\\\\nfrom collections import defaultdict\\\\nimport numpy as np\\\\nimport torch\\\\nfrom sklearn.model_selection import train_test_split\\\\nfrom transformers import AutoTokenizer, AutoModelForCausalLM\\\\nfrom peft import PeftModel\\\\n\\\\nSIMULATE_PREFIX = \\\\\\\"[SIMULATE]\\\\\\\"\\\\nBASE_MODEL = \\\\\\\"/root/autodl-tmp/models/Qwen/Qwen3-1.7B\\\\\\\"\\\\nDATA_PATH = \\\\\\\"/root/autodl-tmp/simgate-modular-routing/data/plan-004-implicit/implicit_sft.jsonl\\\\\\\"\\\\nPROJECT_ROOT = \\\\\\\"/root/autodl-tmp/simgate-modular-routing\\\\\\\"\\\\nOUTPUT_DIR = os.path.join(PROJECT_ROOT, \\\\\\\"results/cross_split_eval\\\\\\\")\\\\n\\\\nSEED_TO_ADAPTER = {\\\\n    42: \\\\\\\"checkpoints/plan-008-qwen3-1.7b/final_adapter\\\\\\\",\\\\n    43: \\\\\\\"checkpoints/seed-robustness-seed43/final_adapter\\\\\\\",\\\\n    44: \\\\\\\"checkpoints/seed-robustness-seed44/final_adapter\\\\\\\",\\\\n    45: \\\\\\\"checkpoints/seed-robustness-seed45/final_adapter\\\\\\\",\\\\n    46: \\\\\\\"checkpoints/seed-robustness-seed46/final_adapter\\\\\\\",\\\\n    47: \\\\\\\"checkpoints/seed-robustness-seed47/final_adapter\\\\\\\",\\\\n    48: \\\\\\\"checkpoints/seed-robustness-seed48/final_adapter\\\\\\\",\\\\n    49: \\\\\\\"checkpoints/seed-robustness-seed49/final_adapter\\\\\\\",\\\\n}\\\\n\\\\nCORRECTED_EVAL_REF = {\\\\n    42: 0.5761, 43: 0.4852, 44: 0.6074, 45: 0.5467,\\\\n    46: 0.4463, 47: 0.5185, 48: 0.537, 49: 0.6111,\\\\n}\\\\n\\\\ndef log(msg):\\\\n    print(msg, flush=True)\\\\n\\\\n\\\\ndef load_data():\\\\n    records = []\\\\n    with open(DATA_PATH) as f:\\\\n        for line in f:\\\\n            line = line.strip()\\\\n            if not line:\\\\n                continue\\\\n            records.append(json.loads(line))\\\\n    return records\\\\n\\\\n\\\\ndef episode_level_split(records, test_size=0.15, seed=42):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Split by episode (task_type + variation), not by step.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    episode_to_indices = defaultdict(list)\\\\n    for i, r in enumerate(records):\\\\n        key = (r[\\\\\\\"task_type\\\\\\\"], r[\\\\\\\"variation\\\\\\\"])\\\\n        episode_to_indices[key].append(i)\\\\n\\\\n    episode_keys = sorted(episode_to_indices.keys())\\\\n    train_eps, val_eps = train_test_split(\\\\n        episode_keys, test_size=test_size, random_state=seed\\\\n    )\\\\n\\\\n    val_indices = []\\\\n    for ep in val_eps:\\\\n        val_indices.extend(episode_to_indices[ep])\\\\n\\\\n    val_records = [records[i] for i in sorted(val_indices)]\\\\n    return val_records\\\\n\\\\n\\\\ndef parse_output(text):\\\\n    text = text.strip()\\\\n    if \\\\\\\"<think>\\\\\\\" in text:\\\\n        think_end = text.find(\\\\\\\"</think>\\\\\\\")\\\\n        if think_end != -1:\\\\n            text = text[think_end + len(\\\\\\\"</think>\\\\\\\"):].strip()\\\\n        else:\\\\n            text = text[text.find(\\\\\\\"<think>\\\\\\\") + len(\\\\\\\"<think>\\\\\\\"):].strip()\\\\n    if text.startswith(SIMULATE_PREFIX):\\\\n        return \\\\\\\"deterministic\\\\\\\", text\\\\n    return \\\\\\\"internal\\\\\\\", text\\\\n\\\\n\\\\ndef eval_single_seed(seed, val_records, gpu_id):\\\\n    adapter_rel = SEED_TO_ADAPTER[seed]\\\\n    adapter_path = os.path.join(PROJECT_ROOT, adapter_rel)\\\\n\\\\n    log(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\")\\\\n    log(f\\\\\\\"Seed {seed}: {adapter_rel}\\\\\\\")\\\\n    log(f\\\\\\\"{'='*60}\\\\\\\")\\\\n\\\\n    tokenizer = AutoTokenizer.from_pretrained(adapter_path, trust_remote_code=True)\\\\n    if tokenizer.pad_token is None:\\\\n        tokenizer.pad_token = tokenizer.eos_token\\\\n\\\\n    base = AutoModelForCausalLM.from_pretrained(\\\\n        BASE_MODEL, torch_dtype=torch.bfloat16,\\\\n        device_map={\\\\\\\"\\\\\\\": gpu_id}, trust_remote_code=True,\\\\n    )\\\\n    model = PeftModel.from_pretrained(base, adapter_path)\\\\n    model.eval()\\\\n\\\\n    preds, gts = [], []\\\\n    t0 = time.time()\\\\n\\\\n    for i, rec in enumerate(val_records):\\\\n        gt_label = rec[\\\\\\\"route_label\\\\\\\"]\\\\n        prompt_msgs = rec[\\\\\\\"messages\\\\\\\"][:-1]\\\\n\\\\n        prompt = tokenizer.apply_chat_template(\\\\n            prompt_msgs, tokenize=False, add_generation_prompt=True\\\\n        )\\\\n        inputs = tokenizer(prompt, return_tensors=\\\\\\\"pt\\\\\\\").to(model.device)\\\\n\\\\n        with torch.no_grad():\\\\n            out = model.generate(\\\\n                **inputs, max_new_tokens=256, do_sample=False,\\\\n            )\\\\n        gen_ids = out[0][inputs[\\\\\\\"input_ids\\\\\\\"].shape[1]:]\\\\n        gen_text = tokenizer.decode(gen_ids, skip\\\\n\\\\n... [截断: 输出过长，省略 897 字符] ...\\\\n\\\\nbels:\\\\n        recall[l] = tp[l] / max(tp[l] + fn[l], 1)\\\\n\\\\n    bal_acc = np.mean([recall[l] for l in labels])\\\\n    accuracy = sum(1 for g, p in zip(gts, preds) if g == p) / max(len(gts), 1)\\\\n\\\\n    gt_dist = defaultdict(int)\\\\n    pred_dist = defaultdict(int)\\\\n    for g in gts:\\\\n        gt_dist[g] += 1\\\\n    for p in preds:\\\\n        pred_dist[p] += 1\\\\n\\\\n    result = {\\\\n        \\\\\\\"seed\\\\\\\": seed,\\\\n        \\\\\\\"adapter_path\\\\\\\": adapter_rel,\\\\n        \\\\\\\"balanced_accuracy\\\\\\\": round(bal_acc, 4),\\\\n        \\\\\\\"accuracy\\\\\\\": round(accuracy, 4),\\\\n        \\\\\\\"deterministic_recall\\\\\\\": round(recall[\\\\\\\"deterministic\\\\\\\"], 4),\\\\n        \\\\\\\"internal_recall\\\\\\\": round(recall[\\\\\\\"internal\\\\\\\"], 4),\\\\n        \\\\\\\"n_val\\\\\\\": len(val_records),\\\\n        \\\\\\\"gt_distribution\\\\\\\": dict(gt_dist),\\\\n        \\\\\\\"pred_distribution\\\\\\\": dict(pred_dist),\\\\n        \\\\\\\"confusion_matrix\\\\\\\": cm,\\\\n        \\\\\\\"eval_time_s\\\\\\\": round(elapsed, 1),\\\\n    }\\\\n\\\\n    log(f\\\\\\\"  balanced_acc={bal_acc:.4f}, det_recall={recall['deterministic']:.4f}, int_recall={recall['internal']:.4f}\\\\\\\")\\\\n\\\\n    # Cleanup GPU memory\\\\n    del model, base, tokenizer\\\\n    gc.collect()\\\\n    torch.cuda.empty_cache()\\\\n\\\\n    return result\\\\n\\\\n\\\\ndef main():\\\\n    import argparse\\\\n    p = argparse.ArgumentParser()\\\\n    p.add_argument(\\\\\\\"--gpu_id\\\\\\\", type=int, default=1)\\\\n    args = p.parse_args()\\\\n\\\\n    os.makedirs(OUTPUT_DIR, exist_ok=True)\\\\n\\\\n    log(\\\\\\\"Loading data...\\\\\\\")\\\\n    records = load_data()\\\\n    log(f\\\\\\\"Total records: {len(records)}\\\\\\\")\\\\n\\\\n    log(\\\\\\\"Creating episode-level split (sklearn seed=42, test_size=0.15)...\\\\\\\")\\\\n    val_records = episode_level_split(records, test_size=0.15, seed=42)\\\\n    log(f\\\\\\\"Val samples: {len(val_records)}\\\\\\\")\\\\n\\\\n    gt_dist = defaultdict(int)\\\\n    for r in val_records:\\\\n        gt_dist[r[\\\\\\\"route_label\\\\\\\"]] += 1\\\\n    log(f\\\\\\\"Val label distribution: {dict(gt_dist)}\\\\\\\")\\\\n\\\\n    episode_keys = set()\\\\n    for r in val_records:\\\\n        episode_keys.add((r[\\\\\\\"task_type\\\\\\\"], r[\\\\\\\"variation\\\\\\\"]))\\\\n    log(f\\\\\\\"Val episodes: {len(episode_keys)}\\\\\\\")\\\\n\\\\n    all_results = {}\\\\n    seeds = sorted(SEED_TO_ADAPTER.keys())\\\\n\\\\n    for seed in seeds:\\\\n        result = eval_single_seed(seed, val_records, args.gpu_id)\\\\n        all_results[seed] = result\\\\n\\\\n    # Summary\\\\n    cross_accs = [all_results[s][\\\\\\\"balanced_accuracy\\\\\\\"] for s in seeds]\\\\n    ref_accs = [CORRECTED_EVAL_REF[s] for s in seeds]\\\\n    cross_mean = np.mean(cross_accs)\\\\n    cross_std = np.std(cross_accs)\\\\n    ref_mean = np.mean(ref_accs)\\\\n    ref_std = np.std(ref_accs)\\\\n\\\\n    log(f\\\\\\\"\\\\\\\\n{'='*70}\\\\\\\")\\\\n    log(\\\\\\\"CROSS-SPLIT ROBUSTNESS RESULTS\\\\\\\")\\\\n    log(f\\\\\\\"{'='*70}\\\\\\\")\\\\n    log(f\\\\\\\"{'Seed':>6} {'Cross-Split':>12} {'Corrected':>12} {'Delta':>8}\\\\\\\")\\\\n    log(f\\\\\\\"{'-'*6:>6} {'-'*12:>12} {'-'*12:>12} {'-'*8:>8}\\\\\\\")\\\\n\\\\n    deltas = []\\\\n    for s in seeds:\\\\n        cs = all_results[s][\\\\\\\"balanced_accuracy\\\\\\\"]\\\\n        ref = CORRECTED_EVAL_REF[s]\\\\n        delta = cs - ref\\\\n        deltas.append(delta)\\\\n        log(f\\\\\\\"{s:>6} {cs:>12.4f} {ref:>12.4f} {delta:>+8.4f}\\\\\\\")\\\\n\\\\n    mean_delta = cross_mean - ref_mean\\\\n    log(f\\\\\\\"{'Mean':>6} {cross_mean:>12.4f} {ref_mean:>12.4f} {mean_delta:>+8.4f}\\\\\\\")\\\\n    log(f\\\\\\\"{'Std':>6} {cross_std:>12.4f} {ref_std:>12.4f}\\\\\\\")\\\\n    log(f\\\\\\\"\\\\\\\\nMean absolute delta: {np.mean(np.abs(deltas)):.4f}\\\\\\\")\\\\n    log(f\\\\\\\"Split-robust (|mean delta| < 2pp): {'YES' if abs(mean_delta) < 0.02 else 'NO'}\\\\\\\")\\\\n\\\\n    summary = {\\\\n        \\\\\\\"split_method\\\\\\\": \\\\\\\"episode_level_sklearn_seed42_test015\\\\\\\",\\\\n        \\\\\\\"n_val\\\\\\\": len(val_records),\\\\n        \\\\\\\"n_val_episodes\\\\\\\": len(episode_keys),\\\\n        \\\\\\\"seeds\\\\\\\": seeds,\\\\n        \\\\\\\"per_seed\\\\\\\": {str(s): all_results[s] for s in seeds},\\\\n        \\\\\\\"cross_split_mean\\\\\\\": round(cross_mean, 4),\\\\n        \\\\\\\"cross_split_std\\\\\\\": round(cross_std, 4),\\\\n        \\\\\\\"corrected_eval_mean\\\\\\\": round(ref_mean, 4),\\\\n        \\\\\\\"corrected_eval_std\\\\\\\": round(ref_std, 4),\\\\n        \\\\\\\"mean_delta\\\\\\\": round(mean_delta, 4),\\\\n        \\\\\\\"mean_abs_delta\\\\\\\": round(float(np.mean(np.abs(deltas))), 4),\\\\n        \\\\\\\"split_robust\\\\\\\": abs(mean_delta) < 0.02,\\\\n        \\\\\\\"gt_distribution\\\\\\\": dict(gt_dist),\\\\n    }\\\\n\\\\n    out_path = os.path.join(OUTPUT_DIR, \\\\\\\"cross_split_results.json\\\\\\\")\\\\n    with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(summary, f, indent=2)\\\\n    log(f\\\\\\\"\\\\\\\\nResults saved to {out_path}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.71}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "d1279997-98dd-4f09-9e7d-ef2833b448b6",
+            "uuid": "805b2e1e-7353-4434-84f0-0ed92eac8d92",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Cross-split robustness eval: episode-level split (independent from training split).\\\\n\\\\nEvaluates 8 seed checkpoints on an episode-level val split (sklearn seed=42),\\\\ncomparing against the corrected_eval which used step-level stratified split.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json, os, sys, time, gc\\\\nfrom collections import defaultdict\\\\nimport numpy as np\\\\nimport torch\\\\nfrom sklearn.model_selection import train_test_split\\\\nfrom transformers import AutoTokenizer, AutoModelForCausalLM\\\\nfrom peft import PeftModel\\\\n\\\\nSIMULATE_PREFIX = \\\\\\\"[SIMULATE]\\\\\\\"\\\\nBASE_MODEL = \\\\\\\"/root/autodl-tmp/models/Qwen/Qwen3-1.7B\\\\\\\"\\\\nDATA_PATH = \\\\\\\"/root/autodl-tmp/simgate-modular-routing/data/plan-004-implicit/implicit_sft.jsonl\\\\\\\"\\\\nPROJECT_ROOT = \\\\\\\"/root/autodl-tmp/simgate-modular-routing\\\\\\\"\\\\nOUTPUT_DIR = os.path.join(PROJECT_ROOT, \\\\\\\"results/cross_split_eval\\\\\\\")\\\\n\\\\nSEED_TO_ADAPTER = {\\\\n    42: \\\\\\\"checkpoints/plan-008-qwen3-1.7b/final_adapter\\\\\\\",\\\\n    43: \\\\\\\"checkpoints/seed-robustness-seed43/final_adapter\\\\\\\",\\\\n    44: \\\\\\\"checkpoints/seed-robustness-seed44/final_adapter\\\\\\\",\\\\n    45: \\\\\\\"checkpoints/seed-robustness-seed45/final_adapter\\\\\\\",\\\\n    46: \\\\\\\"checkpoints/seed-robustness-seed46/final_adapter\\\\\\\",\\\\n    47: \\\\\\\"checkpoints/seed-robustness-seed47/final_adapter\\\\\\\",\\\\n    48: \\\\\\\"checkpoints/seed-robustness-seed48/final_adapter\\\\\\\",\\\\n    49: \\\\\\\"checkpoints/seed-robustness-seed49/final_adapter\\\\\\\",\\\\n}\\\\n\\\\nCORRECTED_EVAL_REF = {\\\\n    42: 0.5761, 43: 0.4852, 44: 0.6074, 45: 0.5467,\\\\n    46: 0.4463, 47: 0.5185, 48: 0.537, 49: 0.6111,\\\\n}\\\\n\\\\ndef log(msg):\\\\n    print(msg, flush=True)\\\\n\\\\n\\\\ndef load_data():\\\\n    records = []\\\\n    with open(DATA_PATH) as f:\\\\n        for line in f:\\\\n            line = line.strip()\\\\n            if not line:\\\\n                continue\\\\n            records.append(json.loads(line))\\\\n    return records\\\\n\\\\n\\\\ndef episode_level_split(records, test_size=0.15, seed=42):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Split by episode (task_type + variation), not by step.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    episode_to_indices = defaultdict(list)\\\\n    for i, r in enumerate(records):\\\\n        key = (r[\\\\\\\"task_type\\\\\\\"], r[\\\\\\\"variation\\\\\\\"])\\\\n        episode_to_indices[key].append(i)\\\\n\\\\n    episode_keys = sorted(episode_to_indices.keys())\\\\n    train_eps, val_eps = train_test_split(\\\\n        episode_keys, test_size=test_size, random_state=seed\\\\n    )\\\\n\\\\n    val_indices = []\\\\n    for ep in val_eps:\\\\n        val_indices.extend(episode_to_indices[ep])\\\\n\\\\n    val_records = [records[i] for i in sorted(val_indices)]\\\\n    return val_records\\\\n\\\\n\\\\ndef parse_output(text):\\\\n    text = text.strip()\\\\n    if \\\\\\\"<think>\\\\\\\" in text:\\\\n        think_end = text.find(\\\\\\\"</think>\\\\\\\")\\\\n        if think_end != -1:\\\\n            text = text[think_end + len(\\\\\\\"</think>\\\\\\\"):].strip()\\\\n        else:\\\\n            text = text[text.find(\\\\\\\"<think>\\\\\\\") + len(\\\\\\\"<think>\\\\\\\"):].strip()\\\\n    if text.startswith(SIMULATE_PREFIX):\\\\n        return \\\\\\\"deterministic\\\\\\\", text\\\\n    return \\\\\\\"internal\\\\\\\", text\\\\n\\\\n\\\\ndef eval_single_seed(seed, val_records, gpu_id):\\\\n    adapter_rel = SEED_TO_ADAPTER[seed]\\\\n    adapter_path = os.path.join(PROJECT_ROOT, adapter_rel)\\\\n\\\\n    log(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\")\\\\n    log(f\\\\\\\"Seed {seed}: {adapter_rel}\\\\\\\")\\\\n    log(f\\\\\\\"{'='*60}\\\\\\\")\\\\n\\\\n    tokenizer = AutoTokenizer.from_pretrained(adapter_path, trust_remote_code=True)\\\\n    if tokenizer.pad_token is None:\\\\n        tokenizer.pad_token = tokenizer.eos_token\\\\n\\\\n    base = AutoModelForCausalLM.from_pretrained(\\\\n        BASE_MODEL, torch_dtype=torch.bfloat16,\\\\n        device_map={\\\\\\\"\\\\\\\": gpu_id}, trust_remote_code=True,\\\\n    )\\\\n    model = PeftModel.from_pretrained(base, adapter_path)\\\\n    model.eval()\\\\n\\\\n    preds, gts = [], []\\\\n    t0 = time.time()\\\\n\\\\n    for i, rec in enumerate(val_records):\\\\n        gt_label = rec[\\\\\\\"route_label\\\\\\\"]\\\\n        prompt_msgs = rec[\\\\\\\"messages\\\\\\\"][:-1]\\\\n\\\\n        prompt = tokenizer.apply_chat_template(\\\\n            prompt_msgs, tokenize=False, add_generation_prompt=True\\\\n        )\\\\n        inputs = tokenizer(prompt, return_tensors=\\\\\\\"pt\\\\\\\").to(model.device)\\\\n\\\\n        with torch.no_grad():\\\\n            out = model.generate(\\\\n                **inputs, max_new_tokens=256, do_sample=False,\\\\n            )\\\\n        gen_ids = out[0][inputs[\\\\\\\"input_ids\\\\\\\"].shape[1]:]\\\\n        gen_text = tokenizer.decode(gen_ids, skip\\\\n\\\\n... [截断: 输出过长，省略 897 字符] ...\\\\n\\\\nbels:\\\\n        recall[l] = tp[l] / max(tp[l] + fn[l], 1)\\\\n\\\\n    bal_acc = np.mean([recall[l] for l in labels])\\\\n    accuracy = sum(1 for g, p in zip(gts, preds) if g == p) / max(len(gts), 1)\\\\n\\\\n    gt_dist = defaultdict(int)\\\\n    pred_dist = defaultdict(int)\\\\n    for g in gts:\\\\n        gt_dist[g] += 1\\\\n    for p in preds:\\\\n        pred_dist[p] += 1\\\\n\\\\n    result = {\\\\n        \\\\\\\"seed\\\\\\\": seed,\\\\n        \\\\\\\"adapter_path\\\\\\\": adapter_rel,\\\\n        \\\\\\\"balanced_accuracy\\\\\\\": round(bal_acc, 4),\\\\n        \\\\\\\"accuracy\\\\\\\": round(accuracy, 4),\\\\n        \\\\\\\"deterministic_recall\\\\\\\": round(recall[\\\\\\\"deterministic\\\\\\\"], 4),\\\\n        \\\\\\\"internal_recall\\\\\\\": round(recall[\\\\\\\"internal\\\\\\\"], 4),\\\\n        \\\\\\\"n_val\\\\\\\": len(val_records),\\\\n        \\\\\\\"gt_distribution\\\\\\\": dict(gt_dist),\\\\n        \\\\\\\"pred_distribution\\\\\\\": dict(pred_dist),\\\\n        \\\\\\\"confusion_matrix\\\\\\\": cm,\\\\n        \\\\\\\"eval_time_s\\\\\\\": round(elapsed, 1),\\\\n    }\\\\n\\\\n    log(f\\\\\\\"  balanced_acc={bal_acc:.4f}, det_recall={recall['deterministic']:.4f}, int_recall={recall['internal']:.4f}\\\\\\\")\\\\n\\\\n    # Cleanup GPU memory\\\\n    del model, base, tokenizer\\\\n    gc.collect()\\\\n    torch.cuda.empty_cache()\\\\n\\\\n    return result\\\\n\\\\n\\\\ndef main():\\\\n    import argparse\\\\n    p = argparse.ArgumentParser()\\\\n    p.add_argument(\\\\\\\"--gpu_id\\\\\\\", type=int, default=1)\\\\n    args = p.parse_args()\\\\n\\\\n    os.makedirs(OUTPUT_DIR, exist_ok=True)\\\\n\\\\n    log(\\\\\\\"Loading data...\\\\\\\")\\\\n    records = load_data()\\\\n    log(f\\\\\\\"Total records: {len(records)}\\\\\\\")\\\\n\\\\n    log(\\\\\\\"Creating episode-level split (sklearn seed=42, test_size=0.15)...\\\\\\\")\\\\n    val_records = episode_level_split(records, test_size=0.15, seed=42)\\\\n    log(f\\\\\\\"Val samples: {len(val_records)}\\\\\\\")\\\\n\\\\n    gt_dist = defaultdict(int)\\\\n    for r in val_records:\\\\n        gt_dist[r[\\\\\\\"route_label\\\\\\\"]] += 1\\\\n    log(f\\\\\\\"Val label distribution: {dict(gt_dist)}\\\\\\\")\\\\n\\\\n    episode_keys = set()\\\\n    for r in val_records:\\\\n        episode_keys.add((r[\\\\\\\"task_type\\\\\\\"], r[\\\\\\\"variation\\\\\\\"]))\\\\n    log(f\\\\\\\"Val episodes: {len(episode_keys)}\\\\\\\")\\\\n\\\\n    all_results = {}\\\\n    seeds = sorted(SEED_TO_ADAPTER.keys())\\\\n\\\\n    for seed in seeds:\\\\n        result = eval_single_seed(seed, val_records, args.gpu_id)\\\\n        all_results[seed] = result\\\\n\\\\n    # Summary\\\\n    cross_accs = [all_results[s][\\\\\\\"balanced_accuracy\\\\\\\"] for s in seeds]\\\\n    ref_accs = [CORRECTED_EVAL_REF[s] for s in seeds]\\\\n    cross_mean = np.mean(cross_accs)\\\\n    cross_std = np.std(cross_accs)\\\\n    ref_mean = np.mean(ref_accs)\\\\n    ref_std = np.std(ref_accs)\\\\n\\\\n    log(f\\\\\\\"\\\\\\\\n{'='*70}\\\\\\\")\\\\n    log(\\\\\\\"CROSS-SPLIT ROBUSTNESS RESULTS\\\\\\\")\\\\n    log(f\\\\\\\"{'='*70}\\\\\\\")\\\\n    log(f\\\\\\\"{'Seed':>6} {'Cross-Split':>12} {'Corrected':>12} {'Delta':>8}\\\\\\\")\\\\n    log(f\\\\\\\"{'-'*6:>6} {'-'*12:>12} {'-'*12:>12} {'-'*8:>8}\\\\\\\")\\\\n\\\\n    deltas = []\\\\n    for s in seeds:\\\\n        cs = all_results[s][\\\\\\\"balanced_accuracy\\\\\\\"]\\\\n        ref = CORRECTED_EVAL_REF[s]\\\\n        delta = cs - ref\\\\n        deltas.append(delta)\\\\n        log(f\\\\\\\"{s:>6} {cs:>12.4f} {ref:>12.4f} {delta:>+8.4f}\\\\\\\")\\\\n\\\\n    mean_delta = cross_mean - ref_mean\\\\n    log(f\\\\\\\"{'Mean':>6} {cross_mean:>12.4f} {ref_mean:>12.4f} {mean_delta:>+8.4f}\\\\\\\")\\\\n    log(f\\\\\\\"{'Std':>6} {cross_std:>12.4f} {ref_std:>12.4f}\\\\\\\")\\\\n    log(f\\\\\\\"\\\\\\\\nMean absolute delta: {np.mean(np.abs(deltas)):.4f}\\\\\\\")\\\\n    log(f\\\\\\\"Split-robust (|mean delta| < 2pp): {'YES' if abs(mean_delta) < 0.02 else 'NO'}\\\\\\\")\\\\n\\\\n    summary = {\\\\n        \\\\\\\"split_method\\\\\\\": \\\\\\\"episode_level_sklearn_seed42_test015\\\\\\\",\\\\n        \\\\\\\"n_val\\\\\\\": len(val_records),\\\\n        \\\\\\\"n_val_episodes\\\\\\\": len(episode_keys),\\\\n        \\\\\\\"seeds\\\\\\\": seeds,\\\\n        \\\\\\\"per_seed\\\\\\\": {str(s): all_results[s] for s in seeds},\\\\n        \\\\\\\"cross_split_mean\\\\\\\": round(cross_mean, 4),\\\\n        \\\\\\\"cross_split_std\\\\\\\": round(cross_std, 4),\\\\n        \\\\\\\"corrected_eval_mean\\\\\\\": round(ref_mean, 4),\\\\n        \\\\\\\"corrected_eval_std\\\\\\\": round(ref_std, 4),\\\\n        \\\\\\\"mean_delta\\\\\\\": round(mean_delta, 4),\\\\n        \\\\\\\"mean_abs_delta\\\\\\\": round(float(np.mean(np.abs(deltas))), 4),\\\\n        \\\\\\\"split_robust\\\\\\\": abs(mean_delta) < 0.02,\\\\n        \\\\\\\"gt_distribution\\\\\\\": dict(gt_dist),\\\\n    }\\\\n\\\\n    out_path = os.path.join(OUTPUT_DIR, \\\\\\\"cross_split_results.json\\\\\\\")\\\\n    with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(summary, f, indent=2)\\\\n    log(f\\\\\\\"\\\\\\\\nResults saved to {out_path}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.71}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Cross-split robustness eval: episode-level split (independent from training split).\\n\\nEvaluates 8 seed checkpoints on an episode-level val split (sklearn seed=42),\\ncomparing against the corrected_eval which used step-level stratified split.\\n\\\"\\\"\\\"\\nimport json, os, sys, time, gc\\nfrom collections import defaultdict\\nimport numpy as np\\nimport torch\\nfrom sklearn.model_selection import train_test_split\\nfrom transformers import AutoTokenizer, AutoModelForCausalLM\\nfrom peft import PeftModel\\n\\nSIMULATE_PREFIX = \\\"[SIMULATE]\\\"\\nBASE_MODEL = \\\"/root/autodl-tmp/models/Qwen/Qwen3-1.7B\\\"\\nDATA_PATH = \\\"/root/autodl-tmp/simgate-modular-routing/data/plan-004-implicit/implicit_sft.jsonl\\\"\\nPROJECT_ROOT = \\\"/root/autodl-tmp/simgate-modular-routing\\\"\\nOUTPUT_DIR = os.path.join(PROJECT_ROOT, \\\"results/cross_split_eval\\\")\\n\\nSEED_TO_ADAPTER = {\\n    42: \\\"checkpoints/plan-008-qwen3-1.7b/final_adapter\\\",\\n    43: \\\"checkpoints/seed-robustness-seed43/final_adapter\\\",\\n    44: \\\"checkpoints/seed-robustness-seed44/final_adapter\\\",\\n    45: \\\"checkpoints/seed-robustness-seed45/final_adapter\\\",\\n    46: \\\"checkpoints/seed-robustness-seed46/final_adapter\\\",\\n    47: \\\"checkpoints/seed-robustness-seed47/final_adapter\\\",\\n    48: \\\"checkpoints/seed-robustness-seed48/final_adapter\\\",\\n    49: \\\"checkpoints/seed-robustness-seed49/final_adapter\\\",\\n}\\n\\nCORRECTED_EVAL_REF = {\\n    42: 0.5761, 43: 0.4852, 44: 0.6074, 45: 0.5467,\\n    46: 0.4463, 47: 0.5185, 48: 0.537, 49: 0.6111,\\n}\\n\\ndef log(msg):\\n    print(msg, flush=True)\\n\\n\\ndef load_data():\\n    records = []\\n    with open(DATA_PATH) as f:\\n        for line in f:\\n            line = line.strip()\\n            if not line:\\n                continue\\n            records.append(json.loads(line))\\n    return records\\n\\n\\ndef episode_level_split(records, test_size=0.15, seed=42):\\n    \\\"\\\"\\\"Split by episode (task_type + variation), not by step.\\\"\\\"\\\"\\n    episode_to_indices = defaultdict(list)\\n    for i, r in enumerate(records):\\n        key = (r[\\\"task_type\\\"], r[\\\"variation\\\"])\\n        episode_to_indices[key].append(i)\\n\\n    episode_keys = sorted(episode_to_indices.keys())\\n    train_eps, val_eps = train_test_split(\\n        episode_keys, test_size=test_size, random_state=seed\\n    )\\n\\n    val_indices = []\\n    for ep in val_eps:\\n        val_indices.extend(episode_to_indices[ep])\\n\\n    val_records = [records[i] for i in sorted(val_indices)]\\n    return val_records\\n\\n\\ndef parse_output(text):\\n    text = text.strip()\\n    if \\\"<think>\\\" in text:\\n        think_end = text.find(\\\"</think>\\\")\\n        if think_end != -1:\\n            text = text[think_end + len(\\\"</think>\\\"):].strip()\\n        else:\\n            text = text[text.find(\\\"<think>\\\") + len(\\\"<think>\\\"):].strip()\\n    if text.startswith(SIMULATE_PREFIX):\\n        return \\\"deterministic\\\", text\\n    return \\\"internal\\\", text\\n\\n\\ndef eval_single_seed(seed, val_records, gpu_id):\\n    adapter_rel = SEED_TO_ADAPTER[seed]\\n    adapter_path = os.path.join(PROJECT_ROOT, adapter_rel)\\n\\n    log(f\\\"\\\\n{'='*60}\\\")\\n    log(f\\\"Seed {seed}: {adapter_rel}\\\")\\n    log(f\\\"{'='*60}\\\")\\n\\n    tokenizer = AutoTokenizer.from_pretrained(adapter_path, trust_remote_code=True)\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n\\n    base = AutoModelForCausalLM.from_pretrained(\\n        BASE_MODEL, torch_dtype=torch.bfloat16,\\n        device_map={\\\"\\\": gpu_id}, trust_remote_code=True,\\n    )\\n    model = PeftModel.from_pretrained(base, adapter_path)\\n    model.eval()\\n\\n    preds, gts = [], []\\n    t0 = time.time()\\n\\n    for i, rec in enumerate(val_records):\\n        gt_label = rec[\\\"route_label\\\"]\\n        prompt_msgs = rec[\\\"messages\\\"][:-1]\\n\\n        prompt = tokenizer.apply_chat_template(\\n            prompt_msgs, tokenize=False, add_generation_prompt=True\\n        )\\n        inputs = tokenizer(prompt, return_tensors=\\\"pt\\\").to(model.device)\\n\\n        with torch.no_grad():\\n            out = model.generate(\\n                **inputs, max_new_tokens=256, do_sample=False,\\n            )\\n        gen_ids = out[0][inputs[\\\"input_ids\\\"].shape[1]:]\\n        gen_text = tokenizer.decode(gen_ids, skip\\n\\n... [截断: 输出过长，省略 897 字符] ...\\n\\nbels:\\n        recall[l] = tp[l] / max(tp[l] + fn[l], 1)\\n\\n    bal_acc = np.mean([recall[l] for l in labels])\\n    accuracy = sum(1 for g, p in zip(gts, preds) if g == p) / max(len(gts), 1)\\n\\n    gt_dist = defaultdict(int)\\n    pred_dist = defaultdict(int)\\n    for g in gts:\\n        gt_dist[g] += 1\\n    for p in preds:\\n        pred_dist[p] += 1\\n\\n    result = {\\n        \\\"seed\\\": seed,\\n        \\\"adapter_path\\\": adapter_rel,\\n        \\\"balanced_accuracy\\\": round(bal_acc, 4),\\n        \\\"accuracy\\\": round(accuracy, 4),\\n        \\\"deterministic_recall\\\": round(recall[\\\"deterministic\\\"], 4),\\n        \\\"internal_recall\\\": round(recall[\\\"internal\\\"], 4),\\n        \\\"n_val\\\": len(val_records),\\n        \\\"gt_distribution\\\": dict(gt_dist),\\n        \\\"pred_distribution\\\": dict(pred_dist),\\n        \\\"confusion_matrix\\\": cm,\\n        \\\"eval_time_s\\\": round(elapsed, 1),\\n    }\\n\\n    log(f\\\"  balanced_acc={bal_acc:.4f}, det_recall={recall['deterministic']:.4f}, int_recall={recall['internal']:.4f}\\\")\\n\\n    # Cleanup GPU memory\\n    del model, base, tokenizer\\n    gc.collect()\\n    torch.cuda.empty_cache()\\n\\n    return result\\n\\n\\ndef main():\\n    import argparse\\n    p = argparse.ArgumentParser()\\n    p.add_argument(\\\"--gpu_id\\\", type=int, default=1)\\n    args = p.parse_args()\\n\\n    os.makedirs(OUTPUT_DIR, exist_ok=True)\\n\\n    log(\\\"Loading data...\\\")\\n    records = load_data()\\n    log(f\\\"Total records: {len(records)}\\\")\\n\\n    log(\\\"Creating episode-level split (sklearn seed=42, test_size=0.15)...\\\")\\n    val_records = episode_level_split(records, test_size=0.15, seed=42)\\n    log(f\\\"Val samples: {len(val_records)}\\\")\\n\\n    gt_dist = defaultdict(int)\\n    for r in val_records:\\n        gt_dist[r[\\\"route_label\\\"]] += 1\\n    log(f\\\"Val label distribution: {dict(gt_dist)}\\\")\\n\\n    episode_keys = set()\\n    for r in val_records:\\n        episode_keys.add((r[\\\"task_type\\\"], r[\\\"variation\\\"]))\\n    log(f\\\"Val episodes: {len(episode_keys)}\\\")\\n\\n    all_results = {}\\n    seeds = sorted(SEED_TO_ADAPTER.keys())\\n\\n    for seed in seeds:\\n        result = eval_single_seed(seed, val_records, args.gpu_id)\\n        all_results[seed] = result\\n\\n    # Summary\\n    cross_accs = [all_results[s][\\\"balanced_accuracy\\\"] for s in seeds]\\n    ref_accs = [CORRECTED_EVAL_REF[s] for s in seeds]\\n    cross_mean = np.mean(cross_accs)\\n    cross_std = np.std(cross_accs)\\n    ref_mean = np.mean(ref_accs)\\n    ref_std = np.std(ref_accs)\\n\\n    log(f\\\"\\\\n{'='*70}\\\")\\n    log(\\\"CROSS-SPLIT ROBUSTNESS RESULTS\\\")\\n    log(f\\\"{'='*70}\\\")\\n    log(f\\\"{'Seed':>6} {'Cross-Split':>12} {'Corrected':>12} {'Delta':>8}\\\")\\n    log(f\\\"{'-'*6:>6} {'-'*12:>12} {'-'*12:>12} {'-'*8:>8}\\\")\\n\\n    deltas = []\\n    for s in seeds:\\n        cs = all_results[s][\\\"balanced_accuracy\\\"]\\n        ref = CORRECTED_EVAL_REF[s]\\n        delta = cs - ref\\n        deltas.append(delta)\\n        log(f\\\"{s:>6} {cs:>12.4f} {ref:>12.4f} {delta:>+8.4f}\\\")\\n\\n    mean_delta = cross_mean - ref_mean\\n    log(f\\\"{'Mean':>6} {cross_mean:>12.4f} {ref_mean:>12.4f} {mean_delta:>+8.4f}\\\")\\n    log(f\\\"{'Std':>6} {cross_std:>12.4f} {ref_std:>12.4f}\\\")\\n    log(f\\\"\\\\nMean absolute delta: {np.mean(np.abs(deltas)):.4f}\\\")\\n    log(f\\\"Split-robust (|mean delta| < 2pp): {'YES' if abs(mean_delta) < 0.02 else 'NO'}\\\")\\n\\n    summary = {\\n        \\\"split_method\\\": \\\"episode_level_sklearn_seed42_test015\\\",\\n        \\\"n_val\\\": len(val_records),\\n        \\\"n_val_episodes\\\": len(episode_keys),\\n        \\\"seeds\\\": seeds,\\n        \\\"per_seed\\\": {str(s): all_results[s] for s in seeds},\\n        \\\"cross_split_mean\\\": round(cross_mean, 4),\\n        \\\"cross_split_std\\\": round(cross_std, 4),\\n        \\\"corrected_eval_mean\\\": round(ref_mean, 4),\\n        \\\"corrected_eval_std\\\": round(ref_std, 4),\\n        \\\"mean_delta\\\": round(mean_delta, 4),\\n        \\\"mean_abs_delta\\\": round(float(np.mean(np.abs(deltas))), 4),\\n        \\\"split_robust\\\": abs(mean_delta) < 0.02,\\n        \\\"gt_distribution\\\": dict(gt_dist),\\n    }\\n\\n    out_path = os.path.join(OUTPUT_DIR, \\\"cross_split_results.json\\\")\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(summary, f, indent=2)\\n    log(f\\\"\\\\nResults saved to {out_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.71}}"
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T01:36:29.643Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01K486UJX7xef1MnR3tG87G8",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"ablation-b-seed123\\\\nablation-b-seed456\\\\nablation-b-seed789\\\\nplan-002-dryrun\\\\nplan-002-formal\\\\nplan-002-formal-v4\\\\nplan-002-formal-v5\\\\nplan-002-formal-v6\\\\nplan-002-generative-v1\\\\nplan-004-implicit\\\\nplan-004-v2\\\\nplan-004-v3\\\\nplan-004-v4\\\\nplan-004-v5\\\\nplan-008-qwen2.5-1.5b\\\\nplan-008-qwen2.5-3b\\\\nplan-008-qwen3-1.7b\\\\nplan-008-v2-qwen3-0.6b\\\\nplan-008-v2-qwen3-1.7b\\\\nplan-008-v2-qwen3-4b\\\\nplan-008-v3-qwen3-0.6b\\\\nplan-008-v3-qwen3-1.7b\\\\nplan-008-v3-qwen3-4b\\\\nplan-008-v4-0_6b-seed42\\\\nplan-008-v4-0_6b-seed43\\\\nplan-008-v4-0_6b-seed44\\\\nplan-008-v4-0_6b-seed45\\\\nplan-008-v4-4b-seed42\\\\nplan-008-v4-4b-seed43\\\\nplan-008-v4-4b-seed44\\\\nplan-008-v4-4b-seed45\\\\nplan-010-cross-task-life-to-physical-seed42\\\\nplan-010-cross-task-physical-to-life-seed42\\\\nplan-013-strict-only\\\\nseed-robustness-seed43\\\\nseed-robustness-seed44\\\\nseed-robustness-seed45\\\\nseed-robustness-seed46\\\\nseed-robustness-seed47\\\\nseed-robustness-seed48\\\\nseed-robustness-seed49\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.59}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "d1279997-98dd-4f09-9e7d-ef2833b448b6",
+            "uuid": "c732a65a-5a4d-42ff-aef8-8330a528dc91",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"ablation-b-seed123\\\\nablation-b-seed456\\\\nablation-b-seed789\\\\nplan-002-dryrun\\\\nplan-002-formal\\\\nplan-002-formal-v4\\\\nplan-002-formal-v5\\\\nplan-002-formal-v6\\\\nplan-002-generative-v1\\\\nplan-004-implicit\\\\nplan-004-v2\\\\nplan-004-v3\\\\nplan-004-v4\\\\nplan-004-v5\\\\nplan-008-qwen2.5-1.5b\\\\nplan-008-qwen2.5-3b\\\\nplan-008-qwen3-1.7b\\\\nplan-008-v2-qwen3-0.6b\\\\nplan-008-v2-qwen3-1.7b\\\\nplan-008-v2-qwen3-4b\\\\nplan-008-v3-qwen3-0.6b\\\\nplan-008-v3-qwen3-1.7b\\\\nplan-008-v3-qwen3-4b\\\\nplan-008-v4-0_6b-seed42\\\\nplan-008-v4-0_6b-seed43\\\\nplan-008-v4-0_6b-seed44\\\\nplan-008-v4-0_6b-seed45\\\\nplan-008-v4-4b-seed42\\\\nplan-008-v4-4b-seed43\\\\nplan-008-v4-4b-seed44\\\\nplan-008-v4-4b-seed45\\\\nplan-010-cross-task-life-to-physical-seed42\\\\nplan-010-cross-task-physical-to-life-seed42\\\\nplan-013-strict-only\\\\nseed-robustness-seed43\\\\nseed-robustness-seed44\\\\nseed-robustness-seed45\\\\nseed-robustness-seed46\\\\nseed-robustness-seed47\\\\nseed-robustness-seed48\\\\nseed-robustness-seed49\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.59}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"ablation-b-seed123\\nablation-b-seed456\\nablation-b-seed789\\nplan-002-dryrun\\nplan-002-formal\\nplan-002-formal-v4\\nplan-002-formal-v5\\nplan-002-formal-v6\\nplan-002-generative-v1\\nplan-004-implicit\\nplan-004-v2\\nplan-004-v3\\nplan-004-v4\\nplan-004-v5\\nplan-008-qwen2.5-1.5b\\nplan-008-qwen2.5-3b\\nplan-008-qwen3-1.7b\\nplan-008-v2-qwen3-0.6b\\nplan-008-v2-qwen3-1.7b\\nplan-008-v2-qwen3-4b\\nplan-008-v3-qwen3-0.6b\\nplan-008-v3-qwen3-1.7b\\nplan-008-v3-qwen3-4b\\nplan-008-v4-0_6b-seed42\\nplan-008-v4-0_6b-seed43\\nplan-008-v4-0_6b-seed44\\nplan-008-v4-0_6b-seed45\\nplan-008-v4-4b-seed42\\nplan-008-v4-4b-seed43\\nplan-008-v4-4b-seed44\\nplan-008-v4-4b-seed45\\nplan-010-cross-task-life-to-physical-seed42\\nplan-010-cross-task-physical-to-life-seed42\\nplan-013-strict-only\\nseed-robustness-seed43\\nseed-robustness-seed44\\nseed-robustness-seed45\\nseed-robustness-seed46\\nseed-robustness-seed47\\nseed-robustness-seed48\\nseed-robustness-seed49\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.59}}"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T01:36:30.893Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Gq93jCcTFLHpLhQfAoLMGr",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"ablation_b_gen_eval.json\\\\nablation_b_seed123_gen.json\\\\nablation_b_seed456_gen.json\\\\nablation_b_seed789_gen.json\\\\nablation_data_size\\\\nalfworld_counterfactual\\\\nbaseline_245eps\\\\nbootstrap_95ci.json\\\\ncross_split_eval\\\\ndeath_decomposition_preliminary.csv\\\\ndeath_decomposition_preliminary_OLD.csv\\\\ndeath_decomposition_report.json\\\\ndeath_decomposition_test.json\\\\ndeath_timing_analysis.json\\\\ndecomposition_dryrun\\\\ndiag_seed42_v5_eval.json\\\\ndry_run_mvp_report.json\\\\ndry_run_mvp_table.json\\\\neval-template-fix\\\\neval_ablation_b_e2e\\\\neval_ablation_b_e2e_correct\\\\nllama-expanded\\\\nmath_full_200.log\\\\nmulti_model_pilot\\\\nmvp\\\\npaper_table1_data.json\\\\npaper_table1_test.json\\\\npenalty_robustness\\\\npenalty_sensitivity.json\\\\npenalty_sensitivity_curve\\\\npenalty_sensitivity_table.tex\\\\nplan-003-eval-implicit\\\\nplan-006-deep-internal\\\\nplan-008\\\\nplan-008-v2\\\\nplan-008-v3\\\\nplan-008-v4\\\\nplan-010-cross-task-life-to-physical-seed42\\\\nplan-010-cross-task-physical-to-life-seed42\\\\nplan-013\\\\nplan004v5_corrected.json\\\\nplan005\\\\nplan_001b_labels\\\\nplan_001b_labels_partial\\\\nplan_002_router_dryrun\\\\nplan_003_eval\\\\nplan_003_eval_dryrun\\\\nplan_003_eval_full_baseline\\\\nplan_003_eval_router_test\\\\nplan_003_eval_router_v6_test\\\\nplan_005_analysis\\\\nplan_012_decomposition\\\\nplan_c\\\\nplan_c_95ci\\\\nplan_c_test_labels\\\\nprescreening\\\\nresearch\\\\nrouting-patterns\\\\nrule_based_accuracy_test.json\\\\nrule_based_accuracy_v1_rerun.json\\\\nrule_based_accuracy_v2_test.json\\\\nrule_based_accuracy_v3.json\\\\nseed-robustness\\\\nseed-robustness-corrected\\\\nsft_data\\\\nsft_data_death_aware\\\\nsft_data_test\\\\nstep_tie_rate_full.json\\\\ntable7\\\\ntest_3label\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.24}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "d1279997-98dd-4f09-9e7d-ef2833b448b6",
+            "uuid": "721e7aa8-b399-4606-b4e4-7ea274f0cff3",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"ablation_b_gen_eval.json\\\\nablation_b_seed123_gen.json\\\\nablation_b_seed456_gen.json\\\\nablation_b_seed789_gen.json\\\\nablation_data_size\\\\nalfworld_counterfactual\\\\nbaseline_245eps\\\\nbootstrap_95ci.json\\\\ncross_split_eval\\\\ndeath_decomposition_preliminary.csv\\\\ndeath_decomposition_preliminary_OLD.csv\\\\ndeath_decomposition_report.json\\\\ndeath_decomposition_test.json\\\\ndeath_timing_analysis.json\\\\ndecomposition_dryrun\\\\ndiag_seed42_v5_eval.json\\\\ndry_run_mvp_report.json\\\\ndry_run_mvp_table.json\\\\neval-template-fix\\\\neval_ablation_b_e2e\\\\neval_ablation_b_e2e_correct\\\\nllama-expanded\\\\nmath_full_200.log\\\\nmulti_model_pilot\\\\nmvp\\\\npaper_table1_data.json\\\\npaper_table1_test.json\\\\npenalty_robustness\\\\npenalty_sensitivity.json\\\\npenalty_sensitivity_curve\\\\npenalty_sensitivity_table.tex\\\\nplan-003-eval-implicit\\\\nplan-006-deep-internal\\\\nplan-008\\\\nplan-008-v2\\\\nplan-008-v3\\\\nplan-008-v4\\\\nplan-010-cross-task-life-to-physical-seed42\\\\nplan-010-cross-task-physical-to-life-seed42\\\\nplan-013\\\\nplan004v5_corrected.json\\\\nplan005\\\\nplan_001b_labels\\\\nplan_001b_labels_partial\\\\nplan_002_router_dryrun\\\\nplan_003_eval\\\\nplan_003_eval_dryrun\\\\nplan_003_eval_full_baseline\\\\nplan_003_eval_router_test\\\\nplan_003_eval_router_v6_test\\\\nplan_005_analysis\\\\nplan_012_decomposition\\\\nplan_c\\\\nplan_c_95ci\\\\nplan_c_test_labels\\\\nprescreening\\\\nresearch\\\\nrouting-patterns\\\\nrule_based_accuracy_test.json\\\\nrule_based_accuracy_v1_rerun.json\\\\nrule_based_accuracy_v2_test.json\\\\nrule_based_accuracy_v3.json\\\\nseed-robustness\\\\nseed-robustness-corrected\\\\nsft_data\\\\nsft_data_death_aware\\\\nsft_data_test\\\\nstep_tie_rate_full.json\\\\ntable7\\\\ntest_3label\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.24}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"ablation_b_gen_eval.json\\nablation_b_seed123_gen.json\\nablation_b_seed456_gen.json\\nablation_b_seed789_gen.json\\nablation_data_size\\nalfworld_counterfactual\\nbaseline_245eps\\nbootstrap_95ci.json\\ncross_split_eval\\ndeath_decomposition_preliminary.csv\\ndeath_decomposition_preliminary_OLD.csv\\ndeath_decomposition_report.json\\ndeath_decomposition_test.json\\ndeath_timing_analysis.json\\ndecomposition_dryrun\\ndiag_seed42_v5_eval.json\\ndry_run_mvp_report.json\\ndry_run_mvp_table.json\\neval-template-fix\\neval_ablation_b_e2e\\neval_ablation_b_e2e_correct\\nllama-expanded\\nmath_full_200.log\\nmulti_model_pilot\\nmvp\\npaper_table1_data.json\\npaper_table1_test.json\\npenalty_robustness\\npenalty_sensitivity.json\\npenalty_sensitivity_curve\\npenalty_sensitivity_table.tex\\nplan-003-eval-implicit\\nplan-006-deep-internal\\nplan-008\\nplan-008-v2\\nplan-008-v3\\nplan-008-v4\\nplan-010-cross-task-life-to-physical-seed42\\nplan-010-cross-task-physical-to-life-seed42\\nplan-013\\nplan004v5_corrected.json\\nplan005\\nplan_001b_labels\\nplan_001b_labels_partial\\nplan_002_router_dryrun\\nplan_003_eval\\nplan_003_eval_dryrun\\nplan_003_eval_full_baseline\\nplan_003_eval_router_test\\nplan_003_eval_router_v6_test\\nplan_005_analysis\\nplan_012_decomposition\\nplan_c\\nplan_c_95ci\\nplan_c_test_labels\\nprescreening\\nresearch\\nrouting-patterns\\nrule_based_accuracy_test.json\\nrule_based_accuracy_v1_rerun.json\\nrule_based_accuracy_v2_test.json\\nrule_based_accuracy_v3.json\\nseed-robustness\\nseed-robustness-corrected\\nsft_data\\nsft_data_death_aware\\nsft_data_test\\nstep_tie_rate_full.json\\ntable7\\ntest_3label\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.24}}"
+              }
+            }
+          },
+          "id": "event-000014"
+        }
+      ],
+      "message_count": 14
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-cross-split-multi-seed-eval.md"
+}

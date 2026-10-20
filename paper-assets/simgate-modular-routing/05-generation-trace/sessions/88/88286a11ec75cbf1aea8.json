@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "88286a11ec75cbf1aea8",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ops cleanup and verify",
+  "task_key": "worker_ops_cleanup-and-verify_20260515T163311",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cleanup-and-verify_20260515T163311_result.json",
+    "occurrence": 1,
+    "bytes": 800,
+    "sha256": "9c2c8ac7e89e3b0b4ae1c2e31af14560e5ed035afb7c282ee6b4007b55e1e345"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成，汇报如下：\n\n### 1. Kill 结果\n进程 508260 已不存在（之前已退出），无 vllm 子进程残留。\n\n### 2. collection_meta.json 修正\n| 任务 | 修正前 | 修正后 |\n|------|--------|--------|\n| chemistry-mix | collected_episodes: 7 | collected_episodes: 20 |\n| lifespan-longest-lived-then-shortest-lived | collected_episodes: 2 | collected_episodes: 20 |\n\n### 3. GPU 状态\n| GPU | 型号 | 显存占用 | 利用率 |\n|-----|------|----------|--------|\n| 0 | RTX 5090 | **0 MiB** / 32607 MiB | 0% |\n| 1 | RTX 5090 | **0 MiB** / 32607 MiB | 0% |\n\n两张卡完全释放，无 GPU 进程。\n\n### 4. 残留进程\n仅有系统级服务（tensorboard、jupyter-lab），无实验相关 python/vllm/episode_level 进程。环境干净。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cleanup-and-verify.md"
+}

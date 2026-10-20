@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9a4f79b90ca42d0c7d6d",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "diagnose plan 002 v3 completion",
+  "task_key": "worker_diagnose_plan-002-v3-completion_20260514T060508",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_plan-002-v3-completion_20260514T060508_result.json",
+    "occurrence": 1,
+    "bytes": 1959,
+    "sha256": "ebe0e21316b7c2169db516eb65ed95b36fc485de078c334655f6aca0bd3eccb0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## plan-002-formal-v3 验收\n\n### 训练状态\n- 完成/崩溃: **COMPLETE** (156/156 steps, ~16 min)\n- Sentinel: **存在** (2026-05-14T14:01:17)\n- Epochs 完成: **3**\n- Early stopping counter: **2/2** (patience exhausted, `should_training_stop=true`)\n\n### Loss 曲线\n\n| Epoch | train_loss (avg) | eval_loss |\n|-------|-----------------|-----------|\n| 1 | ~4.49 | 1.7793 |\n| 2 | ~3.92 | 1.9957 |\n| 3 | ~3.82 | 1.5083 |\n\ntrain_loss 全程在 3.5–5.2 波动，极高，模型基本未学到任务格式。eval_loss 虽有下降但对分类指标无帮助。\n\n### 分类指标（关键）\n- Overall accuracy: **0.0000**\n- Balanced accuracy: **0.0000**\n- F1 macro: **0.0000**\n\nPer-class:\n| Class | Precision | Recall | F1 |\n|-------|-----------|--------|-----|\n| deterministic | 0.0 | 0.0 | 0.0 |\n| internal | 0.0 | 0.0 | 0.0 |\n\n### Confusion Matrix\n```\nlabels: [internal, deterministic]\n[[  0,   0],    ← true=internal (0 samples in eval)\n [390,   0]]   ← true=deterministic (390 samples, ALL predicted as internal)\n```\n\n### Per-task Accuracy\n所有 11 个 task 均为 **0.000**（30 samples each, find-non-living-thing 90 samples）\n\n### 关键判断\n- **internal recall > 0?** **NO** — eval set 中 internal 样本数为 0，无法评估\n- **退化问题解决?** **NO** — 比 dryrun 更严重，完全崩溃\n- **与 dryrun 对比:** 全面恶化。模型将所有 390 个 deterministic 样本预测为 internal，0% 准确率\n\n### 根因分析\n1. **eval set 只包含 deterministic 样本**（390 个），无 internal 样本 → eval 数据分割有问题\n2. **模型将所有样本预测为同一类 (internal)** → 模型没有学到分类边界\n3. **train_loss ~4.0 持续居高** → 模型可能在拟合错误的 token 位置（label format/template 问题），或 class_weights 导致 loss scale 异常\n4. Adapter 文件已保存（~25MB），但模型本身无分类能力"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-plan-002-v3-completion.md"
+}

@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "eff3c1e5e464bb135ee2",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "exp r7n2 ablation oom fix",
+  "task_key": "worker_exp_r7n2-ablation-oom-fix_20260516T030826",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_r7n2-ablation-oom-fix_20260516T030826.log",
+    "occurrence": 1,
+    "bytes": 1249104,
+    "sha256": "76fcca3416b9a69618bf471bb9c4252a7aed37b08d5c6171d8147a987884e145"
+  },
+  "statistics": {
+    "messages": 622,
+    "user_turns": 1,
+    "tool_calls": 211,
+    "roles": {
+      "log": 1,
+      "system": 26,
+      "record": 1,
+      "assistant": 168,
+      "tool_call": 211,
+      "tool_result": 211,
+      "user": 1,
+      "result": 3
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 560,
+      "chunks": [
+        {
+          "path": "eff3c1e5e464bb135ee2-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "eff3c1e5e464bb135ee2-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "eff3c1e5e464bb135ee2-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "eff3c1e5e464bb135ee2-part-0004.json",
+          "message_count": 20
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 62,
+      "chunks": [
+        {
+          "path": "eff3c1e5e464bb135ee2-part-0004.json",
+          "message_count": 62
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-r7n2-ablation-oom-fix.md"
+}

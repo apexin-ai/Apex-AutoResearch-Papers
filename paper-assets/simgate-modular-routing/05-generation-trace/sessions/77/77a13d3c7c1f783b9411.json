@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "77a13d3c7c1f783b9411",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "check dual experiment status",
+  "task_key": "worker_check_dual-experiment-status_20260520T090043",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_dual-experiment-status_20260520T090043_result.json",
+    "occurrence": 1,
+    "bytes": 792,
+    "sha256": "ab41af2bdb9e109b03c77a744cc2f49928f6d7f816e0ffc1c5f70fa5bb4dffb4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "状态报告已写入 `results/status_check.txt`。汇总：\n\n### ALFWorld Llama (GPU 0)\n- **进度**: 74/135 episodes (54.8%)\n- **状态**: 运行中 (alfworld_v3 session, PID 761143)\n- **GPU**: 24.4/32.6 GB, 96% util, 68°C\n- **速率**: ~1.7 min/episode\n- **预计完成**: ~18:45 CST (约 1.7 小时后)\n\n### Gemma ScienceWorld Counterfactual (GPU 1)\n- **进度**: 26/220 episodes (11.8%)\n  - boil: 20/20 (前一次 session 完成)\n  - melt: 2/20 (前一次 session 中断)\n  - identify-life-stages-1: 4/20 (当前正在跑)\n  - 其余 8 个 task: 未开始\n- **状态**: 运行中 (gemma-11tasks session, vLLM PID 745270)\n- **GPU**: 28.0/32.6 GB, 78% util, 49°C\n- **速率**: ~4 min/episode\n- **预计完成**: ~May 21 06:00-07:00 CST (约 13-14 小时)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-dual-experiment-status.md"
+}

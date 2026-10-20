@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fecee9ee48593c9e156f",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "research ref audit B",
+  "task_key": "worker_research_ref-audit-B_20260526T101527",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_ref-audit-B_20260526T101527_result.json",
+    "occurrence": 1,
+    "bytes": 936,
+    "sha256": "116a3795a3a34a67289e86eb195720973e0079bcaa2d2a1adb1b0df4e7b5b37b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审核完成。报告已写入 `artifacts/ref-audit/audit_worker_B.md`。\n\n68 条引用中发现 10 个问题：\n\n**严重（需修复）：**\n- `toolace-2025`: 第一作者姓错误 (Zhang → **Liu**)\n- `agent-safetybench-2024`: 多个作者名错误 + 2 个虚构作者\n- `automix-2024`: 多个作者名错误 + 缺少 7 位共同作者\n- `amitai2024explaining`: 第二作者名错误 (Guy → **Yael** Septon)\n- `reflexion-2023`: 缺少作者 Edward Berman\n- `salt-2026`: 第三作者名错误 (David → **Qiaojing** Yan)\n\n**轻微：**\n- `dagger-2011`: 作者昵称 vs 正式名 (Drew → J. Andrew Bagnell)\n- `switch-transformer-2022`: 页码 1-39 → 1-40\n- `bonagiri2025check`: 作者顺序与 arXiv 不一致\n- `axis-2026`: cite key 标 2026 但实际年份为 2025\n\n**无 hallucinated paper**，所有 68 篇论文均真实存在。正文引用上下文全部正确，未发现张冠李戴。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-ref-audit-b.md"
+}

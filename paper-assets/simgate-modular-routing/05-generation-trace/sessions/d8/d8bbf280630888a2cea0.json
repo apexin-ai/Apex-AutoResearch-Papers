@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d8bbf280630888a2cea0",
+  "project": "simgate-modular-routing",
+  "kind": "history",
+  "title": "agent / loop_7_1778769879.md",
+  "task_key": "loop_7_1778769879",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_7_1778769879.md",
+    "occurrence": 1,
+    "bytes": 4911,
+    "sha256": "e35460df1ceab23e491fb0f82711ab444abf3f34a8edc335b01c8786e04fcfc0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: idle_timeout\nupdated: '2026-05-14T14:43:27+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westb-13313 的 cuda:0 和 cuda:1（RTX 5090 32GB）。禁止用其他设备号\n- 唯一可用训练数据：`data/plan-004-implicit/implicit_sft.jsonl`（MD5: c9b59e04de78, 2040 samples）。`results/plan_c_test_labels/implicit_sft.jsonl` 标签损坏，绝对不能用\n- Checkpoint 区分：`checkpoints/plan-004-implicit/final_adapter` = ablation-b（正确）；`checkpoints/plan-002-generative-v1/final_adapter` = gen-v1（失败）。两者 eval metrics 相似，极易混淆\n- Table 1 数字只能来自 `eval_end_to_end.py`，不能用 `eval_implicit_router.py`（trained-router 正确值 = -10.70，不是 -12.84）\n- Qwen3 推理必须 `enable_thinking=False` + regex 清理 `<think>` tags\n- submit_training_job 命令必须自带环境激活（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`），不能假设 .venv 存在\n- D046 决策：已撤销 PIVOT（D041/D042），回归分析论文。MATH 不扩全量，pilot 结果仅入 Discussion\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westb-13313，2× RTX 5090 32GB\n- 工作目录：`/root/autodl-tmp/simgate-modular-routing`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，非 venv）\n- 环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型：Qwen2.5-7B-Instruct（数据收集用）、Qwen3-1.7B（router 训练用），均为本地路径\n- HF cache：`/root/autodl-tmp/.hf_cache`\n- 活跃进程：alfworld-counterfactual-full（tmux=alfworld_cf, cuda:1, PID 见 tmux session）\n- 活跃 Cron：alfworld-counterfactual-full（监控中）、math-200-fixed（pending escalation retry）\n- AutoDL 网络：提交前必须 `source /etc/network_turbo` + 设 `HF_HOME` + SSL 证书环境变量\n\n### 3. 📊 当前状态\n**Paper Writing Sprint 阶段**，DDL 2026-05-25（剩余 11 天）。\n\n刚完成的工作：\n- plan-013 labeling quality 确认 oracle circularity 不成立（D039）\n- 多个 paper writing workers 已完成：experiments_v2_patch, conclusion, related_work_v2, plan013 discussion integration, cross-env discussion, number consistency check, compile audit\n- 98.2% tie rate 数值修正（unify-delta-subscript worker 正在运行中）\n- math-200-fixed 失败已诊断\n- 僵尸 dry-run 进程已清理\n\nRUNNING 实验：\n- `alfworld-counterfactual-full`：ALFWorld 全量 counterfactual 收集，135 games / 6 task types，cuda:1。D044 决策：exploratory，不承诺入论文，看结果决定\n\nPREPARING（实际已废弃/完成）：\n- `plan-003-baseline`：已有 metrics（conclusion=success），数据齐全，仅状态未推进\n- `plan-001b-gpu1-rebalance`：已废弃（killed）\n- `mvp-p1-signal`：已废弃（killed）\n\n等待中：\n- alfworld-counterfactual-full cron 回调（预计 ~3.5h 总时长，从 13:56 UTC 开始）\n- worker_paper_unify-delta-subscript 正在运行\n\n### 4. 📋 待办（条件触发式）\n- alfworld-counterfactual-full cron 回调到达 → spawn worker 分析结果（death decomposition + 与 ScienceWorld 对比）→ 结果 ≥ 有意义的跨环境 signal → 考虑入 Discussion/supplementary；无显著发现 → 记录不纳入论文\n- unify-delta-subscript worker 完成 → 检查 LaTeX 编译 + 数值一致性\n- math-200-fixed pending escalation retry → 根据 D046 决策不再重跑全量，仅 pilot 结果入 Discussion，可关闭此 cron\n- 5/15-16 → 整合完整 LaTeX 初稿 + plan-013 labeling quality 结果入 Discussion/Limitations\n- 5/17 → Paper Agent 交初稿目标\n- 5/17-22 → Review 对抗迭代\n\n### 5. 🎯 战略上下文\n**核心结论链**：\n- D013: death avoidance 占 ~90% routing signal（Δ_full=+29.60, DAF=90.41%）\n- D025: classification head 全退化，pivot 到 generative SFT\n- D033: Option B framing 定稿——贡献 = counterfactual 分析方法论 + death avoidance empirical finding，非 router 架构\n- D035: trained-router e2e NEGATIVE（-10.70 vs always-det -9.47），但 router 非退化本身 IS the finding\n- D039: oracle circularity 不成立，labels 可信\n- D046: 撤销 PIVOT，回归分析论文。MATH pilot 显示 internal 反超 code interpreter → 否定统一 router 前提\n\n**易错点**：\n- 不要把 MATH pilot 的 internal > code interpreter 结果解读为\"方法失败\"——这恰恰支持 C1（不同环境 routing signal 本质不同）\n- D041/D042 的 method paper pivot 已被 D045/D046 撤销，不要再按 method paper 方向写\n- find-non-living-thing 是**正面案例**（零死亡但仍有 Δ=+9.58），不是 outlier 要排除\n- plan-003-baseline 的 trained-router 用的是退化 v6（≡ always-det），论文 Table 1 trained-router 行用 ablation-b 的 eval_end_to_end.py 结果\n- 当前 cuda:0 空闲（alfworld 只占 cuda:1），写作期间可用于 ad-hoc 分析\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-1778769879.md"
+}

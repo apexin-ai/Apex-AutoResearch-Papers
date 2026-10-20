@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f6ea0eb140b9a469b0dd",
+  "project": "simgate-modular-routing",
+  "kind": "history",
+  "title": "agent / loop_7_1778769807.md",
+  "task_key": "loop_7_1778769807",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_7_1778769807.md",
+    "occurrence": 1,
+    "bytes": 4598,
+    "sha256": "efd7a654f0cffb932d83b7669ae241dd2947595bf903f45ccc3b6e020757ec34"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: idle_timeout\nupdated: '2026-05-14T14:42:35+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**仅 cuda:0 和 cuda:1**（westb-13313），gpu_constraint 配置为 `autodl-simgate:cuda:0/1`\n- Table 1 数字锁定：trained-router=**-10.70**, always-det=**-9.47**, oracle=**-6.58**，来源必须是 `eval_end_to_end.py`（不是 eval_implicit_router.py 的 -12.84）\n- Checkpoint 路径：ablation-b = `checkpoints/plan-004-implicit/final_adapter`，**不是** `checkpoints/plan-002-generative-v1/final_adapter`（后者是 gen-v1 失败品，两者 metrics 相似极易混淆）\n- 数据文件：唯一可用训练数据 = `data/plan-004-implicit/implicit_sft.jsonl`（MD5: c9b59e04de78, 2040 samples）。`results/plan_c_test_labels/implicit_sft.jsonl` 标签损坏，禁用\n- Qwen3 eval 必须 `enable_thinking=False` + `re.sub` 清理 `<think>` tags\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westb-13313, 2× RTX 5090 32GB\n- **工作目录**: `/root/autodl-tmp/simgate-modular-routing`\n- **Python**: `/root/miniconda3/bin/python`（conda base, 激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- **模型**: Qwen2.5-7B-Instruct（本地路径在服务器上）\n- **HF cache**: `/root/autodl-tmp/.hf_cache`\n- **活跃进程**:\n  - `alfworld-counterfactual-full`: tmux=`alfworld_cf`, cuda:1, 135 games counterfactual 收集\n  - `math-200-fixed`: cuda:0, 200题 MATH counterfactual — **⚠️ 进程已消失，cron escalation miss 3/5**\n- **Cron**: 2 个活跃（alfworld-counterfactual-full 120s, math-200-fixed 120s）\n\n### 3. 📊 当前状态\n**刚完成**: session-start 初始化 + reconcile crons。发现 math-200-fixed 进程已退出（no sentinel, no W&B, miss 3/5），已有 Worker `worker_diagnose_math-200-fixed-exit` 在诊断原因。\n\n**Registry RUNNING**:\n- `alfworld-counterfactual-full` — ALFWorld 135 games 全量 counterfactual, cuda:1, D044 exploratory\n- `math-200-fixed` — MATH 200 题 counterfactual (offset=50), cuda:0, **进程疑似异常退出**\n\n**Worker 池 (4 running)**:\n1. `worker_diagnose_alfworld-0pct-success` — 诊断 ALFWorld 0% 成功率问题\n2. `worker_diagnose_math-200-fixed-exit` — 诊断 math-200-fixed 进程退出原因\n3. `worker_paper_unify-delta-subscript` — 统一论文中 Δ 下标记号\n4. `worker_ops_kill-zombie-dryruns` — 清理僵尸 dry-run 进程\n\n**等待中**: 4 个 Worker 回调；math-200-fixed cron 继续 escalation\n\n### 4. 📋 待办（条件触发式）\n- `worker_diagnose_math-200-fixed-exit` 回调 → 根据诊断结果决定：成功完成则提取结果转 ANALYZING；崩溃则修复后重提交\n- `worker_diagnose_alfworld-0pct-success` 回调 → 若 ALFWorld 全量确实 0% success，需评估是 bug 还是 expected behavior，决定是否入 Discussion\n- `alfworld-counterfactual-full` cron 完成回调 → spawn Worker 分析 6 task types breakdown + death decomposition，结果入 Discussion\n- MATH + ALFWorld 结果就绪 → spawn Worker 写 Discussion 段落（跨环境对比 + limitations）\n- `worker_paper_unify-delta-subscript` 回调 → 检查 LaTeX 编译，继续 98.2% → 97.4% tie rate 修正\n- 初稿目标 5/17 → 5/15-16 需整合所有实验结果入完整 LaTeX\n\n### 5. 🎯 战略上下文\n- **核心结论**: Death avoidance 占 ~90% routing signal（DAF=90.41%, r=0.9698）。Router near-random (balanced_acc=58.1%) IS the finding，不是失败\n- **论文定位**: EMNLP 2026 ARR short paper (4p), DDL 5/25。贡献 = counterfactual 分析方法论 + death avoidance empirical finding，**非 router 架构**\n- **决策链**: D013 framing pivot → D033 Option B 方法论贡献 → D045/D046 撤销 method paper pivot，回归 analysis paper。MATH 反转信号（internal > det）否定统一 router 前提\n- **MATH 定位**: pilot 显示 internal(80%) 反超 code interpreter(72%)，信号方向与 ALFWorld 相反。不扩全量，pilot 结果入 Discussion\n- **ALFWorld 定位 (D044)**: exploratory，不承诺纳入论文，看全量结果决定\n- **易错点**:\n  - 不要把 MATH 和 ALFWorld 的 routing signal 直接对比——方向相反（MATH 偏 internal, ALFWorld 偏 det），这正是 Discussion 要展开的点\n  - Classification head 路线已死（D025），不要再尝试 2-class classification\n  - gen-v1 和 ablation-b 的 eval routing metrics 几乎一样（internal_recall ~51%），但 e2e 天差地别——区分靠 checkpoint 路径和 ga 值\n  - 53 个实验中成功 21 / 负向 13 / 失败 9——大量 negative 结果已消化进 framing，不要惊讶\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-1778769807.md"
+}

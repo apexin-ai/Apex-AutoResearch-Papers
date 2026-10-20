@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9c8ca6b3d21033d34d67",
+  "project": "simgate-modular-routing",
+  "kind": "history",
+  "title": "agent / loop_10_1778805652.md",
+  "task_key": "loop_10_1778805652",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_10_1778805652.md",
+    "occurrence": 1,
+    "bytes": 3775,
+    "sha256": "1621304205bf7988ed5e50347149b0b33a3e97c165937bd06b0843d66b2979ad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: idle_timeout\nupdated: '2026-05-15T00:38:22+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：仅 `westb-13313:cuda:0` 和 `westb-13313:cuda:1`，不得使用其他设备\n- 论文数据源：主文只引 `plan-012-full`（11 tasks / 245 eps），prescreening 数据仅限 appendix\n- 绝对不引用 `death_decomposition_report.json`（实际是 30-task 数据，文件名误导）和 `results/plan_c_test_labels/implicit_sft.jsonl`（标签损坏）\n- Table 1 所有数字必须来自 `eval_end_to_end.py`，不用 `eval_implicit_router.py` 的 -12.84\n- Qwen3 推理必须 `enable_thinking=False` + `re.sub` 兜底清理 `<think>` tags\n\n### 2. 🖥️ 基础设施快照\n- 服务器：`westb-13313`，2× RTX 5090 32GB（cuda:0, cuda:1），两张均空闲\n- 工作目录：`/root/autodl-tmp/simgate-modular-routing`\n- Python：aml-train 镜像，`/root/miniconda3/bin/python`（conda base env，不是 venv）\n- 环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- HF_HOME：`/root/autodl-tmp/.hf_cache`\n- 模型：Qwen3-1.7B（router）、Qwen2.5-7B-Instruct（backbone），本地路径在 autodl-tmp\n- W&B project：simgate-modular-routing\n- 活跃进程：无（所有实验已终态）\n- Cron：reconcile 返回 0 active，无监控任务\n- 运行中 Worker：`worker_paper_r6-revision_20260515T003235`（paper:r6-revision，turn 16，正在压缩正文至 4 页）\n\n### 3. 📊 当前状态\n**所有实验已终态**（58 experiments: 22 success / 13 negative / 10 failed / 13 killed，0 RUNNING）。\n\n**论文处于 Review 迭代阶段**：\n- R2: Borderline Accept - Findings (2.75/5)，3 Blockers 全部修复\n- R3: Weak Accept - Findings (3.25/5)，D049 camera-ready 修复\n- 本地编译通过：7 页（正文 4p + 非计入 3p），0 warnings，22 bib entries\n- Worker `worker_paper_r6-revision_20260515T003235` 正在做 R6 revision（正文超 4 页，正在压缩），等其回调\n\n**等待中**：\n- Worker R6-revision 回调 → 检查压缩后编译状态 + 页数\n- 无 Cron / Director 决策阻塞\n\n### 4. 📋 待办（条件触发式）\n- R6-revision Worker 完成 → 检查编译状态（0 warnings / 4p 正文）→ 远程 rsync 同步 → PDF 视觉检查\n- 如果正文仍超 4 页 → spawn 新 Worker 继续压缩（优先砍 Related Work / Method 冗余）\n- Director 要求补充分析 → cuda:0/1 均可用，可立即派 Worker 跑\n- 5/23-24 → 终稿锁定 + ARR 提交准备（格式检查、anonymization、supplementary materials）\n- 收到新一轮审稿意见 → 按 on-experiment-done / red-section 规范处理\n\n### 5. 🎯 战略上下文\n**核心结论**：Death avoidance 占 ~90% routing signal（DAF=90.41%, r=0.9698, p=8.12e-07）。论文贡献 = empirical finding + diagnostic methodology（episode-level counterfactual labeling），不是 router 架构。\n\n**决策链关键节点**：\n- D013: Framing pivot → analysis paper（非 method paper）\n- D033: Option B 定稿 — 方法论贡献，router ≈ always-det IS the finding\n- D037: Table 1 权威数字来源 = eval_end_to_end.py\n- D046: 撤销 pivot（D041/D042），回归 analysis paper，MATH 不扩全量\n- D049: R3 camera-ready 修复\n\n**易错点**：\n- 不要把 prescreening 30-task 数字（DAF=98.75%）和主文 11-task 数字（DAF=90.41%）混淆\n- plan-004 (implicit routing) 是 negative 结论但 router training (plan-002 ablation-b) 是 success — 不同实验，不要混淆\n- Checkpoint 路径：`checkpoints/plan-004-implicit/final_adapter` = ablation-b（成功的那个），`checkpoints/plan-002-generative-v1/final_adapter` = gen-v1（失败的那个）\n- DDL 5/25，还剩 10 天，当前处于 review 迭代收敛阶段，不需要新实验除非 reviewer 要求\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-1778805652.md"
+}

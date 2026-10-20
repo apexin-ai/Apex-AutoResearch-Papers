@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6e193e5e3ab59f38ae6d",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "research ga verify urgent",
+  "task_key": "worker_research_ga-verify-urgent_20260514T113021",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_ga-verify-urgent_20260514T113021_result.json",
+    "occurrence": 1,
+    "bytes": 1711,
+    "sha256": "3d9debd8d3184f15271a2c2edb6de9f050b3a9bcc1ca2a2c2a91a8fce1c03ec7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "找到关键证据。旧版脚本 (.bak) 第 270 行硬编码了 `gradient_accumulation_steps=max(1, 32 // args.batch_size)`。当 batch_size=4 时，32 // 4 = **8**。\n\n## 结论\n\n| Run | checkpoint_path | ga (config) | ga (argparse default) | total_steps | 反推 ga | 结论 |\n|-----|----------------|-------------|----------------------|-------------|---------|------|\n| ablation-b | `plan-004-implicit` | **缺失** | 1（当前版本） | 165 | ceil(1735/32)×3=165 → **ga=8** | **ga=8** |\n| seed123 | `ablation-b-seed123` | **8** | 1 | 165 | 同上 → **ga=8** | **ga=8** |\n| seed456 | `ablation-b-seed456` | **8** | 1 | 165 | 同上 → **ga=8** | **ga=8** |\n| seed789 | `ablation-b-seed789` | **8** | 1 | 165 | 同上 → **ga=8** | **ga=8** |\n\n**最终结论：ablation-b 实际使用 ga=8，Reviewer 的声称不成立。**\n\n证据链：\n1. **total_steps=165** — 所有 4 个 run 均为 165 步，唯一匹配的组合是 1735 samples / batch_size=4 / ga=8 / 3 epochs = ceil(1735/32)×3 = 55×3 = 165\n2. **旧版脚本硬编码** — `implicit_router_sft.py.bak` 第 270 行：`gradient_accumulation_steps=max(1, 32 // args.batch_size)` = max(1, 32//4) = **8**。ablation-b 训练时使用的就是这个版本\n3. **seed 变体显式确认** — 三个 seed 变体的 train_config.json 均明确记录 `gradient_accumulation_steps: 8`\n4. **config 缺失原因** — ablation-b 的 train_config.json 没有 ga 字段，是因为当时 ga 是脚本内计算值（非 argparse 参数），`vars(args)` 不包含它。后来重构为 argparse 参数后，seed 变体才有此字段\n\nEffective batch size 始终为 4 × 8 = 32。论文 §4.4 的因果声明成立。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-ga-verify-urgent.md"
+}

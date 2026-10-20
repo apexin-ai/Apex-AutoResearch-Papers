@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "id": "682af813fe7e8e5fa154",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "diagnose plan 002 formal",
+  "task_key": "worker_diagnose_plan-002-formal_20260514T053744",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_plan-002-formal_20260514T053744.log",
+    "occurrence": 1,
+    "bytes": 999174,
+    "sha256": "17c9a30499660573b8641e9d0e0812e76c68e7334e0877cbc2b1f27c31d67cb1"
+  },
+  "statistics": {
+    "messages": 922,
+    "user_turns": 0,
+    "tool_calls": 420,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 4,
+      "assistant": 76,
+      "tool_call": 420,
+      "tool_result": 420
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 922,
+      "chunks": [
+        {
+          "path": "682af813fe7e8e5fa154-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "682af813fe7e8e5fa154-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "682af813fe7e8e5fa154-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "682af813fe7e8e5fa154-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "682af813fe7e8e5fa154-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "682af813fe7e8e5fa154-part-0006.json",
+          "message_count": 22
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/diagnose-plan-002-formal.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c78831186749388d4636",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh fix gpu and launch both",
+  "task_key": "worker_ssh_fix-gpu-and-launch-both_20260518T220013",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix-gpu-and-launch-both_20260518T220013_result.json",
+    "occurrence": 1,
+    "bytes": 910,
+    "sha256": "ce3af08a42fa7a7a7799dcfda17df6e800b2a3176b1a7d67f3ca685cc247bc6b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验都在正常运行。\n\n## 报告\n\n| 项目 | Condition A (Prompt Ablation) | Condition B (Filter Ablation) |\n|------|------|------|\n| **GPU** | GPU 0 (RTX 5090, 29628 MiB) | GPU 1 (RTX 5090, 29508 MiB) |\n| **vLLM PID** | 170164 (in-process) | 169577 (API server, port 8001) |\n| **tmux session** | `grounding-prompt-ablation` | `grounding-filter-ablation` |\n| **状态** | 正在跑 `chemistry-mix` ep 0/20，vLLM 推理中 (~2700 toks/s input) | 正在跑 `chemistry-mix` Ep 1/20，API 请求正常 200 OK |\n\n**修复内容**：\n- `run_grounding_filter_wrapper.sh`: `CUDA_VISIBLE_DEVICES` 0→1, port 8000→8001, 所有 localhost URL 同步更新\n- Prompt ablation 无需修改，`LLMAgent` 通过 `gpu_id=0` + `setdefault(\"CUDA_VISIBLE_DEVICES\", \"0\")` 正确绑定 GPU 0\n\n**nvidia-smi 确认**：两张卡均 ~90% GPU-Util，各自独立运行 vLLM EngineCore。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fix-gpu-and-launch-both.md"
+}

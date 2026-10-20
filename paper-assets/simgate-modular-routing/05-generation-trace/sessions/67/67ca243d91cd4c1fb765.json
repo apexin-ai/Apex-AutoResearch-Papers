@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "67ca243d91cd4c1fb765",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "research bootstrap ci check",
+  "task_key": "worker_research_bootstrap-ci-check_20260514T112610",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_bootstrap-ci-check_20260514T112610_result.json",
+    "occurrence": 1,
+    "bytes": 1191,
+    "sha256": "202512d1b3ab55a29f94d212a122f5020f38befc568bee80604edfcbe138d3c4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息已收集齐。D037/D038 在代码中没有显式引用（只在 binary checkpoint 中匹配），它们是 trained-router 实验，使用 `eval_end_to_end.py` 进行评估。\n\n## Bootstrap CI 置信水平参数汇总\n\n| 文件 | 行号 | 默认置信水平 | n_boot | 备注 |\n|------|------|-------------|--------|------|\n| `src/eval_end_to_end.py` | L424 | **0.90 (90%)** | 1000 | trained-router 评估主脚本，D037/D038 使用此文件 |\n| `src/analysis.py` | L21 | **0.90 (90%)** | 10000 | Phase 1 MVP 分析 |\n| `src/death_decomposition.py` | L24, L137 | **0.95 (95%)** | 10000 | Death decomposition 分析（独立模块） |\n\n**D037/D038 trained-router 实验的 bootstrap CI 置信水平 = 0.90 (90%)**。\n\n具体代码位置：\n- `src/eval_end_to_end.py:424` — `def bootstrap_ci(values, stat_fn, n_boot=1000, ci=0.90, rng=None)`\n- 注释 L14 也明确写了 `bootstrap 90% CI`\n- CLI 参数 `--n_bootstrap`（L713）可覆盖 resample 次数（默认 1000），但 **置信水平 0.90 硬编码在函数默认参数中**，无 CLI 覆盖入口\n\n注意 `death_decomposition.py` 用的是 **0.95 (95%)**，与 eval_end_to_end 不同。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-bootstrap-ci-check.md"
+}

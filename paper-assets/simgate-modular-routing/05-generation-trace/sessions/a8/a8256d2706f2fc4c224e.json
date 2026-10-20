@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "a8256d2706f2fc4c224e",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "data math full 200",
+  "task_key": "worker_data_math-full-200_20260514T140908",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_math-full-200_20260514T140908.log",
+    "occurrence": 1,
+    "bytes": 541022,
+    "sha256": "1f266bb974bdf47ff0e400ce06cbb99daad626e981fd42d3d7a7690293b0337f"
+  },
+  "statistics": {
+    "messages": 245,
+    "user_turns": 0,
+    "tool_calls": 87,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 67,
+      "tool_call": 87,
+      "tool_result": 87,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 245,
+      "chunks": [
+        {
+          "path": "a8256d2706f2fc4c224e-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "a8256d2706f2fc4c224e-part-0002.json",
+          "message_count": 65
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/data-math-full-200.md"
+}

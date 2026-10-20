@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8f5ee9251dcbd3135f70",
+  "project": "simgate-modular-routing",
+  "kind": "history",
+  "title": "agent / loop_8_1778783506.md",
+  "task_key": "loop_8_1778783506",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_8_1778783506.md",
+    "occurrence": 1,
+    "bytes": 4086,
+    "sha256": "853e7b2125182d134817b95926c8aa72dacc9a773c3c72d88f983831fc505ab3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: idle_timeout\nupdated: '2026-05-14T18:20:45+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：仅 `cuda:0`, `cuda:1`（westb-13313）。历史上无违规但 config 明确限定\n- Table 1 所有数字必须来自 `eval_end_to_end.py`，不得用 `eval_implicit_router.py` 的 -12.84\n- 数据文件唯一可用：`data/plan-004-implicit/implicit_sft.jsonl`（MD5: c9b59e04de78, 2040 samples）。`results/plan_c_test_labels/implicit_sft.jsonl` 标签损坏（D026），绝对不能用\n- Qwen3 eval 必须 `enable_thinking=False` + regex 清理 `<think>` tags（否则推理结果被 thinking mode 污染）\n- Checkpoint 区分：`checkpoints/plan-004-implicit/final_adapter` = ablation-b（正确的），`checkpoints/plan-002-generative-v1/final_adapter` = gen-v1（失败的）。两者 routing metrics 相似，极易混淆\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westb-13313，2× RTX 5090 32GB（cuda:0, cuda:1，均空闲）\n- 工作目录：`/root/autodl-tmp/simgate-modular-routing`\n- Python 环境：aml-train 预置镜像，conda base（`/root/miniconda3/bin/python`）\n- 模型：Qwen3-1.7B，本地路径在服务器上（AutoDL 需 `source /etc/network_turbo` + `HF_HOME=/root/autodl-tmp/.hf_cache`）\n- W&B：项目内有配置\n- 活跃进程：无实验在跑。Worker `worker_ops_kill-vllm-and-sync-paper_20260514T174712`（清理 vLLM + 同步论文）状态 running 但可能已完成未回调\n- Cron：reconcile 结果 0 个活跃 cron\n\n### 3. 📊 当前状态\n**论文状态：READY，R3 审稿已提交，等待审稿结果。**\n\nSession #9 完成：\n- ALFWorld counterfactual full 实验完成（success），结果写入 Limitations + Conclusion\n- 修复断引用 + 本地编译通过（7 页 = 4p 正文 + 3p 非计入，0 warnings，22 bib）\n- R2→R3 的 3 个 Blockers（B1 标题加 scope / B2 train-test split / B3 penalty sensitivity）+ 8 个 Suggestions 全部修复\n- 全文数字一致性交叉验证通过\n\nRegistry：58 experiments 全部终态（22 success / 13 negative / 10 failed / 13 killed），0 RUNNING。\nWorker：1 个 ops worker（kill-vllm-and-sync-paper）状态 running，无回调。无其他待处理回调。\n\n### 4. 📋 待办（条件触发式）\n- kill-vllm-and-sync worker 回调到达 → 确认远程论文文件已同步，检查远程编译状态\n- R3 审稿结果返回 → 根据 reviewer 反馈决定：accept → 准备 camera-ready；revision → 按 action matrix 逐条修复；reject → 与 Director 讨论 resubmit 策略\n- Director 要求远程编译验证 → spawn worker SSH 到 westb-13313 做 rsync + pdflatex+bibtex\n- Director 要求最终 PDF 视觉检查 → spawn worker 用 pdf_to_images 渲染 + 逐页检查\n- 5/17 初稿交付 deadline → 确保论文 PDF 在 Director 手中\n- 5/23-24 ARR 提交 → 准备 OpenReview 提交材料（PDF + supplementary + response letter）\n\n### 5. 🎯 战略上下文\n**核心结论**：Death avoidance 占 ~90% routing signal（DAF P=10→94.5% at P=200 单调递增）。Router balanced_acc=58.1±0.8%（仅比随机高 8pp），near-random 本身就是 finding。Oracle 也几乎等于 always-deterministic（-6.58 vs -9.47）。论文贡献 = empirical finding + counterfactual diagnostic methodology，不是 router 架构。\n\n**决策链关键节点**：\n- D033: Framing 定稿 Option B（方法论贡献）\n- D037: Table 1 权威数字必须来自 eval_end_to_end.py\n- D046: 撤销 PIVOT，回归分析论文，MATH 不扩全量\n- D048: R2 Action Matrix 定稿\n\n**易错点**：\n- 不要把项目当作 \"router 成功了\" 的故事——router near-random IS the finding\n- ga=8 vs ga=1 是 logit-generation gap 的根因（D029+D032），不要重新探索这个问题\n- plan-002 classification head 路线已宣告失败（D025），不要复活\n- MATH counterfactual 结果与 ScienceWorld 方向相反（反转信号），已决定不扩全量（D047），仅在 Discussion 中作为跨环境 evidence\n- Worker 池当前为 0（后端无可用账号），如需派 Worker 可能需要等待或向 Director 反映\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8-1778783506.md"
+}

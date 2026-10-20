@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f2a2699030ac42f02e94",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "infra paper final sync",
+  "task_key": "worker_infra_paper-final-sync_20260517T061925",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_paper-final-sync_20260517T061925_result.json",
+    "occurrence": 1,
+    "bytes": 260,
+    "sha256": "93c10b1eb8695c781207b8b7687258c4f079140fe98939724c66001390321e7f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部通过。\n\n| 检查项 | 结果 |\n|--------|------|\n| Errors | 0 |\n| Undefined citations | 0 |\n| math-2021 | 正常渲染 |\n| qwen25-2024 | 正常渲染 |\n| llama3-2024 | 正常渲染 |\n| lakens-2017 | 已移除 |\n| 页数 | 15 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-paper-final-sync.md"
+}

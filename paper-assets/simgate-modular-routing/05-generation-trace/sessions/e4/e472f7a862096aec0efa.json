@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e472f7a862096aec0efa",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "paper figure pull fig1",
+  "task_key": "worker_paper_figure_pull_fig1_20260514T115128",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_pull_fig1_20260514T115128_result.json",
+    "occurrence": 1,
+    "bytes": 412,
+    "sha256": "29ab3a98295dc6929d25eecd25a1df7ab910d5b2e8fa1b0fd58a1e8773dbaa6f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图已生成并替换完成。\n\n- 统计量与原始一致：r=0.9698, p=8.12e-07, slope=88.19, intercept=5.83\n- 11 个 task types, find-non-living-thing 异常点已标注\n- 文件：31KB PDF，已覆盖原 15KB 占位文件\n\n注：因本地 `~/.ssh/id_ed25519` 密钥缺失无法从远程服务器拉取，改用本地数据源 CSV 重新生成了图表。数据和统计量完全一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-pull-fig1.md"
+}

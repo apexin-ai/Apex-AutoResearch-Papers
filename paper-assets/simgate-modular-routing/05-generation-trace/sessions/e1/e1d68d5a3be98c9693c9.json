@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e1d68d5a3be98c9693c9",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "paper unify delta subscript",
+  "task_key": "worker_paper_unify-delta-subscript_20260514T144029",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_unify-delta-subscript_20260514T144029_result.json",
+    "occurrence": 1,
+    "bytes": 1710,
+    "sha256": "01a92e6e1e51e6a6cdcc7e020575c96b3ced649088cb5a5f679ed5774ed62c47"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部替换完成，不再有任何不统一变体。汇总：\n\n| 文件 | 改动数 | 改了什么 |\n|------|--------|----------|\n| `artifacts/_project/paper/latex/introduction.tex` | 2 处 | `\\Delta_{\\text{no\\_death}}` → `\\Delta_{\\text{nd}}` |\n| `artifacts/_project/paper/latex/method.tex` | 3 处 | `\\Delta_{\\text{no\\_death}}` → `\\Delta_{\\text{nd}}` |\n| `artifacts/_project/paper/latex/experiments.tex` | 1 处 | `\\Delta_{\\text{no\\_death}}` → `\\Delta_{\\text{nd}}` |\n| `artifacts/_project/paper/latex/conclusion.tex` | 2 处 | `\\Delta_\\text{full}` → `\\Delta_{\\text{full}}`，`\\Delta_\\text{nd}` → `\\Delta_{\\text{nd}}`（加花括号） |\n| `artifacts/_project/paper/conclusion.tex` | 2 处 | 同上（加花括号） |\n| `docs/paper/abstract.tex` | 2 处 | `\\Delta_{\\text{no\\_death}}` → `\\Delta_{\\text{nd}}` |\n| `docs/paper/introduction.tex` | 1 处 | `\\Delta_{\\text{no\\_death}}` → `\\Delta_{\\text{nd}}` |\n| `docs/paper/method.tex` | 5 处 | `\\Delta_{\\text{no\\_death}}` → `\\Delta_{\\text{nd}}` |\n| `docs/paper/experiments.tex` | 2 处 | `\\Delta_{\\text{no\\_death}}` → `\\Delta_{\\text{nd}}` |\n| `docs/paper/conclusion.tex` | 1 处 | `\\Delta_{\\text{no\\_death}}` → `\\Delta_{\\text{nd}}` |\n| `artifacts/penalty_sensitivity_table.tex` | 5 处 | `\\Delta_\\text{full}` → `\\Delta_{\\text{full}}`，`\\Delta_\\text{nd}` → `\\Delta_{\\text{nd}}` |\n| `artifacts/plan-012-penalty-sensitivity/report/penalty_sensitivity_table.tex` | 5 处 | 同上 |\n\n共 12 个文件、31 处替换。全文现在统一使用 `\\Delta_{\\text{nd}}` 和 `\\Delta_{\\text{full}}`。`paper_framing.md` 中无 Delta 符号，无需修改。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-unify-delta-subscript.md"
+}

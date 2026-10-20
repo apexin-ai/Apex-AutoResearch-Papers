@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8503d27d0930f7f6dfae",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh 72b matched daf analysis",
+  "task_key": "worker_ssh_72b-matched-daf-analysis_20260518T064417",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_72b-matched-daf-analysis_20260518T064417_result.json",
+    "occurrence": 1,
+    "bytes": 781,
+    "sha256": "0382715466e79826f3e36ea6abae8cf694d77d7f4bcb2c319a6407413fb0748c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No `register_artifact` tool available in this session. The artifact file is written and verified.\n\n**Done.** Artifact written to `/root/autodl-tmp/simgate-modular-routing/artifacts/72b_matched_10task_daf.md` on westb-13313.\n\nCore results:\n- **10 death-prone tasks** compared across 7B (205 episodes) and 72B (235 episodes)\n- **DAF is scale-independent**: 100% → 97.5% (ep-weighted), with 8/10 tasks at perfect 100% at both scales\n- **Death rates drop with scale**: internal 51.2% → 33.2%, deterministic 19.5% → 3.0%\n- **No dominance shifts**: all death-dominated tasks remain death-dominated at 72B\n- The 2 sub-100% tasks (identify-life-stages-2 at 87.5%, measure-melting-point at 90%) each have only 1 score-driven label out of 8-10 decisive episodes"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-72b-matched-daf-analysis.md"
+}

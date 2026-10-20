@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c4301da3db7ff36e1403",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "research w1 causal refs",
+  "task_key": "worker_research_w1-causal-refs_20260521T223900",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_w1-causal-refs_20260521T223900_result.json",
+    "occurrence": 1,
+    "bytes": 788,
+    "sha256": "94076495ecb03aac5452cc4affdc2cffb67b0668122b88921951425da7fc62df"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入 `artifacts/w1_causal_refs.md`，包含：\n\n1. **Pearl (2009)** `@book{pearl2009causality}` — 第二版，Cambridge University Press\n2. **Rubin (1974)** `@article{rubin1974estimating}` — J. Educational Psychology, 66(5), pp. 688–701\n3. **Bonagiri et al. (2025)** — **高度相关**。该论文提出 LLM agent 通过 selective quitting 避免灾难性失败（安全性 +0.39/3.0，helpfulness 几乎无损），与 SimGate 的 death-aware routing 直接对应：SimGate 是结构化的 selective quitting，用 learned router 替代二元 quit/continue 决策\n4. **Related Work 段落草稿** — 3 句话串联因果推断框架（Rubin potential outcomes → Pearl SCM）与 agent safety（Bonagiri selective quitting → SimGate modular routing）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-w1-causal-refs.md"
+}

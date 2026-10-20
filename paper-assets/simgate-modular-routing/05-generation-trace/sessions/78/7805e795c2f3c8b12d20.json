@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7805e795c2f3c8b12d20",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code 72b parallel split",
+  "task_key": "worker_code_72b-parallel-split_20260517T113603",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_72b-parallel-split_20260517T113603_result.json",
+    "occurrence": 1,
+    "bytes": 1236,
+    "sha256": "6e8d690f97cae235be2bf35bbef0478cc945d0ac5b4a4be86b87e05e656ff736"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个脚本都验证通过。\n\n**结果：**\n\n- `src/run_72b_parallel.py` — 主收集脚本，自动检测已完成进度并续跑\n  - `--tasks` 指定 task 子集（逗号分隔）\n  - `--tp 1` 切换单卡模式（新 96GB 卡用）\n  - `--dry-run` 查看计划不执行\n  - 默认 11 个 task、20 episodes/task、72B AWQ 模型\n\n- `src/check_72b_progress.sh` — 进度检查，输出未完成 task list 和可直接复制的运行命令\n\n**当前进度：** chemistry-mix 20/20 done, find-animal 6/20 (backbone_eval tmux 仍在跑), 其余 9 个 task 未开始。共 194 episodes 待收集。\n\n**新卡到位后用法：**\n```bash\n# 先查进度\nbash src/check_72b_progress.sh\n\n# 分配给新卡（单卡 TP=1）\npython src/run_72b_parallel.py --tp 1 --tasks \"freeze,grow-fruit,identify-life-stages-1,identify-life-stages-2,inclined-plane-determine-angle\"\n\n# 本机继续跑剩余（TP=2）\npython src/run_72b_parallel.py --tasks \"find-non-living-thing,lifespan-longest-lived,lifespan-longest-lived-then-shortest-lived,measure-melting-point-unknown-substance\"\n```\n\n注意：conda 环境需要 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base` 后再 `python`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-72b-parallel-split.md"
+}

@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.0",
+  "id": "87fb154c93dd787b20c3",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "writing method rewrite direction a",
+  "task_key": "worker_writing_method-rewrite-direction-a_20260516T190205",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_method-rewrite-direction-a_20260516T190205_result.json",
+    "occurrence": 1,
+    "bytes": 2520,
+    "sha256": "dfd3277342af6c2588685184c0468c1772ec900ad5c703ad51e14c7d0746fb81"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Method section rewritten. Here's the report:\n\n```json\n{\n  \"word_count_estimate\": \"~1450 words (~1.5 pages in two-column ACL format)\",\n  \"new_subsections\": [\n    \"§3 opening paragraph: framework overview (3 components + bootstrap CI)\",\n    \"§3.4 'Statistical inference' paragraph: bootstrap CI methodology\",\n    \"§3.5 Signal Concentration Index (SCI): Gini-based formalization\"\n  ],\n  \"preserved_unchanged\": [\n    \"Algorithm 1 (Episode-Level Counterfactual Labeling)\",\n    \"§3.1 Problem Setup\",\n    \"§3.2 Counterfactual Episode Collection\",\n    \"§3.3 Episode-Level Labeling\",\n    \"DAF formula and decomposition\",\n    \"All numerical values\"\n  ],\n  \"figures_tables_needed\": [\n    \"figures/pipeline_overview.pdf (already referenced, unchanged)\"\n  ],\n  \"key_additions\": {\n    \"SCI_definition\": \"Gini coefficient over per-task death-rate differential contributions (Eq. 6)\",\n    \"SCI_value\": \"0.2147 (low concentration = systematic phenomenon)\",\n    \"bootstrap_method\": \"Episode-level resampling, B=10000, percentile CI\",\n    \"bootstrap_result\": \"DAF 95% CI [81.6%, 98.8%]; 10/11 tasks Δ>0\",\n    \"framework_narrative\": \"DAF says 'how much signal is death avoidance'; SCI says 'is it systematic across tasks'\"\n  }\n}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "word_count_estimate": "~1450 words (~1.5 pages in two-column ACL format)",
+              "new_subsections": [
+                "§3 opening paragraph: framework overview (3 components + bootstrap CI)",
+                "§3.4 'Statistical inference' paragraph: bootstrap CI methodology",
+                "§3.5 Signal Concentration Index (SCI): Gini-based formalization"
+              ],
+              "preserved_unchanged": [
+                "Algorithm 1 (Episode-Level Counterfactual Labeling)",
+                "§3.1 Problem Setup",
+                "§3.2 Counterfactual Episode Collection",
+                "§3.3 Episode-Level Labeling",
+                "DAF formula and decomposition",
+                "All numerical values"
+              ],
+              "figures_tables_needed": [
+                "figures/pipeline_overview.pdf (already referenced, unchanged)"
+              ],
+              "key_additions": {
+                "SCI_definition": "Gini coefficient over per-task death-rate differential contributions (Eq. 6)",
+                "SCI_value": "0.2147 (low concentration = systematic phenomenon)",
+                "bootstrap_method": "Episode-level resampling, B=10000, percentile CI",
+                "bootstrap_result": "DAF 95% CI [81.6%, 98.8%]; 10/11 tasks Δ>0",
+                "framework_narrative": "DAF says 'how much signal is death avoidance'; SCI says 'is it systematic across tasks'"
+              }
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-method-rewrite-direction-a.md"
+}

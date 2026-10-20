@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "609e6dc7ce0549379ec4",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code anon repo paper sync v2",
+  "task_key": "worker_code_anon-repo-paper-sync-v2_20260523T132925",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_anon-repo-paper-sync-v2_20260523T132925_result.json",
+    "occurrence": 1,
+    "bytes": 324,
+    "sha256": "61c7a75647ba662e0685a286bfc0697722572eca81b2789f27cd1f7612fe5e62"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "API Error: Claude Code is unable to respond to this request, which appears to violate our Usage Policy (https://www.anthropic.com/legal/aup). Try rephrasing the request or attempting a different approach. If you are seeing this refusal repeatedly, try running /model claude-sonnet-4-20250514 to switch models."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-anon-repo-paper-sync-v2.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "e9e853d1c0001b6bb8bc",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "analysis leave one task out daf",
+  "task_key": "worker_analysis_leave-one-task-out-daf_20260518T194504",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_leave-one-task-out-daf_20260518T194504.log",
+    "occurrence": 1,
+    "bytes": 644311,
+    "sha256": "2d67ba9a5eaff34bbc4685bb7d35b59bbbe0588e6acd0c80bbd571dbd97d0789"
+  },
+  "statistics": {
+    "messages": 161,
+    "user_turns": 0,
+    "tool_calls": 61,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 35,
+      "tool_call": 61,
+      "tool_result": 61,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 161,
+      "chunks": [
+        {
+          "path": "e9e853d1c0001b6bb8bc-part-0001.json",
+          "message_count": 144
+        },
+        {
+          "path": "e9e853d1c0001b6bb8bc-part-0002.json",
+          "message_count": 17
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-leave-one-task-out-daf.md"
+}

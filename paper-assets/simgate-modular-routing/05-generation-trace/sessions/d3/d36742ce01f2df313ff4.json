@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d36742ce01f2df313ff4",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "fix plan 011 keywords restore",
+  "task_key": "worker_fix_plan-011-keywords-restore_20260514T043107",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_plan-011-keywords-restore_20260514T043107_result.json",
+    "occurrence": 1,
+    "bytes": 1253,
+    "sha256": "30bc2eb1dbd072964881b6152a184f15847e30cf7f5d40634b6d3f50aee997ba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总如下：\n\n---\n\n### 文件状态\n\n| 文件 | 状态 | 内容 |\n|------|------|------|\n| `src/rule_based_keywords.json` | **已恢复为 v1** | 20 keywords（含 connect/disconnect/turn on 等泛用词） |\n| `src/rule_based_keywords_v2.json` | **新建** | 17 keywords（去掉 combine 等，加入 ignite/combust/evaporate/condense/oxidize） |\n| `src/rule_based_keywords_v3.json` | **新建** | 9 keywords（精简为物理/化学动词） |\n| `results/rule_based_accuracy_v3.json` | **新建** | v3 分析完整结果 |\n\n### v3 关键指标\n\n- **Episodes**: 225（11 tasks）\n- **Avg keyword match rate**: 6.1%（v1 是 86.1%，v3 大幅去除了 connect 等高频噪声词）\n- **Episode accuracy**（excl no-preference）: **23.3%**（20/86 scorable）\n- **Step accuracy**: 13.2%\n- **Top keyword hits**: activate (296), freeze (93)\n- **Per-task accuracy range**: 0%（chemistry-mix, find-animal, grow-fruit）~ 35%（find-non-living-thing）\n\n### 异常标注\n\n`lifespan-longest-lived/episodes.jsonl` 原始文件 844,689 行（8.3GB），远超正常 20 episodes，属损坏文件残留。已截断为前 20 episodes 用于分析，原始文件保留为 `episodes_full_844k.jsonl.bak`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-plan-011-keywords-restore.md"
+}

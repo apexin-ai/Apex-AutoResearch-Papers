@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b3b1d2ca29b02c005ba4",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "infra download qwen3 1 7b",
+  "task_key": "worker_infra_download-qwen3-1_7b_20260514T055647",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_download-qwen3-1_7b_20260514T055647_result.json",
+    "occurrence": 1,
+    "bytes": 882,
+    "sha256": "1e16c0130fa8ba8de6b78f38f7585b365f03ac6af6467f25c24f4ce2cc89108e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息已收集完毕。\n\n## 结果\n\n**模型下载路径**: `/root/autodl-tmp/models/Qwen/Qwen3-1.7B` (symlink → `Qwen3-1___7B`，ModelScope 下载的完整副本)\n\n**验证结果**: 通过\n- Tokenizer: vocab_size=151643\n- Model: 1720.6M params, 2 shards 均正常加载\n\n**另一个路径 `/root/autodl-tmp/models/Qwen3-1.7B-hf/` 不完整**（有 `.aria2` 残留，缺少第 2 个 shard），不要使用。\n\n**训练脚本参数** (`router_sft_train.py:53`):\n- 参数名: `--model_name`\n- 默认值: `Qwen/Qwen3-1.7B`（HF hub ID，会触发网络请求）\n- 需要改为本地路径\n\n**plan-002-formal-v3 建议命令**:\n```bash\npython src/router_sft_train.py \\\n  --model_name /root/autodl-tmp/models/Qwen/Qwen3-1.7B \\\n  ... # 其他参数\n```\n\n关键点：`--model_name` 传本地绝对路径即可避免 HF Hub 网络请求。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-download-qwen3-1-7b.md"
+}

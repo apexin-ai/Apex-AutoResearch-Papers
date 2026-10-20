@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "956092ad545375514d21",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "exp extended task validation",
+  "task_key": "worker_exp_extended-task-validation_20260519T203302",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_extended-task-validation_20260519T203302_result.json",
+    "occurrence": 1,
+    "bytes": 492,
+    "sha256": "9291ab82d2d85caf04875079c2f67612337559593f6652b757b61902365058bc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已启动并运行：\n\n- **GPU 0** (ext-val-gpu0): boil → melt → find-living-thing (3 tasks × 20 eps)\n- **GPU 1** (ext-val-gpu1): use-thermometer → power-component (2 tasks × 20 eps)\n- **模型**: Qwen2.5-7B-Instruct, vLLM v0.18.1\n- **参数**: max_steps=30, seed=42, temperature=0.3\n\n首批 episode 已开始（boil 内部策略 score=-100 → death，use-thermometer 同样 death）。预估总运行时间 5-8 小时。4.5 分钟后自动检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-extended-task-validation.md"
+}

@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "dc3a5d793dd2747a752a",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "code plan 008 router size",
+  "task_key": "worker_code_plan-008-router-size_20260515T131841",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan-008-router-size_20260515T131841.log",
+    "occurrence": 1,
+    "bytes": 846427,
+    "sha256": "e761d68e2a0f570136ea9294042f11caf9ae2472a20be0447ade40dd6876a7d3"
+  },
+  "statistics": {
+    "messages": 482,
+    "user_turns": 0,
+    "tool_calls": 201,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 76,
+      "tool_call": 201,
+      "tool_result": 201,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 482,
+      "chunks": [
+        {
+          "path": "dc3a5d793dd2747a752a-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "dc3a5d793dd2747a752a-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "dc3a5d793dd2747a752a-part-0003.json",
+          "message_count": 122
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-plan-008-router-size.md"
+}

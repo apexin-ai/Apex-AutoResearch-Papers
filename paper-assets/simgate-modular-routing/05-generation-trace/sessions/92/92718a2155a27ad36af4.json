@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "92718a2155a27ad36af4",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "infra full status check 3h",
+  "task_key": "worker_infra_full-status-check-3h_20260513T184049",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_full-status-check-3h_20260513T184049_result.json",
+    "occurrence": 1,
+    "bytes": 2613,
+    "sha256": "e91c3deac4b4775a16893c37ce29c4ceed03f74bd7a2e1ba7df7d487cccdd3a7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据全部到手，汇总如下。\n\n---\n\n## 状态报告 (2026-05-14 ~02:40 UTC, 运行 ~2h18m)\n\n### 1. GPU 状态\n\n| GPU | 利用率 | 显存 | 进程 |\n|-----|--------|------|------|\n| GPU0 | 0% | 28013/32607 MiB | PID 62662 (预筛) |\n| GPU1 | 0% | 28013/32607 MiB | PID 651246 (Boil v3) |\n\n两颗 GPU 显存满载，利用率快照为 0%（两进程均在推理间歇）。\n\n### 2. Boil v3 (GPU1) — 仍在运行\n\n- PID 650421，已跑 2h17m\n- **16/20 episodes 完成**，日志仍在输出推理进度\n- 无 summary.json（未完成时不生成）\n\n**Boil v3 分数 (16 eps)：**\n\n| Mode | Mean | 致命(-100)次数 |\n|------|------|----------------|\n| always_internal | **-49.6** | 8/16 |\n| always_deterministic | **-11.8** | 2/16 |\n| oracle_routing | **+4.75** | 0/16 |\n\n**MVP Boil 对比 (20 eps)：**\n\n| Mode | v3 (16ep) | MVP (20ep) | 变化 |\n|------|-----------|------------|------|\n| always_internal | -49.6 | -39.8 | ↓ (更多致命) |\n| always_deterministic | -11.8 | -19.7 | ↑ (+7.9) |\n| **oracle_routing** | **+4.75** | **-29.7** | **↑↑ (+34.5)** |\n\n关键发现：**v3 oracle_routing 大幅改善**（+4.75 vs -29.7），16 个 episode 中 0 次致命。Det 也改善了。Oracle 与 det 的差距 = +16.55，说明路由空间存在且可学习。\n\n### 3. 预筛 (GPU0) — 7/25 tasks 完成，正在跑第 8 个\n\nPID 649681，已跑 2h18m。\n\n| Task | I_mean | D_mean | **Δ(D-I)** | 趋势 |\n|------|--------|--------|------------|------|\n| chemistry-mix | -55.8 | 4.2 | **+60.0** | D 远优于 I |\n| find-animal | -58.4 | 8.2 | **+66.6** | D 远优于 I |\n| find-plant | -58.4 | 3.2 | **+61.6** | D 远优于 I |\n| freeze | -60.0 | 2.0 | **+62.0** | D 远优于 I |\n| find-living-thing | -58.4 | -16.6 | **+41.8** | D 优于 I |\n| chem-mix-paint-tertiary | -37.4 | -17.4 | **+20.0** | D 优于 I |\n| find-non-living-thing | 31.6 | 24.8 | **-6.8** | I 略优于 D |\n\n7 个 task 中 6 个 Δ(D-I) 为正，说明 deterministic 模式普遍优于 internal。`find-non-living-thing` 是唯一例外（internal 反而更好，且两者均为正分）。\n\n### 4. 脚本就绪确认\n\n5 个脚本全部存在且最近更新（2026-05-14）：\n- `src/episode_level_collection.py`\n- `src/router_sft_train.py`\n- `src/rule_based_routing.py`\n- `src/counterfactual_labeling.py`\n- `src/collect_trajectories.py`\n\n### 5. 预估剩余时间\n\n- **Boil v3**: 还剩 4/20 episodes，按当前速率约 30-40 分钟完成\n- **预筛**: 7/25 完成（2h18m），每 task 约 20 分钟，剩余 18 个 task 约需 6 小时"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-full-status-check-3h.md"
+}

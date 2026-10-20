@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "58997d05028938b3a05f",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh gpu0 v5 resilient",
+  "task_key": "worker_ssh_gpu0-v5-resilient_20260514T024204",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_gpu0-v5-resilient_20260514T024204_result.json",
+    "occurrence": 1,
+    "bytes": 1053,
+    "sha256": "c3cdc87df43bd5986696830015578ad931baeade2a244ff8eb7a2ea7d263846a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪，运行正常。\n\n### 产出汇总\n\n| 项目 | 状态 |\n|------|------|\n| **GPU0 残留进程** | 无需清理（唯一进程 PID 558609 在 GPU1 上） |\n| **旧 tmux sessions** | 已清理 (plan-001b-gpu0-v4, v4-fix) |\n| **lifespan-longest-lived 去重** | 21 → 19 条，有效 episodes: 0-18，**还差 1 个** (ep19) |\n| **measure-melting-point** | 目录不存在，从零开始 (20 eps) |\n| **episodes.jsonl** | 150GB，无法内存去重，跳过 |\n| **新进程** | tmux: `plan-001b-gpu0-v5`，训练 PID: **698985**，脚本 PID: 698971/698974 |\n| **GPU 显存** | GPU0: 28013/32607 MiB（vLLM 已加载），GPU1: 28013/32607 MiB |\n| **运行状态** | vLLM 推理中，measure-melting-point ep0 正在执行，输出速度 ~97 toks/s |\n\n启动命令：\n```\ntmux new-session -d -s plan-001b-gpu0-v5 \"bash /tmp/run_gpu0_v5.sh 2>&1 | tee ~/runs/simgate-modular-routing/plan-001b-gpu0-v5.log\"\n```\n\n任务顺序：measure-melting-point (20 eps) → lifespan-longest-lived ep19 (补齐到 20)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-gpu0-v5-resilient.md"
+}

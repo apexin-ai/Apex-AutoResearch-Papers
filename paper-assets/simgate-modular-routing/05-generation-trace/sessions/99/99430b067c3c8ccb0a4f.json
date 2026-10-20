@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "99430b067c3c8ccb0a4f",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "eval data leakage fix comprehensive",
+  "task_key": "worker_eval_data-leakage-fix-comprehensive_20260515T223110",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_data-leakage-fix-comprehensive_20260515T223110_result.json",
+    "occurrence": 1,
+    "bytes": 5652,
+    "sha256": "3e9f80cc99ce0e5c6e263897a489bb684281124167849b07156b032f410d192b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据收集完毕。下面是完整汇报。\n\n---\n\n## 任务 1：Data Split Seed 调查结果\n\n### 根本问题：三重不匹配\n\n代码库中存在 **三种不同的 data split 算法**：\n\n| 出处 | 方法 | n_val | 算法 |\n|------|------|-------|------|\n| 训练 `load_implicit_sft_data` | 按 task_type 分组 → `random.Random(seed).shuffle()` → 前 15% | **305** | per-task stratified |\n| Eval `routing_eval_sft.py` | 按 (task_type, variation) episode → `sklearn.train_test_split` | **300** | episode stratified |\n| Eval `eval_ablation_b_gen.py` | 全量 `random.shuffle()` → 后 15% | **306** | flat random |\n\n训练的 `--seed X` 同时控制 model init 和 data split。\n\n### 完整 12 行对照表\n\n| Checkpoint | Model | Training split seed | Eval split seed | Seed匹配 | 算法匹配 | 旧 bal_acc |\n|------------|-------|--------------------|--------------------|--------|----------|-----------|\n| plan-008-qwen3-1.7b | 1.7B | 42 | 42 | YES | **NO** | 0.3759 |\n| seed-robustness-seed43 | 1.7B | 43 | 43 | YES | **NO** | 0.4574 |\n| seed-robustness-seed44 | 1.7B | 44 | **42** | **NO** | **NO** | 0.6833 |\n| seed-robustness-seed45 | 1.7B | 45 | **42** | **NO** | **NO** | 0.6037 |\n| plan-008-v4-0_6b-seed42 | 0.6B | 42 | 42 | YES | **NO** | 0.6241 |\n| plan-008-v4-0_6b-seed43 | 0.6B | 43 | **42** | **NO** | **NO** | 0.5574 |\n| plan-008-v4-0_6b-seed44 | 0.6B | 44 | 44 | YES | **NO** | 0.6907 |\n| plan-008-v4-0_6b-seed45 | 0.6B | 45 | 45 | YES | **NO** | 0.7333 |\n| plan-008-v4-4b-seed42 | 4B | 42 | 42 | YES | **NO** | 0.6241 |\n| plan-008-v4-4b-seed43 | 4B | 43 | **42** | **NO** | **NO** | 0.5463 |\n| plan-008-v4-4b-seed44 | 4B | 44 | 44 | YES | **NO** | 0.6556 |\n| plan-008-v4-4b-seed45 | 4B | 45 | 45 | YES | **NO** | 0.7000 |\n\n- **所有 12 个 eval 都有 split 算法不匹配**（eval 用 sklearn episode-level split，训练用 per-task split）\n- **4 个额外有 seed 不匹配**（1.7B s44/s45，0.6B s43，4B s43）\n\n---\n\n## 任务 2：修正后的 4-seed × 3 模型对比\n\n使用 `corrected_eval.py`：**与训练完全相同的 `load_implicit_sft_data` split 函数 + 正确的 training seed**，n_val=305。\n\n```\n=== 修正后的完整 4-seed 三模型对比 ===\n| Model | s42    | s43    | s44    | s45    | Mean±Std       |\n|-------|--------|--------|--------|--------|----------------|\n| 0.6B  | 0.5470 | 0.5858 | 0.5238 | 0.5989 | 0.5639±0.0346  |\n| 1.7B  | 0.5706 | 0.6399 | 0.5543 | 0.5614 | 0.5816±0.0395  |\n| 4B    | 0.5512 | 0.6328 | 0.5778 | 0.6069 | 0.5922±0.0354  |\n```\n\n### 与旧结果对比（关键变化）\n\n| Model | Metric | Old range | New range | 变化 |\n|-------|--------|-----------|-----------|------|\n| 1.7B | s42 | 0.3759 | **0.5706** | +19.5pp ↑ |\n| 1.7B | s43 | 0.4574 | **0.6399** | +18.3pp ↑ |\n| 1.7B | s44 | 0.6833 | **0.5543** | -12.9pp ↓ |\n| 1.7B | s45 | 0.6037 | **0.5614** | -4.2pp ↓ |\n| 1.7B | std | 0.1341 | **0.0395** | 方差缩小 3.4× |\n\n修正后 1.7B 的 seed 间方差从 13.4pp 降至 4.0pp，印证了旧 eval 的异常波动来自 data leakage。\n\n---\n\n## 任务 3：Table 7 (Appendix E) 统一 pipeline\n\n### 数据来源\n\n| Seed | 来源文件 | Eval 方法 | bal_acc |\n|------|---------|----------|---------|\n| 42 | `seed_robustness/summary.json` | `eval_routing_metrics.load_val_split` (**非** generation eval) | 0.5761 |\n| 123 | `results/ablation_b_seed123_gen.json` | generation eval (flat random split, seed=42) | 0.5736 |\n| 456 | `results/ablation_b_seed456_gen.json` | generation eval (flat random split, seed=42) | 0.5748 |\n| 789 | `results/ablation_b_seed789_gen.json` | generation eval (flat random split, seed=42) | 0.5831 |\n\n**问题**：seed 42 用了 `eval_routing_metrics`（非 generation eval），其余 3 个用了 generation eval。\n\n### 修正\n\nSeed 42 checkpoint = `plan-004-implicit/final_adapter`。Generation eval 已存在于 `results/ablation_b_gen_eval.json`，使用与 123/456/789 相同的 pipeline（flat random split, seed=42, enable_thinking=False）。\n\n```\n=== Table 7 fixed-split 统一 pipeline ===\n| Seed | balanced_acc (generation eval) | 确认方式 |\n|------|-------------------------------|---------|\n| 42   | 0.5927                        | 已有 ablation_b_gen_eval.json |\n| 123  | 0.5736                        | 确认 (generation eval) |\n| 456  | 0.5748                        | 确认 (generation eval) |\n| 789  | 0.5831                        | 确认 (generation eval) |\n| Mean±Std | 0.5811±0.0089             |         |\n```\n\n---\n\n## 4. 需作废的 eval 结果清单\n\n### 全部作废（split 算法不匹配导致 data leakage）\n\n**plan-008-v4 目录下 12 个文件**（已替换为 `*_fixed.json`）：\n1. `0_6b_seed42_nothinking.json`\n2. `0_6b_seed43_nothinking.json` — 还有 seed 不匹配\n3. `0_6b_seed44_nothinking.json`\n4. `0_6b_seed45_nothinking.json`\n5. `1_7b_seed42_nothinking.json`\n6. `1_7b_seed43_nothinking.json`\n7. `1_7b_seed44_nothinking.json` — 还有 seed 不匹配\n8. `1_7b_seed45_nothinking.json` — 还有 seed 不匹配\n9. `4b_seed42_nothinking.json`\n10. `4b_seed43_nothinking.json` — 还有 seed 不匹配\n11. `4b_seed44_nothinking.json`\n12. `4b_seed45_nothinking.json`\n\n**Table 7 seed 42 值**：\n13. `seed_robustness/summary.json` 中 `balanced_acc: 0.5761` — 用了非 generation eval pipeline → 应替换为 0.5927\n\n**`seed_robustness/summary.json` 中其他 seed 值**（0.4852, 0.6074, 0.5467）也使用了不同于训练的 split 算法，但这些 seed 在 Table 7 中未使用，仅影响内部 summary。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-data-leakage-fix-comprehensive.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9912ae3d131f4d30f767",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh reflexion progress all",
+  "task_key": "worker_ssh_reflexion-progress-all_20260518T125130",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_reflexion-progress-all_20260518T125130_result.json",
+    "occurrence": 1,
+    "bytes": 1078,
+    "sha256": "6aa7f00f7dbbcad585bc693ee5450a9f221ea1a61c545331b47a71d3018194b7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Reflexion Dose-Response 实验进度\n\n### 已完成\n\n| Condition | DR | SR | Server |\n|-----------|----|----|--------|\n| **N=1** | **47.5%** | 7.0% | westb-13313 |\n| **N=2** | **40.0%** | 11.5% | westb-13313 |\n\nN=1→N=2: DR 从 47.5% 降至 40.0%（-7.5pp），SR 从 7.0% 升至 11.5%（+4.5pp）。Reflexion 有效。\n\n### 进行中\n\n| Condition | 进度 | 当前 Task | Server |\n|-----------|------|----------|--------|\n| **N=3** (串行) | ~11/200 | chemistry-mix ep12 | westb-13313 cuda:1 |\n| **N=3** (并行) | ~74/200 | grow-fruit ep14 | westd-18266 cuda:0 |\n| **N=4** (并行) | ~54/200 | freeze ep15 | westd-18266 cuda:1 |\n| **N=5** (并行) | ~45/200 | freeze ep6 | westd-18266 cuda:2 |\n\n### GPU 状态 (westd-18266)\n3 张 RTX PRO 6000 Black 工作中，利用率 90-100%，VRAM ~88/98GB。GPU 3 空闲。\n\n### 注意\nN=3 在两台服务器上重复运行（westb 串行 + westd 并行）。westd 的 N=3 进度远超 westb（74 vs 11），westb 的串行实验目前跑到 N=3 才刚开始（N=1/N=2 已完成后继续）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-reflexion-progress-all.md"
+}

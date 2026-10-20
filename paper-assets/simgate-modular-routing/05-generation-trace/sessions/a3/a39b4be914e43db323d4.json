@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a39b4be914e43db323d4",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "diagnose plan 002 dryrun final",
+  "task_key": "worker_diagnose_plan-002-dryrun-final_20260514T050814",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_plan-002-dryrun-final_20260514T050814_result.json",
+    "occurrence": 1,
+    "bytes": 1661,
+    "sha256": "4f26513c94856fcbf8344ed1099965142919d0815929e189aba61bcb58c8522f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## dryrun-passed\n\n训练完成，无 crash/OOM。EXIT_CODE=0。\n\n**注意**：实际运行的日志在 `/tmp/dr4.log`（非 `plan002_dryrun.log`），且参数不同于原来的 run：\n- 原 run：5880 samples, 1163 steps, 有 class weights + oversampling\n- 当前 run：**1920 samples from 11 files, 383 steps, 无 class weights/oversampling**\n\n### Train Metrics\n| 指标 | 值 |\n|------|------|\n| train_loss | 0.6307 |\n| train_runtime | 303.8s (5:03) |\n| speed | 1.26 it/s |\n\n### Eval Metrics\n| 指标 | 值 |\n|------|------|\n| eval_loss | 0.4762 |\n| eval_accuracy | **92.3%** |\n| eval_f1_macro | **0.48** |\n| eval_balanced_accuracy | **0.50** |\n\n### Per-class\n| Class | Precision | Recall | F1 |\n|-------|-----------|--------|-----|\n| deterministic | 0.923 | 1.000 | 0.96 |\n| internal | **0.0** | **0.0** | **0.0** |\n\n### Confusion Matrix\n```\n              pred_internal  pred_deterministic\ntrue_internal      0              30\ntrue_determ        0             360\n```\n\n### Per-task Accuracy\n- **chemistry-mix: 0.000** (唯一含 internal 的 task，全部误判)\n- 其余 10 个 task: 1.000\n\n### Checkpoints\n```\ncheckpoints/plan-002-dryrun/\n├── checkpoint-383/\n├── final_adapter/\n└── eval_report.json\n```\n\n### 结论\n**dryrun-passed**（训练流程正常完成），但模型学到了退化解——全部预测为 deterministic，internal 类完全漏判。balanced_accuracy=0.5 本质是随机猜。这个 run 没有启用 class weights 和 oversampling（原 run 有），可能是导致退化的原因。另外 GPU 上还有另一个进程 PID 789051 占用 28004 MiB。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-plan-002-dryrun-final.md"
+}

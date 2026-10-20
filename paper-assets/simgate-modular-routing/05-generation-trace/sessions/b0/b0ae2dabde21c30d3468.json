@@ -1,0 +1,1379 @@
+{
+  "schema_version": "1.0",
+  "id": "b0ae2dabde21c30d3468",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "paper discussion section",
+  "task_key": "worker_paper_discussion-section_20260515T101438",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_discussion-section_20260515T101438.log",
+    "occurrence": 1,
+    "bytes": 101674,
+    "sha256": "89cc86f653e52d02dca11ace38615bcaf5abe055fc6805bb66e5dda9a7cfbcd8"
+  },
+  "statistics": {
+    "messages": 33,
+    "user_turns": 1,
+    "tool_calls": 8,
+    "roles": {
+      "log": 1,
+      "system": 6,
+      "record": 1,
+      "assistant": 7,
+      "tool_call": 8,
+      "tool_result": 8,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+                "session_id": "7d8a4b14-d346-4b5c-a33e-aa872301b9ec",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "104a215d-3e7d-4340-872e-984cb2114099",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778844600,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "74926df6-fce7-4c11-b1e3-1e731b0fb879",
+                "session_id": "7d8a4b14-d346-4b5c-a33e-aa872301b9ec"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me read the current discussion file and references first."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7d8a4b14-d346-4b5c-a33e-aa872301b9ec",
+            "uuid": "49089ffd-7986-4b42-a5d1-0a9fe5a122f6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SvcbJCtrLGapuykE7m8SjK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11765,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11765
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015XsaHqQT7dBfXLz1dmboPo",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/discussion.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7d8a4b14-d346-4b5c-a33e-aa872301b9ec",
+            "uuid": "cc589e95-747b-4d61-9ee8-08290a6744d4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SvcbJCtrLGapuykE7m8SjK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11765,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11765
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T10:14:47.773Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015XsaHqQT7dBfXLz1dmboPo",
+              "type": "tool_result",
+              "content": "1\t\\section{Discussion}\n2\t\\label{sec:discussion}\n3\t\n4\t\\paragraph{Cross-environment evidence.}\n5\tThe death-avoidance finding in ScienceWorld raises a natural question: does routing signal persist in environments without catastrophic failure? An evaluation on MATH Level~4--5 (300 problems: 152 Level~4, 148 Level~5), using code interpreter as the deterministic modality, suggests not. Internal reasoning directionally outperforms code interpreter: 81.0\\% accuracy (95\\% CI [76.7, 85.3]) versus 76.7\\% (95\\% CI [72.0, 81.3]); the paired difference of $+4.3$~percentage points (95\\% CI [0.0, $+8.7$]; McNemar $p = 0.079$) shows a directional reversal, though not statistically significant at the 95\\% level. The label distribution inverts relative to ScienceWorld: 30 internal-preferred versus 17 deterministic-preferred (compared to 9:86 in ScienceWorld), with 84.3\\% of problems (253 of 300) showing no modality preference. In the absence of death risk, the routing signal vanishes or reverses---consistent with death avoidance as the primary driver of the deterministic strategy's advantage observed in ScienceWorld.\n6\t\n7\t\\paragraph{Scope and future directions.}\n8\tOur analysis is grounded in a single interactive environment with a specific failure mode (the $-100$ death penalty). Extending the counterfactual methodology to environments with graded failure costs, embodied agents with continuous action spaces, or multi-turn dialogue systems would clarify how broadly death avoidance---or analogous catastrophic-failure avoidance---accounts for apparent routing signal. Step-level counterfactual labeling, rather than episode-level, is a complementary direction that could reveal finer-grained routing structure masked by our current aggregation.\n9\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7d8a4b14-d346-4b5c-a33e-aa872301b9ec",
+            "uuid": "92418c73-c89a-4a9e-980a-ddc6befc060f",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/discussion.tex",
+                "content": "\\section{Discussion}\n\\label{sec:discussion}\n\n\\paragraph{Cross-environment evidence.}\nThe death-avoidance finding in ScienceWorld raises a natural question: does routing signal persist in environments without catastrophic failure? An evaluation on MATH Level~4--5 (300 problems: 152 Level~4, 148 Level~5), using code interpreter as the deterministic modality, suggests not. Internal reasoning directionally outperforms code interpreter: 81.0\\% accuracy (95\\% CI [76.7, 85.3]) versus 76.7\\% (95\\% CI [72.0, 81.3]); the paired difference of $+4.3$~percentage points (95\\% CI [0.0, $+8.7$]; McNemar $p = 0.079$) shows a directional reversal, though not statistically significant at the 95\\% level. The label distribution inverts relative to ScienceWorld: 30 internal-preferred versus 17 deterministic-preferred (compared to 9:86 in ScienceWorld), with 84.3\\% of problems (253 of 300) showing no modality preference. In the absence of death risk, the routing signal vanishes or reverses---consistent with death avoidance as the primary driver of the deterministic strategy's advantage observed in ScienceWorld.\n\n\\paragraph{Scope and future directions.}\nOur analysis is grounded in a single interactive environment with a specific failure mode (the $-100$ death penalty). Extending the counterfactual methodology to environments with graded failure costs, embodied agents with continuous action spaces, or multi-turn dialogue systems would clarify how broadly death avoidance---or analogous catastrophic-failure avoidance---accounts for apparent routing signal. Step-level counterfactual labeling, rather than episode-level, is a complementary direction that could reveal finer-grained routing structure masked by our current aggregation.\n",
+                "numLines": 9,
+                "startLine": 1,
+                "totalLines": 9
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011BvSgNcohwXsUZKmNk4QaU",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/references.bib"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7d8a4b14-d346-4b5c-a33e-aa872301b9ec",
+            "uuid": "f4327bc1-b6eb-4435-99d1-22725302d0f8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SvcbJCtrLGapuykE7m8SjK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11765,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11765
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T10:14:48.300Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011BvSgNcohwXsUZKmNk4QaU",
+              "type": "tool_result",
+              "content": "1\t@inproceedings{scienceworld-2022,\n2\t  title={ScienceWorld: Is Your Agent Smarter Than a 5th Grader?},\n3\t  author={Wang, Ruoyao and Jansen, Peter and C\\^{o}t\\'{e}, Marc-Alexandre and Ammanabrolu, Prithviraj},\n4\t  booktitle={Proceedings of the 2022 Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n5\t  year={2022}\n6\t}\n7\t\n8\t@inproceedings{react-2023,\n9\t  title={ReAct: Synergizing Reasoning and Acting in Language Models},\n10\t  author={Yao, Shunyu and Zhao, Jeffrey and Yu, Dian and Du, Nan and Shafran, Izhak and Narasimhan, Karthik and Cao, Yuan},\n11\t  booktitle={International Conference on Learning Representations (ICLR)},\n12\t  year={2023}\n13\t}\n14\t\n15\t@inproceedings{toolformer-2024,\n16\t  title={Toolformer: Language Models Can Teach Themselves to Use Tools},\n17\t  author={Schick, Timo and Dwivedi-Yu, Jane and Dess\\`{i}, Roberto and Raileanu, Roberta and Lomeli, Maria and Hambro, Eric and Zettlemoyer, Luke and Cancedda, Nicola and Scialom, Thomas},\n18\t  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n19\t  year={2023}\n20\t}\n21\t\n22\t@article{art-2023,\n23\t  title={ART: Automatic Multi-step Reasoning and Tool-use for Large Language Models},\n24\t  author={Paranjape, Bhargavi and Lundberg, Scott and Singh, Sameer and Hajishirzi, Hannaneh and Zettlemoyer, Luke and Ribeiro, Marco Tulio},\n25\t  journal={arXiv preprint arXiv:2303.09014},\n26\t  year={2023}\n27\t}\n28\t\n29\t@inproceedings{chameleon-2024,\n30\t  title={Chameleon: Plug-and-Play Compositional Reasoning with Large Language Models},\n31\t  author={Lu, Pan and Peng, Baolin and Cheng, Hao and Galley, Michel and Chang, Kai-Wei and Wu, Ying Nian and Zhu, Song-Chun and Gao, Jianfeng},\n32\t  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n33\t  year={2023}\n34\t}\n35\t\n36\t@article{retool-2026,\n37\t  title={ReTool: Reinforcement Learning for Strategic Tool Use in LLMs},\n38\t  author={Feng, Jiazhan and others},\n39\t  journal={arXiv preprint arXiv:2504.11536},\n40\t  year={2025}\n41\t}\n42\t\n43\t@article{cogrouter-2026,\n44\t  title={Think Fast and Slow: Step-Level Cognitive Depth Adaptation for LLM Agents},\n45\t  author={Yang, Ruihan and others},\n46\t  journal={arXiv preprint arXiv:2602.12662},\n47\t  year={2026}\n48\t}\n49\t\n50\t@article{ares-2026,\n51\t  title={ARES: Adaptive Reasoning Effort Selection for Efficient LLM Agents},\n52\t  author={Yang, Jingbo and others},\n53\t  journal={arXiv preprint arXiv:2603.07915},\n54\t  year={2026}\n55\t}\n56\t\n57\t@inproceedings{mixture-of-recursions-2025,\n58\t  title={Mixture-of-Recursions: Learning Dynamic Recursive Depths for Adaptive Token-Level Computation},\n59\t  author={Bae, Sangmin and others},\n60\t  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n61\t  year={2025}\n62\t}\n63\t\n64\t@inproceedings{mtrouter-2026,\n65\t  title={MTRouter: Cost-Aware Multi-Turn LLM Routing with History-Model Joint Embeddings},\n66\t  author={Zhang, Yiqun and others},\n67\t  booktitle={Proceedings of the Annual Meeting of the Association for Computational Linguistics (ACL)},\n68\t  year={2026}\n69\t}\n70\t\n71\t@article{itp-2026,\n72\t  title={Imagine-then-Plan: Agent Learning from Adaptive Lookahead with World Models},\n73\t  author={Liu, Youwei and others},\n74\t  journal={arXiv preprint arXiv:2601.08955},\n75\t  year={2026}\n76\t}\n77\t\n78\t@article{dynathink-2025,\n79\t  title={Dyna-Think: Synergizing Reasoning, Acting, and World Model Simulation in AI Agents},\n80\t  author={Yu, Xiao and others},\n81\t  journal={arXiv preprint arXiv:2506.00320},\n82\t  year={2025}\n83\t}\n84\t\n85\t@article{tool-overuse-illusion-2026,\n86\t  title={The Tool-Overuse Illusion: Why Does {LLM} Prefer External Tools over Internal Knowledge?},\n87\t  author={Zeng, Yirong and You, Shen and Liu, Yufei and Du, Qunyao and Ding, Xiao and Hou, Yutai and Wang, Yuxian and Ning, Wu and Song, Haonan and Tu, Dandan and Cai, Bibo and Liu, Ting},\n88\t  journal={arXiv preprint arXiv:2604.19749},\n89\t  year={2026}\n90\t}\n91\t\n92\t@article{when2tool-2026,\n93\t  title={{LLM} Agents Already Know When to Call Tools -- Even Without Reasoning},\n94\t  author={Sun, Chung-En and Liu, Linbo and Yan, Ge and Wang, Zimo and Weng, Tsui-Wei},\n95\t  journal={arXiv preprint arXiv:2605.09252},\n96\t  year={2026}\n97\t}\n98\t\n99\t@article{tool-use-tax-2026,\n100\t  title={Are Tools All We Need? Unveiling the Tool-Use Tax in {LLM} Agents},\n101\t  author={Zhang, Kaituo and Xiong, Zhen and Zhong, Mingyu and Jiang, Zhimeng and Yuan, Zhouyuan and Li, Zhecheng and Lin, Ying},\n102\t  journal={arXiv preprint arXiv:2605.00136},\n103\t  year={2026}\n104\t}\n105\t\n106\t@article{to-call-or-not-2026,\n107\t  title={To Call or Not to Call: A Framework to Assess and Optimize {LLM} Tool Calling},\n108\t  author={Wu, Qinyuan and Das, Soumi and Amani, Mahsa and Nag, Arijit and Lee, Seungeon and Gummadi, Krishna P. and Ravichander, Abhilasha and Zafar, Muhammad Bilal},\n109\t  journal={arXiv preprint arXiv:2605.00737},\n110\t  year={2026}\n111\t}\n112\t\n113\t@inproceedings{dagger-2011,\n114\t  title={A Reduction of Imitation Learning and Structured Prediction to No-Regret Online Learning},\n115\t  author={Ross, St\\'{e}phane and Gordon, Geoffrey J and Bagnell, Drew},\n116\t  booktitle={Proceedings of the International Conference on Artificial Intelligence and Statistics (AISTATS)},\n117\t  year={2011}\n118\t}\n119\t\n120\t@inproceedings{toolkengpt-2023,\n121\t  title={ToolkenGPT: Augmenting Frozen Language Models with Massive Tools via Tool Embeddings},\n122\t  author={Hao, Shibo and Liu, Tianyang and Wang, Zhen and Hu, Zhiting},\n123\t  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n124\t  year={2023}\n125\t}\n126\t\n127\t@inproceedings{alfworld-2021,\n128\t  title={ALFWorld: Aligning Text and Embodied Environments for Interactive Learning},\n129\t  author={Shridhar, Mohit and Yuan, Xingdi and C\\^{o}t\\'{e}, Marc-Alexandre and Bisk, Yonatan and Trischler, Adam and Hausknecht, Matthew},\n130\t  booktitle={International Conference on Learning Representations (ICLR)},\n131\t  year={2021}\n132\t}\n133\t\n134\t@article{garcia2015comprehensive,\n135\t  title={A Comprehensive Survey on Safe Reinforcement Learning},\n136\t  author={Garc\\'{i}a, Javier and Fern\\'{a}ndez, Fernando},\n137\t  journal={Journal of Machine Learning Research},\n138\t  volume={16},\n139\t  number={1},\n140\t  pages={1437--1480},\n141\t  year={2015}\n142\t}\n143\t\n144\t@article{voyager-2023,\n145\t  title={Voyager: An Open-Ended Embodied Agent with Large Language Models},\n146\t  author={Wang, Guanzhi and Xie, Yuqi and Jiang, Yunfan and Mandlekar, Ajay and Xiao, Chaowei and Zhu, Yuke and Fan, Linxi and Anandkumar, Anima},\n147\t  journal={arXiv preprint arXiv:2305.16291},\n148\t  year={2023}\n149\t}\n150\t\n151\t@inproceedings{amitai2024explaining,\n152\t  title={Explaining Reinforcement Learning Agents through Counterfactual Action Outcomes},\n153\t  author={Amitai, Yotam and Septon, Guy and Amir, Ofra},\n154\t  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},\n155\t  year={2024}\n156\t}\n157\t\n158\t@inproceedings{gajcin2023counterfactual,\n159\t  title={Counterfactual Explanations for Reinforcement Learning Agents},\n160\t  author={Gajcin, Jasmina},\n161\t  booktitle={Proceedings of the International Conference on Autonomous Agents and Multiagent Systems (AAMAS)},\n162\t  year={2023}\n163\t}\n164\t\n165\t@article{olson2021counterfactual,\n166\t  title={Counterfactual State Explanations for Reinforcement Learning Agents via Generative Deep Learning},\n167\t  author={Olson, Matthew L. and Khanna, Roli and Neal, Lawrence and Li, Fuxin and Wong, Weng-Keen},\n168\t  journal={Artificial Intelligence},\n169\t  volume={295},\n170\t  pages={103455},\n171\t  year={2021}\n172\t}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7d8a4b14-d346-4b5c-a33e-aa872301b9ec",
+            "uuid": "b4a83c78-fc73-4741-87c1-9465138aae4d",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/references.bib",
+                "content": "@inproceedings{scienceworld-2022,\n  title={ScienceWorld: Is Your Agent Smarter Than a 5th Grader?},\n  author={Wang, Ruoyao and Jansen, Peter and C\\^{o}t\\'{e}, Marc-Alexandre and Ammanabrolu, Prithviraj},\n  booktitle={Proceedings of the 2022 Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n  year={2022}\n}\n\n@inproceedings{react-2023,\n  title={ReAct: Synergizing Reasoning and Acting in Language Models},\n  author={Yao, Shunyu and Zhao, Jeffrey and Yu, Dian and Du, Nan and Shafran, Izhak and Narasimhan, Karthik and Cao, Yuan},\n  booktitle={International Conference on Learning Representations (ICLR)},\n  year={2023}\n}\n\n@inproceedings{toolformer-2024,\n  title={Toolformer: Language Models Can Teach Themselves to Use Tools},\n  author={Schick, Timo and Dwivedi-Yu, Jane and Dess\\`{i}, Roberto and Raileanu, Roberta and Lomeli, Maria and Hambro, Eric and Zettlemoyer, Luke and Cancedda, Nicola and Scialom, Thomas},\n  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n  year={2023}\n}\n\n@article{art-2023,\n  title={ART: Automatic Multi-step Reasoning and Tool-use for Large Language Models},\n  author={Paranjape, Bhargavi and Lundberg, Scott and Singh, Sameer and Hajishirzi, Hannaneh and Zettlemoyer, Luke and Ribeiro, Marco Tulio},\n  journal={arXiv preprint arXiv:2303.09014},\n  year={2023}\n}\n\n@inproceedings{chameleon-2024,\n  title={Chameleon: Plug-and-Play Compositional Reasoning with Large Language Models},\n  author={Lu, Pan and Peng, Baolin and Cheng, Hao and Galley, Michel and Chang, Kai-Wei and Wu, Ying Nian and Zhu, Song-Chun and Gao, Jianfeng},\n  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n  year={2023}\n}\n\n@article{retool-2026,\n  title={ReTool: Reinforcement Learning for Strategic Tool Use in LLMs},\n  author={Feng, Jiazhan and others},\n  journal={arXiv preprint arXiv:2504.11536},\n  year={2025}\n}\n\n@article{cogrouter-2026,\n  title={Think Fast and Slow: Step-Level Cognitive Depth Adaptation for LLM Agents},\n  author={Yang, Ruihan and others},\n  journal={arXiv preprint arXiv:2602.12662},\n  year={2026}\n}\n\n@article{ares-2026,\n  title={ARES: Adaptive Reasoning Effort Selection for Efficient LLM Agents},\n  author={Yang, Jingbo and others},\n  journal={arXiv preprint arXiv:2603.07915},\n  year={2026}\n}\n\n@inproceedings{mixture-of-recursions-2025,\n  title={Mixture-of-Recursions: Learning Dynamic Recursive Depths for Adaptive Token-Level Computation},\n  author={Bae, Sangmin and others},\n  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n  year={2025}\n}\n\n@inproceedings{mtrouter-2026,\n  title={MTRouter: Cost-Aware Multi-Turn LLM Routing with History-Model Joint Embeddings},\n  author={Zhang, Yiqun and others},\n  booktitle={Proceedings of the Annual Meeting of the Association for Computational Linguistics (ACL)},\n  year={2026}\n}\n\n@article{itp-2026,\n  title={Imagine-then-Plan: Agent Learning from Adaptive Lookahead with World Models},\n  author={Liu, Youwei and others},\n  journal={arXiv preprint arXiv:2601.08955},\n  year={2026}\n}\n\n@article{dynathink-2025,\n  title={Dyna-Think: Synergizing Reasoning, Acting, and World Model Simulation in AI Agents},\n  author={Yu, Xiao and others},\n  journal={arXiv preprint arXiv:2506.00320},\n  year={2025}\n}\n\n@article{tool-overuse-illusion-2026,\n  title={The Tool-Overuse Illusion: Why Does {LLM} Prefer External Tools over Internal Knowledge?},\n  author={Zeng, Yirong and You, Shen and Liu, Yufei and Du, Qunyao and Ding, Xiao and Hou, Yutai and Wang, Yuxian and Ning, Wu and Song, Haonan and Tu, Dandan and Cai, Bibo and Liu, Ting},\n  journal={arXiv preprint arXiv:2604.19749},\n  year={2026}\n}\n\n@article{when2tool-2026,\n  title={{LLM} Agents Already Know When to Call Tools -- Even Without Reasoning},\n  author={Sun, Chung-En and Liu, Linbo and Yan, Ge and Wang, Zimo and Weng, Tsui-Wei},\n  journal={arXiv preprint arXiv:2605.09252},\n  year={2026}\n}\n\n@article{tool-use-tax-2026,\n  title={Are Tools All We Need? Unveiling the Tool-Use Tax in {LLM} Agents},\n  author={Zhang, Kaituo and Xiong, Zhen and Zhong, Mingyu and Jiang, Zhimeng and Yuan, Zhouyuan and Li, Zhecheng and Lin, Ying},\n  journal={arXiv preprint arXiv:2605.00136},\n  year={2026}\n}\n\n@article{to-call-or-not-2026,\n  title={To Call or Not to Call: A Framework to Assess and Optimize {LLM} Tool Calling},\n  author={Wu, Qinyuan and Das, Soumi and Amani, Mahsa and Nag, Arijit and Lee, Seungeon and Gummadi, Krishna P. and Ravichander, Abhilasha and Zafar, Muhammad Bilal},\n  journal={arXiv preprint arXiv:2605.00737},\n  year={2026}\n}\n\n@inproceedings{dagger-2011,\n  title={A Reduction of Imitation Learning and Structured Prediction to No-Regret Online Learning},\n  author={Ross, St\\'{e}phane and Gordon, Geoffrey J and Bagnell, Drew},\n  booktitle={Proceedings of the International Conference on Artificial Intelligence and Statistics (AISTATS)},\n  year={2011}\n}\n\n@inproceedings{toolkengpt-2023,\n  title={ToolkenGPT: Augmenting Frozen Language Models with Massive Tools via Tool Embeddings},\n  author={Hao, Shibo and Liu, Tianyang and Wang, Zhen and Hu, Zhiting},\n  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n  year={2023}\n}\n\n@inproceedings{alfworld-2021,\n  title={ALFWorld: Aligning Text and Embodied Environments for Interactive Learning},\n  author={Shridhar, Mohit and Yuan, Xingdi and C\\^{o}t\\'{e}, Marc-Alexandre and Bisk, Yonatan and Trischler, Adam and Hausknecht, Matthew},\n  booktitle={International Conference on Learning Representations (ICLR)},\n  year={2021}\n}\n\n@article{garcia2015comprehensive,\n  title={A Comprehensive Survey on Safe Reinforcement Learning},\n  author={Garc\\'{i}a, Javier and Fern\\'{a}ndez, Fernando},\n  journal={Journal of Machine Learning Research},\n  volume={16},\n  number={1},\n  pages={1437--1480},\n  year={2015}\n}\n\n@article{voyager-2023,\n  title={Voyager: An Open-Ended Embodied Agent with Large Language Models},\n  author={Wang, Guanzhi and Xie, Yuqi and Jiang, Yunfan and Mandlekar, Ajay and Xiao, Chaowei and Zhu, Yuke and Fan, Linxi and Anandkumar, Anima},\n  journal={arXiv preprint arXiv:2305.16291},\n  year={2023}\n}\n\n@inproceedings{amitai2024explaining,\n  title={Explaining Reinforcement Learning Agents through Counterfactual Action Outcomes},\n  author={Amitai, Yotam and Septon, Guy and Amir, Ofra},\n  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},\n  year={2024}\n}\n\n@inproceedings{gajcin2023counterfactual,\n  title={Counterfactual Explanations for Reinforcement Learning Agents},\n  author={Gajcin, Jasmina},\n  booktitle={Proceedings of the International Conference on Autonomous Agents and Multiagent Systems (AAMAS)},\n  year={2023}\n}\n\n@article{olson2021counterfactual,\n  title={Counterfactual State Explanations for Reinforcement Learning Agents via Generative Deep Learning},\n  author={Olson, Matthew L. and Khanna, Roli and Neal, Lawrence and Li, Fuxin and Wong, Weng-Keen},\n  journal={Artificial Intelligence},\n  volume={295},\n  pages={103455},\n  year={2021}\n}",
+                "numLines": 172,
+                "startLine": 1,
+                "totalLines": 172
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now let me also check the rest of the paper for tone/style consistency, and check for any relevant content in the results section to avoid repetition.",
+              "signature": "EtICClkIDRgCKkD/lYoI8LZyil+0DvN18SSt81IIUvj3632tsI20/VpRYSBFlZWUVibPAmWzCsrgqR3xF2QwXwut6XNeO1+C5qrvMg9jbGF1ZGUtb3B1cy00LTY4ABIMR60xO3OcmVoK/tsAGgxoXUD/CC5UBXpnfkUiMHfq2xj8KwEINdNIOyDADCr0gNpK5jXQwTWLHiHir+eX8scbVpv/yBV9b6V2upsXkSqmAR586GxCaz3Ub27RU1ZuUIPr9Nq8KU9bV07RKyBMmoYT/lfsPj+d25wChQd9gNcQ92lvtMXm87XaVPtMRJ2VAbm6my2v0HKfJs5VrxSunsxwFfMG22vhy8lYfZ5cQ1/b3Y0y2XNJUfRphPqpzuFXzkNvDkwFpoigYxYnk0dJbbzM0kTFcom+WO2zOSryuzyF0GkV8AqoPQBJyp8FKCi6Qb232oikjQkYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7d8a4b14-d346-4b5c-a33e-aa872301b9ec",
+            "uuid": "329087f5-53a5-4564-9eb7-03eb4f8200c5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EUfSeDPydQH9HHtBRaY57m",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3620,
+                "cache_read_input_tokens": 23606,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3620
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me also check the results section and intro for tone/style reference."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7d8a4b14-d346-4b5c-a33e-aa872301b9ec",
+            "uuid": "162445f9-902d-4afd-aebb-7fe5aecc36da",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EUfSeDPydQH9HHtBRaY57m",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3620,
+                "cache_read_input_tokens": 23606,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3620
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011jaQxJkxNL9YEwuX7EjWsE",
+              "name": "Agent",
+              "input": {
+                "subagent_type": "Explore",
+                "description": "Find paper tex files",
+                "prompt": "List all .tex files in /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/ and read the results.tex file (or whatever file contains the Results section). Also read the introduction.tex or intro section. I need to understand the paper's tone and what numbers are already presented in Results so Discussion doesn't repeat them. Report the content back."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7d8a4b14-d346-4b5c-a33e-aa872301b9ec",
+            "uuid": "a8873cf4-280f-466c-a929-21befbe00491",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EUfSeDPydQH9HHtBRaY57m",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3620,
+                "cache_read_input_tokens": 23606,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3620
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_started",
+                "task_id": "a3687927a04eeae03",
+                "tool_use_id": "toolu_011jaQxJkxNL9YEwuX7EjWsE",
+                "description": "Find paper tex files",
+                "task_type": "local_agent",
+                "prompt": "List all .tex files in /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/ and read the results.tex file (or whatever file contains the Results section). Also read the introduction.tex or intro section. I need to understand the paper's tone and what numbers are already presented in Results so Discussion doesn't repeat them. Report the content back.",
+                "uuid": "5dc67148-36ee-4bdf-983f-d237b227504f",
+                "session_id": "7d8a4b14-d346-4b5c-a33e-aa872301b9ec"
+              }
+            }
+          ],
+          "id": "event-000012"
+        }
+      ],
+      "message_count": 12
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T10:14:55.722Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "List all .tex files in /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/ and read the results.tex file (or whatever file contains the Results section). Also read the introduction.tex or intro section. I need to understand the paper's tone and what numbers are already presented in Results so Discussion doesn't repeat them. Report the content back."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_011jaQxJkxNL9YEwuX7EjWsE",
+            "session_id": "7d8a4b14-d346-4b5c-a33e-aa872301b9ec",
+            "uuid": "9bb92123-3b85-4d8c-b6c9-5911d3b4a3c6"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a3687927a04eeae03",
+                "tool_use_id": "toolu_011jaQxJkxNL9YEwuX7EjWsE",
+                "description": "Finding /home/ubuntu/.agent-ml-research-idea_gen_0509_12/…",
+                "usage": {
+                  "total_tokens": 17862,
+                  "tool_uses": 1,
+                  "duration_ms": 1932
+                },
+                "last_tool_name": "Glob",
+                "uuid": "50c54a56-967f-4d39-b120-d7d23f91b635",
+                "session_id": "7d8a4b14-d346-4b5c-a33e-aa872301b9ec"
+              }
+            }
+          ],
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Aiik6bkej5ww9HCimHYNrm",
+              "name": "Glob",
+              "input": {
+                "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/*.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_011jaQxJkxNL9YEwuX7EjWsE",
+            "session_id": "7d8a4b14-d346-4b5c-a33e-aa872301b9ec",
+            "uuid": "433281bf-848c-4ebf-bf9f-44b61cfbdff5",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_019Rh82aDxKWWoWqbbskPJZL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 17847,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 17847,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T10:14:57.680Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Aiik6bkej5ww9HCimHYNrm",
+              "type": "tool_result",
+              "content": "docs/paper/abstract.tex\ndocs/paper/introduction.tex\ndocs/paper/related_work.tex\ndocs/paper/conclusion.tex\ndocs/paper/discussion.tex\ndocs/paper/experiments.tex\ndocs/paper/main.tex\ndocs/paper/method.tex"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_011jaQxJkxNL9YEwuX7EjWsE",
+            "session_id": "7d8a4b14-d346-4b5c-a33e-aa872301b9ec",
+            "uuid": "f5393c07-0fb4-4613-8a71-b2dfd5490825"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a3687927a04eeae03",
+                "tool_use_id": "toolu_011jaQxJkxNL9YEwuX7EjWsE",
+                "description": "Reading docs/paper/introduction.tex",
+                "usage": {
+                  "total_tokens": 18890,
+                  "tool_uses": 2,
+                  "duration_ms": 3571
+                },
+                "last_tool_name": "Read",
+                "uuid": "0e8a70fd-80ab-42fe-a757-f96e54ec88be",
+                "session_id": "7d8a4b14-d346-4b5c-a33e-aa872301b9ec"
+              }
+            }
+          ],
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Bf3hF7TGE5CgiKzajF8Heh",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/introduction.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_011jaQxJkxNL9YEwuX7EjWsE",
+            "session_id": "7d8a4b14-d346-4b5c-a33e-aa872301b9ec",
+            "uuid": "ee56450e-f9f6-4d25-a63d-929dc75e0187",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01GRC9df7ScE7ysVnahHJMzv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1024,
+                "cache_read_input_tokens": 17847,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1024,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T10:14:59.308Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Bf3hF7TGE5CgiKzajF8Heh",
+              "type": "tool_result",
+              "content": "1\t\\section{Introduction}\n2\t\n3\tWhen a Qwen2.5-7B-Instruct agent attempts to boil water in ScienceWorld \\cite{scienceworld-2022}, it must track temperature thresholds and container states across dozens of steps. Internal reasoning hallucinates these transitions---predicting water has boiled when the stove was never activated---triggering agent death with a $-100$ penalty. Deterministic external computation (environment simulators, code interpreters) eliminates such hallucinations via exact state transitions. The natural question: when should an agent route computation externally versus reasoning internally?\n4\t\n5\tExisting routing approaches \\cite{toolformer-2024,art-2023,chameleon-2024} frame tool selection as a capability or efficiency decision---matching subtasks to tools that can solve them. This framing ignores a potentially dominant signal: routing to \\emph{avoid catastrophic failure}. Understanding what routing actually learns requires counterfactual analysis, but the standard per-step oracle approach degenerates under sparse rewards. On ScienceWorld, where non-zero reward arrives only at episode termination, 97.4\\% of steps (across 11 prescreened task types) produce identical scores regardless of modality---no step-level signal exists to train a router (\\S\\ref{sec:collection}). Keyword-based heuristics also fail structurally, as ScienceWorld actions lack science-specific terminology (\\S\\ref{sec:baselines}).\n6\t\n7\tWe propose \\emph{episode-level counterfactual analysis}: run complete episodes under pure-internal (ReAct~\\cite{react-2023}) and pure-deterministic strategies, then compare episode outcomes to generate routing labels (\\S\\ref{sec:collection}). Across 11 ScienceWorld task types (245 episodes), the full deterministic advantage is $\\Delta_{\\text{full}} = +29.60$ points. Excluding death episodes, the gap collapses to $\\Delta_{\\text{nd}} = +2.84$; 75 of 95 non-tie labels (78.9\\%) are driven by death asymmetry---a penalty-independent measure. The penalty-sensitive Death Avoidance Factor (DAF; \\S\\ref{sec:daf}) is 90.41\\% at the default $P{=}100$, ranging from 46\\% ($P{=}10$) to 95\\% ($P{=}200$). The per-task correlation between death rate differential and performance gap is $r = 0.97$ ($p < 10^{-6}$, $n = 11$), confirming that death avoidance is the primary mechanism across task types (\\S\\ref{sec:death-decomp}). Death rates differ sharply (42.9\\% internal vs.\\ 16.3\\% deterministic), and 96.3\\% of oracle routing decisions match always-deterministic (\\S\\ref{sec:baselines}).\n8\t\n9\tOur contributions: (1) \\emph{identifying step-level oracle degeneracy} in sparse-reward environments and applying episode-level counterfactual analysis to diagnose routing signal composition via the DAF metric (\\S\\ref{sec:collection}--\\ref{sec:daf}); and (2) the empirical finding that \\emph{death asymmetry drives 78.9\\% of non-tie routing labels independent of penalty magnitude} (DAF = 90.41\\% at $P{=}100$) on ScienceWorld, with a trained router that does not significantly outperform always-deterministic (\\S\\ref{sec:death-decomp}--\\ref{sec:router-diagnostic})."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_011jaQxJkxNL9YEwuX7EjWsE",
+            "session_id": "7d8a4b14-d346-4b5c-a33e-aa872301b9ec",
+            "uuid": "55c6c6c5-7f97-4470-9712-05b7ef4b94fd"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a3687927a04eeae03",
+                "tool_use_id": "toolu_011jaQxJkxNL9YEwuX7EjWsE",
+                "description": "Reading docs/paper/experiments.tex",
+                "usage": {
+                  "total_tokens": 18891,
+                  "tool_uses": 3,
+                  "duration_ms": 3702
+                },
+                "last_tool_name": "Read",
+                "uuid": "df9fbdab-77c5-486a-8cc5-34ba296f9892",
+                "session_id": "7d8a4b14-d346-4b5c-a33e-aa872301b9ec"
+              }
+            }
+          ],
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012J9y4YYbtfcXRhqCQQTFyw",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_011jaQxJkxNL9YEwuX7EjWsE",
+            "session_id": "7d8a4b14-d346-4b5c-a33e-aa872301b9ec",
+            "uuid": "ad2f3613-b470-4a5f-b33a-28e58918b902",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01GRC9df7ScE7ysVnahHJMzv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1024,
+                "cache_read_input_tokens": 17847,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1024,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T10:14:59.441Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012J9y4YYbtfcXRhqCQQTFyw",
+              "type": "tool_result",
+              "content": "1\t\\section{Experiments}\n2\t\n3\t\\subsection{Death Avoidance Decomposition}\n4\t\\label{sec:death-decomp}\n5\t\n6\t\\begin{figure}[t]\n7\t\\centering\n8\t\\includegraphics[width=\\columnwidth]{figures/fig1_daf_scatter.pdf}\n9\t\\caption{Per-task scatter plot: death rate differential (internal minus deterministic) vs.\\ performance gap ($\\Delta_{\\text{full}}$). Pearson $r = 0.9698$ ($p = 8.12 \\times 10^{-7}$). Each point is one of 11 ScienceWorld task types.}\n10\t\\label{fig:decomposition}\n11\t\\end{figure}\n12\t\n13\tThe full performance gap between deterministic and internal strategies across 245 episodes is $\\Delta_{\\text{full}} = +29.60$ points. When we exclude all episodes where either strategy results in agent death, the gap collapses to $\\Delta_{\\text{nd}} = +2.84$. The resulting Death Avoidance Factor (\\S\\ref{sec:daf}) is 90.41\\%: approximately 90\\% of the deterministic strategy's advantage over internal reasoning is attributable to death avoidance rather than superior task performance when both agents survive.\n14\t\n15\tThis concentration is consistent across task types (Appendix~\\ref{app:per-task}). The Pearson correlation between per-task death rate differential and $\\Delta_{\\text{full}}$ is $r = 0.9698$ ($p = 8.12 \\times 10^{-7}$; bootstrap 95\\% CI $[0.952, 0.995]$), as shown in Figure~\\ref{fig:decomposition}. Spearman rank correlation is $\\rho = 0.986$ ($p = 2.4 \\times 10^{-8}$), and leave-one-out analysis shows $r \\in [0.963, 0.980]$---no single task type is a leverage point (Appendix~\\ref{app:correlation}). We note that death rate differential and $\\Delta_{\\text{full}}$ are structurally coupled through the penalty term $P$, so high correlation is expected when death dominates. The empirically non-trivial finding is that 78.9\\% of non-tie routing labels are driven by death asymmetry independent of $P$. Knowing how much more frequently the internal strategy dies is nearly sufficient to predict the full performance gap for a given task type. The internal strategy dies in 42.9\\% of episodes compared to 16.3\\% for deterministic computation---a 2.6$\\times$ ratio that drives the bulk of the observed score difference.\n16\t\n17\tThe episode-level label distribution reflects this asymmetry: of 245 episodes, 86 are \\texttt{det\\_preferred}, only 9 \\texttt{internal\\_preferred}, and 150 \\texttt{no\\_preference}---when internal reasoning does not cause death, it performs comparably to deterministic computation.\n18\t\n19\tNotably, the per-task DAF distribution is bimodal: \\texttt{find-non-living-thing} exhibits DAF $\\approx 0\\%$ (routing signal entirely from non-death score differences, $\\Delta = +9.58$), while all other task types exceed 85\\%.\n20\t\n21\tOne task reveals the residual non-death signal. \\texttt{find-non-living-thing} ($n=40$) has zero deaths under both strategies yet shows $\\Delta_{\\text{full}} = +9.58$, entirely from non-death performance differences---deterministic computation can provide advantages through more accurate state tracking even when agents survive. However, among the 10 death-prone task types, death avoidance overwhelms non-death differences. When both modalities survive, the gap is small but non-negligible ($\\Delta_{\\text{nd}} = +2.84$, 9.6\\% of $\\Delta_{\\text{full}}$).\n22\t\n23\t\\subsection{Baselines}\n24\t\\label{sec:baselines}\n25\t\n26\t\\begin{table}[t]\n27\t\\centering\n28\t\\small\n29\t\\begin{tabular}{@{}lccc@{}}\n30\t\\toprule\n31\tStrategy & Score & 95\\% CI & Death \\% \\\\\n32\t\\midrule\n33\tAlways-Internal & $-39.07$ & [$-46.40$, $-32.27$] & 42.9 \\\\\n34\tAlways-Deterministic & $-9.47$ & [$-14.71$, $-4.29$] & 16.3 \\\\\n35\tRandom & $-22.38$ & [$-28.67$, $-15.75$] & 27.8 \\\\\n36\tOracle & $-6.58$ & [$-11.54$, $-1.70$] & 14.3 \\\\\n37\t\\midrule\n38\tTrained Router$^\\dagger$ & $-10.70$ & [$-16.33$, $-5.27$] & 17.6 \\\\\n39\t\\bottomrule\n40\t\\end{tabular}\n41\t\\caption{Episode-weighted mean scores on ScienceWorld (11 task types, 245 episodes). 95\\% Bootstrap CIs. The oracle selects the higher-scoring strategy per episode; 96.3\\% of its decisions match the always-deterministic strategy. $\\dagger$\\,4-seed mean.}\n42\t\\label{tab:baselines}\n43\t\\end{table}\n44\t\n45\tTable~\\ref{tab:baselines} reports episode-weighted mean scores and death rates for four unconditional strategies. Always-deterministic ($-9.47$) outperforms always-internal ($-39.07$) by 29.60 points, consistent with $\\Delta_{\\text{full}}$. The oracle, which selects the higher-scoring strategy per episode, improves only modestly to $-6.58$, with 96.3\\% of its routing decisions matching always-deterministic. This \\emph{oracle degeneracy} indicates that the optimal episode-level routing policy closely resembles unconditional deterministic computation---the routing signal is insufficient to improve upon simply always choosing the deterministic strategy. Random routing ($-22.38$) falls between the two pure strategies, with a death rate (27.8\\%) proportional to its 50/50 allocation.\n46\t\n47\tKeyword-based routing fails structurally: match rates cluster at extremes (85.8\\% or $<$5\\%), precluding meaningful routing discrimination.\n48\t\n49\t\\subsection{Router Training as Diagnostic}\n50\t\\label{sec:router-diagnostic}\n51\t\n52\tA natural question is whether the episode-level counterfactual labels can train a step-level router. We investigate this as a diagnostic probe of label informativeness rather than a routing system proposal, testing two architectures.\n53\t\n54\t\\paragraph{Classification head.} A linear head on LLM hidden representations, trained on episode-level labels, degenerates to always-deterministic (0\\% internal recall) across all configurations (class weighting, focal loss, undersampling, temperature scaling).\n55\t\n56\t\\paragraph{Implicit router.} We fine-tune Qwen3-1.7B to internalize routing decisions within its generation (Appendix~\\ref{app:router-details}). Across four seeds, balanced accuracy is $58.1 \\pm 0.8\\%$---above chance but insufficient for practical routing, with seed-level variation (Appendix~\\ref{app:router-details}) reflecting threshold sensitivity rather than genuine signal.\n57\t\n58\t\\paragraph{End-to-end evaluation.} Deployed as an episode-level router (Table~\\ref{tab:baselines}), the trained router scores $-10.70$ (95\\% CI $[-16.33, -5.27]$), not statistically outperforming always-deterministic ($-9.47$, $[-14.71, -4.29]$; overlapping CIs). The episode-to-step granularity mismatch is the bottleneck: when DAF $\\approx 90\\%$, router headroom is limited to the ${\\sim}10\\%$ non-death signal.\n59\t\n60\t\\paragraph{Data split.} Of 245 episodes, 95 non-tie labels are split 85/15 (81 train, 14 validation; 1734/306 steps). Baselines in Table~\\ref{tab:baselines} report trajectory statistics; the router score ($-10.70$) comes from fresh environment interaction.\n61\t\n62\t\\paragraph{Labeling quality.} We verify label quality in Appendix~\\ref{app:labeling}.\n63\t\n64\t\\subsection{Cross-Model Verification}\n65\t\\label{sec:cross-model}\n66\t\n67\tTo test whether the death avoidance pattern is model-specific, we run a mechanism verification pilot with Llama-3.1-8B-Instruct on two task types (\\texttt{freeze} and \\texttt{find-non-living-thing}, 5 episodes $\\times$ 2 modalities each, $N{=}20$ total). Llama-8B achieves lower absolute ScienceWorld scores than Qwen-2.5-7B, reflecting weaker task-level capability, but the death pattern direction is consistent across model families.\n68\t\n69\tOn \\texttt{freeze}, the internal strategy dies in 40\\% of episodes versus 20\\% for deterministic (Qwen: 55\\%/25\\%)---the same directional asymmetry. The single non-tie episode arises from death asymmetry: the internal strategy dies while deterministic survives, producing a det-preferred label consistent with the Qwen pattern. On \\texttt{find-non-living-thing}, both strategies achieve 0\\% death rate under Llama, matching Qwen exactly; the 3 det-preferred labels arise from non-death score differences.\n70\t\n71\t\\begin{table}[t]\n72\t\\centering\n73\t\\small\n74\t\\begin{tabular}{@{}llcccc@{}}\n75\t\\toprule\n76\tTask & Model & D\\%\\textsubscript{int} & D\\%\\textsubscript{det} & $\\Delta$D\\% & D / I / N \\\\\n77\t\\midrule\n78\tfreeze & Qwen-7B & 55 & 25 & +30 & 6 / 0 / 14 \\\\\n79\tfreeze & Llama-8B & 40 & 20 & +20 & 1 / 0 / 4 \\\\\n80\t\\midrule\n81\tfind-non-living & Qwen-7B & 0 & 0 & 0 & 16 / 4 / 20 \\\\\n82\tfind-non-living & Llama-8B & 0 & 0 & 0 & 3 / 1 / 1 \\\\\n83\t\\bottomrule\n84\t\\end{tabular}\n85\t\\caption{Cross-model death rate comparison. Llama pilot: $n{=}5$ episodes per task; Qwen: from Table~\\ref{tab:per-task}. $\\Delta$D\\%: internal minus deterministic death rate. D/I/N: det-preferred / internal-preferred / no-preference labels.}\n86\t\\label{tab:cross-model}\n87\t\\end{table}\n88\t\n89\tTable~\\ref{tab:cross-model} summarizes the comparison. This pilot ($N{=}20$) provides preliminary directional evidence only: the sample size precludes statistical claims. Nevertheless, observing the same death asymmetry direction in a different model family (Llama vs.\\ Qwen) suggests that the pattern reflects a structural property of internal reasoning in interactive environments rather than a model-specific artifact."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_011jaQxJkxNL9YEwuX7EjWsE",
+            "session_id": "7d8a4b14-d346-4b5c-a33e-aa872301b9ec",
+            "uuid": "5f41dbdf-a177-42c4-a15f-9d34edde95fd"
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_notification",
+                "task_id": "a3687927a04eeae03",
+                "tool_use_id": "toolu_011jaQxJkxNL9YEwuX7EjWsE",
+                "status": "completed",
+                "output_file": "",
+                "summary": "Find paper tex files",
+                "usage": {
+                  "total_tokens": 22914,
+                  "tool_uses": 3,
+                  "duration_ms": 14894
+                },
+                "uuid": "abad0231-61aa-443e-b733-cbf0ca900375",
+                "session_id": "7d8a4b14-d346-4b5c-a33e-aa872301b9ec"
+              }
+            }
+          ],
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T10:15:10.622Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011jaQxJkxNL9YEwuX7EjWsE",
+              "type": "tool_result",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Perfect. Here's what I found:\n\n## Paper Structure\n\nThe .tex files in the paper directory are:\n- abstract.tex\n- introduction.tex\n- related_work.tex\n- method.tex\n- experiments.tex\n- discussion.tex\n- conclusion.tex\n- main.tex\n\n## Introduction Tone and Key Frame\n\nThe introduction establishes a **problem-focused, empirically grounded tone** with a specific research question:\n\n**Central Question**: \"When should an agent route computation externally versus reasoning internally?\"\n\nThe paper critiques existing routing approaches for ignoring a \"potentially dominant signal: routing to avoid catastrophic failure.\" It frames the problem through a concrete example: Qwen2.5-7B-Instruct failing on ScienceWorld by hallucinating state transitions (e.g., water boiling without stove activation).\n\n**Key Framing**: Episode-level counterfactual analysis to diagnose routing signal composition, introducing the Death Avoidance Factor (DAF) metric.\n\n## Results Section (experiments.tex) — Key Numbers to Avoid Repeating\n\n### Primary Metrics:\n- **Full performance gap**: $\\Delta_{\\text{full}} = +29.60$ points (deterministic vs. internal)\n- **Gap excluding deaths**: $\\Delta_{\\text{nd}} = +2.84$ points\n- **Death Avoidance Factor (DAF)**: 90.41% at default penalty P=100\n- **Non-tie labels driven by death asymmetry**: 78.9%\n\n### Death Rates:\n- **Internal strategy**: 42.9% death rate\n- **Deterministic strategy**: 16.3% death rate\n- **Death rate ratio**: 2.6× (internal vs. deterministic)\n\n### Oracle & Baselines:\n- **Oracle score**: -6.58 (95% CI [-11.54, -1.70])\n- **Always-Deterministic**: -9.47 (95% CI [-14.71, -4.29])\n- **Always-Internal**: -39.07 (95% CI [-46.40, -32.27])\n- **Random routing**: -22.38 (95% CI [-28.67, -15.75])\n- **Oracle degeneracy**: 96.3% of oracle decisions match always-deterministic\n\n### Trained Router Performance:\n- **Balanced accuracy**: 58.1 ± 0.8%\n- **Episode-level score**: -10.70 (95% CI [-16.33, -5.27])\n- **Does not statistically outperform always-deterministic** (overlapping CIs)\n\n### Task-Specific Finding:\n- **find-non-living-thing**: DAF ≈ 0% (signal entirely from non-death score differences, $\\Delta = +9.58$)\n- **Other 10 task types**: All exceed 85% DAF\n\n### Correlation Finding:\n- **Pearson r = 0.9698** (p = 8.12 × 10^-7) between death rate differential and performance gap\n- **Spearman ρ = 0.986** (p = 2.4 × 10^-8)\n\n### Cross-Model Verification (Llama-3.1-8B):\n- Death asymmetry pattern is consistent across model families\n- On freeze task: 40% internal vs. 20% deterministic (Qwen: 55%/25%)\n- On find-non-living: 0% deaths under both (matching Qwen)\n\n## Tone Summary\n\nThe paper is **technically rigorous and honest about limitations**. It doesn't oversell the trained router results (acknowledging it doesn't significantly outperform always-deterministic). The tone balances empirical specificity with clear null findings, focusing on diagnostic insights (what the routing signal actually contains) rather than claiming a novel routing system."
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7d8a4b14-d346-4b5c-a33e-aa872301b9ec",
+            "uuid": "210f325c-42e5-4de3-98e6-69979b9bc517",
+            "tool_use_result": {
+              "status": "completed",
+              "prompt": "List all .tex files in /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/ and read the results.tex file (or whatever file contains the Results section). Also read the introduction.tex or intro section. I need to understand the paper's tone and what numbers are already presented in Results so Discussion doesn't repeat them. Report the content back.",
+              "agentId": "a3687927a04eeae03",
+              "agentType": "Explore",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Perfect. Here's what I found:\n\n## Paper Structure\n\nThe .tex files in the paper directory are:\n- abstract.tex\n- introduction.tex\n- related_work.tex\n- method.tex\n- experiments.tex\n- discussion.tex\n- conclusion.tex\n- main.tex\n\n## Introduction Tone and Key Frame\n\nThe introduction establishes a **problem-focused, empirically grounded tone** with a specific research question:\n\n**Central Question**: \"When should an agent route computation externally versus reasoning internally?\"\n\nThe paper critiques existing routing approaches for ignoring a \"potentially dominant signal: routing to avoid catastrophic failure.\" It frames the problem through a concrete example: Qwen2.5-7B-Instruct failing on ScienceWorld by hallucinating state transitions (e.g., water boiling without stove activation).\n\n**Key Framing**: Episode-level counterfactual analysis to diagnose routing signal composition, introducing the Death Avoidance Factor (DAF) metric.\n\n## Results Section (experiments.tex) — Key Numbers to Avoid Repeating\n\n### Primary Metrics:\n- **Full performance gap**: $\\Delta_{\\text{full}} = +29.60$ points (deterministic vs. internal)\n- **Gap excluding deaths**: $\\Delta_{\\text{nd}} = +2.84$ points\n- **Death Avoidance Factor (DAF)**: 90.41% at default penalty P=100\n- **Non-tie labels driven by death asymmetry**: 78.9%\n\n### Death Rates:\n- **Internal strategy**: 42.9% death rate\n- **Deterministic strategy**: 16.3% death rate\n- **Death rate ratio**: 2.6× (internal vs. deterministic)\n\n### Oracle & Baselines:\n- **Oracle score**: -6.58 (95% CI [-11.54, -1.70])\n- **Always-Deterministic**: -9.47 (95% CI [-14.71, -4.29])\n- **Always-Internal**: -39.07 (95% CI [-46.40, -32.27])\n- **Random routing**: -22.38 (95% CI [-28.67, -15.75])\n- **Oracle degeneracy**: 96.3% of oracle decisions match always-deterministic\n\n### Trained Router Performance:\n- **Balanced accuracy**: 58.1 ± 0.8%\n- **Episode-level score**: -10.70 (95% CI [-16.33, -5.27])\n- **Does not statistically outperform always-deterministic** (overlapping CIs)\n\n### Task-Specific Finding:\n- **find-non-living-thing**: DAF ≈ 0% (signal entirely from non-death score differences, $\\Delta = +9.58$)\n- **Other 10 task types**: All exceed 85% DAF\n\n### Correlation Finding:\n- **Pearson r = 0.9698** (p = 8.12 × 10^-7) between death rate differential and performance gap\n- **Spearman ρ = 0.986** (p = 2.4 × 10^-8)\n\n### Cross-Model Verification (Llama-3.1-8B):\n- Death asymmetry pattern is consistent across model families\n- On freeze task: 40% internal vs. 20% deterministic (Qwen: 55%/25%)\n- On find-non-living: 0% deaths under both (matching Qwen)\n\n## Tone Summary\n\nThe paper is **technically rigorous and honest about limitations**. It doesn't oversell the trained router results (acknowledging it doesn't significantly outperform always-deterministic). The tone balances empirical specificity with clear null findings, focusing on diagnostic insights (what the routing signal actually contains) rather than claiming a novel routing system."
+                }
+              ],
+              "totalDurationMs": 14898,
+              "totalTokens": 23797,
+              "totalToolUseCount": 3,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 4021,
+                "cache_read_input_tokens": 18871,
+                "output_tokens": 899,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 4021
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 6,
+                    "output_tokens": 899,
+                    "cache_read_input_tokens": 18871,
+                    "cache_creation_input_tokens": 4021,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 4021,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "toolStats": {
+                "readCount": 2,
+                "searchCount": 1,
+                "bashCount": 0,
+                "editFileCount": 0,
+                "linesAdded": 0,
+                "linesRemoved": 0,
+                "otherToolCount": 0
+              }
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have a good understanding of the paper's tone, existing content, and what numbers are in Results. Let me write the expanded Discussion section.\n\nKey points from the task:\n1. Keep cross-environment evidence paragraph intact (don't modify MATH numbers)\n2. Add: Implications for Router Design\n3. Add: The Label Imbalance as a Feature\n4. Add: Penalty Sensitivity and Generalization\n5. Expand: Scope and future directions\n\nAvailable references:\n- garcia2015comprehensive (safe RL survey)\n- tool-overuse-illusion-2026\n- when2tool-2026\n\n\n- tool-use-tax-2026\n- to-call-or-not-2026\n- cogrouter-2026\n- ares-2026\n- mtrouter-2026\n\nI'm pulling together the specific metrics I need to weave in: the 90.41% DAF performance, the 29.60 and 2.84 deltas, the label distribution showing 86 deterministic, 9 intermediate, and 150 no-preference cases, and how penalty sensitivity ranges from 46% accuracy at P=10 up to 95% at P=200. The router's balanced accuracy hovering around 57-59% is also important context for discussing generalization challenges. Now I'll draft the expanded discussion sections.\n\nI need to be interpretive rather than just restating these numbers—reference them as findings that support broader points about what routing actually means when death avoidance dominates the signal. The oracle versus always-deterministic gap of only 2.89 points suggests the routing problem itself is fundamentally constrained. I should write this carefully, staying evidence-based and cautious, using only citations I already have, and keeping it to roughly 0.8-1.2 pages without repeating the Results section verbatim. The extreme label imbalance—with 61% of episodes showing no preference between strategies and a 9.6:1 ratio favoring deterministic when choice matters—reveals that the router's real value lies in identifying just the ~4% of cases where internal reasoning actually helps, which explains why the baseline deterministic approach is already so competitive and why trained routers struggle to distinguish these rare positive examples from noise. The DAF's performance varies dramatically with penalty magnitude, suggesting...\n\nActually, I should reconsider the framing here. The penalty sensitivity shows that death avoidance dominance isn't inherent to the problem but depends on how costly failures are—in gentler environments, other routing signals like reasoning quality differences would matter more. And there's a capability angle too: the 42.9% death rate under internal reasoning reflects this particular 7B model's hallucination issues, so larger models with fewer catastrophic failures might reveal routing signals currently buried under those failures, potentially changing what the router can actually exploit. I'm thinking through how to expand the scope section with a couple of key additions—the logit-generation gap in implicit routing and multi-model validation at scale—while keeping the existing structure intact and maintaining that cautious, measured tone throughout.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7d8a4b14-d346-4b5c-a33e-aa872301b9ec",
+            "uuid": "e2fa2ccf-c83d-479a-8368-245cfbd1b2a7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AUztDMPUjHHqkzxEanTcD2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1154,
+                "cache_read_input_tokens": 27226,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1154
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have full context on the paper's tone and what's already in Results. Let me write the expanded Discussion."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7d8a4b14-d346-4b5c-a33e-aa872301b9ec",
+            "uuid": "baaa2953-cd1c-4147-a1ad-0a0ab4b20b0c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AUztDMPUjHHqkzxEanTcD2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1154,
+                "cache_read_input_tokens": 27226,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1154
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01B8KMdeiCfZgRSErUvepHgp",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/discussion.tex",
+                "old_string": "\\section{Discussion}\n\\label{sec:discussion}\n\n\\paragraph{Cross-environment evidence.}\nThe death-avoidance finding in ScienceWorld raises a natural question: does routing signal persist in environments without catastrophic failure? An evaluation on MATH Level~4--5 (300 problems: 152 Level~4, 148 Level~5), using code interpreter as the deterministic modality, suggests not. Internal reasoning directionally outperforms code interpreter: 81.0\\% accuracy (95\\% CI [76.7, 85.3]) versus 76.7\\% (95\\% CI [72.0, 81.3]); the paired difference of $+4.3$~percentage points (95\\% CI [0.0, $+8.7$]; McNemar $p = 0.079$) shows a directional reversal, though not statistically significant at the 95\\% level. The label distribution inverts relative to ScienceWorld: 30 internal-preferred versus 17 deterministic-preferred (compared to 9:86 in ScienceWorld), with 84.3\\% of problems (253 of 300) showing no modality preference. In the absence of death risk, the routing signal vanishes or reverses---consistent with death avoidance as the primary driver of the deterministic strategy's advantage observed in ScienceWorld.\n\n\\paragraph{Scope and future directions.}\nOur analysis is grounded in a single interactive environment with a specific failure mode (the $-100$ death penalty). Extending the counterfactual methodology to environments with graded failure costs, embodied agents with continuous action spaces, or multi-turn dialogue systems would clarify how broadly death avoidance---or analogous catastrophic-failure avoidance---accounts for apparent routing signal. Step-level counterfactual labeling, rather than episode-level, is a complementary direction that could reveal finer-grained routing structure masked by our current aggregation.",
+                "new_string": "\\section{Discussion}\n\\label{sec:discussion}\n\n\\paragraph{Cross-environment evidence.}\nThe death-avoidance finding in ScienceWorld raises a natural question: does routing signal persist in environments without catastrophic failure? An evaluation on MATH Level~4--5 (300 problems: 152 Level~4, 148 Level~5), using code interpreter as the deterministic modality, suggests not. Internal reasoning directionally outperforms code interpreter: 81.0\\% accuracy (95\\% CI [76.7, 85.3]) versus 76.7\\% (95\\% CI [72.0, 81.3]); the paired difference of $+4.3$~percentage points (95\\% CI [0.0, $+8.7$]; McNemar $p = 0.079$) shows a directional reversal, though not statistically significant at the 95\\% level. The label distribution inverts relative to ScienceWorld: 30 internal-preferred versus 17 deterministic-preferred (compared to 9:86 in ScienceWorld), with 84.3\\% of problems (253 of 300) showing no modality preference. In the absence of death risk, the routing signal vanishes or reverses---consistent with death avoidance as the primary driver of the deterministic strategy's advantage observed in ScienceWorld.\n\n\\paragraph{Implications for router design.}\nThe dominance of death avoidance in routing signal (DAF exceeding 90\\%) reframes what a modality router is learning. Rather than discovering efficiency-quality tradeoffs across reasoning strategies, the router primarily learns to predict which states lead to catastrophic failure under internal reasoning. This aligns the routing problem more closely with \\emph{safety critics} in safe reinforcement learning~\\citep{garcia2015comprehensive} than with the cost-quality optimization framing adopted by existing routing work~\\citep{cogrouter-2026, ares-2026, mtrouter-2026}. The practical implication is direct: if death avoidance accounts for the vast majority of routing value, then a lightweight death predictor---trained on state features correlated with hallucination-induced failure---may capture most of the router's benefit without the overhead of full counterfactual labeling. That the oracle outperforms always-deterministic by only 2.89 points further suggests that the residual, non-death routing signal may not justify the complexity of learning a full routing policy.\n\n\\paragraph{Label imbalance as a core finding.}\nThe extreme label distribution---86 deterministic-preferred, 9 internal-preferred, and 150 no-preference episodes---is not an artifact to be corrected but a central result. The 61.2\\% no-preference rate indicates that for most episodes, modality choice is irrelevant: both strategies succeed or both fail. Among episodes where modality matters, deterministic is preferred at a 9.6:1 ratio, driven almost entirely by death asymmetry. This explains why always-deterministic is a strong baseline: the router's marginal value is confined to identifying the ${\\sim}$4\\% of episodes where internal reasoning is genuinely superior. The near-random balanced accuracy of trained routers (57--59\\%) is a downstream consequence: with so few positive examples for the minority class, supervised learning cannot reliably distinguish rare internal-preferred episodes from noise. Recent concurrent work on tool-use calibration reaches compatible conclusions from the opposite direction---that LLMs may already possess implicit routing signals~\\citep{when2tool-2026} but that external tool invocation carries non-trivial costs~\\citep{tool-use-tax-2026}, reinforcing the case for conservative routing defaults.\n\n\\paragraph{Penalty sensitivity and generalization.}\nThe DAF's sensitivity to penalty magnitude---ranging from 46\\% at $P{=}10$ to 95\\% at $P{=}200$---highlights that death-avoidance dominance is not an invariant property of routing but a function of the environment's penalty structure. In domains with mild failure costs, non-death routing signals (e.g., reasoning quality differences on surviving episodes) would constitute a larger share of total routing value. This connects to reward shaping more broadly: the relative magnitude of catastrophic versus incremental penalties shapes which behavioral differences a router can exploit.\n\nOur findings may also be capability-dependent. The 42.9\\% internal-reasoning death rate reflects the failure mode of a 7B-parameter model prone to state hallucination. Larger models with lower hallucination rates would exhibit smaller death-rate differentials, potentially reducing DAF and revealing routing signal currently masked by catastrophic failures. Whether non-death routing signal \\emph{emerges} as model capability increases---or remains negligible---is an open question with direct implications for the modality routing agenda.\n\n\\paragraph{Scope and future directions.}\nOur analysis is grounded in a single interactive environment with a specific failure mode (the $-100$ death penalty). Extending the counterfactual methodology to environments with graded failure costs, embodied agents with continuous action spaces, or multi-turn dialogue systems would clarify how broadly death avoidance---or analogous catastrophic-failure avoidance---accounts for apparent routing signal. Step-level counterfactual labeling, rather than episode-level, is a complementary direction that could reveal finer-grained routing structure masked by our current aggregation. A further limitation is the gap between the implicit routing signal we measure---based on episode outcomes---and the logit-level representations an implicit router would use at inference time; bridging this gap requires probing whether outcome-level modality preferences are recoverable from the model's internal activations before action selection. Finally, validating these findings across model scales and families beyond 7--8B parameters would establish whether the death-avoidance dominance we observe is a property of the environment or of the capability regime."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7d8a4b14-d346-4b5c-a33e-aa872301b9ec",
+            "uuid": "6b8ce52f-cc61-47e7-8e5f-8adfef8f0dcc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AUztDMPUjHHqkzxEanTcD2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1154,
+                "cache_read_input_tokens": 27226,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1154
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T10:16:16.120Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01B8KMdeiCfZgRSErUvepHgp",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7d8a4b14-d346-4b5c-a33e-aa872301b9ec",
+            "uuid": "672e9c33-14c9-45b5-822c-f068a34d59a7",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/discussion.tex",
+              "oldString": "\\section{Discussion}\n\\label{sec:discussion}\n\n\\paragraph{Cross-environment evidence.}\nThe death-avoidance finding in ScienceWorld raises a natural question: does routing signal persist in environments without catastrophic failure? An evaluation on MATH Level~4--5 (300 problems: 152 Level~4, 148 Level~5), using code interpreter as the deterministic modality, suggests not. Internal reasoning directionally outperforms code interpreter: 81.0\\% accuracy (95\\% CI [76.7, 85.3]) versus 76.7\\% (95\\% CI [72.0, 81.3]); the paired difference of $+4.3$~percentage points (95\\% CI [0.0, $+8.7$]; McNemar $p = 0.079$) shows a directional reversal, though not statistically significant at the 95\\% level. The label distribution inverts relative to ScienceWorld: 30 internal-preferred versus 17 deterministic-preferred (compared to 9:86 in ScienceWorld), with 84.3\\% of problems (253 of 300) showing no modality preference. In the absence of death risk, the routing signal vanishes or reverses---consistent with death avoidance as the primary driver of the deterministic strategy's advantage observed in ScienceWorld.\n\n\\paragraph{Scope and future directions.}\nOur analysis is grounded in a single interactive environment with a specific failure mode (the $-100$ death penalty). Extending the counterfactual methodology to environments with graded failure costs, embodied agents with continuous action spaces, or multi-turn dialogue systems would clarify how broadly death avoidance---or analogous catastrophic-failure avoidance---accounts for apparent routing signal. Step-level counterfactual labeling, rather than episode-level, is a complementary direction that could reveal finer-grained routing structure masked by our current aggregation.",
+              "newString": "\\section{Discussion}\n\\label{sec:discussion}\n\n\\paragraph{Cross-environment evidence.}\nThe death-avoidance finding in ScienceWorld raises a natural question: does routing signal persist in environments without catastrophic failure? An evaluation on MATH Level~4--5 (300 problems: 152 Level~4, 148 Level~5), using code interpreter as the deterministic modality, suggests not. Internal reasoning directionally outperforms code interpreter: 81.0\\% accuracy (95\\% CI [76.7, 85.3]) versus 76.7\\% (95\\% CI [72.0, 81.3]); the paired difference of $+4.3$~percentage points (95\\% CI [0.0, $+8.7$]; McNemar $p = 0.079$) shows a directional reversal, though not statistically significant at the 95\\% level. The label distribution inverts relative to ScienceWorld: 30 internal-preferred versus 17 deterministic-preferred (compared to 9:86 in ScienceWorld), with 84.3\\% of problems (253 of 300) showing no modality preference. In the absence of death risk, the routing signal vanishes or reverses---consistent with death avoidance as the primary driver of the deterministic strategy's advantage observed in ScienceWorld.\n\n\\paragraph{Implications for router design.}\nThe dominance of death avoidance in routing signal (DAF exceeding 90\\%) reframes what a modality router is learning. Rather than discovering efficiency-quality tradeoffs across reasoning strategies, the router primarily learns to predict which states lead to catastrophic failure under internal reasoning. This aligns the routing problem more closely with \\emph{safety critics} in safe reinforcement learning~\\citep{garcia2015comprehensive} than with the cost-quality optimization framing adopted by existing routing work~\\citep{cogrouter-2026, ares-2026, mtrouter-2026}. The practical implication is direct: if death avoidance accounts for the vast majority of routing value, then a lightweight death predictor---trained on state features correlated with hallucination-induced failure---may capture most of the router's benefit without the overhead of full counterfactual labeling. That the oracle outperforms always-deterministic by only 2.89 points further suggests that the residual, non-death routing signal may not justify the complexity of learning a full routing policy.\n\n\\paragraph{Label imbalance as a core finding.}\nThe extreme label distribution---86 deterministic-preferred, 9 internal-preferred, and 150 no-preference episodes---is not an artifact to be corrected but a central result. The 61.2\\% no-preference rate indicates that for most episodes, modality choice is irrelevant: both strategies succeed or both fail. Among episodes where modality matters, deterministic is preferred at a 9.6:1 ratio, driven almost entirely by death asymmetry. This explains why always-deterministic is a strong baseline: the router's marginal value is confined to identifying the ${\\sim}$4\\% of episodes where internal reasoning is genuinely superior. The near-random balanced accuracy of trained routers (57--59\\%) is a downstream consequence: with so few positive examples for the minority class, supervised learning cannot reliably distinguish rare internal-preferred episodes from noise. Recent concurrent work on tool-use calibration reaches compatible conclusions from the opposite direction---that LLMs may already possess implicit routing signals~\\citep{when2tool-2026} but that external tool invocation carries non-trivial costs~\\citep{tool-use-tax-2026}, reinforcing the case for conservative routing defaults.\n\n\\paragraph{Penalty sensitivity and generalization.}\nThe DAF's sensitivity to penalty magnitude---ranging from 46\\% at $P{=}10$ to 95\\% at $P{=}200$---highlights that death-avoidance dominance is not an invariant property of routing but a function of the environment's penalty structure. In domains with mild failure costs, non-death routing signals (e.g., reasoning quality differences on surviving episodes) would constitute a larger share of total routing value. This connects to reward shaping more broadly: the relative magnitude of catastrophic versus incremental penalties shapes which behavioral differences a router can exploit.\n\nOur findings may also be capability-dependent. The 42.9\\% internal-reasoning death rate reflects the failure mode of a 7B-parameter model prone to state hallucination. Larger models with lower hallucination rates would exhibit smaller death-rate differentials, potentially reducing DAF and revealing routing signal currently masked by catastrophic failures. Whether non-death routing signal \\emph{emerges} as model capability increases---or remains negligible---is an open question with direct implications for the modality routing agenda.\n\n\\paragraph{Scope and future directions.}\nOur analysis is grounded in a single interactive environment with a specific failure mode (the $-100$ death penalty). Extending the counterfactual methodology to environments with graded failure costs, embodied agents with continuous action spaces, or multi-turn dialogue systems would clarify how broadly death avoidance---or analogous catastrophic-failure avoidance---accounts for apparent routing signal. Step-level counterfactual labeling, rather than episode-level, is a complementary direction that could reveal finer-grained routing structure masked by our current aggregation. A further limitation is the gap between the implicit routing signal we measure---based on episode outcomes---and the logit-level representations an implicit router would use at inference time; bridging this gap requires probing whether outcome-level modality preferences are recoverable from the model's internal activations before action selection. Finally, validating these findings across model scales and families beyond 7--8B parameters would establish whether the death-avoidance dominance we observe is a property of the environment or of the capability regime.",
+              "originalFile": "\\section{Discussion}\n\\label{sec:discussion}\n\n\\paragraph{Cross-environment evidence.}\nThe death-avoidance finding in ScienceWorld raises a natural question: does routing signal persist in environments without catastrophic failure? An evaluation on MATH Level~4--5 (300 problems: 152 Level~4, 148 Level~5), using code interpreter as the deterministic modality, suggests not. Internal reasoning directionally outperforms code interpreter: 81.0\\% accuracy (95\\% CI [76.7, 85.3]) versus 76.7\\% (95\\% CI [72.0, 81.3]); the paired difference of $+4.3$~percentage points (95\\% CI [0.0, $+8.7$]; McNemar $p = 0.079$) shows a directional reversal, though not statistically significant at the 95\\% level. The label distribution inverts relative to ScienceWorld: 30 internal-preferred versus 17 deterministic-preferred (compared to 9:86 in ScienceWorld), with 84.3\\% of problems (253 of 300) showing no modality preference. In the absence of death risk, the routing signal vanishes or reverses---consistent with death avoidance as the primary driver of the deterministic strategy's advantage observed in ScienceWorld.\n\n\\paragraph{Scope and future directions.}\nOur analysis is grounded in a single interactive environment with a specific failure mode (the $-100$ death penalty). Extending the counterfactual methodology to environments with graded failure costs, embodied agents with continuous action spaces, or multi-turn dialogue systems would clarify how broadly death avoidance---or analogous catastrophic-failure avoidance---accounts for apparent routing signal. Step-level counterfactual labeling, rather than episode-level, is a complementary direction that could reveal finer-grained routing structure masked by our current aggregation.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 4,
+                  "oldLines": 5,
+                  "newStart": 4,
+                  "newLines": 16,
+                  "lines": [
+                    " \\paragraph{Cross-environment evidence.}",
+                    " The death-avoidance finding in ScienceWorld raises a natural question: does routing signal persist in environments without catastrophic failure? An evaluation on MATH Level~4--5 (300 problems: 152 Level~4, 148 Level~5), using code interpreter as the deterministic modality, suggests not. Internal reasoning directionally outperforms code interpreter: 81.0\\% accuracy (95\\% CI [76.7, 85.3]) versus 76.7\\% (95\\% CI [72.0, 81.3]); the paired difference of $+4.3$~percentage points (95\\% CI [0.0, $+8.7$]; McNemar $p = 0.079$) shows a directional reversal, though not statistically significant at the 95\\% level. The label distribution inverts relative to ScienceWorld: 30 internal-preferred versus 17 deterministic-preferred (compared to 9:86 in ScienceWorld), with 84.3\\% of problems (253 of 300) showing no modality preference. In the absence of death risk, the routing signal vanishes or reverses---consistent with death avoidance as the primary driver of the deterministic strategy's advantage observed in ScienceWorld.",
+                    " ",
+                    "+\\paragraph{Implications for router design.}",
+                    "+The dominance of death avoidance in routing signal (DAF exceeding 90\\%) reframes what a modality router is learning. Rather than discovering efficiency-quality tradeoffs across reasoning strategies, the router primarily learns to predict which states lead to catastrophic failure under internal reasoning. This aligns the routing problem more closely with \\emph{safety critics} in safe reinforcement learning~\\citep{garcia2015comprehensive} than with the cost-quality optimization framing adopted by existing routing work~\\citep{cogrouter-2026, ares-2026, mtrouter-2026}. The practical implication is direct: if death avoidance accounts for the vast majority of routing value, then a lightweight death predictor---trained on state features correlated with hallucination-induced failure---may capture most of the router's benefit without the overhead of full counterfactual labeling. That the oracle outperforms always-deterministic by only 2.89 points further suggests that the residual, non-death routing signal may not justify the complexity of learning a full routing policy.",
+                    "+",
+                    "+\\paragraph{Label imbalance as a core finding.}",
+                    "+The extreme label distribution---86 deterministic-preferred, 9 internal-preferred, and 150 no-preference episodes---is not an artifact to be corrected but a central result. The 61.2\\% no-preference rate indicates that for most episodes, modality choice is irrelevant: both strategies succeed or both fail. Among episodes where modality matters, deterministic is preferred at a 9.6:1 ratio, driven almost entirely by death asymmetry. This explains why always-deterministic is a strong baseline: the router's marginal value is confined to identifying the ${\\sim}$4\\% of episodes where internal reasoning is genuinely superior. The near-random balanced accuracy of trained routers (57--59\\%) is a downstream consequence: with so few positive examples for the minority class, supervised learning cannot reliably distinguish rare internal-preferred episodes from noise. Recent concurrent work on tool-use calibration reaches compatible conclusions from the opposite direction---that LLMs may already possess implicit routing signals~\\citep{when2tool-2026} but that external tool invocation carries non-trivial costs~\\citep{tool-use-tax-2026}, reinforcing the case for conservative routing defaults.",
+                    "+",
+                    "+\\paragraph{Penalty sensitivity and generalization.}",
+                    "+The DAF's sensitivity to penalty magnitude---ranging from 46\\% at $P{=}10$ to 95\\% at $P{=}200$---highlights that death-avoidance dominance is not an invariant property of routing but a function of the environment's penalty structure. In domains with mild failure costs, non-death routing signals (e.g., reasoning quality differences on surviving episodes) would constitute a larger share of total routing value. This connects to reward shaping more broadly: the relative magnitude of catastrophic versus incremental penalties shapes which behavioral differences a router can exploit.",
+                    "+",
+                    "+Our findings may also be capability-dependent. The 42.9\\% internal-reasoning death rate reflects the failure mode of a 7B-parameter model prone to state hallucination. Larger models with lower hallucination rates would exhibit smaller death-rate differentials, potentially reducing DAF and revealing routing signal currently masked by catastrophic failures. Whether non-death routing signal \\emph{emerges} as model capability increases---or remains negligible---is an open question with direct implications for the modality routing agenda.",
+                    "+",
+                    " \\paragraph{Scope and future directions.}",
+                    "-Our analysis is grounded in a single interactive environment with a specific failure mode (the $-100$ death penalty). Extending the counterfactual methodology to environments with graded failure costs, embodied agents with continuous action spaces, or multi-turn dialogue systems would clarify how broadly death avoidance---or analogous catastrophic-failure avoidance---accounts for apparent routing signal. Step-level counterfactual labeling, rather than episode-level, is a complementary direction that could reveal finer-grained routing structure masked by our current aggregation.",
+                    "+Our analysis is grounded in a single interactive environment with a specific failure mode (the $-100$ death penalty). Extending the counterfactual methodology to environments with graded failure costs, embodied agents with continuous action spaces, or multi-turn dialogue systems would clarify how broadly death avoidance---or analogous catastrophic-failure avoidance---accounts for apparent routing signal. Step-level counterfactual labeling, rather than episode-level, is a complementary direction that could reveal finer-grained routing structure masked by our current aggregation. A further limitation is the gap between the implicit routing signal we measure---based on episode outcomes---and the logit-level representations an implicit router would use at inference time; bridging this gap requires probing whether outcome-level modality preferences are recoverable from the model's internal activations before action selection. Finally, validating these findings across model scales and families beyond 7--8B parameters would establish whether the death-avoidance dominance we observe is a property of the environment or of the capability regime."
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me verify the final file."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7d8a4b14-d346-4b5c-a33e-aa872301b9ec",
+            "uuid": "4d19e376-25b8-412f-92f2-f0565f2333a4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QiYs4GMsci5nqxBdg5uc2f",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3416,
+                "cache_read_input_tokens": 28380,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3416
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CZ6RXtccSY6xFkZ6ZfHTKr",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/discussion.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7d8a4b14-d346-4b5c-a33e-aa872301b9ec",
+            "uuid": "51bd9f69-78df-4f33-9b1a-d1557386d710",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QiYs4GMsci5nqxBdg5uc2f",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3416,
+                "cache_read_input_tokens": 28380,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3416
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-15T10:16:18.488Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CZ6RXtccSY6xFkZ6ZfHTKr",
+              "type": "tool_result",
+              "content": "1\t\\section{Discussion}\n2\t\\label{sec:discussion}\n3\t\n4\t\\paragraph{Cross-environment evidence.}\n5\tThe death-avoidance finding in ScienceWorld raises a natural question: does routing signal persist in environments without catastrophic failure? An evaluation on MATH Level~4--5 (300 problems: 152 Level~4, 148 Level~5), using code interpreter as the deterministic modality, suggests not. Internal reasoning directionally outperforms code interpreter: 81.0\\% accuracy (95\\% CI [76.7, 85.3]) versus 76.7\\% (95\\% CI [72.0, 81.3]); the paired difference of $+4.3$~percentage points (95\\% CI [0.0, $+8.7$]; McNemar $p = 0.079$) shows a directional reversal, though not statistically significant at the 95\\% level. The label distribution inverts relative to ScienceWorld: 30 internal-preferred versus 17 deterministic-preferred (compared to 9:86 in ScienceWorld), with 84.3\\% of problems (253 of 300) showing no modality preference. In the absence of death risk, the routing signal vanishes or reverses---consistent with death avoidance as the primary driver of the deterministic strategy's advantage observed in ScienceWorld.\n6\t\n7\t\\paragraph{Implications for router design.}\n8\tThe dominance of death avoidance in routing signal (DAF exceeding 90\\%) reframes what a modality router is learning. Rather than discovering efficiency-quality tradeoffs across reasoning strategies, the router primarily learns to predict which states lead to catastrophic failure under internal reasoning. This aligns the routing problem more closely with \\emph{safety critics} in safe reinforcement learning~\\citep{garcia2015comprehensive} than with the cost-quality optimization framing adopted by existing routing work~\\citep{cogrouter-2026, ares-2026, mtrouter-2026}. The practical implication is direct: if death avoidance accounts for the vast majority of routing value, then a lightweight death predictor---trained on state features correlated with hallucination-induced failure---may capture most of the router's benefit without the overhead of full counterfactual labeling. That the oracle outperforms always-deterministic by only 2.89 points further suggests that the residual, non-death routing signal may not justify the complexity of learning a full routing policy.\n9\t\n10\t\\paragraph{Label imbalance as a core finding.}\n11\tThe extreme label distribution---86 deterministic-preferred, 9 internal-preferred, and 150 no-preference episodes---is not an artifact to be corrected but a central result. The 61.2\\% no-preference rate indicates that for most episodes, modality choice is irrelevant: both strategies succeed or both fail. Among episodes where modality matters, deterministic is preferred at a 9.6:1 ratio, driven almost entirely by death asymmetry. This explains why always-deterministic is a strong baseline: the router's marginal value is confined to identifying the ${\\sim}$4\\% of episodes where internal reasoning is genuinely superior. The near-random balanced accuracy of trained routers (57--59\\%) is a downstream consequence: with so few positive examples for the minority class, supervised learning cannot reliably distinguish rare internal-preferred episodes from noise. Recent concurrent work on tool-use calibration reaches compatible conclusions from the opposite direction---that LLMs may already possess implicit routing signals~\\citep{when2tool-2026} but that external tool invocation carries non-trivial costs~\\citep{tool-use-tax-2026}, reinforcing the case for conservative routing defaults.\n12\t\n13\t\\paragraph{Penalty sensitivity and generalization.}\n14\tThe DAF's sensitivity to penalty magnitude---ranging from 46\\% at $P{=}10$ to 95\\% at $P{=}200$---highlights that death-avoidance dominance is not an invariant property of routing but a function of the environment's penalty structure. In domains with mild failure costs, non-death routing signals (e.g., reasoning quality differences on surviving episodes) would constitute a larger share of total routing value. This connects to reward shaping more broadly: the relative magnitude of catastrophic versus incremental penalties shapes which behavioral differences a router can exploit.\n15\t\n16\tOur findings may also be capability-dependent. The 42.9\\% internal-reasoning death rate reflects the failure mode of a 7B-parameter model prone to state hallucination. Larger models with lower hallucination rates would exhibit smaller death-rate differentials, potentially reducing DAF and revealing routing signal currently masked by catastrophic failures. Whether non-death routing signal \\emph{emerges} as model capability increases---or remains negligible---is an open question with direct implications for the modality routing agenda.\n17\t\n18\t\\paragraph{Scope and future directions.}\n19\tOur analysis is grounded in a single interactive environment with a specific failure mode (the $-100$ death penalty). Extending the counterfactual methodology to environments with graded failure costs, embodied agents with continuous action spaces, or multi-turn dialogue systems would clarify how broadly death avoidance---or analogous catastrophic-failure avoidance---accounts for apparent routing signal. Step-level counterfactual labeling, rather than episode-level, is a complementary direction that could reveal finer-grained routing structure masked by our current aggregation. A further limitation is the gap between the implicit routing signal we measure---based on episode outcomes---and the logit-level representations an implicit router would use at inference time; bridging this gap requires probing whether outcome-level modality preferences are recoverable from the model's internal activations before action selection. Finally, validating these findings across model scales and families beyond 7--8B parameters would establish whether the death-avoidance dominance we observe is a property of the environment or of the capability regime.\n20\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7d8a4b14-d346-4b5c-a33e-aa872301b9ec",
+            "uuid": "560faa9b-81f0-4c4f-a71e-98bc638dcfe7",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/discussion.tex",
+                "content": "\\section{Discussion}\n\\label{sec:discussion}\n\n\\paragraph{Cross-environment evidence.}\nThe death-avoidance finding in ScienceWorld raises a natural question: does routing signal persist in environments without catastrophic failure? An evaluation on MATH Level~4--5 (300 problems: 152 Level~4, 148 Level~5), using code interpreter as the deterministic modality, suggests not. Internal reasoning directionally outperforms code interpreter: 81.0\\% accuracy (95\\% CI [76.7, 85.3]) versus 76.7\\% (95\\% CI [72.0, 81.3]); the paired difference of $+4.3$~percentage points (95\\% CI [0.0, $+8.7$]; McNemar $p = 0.079$) shows a directional reversal, though not statistically significant at the 95\\% level. The label distribution inverts relative to ScienceWorld: 30 internal-preferred versus 17 deterministic-preferred (compared to 9:86 in ScienceWorld), with 84.3\\% of problems (253 of 300) showing no modality preference. In the absence of death risk, the routing signal vanishes or reverses---consistent with death avoidance as the primary driver of the deterministic strategy's advantage observed in ScienceWorld.\n\n\\paragraph{Implications for router design.}\nThe dominance of death avoidance in routing signal (DAF exceeding 90\\%) reframes what a modality router is learning. Rather than discovering efficiency-quality tradeoffs across reasoning strategies, the router primarily learns to predict which states lead to catastrophic failure under internal reasoning. This aligns the routing problem more closely with \\emph{safety critics} in safe reinforcement learning~\\citep{garcia2015comprehensive} than with the cost-quality optimization framing adopted by existing routing work~\\citep{cogrouter-2026, ares-2026, mtrouter-2026}. The practical implication is direct: if death avoidance accounts for the vast majority of routing value, then a lightweight death predictor---trained on state features correlated with hallucination-induced failure---may capture most of the router's benefit without the overhead of full counterfactual labeling. That the oracle outperforms always-deterministic by only 2.89 points further suggests that the residual, non-death routing signal may not justify the complexity of learning a full routing policy.\n\n\\paragraph{Label imbalance as a core finding.}\nThe extreme label distribution---86 deterministic-preferred, 9 internal-preferred, and 150 no-preference episodes---is not an artifact to be corrected but a central result. The 61.2\\% no-preference rate indicates that for most episodes, modality choice is irrelevant: both strategies succeed or both fail. Among episodes where modality matters, deterministic is preferred at a 9.6:1 ratio, driven almost entirely by death asymmetry. This explains why always-deterministic is a strong baseline: the router's marginal value is confined to identifying the ${\\sim}$4\\% of episodes where internal reasoning is genuinely superior. The near-random balanced accuracy of trained routers (57--59\\%) is a downstream consequence: with so few positive examples for the minority class, supervised learning cannot reliably distinguish rare internal-preferred episodes from noise. Recent concurrent work on tool-use calibration reaches compatible conclusions from the opposite direction---that LLMs may already possess implicit routing signals~\\citep{when2tool-2026} but that external tool invocation carries non-trivial costs~\\citep{tool-use-tax-2026}, reinforcing the case for conservative routing defaults.\n\n\\paragraph{Penalty sensitivity and generalization.}\nThe DAF's sensitivity to penalty magnitude---ranging from 46\\% at $P{=}10$ to 95\\% at $P{=}200$---highlights that death-avoidance dominance is not an invariant property of routing but a function of the environment's penalty structure. In domains with mild failure costs, non-death routing signals (e.g., reasoning quality differences on surviving episodes) would constitute a larger share of total routing value. This connects to reward shaping more broadly: the relative magnitude of catastrophic versus incremental penalties shapes which behavioral differences a router can exploit.\n\nOur findings may also be capability-dependent. The 42.9\\% internal-reasoning death rate reflects the failure mode of a 7B-parameter model prone to state hallucination. Larger models with lower hallucination rates would exhibit smaller death-rate differentials, potentially reducing DAF and revealing routing signal currently masked by catastrophic failures. Whether non-death routing signal \\emph{emerges} as model capability increases---or remains negligible---is an open question with direct implications for the modality routing agenda.\n\n\\paragraph{Scope and future directions.}\nOur analysis is grounded in a single interactive environment with a specific failure mode (the $-100$ death penalty). Extending the counterfactual methodology to environments with graded failure costs, embodied agents with continuous action spaces, or multi-turn dialogue systems would clarify how broadly death avoidance---or analogous catastrophic-failure avoidance---accounts for apparent routing signal. Step-level counterfactual labeling, rather than episode-level, is a complementary direction that could reveal finer-grained routing structure masked by our current aggregation. A further limitation is the gap between the implicit routing signal we measure---based on episode outcomes---and the logit-level representations an implicit router would use at inference time; bridging this gap requires probing whether outcome-level modality preferences are recoverable from the model's internal activations before action selection. Finally, validating these findings across model scales and families beyond 7--8B parameters would establish whether the death-avoidance dominance we observe is a property of the environment or of the capability regime.\n",
+                "numLines": 20,
+                "startLine": 1,
+                "totalLines": 20
+              }
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Discussion section 扩写完成。从 2 段扩展为 5 段：\n\n1. **Cross-environment evidence** — 保留原文不动\n2. **Implications for router design** — 新增。Router 本质上是 safety critic 而非 efficiency optimizer，与 safe RL 文献关联，提出 death predictor 作为更简单的替代\n3. **Label imbalance as a core finding** — 新增。86:9 的极端分布是核心发现而非缺陷，解释 always-det 为何是 strong baseline，router marginal value 仅限于 ~4% 的 internal-preferred episodes，引用 concurrent work (when2tool, tool-use-tax)\n4. **Penalty sensitivity and generalization** — 新增。DAF 随 penalty 量级变化 (46%→95%)，低 penalty 环境中 non-death signal 更重要，capability-dependent 假说 (更强模型死亡率更低→DAF 可能下降)\n5. **Scope and future directions** — 扩展原文，新增 logit-generation gap 限制和 multi-model/multi-scale validation"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7d8a4b14-d346-4b5c-a33e-aa872301b9ec",
+            "uuid": "d5d807d0-1711-4665-ba2b-4e0c2b25c04d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XfyWgLGXyWGCSJzeqCG3wJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1483,
+                "cache_read_input_tokens": 31796,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1483
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Discussion section 扩写完成。从 2 段扩展为 5 段：\n\n1. **Cross-environment evidence** — 保留原文不动\n2. **Implications for router design** — 新增。Router 本质上是 safety critic 而非 efficiency optimizer，与 safe RL 文献关联，提出 death predictor 作为更简单的替代\n3. **Label imbalance as a core finding** — 新增。86:9 的极端分布是核心发现而非缺陷，解释 always-det 为何是 strong baseline，router marginal value 仅限于 ~4% 的 internal-preferred episodes，引用 concurrent work (when2tool, tool-use-tax)\n4. **Penalty sensitivity and generalization** — 新增。DAF 随 penalty 量级变化 (46%→95%)，低 penalty 环境中 non-death signal 更重要，capability-dependent 假说 (更强模型死亡率更低→DAF 可能下降)\n5. **Scope and future directions** — 扩展原文，新增 logit-generation gap 限制和 multi-model/multi-scale validation"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 102476,
+            "duration_api_ms": 103451,
+            "num_turns": 6,
+            "stop_reason": "end_turn",
+            "session_id": "7d8a4b14-d346-4b5c-a33e-aa872301b9ec",
+            "total_cost_usd": 0.3396567999999999,
+            "usage": {
+              "input_tokens": 7,
+              "cache_creation_input_tokens": 21438,
+              "cache_read_input_tokens": 122849,
+              "output_tokens": 4171,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 21438,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 308,
+                  "cache_read_input_tokens": 31796,
+                  "cache_creation_input_tokens": 1483,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1483
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1643,
+                "outputTokens": 1201,
+                "cacheReadInputTokens": 36718,
+                "cacheCreationInputTokens": 22892,
+                "webSearchRequests": 0,
+                "costUSD": 0.0399348,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 7,
+                "outputTokens": 4171,
+                "cacheReadInputTokens": 122849,
+                "cacheCreationInputTokens": 21438,
+                "webSearchRequests": 0,
+                "costUSD": 0.299722,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "d114359c-b92f-4f42-bc8b-64a68078c534"
+          },
+          "id": "event-000033"
+        }
+      ],
+      "message_count": 21
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-discussion-section.md"
+}

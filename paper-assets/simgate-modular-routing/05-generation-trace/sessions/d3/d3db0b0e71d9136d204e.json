@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d3db0b0e71d9136d204e",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "research multi model feasibility",
+  "task_key": "worker_research_multi-model-feasibility_20260515T063904",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_multi-model-feasibility_20260515T063904_result.json",
+    "occurrence": 1,
+    "bytes": 5065,
+    "sha256": "5e4ca5dcfae90984b573d944f3e6e20e8a1dd73998a18b13fd7174eeef2d58f7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据已收集完毕。以下是完整调研报告。\n\n---\n\n## Multi-model ScienceWorld 可行性报告\n\n### 1. 服务器状态\n\n| 项目 | 值 |\n|------|-----|\n| GPU | 2× RTX 5090 32GB，**全部空闲**（0MB 占用） |\n| vLLM | **v0.18.1**（2025 最新版，Llama/Mistral 全支持） |\n| Python | 3.12 (miniconda3) |\n| 数据盘 | 250GB，已用 64GB，**剩余 187GB** |\n| Qwen2.5-7B-Instruct | 权重完整（4 × safetensors，共 ~14.5GB） |\n| 残留进程 | 无 GPU 进程 |\n\n### 2. 推荐模型\n\n#### 首选：Meta-Llama-3.1-8B-Instruct\n\n| 维度 | 评估 |\n|------|------|\n| 家族差异 | Meta vs Alibaba，完全不同架构族 |\n| 参数量 | 8B（与 Qwen2.5-7B 相近） |\n| vLLM 支持 | v0.18.1 原生支持，day-0 兼容 |\n| Chat template | tokenizer 内置，`apply_chat_template()` 自动处理 |\n| ModelScope | **有镜像**：`LLM-Research/Meta-Llama-3.1-8B-Instruct` |\n| BF16 显存 | ~16GB weights + ~4GB KV cache = **~20GB**，32GB 卡轻松容纳 |\n| 社区验证 | 最广泛使用的开源 8B 模型之一 |\n\n#### 备选：Mistral-7B-Instruct-v0.3\n\n| 维度 | 评估 |\n|------|------|\n| 家族差异 | Mistral AI（法国），不同家族 |\n| 参数量 | 7B |\n| ModelScope | 有镜像：`rubraAI/Mistral-7B-Instruct-v0.3` |\n| BF16 显存 | ~14GB weights，32GB 绰绰有余 |\n| 劣势 | 社区规模和 benchmark 表现略逊于 Llama 3.1 |\n\n**推荐 Llama 3.1 8B Instruct**——reviewer 更熟悉、benchmark 更有说服力、是目前引用最多的开源 baseline。\n\n### 3. 显存评估\n\n```\nRTX 5090 VRAM:         32 GB\nLlama-3.1-8B BF16:    ~16 GB (weights)\nKV cache (default):   ~4-5 GB\nScienceWorld (Java):   CPU only, 0 GPU\n────────────────────────────────\n剩余 VRAM:            ~11-12 GB\n```\n\n**结论：单卡 BF16 完全可行，无需量化。** 比 Qwen2.5-7B（~15GB weights）略大约 1GB，毫无压力。\n\n### 4. 代码改动量\n\n**核心发现：几乎零改动。**\n\n所有关键脚本（`episode_level_collection.py`、`counterfactual_labeling.py`、`collect_trajectories.py`）均已支持 `--model_path` 参数：\n\n```bash\n# 现有 Qwen 运行方式\npython src/episode_level_collection.py --task_types \"freeze\" --gpu_id 0\n\n# 换 Llama 只需加一个参数\npython src/episode_level_collection.py --task_types \"freeze\" --gpu_id 0 \\\n  --model_path /root/autodl-tmp/models/Meta-Llama-3.1-8B-Instruct\n```\n\n代码中的关键兼容点：\n- `llm_agent.py` 的 `find_model_path()` 是 Qwen 专用，但 `--model_path` 传入后会跳过它\n- `apply_chat_template()` 由 tokenizer 自动处理，Llama 3.1 的 chat template 内置在 `tokenizer_config.json` 中\n- `SamplingParams` 的 stop tokens `[\"Observation:\", \"\\nObservation\"]` 是 ReAct 格式，模型无关\n- System prompt / User template 是纯文本，模型无关\n\n**唯一需要注意**：Llama 3.1 的 tokenizer 不需要 `trust_remote_code=True`（代码中已传了这个参数，对 Llama 无害但不需要）。\n\n### 5. 模型下载方案\n\nAutoDL 上 HuggingFace 下载极慢（~200KB/s），**必须用 ModelScope**：\n\n```bash\nsource /etc/network_turbo\npip install modelscope\npython -c \"\nfrom modelscope import snapshot_download\nsnapshot_download('LLM-Research/Meta-Llama-3.1-8B-Instruct',\n                  cache_dir='/root/autodl-tmp/models/Meta-Llama-3.1-8B-Instruct')\n\"\n```\n\n预计下载时间：~16GB，ModelScope CDN 通常 10-50MB/s → **5-30 分钟**。\n\n### 6. 预估运行时间\n\n现有数据：11 个 task × 20 episodes，每 episode 两种 modality（always-internal + always-deterministic）。\n\n| 参数 | 估算 |\n|------|------|\n| 总 episode 数 | 11 × 20 × 2 = **440 episodes** |\n| 平均步数/episode | ~25 步（17-30） |\n| LLM 调用/步 | ~1 次（内部模式）或 1 次 + 3 次 fork（确定性模式，但 fork 是 CPU） |\n| vLLM 推理速度 | RTX 5090 上 ~0.3-0.8s/call |\n| 单 GPU 总时间 | **~4-6 小时** |\n| **双 GPU 并行** | **~2-3 小时** |\n\nrun_all.sh 已有双 GPU 并行模板（GPU 0 跑一组 task，GPU 1 跑另一组），直接复用。\n\n### 7. Blockers 和风险\n\n| 风险 | 严重程度 | 缓解 |\n|------|----------|------|\n| Llama 3.1 在 ScienceWorld 上的 ReAct 能力未知 | 中 | 先跑 1 个 task × 3 eps 快速验证，确认 action parsing 正常 |\n| Llama 3.1 可能有不同的 death avoidance 行为 | 低 | 这正是实验要验证的——如果 DAF 差异大反而是有趣发现 |\n| ModelScope 下载偶尔限速 | 低 | 备选：HF + `network_turbo`，或预先下好 |\n| `find_model_path()` fallback 会混淆 | 低 | 传 `--model_path` 绕过 |\n| Llama 3.1 tokenizer 与 prompt 长度差异 | 低 | chat template 自动处理，max_tokens 已设 |\n\n**无硬性 blocker。** 建议执行顺序：\n1. 下载模型（~20 分钟）\n2. 快速冒烟测试：1 task × 3 eps（~10 分钟）\n3. 确认 action parsing OK 后启动全量 11 tasks × 20 eps"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-multi-model-feasibility.md"
+}

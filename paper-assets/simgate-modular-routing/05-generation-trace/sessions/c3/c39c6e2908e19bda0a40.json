@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c39c6e2908e19bda0a40",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh gpu0 v4 dedup check",
+  "task_key": "worker_ssh_gpu0-v4-dedup-check_20260514T022102",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_gpu0-v4-dedup-check_20260514T022102_result.json",
+    "occurrence": 1,
+    "bytes": 983,
+    "sha256": "7b65893278d43a23e29c3a5990c9d2907e7d415a4d940ad0501649dac663caa6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### lifespan-longest-lived\n| 项目 | 值 |\n|------|-----|\n| 清理前 | 26 行，ep 0-6 各重复 1 次 |\n| 清理后 | 19 行，ep 0-18 各 1 条，无重复 |\n| 删除 | 7 条 v4 写入的重复数据 |\n| 备份 | `episodes.jsonl.bak_v4_dedup` |\n| 距目标 20 | 还差 **1 个 episode**（ep 19） |\n\n### measure-melting-point-unknown-substance\n- episodes.jsonl **不存在**，还需全部 **20 个 episode**\n\n### 根因\n脚本的去重逻辑依赖 `--reuse_dirs` 参数（line 591），v4 启动命令没有使用该参数且 `--start_episode` 默认为 0，导致从 ep 0 开始追加写入，与已有 ep 0-18 产生重复。\n\n### 建议下一步\n重启时需指定 `--start_episode 19 --episodes 1` 跑 lifespan-longest-lived 补最后 1 个 ep，measure-melting-point 则需 `--start_episode 0 --episodes 20` 完整跑。或者直接用 `--reuse_dirs` 指向已有 results 目录让脚本自动跳过已存在的 episode。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-gpu0-v4-dedup-check.md"
+}

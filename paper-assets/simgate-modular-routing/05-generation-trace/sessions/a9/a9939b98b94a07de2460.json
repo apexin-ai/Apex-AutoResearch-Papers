@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a9939b98b94a07de2460",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code plan 005 analysis prep",
+  "task_key": "worker_code_plan-005-analysis-prep_20260514T073128",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan-005-analysis-prep_20260514T073128_result.json",
+    "occurrence": 1,
+    "bytes": 900,
+    "sha256": "bc65d6969d8df0d8229d2b7297a74d32f730efafdc7861d169b32b830edd845b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已完成，报告已输出到 `results/plan_005_analysis/`。\n\n核心发现：\n\n| 指标 | 值 |\n|------|-----|\n| oracle 选 det-preferred | 31.4% (61/194) |\n| oracle 选 internal-preferred | 3.6% (7/194) |\n| no-preference | 65.0% (126/194) |\n| **internal 单独死亡 → 100% det-preferred** | 47 episodes |\n| **det 单独死亡 → 100% internal-preferred** | 4 episodes |\n| 非死亡 episode 中有 preference 的 | 仅 15% |\n| 有 preference 的 episode 中 score gap ≥ 100 | 75% |\n| trained-router vs oracle agreement | 96.4%（7 个 disagreement 全是 router 选了 det 但 oracle 选 internal） |\n\n结论与项目假设一致：routing signal 绝大部分来自 death avoidance（51/68 有偏好的 episode 是 death_asymmetry 驱动），非死亡 episode 的 score 差异很小。`lifespan-longest-lived` 是 det-preferred 率最高的 task (56%)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-005-analysis-prep.md"
+}

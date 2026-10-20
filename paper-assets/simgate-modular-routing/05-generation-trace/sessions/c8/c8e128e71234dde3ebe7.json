@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "id": "c8e128e71234dde3ebe7",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "code llama cross model full setup",
+  "task_key": "worker_code_llama-cross-model-full-setup_20260519T014258",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama-cross-model-full-setup_20260519T014258.log",
+    "occurrence": 1,
+    "bytes": 1313310,
+    "sha256": "bebd381bd4959dce40b2544f547a011e607ac1560b434945310975e070bfbeae"
+  },
+  "statistics": {
+    "messages": 559,
+    "user_turns": 1,
+    "tool_calls": 212,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 128,
+      "tool_call": 212,
+      "tool_result": 212,
+      "user": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 474,
+      "chunks": [
+        {
+          "path": "c8e128e71234dde3ebe7-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "c8e128e71234dde3ebe7-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "c8e128e71234dde3ebe7-part-0003.json",
+          "message_count": 114
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 85,
+      "chunks": [
+        {
+          "path": "c8e128e71234dde3ebe7-part-0003.json",
+          "message_count": 66
+        },
+        {
+          "path": "c8e128e71234dde3ebe7-part-0004.json",
+          "message_count": 19
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-llama-cross-model-full-setup.md"
+}

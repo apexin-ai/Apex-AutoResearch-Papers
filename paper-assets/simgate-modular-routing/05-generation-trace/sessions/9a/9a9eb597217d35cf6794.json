@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9a9eb597217d35cf6794",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code gemma analysis script",
+  "task_key": "worker_code_gemma-analysis-script_20260520T180645",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gemma-analysis-script_20260520T180645_result.json",
+    "occurrence": 1,
+    "bytes": 793,
+    "sha256": "e81d93ada7e0bd1132139a09d5457dd76ddc0bd051a7884b4dfe637003417faa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已写入 `/root/autodl-tmp/simgate-modular-routing/src/analyze_gemma_scienceworld.py` 并通过 `--help` 验证。\n\n功能概要：\n- 从 11 个 included task 子目录读取 `episode_summary.jsonl`（兼容 individual JSON fallback）\n- 字段映射：`internal_final` → `internal_score`, `det_final` → `deterministic_score`\n- 计算 per-task breakdown（label 分布 + death rates）、aggregate metrics（DR/ΔDR/DAF）\n- Cluster bootstrap（K=11 task types, B=10000）计算 95% CI\n- Cross-model comparison 表（硬编码 Qwen/Llama + 本次 Gemma 结果）\n- 输出到 stdout + 保存 `analysis.json` 和 `cross_model_table.tex`\n\n实验完成后运行：\n```bash\npython src/analyze_gemma_scienceworld.py --input results/gemma-9b-counterfactual/\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-gemma-analysis-script.md"
+}

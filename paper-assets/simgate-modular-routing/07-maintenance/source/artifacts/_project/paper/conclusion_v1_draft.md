@@ -1,0 +1,7 @@
+\section{Conclusion}
+
+We introduced an episode-level counterfactual framework for analyzing routing signals in LLM agent systems, addressing the label degeneracy where per-step oracles produce near-universal ties in sparse-reward environments. Applying this framework to ScienceWorld, we find that the routing signal is overwhelmingly dominated by death avoidance: removing death-related episodes nearly eliminates the performance gap between reasoning strategies (\S\ref{sec:experiments}).
+
+This finding reframes modular routing in agent settings. Rather than selecting the ``better reasoner'' at each step, routing primarily functions as a catastrophic failure avoidance mechanism. The distinction matters for system design: lightweight failure detectors may capture most routing value without requiring general-purpose strategy selection. Our router probe further reveals a gap between latent signal availability and reliable generation-level expression, suggesting that current architectures underexploit the information already present in hidden states.
+
+Several directions remain open. Step-level counterfactual labeling could isolate finer-grained decision points within episodes. Environments with different failure modes---mathematical reasoning, code generation, API-orchestrated tasks---would test whether death avoidance dominance generalizes beyond embodied settings or reflects a property specific to environments with irreversible catastrophic states.

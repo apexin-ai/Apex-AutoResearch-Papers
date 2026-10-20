@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d3e507a67eb03da9c11a",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "eval plan 008 v4 4b e2e",
+  "task_key": "worker_eval_plan-008-v4-4b-e2e_20260517T033835",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan-008-v4-4b-e2e_20260517T033835_result.json",
+    "occurrence": 1,
+    "bytes": 554,
+    "sha256": "04afa19b351feeaa7d39761096b0933c0b2724275121d0e0579fdb9cd5d2ceee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已成功提交并注册为 RUNNING。\n\n**汇总：**\n- **exp_id**: `plan-008-v4-4b-e2e`\n- **checkpoint**: `checkpoints/plan-008-v4-4b-seed42/final_adapter` (LoRA adapter)\n- **base model**: `/root/autodl-tmp/models/Qwen/Qwen3-4B`\n- **数据**: `results/plan_c/` (245 episodes, 11 task categories)\n- **输出**: `results/eval_4b_e2e/`\n- **GPU**: cuda:0 (RTX 5090, 32GB)\n- **日志**: `~/runs/simgate-modular-routing/plan-008-v4-4b-e2e.log`\n- **预估时间**: 2-4 小时\n- **对比 baseline**: always-det = -9.47 mean score"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-plan-008-v4-4b-e2e.md"
+}

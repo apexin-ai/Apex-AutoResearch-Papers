@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e5cad46a309f652dea71",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "audit weighted ce trainer compute loss",
+  "task_key": "worker_audit_weighted-ce-trainer-compute-loss_20260514T064238",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_weighted-ce-trainer-compute-loss_20260514T064238_result.json",
+    "occurrence": 1,
+    "bytes": 3293,
+    "sha256": "83ce7b02390c10c5999d6537c9cff89cd5fa2855d0b3ca4f4c432db22e3a3df6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 审查结果\n\n### 1. WeightedCETrainer.compute_loss 代码（line 265-274）\n\n```python\ndef compute_loss(self, model, inputs, return_outputs=False, **kwargs):\n    labels = inputs.pop(\"labels\")\n    outputs = model(**inputs)\n    logits = outputs.logits\n    if self._class_weights is not None:\n        loss_fn = torch.nn.CrossEntropyLoss(weight=self._class_weights.to(logits.device))\n    else:\n        loss_fn = torch.nn.CrossEntropyLoss()\n    loss = loss_fn(logits, labels)\n    return (loss, outputs) if return_outputs else loss\n```\n\n`compute_loss` 本身逻辑没有 bug — `reduction='mean'` 的 weighted mean 归一化不会放大绝对 loss，`ignore_index` 不需要（labels 只有 0/1），weight dtype float32 不影响。\n\n### 2. 根因确认：class_weights + WeightedRandomSampler 双重补偿\n\nv3 日志直接证据：\n\n| 日志行 | 含义 |\n|--------|------|\n| `Class weights: [3.93, 0.57]` | `--class_weights auto` 生效 |\n| `Upsampling enabled: WeightedRandomSampler with 1650 draws/epoch` | sampler 生效 |\n| `Minority oversampling: enabled` | 两者同时活跃 |\n| **无 WARNING 输出** | line 382-385 的 guard **当时不存在** |\n\n双重补偿的效应链：\n1. **WeightedRandomSampler** 把 batch 从自然分布（87% det / 13% int）变成 ~50/50\n2. **class_weights [3.93, 0.57]** 在 CE loss 中再给 internal 放大 3.93x，deterministic 缩小 0.57x\n3. 梯度被 internal 信号压倒 → 模型学会**全部预测 internal**\n4. 训练 loss 3.5-4.2（balanced batch 上一半 confidently wrong → CE per sample 很高）\n\n### 3. 模型完全退化 — eval 指标全零\n\n```\nepoch 1: eval_loss=1.78, eval_accuracy=0.0, ALL precision/recall/f1=0.0\nepoch 2: eval_loss=2.00, eval_accuracy=0.0, ALL=0.0\nepoch 3: eval_loss=1.51, eval_accuracy=0.0, ALL=0.0\n```\n\n模型全预测 class 0 (internal)，val set 以 deterministic 为主 → 几乎所有预测都错。3 个 epoch 完全没有改善。\n\n### 4. class_weights 实际值\n\n```\ninternal (id=0):      3.9286  = 1650 / (2 × 210)\ndeterministic (id=1): 0.5729  = 1650 / (2 × 1440)\n```\n\ninverse frequency 公式本身正确，单独使用问题不大。但叠加 WeightedRandomSampler 后 internal 的有效权重放大了 ~7x × 3.93x ≈ 27x。\n\n### 5. Dryrun 为什么正常\n\n所有运行都用 `WeightedCETrainer`（line 498 无条件创建），但 dryrun 不传 `--class_weights` 也不传 `--upsample_minority`：\n- `class_weights=None` → compute_loss 走 else 分支 = 标准 CrossEntropyLoss\n- `weighted_sampler=None` → get_train_dataloader 走 super() = 自然分布\n- 等价于标准 Trainer → loss 0.48-0.63 正常\n\n### 6. 修复建议\n\n**当前代码已有 guard（line 382-385）阻止同时使用**，这解决了直接触发问题。但还有改进空间：\n\n1. **class_weights 归一化**：当前 weights 和不等于 num_classes（3.93+0.57=4.50），建议归一化到和=2：`[1.75, 0.25]`。这让 weighted CE 的 scale 更接近标准 CE\n2. **推荐单独跑一版只用 `--class_weights auto`（不用 `--upsample_minority`）验证**，确认 loss 降到正常范围\n3. 或反过来只用 `--upsample_minority` 不用 class_weights，效果通常更稳定（采样调分布，loss 不变形）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-weighted-ce-trainer-compute-loss.md"
+}

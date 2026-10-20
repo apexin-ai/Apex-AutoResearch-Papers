@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f54a0a0753c18c2d8624",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code death risk routing script",
+  "task_key": "worker_code_death-risk-routing-script_20260517T091306",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_death-risk-routing-script_20260517T091306_result.json",
+    "occurrence": 1,
+    "bytes": 782,
+    "sha256": "aa4b8a07e7164356760200fc2e19ddb3981edd4e8caae22e39e64f3325963a77"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有结果匹配：\n\n| 指标 | 预期 | 实际 |\n|------|------|------|\n| always-det | -9.47 | -9.47 |\n| always-internal | -39.07 | -39.07 |\n| optimal threshold | 0, score -11.03, delta -1.56 | 0, -11.03, -1.56 |\n| find-non-living-thing | 唯一零死亡, +18.9/+28.5 | 0% death, +18.9/+28.5 |\n| 其余10 tasks | 45-56% | 45-56% |\n| bootstrap CI | [-8.87, +5.92] | [-9.01, +5.89] |\n\nBootstrap CI 微小差异来自 Python `random` 模块实现差异，方法一致（unpaired resampling）。\n\n- **脚本路径**: `/root/autodl-tmp/simgate-modular-routing/scripts/death_risk_routing.py`\n- **输入数据**: `/root/autodl-tmp/simgate-modular-routing/results/baseline_245eps/episode_details.jsonl`\n- **运行**: `python3 scripts/death_risk_routing.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-death-risk-routing-script.md"
+}

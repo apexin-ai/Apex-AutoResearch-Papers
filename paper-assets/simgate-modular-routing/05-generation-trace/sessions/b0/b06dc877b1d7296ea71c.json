@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b06dc877b1d7296ea71c",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "analysis plan 012 full decomposition",
+  "task_key": "worker_analysis_plan-012-full-decomposition_20260514T053649",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan-012-full-decomposition_20260514T053649_result.json",
+    "occurrence": 1,
+    "bytes": 2373,
+    "sha256": "eb6d400b4ca1541f1860bf789afadf3a485729c08cf2b7223cd283ed50927a93"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全量分析完成。结果汇总：\n\n## Death Decomposition 全量结果（11 tasks, 245 episodes）\n\n### 核心指标\n\n| 指标 | 值 | 预分析(10 tasks) | 变化 |\n|------|-----|------------------|------|\n| **Δ_full** (det-int) | **+29.60** | +29.85 | -0.25 |\n| **Δ_nd** (no-death) | **+2.84** | +2.95 | -0.11 |\n| **Death avoidance fraction** | **90.41%** | 90.1% | +0.31pp |\n| **Pearson r** | **0.9698** | 0.967 | +0.003 |\n| **p-value** | **8.12e-07** | — | — |\n\n### Death rate\n- Internal: 42.9%\n- Deterministic: 16.3%\n\n### Label 分布\n- det-preferred: 86\n- internal-preferred: 9\n- no-preference: 150\n\n### Per-task breakdown\n\n| Task | N | DR_int | DR_det | Δ_full | Δ_nd | Δ_pr | det/int/no |\n|------|---|--------|--------|--------|------|------|------------|\n| chemistry-mix | 20 | 0.45 | 0.25 | 21.8 | 0.0 | 1.8 | 6/2/12 |\n| find-animal | 20 | 0.50 | 0.25 | 26.65 | 0.0 | 1.65 | 5/0/15 |\n| **find-non-living-thing** | 40 | **0.0** | **0.0** | **9.58** | **9.58** | **9.58** | 16/4/20 |\n| freeze | 20 | 0.55 | 0.25 | 30.5 | 0.0 | 0.5 | 6/0/14 |\n| grow-fruit | 20 | 0.45 | 0.20 | 25.1 | 0.0 | 0.1 | 6/1/13 |\n| identify-life-stages-1 | 20 | 0.55 | 0.10 | 47.5 | 0.0 | 2.5 | 9/0/11 |\n| identify-life-stages-2 | 20 | 0.50 | 0.20 | 30.0 | 0.0 | 0.0 | 6/0/14 |\n| inclined-plane-determine-angle | 20 | 0.55 | 0.20 | 36.0 | 0.0 | 1.0 | 7/0/13 |\n| lifespan-longest-lived | 25 | 0.56 | 0.16 | 44.0 | 0.0 | 4.0 | 11/1/13 |\n| lifespan-longest-lived-then-shortest | 20 | 0.45 | 0.10 | 40.8 | 0.0 | 5.8 | 8/1/11 |\n| **measure-melting-point-unknown** | 20 | **0.55** | **0.25** | **30.05** | **0.0** | **0.05** | 6/0/14 |\n\n### 关键观察\n\n- **find-non-living-thing**：唯一零死亡 task（两种 routing 都无死亡），Δ_full=9.58 全部来自 non-death 性能差异（Δ_nd=Δ_pr=Δ_full=9.58），确认 det routing 在无死亡场景也有优势\n- **measure-melting-point-unknown-substance**：高死亡率（int=0.55, det=0.25），但 Δ_pr≈0（0.05），说明性能差距几乎完全由死亡避免解释\n- 11 tasks 结果与 10 tasks 预分析高度一致，新增 task 未改变核心结论\n- r=0.9698, p=8.12e-07：死亡率差异与性能差异的相关性极强且高度显著\n\n### 输出文件\n- `/root/autodl-tmp/simgate-modular-routing/results/plan_012_decomposition`（CSV 文件）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan-012-full-decomposition.md"
+}

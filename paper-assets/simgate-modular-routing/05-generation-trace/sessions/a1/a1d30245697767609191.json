@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a1d30245697767609191",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "analysis mvp p1 gpu0 vllm",
+  "task_key": "worker_analysis_mvp-p1-gpu0-vllm_20260513T151641",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_mvp-p1-gpu0-vllm_20260513T151641_result.json",
+    "occurrence": 1,
+    "bytes": 1894,
+    "sha256": "19c8e1c2f1a72ca2c9eb3e5a2204675c6300236fe62fe0aec5cda31ee5c8c2eb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据齐全，两个 task 各 20 episodes 全部完成。\n\n```\nMETRICS:\n- task: melt\n  internal_mean: -54.7 ± 50.1, det_mean: -14.6 ± 35.9, oracle_mean: 2.1 ± 8.0\n  det_minus_internal: +40.1 (方向: positive)\n- task: change-the-state-of-matter-of\n  internal_mean: -54.7 ± 50.1, det_mean: -14.5 ± 35.9, oracle_mean: 0.5 ± 1.1\n  det_minus_internal: +40.2 (方向: positive)\n\nWANDB_RUN_ID: N/A\nEXIT_STATUS: normal (EXIT_CODE=0)\nEPISODES_COMPLETED: 40/40 (melt 20/20 + change-the-state-of-matter-of 20/20)\nLOG_TAIL:\n  --- change-the-state-of-matter-of Summary ---\n    always-internal:      -54.7 ± 50.1\n    always-deterministic: -14.5 ± 35.9\n    oracle-routing:       0.5 ± 1.1\n  Global summary saved to results/mvp/global_summary.json\n  EXIT_CODE=0\n```\n\n**关键观察：**\n\n1. **两个 task 都是 det > internal，效应方向 positive**，det_minus_internal 分别为 +40.1 和 +40.2，信号非常强。\n2. **always-internal 分数极低**（均为 -54.7），大量 episode 得分 -100（task failure），说明纯 LLM 推理在这类物质状态变化任务上严重不足。\n3. **always-deterministic 也整体偏低**（-14.5/-14.6），但比 internal 好很多——主要是避免了 -100 的灾难性失败（仅 2-3 个 episode 得 -100）。\n4. **oracle routing 分数也很低**（0.5 和 2.1），说明即使理想路由，agent 也难以完成任务——greedy 1-step lookahead 限制了 oracle 的上界。\n5. 两个 task 的 internal scores 完全一致（相同的 20 个 scores），说明这两个 task 类型对 LLM 行为表现一致。\n\n**MVP 判定**：2/2 task types 的 det-internal 方向均为 positive。需要做 bootstrap 90% CI 检验来正式判定是否 Pass。从 raw scores 看，效应量大（~40 分），但方差也大（std 35-50），bootstrap 检验是否 CI 下界 > 0 待进一步分析。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-mvp-p1-gpu0-vllm.md"
+}

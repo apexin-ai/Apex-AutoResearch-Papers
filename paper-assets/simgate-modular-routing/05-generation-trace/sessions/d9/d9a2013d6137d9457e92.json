@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d9a2013d6137d9457e92",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "research paper outline prep",
+  "task_key": "worker_research_paper-outline-prep_20260514T073142",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_paper-outline-prep_20260514T073142_result.json",
+    "occurrence": 1,
+    "bytes": 1058,
+    "sha256": "48ed69c1b47e2a0f659268f1bd58483ad9d4e3d5a5d267fd9b9be74863060db7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Outline 已写入 `artifacts/_project/paper/paper_outline.md` 并注册（`art_20260514_01d3f5`）。\n\n内容概要：\n\n- **3 个候选标题**，推荐 Title 1（claim + methodology 并列）\n- **Abstract 骨架**：problem → methodological gap → core finding (90% death avoidance) → supporting findings → implication\n- **5 个 section**，page budget 总计 ~4.1 pages（Introduction 0.8 / Method 1.0 / Experiments 1.5 / Related Work 0.5 / Conclusion 0.3）\n- **Figure/Table 计划**：Table 1 (baseline comparison, 来自 plan-003-baseline)、Figure 1 (death decomposition bar chart, 来自 plan-012-full)、Figure 2 (cross-task correlation scatter, 可做 inset 或移至 appendix)\n- **13 篇关键参考文献**，覆盖 tool-use learning / adaptive computation / agent frameworks / methodology / environment\n- **Provenance 表**：8 条定量 claim 全部映射到 registry 实验 ID 和具体 metric\n\n待确认：plan-002-generative-v1（非退化 learned router）完成后需补充 Table 1 的 learned router 行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-paper-outline-prep.md"
+}

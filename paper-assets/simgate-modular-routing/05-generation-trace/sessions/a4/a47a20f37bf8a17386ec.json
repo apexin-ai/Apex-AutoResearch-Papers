@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a47a20f37bf8a17386ec",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code keywords v2 fix",
+  "task_key": "worker_code_keywords-v2-fix_20260513T211918",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_keywords-v2-fix_20260513T211918_result.json",
+    "occurrence": 1,
+    "bytes": 1418,
+    "sha256": "251c4f0b511514e8f114b41097056b499c88ceeb0820f0c2652ed3a4941cc22e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两组数据都有了。\n\n## v1 vs v2 对比\n\n| 指标 | v1 | v2 |\n|------|----|----|\n| Keywords 数量 | 20 | 17 |\n| Avg keyword match rate | **86.1%** | **4.9%** |\n| Det-preferred prediction % | **97.5%** (199/204) | **0.5%** (1/203) |\n| Overall accuracy (excl no-pref) | 97.7% (83/85) | 1.2% (1/84) |\n| Top 3 keywords by hit count | connect(3963), activate(250), freeze(36) | activate(250), freeze(36), mix(2) |\n\n### 分析\n\nv2 成功消除了 `connect`/`disconnect` 造成的虚高命中（3963 次 → 0），匹配率从 86.1% 降到 4.9%。\n\n但问题反转了：v1 退化为 always-det（97.5% 预测 det），v2 退化为 **always-internal**（99.5% 预测 internal）。由于大多数 ground truth 是 det-preferred，v2 accuracy 跌至 1.2%。\n\n核心原因：v2 的 17 个科学动词在 ScienceWorld action text 中出现极少（仅 `activate` 有显著命中，但 250 次分散在 204 个 episode 中不足以让单 episode match rate 超过 50% 阈值）。\n\n### 产出\n\n1. `src/rule_based_keywords_v2.json` — 已创建（服务器 + 本地）\n2. `src/rule_based_accuracy.py` — 默认指向 v2，`load_keywords` 兼容 v1/v2 格式\n3. `src/rule_based_routing.py` — 默认指向 v2，启动时打印 keyword version + MD5\n4. `results/rule_based_accuracy_v2_test.json` — v2 完整报告\n5. `results/rule_based_accuracy_v1_rerun.json` — v1 对照报告"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-keywords-v2-fix.md"
+}

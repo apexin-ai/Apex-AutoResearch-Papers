@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a3c86a618d5f187f713d",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "diagnose plan 008 router size",
+  "task_key": "worker_diagnose_plan-008-router-size_20260515T135414",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_plan-008-router-size_20260515T135414_result.json",
+    "occurrence": 1,
+    "bytes": 990,
+    "sha256": "7c2b5055efb3e67c97fa760cb759369e647ad3d2ee5c1b2bd37b85ec636fb31f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。Registry 已更新，cron 已清除。\n\n## 结果摘要\n\n**conclusion: negative** — 三个模型全部退化，router capacity 不是瓶颈。\n\n| Model | BalAcc | IntRecall | DetRecall | EvalLoss |\n|-------|--------|-----------|-----------|----------|\n| Qwen3-1.7B | 0.50 | 1.00 | 0.00 | 0.474 |\n| Qwen2.5-1.5B | 0.50 | 1.00 | 0.00 | 1.463 |\n| Qwen2.5-3B | 0.50 | 1.00 | 0.00 | 1.380 |\n\n三个模型（1.5B/1.7B/3B）行为完全一致：把所有 306 个样本都预测为 internal（少数类），deterministic recall=0。balanced_acc=0.5 = (1.0+0.0)/2，是纯退化结果。\n\n**解读**：三者差异为零，匹配第三种情况——**router capacity 不是瓶颈，routing signal 本身有限（支撑 C1）**。问题不在模型大小，而在训练信号/数据本身不足以区分两类路由。值得注意的是 Qwen3-1.7B 的 eval_loss (0.474) 远低于另外两个 (~1.4)，但这并未转化为任何分类能力的差异。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-plan-008-router-size.md"
+}

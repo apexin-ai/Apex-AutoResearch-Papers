@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9481cd2e8c68d8b2d5d3",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh check prescreening gpu1 exit",
+  "task_key": "worker_ssh_check-prescreening-gpu1-exit_20260513T220635",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-prescreening-gpu1-exit_20260513T220635_result.json",
+    "occurrence": 1,
+    "bytes": 954,
+    "sha256": "a114474bd2b0456f0e45abe7e85f2055966aa287abd2f22f63874bf52aed96e4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**research-prescreening-gpu1 完成。** Registry 已更新为 DONE/success，cron 已清除。\n\n结果汇总：8/8 tasks 全部 POSITIVE，全部 **death-dominated** 信号：\n\n| Task | int_mean | det_mean | delta |\n|------|----------|----------|-------|\n| measure-melting-point-unknown-substance | -58.6 | -32.0 | +26.6 |\n| mendelian-genetics-known-plant | -60.0 | -20.0 | +40.0 |\n| mendelian-genetics-unknown-plant | -60.0 | -40.0 | +20.0 |\n| power-component | -60.0 | -20.0 | +40.0 |\n| power-component-renewable-vs-nonrenewable | -60.0 | 0.0 | +60.0 |\n| test-conductivity | -60.0 | -20.0 | +40.0 |\n| test-conductivity-of-unknown-substances | -60.0 | -20.0 | +40.0 |\n| use-thermometer | -59.4 | -19.4 | +40.0 |\n\n模式一致：internal mode 在 3/5 episodes 触发 -100（致死动作），deterministic mode 大幅避免死亡（det scores 多为 0），但正向任务进展极少。Delta 完全由死亡规避驱动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-prescreening-gpu1-exit.md"
+}

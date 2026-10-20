@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "86e3e6ffad244e33c714",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh crafter seed verification",
+  "task_key": "worker_ssh_crafter-seed-verification_20260518T041127",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_crafter-seed-verification_20260518T041127_result.json",
+    "occurrence": 1,
+    "bytes": 3003,
+    "sha256": "caf26c51b757f20c0a466758013f83cfb0a93dd12c343637e4f0db79c447c165"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Monkey-patch 完全修复了问题。10/10 seeds 全部 deterministic。\n\n---\n\n## 结构化报告\n\n### 1. Seed 控制结论：PARTIAL → 可修复为 FULL\n\n**原始 Crafter**: PARTIAL。同 seed + 同 actions 在约 50% 的 seed 上产生不同 trajectory（不同 reward、不同存活长度）。\n\n**Patch 后**: FULL。简单 monkey-patch 即可实现完全确定性。\n\n### 2. 测试结果\n\n| Test | 结果 |\n|------|------|\n| Test 1: 初始 obs/semantic/pos | 全部 identical ✓ |\n| Test 2: 20 步 action sequence | obs/rewards identical，semantic 从 step 9 分叉 |\n| Test 3: 不同 seed 不同 map | ✓ (map 不同，player_pos 相同因为固定在中心) |\n| Test 4: 50 步确定性 | obs 0 mismatch, rewards match ✓ |\n| 扩展: 10-seed 500 步压力测试 | **5/10 seed reward 分叉，5/10 trajectory 长度不同** |\n| Patch 后 10-seed 测试 | **10/10 全部 deterministic** ✓ |\n\n### 3. 源码分析\n\n**随机源**: 单一 `np.random.RandomState(seed)`，存储在 `world.random`，所有组件共用。\n\n**Seed 传递链**:\n```\nEnv(seed=42) → env._seed=42\n  → reset(): world.reset(seed=hash((42, episode)) % 2^31)\n    → world.random = RandomState(derived_seed)\n    → worldgen 用 world.random\n    → mob spawn/AI 用 world.random\n    → 渲染夜间噪声用 world.random\n```\n\n**根因**: `engine.World._chunks = collections.defaultdict(set)`\n\nPython `set` 的迭代顺序依赖对象 `id()`（内存地址）。两个 env 实例的对象地址不同 → `_balance_chunk` 中 `[obj for obj in objs if isinstance(obj, cls)]` 顺序不同 → `random.randint(0, len(creatures))` 选中不同 mob 进行 despawn → 世界状态分叉。\n\n触发条件: `self._step % 10 == 0`（每 10 步调用一次 `_balance_chunk`）。\n\n### 4. 对实验设计的影响\n\n**推荐方案**: 使用 monkey-patch 实现 FULL determinism，然后做 paired counterfactual。\n\n**Patch 代码**（加在实验入口处）:\n\n```python\nimport collections\nimport numpy as np\nimport crafter.engine as engine\n\nclass OrderedSet:\n    def __init__(self):\n        self._items = []\n    def add(self, item):\n        if item not in self._items:\n            self._items.append(item)\n    def remove(self, item):\n        self._items.remove(item)\n    def __iter__(self):\n        return iter(self._items)\n    def __len__(self):\n        return len(self._items)\n    def __contains__(self, item):\n        return item in self._items\n\noriginal_reset = engine.World.reset\ndef patched_reset(self, seed=None):\n    self.random = np.random.RandomState(seed)\n    self.daylight = 0.0\n    self._chunks = collections.defaultdict(OrderedSet)\n    self._objects = [None]\n    self._mat_map = np.zeros(self.area, np.uint8)\n    self._obj_map = np.zeros(self.area, np.uint32)\nengine.World.reset = patched_reset\n```\n\n**有了 patch**: paired counterfactual 完全可行，N=50 足够。同 seed 同 actions = 完全相同 trajectory。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-crafter-seed-verification.md"
+}

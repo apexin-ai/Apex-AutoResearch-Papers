@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8f378d5cfc7e8ac77074",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "infra paper sync threshold routing",
+  "task_key": "worker_infra_paper-sync-threshold-routing_20260517T091148",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_paper-sync-threshold-routing_20260517T091148_result.json",
+    "occurrence": 1,
+    "bytes": 218,
+    "sha256": "9c2653b735827229d90205f03b3f7cb5c2bc5eb519fbad67cdb29b723a7b487e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Clean build:\n- 0 undefined citations\n- 0 undefined references\n- 0 errors\n- 0 unresolved refs (`??`)\n- 15 pages\n\n`\\ref{sec:threshold-routing}` 和 `\\ref{tab:threshold-routing}` 均正确渲染。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-paper-sync-threshold-routing.md"
+}

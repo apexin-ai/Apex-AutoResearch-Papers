@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bf2d42bf6d11db1bdeed",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "exp plan 013 labeling quality",
+  "task_key": "worker_exp_plan-013-labeling-quality_20260514T121003",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_plan-013-labeling-quality_20260514T121003_result.json",
+    "occurrence": 1,
+    "bytes": 1030,
+    "sha256": "5a4c9cccd51b2b0daa7bfb6fb174627458e4d781f8b1916319f865b860e4d89b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Plan-013 全部完成。总结：\n\n## 结果汇总\n\n### (a) Tie Rate\n- **Overall: 61.2%**（150/245 episodes）\n- 46.9% both-alive ties, 14.3% both-died\n- Per-task range: 50%–75%\n\n### (b) Genuine vs Tie-Break\n- **100% genuine, 0% tie-break**\n- 标注方案不存在 tie-break 机制：ties → no-preference（排除训练）\n- 86 个 det-preferred 中：70 death asymmetry + 16 score comparison（最小 delta = 8 分）\n- 9 个 internal-preferred 中：5 death asymmetry + 4 score comparison\n\n### (c) Strict-Only Retrain\n- 数据与 ablation-b 完全相同（当前数据已是 strict-only）\n- balanced_acc = 0.5729（ablation-b 4 seed 均值 0.5761 ± 0.005，在 1σ 内）\n- Balanced acc 跨 seed 稳定（σ=0.5%），recall trade-off 高方差（σ≈10%）\n\n### 对 reviewer 的回应\n**Oracle circularity via tie-breaking 不成立。** 标注管线使用严格不等式比较 + death-awareness，ties 全部排除。训练数据中不存在任何来自 tie-break 规则的标签。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-plan-013-labeling-quality.md"
+}

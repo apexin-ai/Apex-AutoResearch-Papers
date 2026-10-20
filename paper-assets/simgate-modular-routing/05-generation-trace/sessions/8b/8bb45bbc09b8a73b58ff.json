@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "8bb45bbc09b8a73b58ff",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "code plan 003 eval script",
+  "task_key": "worker_code_plan-003-eval-script_20260514T071320",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan-003-eval-script_20260514T071320.log",
+    "occurrence": 1,
+    "bytes": 715839,
+    "sha256": "50f84304d94ee503633f4ef57566d4b326b9508cfac1813642d7566e5f547a25"
+  },
+  "statistics": {
+    "messages": 176,
+    "user_turns": 0,
+    "tool_calls": 68,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 36,
+      "tool_call": 68,
+      "tool_result": 68,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 176,
+      "chunks": [
+        {
+          "path": "8bb45bbc09b8a73b58ff-part-0001.json",
+          "message_count": 142
+        },
+        {
+          "path": "8bb45bbc09b8a73b58ff-part-0002.json",
+          "message_count": 34
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-plan-003-eval-script.md"
+}

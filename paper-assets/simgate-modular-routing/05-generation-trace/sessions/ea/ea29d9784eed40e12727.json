@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ea29d9784eed40e12727",
+  "project": "simgate-modular-routing",
+  "kind": "history",
+  "title": "agent / loop_2_1778731472.md",
+  "task_key": "loop_2_1778731472",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2_1778731472.md",
+    "occurrence": 1,
+    "bytes": 4698,
+    "sha256": "53f54b65d37613b400dcfac8b9a742584c352f31044559341b48a57d5ab4e6fb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: max_wall_time\nupdated: '2026-05-14T03:47:16+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：只能用 westb-13313 的 cuda:0 和 cuda:1，不可用其他设备\n- **判断进程存活必须用 `ps -p PID`，禁止仅凭 nvidia-smi 0% compute/0 MiB 判断进程死亡**（ScienceWorld agent 推理是 bursty 的，GPU 利用率长时间 0% 是正常的）。本 session 因此误杀了 gpu0-v3 活跃进程\n- episode_level_collection.py 启动必须加 `--reuse_dirs results/plan_c` 或正确设 `--start_episode`，否则从 ep 0 追加写入导致数据重复（本 session v4 已踩坑，清理了 7 条重复）\n- submit_training_job 的 command 必须 `bash -c \"...\"` 包裹（tmux 用 sh 不是 bash）\n- **禁止 cleanup Worker 使用 `pkill -f` 宽泛 pattern 或 `tmux kill-session`**——已确认这两种操作导致 SIGHUP 波及无关 session（详见 memory.md SIGHUP 根因分析）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westb-13313，root@，2× RTX 5090 32GB\n- 工作目录：/root/autodl-tmp/simgate-modular-routing\n- Python：/root/miniconda3/bin/python（conda base 环境，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- 模型：Qwen2.5-7B-Instruct（vLLM 加载，~28GB VRAM/卡）\n- 数据产出：/root/autodl-tmp/simgate-modular-routing/results/plan_c/（各 task 子目录下 episodes.jsonl）\n- 活跃进程：\n  - GPU0: plan-001b-gpu0-v5 (PID 698985, tmux=plan-001b-gpu0-v5, cron 已注册) — measure-melting-point 16/20 → lifespan-longest-lived ep19\n  - GPU1: plan-001b-gpu1-freeze-chem (PID 788058, tmux=plan-001b-gpu1-freeze-chem, cron 自动注册) — freeze 9/20 → chemistry-mix 0/20\n- 🔴 磁盘：250G 数据盘已用 168G，剩 83G。lifespan-longest-lived/episodes.jsonl 达 150GB（10 eps, ~15GB/ep）。**已向 Director 报告，等待决策**\n\n### 3. 📊 当前状态\n**刚做完**：\n- find-non-living-thing 40 eps 完成 (plan-001b-fnlt-v2 DONE/success)，GPU1 释放后立即提交了 freeze+chemistry-mix\n- GPU0 v4 数据重复修复（去重 + 用 --reuse_dirs 重启为 v5）\n- SIGHUP 根因分析完成（两个事件：Worker 主动 kill_job + cleanup pkill 波及）\n- Method draft v1 写入 artifacts（Worker 自行完成）\n\n**Registry RUNNING**：\n- plan-001b-gpu0-v5：measure-melting-point 16/20 + lifespan-longest-lived 补 1 ep\n- plan-001b-gpu1-freeze-chem：freeze 9/20 + chemistry-mix 20 eps\n\n**等待中**：\n- GPU0 v5 cron 回调 → 分析结果\n- GPU1 freeze-chem cron 回调 → 分析结果 → plan-001b 全部数据就绪 → 跑 plan-012 全量 decomposition\n- **Director 对磁盘空间告警的决策**（是否暂停实验 / 清理数据 / 扩容）\n\n### 4. 📋 待办（条件触发式）\n- GPU0 v5 cron 完成回调 → update_registry DONE + 检查 measure-melting-point 和 lifespan-longest-lived 数据完整性\n- GPU1 freeze-chem cron 完成回调 → update_registry DONE + 检查 freeze/chemistry-mix 数据完整性\n- **两张卡都完成** → plan-001b 全量数据就绪 → spawn Worker 跑 plan-012 全量 death decomposition（death_decomposition.py 已就绪 519 行）→ 这是论文核心数据\n- plan-012 完成 → 更新 ROADMAP 指标 → 开始 plan-002 router SFT (diagnostic probe) + plan-005 routing pattern analysis\n- **Director 回复磁盘告警** → 按指示处理（可能需要清理 episodes.jsonl 中的冗余字段或压缩归档）\n- plan-001b-gpu1-freeze-chem 预注册的 spec 中 data_count=40 (freeze 20 + chemistry-mix 20)，提交时已加 --reuse_dirs\n\n### 5. 🎯 战略上下文\n- **核心发现**：death avoidance 占 ~99% routing signal（Δ_full=+37.9, Δ_nd=+0.2, r=0.989）。论文贡献 = empirical finding + counterfactual methodology\n- **投稿目标**：EMNLP 2026 ARR short paper，DDL 2026-05-25（剩 11 天）\n- **Framing v3** (D013)：C1 = death avoidance dominance，C2 = 方法论 + 诊断框架。C1 采用 Tier B (D017)\n- **find-non-living-thing 标签翻转**：预筛 internal-preferred → 20eps tied → **40eps det-preferred (15:4)**。0% 死亡率下 det 仍有优势，对 C1 claim 影响需评估（已报 Director，未回复）\n- **分类更新**：death-dom 25 / genuine-det 3 / internal-pref 1 / no-signal 1\n- **易错点**：\n  1. 不要信 nvidia-smi 判断进程存活——必须 `ps -p PID`\n  2. 不要遗漏 `--reuse_dirs`——否则数据重复\n  3. Worker cleanup 不要用 `tmux kill-session` 或 `pkill -f`——用 `kill -9 <specific PID>`\n  4. 磁盘可能不够——启动新实验前先 `df -h /root/autodl-tmp` 检查\n  5. plan-001b-gpu0-v3 registry 已标 DONE(failed) 但实际上是被误杀的活跃进程，数据已被 v5 接力\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-1778731472.md"
+}

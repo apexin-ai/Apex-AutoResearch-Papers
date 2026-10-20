@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5d01411a0da26e33166e",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code llama 70b quick check",
+  "task_key": "worker_code_llama-70b-quick-check_20260523T234836",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama-70b-quick-check_20260523T234836_result.json",
+    "occurrence": 1,
+    "bytes": 422,
+    "sha256": "f4a258fedc6882ca10fdf961e8a95c030f21142c49f5345b35e71c29aada429a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入。关键发现：\n\n- **下载不完整** — PID 已结束，日志显示 SUCCESS，但实际只有 **7/9 safetensors**，缺少 `model-00002` 和 `model-00008`\n- ModelScope 报告下载了 19 个文件并声称成功，但这两个分片不存在，模型无法加载\n- 磁盘剩余 20G，空间足够补下载\n- vLLM 未运行\n\n需要重新下载缺失的两个分片才能使用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-llama-70b-quick-check.md"
+}

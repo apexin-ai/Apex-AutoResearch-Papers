@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "723d78519e7fcf0263a8",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "analysis per task dose response table",
+  "task_key": "worker_analysis_per-task-dose-response-table_20260518T194242",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_per-task-dose-response-table_20260518T194242_result.json",
+    "occurrence": 1,
+    "bytes": 729,
+    "sha256": "f740d4450f082dbda2437e6963d72dd7721c96e193395017df7baa147880dc4a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。产出：\n\n1. **LaTeX table**: `artifacts/appendix/per_task_dose_response_table.tex` — 10 个 death-prone task + Overall 行，Retry/Reflexion 各 N=1..5，最低值加粗\n2. **JSON data**: `artifacts/appendix/per_task_dose_response_data.json` — 原始数据含来源说明\n\n**Overall 验证全部通过：**\n- Retry: 48.0 / 47.0 / 43.5 / **43.0** / 43.5 ✓\n- Reflexion: 47.5 / 40.0 / **34.0** / 36.5 / 35.0 ✓\n\n**关键发现：** 任务说明中 Reflexion N=1/N=2 标注为\"从 N=5 数据 derive\"，但实际在 westb-13313 上存在独立运行的 `reflexion_n1` 和 `reflexion_n2` 目录（各 200 episodes）。使用这些独立运行数据后 Overall 才与已知聚合值匹配。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-per-task-dose-response-table.md"
+}

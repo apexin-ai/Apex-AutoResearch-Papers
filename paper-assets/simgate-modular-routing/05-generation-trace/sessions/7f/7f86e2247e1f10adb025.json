@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7f86e2247e1f10adb025",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ops kill zombie gpu0",
+  "task_key": "worker_ops_kill-zombie-gpu0_20260515T145951",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-zombie-gpu0_20260515T145951_result.json",
+    "occurrence": 1,
+    "bytes": 378,
+    "sha256": "a2941ef080bc27489d6de4055fb83bd4bc520d366fc8b2d1afb115874a09e567"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "489184 已不存在，487831 已 kill。但 GPU0 仍被 PID 490265 占用（19574MiB），GPU0 未释放。\n\n当前状态：\n- **GPU0**: PID 490265 (`/root/miniconda3/bin/python`) 占用 19574MiB，利用率 60%\n- **GPU1**: PID 486404 (`VLLM::EngineCore`) 占用 28004MiB，利用率 100%\n\nGPU0 上有新进程 490265 在跑。需要也 kill 掉这个吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-zombie-gpu0.md"
+}

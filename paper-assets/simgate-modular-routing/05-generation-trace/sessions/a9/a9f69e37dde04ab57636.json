@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a9f69e37dde04ab57636",
+  "project": "simgate-modular-routing",
+  "kind": "history",
+  "title": "reviewer / loop_14.md",
+  "task_key": "loop_14",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_14.md",
+    "occurrence": 1,
+    "bytes": 3421,
+    "sha256": "c6c024efafda428ba828b4987862a3c60db0d721cd76289190c394e3a84c069b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 14\nreason: max_wall_time\nupdated: '2026-05-17T09:08:00+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：仅 cuda:0 + cuda:1 on westb-13313。越界立即 CRITICAL。\n- 论文已达提交状态（R11 fixes 完成，编译 clean 15页）。任何对 paper 的修改必须重新编译验证 0 errors + 0 undefined citations。\n- MATH 数据：正确 N=795（从 960 行 math_clean_800.jsonl 去重而来）。不要用 N=960 或 N=800。\n- Registry 中 backbone-scaling-70b 正在跑。不要 kill 或干扰。\n\n### 2. ��️ 基础设施快照\n- 服务器：westb-13313(root)，工作目录 /root/autodl-tmp/simgate-modular-routing\n- 本地 workspace：/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/\n- 论文目录：docs/paper/（main.tex + 各 section .tex）\n- 数据：/root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_clean_800.jsonl (960 lines, dedup→795)\n- 活跃进程：backbone-scaling-70b (tmux session, PID 607756, cuda:0+1, Qwen2.5-72B-Instruct-AWQ, TP=2)\n- 模型下载中：modelscope 11 shards，~25-35 min remaining（截至 09:05 UTC），之后自动启动 220 episodes collection\n- 无 W&B 配置（本项目不用 wandb）\n\n### 3. 📊 当前状态\n刚完成：R11 action matrix 审查 + ARR submission prep 审查 + reference audit + 70b experiment 初始状态验证。\n\nRegistry RUNNING/ANALYZING：\n- backbone-scaling-70b (ANALYZING)：72B-AWQ episode collection，模型下载中，预计 episode 收集 ~数小时后出结果\n\n等待中：\n- 72B 下载完成 → episode collection 自动开始 → 完成后需要审查 death rate 结果\n- R11 审稿最终结果（已提交修复版，等 reviewer response）\n- ARR 正式提交（Director 决定时机）\n\n### 4. 📋 待办\n- backbone-scaling-70b 完成 → 审查 72B death rate vs 7B (42.9%) 对比，验证 \"stronger backbone → lower DAF\" prediction\n- 72B death rate 显著下降 → 建议纳入论文（Discussion 或 Appendix），需重新编译\n- 72B death rate 未下降 → 检查 AWQ 量化影响，可能是 informative negative\n- ARR 提交时 → 提醒 Director：Abstract ≤200 words（当前 ~169 words ✅）、Responsible Checklist 需人工填、正文 ~5-6 页（建议移 appendix 精华入正文）\n- 如果 Director 问页数问题 → 已确认 5 页不 desk reject 但审稿人可能觉得 thin\n\n### 5. 🎯 战略上下文\n- 核心结论：78.9% routing labels from death asymmetry（penalty-independent），DAF=90.4% at P=100。MATH confirmed null 支持 \"no death → no routing signal\"。\n- 决策链：D096(78.9% headline) → D101(Findings reframe) → D102(MATH N=795 null)\n- 论文定位：EMNLP 2026 Findings，DDL 2026-05-25\n- 修改轨迹：R8(3.25) → R9(3.0) → R10(2.75) → R11(pending, weak accept after fixes)\n- 易错点：\n  - sim_ratio 有两个含义：step-level (95.6% det) vs episode-level decision field (5.3% int)——两者兼容不矛盾\n  - r=0.97 是代数后果不是独立发现（P constant → δ·P collinear with δ），已删 partial corr\n  - 4B router 59% episode accuracy 但 deployed score (-10.72) 不 beat always-det (-9.47)\n  - ALFWorld DAF=1 是 tautological（det never dies, int dies = 100% death contribution），机制是 information asymmetry 不是 death avoidance\n  - 0.5B 实验 death rate=13.3%（不是之前误报的 80%），是\"太弱到达不了危险状态\"现象\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-14-copy-3.md"
+}

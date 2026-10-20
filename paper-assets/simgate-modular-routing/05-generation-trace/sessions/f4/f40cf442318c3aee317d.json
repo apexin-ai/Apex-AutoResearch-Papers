@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f40cf442318c3aee317d",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "analysis deep vs fast internal",
+  "task_key": "worker_analysis_deep-vs-fast-internal_20260515T163707",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_deep-vs-fast-internal_20260515T163707_result.json",
+    "occurrence": 1,
+    "bytes": 1053,
+    "sha256": "25203040fce4ef3d362add93ca3a2ef10709be5ea7b2c81e1a28d318e7fdffa5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**3-way routing 没有数据支撑，2-way suffices。**\n\n核心发现：\n\n| 维度 | Fast-internal | Deep-internal | 差异 |\n|------|--------------|---------------|------|\n| 跨 task 平均分 | -38.11 | -37.55 | Δ=0.56, p=0.83 |\n| 平均 death rate | 41.8% | 42.5% | 几乎相同 |\n| 显著差异 task 数 | — | — | **0 / 6** |\n\n6 个重叠 task 无一达到 p < 0.05（Mann-Whitney U）。效应量全部 negligible（|d| ≤ 0.31）。Score 分布形态在两种 mode 下高度一致——都是\"死亡（-100）或低分（0）\"的双峰结构。\n\n**find-non-living-thing** 是唯一有趋势的 task（deep 26.6 vs fast 18.9），但 p=0.27 且该 task 0% death rate，routing 价值本身有限。\n\n**结论**：Deep-internal 的额外 thinking cost 未换来可测量的性能提升。Router 无法有效区分何时该调用 deep vs fast。维持 2-way routing（deterministic vs internal），以 fast-internal 代表 internal mode。\n\n报告已写入 `artifacts/deep_vs_fast_analysis.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-deep-vs-fast-internal.md"
+}

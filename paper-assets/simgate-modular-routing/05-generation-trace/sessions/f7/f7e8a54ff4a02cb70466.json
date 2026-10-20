@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f7e8a54ff4a02cb70466",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "env math counterfactual",
+  "task_key": "worker_env_math-counterfactual_20260514T132719",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_env_math-counterfactual_20260514T132719_result.json",
+    "occurrence": 1,
+    "bytes": 1173,
+    "sha256": "597ed5ba8c0ebbffe10b1627fd402994f235a703714a8284b36420faece6caa8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n## MATH 环境搭建 + Counterfactual Dryrun 结果\n\n**已完成的工作**：\n1. **数据集**：从 `DigitalLearningGmbH/MATH-lighteval` 下载 MATH test set（原 `hendrycks/competition_math` 已被 HF 禁用），筛选 Level 4-5 共 **2538 题**，保存于 `data/math-raw`\n2. **代码**：`src/math_counterfactual.py`、`src/code_sandbox.py`、`src/math_answer_utils.py` 均已就绪（之前已存在）\n3. **依赖**：datasets 4.8.4, sympy 1.14.0, vllm 0.18.1 均已安装\n\n**Dry-run 结果（10 题）**：\n\n| 指标 | 值 |\n|------|-----|\n| Internal acc | 5/10 (50%) |\n| CodeInterp acc | 7/10 (70%) |\n| det-preferred | 3 |\n| internal-preferred | 1 |\n| no-preference | 6 |\n| 平均速度 | 15.8s/题 |\n\n**值得注意**：10 题中只有 3 题的 code interpreter 路径实际执行了代码（1 轮），其余 7 题 LLM 在 code interpreter prompt 下仍然用纯推理解题。这意味着当前的 label 信号更多来自 prompt 差异而非代码执行本身。后续全量跑时可能需要更强的 prompt 引导 LLM 写代码，或对\"0 code rounds\"的 deterministic 轨迹做特殊处理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/env-math-counterfactual.md"
+}

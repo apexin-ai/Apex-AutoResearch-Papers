@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "fc79994351fef956d341",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "exp r7n2 data size ablation v2",
+  "task_key": "worker_exp_r7n2-data-size-ablation-v2_20260516T020136",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_r7n2-data-size-ablation-v2_20260516T020136.log",
+    "occurrence": 1,
+    "bytes": 1866506,
+    "sha256": "678f40dcf0482e008581ffc8f11683636b19939a67adbf5c4c09932c1257ade3"
+  },
+  "statistics": {
+    "messages": 795,
+    "user_turns": 1,
+    "tool_calls": 294,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 199,
+      "tool_call": 294,
+      "tool_result": 294,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 197,
+      "chunks": [
+        {
+          "path": "fc79994351fef956d341-part-0001.json",
+          "message_count": 104
+        },
+        {
+          "path": "fc79994351fef956d341-part-0002.json",
+          "message_count": 93
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 598,
+      "chunks": [
+        {
+          "path": "fc79994351fef956d341-part-0002.json",
+          "message_count": 87
+        },
+        {
+          "path": "fc79994351fef956d341-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "fc79994351fef956d341-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "fc79994351fef956d341-part-0005.json",
+          "message_count": 151
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-r7n2-data-size-ablation-v2.md"
+}

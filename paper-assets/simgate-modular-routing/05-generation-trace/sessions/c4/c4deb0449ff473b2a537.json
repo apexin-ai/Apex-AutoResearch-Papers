@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c4deb0449ff473b2a537",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "analysis plan 012 pearson r",
+  "task_key": "worker_analysis_plan-012-pearson-r_20260514T054234",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan-012-pearson-r_20260514T054234_result.json",
+    "occurrence": 1,
+    "bytes": 251,
+    "sha256": "13feaeae7d98eac0b77d42eaadc979c05978b58436b4bc5a9a2d91956378d616"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "- **Pearson r = 0.9698**\n- **p-value = 8.12 × 10⁻⁷**\n- **N = 11 tasks**\n\ndeath_rate_diff 与 Δ_full 高度正相关，统计极显著。死亡率差异几乎完美解释了 integrated 与 deterministic 之间的性能差距。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan-012-pearson-r-copy-2.md"
+}

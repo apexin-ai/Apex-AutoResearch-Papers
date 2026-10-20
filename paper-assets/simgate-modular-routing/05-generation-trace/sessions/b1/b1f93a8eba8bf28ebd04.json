@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b1f93a8eba8bf28ebd04",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "eval 8seed corrected collect",
+  "task_key": "worker_eval_8seed-corrected-collect_20260515T225948",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_8seed-corrected-collect_20260515T225948_result.json",
+    "occurrence": 1,
+    "bytes": 1048,
+    "sha256": "f928edcb6045b6083c64bf92c18305a6309efeea9e86a0851d8a0b1c7e1d7688"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有 8 个 seed 的 corrected eval 结果已完成。汇总如下：\n\n=== 8-seed Corrected Eval Results ===\n\n| Seed | Old (leaky) | Corrected | Δ |\n|------|-------------|-----------|---|\n| 42   | 0.5761      | 0.5706    | -0.0055 |\n| 43   | 0.4852      | 0.6399    | +0.1547 |\n| 44   | 0.6074      | 0.5543    | -0.0531 |\n| 45   | 0.5467      | 0.5614    | +0.0147 |\n| 46   | 0.4463      | 0.5545    | +0.1082 |\n| 47   | 0.5185      | 0.5008    | -0.0177 |\n| 48   | 0.5370      | 0.4803    | -0.0567 |\n| 49   | 0.6111      | 0.5930    | -0.0181 |\n| **Mean±Std** | **0.541±0.058** | **0.557±0.050** | **+0.016** |\n\n关键发现：\n- Corrected eval 的均值 **略高于** leaky eval（0.557 vs 0.541），说明修正 eval 后性能没有下降，反而微升\n- 标准差从 0.058 降到 0.050，seed 间稳定性略有改善\n- Seed 43 和 46 corrected 后提升明显（+0.15, +0.11），seed 44 和 48 略有下降（-0.05, -0.06）\n- 结果已保存在服务器 `results/seed-robustness-corrected/` 目录"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-8seed-corrected-collect.md"
+}

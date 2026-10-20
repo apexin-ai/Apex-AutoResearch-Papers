@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6970dd4cc99db8ad78be",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh 72b data canonical audit",
+  "task_key": "worker_ssh_72b-data-canonical-audit_20260517T222032",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_72b-data-canonical-audit_20260517T222032_result.json",
+    "occurrence": 1,
+    "bytes": 589,
+    "sha256": "f94fa53a22a38fecb8237817ba48b1e88321f6c2a4387acead4177211026b303"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**结果摘要：**\n- P0：已删除 14838 上 measure-melting-point ep15 的 supplement 重复行（保留 first-write，internal_final=-100.0）\n- P1：8 个 task 用 13313 数据，3 个 task（lifespan-longest-lived, lifespan-longest-lived-then-shortest-lived, measure-melting-point）用 14838 数据\n- P2：\n  - All-task: **69/220 = 31.4%** [25.5%, 37.3%]\n  - Death-prone: **69/200 = 34.5%** [28.0%, 41.0%] — 与 Reviewer 核实数字完全一致\n  - 72B 相比 7B 降低约 12pp\n\n报告已写入 `artifacts/72b_canonical_death_rate.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-72b-data-canonical-audit.md"
+}

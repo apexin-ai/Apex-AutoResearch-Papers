@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a7c01020432176a184ba",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "analysis gemma daf sensitivity",
+  "task_key": "worker_analysis_gemma-daf-sensitivity_20260521T000845",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gemma-daf-sensitivity_20260521T000845_result.json",
+    "occurrence": 1,
+    "bytes": 191,
+    "sha256": "1f15cea8faaacf16b9ca2f7cb901f0e5c810ef79c70afec1b87fbce75bc14c9f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nExcluding find-non-living-thing (10 tasks, 200 episodes):\nInt DR: 40.0%, Det DR: 15.5%, delta_DR: 24.5pp\ndelta_full: 25.77, delta_nd: 0.03\nDAF: 99.9% [99.7, 100.0]\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-gemma-daf-sensitivity.md"
+}

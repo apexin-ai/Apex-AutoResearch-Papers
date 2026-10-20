@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a8a76fff7f2ad49ad304",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "paper discussion section",
+  "task_key": "worker_paper_discussion-section_20260515T101438",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_discussion-section_20260515T101438_result.json",
+    "occurrence": 1,
+    "bytes": 956,
+    "sha256": "0c540ec451c3845104fee47304f763d7ccf1c2936012e25123183d230a423335"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Discussion section 扩写完成。从 2 段扩展为 5 段：\n\n1. **Cross-environment evidence** — 保留原文不动\n2. **Implications for router design** — 新增。Router 本质上是 safety critic 而非 efficiency optimizer，与 safe RL 文献关联，提出 death predictor 作为更简单的替代\n3. **Label imbalance as a core finding** — 新增。86:9 的极端分布是核心发现而非缺陷，解释 always-det 为何是 strong baseline，router marginal value 仅限于 ~4% 的 internal-preferred episodes，引用 concurrent work (when2tool, tool-use-tax)\n4. **Penalty sensitivity and generalization** — 新增。DAF 随 penalty 量级变化 (46%→95%)，低 penalty 环境中 non-death signal 更重要，capability-dependent 假说 (更强模型死亡率更低→DAF 可能下降)\n5. **Scope and future directions** — 扩展原文，新增 logit-generation gap 限制和 multi-model/multi-scale validation"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-discussion-section.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cc177e07454b31d17c2f",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code plan 012 task weighted daf",
+  "task_key": "worker_code_plan-012-task-weighted-daf_20260514T005050",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan-012-task-weighted-daf_20260514T005050_result.json",
+    "occurrence": 1,
+    "bytes": 896,
+    "sha256": "8bc662a955ca46eafd18e371a4b5b3cfa1840168c2c4599cef45450862bcc990"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。结果对比：\n\n| 指标 | Episode-weighted | Task-weighted |\n|------|-----------------|---------------|\n| DAF | 99.1% | 93.9% |\n| DAF 95% CI | [0.9393, 1.0445] | [0.8462, 0.9975] |\n| Δ_full | +37.39 | +41.48 |\n| Δ_nd | +0.35 | +0.91 |\n\ntask-weighted DAF 93.9%，低于 episode-weighted 的 99.1%，因为 `find-non-living-thing`（DAF≈0%，25 eps）和 `measure-melting-point-unknown-substance`（DAF=59%）等任务在 task-weighted 中获得与大样本 task 相等的权重。CI 上界 0.9975 < 1，比 episode-weighted 版本更保守——正好应对 reviewer 对样本量不均衡的攻击。\n\n三个输出文件都已包含新字段：\n- `report.json`: `task_weighted_daf`, `task_weighted_daf_ci`, `task_weighted_delta_full`, `task_weighted_delta_nd`\n- `paper_table.json`: `task_weighted` 对象\n- `summary.csv`: `TASK_WEIGHTED` 行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-012-task-weighted-daf.md"
+}

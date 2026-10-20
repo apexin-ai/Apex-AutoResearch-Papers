@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "caa3cba7b5d3b6290d98",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code guided router framework",
+  "task_key": "worker_code_guided-router-framework_20260516T132121",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_guided-router-framework_20260516T132121_result.json",
+    "occurrence": 1,
+    "bytes": 1216,
+    "sha256": "2002273d6d529d2a8b3d558d5472e46f259a6b5f92edf6a8e63e44636a95a4b9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。代码框架已创建并通过验证。\n\n## 结果\n\n```\nguided_router/\n├── __init__.py\n├── config.py          # 11 tasks death risk labels\n├── router.py          # GuidedRouter (oracle + learned)\n├── eval_episode.py    # Episode-level balanced_acc evaluation\n├── run_guided_router.py  # Main entry\n└── README.md\n```\n\n**评估结果 (245 episodes, 95 有区分度)**:\n\n| Method | Episode bal_acc |\n|--------|----------------|\n| always-deterministic | 50.00% |\n| trained 1.7B | 47.10% |\n| trained 4B | 58.96% |\n| **guided oracle** | **62.92%** |\n| **guided learned** | **62.92%** |\n\nOracle 和 learned 在这个数据集上表现一致（因为 learned 的 task_type 字符串模式匹配在 11 个已知任务上等价于 oracle）。两者都超过 4B trained router (+3.96pp)。\n\n关键细节：\n- det_recall = 81.4%, internal_recall = 44.4%\n- 150/245 episodes 是 \"no-preference\"（两条路都死或 tie），被排除\n- `find-non-living-thing` 是唯一被路由到 internal 的 task，它的 internal_recall=100%（正确），但一些 death-risk task 中有 internal-preferred 的 episode 被误分类为 det-preferred"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-guided-router-framework.md"
+}

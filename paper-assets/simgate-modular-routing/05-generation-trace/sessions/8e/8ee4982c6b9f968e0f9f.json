@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8ee4982c6b9f968e0f9f",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "analysis seed 123 replication",
+  "task_key": "worker_analysis_seed-123-replication_20260518T111231",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_seed-123-replication_20260518T111231_result.json",
+    "occurrence": 1,
+    "bytes": 698,
+    "sha256": "e26ff5bb2ee7386c499765d34ec697faf6fb2c06a234020b990c20b62f4c63c7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**conclusion = SUCCESS**\n\n核心对比：\n\n| 指标 | Seed=42 | Seed=123 | 差异 |\n|------|---------|----------|------|\n| **DAF** | 90.41% | 89.68% | **-0.73pp** (< 5pp) |\n| death_rate_int | 42.9% | 45.45% | +2.55pp |\n| death_rate_det | 16.3% | 20.91% | +4.61pp |\n| delta_full | 29.6 | 27.47 | -2.13 |\n| delta_nd | 2.84 | 2.83 | -0.01 |\n| pearson_r | 0.9698 | 0.9412 | -0.029 |\n\nDAF 差异仅 0.73pp，方向一致，seed robustness 确认。所有核心结论均复现：10/11 tasks 的 DAF >= 81%，death dominance 是 routing preference 的主要驱动力，delta_nd 近乎为零。\n\n报告已写入 `artifacts/seed-123-replication/analysis_report.md` 并注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-seed-123-replication.md"
+}

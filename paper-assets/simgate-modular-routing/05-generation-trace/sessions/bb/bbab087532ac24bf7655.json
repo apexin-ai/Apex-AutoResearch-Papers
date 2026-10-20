@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bbab087532ac24bf7655",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "paper writing related work v2",
+  "task_key": "worker_paper_writing_related_work_v2_20260514T112612",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_related_work_v2_20260514T112612_result.json",
+    "occurrence": 1,
+    "bytes": 869,
+    "sha256": "a06857fb4d23a56ce1b1d25d404552a709f488cd2e2473c6635f2b5cffa8230f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "v2 已保存并注册 (`art_20260514_7196ef`)。\n\n**变更摘要：**\n\n| 修改项 | 具体变更 |\n|--------|---------|\n| 数字修正 | `~99%` → `~90%`（出现在 Adaptive Computation 和 Tool-Use Learning 段） |\n| Agent Frameworks 扩展 | 加入 `\\cite{scienceworld-2022}`（Wang et al. 2022）和 `\\cite{mtrouter-2026}`，段落从2句扩到5句 |\n| 差异化增强 | Tool-Use：加\"none analyze what signal drives routing\"；Adaptive Comp：加\"none quantify the composition of their routing signal\" + \"contribution is finding + methodology, not architecture\"；World Model：加 `Δ_nd` 9.6% 数据；Agent Frameworks：结尾提出 safety-aware computation allocation 方向性结论 |\n| 新引用 | `mtrouter-2026`、`scienceworld-2022`（均在 literature_map.yaml 中） |\n| 篇幅 | ~430 words，符合 400-500 目标 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-related-work-v2.md"
+}

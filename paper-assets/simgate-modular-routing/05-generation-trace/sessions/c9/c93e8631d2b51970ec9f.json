@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c93e8631d2b51970ec9f",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "exp llama cross model v2",
+  "task_key": "worker_exp_llama-cross-model-v2_20260516T061948",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_llama-cross-model-v2_20260516T061948_result.json",
+    "occurrence": 1,
+    "bytes": 1443,
+    "sha256": "06f53b39f534ad637a6ce4e170610f8686411fa0d423d1aae3dde261a16e9074"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 通过，环境兼容。\n\n---\n\n## 评估结果\n\n### 上次 `llama-cross-model-expanded` 被 kill 原因\n- 启动于 2026-05-15 19:48:50，被 kill 于 20:10:06（运行约 21 分钟）\n- 日志显示第一个 task (identify-life-stages-1) 的 episode 0 仍在跑时被外部 kill（vLLM EngineCore 收到 shutdown 信号，abort 1 request）\n- 无结果保存，无部分数据可复用\n\n### 新脚本已就绪\n\n**路径**: `/root/autodl-tmp/simgate-modular-routing/scripts/run_llama_cross_model_v2.sh`\n\n**配置**:\n| 项目 | 值 |\n|------|-----|\n| 模型 | Llama-3.1-8B-Instruct (本地已有) |\n| GPU | 0 (RTX 5090 32GB, 空闲) |\n| Tasks | 7: freeze, identify-life-stages-1, lifespan-longest-lived, inclined-plane-determine-angle, measure-melting-point-unknown-substance, chemistry-mix, grow-fruit |\n| Episodes | 10/task |\n| 输出 | `data/llama-cross-model-v2/` |\n| 预计耗时 | **~5.5 小时** (70 pairs × ~4.7 min/pair) |\n\n**Task 选择依据**: Plan_c (Qwen) 中 internal death rate 50-60% 的 7 个 tasks，排除了 find-non-living-thing (0% death)。\n\n**注意**: GPU 是 RTX 5090 32GB（非任务描述中的 A6000 48GB），Llama-3.1-8B bf16 约 16GB，gpu_memory_utilization=0.85 可用 ~27GB，足够。\n\n---\n\n需要通过 `submit_training_job` 提交此脚本。提交命令：\n```\nbash /root/autodl-tmp/simgate-modular-routing/scripts/run_llama_cross_model_v2.sh\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-llama-cross-model-v2.md"
+}

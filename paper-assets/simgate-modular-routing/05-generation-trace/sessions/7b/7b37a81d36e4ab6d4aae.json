@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7b37a81d36e4ab6d4aae",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "diagnose llama 70b episodes",
+  "task_key": "worker_diagnose_llama-70b-episodes_20260524T135459",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_llama-70b-episodes_20260524T135459_result.json",
+    "occurrence": 1,
+    "bytes": 453,
+    "sha256": "38a0d68819f8fe00b31996c5ca0a739ae3b5eddf5d29512b3b3cb587d1c1e5dd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**判定：成功完成。**\n\n- 11 tasks × 20 episodes = 220 episodes，2070 labeled steps，全部到位\n- 进程正常退出，无报错\n- Registry 已更新为 ANALYZING，metrics 已写入\n- 诊断报告已注册\n\nLabel 分布要点：det-preferred 占 30.5%，int-preferred 几乎为 0（仅 2/220），no-preference 占 68.6%。det-preferred 主要来自 death_asymmetry（internal 策略死亡而 deterministic 存活）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-llama-70b-episodes.md"
+}

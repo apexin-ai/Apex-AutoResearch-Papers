@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9c8b4e3534121f1194b1",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code w4 positive control",
+  "task_key": "worker_code_w4-positive-control_20260521T210506",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_w4-positive-control_20260521T210506_result.json",
+    "occurrence": 1,
+    "bytes": 861,
+    "sha256": "f7b9f552997b457f48d4756cb520339e85413d5c906d72abdfadb0a3f366d05d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**实验结果**：\n- **5-fold CV**: LogReg 和 MLP 均达到 **64.7% BA**，仅用 task-type one-hot 就超过所有 step-level Qwen3 routers（最高 59.3%）\n- **LOTO**: 4 个 mixed task types 全部掉到 **50.0% BA**（随机水平），7 个 pure task types trivially 100%\n- 数据结构：7/11 task types 是纯 det-preferred，仅 4 个有 mixed labels\n\n**核心结论**：routing signal 是 task-type-level property，step-level router 的 56–59% 本质是在用 observation 间接推断 task type identity，且推断效果还不如直接看 task type。这支撑 \"signal-limited, not architecture-limited\" 的 rebuttal narrative。\n\n产出文件：\n- 远程：`artifacts/w4_task_type_positive_control.json`（完整 JSON 结果）\n- 本地：`artifacts/w4_task_level_router_results.md`（对比表 + 分析）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-w4-positive-control.md"
+}

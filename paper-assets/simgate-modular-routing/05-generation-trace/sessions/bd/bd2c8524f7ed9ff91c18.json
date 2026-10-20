@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "bd2c8524f7ed9ff91c18",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "ssh seed123 main experiment",
+  "task_key": "worker_ssh_seed123-main-experiment_20260518T075645",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_seed123-main-experiment_20260518T075645.log",
+    "occurrence": 1,
+    "bytes": 667122,
+    "sha256": "0638bf3ca04630641e9adae9f9104cb8846b7d974e093ee9b68b95076331de26"
+  },
+  "statistics": {
+    "messages": 306,
+    "user_turns": 0,
+    "tool_calls": 123,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 56,
+      "tool_call": 123,
+      "tool_result": 123,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 306,
+      "chunks": [
+        {
+          "path": "bd2c8524f7ed9ff91c18-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "bd2c8524f7ed9ff91c18-part-0002.json",
+          "message_count": 126
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-seed123-main-experiment.md"
+}

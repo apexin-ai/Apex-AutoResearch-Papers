@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f0809350e314f65a6b9c",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "paper writing introduction v2",
+  "task_key": "worker_paper_writing_introduction_v2_20260514T093915",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_introduction_v2_20260514T093915_result.json",
+    "occurrence": 1,
+    "bytes": 697,
+    "sha256": "c6d0dc9d48378658413d4831e7e21a228f4241b8db66a859cc9b73fb3a0beead"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Introduction v2 written to `artifacts/_project/paper/introduction_v2_draft.md`.\n\n**Changes from v1:**\n- All placeholders replaced with A-source numbers (plan-012-full, 11 tasks / 245 episodes)\n- Contributions reduced from 3 to exactly 2 (C1: methodology + DAF framework; C2: empirical finding + router diagnostic)\n- Hook made concrete (Qwen2.5-7B-Instruct boiling water, specific hallucination examples)\n- Added keyword heuristic failure point (P2) and find-non-living-thing residual case (C2)\n- All 6 cross-references used (\\S ref to collection, daf, rule, death-decomp, baselines, router-diagnostic)\n- No B-source numbers, no banned phrases, no routing superiority claims"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-introduction-v2.md"
+}

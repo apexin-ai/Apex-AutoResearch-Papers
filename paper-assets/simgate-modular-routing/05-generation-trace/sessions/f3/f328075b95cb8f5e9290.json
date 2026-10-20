@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f328075b95cb8f5e9290",
+  "project": "simgate-modular-routing",
+  "kind": "history",
+  "title": "agent / loop_9_1778792482.md",
+  "task_key": "loop_9_1778792482",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_9_1778792482.md",
+    "occurrence": 1,
+    "bytes": 3693,
+    "sha256": "49ede3e20b6d3e78e758845c67dc0ac2601ac5c686036aedcea843f66818bab5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 9\nreason: idle_timeout\nupdated: '2026-05-14T21:01:19+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单必须从 `get_project_status` 的 `execution.gpu_ids` 获取，当前 westb-13313 两卡均 idle，但提交前必须确认分配\n- 论文 framing 已锁定 Option B（empirical finding + diagnostic methodology，不是 architecture）——D033 决策，不可擅自改回架构叙事\n- find-non-living-thing 是已知 outlier（zero deaths，Δ_full=+9.58），论文已在 Limitations 处理，不要试图\"修复\"或排除它\n- Checkpoint 路径易混淆：gen-v1 是失败的，ablation-b 才是成功的——引用 checkpoint 时务必核实\n- RTX 5090 32GB 上 Qwen3-1.7B LoRA 必须 batch_size=4（32 会 OOM）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westb-13313，2× RTX 5090 32GB，两卡当前 idle\n- AutoDL 网络：pip/git 前必须 `source /etc/network_turbo`；`HF_HOME=/root/autodl-tmp/.hf_cache`\n- Python 环境：需 SSH 探查确认（aml-train 镜像用 conda `/root/miniconda3/bin/python`，非 venv）\n- Qwen3 推理：必须 `enable_thinking=False`，否则 thinking mode 干扰输出\n- W&B / 模型路径 / 数据路径：需从 registry 各实验的 spec 字段获取具体值\n- 活跃进程：无（0 RUNNING 实验，0 活跃 cron）\n\n### 3. 📊 当前状态\n**刚完成**：R3 审稿修改提交，R3 评分 Weak Accept 3.25/5（R2 为 Borderline Accept 2.75/5）。三个 critical blocker 已修复：title scope、train/test split、penalty sensitivity。\n\n**Registry 总览**：58 实验全部终态（22 success / 13 negative / 10 failed / 13 killed），0 RUNNING，0 PREPARING。\n\n**论文状态**：READY。4 页正文 + 3 页附录，0 编译警告，20 条参考文献，所有交叉引用已验证。ALFWorld counterfactual（135 games）已合并入 Limitations/Conclusion。\n\n**等待中**：无 Worker 回调、无 Cron、无 pending Director 决策。项目处于 review iteration 阶段等待 R4 反馈。\n\n### 4. 📋 待办（条件触发式）\n- R4 审稿意见到达 → 读 on-experiment-done / red-section skill 按 conclusion 分叉处理；若需补实验用 westb-13313 idle GPU\n- Director 指示 camera-ready 修改 → spawn Worker 改 LaTeX，改完必须 framing-reaudit 全文一致性检查\n- Director 要求补充实验（如 cross-task transfer plan-010 / MATH track plan-009）→ 确认 GPU 分配后提交\n- 5/23-24 最终提交窗口 → 确保 PDF 编译 0 warning、figure 分辨率、reference 格式审计\n\n### 5. 🎯 战略上下文\n**核心结论**：Death avoidance 占 routing signal 的 ~90%（DAF=90.41%，Pearson r=0.9698）。这是 empirical finding，不是 architecture contribution。论文 story 是\"episode-level counterfactual 揭示 death avoidance 主导 routing\"。\n\n**决策链关键节点**：\n- D033：Framing 锁定 Option B\n- D026：plan-004 训练数据 corruption 已确认（mislabeled internal vs no-preference）\n- D025：Classification head 路线已死（all-deterministic collapse）\n- D018：C1 claim 从 ~99% 降至 ~90%\n- D049：R3 Weak Accept，camera-ready 阶段\n\n**易错点**：\n- 不要把 30-task prescreening（DAF=98.75%）和 11-task core（DAF=90.41%）混淆——prescreening 只放附录\n- Class weights + max_grad_norm 交互会导致 internal learning rate collapse——如果补训实验不要同时用这两个\n- GA=8（不是 1）有完整的 4-point evidence chain，不要质疑或重新实验\n- 文献 novelty 已确认（无 direct competitor），但 CogRouter/ITP/MTRouter 是互补工作需要 cite\n\n**Deadline**：EMNLP 2026 ARR，5/25 截止，当前 5/14，还有 11 天。项目处于 review iteration 最后冲刺阶段。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-9-1778792482.md"
+}

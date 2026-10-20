@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dca84e5edc0b984aecf6",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "diagnose plan 002 dryrun exit",
+  "task_key": "worker_diagnose_plan-002-dryrun-exit_20260514T050606",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_plan-002-dryrun-exit_20260514T050606_result.json",
+    "occurrence": 1,
+    "bytes": 817,
+    "sha256": "4149ff405161779e42f9c5937f43def509eda688b2482051a21aed9248774e0c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练**仍在进行中**，尚未完成。\n\n## 结果\n\n| 项目 | 状态 |\n|------|------|\n| **日志** | `/root/autodl-tmp/simgate-modular-routing/logs/plan002_dryrun.log` — 进度 **310/1163 steps (27%)**，速度 ~1.37 it/s |\n| **Checkpoint** | 目录 `/checkpoints/plan-002-dryrun/` 存在但**为空**（尚未保存） |\n| **GPU0** | PID 182475 占用 **29824 MiB**，正在运行 |\n\n### 训练配置摘要（从日志提取）\n- 模型: Qwen3-1.7B + LoRA r=16 (0.37% trainable)\n- 数据: 5880 samples, 124 episodes train / 33 val\n- 类别权重: internal=11.07, deterministic=0.52 (少数类上采样)\n- 总步数: 1163, 预计剩余 ~10 分钟\n\n**结论: 训练进行中（running），无报错。** 预计 ~10 分钟后完成，届时再检查 checkpoint 和最终结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-plan-002-dryrun-exit.md"
+}

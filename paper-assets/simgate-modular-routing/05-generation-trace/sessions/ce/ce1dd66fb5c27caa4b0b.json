@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ce1dd66fb5c27caa4b0b",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh dose response progress",
+  "task_key": "worker_ssh_dose-response-progress_20260518T111722",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_dose-response-progress_20260518T111722_result.json",
+    "occurrence": 1,
+    "bytes": 1008,
+    "sha256": "96664a7c4f2f4c25019967e3a0cbbca2cb4481f7f990336073a13ef447ead105"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验进度报告\n\n### GPU 状态\n两张 RTX 5090 均正常工作，GPU-Util 99%，vLLM 进程各占一张卡。\n\n---\n\n### 实验 1: Retry dose-response (cuda:0)\n- **进度: 153/200 episodes (76.5%)**\n- 当前 task: `lifespan-longest-lived` ep012/019\n- 已完成 7 个 task，第 8 个进行中\n- 最新文件: 19:16（1 分钟前，持续产出中）\n- 启动时间: 14:43，运行 4.5h\n- 速率: ~0.57 ep/min\n- **ETA: ~1.4h 后完成 (~20:40)**\n\n---\n\n### 实验 2: Reflexion dose-response (cuda:1)\n- **N=1: 200/200 COMPLETE** (condition_summary.json 已生成，17:53 完成)\n- **N=2: 103/200 (51.5%)**, 当前 task: `identify-life-stages-2` ep003\n- N=3,4,5: 未开始\n- **总进度: 303/1000 episodes (30.3%)**\n\n速率估算:\n- N=1: ~2.6 ep/min (77 min 完成 200 ep)\n- N=2: ~1.24 ep/min (随 reflection 轮数增加变慢)\n\n**ETA 估算:**\n- N=2 剩余: ~1.3h\n- N=3/4/5 随 N 增大会更慢，预计总计还需 ~15-17h\n- **预计完成: 明天 ~12:00**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-dose-response-progress.md"
+}

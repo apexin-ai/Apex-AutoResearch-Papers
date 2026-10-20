@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "950990be0ec68cbec918",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code plan 011 rule based",
+  "task_key": "worker_code_plan-011-rule-based_20260514T004303",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan-011-rule-based_20260514T004303_result.json",
+    "occurrence": 1,
+    "bytes": 798,
+    "sha256": "00d57dc0eac0d6d0d968e91cebfba375658a10352a2ee5372c17afaf562d2c3e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个脚本都运行正常。结果完美验证了 D014 的预测：\n\n**v3 keywords 结果**：\n- 匹配率仅 **2.8%**（接近 v2 的 4.9%）\n- Episode routing accuracy **1.5%**（1/66）——几乎所有 episode 都被路由到 internal\n- KeywordRouter 模拟分数 = **-53.7** ≈ always-internal（-53.7），vs always-det（-7.7）\n- **关键词路由器完全退化为 always-internal**，因为 match_rate 几乎不会超过 0.5 threshold\n\n已创建/更新的文件：\n- `src/rule_based_keywords_v3.json` — D014 v3 关键词（12 个科学动词，排除通用交互词）\n- `src/rule_based_accuracy.py` — 增加 step-level P/R/F1、`--threshold`/`--strategy` 参数、v3 默认\n- `src/rule_based_inference.py` — 新建，score simulation + baseline 对比"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-011-rule-based.md"
+}

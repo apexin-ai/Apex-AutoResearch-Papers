@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9d65b4886bcc3971835b",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "data math full 200",
+  "task_key": "worker_data_math-full-200_20260514T140908",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_math-full-200_20260514T140908_result.json",
+    "occurrence": 1,
+    "bytes": 577,
+    "sha256": "008975e48c0b8357422681c2fd0c751804aa0dbf5ed4a66f045f0898310ee7fe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务正常运行中。\n\n**状态汇总：**\n- 进程：tmux session `math200` 正在运行，vLLM server 在 `vllm_server` session\n- 输出：`data/math-counterfactual/full_200.jsonl`，JSONL 格式正确\n- 速度：~7-8s/题，200 题预计 ~25-28 分钟\n- 预计完成时间：约 22:45 (UTC+8)\n- 包含 pilot 的前 50 题（同 seed=42，顺序选取），后续用 `episode_id` 去重合并\n\n字段包含：`episode_id`, `internal.correct`, `deterministic.correct`, `label`, `raw_label`, `filtered`, `deterministic.n_rounds` 等，满足要求。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-math-full-200.md"
+}

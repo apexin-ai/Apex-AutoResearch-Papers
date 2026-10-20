@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dd987deb955bd7794158",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "research data audit full",
+  "task_key": "worker_research_data-audit-full_20260523T102337",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_data-audit-full_20260523T102337_result.json",
+    "occurrence": 1,
+    "bytes": 1207,
+    "sha256": "29f81802c2e8857dbf56d9ad0e57c072bce77cc5878b078f54cec88f4458f5a6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。报告已写入 `artifacts/data_audit_report.md` 并注册。\n\n**结果：127 个定量声明，109 个验证通过，2 个不一致，16 个无法验证。**\n\n### 2 个不一致（不要自行修改论文）：\n\n**D1 (HIGH) — Gemma DAF CI**：论文写 [79.5%, 98.4%]，但服务器原始数据 `gemma analysis.json` 和 registry 都是 [68.79, 100.0]。CI 偏窄，可能高估 Gemma DAF 精度。需要核实 bootstrap 代码来源。\n\n**D2 (MEDIUM) — Table 2 trained router CI**：论文写 [-16.33, -5.27]，provenance C248/C249 记录的是 [-15.25, -6.38]。点估计 -10.70 一致，定性结论不变（均未超过 always-det），但 CI 数值有偏差。\n\n### 其他发现：\n- Provenance 中 C152/C200/C233/C234 仍引用旧值 \"98.2% step tie rate\"，论文已正确更新为 97.4%\n- §3.1 \"independent seed replication ($N{=}220$) yields DAF=89.7%\" 的 89.7% 精确匹配 Gemma-2-9B-it 结果，可能是 cross-model 结果被误标为 \"seed replication\"\n- Provenance C256 (55.4±5.2%) 与论文当前文本 (54.1±5.4%) 不符，建议废弃\n- C320 (partial r=0.02) 已从论文中删除但 provenance 未清理\n- C323/C324 为空条目"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-data-audit-full.md"
+}

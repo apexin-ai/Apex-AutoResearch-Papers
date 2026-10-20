@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "766d214fdfe559f495bc",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh check gpu0 v3 progress",
+  "task_key": "worker_ssh_check-gpu0-v3-progress_20260514T015751",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-gpu0-v3-progress_20260514T015751_result.json",
+    "occurrence": 1,
+    "bytes": 1313,
+    "sha256": "c91902f5a468512d533ddb327bc5ce15a101e6a65c297fdf11cc716f6f9062cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 进度报告\n\n### 结论：v3 尚未启动，v2 在 09:47 崩溃\n\n**v2 崩溃点**：跑到第 4 个 task `lifespan-longest-lived` 的 episode 15 时，VLLM EngineCore 进程意外死亡（`EngineDeadError`）。v2 是一个覆盖 7 个 task 的大 run，依次完成了 find-animal、identify-life-stages-1、lifespan-longest-lived-then-shortest-lived 后，在 lifespan-longest-lived 崩溃。\n\n**v3 状态**：`run_gpu0_v3.sh` 脚本已存在但**从未被启动**（`/root/runs/` 下无 v3 log 文件）。\n\n### plan_c 数据产出\n\n| Task | 状态 | episodes.jsonl |\n|------|------|----------------|\n| lifespan-longest-lived | v2 部分完成 | 16 行（5 reuse + 11 collected，缺 ep 16-19） |\n| measure-melting-point-unknown-substance | 未开始 | 不存在 |\n| freeze | 未开始 | 不存在 |\n| chemistry-mix | 未开始 | 不存在 |\n\n### GPU 状态\n\n| GPU | 显存 | 利用率 | 进程 |\n|-----|------|--------|------|\n| GPU0 (RTX 5090) | 28013 / 32607 MiB | 0% | 僵尸 VLLM::EngineCore (PID 544942)，v2 崩溃残留 |\n| GPU1 (RTX 5090) | 0 / 32607 MiB | 0% | 空闲 |\n\n### 对拆分决策的建议\n\n4 个 task 全部未完成，可以自由分配。GPU0 上的僵尸 VLLM 进程需要先 kill 掉才能重启。GPU1 完全空闲，可以立即使用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-gpu0-v3-progress-copy-2.md"
+}

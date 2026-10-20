@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fa52ea7151adeaeafbe0",
+  "project": "simgate-modular-routing",
+  "kind": "history",
+  "title": "agent / loop_5_1778748068.md",
+  "task_key": "loop_5_1778748068",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_5_1778748068.md",
+    "occurrence": 1,
+    "bytes": 5459,
+    "sha256": "378c5e079c35c68f4a3fc62e8f570ae9425e75594725b72d6e999561e2a8091a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: idle_timeout\nupdated: '2026-05-14T08:16:30+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**westb-13313 cuda:0 和 cuda:1**，不可用其他设备\n- 唯一可用训练数据：`data/plan-004-implicit/implicit_sft.jsonl`（MD5: c9b59e04de78, 2040 samples）。`results/plan_c_test_labels/implicit_sft.jsonl` 标签损坏（no-preference→internal，D026），**绝对不能用**\n- D028 生效中：论文写作暂停，核心数字不一致待修复（至少 3 套数据源混用），修复前不可写 paper sections\n- Classification head 路线已宣告失败（D025），不要再尝试 2-class classification head，只走 generative SFT\n- class_weights + max_grad_norm=1.0 交互会导致 internal 有效学习率≈0（D023），generative 路径不受此影响但仍需注意\n- submit_training_job 命令必须自带 `source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，AutoDL 环境不能假设 .venv\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**westb-13313**，2× RTX 5090 32GB（cuda:0, cuda:1）\n- 工作目录：`/root/autodl-tmp/simgate-modular-routing`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- 模型：Qwen3-1.7B 已下载到本地（路径在服务器上，需 Worker SSH 确认具体位置，大概率 `/root/autodl-tmp/.hf_cache/` 或 `/root/autodl-tmp/models/`）\n- HF_HOME：`/root/autodl-tmp/.hf_cache`\n- W&B：项目已配置（历史实验有 W&B tracking）\n- 活跃进程：**无 GPU 训练进程**（两张卡均空闲）\n- 活跃 Worker：2 个 CPU Worker 正在分析 generative-v1 结果\n  - `worker_eval_generative-v1-metrics_20260514T081254`（eval:generative-v1-metrics）\n  - `worker_eval_generative-v1-routing-metrics_20260514T081258`（eval:generative-v1-routing-metrics）\n- Cron：reconcile 结果为空（0 active crons）\n\n### 3. 📊 当前状态\n**刚做完**：plan-002-generative-v1（generative router SFT，Qwen3-1.7B + LoRA r=16, 3 epochs, upsample_minority=true, ga=8）训练完成，进入 ANALYZING。两个 Worker 正在提取 metrics 和 routing 分布。ga1 对照组已被 killed。\n\n**Registry 关键状态**：\n| exp_id | status | 说明 |\n|--------|--------|------|\n| plan-002-generative-v1 | ANALYZING | generative SFT，2 workers 在评估 |\n| plan-004-v5 | PREPARING | implicit SFT v5，复现 ablation-b（正确数据+upsample+ga=1）|\n| plan-003-baseline | PREPARING | end-to-end eval baselines（stale，245eps 版本已 DONE/success）|\n| plan-001b-gpu1-rebalance | PREPARING | stale/killed |\n| mvp-p1-signal | PREPARING | stale/killed |\n| research-cf-pilot-gpu1 | PENDING | stale/killed |\n\n**等待中**：\n- 2 个 eval Worker 回调 → 拿到 generative-v1 的 internal_recall / routing 分布后决定下一步\n- 如果 generative-v1 internal_recall > 30%：router 路线成立，推进 plan-003 end-to-end eval + plan-005 分析\n- 如果 generative-v1 也退化：需要向 Director 汇报 router 训练全线失败，讨论 pivot\n\n**总计**：成功 14 / 负向 5 / 失败 8 / killed 9 / 共 42 实验\n\n### 4. 📋 待办（条件触发式）\n- **generative-v1 eval Workers 回调** → 读 metrics，update_registry(conclusion=success/negative)，按 on-experiment-done 分叉：\n  - internal_recall ≥ 30% → 标 success，立即提交 plan-004-v5（GPU1, ga=1 复现 ablation-b）+ plan-003 end-to-end eval（GPU0）并行\n  - internal_recall < 30% 或全退化 → 标 negative，产 Framing 调整提案，向 Director 汇报（router 训练全线失败，是否 pivot 到 pure analysis paper）\n- **plan-004-v5 完成** → 对比 ablation-b（internal_recall ~51.5%），确认 upsample + ga=1 是成功关键\n- **D028 数字一致性修复完成** → 解除论文写作暂停，启动 Paper Agent\n- **两张 GPU 当前空闲** → generative-v1 分析结果出来后立即铺下一批训练，不能让 GPU 闲着\n\n### 5. 🎯 战略上下文\n**核心结论链**：\n- D013: framing pivot → death avoidance dominates routing signal（~90%，plan-012 全量确认）\n- D025: classification head 全线失败 → pivot to generative SFT\n- D026: 训练数据损坏是 v2/v3/v4 失败根因之一\n- D027: generative-v1 是当前唯一活跃的 router 训练尝试\n- D028: 论文数字不一致，暂停写作\n\n**DDL**：EMNLP 2026 ARR short paper (4 pages)，**2026-05-25**，剩余 11 天。Critical path: router 实验 ~1.5 天 + 写作 ~3 天 + 迭代 ~2 天。余量紧但可控。\n\n**最容易判断错的事**：\n1. plan-003-baseline 有两个条目——`plan-003-baseline`（PREPARING/stale）和 `plan-003-baseline-245eps`（DONE/success）。245eps 版本才是有效的 baseline 结果（oracle 仅比 always-det 好 2.6 分）\n2. ablation-b 成功（internal_recall=51.5%）用的是 generative SFT + ga=1 + upsample + 正确数据，不是 classification head。后续所有 classification head 尝试（plan-002 v3-v6）全部失败\n3. 不要混淆 `results/plan_c_test_labels/implicit_sft.jsonl`（损坏）和 `data/plan-004-implicit/implicit_sft.jsonl`（正确）——文件名相同但内容不同\n4. generative-v1 用了 ga=8（有效 batch=32），ablation-b 用了 ga=1（有效 batch=4）。如果 generative-v1 也退化，ga 可能是 confound，plan-004-v5（ga=1）是验证手段\n5. 论文 framing 是 v3（empirical finding + methodology），不是 router 架构贡献。不要在论文中过度强调 router 性能\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-1778748068.md"
+}

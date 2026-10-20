@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c0641631498fe37a142e",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh plan 001b stall check",
+  "task_key": "worker_ssh_plan-001b-stall-check_20260514T002309",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_plan-001b-stall-check_20260514T002309_result.json",
+    "occurrence": 1,
+    "bytes": 988,
+    "sha256": "f175fec7f1e84ab20ea56b3056b43e7036dc65a68394fd66d4328b6fd70f7269"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 快照对比\n\n| Task | 快照 1 | 快照 2 | 增长 |\n|------|--------|--------|------|\n| find-animal | 20 | 20 | 0 (已完成) |\n| find-non-living-thing | 20 | 20 | 0 (已完成) |\n| grow-fruit | 20 | 20 | 0 (已完成) |\n| identify-life-stages-1 | 20 | 20 | 0 (已完成) |\n| inclined-plane-determine-angle | 11 | 12 | **+1** |\n| lifespan-longest-lived-then-shortest-lived | 5 | 7 | **+2** |\n| **Total** | **96** | **99** | **+3** |\n\n## 结论：正常增长，未 stall\n\n3 分钟内 total episodes 从 96 → 99（+3）。两个活跃 task 都在增长：\n- `inclined-plane-determine-angle`: 11→12\n- `lifespan-longest-lived-then-shortest-lived`: 5→7\n\n前 4 个 task 已达到目标 20 episodes 所以不再增长。GPU 利用率 0% 的报警是 ScienceWorld Java 环境交互阶段的正常表现——vLLM 推理是 burst 式的（推理时 GPU 高占用，等 Java 返回时 GPU 空闲），`nvidia-smi` 瞬时采样容易采到空闲窗口。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-plan-001b-stall-check.md"
+}

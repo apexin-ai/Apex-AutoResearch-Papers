@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "8489b5c14bc2a5c27f55",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "diag plan 008 v3 root cause",
+  "task_key": "worker_diag_plan-008-v3-root-cause_20260515T151506",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_plan-008-v3-root-cause_20260515T151506.log",
+    "occurrence": 1,
+    "bytes": 658669,
+    "sha256": "5a5d07080a4dcd094cfb43b623da27fd44c4ed127529a76c7f96b30e4ff9d7a8"
+  },
+  "statistics": {
+    "messages": 142,
+    "user_turns": 0,
+    "tool_calls": 51,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 37,
+      "tool_call": 51,
+      "tool_result": 51
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 142,
+      "chunks": [
+        {
+          "path": "8489b5c14bc2a5c27f55-part-0001.json",
+          "message_count": 132
+        },
+        {
+          "path": "8489b5c14bc2a5c27f55-part-0002.json",
+          "message_count": 10
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/diag-plan-008-v3-root-cause.md"
+}

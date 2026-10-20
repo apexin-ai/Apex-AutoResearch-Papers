@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c8b42004c7b0d6597747",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh minihack death bug fix",
+  "task_key": "worker_ssh_minihack-death-bug-fix_20260519T115954",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_minihack-death-bug-fix_20260519T115954_result.json",
+    "occurrence": 1,
+    "bytes": 5552,
+    "sha256": "5a0de53b74d9ceb4b90ab1aaa0c8f5072cebcf94204c8664b63bcacd1fa7cc93"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here's the full report:\n\n---\n\n```\n=== DEATH BUG FIX VERIFICATION ===\nCorridor-R3 det before fix: 3/5 died (BUGGY — all were timeouts with negative step penalty)\nCorridor-R3 det after fix:  0/5 died (CORRECT — end_status=0 for timeouts, end_status=2 for wins)\n\nFix applied to:\n  - minihack_episode_runner.py:155 — died = end_status == 1\n  - minihack_episode_runner.py:156 — goal_reached = end_status in (2, 3)\n  - minihack_det_agent.py:415-416 — same changes\n  Both files now include end_status in result dict.\n\n=== EPISODE DETAILS ===\n\n--- Room-15x15 det ---\nep0  seed=42  steps=14   score=+1.0  end_status=2  GOAL\nep1  seed=43  steps=14   score=+1.0  end_status=2  GOAL\nep2  seed=44  steps=14   score=+1.0  end_status=2  GOAL\nep3  seed=45  steps=14   score=+1.0  end_status=2  GOAL\nep4  seed=46  steps=14   score=+1.0  end_status=2  GOAL\n\n--- Room-15x15 internal ---\nep0  seed=42  steps=14   score=+1.0  end_status=2  GOAL  parse_fail=0/14\nep1  seed=43  steps=14   score=+1.0  end_status=2  GOAL  parse_fail=0/14\nep2  seed=44  steps=14   score=+1.0  end_status=2  GOAL  parse_fail=0/14\nep3  seed=45  steps=14   score=+1.0  end_status=2  GOAL  parse_fail=0/14\nep4  seed=46  steps=14   score=+1.0  end_status=2  GOAL  parse_fail=0/14\n\n--- Corridor-R3 det ---\nep0  seed=42  steps=500  score=-3.6  end_status=0  TIMEOUT\nep1  seed=43  steps=160  score=+1.0  end_status=2  GOAL\nep2  seed=44  steps=500  score=-3.8  end_status=0  TIMEOUT\nep3  seed=45  steps=500  score=-3.2  end_status=0  TIMEOUT\nep4  seed=46  steps=27   score=+1.0  end_status=2  GOAL\n\n--- Corridor-R3 internal ---\nep0  seed=42  steps=500  score=+0.0  end_status=0  TIMEOUT  parse_fail=0/500\nep1  seed=43  steps=500  score=-5.0  end_status=0  TIMEOUT  parse_fail=500/500\nep2  seed=44  steps=500  score=+0.0  end_status=0  TIMEOUT  parse_fail=0/500\nep3  seed=45  steps=500  score=+0.0  end_status=0  TIMEOUT  parse_fail=0/500\nep4  seed=46  steps=500  score=-5.0  end_status=0  TIMEOUT  parse_fail=0/500\n\n--- Corridor-R5 det ---\nep0  seed=42  steps=162  score=+1.0  end_status=2  GOAL\nep1  seed=43  steps=500  score=-3.7  end_status=0  TIMEOUT\nep2  seed=44  steps=500  score=-3.8  end_status=0  TIMEOUT\nep3  seed=45  steps=19   score=+1.0  end_status=2  GOAL\nep4  seed=46  steps=135  score=+1.0  end_status=2  GOAL\n\n--- Corridor-R5 internal ---\nep0  seed=42  steps=500  score=-5.0  end_status=0  TIMEOUT  parse_fail=0/500\nep1  seed=43  steps=500  score=-5.0  end_status=0  TIMEOUT  parse_fail=0/500\nep2  seed=44  steps=500  score=-5.0  end_status=0  TIMEOUT  parse_fail=0/500\nep3  seed=45  steps=500  score=-5.0  end_status=0  TIMEOUT  parse_fail=0/500\nep4  seed=46  steps=500  score=+0.0  end_status=0  TIMEOUT  parse_fail=0/500\n\n--- River det ---\nep0  seed=42  steps=350  score=-2.7  end_status=-1  TIMEOUT\nep1  seed=43  steps=350  score=+0.0  end_status=-1  TIMEOUT\nep2  seed=44  steps=350  score=+0.0  end_status=-1  TIMEOUT\nep3  seed=45  steps=350  score=+0.0  end_status=-1  TIMEOUT\nep4  seed=46  steps=350  score=+0.0  end_status=-1  TIMEOUT\n\n--- River internal ---\nep0  seed=42  steps=350  score=-3.5  end_status=-1  TIMEOUT  parse_fail=0/350\nep1  seed=43  steps=350  score=+0.0  end_status=-1  TIMEOUT  parse_fail=0/350\nep2  seed=44  steps=350  score=+0.0  end_status=-1  TIMEOUT  parse_fail=0/350\nep3  seed=45  steps=350  score=-3.5  end_status=-1  TIMEOUT  parse_fail=0/350\nep4  seed=46  steps=350  score=-3.5  end_status=-1  TIMEOUT  parse_fail=0/350\n\n=== ALL HARDER TASK PILOTS (post-fix) ===\nTask            | Strategy | N | Deaths | DR   | Wins | WR   | Avg Steps | Notes\n----------------|----------|---|--------|------|------|------|-----------|------\nRoom-15x15      | det      | 5 | 0      | 0%   | 5    | 100% | 14.0      | trivial\nRoom-15x15      | internal | 5 | 0      | 0%   | 5    | 100% | 14.0      | trivial\nCorridor-R3     | det      | 5 | 0      | 0%   | 2    | 40%  | 337.4     |\nCorridor-R3     | internal | 5 | 0      | 0%   | 0    | 0%   | 500.0     | ep1: 100% parse fail\nCorridor-R5     | det      | 5 | 0      | 0%   | 3    | 60%  | 263.2     |\nCorridor-R5     | internal | 5 | 0      | 0%   | 0    | 0%   | 500.0     |\nRiver           | det      | 5 | 0      | 0%   | 0    | 0%   | 350.0     | env caps at 350 steps; end_status=-1\nRiver           | internal | 5 | 0      | 0%   | 0    | 0%   | 350.0     | env caps at 350 steps; end_status=-1\n\n=== DECISION POINT SUMMARY ===\nTask            | Int WR | Det WR | Δ WR   | Verdict\n----------------|--------|--------|--------|--------\nRoom-15x15      | 100%   | 100%   | 0pp    | too easy (both solve in 14 steps)\nCorridor-R3     | 0%     | 40%    | -40pp  | feasible (clear det>int gap)\nCorridor-R5     | 0%     | 60%    | -60pp  | feasible (clear det>int gap)\nRiver           | 0%     | 0%     | 0pp    | too hard (neither solves; env 350-step cap, no end_status)\n```\n\nKey observations:\n- **Zero actual deaths across all 40 episodes** post-fix. Every non-win is a timeout. The old `total_reward < 0` check was 100% false positives.\n- **Death rate is useless as a metric** for these tasks. Win rate / goal_reached is the meaningful comparison.\n- **River** has an unusual env: 350-step hard cap, no `end_status` in info dict (returns -1). Neither agent can cross the river.\n- **Corridor-R3/R5** show the clearest det vs. internal gap (40-60pp win rate difference), making them ideal experiment tasks.\n- **Room-15x15** is trivially solved by both agents in 14 steps."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-minihack-death-bug-fix.md"
+}

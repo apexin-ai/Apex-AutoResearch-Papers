@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e5e3577196e1a5d2c104",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "research ref audit A",
+  "task_key": "worker_research_ref-audit-A_20260526T101518",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_ref-audit-A_20260526T101518_result.json",
+    "occurrence": 1,
+    "bytes": 943,
+    "sha256": "ecb2cf07614cfa9e08ecae18a65c20b2c4d9f93c3fb5191e90ac44f321a668fe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审核报告已写入 `artifacts/ref-audit/audit_worker_A.md`。\n\n**核查结果汇总：**\n\n- 68 条全部为真实论文，**0 篇幻觉引用**\n- **5 条严重错误（必须修正）：**\n  1. **toolace-2025** — 第一作者姓氏错误：\"Zhang, Weiwen\" → \"Liu, Weiwen\"\n  2. **amitai2024explaining** — 第二作者名字错误：\"Guy Septon\" → \"Yael Septon\"\n  3. **reflexion-2023** — 遗漏第三作者 Edward Berman\n  4. **agent-safetybench-2024** — 作者列表严重错误：含 2 名虚构作者、2 名错名，从 7 人膨胀为 9 人\n  5. **automix-2024** — 作者列表严重错误：多人姓名错误、含非作者 \"Niket Tandon\"、遗漏 7+ 共同作者\n- **6 条 Minor 问题**（作者顺序、标题缩写、venue 未更新等）\n- **2 处正文引用上下文描述不够精确**（axis-2026 和 cso-2026 在 related_work.tex 中的描述与论文实际内容有偏差）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-ref-audit-a.md"
+}

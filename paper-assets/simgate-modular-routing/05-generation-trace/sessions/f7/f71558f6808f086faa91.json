@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "f71558f6808f086faa91",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "exp r7n2 data size ablation v2",
+  "task_key": "worker_exp_r7n2-data-size-ablation-v2_20260516T020136",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_r7n2-data-size-ablation-v2_20260516T020136_result.json",
+    "occurrence": 1,
+    "bytes": 2311846,
+    "sha256": "4d3e48bc817f326f774ebe828fa10232da2ea506cbdc22e3285464bb48100f76"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2311866,
+                "serialized_sha256": "dba4817a594a96d17c089e77f38f21aec6cc4d9c80986441bb28a0bf6b707004",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-r7n2-data-size-ablation-v2.md"
+}

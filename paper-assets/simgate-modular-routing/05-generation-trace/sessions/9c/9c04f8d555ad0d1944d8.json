@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9c04f8d555ad0d1944d8",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "exp vllm verify resubmit",
+  "task_key": "worker_exp_vllm-verify-resubmit_20260513T071037",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_vllm-verify-resubmit_20260513T071037_result.json",
+    "occurrence": 1,
+    "bytes": 441,
+    "sha256": "5f66dc659b9cd73466cd61dfcdd9ae3926cc4202e9c415e9970433d4a73edca9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU1 并不空闲。当前状态：\n\n| GPU | PID | 任务 | 后端 |\n|-----|-----|------|------|\n| 0 | 20301 | boil, melt, change-the-state-of-matter-of | HF (--no_vllm) |\n| 1 | 55780 | chemistry-mix-paint-secondary-color, grow-plant | HF (--no_vllm) |\n\nGPU1 上的 PID 55780 正在用 HF 后端跑 mix-paint + grow-plant（正好是你要重提的任务）。\n\n需要先 kill 掉 55780 才能继续。要 kill 吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-vllm-verify-resubmit.md"
+}

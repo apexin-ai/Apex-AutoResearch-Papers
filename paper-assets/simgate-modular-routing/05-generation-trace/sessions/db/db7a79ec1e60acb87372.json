@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "db7a79ec1e60acb87372",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ops discussion tex data replace",
+  "task_key": "worker_ops_discussion-tex-data-replace_20260515T160147",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_discussion-tex-data-replace_20260515T160147_result.json",
+    "occurrence": 1,
+    "bytes": 860,
+    "sha256": "260860e3578f1443c6fb64a07d84eed3228b5806c8ae682a6e4b4e0ef8ee7aed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有副本已包含 N=300 正式数据，无需替换。\n\n**验证结果：**\n\n| 副本 | 位置 | N=300 数据 | pilot-50 残留 |\n|------|------|-----------|--------------|\n| 服务器 `docs/paper/` | ✅ 81.0%, 76.7%, 84.3%, McNemar p=0.079, 17/30/253 | 无 |\n| 服务器 `paper/` | ✅ 同上 | 无 |\n| 服务器 `paper/latex_build/` | ✅ 同上 | 无 |\n| 本地 `artifacts/_project/paper/latex/` | ✅ 同上（短版，与服务器一致） | 无 |\n| 本地 `docs/paper/` | ✅ 同上（扩展版，含 figure/table/更多段落） | 无 |\n\n注意：本地 `docs/paper/discussion.tex` 是扩展版本（44 行，含 `signal_reversal` 图、`cross-env` 表、Implications/Label imbalance/Penalty sensitivity 等段落），与服务器上的精简版（8 行，两段）内容不同，但两者的 N=300 数据均已正确。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-discussion-tex-data-replace.md"
+}

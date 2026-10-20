@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "ffa646769607e6c7c1c5",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "analysis r18 step mislabel distribution",
+  "task_key": "worker_analysis_r18-step-mislabel-distribution_20260519T151213",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r18-step-mislabel-distribution_20260519T151213.log",
+    "occurrence": 1,
+    "bytes": 621951,
+    "sha256": "e6df105c8f59888ed3ce58db002b3fdc7001e7f3bec3f8d89348bcb4015fcb9a"
+  },
+  "statistics": {
+    "messages": 133,
+    "user_turns": 0,
+    "tool_calls": 46,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 37,
+      "tool_call": 46,
+      "tool_result": 46,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 133,
+      "chunks": [
+        {
+          "path": "ffa646769607e6c7c1c5-part-0001.json",
+          "message_count": 129
+        },
+        {
+          "path": "ffa646769607e6c7c1c5-part-0002.json",
+          "message_count": 4
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-r18-step-mislabel-distribution.md"
+}

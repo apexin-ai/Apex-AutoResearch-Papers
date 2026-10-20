@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "9399fd11c0ad9719a3c0",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "code anon repo paper sync v2",
+  "task_key": "worker_code_anon-repo-paper-sync-v2_20260523T132925",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_anon-repo-paper-sync-v2_20260523T132925.log",
+    "occurrence": 1,
+    "bytes": 549774,
+    "sha256": "840bdb4975b5a9a0d2891301fe1023648c2721e29eefa31e4e88b3d10f4e85a8"
+  },
+  "statistics": {
+    "messages": 235,
+    "user_turns": 1,
+    "tool_calls": 74,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 79,
+      "tool_call": 74,
+      "tool_result": 74,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 1
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 144,
+      "chunks": [
+        {
+          "path": "9399fd11c0ad9719a3c0-part-0001.json",
+          "message_count": 144
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 91,
+      "chunks": [
+        {
+          "path": "9399fd11c0ad9719a3c0-part-0001.json",
+          "message_count": 36
+        },
+        {
+          "path": "9399fd11c0ad9719a3c0-part-0002.json",
+          "message_count": 55
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-anon-repo-paper-sync-v2.md"
+}

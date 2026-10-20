@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bdf8b75e87d7528a78d5",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "paper full draft audit",
+  "task_key": "worker_paper_full-draft-audit_20260514T144747",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_full-draft-audit_20260514T144747_result.json",
+    "occurrence": 1,
+    "bytes": 1017,
+    "sha256": "ef45825216c403b643d006048aee3494263f588ea760899e3f381db6c7687e7b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计报告已写入并注册。核心结论：\n\n**数字审计：100% 通过** — artifacts/ 目录中所有数字（Table 1、DAF、r/p、tie rate、router accuracy、labeling quality、MATH pilot）均与 registry 一致。trained-router 正确使用 -10.70（非 -12.84），tie rate 正确为 97.4%（非 98.2%）。\n\n**关键问题（P0）**：\n1. **两个目录严重分叉** — `docs/paper/` 有大量内容不在 `artifacts/` 中（更完整的 abstract、Rule-Based Baseline 子节、experiments 中 labeling quality 段、更详细的 router 分析）。两者用了不同 CI level（95% vs 90%）。需要合并后废弃 docs/。\n2. **discussion.tex 有 2 个 TODO 注释**（pilot-50→math-200-fixed 替换、ALFWorld 结果），math-200-fixed 在 56/200 处崩溃，暂无法替换。\n\n**P1 问题**：\n3. plan-013 labeling quality 在 Limitations 里而非 Conclusion（用户意图是\"入 conclusion\"）\n4. MATH pilot 72% 受 sandbox bug 影响（clean accuracy ~89%）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-full-draft-audit.md"
+}

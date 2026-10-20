@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ef788ddb4d807a4f38f3",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh fix tmux and submit seed123",
+  "task_key": "worker_ssh_fix-tmux-and-submit-seed123_20260518T080835",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix-tmux-and-submit-seed123_20260518T080835_result.json",
+    "occurrence": 1,
+    "bytes": 122,
+    "sha256": "2162e292d843701b889ee8170cb22a0f4065e193f60e92ad2569068461aa7c24"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "之前的 30s 等待已完成，但验证步骤已经在等待期间执行过了，实验正常运行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fix-tmux-and-submit-seed123.md"
+}

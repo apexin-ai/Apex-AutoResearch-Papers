@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8f0c8461d6e981bf7f91",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ops paper sync to server",
+  "task_key": "worker_ops_paper-sync-to-server_20260515T163307",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_paper-sync-to-server_20260515T163307_result.json",
+    "occurrence": 1,
+    "bytes": 348,
+    "sha256": "d576743d31b3d54c55edf29653c6dd852450ac83070267b2f124856a485b524d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "同步完成。汇总：\n\n- **差异文件**: 8/9 有差异（仅 `discussion.tex` 已一致），已全部覆盖同步\n- **备份**: 原文件保存在 `paper/backup_pre_sync/`\n- **编译**: pdflatex + bibtex 三遍编译成功，输出 6 页 PDF（247KB）\n- **引用**: 0 个 undefined citation\n- **latex_build/**: 已同步"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-paper-sync-to-server.md"
+}

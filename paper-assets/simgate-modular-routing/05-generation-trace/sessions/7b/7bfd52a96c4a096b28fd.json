@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7bfd52a96c4a096b28fd",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "analysis plan 012 pearson r",
+  "task_key": "worker_analysis_plan-012-pearson-r_20260514T054327",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan-012-pearson-r_20260514T054327_result.json",
+    "occurrence": 1,
+    "bytes": 906,
+    "sha256": "f55cf7036fc8530a21f3141c9a088695e6fcecb384ae921ab733cdc604a4c3cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n| 指标 | 值 |\n|------|-----|\n| **Pearson r** | **0.9698** |\n| **p-value** | **8.12 × 10⁻⁷** |\n| **n** | **11 tasks** |\n\nPer-task 数据点：\n\n| Task | DR_diff (int − det) | Δ_full |\n|------|---------------------|--------|\n| chemistry-mix | 0.200 | 21.80 |\n| find-animal | 0.250 | 26.65 |\n| find-non-living-thing | 0.000 | 9.58 |\n| freeze | 0.300 | 30.50 |\n| grow-fruit | 0.250 | 25.10 |\n| identify-life-stages-1 | 0.450 | 47.50 |\n| identify-life-stages-2 | 0.300 | 30.00 |\n| inclined-plane-determine-angle | 0.350 | 36.00 |\n| lifespan-longest-lived | 0.400 | 44.00 |\n| lifespan-longest-lived-then-shortest-lived | 0.350 | 40.80 |\n| measure-melting-point-unknown-substance | 0.300 | 30.05 |\n\ndeath_rate_diff 与 Δ_full 之间存在极强正相关（r = 0.97, p < 10⁻⁶）——death rate 差异越大的 task，整体性能差距也越大。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan-012-pearson-r.md"
+}

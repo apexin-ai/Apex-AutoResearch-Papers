@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e0c9b9c8d4220bcca176",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh minihack env setup",
+  "task_key": "worker_ssh_minihack-env-setup_20260519T111618",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_minihack-env-setup_20260519T111618_result.json",
+    "occurrence": 1,
+    "bytes": 1573,
+    "sha256": "974b37ae5ef0f7c0f7b313f8d70f65533d44d7fe3e357e1a95309e00b14d25aa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n---\n\n## 环境搭建完成\n\n### 服务器：westd-18266\n\n**环境激活命令：**\n```bash\nexport PATH=\"/root/miniconda3/bin:$PATH\" && source activate minihack\n```\n\n**已安装组件：**\n\n| 组件 | 版本 | 状态 |\n|------|------|------|\n| NLE | 0.9.0 | OK |\n| MiniHack | 0.1.4 | OK |\n| nle-language-wrapper | 0.2.0 | OK |\n| BALROG | 0.1.0 (editable) | OK |\n| balrog-nle | 0.9.0 | OK |\n| gym | 0.23.0 | OK |\n| openai | 2.37.0 | OK (用于连接 vLLM) |\n| vLLM | 0.21.0 | OK (在 base env) |\n\n**关键路径：**\n- Qwen 模型：`/root/autodl-tmp/models/Qwen2.5-7B-Instruct/`\n- BALROG 源码：`/root/autodl-tmp/BALROG/`\n- Requirements：`/root/autodl-tmp/simgate-modular-routing/requirements_minihack.txt`\n\n**5 个 Random Episode 结果 (MiniHack-Room-5x5-v0)：**\n\n| Episode | Steps | Reward | Status |\n|---------|-------|--------|--------|\n| 1 | 15 | 0.9 | WON |\n| 2 | 100 | -0.2 | DIED |\n| 3 | 100 | -0.3 | DIED |\n| 4 | 100 | -0.2 | DIED |\n| 5 | 19 | 1.0 | WON |\n\n**Text observation 质量：** 丰富，包含 message、language observation（方位描述）、cursor 位置、ASCII map。death signal (done=True) 可靠。\n\n**注意事项：**\n- vLLM 在 base env (Python 3.12) 中，需用 `VLLM_USE_FLASHINFER_SAMPLER=0` 启动\n- minihack env 通过 openai client 连接 vLLM server\n- BALROG 的 baba/textworld/minigrid 依赖未装（仅需 MiniHack 场景）\n- numpy 固定 <2.0（gym 0.23 兼容性要求）\n- setuptools 固定 70.3.0（pkg_resources 兼容性要求）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-minihack-env-setup.md"
+}

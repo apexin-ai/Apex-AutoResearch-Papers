@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c1360e153c5f0a849965",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code plan 002 router sft prep",
+  "task_key": "worker_code_plan-002-router-sft-prep_20260513T221215",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan-002-router-sft-prep_20260513T221215_result.json",
+    "occurrence": 1,
+    "bytes": 889,
+    "sha256": "80378e31db0f53d57e31d27a00c46d9dd4a833f6b84527be7946a7d5a11b1e1b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 通过。\n\n**Plan-002 准备完成，总结：**\n\n| 项目 | 状态 |\n|------|------|\n| `router_sft_train.py` 更新并部署到 westb-13313 | ✅ 506行，所有 imports OK |\n| 数据加载：支持 `--data_path`（新 sft_triples.jsonl）+ `--data_dir`（旧格式） | ✅ |\n| 标签映射：`internal-preferred` → `internal`, `det-preferred` → `deterministic`, `no-preference` 过滤 | ✅ |\n| Prompt 模板：Qwen3 ChatML 格式（`<\\|im_start\\|>system/user`） | ✅ |\n| 超参默认值：lr=2e-5, batch=32, max_seq_len=2048, epochs=3 | ✅ |\n| Qwen3-1.7B HuggingFace model ID | `Qwen/Qwen3-1.7B` |\n| Dry-run 验证 | ✅ 通过 |\n\nPlan-001b 数据收集完成后，启动训练命令：\n```bash\npython src/router_sft_train.py \\\n  --data_path results/plan_001b/sft_triples.jsonl \\\n  --class_weights auto \\\n  --upsample_minority\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-002-router-sft-prep.md"
+}

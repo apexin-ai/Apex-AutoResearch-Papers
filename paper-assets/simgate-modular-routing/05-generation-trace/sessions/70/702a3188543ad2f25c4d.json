@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "702a3188543ad2f25c4d",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code plan 004b prep",
+  "task_key": "worker_code_plan-004b-prep_20260514T010212",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan-004b-prep_20260514T010212_result.json",
+    "occurrence": 1,
+    "bytes": 1759,
+    "sha256": "a34068a342c4392e9fe36db87f91b31912eb506a35cf85fb5c34a87f5351916c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部检查完毕，汇总如下：\n\n---\n\n## 1. plan-002 代码验证：**PASS**\n\n| 文件 | 状态 |\n|------|------|\n| `src/death_aware_labeling.py` | `expand_input_dirs()` 在 L138，`--dry_run` 支持正常 |\n| `src/router_sft_eval.py` | 存在，imports 完整（torch, sklearn, peft, transformers） |\n| `scripts/launch_plan002.sh` | Step 1/2/3 完整（labeling → SFT training → standalone eval） |\n\n**dry-run 结果**：扫描 26 个 task 目录，145 episodes → 4386 SFT steps。分布：\n- det-preferred: 68 episodes / 2160 steps\n- internal-preferred: 1 episode / 30 steps\n- no-preference: 76 episodes / 2196 steps\n- 严重类别不均衡（internal 仅 1 episode），launch 脚本已配置 `--class_weights auto --upsample_minority`\n\n## 2. plan-004b launch 脚本：**已存在**\n\n路径：`scripts/launch_plan004b.sh`，包含：\n- Step 1: `ablation_data_converter.py` 将 plan-002 labels 转 implicit 格式（依赖 `results/plan_001b_labels/`）\n- Step 2: `ablation_implicit_1_7b.py train`（Qwen3-1.7B，gpu_id=1）\n- 前置依赖 `ablation_data_converter.py` 和 `ablation_implicit_1_7b.py` 两个源文件尚需确认是否已编写\n\n## 3. plan-001b 数据收集快照\n\n两个 tmux session 运行中：`plan-001b-gpu0-v2`、`plan-001b-gpu1`\n\n| task | episodes |\n|------|----------|\n| find-animal | 20 |\n| find-non-living-thing | 20 |\n| grow-fruit | 20 |\n| identify-life-stages-1 | 20 |\n| identify-life-stages-2 | **9** |\n| inclined-plane-determine-angle | 20 |\n| lifespan-longest-lived-then-shortest-lived | **17** |\n| **total** | **126** |\n\n5/7 tasks 已达 20 episodes；`identify-life-stages-2`（9）和 `lifespan-longest-lived-then-shortest-lived`（17）仍在收集中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-004b-prep.md"
+}

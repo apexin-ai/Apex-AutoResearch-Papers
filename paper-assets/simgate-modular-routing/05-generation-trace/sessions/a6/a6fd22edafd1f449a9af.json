@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a6fd22edafd1f449a9af",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "analysis 70b status check",
+  "task_key": "worker_analysis_70b-status-check_20260517T090518",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_70b-status-check_20260517T090518_result.json",
+    "occurrence": 1,
+    "bytes": 1164,
+    "sha256": "ad19ac0be083e95592dad4ba3c70d7a664b11c99f70656275cbc4e7133eb9a5f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n**实验状态：正在等待模型下载，尚未崩溃。**\n\n具体情况：\n\n| 项目 | 状态 |\n|------|------|\n| tmux session | 存活（`backbone-scaling-70b`），但 pane 内容为空（脚本在 sleep loop 中等待） |\n| 模型下载 | **进行中**，已下载 ~16GB，正在并行下载 11 个 shard（当前每个 shard 约 30-34% 完成） |\n| 下载速度 | ~1.4 MB/s，每个 shard ~3.7GB，预计还需 **~25-35 分钟** |\n| Episode 收集 | **尚未开始**（脚本在等待 11 个 shard 全部就位） |\n| GPU | 2x RTX 5090，完全空闲（0% 利用率，0MB 显存占用） |\n| 进程 | 下载进程（modelscope snapshot_download）和等待脚本（run_72b_episodes.sh 的 while loop）均正常运行 |\n\n**结论**：实验未崩溃，仍在正常运行中。`run_72b_episodes.sh` 每 30 秒检查 shard 数量，目前 0/11 个 shard 完成写入（正在下载中的文件在 `._____temp` 目录）。下载完成后脚本将自动启动 episode 收集（tp=2，2 卡推理）。\n\n如果 job tracker 显示 ANALYZING 是因为进程退出，那可能是误报——进程仍在运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-70b-status-check.md"
+}

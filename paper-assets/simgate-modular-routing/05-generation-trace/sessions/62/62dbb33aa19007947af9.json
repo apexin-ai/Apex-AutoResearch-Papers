@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "62dbb33aa19007947af9",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "exp r7n2 checkpoint rescue",
+  "task_key": "worker_exp_r7n2-checkpoint-rescue_20260516T034145",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_r7n2-checkpoint-rescue_20260516T034145_result.json",
+    "occurrence": 1,
+    "bytes": 578,
+    "sha256": "b6fa42f2745ccd3d9211dea15357a16d9698f2d292c6aed8671bf03b6837038e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**当前状态：**\n\n| 发现 | 详情 |\n|------|------|\n| Checkpoint 存活 | **全部丢失** — `results/ablation_data_size/` 为空 |\n| 执行操作 | 全部 12 组 retrain + dual eval |\n| 脚本修改 | 添加 `--scales` 参数支持并行分配 |\n| 并行策略 | GPU0: 25pct+100pct, GPU1: 50pct+75pct |\n\n脚本本身已有：\n- 每个 run 完成后立即写 `eval_results.json`（增量保存）\n- `_run_is_complete()` resume 逻辑（即使被 kill 也能接续）\n- step-level + episode-level 双套 eval\n\n等 ~4.5 分钟后检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-r7n2-checkpoint-rescue.md"
+}

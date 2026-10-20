@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "80713e1fb6c082265938",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh 7b main experiment per task",
+  "task_key": "worker_ssh_7b-main-experiment-per-task_20260517T222132",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_7b-main-experiment-per-task_20260517T222132_result.json",
+    "occurrence": 1,
+    "bytes": 805,
+    "sha256": "be67913124014efabdc3e9722fcdd45407987c7d59456e79d89d2aa29c659f47"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果写入 `artifacts/7b_main_per_task_death_rate.md`。\n\n**关键发现：**\n\n| 指标 | 值 |\n|------|----|\n| 7B overall DR | 42.9% (105/245) |\n| 7B death-prone aggregate (excl. find-non-living-thing) | **51.2%** (105/205) |\n| 7B DR range (death-prone tasks) | 45.0%–56.0% |\n\n**重要发现：** 同一文件中 paired 72B (deterministic) 的 death rate 仅 16.3%（40/245），远低于任务描述中提供的 72B DR 值（25%–50%）。**提供的\"72B DR\"可能来自 `results/backbone_72b/` 独立实验（不同 N），不是同一批 episodes 的 paired 数据。** 建议确认论文中应引用哪组 72B 数据作为对比基准。\n\n另外注意：每 task 实际 N=20（非预期的 22），find-non-living-thing N=40，lifespan-longest-lived N=25。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-7b-main-experiment-per-task.md"
+}

@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "9f12f1fae39c9e8a4231",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "infra alfworld counterfactual",
+  "task_key": "worker_infra_alfworld-counterfactual_20260514T132217",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_alfworld-counterfactual_20260514T132217.log",
+    "occurrence": 1,
+    "bytes": 693888,
+    "sha256": "2878475a3fdca58166202a1265a3c9afed0512c8a90a31e399af14f219132801"
+  },
+  "statistics": {
+    "messages": 241,
+    "user_turns": 0,
+    "tool_calls": 86,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 3,
+      "assistant": 64,
+      "tool_call": 86,
+      "tool_result": 86
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 241,
+      "chunks": [
+        {
+          "path": "9f12f1fae39c9e8a4231-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "9f12f1fae39c9e8a4231-part-0002.json",
+          "message_count": 61
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-alfworld-counterfactual.md"
+}

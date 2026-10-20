@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "beab220320886be81b49",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "eval cross model guided router",
+  "task_key": "worker_eval_cross-model-guided-router_20260516T152424",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_cross-model-guided-router_20260516T152424_result.json",
+    "occurrence": 1,
+    "bytes": 1669,
+    "sha256": "e11c8a0769f47caa2a46c058b2122671bae64a7a3caa85a484298ea1f02a4487"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。\n\n```\n=== Cross-Model Guided Router Results (Qwen→Llama) ===\n\nOverall:\n  Balanced accuracy: 100.00%\n  Det recall: 100.0%\n  Internal recall: 0.0% (n=0 int-preferred episodes)\n  Active classes: 1 / 2\n  Episodes evaluated: 24 / 70 (rest are no-preference)\n\nPer-task breakdown:\n  chemistry-mix                          route=deterministic  det=2  int=0  tie=8\n  freeze                                 route=deterministic  det=3  int=0  tie=7\n  grow-fruit                             route=deterministic  det=5  int=0  tie=5\n  identify-life-stages-1                 route=deterministic  det=2  int=0  tie=8\n  inclined-plane-determine-angle         route=deterministic  det=6  int=0  tie=4\n  lifespan-longest-lived                 route=deterministic  det=4  int=0  tie=6\n  measure-melting-point-unknown-substance route=deterministic  det=2  int=0  tie=8\n\nComparison:\n  Qwen in-sample:            62.92%\n  Qwen LOTO:                 62.92%\n  Cross-model (Qwen→Llama):  100.00%\n\n⚠ DEGENERATE CASE\n```\n\n**关键发现：** 这是一个退化评估。Llama 数据中 0 个 int-preferred episode（7 个 task 全都是 det-preferred 或 no-preference），Qwen 规则把所有 task 都 route 到 deterministic → 不可能出错。100% 反映的是 trivial correctness，不是真正的跨模型迁移判别力。\n\n实质意义：Llama-3.1-8B 在这些 task 上表现出和 Qwen 相同的模式——internal mode 经常死亡，deterministic 从不劣于 internal。死亡风险是跨模型的 task-level 属性，但评估需要包含 `find-non-living-thing` 等 safe task 才能真正测试路由判别力。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-cross-model-guided-router.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ada4c064698e50fe6bb6",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "diagnose plan 001b gpu1 extra",
+  "task_key": "worker_diagnose_plan-001b-gpu1-extra_20260514T020400",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_plan-001b-gpu1-extra_20260514T020400_result.json",
+    "occurrence": 1,
+    "bytes": 1383,
+    "sha256": "fe70097e2474e9406050a2b216441e1556e2dfc005940443790ce9841574264d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n**plan-001b-gpu1-extra 并未失败——当前正在运行。**\n\n### 进程状态\n\n| GPU | 实验 | PID | 启动时间 | 任务 |\n|-----|------|-----|---------|------|\n| GPU 0 | plan-001b-gpu0-v3 | 544511 | 09:52 | `lifespan-longest-lived` ep15-19 (5 eps) |\n| GPU 1 | plan-001b-gpu1-extra | 557852 | 09:59 | `find-non-living-thing` ep21-39 (19 eps) |\n\n两个实验都有配套的 vLLM::EngineCore 和 Java/ScienceWorld 进程在跑。\n\n### GPU 状态\n\n| GPU | 显存占用 | 利用率 |\n|-----|---------|--------|\n| GPU 0 (RTX 5090) | 28013 / 32607 MiB | 100% |\n| GPU 1 (RTX 5090) | 28013 / 32607 MiB | 100% |\n\n### find-non-living-thing 数据\n\n- `episodes.jsonl`: **22 行**\n- `episode_summary.jsonl`: ep5-21（17 条新采集记录）\n- `collection_meta.json`: reused 5 eps (from prescreening) + 15 new = 20 eps 为初始批次\n- 当前运行已完成 **ep21**（出现在 summary 中），正在继续采集 ep22-39\n- **已完成总计: 22 episodes (ep0-21)**，目标 40 eps，还需 18 eps\n\n### 关于 EXIT_CODE=129\n\n之前报告的 SIGHUP 退出应该来自更早的一次运行。当前实例是重启后的新进程（PID 557852，09:59 启动），日志显示 vLLM 推理正常进行中，无错误。\n\n### 结论\n\n不需要重启实验——两个 GPU 都在满载跑任务。等当前 run 完成即可。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-plan-001b-gpu1-extra.md"
+}

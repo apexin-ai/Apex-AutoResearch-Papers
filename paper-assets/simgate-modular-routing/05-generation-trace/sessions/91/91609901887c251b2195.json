@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "91609901887c251b2195",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh fnlt v2 exit check",
+  "task_key": "worker_ssh_fnlt-v2-exit-check_20260514T030948",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fnlt-v2-exit-check_20260514T030948_result.json",
+    "occurrence": 1,
+    "bytes": 685,
+    "sha256": "561286ce79fe75128985ef57b72c6b709bd2a30f5241266ddfb6703ccf159a09"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告：plan-001b-fnlt-v2 — **SUCCESS**\n\n| 项目 | 结果 |\n|------|------|\n| **退出码** | 129 (SIGHUP) @ 2026-05-14T01:51:57Z — 日志显示 vLLM engine 正常 shutdown，episode 收集摘要正常输出后退出，SIGHUP 来自 tmux/终端断开，非异常 |\n| **episodes.jsonl** | **40 行，ep 0-39 全部存在，无缺失，无重复** |\n| **日志尾部摘要** | `Episodes: 19 (start=21)`, `det-pref=8, int-pref=0, no-pref=11`, `Avg score gap (non-tie): 40.50` |\n| **GPU1** | 0 MiB / 0% — 空闲可用 |\n| **GPU0** | PID 699929 占用 28004 MiB（其他任务） |\n\n**结论：success。** 40 个 episode 完整收集，GPU1 已释放。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fnlt-v2-exit-check.md"
+}

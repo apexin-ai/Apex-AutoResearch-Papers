@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fd722662ab557701f963",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ops kill vllm and sync paper",
+  "task_key": "worker_ops_kill-vllm-and-sync-paper_20260514T174712",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-vllm-and-sync-paper_20260514T174712_result.json",
+    "occurrence": 1,
+    "bytes": 651,
+    "sha256": "5874134b8801e2953d9b08d47d4f4a107235d41a537bf49e81d8312d8183db00"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译完成。结果：\n\n- **undefined references: 0** — 全部引用解析成功\n- **总页数: 6 页** — 符合预期（4 正文 + 1 references/limitations + 1 appendix）\n- **Warnings (3个)**:\n  1. `figures/fig1_daf_scatter.pdf` not found — 缺少图表文件，正文引用了但未上传\n  2. `Linenumber reference failed` — lineno 包的行号引用问题（常见于 ACL 模板，不影响最终输出）\n  3. `'h' float specifier changed to 'ht'` — LaTeX 自动调整浮动位置，正常行为\n\n只有第 1 个 warning 需要关注：图表文件 `fig1_daf_scatter.pdf` 缺失。其余两个是无害的。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-vllm-and-sync-paper.md"
+}

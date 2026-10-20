@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "58a107d7238538d1ae8a",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code llama 70b download verify",
+  "task_key": "worker_code_llama-70b-download-verify_20260523T234706",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama-70b-download-verify_20260523T234706_result.json",
+    "occurrence": 1,
+    "bytes": 703,
+    "sha256": "ee0c4b9346f4aac98c97d73ff2bb2e21b50533d871b49e53742ef949c62a3f26"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**总结：**\n- **下载**：首次下载缺失 model-00002、model-00008 等文件，补运行 `snapshot_download` 后修复，9/9 safetensors + 全部配置文件齐全，共 38GB\n- **vLLM**：经过 4 次尝试（前 3 次因残留进程占 GPU 或 CUDA graph 冲突失败），最终用 `--enforce-eager --gpu-memory-utilization 0.85 --quantization awq_marlin` 成功启动，端口 8002，占用 83.6GB/97.9GB GPU 内存\n- **推理测试**：通过，回答正确\n- **Episode 脚本**：现有脚本针对 Qwen-72B，使用 vLLM Python API 直接加载，不走 HTTP。如需用 Llama-70B 收集 episodes 需修改 `--model_path`\n- **vLLM 进程保持运行**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-llama-70b-download-verify.md"
+}

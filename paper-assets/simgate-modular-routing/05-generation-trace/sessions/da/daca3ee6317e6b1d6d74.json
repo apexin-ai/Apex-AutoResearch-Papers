@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "daca3ee6317e6b1d6d74",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh 72b parallel cron resolve",
+  "task_key": "worker_ssh_72b-parallel-cron-resolve_20260517T215534",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_72b-parallel-cron-resolve_20260517T215534_result.json",
+    "occurrence": 1,
+    "bytes": 474,
+    "sha256": "9247bb3a25109801d77953a1e03f681a659c54ec9db4505d28274a4d58388ba2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**诊断结论**：backbone-scaling-70b-parallel → **SUCCESS (DONE)**\n\n- **cuda:0** (PID 321045): 崩溃于 vLLM `EngineDeadError`，但已收集部分数据\n- **cuda:2** (PID 321159): 正常完成 2 个 task\n- **cuda:1** (PID 69734): 仍存活，可能在做剩余补充\n- **数据**: 7/7 tasks 均 ≥20 episodes（总 183 eps，部分重复收集可后续去重）\n- Registry 已更新 status=DONE, conclusion=success\n- Cron 已删除"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-72b-parallel-cron-resolve.md"
+}

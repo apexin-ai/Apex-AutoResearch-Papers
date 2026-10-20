@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e6d849917dfd5a7d8320",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "analyze grounding prompt ablation v2",
+  "task_key": "worker_analyze_grounding-prompt-ablation-v2_20260518T220637",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_grounding-prompt-ablation-v2_20260518T220637_result.json",
+    "occurrence": 1,
+    "bytes": 846,
+    "sha256": "4d9dcc038beb2792eb93e27162cc0a5f4b8da79beba3586af40583edde9b5ec4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**实验仍在运行中，尚未退出。**\n\n- 进程 PID 168847 处于活跃状态（CPU 16.8%）\n- tmux session `grounding-prompt-ablation` 仍存在\n- 启动时间：May 19 06:01\n- 当前进度：chemistry-mix 的 13/20 episodes（第 1/10 个 task）\n- 已完成的 13 个 episode 全部 death=false\n\n`~/runs/simgate-modular-routing/grounding-prompt-ablation-v2.log` 中的 `EXIT_CODE=0` 是 registry sync 写入的，不是实验退出码。\n\n**预估剩余时间**：每个 episode 约 25-30s，剩余 ~187 episodes，约 80-90 分钟完成。\n\n**初步观察**（仅基于 chemistry-mix 前 13 episodes）：\n- Death rate: 0/13 = 0%（baseline chemistry-mix 的 DR 需要对比）\n- 但仅 1 个 task 的部分数据，不足以下结论\n\n建议等实验完成后再分析。需要我设置定时检查吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-grounding-prompt-ablation-v2.md"
+}

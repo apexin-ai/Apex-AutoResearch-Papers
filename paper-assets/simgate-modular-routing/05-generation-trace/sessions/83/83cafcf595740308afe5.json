@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "83cafcf595740308afe5",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "research check tex math data",
+  "task_key": "worker_research_check-tex-math-data_20260517T145024",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_check-tex-math-data_20260517T145024_result.json",
+    "occurrence": 1,
+    "bytes": 2837,
+    "sha256": "4b35041c60d91290460462e5c1760fb5b8cddb858c59090744734fa8b4f0c511"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。以下是所有 MATH 相关引用的逐条结果。\n\n---\n\n## `docs/paper/`（最新版本）— 全部正确\n\n| 文件:行号 | 当前值 | 正确? |\n|---|---|---|\n| `docs/paper/abstract.tex:2` | N=795, p=0.81 | **Y** |\n| `docs/paper/introduction.tex:24` | N=795, 73.5% vs 73.0%, p=0.81 | **Y** |\n| `docs/paper/introduction.tex:35` | N=795, p=0.81 | **Y** |\n| `docs/paper/experiments.tex:32` | N=795, +0.5pp, p=0.81 | **Y** |\n| `docs/paper/experiments.tex:50` | MATH & 795 (表格行) | **Y** |\n| `docs/paper/experiments.tex:54` | caption 提及 MATH balanced labels | **Y** |\n| `docs/paper/experiments.tex:61` | N=795, labels balanced (95:107) | **Y** |\n| `docs/paper/experiments.tex:65` | summary 段, 95:107 | **Y** |\n| `docs/paper/discussion.tex:5` | p=0.81 | **Y** |\n| `docs/paper/conclusion.tex:3` | \"no routing signal\" (无具体数值) | **Y** |\n| `docs/paper/method.tex:39` | 仅提及 MATH 名称 | **Y** |\n| `docs/paper/main.tex:35` | Limitations 段, 无旧数据 | **Y** |\n\n---\n\n## `artifacts/_project/paper/latex/`（旧版本）— 3 处引用旧数据\n\n| 文件:行号 | 当前值 | 正确? |\n|---|---|---|\n| `latex/discussion.tex:5` | **N=300, 81.0% vs 76.7% (+4.3pp), p=0.079** | **N** |\n| `latex/conclusion.tex:3` | **N=50 (\"preliminary MATH pilot 50 problems\")** | **N** |\n| `latex/main.tex:28` | **N=50, 80% vs 72%, 88% no-pref** | **N** |\n\n---\n\n## `artifacts/_project/paper/`（根目录版本）— 1 处旧数据\n\n| 文件:行号 | 当前值 | 正确? |\n|---|---|---|\n| `cross_env_summary_table.tex:11` | **MATH & 300** (N=300, 5.7%, 10.0%, 84.3%) | **N** |\n| `conclusion.tex:5` | 仅提及 MATH 作为 future work | **Y** |\n| `abstract.tex:2` | 无 MATH 引用 | **Y** |\n\n---\n\n## `artifacts/dream_reports/`（自动生成草稿）— 非正式论文，数据均为虚构\n\n| 文件:行号 | 值 | 备注 |\n|---|---|---|\n| `best/paper.tex:248` | 71.4% vs 58.2%, N=500 | dream report |\n| `median/paper.tex:254,269` | n=500 | dream report |\n| `worst/paper.tex:243` | 提及 MATH 作 future work | dream report |\n\n---\n\n## 总结\n\n**`docs/paper/`（最新主版本）：12 处 MATH 引用全部正确，均使用 N=795 / +0.5pp / p=0.81。**\n\n**仍引用旧数据的位置（4 处）：**\n\n1. **`artifacts/_project/paper/latex/discussion.tex:5`** — N=300, +4.3pp, p=0.079\n2. **`artifacts/_project/paper/latex/conclusion.tex:3`** — N=50\n3. **`artifacts/_project/paper/latex/main.tex:28`** — N=50, 80% vs 72%\n4. **`artifacts/_project/paper/cross_env_summary_table.tex:11`** — N=300\n\n这 4 处均在 `artifacts/_project/paper/` 路径下（历史版本），不在 `docs/paper/`（当前主版本）中。如果 `artifacts/_project/paper/` 仍会被引用或编译，需要更新；如果仅作归档，可忽略。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-check-tex-math-data.md"
+}

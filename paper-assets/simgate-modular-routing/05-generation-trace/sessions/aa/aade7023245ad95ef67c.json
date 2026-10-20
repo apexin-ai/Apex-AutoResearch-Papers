@@ -1,0 +1,729 @@
+{
+  "schema_version": "1.0",
+  "id": "aade7023245ad95ef67c",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "paper related work expansion",
+  "task_key": "worker_paper_related-work-expansion_20260515T101416",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_related-work-expansion_20260515T101416.log",
+    "occurrence": 1,
+    "bytes": 55115,
+    "sha256": "ccf5abd81ff113675405dcb96e3aedd6a65c2b89e0d9925970e1a9d8803ec954"
+  },
+  "statistics": {
+    "messages": 14,
+    "user_turns": 0,
+    "tool_calls": 3,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 4,
+      "tool_call": 3,
+      "tool_result": 3,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+                "session_id": "2e772352-b537-4f05-916f-93da1b428592",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "b33b080b-b58a-413d-aaeb-37ab8e3b0f81",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778844600,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "33ae304f-2483-4b41-8366-caca8d64709c",
+                "session_id": "2e772352-b537-4f05-916f-93da1b428592"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me read the current related work and bib file first."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e772352-b537-4f05-916f-93da1b428592",
+            "uuid": "d9890a88-998b-4eaf-8ba1-09e8f5bb2b51",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Hht5QYFDShBemzS29Dg4ak",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11678,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11678
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01ExuetmWx4sEiLgHFZR3F4K",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/related_work.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e772352-b537-4f05-916f-93da1b428592",
+            "uuid": "01324b52-e432-4c7c-a744-880ccfb2b326",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Hht5QYFDShBemzS29Dg4ak",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11678,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11678
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T10:14:29.891Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01ExuetmWx4sEiLgHFZR3F4K",
+              "type": "tool_result",
+              "content": "1\t\\section{Related Work}\n2\t\n3\t\\paragraph{Tool-Use Learning.}\n4\tToolformer \\cite{toolformer-2024}, ToolkenGPT \\cite{toolkengpt-2023}, ART \\cite{art-2023}, Chameleon \\cite{chameleon-2024}, and ReTool \\cite{retool-2026} learn tool-use policies via self-supervised, embedding-based, or RL approaches.\n5\tWe generate labels via \\emph{episode-level counterfactual analysis}, framing routing as \\emph{catastrophic failure prevention}.\n6\t\n7\t\\paragraph{Adaptive Computation.}\n8\tCogRouter \\cite{cogrouter-2026}, ARES \\cite{ares-2026}, and Mixture-of-Recursions \\cite{mixture-of-recursions-2025} route \\emph{how much} computation; MTRouter \\cite{mtrouter-2026} routes \\emph{which model}. We route \\emph{which modality} and find death avoidance accounts for ${\\sim}90\\%$ of routing signal at $P{=}100$.\n9\t\n10\t\\paragraph{World Model Routing.}\n11\tITP \\cite{itp-2026} and Dyna-Think \\cite{dynathink-2025} route to approximate world models that inherit hallucination failures; our deterministic modality provides exact transitions, mattering almost exclusively for death avoidance.\n12\t\n13\t\\paragraph{Agent Frameworks.}\n14\tReAct \\cite{react-2023} serves as our internal-reasoning baseline; ALFWorld \\cite{alfworld-2021} provides a complementary text-based benchmark. We analyze \\emph{when} reasoning should yield to deterministic computation, connecting to safe RL \\citep{garcia2015comprehensive}.\n15\t\n16\t\\paragraph{Counterfactual Evaluation in RL.}\n17\tCounterfactual reasoning has been applied to explain RL agent behavior post-hoc---comparing observed actions against hypothetical alternatives \\cite{olson2021counterfactual,gajcin2023counterfactual,amitai2024explaining}. Our approach differs fundamentally: rather than explaining a fixed policy, we execute two complete episodes under different routing strategies, producing prospective paired comparisons that isolate the routing signal before any router is trained.\n18\t\n19\t\\paragraph{Concurrent Work.}\n20\tConcurrent studies examine complementary aspects: cognitive illusions driving tool overuse \\cite{tool-overuse-illusion-2026}, hidden-state encoding of tool-call decisions \\cite{when2tool-2026}, a ``tool-use tax'' where tools are not always beneficial \\cite{tool-use-tax-2026}, and necessity/utility/affordability evaluation \\cite{to-call-or-not-2026}. Our death avoidance decomposition provides concrete quantification---${\\sim}90\\%$ of routing signal at $P{=}100$ stems from catastrophic-failure prevention---grounding these frameworks in interactive-environment evidence."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2e772352-b537-4f05-916f-93da1b428592",
+            "uuid": "54d79b54-3c5e-4b94-b973-4357160120b9",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/related_work.tex",
+                "content": "\\section{Related Work}\n\n\\paragraph{Tool-Use Learning.}\nToolformer \\cite{toolformer-2024}, ToolkenGPT \\cite{toolkengpt-2023}, ART \\cite{art-2023}, Chameleon \\cite{chameleon-2024}, and ReTool \\cite{retool-2026} learn tool-use policies via self-supervised, embedding-based, or RL approaches.\nWe generate labels via \\emph{episode-level counterfactual analysis}, framing routing as \\emph{catastrophic failure prevention}.\n\n\\paragraph{Adaptive Computation.}\nCogRouter \\cite{cogrouter-2026}, ARES \\cite{ares-2026}, and Mixture-of-Recursions \\cite{mixture-of-recursions-2025} route \\emph{how much} computation; MTRouter \\cite{mtrouter-2026} routes \\emph{which model}. We route \\emph{which modality} and find death avoidance accounts for ${\\sim}90\\%$ of routing signal at $P{=}100$.\n\n\\paragraph{World Model Routing.}\nITP \\cite{itp-2026} and Dyna-Think \\cite{dynathink-2025} route to approximate world models that inherit hallucination failures; our deterministic modality provides exact transitions, mattering almost exclusively for death avoidance.\n\n\\paragraph{Agent Frameworks.}\nReAct \\cite{react-2023} serves as our internal-reasoning baseline; ALFWorld \\cite{alfworld-2021} provides a complementary text-based benchmark. We analyze \\emph{when} reasoning should yield to deterministic computation, connecting to safe RL \\citep{garcia2015comprehensive}.\n\n\\paragraph{Counterfactual Evaluation in RL.}\nCounterfactual reasoning has been applied to explain RL agent behavior post-hoc---comparing observed actions against hypothetical alternatives \\cite{olson2021counterfactual,gajcin2023counterfactual,amitai2024explaining}. Our approach differs fundamentally: rather than explaining a fixed policy, we execute two complete episodes under different routing strategies, producing prospective paired comparisons that isolate the routing signal before any router is trained.\n\n\\paragraph{Concurrent Work.}\nConcurrent studies examine complementary aspects: cognitive illusions driving tool overuse \\cite{tool-overuse-illusion-2026}, hidden-state encoding of tool-call decisions \\cite{when2tool-2026}, a ``tool-use tax'' where tools are not always beneficial \\cite{tool-use-tax-2026}, and necessity/utility/affordability evaluation \\cite{to-call-or-not-2026}. Our death avoidance decomposition provides concrete quantification---${\\sim}90\\%$ of routing signal at $P{=}100$ stems from catastrophic-failure prevention---grounding these frameworks in interactive-environment evidence.",
+                "numLines": 20,
+                "startLine": 1,
+                "totalLines": 20
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01X5sK6XjLx8ciPZW68Z2H64",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/references.bib"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e772352-b537-4f05-916f-93da1b428592",
+            "uuid": "e78ef975-2bcd-4833-ab5e-ffa8b85ca21f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Hht5QYFDShBemzS29Dg4ak",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11678,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11678
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T10:14:33.516Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01X5sK6XjLx8ciPZW68Z2H64",
+              "type": "tool_result",
+              "content": "1\t@inproceedings{scienceworld-2022,\n2\t  title={ScienceWorld: Is Your Agent Smarter Than a 5th Grader?},\n3\t  author={Wang, Ruoyao and Jansen, Peter and C\\^{o}t\\'{e}, Marc-Alexandre and Ammanabrolu, Prithviraj},\n4\t  booktitle={Proceedings of the 2022 Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n5\t  year={2022}\n6\t}\n7\t\n8\t@inproceedings{react-2023,\n9\t  title={ReAct: Synergizing Reasoning and Acting in Language Models},\n10\t  author={Yao, Shunyu and Zhao, Jeffrey and Yu, Dian and Du, Nan and Shafran, Izhak and Narasimhan, Karthik and Cao, Yuan},\n11\t  booktitle={International Conference on Learning Representations (ICLR)},\n12\t  year={2023}\n13\t}\n14\t\n15\t@inproceedings{toolformer-2024,\n16\t  title={Toolformer: Language Models Can Teach Themselves to Use Tools},\n17\t  author={Schick, Timo and Dwivedi-Yu, Jane and Dess\\`{i}, Roberto and Raileanu, Roberta and Lomeli, Maria and Hambro, Eric and Zettlemoyer, Luke and Cancedda, Nicola and Scialom, Thomas},\n18\t  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n19\t  year={2023}\n20\t}\n21\t\n22\t@article{art-2023,\n23\t  title={ART: Automatic Multi-step Reasoning and Tool-use for Large Language Models},\n24\t  author={Paranjape, Bhargavi and Lundberg, Scott and Singh, Sameer and Hajishirzi, Hannaneh and Zettlemoyer, Luke and Ribeiro, Marco Tulio},\n25\t  journal={arXiv preprint arXiv:2303.09014},\n26\t  year={2023}\n27\t}\n28\t\n29\t@inproceedings{chameleon-2024,\n30\t  title={Chameleon: Plug-and-Play Compositional Reasoning with Large Language Models},\n31\t  author={Lu, Pan and Peng, Baolin and Cheng, Hao and Galley, Michel and Chang, Kai-Wei and Wu, Ying Nian and Zhu, Song-Chun and Gao, Jianfeng},\n32\t  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n33\t  year={2023}\n34\t}\n35\t\n36\t@article{retool-2026,\n37\t  title={ReTool: Reinforcement Learning for Strategic Tool Use in LLMs},\n38\t  author={Feng, Jiazhan and others},\n39\t  journal={arXiv preprint arXiv:2504.11536},\n40\t  year={2025}\n41\t}\n42\t\n43\t@article{cogrouter-2026,\n44\t  title={Think Fast and Slow: Step-Level Cognitive Depth Adaptation for LLM Agents},\n45\t  author={Yang, Ruihan and others},\n46\t  journal={arXiv preprint arXiv:2602.12662},\n47\t  year={2026}\n48\t}\n49\t\n50\t@article{ares-2026,\n51\t  title={ARES: Adaptive Reasoning Effort Selection for Efficient LLM Agents},\n52\t  author={Yang, Jingbo and others},\n53\t  journal={arXiv preprint arXiv:2603.07915},\n54\t  year={2026}\n55\t}\n56\t\n57\t@inproceedings{mixture-of-recursions-2025,\n58\t  title={Mixture-of-Recursions: Learning Dynamic Recursive Depths for Adaptive Token-Level Computation},\n59\t  author={Bae, Sangmin and others},\n60\t  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n61\t  year={2025}\n62\t}\n63\t\n64\t@inproceedings{mtrouter-2026,\n65\t  title={MTRouter: Cost-Aware Multi-Turn LLM Routing with History-Model Joint Embeddings},\n66\t  author={Zhang, Yiqun and others},\n67\t  booktitle={Proceedings of the Annual Meeting of the Association for Computational Linguistics (ACL)},\n68\t  year={2026}\n69\t}\n70\t\n71\t@article{itp-2026,\n72\t  title={Imagine-then-Plan: Agent Learning from Adaptive Lookahead with World Models},\n73\t  author={Liu, Youwei and others},\n74\t  journal={arXiv preprint arXiv:2601.08955},\n75\t  year={2026}\n76\t}\n77\t\n78\t@article{dynathink-2025,\n79\t  title={Dyna-Think: Synergizing Reasoning, Acting, and World Model Simulation in AI Agents},\n80\t  author={Yu, Xiao and others},\n81\t  journal={arXiv preprint arXiv:2506.00320},\n82\t  year={2025}\n83\t}\n84\t\n85\t@article{tool-overuse-illusion-2026,\n86\t  title={The Tool-Overuse Illusion: Why Does {LLM} Prefer External Tools over Internal Knowledge?},\n87\t  author={Zeng, Yirong and You, Shen and Liu, Yufei and Du, Qunyao and Ding, Xiao and Hou, Yutai and Wang, Yuxian and Ning, Wu and Song, Haonan and Tu, Dandan and Cai, Bibo and Liu, Ting},\n88\t  journal={arXiv preprint arXiv:2604.19749},\n89\t  year={2026}\n90\t}\n91\t\n92\t@article{when2tool-2026,\n93\t  title={{LLM} Agents Already Know When to Call Tools -- Even Without Reasoning},\n94\t  author={Sun, Chung-En and Liu, Linbo and Yan, Ge and Wang, Zimo and Weng, Tsui-Wei},\n95\t  journal={arXiv preprint arXiv:2605.09252},\n96\t  year={2026}\n97\t}\n98\t\n99\t@article{tool-use-tax-2026,\n100\t  title={Are Tools All We Need? Unveiling the Tool-Use Tax in {LLM} Agents},\n101\t  author={Zhang, Kaituo and Xiong, Zhen and Zhong, Mingyu and Jiang, Zhimeng and Yuan, Zhouyuan and Li, Zhecheng and Lin, Ying},\n102\t  journal={arXiv preprint arXiv:2605.00136},\n103\t  year={2026}\n104\t}\n105\t\n106\t@article{to-call-or-not-2026,\n107\t  title={To Call or Not to Call: A Framework to Assess and Optimize {LLM} Tool Calling},\n108\t  author={Wu, Qinyuan and Das, Soumi and Amani, Mahsa and Nag, Arijit and Lee, Seungeon and Gummadi, Krishna P. and Ravichander, Abhilasha and Zafar, Muhammad Bilal},\n109\t  journal={arXiv preprint arXiv:2605.00737},\n110\t  year={2026}\n111\t}\n112\t\n113\t@inproceedings{dagger-2011,\n114\t  title={A Reduction of Imitation Learning and Structured Prediction to No-Regret Online Learning},\n115\t  author={Ross, St\\'{e}phane and Gordon, Geoffrey J and Bagnell, Drew},\n116\t  booktitle={Proceedings of the International Conference on Artificial Intelligence and Statistics (AISTATS)},\n117\t  year={2011}\n118\t}\n119\t\n120\t@inproceedings{toolkengpt-2023,\n121\t  title={ToolkenGPT: Augmenting Frozen Language Models with Massive Tools via Tool Embeddings},\n122\t  author={Hao, Shibo and Liu, Tianyang and Wang, Zhen and Hu, Zhiting},\n123\t  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n124\t  year={2023}\n125\t}\n126\t\n127\t@inproceedings{alfworld-2021,\n128\t  title={ALFWorld: Aligning Text and Embodied Environments for Interactive Learning},\n129\t  author={Shridhar, Mohit and Yuan, Xingdi and C\\^{o}t\\'{e}, Marc-Alexandre and Bisk, Yonatan and Trischler, Adam and Hausknecht, Matthew},\n130\t  booktitle={International Conference on Learning Representations (ICLR)},\n131\t  year={2021}\n132\t}\n133\t\n134\t@article{garcia2015comprehensive,\n135\t  title={A Comprehensive Survey on Safe Reinforcement Learning},\n136\t  author={Garc\\'{i}a, Javier and Fern\\'{a}ndez, Fernando},\n137\t  journal={Journal of Machine Learning Research},\n138\t  volume={16},\n139\t  number={1},\n140\t  pages={1437--1480},\n141\t  year={2015}\n142\t}\n143\t\n144\t@article{voyager-2023,\n145\t  title={Voyager: An Open-Ended Embodied Agent with Large Language Models},\n146\t  author={Wang, Guanzhi and Xie, Yuqi and Jiang, Yunfan and Mandlekar, Ajay and Xiao, Chaowei and Zhu, Yuke and Fan, Linxi and Anandkumar, Anima},\n147\t  journal={arXiv preprint arXiv:2305.16291},\n148\t  year={2023}\n149\t}\n150\t\n151\t@inproceedings{amitai2024explaining,\n152\t  title={Explaining Reinforcement Learning Agents through Counterfactual Action Outcomes},\n153\t  author={Amitai, Yotam and Septon, Guy and Amir, Ofra},\n154\t  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},\n155\t  year={2024}\n156\t}\n157\t\n158\t@inproceedings{gajcin2023counterfactual,\n159\t  title={Counterfactual Explanations for Reinforcement Learning Agents},\n160\t  author={Gajcin, Jasmina},\n161\t  booktitle={Proceedings of the International Conference on Autonomous Agents and Multiagent Systems (AAMAS)},\n162\t  year={2023}\n163\t}\n164\t\n165\t@article{olson2021counterfactual,\n166\t  title={Counterfactual State Explanations for Reinforcement Learning Agents via Generative Deep Learning},\n167\t  author={Olson, Matthew L. and Khanna, Roli and Neal, Lawrence and Li, Fuxin and Wong, Weng-Keen},\n168\t  journal={Artificial Intelligence},\n169\t  volume={295},\n170\t  pages={103455},\n171\t  year={2021}\n172\t}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2e772352-b537-4f05-916f-93da1b428592",
+            "uuid": "250211b1-0d14-46cc-bc3f-57729b82ec4c",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/references.bib",
+                "content": "@inproceedings{scienceworld-2022,\n  title={ScienceWorld: Is Your Agent Smarter Than a 5th Grader?},\n  author={Wang, Ruoyao and Jansen, Peter and C\\^{o}t\\'{e}, Marc-Alexandre and Ammanabrolu, Prithviraj},\n  booktitle={Proceedings of the 2022 Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n  year={2022}\n}\n\n@inproceedings{react-2023,\n  title={ReAct: Synergizing Reasoning and Acting in Language Models},\n  author={Yao, Shunyu and Zhao, Jeffrey and Yu, Dian and Du, Nan and Shafran, Izhak and Narasimhan, Karthik and Cao, Yuan},\n  booktitle={International Conference on Learning Representations (ICLR)},\n  year={2023}\n}\n\n@inproceedings{toolformer-2024,\n  title={Toolformer: Language Models Can Teach Themselves to Use Tools},\n  author={Schick, Timo and Dwivedi-Yu, Jane and Dess\\`{i}, Roberto and Raileanu, Roberta and Lomeli, Maria and Hambro, Eric and Zettlemoyer, Luke and Cancedda, Nicola and Scialom, Thomas},\n  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n  year={2023}\n}\n\n@article{art-2023,\n  title={ART: Automatic Multi-step Reasoning and Tool-use for Large Language Models},\n  author={Paranjape, Bhargavi and Lundberg, Scott and Singh, Sameer and Hajishirzi, Hannaneh and Zettlemoyer, Luke and Ribeiro, Marco Tulio},\n  journal={arXiv preprint arXiv:2303.09014},\n  year={2023}\n}\n\n@inproceedings{chameleon-2024,\n  title={Chameleon: Plug-and-Play Compositional Reasoning with Large Language Models},\n  author={Lu, Pan and Peng, Baolin and Cheng, Hao and Galley, Michel and Chang, Kai-Wei and Wu, Ying Nian and Zhu, Song-Chun and Gao, Jianfeng},\n  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n  year={2023}\n}\n\n@article{retool-2026,\n  title={ReTool: Reinforcement Learning for Strategic Tool Use in LLMs},\n  author={Feng, Jiazhan and others},\n  journal={arXiv preprint arXiv:2504.11536},\n  year={2025}\n}\n\n@article{cogrouter-2026,\n  title={Think Fast and Slow: Step-Level Cognitive Depth Adaptation for LLM Agents},\n  author={Yang, Ruihan and others},\n  journal={arXiv preprint arXiv:2602.12662},\n  year={2026}\n}\n\n@article{ares-2026,\n  title={ARES: Adaptive Reasoning Effort Selection for Efficient LLM Agents},\n  author={Yang, Jingbo and others},\n  journal={arXiv preprint arXiv:2603.07915},\n  year={2026}\n}\n\n@inproceedings{mixture-of-recursions-2025,\n  title={Mixture-of-Recursions: Learning Dynamic Recursive Depths for Adaptive Token-Level Computation},\n  author={Bae, Sangmin and others},\n  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n  year={2025}\n}\n\n@inproceedings{mtrouter-2026,\n  title={MTRouter: Cost-Aware Multi-Turn LLM Routing with History-Model Joint Embeddings},\n  author={Zhang, Yiqun and others},\n  booktitle={Proceedings of the Annual Meeting of the Association for Computational Linguistics (ACL)},\n  year={2026}\n}\n\n@article{itp-2026,\n  title={Imagine-then-Plan: Agent Learning from Adaptive Lookahead with World Models},\n  author={Liu, Youwei and others},\n  journal={arXiv preprint arXiv:2601.08955},\n  year={2026}\n}\n\n@article{dynathink-2025,\n  title={Dyna-Think: Synergizing Reasoning, Acting, and World Model Simulation in AI Agents},\n  author={Yu, Xiao and others},\n  journal={arXiv preprint arXiv:2506.00320},\n  year={2025}\n}\n\n@article{tool-overuse-illusion-2026,\n  title={The Tool-Overuse Illusion: Why Does {LLM} Prefer External Tools over Internal Knowledge?},\n  author={Zeng, Yirong and You, Shen and Liu, Yufei and Du, Qunyao and Ding, Xiao and Hou, Yutai and Wang, Yuxian and Ning, Wu and Song, Haonan and Tu, Dandan and Cai, Bibo and Liu, Ting},\n  journal={arXiv preprint arXiv:2604.19749},\n  year={2026}\n}\n\n@article{when2tool-2026,\n  title={{LLM} Agents Already Know When to Call Tools -- Even Without Reasoning},\n  author={Sun, Chung-En and Liu, Linbo and Yan, Ge and Wang, Zimo and Weng, Tsui-Wei},\n  journal={arXiv preprint arXiv:2605.09252},\n  year={2026}\n}\n\n@article{tool-use-tax-2026,\n  title={Are Tools All We Need? Unveiling the Tool-Use Tax in {LLM} Agents},\n  author={Zhang, Kaituo and Xiong, Zhen and Zhong, Mingyu and Jiang, Zhimeng and Yuan, Zhouyuan and Li, Zhecheng and Lin, Ying},\n  journal={arXiv preprint arXiv:2605.00136},\n  year={2026}\n}\n\n@article{to-call-or-not-2026,\n  title={To Call or Not to Call: A Framework to Assess and Optimize {LLM} Tool Calling},\n  author={Wu, Qinyuan and Das, Soumi and Amani, Mahsa and Nag, Arijit and Lee, Seungeon and Gummadi, Krishna P. and Ravichander, Abhilasha and Zafar, Muhammad Bilal},\n  journal={arXiv preprint arXiv:2605.00737},\n  year={2026}\n}\n\n@inproceedings{dagger-2011,\n  title={A Reduction of Imitation Learning and Structured Prediction to No-Regret Online Learning},\n  author={Ross, St\\'{e}phane and Gordon, Geoffrey J and Bagnell, Drew},\n  booktitle={Proceedings of the International Conference on Artificial Intelligence and Statistics (AISTATS)},\n  year={2011}\n}\n\n@inproceedings{toolkengpt-2023,\n  title={ToolkenGPT: Augmenting Frozen Language Models with Massive Tools via Tool Embeddings},\n  author={Hao, Shibo and Liu, Tianyang and Wang, Zhen and Hu, Zhiting},\n  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n  year={2023}\n}\n\n@inproceedings{alfworld-2021,\n  title={ALFWorld: Aligning Text and Embodied Environments for Interactive Learning},\n  author={Shridhar, Mohit and Yuan, Xingdi and C\\^{o}t\\'{e}, Marc-Alexandre and Bisk, Yonatan and Trischler, Adam and Hausknecht, Matthew},\n  booktitle={International Conference on Learning Representations (ICLR)},\n  year={2021}\n}\n\n@article{garcia2015comprehensive,\n  title={A Comprehensive Survey on Safe Reinforcement Learning},\n  author={Garc\\'{i}a, Javier and Fern\\'{a}ndez, Fernando},\n  journal={Journal of Machine Learning Research},\n  volume={16},\n  number={1},\n  pages={1437--1480},\n  year={2015}\n}\n\n@article{voyager-2023,\n  title={Voyager: An Open-Ended Embodied Agent with Large Language Models},\n  author={Wang, Guanzhi and Xie, Yuqi and Jiang, Yunfan and Mandlekar, Ajay and Xiao, Chaowei and Zhu, Yuke and Fan, Linxi and Anandkumar, Anima},\n  journal={arXiv preprint arXiv:2305.16291},\n  year={2023}\n}\n\n@inproceedings{amitai2024explaining,\n  title={Explaining Reinforcement Learning Agents through Counterfactual Action Outcomes},\n  author={Amitai, Yotam and Septon, Guy and Amir, Ofra},\n  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},\n  year={2024}\n}\n\n@inproceedings{gajcin2023counterfactual,\n  title={Counterfactual Explanations for Reinforcement Learning Agents},\n  author={Gajcin, Jasmina},\n  booktitle={Proceedings of the International Conference on Autonomous Agents and Multiagent Systems (AAMAS)},\n  year={2023}\n}\n\n@article{olson2021counterfactual,\n  title={Counterfactual State Explanations for Reinforcement Learning Agents via Generative Deep Learning},\n  author={Olson, Matthew L. and Khanna, Roli and Neal, Lawrence and Li, Fuxin and Wong, Weng-Keen},\n  journal={Artificial Intelligence},\n  volume={295},\n  pages={103455},\n  year={2021}\n}",
+                "numLines": 172,
+                "startLine": 1,
+                "totalLines": 172
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have both files. Let me write the expanded related work section. I need to:\n\n1. Tool Use and External Computation in LLMs - expand with ReAct, Toolformer, ART, Chameleon, ToolkenGPT, and the new concurrent works\n2. Adaptive Computation and Routing - expand with CogRouter, ARES, MoR, MTRouter, ReTool\n3. Counterfactual Evaluation in RL - expand existing paragraph\n4. Safe RL and Catastrophic Failure - new, using garcia2015comprehensive\n\n\n5. LLM Agents in Interactive Environments - expand with ScienceWorld, Voyager, ALFWorld, ITP, Dyna-Think\n\nI'm checking the available bibliography keys to make sure I have everything I need for these sections.\n\nNow I'm reviewing the additional citations I can use - there are several more papers on tool use, counterfactual reasoning, and the specific environments I want to cover. I need to structure the related work carefully to avoid repeating what's already in the introduction, keep it to about a page, and organize it into five clear subsections that position my work against different research groups.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e772352-b537-4f05-916f-93da1b428592",
+            "uuid": "f36c5ff4-17e3-44a3-928f-5eff64e268b3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KNP1cnQk7S3NzfjXG1oCBY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3884,
+                "cache_read_input_tokens": 23519,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3884
+                },
+                "output_tokens": 11,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I'll write the expanded related work."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e772352-b537-4f05-916f-93da1b428592",
+            "uuid": "cfd0ea25-deee-4786-816c-9b4fc8782f1b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KNP1cnQk7S3NzfjXG1oCBY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3884,
+                "cache_read_input_tokens": 23519,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3884
+                },
+                "output_tokens": 11,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016Ks7vZEbGu9Zxpr4bgfrLK",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/related_work.tex",
+                "content": "\\section{Related Work}\n\n\\paragraph{Tool Use and External Computation in LLMs.}\nA growing body of work augments language models with external tools.\nToolformer \\cite{toolformer-2024} teaches LLMs to insert API calls via self-supervised loss filtering, while ToolkenGPT \\cite{toolkengpt-2023} represents tools as special tokens in the embedding space, enabling frozen models to invoke massive tool libraries.\nART \\cite{art-2023} decomposes tasks into multi-step programs that interleave reasoning with tool calls, and Chameleon \\cite{chameleon-2024} composes heterogeneous modules (search, code, vision) via LLM-generated programs.\nReTool \\cite{retool-2026} applies reinforcement learning to let models discover when code execution is preferable to chain-of-thought.\nThese approaches focus on \\emph{learning to use tools}; our work instead asks a prior question: \\emph{what signal drives the decision to route to an external modality at all?}\n\nRecent concurrent studies sharpen this question from multiple angles.\n\\citet{tool-overuse-illusion-2026} identify a cognitive-illusion effect in which LLMs default to external tools even when internal knowledge suffices.\n\\citet{when2tool-2026} show that tool-call decisions are already encoded in hidden states before explicit reasoning occurs.\n\\citet{tool-use-tax-2026} quantify a ``tool-use tax''---cases where invoking a tool degrades rather than improves performance.\n\\citet{to-call-or-not-2026} propose a necessity--utility--affordability framework for deciding whether to call a tool.\nOur counterfactual decomposition provides complementary, environment-grounded evidence: in ScienceWorld, ${\\sim}90\\%$ of the routing signal at $P{=}100$ traces to catastrophic-failure prevention rather than general utility, offering a concrete quantification that these frameworks currently lack.\n\n\\paragraph{Adaptive Computation and Routing.}\nRather than adding new tools, a parallel line of research routes inputs to different computation budgets or models.\nCogRouter \\cite{cogrouter-2026} adapts reasoning depth per step, ARES \\cite{ares-2026} selects among reasoning effort levels for LLM agents, and Mixture-of-Recursions \\cite{mixture-of-recursions-2025} learns token-level recursion depths within a single model.\nMTRouter \\cite{mtrouter-2026} addresses multi-turn routing across heterogeneous models by jointly embedding conversation history and model capabilities.\nThese systems optimize \\emph{how} to route; we focus on \\emph{why} routing helps.\nOur counterfactual analysis reveals that, in interactive environments, the dominant routing signal is not efficiency or capability matching but catastrophic-failure avoidance---a finding that could inform the objective design of future routers.\n\n\\paragraph{Counterfactual Evaluation in RL.}\nCounterfactual reasoning has been used to explain RL agent behavior post hoc.\n\\citet{olson2021counterfactual} generate counterfactual states via deep generative models to highlight features critical to an agent's decisions.\n\\citet{gajcin2023counterfactual} produce counterfactual action explanations that show users which alternative actions would have led to different outcomes.\n\\citet{amitai2024explaining} extend this to action-outcome explanations, contrasting observed and hypothetical trajectories at the step level.\nA common thread is that these methods perturb \\emph{individual actions} within a fixed policy to attribute credit.\nOur approach differs in both purpose and granularity: we execute two \\emph{complete episodes} under different routing strategies (LLM-only vs.\\ LLM+simulator), producing prospective paired comparisons that isolate the routing signal \\emph{before} any router is trained.\nThis episode-level design sidesteps compounding perturbation artifacts and directly measures the aggregate effect of modality access on task outcomes.\n\n\\paragraph{Safe RL and Catastrophic Failure.}\n\\citet{garcia2015comprehensive} survey safe RL methods that constrain policies to avoid catastrophic outcomes, categorizing approaches into constrained optimization, risk-sensitive criteria, and external-knowledge incorporation.\nA common mechanism is reward shaping with large negative penalties for unsafe states, which implicitly teaches agents to avoid irreversible failures.\nOur findings connect to this literature from an analytical rather than algorithmic perspective: the counterfactual decomposition reveals that death avoidance---preventing irreversible task failure---is the dominant component of the routing signal in ScienceWorld.\nThis suggests that modality routing in interactive environments functions primarily as a safety mechanism, and that router design may benefit from explicitly modeling catastrophic-failure risk rather than treating routing as a generic capability-matching problem.\n\n\\paragraph{LLM Agents in Interactive Environments.}\nScienceWorld \\cite{scienceworld-2022} provides a text-based science-experiment environment requiring multi-step causal reasoning, serving as our primary testbed.\nALFWorld \\cite{alfworld-2021} offers a complementary text-based household environment; Voyager \\cite{voyager-2023} demonstrates open-ended exploration in Minecraft using LLM-driven curriculum and skill libraries.\nReAct \\cite{react-2023} interleaves reasoning traces with environment actions and serves as our internal-reasoning baseline.\nMore recent work augments agents with world models: ITP \\cite{itp-2026} uses learned world models for lookahead planning, while Dyna-Think \\cite{dynathink-2025} synergizes reasoning, acting, and world-model simulation.\nBoth inherit the hallucination risks of approximate world models.\nOur deterministic simulator modality provides exact state transitions, and our analysis shows that this exactness matters almost exclusively for death avoidance---the cases where hallucinated transitions would be most costly.\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e772352-b537-4f05-916f-93da1b428592",
+            "uuid": "c1df4184-3ee8-4092-857b-5ca695ff74b0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KNP1cnQk7S3NzfjXG1oCBY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3884,
+                "cache_read_input_tokens": 23519,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3884
+                },
+                "output_tokens": 11,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T10:15:14.511Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016Ks7vZEbGu9Zxpr4bgfrLK",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2e772352-b537-4f05-916f-93da1b428592",
+            "uuid": "e8195980-ef54-4277-8f6c-92f27646ddc7",
+            "tool_use_result": {
+              "type": "update",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/related_work.tex",
+              "content": "\\section{Related Work}\n\n\\paragraph{Tool Use and External Computation in LLMs.}\nA growing body of work augments language models with external tools.\nToolformer \\cite{toolformer-2024} teaches LLMs to insert API calls via self-supervised loss filtering, while ToolkenGPT \\cite{toolkengpt-2023} represents tools as special tokens in the embedding space, enabling frozen models to invoke massive tool libraries.\nART \\cite{art-2023} decomposes tasks into multi-step programs that interleave reasoning with tool calls, and Chameleon \\cite{chameleon-2024} composes heterogeneous modules (search, code, vision) via LLM-generated programs.\nReTool \\cite{retool-2026} applies reinforcement learning to let models discover when code execution is preferable to chain-of-thought.\nThese approaches focus on \\emph{learning to use tools}; our work instead asks a prior question: \\emph{what signal drives the decision to route to an external modality at all?}\n\nRecent concurrent studies sharpen this question from multiple angles.\n\\citet{tool-overuse-illusion-2026} identify a cognitive-illusion effect in which LLMs default to external tools even when internal knowledge suffices.\n\\citet{when2tool-2026} show that tool-call decisions are already encoded in hidden states before explicit reasoning occurs.\n\\citet{tool-use-tax-2026} quantify a ``tool-use tax''---cases where invoking a tool degrades rather than improves performance.\n\\citet{to-call-or-not-2026} propose a necessity--utility--affordability framework for deciding whether to call a tool.\nOur counterfactual decomposition provides complementary, environment-grounded evidence: in ScienceWorld, ${\\sim}90\\%$ of the routing signal at $P{=}100$ traces to catastrophic-failure prevention rather than general utility, offering a concrete quantification that these frameworks currently lack.\n\n\\paragraph{Adaptive Computation and Routing.}\nRather than adding new tools, a parallel line of research routes inputs to different computation budgets or models.\nCogRouter \\cite{cogrouter-2026} adapts reasoning depth per step, ARES \\cite{ares-2026} selects among reasoning effort levels for LLM agents, and Mixture-of-Recursions \\cite{mixture-of-recursions-2025} learns token-level recursion depths within a single model.\nMTRouter \\cite{mtrouter-2026} addresses multi-turn routing across heterogeneous models by jointly embedding conversation history and model capabilities.\nThese systems optimize \\emph{how} to route; we focus on \\emph{why} routing helps.\nOur counterfactual analysis reveals that, in interactive environments, the dominant routing signal is not efficiency or capability matching but catastrophic-failure avoidance---a finding that could inform the objective design of future routers.\n\n\\paragraph{Counterfactual Evaluation in RL.}\nCounterfactual reasoning has been used to explain RL agent behavior post hoc.\n\\citet{olson2021counterfactual} generate counterfactual states via deep generative models to highlight features critical to an agent's decisions.\n\\citet{gajcin2023counterfactual} produce counterfactual action explanations that show users which alternative actions would have led to different outcomes.\n\\citet{amitai2024explaining} extend this to action-outcome explanations, contrasting observed and hypothetical trajectories at the step level.\nA common thread is that these methods perturb \\emph{individual actions} within a fixed policy to attribute credit.\nOur approach differs in both purpose and granularity: we execute two \\emph{complete episodes} under different routing strategies (LLM-only vs.\\ LLM+simulator), producing prospective paired comparisons that isolate the routing signal \\emph{before} any router is trained.\nThis episode-level design sidesteps compounding perturbation artifacts and directly measures the aggregate effect of modality access on task outcomes.\n\n\\paragraph{Safe RL and Catastrophic Failure.}\n\\citet{garcia2015comprehensive} survey safe RL methods that constrain policies to avoid catastrophic outcomes, categorizing approaches into constrained optimization, risk-sensitive criteria, and external-knowledge incorporation.\nA common mechanism is reward shaping with large negative penalties for unsafe states, which implicitly teaches agents to avoid irreversible failures.\nOur findings connect to this literature from an analytical rather than algorithmic perspective: the counterfactual decomposition reveals that death avoidance---preventing irreversible task failure---is the dominant component of the routing signal in ScienceWorld.\nThis suggests that modality routing in interactive environments functions primarily as a safety mechanism, and that router design may benefit from explicitly modeling catastrophic-failure risk rather than treating routing as a generic capability-matching problem.\n\n\\paragraph{LLM Agents in Interactive Environments.}\nScienceWorld \\cite{scienceworld-2022} provides a text-based science-experiment environment requiring multi-step causal reasoning, serving as our primary testbed.\nALFWorld \\cite{alfworld-2021} offers a complementary text-based household environment; Voyager \\cite{voyager-2023} demonstrates open-ended exploration in Minecraft using LLM-driven curriculum and skill libraries.\nReAct \\cite{react-2023} interleaves reasoning traces with environment actions and serves as our internal-reasoning baseline.\nMore recent work augments agents with world models: ITP \\cite{itp-2026} uses learned world models for lookahead planning, while Dyna-Think \\cite{dynathink-2025} synergizes reasoning, acting, and world-model simulation.\nBoth inherit the hallucination risks of approximate world models.\nOur deterministic simulator modality provides exact state transitions, and our analysis shows that this exactness matters almost exclusively for death avoidance---the cases where hallucinated transitions would be most costly.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 1,
+                  "oldLines": 20,
+                  "newStart": 1,
+                  "newLines": 45,
+                  "lines": [
+                    " \\section{Related Work}",
+                    " ",
+                    "-\\paragraph{Tool-Use Learning.}",
+                    "-Toolformer \\cite{toolformer-2024}, ToolkenGPT \\cite{toolkengpt-2023}, ART \\cite{art-2023}, Chameleon \\cite{chameleon-2024}, and ReTool \\cite{retool-2026} learn tool-use policies via self-supervised, embedding-based, or RL approaches.",
+                    "-We generate labels via \\emph{episode-level counterfactual analysis}, framing routing as \\emph{catastrophic failure prevention}.",
+                    "+\\paragraph{Tool Use and External Computation in LLMs.}",
+                    "+A growing body of work augments language models with external tools.",
+                    "+Toolformer \\cite{toolformer-2024} teaches LLMs to insert API calls via self-supervised loss filtering, while ToolkenGPT \\cite{toolkengpt-2023} represents tools as special tokens in the embedding space, enabling frozen models to invoke massive tool libraries.",
+                    "+ART \\cite{art-2023} decomposes tasks into multi-step programs that interleave reasoning with tool calls, and Chameleon \\cite{chameleon-2024} composes heterogeneous modules (search, code, vision) via LLM-generated programs.",
+                    "+ReTool \\cite{retool-2026} applies reinforcement learning to let models discover when code execution is preferable to chain-of-thought.",
+                    "+These approaches focus on \\emph{learning to use tools}; our work instead asks a prior question: \\emph{what signal drives the decision to route to an external modality at all?}",
+                    " ",
+                    "-\\paragraph{Adaptive Computation.}",
+                    "-CogRouter \\cite{cogrouter-2026}, ARES \\cite{ares-2026}, and Mixture-of-Recursions \\cite{mixture-of-recursions-2025} route \\emph{how much} computation; MTRouter \\cite{mtrouter-2026} routes \\emph{which model}. We route \\emph{which modality} and find death avoidance accounts for ${\\sim}90\\%$ of routing signal at $P{=}100$.",
+                    "+Recent concurrent studies sharpen this question from multiple angles.",
+                    "+\\citet{tool-overuse-illusion-2026} identify a cognitive-illusion effect in which LLMs default to external tools even when internal knowledge suffices.",
+                    "+\\citet{when2tool-2026} show that tool-call decisions are already encoded in hidden states before explicit reasoning occurs.",
+                    "+\\citet{tool-use-tax-2026} quantify a ``tool-use tax''---cases where invoking a tool degrades rather than improves performance.",
+                    "+\\citet{to-call-or-not-2026} propose a necessity--utility--affordability framework for deciding whether to call a tool.",
+                    "+Our counterfactual decomposition provides complementary, environment-grounded evidence: in ScienceWorld, ${\\sim}90\\%$ of the routing signal at $P{=}100$ traces to catastrophic-failure prevention rather than general utility, offering a concrete quantification that these frameworks currently lack.",
+                    " ",
+                    "-\\paragraph{World Model Routing.}",
+                    "-ITP \\cite{itp-2026} and Dyna-Think \\cite{dynathink-2025} route to approximate world models that inherit hallucination failures; our deterministic modality provides exact transitions, mattering almost exclusively for death avoidance.",
+                    "+\\paragraph{Adaptive Computation and Routing.}",
+                    "+Rather than adding new tools, a parallel line of research routes inputs to different computation budgets or models.",
+                    "+CogRouter \\cite{cogrouter-2026} adapts reasoning depth per step, ARES \\cite{ares-2026} selects among reasoning effort levels for LLM agents, and Mixture-of-Recursions \\cite{mixture-of-recursions-2025} learns token-level recursion depths within a single model.",
+                    "+MTRouter \\cite{mtrouter-2026} addresses multi-turn routing across heterogeneous models by jointly embedding conversation history and model capabilities.",
+                    "+These systems optimize \\emph{how} to route; we focus on \\emph{why} routing helps.",
+                    "+Our counterfactual analysis reveals that, in interactive environments, the dominant routing signal is not efficiency or capability matching but catastrophic-failure avoidance---a finding that could inform the objective design of future routers.",
+                    " ",
+                    "-\\paragraph{Agent Frameworks.}",
+                    "-ReAct \\cite{react-2023} serves as our internal-reasoning baseline; ALFWorld \\cite{alfworld-2021} provides a complementary text-based benchmark. We analyze \\emph{when} reasoning should yield to deterministic computation, connecting to safe RL \\citep{garcia2015comprehensive}.",
+                    "-",
+                    " \\paragraph{Counterfactual Evaluation in RL.}",
+                    "-Counterfactual reasoning has been applied to explain RL agent behavior post-hoc---comparing observed actions against hypothetical alternatives \\cite{olson2021counterfactual,gajcin2023counterfactual,amitai2024explaining}. Our approach differs fundamentally: rather than explaining a fixed policy, we execute two complete episodes under different routing strategies, producing prospective paired comparisons that isolate the routing signal before any router is trained.",
+                    "+Counterfactual reasoning has been used to explain RL agent behavior post hoc.",
+                    "+\\citet{olson2021counterfactual} generate counterfactual states via deep generative models to highlight features critical to an agent's decisions.",
+                    "+\\citet{gajcin2023counterfactual} produce counterfactual action explanations that show users which alternative actions would have led to different outcomes.",
+                    "+\\citet{amitai2024explaining} extend this to action-outcome explanations, contrasting observed and hypothetical trajectories at the step level.",
+                    "+A common thread is that these methods perturb \\emph{individual actions} within a fixed policy to attribute credit.",
+                    "+Our approach differs in both purpose and granularity: we execute two \\emph{complete episodes} under different routing strategies (LLM-only vs.\\ LLM+simulator), producing prospective paired comparisons that isolate the routing signal \\emph{before} any router is trained.",
+                    "+This episode-level design sidesteps compounding perturbation artifacts and directly measures the aggregate effect of modality access on task outcomes.",
+                    " ",
+                    "-\\paragraph{Concurrent Work.}",
+                    "-Concurrent studies examine complementary aspects: cognitive illusions driving tool overuse \\cite{tool-overuse-illusion-2026}, hidden-state encoding of tool-call decisions \\cite{when2tool-2026}, a ``tool-use tax'' where tools are not always beneficial \\cite{tool-use-tax-2026}, and necessity/utility/affordability evaluation \\cite{to-call-or-not-2026}. Our death avoidance decomposition provides concrete quantification---${\\sim}90\\%$ of routing signal at $P{=}100$ stems from catastrophic-failure prevention---grounding these frameworks in interactive-environment evidence.",
+                    "\\ No newline at end of file",
+                    "+\\paragraph{Safe RL and Catastrophic Failure.}",
+                    "+\\citet{garcia2015comprehensive} survey safe RL methods that constrain policies to avoid catastrophic outcomes, categorizing approaches into constrained optimization, risk-sensitive criteria, and external-knowledge incorporation.",
+                    "+A common mechanism is reward shaping with large negative penalties for unsafe states, which implicitly teaches agents to avoid irreversible failures.",
+                    "+Our findings connect to this literature from an analytical rather than algorithmic perspective: the counterfactual decomposition reveals that death avoidance---preventing irreversible task failure---is the dominant component of the routing signal in ScienceWorld.",
+                    "+This suggests that modality routing in interactive environments functions primarily as a safety mechanism, and that router design may benefit from explicitly modeling catastrophic-failure risk rather than treating routing as a generic capability-matching problem.",
+                    "+",
+                    "+\\paragraph{LLM Agents in Interactive Environments.}",
+                    "+ScienceWorld \\cite{scienceworld-2022} provides a text-based science-experiment environment requiring multi-step causal reasoning, serving as our primary testbed.",
+                    "+ALFWorld \\cite{alfworld-2021} offers a complementary text-based household environment; Voyager \\cite{voyager-2023} demonstrates open-ended exploration in Minecraft using LLM-driven curriculum and skill libraries.",
+                    "+ReAct \\cite{react-2023} interleaves reasoning traces with environment actions and serves as our internal-reasoning baseline.",
+                    "+More recent work augments agents with world models: ITP \\cite{itp-2026} uses learned world models for lookahead planning, while Dyna-Think \\cite{dynathink-2025} synergizes reasoning, acting, and world-model simulation.",
+                    "+Both inherit the hallucination risks of approximate world models.",
+                    "+Our deterministic simulator modality provides exact state transitions, and our analysis shows that this exactness matters almost exclusively for death avoidance---the cases where hallucinated transitions would be most costly."
+                  ]
+                }
+              ],
+              "originalFile": "\\section{Related Work}\n\n\\paragraph{Tool-Use Learning.}\nToolformer \\cite{toolformer-2024}, ToolkenGPT \\cite{toolkengpt-2023}, ART \\cite{art-2023}, Chameleon \\cite{chameleon-2024}, and ReTool \\cite{retool-2026} learn tool-use policies via self-supervised, embedding-based, or RL approaches.\nWe generate labels via \\emph{episode-level counterfactual analysis}, framing routing as \\emph{catastrophic failure prevention}.\n\n\\paragraph{Adaptive Computation.}\nCogRouter \\cite{cogrouter-2026}, ARES \\cite{ares-2026}, and Mixture-of-Recursions \\cite{mixture-of-recursions-2025} route \\emph{how much} computation; MTRouter \\cite{mtrouter-2026} routes \\emph{which model}. We route \\emph{which modality} and find death avoidance accounts for ${\\sim}90\\%$ of routing signal at $P{=}100$.\n\n\\paragraph{World Model Routing.}\nITP \\cite{itp-2026} and Dyna-Think \\cite{dynathink-2025} route to approximate world models that inherit hallucination failures; our deterministic modality provides exact transitions, mattering almost exclusively for death avoidance.\n\n\\paragraph{Agent Frameworks.}\nReAct \\cite{react-2023} serves as our internal-reasoning baseline; ALFWorld \\cite{alfworld-2021} provides a complementary text-based benchmark. We analyze \\emph{when} reasoning should yield to deterministic computation, connecting to safe RL \\citep{garcia2015comprehensive}.\n\n\\paragraph{Counterfactual Evaluation in RL.}\nCounterfactual reasoning has been applied to explain RL agent behavior post-hoc---comparing observed actions against hypothetical alternatives \\cite{olson2021counterfactual,gajcin2023counterfactual,amitai2024explaining}. Our approach differs fundamentally: rather than explaining a fixed policy, we execute two complete episodes under different routing strategies, producing prospective paired comparisons that isolate the routing signal before any router is trained.\n\n\\paragraph{Concurrent Work.}\nConcurrent studies examine complementary aspects: cognitive illusions driving tool overuse \\cite{tool-overuse-illusion-2026}, hidden-state encoding of tool-call decisions \\cite{when2tool-2026}, a ``tool-use tax'' where tools are not always beneficial \\cite{tool-use-tax-2026}, and necessity/utility/affordability evaluation \\cite{to-call-or-not-2026}. Our death avoidance decomposition provides concrete quantification---${\\sim}90\\%$ of routing signal at $P{=}100$ stems from catastrophic-failure prevention---grounding these frameworks in interactive-environment evidence.",
+              "userModified": false
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Related Work 已扩写完成。5 个 paragraph 覆盖了要求的全部主题，所有引用均来自 `references.bib`，每个段落末尾都有与本文工作的明确定位对比。篇幅约 1 page。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e772352-b537-4f05-916f-93da1b428592",
+            "uuid": "52ad4e42-096b-4079-a832-26b1ef13d9b3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01156CgRhKeaXooEPGHbv5At",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2007,
+                "cache_read_input_tokens": 27403,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2007
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Related Work 已扩写完成。5 个 paragraph 覆盖了要求的全部主题，所有引用均来自 `references.bib`，每个段落末尾都有与本文工作的明确定位对比。篇幅约 1 page。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 53538,
+            "duration_api_ms": 54527,
+            "num_turns": 4,
+            "stop_reason": "end_turn",
+            "session_id": "2e772352-b537-4f05-916f-93da1b428592",
+            "total_cost_usd": 0.19815975,
+            "usage": {
+              "input_tokens": 5,
+              "cache_creation_input_tokens": 17569,
+              "cache_read_input_tokens": 62763,
+              "output_tokens": 2213,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 17569,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 79,
+                  "cache_read_input_tokens": 27403,
+                  "cache_creation_input_tokens": 2007,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 2007
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1542,
+                "outputTokens": 16,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001622,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 5,
+                "outputTokens": 2213,
+                "cacheReadInputTokens": 62763,
+                "cacheCreationInputTokens": 17569,
+                "webSearchRequests": 0,
+                "costUSD": 0.19653775,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "de3c399e-f628-460a-8458-c3bd64754699"
+          },
+          "id": "event-000014"
+        }
+      ],
+      "message_count": 14
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-related-work-expansion.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fa4611cc1741cec26fb8",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "exp r7n2 ablation oom fix",
+  "task_key": "worker_exp_r7n2-ablation-oom-fix_20260516T030826",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_r7n2-ablation-oom-fix_20260516T030826_result.json",
+    "occurrence": 1,
+    "bytes": 203,
+    "sha256": "f762f32e9aeaa6084919043f05254e78ba593a77af7e7b37989b81951960a353"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Earlier background task (10min wait from before context compaction) finished. Already verified — 25pct_seed42 eval completed successfully, process is progressing through subsequent runs."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-r7n2-ablation-oom-fix.md"
+}

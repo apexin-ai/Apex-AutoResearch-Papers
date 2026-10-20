@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c1d5b15d01b331aafc7b",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "exp capacity scaling episode eval",
+  "task_key": "worker_exp_capacity-scaling-episode-eval_20260516T124153",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_capacity-scaling-episode-eval_20260516T124153_result.json",
+    "occurrence": 1,
+    "bytes": 538,
+    "sha256": "d95dd59fee6faf91f7ee251eef54dc9b1e5d9e1ad160d1a60985a220138f197e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Capacity Scaling Episode-Level Eval 完成。** 结果汇总：\n\n| Model | Mean bal_acc | Std |\n|-------|-------------|-----|\n| 0.6B | 0.5067 | ±0.0262 |\n| 1.7B (ref) | 0.4710 | ±0.0220 |\n| 4B | **0.5896** | ±0.0194 |\n\n趋势：容量越大 balanced_acc 越高，且 variance 越小。4B 相比 1.7B 提升约 +11.9pp，0.6B 反而略高于 1.7B 约 +3.6pp（可能因为 v4 训练配置优化）。\n\n结果已保存到 `/root/autodl-tmp/simgate-modular-routing/results/capacity_episode_eval/summary.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-capacity-scaling-episode-eval.md"
+}

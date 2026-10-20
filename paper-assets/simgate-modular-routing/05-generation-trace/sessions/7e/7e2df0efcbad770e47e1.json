@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7e2df0efcbad770e47e1",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "eval baseline 245eps",
+  "task_key": "worker_eval_baseline-245eps_20260514T080744",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_baseline-245eps_20260514T080744_result.json",
+    "occurrence": 1,
+    "bytes": 988,
+    "sha256": "0f0ca61d6f637e15840f6577003bf17d0188a4b399fe89cebd998be6db9f2155"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 245-ep Baseline Results (11 tasks)\n\n| Baseline | Mean Score | 90% CI | Success | Death | SimRatio |\n|---|---|---|---|---|---|\n| always-internal | **-39.07** | [-44.89, -33.37] | 0.131 | 0.429 | 0.000 |\n| always-deterministic | **-9.47** | [-13.66, -5.11] | 0.241 | 0.163 | 1.000 |\n| oracle | **-6.58** | [-10.65, -2.43] | 0.253 | 0.143 | 0.962 |\n| random | **-22.38** | [-27.75, -17.09] | 0.184 | 0.278 | 0.524 |\n\n与 194 eps 对比（方向一致，数值微调）：\n- always-int: -37.16 → -39.07（新增 eps 偏差）\n- always-det: -11.64 → -9.47（改善）\n- oracle: -9.03 → -6.58（改善）\n- random: -23.75 → -22.38\n\n**处理细节**：`episode_summary.jsonl` 只有 194 行（旧数据），脚本优先读它而忽略 245 行的 `episodes.jsonl`。已从 `episodes.jsonl` 重建全部 summary 文件（旧文件备份为 `.bak194`）。\n\n结果已写入 `results/baseline_245eps/`，registry 已更新为 `plan-003-baseline-245eps`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-baseline-245eps.md"
+}

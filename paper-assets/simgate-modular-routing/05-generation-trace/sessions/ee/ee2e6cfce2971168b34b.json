@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ee2e6cfce2971168b34b",
+  "project": "simgate-modular-routing",
+  "kind": "history",
+  "title": "agent / loop_7.md",
+  "task_key": "loop_7",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_7.md",
+    "occurrence": 1,
+    "bytes": 4525,
+    "sha256": "bb62dc6a1fb420e08c014f164a0098dc8bb5e3816326c9b6e417b72bdace1358"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: idle_timeout\nupdated: '2026-05-14T14:30:09+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单仅 cuda:0 和 cuda:1（westb-13313），config 中 gpu_constraint = `autodl-simgate:cuda:0`, `autodl-simgate:cuda:1`\n- 论文 Table 1 权威数字来源 = `eval_end_to_end.py`（D037），不得使用 `eval_implicit_router.py` 的数字（-12.84 已废弃）\n- Ablation-b checkpoint 路径 = `checkpoints/plan-004-implicit/final_adapter`，**不是** `checkpoints/plan-002-generative-v1/final_adapter`（后者是失败的 gen-v1）\n- D046 定论：MATH 不扩全量，仅 pilot 结果入 Discussion；ALFWorld 不承诺纳入论文（D044）\n- 所有 eval 脚本必须 `enable_thinking=False` + regex 清理 `<think>` tags（Qwen3 干扰）\n- 唯一可用训练数据文件：`data/plan-004-implicit/implicit_sft.jsonl`（MD5: c9b59e04de78, 2040 samples）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westb-13313，2× RTX 5090 32GB\n- 工作目录：`/root/autodl-tmp/simgate-modular-routing`\n- Python：预置镜像 `aml-train`，用 conda — `/root/miniconda3/bin/python`，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- AutoDL 网络：提交前必须 `source /etc/network_turbo` + `HF_HOME=/root/autodl-tmp/.hf_cache`\n- W&B：需确认配置\n- 活跃进程：math-200-fixed（RUNNING，无详细 PID/tmux 信息），alfworld-counterfactual-full（RUNNING，预计 ~3.5h）\n- Cron：reconcile 返回 0 条活跃 cron — 两个 RUNNING 实验可能无 cron 监控或已脱管，需要检查\n\n### 3. 📊 当前状态\n**Paper Writing Sprint 阶段**，目标 EMNLP 2026 ARR short paper，DDL 2026-05-25（剩 11 天）。\n\nROADMAP 记录上轮 session 有多个 paper writing Workers 在跑（experiments_v2_patch, conclusion, related_work_v2, consistency_review, bootstrap_ci_check, fig1-font-fix, abstract-sync），以及 98.2% tie rate 数值修正。但当前 **0 个 running Worker**——这些 Worker 可能已完成但未被处理（上轮 session 硬限 reset）。\n\nRegistry 状态：\n- **RUNNING (2)**：`math-200-fixed`（无 hypothesis 记录）、`alfworld-counterfactual-full`（135 games counterfactual 收集）\n- **PREPARING (3)**：`plan-003-baseline`（Table 1 baselines）、`plan-001b-gpu1-rebalance`（GPU 负载均衡）、`mvp-p1-signal` — 这三个是历史遗留，Paper Writing 阶段可能已不需要\n- **总计**：success 21 / negative 13 / failed 9 / 共 53 实验\n\n关键：**reconcile_crons 返回 0**，两个 RUNNING 实验没有 cron 监控。需要立即 SSH 检查进程是否还活着。\n\n### 4. 📋 待办（条件触发式）\n- **立即**：SSH 检查 math-200-fixed 和 alfworld-counterfactual-full 是否还在运行（无 cron 监控，可能已完成/挂掉）\n- **立即**：检查上轮 paper writing Workers 的产出是否已落地到 paper/ 目录，98.2% 修正是否完成\n- alfworld-counterfactual-full 完成 → 分析结果，判断是否入 supplementary（D044 原则：看结果决定）\n- math-200-fixed 完成 → 结果入 Discussion（D046：不扩全量）\n- 两个 RUNNING 实验均完成 → 全力推 paper draft 整合（Critical Path: 5/15-16 整合完整 LaTeX 初稿）\n- Paper 初稿完成（目标 5/17）→ 进入 Review 对抗迭代（5/17-22）\n- 3 个 PREPARING 实验 → 评估是否仍需要，不需要则关闭清理 registry\n\n### 5. 🎯 战略上下文\n**核心结论**：Death avoidance 占 ~90% routing signal（DAF=90.41%），这是 empirical finding + diagnostic methodology 论文，不是 router 架构论文。Router ≈ always-det 本身就是 finding。\n\n**决策链关键节点**：\n- D013: Framing pivot → death avoidance dominates\n- D025: Classification head 全退化，pivot to generative SFT\n- D033: Framing 定稿 Option B（方法论贡献）\n- D037: Table 1 权威数字 = eval_end_to_end.py\n- D039: Oracle circularity 不成立（0% tie-break）\n- D046: 撤销 PIVOT 回归分析论文，MATH 不扩全量\n\n**易错点**：\n- 不要把 `eval_implicit_router.py` 的 -12.84 和 `eval_end_to_end.py` 的 -10.70 混用\n- 不要把 gen-v1 的 checkpoint 和 ablation-b 的 checkpoint 搞混（路径不同，eval metrics 却相似）\n- MATH pilot 结果反转（internal > code interpreter），D046 已决定不扩全量，别尝试重跑\n- 3 个 PREPARING 实验是 Paper Writing Sprint 之前的遗留计划，大概率不再需要执行\n- 上轮 session 有大量 paper writing Workers 可能已完成但回调未处理——优先检查产出\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-copy-2.md"
+}

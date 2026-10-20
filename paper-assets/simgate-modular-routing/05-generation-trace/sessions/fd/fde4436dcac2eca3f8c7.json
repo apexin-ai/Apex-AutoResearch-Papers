@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "fde4436dcac2eca3f8c7",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "code llama 70b fix shards",
+  "task_key": "worker_code_llama-70b-fix-shards_20260523T235142",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama-70b-fix-shards_20260523T235142.log",
+    "occurrence": 1,
+    "bytes": 535486,
+    "sha256": "c742a1309ba7105112384351716c079da2ece9675141de7b9cb8e2a7d68948d0"
+  },
+  "statistics": {
+    "messages": 310,
+    "user_turns": 0,
+    "tool_calls": 108,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 90,
+      "tool_call": 108,
+      "tool_result": 108,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 310,
+      "chunks": [
+        {
+          "path": "fde4436dcac2eca3f8c7-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "fde4436dcac2eca3f8c7-part-0002.json",
+          "message_count": 130
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-llama-70b-fix-shards.md"
+}

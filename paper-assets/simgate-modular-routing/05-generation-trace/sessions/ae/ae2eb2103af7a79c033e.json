@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ae2eb2103af7a79c033e",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "eval cluster bootstrap w4",
+  "task_key": "worker_eval_cluster-bootstrap-w4_20260516T200409",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_cluster-bootstrap-w4_20260516T200409_result.json",
+    "occurrence": 1,
+    "bytes": 778,
+    "sha256": "d020c2ab2192d6cf2a9e3b769a9a216e3ce14e1426ae90a4d0d00ea6292a5c22"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n```\n=== Cluster Bootstrap DAF CI ===\n\nPoint estimate (all-episodes DAF): 0.9041\n\nEpisode-level bootstrap (previous):\n  95% CI: [0.8160, 0.9876] (N=245 episodes, B=10000)\n  Width: 0.1716\n\nCluster bootstrap (task-type level):\n  95% CI: [0.7332, 1.0000] (K=11 clusters, B=10000)\n  Width: 0.2668\n\nCI widening: +0.0828 lower, +0.0124 upper\nWidth change: +0.0952 (+55.5%)\nMean bootstrap DAF: 0.9105 (std: 0.0819)\n```\n\nCluster bootstrap CI 比 episode-level 宽 55.5%（符合预期，因为只有 11 个 cluster 可 resample），但下界仍为 0.733，远高于 0.5。DAF 在 non-i.i.d. 假设下依然有意义。\n\n脚本和结果已保存到 `guided_router/cluster_bootstrap.py` 和 `guided_router/cluster_bootstrap_results.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-cluster-bootstrap-w4.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b1f2956e59a818a059eb",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "paper reference audit and sync",
+  "task_key": "worker_paper_reference-audit-and-sync_20260514T144920",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_reference-audit-and-sync_20260514T144920_result.json",
+    "occurrence": 1,
+    "bytes": 2957,
+    "sha256": "ee8f421073d0c9107197935654ebcaf3364be14a2dae49f7ba77a2baa15a71c0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。在执行同步前，需要先报告一个重要发现。\n\n---\n\n## 1. 引用审计报告\n\n### 引用完整性\n\n| 检查项 | 结果 |\n|--------|------|\n| ❌ 论文中 cite 了但 bib 中不存在的 | **无** — 所有 12 个被引用的 key 均存在于 bib 中 |\n| ⚠️ bib 中存在但论文中未 cite 的 | **`dagger-2011`** (Ross et al., 2011, DAgger) |\n\n被引用的 12 个 key: `scienceworld-2022`, `toolformer-2024`, `art-2023`, `chameleon-2024`, `retool-2026`, `react-2023`, `cogrouter-2026`, `ares-2026`, `mixture-of-recursions-2025`, `itp-2026`, `dynathink-2025`, `mtrouter-2026`\n\n### Bib entry 质量问题\n\n**Key 与 year 字段不匹配（3 个）：**\n| Key | key 中的年份 | year 字段 |\n|-----|------------|-----------|\n| `toolformer-2024` | 2024 | 2023 |\n| `chameleon-2024` | 2024 | 2023 |\n| `retool-2026` | 2026 | 2025 |\n\n**Entry type 错误（8 个）：** 以下 arXiv 预印本使用了 `@inproceedings` + `booktitle`，应改为 `@article` + `journal`：\n`art-2023`, `retool-2026`, `cogrouter-2026`, `ares-2026`, `mixture-of-recursions-2025`, `itp-2026`, `dynathink-2025`, `mtrouter-2026`\n\n**缺失字段：** 无。所有 entry 均有 title, author, year。\n\n---\n\n## 2. 同步：重要警告\n\n**逐文件 diff 显示 `docs/paper/` 很可能是更新的版本，`artifacts/_project/paper/latex/` 是旧版本。** 具体证据：\n\n| 文件 | artifacts (主) | docs (副) | 差异 |\n|------|---------------|-----------|------|\n| `abstract.tex` | 更短，约 3 行 | 更详细，含具体数值 | docs 更完整 |\n| `introduction.tex` | 枚举式 contributions | 压缩为 1 段 + 引用 §rule | docs 增加了 keyword baseline 引用 |\n| `method.tex` | 3 小节 | 4 小节（多了 Rule-Based Baseline §rule） | docs 新增内容 |\n| `experiments.tex` | 有独立 Setup 小节；router 分析简略 | Setup 移走；增加 classification head / implicit router / cross-seed / end-to-end / labeling quality 段落 | docs 大幅扩充 |\n| `conclusion.tex` | 1 段 | 3 段（含 labeling quality + limitations） | docs 大幅扩充 |\n| `main.tex` | 含 `\\input{discussion}` + Limitations + Ethics 节 | 不含 discussion；限制移入 conclusion | 结构不同 |\n| `related_work.tex` | 分段引用，较松散 | 合并压缩，更紧凑 | docs 更精炼 |\n| `references.bib` | @inproceedings 用于 arXiv | 已修正为 @article + venue 缩写 | docs 质量更高 |\n| `discussion.tex` | 存在 | **缺失** | 需要复制 |\n\n**如果按原计划用 artifacts 覆盖 docs，会丢失 docs 中的大量改进（实验分析扩充、bib 修正、结构重组等）。**\n\n### 建议\n\n反向同步更合理：以 `docs/paper/` 为准更新 `artifacts/_project/paper/latex/`，并将 `discussion.tex` 复制到 docs。\n\n是否按原计划执行（artifacts → docs 覆盖），还是反向同步（docs → artifacts + 补 discussion.tex）？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-reference-audit-and-sync.md"
+}

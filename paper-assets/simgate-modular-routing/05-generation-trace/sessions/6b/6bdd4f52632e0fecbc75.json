@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6bdd4f52632e0fecbc75",
+  "project": "simgate-modular-routing",
+  "kind": "history",
+  "title": "agent / loop_5_1778757601.md",
+  "task_key": "loop_5_1778757601",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_5_1778757601.md",
+    "occurrence": 1,
+    "bytes": 3619,
+    "sha256": "f9d4cad0153e558924f22449bce791d6bd3a6a977e221886e921dad5bd7abfb9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: max_messages\nupdated: '2026-05-14T11:19:59+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：只能用 westb-13313 的 cuda:0 和 cuda:1，绝不用其他设备号\n- conda 环境：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不要创建 venv，不要用 pip --break-system-packages\n- 模型路径必须在 `/root/autodl-tmp/` 下（根分区只有 ~30GB）\n- plan-002 router SFT 已连续失败 6 次（v1-v6），classification head 路线已被 D022 定性为 negative baseline——不要再尝试同一套 classification head 方案，除非 Director 明确指示新方向\n- WANDB_MODE=offline + HF_HUB_OFFLINE=1（服务器网络受限）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westb-13313，2× RTX 5090 32GB\n- 工作目录：`/root/autodl-tmp/simgate-modular-routing`\n- Python：`/root/miniconda3/bin/python`（conda base 环境）\n- 模型：`/root/autodl-tmp/models/Qwen/Qwen3-1.7B`（ModelScope 下载，注意 pad_token_id=None 需手动设置为 151643）\n- 数据：`results/plan_c/`（11 tasks, 2040 samples: 1830 det / 210 internal）\n- W&B：offline 模式\n- 活跃进程：无训练在跑，两块 GPU 均空闲\n- Running Workers：worker_monitor_v5-early-loss（可能已过时）、worker_ops_cleanup-tmux-submit-v6、worker_diag_plan-002-v6-crash（刚派出，等回调）\n\n### 3. 📊 当前状态\n- 我刚收到 plan-002-formal-v6 的 cron 失败回调（EXIT_CODE=1，仅跑 130 秒）\n- 已派 Worker (diag:plan-002-v6-crash) 去读日志诊断根因，**等待回调**\n- 已向 Director 汇报两块 GPU 均空闲 + v6 崩溃\n- Registry: 无 RUNNING 实验。plan-002-formal-v6 = DONE(failed)，plan-004-v2 = DONE(failed)\n- PENDING: research-cf-pilot-gpu1（等人工审批）、plan-001b-gpu1-rebalance（准备中）、mvp-p1-signal（准备中）\n\n### 4. 📋 待办\n- Worker diag:plan-002-v6-crash 回调 → 读诊断结果，更新 registry failure_reason，汇报 Director 修复方案\n- Director 决定 plan-002 下一步方向 → 按指示执行（可能转 generative routing 或其他方案）\n- plan-004 ablation 需要重启（GPU1）→ 先确认 plan-004-v2 失败原因是否已解决，再提交\n- 两块 GPU 空闲 → 一旦有可跑的实验立即提交，不等\"更好时机\"\n- DDL 2026-05-25（剩 11 天）→ critical path: 实验 ~1.5 天 + 写作 ~3 天，时间紧迫\n\n### 5. 🎯 战略上下文\n- **核心发现**：Death avoidance 占 ~90% routing signal（Δ_full=+29.60, fraction=90.41%, r=0.9698）。论文贡献 = empirical finding + 诊断方法论，非 router 架构\n- **Framing v3**：\"death avoidance dominates + counterfactual methodology\"（D013→D018/D019 校准）\n- **plan-012 全量分析已完成**（11 tasks / 245 eps），核心假设确认，这是论文的数据基础\n- **plan-002 classification head 路线反复失败**：D021 确认 class_weights auto 导致 loss 异常，D022 定性为 negative baseline，D023 证实 pad_token_id 不是根因。v6 去掉 class_weights 仍然崩溃——可能是代码层面的 bug 而非超参问题\n- **易错点**：plan-002 的 router_sft_train.py 代码可能在没有 --class_weights 参数时有未处理的分支（v6 崩溃仅 130 秒暗示是启动阶段错误而非训练问题）。不要盲目重跑，先看 Worker 诊断结果\n- **keyword baseline（plan-011）已确认结构性失效**：v1/v2 keyword list 都匹配所有 task，无法区分——这对论文是好消息（证明简单 heuristic 不行）\n- **find-non-living-thing 是关键例外**：零死亡但仍有 Δ=+9.58，需要在论文中讨论\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-1778757601.md"
+}

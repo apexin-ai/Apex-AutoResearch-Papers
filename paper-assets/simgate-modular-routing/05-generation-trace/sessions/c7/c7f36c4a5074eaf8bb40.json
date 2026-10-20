@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c7f36c4a5074eaf8bb40",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "data alfworld full 140",
+  "task_key": "worker_data_alfworld-full-140_20260514T135023",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_alfworld-full-140_20260514T135023_result.json",
+    "occurrence": 1,
+    "bytes": 602,
+    "sha256": "1c80c0c13b47db8192cd6e97d99199f0c7bc6607168df47f7011f650ccc81723"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Pipeline 正常运行，总结：\n\n- **tmux session**: `alfworld_cf`\n- **GPU**: cuda:1 (RTX 5090, 32GB)\n- **模型**: Qwen2.5-7B-Instruct via vLLM\n- **Games**: 135 (valid_seen 实际数量，非 140)\n- **第一个 episode**: no-preference, 86.4s\n- **输出**: `results/alfworld_counterfactual/episodes.jsonl`\n- **日志**: `results/alfworld_counterfactual/run.log`\n- **预计完成时间**: ~3.5 小时（135 episodes × ~1.5 min/ep）\n\n如需检查进度：`grep \"Label\" results/alfworld_counterfactual/run.log` 或 `wc -l results/alfworld_counterfactual/episodes.jsonl`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-alfworld-full-140.md"
+}

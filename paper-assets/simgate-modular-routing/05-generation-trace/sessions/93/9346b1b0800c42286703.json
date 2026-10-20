@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9346b1b0800c42286703",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh fix retry and check crafter",
+  "task_key": "worker_ssh_fix-retry-and-check-crafter_20260518T041530",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix-retry-and-check-crafter_20260518T041530_result.json",
+    "occurrence": 1,
+    "bytes": 1471,
+    "sha256": "0edadbb586ce24154dc41dde7e525583f936a7d6ffb60b5da4375b68ae5af3b0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 全部释放（0MiB），清理完成。\n\n---\n\n## 汇报\n\n### 问题 1：retry-dose-response — dry-run 成功\n\n**根因修复确认**：加 `--served-model-name Qwen2.5-7B-Instruct` 后，`/v1/models` 返回短名，API 调用无 404。\n\n**Dry-run 结果**：3 个 task 跑通（chemistry-mix、find-animal、freeze），每个 task 的 5 次 trial 均正常完成 LLM 调用。游戏结果均为 FAIL 属于正常（max-steps=5 太少）。\n\n**正式运行的 vLLM 启动命令**（关键修复行加粗）：\n```bash\nCUDA_VISIBLE_DEVICES=0 VLLM_USE_FLASHINFER_SAMPLER=0 /root/miniconda3/bin/python -m vllm.entrypoints.openai.api_server \\\n  --model /root/autodl-tmp/models/Qwen2.5-7B-Instruct \\\n  --served-model-name Qwen2.5-7B-Instruct \\    # ← 修复点\n  --port 8000 --gpu-memory-utilization 0.9 --trust-remote-code\n```\n\n**正式实验命令**：\n```bash\n/root/miniconda3/bin/python run_retry_dose_response.py --n-values 1,5,10\n```\n\n---\n\n### 问题 2：Crafter 文件位置 — 存在\n\n`crafter_pilot/` 目录存在于 westb-14838：\n\n```\n/root/autodl-tmp/simgate-modular-routing/crafter_pilot/\n├── config.py\n├── episode_runner.py\n├── llm_agent.py\n├── text_wrapper.py\n├── results/\n└── __pycache__/\n```\n\ncrafter 包已安装（无 `__version__` 属性但 import 成功）。Reviewer 在另一台服务器找不到可能是因为代码只在 westb-14838 上存在。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fix-retry-and-check-crafter.md"
+}

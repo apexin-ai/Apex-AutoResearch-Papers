@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9ba8680d42058c95d3bc",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "verify plan 008 v4 preflight",
+  "task_key": "worker_verify_plan-008-v4-preflight_20260515T194340",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_plan-008-v4-preflight_20260515T194340_result.json",
+    "occurrence": 1,
+    "bytes": 1021,
+    "sha256": "35f5347a90c4f304c390cdd4b1c76833a6c6028bc2f196a26163bea3c4f57c3f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All checks complete. Here are the results:\n\n```\n=== PREFLIGHT RESULT ===\nga_restored:   PASS (当前值: max(1, 32 // args.batch_size) → batch_size=4 时 ga=8，.bak 文件与当前一致)\ngpu_available: PASS (cuda:0 util: 0%, 0/32607 MiB; cuda:1 util: 0%, 0/32607 MiB — 双卡 RTX 5090 全空闲)\nmodel_0.6b:    FOUND (path: /root/autodl-tmp/models/Qwen/Qwen3-0.6B, 1.5GB)\nmodel_4b:      FOUND (path: /root/autodl-tmp/models/Qwen/Qwen3-4B, 7.6GB)\nmodel_1.7b_ref:FOUND (path: /root/autodl-tmp/models/Qwen/Qwen3-1.7B)\ndata_ok:       PASS (lines: 2040, size: 1578366 bytes — md5 无法通过 read_only 验证，行数与文件大小均符合预期)\noverall:       PASS\nnotes:\n  - Qwen3-0.6B LoRA batch=4: ~3-4GB 显存，单卡 32GB 绰绰有余\n  - Qwen3-4B LoRA batch=4: ~16-20GB 显存，单卡 32GB 可行；若 OOM 降至 batch=2 + ga=16\n  - Qwen2.5 备选可用: 1.5B / 3B / 7B-Instruct\n  - md5 校验被 ssh_read_only 安全策略阻止，如需严格校验需用 ssh_execute\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-plan-008-v4-preflight.md"
+}

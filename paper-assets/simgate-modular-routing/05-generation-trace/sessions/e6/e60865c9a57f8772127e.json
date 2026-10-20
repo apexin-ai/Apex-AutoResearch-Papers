@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e60865c9a57f8772127e",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "eval plan 008 v4 0 6b 4b nothinking",
+  "task_key": "worker_eval_plan-008-v4-0_6b-4b-nothinking_20260515T210317",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan-008-v4-0_6b-4b-nothinking_20260515T210317_result.json",
+    "occurrence": 1,
+    "bytes": 993,
+    "sha256": "f2334ca2815985cbdadd60509ed3d746aa5ebd21b53162e88d83a30cf1e4e896"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 4 个 eval 完成。汇总结果：\n\n```\n=== 0.6B enable_thinking=False eval ===\nSeed 42: balanced_acc=0.6241, internal_recall=0.6000, eval_loss=N/A\nSeed 43: balanced_acc=0.5574, internal_recall=0.6000, eval_loss=N/A\nMean: balanced_acc=0.5908±0.0472\n\n=== 4B enable_thinking=False eval ===\nSeed 42: balanced_acc=0.6241, internal_recall=0.5333, eval_loss=N/A\nSeed 43: balanced_acc=0.5463, internal_recall=0.4667, eval_loss=N/A\nMean: balanced_acc=0.5852±0.0550\n\n=== 统一 enable_thinking=False 三模型对比 ===\n| Model     | Seed 42 | Seed 43 | Mean±Std        |\n|-----------|---------|---------|-----------------|\n| 0.6B      | 0.6241  | 0.5574  | 0.5908±0.0472   |\n| 1.7B (ref)| 0.5761  | 0.4852  | 0.5307±0.0643   |\n| 4B        | 0.6241  | 0.5463  | 0.5852±0.0550   |\n```\n\n注：`routing_eval_sft.py` 是 generation-based eval，不输出 eval_loss。结果文件已保存到 `results/plan-008-v4/` 下的 4 个 `_nothinking.json` 文件。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-plan-008-v4-0-6b-4b-nothinking.md"
+}

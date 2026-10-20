@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f4dea4057c33da741f02",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh r17 data lookup",
+  "task_key": "worker_ssh_r17-data-lookup_20260519T113613",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_r17-data-lookup_20260519T113613_result.json",
+    "occurrence": 1,
+    "bytes": 3793,
+    "sha256": "5aaee8bebb872e664f4e43863c7656066724cfc9722177c5c2978c428076f803"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据已收集完毕。以下是汇总：\n\n---\n\n## Q1: 72B 实验 Deterministic 细节\n\n**来源**: `westb-13313:/root/autodl-tmp/simgate-modular-routing/results/backbone_72b/`\n\n### 1. 72B 是否有独立 deterministic episodes？\n\n**是**。72B 收集了独立的 det episodes，没有复用 7B 数据。\n- `collection_meta.json` 显示 `\"reused_episodes\": 0`\n- 每个 episode 的 `episodes.jsonl` 包含完整的 `always_internal` 和 `always_deterministic` 配对轨迹\n- 覆盖 **9 个 tasks**（缺少 lifespan-longest-lived-then-shortest-lived 和 measure-melting-point-unknown-substance）\n- lifespan-longest-lived 只有 15 episodes，其余 8 个 tasks 各 20 episodes\n- **总计 175 episodes**\n\n### 2. 72B Det death rate\n\n| Metric | Value |\n|--------|-------|\n| Int death rate | **33.7%** (59/175) |\n| Det death rate | **2.9%** (5/175) |\n| δ (death rate differential) | **30.9%** |\n\n### 3. 72B Δ_nd\n\n**Δ_nd = +3.50**（113 个 both-survive episodes）\n\n几乎全部来自 find-non-living-thing（该 task 0 deaths，但 det 在 score comparison 上大幅领先 +20.0）。其余 8 个 task 的 Δ_nd 全部为 0.0（both-survive 时 int 和 det 得分完全相同）。\n\n### 4. 72B DAF\n\n| Metric | Value |\n|--------|-------|\n| DAF (aggregate) | **89.6%** |\n| DAF (task-weighted, 9 tasks) | **89.0%** |\n\nPer-task DAF: 8/9 tasks = 100%，find-non-living-thing = 0%（无 death，纯 score gap）\n\n### 5. 72B Label distribution\n\n- det-preferred: **66**, no-preference: **104**, internal-preferred: **5**\n- Signal sources: death_asymmetry: **60**, tied_alive: **102**, both_dead: **2**, score_comparison: **11**\n\n---\n\n## Q3: Reflexion N=3 Δ_nd\n\n**来源**: westb + westd 的 `reflexion_dose_response/` + `plan_c/` 数据\n\n对比 Reflexion N=k 最终得分 vs plan_c 中相同 task+variation 的 det baseline（183 matched episodes）：\n\n| Condition | Death rate (ref) | Death rate (det) | Δ_full | Δ_nd | n_nd | DAF |\n|-----------|-----------------|-----------------|--------|------|------|-----|\n| N=1 (baseline) | 51.9% | 20.2% | 33.20 | **-0.48** | 87 | 101.5% |\n| N=2 | 43.7% | 20.2% | 24.46 | **-0.08** | 97 | 100.3% |\n| **N=3** | **37.2%** | **20.2%** | **17.33** | **-0.47** | **103** | **102.7%** |\n| N=4 | 39.9% | 20.2% | 18.24 | -3.20 | 101 | 117.5% |\n| N=5 | 38.3% | 20.2% | 17.61 | -1.08 | 105 | 106.1% |\n\n**Reflexion N=3 Δ_nd = -0.47**（103 个 both-alive episodes）。负值说明在 non-death episodes 中，Reflexion 得分略高于 det baseline。DAF > 100% 说明 death avoidance 完全解释了 det 优势（非 death 场景 reflexion 反而更好）。\n\n关键发现：Reflexion N=3 把 death rate 从 51.9%（N=1）降到 37.2%，但 Δ_nd 保持接近 0，说明 Reflexion 的增益几乎全部来自 death reduction。\n\n---\n\n## Q4: DAF 95% CI 方法\n\n**来源**: `westb-13313:/root/autodl-tmp/simgate-modular-routing/src/death_decomposition.py` + `paper/method.tex`\n\nDAF CI [81.6%, 98.8%] 使用的是 **episode-level bootstrap**：\n\n- **B = 10,000** resamples, seed = 42\n- 每次 resample 从 N=245 episodes 中**有放回抽取** N 个 episodes\n- 对每个 resample 重新计算 Δ_full、Δ_nd 和 DAF = 1 - Δ_nd/Δ_full\n- 取 percentile-based 95% CI（2.5th 和 97.5th percentile）\n- 论文原文: *\"Episode-level bootstrap resampling (B=10,000 resamples)... each resample draws N=245 episodes with replacement, recomputes Δ_full, Δ_nd, and DAF\"*\n\n**不是** cluster/task-level bootstrap。代码中也有 task-weighted DAF CI（lines 425-436），那是 resample tasks 的方式，但论文主文报告的 [81.6%, 98.8%] 是 episode-level 的。\n\n代码位置: `death_decomposition.py` lines 355-378（aggregate DAF bootstrap CI 计算）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-r17-data-lookup.md"
+}

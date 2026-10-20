@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fb68fed22fa1681e8091",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code death aware postprocess",
+  "task_key": "worker_code_death-aware-postprocess_20260513T191005",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_death-aware-postprocess_20260513T191005_result.json",
+    "occurrence": 1,
+    "bytes": 564,
+    "sha256": "89cf6de175932d8559cf740466403cecf052ba722ca8c510b7b2f8d07179e3df"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。`src/death_aware_labeling.py` 已写入服务器并验证通过。\n\n**find-non-living-thing dry-run 结果：**\n- 5 episodes → det_score=2, int_score=1, tie=2, 无 death 案例\n- 90 SFT steps (det=60, int=30)\n- Internal label ratio: 33.3%\n\n该任务没有 death 案例（find-non-living-thing 不涉及致死操作），所以全部走 `both_alive` 分支按 score 比较。可以用 `--input_dirs` 逗号分隔传入多个 task 目录（如含 melt、chemistry-mix 等有 death 的任务）来看 death-aware labeling 的效果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-death-aware-postprocess.md"
+}

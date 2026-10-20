@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "e8f27e0b172adac7310b",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "code plan 002 router sft prep",
+  "task_key": "worker_code_plan-002-router-sft-prep_20260513T221215",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan-002-router-sft-prep_20260513T221215.log",
+    "occurrence": 1,
+    "bytes": 972618,
+    "sha256": "b633c5657b6b1049f2b424cc114cd2f3ee40c43f7a77a822529f9795a5ad678a"
+  },
+  "statistics": {
+    "messages": 239,
+    "user_turns": 1,
+    "tool_calls": 88,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 3,
+      "assistant": 53,
+      "tool_call": 88,
+      "tool_result": 88,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 132,
+      "chunks": [
+        {
+          "path": "e8f27e0b172adac7310b-part-0001.json",
+          "message_count": 95
+        },
+        {
+          "path": "e8f27e0b172adac7310b-part-0002.json",
+          "message_count": 37
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 107,
+      "chunks": [
+        {
+          "path": "e8f27e0b172adac7310b-part-0002.json",
+          "message_count": 107
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-plan-002-router-sft-prep.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "53e683babbc6fcd014fb",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "exp r7n2 status check",
+  "task_key": "worker_exp_r7n2-status-check_20260516T013839",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_r7n2-status-check_20260516T013839_result.json",
+    "occurrence": 1,
+    "bytes": 1367,
+    "sha256": "5df4fc9d39657a242f910f00a91a6443ac94ce27da28d75124d5993284ae550b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n**进程 921548：已死亡**（无 traceback，静默被杀 — 大概率 OOM）\n\n### 崩溃经过\n1. **首次运行**：加载模型后立即崩溃 — `wandb.errors.UsageError: No API key configured`\n2. **重新运行**（日志追加到同一文件）：scale_25pct × 3 seeds 全部完成\n3. **scale_50pct_seed42**：84 步训练 100% 完成，但在后续 `generation_eval()` 阶段被静默杀死（无 error 输出，推测 OOM）\n\n### 已完成结果\n\n```\nScale  | Seed 42 | Seed 43 | Seed 44 | Mean±Std\n25pct  | 0.5000  | 0.5000  | 0.5000  | 0.5000±0.0000\n50pct  | (训练完成但eval崩溃) | 未开始 | 未开始 |\n75pct  | 未开始   | 未开始   | 未开始   |\n100pct | 未开始   | 未开始   | 未开始   |\n200pct | 未开始   | 未开始   | 未开始   |\n400pct | 未开始   | 未开始   | 未开始   |\n800pct | 未开始   | 未开始   | 未开始   |\n```\n\n所有 25pct 结果都是 balanced_acc=0.5（模型把所有样本预测为 internal，deterministic_recall=0.0，internal_recall=1.0）。\n\n### 关键问题\n- 共 7 scales × 3 seeds = 21 runs，仅完成 3 个\n- scale_50pct_seed42 训练完成但 checkpoint 未被评估（generation_eval 阶段可能 OOM）\n- 需要重跑，建议去掉 `--wandb` 或先配好 wandb key，并排查 generation_eval 的显存占用"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-r7n2-status-check.md"
+}

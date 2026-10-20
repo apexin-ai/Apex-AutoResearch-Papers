@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8e9c946963be4da82e39",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "eval plan 008 v4 1 7b reval",
+  "task_key": "worker_eval_plan-008-v4-1_7b-reval_20260515T204715",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan-008-v4-1_7b-reval_20260515T204715_result.json",
+    "occurrence": 1,
+    "bytes": 1722,
+    "sha256": "bf81b7527fb660d7474aa96767e34a8d9a5676b1ec4b3b2302f8ec3c2afe6042"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 完成。结果如下：\n\n```\n=== 1.7B Re-eval (unified pipeline, tokenizer-default thinking + strip_thinking) ===\nSeed 42: balanced_acc=0.3870, internal_recall=0.1667, eval_loss=0.24 (from trainer)\nSeed 43: balanced_acc=0.3981, internal_recall=0.2000, eval_loss=0.4363 (from trainer)\nMean: balanced_acc=0.3926±0.0055\n\n=== 对比（旧 vs 新 pipeline）===\nSeed 42: old=0.5761 → new=0.3870 (Δ=-0.1891)\nSeed 43: old=0.4852 → new=0.3981 (Δ=-0.0871)\nMean: old=0.5307±0.0643 → new=0.3926±0.0055\n```\n\n**关键发现**：\n\n1. 用与 0.6B/4B 完全相同的 generation-based eval pipeline 后，1.7B balanced_acc 从 0.5307 大幅下降到 0.3926。\n\n2. **旧值的 confound 不止 enable_thinking** — 旧 1.7B 数据来自 Trainer 的 logit-based eval（直接检查 next-token logits），而 0.6B/4B 用的是 generation-based eval（`eval_routing_metrics.py`，自回归生成 + strip_thinking）。这是两种完全不同的 eval 方法，logit-based 天然偏高。\n\n3. **统一 pipeline 下的 router-size 对比**：\n   | Model | Seed 42 | Seed 43 | Mean |\n   |-------|---------|---------|------|\n   | 0.6B  | 0.6296  | 0.5593  | 0.5945 |\n   | **1.7B** | **0.3870** | **0.3981** | **0.3926** |\n   | 4B    | 0.5889  | 0.5352  | 0.5621 |\n\n   1.7B 在 generation-based eval 下表现最差，远低于 0.6B 和 4B。Internal recall 极低（16.7%-20%），说明模型在生成时几乎无法产出 non-[SIMULATE] 的 internal routing 信号。\n\n4. `eval_loss` 来自 Trainer eval（logit-based），不受 enable_thinking 影响，因此保留原值。\n\n结果文件已保存到 `results/plan-008-v4/1_7b_seed42_reeval.json` 和 `1_7b_seed43_reeval.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-plan-008-v4-1-7b-reval.md"
+}

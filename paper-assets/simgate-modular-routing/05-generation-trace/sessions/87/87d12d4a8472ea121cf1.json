@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "87d12d4a8472ea121cf1",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "eval generative v1 metrics",
+  "task_key": "worker_eval_generative-v1-metrics_20260514T081254",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_generative-v1-metrics_20260514T081254_result.json",
+    "occurrence": 1,
+    "bytes": 909,
+    "sha256": "cdd600063f4cfc22f7e964938c709b869047e3eaf2345558008fe37193f7ebb9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新，conclusion=success。\n\n## 总结\n\n**plan-002-generative-v1 评估结果（306 val samples）：**\n\n| 指标 | generative-v1 | ablation-b (baseline) |\n|---|---|---|\n| eval_accuracy | **75.5%** | 65.4% |\n| internal_recall | **51.9%** | 51.5% |\n| f1_macro | **56.2%** | 50.9% |\n| balanced_accuracy | **64.8%** | — |\n| is_degenerate | false | false |\n\n**Confusion Matrix:**\n```\n               det_pred   int_pred\n deterministic      217         62\n      internal       13         14\n```\n\n**关键发现：**\n- 模型非退化，internal_recall 达标（51.9% ≈ ablation-b）\n- Overall accuracy 和 f1 均显著优于 ablation-b\n- 主要弱点：internal_precision 仅 18.4%，过度预测 internal（pred 76 vs GT 27），62 个 deterministic 样本被误判\n- Qwen3 thinking mode 被 SFT 有效抑制（`<think>\\n\\n</think>`），不影响路由"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-generative-v1-metrics.md"
+}

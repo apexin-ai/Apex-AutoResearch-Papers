@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cbcf9c62c9cb0cb9155a",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "diagnose seed robustness core",
+  "task_key": "worker_diagnose_seed-robustness-core_20260515T134359",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_seed-robustness-core_20260515T134359_result.json",
+    "occurrence": 1,
+    "bytes": 683,
+    "sha256": "3755c205ca899ca478dd6e32d6e4840ca4305688676ebb5b7b84f0949fb5d979"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "seed-robustness-core 诊断完成：\n\n**结果：成功。** 4 个 seed 全部完成，registry 已更新为 DONE，cron 已清除。\n\n**Router 跨 seed 稳定性：**\n| Seed | balanced_acc | internal_recall | eval_loss |\n|------|-------------|----------------|-----------|\n| 42 | 0.5761 | 0.5152 | 0.240 |\n| 43 | 0.4852 | 0.3667 | 0.436 |\n| 44 | 0.6074 | 0.600 | 0.400 |\n| 45 | 0.5467 | 0.600 | 0.356 |\n| **Mean±Std** | **0.554±0.052** | **0.520±0.110** | **0.358±0.085** |\n\n**Decomposition bootstrap (1000 resamples)：**\n- DAF: 90.6% ± 4.2%, CI [81.6%, 98.8%]\n- Pearson r: 0.975 ± 0.011, CI [0.952, 0.995]\n- Jackknife: no single task dominates"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-seed-robustness-core.md"
+}

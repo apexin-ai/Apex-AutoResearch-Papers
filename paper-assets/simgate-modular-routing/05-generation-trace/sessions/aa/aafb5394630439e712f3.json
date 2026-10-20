@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aafb5394630439e712f3",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh verify post collection readiness",
+  "task_key": "worker_ssh_verify-post-collection-readiness_20260514T003439",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_verify-post-collection-readiness_20260514T003439_result.json",
+    "occurrence": 1,
+    "bytes": 3343,
+    "sha256": "410a1736800e72b702b6fa5a83d7147d69146f5e1432f25088872ce5eaf9cdce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部检查完成。\n\n---\n\n## 检查清单\n\n### 1. Shell 脚本文件\n| 文件 | 状态 | 权限 |\n|------|------|------|\n| `scripts/post_collection_analysis.sh` | ✅ 存在 | rwxr-xr-x (3025B) |\n| `scripts/launch_plan002.sh` | ✅ 存在 | rwxr-xr-x (711B) |\n| `scripts/launch_plan004b.sh` | ✅ 存在 | rwxr-xr-x (663B) |\n\n### 2. 核心 Python 脚本\n| 文件 | 状态 |\n|------|------|\n| `src/death_decomposition.py` | ✅ (22KB) |\n| `src/death_aware_labeling.py` | ✅ (8KB) |\n| `src/router_sft_train.py` | ✅ (21KB) |\n| `src/ablation_implicit_1_7b.py` | ✅ (12KB) |\n| `src/ablation_data_converter.py` | ✅ (5KB) |\n| `src/ablation_eval_common.py` | ✅ (11KB) |\n| `src/episode_level_collection.py` | ✅ (24KB) |\n\n### 3. Qwen3-1.7B 模型\n✅ 已下载完成，含 `config.json` + 2 个 safetensors 分片 (~3.8GB)，路径 `/root/autodl-tmp/models/Qwen/Qwen3-1.7B/`\n\n### 4. results 目录结构\n- `results/plan_c/` 已有 6 个 task 目录：find-animal, find-non-living-thing, grow-fruit, identify-life-stages-1, inclined-plane-determine-angle, lifespan-longest-lived-then-shortest-lived\n- `results/decomposition_final/` ❌ 不存在 — 这是 `death_decomposition.py` 的输出目录，数据收集完成后运行才会生成，**属正常状态**\n\n### 5. Launch 脚本内容确认\n\n**launch_plan002.sh** (cuda:0):\n- Step 1: `death_aware_labeling.py` → 从 prescreening/mvp/research/plan_c 生成标签到 `results/plan_001b_labels/`\n- Step 2: `router_sft_train.py` → Qwen3-1.7B, gpu_id=0, lr=2e-5, bs=32, 3 epochs\n- ✅ 路径正确\n\n**launch_plan004b.sh** (cuda:1):\n- Step 1: `ablation_data_converter.py` → 复用 plan-002 标签转 implicit 格式\n- Step 2: `ablation_implicit_1_7b.py train` → gpu_id=1\n- ✅ 路径正确，注意依赖 plan-002 的 `results/plan_001b_labels/sft_triples.jsonl`，**需要 plan-002 Step 1 先完成**\n\n**post_collection_analysis.sh**: 完整的数据完整性检查脚本，含 episode 计数、task 完整性、数据格式校验。✅\n\n### 6. find-non-living-thing 追加命令\n\n当前状态：已有 20 episodes（5 reused + 15 new）。`--start_episode` 参数已支持（line 471）。\n\n追加 20 eps 命令（GPU1 空闲后执行）：\n\n```bash\ncd /root/autodl-tmp/simgate-modular-routing\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\n\nCUDA_VISIBLE_DEVICES=1 python src/episode_level_collection.py \\\n  --task_list find-non-living-thing \\\n  --episodes 20 \\\n  --start_episode 20 \\\n  --gpu_id 0 \\\n  --output_dir results/plan_c/ \\\n  --max_steps 30 \\\n  --seed 42\n```\n\n注意：`--gpu_id 0` 因为 `CUDA_VISIBLE_DEVICES=1` 会让物理 GPU1 映射为逻辑 GPU 0。\n\n### 发现的问题\n\n1. **launch_plan004b.sh 存在执行顺序依赖**：它需要 `results/plan_001b_labels/sft_triples.jsonl` 作为输入，而这个文件由 `launch_plan002.sh` 的 Step 1 生成。两个脚本不能完全并行启动 — 需要等 plan-002 的 `death_aware_labeling.py` 跑完后再启动 plan-004b，或者把 labeling 步骤从 launch_plan002.sh 中拆出来单独先跑。\n2. **plan_c 目录当前只有 6 个 task**，`post_collection_analysis.sh` 预期检查 11 个 task（含 plan-001b 正在跑的那些），收集完成前运行会报 MISSING — 这是预期行为。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-verify-post-collection-readiness.md"
+}

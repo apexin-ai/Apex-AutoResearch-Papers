@@ -1,0 +1,108 @@
+{
+  "schema_version": "1.0",
+  "id": "fef01b8ce6be55da2f1a",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "exp leave one tasktype out",
+  "task_key": "worker_exp_leave-one-tasktype-out_20260516T013914",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_leave-one-tasktype-out_20260516T013914.log",
+    "occurrence": 1,
+    "bytes": 2641735,
+    "sha256": "ce12256935a3a6492c9109c436be473e74f82a205f86d6624cf1d5646c47182e"
+  },
+  "statistics": {
+    "messages": 1841,
+    "user_turns": 2,
+    "tool_calls": 806,
+    "roles": {
+      "log": 1,
+      "system": 45,
+      "record": 1,
+      "assistant": 172,
+      "tool_call": 806,
+      "tool_result": 806,
+      "user": 2,
+      "result": 8
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 814,
+      "chunks": [
+        {
+          "path": "fef01b8ce6be55da2f1a-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "fef01b8ce6be55da2f1a-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "fef01b8ce6be55da2f1a-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "fef01b8ce6be55da2f1a-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "fef01b8ce6be55da2f1a-part-0005.json",
+          "message_count": 94
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 922,
+      "chunks": [
+        {
+          "path": "fef01b8ce6be55da2f1a-part-0005.json",
+          "message_count": 86
+        },
+        {
+          "path": "fef01b8ce6be55da2f1a-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "fef01b8ce6be55da2f1a-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "fef01b8ce6be55da2f1a-part-0008.json",
+          "message_count": 180
+        },
+        {
+          "path": "fef01b8ce6be55da2f1a-part-0009.json",
+          "message_count": 180
+        },
+        {
+          "path": "fef01b8ce6be55da2f1a-part-0010.json",
+          "message_count": 116
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 105,
+      "chunks": [
+        {
+          "path": "fef01b8ce6be55da2f1a-part-0010.json",
+          "message_count": 64
+        },
+        {
+          "path": "fef01b8ce6be55da2f1a-part-0011.json",
+          "message_count": 41
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-leave-one-tasktype-out.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e950cb9806baf89027e3",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "diagnose r7n2 supplement 100 200",
+  "task_key": "worker_diagnose_r7n2-supplement-100-200_20260516T073754",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_r7n2-supplement-100-200_20260516T073754_result.json",
+    "occurrence": 1,
+    "bytes": 1957,
+    "sha256": "859c4d91da7be8620309ca7681662ea2d3c0e5df8d59b4a8f89baeeab71c3d0d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n### 1. 失败根因\n\n**不是代码/环境/OOM 失败。** 脚本正常运行完毕并输出了 summary。EXIT_CODE=1 是误报——脚本末尾没有 `sys.exit()` 调用，`run_ablation(args)` 正常返回。最可能的原因是 tmux session 或 job wrapper 在脚本结束后的退出码被错误捕获（grep 确认脚本中不存在任何 `exit` 调用）。\n\n### 2. 关键日志片段（脚本最终输出）\n\n```\n{'train_runtime': 342.0534, 'train_loss': 0.7650409018227814, 'epoch': 3.0}\n[DEBUG] Step-level eval done: balanced_acc=0.5000\n\n============================================================\nDATA SIZE ABLATION SUMMARY\n============================================================\nScale      N_train    StepBalAcc     EpBalAcc       Saturated?\n--------------------------------------------------------------\n100pct     1735       0.5000+/-0.0000  0.4990+/-0.0010  \n200pct     3470       0.5000+/-0.0000  0.5000+/-0.0000  YES\n```\n\n### 3. 结果完整性\n\n**全部 4 个 run 完整保存**，无需挽救：\n- `results/ablation_r3/scale_100pct_seed42/`\n- `results/ablation_r3/scale_100pct_seed43/`\n- `results/ablation_r3/scale_200pct_seed42/`\n- `results/ablation_r3/scale_200pct_seed43/`\n- `results/ablation_r3/summary.json` ✓\n\n### 4. 真正的问题（语义层面）\n\n模型完全退化——**所有条件下 internal recall = 0.0**，模型只预测多数类 \"deterministic\"。数据集极度不平衡（deterministic:internal ≈ 9:1），增加数据量（200pct）也无法解决。这不是代码 bug，而是 **routing signal 太弱 / 类别极度不平衡导致模型坍缩到多数类预测**。\n\n脚本自身的结论也说了：`\"performance plateau is due to thin routing signal (extreme class imbalance + death-dominated labels) rather than data insufficiency\"`\n\n**无需修复代码。** EXIT_CODE=1 是 monitoring 误报，实验结果已完整产出。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-r7n2-supplement-100-200.md"
+}

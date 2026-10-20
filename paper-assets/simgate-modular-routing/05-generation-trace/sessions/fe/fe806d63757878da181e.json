@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fe806d63757878da181e",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "infra verify gpu1 resubmit",
+  "task_key": "worker_infra_verify-gpu1-resubmit_20260513T064716",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_verify-gpu1-resubmit_20260513T064716_result.json",
+    "occurrence": 1,
+    "bytes": 414,
+    "sha256": "ec567ea0109b94a31640a982c008ca79b1928fe28f8467952797747d0dfa9bbb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**两个 GPU 都在正常运行 Phase 1。**\n\n- **GPU0** (PID 20296): 运行 22 分钟，Episode 2 进行中（oracle-routing agent 跑完，开始 Episode 2）\n- **GPU1** (PID 55775): 重提后运行 1 分 43 秒，已成功启动，正在加载模型并跑 Episode 0（chemistry-mix-paint-secondary-color 任务）\n- 显存：GPU0 占用 15729 MiB，GPU1 占用 15475 MiB，各约 48%，正常"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-verify-gpu1-resubmit.md"
+}

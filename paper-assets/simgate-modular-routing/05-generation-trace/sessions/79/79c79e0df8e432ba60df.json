@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "79c79e0df8e432ba60df",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh reflexion dose response setup",
+  "task_key": "worker_ssh_reflexion-dose-response-setup_20260518T083325",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_reflexion-dose-response-setup_20260518T083325_result.json",
+    "occurrence": 1,
+    "bytes": 865,
+    "sha256": "4439f90e30484979eee3f9403f13f88ea770105ed00f96167bb7d0d4a5f893e9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已成功启动，正在运行 N=1 的第一个 condition。\n\n**状态汇总：**\n\n| 项目 | 值 |\n|------|-----|\n| 脚本 | `/root/autodl-tmp/simgate-modular-routing/run_reflexion_dose_response.py` |\n| Wrapper | `/root/autodl-tmp/simgate-modular-routing/run_reflexion_dr_wrapper.sh` |\n| vLLM PID | 943997 (cuda:1, port 8001) |\n| 实验 PID | 945047 |\n| GPU | cuda:1, 29913/32607 MiB, 100% util |\n| 参数 | N=1,2,3,4,5, 20 eps/task, 10 tasks, seed=42, mode=reflexion |\n| 总量 | 1000 episodes, 最多 3000 trials |\n| 日志 | `logs/reflexion_dose_response.log` + `~/runs/simgate-modular-routing/reflexion-dose-response.log` |\n| 输出 | `results/reflexion_dose_response/` |\n| tmux | `reflexion-dose-response` |\n| 超时 | 12h |\n\n两张 5090 均满载：cuda:0 跑 retry dose-response，cuda:1 跑 reflexion dose-response。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-reflexion-dose-response-setup.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6d0548747f2f4c1017f4",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "eval math power analysis w6",
+  "task_key": "worker_eval_math-power-analysis-w6_20260516T192329",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_math-power-analysis-w6_20260516T192329_result.json",
+    "occurrence": 1,
+    "bytes": 716,
+    "sha256": "932f5355c9a51c106733dae1f9d396ac2222b49e46c93292cb04c472aaab78bc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n```\n=== MATH Post-hoc Power Analysis ===\n\nSetup:\n  N = 300 paired samples\n  Effect: 4.3pp (81.0% vs 76.7%)\n  Test: McNemar (chi-squared)\n  Observed: chi2 = 3.073, p = 0.0796\n  Discordant pairs: 55 (b=34, c=21)\n\nResults:\n  Post-hoc power: 0.4181 (41.8%)\n  Required N for 80% power: 770\n  Required N for 90% power: 1030\n\nInterpretation:\n  Severely underpowered — the study had little chance of detecting a true 4.3pp effect\n```\n\nN=300 时 power 仅 41.8%，远低于 80% 门槛。达到 80% power 需 N=770，90% 需 N=1030。p=0.079 的非显著结果是 power 不足导致的，不能解读为\"无效果\"。结果已存入 `guided_router/math_power_results.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-math-power-analysis-w6.md"
+}

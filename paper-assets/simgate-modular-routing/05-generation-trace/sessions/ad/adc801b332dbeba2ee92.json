@@ -1,0 +1,55 @@
+{
+  "schema_version": "1.0",
+  "id": "adc801b332dbeba2ee92",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh fix filter ablation baseline",
+  "task_key": "worker_ssh_fix-filter-ablation-baseline_20260518T235241",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix-filter-ablation-baseline_20260518T235241_result.json",
+    "occurrence": 1,
+    "bytes": 677,
+    "sha256": "829607005771cc4857d93be05344948f527cc86dc420f5ace6ed0649e73cd28a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成。`baseline_comparison` 现在为：\n\n```json\n{\n  \"baseline_death_rate\": 0.48,\n  \"baseline_daf\": 0.904,\n  \"baseline_episodes\": 200,\n  \"baseline_source\": \"retry_dose_response_n1\",\n  \"delta_vs_baseline\": -0.19\n}\n```\n\n- `baseline_death_rate`: 0.429 → **0.48**\n- `baseline_episodes`: 245 → **200**\n- 新增 `baseline_source`: `\"retry_dose_response_n1\"`\n- 新增 `delta_vs_baseline`: **-0.19** (filter DR 0.29 - baseline 0.48 = -19pp)"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "baseline_death_rate": 0.48,
+              "baseline_daf": 0.904,
+              "baseline_episodes": 200,
+              "baseline_source": "retry_dose_response_n1",
+              "delta_vs_baseline": -0.19
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fix-filter-ablation-baseline.md"
+}

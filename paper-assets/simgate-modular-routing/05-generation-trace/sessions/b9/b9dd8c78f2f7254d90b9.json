@@ -1,0 +1,1132 @@
+{
+  "schema_version": "1.0",
+  "id": "b9dd8c78f2f7254d90b9",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "paper writing method",
+  "task_key": "worker_paper_writing_method_20260514T020639",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_method_20260514T020639.log",
+    "occurrence": 1,
+    "bytes": 77713,
+    "sha256": "5e4bfdcdcba0450f6ffcb3986c941434c6a9b7956c8d762ede193ecde76c96fc"
+  },
+  "statistics": {
+    "messages": 25,
+    "user_turns": 0,
+    "tool_calls": 7,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 7,
+      "tool_call": 7,
+      "tool_result": 7,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+                "session_id": "e7d68ec2-6069-4d98-9ec3-cf89b610a4f6",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__auto_build_provenance",
+                  "mcp__agent-ml-research__bootstrap_provenance",
+                  "mcp__agent-ml-research__check_paper_consistency",
+                  "mcp__agent-ml-research__check_provenance_completeness",
+                  "mcp__agent-ml-research__cleanup_pdf_images",
+                  "mcp__agent-ml-research__compute_coverage_matrix",
+                  "mcp__agent-ml-research__edit_paper_section",
+                  "mcp__agent-ml-research__get_image_info",
+                  "mcp__agent-ml-research__get_worker_status",
+                  "mcp__agent-ml-research__list_artifacts",
+                  "mcp__agent-ml-research__list_workers",
+                  "mcp__agent-ml-research__load_project_config",
+                  "mcp__agent-ml-research__overleaf_init",
+                  "mcp__agent-ml-research__overleaf_pull",
+                  "mcp__agent-ml-research__overleaf_push",
+                  "mcp__agent-ml-research__overleaf_status",
+                  "mcp__agent-ml-research__overleaf_sync",
+                  "mcp__agent-ml-research__paper_agent_post_to_director",
+                  "mcp__agent-ml-research__paper_agent_request_review",
+                  "mcp__agent-ml-research__paper_compile_and_check",
+                  "mcp__agent-ml-research__pdf_to_images",
+                  "mcp__agent-ml-research__read_experiment_plan_with_status",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__read_roadmap",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__save_project_file",
+                  "mcp__agent-ml-research__send_progress",
+                  "mcp__agent-ml-research__spawn_worker",
+                  "mcp__agent-ml-research__verify_references",
+                  "mcp__agent-ml-research__write_paper_section"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "93208e72-6968-47dc-b584-91b93ba1debf",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778739000,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "bfe44b4e-0f69-49b2-9376-0ee0f7e3ec64",
+                "session_id": "e7d68ec2-6069-4d98-9ec3-cf89b610a4f6"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll start by reading the latex-paper skill file and checking existing project files for context."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e7d68ec2-6069-4d98-9ec3-cf89b610a4f6",
+            "uuid": "8c2f1f71-07b2-4983-837d-a6587e5915ea",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TRs1NXxskThUd2XKZpr1kU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13200,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13200
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Ux7FtgJKKxjR4JEbaTXhxn",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e7d68ec2-6069-4d98-9ec3-cf89b610a4f6",
+            "uuid": "3b907220-164f-47c7-9353-f0ea4e590980",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TRs1NXxskThUd2XKZpr1kU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13200,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13200
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T02:06:56.289Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Ux7FtgJKKxjR4JEbaTXhxn",
+              "type": "tool_result",
+              "content": "1\t---\n2\tname: latex-paper\n3\tdescription: ML 顶会论文 LaTeX 写作全流程——Claim-Evidence 方法论、引用防幻觉、顶会模板速查、投稿工程链、会议转投。写论文/投稿时参考。\n4\tscope: global\n5\ttags:\n6\t- latex\n7\t- paper-writing\n8\t- academic\n9\t- citation\n10\t- submission\n11\tversion: 1\n12\troles:\n13\t- agent\n14\t- worker\n15\t---\n16\t\n17\t# LaTeX 论文写作全流程\n18\t\n19\tML/AI 顶会论文从草稿到投稿的完整指南。整合 Orchestra Research、VibeSkills、claim2evidence 三方最佳实践。\n20\t\n21\t---\n22\t\n23\t## 1. 工作模式\n24\t\n25\t开始前选择模式：\n26\t\n27\t| 模式 | 说明 | 适用 |\n28\t|------|------|------|\n29\t| **Build** | 从实验笔记/结果/代码生成论文 | 新稿 |\n30\t| **Improve** | 改写已有章节，强化论证 | 修改稿 |\n31\t| **Audit** | 输出风险列表 + 缺失证据 + 修复建议 | 投前检查 |\n32\t\n33\t---\n34\t\n35\t## 2. Claim-Evidence 方法论\n36\t\n37\t**核心原则：论文是一个有中心贡献的故事，不是实验的堆砌。**\n38\t\n39\t### 2.1 一句话贡献\n40\t\n41\t在写任何内容之前，必须能用一句话说清贡献。如果不能，说明还没准备好写论文。\n42\t\n43\t### 2.2 Claim-Evidence Map\n44\t\n45\t为每个 contribution 建立 claim→evidence 映射表：\n46\t\n47\t| Contribution | Claim | Evidence | Table/Figure |\n48\t|-------------|-------|----------|-------------|\n49\t| C1: 方法 X 在 Y 上 SOTA | 比所有 baseline 高 ≥2% | 5-seed 平均，p<0.05 | Table 1 |\n50\t| C2: 消融证明 Z 是关键 | 去掉 Z 后掉 >5% | 消融实验 | Table 2 |\n51\t| C3: 计算效率 | 比 baseline 快 3× | FLOPs + wall-clock | Figure 3 |\n52\t\n53\t**没有直接证据支撑的 claim 必须删除或降级为 discussion。**\n54\t\n55\t### 2.3 章节起草顺序\n56\t\n57\t```\n58\t1. Introduction + Experiments（先确定 claim 和 evidence）\n59\t2. Method（评估问题稳定后再写细节）\n60\t3. Related Work\n61\t4. Abstract + Title（核心 claim 定型后最后写）\n62\t```\n63\t\n64\t### 2.4 Quality Gates\n65\t\n66\t投稿前必须通过：\n67\t- [ ] 前两段出现显式 novelty 声明\n68\t- [ ] 每个 contribution 有可验证的 evidence\n69\t- [ ] Abstract / Intro / Conclusion 的 claim 一致\n70\t- [ ] Limitations 真实且技术性诚实\n71\t- [ ] 审稿人两分钟内能识别 delta\n72\t\n73\t---\n74\t\n75\t## 3. 引用防幻觉（CRITICAL）\n76\t\n77\t**AI 生成引用有 ~40% 错误率。绝对禁止凭记忆写 BibTeX。**\n78\t\n79\t### 3.1 黄金法则\n80\t\n81\t```\n82\tIF 无法程序化获取引用:\n83\t    → 标记 [CITATION NEEDED] 或 \\cite{PLACEHOLDER_verify}\n84\t    → 明确告知用户\n85\t    → 绝不编造看似合理的引用\n86\t```\n87\t\n88\t### 3.2 五步验证流程\n89\t\n90\t```\n91\t1. SEARCH  → Semantic Scholar API 搜索关键词\n92\t2. VERIFY  → 至少 2 个来源确认论文存在（S2 + arXiv/CrossRef）\n93\t3. RETRIEVE → 通过 DOI 获取 BibTeX（程序化，非记忆）\n94\t4. CHECK   → 确认你引用的 claim 确实出自该论文\n95\t5. ADD     → 加入 .bib 文件\n96\t```\n97\t\n98\t### 3.3 API 速查\n99\t\n100\t| API | 用途 | 限制 |\n101\t|-----|------|------|\n102\t| **Semantic Scholar** | ML/AI 论文搜索 | 1 RPS (免费) |\n103\t| **CrossRef** | DOI → BibTeX | 需 mailto 头 |\n104\t| **arXiv** | 预印本搜索 | 3s 间隔 |\n105\t\n106\t```python\n107\t# DOI → BibTeX（最可靠的方式）\n108\timport requests\n109\tdef doi_to_bibtex(doi: str) -> str:\n110\t    r = requests.get(f\"https://doi.org/{doi}\",\n111\t                     headers={\"Accept\": \"application/x-bibtex\"})\n112\t    r.raise_for_status()\n113\t    return r.text\n114\t\n115\t# Semantic Scholar 搜索\n116\tfrom semanticscholar import SemanticScholar\n117\tsch = SemanticScholar()\n118\tresults = sch.search_paper(\"attention mechanism transformers\", limit=5)\n119\tfor p in results:\n120\t    print(f\"{p.title} | DOI: {p.externalIds.get('DOI', 'N/A')}\")\n121\t```\n122\t\n123\t### 3.4 引用处理规则\n124\t\n125\t| 情况 | 处理 |\n126\t|------|------|\n127\t| 找到论文 + DOI + BibTeX | 直接用 |\n128\t| 找到论文，无 DOI | 用 arXiv BibTeX |\n129\t| 论文存在但无法获取 BibTeX | 标记 placeholder，告知用户 |\n130\t| 不确定论文是否存在 | 标记 `[CITATION NEEDED]`，告知用户 |\n131\t| \"我觉得有篇关于 X 的论文\" | **绝不引用** — 先搜索或标记 |\n132\t\n133\t---\n134\t\n135\t## 4. 顶会模板速查\n136\t\n137\t### 4.1 ML/AI 会议\n138\t\n139\t| 会议 | 页数限制 | 主文件 | 样式文件 | 必须项 |\n140\t|------|---------|--------|---------|--------|\n141\t| **NeurIPS** | 9 页 | `main.tex` | `neurips.sty` | Paper Checklist |\n142\t| **ICML** | 8 页 (+1 camera-ready) | `example_paper.tex` | `icml2026.sty` | Broader Impact |\n143\t| **ICLR** | 9 页 (+1) | `iclr_conference.tex` | `iclr_conference.sty` | LLM 使用声明 |\n144\t| **ACL/EMNLP** | 8 页 (long) | `acl_latex.tex` | `acl.sty` | Limitations 必须 |\n145\t| **AAAI** | 7 页 (+1) | `aaai_template.tex` | `aaai.sty` | 严格样式 |\n146\t| **COLM** | 9 页 (+1) | `colm_conference.tex` | `colm_conference.sty` | 语言模型聚焦 |\n147\t\n148\t### 4.2 系统会议\n149\t\n150\t| 会议 | 页数限制 | 模板类型 | 关键要求 |\n151\t|------|---------|---------|---------|\n152\t| **OSDI** | 12 页 (+2) | USENIX `usenix.sty` | Research / Operational 双 track |\n153\t| **NSDI** | 12 页 | USENIX | Introduction 预筛 |\n154\t| **ASPLOS** | 12 页 | ACM `acmart.cls (sigplan)` | 前 2 页快速评审 |\n155\t| **SOSP** | 12 页 | ACM `acmart.cls (sigplan)` | 可选 Artifact Evaluation |\n156\t\n157\t### 4.3 模板使用原则\n158\t\n159\t```bash\n160\t# 1. 复制整个模板目录（不要只拷 .tex）\n161\tcp -r templates/neurips2025/ ~/papers/my-paper/\n162\t\n163\t# 2. 先编译未修改的模板，确认能跑通\n164\tlatexmk -pdf main.tex\n165\t\n166\t# 3. 逐章替换内容，频繁编译\n167\t```\n168\t\n169\t**禁止事项：**\n170\t- 不要修改 `.sty` 文件\n171\t- 不要在会议模板间复制 `\\usepackage` 行\n172\t- 不要只复制 `.tex` 而不带 `.sty/.bst`\n173\t\n174\t---\n175\t\n176\t## 5. 写作规范\n177\t\n178\t### 5.1 时间分配（Neel Nanda）\n179\t\n180\t花**大致相等**的时间在：\n181\t1. Abstract\n182\t2. Introduction\n183\t3. 图表\n184\t4. **其余所有内容加起来**\n185\t\n186\t审稿人读论文的顺序：标题 → 摘要 → 引言 → 图表 → 也许正文。\n187\t\n188\t### 5.2 Abstract 五句法（Sebastian Farquhar）\n189\t\n190\t```\n191\t1. 你做了什么（\"We introduce/prove/demonstrate...\"）\n192\t2. 为什么这很难且重要\n193\t3. 怎么做的（含专业关键词以便检索）\n194\t4. 有什么证据\n195\t5. 最惊人的数字/结果\n196\t```\n197\t\n198\t删除一切泛泛的开头：~~\"Large language models have achieved remarkable success...\"~~\n199\t\n200\t### 5.3 句子级清晰度（Gopen & Swan）\n201\t\n202\t| 原则 | 规则 |\n203\t|------|------|\n204\t| 主谓紧邻 | 不要在主语和动词之间插入长从句 |\n205\t| 重点在句尾 | 把关键数字/结论放在句末 |\n206\t| 旧信息在前 | 先放读者已知的内容，再引入新概念 |\n207\t| 动词表达动作 | \"We analyzed\" 而非 \"We performed an analysis\" |\n208\t\n209\t### 5.4 常见修改\n210\t\n211\t| 问题 | 修复 |\n212\t|------|------|\n213\t| Abstract 太泛 | 删第一句（如果它能放在任何 ML 论文前面） |\n214\t| Introduction 超 1.5 页 | 背景挪到 Related Work |\n215\t| 实验没有显式 claim | 每个实验前加 \"This tests whether...\" |\n216\t| 缺统计显著性 | 加 error bars + 运行次数 + 计算方法 |\n217\t\n218\t---\n219\t\n220\t## 6. 投稿工程链\n221\t\n222\t### 6.1 构建\n223\t\n224\t```bash\n225\t# 推荐：latexmk 一键构建\n226\tlatexmk -pdf -interaction=nonstopmode -halt-on-error main.tex\n227\t\n228\t# 手动：需要多次编译\n229\tpdflatex main.tex && bibtex main && pdflatex main.tex && pdflatex main.tex\n230\t```\n231\t\n232\t### 6.2 Lint + 格式化\n233\t\n234\t```bash\n235\t# Lint: 检查常见 LaTeX 问题\n236\tchktex main.tex\n237\t\n238\t# 格式化: 减少 diff 噪声\n239\tlatexindent -w main.tex\n240\t```\n241\t\n242\t### 6.3 图表格式\n243\t\n244\t| 类型 | 格式 | 说明 |\n245\t|------|------|------|\n246\t| 矢量图（plot、diagram） | PDF | matplotlib: `plt.savefig('fig.pdf')` |\n247\t| 照片/heatmap | PNG 600dpi 或 TIFF | 栅格图 |\n248\t| 表格 | `booktabs` 包 | `\\toprule/\\midrule/\\bottomrule` |\n249\t\n250\t```latex\n251\t\\usepackage{booktabs}\n252\t\\begin{tabular}{lcc}\n253\t\\toprule\n254\tMethod & Accuracy $\\uparrow$ & Latency $\\downarrow$ \\\\\n255\t\\midrule\n256\tBaseline & 85.2 & 45ms \\\\\n257\t\\textbf{Ours} & \\textbf{92.1} & 38ms \\\\\n258\t\\bottomrule\n259\t\\end{tabular}\n260\t```\n261\t\n262\t**图表规范：**\n263\t- 用色盲友好色板（Okabe-Ito 或 Paul Tol）\n264\t- 图内不放标题（用 caption）\n265\t- Caption 独立可理解（不依赖正文）\n266\t- 最佳值加粗，标注方向符号（↑ 越高越好，↓ 越低越好）\n267\t\n268\t### 6.4 投稿打包\n269\t\n270\t```bash\n271\t# 清理辅助文件\n272\tlatexmk -c\n273\t\n274\t# 打包投稿\n275\tzip -r submission.zip main.tex *.sty *.bst *.bib figures/ --exclude='*.aux' --exclude='*.log'\n276\t```\n277\t\n278\t### 6.5 常见失败点\n279\t\n280\t| 问题 | 解决 |\n281\t|------|------|\n282\t| 图片格式混用导致编译失败 | 统一用 PDF |\n283\t| 字体未嵌入 | `pdffonts output.pdf` 检查 |\n284\t| Overfull box 过多 | 关键位置手动调行 |\n285\t| 引用缺字段 | 检查 DOI/年份/期刊名 |\n286\t| 超页数 | 用 `\\vspace{-Xpt}` 微调，或精简内容 |\n287\t\n288\t---\n289\t\n290\t## 7. 会议转投\n291\t\n292\t当论文被拒或转投其他会议时：\n293\t\n294\t### 7.1 ML/AI 会议间转换\n295\t\n296\t| 转换 | 页数变化 | 关键调整 |\n297\t|------|---------|---------|\n298\t| NeurIPS → ICML | 9→8 | 删 1 页，加 Broader Impact |\n299\t| ICML → ICLR | 8→9 | 可扩展实验 + LLM 声明 |\n300\t| NeurIPS → ACL | 9→8 | 按 NLP 惯例重组 + Limitations |\n301\t| ICLR → AAAI | 9→7 | 大幅精简，严格样式 |\n302\t\n303\t### 7.2 转投原则\n304\t\n305\t1. **永远用目标模板重新开始** — 复制目标模板，迁移内容，不要合并 preamble\n306\t2. **只迁移正文内容** — 不复制 `\\usepackage`、header/footer 命令\n307\t3. **根据审稿意见改进** — 但不要在新稿中提及旧投稿（双盲）\n308\t4. **检查目标会议特殊要求** — checklist、ethics statement、LLM 声明等\n309\t\n310\t---\n311\t\n312\t## 8. 投前清单\n313\t\n314\t### 通用清单\n315\t\n316\t- [ ] Abstract/Intro/Conclusion 的 claim 一致\n317\t- [ ] 每个 contribution 有对应 evidence\n318\t- [ ] 所有引用已程序化验证（无幻觉引用）\n319\t- [ ] Error bars + 运行次数 + 统计方法\n320\t- [ ] Limitations 章节存在且诚实\n321\t- [ ] 匿名化（双盲审稿）\n322\t- [ ] 符合页数限制\n323\t- [ ] 所有图表有自包含 caption\n324\t- [ ] `.bib` 中无缺失字段\n325\t- [ ] PDF 编译无 warning\n326\t\n327\t### 会议特定\n328\t\n329\t| 会议 | 额外要求 |\n330\t|------|---------|\n331\t| NeurIPS | 16 项 Paper Checklist（附录，不计页数） |\n332\t| ICML | Broader Impact Statement |\n333\t| ICLR | LLM 使用声明 |\n334\t| ACL/EMNLP | Limitations 章节（必须），Ethics Statement |\n335\t| AAAI | 严格样式文件合规 |\n336\t\n337\t---\n338\t\n339\t## 参考资源\n340\t\n341\t**写作方法论：**\n342\t- [Neel Nanda: How to Write ML Papers](https://www.alignmentforum.org/posts/eJGptPbbFPZGLpjsp/) — What/Why/So What 框架\n343\t- [Farquhar: How to Write ML Papers](https://sebastianfarquhar.com/on-research/2024/11/04/how_to_write_ml_papers/) — 五句法 Abstract\n344\t- [Gopen & Swan: Science of Scientific Writing](https://cseweb.ucsd.edu/~swanson/papers/science-of-writing.pdf) — 读者预期 7 原则\n345\t- [Lipton: Heuristics for Scientific Writing](https://www.approximatelycorrect.com/2018/01/29/heuristics-technical-scientific-writing-machine-learning-perspective/) — 用词\n346\t- [Perez: Easy Paper Writing Tips](https://ethanperez.net/easy-paper-writing-tips/) — 微观清晰度\n347\t\n348\t**API：**\n349\t- [Semantic Scholar](https://api.semanticscholar.org/api-docs/) | [CrossRef](https://www.crossref.org/documentation/) | [arXiv](https://info.arxiv.org/help/api/)\n350\t\n351\t**会议官方：**\n352\t- [NeurIPS](https://neurips.cc/) | [ICML](https://icml.cc/) | [ICLR](https://iclr.cc/) | [ACL](https://www.aclweb.org/) | [AAAI](https://aaai.org/) | [EMNLP](https://2025.emnlp.org/)\n353\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "e7d68ec2-6069-4d98-9ec3-cf89b610a4f6",
+            "uuid": "83ec4df1-bead-4bfe-adee-29ac4addada6",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md",
+                "content": "---\nname: latex-paper\ndescription: ML 顶会论文 LaTeX 写作全流程——Claim-Evidence 方法论、引用防幻觉、顶会模板速查、投稿工程链、会议转投。写论文/投稿时参考。\nscope: global\ntags:\n- latex\n- paper-writing\n- academic\n- citation\n- submission\nversion: 1\nroles:\n- agent\n- worker\n---\n\n# LaTeX 论文写作全流程\n\nML/AI 顶会论文从草稿到投稿的完整指南。整合 Orchestra Research、VibeSkills、claim2evidence 三方最佳实践。\n\n---\n\n## 1. 工作模式\n\n开始前选择模式：\n\n| 模式 | 说明 | 适用 |\n|------|------|------|\n| **Build** | 从实验笔记/结果/代码生成论文 | 新稿 |\n| **Improve** | 改写已有章节，强化论证 | 修改稿 |\n| **Audit** | 输出风险列表 + 缺失证据 + 修复建议 | 投前检查 |\n\n---\n\n## 2. Claim-Evidence 方法论\n\n**核心原则：论文是一个有中心贡献的故事，不是实验的堆砌。**\n\n### 2.1 一句话贡献\n\n在写任何内容之前，必须能用一句话说清贡献。如果不能，说明还没准备好写论文。\n\n### 2.2 Claim-Evidence Map\n\n为每个 contribution 建立 claim→evidence 映射表：\n\n| Contribution | Claim | Evidence | Table/Figure |\n|-------------|-------|----------|-------------|\n| C1: 方法 X 在 Y 上 SOTA | 比所有 baseline 高 ≥2% | 5-seed 平均，p<0.05 | Table 1 |\n| C2: 消融证明 Z 是关键 | 去掉 Z 后掉 >5% | 消融实验 | Table 2 |\n| C3: 计算效率 | 比 baseline 快 3× | FLOPs + wall-clock | Figure 3 |\n\n**没有直接证据支撑的 claim 必须删除或降级为 discussion。**\n\n### 2.3 章节起草顺序\n\n```\n1. Introduction + Experiments（先确定 claim 和 evidence）\n2. Method（评估问题稳定后再写细节）\n3. Related Work\n4. Abstract + Title（核心 claim 定型后最后写）\n```\n\n### 2.4 Quality Gates\n\n投稿前必须通过：\n- [ ] 前两段出现显式 novelty 声明\n- [ ] 每个 contribution 有可验证的 evidence\n- [ ] Abstract / Intro / Conclusion 的 claim 一致\n- [ ] Limitations 真实且技术性诚实\n- [ ] 审稿人两分钟内能识别 delta\n\n---\n\n## 3. 引用防幻觉（CRITICAL）\n\n**AI 生成引用有 ~40% 错误率。绝对禁止凭记忆写 BibTeX。**\n\n### 3.1 黄金法则\n\n```\nIF 无法程序化获取引用:\n    → 标记 [CITATION NEEDED] 或 \\cite{PLACEHOLDER_verify}\n    → 明确告知用户\n    → 绝不编造看似合理的引用\n```\n\n### 3.2 五步验证流程\n\n```\n1. SEARCH  → Semantic Scholar API 搜索关键词\n2. VERIFY  → 至少 2 个来源确认论文存在（S2 + arXiv/CrossRef）\n3. RETRIEVE → 通过 DOI 获取 BibTeX（程序化，非记忆）\n4. CHECK   → 确认你引用的 claim 确实出自该论文\n5. ADD     → 加入 .bib 文件\n```\n\n### 3.3 API 速查\n\n| API | 用途 | 限制 |\n|-----|------|------|\n| **Semantic Scholar** | ML/AI 论文搜索 | 1 RPS (免费) |\n| **CrossRef** | DOI → BibTeX | 需 mailto 头 |\n| **arXiv** | 预印本搜索 | 3s 间隔 |\n\n```python\n# DOI → BibTeX（最可靠的方式）\nimport requests\ndef doi_to_bibtex(doi: str) -> str:\n    r = requests.get(f\"https://doi.org/{doi}\",\n                     headers={\"Accept\": \"application/x-bibtex\"})\n    r.raise_for_status()\n    return r.text\n\n# Semantic Scholar 搜索\nfrom semanticscholar import SemanticScholar\nsch = SemanticScholar()\nresults = sch.search_paper(\"attention mechanism transformers\", limit=5)\nfor p in results:\n    print(f\"{p.title} | DOI: {p.externalIds.get('DOI', 'N/A')}\")\n```\n\n### 3.4 引用处理规则\n\n| 情况 | 处理 |\n|------|------|\n| 找到论文 + DOI + BibTeX | 直接用 |\n| 找到论文，无 DOI | 用 arXiv BibTeX |\n| 论文存在但无法获取 BibTeX | 标记 placeholder，告知用户 |\n| 不确定论文是否存在 | 标记 `[CITATION NEEDED]`，告知用户 |\n| \"我觉得有篇关于 X 的论文\" | **绝不引用** — 先搜索或标记 |\n\n---\n\n## 4. 顶会模板速查\n\n### 4.1 ML/AI 会议\n\n| 会议 | 页数限制 | 主文件 | 样式文件 | 必须项 |\n|------|---------|--------|---------|--------|\n| **NeurIPS** | 9 页 | `main.tex` | `neurips.sty` | Paper Checklist |\n| **ICML** | 8 页 (+1 camera-ready) | `example_paper.tex` | `icml2026.sty` | Broader Impact |\n| **ICLR** | 9 页 (+1) | `iclr_conference.tex` | `iclr_conference.sty` | LLM 使用声明 |\n| **ACL/EMNLP** | 8 页 (long) | `acl_latex.tex` | `acl.sty` | Limitations 必须 |\n| **AAAI** | 7 页 (+1) | `aaai_template.tex` | `aaai.sty` | 严格样式 |\n| **COLM** | 9 页 (+1) | `colm_conference.tex` | `colm_conference.sty` | 语言模型聚焦 |\n\n### 4.2 系统会议\n\n| 会议 | 页数限制 | 模板类型 | 关键要求 |\n|------|---------|---------|---------|\n| **OSDI** | 12 页 (+2) | USENIX `usenix.sty` | Research / Operational 双 track |\n| **NSDI** | 12 页 | USENIX | Introduction 预筛 |\n| **ASPLOS** | 12 页 | ACM `acmart.cls (sigplan)` | 前 2 页快速评审 |\n| **SOSP** | 12 页 | ACM `acmart.cls (sigplan)` | 可选 Artifact Evaluation |\n\n### 4.3 模板使用原则\n\n```bash\n# 1. 复制整个模板目录（不要只拷 .tex）\ncp -r templates/neurips2025/ ~/papers/my-paper/\n\n# 2. 先编译未修改的模板，确认能跑通\nlatexmk -pdf main.tex\n\n# 3. 逐章替换内容，频繁编译\n```\n\n**禁止事项：**\n- 不要修改 `.sty` 文件\n- 不要在会议模板间复制 `\\usepackage` 行\n- 不要只复制 `.tex` 而不带 `.sty/.bst`\n\n---\n\n## 5. 写作规范\n\n### 5.1 时间分配（Neel Nanda）\n\n花**大致相等**的时间在：\n1. Abstract\n2. Introduction\n3. 图表\n4. **其余所有内容加起来**\n\n审稿人读论文的顺序：标题 → 摘要 → 引言 → 图表 → 也许正文。\n\n### 5.2 Abstract 五句法（Sebastian Farquhar）\n\n```\n1. 你做了什么（\"We introduce/prove/demonstrate...\"）\n2. 为什么这很难且重要\n3. 怎么做的（含专业关键词以便检索）\n4. 有什么证据\n5. 最惊人的数字/结果\n```\n\n删除一切泛泛的开头：~~\"Large language models have achieved remarkable success...\"~~\n\n### 5.3 句子级清晰度（Gopen & Swan）\n\n| 原则 | 规则 |\n|------|------|\n| 主谓紧邻 | 不要在主语和动词之间插入长从句 |\n| 重点在句尾 | 把关键数字/结论放在句末 |\n| 旧信息在前 | 先放读者已知的内容，再引入新概念 |\n| 动词表达动作 | \"We analyzed\" 而非 \"We performed an analysis\" |\n\n### 5.4 常见修改\n\n| 问题 | 修复 |\n|------|------|\n| Abstract 太泛 | 删第一句（如果它能放在任何 ML 论文前面） |\n| Introduction 超 1.5 页 | 背景挪到 Related Work |\n| 实验没有显式 claim | 每个实验前加 \"This tests whether...\" |\n| 缺统计显著性 | 加 error bars + 运行次数 + 计算方法 |\n\n---\n\n## 6. 投稿工程链\n\n### 6.1 构建\n\n```bash\n# 推荐：latexmk 一键构建\nlatexmk -pdf -interaction=nonstopmode -halt-on-error main.tex\n\n# 手动：需要多次编译\npdflatex main.tex && bibtex main && pdflatex main.tex && pdflatex main.tex\n```\n\n### 6.2 Lint + 格式化\n\n```bash\n# Lint: 检查常见 LaTeX 问题\nchktex main.tex\n\n# 格式化: 减少 diff 噪声\nlatexindent -w main.tex\n```\n\n### 6.3 图表格式\n\n| 类型 | 格式 | 说明 |\n|------|------|------|\n| 矢量图（plot、diagram） | PDF | matplotlib: `plt.savefig('fig.pdf')` |\n| 照片/heatmap | PNG 600dpi 或 TIFF | 栅格图 |\n| 表格 | `booktabs` 包 | `\\toprule/\\midrule/\\bottomrule` |\n\n```latex\n\\usepackage{booktabs}\n\\begin{tabular}{lcc}\n\\toprule\nMethod & Accuracy $\\uparrow$ & Latency $\\downarrow$ \\\\\n\\midrule\nBaseline & 85.2 & 45ms \\\\\n\\textbf{Ours} & \\textbf{92.1} & 38ms \\\\\n\\bottomrule\n\\end{tabular}\n```\n\n**图表规范：**\n- 用色盲友好色板（Okabe-Ito 或 Paul Tol）\n- 图内不放标题（用 caption）\n- Caption 独立可理解（不依赖正文）\n- 最佳值加粗，标注方向符号（↑ 越高越好，↓ 越低越好）\n\n### 6.4 投稿打包\n\n```bash\n# 清理辅助文件\nlatexmk -c\n\n# 打包投稿\nzip -r submission.zip main.tex *.sty *.bst *.bib figures/ --exclude='*.aux' --exclude='*.log'\n```\n\n### 6.5 常见失败点\n\n| 问题 | 解决 |\n|------|------|\n| 图片格式混用导致编译失败 | 统一用 PDF |\n| 字体未嵌入 | `pdffonts output.pdf` 检查 |\n| Overfull box 过多 | 关键位置手动调行 |\n| 引用缺字段 | 检查 DOI/年份/期刊名 |\n| 超页数 | 用 `\\vspace{-Xpt}` 微调，或精简内容 |\n\n---\n\n## 7. 会议转投\n\n当论文被拒或转投其他会议时：\n\n### 7.1 ML/AI 会议间转换\n\n| 转换 | 页数变化 | 关键调整 |\n|------|---------|---------|\n| NeurIPS → ICML | 9→8 | 删 1 页，加 Broader Impact |\n| ICML → ICLR | 8→9 | 可扩展实验 + LLM 声明 |\n| NeurIPS → ACL | 9→8 | 按 NLP 惯例重组 + Limitations |\n| ICLR → AAAI | 9→7 | 大幅精简，严格样式 |\n\n### 7.2 转投原则\n\n1. **永远用目标模板重新开始** — 复制目标模板，迁移内容，不要合并 preamble\n2. **只迁移正文内容** — 不复制 `\\usepackage`、header/footer 命令\n3. **根据审稿意见改进** — 但不要在新稿中提及旧投稿（双盲）\n4. **检查目标会议特殊要求** — checklist、ethics statement、LLM 声明等\n\n---\n\n## 8. 投前清单\n\n### 通用清单\n\n- [ ] Abstract/Intro/Conclusion 的 claim 一致\n- [ ] 每个 contribution 有对应 evidence\n- [ ] 所有引用已程序化验证（无幻觉引用）\n- [ ] Error bars + 运行次数 + 统计方法\n- [ ] Limitations 章节存在且诚实\n- [ ] 匿名化（双盲审稿）\n- [ ] 符合页数限制\n- [ ] 所有图表有自包含 caption\n- [ ] `.bib` 中无缺失字段\n- [ ] PDF 编译无 warning\n\n### 会议特定\n\n| 会议 | 额外要求 |\n|------|---------|\n| NeurIPS | 16 项 Paper Checklist（附录，不计页数） |\n| ICML | Broader Impact Statement |\n| ICLR | LLM 使用声明 |\n| ACL/EMNLP | Limitations 章节（必须），Ethics Statement |\n| AAAI | 严格样式文件合规 |\n\n---\n\n## 参考资源\n\n**写作方法论：**\n- [Neel Nanda: How to Write ML Papers](https://www.alignmentforum.org/posts/eJGptPbbFPZGLpjsp/) — What/Why/So What 框架\n- [Farquhar: How to Write ML Papers](https://sebastianfarquhar.com/on-research/2024/11/04/how_to_write_ml_papers/) — 五句法 Abstract\n- [Gopen & Swan: Science of Scientific Writing](https://cseweb.ucsd.edu/~swanson/papers/science-of-writing.pdf) — 读者预期 7 原则\n- [Lipton: Heuristics for Scientific Writing](https://www.approximatelycorrect.com/2018/01/29/heuristics-technical-scientific-writing-machine-learning-perspective/) — 用词\n- [Perez: Easy Paper Writing Tips](https://ethanperez.net/easy-paper-writing-tips/) — 微观清晰度\n\n**API：**\n- [Semantic Scholar](https://api.semanticscholar.org/api-docs/) | [CrossRef](https://www.crossref.org/documentation/) | [arXiv](https://info.arxiv.org/help/api/)\n\n**会议官方：**\n- [NeurIPS](https://neurips.cc/) | [ICML](https://icml.cc/) | [ICLR](https://iclr.cc/) | [ACL](https://www.aclweb.org/) | [AAAI](https://aaai.org/) | [EMNLP](https://2025.emnlp.org/)\n",
+                "numLines": 353,
+                "startLine": 1,
+                "totalLines": 353
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019xkg9RA37k6gbAFvkXeNSg",
+              "name": "Bash",
+              "input": {
+                "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/_project/paper/ 2>/dev/null"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e7d68ec2-6069-4d98-9ec3-cf89b610a4f6",
+            "uuid": "616a5135-b7ea-4d06-a891-0fbfc6a23c58",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TRs1NXxskThUd2XKZpr1kU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13200,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13200
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T02:06:56.595Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019xkg9RA37k6gbAFvkXeNSg",
+              "type": "tool_result",
+              "content": "experiment_tables.md\nintroduction_draft.md\nintroduction_draft_d860d5.md\nrelated_work_draft.md",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "e7d68ec2-6069-4d98-9ec3-cf89b610a4f6",
+            "uuid": "e0f74644-8c1c-4608-89d6-44e43300472b",
+            "tool_use_result": {
+              "stdout": "experiment_tables.md\nintroduction_draft.md\nintroduction_draft_d860d5.md\nrelated_work_draft.md",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me read the existing Introduction and Related Work drafts to ensure consistency in terminology and notation.",
+              "signature": "EqwCClkIDRgCKkApl2cQICVQOdYb5p4xPLOfqpL+hfCtXTI9cISzyXifxM+S1PK3BZ8RRTfSkPe9mQ3nl30oE3tz77OTZSv5ZGBAMg9jbGF1ZGUtb3B1cy00LTY4ABIMrukFCAfhFo/Q+YiKGgwMomNDkkpc7prwaLwiMP83uOyNQ5M+wv/zY6ZWEscy+TYzwzcbKrWWge9nPC5huEzpszqzSjcTvPhYvg7+TCqAAX8CasIyaz9mkeTt9isl5cNu9/rJy8ksAGslBKAg0A5QdqVlFwIkV6TxbPQsM5AQZpuSGwXLaVYABni0QDT8i4X1TdkTPJ3y56rkYICrgnvAFbXfh1AmlVGJqwGxQYTXSCsTl2XcxAJLfTlkQogDDTuwZinJpey/p9g9vzBIUt81GAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e7d68ec2-6069-4d98-9ec3-cf89b610a4f6",
+            "uuid": "88a68bda-acaa-48c3-989b-646c13cff874",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VuNVdSQEsYWz9aUUzSaYVY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5692,
+                "cache_read_input_tokens": 25041,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5692
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me read the existing Introduction and Related Work drafts for consistency."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e7d68ec2-6069-4d98-9ec3-cf89b610a4f6",
+            "uuid": "54fdf271-78a0-4883-8d0f-6a26127d42b8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VuNVdSQEsYWz9aUUzSaYVY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5692,
+                "cache_read_input_tokens": 25041,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5692
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YQr1SGpknH1jpqsmfPTM9t",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/_project/paper/introduction_draft.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e7d68ec2-6069-4d98-9ec3-cf89b610a4f6",
+            "uuid": "65088e8f-4643-4887-8c2a-4ddd18269a5d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VuNVdSQEsYWz9aUUzSaYVY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5692,
+                "cache_read_input_tokens": 25041,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5692
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T02:07:02.772Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01YQr1SGpknH1jpqsmfPTM9t",
+              "type": "tool_result",
+              "content": "1\t# Introduction — Draft v1\n2\t\n3\t\\section{Introduction}\n4\t\n5\tWhen LLM agents interact with rule-governed environments---manipulating temperatures, mixing chemicals, navigating physical constraints---they face a failure mode qualitatively distinct from suboptimality: \\emph{catastrophic death}. A single hallucinated state transition can trigger an irreversible termination penalty, collapsing the episode score to $-100$. Deterministic external computation---environment simulators or code interpreters---eliminates such hallucinations by providing exact state transitions. But what does a router actually learn when trained to select between internal LLM reasoning and deterministic computation? Recent work on tool-use learning \\cite{toolformer-2024,art-2023,chameleon-2024,retool-2026} and adaptive computation \\cite{cogrouter-2026,ares-2026,mixture-of-recursions-2025} has developed methods for deciding when and how to invoke external modules, yet these approaches frame routing as a general capability or efficiency question---selecting the right tool, calibrating reasoning depth---without examining whether \\emph{failure avoidance} constitutes a distinct and potentially dominant routing signal.\n6\t\n7\tWe address this question by analyzing routing between internal reasoning, following the ReAct interleaved reasoning-and-acting paradigm \\cite{react-2023}, and deterministic computation on ScienceWorld, an interactive science environment with sparse rewards and catastrophic failure penalties. A natural first approach is per-step oracle comparison: at each decision point, run both modalities and prefer the one yielding higher immediate reward. However, in sparse-reward environments where non-zero reward arrives only at episode termination, this strategy degenerates. On ScienceWorld, per-step oracle labeling produces \\textbf{[PLACEHOLDER: 98\\%]} ties---neither modality shows a per-step advantage on the vast majority of steps---rendering the resulting labels uninformative for router training. This \\emph{oracle degeneracy} motivates a shift from step-level to episode-level analysis.\n8\t\n9\tWe introduce \\emph{episode-level counterfactual analysis}: for each task instance, we run complete episodes under pure-internal and pure-deterministic strategies, then compare episode-level outcomes to generate routing labels. Across [PLACEHOLDER: 30] ScienceWorld task types ([PLACEHOLDER: 249] episodes), this methodology reveals a striking concentration of routing signal. The full performance gap between deterministic and internal-reasoning strategies is [PLACEHOLDER: $\\Delta_{\\text{full}} = +37.9$] points. When we exclude episodes where either strategy results in agent death and recompute the gap, it collapses to [PLACEHOLDER: $\\Delta_{\\text{no\\_death}} = +0.2$]---effectively zero. Death avoidance accounts for [PLACEHOLDER: 99\\%] of the routing signal (death avoidance fraction [PLACEHOLDER: 98.75\\%]). The per-task correlation between death rate differential and performance gap is $r =$ [PLACEHOLDER: 0.989] ($p < 0.0001$). Episode-level label distribution confirms this asymmetry: [PLACEHOLDER: 41\\%] of episodes prefer deterministic computation, only [PLACEHOLDER: 0.5\\%] prefer internal reasoning, and [PLACEHOLDER: 59\\%] show no preference. When agents do not die, both reasoning modalities perform approximately equally.\n10\t\n11\tOur contributions are:\n12\t\\begin{itemize}\n13\t    \\item We propose \\textbf{episode-level counterfactual analysis} for routing label generation, overcoming the degeneracy of per-step oracle labeling in sparse-reward interactive environments (per-step tie rate of [PLACEHOLDER: 98\\%] on ScienceWorld).\n14\t    \\item We introduce a \\textbf{death decomposition framework} that separates routing signal into death-avoidance and non-death components, quantifying how much routing value derives from catastrophic failure prevention versus positive task guidance.\n15\t    \\item We provide \\textbf{empirical evidence} across [PLACEHOLDER: 30] ScienceWorld task types that death avoidance accounts for [PLACEHOLDER: 99\\%] of routing signal between internal LLM reasoning and deterministic computation, with non-death performance near-equivalent between modalities ([PLACEHOLDER: $\\Delta_{\\text{no\\_death}} = +0.2$]).\n16\t\\end{itemize}\n17\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "e7d68ec2-6069-4d98-9ec3-cf89b610a4f6",
+            "uuid": "78ec324e-abf7-4f30-aaef-4ef58eb86904",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/_project/paper/introduction_draft.md",
+                "content": "# Introduction — Draft v1\n\n\\section{Introduction}\n\nWhen LLM agents interact with rule-governed environments---manipulating temperatures, mixing chemicals, navigating physical constraints---they face a failure mode qualitatively distinct from suboptimality: \\emph{catastrophic death}. A single hallucinated state transition can trigger an irreversible termination penalty, collapsing the episode score to $-100$. Deterministic external computation---environment simulators or code interpreters---eliminates such hallucinations by providing exact state transitions. But what does a router actually learn when trained to select between internal LLM reasoning and deterministic computation? Recent work on tool-use learning \\cite{toolformer-2024,art-2023,chameleon-2024,retool-2026} and adaptive computation \\cite{cogrouter-2026,ares-2026,mixture-of-recursions-2025} has developed methods for deciding when and how to invoke external modules, yet these approaches frame routing as a general capability or efficiency question---selecting the right tool, calibrating reasoning depth---without examining whether \\emph{failure avoidance} constitutes a distinct and potentially dominant routing signal.\n\nWe address this question by analyzing routing between internal reasoning, following the ReAct interleaved reasoning-and-acting paradigm \\cite{react-2023}, and deterministic computation on ScienceWorld, an interactive science environment with sparse rewards and catastrophic failure penalties. A natural first approach is per-step oracle comparison: at each decision point, run both modalities and prefer the one yielding higher immediate reward. However, in sparse-reward environments where non-zero reward arrives only at episode termination, this strategy degenerates. On ScienceWorld, per-step oracle labeling produces \\textbf{[PLACEHOLDER: 98\\%]} ties---neither modality shows a per-step advantage on the vast majority of steps---rendering the resulting labels uninformative for router training. This \\emph{oracle degeneracy} motivates a shift from step-level to episode-level analysis.\n\nWe introduce \\emph{episode-level counterfactual analysis}: for each task instance, we run complete episodes under pure-internal and pure-deterministic strategies, then compare episode-level outcomes to generate routing labels. Across [PLACEHOLDER: 30] ScienceWorld task types ([PLACEHOLDER: 249] episodes), this methodology reveals a striking concentration of routing signal. The full performance gap between deterministic and internal-reasoning strategies is [PLACEHOLDER: $\\Delta_{\\text{full}} = +37.9$] points. When we exclude episodes where either strategy results in agent death and recompute the gap, it collapses to [PLACEHOLDER: $\\Delta_{\\text{no\\_death}} = +0.2$]---effectively zero. Death avoidance accounts for [PLACEHOLDER: 99\\%] of the routing signal (death avoidance fraction [PLACEHOLDER: 98.75\\%]). The per-task correlation between death rate differential and performance gap is $r =$ [PLACEHOLDER: 0.989] ($p < 0.0001$). Episode-level label distribution confirms this asymmetry: [PLACEHOLDER: 41\\%] of episodes prefer deterministic computation, only [PLACEHOLDER: 0.5\\%] prefer internal reasoning, and [PLACEHOLDER: 59\\%] show no preference. When agents do not die, both reasoning modalities perform approximately equally.\n\nOur contributions are:\n\\begin{itemize}\n    \\item We propose \\textbf{episode-level counterfactual analysis} for routing label generation, overcoming the degeneracy of per-step oracle labeling in sparse-reward interactive environments (per-step tie rate of [PLACEHOLDER: 98\\%] on ScienceWorld).\n    \\item We introduce a \\textbf{death decomposition framework} that separates routing signal into death-avoidance and non-death components, quantifying how much routing value derives from catastrophic failure prevention versus positive task guidance.\n    \\item We provide \\textbf{empirical evidence} across [PLACEHOLDER: 30] ScienceWorld task types that death avoidance accounts for [PLACEHOLDER: 99\\%] of routing signal between internal LLM reasoning and deterministic computation, with non-death performance near-equivalent between modalities ([PLACEHOLDER: $\\Delta_{\\text{no\\_death}} = +0.2$]).\n\\end{itemize}\n",
+                "numLines": 17,
+                "startLine": 1,
+                "totalLines": 17
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Smop8fF9qvhdkk5o5vFGu7",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/_project/paper/related_work_draft.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e7d68ec2-6069-4d98-9ec3-cf89b610a4f6",
+            "uuid": "58f55167-52f5-4359-be8f-14e9cccdabb5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VuNVdSQEsYWz9aUUzSaYVY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5692,
+                "cache_read_input_tokens": 25041,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5692
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T02:07:02.950Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Smop8fF9qvhdkk5o5vFGu7",
+              "type": "tool_result",
+              "content": "1\t# Related Work — Draft v1\n2\t\n3\t\\section{Related Work}\n4\t\n5\t\\paragraph{Tool-Use Learning.}\n6\tA line of work teaches LLMs when and how to invoke external tools.\n7\tToolformer \\cite{toolformer-2024} inserts API calls via self-supervised filtering, while ART \\cite{art-2023} uses LLM reasoning chains to select tools automatically, and Chameleon \\cite{chameleon-2024} composes diverse tool modules under LLM-as-planner orchestration.\n8\tMore recently, ReTool \\cite{retool-2026} applies reinforcement learning to learn implicit code-interpreter invocation strategies for mathematical reasoning.\n9\tOur work differs along three axes: (1) we generate routing labels via \\emph{episode-level counterfactual analysis}---running complete trajectories under competing strategies---rather than self-supervised or RL-based signals; (2) we frame routing as \\emph{catastrophic failure prevention} rather than general tool selection; and (3) we train an explicit lightweight router decoupled from the backbone LLM, enabling diagnostic analysis of what the routing signal encodes.\n10\t\n11\t\\paragraph{Adaptive Computation.}\n12\tSeveral recent methods adapt reasoning effort per step.\n13\tCogRouter \\cite{cogrouter-2026} achieves 82.3\\% on ScienceWorld by routing among cognitive depth levels (instinct to strategic planning) via Cooperative Policy Optimization, while ARES \\cite{ares-2026} trains a lightweight router to select per-step reasoning effort (low/medium/high), reducing token cost by 52.7\\%.\n14\tMixture-of-Recursions \\cite{mixture-of-recursions-2025} applies adaptive depth at the architecture level via per-token recursive routing.\n15\tThese methods route \\emph{how much} to reason; we route \\emph{which modality} to use (internal LLM reasoning vs.\\ deterministic computation) and contribute the empirical finding that death avoidance accounts for ${\\sim}99\\%$ of the learned routing signal.\n16\t\n17\t\\paragraph{World Model Routing.}\n18\tITP \\cite{itp-2026} augments agents with LLM-based world model lookahead, adaptively adjusting the simulation horizon based on task progress.\n19\tDyna-Think \\cite{dynathink-2025} integrates world model simulation into the reasoning loop, matching 685B-parameter performance with a 32B model at half the token cost.\n20\tBoth route to \\emph{approximate} world models that inherit LLM hallucination failures.\n21\tOur deterministic computation modality provides \\emph{exact} state transitions, and our counterfactual analysis reveals that this exactness matters almost exclusively for death avoidance---non-death performance is near-equivalent between modalities.\n22\t\n23\t\\paragraph{Agent Frameworks.}\n24\tReAct \\cite{react-2023} interleaves reasoning and acting in a single LLM call and serves as a foundational framework for interactive agents including our internal-reasoning baseline.\n25\tOur work complements ReAct by analyzing \\emph{when} reasoning should yield to deterministic computation and finding that the answer is concentrated in catastrophic failure scenarios.\n26\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "e7d68ec2-6069-4d98-9ec3-cf89b610a4f6",
+            "uuid": "6e28093f-c783-4c54-a6f1-70809d4d679b",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/_project/paper/related_work_draft.md",
+                "content": "# Related Work — Draft v1\n\n\\section{Related Work}\n\n\\paragraph{Tool-Use Learning.}\nA line of work teaches LLMs when and how to invoke external tools.\nToolformer \\cite{toolformer-2024} inserts API calls via self-supervised filtering, while ART \\cite{art-2023} uses LLM reasoning chains to select tools automatically, and Chameleon \\cite{chameleon-2024} composes diverse tool modules under LLM-as-planner orchestration.\nMore recently, ReTool \\cite{retool-2026} applies reinforcement learning to learn implicit code-interpreter invocation strategies for mathematical reasoning.\nOur work differs along three axes: (1) we generate routing labels via \\emph{episode-level counterfactual analysis}---running complete trajectories under competing strategies---rather than self-supervised or RL-based signals; (2) we frame routing as \\emph{catastrophic failure prevention} rather than general tool selection; and (3) we train an explicit lightweight router decoupled from the backbone LLM, enabling diagnostic analysis of what the routing signal encodes.\n\n\\paragraph{Adaptive Computation.}\nSeveral recent methods adapt reasoning effort per step.\nCogRouter \\cite{cogrouter-2026} achieves 82.3\\% on ScienceWorld by routing among cognitive depth levels (instinct to strategic planning) via Cooperative Policy Optimization, while ARES \\cite{ares-2026} trains a lightweight router to select per-step reasoning effort (low/medium/high), reducing token cost by 52.7\\%.\nMixture-of-Recursions \\cite{mixture-of-recursions-2025} applies adaptive depth at the architecture level via per-token recursive routing.\nThese methods route \\emph{how much} to reason; we route \\emph{which modality} to use (internal LLM reasoning vs.\\ deterministic computation) and contribute the empirical finding that death avoidance accounts for ${\\sim}99\\%$ of the learned routing signal.\n\n\\paragraph{World Model Routing.}\nITP \\cite{itp-2026} augments agents with LLM-based world model lookahead, adaptively adjusting the simulation horizon based on task progress.\nDyna-Think \\cite{dynathink-2025} integrates world model simulation into the reasoning loop, matching 685B-parameter performance with a 32B model at half the token cost.\nBoth route to \\emph{approximate} world models that inherit LLM hallucination failures.\nOur deterministic computation modality provides \\emph{exact} state transitions, and our counterfactual analysis reveals that this exactness matters almost exclusively for death avoidance---non-death performance is near-equivalent between modalities.\n\n\\paragraph{Agent Frameworks.}\nReAct \\cite{react-2023} interleaves reasoning and acting in a single LLM call and serves as a foundational framework for interactive agents including our internal-reasoning baseline.\nOur work complements ReAct by analyzing \\emph{when} reasoning should yield to deterministic computation and finding that the answer is concentrated in catastrophic failure scenarios.\n",
+                "numLines": 26,
+                "startLine": 1,
+                "totalLines": 26
+              }
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have a clear picture of the existing sections and their terminology. Let me also check the registry data for exact numbers.\n\nLet me now write the Method section draft. I need to:\n1. Use consistent terminology with Introduction and Related Work\n2. Follow the 4 subsection structure specified\n3. Use the exact numbers from the registry data\n4. Mark placeholders where appropriate\n5. Keep it around 800-900 words (~1 page)\n6. Use EMNLP short paper style (compact, precise)\n\nKey terms to maintain consistency:\n- \"episode-level counterfactual analysis\"\n- \"death decomposition\"\n\n\n- Δ_full, Δ_no_death metrics\n- DAF (death avoidance fraction)\n- \"oracle degeneracy\"\n- ReAct and ScienceWorld as baseline references\n- Pure-internal and pure-deterministic strategy types\n\nNow I'm drafting the Method section with these technical definitions and citations integrated throughout.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e7d68ec2-6069-4d98-9ec3-cf89b610a4f6",
+            "uuid": "51c0edce-3671-4374-a810-0e394480b184",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NB6oQdHcNJGe4ZoDLQS3JA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2086,
+                "cache_read_input_tokens": 30733,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2086
+                },
+                "output_tokens": 12,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have all the context needed. Let me write the Method section."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e7d68ec2-6069-4d98-9ec3-cf89b610a4f6",
+            "uuid": "451a473c-4927-4c85-a2e0-6b9872ff01c6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NB6oQdHcNJGe4ZoDLQS3JA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2086,
+                "cache_read_input_tokens": 30733,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2086
+                },
+                "output_tokens": 12,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UQhLR4NyXKw89WCJUxQVgQ",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/_project/paper/method_draft.md",
+                "content": "# Method — Draft v1\n\n\\section{Method}\n\nWe describe our methodology in four parts: counterfactual episode collection (\\S\\ref{sec:collection}), death-aware labeling (\\S\\ref{sec:labeling}), the death avoidance factor (\\S\\ref{sec:daf}), and a rule-based baseline analysis (\\S\\ref{sec:rule}).\n\n\\subsection{Counterfactual Episode Collection}\n\\label{sec:collection}\n\nAs motivated in \\S1, per-step oracle labeling degenerates under sparse rewards. We instead adopt \\emph{episode-level counterfactual analysis}: for each task instance, we run two complete episodes under identical initial conditions (same random seed):\n\n\\begin{itemize}\n    \\item \\textbf{Pure-internal}: all steps use the LLM's internal reasoning following the ReAct paradigm \\cite{react-2023}, where the agent interleaves chain-of-thought reasoning with environment actions.\n    \\item \\textbf{Pure-deterministic}: all steps use deterministic external computation via the environment simulator, providing exact state transitions.\n\\end{itemize}\n\nEach episode produces a tuple $(s^{\\text{int}}, s^{\\text{det}}, d^{\\text{int}}, d^{\\text{det}})$, where $s$ denotes episode score and $d \\in \\{0, 1\\}$ indicates whether the agent died. Episodes are capped at [PLACEHOLDER: 30] steps. We use Qwen2.5-7B-Instruct as the LLM backbone, served via vLLM.\n\nWe evaluate on ScienceWorld \\cite{scienceworld-2022}, which provides [PLACEHOLDER: 30] task types spanning physical and chemical reasoning. For each task type, we first run a prescreening phase (5 episodes) to identify tasks where both strategies can be meaningfully compared, then collect the full dataset of [PLACEHOLDER: 20] episodes per task. The final dataset comprises [PLACEHOLDER: 249] episodes across all [PLACEHOLDER: 30] task types.\n\n\\subsection{Death-Aware Labeling}\n\\label{sec:labeling}\n\nWe assign an episode-level routing label to each counterfactual pair based on the four-tuple $(s^{\\text{int}}, s^{\\text{det}}, d^{\\text{int}}, d^{\\text{det}})$, distinguishing four signal types ordered by priority:\n\n\\begin{enumerate}\n    \\item \\textbf{Death asymmetry}: one strategy results in agent death while the other survives ($d^{\\text{int}} \\neq d^{\\text{det}}$). The surviving strategy is labeled as preferred. This constitutes the strongest routing signal, as it reflects a catastrophic outcome difference rather than a marginal score gap.\n    \\item \\textbf{Tied alive}: both strategies survive and their scores differ by at most a threshold $\\tau$ ($|s^{\\text{int}} - s^{\\text{det}}| \\leq \\tau$, $d^{\\text{int}} = d^{\\text{det}} = 0$). Label: \\texttt{no\\_preference}.\n    \\item \\textbf{Both dead}: both strategies result in death ($d^{\\text{int}} = d^{\\text{det}} = 1$). Label: \\texttt{no\\_preference}, as neither strategy provides a viable routing signal.\n    \\item \\textbf{Score comparison}: both survive but scores differ beyond $\\tau$ ($|s^{\\text{int}} - s^{\\text{det}}| > \\tau$, $d^{\\text{int}} = d^{\\text{det}} = 0$). The higher-scoring strategy is preferred.\n\\end{enumerate}\n\nThe resulting label distribution across [PLACEHOLDER: 249] episodes is: [PLACEHOLDER: 41\\%] \\texttt{det\\_preferred}, [PLACEHOLDER: 0.5\\%] \\texttt{internal\\_preferred}, and [PLACEHOLDER: 59\\%] \\texttt{no\\_preference}. The near-absence of \\texttt{internal\\_preferred} labels and the dominance of \\texttt{det\\_preferred} labels---driven overwhelmingly by death asymmetry---indicate that deterministic computation's primary advantage lies in avoiding catastrophic failures rather than achieving higher task scores.\n\n\\subsection{Death Avoidance Factor}\n\\label{sec:daf}\n\nTo quantify the contribution of death avoidance to routing signal, we define the \\emph{Death Avoidance Factor} (DAF). Let $\\Delta_{\\text{full}}$ be the mean score gap between deterministic and internal strategies across all episodes, and $\\Delta_{\\text{no\\_death}}$ be the same gap computed only over episodes where neither strategy results in death:\n\\begin{equation}\n    \\text{DAF} = 1 - \\frac{\\Delta_{\\text{no\\_death}}}{\\Delta_{\\text{full}}}\n\\end{equation}\nDAF $= 1$ indicates that the routing signal is entirely attributable to death avoidance; DAF $= 0$ indicates it derives entirely from non-death performance differences.\n\nAcross the full dataset, [PLACEHOLDER: $\\Delta_{\\text{full}} = +37.9$] and [PLACEHOLDER: $\\Delta_{\\text{no\\_death}} = +0.2$], yielding [PLACEHOLDER: DAF $= 0.99$]. Death avoidance accounts for virtually all of the observed routing advantage. Per-task analysis further confirms this: [PLACEHOLDER: 25] of [PLACEHOLDER: 30] tasks exhibit DAF $\\geq 0.95$, while a small number of tasks show genuine non-death advantages (e.g., \\texttt{measure-melting-point-unknown} with DAF $= 0.594$). The Pearson correlation between per-task death rate differential and score gap is [PLACEHOLDER: $r = 0.989$] ([PLACEHOLDER: $p < 0.0001$]), demonstrating that knowing how much more frequently the internal strategy dies is nearly sufficient to predict the full performance gap.\n\n\\subsection{Rule-Based Baseline}\n\\label{sec:rule}\n\nA natural question is whether simple heuristics can approximate learned routing. We test keyword-based rules that route to deterministic computation when the current action contains science-related verbs, under the hypothesis that actions involving physical or chemical state changes benefit most from exact computation.\n\nWe evaluate three keyword lists of decreasing breadth:\n\\begin{itemize}\n    \\item \\textbf{v1} (20 generic verbs including \\texttt{connect}, \\texttt{move}): matches [PLACEHOLDER: 85.8\\%] of actions, degenerating to an always-deterministic policy.\n    \\item \\textbf{v2} (17 science-specific: \\texttt{heat}, \\texttt{boil}, \\texttt{melt}, \\texttt{freeze}): matches [PLACEHOLDER: 4.9\\%], degenerating to always-internal.\n    \\item \\textbf{v3} (12 state-change verbs): matches [PLACEHOLDER: 2.8\\%], similarly degenerating.\n\\end{itemize}\n\nThe structural cause is that ScienceWorld actions use generic interaction verbs (\\texttt{pick up}, \\texttt{move}, \\texttt{connect}) rather than science-specific terms, making keyword overlap with the underlying task semantics either near-total or negligible. No keyword granularity provides meaningful routing discrimination, motivating observation-based or learned routing approaches.\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e7d68ec2-6069-4d98-9ec3-cf89b610a4f6",
+            "uuid": "777961ab-30ac-4ddb-948e-664de6b562c1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NB6oQdHcNJGe4ZoDLQS3JA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2086,
+                "cache_read_input_tokens": 30733,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2086
+                },
+                "output_tokens": 12,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T02:07:50.179Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UQhLR4NyXKw89WCJUxQVgQ",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/_project/paper/method_draft.md"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "e7d68ec2-6069-4d98-9ec3-cf89b610a4f6",
+            "uuid": "2f064943-b35b-480b-8d5a-08a4edbeb99f",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/_project/paper/method_draft.md",
+              "content": "# Method — Draft v1\n\n\\section{Method}\n\nWe describe our methodology in four parts: counterfactual episode collection (\\S\\ref{sec:collection}), death-aware labeling (\\S\\ref{sec:labeling}), the death avoidance factor (\\S\\ref{sec:daf}), and a rule-based baseline analysis (\\S\\ref{sec:rule}).\n\n\\subsection{Counterfactual Episode Collection}\n\\label{sec:collection}\n\nAs motivated in \\S1, per-step oracle labeling degenerates under sparse rewards. We instead adopt \\emph{episode-level counterfactual analysis}: for each task instance, we run two complete episodes under identical initial conditions (same random seed):\n\n\\begin{itemize}\n    \\item \\textbf{Pure-internal}: all steps use the LLM's internal reasoning following the ReAct paradigm \\cite{react-2023}, where the agent interleaves chain-of-thought reasoning with environment actions.\n    \\item \\textbf{Pure-deterministic}: all steps use deterministic external computation via the environment simulator, providing exact state transitions.\n\\end{itemize}\n\nEach episode produces a tuple $(s^{\\text{int}}, s^{\\text{det}}, d^{\\text{int}}, d^{\\text{det}})$, where $s$ denotes episode score and $d \\in \\{0, 1\\}$ indicates whether the agent died. Episodes are capped at [PLACEHOLDER: 30] steps. We use Qwen2.5-7B-Instruct as the LLM backbone, served via vLLM.\n\nWe evaluate on ScienceWorld \\cite{scienceworld-2022}, which provides [PLACEHOLDER: 30] task types spanning physical and chemical reasoning. For each task type, we first run a prescreening phase (5 episodes) to identify tasks where both strategies can be meaningfully compared, then collect the full dataset of [PLACEHOLDER: 20] episodes per task. The final dataset comprises [PLACEHOLDER: 249] episodes across all [PLACEHOLDER: 30] task types.\n\n\\subsection{Death-Aware Labeling}\n\\label{sec:labeling}\n\nWe assign an episode-level routing label to each counterfactual pair based on the four-tuple $(s^{\\text{int}}, s^{\\text{det}}, d^{\\text{int}}, d^{\\text{det}})$, distinguishing four signal types ordered by priority:\n\n\\begin{enumerate}\n    \\item \\textbf{Death asymmetry}: one strategy results in agent death while the other survives ($d^{\\text{int}} \\neq d^{\\text{det}}$). The surviving strategy is labeled as preferred. This constitutes the strongest routing signal, as it reflects a catastrophic outcome difference rather than a marginal score gap.\n    \\item \\textbf{Tied alive}: both strategies survive and their scores differ by at most a threshold $\\tau$ ($|s^{\\text{int}} - s^{\\text{det}}| \\leq \\tau$, $d^{\\text{int}} = d^{\\text{det}} = 0$). Label: \\texttt{no\\_preference}.\n    \\item \\textbf{Both dead}: both strategies result in death ($d^{\\text{int}} = d^{\\text{det}} = 1$). Label: \\texttt{no\\_preference}, as neither strategy provides a viable routing signal.\n    \\item \\textbf{Score comparison}: both survive but scores differ beyond $\\tau$ ($|s^{\\text{int}} - s^{\\text{det}}| > \\tau$, $d^{\\text{int}} = d^{\\text{det}} = 0$). The higher-scoring strategy is preferred.\n\\end{enumerate}\n\nThe resulting label distribution across [PLACEHOLDER: 249] episodes is: [PLACEHOLDER: 41\\%] \\texttt{det\\_preferred}, [PLACEHOLDER: 0.5\\%] \\texttt{internal\\_preferred}, and [PLACEHOLDER: 59\\%] \\texttt{no\\_preference}. The near-absence of \\texttt{internal\\_preferred} labels and the dominance of \\texttt{det\\_preferred} labels---driven overwhelmingly by death asymmetry---indicate that deterministic computation's primary advantage lies in avoiding catastrophic failures rather than achieving higher task scores.\n\n\\subsection{Death Avoidance Factor}\n\\label{sec:daf}\n\nTo quantify the contribution of death avoidance to routing signal, we define the \\emph{Death Avoidance Factor} (DAF). Let $\\Delta_{\\text{full}}$ be the mean score gap between deterministic and internal strategies across all episodes, and $\\Delta_{\\text{no\\_death}}$ be the same gap computed only over episodes where neither strategy results in death:\n\\begin{equation}\n    \\text{DAF} = 1 - \\frac{\\Delta_{\\text{no\\_death}}}{\\Delta_{\\text{full}}}\n\\end{equation}\nDAF $= 1$ indicates that the routing signal is entirely attributable to death avoidance; DAF $= 0$ indicates it derives entirely from non-death performance differences.\n\nAcross the full dataset, [PLACEHOLDER: $\\Delta_{\\text{full}} = +37.9$] and [PLACEHOLDER: $\\Delta_{\\text{no\\_death}} = +0.2$], yielding [PLACEHOLDER: DAF $= 0.99$]. Death avoidance accounts for virtually all of the observed routing advantage. Per-task analysis further confirms this: [PLACEHOLDER: 25] of [PLACEHOLDER: 30] tasks exhibit DAF $\\geq 0.95$, while a small number of tasks show genuine non-death advantages (e.g., \\texttt{measure-melting-point-unknown} with DAF $= 0.594$). The Pearson correlation between per-task death rate differential and score gap is [PLACEHOLDER: $r = 0.989$] ([PLACEHOLDER: $p < 0.0001$]), demonstrating that knowing how much more frequently the internal strategy dies is nearly sufficient to predict the full performance gap.\n\n\\subsection{Rule-Based Baseline}\n\\label{sec:rule}\n\nA natural question is whether simple heuristics can approximate learned routing. We test keyword-based rules that route to deterministic computation when the current action contains science-related verbs, under the hypothesis that actions involving physical or chemical state changes benefit most from exact computation.\n\nWe evaluate three keyword lists of decreasing breadth:\n\\begin{itemize}\n    \\item \\textbf{v1} (20 generic verbs including \\texttt{connect}, \\texttt{move}): matches [PLACEHOLDER: 85.8\\%] of actions, degenerating to an always-deterministic policy.\n    \\item \\textbf{v2} (17 science-specific: \\texttt{heat}, \\texttt{boil}, \\texttt{melt}, \\texttt{freeze}): matches [PLACEHOLDER: 4.9\\%], degenerating to always-internal.\n    \\item \\textbf{v3} (12 state-change verbs): matches [PLACEHOLDER: 2.8\\%], similarly degenerating.\n\\end{itemize}\n\nThe structural cause is that ScienceWorld actions use generic interaction verbs (\\texttt{pick up}, \\texttt{move}, \\texttt{connect}) rather than science-specific terms, making keyword overlap with the underlying task semantics either near-total or negligible. No keyword granularity provides meaningful routing discrimination, motivating observation-based or learned routing approaches.\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me register the artifact."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e7d68ec2-6069-4d98-9ec3-cf89b610a4f6",
+            "uuid": "3d19e062-6ef7-405b-81c1-618c87f4aa2d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015B8LPuS8Sztd73FaGEdg4g",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2191,
+                "cache_read_input_tokens": 32819,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2191
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Eix2imycpkbfHiioFNjwsi",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__register_artifact",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e7d68ec2-6069-4d98-9ec3-cf89b610a4f6",
+            "uuid": "364b4628-2248-4a48-a8a0-aeb60c2e62ab",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015B8LPuS8Sztd73FaGEdg4g",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2191,
+                "cache_read_input_tokens": 32819,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2191
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-14T02:07:54.981Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01Eix2imycpkbfHiioFNjwsi",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__register_artifact"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "e7d68ec2-6069-4d98-9ec3-cf89b610a4f6",
+            "uuid": "7a042160-9249-4f77-a06e-ab7e6409b643",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__register_artifact"
+              ],
+              "query": "select:mcp__agent-ml-research__register_artifact",
+              "total_deferred_tools": 50
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0163t8VPuYNayzRpWVRsTdcf",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "method_draft",
+                "type": "paper",
+                "description": "Method section draft v1 for EMNLP 2026 short paper — 4 subsections: Counterfactual Episode Collection, Death-Aware Labeling, Death Avoidance Factor (DAF), Rule-Based Baseline. ~850 words, LaTeX format with PLACEHOLDER annotations.",
+                "project": "simgate-modular-routing",
+                "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/_project/paper/method_draft.md",
+                "tags": [
+                  "paper",
+                  "method",
+                  "draft-v1",
+                  "emnlp2026"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e7d68ec2-6069-4d98-9ec3-cf89b610a4f6",
+            "uuid": "3ca03502-71c3-42e3-9a82-e6c35bb33d3a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SYj1dpYWD46hpvAmyVAvLM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 822,
+                "cache_read_input_tokens": 35010,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 822
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-14T02:08:01.483Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0163t8VPuYNayzRpWVRsTdcf",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260514_e328fe\\\", \\\"name\\\": \\\"method_draft\\\", \\\"type\\\": \\\"paper\\\", \\\"description\\\": \\\"Method section draft v1 for EMNLP 2026 short paper — 4 subsections: Counterfactual Episode Collection, Death-Aware Labeling, Death Avoidance Factor (DAF), Rule-Based Baseline. ~850 words, LaTeX format with PLACEHOLDER annotations.\\\", \\\"path\\\": \\\"projects/simgate-modular-routing/artifacts/_project/paper/method_draft_e328fe.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"simgate-modular-routing\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-14T02:08:01.449321+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"method\\\", \\\"draft-v1\\\", \\\"emnlp2026\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "e7d68ec2-6069-4d98-9ec3-cf89b610a4f6",
+            "uuid": "461a864d-086c-4521-8eb4-6a12cbca7928",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260514_e328fe\\\", \\\"name\\\": \\\"method_draft\\\", \\\"type\\\": \\\"paper\\\", \\\"description\\\": \\\"Method section draft v1 for EMNLP 2026 short paper — 4 subsections: Counterfactual Episode Collection, Death-Aware Labeling, Death Avoidance Factor (DAF), Rule-Based Baseline. ~850 words, LaTeX format with PLACEHOLDER annotations.\\\", \\\"path\\\": \\\"projects/simgate-modular-routing/artifacts/_project/paper/method_draft_e328fe.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"simgate-modular-routing\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-14T02:08:01.449321+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"method\\\", \\\"draft-v1\\\", \\\"emnlp2026\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260514_e328fe\", \"name\": \"method_draft\", \"type\": \"paper\", \"description\": \"Method section draft v1 for EMNLP 2026 short paper — 4 subsections: Counterfactual Episode Collection, Death-Aware Labeling, Death Avoidance Factor (DAF), Rule-Based Baseline. ~850 words, LaTeX format with PLACEHOLDER annotations.\", \"path\": \"projects/simgate-modular-routing/artifacts/_project/paper/method_draft_e328fe.md\", \"url\": null, \"project\": \"simgate-modular-routing\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-14T02:08:01.449321+00:00\", \"tags\": [\"paper\", \"method\", \"draft-v1\", \"emnlp2026\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Method draft v1 已写入 `artifacts/_project/paper/method_draft.md` 并注册 (`art_20260514_e328fe`)。\n\n**结构**：4 个 subsection，约 850 words，符合 ~1 页篇幅：\n- §3.1 Counterfactual Episode Collection — pure-internal vs pure-deterministic 对比设计，seed-matched episodes\n- §3.2 Death-Aware Labeling — 四元组 → 四类 signal 的优先级规则，label 分布\n- §3.3 Death Avoidance Factor — DAF 公式（编号 equation），全局 DAF=0.99，per-task 分析，Pearson r=0.989\n- §3.4 Rule-Based Baseline — 三版 keyword list 均退化，结构性原因分析\n\n**一致性**：术语、符号（$\\Delta_{\\text{full}}$, $\\Delta_{\\text{no\\_death}}$, DAF）、引用 keys 均与 Introduction/Related Work 对齐。所有可能更新的数字标注了 `[PLACEHOLDER]`。Introduction 已论述的 oracle degeneracy 仅用 \"as motivated in §1\" 回指，未重复。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e7d68ec2-6069-4d98-9ec3-cf89b610a4f6",
+            "uuid": "4f10d65f-96bb-49ed-bab5-dcdc80cc2185",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TZ6HPwwZPfEucK1DyMs7Lw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 608,
+                "cache_read_input_tokens": 35832,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 608
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Method draft v1 已写入 `artifacts/_project/paper/method_draft.md` 并注册 (`art_20260514_e328fe`)。\n\n**结构**：4 个 subsection，约 850 words，符合 ~1 页篇幅：\n- §3.1 Counterfactual Episode Collection — pure-internal vs pure-deterministic 对比设计，seed-matched episodes\n- §3.2 Death-Aware Labeling — 四元组 → 四类 signal 的优先级规则，label 分布\n- §3.3 Death Avoidance Factor — DAF 公式（编号 equation），全局 DAF=0.99，per-task 分析，Pearson r=0.989\n- §3.4 Rule-Based Baseline — 三版 keyword list 均退化，结构性原因分析\n\n**一致性**：术语、符号（$\\Delta_{\\text{full}}$, $\\Delta_{\\text{no\\_death}}$, DAF）、引用 keys 均与 Introduction/Related Work 对齐。所有可能更新的数字标注了 `[PLACEHOLDER]`。Introduction 已论述的 oracle degeneracy 仅用 \"as motivated in §1\" 回指，未重复。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 87161,
+            "duration_api_ms": 88719,
+            "num_turns": 8,
+            "stop_reason": "end_turn",
+            "session_id": "e7d68ec2-6069-4d98-9ec3-cf89b610a4f6",
+            "total_cost_usd": 0.32313875000000003,
+            "usage": {
+              "input_tokens": 10,
+              "cache_creation_input_tokens": 24599,
+              "cache_read_input_tokens": 171276,
+              "output_tokens": 3239,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 24599,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 334,
+                  "cache_read_input_tokens": 35832,
+                  "cache_creation_input_tokens": 608,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 608
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2637,
+                "outputTokens": 19,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.002732,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 10,
+                "outputTokens": 3239,
+                "cacheReadInputTokens": 171276,
+                "cacheCreationInputTokens": 24599,
+                "webSearchRequests": 0,
+                "costUSD": 0.32040674999999996,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "dab57aa4-e0eb-4d39-ae0e-0e36f088a8b6"
+          },
+          "id": "event-000025"
+        }
+      ],
+      "message_count": 25
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-writing-method.md"
+}

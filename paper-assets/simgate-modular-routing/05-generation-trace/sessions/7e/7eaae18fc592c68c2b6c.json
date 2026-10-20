@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7eaae18fc592c68c2b6c",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "exp gpu cleanup and dual restart",
+  "task_key": "worker_exp_gpu-cleanup-and-dual-restart_20260520T063801",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_gpu-cleanup-and-dual-restart_20260520T063801_result.json",
+    "occurrence": 1,
+    "bytes": 946,
+    "sha256": "3dcdf6c3cfc4fa2fc49567c716c6cafff8661818eff4372e1d22a324367b8409"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n**执行结果：**\n\n| 步骤 | 状态 |\n|------|------|\n| Step 1: 杀孤儿进程 | 清理了 tmux server + 多轮重生的 vLLM 进程树，GPU 0/1 归零 |\n| Step 2: 代码修复 | `sanitize_messages_for_template` 改为 try-except 方式；新增 `tensor_parallel_size` 参数兼容远程版本 |\n| Step 2.5: Dry-run | Gemma + ScienceWorld 1 episode 通过，无 system role 错误 |\n| Step 3: 双实验启动 | GPU 0=Llama ALFWorld, GPU 1=Gemma ScienceWorld，严格隔离 |\n| Step 4: 验证 | 两个 tmux session + vLLM 进程正常 |\n| Step 5: Registry | 两个实验状态更新为 RUNNING |\n\n**发现并修复的额外问题：** `CUDA_VISIBLE_DEVICES` 在 shell 和代码中冲突——代码内部 `os.environ[\"CUDA_VISIBLE_DEVICES\"] = str(gpu_id)` 会覆盖 shell 设定值。解决方案：不在 shell 设 `CUDA_VISIBLE_DEVICES`，用 `--gpu_id` 参数让代码自行管理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-gpu-cleanup-and-dual-restart.md"
+}

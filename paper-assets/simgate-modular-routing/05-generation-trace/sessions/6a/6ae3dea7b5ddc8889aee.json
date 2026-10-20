@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6ae3dea7b5ddc8889aee",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "infra boil v3 status check",
+  "task_key": "worker_infra_boil-v3-status-check_20260513T162603",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_boil-v3-status-check_20260513T162603_result.json",
+    "occurrence": 1,
+    "bytes": 533,
+    "sha256": "370144402070ef871482dcc59c846a649af9e68e98e7db8045a43b9ecefe73e0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**实验正在运行。**\n\n| 项目 | 状态 |\n|------|------|\n| PID 650421 | **存活**，已运行 3 分钟，PPID=1（后台进程） |\n| GPU 占用 | 两张 GPU 各占 28004 MiB（PID 650130 在 GPU0，PID 651246 在 GPU1） |\n| 日志 | 持续输出 vLLM 推理日志，正在逐条处理 prompts，推理速度 ~95-100 toks/s output |\n\n注意：GPU1 上跑的进程 PID 是 651246（不是 650421），650421 是外层 bash wrapper，实际推理子进程是 651246。实验正常运行中，无报错。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-boil-v3-status-check.md"
+}

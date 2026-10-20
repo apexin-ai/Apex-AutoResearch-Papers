@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6ee4189fca3ea49451e4",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "paper final consistency check",
+  "task_key": "worker_paper_final-consistency-check_20260521T171519",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_final-consistency-check_20260521T171519_result.json",
+    "occurrence": 1,
+    "bytes": 3002,
+    "sha256": "331be89d84d06d57d7f617d05d8fb917e4a59ad3649ab417917fc0fd802a07ca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 检查 1: 数据一致性\n**结果: PASS — 0 inconsistencies**\n\n| # | 数字 | 出现次数 | 分布文件 | 状态 |\n|---|------|---------|---------|------|\n| 1 | 78.9% (75/95) | 12 | abstract, intro, related_work, method, experiments, main, conclusion | ✅ |\n| 2 | DAF 90.4% [81.1, 99.0] | 12 | intro, method, experiments, main | ✅ |\n| 3 | Llama DAF 88.2% [80.2, 95.1] | 3 | intro, experiments, main | ✅ |\n| 4 | Gemma DAF 89.7% [79.5, 98.4] | 4 | intro, experiments, main | ✅ |\n| 5 | 97.4% step tie rate | 5 | method, intro, main | ✅ |\n| 6 | 245 episodes, 11 task types | 20+ | all files | ✅ |\n| 7 | MATH 73.5% vs 73.0%, p=0.81 | 2 | experiments, intro | ✅ |\n| 8 | 42.9% internal DR | 8 | experiments, main | ✅ |\n| 9 | 105 vs 40 deaths | 5 | main, discussion | ✅ |\n| 10 | Keyword 62.9%, LOTO 49.2% | 4 | main, experiments, discussion | ✅ |\n| 11 | 0.5B death rate 13.3% | 2 | main, discussion | ✅ |\n| 12 | Δ_nd = +2.84 | 6 | intro, experiments, main | ✅ |\n\n---\n\n## 检查 2: 交叉引用\n**结果: PASS**\n- Undefined references: 0\n- Undefined citations: 0\n- `??` markers: 0\n\n---\n\n## 检查 3: Figure/Table 引用\n**结果: 9 issues — 均为有 label 无 ref（定义但未在正文引用）**\n\n| Label | 类型 | 问题 |\n|-------|------|------|\n| `tab:baselines` | table | 未被引用 |\n| `tab:death-taxonomy` | table | 未被引用 |\n| `tab:decision-framework` | table | 未被引用 |\n| `tab:loo` | table | 未被引用 |\n| `tab:loto-daf` | table | 未被引用 |\n| `tab:threshold-routing` | table | 未被引用 |\n| `tab:wild-cluster` | table | 未被引用 |\n| `app:prompt-templates` | appendix | 未被引用 |\n| `sec:experiments` | section | 未被引用 |\n\n反向检查（ref 无对应 label）: 0 问题。所有 `\\ref{}` 都有对应 `\\label{}`。\n\n> **7 个 table 和 1 个 appendix 从未在正文中被 `\\ref` 引用。** Reviewer 可能会标记这些为 orphan floats。建议在正文或 appendix 叙述中加入引用。`sec:experiments` 作为顶层章节可以接受。\n\n---\n\n## 检查 4: Orphan bib\n**结果: PASS**\n- 总 bib entries: 51\n- Orphan entries: 0\n\n---\n\n## 检查 5: 编译\n**结果: PASS**\n- Errors: 0\n- Undefined references: 0\n- Undefined citations: 0\n- Total pages: 25（正文 ~8 页，第 9 页起为 bibliography，第 12-25 页为 appendix/checklist）\n- 正文在 8 页限制内 ✅\n\n---\n\n## 总结\n\n| 检查项 | 结果 |\n|--------|------|\n| 1. 数据一致性 | ✅ PASS |\n| 2. 交叉引用 | ✅ PASS |\n| 3. Fig/Tab 引用对称性 | ⚠️ 7 tables + 1 appendix 未被正文引用 |\n| 4. Orphan bib | ✅ PASS |\n| 5. 编译状态 | ✅ PASS |\n\n唯一需要关注的是检查 3 中 7 个未被引用的 table（均在 appendix 中）和 `app:prompt-templates`。如果这些 table 在 appendix 正文中有 \"Table X shows...\" 这样的自然语言引用但没用 `\\ref{}`，则实际问题可能更小。是否需要逐个修复？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-final-consistency-check.md"
+}

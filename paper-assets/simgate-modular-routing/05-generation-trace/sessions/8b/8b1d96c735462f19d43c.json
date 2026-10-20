@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "8b1d96c735462f19d43c",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "exp cross split robustness 8seed",
+  "task_key": "worker_exp_cross-split-robustness-8seed_20260516T010054",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_cross-split-robustness-8seed_20260516T010054.log",
+    "occurrence": 1,
+    "bytes": 884992,
+    "sha256": "faed21044fea98b0ed3979995c0598dd674f462a637fa2a5336c27d2cfa96a14"
+  },
+  "statistics": {
+    "messages": 522,
+    "user_turns": 0,
+    "tool_calls": 235,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 48,
+      "tool_call": 235,
+      "tool_result": 235,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 522,
+      "chunks": [
+        {
+          "path": "8b1d96c735462f19d43c-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "8b1d96c735462f19d43c-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "8b1d96c735462f19d43c-part-0003.json",
+          "message_count": 162
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-cross-split-robustness-8seed.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e9375ce99235b3beb23a",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh kill orphan vllm",
+  "task_key": "worker_ssh_kill-orphan-vllm_20260518T032828",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_kill-orphan-vllm_20260518T032828_result.json",
+    "occurrence": 1,
+    "bytes": 365,
+    "sha256": "3a7c26b2f7d0ea058013131ba13bfacb3c1ed8a592ddabe71f717522c4542dbf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`python` 已全部替换为绝对路径。`curl` 在该服务器上通常在 PATH 中可用，无需修改。\n\n**汇报：**\n- cuda:0 已释放（全部 4 张 GPU 均 0MiB 占用）\n- `/root/miniconda3/bin/python` 可用（Python 3.12.3，vllm 0.21.0）\n- `run_dose_response_full.sh` 中 `python` 已全部替换为 `/root/miniconda3/bin/python`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-kill-orphan-vllm.md"
+}

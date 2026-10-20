@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "ae9ca2cab0cb7ead7161",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code paper banana calibration v3",
+  "task_key": "worker_code_paper-banana-calibration-v3_20260524T232459",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_paper-banana-calibration-v3_20260524T232459_result.json",
+    "occurrence": 1,
+    "bytes": 2116932,
+    "sha256": "5092ed1a2ecc8c777fce4ad17eac5f4f2ca7569203d9292642bdcdf268d0c668"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "log": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2156392,
+                "serialized_sha256": "0e742f3121faf87138b0cf557f245b8e3b54606b560ef75a27ea1458b0634694",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-paper-banana-calibration-v3.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "737519bfa8f5b18b8bf1",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "check r7n2 r3 final",
+  "task_key": "worker_check_r7n2-r3-final_20260516T050600",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_r7n2-r3-final_20260516T050600_result.json",
+    "occurrence": 1,
+    "bytes": 1364,
+    "sha256": "6f4cc24dbd9d5e96c8a44515c2cf094df4845a7e4aa4ad897169983e253bd587"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 最终结果\n\n### 完成状态\n7/21 runs 完成（脚本在确认趋势后跳过中间 scales）。进程已正常退出。\n\n### 结果汇总\n\n**Step-level Balanced Accuracy:**\n\n| Scale | n_train | Seed 42 | Seed 43 | Seed 44 | Mean ± Std |\n|-------|---------|---------|---------|---------|------------|\n| 25% | 433 | 0.498 | 0.508 | 0.486 | **0.497 ± 0.009** |\n| 50% | 867 | 0.493 | — | — | 0.493 |\n| 800% | 13,880 | 0.515 | 0.517 | 0.500 | **0.511 ± 0.007** |\n\n**Episode-level Balanced Accuracy:**\n\n| Scale | n_train | Seed 42 | Seed 43 | Seed 44 | Mean ± Std |\n|-------|---------|---------|---------|---------|------------|\n| 25% | 433 | 0.498 | 0.496 | 0.492 | **0.495 ± 0.003** |\n| 50% | 867 | 0.515 | — | — | 0.515 |\n| 800% | 13,880 | 0.498 | 0.525 | 0.508 | **0.510 ± 0.011** |\n\n**Internal-class recall (episode-level):** 0.0% – 8.3% across all scales. Model predicts almost exclusively \"deterministic\".\n\n### 结论：Negative (Outcome B 确认)\n\n32x 数据扩增（433 → 13,880）对 episode-level balanced accuracy 无改善，始终 ≈ 50%（随机水平）。根本原因：极端类别不平衡（800% scale 下 deterministic:internal = 97.7%:2.3%），监督分类在此信号密度下必然 collapse 到多数类预测。\n\n**Registry 已更新为 DONE/negative，cron 已删除。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-r7n2-r3-final.md"
+}

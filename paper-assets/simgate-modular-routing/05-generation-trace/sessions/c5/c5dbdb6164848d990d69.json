@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c5dbdb6164848d990d69",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "paper writing experiments v2 patch",
+  "task_key": "worker_paper_writing_experiments_v2_patch_20260514T112634",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_experiments_v2_patch_20260514T112634_result.json",
+    "occurrence": 1,
+    "bytes": 766,
+    "sha256": "a305acc0ebe980574ff11797dc710e856424591ff6721d00aed8e44807f5ecdf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。产出已注册为 `art_20260514_c1b3b2`。\n\n两处修改摘要：\n\n1. **Table 1**: `Implicit Router` → `Trained Router`，填入 $-10.70$, CI [$-15.25$, $-6.38$], death 17.6% [A]。baselines 段新增一段解释 trained router 结果（低于 always-det 1.23 points，death rate 可比，避免退化但未改善）。\n\n2. **Section 3.3**: 替换 placeholder，新增两段：\n   - **End-to-end evaluation**: score $-10.70$，97.0% sim ratio → 仅 3% 路由到 internal，近 always-det 行为 [A]\n   - **Seed stability**: 4 seeds balanced acc $58.1 \\pm 0.8\\%$（稳定，仅高于 random 8pp），internal recall 51.5%–81.8%（30+ pp range，seed-dependent boundary）[A]\n\n所有数字标注 [A] 表示 A-source 数据。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-experiments-v2-patch.md"
+}

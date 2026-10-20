@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8b1195f1096824b255ea",
+  "project": "simgate-modular-routing",
+  "kind": "history",
+  "title": "agent / loop_8_1778792552.md",
+  "task_key": "loop_8_1778792552",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_8_1778792552.md",
+    "occurrence": 1,
+    "bytes": 3750,
+    "sha256": "2e3dc420b516dcb463b2ce83fd77412a89e418f18c86829db146c20aa4b8cc60"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: idle_timeout\nupdated: '2026-05-14T21:01:32+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 只能用 westb-13313 的 cuda:0 和 cuda:1（gpu_ids 白名单），禁止用其他设备\n- Table 1 数字**只能**来自 `eval_end_to_end.py`（不是 eval_implicit_router.py），trained-router=-10.70, always-det=-9.47, oracle=-6.58\n- 唯一可用训练数据文件：`data/plan-004-implicit/implicit_sft.jsonl`（MD5: c9b59e04de78, 2040 samples）；`results/plan_c_test_labels/implicit_sft.jsonl` 标签损坏，禁用\n- Checkpoint 路径：`checkpoints/plan-004-implicit/final_adapter` = ablation-b（成功的 router）；`checkpoints/plan-002-generative-v1/final_adapter` = gen-v1（失败），两者 eval 指标相似易混淆\n- Qwen3 eval 必须 `enable_thinking=False` + regex 兜底清理 `<think>` tags\n- C1 措辞上限 \"~90%\"（不是 ~99%），Director D018 决策\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westb-13313，2× RTX 5090 32GB（cuda:0, cuda:1 均空闲）\n- 工作目录：`/root/autodl-tmp/simgate-modular-routing/`（推测，需 Worker SSH 确认）\n- Python：miniconda3 环境（aml-train 镜像），`/root/miniconda3/bin/python`\n- HF_HOME：`/root/autodl-tmp/.hf_cache`\n- W&B project：simgate-modular-routing（已有 58 experiments 记录）\n- 活跃进程：无（0 RUNNING experiments, 0 crons, 0 workers）\n- 论文本地编译路径：项目 `paper/` 目录，pdflatex+bibtex，7 页（正文 4p + 非计入 3p），22 bib entries\n\n### 3. 📊 当前状态\n**所有实验已完成**：58 experiments（22 success / 13 negative / 10 failed / 13 killed），0 RUNNING。\n\n**论文状态**：READY for camera-ready。R3 审稿已提交，评分 Weak Accept 3.25/5（R2 是 Borderline Accept 2.75/5）。R2→R3 修复了 3 个 Blockers（标题 scope、train/test split 说明、penalty sensitivity analysis）+ 8 个 suggestions。本地编译 0 warnings、0 undefined refs、全文数字一致性验证通过。\n\n**等待中**：\n- R3 reviewer 验证反馈（预期 5/15）\n- 无 Worker 回调、无 Cron 待触发\n\n### 4. 📋 待办（条件触发式）\n- R3 reviewer 返回新意见 → 解析 action items → 派 Worker 修改论文/补实验 → 重编译验证\n- R3 通过（无新 blockers）→ 远程 rsync 同步 → 最终 PDF 视觉检查 → 5/23-24 ARR 提交\n- R3 要求补充实验 → cuda:0/cuda:1 空闲可立即用，优先 ScienceWorld 相关分析（数据已就绪）\n- Director 要求新一轮修改 → 先读 paper_framing.md 确认 claim 一致性 → 改后全文 re-audit\n\n### 5. 🎯 战略上下文\n- **核心结论**：Death avoidance 占 ~90% routing signal（DAF=90.41%, r=0.9698）。Router 训练后 balanced_acc≈58%（近随机）本身就是 finding——说明 death avoidance 以外的信号极弱，router 学不到有意义的 beyond-death routing\n- **决策链关键节点**：D013（pivot 到 analysis paper）→ D033（Option B 方法论贡献定稿）→ D046（撤销 method paper pivot，回归 analysis）→ D048（R2 Action Matrix）→ D049（R3 camera-ready）\n- **易错点**：\n  1. 不要混淆 eval_end_to_end.py 和 eval_implicit_router.py 的数字（-10.70 vs -12.84）\n  2. find-non-living-thing 是正面案例（零死亡 task 上 Δ_nd=9.58），不是异常值\n  3. ablation-b 的 ga=8（effective batch=32），不是 ga=1——已有 4 重证据链验证\n  4. MATH 跨环境验证只做了 105 题（不扩全量，D047 决策），信号与 ScienceWorld 反转，仅作 Discussion 素材\n  5. ALFWorld 是 exploratory（135 games, det 27.4% vs int 3.0%），不作主要 claim 支撑\n- **DDL**：EMNLP 2026 ARR，2026-05-25，剩余 11 天。Critical path: 5/15 R3 验证 → 5/15-22 迭代 → 5/23-24 终稿提交\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8-1778792552.md"
+}

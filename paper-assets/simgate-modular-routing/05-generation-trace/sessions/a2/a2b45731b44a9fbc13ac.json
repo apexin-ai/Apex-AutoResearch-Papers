@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a2b45731b44a9fbc13ac",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "analysis plan 005 routing patterns v2",
+  "task_key": "worker_analysis_plan-005-routing-patterns-v2_20260515T173050",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan-005-routing-patterns-v2_20260515T173050_result.json",
+    "occurrence": 1,
+    "bytes": 1441,
+    "sha256": "807e0423cd9151e335fe7a5a93694be08d1964c0945ae4c1fea47cb6f328cb86"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n## 结果摘要\n\n**数据集**: 11 tasks, 245 episodes（完整 plan_c 数据）\n\n### A. Per-task routing frequency\n- **5 death-dominated** (DAF ≥ 0.95): inclined-plane, freeze, melt-pt, life-stages-2, grow-fruit\n- **6 genuine-det** (0 < DAF < 0.95): 包括 find-non-living-thing (DAF=0, 零死亡任务)\n- Weighted DAF = **0.9614**, Weighted Δ(D-I) = **29.60** — 与 C1 claim 精确匹配\n- 死亡率: internal 42.9% vs deterministic 16.3% (2.62×)\n\n### B. Episode phase analysis\n- **100% 的死亡发生在 late phase**（终端步骤）— ScienceWorld 的致死 action 直接结束 episode\n- 分数在 step 8-9 开始分化（internal 开始落后）\n- Internal 死亡时只走了 deterministic 的 **65% 步数**（mean 19.4 vs 30 steps）\n\n### C. 生成 3 张图\n- `routing_heatmap.pdf/png` — 三面板主图（death rate / label distribution / DAF）\n- `phase_heatmap.pdf/png` — 阶段性死亡差异热力图\n- `daf_scatter.pdf/png` — DAF vs 死亡率差散点图\n\n### D. Failure taxonomy\n- **100%** 死亡来自 `focus on <location>` 动作（task-independent）\n- 主导模式: **exploration loop** (68%) — agent 在非目标区域间反复导航直到触发致死\n- Top 致死位置: workshop (21×), inventory (15×), kitchen (11×)\n\n报告已写入 `artifacts/plan005_routing_patterns_v2.md`，JSON 数据在服务器 `artifacts/plan005_v2_summary.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan-005-routing-patterns-v2.md"
+}

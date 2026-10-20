@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "99d551e0109a4af8ef49",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "research paper related work draft",
+  "task_key": "worker_research_paper-related-work-draft_20260514T010203",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_paper-related-work-draft_20260514T010203_result.json",
+    "occurrence": 1,
+    "bytes": 850,
+    "sha256": "9733deafcd322585cb4049237c31cbf935d4b3dcd18a497e05149266920121d4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "草稿已写入 `artifacts/related_work_draft.md`（约 370 words）。\n\n结构覆盖了 4 个方向：\n- **Tool-Use Learning**: Toolformer / ART / Chameleon / ReTool — 区分点：episode-level counterfactual labeling + safety-aware framing + explicit decoupled router\n- **Adaptive Computation**: CogRouter / ARES / Mixture-of-Recursions — 区分点：route modality (internal vs deterministic) 而非 cognitive depth/effort\n- **World Model Routing**: ITP / Dyna-Think — 区分点：exact deterministic computation vs approximate world models，exactness 的价值集中在 death avoidance\n- **Agent Frameworks**: ReAct — 作为 internal-reasoning baseline 的基础框架\n\n所有引用均来自 `literature_map.yaml`，无编造。`register_artifact` 工具不可用，需要你手动注册或告诉我替代方式。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-paper-related-work-draft.md"
+}

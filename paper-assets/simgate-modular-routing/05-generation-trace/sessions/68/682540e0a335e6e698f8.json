@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "682540e0a335e6e698f8",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "analysis 4b e2e filter 245",
+  "task_key": "worker_analysis_4b-e2e-filter-245_20260517T042104",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_4b-e2e-filter-245_20260517T042104_result.json",
+    "occurrence": 1,
+    "bytes": 561,
+    "sha256": "60a81ed043037f3a988eca2e88a1b8698257e2f748a1060d1cfab8b831cff980"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n```\n=== 4B Router E2E (filtered to 245 episodes) ===\nmean_score: -12.03\n95% CI: [-17.82, -6.45]\ndeath_rate: 0.1878\nsuccess_rate: 0.2327\nsim_ratio: 0.0531\nfallback_rate: 0.9469\nn_episodes: 245\ndelta_vs_always_det: -2.56\ndelta_vs_1.7b: -1.33\n```\n\n4B router 在 245 episodes 上表现比全 275 episodes 时略差（-12.03 vs -10.72），比 always-det baseline 低 2.56 分，比 1.7B router 低 1.33 分。fallback_rate 极高（94.7%），sim_ratio 仅 5.3%——说明 4B router 几乎总是选择 deterministic path。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-4b-e2e-filter-245.md"
+}

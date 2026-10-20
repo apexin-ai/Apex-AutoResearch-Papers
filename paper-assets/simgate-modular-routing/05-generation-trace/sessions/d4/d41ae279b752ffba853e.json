@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d41ae279b752ffba853e",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh crafter text wrapper",
+  "task_key": "worker_ssh_crafter-text-wrapper_20260518T040932",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_crafter-text-wrapper_20260518T040932_result.json",
+    "occurrence": 1,
+    "bytes": 1493,
+    "sha256": "2e36ad2c3021df3b8bcc52c6b82613babc8623af56a80b26e810db90650ec5fd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n---\n\n**已部署到** `/root/autodl-tmp/simgate-modular-routing/crafter_pilot/`（westb-14838）\n\n**文件结构：**\n```\ncrafter_pilot/\n├── config.py           # semantic map encoding, actions, API config\n├── text_wrapper.py     # CrafterTextWrapper: semantic map → text obs\n├── llm_agent.py        # CrafterLLMAgent (vLLM API) + RandomAgent\n├── episode_runner.py   # 主 runner，支持 --agent random/llm\n└── results/            # JSON 输出\n```\n\n**Text Observation 格式：**\n- Status: health/food/drink/energy + step count\n- Nearby Objects: 8方向扫描，每方向最近3个 interesting object + 距离\n- Inventory: resources + tools\n- Achievements: unlocked count + list\n- Available Actions: 17个 action 的 index:name 映射\n\n**Action Mapping：** LLM 输出任意文本 → regex 匹配 action name → fallback 到 noop\n\n**验证结果：**\n- Text wrapper: 正常生成 text obs，directional scan 正确识别 objects\n- Action parsing: \"move_up\", \"do\", \"SLEEP\", 带上下文的句子均正确解析\n- Random agent 3 episodes: 全部完成（179/169/182 steps），3-5 achievements，均以 death 结束，JSON 输出格式正确\n\n**使用 LLM agent：**\n```bash\ncd /root/autodl-tmp/simgate-modular-routing/crafter_pilot\n/root/miniconda3/bin/python episode_runner.py --agent llm --episodes 5\n```\n需要先在另一个 GPU 上启动 vLLM server 到 localhost:8000。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-crafter-text-wrapper.md"
+}

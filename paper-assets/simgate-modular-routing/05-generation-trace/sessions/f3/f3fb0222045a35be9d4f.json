@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f3fb0222045a35be9d4f",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "exp r7n2 supplement 100 200",
+  "task_key": "worker_exp_r7n2-supplement-100-200_20260516T063905",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_r7n2-supplement-100-200_20260516T063905_result.json",
+    "occurrence": 1,
+    "bytes": 1386,
+    "sha256": "ea2cef98345d522e505d7fc4e602f96a7e933ccfffb122e8b51d4ad6e5491b86"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "一切就绪。汇总：\n\n---\n\n## 结果\n\n**脚本路径**: `/root/autodl-tmp/simgate-modular-routing/src/r7n2_scale_study.py`\n\n**修改**: 已添加 `--scales` 参数，支持只跑指定 scales。\n\n**已有状态** (`results/ablation_r3/`):\n- 100pct: 目录 seed43 存在但空（无 eval_results.json）\n- 200pct: 目录 seed42/seed44 存在但空\n- 即这些 runs 之前中断了，resume 逻辑不会跳过它们\n\n**GPU1**: 空闲 (RTX 5090, 32GB VRAM, 0% utilization)\n\n**eval batch_size = 2**: 已硬编码在脚本 L344\n\n---\n\n## 运行命令\n\n```bash\ncd /root/autodl-tmp/simgate-modular-routing && \\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\nCUDA_VISIBLE_DEVICES=1 python src/r7n2_scale_study.py \\\n    --data_path data/plan-004-implicit/implicit_sft.jsonl \\\n    --model_name /root/autodl-tmp/models/Qwen/Qwen3-1.7B \\\n    --output_dir results/ablation_r3 \\\n    --gpu_id 0 \\\n    --seeds 42 43 \\\n    --scales 100pct 200pct \\\n    --batch_size 4 \\\n    --epochs 3\n```\n\n注意 `--gpu_id 0` 配合 `CUDA_VISIBLE_DEVICES=1`，让脚本认为设备 0 就是物理 GPU1。\n\n---\n\n## 预估时间\n\n- 100%: ~1733 records × 2 seeds × 3 epochs → ~15-20 min/seed\n- 200%: ~3466 records × 2 seeds × 3 epochs → ~30-40 min/seed\n- **总计约 1.5-2 小时**（含 eval 生成推理时间）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-r7n2-supplement-100-200.md"
+}

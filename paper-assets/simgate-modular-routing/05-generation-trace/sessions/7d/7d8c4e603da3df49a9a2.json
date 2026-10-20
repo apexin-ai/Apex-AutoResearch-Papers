@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7d8c4e603da3df49a9a2",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "diagnose plan 004 v2 completion",
+  "task_key": "worker_diagnose_plan-004-v2-completion_20260514T065830",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_plan-004-v2-completion_20260514T065830_result.json",
+    "occurrence": 1,
+    "bytes": 297,
+    "sha256": "382c57d1a29248aefff73850fdfe778bb1cbe46be4b45442cfdfb0f6c3f2c8a9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。\n\n**plan-004-v2 结果：failed**\n\n- 训练 loss 异常：48.15 → 4.36（avg 12.74），确认是 class_weights auto 已知问题\n- eval_loss 0.49 但无 accuracy/per-class metrics 可验证\n- 无 eval_report.json\n- 与 plan-002 v3/v4/v5 同一 pattern"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-plan-004-v2-completion.md"
+}

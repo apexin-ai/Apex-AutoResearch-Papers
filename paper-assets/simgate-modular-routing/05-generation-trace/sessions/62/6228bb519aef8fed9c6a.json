@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6228bb519aef8fed9c6a",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code final data audit",
+  "task_key": "worker_code_final-data-audit_20260524T042744",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_final-data-audit_20260524T042744_result.json",
+    "occurrence": 1,
+    "bytes": 450,
+    "sha256": "0aad2a204704175c331b354865b33d31e51e574147bff7486503bc0213fa85e6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Artifact registered (`art_20260524_52cbec`).\n\n**审计完成总结：**\n\n- **45 claims 核查**，41 项匹配，4 项因服务器缺数据文件无法独立验证（MATH × 2, 72B × 2）\n- **2 处修复已写入 .tex**：\n  1. DAF 95% CI `[81.1%, 99.0%]` → `[81.3%, 99.1%]`（7 处，experiments.tex + main.tex）\n  2. Limitations `+26.6 pp` → `+26.5 pp`（1 处，main.tex）\n- 编译检查已跳过（报告中注明）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-final-data-audit.md"
+}

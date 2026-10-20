@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "60da6b762d65674977da",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code router sft skeleton",
+  "task_key": "worker_code_router-sft-skeleton_20260513T183141",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_router-sft-skeleton_20260513T183141_result.json",
+    "occurrence": 1,
+    "bytes": 615,
+    "sha256": "33ebf3c32fb049c3fa65e7961a8d441f9cdba1282e69eb2d6ef56fa4a10f7dd0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`--help` 和 `--dry_run` 均通过。\n\n脚本已写入 `/root/autodl-tmp/simgate-modular-routing/src/router_sft_train.py` 并验证。核心设计：\n\n- **数据**：从 `results/plan_c/*/labeled_steps.jsonl` 加载，过滤 tie，按 task_type 分层 80/20 split\n- **模型**：Qwen3-1.7B + LoRA (r=16, target q/k/v/o_proj) → 2-way sequence classification\n- **Prompt**：`<|system|>...<|user|>Observation + Action history (最近5步)<|end|>`\n- **评估**：per-class P/R/F1、per-task accuracy、confusion matrix → `eval_report.json`\n- **输出**：LoRA adapter checkpoint + W&B logging"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-router-sft-skeleton.md"
+}

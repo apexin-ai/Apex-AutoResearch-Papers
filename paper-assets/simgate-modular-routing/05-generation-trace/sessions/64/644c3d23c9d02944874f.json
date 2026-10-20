@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "644c3d23c9d02944874f",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code launch scripts prep",
+  "task_key": "worker_code_launch-scripts-prep_20260513T234045",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_launch-scripts-prep_20260513T234045_result.json",
+    "occurrence": 1,
+    "bytes": 1130,
+    "sha256": "eed99403f850f57e2fc73389453bf8a37f3f36b1467ece0da6443adc941bdafc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n**Part 1 - plan-002 验证**\n- `death_aware_labeling.py` 生成 sft_triples.jsonl：63 episodes → 1814 steps（det:600, int:150, no-pref:1064）\n- `router_sft_train.py --dry_run` 通过：episode-level split 生效（20 train / 5 val episodes），数据加载正常\n- `scripts/launch_plan002.sh` 已创建，参数与 argparse 匹配（去掉了不存在的 `--eval_strategy` / `--metric_for_best_model`，这两个已硬编码）\n\n**Part 2 - plan-004b 验证**\n- `ablation_data_converter.py` 转换成功：1814 records，implicit_sft.jsonl 格式正确（chat messages + [SIMULATE] prefix）\n- `scripts/launch_plan004b.sh` 已创建，使用正确参数名：`--input_path`/`--output_path`（converter）、`--data`（implicit_1_7b train）\n\n**Part 3 - post_collection_analysis.sh**\n- 已创建并验证通过\n- 当前状态：plan_c 4/11 tasks 完成（64 episodes），加上 prescreening/mvp/research 共 30 tasks / 317 episodes\n- 数据完整性检查：All episodes valid\n\n三个脚本均在 `/root/autodl-tmp/simgate-modular-routing/scripts/`，已 `chmod +x`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-launch-scripts-prep.md"
+}

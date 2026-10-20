@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fe7749ca7214ce44a13e",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "infra check prescreening data format",
+  "task_key": "worker_infra_check-prescreening-data-format_20260513T171711",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_check-prescreening-data-format_20260513T171711_result.json",
+    "occurrence": 1,
+    "bytes": 1365,
+    "sha256": "586d84ef4021fa528587de2662c2edfd142debe7f7a3ef045db223e61cb4cc69"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n### 1. signal_prescreening.py — **保存 step-level 数据 ✓**\n\n每步保存到 `steps` 数组，字段：\n- `step` (步序号)\n- `action` (执行的动作)\n- `modality` (\"internal\" 或 \"deterministic\")\n- `score_before`, `score_after`, `score_delta`\n- `observation` (截断到 500 字符)\n- `llm_output` (截断到 300 字符)\n\ndeterministic 模式额外保存：\n- `candidates` (候选动作列表)\n- `fork_results` (每个候选的 fork 评估结果)\n- `chosen_action`, `chosen_score_delta`\n- `death_filtered` (致死过滤的动作列表)\n\nepisode 级别还保存：`action_history`（完整动作序列）。\n\n**缺失：** 没有保存 `valid_actions`（当步可选动作全集）。\n\n### 2. phase1_signal.py — **保存 step-level 数据 ✓**\n\n结构与 prescreening 完全一致。三种模式（always-internal / always-deterministic / oracle-routing）都保存相同的 step-level 字段。oracle 模式每步额外记录 `routing_choice`（选了 internal 还是 deterministic）。\n\n同样 **缺失 `valid_actions`**。\n\n### 3. 预筛进度\n\n完成 **3 个 task**：\n- `chemistry-mix`\n- `chemistry-mix-paint-tertiary-color`\n- `find-animal`\n\n### 4. GPU1 boil v3 进度\n\nPID 650421 仍在运行，已运行 **54 分钟**。日志显示 vLLM 推理正在正常执行（~1 it/s）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-check-prescreening-data-format.md"
+}

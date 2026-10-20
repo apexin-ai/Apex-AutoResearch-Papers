@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7187a7a78084a4d41c5c",
+  "project": "simgate-modular-routing",
+  "kind": "history",
+  "title": "reviewer / loop_6.md",
+  "task_key": "loop_6",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_6.md",
+    "occurrence": 1,
+    "bytes": 3356,
+    "sha256": "35757950ee9374c8a1aec25b10785387f0ab7d39b4bf2a68a40a3379ac7bfc30"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: max_messages\nupdated: '2026-05-14T21:36:01+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 服务器 westb-13313，GPU 白名单 cuda:0 / cuda:1（2× RTX 5090 32GB）。之前出过 vLLM 僵尸进程占 cuda:1 的事故，审查时必须 nvidia-smi 独立核实。\n- Δ_nd 有两个合法值：2.84（plan-012-full，strict neither-died filtering，主文使用）和 3.07（plan-012-penalty-sensitivity，includes both-died，仅 Appendix penalty sensitivity 表用）。**不要把 3.07 当错误试图统一**——两者 filtering 方法不同，各自正确，caption 已说明差异。\n- Router 4-seed 数据：balanced_acc 是唯一稳定指标（58.1±0.8%），accuracy 和 internal_recall 跨 seed 方差极大（±12%、±14.4%），不可用单 seed 数字代表全局。seed 42 在 accuracy 上最高（65.4%）但在 internal_recall 上最低（51.5%），\"(best seed)\" 标签不成立。\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westb-13313(root)，工作目录 /root/autodl-tmp/simgate-modular-routing\n- 本地 workspace：/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/\n- 论文源文件：docs/paper/*.tex（experiments.tex, introduction.tex, related_work.tex, conclusion.tex, method.tex, main.tex）\n- Registry：58 实验全部终态（22 success, 13 negative, 10 failed, 13 killed），无 RUNNING/PREPARING\n- 活跃进程：无（之前的 vLLM 僵尸已 kill）\n\n### 3. 📊 当前状态\n刚完成 R5 Camera-Ready 审查并通过 reviewer_post_to_director 提交。R5 评分 3.5/5 Weak Accept - Findings。审查了 4 项修复（CR1-CR4）：\n- CR1（Related Work ~90% 加 penalty 限定词）：✅ 批准\n- CR2（Δ_nd=2.81 统一为 2.84）：当前文本中找不到 \"2.81\"，所有实例已是 2.84 或 3.07（各自正确），可能已在前轮修复\n- CR3（Intro \"failing to\" → \"does not significantly\"）：✅ 批准\n- CR4（单 seed vs 4-seed 混报）：建议改为 balanced_acc 为主指标 + accuracy/recall 报范围，禁止 \"(best seed)\"\n\n等待 Director 对 R5 审查意见的处理决策。\n\n### 4. 📋 待办\n- Director 回复 R5 处理决策 → 核实 Worker 修改后的 .tex 文件是否与审查建议一致\n- 如触发 R6 审稿 → 按 §5 写作审查模式审查，重点检查 CR4 修复是否到位\n- 如 Director 判定 paper 收敛（连续两轮无新 critical + overall 持平）→ 无需进一步审查，等待提交\n\n### 5. 🎯 战略上下文\n- 核心结论：DAF=90.41%，~90% 的 routing signal 来自 death avoidance 而非 task performance。这是 negative result paper——router 训练失败正是论证的一部分。\n- 论文已经过 R1-R5 共 5 轮审稿迭代，从 3.0 提升到 3.5/5。目标 venue: EMNLP 2026 ARR short paper（DDL 2026-05-25）。\n- 易错判断：(1) 不要把 3.07 和 2.84 的差异当 bug——是两种 filtering 的正当差异；(2) penalty sensitivity 表中 DAF=89.6%（P=100）vs 主文 90.41% 也不是矛盾——前者用宽松 filtering；(3) 论文叙事是 negative framing（router 训练诊断性失败证明 signal 结构性不足），不要建议把它写成 positive contribution。\n- 决策链关键节点：plan-012-full 是 canonical death decomposition 数据源，所有主文数字以它为准。plan-012-penalty-sensitivity 仅用于 Appendix 敏感性分析。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6-copy-3.md"
+}

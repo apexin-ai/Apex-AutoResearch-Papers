@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7518a1544b6739d546f8",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code plan 012 death decomposition prep",
+  "task_key": "worker_code_plan-012-death-decomposition-prep_20260513T214834",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan-012-death-decomposition-prep_20260513T214834_result.json",
+    "occurrence": 1,
+    "bytes": 1077,
+    "sha256": "2fd19303e489348ed570486783b7f7fa746838895ab8dfdcab99386be045dbd9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全量分析完成，脚本运行正常。\n\n## 汇总\n\n**脚本状态**: `death_decomposition.py` (519行) 完整就绪，所有 6 项分析功能均已实现且验证通过。\n\n**全量结果** (30 tasks, 219 episodes from prescreening + MVP):\n\n| 指标 | 值 |\n|------|-----|\n| Δ_full | +37.9 |\n| Δ_nd | +0.2 |\n| death_fraction | 99% |\n| r (death_rate_diff vs Δ) | 0.989, p<0.0001 |\n| Δ_penalty_removed | +0.9 |\n| Labels | det-preferred: 89, internal-preferred: 1, no-preference: 129 |\n| Internal death rate | 49% |\n| Det death rate | 12% |\n\n**与 MVP 初步结果对比**：数据从 5 tasks → 30 tasks，核心结论不变——death avoidance 贡献 99% 的 routing signal，r 从 0.986 微升至 0.989。\n\n**数据目录结构**：prescreening 和 mvp 格式一致，每个 task 子目录含 `episodes.jsonl` + `summary.json`，脚本能直接读取。\n\n**一个小问题**：`aggregate_results()` 函数（~line 185-275）是死代码，`main()` 用的是 `aggregate_from_raw()`。无功能影响，可以清理但非必需。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-012-death-decomposition-prep.md"
+}

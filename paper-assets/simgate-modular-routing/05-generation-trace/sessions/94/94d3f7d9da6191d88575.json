@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "94d3f7d9da6191d88575",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "eval daf bootstrap ci v2",
+  "task_key": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_daf-bootstrap-ci-v2_20260516T183401_result.json",
+    "occurrence": 1,
+    "bytes": 1577,
+    "sha256": "8a8e1998f090842f192eae5b375287182f1d20610462c008f561a3da7d0b4abf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== DAF Bootstrap CI Results ===\nGlobal:\n  DAF point estimate: 0.6353\n  95% CI: [0.5169, 0.7640]\n  N episodes: 245, N det-preferred: 86, N death: 105 (70 in det-pref)\n  Δ_full: 92.53, Δ_nd: 33.75\n\nPer-task DAF:\n  chemistry-mix:                       DAF=1.00 [1.00, 1.00] (n=20, death=9)\n  find-animal:                         DAF=1.00 [1.00, 1.00] (n=20, death=10)\n  find-non-living-thing:               DAF=0.00 [0.00, 0.00] (n=40, death=0)\n  freeze:                              DAF=1.00 [1.00, 1.00] (n=20, death=11)\n  grow-fruit:                          DAF=1.00 [1.00, 1.00] (n=20, death=9)\n  identify-life-stages-1:              DAF=1.00 [1.00, 1.00] (n=20, death=11)\n  identify-life-stages-2:              DAF=1.00 [1.00, 1.00] (n=20, death=10)\n  inclined-plane-determine-angle:      DAF=1.00 [1.00, 1.00] (n=20, death=11)\n  lifespan-longest-lived:              DAF=1.00 [1.00, 1.00] (n=25, death=14)\n  lifespan-longest-lived-then-shortest: DAF=1.00 [1.00, 1.00] (n=20, death=9)\n  measure-melting-point-unknown:       DAF=1.00 [1.00, 1.00] (n=20, death=11)\n\nNote vs \"previous DAF=0.904\": 该值可能来自不同计算方式（如 death_decomposition_report 中使用全量 episodes 而非仅 det-preferred，得到 DAF=0.988）。本次严格按公式 DAF = 1 - Δ_nd/Δ_full（仅 det-preferred episodes）计算，得到 0.635。差异来源：只有 find-non-living-thing 有非 death 的 det-preferred episodes（16个，Δ_nd=33.75），拉低了全局 DAF。\n```\n\nRegistry 已更新为 DONE，artifact 已注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-daf-bootstrap-ci-v2.md"
+}

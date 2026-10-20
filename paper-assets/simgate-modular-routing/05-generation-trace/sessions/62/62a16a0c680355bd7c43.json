@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "62a16a0c680355bd7c43",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "diagnose grounding prompt ablation",
+  "task_key": "worker_diagnose_grounding-prompt-ablation_20260518T215711",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_grounding-prompt-ablation_20260518T215711_result.json",
+    "occurrence": 1,
+    "bytes": 384,
+    "sha256": "ced5e0a504861f32cf30789cbca1d921d72e97714b6ed43a227f2707889cdb49"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断报告已保存。总结：\n\n- **错误类型**: GPU 显存不足（被残留进程占用）\n- **根因**: GPU 0 上 PID 165113 的 vLLM 旧进程占用 29.5 GiB 显存，新实验仅剩 2.04 GiB 可用，初始化即失败\n- **部分结果**: 无，第一个 episode 就崩溃了\n- **修复**: kill 165113 后重跑，或改用空闲的 GPU 1 (`--gpu_id 1`)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-grounding-prompt-ablation.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f30fd68d4d35596311bd",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code llama 70b fix shards",
+  "task_key": "worker_code_llama-70b-fix-shards_20260523T235142",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama-70b-fix-shards_20260523T235142_result.json",
+    "occurrence": 1,
+    "bytes": 427,
+    "sha256": "246f2aafeb27c4aa1d95cc5d71a058fa212555888072a57e86afac4e530b1f44"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已由并行进程更新完毕。\n\n总结：\n- **shard 00002 + 00008** 通过 ModelScope 补下载完成，9/9 就位（38GB）\n- **vLLM** 在端口 8002 运行中（awq_marlin, enforce-eager, 0.85 utilization, 83.5GB GPU 占用）\n- **推理测试** 通过（\"Four.\", 0.53s）\n- **Episode 脚本** 现有的都指向 Qwen 72B，无现成 Llama-70B 版本。如需收集需传 `--model_path` 覆盖"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-llama-70b-fix-shards.md"
+}

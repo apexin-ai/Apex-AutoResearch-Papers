@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f4533863a694b705531f",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code plan 004 ablation",
+  "task_key": "worker_code_plan-004-ablation_20260514T042558",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan-004-ablation_20260514T042558_result.json",
+    "occurrence": 1,
+    "bytes": 998,
+    "sha256": "a6947ba99c0ebc7311b3a68d49ef42788a4316069c83dcbf125f31fb2365f9d9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部通过验证。最终文件清单和状态：\n\n| 文件 | 状态 |\n|---|---|\n| `src/training/format_implicit_data.py` | dry-run 成功，1770 条 → 1770 条转换 |\n| `src/training/implicit_router_sft.py` | import + parse 测试通过，数据加载 train=1505/val=265 |\n| `src/evaluation/prompt_routing_eval.py` | import + parse 测试通过 |\n| `src/evaluation/ablation_comparison.py` | import 测试通过 |\n| `scripts/launch_plan004.sh` | 已写入服务器，可执行 |\n\n关键数据点：\n- **训练数据**：1770 条 labeled steps（11 个 task），det:int = 91.5%:8.5%（严重不平衡）\n- **模型权重**：Qwen3-1.7B 和 Qwen2.5-7B-Instruct 都在 `/root/autodl-tmp/models/Qwen/`\n- **Plan-002 adapter**：尚未训练，launch 脚本会自动跳过 condition (a)\n\n需要 GPU dry-run 验证训练脚本的话请说明。类别不平衡问题（det 91.5%）可能需要关注 —— implicit router 可能倾向全部输出 `[SIMULATE]` 前缀。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-004-ablation.md"
+}

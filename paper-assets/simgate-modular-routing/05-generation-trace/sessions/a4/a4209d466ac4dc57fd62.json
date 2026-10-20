@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a4209d466ac4dc57fd62",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh seed123 main experiment",
+  "task_key": "worker_ssh_seed123-main-experiment_20260518T075645",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_seed123-main-experiment_20260518T075645_result.json",
+    "occurrence": 1,
+    "bytes": 3182,
+    "sha256": "cbf67588aa52988730b44af9098bdcfbcb7bd0e09b1fd60ff490d149aa7191c1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Total on westb-13313: 275 episodes (some tasks have extras from later collection rounds). The original standard was 20 eps/task. For seed=123 replication, I'll use 20 eps/task × 11 tasks = 220 episodes, matching the core experimental design.\n\nHere's the summary:\n\n## Plan-012-full experiment setup\n\n**Script**: `src/episode_level_collection.py`\n\n**11 tasks** (from TASKS list in reflexion_baseline.py, confirmed by plan_c directory):\n```\nchemistry-mix, find-animal, find-non-living-thing, freeze,\ngrow-fruit, identify-life-stages-1, identify-life-stages-2,\ninclined-plane-determine-angle, lifespan-longest-lived,\nlifespan-longest-lived-then-shortest-lived, measure-melting-point-unknown-substance\n```\n\n**Parameters**: `--episodes 20 --max_steps 30 --n_candidates 3 --seed 42` (original)\n\n**Each episode**: runs both always-internal and always-deterministic modalities, compares final scores, labels modality preference.\n\n## Dry-run result (seed=123)\n- Task: chemistry-mix, episode 0, variation 0\n- Internal: -100.0 (death, 18 steps, 46s)\n- Deterministic: -100.0 (death, 22 steps, 89s)\n- Label: no-preference (both_dead)\n- Time per episode: ~2.25 min\n\n## Full run commands (4 GPUs in parallel)\n\n```bash\ncd /root/autodl-tmp/simgate-modular-routing\n\n# GPU 0: 3 tasks\nnohup bash -c 'CUDA_VISIBLE_DEVICES=0 VLLM_USE_FLASHINFER_SAMPLER=0 /root/miniconda3/bin/python src/episode_level_collection.py \\\n  --task_types \"chemistry-mix,find-animal,find-non-living-thing\" \\\n  --episodes 20 --seed 123 --gpu_id 0 --max_steps 30 --n_candidates 3 \\\n  --output_dir results/seed123-plan-c/' > logs/seed123-gpu0.log 2>&1 &\n\n# GPU 1: 3 tasks\nnohup bash -c 'CUDA_VISIBLE_DEVICES=1 VLLM_USE_FLASHINFER_SAMPLER=0 /root/miniconda3/bin/python src/episode_level_collection.py \\\n  --task_types \"freeze,grow-fruit,identify-life-stages-1\" \\\n  --episodes 20 --seed 123 --gpu_id 0 --max_steps 30 --n_candidates 3 \\\n  --output_dir results/seed123-plan-c/' > logs/seed123-gpu1.log 2>&1 &\n\n# GPU 2: 3 tasks\nnohup bash -c 'CUDA_VISIBLE_DEVICES=2 VLLM_USE_FLASHINFER_SAMPLER=0 /root/miniconda3/bin/python src/episode_level_collection.py \\\n  --task_types \"identify-life-stages-2,inclined-plane-determine-angle,lifespan-longest-lived\" \\\n  --episodes 20 --seed 123 --gpu_id 0 --max_steps 30 --n_candidates 3 \\\n  --output_dir results/seed123-plan-c/' > logs/seed123-gpu2.log 2>&1 &\n\n# GPU 3: 2 tasks\nnohup bash -c 'CUDA_VISIBLE_DEVICES=3 VLLM_USE_FLASHINFER_SAMPLER=0 /root/miniconda3/bin/python src/episode_level_collection.py \\\n  --task_types \"lifespan-longest-lived-then-shortest-lived,measure-melting-point-unknown-substance\" \\\n  --episodes 20 --seed 123 --gpu_id 0 --max_steps 30 --n_candidates 3 \\\n  --output_dir results/seed123-plan-c/' > logs/seed123-gpu3.log 2>&1 &\n```\n\nNote: `--gpu_id 0` in each command because `CUDA_VISIBLE_DEVICES` remaps the physical GPU to `cuda:0` within each process.\n\n## Estimated runtime\n- ~2.25 min/episode × 60 episodes (max per GPU group) = ~135 min\n- Plus vLLM loading + JVM overhead: **~2.5-3 hours wall-clock**\n- Output: `results/seed123-plan-c/` (220 episodes total, 20 per task)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-seed123-main-experiment.md"
+}

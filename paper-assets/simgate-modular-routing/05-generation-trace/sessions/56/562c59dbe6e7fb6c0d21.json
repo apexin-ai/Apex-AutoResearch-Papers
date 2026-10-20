@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "562c59dbe6e7fb6c0d21",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "fix download qwen3 1 7b",
+  "task_key": "worker_fix_download-qwen3-1_7b_20260514T054327",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_download-qwen3-1_7b_20260514T054327_result.json",
+    "occurrence": 1,
+    "bytes": 619,
+    "sha256": "7f034e15064187e54b00858c45d929df57476d93922f9ad9ad14aaa94e14e7bf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "模型已就绪，汇总如下：\n\n**模型已存在，无需重新下载。**\n\n| 项目 | 结果 |\n|------|------|\n| **本地路径** | `/root/autodl-tmp/models/Qwen/Qwen3-1.7B` (符号链接 → `Qwen3-1___7B/`) |\n| **大小** | 3.8 GB，含 2 个 safetensors 分片，文件完整 |\n| **Tokenizer 验证** | 加载成功，`vocab_size=151643` |\n| **训练脚本参数** | `--model_name`（第 53 行），默认值 `\"Qwen/Qwen3-1.7B\"`（HF hub ID） |\n\n训练脚本调用时需要把 `--model_name` 改为本地路径：\n```bash\n--model_name /root/autodl-tmp/models/Qwen/Qwen3-1.7B\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-download-qwen3-1-7b.md"
+}

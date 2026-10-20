@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ea6e6e30f4ceb801e4f0",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "paper writing method v2",
+  "task_key": "worker_paper_writing_method_v2_20260514T092526",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_method_v2_20260514T092526_result.json",
+    "occurrence": 1,
+    "bytes": 1047,
+    "sha256": "ff47853f159a2f86fa685eb00b8c19befe7b712740bebe509bac26f3fd0f89b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Method section v2 写入 `artifacts/_project/paper/method_v2_draft.md` 并已注册。\n\n结构概要：\n- **§3.1 Counterfactual Episode Collection** — 解释 per-step oracle 退化（98.2% tie rate）→ episode-level counterfactual 方案；pure-internal (ReAct) vs pure-deterministic；operational definition of deterministic computation；245 episodes / 11 task types\n- **§3.2 Death-Aware Labeling** — 四个 mutually exclusive cases（death asymmetry / both dead / score comparison / tied alive）；label 分布 86/9/150\n- **§3.3 Death Avoidance Factor** — DAF 公式、boundary case（Δ_full=0 → undefined）；Δ_full=+29.60, Δ_no_death=+2.84, DAF=90.41%；Pearson r=0.9698\n- **§3.4 Rule-Based Baseline** — 三个 keyword list (v1: 85.8%, v2: 4.9%, v3: 2.8%) 全部退化；以 observation-based approaches 收尾\n\n所有数值均来自 A-source（plan-012-full, 11 tasks / 245 episodes）。Labels 与 experiments_draft.md 中的 `\\ref{sec:collection}`, `\\ref{sec:daf}`, `\\ref{sec:rule}` 一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-method-v2.md"
+}

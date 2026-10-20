@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "572e2abd1b6705f825c5",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "check gemma dual gpu progress",
+  "task_key": "worker_check_gemma-dual-gpu-progress_20260520T120939",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_gemma-dual-gpu-progress_20260520T120939_result.json",
+    "occurrence": 1,
+    "bytes": 2514,
+    "sha256": "18e5fc17fe49e2c6cec4081d93073573d7fb1ff16f7e9b514b57d49892108ac4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Gemma 双卡并行实验进度报告\n\n### 1. GPU 状态\n\n| GPU | 型号 | 显存占用 | 利用率 | 温度 | 功耗 |\n|-----|------|---------|--------|------|------|\n| cuda:0 | RTX 5090 | 26383 / 32607 MiB (81%) | 0%* | 47°C | 285W |\n| cuda:1 | RTX 5090 | 26383 / 32607 MiB (81%) | 0%* | 42°C | 62W |\n\n*利用率 0% 是 `nvidia-smi` 瞬时采样，两张卡都有 VLLM::EngineCore 常驻，推理是突发式的。\n\n### 2. 各 task 完成情况\n\n| Task | Episodes | 状态 |\n|------|----------|------|\n| boil | 20/20 | ✅ 完成（早期运行） |\n| identify-life-stages-1 | 20/20 | ✅ 完成（GPU 1） |\n| freeze | 20/20 | ✅ 完成（GPU 1） |\n| lifespan-longest-lived-then-shortest-lived | 14/20 | 🔄 GPU 0 进行中 |\n| grow-fruit | 10/20 | 🔄 GPU 1 进行中 |\n| melt | 2/20 | ⚠️ 仅 2 条（早期残留，不在当前脚本中） |\n| identify-life-stages-2 | 0/20 | ⏳ 排队（GPU 1） |\n| measure-melting-point-unknown-substance | 0/20 | ⏳ 排队（GPU 1） |\n| lifespan-longest-lived | 0/20 | ⏳ 排队（GPU 1） |\n| chemistry-mix | 0/20 | ⏳ 排队（GPU 0 + GPU 1） |\n| inclined-plane-determine-angle | 0/20 | ⏳ 排队（GPU 0 + GPU 1） |\n| find-animal | 0/20 | ⏳ 排队（GPU 0 + GPU 1） |\n| find-non-living-thing | 0/20 | ⏳ 排队（GPU 0 + GPU 1） |\n\n### 3. 当前运行任务\n\n- **cuda:0** (`gemma-gpu0`, 19:12 启动): `lifespan-longest-lived-then-shortest-lived` — 14/20 episodes\n- **cuda:1** (`gemma-11tasks`, 16:44 启动): `grow-fruit` — 10/20 episodes\n\n两张卡都在正常推理，tmux 输出有持续的 VLLM prompt 处理日志，Java ScienceWorld 进程活跃。\n\n### 4. 崩溃迹象\n\n无。两个进程运行正常，VLLM 引擎已加载，无报错。`melt` 只有 2 条数据且不在当前脚本任务列表里，应该是更早的残留数据，不影响当前运行。\n\n### 5. 预估剩余时间\n\nGPU 1 从 16:44 开始，3.5 小时完成 ~50 episodes，速率 ~14 ep/hr：\n- 剩余 170 episodes（10 grow-fruit + 8×20 排队任务）→ **~12 小时**\n\nGPU 0 从 19:12 开始，58 分钟完成 14 episodes，速率类似：\n- 剩余 86 episodes（6 lifespan + 4×20 排队任务）→ **~6 小时**\n\n注意：GPU 0 和 GPU 1 的脚本在后 5 个 task 上有重叠（lifespan-longest-lived-then-shortest-lived, chemistry-mix, inclined-plane-determine-angle, find-animal, find-non-living-thing），会产生重复数据收集。如果这不是有意的，可以考虑调整。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-gemma-dual-gpu-progress.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7730e350681dce03eec5",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh 72b death rate analysis",
+  "task_key": "worker_ssh_72b-death-rate-analysis_20260517T213329",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_72b-death-rate-analysis_20260517T213329_result.json",
+    "occurrence": 1,
+    "bytes": 680,
+    "sha256": "9cf811d6c6957bd2020bb9402e17c16fa31ef7dca9f355934f163332b25e76a9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果已写入 `artifacts/72b_death_rate_analysis.md`。\n\n**核心数据**：\n\n| 指标 | 值 |\n|------|-----|\n| 72B Aggregate Death Rate | **33.3%** (72/216) |\n| 95% CI (bootstrap) | **[26.9%, 40.3%]** |\n| vs 7B (42.9%) | **-9.6pp** |\n| vs deterministic (16.3%) | **+17.0pp** |\n\n**数据完整性**：10/11 tasks 已有 ≥20 episodes。measure-melting-point 目前只有 16 eps，缺 4。\n\n**Per-task 极端值**：chemistry-mix 最高 (50%)，find-non-living-thing 为 0%。\n\n**结论**：72B scaling 将 death rate 从 42.9% 降到 33.3%，有改善但远未解决问题，95% CI 完全在 deterministic baseline (16.3%) 之上。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-72b-death-rate-analysis.md"
+}

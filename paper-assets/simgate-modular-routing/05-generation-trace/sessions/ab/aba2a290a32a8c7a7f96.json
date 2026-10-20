@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aba2a290a32a8c7a7f96",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "paper sensitivity appendix",
+  "task_key": "worker_paper_sensitivity-appendix_20260521T005702",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_sensitivity-appendix_20260521T005702_result.json",
+    "occurrence": 1,
+    "bytes": 1366,
+    "sha256": "ef76a0079e383a17965401f63b60e82c59aca5733d16636f5746cf606f640473"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n---\n\n### 产出总结\n\n**1. 添加的 LaTeX 内容**（main.tex 行 279-300，Cross-Model Verification 之后）\n\n新增 `\\section{DAF Sensitivity to Zero-Death Task Types}`，包含三模型对比表（Table `tab:daf-sensitivity`）：\n\n| Model | DAF (11 tasks) | DAF (10 tasks) |\n|-------|---------------|---------------|\n| Qwen2.5-7B-Instruct | 90.4% [81.4, 99.1] | 100.0% [100.0, 100.0] |\n| Llama-3.1-8B-Instruct | 88.2% [80.0, 95.1] | 97.0% [91.5, 100.0] |\n| Gemma-2-9B-it | 89.7% [79.5, 98.4] | 99.9% [99.7, 100.0] |\n\n所有数值通过 `scripts/daf_sensitivity_3model.py` 从原始 episode 数据独立计算验证（episode-level bootstrap, B=10,000, seed=42）。\n\n**2. 数值一致性分析**\n\n- **96.8% 不存在于论文中**。`0.9698` 是 Pearson r 值（main.tex:89），不是 DAF\n- 主文 Qwen DAF=90.4% 与 cross-model 数据完全一致\n- Gemma 有额外 task（boil, melt）和 40 条 find-non-living-thing episodes，标准化为 11 canonical tasks、20 eps/task 后 DAF=89.7%，与 analysis.json 一致\n- 排除 find-non-living-thing 后三模型 DAF 均 ≥97%，CI 收窄\n\n**3. 编译结果**\n\n- **0 errors**\n- 4 undefined refs：均为预存 `sec:experiments`（NLP checklist），非本次修改引入\n- **17 pages**（主文 ≤8 页 + appendix + checklist，未改变主文长度）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-sensitivity-appendix.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d8013f4be2ec52ba0b8d",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "research literature scan",
+  "task_key": "worker_research_literature-scan_20260514T003850",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_literature-scan_20260514T003850_result.json",
+    "occurrence": 1,
+    "bytes": 2953,
+    "sha256": "bfbba866fc9ab79f789714e7bf1bb2fb19bf1af1ecaed82730e09ebe618fbd84"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "literature_map.yaml 已创建。以下是扫描报告：\n\n---\n\n## 文献增量扫描报告 (2026-05-14)\n\n### 扫描范围\n18 组关键词，覆盖 2025-2026 年 arXiv、顶会 (EMNLP/ICLR/NeurIPS/ACL) 论文。\n\n### 新发现论文：12 篇\n\n| 论文 | 会议/来源 | 关系 | 关键发现 |\n|------|-----------|------|----------|\n| **CogRouter** (Yang+ 2026) | arXiv:2602.12662 | complementary | ScienceWorld SOTA 82.3%，路由认知深度而非模态 |\n| **ITP** (Liu+ 2026) | arXiv:2601.08955 | complementary | 世界模型 lookahead 在 ScienceWorld 上规划 |\n| **MTRouter** (Zhang+ 2026) | ACL 2026 | complementary | ScienceWorld 多轮 LLM 路由，成本优化 |\n| **ReTool** (Feng+ 2025) | ICLR 2026 | complementary | RL 学习何时用代码解释器（数学域） |\n| **ARES** (Yang+ 2026) | arXiv:2603.07915 | complementary | 轻量 router 做推理深度选择，-52.7% tokens |\n| **Dyna-Think** (2025) | arXiv:2506.00320 | complementary | 世界模型 + 推理融合框架 |\n| **TSR** (IBM, 2026) | ICLR 2026 | complementary | 轨迹搜索 rollout 训练方法 |\n| **ToolSafety** (2025) | EMNLP 2025 | complementary | 工具调用安全数据集 |\n| **OpenAgentSafety** (2026) | ICLR 2026 | background | Agent 安全评测基准 |\n| **LLM Agentic Failures** (2025) | arXiv:2512.07497 | complementary | 4 类 agent 失败模式分类 |\n| **EnvSimBench** (2025) | 2025 | complementary | \"state-change cliff\"：多变量状态更新时 LLM 灾难性失败 |\n| **MoR** (Bae+ 2025) | NeurIPS 2025 | background | 架构级自适应深度 |\n\n### Novelty 威胁评估：**无威胁**\n\n**未发现 direct competitor。** 没有论文声称 death/safety avoidance 是 routing signal 的主要来源。现有工作分为三类：\n1. **路由不同目标**：CogRouter 路由认知深度，MTRouter 路由不同 LLM，ARES 路由推理强度——都不是内部推理 vs 确定性计算的模态路由\n2. **不分析信号组成**：ReTool/ITP 优化何时用工具/世界模型，但不分解 routing signal 的来源\n3. **定性而非定量**：LLM Agentic Failures 定性分类失败模式，不量化 death avoidance 贡献\n\n### 建议引用的关键论文（按优先级）\n\n**必须引用（Related Work 定位）：**\n- **CogRouter** — ScienceWorld SOTA 基线 + adaptive computation 对比\n- **ReTool** — tool-use routing 最新代表（ICLR 2026）\n- **MTRouter** — ScienceWorld 上的多轮路由工作（ACL 2026）\n- **ITP** — 世界模型路由（ScienceWorld 评测）\n- **EnvSimBench** — \"state-change cliff\" 发现解释了我们 death avoidance 发现的底层机制\n\n**建议引用（强化论证）：**\n- **ARES** — 轻量 router 架构的平行工作\n- **ToolSafety** (EMNLP 2025) — 区分我们的 \"safety\" 定义（灾难性任务失败 vs 工具滥用安全）\n- **Dyna-Think** — 推理与模拟融合（我们分析它们的信号组成）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-literature-scan.md"
+}

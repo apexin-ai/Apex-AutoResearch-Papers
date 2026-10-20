@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "58972bc9ce1873131ee1",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh retry unify metrics westb",
+  "task_key": "worker_ssh_retry-unify-metrics-westb_20260518T173813",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_retry-unify-metrics-westb_20260518T173813_result.json",
+    "occurrence": 1,
+    "bytes": 1265,
+    "sha256": "6de9767e631cf8e730497c1589f18826d5754a7fef9681e6121dc6f1250a9b4b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "JSON 保存在 `/root/autodl-tmp/simgate-modular-routing/analysis/analysis/unified_dose_response_data.json`（因为脚本在 analysis/ 下运行，默认输出路径又是 `analysis/...`，导致嵌套了一层）。\n\n---\n\n## Retry Unified Dose-Response (final_dr, 分母=200)\n\n| cutoff k | Deaths | DR | Wilson 95% CI |\n|----------|--------|----|---------------|\n| 1 | 96 | 48.0% | [41.2%, 54.9%] |\n| 2 | 94 | 47.0% | [40.2%, 53.9%] |\n| 3 | 87 | 43.5% | [36.8%, 50.4%] |\n| 4 | 86 | 43.0% | [36.3%, 49.9%] |\n| 5 | 87 | 43.5% | [36.8%, 50.4%] |\n\nTrial length distribution: {1: 14, 2: 3, 3: 1, 4: 2, 5: 180} (20 episodes 因 early success 提前终止)\n\n**Cross-validation:**\n- cutoff=5 DR = 43.5% vs ground truth 43.5%: **PASS**\n- cutoff=1 DR = 48.0% vs ground truth 48.0%: **PASS**\n\n**JSON 输出路径:** `/root/autodl-tmp/simgate-modular-routing/analysis/analysis/unified_dose_response_data.json`\n\n**注意:** 原脚本的 `compute_dose_response` 在 `k > len(trials)` 时跳过 episode（变动分母），不符合\"分母固定 200\"的要求。上面的正确 final_dr 是通过 `min(k, len(trials))` 取最后可用 trial 来计算的。原脚本输出的 cutoff=2..5 行分母分别是 186/183/182/180，仅供参考。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-retry-unify-metrics-westb.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e41ec793b45d4cf49873",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "research r6 ssh data",
+  "task_key": "worker_research_r6-ssh-data_20260515T003247",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_r6-ssh-data_20260515T003247_result.json",
+    "occurrence": 1,
+    "bytes": 259,
+    "sha256": "f8f045d8d1140f4636c99199f91a8f9ddb94d33dcd0ee4c42d7d572d85b2fe35"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n**W3 — Death Temporal Pattern (plan_c, 30-step budget):**\n- 145 death episodes\n- **Median death step: 18**\n- Mean: 18.5, range: [8, 29]\n- 高峰集中在 step 14–17（占 55/145 = 38%）\n\n**I5 — vLLM Version:** `0.18.1`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-r6-ssh-data.md"
+}

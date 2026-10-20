@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6619d783ef7578479ede",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "fix force sync tex files",
+  "task_key": "worker_fix_force-sync-tex-files_20260516T133655",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_force-sync-tex-files_20260516T133655_result.json",
+    "occurrence": 1,
+    "bytes": 905,
+    "sha256": "1b771ecd23acf350876951768c56831738024bcb16e16766164a99472c7ff2b7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Sync 验证总结\n\n**文件传输**: 8/8 文件大小完全匹配。\n\n**旧 citation key 清除**: `toolformer-2024`、`chameleon-2024`、`retool-2026` 均已消除。\n\n**`\\label{alg:labeling}`**: 已确认存在于 method.tex。\n\n**LaTeX 编译**: PDF 已生成（12 页，350KB）。但存在：\n- **42 个 undefined citations** — 都是新版 citation key（如 `scienceworld-2022`、`react-2023`、`toolformer-2023` 等），说明 `.bib` 文件还未同步或缺少这些条目\n- **60+ 个 undefined references** — 大多指向 appendix 的 label（`app:penalty`、`app:cross-model`、`sec:router-diagnostic` 等），说明 appendix 文件尚未包含在编译中\n- **1 个缺失图片**: `figures/signal_reversal.pdf`\n\ntex 文件同步本身完全成功。未解析的 citations/references 是 bib 文件或 appendix 内容缺失导致的，不是同步问题。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-force-sync-tex-files.md"
+}

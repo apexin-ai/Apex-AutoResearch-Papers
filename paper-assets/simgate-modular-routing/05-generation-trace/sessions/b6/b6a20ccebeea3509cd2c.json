@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b6a20ccebeea3509cd2c",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "research fork diagnostic",
+  "task_key": "worker_research_fork-diagnostic_20260513T073419",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_fork-diagnostic_20260513T073419_result.json",
+    "occurrence": 1,
+    "bytes": 2664,
+    "sha256": "4efc9cc14af2ddc4d2988911a970cd1d1e90e7eff986bfd79aafa2c141f864a3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。所有数据已收集，以下是完整结论。\n\n---\n\n## 诊断结论\n\n### 1. fork_and_lookahead 没有 bug\n\nFork 机制完全正确，验证结果：\n- `score_before` 与主环境一致 ✓\n- action replay 无误 ✓\n- `activate stove` → delta=+2.0 ✓\n- `activate oven` → delta=+2.0 ✓\n- `focus on X` → delta=-100.0 ✓\n- `connect X to Y` → delta=0.0 ✓\n\n### 2. -100.0 的来源\n\n**来自 ScienceWorld 环境本身**，不是代码 sentinel。所有 `focus on X` 动作在 boil 任务中会立即返回 `score=-100, done=True`，终结 episode。代码中无 -100 字面值；`get_score()` 从 `info.get(\"score\", 0)` 透传环境值。\n\n统计：\n| 模式 | 触发 -100 的 episode 数 |\n|------|------------------------|\n| always-internal | 5/9 |\n| always-deterministic | 3/9 |\n| oracle-routing | 4/9 |\n\n### 3. Oracle 全选 internal 的原因\n\n**两个因素叠加：**\n\n**a) Tie-break 偏向 internal**（`phase1_signal.py:233`）：\n```python\nif internal_delta >= best_det_delta:  # >= 意味着相等时选 internal\n```\n\n**b) 95%+ 步骤的 internal_delta 和 det_delta 都是 0.0**。boil 任务的 reward 极度稀疏——只有 `activate stove/oven` 等关键操作给 +2.0/+1.0 分。LLM 生成的动作（`connect X to Y`）对任务完全无效，所以 1-step lookahead 看到的 delta 几乎全是 0。\n\n8 个 episode × 30 步中，非零 delta 的 oracle 步骤只有 24 个，其中大部分是 -100（`focus on` 惩罚），正面信号只有 Ep2 和 Ep3 各 2-3 步。\n\n### 4. 修复建议\n\n| 问题 | 修复 | 优先级 |\n|------|------|--------|\n| Oracle tie-break 永远偏向 internal | 改为 `>` 或 delta=0 时随机选 | 中（影响 oracle 数据质量） |\n| `focus on` 导致 -100 death | fork 已能检测，但 always-internal 无保护。可加黑名单或让 fork 过滤 delta < 0 的动作 | 高 |\n| 稀疏 reward 下 1-step lookahead 无信号 | 这是根本瓶颈。考虑 N-step rollout 或启发式中间打分 | 高（架构层面） |\n| LLM 生成低质量动作 | prompt 优化或用 valid_actions 过滤 | 高 |\n\n### 5. 是否需要停 GPU 实验？\n\n**不需要**。Fork 机制正确，实验数据有效。数据准确反映了 1-step lookahead 在稀疏 reward 下的局限性——这本身就是有意义的 Phase 1 信号。\n\n但有一个值得注意的问题：当前 oracle routing（4/9 hit -100）比 always-deterministic（3/9）**更差**，因为 oracle 的 tie-break 让它跟随 internal 路径，而 internal 路径更容易撞上 `focus on` 死局。这意味着当前 oracle 不是真正的 upper bound。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-fork-diagnostic.md"
+}

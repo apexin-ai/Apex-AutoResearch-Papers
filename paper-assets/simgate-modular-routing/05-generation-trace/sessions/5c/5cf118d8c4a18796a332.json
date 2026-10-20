@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5cf118d8c4a18796a332",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code plan 002 partial labeling",
+  "task_key": "worker_code_plan-002-partial-labeling_20260514T014716",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan-002-partial-labeling_20260514T014716_result.json",
+    "occurrence": 1,
+    "bytes": 1359,
+    "sha256": "059a3faf890174456aabce06ae0009eb0bbf0de6542eb0391b14028b7a0c0c8c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Labeling 完成。结果汇总：\n\n**4 个 task × 20 episodes = 80 episodes**\n\n| Label | Episodes | Steps | Episode % |\n|---|---|---|---|\n| det-preferred | 26 | 780 | 32.5% |\n| internal-preferred | 5 | 150 | 6.3% |\n| no-preference | 49 | 1329 | 61.3% |\n\n**Per-task 信号来源：**\n\n| Task | det_death | int_death | det_score | int_score | tie | both_died |\n|---|---|---|---|---|---|---|\n| find-non-living-thing | 0 | 0 | 7 | 4 | 9 | 0 |\n| grow-fruit | 6 | 1 | 0 | 0 | 10 | 3 |\n| identify-life-stages-2 | 6 | 0 | 0 | 0 | 10 | 4 |\n| inclined-plane-determine-angle | 7 | 0 | 0 | 0 | 9 | 4 |\n\n**异常观察：**\n- 分布与预期（~93% det-preferred）差异很大。实际 det-preferred 仅 32.5%，no-preference 高达 61.3%。\n- no-preference 主要来自 tie（两者都活且分数相同，38 episodes）和 both_died（11 episodes）。\n- find-non-living-thing 无任何 death 事件，分类完全靠 score comparison。其他 3 个 task 的 death 信号以 det_death（internal 死、det 活→det-preferred）为主，但 tie 占比也很高。\n- internal-preferred 仅 5 episodes（全来自 grow-fruit 的 1 个 int_death + find-non-living-thing 的 4 个 int_score），确认极度不平衡。\n\n产出：`results/plan_001b_labels_partial/sft_triples.jsonl`（2259 steps, 2MB）+ `labeling_summary.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-002-partial-labeling.md"
+}

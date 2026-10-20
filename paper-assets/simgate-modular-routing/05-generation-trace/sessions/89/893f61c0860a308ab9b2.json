@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "893f61c0860a308ab9b2",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "ssh minihack death bug fix",
+  "task_key": "worker_ssh_minihack-death-bug-fix_20260519T115954",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_minihack-death-bug-fix_20260519T115954.log",
+    "occurrence": 1,
+    "bytes": 599898,
+    "sha256": "158f6f42b24d709414d46274243bcd0326abf267dbee0952341efb4f6b3b6c27"
+  },
+  "statistics": {
+    "messages": 285,
+    "user_turns": 0,
+    "tool_calls": 103,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 75,
+      "tool_call": 103,
+      "tool_result": 103,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 285,
+      "chunks": [
+        {
+          "path": "893f61c0860a308ab9b2-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "893f61c0860a308ab9b2-part-0002.json",
+          "message_count": 105
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-minihack-death-bug-fix.md"
+}

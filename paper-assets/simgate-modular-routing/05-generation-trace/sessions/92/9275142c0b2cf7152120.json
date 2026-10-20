@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9275142c0b2cf7152120",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ops plan 002 v3 download and launch",
+  "task_key": "worker_ops_plan-002-v3-download-and-launch_20260514T054223",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_plan-002-v3-download-and-launch_20260514T054223_result.json",
+    "occurrence": 1,
+    "bytes": 678,
+    "sha256": "05df1fb87116f0be3261bfdc5297f999ad82a4a3ecfb71a4a4f313b503fe827d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已成功启动，所有确认项均通过。\n\n```\n模型下载: 已存在, ~3.8GB (2个safetensors分片, tokenizer完整)\nGPU0 状态: 空闲确认后启动（plan-004-implicit 刚结束释放）\n训练启动: GPU0 占用 29801 MiB / 87% 利用率\n日志确认:\n  - 模型加载路径: /root/autodl-tmp/models/Qwen/Qwen3-1.7B (本地, 无网络请求)\n  - class_weights: internal=3.929, deterministic=0.573\n  - sampler: WeightedRandomSampler (upsample_minority enabled)\n  - 数据: 2040 samples, 1650 train / 390 val, 156 steps/epoch\n  - LoRA r=16, trainable 0.37%\n  - WANDB offline, HF_HUB_OFFLINE=1\n  - tmux session: plan-002-formal-v3\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-plan-002-v3-download-and-launch.md"
+}

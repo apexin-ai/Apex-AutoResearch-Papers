@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f72b4145b48feb867311",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "analysis penalty sensitivity",
+  "task_key": "worker_analysis_penalty-sensitivity_20260514T125431",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_penalty-sensitivity_20260514T125431_result.json",
+    "occurrence": 1,
+    "bytes": 1141,
+    "sha256": "792cf1dfe40b80975f595458de82b7c5eaa8aa2ad935872bc997b0f9ed493951"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "C1 Penalty Sensitivity Analysis 完成。\n\n## 核心结果\n\n**死亡分类（245 episodes）**：\n- only internal dies: 70, only deterministic dies: 5, both die: 35, neither: 135\n- δ = (70 - 5) / 245 = **0.2653**\n\n**分解公式**：`Δ_full(P) = δ·P + Δ_nd`，其中 Δ_nd = **3.07**\n\n**Overall Sensitivity Table**：\n\n| P | Δ_full(P) | DAF(P) |\n|---|-----------|--------|\n| 10 | 5.72 | 46.4% |\n| 25 | 9.70 | 68.4% |\n| 50 | 16.33 | **81.2%** |\n| 100 | 29.60 | 89.6% |\n| 200 | 56.13 | 94.5% |\n\n**与 reviewer 预期对比**：reviewer 预期 P=10→50.4%、P=25→70.7%、P=50→82.6%，实际略低（因 Δ_nd=3.07 > reviewer 假设的 2.84），趋势完全一致。\n\n**关键反驳点**：`find-non-living-thing`（40 episodes）δ=0（零死亡），纯靠 non-death 优势 Δ_nd=9.58，DAF=0%——证明 deterministic 优势不依赖 death penalty。另有 5 个 task 在 P=50 时 DAF>94%。\n\n**产出文件**：\n- `artifacts/penalty_sensitivity.json` — 完整数据\n- `artifacts/penalty_sensitivity_table.tex` — LaTeX 表格\n- Registry: `plan-012-penalty-sensitivity` (DONE/success)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-penalty-sensitivity.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ce3e56806e6d1f758f49",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh deploy heuristic v9",
+  "task_key": "worker_ssh_deploy-heuristic-v9_20260518T052921",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_deploy-heuristic-v9_20260518T052921_result.json",
+    "occurrence": 1,
+    "bytes": 3354,
+    "sha256": "f5c8a546c28a257d619c057234b73aec12866bc811c16f13364be2e1430e81a9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here are the complete results.\n\n---\n\n## v9 Heuristic Agent Results\n\n### v9 Changes Applied\n\n| Fix | v8 (before) | v9 (after) |\n|-----|-------------|------------|\n| **Monster flee** | `close3` (dist ≤ 3), flee only when 2+ converging | `close4` (dist ≤ 4), flee ANY monster within 4 tiles |\n| **P3 zombie flee** | Separate rule for zombies ≤ 3 tiles when unarmed | Removed (subsumed by expanded P2.5) |\n| **Sleep safety** | Radius 10, forced sleep at energy=0 | Radius 12, NO forced sleep at energy=0 |\n| **Flee direction** | Away from danger centroid only | Biased toward nearest water among top flee candidates |\n| **Food search (P12)** | Cow ≤ 6 tiles, plant ≤ 4 tiles | Cow ≤ 10 tiles, plant ≤ 8 tiles |\n\n### 5-Episode Results\n\n| Episode | Steps | Death | Final Health | Achievements |\n|---------|-------|-------|--------------|--------------|\n| 0 | 450 | Yes | 0 | 6: collect_drink, collect_wood, defeat_zombie, eat_cow, make_wood_sword, place_table |\n| 1 | 258 | Yes | 0 | 6: (same set) |\n| 2 | 218 | Yes | 0 | 5: (no defeat_zombie) |\n| 3 | 290 | Yes | 0 | 6: (same as ep0) |\n| 4 | 250 | Yes | 0 | 6: (same as ep0) |\n\n### Comparison\n\n| Metric | Heuristic v9 | v8 (reported) | Random |\n|--------|-------------|---------------|--------|\n| Avg steps | **293.2** | ~353 | 151.4 |\n| Death rate | 100% | 100% | 100% |\n| Avg achievements | 5.8 | N/A | 2.4 |\n\n**v9 is worse than v8 on survival time** (293 vs ~353 avg steps).\n\n### Death Cause Analysis\n\nAction distribution: 92% movement, 0.5% sleep (only 7 sleeps in 1466 total steps), 6.8% interaction.\n\n**Root cause: sleep starvation → energy depletion → no health regeneration → death spiral.**\n\n1. The \"flee ALL within 4 tiles\" policy keeps the agent running constantly, leaving almost no time for resource gathering.\n2. The sleep safety radius of 12 tiles is too large; monsters are ubiquitous, so the agent almost never finds a safe sleep zone.\n3. Removing forced sleep at energy=0 means the agent's energy depletes to 0 and stays there. Without energy (and not sleeping), health cannot regenerate.\n4. Each zombie contact does 2 damage. With 34 hp-drop events across 1466 steps (~1 hit every 43 steps) and zero recovery, health steadily drops to 0.\n\n**Typical episode pattern:** Health=9 maintained for ~150 steps → first monster hit → health declines → energy depletes to 0 → can't sleep (monsters too close) → health never recovers → cumulative hits → death.\n\n### v10 Recommendations\n\n1. **Restore emergency sleep with moderate radius**: Sleep at energy ≤ 1 if no monster within **5-6 tiles** (not 12). Getting hit once during sleep costs 2hp, but never sleeping costs all recovery ability. This was the most damaging v9 change.\n2. **Conditional flee, not universal**: Only flee when unarmed OR health ≤ 4 OR 2+ monsters within 4. Armed agent with health ≥ 5 should fight isolated monsters to clear threats rather than perpetually running.\n3. **Active monster clearing**: When healthy (hp ≥ 6) and armed, engage isolated zombies within 2-3 tiles. Killing them removes the persistent threat that prevents sleep.\n4. **Tighter water-camp strategy**: The water-camping behavior works well for drink but the agent wanders too far for food. Consider prioritizing food sources nearer to water."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-deploy-heuristic-v9.md"
+}
